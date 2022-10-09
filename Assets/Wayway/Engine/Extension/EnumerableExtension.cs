@@ -12,13 +12,7 @@ namespace Wayway.Engine
             foreach (var item in list)
                 action(item);
         }
-        public static void ReverseForEach<T>(this List<T> list, Action<T> action)
-        {
-            for (var i = list.Count - 1; i >= 0; --i)
-            {
-                action?.Invoke(list[i]);
-            }
-        }
+        
         public static TSource MinBy<TSource, TKey>(this IEnumerable<TSource> source, Func<TSource, TKey> selector) => source.MinBy(selector, null);
         public static TSource MinBy<TSource, TKey>(this IEnumerable<TSource> source, Func<TSource, TKey> selector, IComparer<TKey> comparer)
         {
