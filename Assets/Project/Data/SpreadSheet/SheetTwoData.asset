@@ -12,4 +12,34 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9bb93ef0e1918a546a433cf4aa2c54a8, type: 3}
   m_Name: SheetTwoData
   m_EditorClassIdentifier: 
-  sheetTwoList: []
+  sheetTwoList:
+  - ID: 1
+    ItemName: LongSword
+    FloatValue: 0.1
+  - ID: 2
+    ItemName: Bow
+    FloatValue: 0.2
+  - ID: 3
+    ItemName: Iron Armor
+    FloatValue: 0.3
+  - ID: 4
+    ItemName: Wooden Shield
+    FloatValue: 0.4
+  - ID: 5
+    ItemName: Magic Staff
+    FloatValue: 0.5
+  - ID: 6
+    ItemName: Flying Shoes
+    FloatValue: 0.6
+  - ID: 7
+    ItemName: Silver Ring
+    FloatValue: 0.7
+  - ID: 8
+    ItemName: Golden Amulet
+    FloatValue: 0.8
+  - ID: 9
+    ItemName: Helmet
+    FloatValue: 0.9
+  - ID: 10
+    ItemName: Nice Glove
+    FloatValue: 1

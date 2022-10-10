@@ -12,4 +12,34 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7e942d78e0f4d344ab48bb8615ba22dc, type: 3}
   m_Name: SheetOneData
   m_EditorClassIdentifier: 
-  sheetOneList: []
+  sheetOneList:
+  - ID: 1
+    ItemName: LongSword
+    IntegerValue: 11
+  - ID: 2
+    ItemName: Bow
+    IntegerValue: 12
+  - ID: 3
+    ItemName: Iron Armor
+    IntegerValue: 13
+  - ID: 4
+    ItemName: Wooden Shield
+    IntegerValue: 14
+  - ID: 5
+    ItemName: Magic Staff
+    IntegerValue: 15
+  - ID: 6
+    ItemName: Flying Shoes
+    IntegerValue: 16
+  - ID: 7
+    ItemName: Silver Ring
+    IntegerValue: 17
+  - ID: 8
+    ItemName: Golden Amulet
+    IntegerValue: 18
+  - ID: 9
+    ItemName: Helmet
+    IntegerValue: 19
+  - ID: 10
+    ItemName: Nice Glove
+    IntegerValue: 20
