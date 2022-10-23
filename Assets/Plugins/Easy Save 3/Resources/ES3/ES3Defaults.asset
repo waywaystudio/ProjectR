@@ -14,11 +14,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   settings:
     _location: 0
-    path: SaveFile.es3
+    path: Project\Data\Save\SaveFile.es3
     encryptionType: 0
     compressionType: 0
     encryptionPassword: password
-    directory: 0
+    directory: 1
     format: 0
     prettyPrint: 1
     bufferSize: 2048
@@ -33,7 +33,9 @@ MonoBehaviour:
     - Assembly-CSharp-firstpass
     - Assembly-CSharp
     - DOTween.Modules
+    - SoCreator
     - CAH.UnityGoogleSheets.Editor
+    - SoCreator.Editor
     showAdvancedSettings: 0
   addMgrToSceneAutomatically: 0
   autoUpdateReferences: 1

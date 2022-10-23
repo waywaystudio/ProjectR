@@ -1,14 +1,30 @@
+using System;
 using Sirenix.OdinInspector;
 using UnityEngine;
+using UnityEngine.Events;
 
 namespace Wayway.Engine.Save
 {
-    public abstract class Savable : MonoBehaviour
+    public class Savable : MonoBehaviour
     {
+        [SerializeField] private UnityEvent saveEvent;
+        [SerializeField] private UnityEvent loadEvent;
+
         [Button]
-        public abstract void Save();
+        public void Save() => saveEvent?.Invoke();
         
         [Button]
-        public abstract void Load();
+        public void Load() => loadEvent?.Invoke();
+
+        private void OnEnable()
+        {
+            GetComponents<ISavable>().ForEach(x =>
+            {
+                saveEvent.AddListener(x.Save);
+                loadEvent.AddListener(x.Load);
+            });
+            
+            // SaveManager.Instance.Register(this);
+        }
     }
 }

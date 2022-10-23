@@ -260,6 +260,15 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2439984706437849568, guid: 530e7d960fe1c2d4a8064206609cba35, type: 3}
+      propertyPath: m_text
+      value: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam maximus
+        ultrices lacus sed sodales. Duis suscipit sapien quis ullamcorper hendrerit. '
+      objectReference: {fileID: 0}
+    - target: {fileID: 2439984706437849568, guid: 530e7d960fe1c2d4a8064206609cba35, type: 3}
+      propertyPath: m_fontSize
+      value: 22.05
+      objectReference: {fileID: 0}
     - target: {fileID: 2932852368757911133, guid: 530e7d960fe1c2d4a8064206609cba35, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -342,6 +351,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 2714927515206354961}
     m_Modifications:
+    - target: {fileID: -6281434823882327373, guid: 10fc25fac0ad29e44ae1c844f25bee3c, type: 3}
+      propertyPath: dataPath
+      value: Assets/Project/Data/Event/Serialization
+      objectReference: {fileID: 0}
     - target: {fileID: 2725178782570951737, guid: 10fc25fac0ad29e44ae1c844f25bee3c, type: 3}
       propertyPath: m_RootOrder
       value: 1
