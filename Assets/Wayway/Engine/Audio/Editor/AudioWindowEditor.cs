@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿#if ODIN_INSPECTOR
+using UnityEngine;
 using UnityEditor;
 using Sirenix.OdinInspector.Editor;
 using System.Collections.Generic;
@@ -51,4 +52,4 @@ namespace Wayway.Engine.Audio.Editor
         }
     }
 }
-
+#endif

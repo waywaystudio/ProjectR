@@ -91,7 +91,7 @@ namespace Wayway.Engine.Audio
             //          .setOnComplete(callback);
         }
 
-#if UNITY_EDITOR
+#if UNITY_EDITOR && ODIN_INSPECTOR
         #region - editor Function :: Initialize
         [Sirenix.OdinInspector.Button(Sirenix.OdinInspector.ButtonSizes.Large)]
         private void GetAudioSourcesInChildren()
