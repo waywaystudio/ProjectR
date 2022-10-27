@@ -1,70 +1,44 @@
-using System;
-using System.Collections.Generic;
 using System.Linq;
 using Sirenix.OdinInspector;
 using UnityEngine;
+using Wayway.Engine.Events;
 using Wayway.Engine.Singleton;
 // ReSharper disable NotAccessedField.Local
 
-#pragma warning disable CS0414
-
 namespace Wayway.Engine.Save
 {
-    // SaveManager;
     public class SaveManager : MonoSingleton<SaveManager>
     {
-        [SerializeField] private List<SaveSlot> saveSlotList = new ();
+        [SerializeField] private GameEvent saveEvent;
 
-        private const string CurrentSaveFile = "_currentSaveFile";
+        private const string PlaySaveFile = "_playSaveFile";
         private const string AutoSaveFile = "AutoSaveFile";
         private const string Extension = "es3";
 
-        private Action saveAction;
-
-        private static string DefaultSavePath => ES3Settings.defaultSettings.path;
-        private static string AutoSaveFullPath => GetFullPath(AutoSaveFile);
-        private static string CurrentSaveFullPath => GetFullPath(CurrentSaveFile);
-
-
-        public static void RegisterSave(Action action)
-        {
-            Instance.saveAction += action;
-        }
-
-        public static void UnregisterSave(Action action)
-        {
-            Instance.saveAction -= action;
-        }
-
-        [Button]
-        public void SaveAll() => saveAction?.Invoke();
+        public static GameEvent SaveEvent => Instance.saveEvent;
+        
+        private static string SaveFileDirectory => ES3Settings.defaultSettings.path;
+        private static string AutoSavePath => GetPath(AutoSaveFile);
+        private static string CurrentSavePath => GetPath(PlaySaveFile);
 
         [Button]
         public void SetUp()
         {
-            if (!ES3.FileExists(AutoSaveFullPath))
+            if (!ES3.FileExists(AutoSavePath))
             {
-                ES3.Save("Initialize", true, AutoSaveFullPath);
+                ES3.Save("IsValidFile", true, AutoSavePath);
             }
             
-            if (!ES3.FileExists(CurrentSaveFullPath))
+            if (!ES3.FileExists(CurrentSavePath))
             {
-                ES3.Save("Initialize", true, CurrentSaveFullPath);
+                ES3.Save("IsValidFile", true, CurrentSavePath);
             }
-            
-            Refresh();
         }
 
-        public static void Save<T>(string key, T value)
-        {
-            ES3.Save(key, value, CurrentSaveFullPath);
-        }
+        public static void Save<T>(string key, T value) => ES3.Save(key, value, CurrentSavePath);
+        public static T Load<T>(string key) => ES3.Load<T>(key, CurrentSavePath);
 
-        public static T Load<T>(string key)
-        {
-            return ES3.Load<T>(key, CurrentSaveFullPath);
-        }
-
+        [Button]
         public void CreateSlot(string saveFileName)
         {
             if (saveFileName.Contains('_'))
@@ -73,7 +47,7 @@ namespace Wayway.Engine.Save
                 return;
             }
             
-            var saveFileFullPath = GetFullPath(saveFileName);
+            var saveFileFullPath = GetPath(saveFileName);
             
             if (ES3.FileExists(saveFileFullPath))
             {
@@ -81,53 +55,48 @@ namespace Wayway.Engine.Save
                 return;
             }
             
-            ES3.Save("Initialize", true, saveFileFullPath);
+            ES3.Save("IsValidFile", true, saveFileFullPath);
+            
+            Refresh();
         }
 
-        public void LoadFromSlot(string targetSlotName)
+        public void LoadFromSlot(string loadSlot)
         {
-            var targetFullPath = GetFullPath(targetSlotName);
+            var loadFilePath = GetPath(loadSlot);
             
-            CopySaveFile(targetFullPath, CurrentSaveFullPath);
+            CopySaveFile(loadFilePath, CurrentSavePath);
         }
 
-        public void SaveToSlot(string targetSlotName)
+        public void SaveToSlot(string targetSlot)
         {
-            var targetFullPath = GetFullPath(targetSlotName);
+            var targetPath = GetPath(targetSlot);
             
-            CopySaveFile(CurrentSaveFullPath, targetFullPath);
+            CopySaveFile(CurrentSavePath, targetPath);
         }
         
         private void AutoSave()
         {
-            CopySaveFile(CurrentSaveFullPath, AutoSaveFullPath);
+            CopySaveFile(CurrentSavePath, AutoSavePath);
         }
 
         [Button]
         private void GetSaveFileList()
         {
-            var saveFileList = ES3.GetFiles(DefaultSavePath)
-                                  .Where(ext => ext.EndsWith(".ecs3"))
-                                  .Where(spelling => !spelling.Contains('_'));
-            
-            // saveSlotList
+            var saveFileList = ES3.GetFiles(SaveFileDirectory)
+                                  .Where(file => file.EndsWith($".{Extension}"))
+                                  .Where(file => file.NotContains('_'));
 
             saveFileList.ForEach(saveFile =>
             {
-                var saveSlot = new SaveSlot();
-
-                saveSlot = Load<SaveSlot>(saveFile);
+                if (ES3.KeyExists("IsValidFile", GetPath(saveFile[..^4])))
+                {
+                    // isValidation true. create slot list
+                }
+                else
+                {
+                    Debug.LogWarning($"{saveFile} Is not Valid File!!!");
+                }
             });
-        }
-
-        [Button]
-        public void SaveTest(string saveFileName)
-        {
-            SetUp();
-
-            var saveFilePath = $"{DefaultSavePath}/{saveFileName}.{Extension}";
-
-            Refresh();
         }
 
         [Button]
@@ -135,12 +104,11 @@ namespace Wayway.Engine.Save
         {
             SetUp();
 
-            var saveFilePath = $"{DefaultSavePath}/{saveFileName}.{Extension}";
+            var saveFilePath = $"{SaveFileDirectory}/{saveFileName}.{Extension}";
             
             if (!ES3.FileExists(saveFilePath))
             {
                 Debug.LogError($"There isn't exist {saveFilePath}. Load Failed");
-                return;
             }
         }
 
@@ -148,31 +116,31 @@ namespace Wayway.Engine.Save
         {
             if (!IsValid(fromName) || !IsValid(destName)) return;
             
-            var fromSaveFile = GetFullPath(fromName);
-            var destSaveFile = GetFullPath(destName);
+            var fromSaveFile = GetPath(fromName);
+            var destSaveFile = GetPath(destName);
 
             ES3.CopyFile(fromSaveFile, destSaveFile);
         }
 
-        private static string GetFullPath(string fileName)
+        private static string GetPath(string fileName)
         {
-            return $"{DefaultSavePath}/{fileName}.{Extension}";
+            return $"{SaveFileDirectory}/{fileName}.{Extension}";
         }
 
         private static bool IsValid(string fileName, bool showDebug = false)
         {
-            if (!ES3.FileExists(GetFullPath(fileName)))
+            if (!ES3.FileExists(GetPath(fileName)))
             {
                 if (showDebug)
-                    Debug.Log($"There isn't exist <color=red>{fileName}</color> saveFile");
+                    Debug.LogWarning($"There isn't exist <color=red>{fileName}</color> saveFile");
 
                 return false;
             }
 
-            if (!ES3.KeyExists("Initialize", fileName))
+            if (!ES3.KeyExists("IsValidFile", fileName))
             {
                 if (showDebug)
-                    Debug.Log($"There isn't exist Key of <color=red>Initialize</color> in saveFile");
+                    Debug.LogWarning("Is <color=red>Not</color> IsValidFile");
 
                 return false;
             }

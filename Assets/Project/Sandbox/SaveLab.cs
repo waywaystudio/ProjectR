@@ -24,16 +24,4 @@ public class SaveLab : MonoBehaviour, ISavable
         FloatValue = SaveManager.Load<float>("SaveLabFloat");
         ListValue = SaveManager.Load<List<int>>("SaveLabListInt");
     }
-
-    private void OnDisable()
-    {
-        SaveManager.UnregisterSave(Save);
-        Save();
-    }
-
-    private void OnEnable()
-    {
-        SaveManager.RegisterSave(Save);
-        Load();
-    }
 }

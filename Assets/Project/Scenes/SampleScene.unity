@@ -489,6 +489,10 @@ PrefabInstance:
       value: MainGame
       objectReference: {fileID: 0}
     - target: {fileID: 7364561384061389512, guid: 9f6a97e7e5739ea469cdeb8ceab14b08, type: 3}
+      propertyPath: saveEvent
+      value: 
+      objectReference: {fileID: 11400000, guid: 621c54dff64b4274c860de59303dd753, type: 2}
+    - target: {fileID: 7364561384061389512, guid: 9f6a97e7e5739ea469cdeb8ceab14b08, type: 3}
       propertyPath: stringValue
       value: eGongsapal
       objectReference: {fileID: 0}
@@ -513,6 +517,7 @@ GameObject:
   - component: {fileID: 1541913420}
   - component: {fileID: 1541913419}
   - component: {fileID: 1541913421}
+  - component: {fileID: 1541913422}
   m_Layer: 0
   m_Name: TestObject
   m_TagString: Untagged
@@ -535,9 +540,11 @@ MonoBehaviour:
   saveEvent:
     m_PersistentCalls:
       m_Calls: []
+    m_CallsDirty: 1
   loadEvent:
     m_PersistentCalls:
       m_Calls: []
+    m_CallsDirty: 1
 --- !u!4 &1541913420
 Transform:
   m_ObjectHideFlags: 0
@@ -569,3 +576,47 @@ MonoBehaviour:
   StringValue: 
   FloatValue: 0
   ListValue: 
+--- !u!114 &1541913422
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1541913418}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 05330156ccad4994db26a8b4223ed318, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  targetEventList: []
+  priority: 5
+  saveEvent:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1541913421}
+        m_TargetAssemblyTypeName: SaveLab, Assembly-CSharp
+        m_MethodName: Save
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  loadEvent:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1541913421}
+        m_TargetAssemblyTypeName: SaveLab, Assembly-CSharp
+        m_MethodName: Load
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
