@@ -1,35 +1,39 @@
-using System;
 using System.Collections.Generic;
 using UnityEngine;
-using Sirenix.OdinInspector;
+using Wayway.Engine.Save;
 
-public class SaveLab : MonoBehaviour
+public class SaveLab : MonoBehaviour, ISavable
 {
     public int IntegerValue;
     public string StringValue;
     public float FloatValue;
     public List<int> ListValue;
 
-    [FolderPath]
-    public string defaultPath = "Project/Data/Save";
-    public string saveFile1 = "NewSaveFile1.es3";
-    public string saveFile2 = "NewSaveFile2.es3";
-    public string saveFile3 = "NewSaveFile3.es3";
-    
-    
-
-    [Button]
-    public void LoadFrom1()
+    public void Save()
     {
-        IntegerValue = ES3.Load<int>("IntegerValue", $"{defaultPath}/{saveFile1}");
+        SaveManager.Save("SaveLabInt", IntegerValue);
+        SaveManager.Save("SaveLabString", StringValue);
+        SaveManager.Save("SaveLabFloat", FloatValue);
+        SaveManager.Save("SaveLabListInt", ListValue);
     }
 
-    [Button]
-    public void SaveAtSlot1()
+    public void Load()
     {
-        ES3.Save("IntegerValue", IntegerValue, $"{defaultPath}/{saveFile1}");
-#if UNITY_EDITOR
-        UnityEditor.AssetDatabase.Refresh();
-#endif
+        IntegerValue = SaveManager.Load<int>("SaveLabInt");
+        StringValue = SaveManager.Load<string>("SaveLabString");
+        FloatValue = SaveManager.Load<float>("SaveLabFloat");
+        ListValue = SaveManager.Load<List<int>>("SaveLabListInt");
+    }
+
+    private void OnDisable()
+    {
+        SaveManager.UnregisterSave(Save);
+        Save();
+    }
+
+    private void OnEnable()
+    {
+        SaveManager.RegisterSave(Save);
+        Load();
     }
 }

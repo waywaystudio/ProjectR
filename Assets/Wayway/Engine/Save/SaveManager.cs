@@ -1,9 +1,7 @@
+using System;
 using System.Collections.Generic;
-using System.IO;
 using System.Linq;
-using ES3Internal;
 using Sirenix.OdinInspector;
-using Sirenix.Utilities.Editor;
 using UnityEngine;
 using Wayway.Engine.Singleton;
 // ReSharper disable NotAccessedField.Local
@@ -13,56 +11,113 @@ using Wayway.Engine.Singleton;
 namespace Wayway.Engine.Save
 {
     // SaveManager;
-    // SaveEvent, LoadEvent; : GameEvent;
-    // SaveEventListener;
-    // ISavable (for inherit to Class);
     public class SaveManager : MonoSingleton<SaveManager>
     {
-        [SerializeField] private int integerValue;
-        [SerializeField] private string stringValue;
-        [SerializeField] private List<SaveSlot> saveSlotList;
+        [SerializeField] private List<SaveSlot> saveSlotList = new ();
 
-        private const string SaveFileManager = "SaveFileManager";
-        private const string CurrentSaveFile = "CurrentSaveFile";
+        private const string CurrentSaveFile = "_currentSaveFile";
         private const string AutoSaveFile = "AutoSaveFile";
-        private const string DefaultSaveFileName = "Save";
         private const string Extension = "es3";
+
+        private Action saveAction;
+
         private static string DefaultSavePath => ES3Settings.defaultSettings.path;
+        private static string AutoSaveFullPath => GetFullPath(AutoSaveFile);
+        private static string CurrentSaveFullPath => GetFullPath(CurrentSaveFile);
+
+
+        public static void RegisterSave(Action action)
+        {
+            Instance.saveAction += action;
+        }
+
+        public static void UnregisterSave(Action action)
+        {
+            Instance.saveAction -= action;
+        }
+
+        [Button]
+        public void SaveAll() => saveAction?.Invoke();
 
         [Button]
         public void SetUp()
         {
-            var saveFileManagerPath = $"{DefaultSavePath}/{SaveFileManager}.{Extension}";
-            
-            ES3.Init();
-            
-            if (!ES3.FileExists(saveFileManagerPath))
+            if (!ES3.FileExists(AutoSaveFullPath))
             {
-                ES3.Save("Initialize", true, saveFileManagerPath);
-#if UNITY_EDITOR
-                UnityEditor.AssetDatabase.Refresh();
-#endif
+                ES3.Save("Initialize", true, AutoSaveFullPath);
             }
-            // 세이브 파일 매니저 필요없을 수도 있다.
             
-            // ES3.GetFiles(DefaultSavePath)
-            //    .Where(fileName => fileName.EndsWith(".es3"))
-            //    .ForEach(saveFileName =>
-            //    {
-            //        if (ES3.KeyExists(saveFileName[..^4], saveFileManagerPath))
-            //        {
-            //            
-            //        }
-            //    });
+            if (!ES3.FileExists(CurrentSaveFullPath))
+            {
+                ES3.Save("Initialize", true, CurrentSaveFullPath);
+            }
+            
+            Refresh();
+        }
 
-            // Generate SaveSlot by [*.es3]
-            // Find fileName in SaveFileManager;
-            // if find, go on
-            // else not find, check InstanceID
-            // if find, SaveFileManager key Try change by fileName;
-            // if key exist, generate unique key
+        public static void Save<T>(string key, T value)
+        {
+            ES3.Save(key, value, CurrentSaveFullPath);
+        }
 
-            // saveFileList.ForEach(Debug.Log);
+        public static T Load<T>(string key)
+        {
+            return ES3.Load<T>(key, CurrentSaveFullPath);
+        }
+
+        public void CreateSlot(string saveFileName)
+        {
+            if (saveFileName.Contains('_'))
+            {
+                Debug.LogError("SaveFile Can't Contains under bar(_) text. Try Another Name");
+                return;
+            }
+            
+            var saveFileFullPath = GetFullPath(saveFileName);
+            
+            if (ES3.FileExists(saveFileFullPath))
+            {
+                Debug.Log($"There is already exist <color=red>{saveFileName}</color> in Save Folder. Creation Skipped");
+                return;
+            }
+            
+            ES3.Save("Initialize", true, saveFileFullPath);
+        }
+
+        public void LoadFromSlot(string targetSlotName)
+        {
+            var targetFullPath = GetFullPath(targetSlotName);
+            
+            CopySaveFile(targetFullPath, CurrentSaveFullPath);
+        }
+
+        public void SaveToSlot(string targetSlotName)
+        {
+            var targetFullPath = GetFullPath(targetSlotName);
+            
+            CopySaveFile(CurrentSaveFullPath, targetFullPath);
+        }
+        
+        private void AutoSave()
+        {
+            CopySaveFile(CurrentSaveFullPath, AutoSaveFullPath);
+        }
+
+        [Button]
+        private void GetSaveFileList()
+        {
+            var saveFileList = ES3.GetFiles(DefaultSavePath)
+                                  .Where(ext => ext.EndsWith(".ecs3"))
+                                  .Where(spelling => !spelling.Contains('_'));
+            
+            // saveSlotList
+
+            saveFileList.ForEach(saveFile =>
+            {
+                var saveSlot = new SaveSlot();
+
+                saveSlot = Load<SaveSlot>(saveFile);
+            });
         }
 
         [Button]
@@ -72,18 +127,69 @@ namespace Wayway.Engine.Save
 
             var saveFilePath = $"{DefaultSavePath}/{saveFileName}.{Extension}";
 
-            ES3.Save("saveFileName", saveFileName, saveFilePath);
-            ES3.Save("integerValue", integerValue, saveFilePath);
-            ES3.Save("stringValue", stringValue, saveFilePath);
-            // 하나의 클래스로 묶어보자.
+            Refresh();
         }
 
-        public void SaveOriginalToDest(string original, string dest)
+        [Button]
+        public void LoadTest(string saveFileName)
         {
-            // var originalFilePath = GetSaveFileFullPath(original);
-            // var destFilePath = GetSaveFileFullPath(dest);
+            SetUp();
 
-            // ES3.CopyFile(originalFilePath, destFilePath);
+            var saveFilePath = $"{DefaultSavePath}/{saveFileName}.{Extension}";
+            
+            if (!ES3.FileExists(saveFilePath))
+            {
+                Debug.LogError($"There isn't exist {saveFilePath}. Load Failed");
+                return;
+            }
+        }
+
+        private void CopySaveFile(string fromName, string destName)
+        {
+            if (!IsValid(fromName) || !IsValid(destName)) return;
+            
+            var fromSaveFile = GetFullPath(fromName);
+            var destSaveFile = GetFullPath(destName);
+
+            ES3.CopyFile(fromSaveFile, destSaveFile);
+        }
+
+        private static string GetFullPath(string fileName)
+        {
+            return $"{DefaultSavePath}/{fileName}.{Extension}";
+        }
+
+        private static bool IsValid(string fileName, bool showDebug = false)
+        {
+            if (!ES3.FileExists(GetFullPath(fileName)))
+            {
+                if (showDebug)
+                    Debug.Log($"There isn't exist <color=red>{fileName}</color> saveFile");
+
+                return false;
+            }
+
+            if (!ES3.KeyExists("Initialize", fileName))
+            {
+                if (showDebug)
+                    Debug.Log($"There isn't exist Key of <color=red>Initialize</color> in saveFile");
+
+                return false;
+            }
+
+            return true;
+        }
+
+        private void OnDisable()
+        {
+            AutoSave();
+        }
+
+        private void Refresh()
+        {
+#if UNITY_EDITOR
+            UnityEditor.AssetDatabase.Refresh();
+#endif
         }
     }
 }

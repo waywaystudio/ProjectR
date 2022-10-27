@@ -489,6 +489,14 @@ PrefabInstance:
       value: MainGame
       objectReference: {fileID: 0}
     - target: {fileID: 7364561384061389512, guid: 9f6a97e7e5739ea469cdeb8ceab14b08, type: 3}
+      propertyPath: stringValue
+      value: eGongsapal
+      objectReference: {fileID: 0}
+    - target: {fileID: 7364561384061389512, guid: 9f6a97e7e5739ea469cdeb8ceab14b08, type: 3}
+      propertyPath: integerValue
+      value: 2048
+      objectReference: {fileID: 0}
+    - target: {fileID: 7364561384061389512, guid: 9f6a97e7e5739ea469cdeb8ceab14b08, type: 3}
       propertyPath: defaultSavePath
       value: Assets/Project/Data/SaveFile
       objectReference: {fileID: 0}
@@ -561,7 +569,3 @@ MonoBehaviour:
   StringValue: 
   FloatValue: 0
   ListValue: 
-  defaultPath: Project/Data/Save
-  saveFile1: NewSaveFile1.es3
-  saveFile2: NewSaveFile2.es3
-  saveFile3: NewSaveFile3.es3
