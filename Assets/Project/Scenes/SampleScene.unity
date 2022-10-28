@@ -489,10 +489,6 @@ PrefabInstance:
       value: MainGame
       objectReference: {fileID: 0}
     - target: {fileID: 7364561384061389512, guid: 9f6a97e7e5739ea469cdeb8ceab14b08, type: 3}
-      propertyPath: saveEvent
-      value: 
-      objectReference: {fileID: 11400000, guid: 621c54dff64b4274c860de59303dd753, type: 2}
-    - target: {fileID: 7364561384061389512, guid: 9f6a97e7e5739ea469cdeb8ceab14b08, type: 3}
       propertyPath: stringValue
       value: eGongsapal
       objectReference: {fileID: 0}
@@ -503,6 +499,58 @@ PrefabInstance:
     - target: {fileID: 7364561384061389512, guid: 9f6a97e7e5739ea469cdeb8ceab14b08, type: 3}
       propertyPath: defaultSavePath
       value: Assets/Project/Data/SaveFile
+      objectReference: {fileID: 0}
+    - target: {fileID: 7364561384061389512, guid: 9f6a97e7e5739ea469cdeb8ceab14b08, type: 3}
+      propertyPath: saveInfoList.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7364561384061389512, guid: 9f6a97e7e5739ea469cdeb8ceab14b08, type: 3}
+      propertyPath: saveInfoList.Array.data[0].saveName
+      value: _autoSaveFile
+      objectReference: {fileID: 0}
+    - target: {fileID: 7364561384061389512, guid: 9f6a97e7e5739ea469cdeb8ceab14b08, type: 3}
+      propertyPath: saveInfoList.Array.data[0].saveTime
+      value: 2022.10.29.01.26.12
+      objectReference: {fileID: 0}
+    - target: {fileID: 7364561384061389512, guid: 9f6a97e7e5739ea469cdeb8ceab14b08, type: 3}
+      propertyPath: saveInfoList.Array.data[1].saveName
+      value: _autoSaveFile
+      objectReference: {fileID: 0}
+    - target: {fileID: 7364561384061389512, guid: 9f6a97e7e5739ea469cdeb8ceab14b08, type: 3}
+      propertyPath: saveInfoList.Array.data[1].saveTime
+      value: 2022.10.29.00.42.57
+      objectReference: {fileID: 0}
+    - target: {fileID: 7364561384061389512, guid: 9f6a97e7e5739ea469cdeb8ceab14b08, type: 3}
+      propertyPath: saveInfoList.Array.data[2].saveName
+      value: _autoSaveFile
+      objectReference: {fileID: 0}
+    - target: {fileID: 7364561384061389512, guid: 9f6a97e7e5739ea469cdeb8ceab14b08, type: 3}
+      propertyPath: saveInfoList.Array.data[2].saveTime
+      value: 2022.10.29.00.42.57
+      objectReference: {fileID: 0}
+    - target: {fileID: 7364561384061389512, guid: 9f6a97e7e5739ea469cdeb8ceab14b08, type: 3}
+      propertyPath: saveInfoList.Array.data[3].saveName
+      value: _autoSaveFile
+      objectReference: {fileID: 0}
+    - target: {fileID: 7364561384061389512, guid: 9f6a97e7e5739ea469cdeb8ceab14b08, type: 3}
+      propertyPath: saveInfoList.Array.data[3].saveTime
+      value: 2022.10.29.00.42.57
+      objectReference: {fileID: 0}
+    - target: {fileID: 7364561384061389512, guid: 9f6a97e7e5739ea469cdeb8ceab14b08, type: 3}
+      propertyPath: saveInfoList.Array.data[0].lastSceneName
+      value: Lobby
+      objectReference: {fileID: 0}
+    - target: {fileID: 7364561384061389512, guid: 9f6a97e7e5739ea469cdeb8ceab14b08, type: 3}
+      propertyPath: saveInfoList.Array.data[1].lastSceneName
+      value: Lobby
+      objectReference: {fileID: 0}
+    - target: {fileID: 7364561384061389512, guid: 9f6a97e7e5739ea469cdeb8ceab14b08, type: 3}
+      propertyPath: saveInfoList.Array.data[2].lastSceneName
+      value: Lobby
+      objectReference: {fileID: 0}
+    - target: {fileID: 7364561384061389512, guid: 9f6a97e7e5739ea469cdeb8ceab14b08, type: 3}
+      propertyPath: saveInfoList.Array.data[3].lastSceneName
+      value: Lobby
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9f6a97e7e5739ea469cdeb8ceab14b08, type: 3}
@@ -515,7 +563,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1541913420}
-  - component: {fileID: 1541913419}
   - component: {fileID: 1541913421}
   - component: {fileID: 1541913422}
   m_Layer: 0
@@ -525,26 +572,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1541913419
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1541913418}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8e5ba6f3d8612f144b2785daf096a81b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  saveEvent:
-    m_PersistentCalls:
-      m_Calls: []
-    m_CallsDirty: 1
-  loadEvent:
-    m_PersistentCalls:
-      m_Calls: []
-    m_CallsDirty: 1
 --- !u!4 &1541913420
 Transform:
   m_ObjectHideFlags: 0
@@ -572,10 +599,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3bd75e7a594c5544b9dea0b1b79f69b0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  IntegerValue: 123123
-  StringValue: 
-  FloatValue: 0
-  ListValue: 
+  IntegerValue: 1
+  StringValue: "1\uCC28\uD14C\uC2A4\uD2B8"
+  FloatValue: 0.1
+  ListValue: 01000000
 --- !u!114 &1541913422
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -588,13 +615,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 05330156ccad4994db26a8b4223ed318, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  targetEventList: []
+  targetEvent: {fileID: 11400000, guid: 621c54dff64b4274c860de59303dd753, type: 2}
   priority: 5
-  saveEvent:
+  response:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1541913421}
-        m_TargetAssemblyTypeName: SaveLab, Assembly-CSharp
+        m_TargetAssemblyTypeName: SaveTester, Assembly-CSharp
         m_MethodName: Save
         m_Mode: 1
         m_Arguments:
