@@ -2,7 +2,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Wayway.Engine.Save;
 
-public class SaveLab : MonoBehaviour, ISavable
+public class SaveTester : MonoBehaviour, ISavable
 {
     public int IntegerValue;
     public string StringValue;

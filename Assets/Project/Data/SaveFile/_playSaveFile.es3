@@ -1,0 +1,28 @@
+{
+	"SaveLabListInt" : {
+		"__type" : "System.Collections.Generic.List`1[[System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]],mscorlib",
+		"value" : [
+			1
+		]
+	},
+	"SaveLabFloat" : {
+		"__type" : "float",
+		"value" : 0.1
+	},
+	"SaveLabString" : {
+		"__type" : "string",
+		"value" : "first"
+	},
+	"SaveLabInt" : {
+		"__type" : "int",
+		"value" : 1
+	},
+	"IsValidFile" : {
+		"__type" : "Wayway.Engine.Save.SaveInfo,Assembly-CSharp",
+		"value" : {
+			"saveName" : "_playSaveFile",
+			"saveTime" : "2022.10.29.01.26.12",
+			"lastSceneName" : "Lobby"
+		}
+	}
+}

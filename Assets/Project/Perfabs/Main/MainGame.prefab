@@ -355,6 +355,18 @@ PrefabInstance:
       propertyPath: dataPath
       value: Assets/Project/Data/Event/Serialization
       objectReference: {fileID: 0}
+    - target: {fileID: -6281434823882327373, guid: 10fc25fac0ad29e44ae1c844f25bee3c, type: 3}
+      propertyPath: saveEvent
+      value: 
+      objectReference: {fileID: 11400000, guid: 621c54dff64b4274c860de59303dd753, type: 2}
+    - target: {fileID: -6281434823882327373, guid: 10fc25fac0ad29e44ae1c844f25bee3c, type: 3}
+      propertyPath: changeSceneEvent
+      value: 
+      objectReference: {fileID: 11400000, guid: 982f1aa7fc88bf541a1703889e362e9d, type: 2}
+    - target: {fileID: -6281434823882327373, guid: 10fc25fac0ad29e44ae1c844f25bee3c, type: 3}
+      propertyPath: sceneChangeEvent
+      value: 
+      objectReference: {fileID: 11400000, guid: 982f1aa7fc88bf541a1703889e362e9d, type: 2}
     - target: {fileID: 2725178782570951737, guid: 10fc25fac0ad29e44ae1c844f25bee3c, type: 3}
       propertyPath: m_RootOrder
       value: 1
