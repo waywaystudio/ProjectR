@@ -17,15 +17,21 @@ namespace Wayway.Engine.Save
             this.saveName = saveName;
             saveTime = DateTime.Now.ToString("yyyy.MM.dd.HH.mm.ss");
             lastSceneName = "Lobby";
+            
+            // TODO.
+            // Link project version later...
+            version = 0.1f;
         }
 
         [SerializeField] private string saveName;
         [SerializeField] private string saveTime;
         [SerializeField] private string lastSceneName;
+        [SerializeField] private float version;
 
         public string SaveName => saveName;
         public string SaveTime => saveTime;
         public string LastSceneName => lastSceneName;
+        public float Version => version;
         
         public void Save()
         {

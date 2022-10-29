@@ -19,9 +19,9 @@ public class SaveTester : MonoBehaviour, ISavable
 
     public void Load()
     {
-        IntegerValue = SaveManager.Load<int>("SaveLabInt");
-        StringValue = SaveManager.Load<string>("SaveLabString");
-        FloatValue = SaveManager.Load<float>("SaveLabFloat");
-        ListValue = SaveManager.Load<List<int>>("SaveLabListInt");
+        IntegerValue = SaveManager.Load("SaveLabInt", IntegerValue);
+        StringValue = SaveManager.Load("SaveLabString", StringValue);
+        FloatValue = SaveManager.Load("SaveLabFloat", FloatValue);
+        ListValue = SaveManager.Load("SaveLabListInt", ListValue);
     }
 }

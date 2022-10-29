@@ -10,7 +10,6 @@ namespace Wayway.Engine.Save
     public class SaveManager : MonoSingleton<SaveManager>
     {
         [SerializeField] private GameEvent saveEvent;
-        [SerializeField] private GameEventString sceneChangeEvent;
         [SerializeField] private List<SaveInfo> saveInfoList = new (); 
 
         private const string PlaySaveFile = "_playSaveFile";
@@ -19,7 +18,6 @@ namespace Wayway.Engine.Save
         private bool isSetUp;
 
         public GameEvent SaveEvent => saveEvent;
-        public static GameEventString SceneChangeEvent => Instance.sceneChangeEvent;
         public static List<SaveInfo> SaveInfoList => Instance.saveInfoList;
         
         private static string SaveFileDirectory => ES3Settings.defaultSettings.path;
@@ -36,12 +34,12 @@ namespace Wayway.Engine.Save
         {
             if (!ES3.FileExists(AutoSavePath))
             {
-                ES3.Save("IsValidFile", new SaveInfo("_autoSaveFile"), AutoSavePath);
+                CreateNewSaveFile(AutoSavePath);
             }
             
             if (!ES3.FileExists(PlaySavePath))
             {
-                ES3.Save("IsValidFile", new SaveInfo("_playSaveFile"), PlaySavePath);
+                CreateNewSaveFile(PlaySavePath);
             }
 
             isSetUp = true;
@@ -53,23 +51,26 @@ namespace Wayway.Engine.Save
             ES3.Save(key, value, PlaySavePath);
         }
 
-        public static T Load<T>(string key)
+        public static T Load<T>(string key) => Load<T>(key, default);
+        public static T Load<T>(string key, T defaultValue)
         {
-            return !ES3.KeyExists(key, PlaySavePath) ? default 
-                                                     : ES3.Load<T>(key, PlaySavePath);
+            return ES3.Load(key, PlaySavePath, defaultValue);
         }
 
         public static void CreateNewSlot(string saveFileName)
         {
             CreateNewSaveFile(saveFileName);
             RefreshSaveInfoList();
+            
             Instance.Refresh();
         }
 
         public static void LoadFromSlot(SaveInfo saveInfo)
         {
             CopySaveFile(saveInfo.SaveName, PlaySaveFile);
-            SceneChangeEvent.Invoke(saveInfo.LastSceneName);
+            
+            // TODO.
+            // Scene Change Action in here?
         }
 
         public static void SaveToSlot(SaveInfo saveInfo)

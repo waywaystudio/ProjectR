@@ -8,6 +8,7 @@ namespace Wayway.Engine.Save
     {
         [SerializeField] private UnityEvent loadEvent;
 
+        public void SaveInvoke() => Invoke();
         public void LoadInvoke() => loadEvent?.Invoke();
         
         protected new void OnEnable()
@@ -18,7 +19,7 @@ namespace Wayway.Engine.Save
 
         protected new void OnDisable()
         {
-            Invoke();
+            SaveInvoke();
             targetEvent.Unregister(this);
         }
 
