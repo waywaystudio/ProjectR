@@ -12,4 +12,52 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 11321e94e17e06f4eb459f0e312de7b0, type: 3}
   m_Name: RaidData
   m_EditorClassIdentifier: 
-  raidList: []
+  raidList:
+  - ID: 15000001
+    RaidName: Forge of Souls
+    PartyScale: 4
+    BossList:
+    - Devourer of Souls
+  - ID: 15000002
+    RaidName: Violet Hold
+    PartyScale: 4
+    BossList:
+    - Moragg
+  - ID: 15000003
+    RaidName: Halls of Stone
+    PartyScale: 4
+    BossList:
+    - Maiden of Grief
+  - ID: 15000004
+    RaidName: The Nexus
+    PartyScale: 4
+    BossList:
+    - Keristrasza
+  - ID: 15000005
+    RaidName: Black Temple
+    PartyScale: 8
+    BossList:
+    - Teron Gorefiend
+    - ' Mother Shahraz'
+    - ' Illidan Stormrage'
+  - ID: 15000006
+    RaidName: Naxxramas
+    PartyScale: 8
+    BossList:
+    - Patchwerk
+    - ' Sapphiron'
+    - ' Kel''Thuzad'
+  - ID: 15000007
+    RaidName: Molten Core
+    PartyScale: 8
+    BossList:
+    - Magmadar
+    - ' Baron Geddon'
+    - ' Ragnaros'
+  - ID: 15000008
+    RaidName: Blackwing Lair
+    PartyScale: 8
+    BossList:
+    - Vaelastrasz the Corrupt
+    - ' Chromaggus'
+    - ' Nefarian'
