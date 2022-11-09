@@ -1,36 +1,52 @@
 using Main;
-using Main.Manager.Control;
+using Main.Input;
+using Main.Save;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class PlayerController : MonoBehaviour, IControllable
+public class PlayerController : MonoBehaviour, IControlModel, ISavable
 {
     [SerializeField] private float moveSpeed = 8.0f;
     [SerializeField] private Rigidbody rigidbody3D;
-    
+
     private Vector3 direction;
 
     private void Awake()
     {
         rigidbody3D ??= GetComponent<Rigidbody>();
 
-        // TODO. Scene에서 초기 IControllable을 잡아주어야 한다.
+        // TODO. Scene에서 초기 IControlModel을 잡아주어야 한다.
         Register();
+        MainGame.CameraManager.SetFollow(transform);
     }
 
-    public void Reaction()
+    public void Register() => MainGame.InputManager.Register(this);
+    public void UpdateState()
     {
+        if (MainGame.InputManager.GetPermission(this) is false)
+            return;
+        
         DirectionControl();
-        // InteractionControl();
     }
 
-    public void Register() => MainGame.ControlManager.Register(this);
-
+    // UnityEvent :: PlayerInput.Events.Player.Move - WASD move
     public void OnMove(InputAction.CallbackContext context)
     {
         var input = context.ReadValue<Vector2>();
-        
         direction = new Vector3(input.x, 0f, input.y);
+
+        if (context.canceled)
+        {
+            direction = Vector3.zero;
+        }
+    }
+
+    // UnityEvent :: PlayerInput.Events.Player.Interaction - 'E' Interaction
+    public void OnInteraction(InputAction.CallbackContext context)
+    {
+        if (!context.started) return;
+
+        MainGame.InputManager.InvokeEvent();
     }
 
     private void DirectionControl()
@@ -41,7 +57,12 @@ public class PlayerController : MonoBehaviour, IControllable
         rigidbody3D.velocity = direction * (moveSpeed * Time.deltaTime);
     }
 
-    private void InteractionControl()
+    public void Save()
+    {
+        MainGame.SaveManager.Save("playerTransform", transform);
+    }
+
+    public void Load()
     {
         
     }

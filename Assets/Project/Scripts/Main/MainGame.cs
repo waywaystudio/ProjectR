@@ -1,8 +1,8 @@
-using Main.Manager.Control;
-using Sirenix.OdinInspector;
+using Main.Audio;
+using Main.Input;
+using Main.Camera;
+using Main.Save;
 using UnityEngine;
-using Wayway.Engine.Audio;
-using Wayway.Engine.Save;
 using Wayway.Engine.Singleton;
 
 namespace Main
@@ -10,12 +10,14 @@ namespace Main
     public class MainGame : MonoSingleton<MainGame>
     {
         [SerializeField] private AudioManager audioManager;
+        [SerializeField] private CameraManager cameraManager;
         [SerializeField] private SaveManager saveManager;
-        [SerializeField] private ControlManager controlManager;
+        [SerializeField] private InputManager inputManager;
 
         public static AudioManager AudioManager => Instance.audioManager ??= Instance.GetComponentInChildren<AudioManager>();
+        public static CameraManager CameraManager => Instance.cameraManager ??= Instance.GetComponentInChildren<CameraManager>();
         public static SaveManager SaveManager => Instance.saveManager ??= Instance.GetComponentInChildren<SaveManager>();
-        public static ControlManager ControlManager => Instance.controlManager ??= Instance.GetComponentInChildren<ControlManager>();
+        public static InputManager InputManager => Instance.inputManager ??= Instance.GetComponentInChildren<InputManager>();
 
         protected override void Awake()
         {
@@ -24,7 +26,7 @@ namespace Main
             Application.targetFrameRate = 60;
         }
 
-        [Button]
+        [Sirenix.OdinInspector.Button]
         public void Function()
         {
             Debug.Log("Function On");
