@@ -1,7 +1,6 @@
 using System;
 using System.Collections.Generic;
 using System.Reflection;
-using Main.Save;
 using Sirenix.OdinInspector;
 using Sirenix.OdinInspector.Editor;
 using UnityEngine;
@@ -9,7 +8,7 @@ using UnityEngine;
 // ReSharper disable ConvertIfStatementToSwitchStatement
 // ReSharper disable UnusedType.Global
 
-namespace Main.Manager.Save.Editor
+namespace Main.Save.Editor
 {
     public class SaveInfoDrawer : OdinAttributeProcessor<SaveInfo>
     {

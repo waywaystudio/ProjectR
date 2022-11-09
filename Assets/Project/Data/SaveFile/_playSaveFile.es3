@@ -1,28 +1,28 @@
 {
-	"SaveLabListInt" : {
-		"__type" : "System.Collections.Generic.List`1[[System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]],mscorlib",
-		"value" : [
-			1,2
-		]
+	"playerTransform.rotation" : {
+		"__type" : "UnityEngine.Quaternion,UnityEngine.CoreModule",
+		"value" : {
+			"x" : 0,
+			"y" : 0,
+			"z" : 0,
+			"w" : 1
+		}
 	},
-	"SaveLabFloat" : {
-		"__type" : "float",
-		"value" : 0.2
-	},
-	"SaveLabString" : {
-		"__type" : "string",
-		"value" : "second"
-	},
-	"SaveLabInt" : {
-		"__type" : "int",
-		"value" : 2
+	"playerTransform.position" : {
+		"__type" : "Vector3",
+		"value" : {
+			"x" : 4.1852417,
+			"y" : 0,
+			"z" : -0.9955671
+		}
 	},
 	"IsValidFile" : {
-		"__type" : "Wayway.Engine.Save.SaveInfo,Assembly-CSharp",
+		"__type" : "Main.Save.SaveInfo,Assembly-CSharp",
 		"value" : {
 			"saveName" : "_playSaveFile",
-			"saveTime" : "2022.10.29.01.26.12",
-			"lastSceneName" : "Lobby"
+			"saveTime" : "2022.11.09.18.28.20",
+			"lastSceneName" : "Lobby",
+			"version" : 0.1
 		}
 	}
 }

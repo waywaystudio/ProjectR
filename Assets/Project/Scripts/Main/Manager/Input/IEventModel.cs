@@ -1,9 +1,9 @@
 namespace Main.Input
 {
-    public interface IEventModel
+    public interface IEventModel : IInvokable
     {
+        // + Invoke();
         void Register();
         void Unregister();
-        void Invoke();
     }
 }

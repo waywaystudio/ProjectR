@@ -59,11 +59,15 @@ public class PlayerController : MonoBehaviour, IControlModel, ISavable
 
     public void Save()
     {
-        MainGame.SaveManager.Save("playerTransform", transform);
+        MainGame.SaveManager.Save("playerTransform.position", transform.position);
+        MainGame.SaveManager.Save("playerTransform.rotation", transform.rotation);
     }
 
     public void Load()
     {
+        var position = MainGame.SaveManager.Load("playerTransform.position", Vector3.zero);
+        var rotation = MainGame.SaveManager.Load("playerTransform.rotation", Quaternion.identity);
         
+        transform.SetPositionAndRotation(position, rotation);
     }
 }

@@ -22,8 +22,8 @@ namespace Main.Save
         public List<SaveInfo> SaveInfoList => saveInfoList;
         
         private string SaveFileDirectory => ES3Settings.defaultSettings.path;
-        private string AutoSavePath => GetPath(AutoSaveFile);
         private string PlaySavePath => GetPath(PlaySaveFile);
+        private string AutoSavePath => GetPath(AutoSaveFile);
 
         private void OnEnable()
         {
@@ -33,15 +33,7 @@ namespace Main.Save
 
         public void SetUp()
         {
-            if (!ES3.FileExists(AutoSavePath))
-            {
-                CreateNewSaveFile(AutoSavePath);
-            }
-            
-            if (!ES3.FileExists(PlaySavePath))
-            {
-                CreateNewSaveFile(PlaySavePath);
-            }
+            CreateCoreFile();
 
             isSetUp = true;
             RefreshSaveInfoList();
@@ -112,6 +104,12 @@ namespace Main.Save
             }
             
             ES3.Save("IsValidFile", new SaveInfo(saveFileName), saveFileFullPath);
+        }
+
+        private void CreateCoreFile()
+        {
+            ES3.Save("IsValidFile", new SaveInfo(PlaySaveFile), PlaySavePath);
+            ES3.Save("IsValidFile", new SaveInfo(AutoSaveFile), AutoSavePath);
         }
 
         private void RefreshSaveInfoList()

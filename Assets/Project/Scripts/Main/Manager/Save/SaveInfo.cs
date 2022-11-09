@@ -1,4 +1,5 @@
 using System;
+using Unity.VisualScripting;
 using UnityEngine;
 
 namespace Main.Save
@@ -12,6 +13,7 @@ namespace Main.Save
     [Serializable]
     public class SaveInfo : ISavable
     {
+        public SaveInfo() : this("") {}
         public SaveInfo(string saveName)
         {
             this.saveName = saveName;

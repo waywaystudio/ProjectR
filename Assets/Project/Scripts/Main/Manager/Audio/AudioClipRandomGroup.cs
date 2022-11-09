@@ -1,7 +1,6 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
 using Wayway.Engine;
-using AudioType = Main.Audio.AudioType;
 
 namespace Main.Audio
 {

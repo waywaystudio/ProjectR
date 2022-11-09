@@ -20,6 +20,8 @@ namespace Main.Save
 
         protected new void OnDisable()
         {
+            if (MainGame.Instance is null) return;
+            
             SaveInvoke();
             targetEvent.Unregister(this);
         }

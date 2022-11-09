@@ -29,7 +29,7 @@ public class ObstacleEvent : MonoBehaviour, IEventModel
 
     public void Unregister()
     {
-        if (MainGame.InputManager is not null)
+        if (MainGame.Instance is not null)
             MainGame.InputManager.Unregister(this);
     }
 

@@ -14,10 +14,10 @@ namespace Main
         [SerializeField] private SaveManager saveManager;
         [SerializeField] private InputManager inputManager;
 
-        public static AudioManager AudioManager => Instance.audioManager ??= Instance.GetComponentInChildren<AudioManager>();
-        public static CameraManager CameraManager => Instance.cameraManager ??= Instance.GetComponentInChildren<CameraManager>();
-        public static SaveManager SaveManager => Instance.saveManager ??= Instance.GetComponentInChildren<SaveManager>();
-        public static InputManager InputManager => Instance.inputManager ??= Instance.GetComponentInChildren<InputManager>();
+        public static AudioManager AudioManager => Instance.audioManager;
+        public static CameraManager CameraManager => Instance.cameraManager;
+        public static SaveManager SaveManager => Instance.saveManager;
+        public static InputManager InputManager => Instance.inputManager;
 
         protected override void Awake()
         {
