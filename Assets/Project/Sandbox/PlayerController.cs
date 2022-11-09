@@ -6,7 +6,7 @@ using UnityEngine.InputSystem;
 
 public class PlayerController : MonoBehaviour, IControlModel, ISavable
 {
-    [SerializeField] private float moveSpeed = 8.0f;
+    [SerializeField] private float moveSpeed;
     [SerializeField] private Rigidbody rigidbody3D;
 
     private Vector3 direction;

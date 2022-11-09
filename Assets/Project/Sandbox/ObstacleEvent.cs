@@ -6,13 +6,6 @@ using UnityEngine.Events;
 public class ObstacleEvent : MonoBehaviour, IEventModel
 {
     [SerializeField] private UnityEvent mainEvent;
-    
-    private SphereCollider trigger;
-
-    private void Awake()
-    {
-        trigger ??= GetComponent<SphereCollider>();
-    }
 
     public void Register()
     {
@@ -29,22 +22,21 @@ public class ObstacleEvent : MonoBehaviour, IEventModel
 
     public void Unregister()
     {
-        if (MainGame.Instance is not null)
-            MainGame.InputManager.Unregister(this);
+        if (MainGame.Instance is null) return;
+        
+        MainGame.InputManager.Unregister(this);
     }
 
     private void OnTriggerEnter(Collider other)
     {
-        if (!other.CompareTag("Player")) return;
-        
-        Register();
+        if (other.CompareTag("Player")) 
+            Register();
     }
 
     private void OnTriggerExit(Collider other)
     {
-        if (!other.CompareTag("Player")) return;
-        
-        Unregister();
+        if (other.CompareTag("Player"))
+            Unregister();
     }
 
     private void OnDisable()
