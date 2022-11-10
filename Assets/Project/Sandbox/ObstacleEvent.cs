@@ -18,7 +18,11 @@ public class ObstacleEvent : MonoBehaviour, IEventModel
     }
 
     // TODO. temp event
-    public void MainEventTestFunction() => Debug.Log("ObstacleEvent.MainEvent Invoked!");
+    public void ToRaidScene()
+    {
+        Debug.Log("ObstacleEvent.MainEvent Invoked!");
+        MainGame.SceneManager.LoadScene("Raid");
+    }
 
     public void Unregister()
     {

@@ -1,3 +1,4 @@
+using Main;
 using UnityEngine;
 
 namespace Town
@@ -13,6 +14,7 @@ namespace Town
         private void Awake()
         {
             CameraDirector.FollowTarget = Player.transform;
+            MainGame.UI.FadePanel.PlayFadeIn();
         }
     }
 }

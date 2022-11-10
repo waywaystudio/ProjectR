@@ -11,13 +11,16 @@ namespace Main.Scene
 {
     public class SceneManager : MonoBehaviour
     {
-        [SerializeField] private GameEvent onSceneChangedEvent;
+        [SerializeField] private GameEvent beforeChanged;
+        [SerializeField] private GameEvent afterChanged;
         [SerializeField, ReadOnly] private List<string> sceneNameList;
-        // SF private LoadingSceneEffect loadingEffect;
 
-        private string nextScene = string.Empty;
         private AsyncOperation asyncOperation;
+        private WaitForSeconds waitFadeDuration = new (2f);
         private Func<bool> isEffectFinished;
+
+        public float Progress => asyncOperation?.progress ?? 0f;
+        public string NextScene { get; private set; } = string.Empty;
 
         public bool IsSceneChangeable
         {
@@ -31,14 +34,14 @@ namespace Main.Scene
                 return false;
             }
         }
-        
-        public float Progress => asyncOperation?.progress ?? 1f;
-        public string NextScene => nextScene;
 
-        public void LoadScene()
+        public void LoadNextScene()
         {
+            if (string.IsNullOrEmpty(NextScene))
+                NextScene = "Town";
+            
             StartCoroutine(LoadSceneAsync(NextScene));
-            nextScene = null;
+            NextScene = null;
         }
         
         public void LoadScene(string sceneName)
@@ -49,28 +52,27 @@ namespace Main.Scene
                 return;
             }
 
-            nextScene = sceneName;
+            NextScene = sceneName;
             StartCoroutine(LoadSceneAsync("Loading"));
         }
 
         private IEnumerator LoadSceneAsync(string sceneName)
         {
+            beforeChanged.Invoke();
+            
             asyncOperation = UnitySceneManager.LoadSceneAsync(sceneName);
             asyncOperation.allowSceneActivation = false;
 
-            while (IsSceneChangeable)
-            {
-                yield return null;
-            }
+            yield return waitFadeDuration;
             
             asyncOperation.allowSceneActivation = true;
 
-            while (!asyncOperation.isDone)
+            while (!IsSceneChangeable && !asyncOperation.isDone)
             {
                 yield return null;
             }
             
-            onSceneChangedEvent.Invoke();
+            afterChanged.Invoke();
         }
 
 #if UNITY_EDITOR

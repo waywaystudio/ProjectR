@@ -82,11 +82,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 01a234ae5fba1654a932d3273edf37e1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ShowDebugMessage: 0
   audioManager: {fileID: 6957410591883614601}
-  cameraManager: {fileID: 0}
-  saveManager: {fileID: 7364561384061389512}
   inputManager: {fileID: 2619169640406135437}
+  saveManager: {fileID: 7364561384061389512}
+  sceneManager: {fileID: 7490997727852929123}
+  ui: {fileID: 1466298074334657596}
 --- !u!114 &2204275286671020524
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -271,6 +271,17 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 530e7d960fe1c2d4a8064206609cba35, type: 3}
+--- !u!114 &1466298074334657596 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6758117864859376035, guid: 530e7d960fe1c2d4a8064206609cba35, type: 3}
+  m_PrefabInstance: {fileID: 5301016244376593823}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c812ffc4f360f3f45a5996eb0cd5b7b0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!224 &6239269084689213391 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 2235659106878636624, guid: 530e7d960fe1c2d4a8064206609cba35, type: 3}
@@ -283,6 +294,26 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 2714927515206354961}
     m_Modifications:
+    - target: {fileID: -6281434823882327373, guid: 10fc25fac0ad29e44ae1c844f25bee3c, type: 3}
+      propertyPath: saveInfoList.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -6281434823882327373, guid: 10fc25fac0ad29e44ae1c844f25bee3c, type: 3}
+      propertyPath: saveInfoList.Array.data[0].version
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: -6281434823882327373, guid: 10fc25fac0ad29e44ae1c844f25bee3c, type: 3}
+      propertyPath: saveInfoList.Array.data[0].saveName
+      value: _autoSaveFile
+      objectReference: {fileID: 0}
+    - target: {fileID: -6281434823882327373, guid: 10fc25fac0ad29e44ae1c844f25bee3c, type: 3}
+      propertyPath: saveInfoList.Array.data[0].saveTime
+      value: 2022.11.09.17.40.32
+      objectReference: {fileID: 0}
+    - target: {fileID: -6281434823882327373, guid: 10fc25fac0ad29e44ae1c844f25bee3c, type: 3}
+      propertyPath: saveInfoList.Array.data[0].lastSceneName
+      value: Lobby
+      objectReference: {fileID: 0}
     - target: {fileID: 2725178782570951737, guid: 10fc25fac0ad29e44ae1c844f25bee3c, type: 3}
       propertyPath: m_RootOrder
       value: 2
@@ -406,6 +437,17 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 90b5bdf7f97f5b640883dda72fbf3d84, type: 3}
+--- !u!114 &7490997727852929123 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4520954963599685484, guid: 90b5bdf7f97f5b640883dda72fbf3d84, type: 3}
+  m_PrefabInstance: {fileID: 6433662721757763343}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6ee0affc09e762f448046391efe65bc6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &7490997727852929124 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4520954963599685483, guid: 90b5bdf7f97f5b640883dda72fbf3d84, type: 3}

@@ -14,7 +14,10 @@ public class PlayerController : MonoBehaviour, IControlModel, ISavable
     private void Awake()
     {
         rigidbody3D ??= GetComponent<Rigidbody>();
-        
+    }
+
+    private void Start()
+    {
         MainGame.InputManager.Register(this);
     }
 
