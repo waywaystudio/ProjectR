@@ -13,10 +13,16 @@ namespace Main.Input
         public void Register(IEventModel model) => eventModelList.AddUniquely(model);
         public void Unregister() => controlModel = null;
         public void Unregister(IEventModel model) => eventModelList.RemoveSafely(model);
+
+        public void UnregisterAll()
+        {
+            controlModel = null;
+            eventModelList.Clear();
+        }
         
         public bool GetPermission(IControlModel model) => controlModel == model;
         
-        public void InvokeEvent()
+        public void InvokeEvents()
         {
             if (eventModelList.IsNullOrEmpty())
             {

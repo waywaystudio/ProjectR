@@ -44,6 +44,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6ee0affc09e762f448046391efe65bc6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  onSceneChangedEvent: {fileID: 11400000, guid: 982f1aa7fc88bf541a1703889e362e9d, type: 2}
   sceneNameList:
   - Town
   - Loading

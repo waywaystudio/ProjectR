@@ -14,24 +14,16 @@ public class PlayerController : MonoBehaviour, IControlModel, ISavable
     private void Awake()
     {
         rigidbody3D ??= GetComponent<Rigidbody>();
-
-        // TODO. Scene에서 초기 IControlModel을 잡아주어야 한다.
-        Register();
-        MainGame.CameraManager.SetFollow(transform);
+        
+        MainGame.InputManager.Register(this);
     }
 
-    public void Register() => MainGame.InputManager.Register(this);
     public void UpdateState()
     {
         if (MainGame.InputManager.GetPermission(this) is false)
             return;
         
         DirectionControl();
-    }
-
-    public void Unregister()
-    {
-        MainGame.InputManager.Unregister();
     }
 
     // UnityEvent :: PlayerInput.Events.Player.Move - WASD move
@@ -51,14 +43,11 @@ public class PlayerController : MonoBehaviour, IControlModel, ISavable
     {
         if (!context.started) return;
 
-        MainGame.InputManager.InvokeEvent();
+        MainGame.InputManager.InvokeEvents();
     }
 
     private void DirectionControl()
     {
-        // TODO. 스킵하는 조건을 만들고 싶은데, Vector3.Zero 했더니 안 멈춘다;
-        // if (direction.Equals(Vector3.zero)) return;
-        
         rigidbody3D.velocity = direction * (moveSpeed * Time.deltaTime);
     }
 
@@ -79,8 +68,7 @@ public class PlayerController : MonoBehaviour, IControlModel, ISavable
     private void OnDisable()
     {
         if (MainGame.Instance is null) return;
-        
-        Unregister();
-        MainGame.CameraManager.ReleaseFollow();
+
+        MainGame.InputManager.Unregister();
     }
 }
