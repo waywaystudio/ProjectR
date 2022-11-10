@@ -29,6 +29,11 @@ public class PlayerController : MonoBehaviour, IControlModel, ISavable
         DirectionControl();
     }
 
+    public void Unregister()
+    {
+        MainGame.InputManager.Unregister();
+    }
+
     // UnityEvent :: PlayerInput.Events.Player.Move - WASD move
     public void OnMove(InputAction.CallbackContext context)
     {
@@ -69,5 +74,13 @@ public class PlayerController : MonoBehaviour, IControlModel, ISavable
         var rotation = MainGame.SaveManager.Load("playerTransform.rotation", Quaternion.identity);
         
         transform.SetPositionAndRotation(position, rotation);
+    }
+
+    private void OnDisable()
+    {
+        if (MainGame.Instance is null) return;
+        
+        Unregister();
+        MainGame.CameraManager.ReleaseFollow();
     }
 }

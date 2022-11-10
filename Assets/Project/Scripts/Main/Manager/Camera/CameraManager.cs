@@ -1,4 +1,6 @@
+using Sirenix.OdinInspector;
 using UnityEngine;
+using UnityCamera = UnityEngine.Camera;
 
 namespace Main.Camera
 {
@@ -8,13 +10,16 @@ namespace Main.Camera
         [SerializeField] private Vector3 positionOffset = new (0, 25, -25);
         [SerializeField] private Vector3 rotationOffset = new (45, 0, 0);
         
-        private UnityEngine.Camera mainCamera;
+        [ShowInInspector]
+        private UnityCamera mainCamera;
+        [ShowInInspector]
         private Transform mainCameraObject;
         
-        public UnityEngine.Camera MainCamera => mainCamera ??= UnityEngine.Camera.main;
+        public UnityCamera MainCamera => mainCamera ??= UnityCamera.main;
         public Transform MainCameraObject => mainCameraObject ??= MainCamera.transform;
 
         public void SetFollow(Transform target) => followTarget = target;
+        public void ReleaseFollow() => followTarget = null;
 
         private void Update()
         {
