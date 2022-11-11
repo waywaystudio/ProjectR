@@ -2,10 +2,11 @@
 using System;
 using System.Collections.Generic;
 using System.Reflection;
+using GameEvent.Listener;
 using Sirenix.OdinInspector;
 using Sirenix.OdinInspector.Editor;
 
-namespace Wayway.Engine.Events.Editor
+namespace GameEvent.Editor
 {
     public class GameEventDrawer : OdinAttributeProcessor<GameEvent>
     {

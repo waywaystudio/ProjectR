@@ -1,8 +1,9 @@
 using System.Collections.Generic;
 using System.Linq;
+using GameEvent.Listener;
 using UnityEngine;
 
-namespace Wayway.Engine.Events
+namespace GameEvent
 {
     public class GameEvent<T0> : ScriptableObject
     {
@@ -16,12 +17,11 @@ namespace Wayway.Engine.Events
         
         public void Register(GameEventListener<T0> listener)
         {
-            if (!ListenerList.Contains(listener))
-            {
-                ListenerList.Add(listener);
-                ListenerList = ListenerList.OrderByDescending(x => x.Priority)
-                    .ToList();
-            }
+            if (ListenerList.Contains(listener)) return;
+            
+            ListenerList.Add(listener);
+            ListenerList = ListenerList.OrderByDescending(x => x.Priority)
+                                       .ToList();
         }
         
         public void Unregister(GameEventListener<T0> listener)
@@ -38,13 +38,12 @@ namespace Wayway.Engine.Events
 
         public void ShowListener()
         {
-            if (FindObjectsOfType(typeof(GameEventListener<T0>)) is GameEventListener<T0>[] allOfListeners)
-            {
-                var subscriber = allOfListeners.Where(x => x.TargetEvent == this);
+            if (FindObjectsOfType(typeof(GameEventListener<T0>)) is not GameEventListener<T0>[] allOfListeners) return;
+            
+            var subscriber = allOfListeners.Where(x => x.TargetEvent == this);
 
-                subscriber = subscriber.OrderBy(x => x.Priority);
-                subscriber = subscriber.ToList();
-            }
+            subscriberList = subscriber.OrderBy(x => x.Priority).ToList();
+                    
         }
         #endregion
 #endif
@@ -62,12 +61,11 @@ namespace Wayway.Engine.Events
         
         public void Register(GameEventListener<T0, T1> listener)
         {
-            if (!ListenerList.Contains(listener))
-            {
-                ListenerList.Add(listener);
-                ListenerList = ListenerList.OrderByDescending(x => x.Priority)
-                    .ToList();
-            }
+            if (ListenerList.Contains(listener)) return;
+            
+            ListenerList.Add(listener);
+            ListenerList = ListenerList.OrderByDescending(x => x.Priority)
+                                       .ToList();
         }
         
         public void Unregister(GameEventListener<T0, T1> listener)
@@ -84,13 +82,12 @@ namespace Wayway.Engine.Events
 
         public void ShowListener()
         {
-            if (FindObjectsOfType(typeof(GameEventListener<T0, T1>)) is GameEventListener<T0, T1>[] allOfListeners)
-            {
-                var subscriber = allOfListeners.Where(x => x.TargetEvent == this);
+            if (FindObjectsOfType(typeof(GameEventListener<T0, T1>)) is not GameEventListener<T0, T1>[] allOfListeners)
+                return;
+            
+            var subscriber = allOfListeners.Where(x => x.TargetEvent == this);
 
-                subscriber = subscriber.OrderBy(x => x.Priority);
-                subscriber = subscriber.ToList();
-            }
+            subscriberList = subscriber.OrderBy(x => x.Priority).ToList();
         }
         #endregion
 #endif

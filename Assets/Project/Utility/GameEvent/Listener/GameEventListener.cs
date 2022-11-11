@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.Events;
 
-namespace Wayway.Engine.Events
+namespace GameEvent.Listener
 {
     public class GameEventListener : MonoBehaviour
     {

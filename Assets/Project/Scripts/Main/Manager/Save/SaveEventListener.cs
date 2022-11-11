@@ -1,7 +1,7 @@
+using GameEvent.Listener;
 using UnityEngine;
 using UnityEngine.Events;
 using Wayway.Engine;
-using Wayway.Engine.Events;
 
 namespace Main.Save
 {
@@ -29,7 +29,7 @@ namespace Main.Save
 #if UNITY_EDITOR
         private void OnInitialize()
         {
-            targetEvent ??= ScriptableObjectUtility.GetScriptableObject<GameEvent>
+            targetEvent ??= ScriptableObjectUtility.GetScriptableObject<GameEvent.GameEvent>
             ("Assets/Project/Data/GameEvent/Save", "SaveEvent");
         }
 #endif

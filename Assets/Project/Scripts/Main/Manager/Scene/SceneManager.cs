@@ -4,15 +4,15 @@ using System.Collections.Generic;
 using Sirenix.OdinInspector;
 using UnityEngine;
 using Wayway.Engine;
-using Wayway.Engine.Events;
+using GameEvent.Listener;
 using UnitySceneManager = UnityEngine.SceneManagement.SceneManager;
 
 namespace Main.Scene
 {
     public class SceneManager : MonoBehaviour
     {
-        [SerializeField] private GameEvent beforeChanged;
-        [SerializeField] private GameEvent afterChanged;
+        [SerializeField] private GameEvent.GameEvent beforeChanged;
+        [SerializeField] private GameEvent.GameEvent afterChanged;
         [SerializeField, ReadOnly] private List<string> sceneNameList;
 
         private AsyncOperation asyncOperation;

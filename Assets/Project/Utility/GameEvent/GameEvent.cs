@@ -1,8 +1,9 @@
 using System.Collections.Generic;
 using System.Linq;
+using GameEvent.Listener;
 using UnityEngine;
 
-namespace Wayway.Engine.Events
+namespace GameEvent
 {
     public class GameEvent : ScriptableObject
     {
@@ -38,13 +39,12 @@ namespace Wayway.Engine.Events
 
         public void ShowListener()
         {
-            if (FindObjectsOfType(typeof(GameEventListener)) is GameEventListener[] allOfListeners)
-            {
-                var subscriber = allOfListeners.Where(x => x.TargetEvent == this);
+            if (FindObjectsOfType(typeof(GameEventListener)) is not GameEventListener[] allOfListeners) return; 
+            
+            var subscriber = allOfListeners.Where(x => x.TargetEvent == this);
 
-                subscriber = subscriber.OrderBy(x => x.Priority);
-                subscriber = subscriber.ToList();
-            }
+            subscriberList = subscriber.OrderBy(x => x.Priority)
+                                       .ToList();
         }
         #endregion
 #endif

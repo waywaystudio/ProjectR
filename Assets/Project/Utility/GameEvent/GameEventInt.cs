@@ -1,4 +1,4 @@
-namespace Wayway.Engine.Events
+namespace GameEvent
 {
     public class GameEventInt : GameEvent<int> {}
 }

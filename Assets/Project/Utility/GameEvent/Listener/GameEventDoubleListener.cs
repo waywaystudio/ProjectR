@@ -1,4 +1,4 @@
-namespace Wayway.Engine.Events
+namespace GameEvent.Listener
 {
     public class GameEventDoubleListener : GameEventListener<double> {}
 }
