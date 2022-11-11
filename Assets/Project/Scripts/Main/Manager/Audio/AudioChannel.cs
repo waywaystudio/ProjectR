@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.Audio;
-using Wayway.Engine;
 
 namespace Main.Audio
 {
@@ -46,12 +45,12 @@ namespace Main.Audio
 
             source = GetLessPrioritySource();
 
-            if (clipData.Priority < source.priority)
-            {
-                if (source.isPlaying) source.Stop();
+            if (clipData.Priority >= source.priority) return;
+            
+            if (source.isPlaying) 
+                source.Stop();
 
-                source.Play(clipData.AudioClip);
-            }
+            source.Play(clipData.AudioClip);
         }
 
         public void Pause(IAudioPlayable clipData) { if (TryGetSource(clipData, out var source)) source.Pause(); }
