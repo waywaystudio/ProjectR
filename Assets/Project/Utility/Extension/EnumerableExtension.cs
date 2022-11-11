@@ -2,23 +2,18 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace Wayway.Engine
+namespace Extension
 {
     public static class EnumerableExtension
     {
         public static bool IsNullOrEmpty<T>(this IEnumerable<T> list) => list == null || !list.Any();
+        
         public static void ForEach<T>(this IEnumerable<T> list, Action<T> action)
         {
             foreach (var item in list)
                 action(item);
         }
-        public static void ReverseForEach<T>(this List<T> list, Action<T> action)
-        {
-            for (var i = list.Count - 1; i >= 0; --i)
-            {
-                action?.Invoke(list[i]);
-            }
-        }
+        
         public static TSource MinBy<TSource, TKey>(this IEnumerable<TSource> source, Func<TSource, TKey> selector) => source.MinBy(selector, null);
         public static TSource MinBy<TSource, TKey>(this IEnumerable<TSource> source, Func<TSource, TKey> selector, IComparer<TKey> comparer)
         {
@@ -95,20 +90,6 @@ namespace Wayway.Engine
             var r = new Random();
             var list = enumerable as IList<T> ?? enumerable.ToList();
             return list.Count == 0 ? default : list[r.Next(0, list.Count)];
-        }
-
-        public static IEnumerable<(T item, int index)> WithIndex<T>(this IEnumerable<T> self) => self.Select((item, index) => (item, index));
-
-        public static void AddUniquely<T>(this ICollection<T> list, T item)
-        {
-            if (list.Contains(item)) return;
-            list.Add(item);
-        }
-
-        public static void RemoveSafely<T>(this ICollection<T> list, T item)
-        {
-            if (!list.Contains(item)) return;
-            list.Remove(item);
         }
     }
 }

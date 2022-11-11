@@ -24,7 +24,7 @@ namespace Main.Audio.Editor
 
         protected override OdinMenuTree BuildMenuTree()
         {
-            audioClipDataList = ScriptableObjectUtility.GetScriptableObjectList<AudioClipData>();
+            Finder.TryGetObjectList(out audioClipDataList);
 
             var tree = new OdinMenuTree(supportsMultiSelect: true)
             {

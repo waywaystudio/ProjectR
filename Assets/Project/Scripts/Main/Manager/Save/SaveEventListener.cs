@@ -1,7 +1,6 @@
 using GameEvent.Listener;
 using UnityEngine;
 using UnityEngine.Events;
-using Wayway.Engine;
 
 namespace Main.Save
 {
@@ -26,12 +25,12 @@ namespace Main.Save
             targetEvent.Unregister(this);
         }
 
-#if UNITY_EDITOR
-        private void OnInitialize()
+        private void Reset()
         {
-            targetEvent ??= ScriptableObjectUtility.GetScriptableObject<GameEvent.GameEvent>
-            ("Assets/Project/Data/GameEvent/Save", "SaveEvent");
+            if (targetEvent is null)
+            {
+                Finder.TryGetObject("Assets/Project/Data/GameEvent/Save", "SaveEvent", out targetEvent);
+            }
         }
-#endif
     }
 }

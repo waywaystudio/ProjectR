@@ -2,29 +2,13 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using Extension;
 using UnityEditor;
 using UnityEngine;
-using Wayway.Engine;
 // ReSharper disable InconsistentNaming
 
 public static class Finder
 {
-    public static T GetObject<T>(string directory, string fileName, bool showDebug = false) where T : Object 
-        => GetObject<T>($"{directory}/{fileName}", showDebug);
-
-    public static T GetObject<T>(string directory, string fileName, string extension, bool showDebug = false)
-        where T : Object => GetObject<T>($"{directory}/{fileName}.{extension}", showDebug);
-    
-    public static T GetObject<T>(string filePath, bool showDebug = false) where T : Object
-    {
-        var result = AssetDatabase.LoadAssetAtPath<T>(filePath);
-        
-        if (showDebug)
-            Debug.Log($"FilePath : {filePath} isExist ? : {result is not null}");
-        
-        return result;
-    }
-
     /// <summary>
     /// Find Object By object Name
     /// </summary>
@@ -208,6 +192,9 @@ public static class Finder
         return AssetDatabase.GetAssetPath(prefab);
     }
 
+    /// <summary>
+    /// Create ScriptableObject at path
+    /// </summary>
     public static T CreateScriptableObject<T>(string directory, string defaultName, bool showDebug = false) where T : ScriptableObject
     {
         if (directory.IsNullOrEmpty())

@@ -1,6 +1,8 @@
 using System;
 using System.Linq;
 using System.Text.RegularExpressions;
+using Extension;
+
 // ReSharper disable UnusedMember.Global
 
 namespace Wayway.Engine
@@ -51,7 +53,7 @@ namespace Wayway.Engine
         /// Converts string to enum object
         /// </summary>
         /// <typeparam name="T">Type of enum</typeparam>
-        /// <param name="original">String value to convert</param>
+        /// <param name="original">string that want to convert</param>
         /// <returns>Returns enum object</returns>
         public static T ToEnum<T>(this string original)
             where T : struct
