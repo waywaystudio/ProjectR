@@ -4,7 +4,6 @@ using Main.Save;
 using Main.Scene;
 using Main.UI;
 using UnityEngine;
-using Wayway.Engine.Singleton;
 
 namespace Main
 {

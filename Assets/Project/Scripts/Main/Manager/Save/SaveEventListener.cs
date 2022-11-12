@@ -25,12 +25,11 @@ namespace Main.Save
             targetEvent.Unregister(this);
         }
 
-        private void Reset()
+        [System.Diagnostics.Conditional("UNITY_EDITOR")]
+        private void EditorSetUp()
         {
             if (targetEvent is null)
-            {
                 Finder.TryGetObject("Assets/Project/Data/GameEvent/Save", "SaveEvent", out targetEvent);
-            }
         }
     }
 }

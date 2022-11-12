@@ -1,7 +1,7 @@
 using UnityEditor;
 using UnityEngine;
 
-namespace Wayway.Engine.SoCreator.Editor
+namespace SoCreator.Editor
 {
     public static class InternalGUI
     {

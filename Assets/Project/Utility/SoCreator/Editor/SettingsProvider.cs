@@ -5,20 +5,21 @@ using System.Linq;
 using UnityEditor;
 using UnityEditorInternal;
 using UnityEngine;
+using Wayway.Engine.SoCreator.Editor;
 
-namespace Wayway.Engine.SoCreator.Editor
+namespace SoCreator.Editor
 {
     public class SettingsProvider : UnityEditor.SettingsProvider
     {
-        public const string k_AllAssemblies   = nameof(global::Wayway.Engine.SoCreator.Editor.SoCreator) + ".AllAssemblies";
-        public const string k_Width           = nameof(global::Wayway.Engine.SoCreator.Editor.SoCreator) + ".Width";
-        public const string k_MaxItems        = nameof(global::Wayway.Engine.SoCreator.Editor.SoCreator) + ".MaxItems";
-        public const string k_ShowNamespace   = nameof(global::Wayway.Engine.SoCreator.Editor.SoCreator) + ".ShowNamespace";
-        public const string k_KeepSearchText  = nameof(global::Wayway.Engine.SoCreator.Editor.SoCreator) + ".KeepSearchText";
-        public const string k_PrefsFile       = nameof(global::Wayway.Engine.SoCreator.Editor.SoCreator) + "Prefs.json";
+        public const string k_AllAssemblies   = nameof(global::SoCreator.Editor.SoCreator) + ".AllAssemblies";
+        public const string k_Width           = nameof(global::SoCreator.Editor.SoCreator) + ".Width";
+        public const string k_MaxItems        = nameof(global::SoCreator.Editor.SoCreator) + ".MaxItems";
+        public const string k_ShowNamespace   = nameof(global::SoCreator.Editor.SoCreator) + ".ShowNamespace";
+        public const string k_KeepSearchText  = nameof(global::SoCreator.Editor.SoCreator) + ".KeepSearchText";
+        public const string k_PrefsFile       = nameof(global::SoCreator.Editor.SoCreator) + "Prefs.json";
         public const string k_PrefsPath       = "ProjectSettings\\" + k_PrefsFile;
         
-        public const string k_SearchText      = nameof(global::Wayway.Engine.SoCreator.Editor.SoCreator) + ".SearchText";
+        public const string k_SearchText      = nameof(global::SoCreator.Editor.SoCreator) + ".SearchText";
 
         public const bool k_AllAssambliesDefault  = false;
         public const bool k_ShowNamespaceDefault  = true;
@@ -209,7 +210,7 @@ namespace Wayway.Engine.SoCreator.Editor
                 
                 if (GUI.Button(typeRect, element.Type?.FullName ?? "None", EditorStyles.popup))
                 {
-                    var types = global::Wayway.Engine.SoCreator.Editor.SoCreator.GetSoTypes(true, type => true);
+                    var types = global::SoCreator.Editor.SoCreator.GetSoTypes(true, type => true);
                     
                     var showNamespace  = EditorPrefs.GetBool(SettingsProvider.k_ShowNamespace);
                     var wndWidth       = (float)EditorPrefs.GetInt(SettingsProvider.k_Width);

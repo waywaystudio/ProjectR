@@ -3,13 +3,17 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Reflection;
+using SoCreator.Runtime;
 using UnityEditor;
 using UnityEditor.ProjectWindowCallback;
 using UnityEditor.ShortcutManagement;
 using UnityEngine;
+using Wayway.Engine.SoCreator;
+using Wayway.Engine.SoCreator.Editor;
 using Assembly = System.Reflection.Assembly;
+using SettingsProvider = SoCreator.Editor.SettingsProvider;
 
-namespace Wayway.Engine.SoCreator.Editor
+namespace SoCreator.Editor
 {
     public static class SoCreator
     {

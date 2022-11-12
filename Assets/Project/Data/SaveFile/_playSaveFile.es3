@@ -1,4 +1,13 @@
 {
+	"IsValidFile" : {
+		"__type" : "Main.Save.SaveInfo,Assembly-CSharp",
+		"value" : {
+			"saveName" : "_playSaveFile",
+			"saveTime" : "2022.11.12.14.47.55",
+			"lastSceneName" : "Lobby",
+			"version" : 0.1
+		}
+	},
 	"playerTransform.rotation" : {
 		"__type" : "UnityEngine.Quaternion,UnityEngine.CoreModule",
 		"value" : {
@@ -14,15 +23,6 @@
 			"x" : 11.2796078,
 			"y" : 0,
 			"z" : -12.1889563
-		}
-	},
-	"IsValidFile" : {
-		"__type" : "Main.Save.SaveInfo,Assembly-CSharp",
-		"value" : {
-			"saveName" : "_playSaveFile",
-			"saveTime" : "2022.11.11.11.27.45",
-			"lastSceneName" : "Lobby",
-			"version" : 0.1
 		}
 	}
 }

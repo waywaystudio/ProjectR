@@ -139,7 +139,7 @@ namespace Main.Save.Editor
                 attributes.Add(new LabelTextAttribute("Save Event"));
             }
             
-            if (member.Name == "OnInitialize")
+            if (member.Name == "EditorSetUp")
             {
                 attributes.Add(new OnInspectorInitAttribute());
             }

@@ -1,7 +1,7 @@
 using System;
 using UnityEngine;
 
-namespace Wayway.Engine.SoCreator
+namespace SoCreator.Runtime
 {
     /// <summary>
     /// Allows to show scriptable object in create menu
