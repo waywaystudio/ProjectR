@@ -19,6 +19,9 @@ namespace Loading
 
             var loadingObject = loadingEffectList.Random();
             loadingObject.SetActive(true);
+
+            var tester = "";
+            tester.NotContains('/');
         }
 
         private void Start()

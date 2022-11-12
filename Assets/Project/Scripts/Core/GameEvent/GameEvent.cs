@@ -1,9 +1,9 @@
 using System.Collections.Generic;
 using System.Linq;
-using GameEvent.Listener;
+using Core.GameEvent.Listener;
 using UnityEngine;
 
-namespace GameEvent
+namespace Core.GameEvent
 {
     public class GameEvent : ScriptableObject
     {

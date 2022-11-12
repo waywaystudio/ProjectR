@@ -1,16 +1,16 @@
 using UnityEngine;
 using UnityEngine.Events;
 
-namespace GameEvent.Listener
+namespace Core.GameEvent.Listener
 {
     public class GameEventListener : MonoBehaviour
     {
-        [SerializeField] protected GameEvent targetEvent;
+        [SerializeField] protected Core.GameEvent.GameEvent targetEvent;
         [SerializeField] protected int priority = 5;
         [SerializeField] private UnityEvent response;
 
         public float Priority => priority;
-        public GameEvent TargetEvent => targetEvent;
+        public Core.GameEvent.GameEvent TargetEvent => targetEvent;
         
         public void Invoke() => response?.Invoke();
         

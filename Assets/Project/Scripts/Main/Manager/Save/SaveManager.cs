@@ -3,7 +3,6 @@ using System.Linq;
 using Extension;
 using UnityEngine;
 using Wayway.Engine;
-using GameEvent.Listener;
 
 // ReSharper disable NotAccessedField.Local
 
@@ -11,7 +10,7 @@ namespace Main.Save
 {
     public class SaveManager : MonoBehaviour
     {
-        [SerializeField] private GameEvent.GameEvent saveEvent;
+        [SerializeField] private Core.GameEvent.GameEvent saveEvent;
         [SerializeField] private List<SaveInfo> saveInfoList = new (); 
 
         private const string PlaySaveFile = "_playSaveFile";
@@ -19,7 +18,7 @@ namespace Main.Save
         private const string Extension = "es3";
         private bool isSetUp;
 
-        public GameEvent.GameEvent SaveEvent => saveEvent;
+        public Core.GameEvent.GameEvent SaveEvent => saveEvent;
         public List<SaveInfo> SaveInfoList => saveInfoList;
         
         private string SaveFileDirectory => ES3Settings.defaultSettings.path;

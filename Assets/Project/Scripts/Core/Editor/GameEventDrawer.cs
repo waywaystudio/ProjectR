@@ -2,13 +2,14 @@
 using System;
 using System.Collections.Generic;
 using System.Reflection;
-using GameEvent.Listener;
+using Core.GameEvent;
+using Core.GameEvent.Listener;
 using Sirenix.OdinInspector;
 using Sirenix.OdinInspector.Editor;
 
-namespace GameEvent.Editor
+namespace Core.Editor
 {
-    public class GameEventDrawer : OdinAttributeProcessor<GameEvent>
+    public class GameEventDrawer : OdinAttributeProcessor<GameEvent.GameEvent>
     {
         public override void ProcessChildMemberAttributes(InspectorProperty parentProperty, MemberInfo member, List<Attribute> attributes)
         {
