@@ -1,3 +1,4 @@
+using System.Diagnostics;
 using GameEvent.Listener;
 using UnityEngine;
 using UnityEngine.Events;
@@ -25,11 +26,13 @@ namespace Main.Save
             targetEvent.Unregister(this);
         }
 
-        [System.Diagnostics.Conditional("UNITY_EDITOR")]
+#if UNITY_EDITOR
+        [Conditional("UNITY_EDITOR")]
         private void EditorSetUp()
         {
             if (targetEvent is null)
                 Finder.TryGetObject("Assets/Project/Data/GameEvent/Save", "SaveEvent", out targetEvent);
         }
+#endif
     }
 }

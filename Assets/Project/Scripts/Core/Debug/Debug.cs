@@ -1,5 +1,4 @@
 #if !DEVELOPMENT_BUILD && !FORCE_LOGGING
-
 using System;
 using System.Diagnostics;
 using UnityEngine;
@@ -7,6 +6,7 @@ using Object = UnityEngine.Object;
 
 public static class Debug
 {
+    public static bool isDebugBuild => UnityEngine.Debug.isDebugBuild;
     public static ILogger Logger = UnityEngine.Debug.unityLogger;
     public static ILogger UnityLogger => UnityEngine.Debug.unityLogger;
 
@@ -102,9 +102,19 @@ public static class Debug
     public static void LogFormat(string message, params object[] args) {
         UnityEngine.Debug.LogFormat(message, args);
     }
+    
+    [Conditional("UNITY_EDITOR")]
+    public static void LogFormat(Object context, string message, params object[] args) {
+        UnityEngine.Debug.LogFormat(message, args);
+    }
 
     [Conditional("UNITY_EDITOR")]
     public static void LogErrorFormat(string message, params object[] args) {
+        UnityEngine.Debug.LogErrorFormat(message, args);
+    }
+    
+    [Conditional("UNITY_EDITOR")]
+    public static void LogErrorFormat(Object context, string message, params object[] args) {
         UnityEngine.Debug.LogErrorFormat(message, args);
     }
 
@@ -195,8 +205,6 @@ public static class Debug
     {
         UnityEngine.Debug.LogAssertionFormat(context, format, args);
     }
-    
-    public static bool isDebugBuild => UnityEngine.Debug.isDebugBuild;
 
     [Conditional("UNITY_ASSERTIONS")]
     [Conditional("UNITY_EDITOR")]
