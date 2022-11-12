@@ -1,5 +1,5 @@
 using System.Diagnostics;
-using Core.GameEvent.Listener;
+using Core.GameEvents.Listener;
 using UnityEngine;
 using UnityEngine.Events;
 

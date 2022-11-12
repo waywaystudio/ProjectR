@@ -1,4 +1,4 @@
-namespace Wayway.Engine
+namespace Core
 {
     public static class NumberExtension
     {

@@ -1,58 +1,61 @@
 using UnityEngine;
 
-public class DontDestroyOnLoadComponent : MonoBehaviour
+namespace Core.Singleton
 {
-    public bool ShowDebugMessage;
-    public MonoBehaviour TargetBehaviour;
-
-    private void Awake()
+    public class DontDestroyOnLoadComponent : MonoBehaviour
     {
-        if (!transform.root.gameObject.Equals(gameObject))
+        public bool ShowDebugMessage;
+        public MonoBehaviour TargetBehaviour;
+
+        private void Awake()
         {
-            if (ShowDebugMessage)
-            {
-                Debug.LogError($"Don't Destroyed Component must be in root gameObject! \n" +
-                               $"Root Object is : {transform.root.gameObject} \n" +
-                               $"Current Object is : {gameObject}");
-            }
-
-            return;
-        }
-
-        var components = FindObjectsOfType(TargetBehaviour.GetType());
-
-        switch (components.Length)
-        {
-            case > 1:
+            if (!transform.root.gameObject.Equals(gameObject))
             {
                 if (ShowDebugMessage)
                 {
-                    Debug.Log($"{TargetBehaviour.GetType()} is came from another scene. \n" +
-                              $"In this scene {TargetBehaviour.GetType()} gameObject Destroy");
+                    Debug.LogError("Don't Destroyed Component must be in root gameObject! \n" +
+                                   $"Root Object is : {transform.root.gameObject} \n" +
+                                   $"Current Object is : {gameObject}");
                 }
 
-                /* Annotation */
-                DestroyImmediate(gameObject);
-                break;
+                return;
             }
-            case 1:
-            {
-                if (ShowDebugMessage)
-                {
-                    Debug.Log($"Don't Destroyed On Load :: {TargetBehaviour.GetType()} registered");
-                }
 
-                DontDestroyOnLoad(gameObject);
-                break;
-            }
-            default:
+            var components = FindObjectsOfType(TargetBehaviour.GetType());
+
+            switch (components.Length)
             {
-                if (ShowDebugMessage)
+                case > 1:
                 {
-                    Debug.LogError($"Can't Find {TargetBehaviour.GetType()}.");
+                    if (ShowDebugMessage)
+                    {
+                        Debug.Log($"{TargetBehaviour.GetType()} is came from another scene. \n" +
+                                  $"In this scene {TargetBehaviour.GetType()} gameObject Destroy");
+                    }
+
+                    /* Annotation */
+                    DestroyImmediate(gameObject);
+                    break;
                 }
+                case 1:
+                {
+                    if (ShowDebugMessage)
+                    {
+                        Debug.Log($"Don't Destroyed On Load :: {TargetBehaviour.GetType()} registered");
+                    }
+
+                    DontDestroyOnLoad(gameObject);
+                    break;
+                }
+                default:
+                {
+                    if (ShowDebugMessage)
+                    {
+                        Debug.LogError($"Can't Find {TargetBehaviour.GetType()}.");
+                    }
                     
-                break;
+                    break;
+                }
             }
         }
     }

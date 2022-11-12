@@ -1,18 +1,21 @@
-﻿public class Singleton<T> where T : class, new()
+﻿namespace Core.Singleton
 {
-    private static T instance;
-    private static object @lock = new ();
-
-    public static T Instance
+    public class Singleton<T> where T : class, new()
     {
-        get
+        private static T instance;
+        private static object @lock = new ();
+
+        public static T Instance
         {
-            lock (@lock)
+            get
             {
-                return instance ??= new T();
+                lock (@lock)
+                {
+                    return instance ??= new T();
+                }
             }
         }
-    }
 
-    protected Singleton() { }
+        protected Singleton() { }
+    }
 }

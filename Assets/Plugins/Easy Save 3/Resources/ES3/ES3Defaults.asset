@@ -29,16 +29,15 @@ MonoBehaviour:
     referenceMode: 2
     serializationDepthLimit: 64
     assemblyNames:
-    - CAH.UnityGoogleSheets
     - Assembly-CSharp-firstpass
-    - Assembly-CSharp
-    - DOTween.Modules
-    - SoCreator
+    - GameEvent
     - Core
+    - DOTween.Modules
+    - Assembly-CSharp
+    - SoCreator
     - PPv2URPConverters
     - SoCreator.Editor
-    - CAH.UnityGoogleSheets.Editor
-    - CoreEditor
+    - ShortCuts.Editor
     - Sirenix.OdinInspector.Modules.UnityMathematics
     showAdvancedSettings: 0
   addMgrToSceneAutomatically: 0

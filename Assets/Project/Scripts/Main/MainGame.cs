@@ -1,9 +1,11 @@
+using Core.Singleton;
 using Main.Audio;
 using Main.Input;
 using Main.Save;
 using Main.Scene;
 using Main.UI;
 using UnityEngine;
+using Debug = Debug;
 
 namespace Main
 {
@@ -29,7 +31,7 @@ namespace Main
         [Sirenix.OdinInspector.Button]
         public void Function()
         {
-            Debug.Log("Function On");
+            global::Debug.Log("Function On");
         }
     }
 }

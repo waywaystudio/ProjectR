@@ -1,7 +1,9 @@
 using System.Collections.Generic;
+using Core;
 using Main;
 using UnityEngine;
 using Wayway.Engine;
+using Debug = Debug;
 
 namespace Loading
 {
@@ -13,7 +15,7 @@ namespace Loading
         {
             if (loadingEffectList.IsNullOrEmpty())
             {
-                Debug.LogError("Loading Effect List is Null!");
+                global::Debug.LogError("Loading Effect List is Null!");
                 return;
             }
 

@@ -1,11 +1,10 @@
 using System;
 using System.Linq;
 using System.Text.RegularExpressions;
-using Extension;
 
 // ReSharper disable UnusedMember.Global
 
-namespace Wayway.Engine
+namespace Core
 {
     public static class StringExtension
     {

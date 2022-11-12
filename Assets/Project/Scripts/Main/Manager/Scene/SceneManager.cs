@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Core;
 using Sirenix.OdinInspector;
 using UnityEngine;
 using UnitySceneManager = UnityEngine.SceneManagement.SceneManager;
@@ -9,8 +10,8 @@ namespace Main.Scene
 {
     public class SceneManager : MonoBehaviour
     {
-        [SerializeField] private Core.GameEvent.GameEvent beforeChanged;
-        [SerializeField] private Core.GameEvent.GameEvent afterChanged;
+        [SerializeField] private Core.GameEvents.GameEvent beforeChanged;
+        [SerializeField] private Core.GameEvents.GameEvent afterChanged;
         [SerializeField, ReadOnly] private List<string> sceneNameList;
 
         private AsyncOperation asyncOperation;
@@ -46,7 +47,7 @@ namespace Main.Scene
         {
             if (!sceneNameList.Exists(x => x == sceneName))
             {
-                Debug.LogError($"Not Exist <b>{sceneName}</b> in scene name list.");
+                global::Debug.LogError($"Not Exist <b>{sceneName}</b> in scene name list.");
                 return;
             }
 
@@ -86,7 +87,7 @@ namespace Main.Scene
         {
             if (!sceneNameList.Exists(x => x == sceneName))
             {
-                Debug.LogError($"Not Exist <b>{sceneName}</b> in scene name list.");
+                global::Debug.LogError($"Not Exist <b>{sceneName}</b> in scene name list.");
                 return;
             }
 

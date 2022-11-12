@@ -1,6 +1,8 @@
 using System.Collections.Generic;
+using Core;
 using UnityEngine;
 using Wayway.Engine;
+using Debug = Debug;
 
 namespace Main.Input
 {
@@ -26,7 +28,7 @@ namespace Main.Input
         {
             if (eventModelList.IsNullOrEmpty())
             {
-                Debug.LogWarning("EventModelList is Empty");
+                global::Debug.LogWarning("EventModelList is Empty");
                 return;
             }
             

@@ -2,6 +2,7 @@ using Main;
 using Main.Input;
 using UnityEngine;
 using UnityEngine.Events;
+using Debug = Debug;
 
 public class ObstacleEvent : MonoBehaviour, IEventModel
 {
@@ -20,7 +21,7 @@ public class ObstacleEvent : MonoBehaviour, IEventModel
     // TODO. temp event
     public void ToRaidScene()
     {
-        Debug.Log("ObstacleEvent.MainEvent Invoked!");
+        global::Debug.Log("ObstacleEvent.MainEvent Invoked!");
         MainGame.SceneManager.LoadScene("Raid");
     }
 

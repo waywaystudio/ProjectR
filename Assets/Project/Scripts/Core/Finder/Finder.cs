@@ -2,9 +2,10 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using Extension;
+using Core;
 using UnityEditor;
 using UnityEngine;
+// ReSharper disable CheckNamespace
 // ReSharper disable InconsistentNaming
 
 public static class Finder

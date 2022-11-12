@@ -1,7 +1,7 @@
 using System;
 using System.Linq;
 
-namespace Wayway.Engine
+namespace Core
 {
     public static class EnumExtension
     {

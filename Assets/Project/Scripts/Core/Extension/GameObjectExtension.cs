@@ -5,7 +5,7 @@ using System.Linq;
 using UnityEngine;
 using Object = UnityEngine.Object;
 
-namespace Wayway.Engine
+namespace Core
 {
     public static class GameObjectExtension
     {

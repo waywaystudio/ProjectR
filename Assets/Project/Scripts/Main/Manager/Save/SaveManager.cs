@@ -1,8 +1,9 @@
 using System.Collections.Generic;
 using System.Linq;
-using Extension;
+using Core;
 using UnityEngine;
 using Wayway.Engine;
+using Debug = Debug;
 
 // ReSharper disable NotAccessedField.Local
 
@@ -10,7 +11,7 @@ namespace Main.Save
 {
     public class SaveManager : MonoBehaviour
     {
-        [SerializeField] private Core.GameEvent.GameEvent saveEvent;
+        [SerializeField] private Core.GameEvents.GameEvent saveEvent;
         [SerializeField] private List<SaveInfo> saveInfoList = new (); 
 
         private const string PlaySaveFile = "_playSaveFile";
@@ -18,7 +19,7 @@ namespace Main.Save
         private const string Extension = "es3";
         private bool isSetUp;
 
-        public Core.GameEvent.GameEvent SaveEvent => saveEvent;
+        public Core.GameEvents.GameEvent SaveEvent => saveEvent;
         public List<SaveInfo> SaveInfoList => saveInfoList;
         
         private string SaveFileDirectory => ES3Settings.defaultSettings.path;
@@ -85,13 +86,13 @@ namespace Main.Save
         {
             if (saveFileName.IsNullOrEmpty())
             {
-                Debug.LogError("SaveFile Name is Empty. Creat Slot Skipped");
+                global::Debug.LogError("SaveFile Name is Empty. Creat Slot Skipped");
                 return;
             }
 
             if (saveFileName.Contains('_'))
             {
-                Debug.LogError("SaveFile Can't Contains under bar(_) text. Try Another Name");
+                global::Debug.LogError("SaveFile Can't Contains under bar(_) text. Try Another Name");
                 return;
             }
             
@@ -99,7 +100,7 @@ namespace Main.Save
             
             if (ES3.FileExists(saveFileFullPath))
             {
-                Debug.Log($"There is already exist <color=red>{saveFileName}</color> in Save Folder.");
+                global::Debug.Log($"There is already exist <color=red>{saveFileName}</color> in Save Folder.");
                 return;
             }
             
@@ -132,7 +133,7 @@ namespace Main.Save
                 }
                 else
                 {
-                    Debug.LogWarning($"{saveFile} Is not Valid File!!!");
+                    global::Debug.LogWarning($"{saveFile} Is not Valid File!!!");
                 }
             });
 
@@ -179,7 +180,7 @@ namespace Main.Save
             if (!ES3.FileExists(GetPath(fileName)))
             {
                 if (showDebug)
-                    Debug.LogWarning($"There isn't exist <color=red>{fileName}</color> saveFile");
+                    global::Debug.LogWarning($"There isn't exist <color=red>{fileName}</color> saveFile");
 
                 return false;
             }
@@ -187,7 +188,7 @@ namespace Main.Save
             if (!ES3.KeyExists("IsValidFile", fileName))
             {
                 if (showDebug)
-                    Debug.LogWarning("Is <color=red>Not</color> IsValidFile");
+                    global::Debug.LogWarning("Is <color=red>Not</color> IsValidFile");
 
                 return false;
             }
