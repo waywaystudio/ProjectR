@@ -1,4 +1,4 @@
-using GoogleSheet.Core.Type;
+using UnityGoogleSheet.Core.Type.Attribute;
 
 namespace Adventurer
 {

@@ -2,7 +2,7 @@ using UnityEditor;
 using UnityEditor.Build;
 using UnityEditor.Build.Reporting;
 
-namespace Wayway.Engine.UnityGoogleSheet.Editor.Core
+namespace UnityGoogleSheet.Editor.Core
 {
     public class SecurityBuildPipeline : IPreprocessBuildWithReport, IPostprocessBuildWithReport
     {

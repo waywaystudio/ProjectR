@@ -6,7 +6,7 @@
 // ReSharper disable InconsistentNaming
 // ReSharper disable UnusedMember.Global
 
-namespace Wayway.Engine.UnityGoogleSheet.Core
+namespace UnityGoogleSheet.Core
 {
     public class SheetInfo
     {

@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Text;
 
-namespace Wayway.Engine.UnityGoogleSheet.Core
+namespace UnityGoogleSheet.Core.Type
 {
     public static class WriteUtil
     {

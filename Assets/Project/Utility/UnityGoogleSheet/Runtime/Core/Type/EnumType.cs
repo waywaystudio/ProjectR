@@ -1,6 +1,6 @@
 ﻿using System.Reflection;
 
-namespace Wayway.Engine.UnityGoogleSheet.Core
+namespace UnityGoogleSheet.Core.Type
 {
     public class EnumType
     {

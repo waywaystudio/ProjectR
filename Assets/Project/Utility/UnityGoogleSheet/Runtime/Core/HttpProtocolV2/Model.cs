@@ -1,7 +1,7 @@
 ﻿// ReSharper disable InconsistentNaming
 // ReSharper disable MemberCanBeProtected.Global
 
-namespace Wayway.Engine.UnityGoogleSheet.Core.HttpProtocolV2
+namespace UnityGoogleSheet.Core.HttpProtocolV2
 {
     public class Model
     {

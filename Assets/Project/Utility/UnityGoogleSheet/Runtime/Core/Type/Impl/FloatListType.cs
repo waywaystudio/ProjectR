@@ -1,9 +1,9 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using Wayway.Engine.UnityGoogleSheet.Core;
-using Wayway.Engine.UnityGoogleSheet.Core.Exception;
+using UnityGoogleSheet.Core.Exception;
+using UnityGoogleSheet.Core.Type.Attribute;
 
-namespace GoogleSheet.Type
+namespace UnityGoogleSheet.Core.Type
 {
     [Type(Type: typeof(List<float>), TypeName: new string[] { "list<float>", "List<Float>" })]
     public class FloatListType : IType

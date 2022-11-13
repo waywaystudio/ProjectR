@@ -1,4 +1,4 @@
-﻿namespace Wayway.Engine.UnityGoogleSheet.Core
+﻿namespace UnityGoogleSheet.Core.Type
 {
     public interface IType 
     {

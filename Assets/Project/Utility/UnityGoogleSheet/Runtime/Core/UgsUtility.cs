@@ -2,18 +2,17 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
-// using UnityEditor;
 using UnityEngine;
 using Object = UnityEngine.Object;
 
-namespace Wayway.Engine.UnityGoogleSheet.Core
+namespace UnityGoogleSheet.Core
 {
     public static class UgsUtility
     {
         /// <summary>
         /// Get all Subclass Of
         /// </summary>
-        public static IEnumerable<Type> GetAllSubclassOf(Type parent)
+        public static IEnumerable<System.Type> GetAllSubclassOf(System.Type parent)
         {
             var type = parent;
             var types = AppDomain.CurrentDomain.GetAssemblies()

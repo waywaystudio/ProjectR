@@ -1,7 +1,7 @@
 ﻿using Newtonsoft.Json;
-using Wayway.Engine.UnityGoogleSheet.Core.HttpProtocolV2;
+using UnityGoogleSheet.Core.HttpProtocolV2.Res;
 
-namespace Wayway.Engine.UnityGoogleSheet.Core.IO
+namespace UnityGoogleSheet.Core.IO
 {
     public class DataGenerator : ICodeGenerator
     {

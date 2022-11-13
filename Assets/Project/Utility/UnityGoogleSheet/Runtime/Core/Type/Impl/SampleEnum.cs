@@ -1,7 +1,7 @@
-using GoogleSheet.Core.Type;
 using UnityEngine;
+using UnityGoogleSheet.Core.Type.Attribute;
 
-namespace Wayway.Engine.UnityGoogleSheet.Core
+namespace UnityGoogleSheet.Core
 {
     [UGS(typeof(ESampleEnum))]
     public enum ESampleEnum

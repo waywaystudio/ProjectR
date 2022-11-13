@@ -1,13 +1,10 @@
 using System.Collections.Generic;
 using System.Reflection;
+using Sirenix.OdinInspector;
+using Sirenix.OdinInspector.Editor;
 using UnityEngine;
 
-#if UNITY_EDITOR && ODIN_INSPECTOR
-using Sirenix.OdinInspector.Editor;
-using Sirenix.OdinInspector;
-#endif
-
-namespace Wayway.Engine.UnityGoogleSheet.Core
+namespace UnityGoogleSheet.Core
 {
     public class UgsConfig : ScriptableObject
     {

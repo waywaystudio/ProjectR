@@ -1,4 +1,4 @@
-﻿namespace Wayway.Engine.UnityGoogleSheet.Core.Exception
+﻿namespace UnityGoogleSheet.Core.Exception
 {
     public class RequireTypeAttributeException : System.Exception
     { 

@@ -6,10 +6,12 @@ using System.Net;
 using System.Net.Http;
 using UnityEditor;
 using UnityEngine;
-using Wayway.Engine.UnityGoogleSheet.Core.Exception;
-using Wayway.Engine.UnityGoogleSheet.Core.HttpProtocolV2;
+using UnityGoogleSheet.Core.Exception;
+using UnityGoogleSheet.Core.HttpProtocolV2;
+using UnityGoogleSheet.Core.HttpProtocolV2.Models;
+using UnityGoogleSheet.Core.HttpProtocolV2.Res;
 
-namespace Wayway.Engine.UnityGoogleSheet.Core
+namespace UnityGoogleSheet.Core
 {
     public class UnityEditorWebRequest : IHttpProtocol
     {

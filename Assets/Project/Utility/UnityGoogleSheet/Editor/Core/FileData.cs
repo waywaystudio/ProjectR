@@ -4,13 +4,14 @@ using System.Reflection;
 using Sirenix.OdinInspector;
 using Sirenix.OdinInspector.Editor;
 using UnityEngine;
+using UnityGoogleSheet.Editor.Core;
 
 #pragma warning disable CS0414
 
 // ReSharper disable UnusedMember.Local
 // ReSharper disable UnusedMember.Global
 
-namespace Wayway.Engine.UnityGoogleSheet.Editor.Core
+namespace UnityGoogleSheet.Editor.Core
 {
     public enum FileType
     {

@@ -4,10 +4,11 @@ using System.Globalization;
 using System.Linq;
 using System.Text;
 using UnityEngine;
-using Wayway.Engine.UnityGoogleSheet.Core.Exception;
-using Wayway.Engine.UnityGoogleSheet.Core.IO;
+using UnityGoogleSheet.Core.Exception;
+using UnityGoogleSheet.Core.IO;
+using UnityGoogleSheet.Core.Type;
 
-namespace Wayway.Engine.UnityGoogleSheet.Core
+namespace UnityGoogleSheet.Core
 {
     public class CodeGeneratorUnityEngine : ICodeGenerator
     {
@@ -246,7 +247,7 @@ namespace @namespace
             }
         }
 
-        private static string GetCSharpRepresentation(Type t, bool trimArgCount)
+        private static string GetCSharpRepresentation(System.Type t, bool trimArgCount)
         {
             if (t.IsGenericType)
             {
@@ -258,7 +259,7 @@ namespace @namespace
             return t.Name;
         }
 
-        private static string GetCSharpRepresentation(Type t, bool trimArgCount, IList<Type> availableArguments)
+        private static string GetCSharpRepresentation(System.Type t, bool trimArgCount, IList<System.Type> availableArguments)
         {
             if (t.IsGenericType)
             {

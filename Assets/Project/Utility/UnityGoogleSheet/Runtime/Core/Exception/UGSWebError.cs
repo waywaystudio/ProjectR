@@ -1,4 +1,4 @@
-﻿namespace Wayway.Engine.UnityGoogleSheet.Core.Exception
+﻿namespace UnityGoogleSheet.Core.Exception
 {
     /// <summary>
     /// 웹 에러

@@ -1,6 +1,7 @@
-﻿using Wayway.Engine.UnityGoogleSheet.Core.Exception;
+﻿using UnityGoogleSheet.Core.Exception;
+using UnityGoogleSheet.Core.Type.Attribute;
 
-namespace Wayway.Engine.UnityGoogleSheet.Core
+namespace UnityGoogleSheet.Core.Type
 {
     [Type(Type : typeof(short), TypeName : new [] { "short", "Short"})]
     public class ShortType : IType

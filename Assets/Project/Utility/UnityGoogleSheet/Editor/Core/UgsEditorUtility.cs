@@ -3,14 +3,14 @@ using System.Collections.Generic;
 using System.IO;
 using System.Reflection;
 using UnityEngine;
-using Wayway.Engine.UnityGoogleSheet.Core;
-using Wayway.Engine.UnityGoogleSheet.Core.Exception;
-using Wayway.Engine.UnityGoogleSheet.Core.HttpProtocolV2;
-
+using UnityGoogleSheet.Core;
+using UnityGoogleSheet.Core.Exception;
+using UnityGoogleSheet.Core.HttpProtocolV2.Res;
+using UnityGoogleSheet.Core.Type;
 using JsonResult = System.Collections.Generic.IReadOnlyDictionary<string, System.Collections.Generic.Dictionary<string, System.Collections.Generic.List<string>>>;
 
 #if UNITY_EDITOR
-namespace Wayway.Engine.UnityGoogleSheet.Editor.Core
+namespace UnityGoogleSheet.Editor.Core
 {
     public static class UgsEditorUtility
     {

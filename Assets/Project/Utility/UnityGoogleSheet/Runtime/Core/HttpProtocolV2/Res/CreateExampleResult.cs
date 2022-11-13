@@ -2,7 +2,7 @@
 // ReSharper disable InconsistentNaming
 // ReSharper disable UnassignedField.Global
 
-namespace Wayway.Engine.UnityGoogleSheet.Core.HttpProtocolV2
+namespace UnityGoogleSheet.Core.HttpProtocolV2.Res
 {
     public partial class CreateExampleResult : Response
     {

@@ -5,9 +5,10 @@
 // ReSharper disable NotAccessedField.Global
 
 using System;
-using Wayway.Engine.UnityGoogleSheet.Core.HttpProtocolV2;
+using UnityGoogleSheet.Core.HttpProtocolV2.Models;
+using UnityGoogleSheet.Core.HttpProtocolV2.Res;
 
-namespace Wayway.Engine.UnityGoogleSheet.Core
+namespace UnityGoogleSheet.Core
 {
     public interface IHttpProtocol
     {

@@ -1,6 +1,7 @@
 ﻿using System.Linq;
+using UnityGoogleSheet.Core.Type.Attribute;
 
-namespace Wayway.Engine.UnityGoogleSheet.Core
+namespace UnityGoogleSheet.Core.Type
 {
     [Type(typeof(System.Collections.Generic.List<string>), "list<string>", "List<string>")]
     public class StringListType : IType

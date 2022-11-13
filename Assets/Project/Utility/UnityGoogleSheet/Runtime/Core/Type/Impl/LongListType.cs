@@ -1,8 +1,9 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using Wayway.Engine.UnityGoogleSheet.Core.Exception;
+using UnityGoogleSheet.Core.Exception;
+using UnityGoogleSheet.Core.Type.Attribute;
 
-namespace Wayway.Engine.UnityGoogleSheet.Core
+namespace UnityGoogleSheet.Core.Type
 {
     [Type(Type: typeof(List<long>), TypeName: new [] { "list<long>", "List<Long>" })]
     public class LongListType : IType

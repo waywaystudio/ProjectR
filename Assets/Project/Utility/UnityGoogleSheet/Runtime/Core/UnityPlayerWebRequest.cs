@@ -4,10 +4,12 @@ using System.Text;
 using Newtonsoft.Json.Linq;
 using UnityEngine;
 using UnityEngine.Networking;
-using Wayway.Engine.UnityGoogleSheet.Core.Exception;
-using Wayway.Engine.UnityGoogleSheet.Core.HttpProtocolV2;
+using UnityGoogleSheet.Core.Exception;
+using UnityGoogleSheet.Core.HttpProtocolV2;
+using UnityGoogleSheet.Core.HttpProtocolV2.Models;
+using UnityGoogleSheet.Core.HttpProtocolV2.Res;
 
-namespace Wayway.Engine.UnityGoogleSheet.Core
+namespace UnityGoogleSheet.Core
 {
     public class UnityPlayerWebRequest : MonoBehaviour, IHttpProtocol
     {

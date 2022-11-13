@@ -1,6 +1,7 @@
 using UnityEngine;
+using UnityGoogleSheet.Core.Type.Attribute;
 
-namespace Wayway.Engine.UnityGoogleSheet.Core 
+namespace UnityGoogleSheet.Core.Type 
 {
     [Type(typeof(Vector3))]
     public class Vector3Type : IType

@@ -4,10 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
 using UnityEngine;
-using Wayway.Engine.UnityGoogleSheet.Core.Exception;
-using Wayway.Engine.UnityGoogleSheet.Core.IO;
+using UnityGoogleSheet.Core.Exception;
+using UnityGoogleSheet.Core.IO;
+using UnityGoogleSheet.Core.Type;
 
-namespace Wayway.Engine.UnityGoogleSheet.Core
+namespace UnityGoogleSheet.Core
 {
     public class CodeGeneratorScriptableObject : ICodeGenerator
     {
@@ -60,11 +61,12 @@ namespace @namespace
         }
     }
 @drawer
-}";
+}
+";
 
         public string Generate()
         {
-            var @namespace = $"SpreadSheet.{sheetInfo.sheetFileName}";
+            var @namespace = $"Main.Data.SpreadSheet.{sheetInfo.sheetFileName}";
             var className = sheetInfo.sheetName;
             
             TypeMap.Init();
@@ -89,6 +91,8 @@ namespace @namespace
             WriteTypes(sheetInfo.sheetTypes, 
                        sheetInfo.sheetVariableNames, 
                        sheetInfo.isEnumChecks);
+            
+            
 
             Debug.Log($"Generate <color=green><b>{className} ScriptableObject.cs</b></color> Complete");
             
@@ -218,13 +222,13 @@ namespace @namespace
         private void LoadFromJson()
         {
     
-            @classList = Wayway.Engine.UnityGoogleSheet.Editor.Core.UgsEditorUtility
+            @classList = UnityGoogleSheet.Editor.Core.UgsEditorUtility
                 .LoadFromJson<@Class>(""@sheetFileName""); 
         }
         
         private void LoadFromGoogleSpreadSheet()
         {
-            Wayway.Engine.UnityGoogleSheet.Editor.Core.UgsExplorer
+            UnityGoogleSheet.Editor.Core.UgsExplorer
                 .ParseSpreadSheet(spreadSheetID, ""@Class"");
 
             LoadFromJson();
@@ -270,7 +274,7 @@ namespace @namespace
             GenerateForm = GenerateForm.Replace("@drawer", builder.ToString());
         }
 
-        private static string GetCSharpRepresentation(Type t, bool trimArgCount)
+        private static string GetCSharpRepresentation(System.Type t, bool trimArgCount)
         {
             if (!t.IsGenericType) return t.Name;
             
@@ -279,7 +283,7 @@ namespace @namespace
             return GetCSharpRepresentation(t, trimArgCount, genericArgs);
         }
 
-        private static string GetCSharpRepresentation(Type t, bool trimArgCount, IList<Type> availableArguments)
+        private static string GetCSharpRepresentation(System.Type t, bool trimArgCount, IList<System.Type> availableArguments)
         {
             if (!t.IsGenericType) return t.Name;
             

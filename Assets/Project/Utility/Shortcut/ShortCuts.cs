@@ -3,18 +3,21 @@ using UnityEditor;
 using UnityEditor.ShortcutManagement;
 using UnityEngine;
 
-public static class ShortCuts
+namespace Shortcut
 {
-    // Alt + c
-    [Shortcut("Clear Console", KeyCode.C, ShortcutModifiers.Alt)]
-    public static void ClearConsole()
+    public static class ShortCuts
     {
-        var assembly = Assembly.GetAssembly(typeof(SceneView));
-        var type = assembly.GetType("UnityEditor.LogEntries");
-        var method = type.GetMethod("Clear");
+        // Alt + c
+        [Shortcut("Clear Console", KeyCode.C, ShortcutModifiers.Alt)]
+        public static void ClearConsole()
+        {
+            var assembly = Assembly.GetAssembly(typeof(SceneView));
+            var type = assembly.GetType("UnityEditor.LogEntries");
+            var method = type.GetMethod("Clear");
 
-        if (method != null) 
-            method.Invoke(new object(), null);
+            if (method != null) 
+                method.Invoke(new object(), null);
+        }
     }
 }
 

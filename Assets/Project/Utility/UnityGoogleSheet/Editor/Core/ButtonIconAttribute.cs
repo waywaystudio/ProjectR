@@ -5,7 +5,7 @@ using Sirenix.Utilities;
 using Sirenix.Utilities.Editor;
 using UnityEngine;
 
-namespace Wayway.Engine.UnityGoogleSheet.Editor.Core
+namespace UnityGoogleSheet.Editor.Core
 {
     // ReSharper disable ClassNeverInstantiated.Global
 

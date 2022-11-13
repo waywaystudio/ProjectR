@@ -1,4 +1,4 @@
-﻿namespace Wayway.Engine.UnityGoogleSheet.Core.Exception
+﻿namespace UnityGoogleSheet.Core.Exception
 {
     /// <summary>
     /// 벨류 파싱에 에러가 생기면 발생

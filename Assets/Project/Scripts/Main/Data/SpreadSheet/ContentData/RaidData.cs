@@ -13,41 +13,40 @@ using Sirenix.OdinInspector;
 using System;
 using System.Collections.Generic;
 using UnityEngine;
-using Adventurer;
 
 
-namespace SpreadSheet.ContentData
+namespace Main.Data.SpreadSheet.ContentData
 {    
-    public partial class AdventurerData : ScriptableObject
+    public partial class RaidData : ScriptableObject
     { 
 /* Fields. */    
         [SerializeField] 
         [TableList(AlwaysExpanded = true, HideToolbar = true, DrawScrollView = true, IsReadOnly = true)] 
-        private List<Adventurer> adventurerList = new ();
-        private Dictionary<int, Adventurer> adventurerTable = new ();        
+        private List<Raid> raidList = new ();
+        private Dictionary<int, Raid> raidTable = new ();        
 
 /* Properties. */
-        public List<Adventurer> AdventurerList => adventurerList;
-        public Dictionary<int, Adventurer> AdventurerTable => adventurerTable ??= new Dictionary<int, Adventurer>();
+        public List<Raid> RaidList => raidList;
+        public Dictionary<int, Raid> RaidTable => raidTable ??= new Dictionary<int, Raid>();
 
 /* Editor Functions. */
     #if UNITY_EDITOR
         private readonly string spreadSheetID = "1yO5sJqxMvySDiihls5pwiHQWoJGysrT7LBmL16HhHRM";
-        private readonly string sheetID = "400488683";
+        private readonly string sheetID = "898406998";
     #endif
 
 #if UNITY_EDITOR        
         private void LoadFromJson()
         {
     
-            adventurerList = Wayway.Engine.UnityGoogleSheet.Editor.Core.UgsEditorUtility
-                .LoadFromJson<Adventurer>("ContentData"); 
+            raidList = UnityGoogleSheet.Editor.Core.UgsEditorUtility
+                .LoadFromJson<Raid>("ContentData"); 
         }
         
         private void LoadFromGoogleSpreadSheet()
         {
-            Wayway.Engine.UnityGoogleSheet.Editor.Core.UgsExplorer
-                .ParseSpreadSheet(spreadSheetID, "Adventurer");
+            UnityGoogleSheet.Editor.Core.UgsExplorer
+                .ParseSpreadSheet(spreadSheetID, "Raid");
 
             LoadFromJson();
             UnityEditor.EditorUtility.SetDirty(this);
@@ -56,19 +55,19 @@ namespace SpreadSheet.ContentData
 #endif
 /* innerClass. */
         [Serializable]
-        public class Adventurer
+        public class Raid
         {
 			public Int32 ID;
-			public String AdventurerName;
-			public Role Role;
-			public Job Job;
+			public String RaidName;
+			public Int32 PartyScale;
+			public List<String> BossList;
 
         }
     }
         
 #if UNITY_EDITOR
     #region Attribute Setting
-    public class AdventurerDrawer : OdinAttributeProcessor<AdventurerData>
+    public class RaidDrawer : OdinAttributeProcessor<RaidData>
     {
         public override void ProcessChildMemberAttributes(InspectorProperty parentProperty, MemberInfo member, List<Attribute> attributes)
         {

@@ -1,4 +1,4 @@
-﻿namespace Wayway.Engine.UnityGoogleSheet.Core.IO
+﻿namespace UnityGoogleSheet.Core.IO
 {
     public interface ICodeGenerator
     {

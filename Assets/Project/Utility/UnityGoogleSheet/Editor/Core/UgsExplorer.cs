@@ -8,15 +8,16 @@ using System.Linq;
 using System.Reflection;
 using Sirenix.Utilities;
 using UnityEngine;
-using Wayway.Engine.UnityGoogleSheet.Core;
-using Wayway.Engine.UnityGoogleSheet.Core.HttpProtocolV2;
+using UnityGoogleSheet.Core;
+using UnityGoogleSheet.Core.HttpProtocolV2.Models;
+using UnityGoogleSheet.Core.Type;
 
 #pragma warning disable CS0414
 
 // ReSharper disable UnusedMember.Local
 // ReSharper disable UnusedMember.Global
 
-namespace Wayway.Engine.UnityGoogleSheet.Editor.Core
+namespace UnityGoogleSheet.Editor.Core
 {
     public class UgsExplorer : ScriptableObject
     {

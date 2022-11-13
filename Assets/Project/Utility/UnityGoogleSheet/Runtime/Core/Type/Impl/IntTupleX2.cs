@@ -1,6 +1,7 @@
-﻿using Wayway.Engine.UnityGoogleSheet.Core.Exception;
+﻿using UnityGoogleSheet.Core.Exception;
+using UnityGoogleSheet.Core.Type.Attribute;
 
-namespace Wayway.Engine.UnityGoogleSheet.Core
+namespace UnityGoogleSheet.Core.Type
 {
     [Type(typeof((int, int)), "(int,int)", "(Int32,Int32)")]
     public class IntTupleX2Type : IType

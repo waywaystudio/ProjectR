@@ -4,9 +4,9 @@ using System.Linq;
 using System.Reflection;
 using UnityEditor;
 using UnityEngine;
-using Wayway.Engine.UnityGoogleSheet.Core.IO;
+using UnityGoogleSheet.Core.IO;
 
-namespace Wayway.Engine.UnityGoogleSheet.Editor.Core
+namespace UnityGoogleSheet.Editor.Core
 {
     public class EnumGeneratorGUI : EditorWindow
     {

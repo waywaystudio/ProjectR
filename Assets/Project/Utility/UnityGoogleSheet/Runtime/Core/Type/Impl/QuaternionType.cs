@@ -1,6 +1,7 @@
 using UnityEngine;
+using UnityGoogleSheet.Core.Type.Attribute;
 
-namespace Wayway.Engine.UnityGoogleSheet.Core
+namespace UnityGoogleSheet.Core.Type
 {
     [Type(typeof(Quaternion))]
     public class QuaternionType : IType

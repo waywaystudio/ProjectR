@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Reflection;
 using UnityEditor;
 using UnityEngine;
-using Wayway.Engine.UnityGoogleSheet.Core;
+using UnityGoogleSheet.Core;
 
 #if ODIN_INSPECTOR
 using Sirenix.OdinInspector;
@@ -11,7 +11,7 @@ using Sirenix.OdinInspector.Editor;
 // ReSharper disable UnusedMember.Local
 #endif
 
-namespace Wayway.Engine.UnityGoogleSheet.Editor.Core
+namespace UnityGoogleSheet.Editor.Core
 {
     public class UgsDataList : ScriptableObject
     {

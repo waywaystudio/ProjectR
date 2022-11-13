@@ -11,6 +11,9 @@ public static class Debug
     public static bool isDebugBuild => UnityEngine.Debug.isDebugBuild;
     public static ILogger Logger = UnityEngine.Debug.unityLogger;
     public static ILogger UnityLogger => UnityEngine.Debug.unityLogger;
+    
+    [Obsolete("Debug.logger is obsolete. Please use Debug.unityLogger instead (UnityUpgradable) -> unityLogger")]
+    public static ILogger logger => UnityEngine.Debug.logger;
 
     [Conditional("UNITY_EDITOR")]
     public static void Break() =>
@@ -215,9 +218,6 @@ public static class Debug
     {
         UnityEngine.Debug.Assert(condition, format, args);
     }
-
-    [Obsolete("Debug.logger is obsolete. Please use Debug.unityLogger instead (UnityUpgradable) -> unityLogger")]
-    public static ILogger logger => UnityEngine.Debug.logger;
 }
 
 #endif

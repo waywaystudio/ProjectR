@@ -1,4 +1,4 @@
-﻿namespace GoogleSheet.Core.Type
+﻿namespace UnityGoogleSheet.Core.Type.Attribute
 {  
     public class UGSAttribute : System.Attribute
     {

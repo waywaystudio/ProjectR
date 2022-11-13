@@ -1,6 +1,7 @@
-﻿using Wayway.Engine.UnityGoogleSheet.Core.Exception;
+﻿using UnityGoogleSheet.Core.Exception;
+using UnityGoogleSheet.Core.Type.Attribute;
 
-namespace Wayway.Engine.UnityGoogleSheet.Core
+namespace UnityGoogleSheet.Core.Type
 {
     [Type(Type: typeof(decimal), TypeName: new [] { "decimal", "Decimal" })]
     public class DecimalType : IType

@@ -5,9 +5,9 @@ using Sirenix.Utilities;
 using Sirenix.Utilities.Editor;
 using UnityEditor;
 using UnityEngine;
-using Wayway.Engine.UnityGoogleSheet.Core;
+using UnityGoogleSheet.Core;
 
-namespace Wayway.Engine.UnityGoogleSheet.Editor.Core
+namespace UnityGoogleSheet.Editor.Core
 {
     public class UgsWindowEditor : OdinMenuEditorWindow
     {
@@ -33,7 +33,6 @@ namespace Wayway.Engine.UnityGoogleSheet.Editor.Core
             
             var tree = new OdinMenuTree(supportsMultiSelect: true)
             {
-                // { "Home",            this,                     EditorIcons.House         },
                 { "UGS Config",      UgsConfig.Instance ,      EditorIcons.SettingsCog   },
                 { "UGS Generator",   explorer,                 EditorIcons.Table         },
                 { "UGS DataList",    dataList,                 EditorIcons.List          },

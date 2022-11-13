@@ -1,20 +1,20 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Reflection;
-using GoogleSheet.Core.Type;
-using Wayway.Engine.UnityGoogleSheet.Core.Exception;
+using UnityGoogleSheet.Core.Exception;
+using UnityGoogleSheet.Core.Type.Attribute;
 
-namespace Wayway.Engine.UnityGoogleSheet.Core
+namespace UnityGoogleSheet.Core.Type
 { 
     public static class TypeMap
     {
         public static bool init;
 
-        public static Dictionary<Type, IType> Map { get; } = new();
-        public static Dictionary<string, Type> StrMap { get; } = new();
+        public static Dictionary<System.Type, IType> Map { get; } = new();
+        public static Dictionary<string, System.Type> StrMap { get; } = new();
         public static Dictionary<string, EnumType> EnumMap { get; } = new();
 
-        public static void EnumTypeInjection(Type enumType)
+        public static void EnumTypeInjection(System.Type enumType)
         {
             if (enumType.IsEnum)
             {

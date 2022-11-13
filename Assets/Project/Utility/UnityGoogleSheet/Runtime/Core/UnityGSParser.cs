@@ -8,10 +8,10 @@ using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using Sirenix.Utilities;
 using UnityEngine;
-using Wayway.Engine.UnityGoogleSheet.Core.HttpProtocolV2;
-using Wayway.Engine.UnityGoogleSheet.Core.IO;
+using UnityGoogleSheet.Core.HttpProtocolV2.Res;
+using UnityGoogleSheet.Core.IO;
 
-namespace Wayway.Engine.UnityGoogleSheet.Core
+namespace UnityGoogleSheet.Core
 {
     public static class UnityGSParser
     {

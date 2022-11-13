@@ -1,4 +1,6 @@
-﻿namespace Wayway.Engine.UnityGoogleSheet.Core
+﻿using UnityGoogleSheet.Core.Type.Attribute;
+
+namespace UnityGoogleSheet.Core.Type
 {
     [Type(typeof(string), "string", "String")]
     public class StringType : IType

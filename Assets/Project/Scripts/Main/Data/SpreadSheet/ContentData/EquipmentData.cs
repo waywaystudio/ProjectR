@@ -15,7 +15,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 
-namespace SpreadSheet.ContentData
+namespace Main.Data.SpreadSheet.ContentData
 {    
     public partial class EquipmentData : ScriptableObject
     { 
@@ -39,13 +39,13 @@ namespace SpreadSheet.ContentData
         private void LoadFromJson()
         {
     
-            equipmentList = Wayway.Engine.UnityGoogleSheet.Editor.Core.UgsEditorUtility
+            equipmentList = UnityGoogleSheet.Editor.Core.UgsEditorUtility
                 .LoadFromJson<Equipment>("ContentData"); 
         }
         
         private void LoadFromGoogleSpreadSheet()
         {
-            Wayway.Engine.UnityGoogleSheet.Editor.Core.UgsExplorer
+            UnityGoogleSheet.Editor.Core.UgsExplorer
                 .ParseSpreadSheet(spreadSheetID, "Equipment");
 
             LoadFromJson();

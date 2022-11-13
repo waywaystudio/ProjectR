@@ -1,6 +1,6 @@
 ﻿// ReSharper disable InconsistentNaming
 
-namespace Wayway.Engine.UnityGoogleSheet.Core.HttpProtocolV2
+namespace UnityGoogleSheet.Core.HttpProtocolV2.Models
 {
     public class ReadSpreadSheetReqModel : Model
     {

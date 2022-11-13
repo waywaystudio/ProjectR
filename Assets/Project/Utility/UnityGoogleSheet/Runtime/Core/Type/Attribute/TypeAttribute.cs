@@ -1,4 +1,4 @@
-﻿namespace Wayway.Engine.UnityGoogleSheet.Core
+﻿namespace UnityGoogleSheet.Core.Type.Attribute
 {
     public class TypeAttribute : System.Attribute
     {

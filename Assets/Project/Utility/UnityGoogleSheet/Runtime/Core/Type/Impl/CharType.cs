@@ -1,7 +1,7 @@
-﻿using System;
-using Wayway.Engine.UnityGoogleSheet.Core.Exception;
+﻿using UnityGoogleSheet.Core.Exception;
+using UnityGoogleSheet.Core.Type.Attribute;
 
-namespace Wayway.Engine.UnityGoogleSheet.Core
+namespace UnityGoogleSheet.Core.Type
 {
     [Type(typeof(char), "char", "Char")]
     public class CharType : IType

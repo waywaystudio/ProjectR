@@ -1,6 +1,6 @@
 ﻿#if UNITY_EDITOR
 
-namespace Wayway.Engine.UnityGoogleSheet.Core
+namespace UnityGoogleSheet.Core
 {
     public static class UnityFileWriter
     {

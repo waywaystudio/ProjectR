@@ -1,4 +1,4 @@
-﻿namespace Wayway.Engine.UnityGoogleSheet.Core.HttpProtocolV2
+﻿namespace UnityGoogleSheet.Core.HttpProtocolV2.Res
 {
     public partial class WriteObjectResult : Response
     {

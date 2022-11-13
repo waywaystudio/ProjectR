@@ -15,38 +15,38 @@ using System.Collections.Generic;
 using UnityEngine;
 
 
-namespace SpreadSheet.ContentData
+namespace Main.Data.SpreadSheet.ContentData
 {    
-    public partial class RaidData : ScriptableObject
+    public partial class BossData : ScriptableObject
     { 
 /* Fields. */    
         [SerializeField] 
         [TableList(AlwaysExpanded = true, HideToolbar = true, DrawScrollView = true, IsReadOnly = true)] 
-        private List<Raid> raidList = new ();
-        private Dictionary<int, Raid> raidTable = new ();        
+        private List<Boss> bossList = new ();
+        private Dictionary<int, Boss> bossTable = new ();        
 
 /* Properties. */
-        public List<Raid> RaidList => raidList;
-        public Dictionary<int, Raid> RaidTable => raidTable ??= new Dictionary<int, Raid>();
+        public List<Boss> BossList => bossList;
+        public Dictionary<int, Boss> BossTable => bossTable ??= new Dictionary<int, Boss>();
 
 /* Editor Functions. */
     #if UNITY_EDITOR
         private readonly string spreadSheetID = "1yO5sJqxMvySDiihls5pwiHQWoJGysrT7LBmL16HhHRM";
-        private readonly string sheetID = "898406998";
+        private readonly string sheetID = "75529785";
     #endif
 
 #if UNITY_EDITOR        
         private void LoadFromJson()
         {
     
-            raidList = Wayway.Engine.UnityGoogleSheet.Editor.Core.UgsEditorUtility
-                .LoadFromJson<Raid>("ContentData"); 
+            bossList = UnityGoogleSheet.Editor.Core.UgsEditorUtility
+                .LoadFromJson<Boss>("ContentData"); 
         }
         
         private void LoadFromGoogleSpreadSheet()
         {
-            Wayway.Engine.UnityGoogleSheet.Editor.Core.UgsExplorer
-                .ParseSpreadSheet(spreadSheetID, "Raid");
+            UnityGoogleSheet.Editor.Core.UgsExplorer
+                .ParseSpreadSheet(spreadSheetID, "Boss");
 
             LoadFromJson();
             UnityEditor.EditorUtility.SetDirty(this);
@@ -55,19 +55,20 @@ namespace SpreadSheet.ContentData
 #endif
 /* innerClass. */
         [Serializable]
-        public class Raid
+        public class Boss
         {
 			public Int32 ID;
-			public String RaidName;
-			public Int32 PartyScale;
-			public List<String> BossList;
+			public String BossName;
+			public Single TempDifficulty;
+			public List<Int32> DropItemIdList;
+			public List<Int32> DropItemProbabilities;
 
         }
     }
         
 #if UNITY_EDITOR
     #region Attribute Setting
-    public class RaidDrawer : OdinAttributeProcessor<RaidData>
+    public class BossDrawer : OdinAttributeProcessor<BossData>
     {
         public override void ProcessChildMemberAttributes(InspectorProperty parentProperty, MemberInfo member, List<Attribute> attributes)
         {

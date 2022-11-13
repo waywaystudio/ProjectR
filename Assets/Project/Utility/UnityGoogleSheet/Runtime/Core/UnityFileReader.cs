@@ -2,7 +2,7 @@
 using System.IO;
 using UnityEngine;
 
-namespace Wayway.Engine.UnityGoogleSheet.Core
+namespace UnityGoogleSheet.Core
 {
     public class UnityFileReader
     {
