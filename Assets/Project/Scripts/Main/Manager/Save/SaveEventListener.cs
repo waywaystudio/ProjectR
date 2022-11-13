@@ -3,7 +3,7 @@ using Core.GameEvents.Listener;
 using UnityEngine;
 using UnityEngine.Events;
 
-namespace Main.Save
+namespace Main.Manager.Save
 {
     public class SaveEventListener : GameEventListener
     {

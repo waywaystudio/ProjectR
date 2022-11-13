@@ -6,7 +6,7 @@ using Sirenix.OdinInspector;
 using UnityEngine;
 using UnitySceneManager = UnityEngine.SceneManagement.SceneManager;
 
-namespace Main.Scene
+namespace Main.Manager.Scene
 {
     public class SceneManager : MonoBehaviour
     {
@@ -47,7 +47,7 @@ namespace Main.Scene
         {
             if (!sceneNameList.Exists(x => x == sceneName))
             {
-                global::Debug.LogError($"Not Exist <b>{sceneName}</b> in scene name list.");
+                Debug.LogError($"Not Exist <b>{sceneName}</b> in scene name list.");
                 return;
             }
 
@@ -87,7 +87,7 @@ namespace Main.Scene
         {
             if (!sceneNameList.Exists(x => x == sceneName))
             {
-                global::Debug.LogError($"Not Exist <b>{sceneName}</b> in scene name list.");
+                Debug.LogError($"Not Exist <b>{sceneName}</b> in scene name list.");
                 return;
             }
 

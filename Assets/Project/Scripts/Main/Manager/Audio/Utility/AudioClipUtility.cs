@@ -6,7 +6,6 @@
 using System;
 using System.Reflection;
 using UnityEngine;
-using Debug = Debug;
 
 namespace Main.Audio
 {
@@ -16,7 +15,7 @@ namespace Main.Audio
         {
             if (clip == null)
             {
-                global::Debug.LogError("clipData is Null");
+                Debug.LogError("clipData is Null");
                 return;
             }
 

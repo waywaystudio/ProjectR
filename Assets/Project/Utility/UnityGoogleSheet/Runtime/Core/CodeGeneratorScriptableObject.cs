@@ -66,7 +66,7 @@ namespace @namespace
 
         public string Generate()
         {
-            var @namespace = $"Main.Data.SpreadSheet.{sheetInfo.sheetFileName}";
+            var @namespace = $"Data.{sheetInfo.sheetFileName}";
             var className = sheetInfo.sheetName;
             
             TypeMap.Init();

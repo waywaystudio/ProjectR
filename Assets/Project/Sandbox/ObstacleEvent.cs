@@ -1,5 +1,5 @@
+using Core;
 using Main;
-using Main.Input;
 using UnityEngine;
 using UnityEngine.Events;
 using Debug = Debug;

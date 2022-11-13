@@ -1,5 +1,5 @@
+using Core;
 using Main;
-using Main.Input;
 using Main.Save;
 using UnityEngine;
 using UnityEngine.InputSystem;

@@ -1,4 +1,4 @@
-namespace Main.Save
+namespace Core
 {
     public interface ISavable
     {        

@@ -1,11 +1,12 @@
 using System.Collections.Generic;
 using System.Linq;
 using Core;
+using Main.Save;
 using UnityEngine;
 
 // ReSharper disable NotAccessedField.Local
 
-namespace Main.Save
+namespace Main.Manager.Save
 {
     public class SaveManager : MonoBehaviour
     {
@@ -84,13 +85,13 @@ namespace Main.Save
         {
             if (saveFileName.IsNullOrEmpty())
             {
-                global::Debug.LogError("SaveFile Name is Empty. Creat Slot Skipped");
+                Debug.LogError("SaveFile Name is Empty. Creat Slot Skipped");
                 return;
             }
 
             if (saveFileName.Contains('_'))
             {
-                global::Debug.LogError("SaveFile Can't Contains under bar(_) text. Try Another Name");
+                Debug.LogError("SaveFile Can't Contains under bar(_) text. Try Another Name");
                 return;
             }
             
@@ -98,7 +99,7 @@ namespace Main.Save
             
             if (ES3.FileExists(saveFileFullPath))
             {
-                global::Debug.Log($"There is already exist <color=red>{saveFileName}</color> in Save Folder.");
+                Debug.Log($"There is already exist <color=red>{saveFileName}</color> in Save Folder.");
                 return;
             }
             
@@ -131,7 +132,7 @@ namespace Main.Save
                 }
                 else
                 {
-                    global::Debug.LogWarning($"{saveFile} Is not Valid File!!!");
+                    Debug.LogWarning($"{saveFile} Is not Valid File!!!");
                 }
             });
 
@@ -178,7 +179,7 @@ namespace Main.Save
             if (!ES3.FileExists(GetPath(fileName)))
             {
                 if (showDebug)
-                    global::Debug.LogWarning($"There isn't exist <color=red>{fileName}</color> saveFile");
+                    Debug.LogWarning($"There isn't exist <color=red>{fileName}</color> saveFile");
 
                 return false;
             }
@@ -186,7 +187,7 @@ namespace Main.Save
             if (!ES3.KeyExists("IsValidFile", fileName))
             {
                 if (showDebug)
-                    global::Debug.LogWarning("Is <color=red>Not</color> IsValidFile");
+                    Debug.LogWarning("Is <color=red>Not</color> IsValidFile");
 
                 return false;
             }

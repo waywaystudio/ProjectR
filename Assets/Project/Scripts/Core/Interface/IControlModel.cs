@@ -1,4 +1,4 @@
-namespace Main.Input
+namespace Core
 {
     public interface IControlModel
     {

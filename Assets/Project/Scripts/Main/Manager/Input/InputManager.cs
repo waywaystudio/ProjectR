@@ -2,7 +2,7 @@ using System.Collections.Generic;
 using Core;
 using UnityEngine;
 
-namespace Main.Input
+namespace Main.Manager.Input
 {
     public class InputManager : MonoBehaviour
     {
@@ -26,7 +26,7 @@ namespace Main.Input
         {
             if (eventModelList.IsNullOrEmpty())
             {
-                global::Debug.LogWarning("EventModelList is Empty");
+                Debug.LogWarning("EventModelList is Empty");
                 return;
             }
             
