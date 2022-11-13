@@ -13,7 +13,7 @@ namespace Loading
         {
             if (loadingEffectList.IsNullOrEmpty())
             {
-                global::Debug.LogError("Loading Effect List is Null!");
+                Debug.LogError("Loading Effect List is Null!");
                 return;
             }
 

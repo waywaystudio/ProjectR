@@ -14,11 +14,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   settings:
     _location: 0
-    path: Project\Data\SaveFile
+    path: SaveFile.es3
     encryptionType: 0
     compressionType: 0
     encryptionPassword: password
-    directory: 1
+    directory: 0
     format: 0
     prettyPrint: 1
     bufferSize: 2048
@@ -31,17 +31,10 @@ MonoBehaviour:
     assemblyNames:
     - Assembly-CSharp-firstpass
     - Assembly-CSharp
-    - GameEvent
-    - Core
-    - SoCreator
-    - PPv2URPConverters
-    - SoCreator.Editor
-    - ShortCuts.Editor
-    - Sirenix.OdinInspector.Modules.UnityMathematics
     showAdvancedSettings: 0
   addMgrToSceneAutomatically: 0
   autoUpdateReferences: 1
   addAllPrefabsToManager: 1
   logDebugInfo: 0
   logWarnings: 1
-  logErrors: 0
+  logErrors: 1
