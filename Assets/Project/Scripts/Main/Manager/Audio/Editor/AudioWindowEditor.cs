@@ -5,7 +5,6 @@ using Sirenix.OdinInspector.Editor;
 using Sirenix.Utilities.Editor;
 using UnityEditor;
 using UnityEngine;
-using Wayway.Engine;
 
 namespace Main.Audio.Editor
 {
@@ -13,7 +12,7 @@ namespace Main.Audio.Editor
     {
         private List<AudioClipData> audioClipDataList;
 
-        [MenuItem("Wayway/AudioManager")]
+        [MenuItem("Tools/AudioManager")]
         public static void OpenWidow()
         {
             var window = GetWindow<AudioWindowEditor>();

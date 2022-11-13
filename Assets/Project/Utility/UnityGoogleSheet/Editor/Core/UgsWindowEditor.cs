@@ -11,7 +11,7 @@ namespace UnityGoogleSheet.Editor.Core
 {
     public class UgsWindowEditor : OdinMenuEditorWindow
     {
-        [MenuItem("Wayway/UnityGoogleSheet")]
+        [MenuItem("Tools/UnityGoogleSheet")]
         private static void OpenWindow()
         {
             var window = GetWindow<UgsWindowEditor>();
