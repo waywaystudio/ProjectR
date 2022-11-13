@@ -1,8 +1,6 @@
 using System.Collections.Generic;
 using Core;
 using UnityEngine;
-using Wayway.Engine;
-using Debug = Debug;
 
 namespace Main.Input
 {

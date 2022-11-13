@@ -36,10 +36,10 @@ namespace UnityGoogleSheet.Core
                 "System.Collections.Generic",
                 "System.Reflection",
                 "UnityEngine",
-                "Wayway.Engine.UnityGoogleSheet.Core",
-                "Wayway.Engine.UnityGoogleSheet.Core.Attribute",
-                "Wayway.Engine.UnityGoogleSheet.Core.Exception",
-                "Wayway.Engine.UnityGoogleSheet.Core.HttpProtocolV2"
+                "UnityGoogleSheet.Core",
+                "UnityGoogleSheet.Core.Attribute",
+                "UnityGoogleSheet.Core.Exception",
+                "UnityGoogleSheet.Core.HttpProtocolV2"
             }, sheetInfo.sheetTypes, sheetInfo.isEnumChecks);
             
             WriteNamespace(@namespace);

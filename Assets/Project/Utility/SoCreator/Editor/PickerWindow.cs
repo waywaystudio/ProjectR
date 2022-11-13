@@ -2,11 +2,10 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Globalization;
-using SoCreator.Editor;
 using UnityEditor;
 using UnityEngine;
 
-namespace Wayway.Engine.SoCreator.Editor
+namespace SoCreator.Editor
 {
     public sealed class PickerWindow : EditorWindow
     {

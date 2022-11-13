@@ -2,8 +2,6 @@ using System.Collections.Generic;
 using System.Linq;
 using Core;
 using UnityEngine;
-using Wayway.Engine;
-using Debug = Debug;
 
 // ReSharper disable NotAccessedField.Local
 

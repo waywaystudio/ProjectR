@@ -8,10 +8,7 @@ using UnityEditor;
 using UnityEditor.ProjectWindowCallback;
 using UnityEditor.ShortcutManagement;
 using UnityEngine;
-using Wayway.Engine.SoCreator;
-using Wayway.Engine.SoCreator.Editor;
 using Assembly = System.Reflection.Assembly;
-using SettingsProvider = SoCreator.Editor.SettingsProvider;
 
 namespace SoCreator.Editor
 {

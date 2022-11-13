@@ -2,8 +2,6 @@ using System.Collections.Generic;
 using Core;
 using Main;
 using UnityEngine;
-using Wayway.Engine;
-using Debug = Debug;
 
 namespace Loading
 {

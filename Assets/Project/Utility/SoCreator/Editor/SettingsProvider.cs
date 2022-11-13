@@ -5,7 +5,6 @@ using System.Linq;
 using UnityEditor;
 using UnityEditorInternal;
 using UnityEngine;
-using Wayway.Engine.SoCreator.Editor;
 
 namespace SoCreator.Editor
 {
