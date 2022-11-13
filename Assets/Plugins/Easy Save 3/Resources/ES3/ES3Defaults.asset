@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   settings:
     _location: 0
-    path: SaveFile.es3
+    path: Project\Data\SaveFile\SaveFile.es3
     encryptionType: 0
     compressionType: 0
     encryptionPassword: password
@@ -29,8 +29,22 @@ MonoBehaviour:
     referenceMode: 2
     serializationDepthLimit: 64
     assemblyNames:
-    - Assembly-CSharp-firstpass
+    - ES3
     - Assembly-CSharp
+    - Core
+    - Save
+    - Raid
+    - Assembly-CSharp-firstpass
+    - Main
+    - Audio
+    - SoCreator
+    - PPv2URPConverters
+    - ES3.editor
+    - SoCreator.Editor
+    - ShortCuts.Editor
+    - Audio.editor
+    - Sirenix.OdinInspector.Modules.UnityMathematics
+    - Save.editor
     showAdvancedSettings: 0
   addMgrToSceneAutomatically: 0
   autoUpdateReferences: 1

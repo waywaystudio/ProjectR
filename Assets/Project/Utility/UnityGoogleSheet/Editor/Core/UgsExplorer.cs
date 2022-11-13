@@ -112,9 +112,8 @@ namespace UnityGoogleSheet.Editor.Core
             LoadDriveFiles(currentViewFolderID);
         }
         
-#if ODIN_INSPECTOR
+
         [OnInspectorDispose]
-#endif
         private void Clear()
         {
             isInitiated = false;

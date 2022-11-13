@@ -5,14 +5,15 @@
 //     ReSharper disable ConvertToConstant.Local
 #pragma warning disable CS0414
 
-
+#if UNITY_EDITOR
+using System.Reflection;
+using Sirenix.OdinInspector.Editor;
+#endif
+using Sirenix.OdinInspector;
 using System;
 using System.Collections.Generic;
-using System.Reflection;
-using Adventurer;
-using Sirenix.OdinInspector;
-using Sirenix.OdinInspector.Editor;
 using UnityEngine;
+using Adventurer;
 
 
 namespace Data.ContentData

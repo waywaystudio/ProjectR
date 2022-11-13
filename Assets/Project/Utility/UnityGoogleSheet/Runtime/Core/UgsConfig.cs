@@ -1,7 +1,10 @@
-using System.Collections.Generic;
+#if UNITY_EDITOR
 using System.Reflection;
-using Sirenix.OdinInspector;
 using Sirenix.OdinInspector.Editor;
+using Sirenix.OdinInspector;
+#endif
+
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace UnityGoogleSheet.Core

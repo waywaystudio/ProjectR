@@ -13,7 +13,8 @@ namespace Core
         void Save();
         void Load();
     }
-    
+
+#if UNITY_EDITOR
     public class SavableDrawer : OdinAttributeProcessor<ISavable>
     {
         public override void ProcessChildMemberAttributes(InspectorProperty parentProperty, MemberInfo member, List<Attribute> attributes)
@@ -32,4 +33,5 @@ namespace Core
             }
         }
     }
+#endif
 }

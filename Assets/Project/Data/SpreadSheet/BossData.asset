@@ -12,4 +12,84 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 89232929c4941364880942bfe78344a5, type: 3}
   m_Name: BossData
   m_EditorClassIdentifier: 
-  bossList: []
+  bossList:
+  - ID: 16000001
+    BossName: Devourer of Souls
+    TempDifficulty: 1
+    DropItemIdList: 012d3101022d3101032d3101
+    DropItemProbabilities: 050000000300000001000000
+  - ID: 16000002
+    BossName: Moragg
+    TempDifficulty: 1.1
+    DropItemIdList: 012d3101022d3101082d3101
+    DropItemProbabilities: 050000000300000001000000
+  - ID: 16000003
+    BossName: Maiden of Grief
+    TempDifficulty: 1.2
+    DropItemIdList: 012d3101052d3101032d3101
+    DropItemProbabilities: 050000000300000001000000
+  - ID: 16000004
+    BossName: Keristrasza
+    TempDifficulty: 1.3
+    DropItemIdList: 042d3101022d3101062d3101
+    DropItemProbabilities: 050000000300000001000000
+  - ID: 16000005
+    BossName: Teron Gorefiend
+    TempDifficulty: 2
+    DropItemIdList: 042d3101062d3101032d3101
+    DropItemProbabilities: 050000000300000001000000
+  - ID: 16000006
+    BossName: Mother Shahraz
+    TempDifficulty: 2.1
+    DropItemIdList: 042d3101062d3101082d3101
+    DropItemProbabilities: 050000000300000001000000
+  - ID: 16000007
+    BossName: Illidan Stormrage
+    TempDifficulty: 2.4
+    DropItemIdList: 072d3101082d3101012d3101
+    DropItemProbabilities: 050000000300000001000000
+  - ID: 16000008
+    BossName: Patchwerk
+    TempDifficulty: 2.2
+    DropItemIdList: 072d3101052d3101022d3101
+    DropItemProbabilities: 050000000300000001000000
+  - ID: 16000009
+    BossName: Sapphiron
+    TempDifficulty: 2.3
+    DropItemIdList: 072d3101082d31010e2d3101
+    DropItemProbabilities: 050000000300000001000000
+  - ID: 16000010
+    BossName: Kel'Thuzad
+    TempDifficulty: 2.5
+    DropItemIdList: 0a2d3101022d31010f2d3101
+    DropItemProbabilities: 050000000300000001000000
+  - ID: 16000011
+    BossName: Magmadar
+    TempDifficulty: 2.3
+    DropItemIdList: 0a2d3101092d3101052d3101
+    DropItemProbabilities: 050000000300000001000000
+  - ID: 16000012
+    BossName: Baron Geddon
+    TempDifficulty: 2.4
+    DropItemIdList: 0a2d3101092d3101082d3101
+    DropItemProbabilities: 050000000300000001000000
+  - ID: 16000013
+    BossName: Ragnaros
+    TempDifficulty: 2.6
+    DropItemIdList: 092d31010a2d31010d2d3101
+    DropItemProbabilities: 050000000300000001000000
+  - ID: 16000014
+    BossName: Vaelastrasz the Corrupt
+    TempDifficulty: 2.4
+    DropItemIdList: 0a2d31010b2d31010d2d3101
+    DropItemProbabilities: 050000000300000001000000
+  - ID: 16000015
+    BossName: Chromaggus
+    TempDifficulty: 2.5
+    DropItemIdList: 0b2d31010c2d31010d2d3101
+    DropItemProbabilities: 050000000300000001000000
+  - ID: 16000016
+    BossName: Nefarian
+    TempDifficulty: 2.8
+    DropItemIdList: 0e2d31010f2d3101102d3101
+    DropItemProbabilities: 050000000300000001000000

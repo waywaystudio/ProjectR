@@ -87,12 +87,9 @@ namespace @namespace
             WriteCamelClassReplace(ToCamelCasing(className));
             WriteClassSuffix(UgsConfig.Instance.Suffix);
             WriteSpreadSheetData(sheetInfo.spreadSheetID, sheetInfo.sheetID);
-            
             WriteTypes(sheetInfo.sheetTypes, 
                        sheetInfo.sheetVariableNames, 
                        sheetInfo.isEnumChecks);
-            
-            
 
             Debug.Log($"Generate <color=green><b>{className} ScriptableObject.cs</b></color> Complete");
             

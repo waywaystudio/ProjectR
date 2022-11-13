@@ -15,7 +15,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 
-namespace Main.Data.SpreadSheet.ContentData
+namespace Data.ContentData
 {    
     public partial class RaidData : ScriptableObject
     { 

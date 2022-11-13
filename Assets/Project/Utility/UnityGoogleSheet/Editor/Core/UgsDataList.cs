@@ -1,15 +1,12 @@
-#if UNITY_EDITOR
 using System.Collections.Generic;
 using System.Reflection;
 using UnityEditor;
 using UnityEngine;
 using UnityGoogleSheet.Core;
-
-#if ODIN_INSPECTOR
 using Sirenix.OdinInspector;
 using Sirenix.OdinInspector.Editor;
 // ReSharper disable UnusedMember.Local
-#endif
+
 
 namespace UnityGoogleSheet.Editor.Core
 {
@@ -18,9 +15,7 @@ namespace UnityGoogleSheet.Editor.Core
         private List<ScriptableObject> spreadSheetDataList = new ();
         private List<MonoScript> tableDataList = new ();
 
-#if ODIN_INSPECTOR
         [OnInspectorInit]
-#endif
         private void GetSheetDataObjectList()
         {
             spreadSheetDataList.Clear();
@@ -115,4 +110,3 @@ namespace UnityGoogleSheet.Editor.Core
     #endregion
 #endif
 }
-#endif

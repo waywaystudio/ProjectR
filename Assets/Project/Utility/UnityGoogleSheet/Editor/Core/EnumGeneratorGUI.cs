@@ -62,20 +62,20 @@ namespace UnityGoogleSheet.Editor.Core
             var cnt = split.Length;
             var index = 0;
             
-            string compleatedNameSpace = null;
+            string completedNameSpace = null;
             foreach (var field in split)
             {
                 if (index + 1 == cnt)
                 {
-                    var filter = compleatedNameSpace.Remove(compleatedNameSpace.Length - 1, 1);
-                    compleatedNameSpace = filter;
+                    var filter = completedNameSpace?.Remove(completedNameSpace.Length - 1, 1);
+                    completedNameSpace = filter;
                     break;
                 }
-                compleatedNameSpace += field + ".";
+                completedNameSpace += field + ".";
                 index++;
 
             }
-            return compleatedNameSpace;
+            return completedNameSpace;
         }
 
         public bool Validation()
@@ -124,7 +124,7 @@ namespace UnityGoogleSheet.Editor.Core
                 }
                 else
                 {
-                    EditorUtility.DisplayDialog("Generate Failed by Validation Error", enumNameField + " Type is not exist in Assembly.Chsarp!", "OK");
+                    EditorUtility.DisplayDialog("Generate Failed by Validation Error", enumNameField + " Type is not exist in Assembly.CSharp!", "OK");
                 }
             }
             

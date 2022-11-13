@@ -165,9 +165,7 @@ namespace UnityGoogleSheet.Core
         {
             var scriptableObjectType = targetObject.GetType();
             var info = scriptableObjectType.GetMethod(functionName, BindingFlags.NonPublic | BindingFlags.Instance);
-            
-            Debug.Log($"Type : {scriptableObjectType}, is Info ? : {info != null}");
-            
+
             if (info != null)
             {
                 info.Invoke(targetObject, null);
