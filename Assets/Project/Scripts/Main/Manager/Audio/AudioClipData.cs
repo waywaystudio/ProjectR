@@ -1,7 +1,7 @@
-﻿using UnityEngine;
-using AudioType = Main.Audio.AudioType;
+﻿using Main.Manager.Audio.Utility;
+using UnityEngine;
 
-namespace Main.Audio
+namespace Main.Manager.Audio
 {
     public class AudioClipData : ScriptableObject, IAudioPlayable
     {
@@ -13,9 +13,9 @@ namespace Main.Audio
         public AudioClip AudioClip => audioClip;
         public int Priority => priority;
 
-        public void Play() => MainGame.AudioManager.Play(this);
-        public void Pause() => MainGame.AudioManager.Pause(this);
-        public void Stop() => MainGame.AudioManager.Stop(this);
+        public void Play() => AudioManager.Play(this);
+        public void Pause() => AudioManager.Pause(this);
+        public void Stop() => AudioManager.Stop(this);
 
 #if UNITY_EDITOR
         #region editor Function :: play & stop

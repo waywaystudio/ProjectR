@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Main.Audio
+namespace Main.Manager.Audio.Utility
 {
     public static class AudioExtension
     {

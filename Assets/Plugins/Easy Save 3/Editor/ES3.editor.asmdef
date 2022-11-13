@@ -1,12 +1,12 @@
 {
-    "name": "Main",
+    "name": "ES3.editor",
     "rootNamespace": "",
     "references": [
-        "GUID:644fc0f15f6c13c499a5755b1ebf9f34",
-        "GUID:bba7de852a42e0a498efaeaa1bb441d0",
-        "GUID:d765d548fc2a0a64594bfe045da87878"
+        "ES3"
     ],
-    "includePlatforms": [],
+    "includePlatforms": [
+        "Editor"
+    ],
     "excludePlatforms": [],
     "allowUnsafeCode": false,
     "overrideReferences": false,

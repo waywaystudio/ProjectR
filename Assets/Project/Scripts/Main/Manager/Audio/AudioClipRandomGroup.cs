@@ -1,7 +1,8 @@
 ﻿using System.Collections.Generic;
+using Main.Manager.Audio.Utility;
 using UnityEngine;
 
-namespace Main.Audio
+namespace Main.Manager.Audio
 {
     public class AudioClipRandomGroup : ScriptableObject, IAudioPlayable
     {

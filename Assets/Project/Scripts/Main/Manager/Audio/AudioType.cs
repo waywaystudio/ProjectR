@@ -1,4 +1,4 @@
-namespace Main.Audio
+namespace Main.Manager.Audio
 {    
     public enum AudioType
     {        

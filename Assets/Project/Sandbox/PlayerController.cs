@@ -1,6 +1,6 @@
 using Core;
 using Main;
-using Main.Save;
+using Main.Manager.Save;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -56,14 +56,14 @@ public class PlayerController : MonoBehaviour, IControlModel, ISavable
 
     public void Save()
     {
-        MainGame.SaveManager.Save("playerTransform.position", transform.position);
-        MainGame.SaveManager.Save("playerTransform.rotation", transform.rotation);
+        SaveManager.Save("playerTransform.position", transform.position);
+        SaveManager.Save("playerTransform.rotation", transform.rotation);
     }
 
     public void Load()
     {
-        var position = MainGame.SaveManager.Load("playerTransform.position", Vector3.zero);
-        var rotation = MainGame.SaveManager.Load("playerTransform.rotation", Quaternion.identity);
+        var position = SaveManager.Load("playerTransform.position", Vector3.zero);
+        var rotation = SaveManager.Load("playerTransform.rotation", Quaternion.identity);
         
         transform.SetPositionAndRotation(position, rotation);
     }

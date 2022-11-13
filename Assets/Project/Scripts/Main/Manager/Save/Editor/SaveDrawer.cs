@@ -1,16 +1,14 @@
 using System;
 using System.Collections.Generic;
 using System.Reflection;
-using Core;
-using Main.Manager.Save;
+using Main.Save;
 using Sirenix.OdinInspector;
 using Sirenix.OdinInspector.Editor;
-using UnityEngine;
 
 // ReSharper disable ConvertIfStatementToSwitchStatement
 // ReSharper disable UnusedType.Global
 
-namespace Main.Save.Editor
+namespace Main.Manager.Save.Editor
 {
     public class SaveInfoDrawer : OdinAttributeProcessor<SaveInfo>
     {
@@ -69,11 +67,6 @@ namespace Main.Save.Editor
     {
         public override void ProcessChildMemberAttributes(InspectorProperty parentProperty, MemberInfo member, List<Attribute> attributes)
         {
-            if (member.Name == "ShowDebugMessage")
-            {
-                attributes.Add(new HideInInspector());
-            }
-            
             if (member.Name == "saveEvent")
             {
                 attributes.Add(new TitleGroupAttribute("Core Event", "Save & Scene"));
@@ -118,51 +111,6 @@ namespace Main.Save.Editor
             {
                 attributes.Add(new ButtonAttribute(ButtonSizes.Large));
                 attributes.Add(new PropertyOrderAttribute(120));
-            }
-        }
-    }
-    
-    public class SaveEventListenerDrawer : OdinAttributeProcessor<SaveEventListener>
-    {
-        public override void ProcessChildMemberAttributes(InspectorProperty parentProperty, MemberInfo member, List<Attribute> attributes)
-        {
-            if (member.Name == "targetEvent")
-            {
-                attributes.Add(new LabelTextAttribute("Global Save Event"));
-            }
-            
-            if (member.Name == "priority")
-            {
-                attributes.Add(new HideInInspector());
-            }
-            
-            if (member.Name == "response")
-            {
-                attributes.Add(new LabelTextAttribute("Save Event"));
-            }
-            
-            if (member.Name == "EditorSetUp")
-            {
-                attributes.Add(new OnInspectorInitAttribute());
-            }
-        }
-    }
-    
-    public class SavableDrawer : OdinAttributeProcessor<ISavable>
-    {
-        public override void ProcessChildMemberAttributes(InspectorProperty parentProperty, MemberInfo member, List<Attribute> attributes)
-        {
-            if (member.Name == "Save")
-            {
-                attributes.Add(new PropertyOrderAttribute(9999));
-                attributes.Add(new HorizontalGroupAttribute("ISavable"));
-                attributes.Add(new ButtonAttribute("Manual Save"));
-            }
-            
-            if (member.Name == "Load")
-            {
-                attributes.Add(new HorizontalGroupAttribute("ISavable"));
-                attributes.Add(new ButtonAttribute("Manual Load"));
             }
         }
     }

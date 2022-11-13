@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace Main.Audio
+namespace Main.Manager.Audio
 {
     public interface IAudioPlayable
     {

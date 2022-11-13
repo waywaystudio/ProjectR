@@ -6,7 +6,7 @@ using Sirenix.Utilities.Editor;
 using UnityEditor;
 using UnityEngine;
 
-namespace Main.Audio.Editor
+namespace Main.Manager.Audio.Editor
 {
     public class AudioWindowEditor : OdinMenuEditorWindow
     {

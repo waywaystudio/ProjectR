@@ -34,21 +34,14 @@ namespace Main.Save
         public string SaveTime => saveTime;
         public string LastSceneName => lastSceneName;
         public float Version => version;
-        
         public void Save()
         {
-            saveTime = DateTime.Now.ToString("yyyy.MM.dd.HH.mm.ss");
-            MainGame.SaveManager.SaveToSlot(this);
+            throw new NotImplementedException();
         }
 
         public void Load()
         {
-            MainGame.SaveManager.LoadFromSlot(this);
-        }
-
-        public void Delete()
-        {
-            MainGame.SaveManager.DeleteSlot(this);
+            throw new NotImplementedException();
         }
     }
 }

@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using Core;
+using Core.GameEvents;
 using Sirenix.OdinInspector;
 using UnityEngine;
 using UnitySceneManager = UnityEngine.SceneManagement.SceneManager;
@@ -10,8 +11,8 @@ namespace Main.Manager.Scene
 {
     public class SceneManager : MonoBehaviour
     {
-        [SerializeField] private Core.GameEvents.GameEvent beforeChanged;
-        [SerializeField] private Core.GameEvents.GameEvent afterChanged;
+        [SerializeField] private GameEvent beforeChanged;
+        [SerializeField] private GameEvent afterChanged;
         [SerializeField, ReadOnly] private List<string> sceneNameList;
 
         private AsyncOperation asyncOperation;

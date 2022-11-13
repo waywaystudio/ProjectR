@@ -5,7 +5,7 @@ using System.Reflection;
 using Sirenix.OdinInspector;
 using Sirenix.OdinInspector.Editor;
 
-namespace Main.Audio.Editor
+namespace Main.Manager.Audio.Editor
 {
     public class AudioManagerDrawer : OdinAttributeProcessor<AudioManager>
     {
