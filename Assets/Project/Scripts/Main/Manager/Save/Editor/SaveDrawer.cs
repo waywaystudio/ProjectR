@@ -94,13 +94,7 @@ namespace Main.Manager.Save.Editor
                 attributes.Add(new ButtonAttribute("Create Core File"));
                 attributes.Add(new PropertyOrderAttribute(100));
             }
-            
-            if (member.Name == "CreateNewSlot")
-            {
-                attributes.Add(new ButtonAttribute());
-                attributes.Add(new PropertyOrderAttribute(90));
-            }
-            
+
             if (member.Name == "RefreshSaveInfoList")
             {
                 attributes.Add(new ButtonAttribute());
@@ -111,6 +105,12 @@ namespace Main.Manager.Save.Editor
             {
                 attributes.Add(new ButtonAttribute(ButtonSizes.Large));
                 attributes.Add(new PropertyOrderAttribute(120));
+            }
+            
+            if (member.Name == "ResetAutoSave")
+            {
+                attributes.Add(new ButtonAttribute(ButtonSizes.Medium));
+                attributes.Add(new PropertyOrderAttribute(140));
             }
         }
     }

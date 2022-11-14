@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using Core;
+using Core.GameEvents;
 using Main.Save;
 using UnityEngine;
 
@@ -10,36 +11,38 @@ namespace Main.Manager.Save
 {
     public class SaveManager : MonoBehaviour
     {
-        [SerializeField] private Core.GameEvents.GameEvent saveEvent;
-        [SerializeField] private List<SaveInfo> saveInfoList = new (); 
+        [SerializeField] private GameEvent saveEvent;
+        [SerializeField] private List<SaveInfo> saveInfoList = new ();
 
         private const string PlaySaveFile = "_playSaveFile";
         private const string AutoSaveFile = "_autoSaveFile";
         private const string Extension = "es3";
-        private bool isSetUp;
+        private const string SaveInfoKey = "IsSaveInfo";
+        private bool isInitiated;
 
-        public Core.GameEvents.GameEvent SaveEvent => saveEvent;
+        public GameEvent SaveEvent => saveEvent;
         public List<SaveInfo> SaveInfoList => saveInfoList;
         
         private static string SaveFileDirectory => ES3Settings.defaultSettings.path;
-        private static string PlaySavePath => GetPath(PlaySaveFile);
-        private string AutoSavePath => GetPath(AutoSaveFile);
+        private static string PlaySavePath => GetFilePath(PlaySaveFile);
+        private string AutoSavePath => GetFilePath(AutoSaveFile);
 
-        private void OnEnable()
+        private void Awake()
         {
-            if (isSetUp is not true)
-                SetUp();
+            if (isInitiated is false) Initialize();
         }
 
-        public void SetUp()
+        public void Initialize()
         {
-            CreateCoreFile();
+            if (isInitiated) return;
+            if (!TryGetSaveInfo(PlaySaveFile, out _)) ES3.Save(SaveInfoKey, new SaveInfo(PlaySaveFile), PlaySavePath);
+            if (!TryGetSaveInfo(AutoSaveFile, out _)) ES3.Save(SaveInfoKey, new SaveInfo(AutoSaveFile), AutoSavePath);
 
-            isSetUp = true;
+            isInitiated = true;
             RefreshSaveInfoList();
         }
 
-        public static  void Save<T>(string key, T value)
+        public static void Save<T>(string key, T value)
         {
             ES3.Save(key, value, PlaySavePath);
         }
@@ -50,67 +53,8 @@ namespace Main.Manager.Save
             return ES3.Load(key, PlaySavePath, defaultValue);
         }
 
-        public void CreateNewSlot(string saveFileName)
-        {
-            CreateNewSaveFile(saveFileName);
-            RefreshSaveInfoList();
-            
-            Refresh();
-        }
-
-        public void LoadFromSlot(SaveInfo saveInfo)
-        {
-            CopySaveFile(saveInfo.SaveName, PlaySaveFile);
-            
-            // TODO.
-            // Scene Change Action in here?
-        }
-
-        public void SaveToSlot(SaveInfo saveInfo)
-        {
-            PlaySave();
-            CopySaveFile(PlaySaveFile, saveInfo.SaveName);
-        }
-
-        public void DeleteSlot(SaveInfo saveInfo)
-        {
-            DeleteSaveFile(saveInfo.SaveName);
-            RefreshSaveInfoList();
-        }
-        
         public void PlaySave() => SaveEvent.Invoke();
-
         
-        private void CreateNewSaveFile(string saveFileName)
-        {
-            if (saveFileName.IsNullOrEmpty())
-            {
-                Debug.LogError("SaveFile Name is Empty. Creat Slot Skipped");
-                return;
-            }
-
-            if (saveFileName.Contains('_'))
-            {
-                Debug.LogError("SaveFile Can't Contains under bar(_) text. Try Another Name");
-                return;
-            }
-            
-            var saveFileFullPath = GetPath(saveFileName);
-            
-            if (ES3.FileExists(saveFileFullPath))
-            {
-                Debug.Log($"There is already exist <color=red>{saveFileName}</color> in Save Folder.");
-                return;
-            }
-            
-            ES3.Save("IsValidFile", new SaveInfo(saveFileName), saveFileFullPath);
-        }
-
-        private void CreateCoreFile()
-        {
-            ES3.Save("IsValidFile", new SaveInfo(PlaySaveFile), PlaySavePath);
-            ES3.Save("IsValidFile", new SaveInfo(AutoSaveFile), AutoSavePath);
-        }
 
         private void RefreshSaveInfoList()
         {
@@ -124,9 +68,9 @@ namespace Main.Manager.Save
             {
                 var saveFilePath = $"{SaveFileDirectory}/{saveFile}";
                 
-                if (ES3.KeyExists("IsValidFile", saveFilePath))
+                if (ES3.KeyExists(SaveInfoKey, saveFilePath))
                 {
-                    var saveInfo = ES3.Load<SaveInfo>("IsValidFile", saveFilePath);
+                    var saveInfo = ES3.Load<SaveInfo>(SaveInfoKey, saveFilePath);
                     
                     SaveInfoList.Add(saveInfo);
                 }
@@ -140,11 +84,12 @@ namespace Main.Manager.Save
                                                 .ToList();
             
             AttachAutoSaveFileToList();
+            Refresh();
         }
 
         private void AttachAutoSaveFileToList()
         {
-            SaveInfoList.Add(ES3.Load<SaveInfo>("IsValidFile", AutoSavePath));
+            SaveInfoList.Add(ES3.Load<SaveInfo>(SaveInfoKey, AutoSavePath));
         }
 
         private void AutoSave()
@@ -153,19 +98,38 @@ namespace Main.Manager.Save
             CopySaveFile(PlaySavePath, AutoSavePath);
         }
         
+        private void CreateNewSaveFile(string saveFileName)
+        {
+            if (saveFileName.IsNullOrEmpty() || saveFileName.Contains('_'))
+            {
+                Debug.LogError("fileName is not profit covenant");
+                return;
+            }
+
+            var saveFileFullPath = GetFilePath(saveFileName);
+            
+            if (ES3.FileExists(saveFileFullPath))
+            {
+                Debug.Log($"There is already exist <color=red>{saveFileName}</color> in Save Folder.");
+                return;
+            }
+            
+            ES3.Save(SaveInfoKey, new SaveInfo(saveFileName), saveFileFullPath);
+        }
+        
         private void CopySaveFile(string fromName, string destName)
         {
             if (!IsValid(fromName) || !IsValid(destName)) return;
             
-            var fromSaveFile = GetPath(fromName);
-            var destSaveFile = GetPath(destName);
+            var fromSaveFile = GetFilePath(fromName);
+            var destSaveFile = GetFilePath(destName);
 
             ES3.CopyFile(fromSaveFile, destSaveFile);
         }
 
         private void DeleteSaveFile(string fileName)
         {
-            var filePath = GetPath(fileName);
+            var filePath = GetFilePath(fileName);
             ES3.DeleteFile(filePath);
 
 #if UNITY_EDITOR
@@ -176,7 +140,7 @@ namespace Main.Manager.Save
 
         private bool IsValid(string fileName, bool showDebug = false)
         {
-            if (!ES3.FileExists(GetPath(fileName)))
+            if (!ES3.FileExists(GetFilePath(fileName)))
             {
                 if (showDebug)
                     Debug.LogWarning($"There isn't exist <color=red>{fileName}</color> saveFile");
@@ -184,7 +148,7 @@ namespace Main.Manager.Save
                 return false;
             }
             
-            if (!ES3.KeyExists("IsValidFile", fileName))
+            if (!ES3.KeyExists(SaveInfoKey, fileName))
             {
                 if (showDebug)
                     Debug.LogWarning("Is <color=red>Not</color> IsValidFile");
@@ -195,7 +159,19 @@ namespace Main.Manager.Save
             return true;
         }
 
-        private static string GetPath(string fileName) => $"{SaveFileDirectory}/{fileName}.{Extension}";
+        private static string GetFilePath(string fileName) => $"{SaveFileDirectory}/{fileName}.{Extension}";
+
+        private bool TryGetSaveInfo(string fileName, out SaveInfo saveInfo)
+        {
+            if (IsValid(fileName))
+            {
+                saveInfo = ES3.Load<SaveInfo>(SaveInfoKey, GetFilePath(fileName));
+                return true;
+            }
+
+            saveInfo = null;
+            return false;
+        }
 
         private void OnDisable()
         {
@@ -208,5 +184,13 @@ namespace Main.Manager.Save
             UnityEditor.AssetDatabase.Refresh();
 #endif
         }
+        
+#if UNITY_EDITOR
+        private void ResetAutoSave()
+        {
+            DeleteSaveFile(AutoSaveFile);
+            ES3.Save(SaveInfoKey, new SaveInfo(AutoSaveFile), AutoSavePath);
+        }
+#endif
     }
 }

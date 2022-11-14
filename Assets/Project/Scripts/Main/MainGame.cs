@@ -21,7 +21,14 @@ namespace Main
         public static SaveManager SaveManager => Instance.saveManager;
         public static SceneManager SceneManager => Instance.sceneManager;
         public static MainUI UI => Instance.ui;
-        
+
+        protected override void Awake()
+        {
+            base.Awake();
+            
+            saveManager.Initialize();
+        }
+
         private void Start()
         {
             Application.targetFrameRate = 60;
