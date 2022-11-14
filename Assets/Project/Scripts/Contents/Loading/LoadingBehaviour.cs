@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using Core;
 using Main;
@@ -24,6 +25,11 @@ namespace Loading
         private void Start()
         {
             MainGame.SceneManager.LoadNextScene();
+        }
+
+        private void OnDisable()
+        {
+            loadingEffectList.ForEach(x => x.SetActive(false));
         }
     }
 }
