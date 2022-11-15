@@ -1,58 +1,35 @@
+using Cinemachine;
 using Sirenix.OdinInspector;
 using UnityEngine;
-using UnityCamera = UnityEngine.Camera;
 
 namespace Town
 {
     public class TownCameraDirector : MonoBehaviour
     {
-        [SerializeField] private Transform followTarget;
-        [SerializeField] private Vector3 positionOffset = new (0, 15, -15);
-        [SerializeField] private Vector3 rotationOffset = new (45, 0, 0);
+        [SerializeField] private Camera mainCamera;
+        [SerializeField] private CinemachineVirtualCamera playerCamera;
 
-        private bool isFollowing;
-        private Vector3 trackingPosition, trackingRotation;
-        private Quaternion trackingQuaternion;
-        
-        [ShowInInspector, ReadOnly] private UnityCamera mainCamera;
-        [ShowInInspector, ReadOnly] private Transform mainCameraObject;
-        
-        public UnityCamera MainCamera => MainCameraObject.GetComponent<UnityCamera>();
-        public Transform MainCameraObject => mainCameraObject ??= GameObject.FindWithTag("MainCamera").transform;
-
-        public Transform FollowTarget
-        {
-            set
-            {
-                followTarget = value;
-                isFollowing = value is not null;
-
-                if (!isFollowing)
-                    SetDefaultTransform();
-            }
-        }
+        private CinemachineBrain cameraBrain;
 
         private void Awake()
         {
-            mainCameraObject = GameObject.FindWithTag("MainCamera").transform;
-            mainCamera = mainCameraObject.GetComponent<UnityCamera>();
+            cameraBrain = mainCamera.GetComponent<CinemachineBrain>();
         }
 
-        private void Update()
+        public void SetPlayerCameraFocus(Transform target)
         {
-            if (!isFollowing || !MainCameraObject.hasChanged) 
-                return;
-            
-            trackingPosition = followTarget.position + positionOffset;
-            trackingRotation = followTarget.rotation.eulerAngles + rotationOffset;
-            trackingQuaternion = Quaternion.Euler(trackingRotation);
-                
-            MainCameraObject.SetPositionAndRotation(trackingPosition, trackingQuaternion);
+            playerCamera.Follow = target;
+            playerCamera.LookAt = target;
         }
+        
+        public void ChangeCamera(ICinemachineCamera cameraName)
+        {
+            var currentCamera = cameraBrain.ActiveVirtualCamera;
+            if (currentCamera.Equals(cameraName)) return;
 
-        private void SetDefaultTransform()
-        {
-            MainCameraObject.SetPositionAndRotation(positionOffset, Quaternion.Euler(rotationOffset));
+            (currentCamera.Priority, cameraName.Priority) = (cameraName.Priority, currentCamera.Priority);
         }
+        
+        [Button] private void PlayerCamera() => ChangeCamera(playerCamera);
     }
 }

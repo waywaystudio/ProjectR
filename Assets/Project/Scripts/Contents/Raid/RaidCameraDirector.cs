@@ -1,6 +1,4 @@
-using System.Collections.Generic;
 using Cinemachine;
-using Core;
 using Sirenix.OdinInspector;
 using UnityEngine;
 
@@ -13,14 +11,10 @@ namespace Raid
         [SerializeField] private CinemachineVirtualCamera stageCamera;
 
         private CinemachineBrain cameraBrain;
-        private Dictionary<string, ICinemachineCamera> cameraTable = new ();
 
         private void Awake()
         {
-            mainCamera ??= GameObject.FindWithTag("MainCamera").GetComponent<Camera>();
             cameraBrain = mainCamera.GetComponent<CinemachineBrain>();
-
-            GetComponentsInChildren<ICinemachineCamera>().ForEach(x => cameraTable.Add(x.Name, x));
         }
 
         public void SetPlayerCameraFocus(Transform target)
@@ -29,24 +23,15 @@ namespace Raid
             playerCamera.LookAt = target;
         }
 
-        public void ChangeCamera(string cameraName)
+        public void ChangeCamera(ICinemachineCamera cameraName)
         {
             var currentCamera = cameraBrain.ActiveVirtualCamera;
+            if (currentCamera.Equals(cameraName)) return;
 
-            if (currentCamera.Name.Equals(cameraName)) return;
-            if (!cameraTable.TryGetValue(cameraName, out var targetCamera))
-            {
-                Debug.LogError($"Not Exist {cameraName} in {GetType().Name}");
-                return;
-            }
-
-            (currentCamera.Priority, targetCamera.Priority) = (targetCamera.Priority, currentCamera.Priority);
+            (currentCamera.Priority, cameraName.Priority) = (cameraName.Priority, currentCamera.Priority);
         }
 
-        [Button]
-        private void PlayerCamera() => ChangeCamera("PlayerCamera");
-        
-        [Button]
-        private void StageCamera() => ChangeCamera("StageCamera");
+        [Button] private void PlayerCamera() => ChangeCamera(playerCamera);
+        [Button] private void StageCamera() => ChangeCamera(stageCamera);
     }
 }
