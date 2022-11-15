@@ -107,7 +107,7 @@ namespace Main.Manager.Save.Editor
                 attributes.Add(new PropertyOrderAttribute(120));
             }
             
-            if (member.Name == "ResetAutoSave")
+            if (member.Name == "ResetSave")
             {
                 attributes.Add(new ButtonAttribute(ButtonSizes.Medium));
                 attributes.Add(new PropertyOrderAttribute(140));

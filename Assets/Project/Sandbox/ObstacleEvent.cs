@@ -17,6 +17,11 @@ public class ObstacleEvent : MonoBehaviour, IEventModel
         mainEvent?.Invoke();
     }
 
+    public void ToTownScene()
+    {
+        MainGame.SceneManager.LoadScene("Town");
+    }
+
     public void ToRaidScene()
     {
         MainGame.SceneManager.LoadScene("Raid");

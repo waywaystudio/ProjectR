@@ -11,6 +11,8 @@ namespace Town
         [SerializeField] private Vector3 rotationOffset = new (45, 0, 0);
 
         private bool isFollowing;
+        private Vector3 trackingPosition, trackingRotation;
+        private Quaternion trackingQuaternion;
         
         [ShowInInspector, ReadOnly] private UnityCamera mainCamera;
         [ShowInInspector, ReadOnly] private Transform mainCameraObject;
@@ -41,9 +43,9 @@ namespace Town
             if (!isFollowing || !MainCameraObject.hasChanged) 
                 return;
             
-            var trackingPosition = followTarget.position + positionOffset;
-            var trackingRotation = followTarget.rotation.eulerAngles + rotationOffset;
-            var trackingQuaternion = Quaternion.Euler(trackingRotation);
+            trackingPosition = followTarget.position + positionOffset;
+            trackingRotation = followTarget.rotation.eulerAngles + rotationOffset;
+            trackingQuaternion = Quaternion.Euler(trackingRotation);
                 
             MainCameraObject.SetPositionAndRotation(trackingPosition, trackingQuaternion);
         }

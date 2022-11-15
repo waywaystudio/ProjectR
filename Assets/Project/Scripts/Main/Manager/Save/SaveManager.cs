@@ -22,16 +22,17 @@ namespace Main.Manager.Save
 
         public GameEvent SaveEvent => saveEvent;
         public List<SaveInfo> SaveInfoList => saveInfoList;
-        
+
         private static string SaveFileDirectory => ES3Settings.defaultSettings.path;
         private static string PlaySavePath => GetFilePath(PlaySaveFile);
-        private string AutoSavePath => GetFilePath(AutoSaveFile);
+        private static string AutoSavePath => GetFilePath(AutoSaveFile);
 
         private void Awake()
         {
             if (isInitiated is false) Initialize();
         }
 
+        [Sirenix.OdinInspector.Button]
         public void Initialize()
         {
             if (isInitiated) return;
@@ -161,9 +162,9 @@ namespace Main.Manager.Save
 
         private static string GetFilePath(string fileName) => $"{SaveFileDirectory}/{fileName}.{Extension}";
 
-        private bool TryGetSaveInfo(string fileName, out SaveInfo saveInfo)
+        private static bool TryGetSaveInfo(string fileName, out SaveInfo saveInfo)
         {
-            if (IsValid(fileName))
+            if (ES3.FileExists(GetFilePath(fileName)))
             {
                 saveInfo = ES3.Load<SaveInfo>(SaveInfoKey, GetFilePath(fileName));
                 return true;
@@ -186,10 +187,12 @@ namespace Main.Manager.Save
         }
         
 #if UNITY_EDITOR
-        private void ResetAutoSave()
+        private void ResetSave()
         {
             DeleteSaveFile(AutoSaveFile);
+            DeleteSaveFile(AutoSaveFile);
             ES3.Save(SaveInfoKey, new SaveInfo(AutoSaveFile), AutoSavePath);
+            ES3.Save(SaveInfoKey, new SaveInfo(PlaySaveFile), PlaySavePath);
         }
 #endif
     }

@@ -22,6 +22,7 @@ namespace Shortcut
 
         private static void SceneMoveInEditor(string sceneName)
         {
+            EditorSceneManager.SaveOpenScenes();
             EditorSceneManager.OpenScene($"{SceneDirectory}{sceneName}.{SceneExtension}");
         }
     }
