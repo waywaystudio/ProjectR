@@ -21,7 +21,7 @@ namespace Raid
             
             player.transform.SetPositionAndRotation(position, rotation);
 
-            cameraDirector.FollowTarget = player.transform;
+            cameraDirector.SetPlayerCameraFocus(player.transform);
             MainGame.UI.FadePanel.PlayFadeIn();
         }
     }

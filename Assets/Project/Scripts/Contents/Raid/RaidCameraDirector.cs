@@ -1,59 +1,52 @@
-using System;
+using System.Collections.Generic;
+using Cinemachine;
+using Core;
 using Sirenix.OdinInspector;
 using UnityEngine;
-using UnityCamera = UnityEngine.Camera;
 
 namespace Raid
 {
     public class RaidCameraDirector : MonoBehaviour
     {
-        [SerializeField] private Transform followTarget;
-        [SerializeField] private Vector3 positionOffset = new(0, 20, -20);
-        [SerializeField] private Vector3 rotationOffset = new(45, 0, 0);
+        [SerializeField] private Camera mainCamera;
+        [SerializeField] private CinemachineVirtualCamera playerCamera;
+        [SerializeField] private CinemachineVirtualCamera stageCamera;
 
-        private bool isFollowing;
-        private Vector3 trackingPosition, trackingRotation;
-        private Quaternion trackingQuaternion;
-        
-        [ShowInInspector, ReadOnly] private UnityCamera mainCamera;
-        [ShowInInspector, ReadOnly] private Transform mainCameraObject;
-        
-        public UnityCamera MainCamera => MainCameraObject.GetComponent<UnityCamera>();
-        public Transform MainCameraObject => mainCameraObject ??= GameObject.FindWithTag("MainCamera").transform;
-        
-        public Transform FollowTarget
-        {
-            set
-            {
-                followTarget = value;
-                isFollowing = value is not null;
-
-                if (!isFollowing)
-                    SetDefaultTransform();
-            }
-        }
+        private CinemachineBrain cameraBrain;
+        private Dictionary<string, ICinemachineCamera> cameraTable = new ();
 
         private void Awake()
         {
-            mainCameraObject = GameObject.FindWithTag("MainCamera").transform;
-            mainCamera = mainCameraObject.GetComponent<UnityCamera>();
-        }
-        
-        private void Update()
-        {
-            if (!isFollowing || !MainCameraObject.hasChanged) 
-                return;
-            
-            trackingPosition = followTarget.position + positionOffset;
-            trackingRotation = followTarget.rotation.eulerAngles + rotationOffset;
-            trackingQuaternion = Quaternion.Euler(trackingRotation);
-                
-            MainCameraObject.SetPositionAndRotation(trackingPosition, trackingQuaternion);
+            mainCamera ??= GameObject.FindWithTag("MainCamera").GetComponent<Camera>();
+            cameraBrain = mainCamera.GetComponent<CinemachineBrain>();
+
+            GetComponentsInChildren<ICinemachineCamera>().ForEach(x => cameraTable.Add(x.Name, x));
         }
 
-        private void SetDefaultTransform()
+        public void SetPlayerCameraFocus(Transform target)
         {
-            MainCameraObject.SetPositionAndRotation(positionOffset, Quaternion.Euler(rotationOffset));
+            playerCamera.Follow = target;
+            playerCamera.LookAt = target;
         }
+
+        public void ChangeCamera(string cameraName)
+        {
+            var currentCamera = cameraBrain.ActiveVirtualCamera;
+
+            if (currentCamera.Name.Equals(cameraName)) return;
+            if (!cameraTable.TryGetValue(cameraName, out var targetCamera))
+            {
+                Debug.LogError($"Not Exist {cameraName} in {GetType().Name}");
+                return;
+            }
+
+            (currentCamera.Priority, targetCamera.Priority) = (targetCamera.Priority, currentCamera.Priority);
+        }
+
+        [Button]
+        private void PlayerCamera() => ChangeCamera("PlayerCamera");
+        
+        [Button]
+        private void StageCamera() => ChangeCamera("StageCamera");
     }
 }
