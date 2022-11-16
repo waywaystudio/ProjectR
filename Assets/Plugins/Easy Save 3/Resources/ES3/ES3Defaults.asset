@@ -30,9 +30,6 @@ MonoBehaviour:
     serializationDepthLimit: 64
     assemblyNames:
     - ES3
-    - spine-unity-examples
-    - spine-csharp
-    - spine-unity
     - Town
     - Assembly-CSharp
     - Loading
@@ -44,15 +41,18 @@ MonoBehaviour:
     - Main
     - Audio
     - SoCreator
-    - spine-unity-editor
+    - spine-unity
+    - spine-unity-examples
+    - spine-csharp
     - PPv2URPConverters
     - ES3.editor
     - SoCreator.Editor
     - ShortCuts.Editor
-    - spine-unity-examples-editor
     - Audio.editor
     - Sirenix.OdinInspector.Modules.UnityMathematics
     - Save.editor
+    - spine-unity-editor
+    - spine-unity-examples-editor
     showAdvancedSettings: 0
   addMgrToSceneAutomatically: 0
   autoUpdateReferences: 1
