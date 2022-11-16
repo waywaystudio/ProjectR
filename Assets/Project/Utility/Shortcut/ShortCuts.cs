@@ -18,6 +18,8 @@ namespace Shortcut
             if (method != null) 
                 method.Invoke(new object(), null);
         }
+        
+        
     }
 }
 
