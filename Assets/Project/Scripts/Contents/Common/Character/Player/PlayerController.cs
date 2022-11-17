@@ -42,7 +42,7 @@ public class PlayerController : MonoBehaviour, IControlModel, ISavable
         if (input.x == 0.0f && input.y == 0.0f) StateTo(PlayerState.Idle);
         if (input.x != 0.0f || input.y != 0.0f) StateTo(PlayerState.Run);
         
-        animationModel.SetDirection(input);
+        // animationModel.SetDirection(input);
 
         if (context.canceled)
         {
@@ -73,29 +73,29 @@ public class PlayerController : MonoBehaviour, IControlModel, ISavable
 
     public void StateTo(PlayerState state)
     {
-        if (state.HasFlag(PlayerState.Idle))
-        {
-            Debug.Log("Idle");
-            animationModel.Idle();
-        }
-
-        if (state.HasFlag(PlayerState.Attack))
-        {
-            Debug.Log("Attack");
-            animationModel.Attack();
-        }
-        
-        if (state.HasFlag(PlayerState.Run))
-        {
-            Debug.Log("Run");
-            animationModel.Run();
-        }
-        
-        if (state.HasFlag(PlayerState.Crouch))
-        {
-            Debug.Log("Crouch");
-            animationModel.Crouch();
-        }
+        // if (state.HasFlag(PlayerState.Idle))
+        // {
+        //     Debug.Log("Idle");
+        //     animationModel.Idle();
+        // }
+        //
+        // if (state.HasFlag(PlayerState.Attack))
+        // {
+        //     Debug.Log("Attack");
+        //     animationModel.Attack();
+        // }
+        //
+        // if (state.HasFlag(PlayerState.Run))
+        // {
+        //     Debug.Log("Run");
+        //     animationModel.Run();
+        // }
+        //
+        // if (state.HasFlag(PlayerState.Crouch))
+        // {
+        //     Debug.Log("Crouch");
+        //     animationModel.Crouch();
+        // }
     }
 
     public void Save()

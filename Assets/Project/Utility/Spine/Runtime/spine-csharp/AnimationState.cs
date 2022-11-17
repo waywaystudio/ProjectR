@@ -29,6 +29,7 @@
 
 using System;
 using System.Collections.Generic;
+using Animation = Spine.Animation;
 
 namespace Spine {
 
