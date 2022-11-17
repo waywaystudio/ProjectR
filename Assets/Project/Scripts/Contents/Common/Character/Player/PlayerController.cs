@@ -1,6 +1,7 @@
+using System;
 using Core;
 using Main;
-using Main.Manager.Save;
+using Sirenix.OdinInspector;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -8,12 +9,14 @@ public class PlayerController : MonoBehaviour, IControlModel, ISavable
 {
     [SerializeField] private float moveSpeed;
     [SerializeField] private Rigidbody rigidbody3D;
+    [SerializeField] private HeroAnimationModel animationModel;
 
     private Vector3 direction;
 
     private void Awake()
     {
         rigidbody3D ??= GetComponent<Rigidbody>();
+        animationModel ??= GetComponentInChildren<HeroAnimationModel>();
     }
 
     private void Start()
@@ -33,12 +36,23 @@ public class PlayerController : MonoBehaviour, IControlModel, ISavable
     public void OnMove(InputAction.CallbackContext context)
     {
         var input = context.ReadValue<Vector2>();
+        
         direction = new Vector3(input.x, 0f, input.y);
+        
+        if (input.x == 0.0f && input.y == 0.0f) StateTo(PlayerState.Idle);
+        if (input.x != 0.0f || input.y != 0.0f) StateTo(PlayerState.Run);
+        
+        animationModel.SetDirection(input);
 
         if (context.canceled)
         {
             direction = Vector3.zero;
         }
+    }
+
+    public void OnAttack(InputAction.CallbackContext context)
+    {
+        StateTo(PlayerState.Attack);
     }
 
     // UnityEvent :: PlayerInput.Events.Player.Interaction - 'E' Interaction
@@ -52,6 +66,36 @@ public class PlayerController : MonoBehaviour, IControlModel, ISavable
     private void DirectionControl()
     {
         rigidbody3D.velocity = direction * (moveSpeed * Time.deltaTime);
+    }
+
+    [Button]
+    public void DuplicateTest() => StateTo(PlayerState.Attack | PlayerState.Idle);
+
+    public void StateTo(PlayerState state)
+    {
+        if (state.HasFlag(PlayerState.Idle))
+        {
+            Debug.Log("Idle");
+            animationModel.Idle();
+        }
+
+        if (state.HasFlag(PlayerState.Attack))
+        {
+            Debug.Log("Attack");
+            animationModel.Attack();
+        }
+        
+        if (state.HasFlag(PlayerState.Run))
+        {
+            Debug.Log("Run");
+            animationModel.Run();
+        }
+        
+        if (state.HasFlag(PlayerState.Crouch))
+        {
+            Debug.Log("Crouch");
+            animationModel.Crouch();
+        }
     }
 
     public void Save()
@@ -79,3 +123,14 @@ public class PlayerController : MonoBehaviour, IControlModel, ISavable
         MainGame.InputManager.Unregister();
     }
 }
+
+[Flags]
+public enum PlayerState
+{
+    Idle = 1 << 0,
+    Attack = 1 << 1,
+    Run = 1 << 2,
+    Crouch = 1 << 3,
+    All = int.MaxValue
+}
+

@@ -14,11 +14,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   settings:
     _location: 0
-    path: Project\Data\SaveFile
+    path: SaveFile.es3
     encryptionType: 0
     compressionType: 0
     encryptionPassword: password
-    directory: 1
+    directory: 0
     format: 0
     prettyPrint: 1
     bufferSize: 2048
@@ -30,10 +30,13 @@ MonoBehaviour:
     serializationDepthLimit: 64
     assemblyNames:
     - ES3
+    - spine-unity-examples
+    - spine-unity
     - Town
     - Assembly-CSharp
     - Loading
     - Cinemachine
+    - spine-csharp
     - Core
     - Save
     - Raid
@@ -41,18 +44,15 @@ MonoBehaviour:
     - Main
     - Audio
     - SoCreator
-    - spine-unity
-    - spine-unity-examples
-    - spine-csharp
+    - spine-unity-editor
     - PPv2URPConverters
     - ES3.editor
     - SoCreator.Editor
     - ShortCuts.Editor
+    - spine-unity-examples-editor
     - Audio.editor
     - Sirenix.OdinInspector.Modules.UnityMathematics
     - Save.editor
-    - spine-unity-editor
-    - spine-unity-examples-editor
     showAdvancedSettings: 0
   addMgrToSceneAutomatically: 0
   autoUpdateReferences: 1
