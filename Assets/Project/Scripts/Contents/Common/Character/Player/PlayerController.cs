@@ -10,7 +10,8 @@ public class PlayerController : MonoBehaviour, IControlModel, ISavable
     [SerializeField] private float moveSpeed;
     [SerializeField] private Rigidbody rigidbody3D;
     [SerializeField] private HeroAnimationModel animationModel;
-
+    
+    private PlayerState playerState = PlayerState.None;
     private Vector3 direction;
 
     private void Awake()
@@ -42,7 +43,7 @@ public class PlayerController : MonoBehaviour, IControlModel, ISavable
         if (input.x == 0.0f && input.y == 0.0f) StateTo(PlayerState.Idle);
         if (input.x != 0.0f || input.y != 0.0f) StateTo(PlayerState.Run);
         
-        // animationModel.SetDirection(input);
+        animationModel.SetDirection(input);
 
         if (context.canceled)
         {
@@ -73,29 +74,27 @@ public class PlayerController : MonoBehaviour, IControlModel, ISavable
 
     public void StateTo(PlayerState state)
     {
-        // if (state.HasFlag(PlayerState.Idle))
-        // {
-        //     Debug.Log("Idle");
-        //     animationModel.Idle();
-        // }
-        //
-        // if (state.HasFlag(PlayerState.Attack))
-        // {
-        //     Debug.Log("Attack");
-        //     animationModel.Attack();
-        // }
-        //
-        // if (state.HasFlag(PlayerState.Run))
-        // {
-        //     Debug.Log("Run");
-        //     animationModel.Run();
-        // }
-        //
-        // if (state.HasFlag(PlayerState.Crouch))
-        // {
-        //     Debug.Log("Crouch");
-        //     animationModel.Crouch();
-        // }
+        if (state.HasFlag(PlayerState.Idle))
+        {
+            animationModel.Idle();
+        }
+        
+        if (state.HasFlag(PlayerState.Attack))
+        {
+            animationModel.Attack();
+        }
+        
+        if (state.HasFlag(PlayerState.Run))
+        {
+            animationModel.Run();
+        }
+        
+        if (state.HasFlag(PlayerState.Crouch))
+        {
+            animationModel.Crouch();
+        }
+
+        playerState = state;
     }
 
     public void Save()
@@ -127,10 +126,11 @@ public class PlayerController : MonoBehaviour, IControlModel, ISavable
 [Flags]
 public enum PlayerState
 {
-    Idle = 1 << 0,
-    Attack = 1 << 1,
-    Run = 1 << 2,
-    Crouch = 1 << 3,
+    None = 1 << 0,
+    Idle = 1 << 1,
+    Attack = 1 << 2,
+    Run = 1 << 3,
+    Crouch = 1 << 4,
     All = int.MaxValue
 }
 
