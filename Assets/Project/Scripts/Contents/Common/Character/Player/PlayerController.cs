@@ -1,6 +1,7 @@
 using System;
 using Core;
 using Main;
+using Pathfinding;
 using Sirenix.OdinInspector;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -10,7 +11,8 @@ public class PlayerController : MonoBehaviour, IControlModel, ISavable
     [SerializeField] private float moveSpeed;
     [SerializeField] private Rigidbody rigidbody3D;
     [SerializeField] private HeroAnimationModel animationModel;
-    
+    [SerializeField] private AIDestinationSetter destination;
+
     private PlayerState playerState = PlayerState.None;
     private Vector3 direction;
 
@@ -18,6 +20,7 @@ public class PlayerController : MonoBehaviour, IControlModel, ISavable
     {
         rigidbody3D ??= GetComponent<Rigidbody>();
         animationModel ??= GetComponentInChildren<HeroAnimationModel>();
+        destination ??= GetComponent<AIDestinationSetter>();
     }
 
     private void Start()

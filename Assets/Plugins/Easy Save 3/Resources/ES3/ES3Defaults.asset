@@ -40,10 +40,11 @@ MonoBehaviour:
     - Core
     - Save
     - Raid
-    - Assembly-CSharp-firstpass
+    - DOTween.Modules
     - Main
     - Audio
     - SoCreator
+    - AstarPathfindingProject
     - spine-unity-editor
     - PPv2URPConverters
     - ES3.editor
@@ -53,6 +54,8 @@ MonoBehaviour:
     - Audio.editor
     - Sirenix.OdinInspector.Modules.UnityMathematics
     - Save.editor
+    - AstarPathfindingProjectEditor
+    - PackageToolsEditor
     showAdvancedSettings: 0
   addMgrToSceneAutomatically: 0
   autoUpdateReferences: 1

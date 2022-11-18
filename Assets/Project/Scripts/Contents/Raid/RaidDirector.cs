@@ -1,3 +1,4 @@
+using DG.Tweening;
 using Main;
 using UnityEngine;
 
@@ -15,7 +16,6 @@ namespace Raid
             cameraDirector ??= GetComponent<RaidCameraDirector>();
             
             var player = Instantiate(playerPrefab, hierarchy);
-
             var position = spawnPoint.position;
             var rotation = spawnPoint.rotation;
             
