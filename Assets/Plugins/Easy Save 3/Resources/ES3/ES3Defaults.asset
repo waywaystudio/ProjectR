@@ -29,6 +29,7 @@ MonoBehaviour:
     referenceMode: 2
     serializationDepthLimit: 64
     assemblyNames:
+    - AstarPathfindingProject
     - ES3
     - spine-unity-examples
     - spine-unity
@@ -44,18 +45,17 @@ MonoBehaviour:
     - Main
     - Audio
     - SoCreator
-    - AstarPathfindingProject
+    - AstarPathfindingProjectEditor
     - spine-unity-editor
     - PPv2URPConverters
     - ES3.editor
     - SoCreator.Editor
+    - PackageToolsEditor
     - ShortCuts.Editor
     - spine-unity-examples-editor
     - Audio.editor
     - Sirenix.OdinInspector.Modules.UnityMathematics
     - Save.editor
-    - AstarPathfindingProjectEditor
-    - PackageToolsEditor
     showAdvancedSettings: 0
   addMgrToSceneAutomatically: 0
   autoUpdateReferences: 1
