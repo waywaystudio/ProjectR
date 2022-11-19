@@ -134,7 +134,8 @@ namespace Pathfinding.Legacy {
 			}
 		}
 
-		protected override void Update () {
+		protected override void Update () 
+		{
 			if (!canMove) { return; }
 
 			Vector3 dir = CalculateVelocity(GetFeetPosition());
@@ -142,14 +143,20 @@ namespace Pathfinding.Legacy {
 			//Rotate towards targetDirection (filled in by CalculateVelocity)
 			RotateTowards(targetDirection);
 
-			if (rvoController != null) {
+			if (rvoController != null) 
+			{
 				rvoController.Move(dir);
-			} else
-			if (controller != null) {
+			} 
+			else if (controller != null) 
+			{
 				controller.SimpleMove(dir);
-			} else if (rigid != null) {
+			} 
+			else if (rigid != null) 
+			{
 				rigid.AddForce(dir);
-			} else {
+			} 
+			else 
+			{
 				tr.Translate(dir*Time.deltaTime, Space.World);
 			}
 		}

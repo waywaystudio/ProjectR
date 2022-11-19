@@ -2,9 +2,10 @@ using UnityEngine;
 using System.Collections;
 using UnityEngine.Serialization;
 
-namespace Pathfinding {
-	using Pathfinding.RVO;
-	using Pathfinding.Util;
+namespace Pathfinding 
+{
+	using RVO;
+	using Util;
 
 	/// <summary>
 	/// Base class for AIPath and RichAI.
@@ -15,7 +16,8 @@ namespace Pathfinding {
 	/// See: <see cref="Pathfinding.IAstarAI"/> (all movement scripts implement this interface)
 	/// </summary>
 	[RequireComponent(typeof(Seeker))]
-	public abstract class AIBase : VersionedMonoBehaviour {
+	public abstract class AIBase : VersionedMonoBehaviour 
+	{
 		/// <summary>\copydoc Pathfinding::IAstarAI::radius</summary>
 		public float radius = 0.5f;
 
@@ -354,7 +356,8 @@ namespace Pathfinding {
 		/// This is done during <see cref="OnEnable"/>. If you are adding/removing components during runtime you may want to call this function
 		/// to make sure that this script finds them. It is unfortunately prohibitive from a performance standpoint to look for components every frame.
 		/// </summary>
-		public virtual void FindComponents () {
+		public virtual void FindComponents () 
+		{
 			tr = transform;
 			seeker = GetComponent<Seeker>();
 			rvoController = GetComponent<RVOController>();
@@ -365,7 +368,8 @@ namespace Pathfinding {
 		}
 
 		/// <summary>Called when the component is enabled</summary>
-		protected virtual void OnEnable () {
+		protected virtual void OnEnable () 
+		{
 			FindComponents();
 			// Make sure we receive callbacks when paths are calculated
 			seeker.pathCallback += OnPathComplete;
@@ -377,7 +381,8 @@ namespace Pathfinding {
 		/// If you override this method you should in most cases call base.Start () at the start of it.
 		/// See: <see cref="Init"/>
 		/// </summary>
-		protected virtual void Start () {
+		protected virtual void Start () 
+		{
 			startHasRun = true;
 			Init();
 		}
@@ -430,7 +435,8 @@ namespace Pathfinding {
 			// For example when a non-kinematic rigidbody is used then the rigidbody will apply the gravity itself
 			// Note that the gravity can contain NaN's, which is why the comparison uses !(a==b) instead of just a!=b.
 			usingGravity = !(gravity == Vector3.zero) && (!updatePosition || ((rigid == null || rigid.isKinematic) && (rigid2D == null || rigid2D.isKinematic)));
-			if (rigid == null && rigid2D == null && canMove) {
+			if (rigid == null && rigid2D == null && canMove) 
+			{
 				Vector3 nextPosition;
 				Quaternion nextRotation;
 				MovementUpdate(Time.deltaTime, out nextPosition, out nextRotation);
@@ -442,8 +448,10 @@ namespace Pathfinding {
 		/// Called every physics update.
 		/// If rigidbodies are used then all movement happens here.
 		/// </summary>
-		protected virtual void FixedUpdate () {
-			if (!(rigid == null && rigid2D == null) && canMove) {
+		protected virtual void FixedUpdate () 
+		{
+			if (!(rigid == null && rigid2D == null) && canMove) 
+			{
 				Vector3 nextPosition;
 				Quaternion nextRotation;
 				MovementUpdate(Time.fixedDeltaTime, out nextPosition, out nextRotation);
@@ -452,7 +460,8 @@ namespace Pathfinding {
 		}
 
 		/// <summary>\copydoc Pathfinding::IAstarAI::MovementUpdate</summary>
-		public void MovementUpdate (float deltaTime, out Vector3 nextPosition, out Quaternion nextRotation) {
+		public void MovementUpdate (float deltaTime, out Vector3 nextPosition, out Quaternion nextRotation) 
+		{
 			lastDeltaTime = deltaTime;
 			MovementUpdateInternal(deltaTime, out nextPosition, out nextRotation);
 		}

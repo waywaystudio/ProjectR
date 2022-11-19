@@ -2,9 +2,10 @@ using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 
-namespace Pathfinding {
-	using Pathfinding.RVO;
-	using Pathfinding.Util;
+namespace Pathfinding 
+{
+	using RVO;
+	using Util;
 
 	/// <summary>
 	/// AI for following paths.
@@ -62,7 +63,8 @@ namespace Pathfinding {
 	/// It may take one or sometimes multiple frames for the path to be calculated, but finally the <see cref="OnPathComplete"/> method will be called and the current path that the AI is following will be replaced.
 	/// </summary>
 	[AddComponentMenu("Pathfinding/AI/AIPath (2D,3D)")]
-	public partial class AIPath : AIBase, IAstarAI {
+	public partial class AIPath : AIBase, IAstarAI 
+	{
 		/// <summary>
 		/// How quickly the agent accelerates.
 		/// Positive values represent an acceleration in world units per second squared.
@@ -279,8 +281,9 @@ namespace Pathfinding {
 		/// A path is first requested by <see cref="UpdatePath"/>, it is then calculated, probably in the same or the next frame.
 		/// Finally it is returned to the seeker which forwards it to this function.
 		/// </summary>
-		protected override void OnPathComplete (Path newPath) {
-			ABPath p = newPath as ABPath;
+		protected override void OnPathComplete (Path newPath) 
+		{
+			var p = newPath as ABPath;
 
 			if (p == null) throw new System.Exception("This function only handles ABPaths, do not use special path types");
 
@@ -352,13 +355,15 @@ namespace Pathfinding {
 		}
 
 		/// <summary>Called during either Update or FixedUpdate depending on if rigidbodies are used for movement or not</summary>
-		protected override void MovementUpdateInternal (float deltaTime, out Vector3 nextPosition, out Quaternion nextRotation) {
+		protected override void MovementUpdateInternal (float deltaTime, out Vector3 nextPosition, out Quaternion nextRotation) 
+		{
 			float currentAcceleration = maxAcceleration;
 
 			// If negative, calculate the acceleration from the max speed
 			if (currentAcceleration < 0) currentAcceleration *= -maxSpeed;
 
-			if (updatePosition) {
+			if (updatePosition) 
+			{
 				// Get our current position. We read from transform.position as few times as possible as it is relatively slow
 				// (at least compared to a local variable)
 				simulatedPosition = tr.position;
@@ -391,13 +396,18 @@ namespace Pathfinding {
 				// This is always a value between 0 and 1.
 				slowdown = distanceToEnd < slowdownDistance? Mathf.Sqrt(distanceToEnd / slowdownDistance) : 1;
 
-				if (reachedEndOfPath && whenCloseToDestination == CloseToDestinationMode.Stop) {
+				if (reachedEndOfPath && whenCloseToDestination == CloseToDestinationMode.Stop) 
+				{
 					// Slow down as quickly as possible
 					velocity2D -= Vector2.ClampMagnitude(velocity2D, currentAcceleration * deltaTime);
-				} else {
+				} 
+				else 
+				{
 					velocity2D += MovementUtilities.CalculateAccelerationToReachPoint(dir, dir.normalized*maxSpeed, velocity2D, currentAcceleration, rotationSpeed, maxSpeed, forwards) * deltaTime;
 				}
-			} else {
+			} 
+			else 
+			{
 				slowdown = 1;
 				// Slow down as quickly as possible
 				velocity2D -= Vector2.ClampMagnitude(velocity2D, currentAcceleration * deltaTime);
@@ -407,7 +417,8 @@ namespace Pathfinding {
 
 			ApplyGravity(deltaTime);
 
-			if (rvoController != null && rvoController.enabled) {
+			if (rvoController != null && rvoController.enabled) 
+			{
 				// Send a message to the RVOController that we want to move
 				// with this velocity. In the next simulation step, this
 				// velocity will be processed and it will be fed back to the
@@ -427,7 +438,8 @@ namespace Pathfinding {
 			CalculateNextRotation(slowdown, out nextRotation);
 		}
 
-		protected virtual void CalculateNextRotation (float slowdown, out Quaternion nextRotation) {
+		protected virtual void CalculateNextRotation (float slowdown, out Quaternion nextRotation) 
+		{
 			if (lastDeltaTime > 0.00001f && enableRotation) {
 				Vector2 desiredRotationDirection;
 				if (rvoController != null && rvoController.enabled) {
@@ -452,7 +464,8 @@ namespace Pathfinding {
 		}
 
 		static NNConstraint cachedNNConstraint = NNConstraint.Default;
-		protected override Vector3 ClampToNavmesh (Vector3 position, out bool positionChanged) {
+		protected override Vector3 ClampToNavmesh (Vector3 position, out bool positionChanged) 
+		{
 			if (constrainInsideGraph) {
 				cachedNNConstraint.tags = seeker.traversableTags;
 				cachedNNConstraint.graphMask = seeker.graphMask;

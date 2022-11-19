@@ -15,8 +15,7 @@ public class FleeTester : MonoBehaviour
     [SerializeField, PropertyRange(0, 1)] private float strength = 1f;
     [SerializeField] private int spread = 500;
     [SerializeField] private Transform destinationObject;
-
-    private int currentWaypoint = 0;
+    
     private FleePath path;
     private Camera mainCamera;
     private Vector3 dropPosition;

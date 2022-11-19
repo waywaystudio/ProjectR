@@ -2,7 +2,8 @@ using UnityEngine;
 using System.Collections.Generic;
 using UnityEngine.Profiling;
 
-namespace Pathfinding {
+namespace Pathfinding 
+{
 	/// <summary>
 	/// Handles path calls for a single unit.
 	///
@@ -16,7 +17,8 @@ namespace Pathfinding {
 	/// </summary>
 	[AddComponentMenu("Pathfinding/Seeker")]
 	[HelpURL("http://arongranberg.com/astar/documentation/stable/class_pathfinding_1_1_seeker.php")]
-	public class Seeker : VersionedMonoBehaviour {
+	public class Seeker : VersionedMonoBehaviour 
+	{
 		/// <summary>
 		/// Enables drawing of the last calculated path using Gizmos.
 		/// The path will show up in green.

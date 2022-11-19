@@ -1,39 +1,27 @@
 using System;
-using Core;
+using Common.Character;
 using Main;
-using Pathfinding;
 using Sirenix.OdinInspector;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class PlayerController : MonoBehaviour, IControlModel, ISavable
+public class PlayerController : MonoBehaviour
 {
     [SerializeField] private float moveSpeed;
-    [SerializeField] private Rigidbody rigidbody3D;
-    [SerializeField] private HeroAnimationModel animationModel;
-    [SerializeField] private AIDestinationSetter destination;
+    [SerializeField] private Rigidbody characterRigidbody;
+    [SerializeField] private CharacterAnimationModel animationModel;
 
-    private PlayerState playerState = PlayerState.None;
     private Vector3 direction;
 
     private void Awake()
     {
-        rigidbody3D ??= GetComponent<Rigidbody>();
-        animationModel ??= GetComponentInChildren<HeroAnimationModel>();
-        destination ??= GetComponent<AIDestinationSetter>();
+        characterRigidbody ??= GetComponent<Rigidbody>();
+        animationModel ??= GetComponentInChildren<CharacterAnimationModel>();
     }
 
-    private void Start()
+    public void Initialize(Rigidbody rigidBody)
     {
-        MainGame.InputManager.Register(this);
-    }
-
-    public void UpdateState()
-    {
-        if (MainGame.InputManager.GetPermission(this) is false)
-            return;
-        
-        DirectionControl();
+        characterRigidbody = rigidBody;
     }
 
     // UnityEvent :: PlayerInput.Events.Player.Move - WASD move
@@ -43,8 +31,8 @@ public class PlayerController : MonoBehaviour, IControlModel, ISavable
         
         direction = new Vector3(input.x, 0f, input.y);
         
-        if (input.x == 0.0f && input.y == 0.0f) StateTo(PlayerState.Idle);
-        if (input.x != 0.0f || input.y != 0.0f) StateTo(PlayerState.Run);
+        if (input.x == 0.0f && input.y == 0.0f) StateTo(CharacterState.Idle);
+        if (input.x != 0.0f || input.y != 0.0f) StateTo(CharacterState.Run);
         
         animationModel.SetDirection(input);
 
@@ -56,7 +44,7 @@ public class PlayerController : MonoBehaviour, IControlModel, ISavable
 
     public void OnAttack(InputAction.CallbackContext context)
     {
-        StateTo(PlayerState.Attack);
+        StateTo(CharacterState.Attack);
     }
 
     // UnityEvent :: PlayerInput.Events.Player.Interaction - 'E' Interaction
@@ -67,55 +55,35 @@ public class PlayerController : MonoBehaviour, IControlModel, ISavable
         MainGame.InputManager.InvokeEvents();
     }
 
-    private void DirectionControl()
+    public void DirectionControl()
     {
-        rigidbody3D.velocity = direction * (moveSpeed * Time.deltaTime);
+        characterRigidbody.velocity = direction * (moveSpeed * Time.deltaTime);
     }
 
     [Button]
-    public void DuplicateTest() => StateTo(PlayerState.Attack | PlayerState.Idle);
+    public void DuplicateTest() => StateTo(CharacterState.Attack | CharacterState.Idle);
 
-    public void StateTo(PlayerState state)
+    public void StateTo(CharacterState state)
     {
-        if (state.HasFlag(PlayerState.Idle))
+        if (state.HasFlag(CharacterState.Idle))
         {
             animationModel.Idle();
         }
         
-        if (state.HasFlag(PlayerState.Attack))
+        if (state.HasFlag(CharacterState.Attack))
         {
             animationModel.Attack();
         }
         
-        if (state.HasFlag(PlayerState.Run))
+        if (state.HasFlag(CharacterState.Run))
         {
             animationModel.Run();
         }
         
-        if (state.HasFlag(PlayerState.Crouch))
+        if (state.HasFlag(CharacterState.Crouch))
         {
             animationModel.Crouch();
         }
-
-        playerState = state;
-    }
-
-    public void Save()
-    {
-        // 씬에 따라서 저장해야 하는 정보가 다름 특히 위치
-        // 세이브가 가능한 Town씬에서는 위치를 저장하는게 의미가 있음.
-        // SaveManager.Save("playerTransform.position", transform.position);
-        // SaveManager.Save("playerTransform.rotation", transform.rotation);
-    }
-
-    public void Load()
-    {
-        // 마찬가지로 씬에 따라서 불러와야 하는 정보가 다를 수 있음.
-        // 레이드 씬에서는 플레이어 위치정보를 불러올 필요가 없음.
-        // var position = SaveManager.Load("playerTransform.position", Vector3.zero);
-        // var rotation = SaveManager.Load("playerTransform.rotation", Quaternion.identity);
-        // 
-        // transform.SetPositionAndRotation(position, rotation);
     }
 
     private void OnDisable()
@@ -125,15 +93,3 @@ public class PlayerController : MonoBehaviour, IControlModel, ISavable
         MainGame.InputManager.Unregister();
     }
 }
-
-[Flags]
-public enum PlayerState
-{
-    None = 1 << 0,
-    Idle = 1 << 1,
-    Attack = 1 << 2,
-    Run = 1 << 3,
-    Crouch = 1 << 4,
-    All = int.MaxValue
-}
-

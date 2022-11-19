@@ -111,7 +111,8 @@ namespace Pathfinding.Util {
 		}
 
 		/// <summary>Move to the specified segment and move a fraction of the way to the next segment</summary>
-		public void MoveToSegment (int index, float fractionAlongSegment) {
+		public void MoveToSegment (int index, float fractionAlongSegment) 
+		{
 			if (path == null) return;
 			if (index < 0 || index >= path.Count - 1) throw new System.ArgumentOutOfRangeException("index");
 			while (segmentIndex > index) PrevSegment();
@@ -142,7 +143,8 @@ namespace Pathfinding.Util {
 			MoveToSegment(bestIndex, bestFactor);
 		}
 
-		public void MoveToLocallyClosestPoint (Vector3 point, bool allowForwards = true, bool allowBackwards = true) {
+		public void MoveToLocallyClosestPoint (Vector3 point, bool allowForwards = true, bool allowBackwards = true) 
+		{
 			if (path == null) return;
 
 			while (allowForwards && segmentIndex < path.Count - 2 && (path[segmentIndex+1] - point).sqrMagnitude <= (path[segmentIndex] - point).sqrMagnitude) {
@@ -170,7 +172,8 @@ namespace Pathfinding.Util {
 			else MoveToSegment(segmentIndex, factor2);
 		}
 
-		public void MoveToCircleIntersection2D (Vector3 circleCenter3D, float radius, IMovementPlane transform) {
+		public void MoveToCircleIntersection2D (Vector3 circleCenter3D, float radius, IMovementPlane transform) 
+		{
 			if (path == null) return;
 
 			// Move forwards as long as we are getting closer to circleCenter3D
@@ -191,13 +194,15 @@ namespace Pathfinding.Util {
 			MoveToSegment(segmentIndex, factor);
 		}
 
-		protected virtual void PrevSegment () {
+		protected virtual void PrevSegment () 
+		{
 			segmentIndex--;
 			currentSegmentLength = (path[segmentIndex+1] - path[segmentIndex]).magnitude;
 			distanceToSegmentStart -= currentSegmentLength;
 		}
 
-		protected virtual void NextSegment () {
+		protected virtual void NextSegment () 
+		{
 			segmentIndex++;
 			distanceToSegmentStart += currentSegmentLength;
 			currentSegmentLength = (path[segmentIndex+1] - path[segmentIndex]).magnitude;
