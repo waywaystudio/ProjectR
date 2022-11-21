@@ -280,7 +280,8 @@ namespace Pathfinding
 		/// Since: Added in 3.0.8
 		/// Version: Behaviour changed in 3.2
 		/// </summary>
-		public bool IsDone () {
+		public bool IsDone () 
+		{
 			return path == null || path.PipelineState >= PathState.Returned;
 		}
 
@@ -289,7 +290,8 @@ namespace Pathfinding
 		/// This should have been implemented as optional parameter values, but that didn't seem to work very well with delegates (the values weren't the default ones)
 		/// See: OnPathComplete(Path,bool,bool)
 		/// </summary>
-		void OnPathComplete (Path path) {
+		void OnPathComplete (Path path) 
+		{
 			OnPathComplete(path, true, true);
 		}
 
@@ -297,8 +299,10 @@ namespace Pathfinding
 		/// Called when a path has completed.
 		/// Will post process it and return it by calling <see cref="tmpPathCallback"/> and <see cref="pathCallback"/>
 		/// </summary>
-		void OnPathComplete (Path p, bool runModifiers, bool sendCallbacks) {
-			if (p != null && p != path && sendCallbacks) {
+		void OnPathComplete (Path p, bool runModifiers, bool sendCallbacks) 
+		{
+			if (p != null && p != path && sendCallbacks) 
+			{
 				return;
 			}
 

@@ -34,7 +34,7 @@ public class PlayerController : MonoBehaviour
         if (input.x == 0.0f && input.y == 0.0f) StateTo(CharacterState.Idle);
         if (input.x != 0.0f || input.y != 0.0f) StateTo(CharacterState.Run);
         
-        animationModel.SetDirection(input);
+        animationModel.Flip(direction);
 
         if (context.canceled)
         {

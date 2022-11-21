@@ -3,13 +3,15 @@ using UnityEngine;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace Pathfinding {
+namespace Pathfinding 
+{
 	/// <summary>Helper for creating editors</summary>
 	[CustomEditor(typeof(VersionedMonoBehaviour), true)]
 	[CanEditMultipleObjects]
-	public class EditorBase : Editor {
-		static System.Collections.Generic.Dictionary<string, string> cachedTooltips;
-		static System.Collections.Generic.Dictionary<string, string> cachedURLs;
+	public class EditorBase : Editor 
+	{
+		static Dictionary<string, string> cachedTooltips;
+		static Dictionary<string, string> cachedURLs;
 		Dictionary<string, SerializedProperty> props = new Dictionary<string, SerializedProperty>();
 		Dictionary<string, string> localTooltips = new Dictionary<string, string>();
 
@@ -20,7 +22,8 @@ namespace Pathfinding {
 
 		protected HashSet<string> remainingUnhandledProperties;
 
-		static void LoadMeta () {
+		static void LoadMeta () 
+		{
 			if (cachedTooltips == null) {
 				var filePath = EditorResourceHelper.editorAssets + "/tooltips.tsv";
 
@@ -89,25 +92,35 @@ namespace Pathfinding {
 			foreach (var target in targets) if (target != null) (target as IVersionedMonoBehaviourInternal).UpgradeFromUnityThread();
 		}
 
-		public sealed override void OnInspectorGUI () {
+		public sealed override void OnInspectorGUI () 
+		{
 			EditorGUI.indentLevel = 0;
 			serializedObject.Update();
-			try {
+			try 
+			{
 				Inspector();
 				InspectorForRemainingAttributes(false, true);
-			} catch (System.Exception e) {
+			} 
+			catch (System.Exception e) 
+			{
 				// This exception type should never be caught. See https://docs.unity3d.com/ScriptReference/ExitGUIException.html
 				if (e is ExitGUIException) throw e;
 				Debug.LogException(e, target);
 			}
+			
 			serializedObject.ApplyModifiedProperties();
-			if (targets.Length == 1 && (target as MonoBehaviour).enabled) {
+			
+			if (targets.Length == 1 && (target as MonoBehaviour).enabled) 
+			{
 				var attr = target.GetType().GetCustomAttributes(typeof(UniqueComponentAttribute), true);
-				for (int i = 0; i < attr.Length; i++) {
+				for (int i = 0; i < attr.Length; i++) 
+				{
 					string tag = (attr[i] as UniqueComponentAttribute).tag;
-					foreach (var other in (target as MonoBehaviour).GetComponents<MonoBehaviour>()) {
+					foreach (var other in (target as MonoBehaviour).GetComponents<MonoBehaviour>()) 
+					{
 						if (!other.enabled || other == target) continue;
-						if (other.GetType().GetCustomAttributes(typeof(UniqueComponentAttribute), true).Select(c => (c as UniqueComponentAttribute).tag == tag).Any()) {
+						if (other.GetType().GetCustomAttributes(typeof(UniqueComponentAttribute), true).Select(c => (c as UniqueComponentAttribute).tag == tag).Any()) 
+						{
 							EditorGUILayout.HelpBox("This component and " + other.GetType().Name + " cannot be used at the same time", MessageType.Warning);
 						}
 					}

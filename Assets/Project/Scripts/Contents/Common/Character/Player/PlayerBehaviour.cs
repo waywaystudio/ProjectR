@@ -16,6 +16,7 @@ namespace Common.Character.Player
         
         // Operation
         [SerializeField] private PlayerController controller;
+        [SerializeField] private CharacterPathfinding characterPathfinding;
         
         // Graphic
         [SerializeField] private CharacterAnimationModel animationModel;
@@ -61,9 +62,12 @@ namespace Common.Character.Player
             
         }
 
-        public void Run(Transform destination)
+        public void Run(Vector3 position)
         {
+            characterPathfinding.Move(position);
+            animationModel.Walk();
             
+            Debug.Log(characterPathfinding.Direction);
         }
 
         public void Death()
@@ -74,10 +78,12 @@ namespace Common.Character.Player
         private void Awake()
         {
             controller ??= GetComponentInChildren<PlayerController>();
+            characterPathfinding ??= GetComponentInChildren<CharacterPathfinding>();
             animationModel ??= GetComponentInChildren<CharacterAnimationModel>();
             animationEvent ??= GetComponentInChildren<CharacterAnimationEventModel>();
             
             controller.Initialize(GetComponent<Rigidbody>());
+            characterPathfinding.Initialize(5, null);
             animationModel.Initialize(skeletonAnimation);
         }
 
@@ -85,6 +91,21 @@ namespace Common.Character.Player
         {
             // Temp
             MainGame.InputManager.Register(this);
+        }
+
+        private void Update()
+        {
+            animationModel.Flip(characterPathfinding.Direction);
+            
+            if (!Input.GetMouseButtonDown(0)) return;
+        
+            // ReSharper disable once Unity.PerformanceCriticalCodeCameraMain
+            // ReSharper disable once PossibleNullReferenceException
+            var ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+        
+            if (!Physics.Raycast(ray, out var hit)) return;
+
+            Run(hit.point);
         }
 
         public void Save()
@@ -101,7 +122,6 @@ namespace Common.Character.Player
             // 레이드 씬에서는 플레이어 위치정보를 불러올 필요가 없음.
             // var position = SaveManager.Load("playerTransform.position", Vector3.zero);
             // var rotation = SaveManager.Load("playerTransform.rotation", Quaternion.identity);
-            // 
             // transform.SetPositionAndRotation(position, rotation);
         }
 

@@ -130,10 +130,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 5433417425623483359, guid: 9747ac49e6591ab46b0305ba2df0f21c, type: 3}
-      propertyPath: testTarget
-      value: 
-      objectReference: {fileID: 2130354526}
     - target: {fileID: 5624143538863965546, guid: 9747ac49e6591ab46b0305ba2df0f21c, type: 3}
       propertyPath: m_Mesh
       value: 
@@ -184,41 +180,22 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8119311918509560303, guid: 9747ac49e6591ab46b0305ba2df0f21c, type: 3}
       propertyPath: m_Name
-      value: Player
+      value: Character
+      objectReference: {fileID: 0}
+    - target: {fileID: 9027875992048801382, guid: 9747ac49e6591ab46b0305ba2df0f21c, type: 3}
+      propertyPath: maxAcceleration
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 9027875992048801382, guid: 9747ac49e6591ab46b0305ba2df0f21c, type: 3}
+      propertyPath: slowdownDistance
+      value: 0.6
+      objectReference: {fileID: 0}
+    - target: {fileID: 9027875992048801382, guid: 9747ac49e6591ab46b0305ba2df0f21c, type: 3}
+      propertyPath: endReachedDistance
+      value: 0.4
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9747ac49e6591ab46b0305ba2df0f21c, type: 3}
---- !u!1 &108709280
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 108709281}
-  m_Layer: 0
-  m_Name: Character
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &108709281
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 108709280}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 1109810029}
-  m_RootOrder: 2
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &216406063
 GameObject:
   m_ObjectHideFlags: 0
@@ -268,10 +245,8 @@ MonoBehaviour:
       parentIndex: 
       startIndex: 
       variableStartIndex: 
-      JSONSerialization: '{"EntryTask":{"Type":"BehaviorDesigner.Runtime.Tasks.EntryTask","NodeData":{"Offset":"(467,30)"},"ID":0,"Name":"Entry","Instant":true},"RootTask":{"Type":"BehaviorDesigner.Runtime.Tasks.Sequence","NodeData":{"Offset":"(-3,120)"},"ID":1,"Name":"Sequence","Instant":true,"AbortTypeabortType":"None","Children":[{"Type":"Common.Character.CharacterMoveBehavior","NodeData":{"Offset":"(-293,140)"},"ID":2,"Name":"Character
-        Move Behavior","Instant":true,"Seekeragent":0},{"Type":"BehaviorDesigner.Runtime.Tasks.Log","NodeData":{"Offset":"(-123,140)","Comment":"Cube
-        Behavior In"},"ID":3,"Name":"Log","Instant":true,"SharedStringtext":{"Type":"BehaviorDesigner.Runtime.SharedString","Name":null,"StringmValue":"Cube
-        In"},"SharedBoollogError":{"Type":"BehaviorDesigner.Runtime.SharedBool","Name":null,"BooleanmValue":false},"SharedBoollogTime":{"Type":"BehaviorDesigner.Runtime.SharedBool","Name":null,"BooleanmValue":false}},{"Type":"BehaviorDesigner.Runtime.Tasks.Wait","NodeData":{"Offset":"(97,140)"},"ID":4,"Name":"Wait","Instant":true,"SharedFloatwaitTime":{"Type":"BehaviorDesigner.Runtime.SharedFloat","Name":null,"SinglemValue":3},"SharedBoolrandomWait":{"Type":"BehaviorDesigner.Runtime.SharedBool","Name":null,"BooleanmValue":false},"SharedFloatrandomWaitMin":{"Type":"BehaviorDesigner.Runtime.SharedFloat","Name":null,"SinglemValue":1},"SharedFloatrandomWaitMax":{"Type":"BehaviorDesigner.Runtime.SharedFloat","Name":null,"SinglemValue":1}}]}}'
+      JSONSerialization: '{"EntryTask":{"Type":"BehaviorDesigner.Runtime.Tasks.EntryTask","NodeData":{"Offset":"(467,30)"},"ID":0,"Name":"Entry","Instant":true},"RootTask":{"Type":"BehaviorDesigner.Runtime.Tasks.Sequence","NodeData":{"Offset":"(-3,120)"},"ID":1,"Name":"Sequence","Instant":true,"AbortTypeabortType":"None","Children":[{"Type":"Common.Character.CharacterMoveBehavior","NodeData":{"Offset":"(-133,140)"},"ID":2,"Name":"Character
+        Move Behavior","Instant":true,"Seekeragent":0},{"Type":"BehaviorDesigner.Runtime.Tasks.Wait","NodeData":{"Offset":"(97,140)"},"ID":3,"Name":"Wait","Instant":true,"SharedFloatwaitTime":{"Type":"BehaviorDesigner.Runtime.SharedFloat","Name":null,"SinglemValue":3},"SharedBoolrandomWait":{"Type":"BehaviorDesigner.Runtime.SharedBool","Name":null,"BooleanmValue":false},"SharedFloatrandomWaitMin":{"Type":"BehaviorDesigner.Runtime.SharedFloat","Name":null,"SinglemValue":1},"SharedFloatrandomWaitMax":{"Type":"BehaviorDesigner.Runtime.SharedFloat","Name":null,"SinglemValue":1}}]}}'
       fieldSerializationData:
         typeName: []
         fieldNameHash: 
@@ -558,53 +533,6 @@ MonoBehaviour:
         m_Calls: []
   m_LegacyBlendHint: 0
   m_ComponentOwner: {fileID: 1821731327}
---- !u!1 &313893713 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 6347497801123458715, guid: 9747ac49e6591ab46b0305ba2df0f21c, type: 3}
-  m_PrefabInstance: {fileID: 36469882}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &313893718
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 313893713}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3e4df301998552a4a82f77ce1fcc2cf9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  version: 5
-  radius: 0.5
-  height: 2
-  canMove: 1
-  maxSpeed: 1
-  gravity: {x: NaN, y: NaN, z: NaN}
-  groundMask:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  centerOffsetCompatibility: NaN
-  repathRateCompatibility: NaN
-  canSearchCompability: 0
-  orientation: 0
-  enableRotation: 1
-  autoRepath:
-    mode: 2
-    period: 0.5
-    sensitivity: 10
-    maximumPeriod: 2
-    visualizeSensitivity: 0
-  targetCompatibility: {fileID: 0}
-  maxAcceleration: -2.5
-  rotationSpeed: 360
-  slowdownDistance: 0.6
-  pickNextWaypointDist: 2
-  endReachedDistance: 0.2
-  alwaysDrawGizmos: 0
-  slowWhenNotFacingTarget: 1
-  whenCloseToDestination: 0
-  constrainInsideGraph: 0
 --- !u!1 &346662285
 GameObject:
   m_ObjectHideFlags: 0
@@ -903,7 +831,7 @@ Transform:
   - {fileID: 639087077}
   - {fileID: 1127836013}
   m_Father: {fileID: 1109810029}
-  m_RootOrder: 3
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &570134822
 MonoBehaviour:
@@ -919,7 +847,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   version: 1
   data:
-    dataString: UEsDBBQAAAgIAABIIeyB7KhhlwIAAJkFAAALACQAZ3JhcGgwLmpzb24KACAAAAAAAAEAGAAAgD7V3rGdAQCAPtXesZ0BAIA+1d6xnQFtVG1v2jAQ/ivIn9cp6YDRfduA0k1qi8qmfhj9YOILsXDsyC8FWvHfd+cEEugkpJjnnrt77sV+Z1K7CjJv7MxKcW8EsG89Rmf2qdca72DH10Yv5BscOc9S+IJIPHKeuJcG8ZTcnCnBW5l912tF5ATBoGVubDkVaxgb5x3COVcO0GSNJ2+N0HuP7RqHPX77Azy8EdA74CkD7cF+pCVnrKAzxcsKBMltyaMje1TTNBbSMEh0ZpSSrlHB/L6KVY555QLWgAQhOVYV0xO/ALkuPP657jo/5rkD30iyfD+RFptTR2U/TN2xkrtNreuVq0B5hv0oqY55/8F8lUZzbk15d0ybJpTCFzLbPPF9xp3vdLQLT851B73lasNXCp4L0A9mZk3QAo3eBnINDq4nnVCn0sYFZJuWV2u9AEP1cThpO5xDLH43VrJcEfK5XwMLZWK7b8gHLA7mJwqOO+GaSIiSiD8OfvN1d3kaw620zqOpSahJ3coES1Q2jT2jYoIfG6shwo3mCjRXfj/HMP5yghe2TtoLyy2na9Ikb2zH7b9wiXDLT5IL09xs22E5+BXKam6k9gvgNis68VxhtvfgisfgldTQVkSGB2zi2Ghdb5/7j9si2JxnHTcPOx8sTLjn8Q6gJtwS0XXFhkYPHZSihYxVUPC/WAX9XqjJBce8KsLsweh4e86+L7QI6yDF+Zqz62F/MBRf0v7qazIY9IdXkNzko1WapzdimItRxuI9kBp7ztW8blozKtwg3daiceePL1lvZnkVL56wfDuTb6XpjF/q3CwyC6Af6winYsFiEnwgxFRILHMB3ksdd4+9L5ky2QbE8hRoGRs73XnLl22UJavkq/GELNk4Pl9LRvDpWs0tvErYUvJjsAM7/ANQSwMEFAAACAgAAEgh7GToZ5RtAAAAeAAAAAkAJABtZXRhLmpzb24KACAAAAAAAAEAGAAAgD7V3rGdAQCAPtXesZ0BAIA+1d6xnQGrVipLLSrOzM9TslIw0TPSM7TQUVBKL0osyCgGihiCOKWZKSB2tJKRmYmpWYqxoUmSuYGpqYmZbqqBZZpFkmGaoWWKWVqKRbJSLFB9SWVBql9ibipET0BiSUZaZl5KZl66nntRZoo7yGil2FoAUEsBAi0AFAAACAgAAEgh7IHsqGGXAgAAmQUAAAsAJAAAAAAAAAAAAAAAAAAAAGdyYXBoMC5qc29uCgAgAAAAAAABABgAAIA+1d6xnQEAgD7V3rGdAQCAPtXesZ0BUEsBAi0AFAAACAgAAEgh7GToZ5RtAAAAeAAAAAkAJAAAAAAAAAAAAAAA5AIAAG1ldGEuanNvbgoAIAAAAAAAAQAYAACAPtXesZ0BAIA+1d6xnQEAgD7V3rGdAVBLBQYAAAAAAgACALgAAACcAwAAAAA=
+    dataString: UEsDBBQAAAgIAABIIeyj0ivSlwIAAJoFAAALACQAZ3JhcGgwLmpzb24KACAAAAAAAAEAGAAAgD7V3rGdAQCAPtXesZ0BAIA+1d6xnQFtVNtuGjEQ/RXk57YCCoT0rV0IaaUkKLTKQ8mDWc+yFl575UuARPx7Z7wLu0AlpDVnzsycudgfTGpXQuqNnVkpHowA9q3D6Mw+dRrjPez42uiFfIcj50UKnxOJR84z99Ig3iM3ZwrwVqbf9VoRuYtg0DIztpiKNSTGeYdwxpUDNFnjyVsj9NFhu9phj9/BEA/vBHQOeEpBe7DXtO4ZK+hU8aIEQXIb8vjIHlc0jYXUDBKdGqWkq1Uwvy9jlQkvXcAakCAkx6pieuLnINe5xz/9tvNTljnwtSTL9xNpsTlVVPbDVB0ruNtUut64CpRnNIiSqpgPV+Ze/ybaM2uK+2PeXpdy+Fymm2e+T7nzrZa24cm58KC3XG34SsFLDvrRzKwJWqDR20CuwUF/0gp1qi3JId00vErsBRjK6+n0mukcYvW7RMliRciXQQUslIn9viUfsDiZnyg4LoWrIyFKIv44+M3X7e2pDXfSOo+mOqEmdSsTLFHZNPaMigk+MVZDhGvNJWiu/H6OYfzlCC9srbQXljtO96ROXtuO63/hEuGG3+1emOZm2wzLwa9QlHMjtV8At2neiudys30Alz8Fr6SGpiIyPGITE6N1tX7uP26LYDOettw87HywMOGex0uAmnBLRNsVGxo9dFCKFjJWQcH/YhX0e6Um5xzzqgizR6Pj9Tn7vtIirIMU53vO+qPBcCS+9garm+5wOBh9hu5tNl71st6tGGVinLJ4D6TGnnM1r5pWjwo3SDe1aNz541PWmVlexpsnLN/O5HthWuOXOjOL1ALopyrCqViwmARfCDEVEstcgPdSx91jH0umTLoBsTwFWsbGTnfe8mUTZclK+WY8IUuWxPdryQg+Xau5hTcJW0p+DHZgh39QSwMEFAAACAgAAEgh7GToZ5RtAAAAeAAAAAkAJABtZXRhLmpzb24KACAAAAAAAAEAGAAAgD7V3rGdAQCAPtXesZ0BAIA+1d6xnQGrVipLLSrOzM9TslIw0TPSM7TQUVBKL0osyCgGihiCOKWZKSB2tJKRmYmpWYqxoUmSuYGpqYmZbqqBZZpFkmGaoWWKWVqKRbJSLFB9SWVBql9ibipET0BiSUZaZl5KZl66nntRZoo7yGil2FoAUEsBAi0AFAAACAgAAEgh7KPSK9KXAgAAmgUAAAsAJAAAAAAAAAAAAAAAAAAAAGdyYXBoMC5qc29uCgAgAAAAAAABABgAAIA+1d6xnQEAgD7V3rGdAQCAPtXesZ0BUEsBAi0AFAAACAgAAEgh7GToZ5RtAAAAeAAAAAkAJAAAAAAAAAAAAAAA5AIAAG1ldGEuanNvbgoAIAAAAAAAAQAYAACAPtXesZ0BAIA+1d6xnQEAgD7V3rGdAVBLBQYAAAAAAgACALgAAACcAwAAAAA=
     upgradeData: 
     file_cachedStartup: {fileID: 0}
     data_cachedStartup: 
@@ -932,7 +860,7 @@ MonoBehaviour:
   manualDebugFloorRoof: 0
   showSearchTree: 0
   unwalkableNodeDebugSize: 0.3
-  logPathResults: 1
+  logPathResults: 0
   maxNearestNodeDistance: 100
   scanOnStartup: 1
   fullGetNearestSearch: 0
@@ -947,7 +875,39 @@ MonoBehaviour:
     _MeshEdgeColor: {r: 0, g: 0, b: 0, a: 0.5}
     _AreaColors:
     - {r: 0, g: 0, b: 0, a: 0}
-  tagNames: []
+  tagNames:
+  - Basic Ground
+  - 1
+  - 2
+  - 3
+  - 4
+  - 5
+  - 6
+  - 7
+  - 8
+  - 9
+  - 10
+  - 11
+  - 12
+  - 13
+  - 14
+  - 15
+  - 16
+  - 17
+  - 18
+  - 19
+  - 20
+  - 21
+  - 22
+  - 23
+  - 24
+  - 25
+  - 26
+  - 27
+  - 28
+  - 29
+  - 30
+  - 31
   heuristic: 2
   heuristicScale: 1
   threadCount: 1
@@ -1876,7 +1836,6 @@ Transform:
   m_Children:
   - {fileID: 1943438066}
   - {fileID: 1840524749}
-  - {fileID: 108709281}
   - {fileID: 570134821}
   m_Father: {fileID: 0}
   m_RootOrder: 1

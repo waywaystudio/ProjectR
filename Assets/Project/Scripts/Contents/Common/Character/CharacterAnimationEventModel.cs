@@ -28,10 +28,7 @@ namespace Common.Character
             if (eventData == e.Data)
             {
                 animationEvent?.Invoke();
-                EventTester();
             }
         }
-    
-        private void EventTester() => Debug.Log($"{eventName} In!");
     }
 }

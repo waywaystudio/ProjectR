@@ -1,14 +1,17 @@
 using UnityEditor;
 using UnityEngine;
 
-namespace Pathfinding {
+namespace Pathfinding 
+{
 	[CustomEditor(typeof(AIBase), true)]
 	[CanEditMultipleObjects]
-	public class BaseAIEditor : EditorBase {
+	public class BaseAIEditor : EditorBase 
+	{
 		float lastSeenCustomGravity = float.NegativeInfinity;
 		bool debug = false;
 
-		protected void AutoRepathInspector () {
+		protected void AutoRepathInspector () 
+		{
 			var mode = FindProperty("autoRepath.mode");
 
 			PropertyField(mode, "Recalculate paths automatically");
@@ -162,6 +165,27 @@ namespace Pathfinding {
 			if (isRichAI && Application.isPlaying && AstarPath.active != null && AstarPath.active.graphs.Length > 0 && AstarPath.active.data.recastGraph == null && AstarPath.active.data.navmesh == null) {
 				EditorGUILayout.HelpBox("This script only works with a navmesh or recast graph. If you are using some other graph type you might want to use another movement script.", MessageType.Warning);
 			}
+		}
+	}
+	
+	[CustomEditor(typeof(AIMove), true)]
+	[CanEditMultipleObjects]
+	public class AIMoveEditor : BaseAIEditor
+	{
+		private SerializedProperty rootObject;
+
+		protected override void OnEnable()
+		{
+			base.OnEnable();
+
+			rootObject = serializedObject.FindProperty("rootObject");
+		}
+
+		protected override void Inspector ()
+		{
+			EditorGUILayout.PropertyField(rootObject);
+			
+			base.Inspector();
 		}
 	}
 }

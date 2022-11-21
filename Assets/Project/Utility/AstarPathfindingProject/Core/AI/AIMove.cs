@@ -9,22 +9,15 @@ namespace Pathfinding
     /// </summary>
     public class AIMove : AIPath
     {
-        private Transform rootObject;
-        private Seeker agent;
-        private Rigidbody rigidBody;
-
-        public void Initialize(Transform rootObject, Seeker agent, Rigidbody rigidBody)
-        {
-            this.rootObject = rootObject;
-            this.agent = agent;
-            this.rigidBody = rigidBody;
-        }
+        [SerializeField] private Transform rootObject;
+        
+        public Transform RootObject => rootObject;
 
         public override void FindComponents()
         {
             tr = rootObject;
-            rigid = rigidBody;
-            seeker = agent ??= GetComponent<Seeker>();
+            rigid = rootObject.GetComponent<Rigidbody>();
+            seeker = GetComponent<Seeker>();
             rvoController = GetComponent<RVOController>();
             controller = GetComponent<CharacterController>();
             rigid2D = GetComponent<Rigidbody2D>();

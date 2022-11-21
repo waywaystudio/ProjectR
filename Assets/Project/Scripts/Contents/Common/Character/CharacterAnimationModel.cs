@@ -1,4 +1,3 @@
-using Core;
 using Sirenix.OdinInspector;
 using Spine.Unity;
 using UnityEngine;
@@ -13,13 +12,6 @@ namespace Common.Character
 
         public Animation TargetAnimation { get; private set; }
 
-        public void OnStateChange(CharacterState state)
-        {
-            var key = state.ToString().ToCamelCase();
-            
-            Play(key, 0);
-        }
-        
         // Look Where;
         [Button] public void LookLeft() => skeletonAnimation.Skeleton.ScaleX = 1.0f;
         [Button] public void LookRight() => skeletonAnimation.Skeleton.ScaleX = -1.0f;
@@ -28,8 +20,20 @@ namespace Common.Character
         [Button] public void Idle() => Play("idle", 0);
         [Button] public void Attack() => Play("attack", 0);
         [Button] public void Walk() => Play("walk", 0);
-        [Button] public void Run() => Play("run", 0);
+        [Button] public void Run()=> Play("run", 0);
         [Button] public void Crouch() => Play("crouch", 0);
+
+        public void Flip(Vector3 direction)
+        {
+            // 추후에는 x, z를 비교하여 캐릭터 방향의 상하좌우를 결정한다.
+            // 지금 좌우 뿐이니, direction 의 x값만 알면된다.
+            skeletonAnimation.Skeleton.ScaleX = direction.x switch
+            {
+                < 0 => -1.0f,
+                > 0 => 1.0f,
+                _ => skeletonAnimation.Skeleton.ScaleX
+            };
+        }
 
         public void SetDirection(Vector2 input)
         {
