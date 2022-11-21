@@ -44,7 +44,8 @@ namespace Pathfinding {
 			}
 		}
 
-		protected override void Inspector () {
+		protected override void Inspector () 
+		{
 			var isAIPath = typeof(AIPath).IsAssignableFrom(target.GetType());
 
 			Section("Shape");

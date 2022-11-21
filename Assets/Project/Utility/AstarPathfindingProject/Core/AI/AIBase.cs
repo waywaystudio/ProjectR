@@ -739,7 +739,8 @@ namespace Pathfinding
 			return position;
 		}
 
-		protected virtual void OnDrawGizmosSelected () {
+		protected virtual void OnDrawGizmosSelected () 
+		{
 			// When selected in the Unity inspector it's nice to make the component react instantly if
 			// any other components are attached/detached or enabled/disabled.
 			// We don't want to do this normally every frame because that would be expensive.
@@ -748,7 +749,8 @@ namespace Pathfinding
 
 		public static readonly Color ShapeGizmoColor = new Color(240/255f, 213/255f, 30/255f);
 
-		protected virtual void OnDrawGizmos () {
+		protected virtual void OnDrawGizmos () 
+		{
 			if (!Application.isPlaying || !enabled) FindComponents();
 
 			var color = ShapeGizmoColor;
@@ -764,22 +766,27 @@ namespace Pathfinding
 			autoRepath.DrawGizmos(position, radius);
 		}
 
-		protected override void Reset () {
+		protected override void Reset () 
+		{
 			ResetShape();
 			base.Reset();
 		}
 
-		void ResetShape () {
+		void ResetShape () 
+		{
 			var cc = GetComponent<CharacterController>();
 
-			if (cc != null) {
+			if (cc != null) 
+			{
 				radius = cc.radius;
 				height = Mathf.Max(radius*2, cc.height);
 			}
 		}
 
-		protected override int OnUpgradeSerializedData (int version, bool unityThread) {
-			if (unityThread && !float.IsNaN(centerOffsetCompatibility)) {
+		protected override int OnUpgradeSerializedData (int version, bool unityThread) 
+		{
+			if (unityThread && !float.IsNaN(centerOffsetCompatibility)) 
+			{
 				height = centerOffsetCompatibility*2;
 				ResetShape();
 				var rvo = GetComponent<RVOController>();
@@ -789,7 +796,8 @@ namespace Pathfinding
 			#pragma warning disable 618
 			if (unityThread && targetCompatibility != null) target = targetCompatibility;
 			#pragma warning restore 618
-			if (version <= 3) {
+			if (version <= 3) 
+			{
 				repathRate = repathRateCompatibility;
 				canSearch = canSearchCompability;
 			}
