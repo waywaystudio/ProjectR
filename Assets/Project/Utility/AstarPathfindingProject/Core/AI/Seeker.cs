@@ -458,7 +458,8 @@ namespace Pathfinding
 		}
 
 		/// <summary>Internal method to start a path and mark it as the currently active path</summary>
-		void StartPathInternal (Path p, OnPathDelegate callback) {
+		void StartPathInternal (Path p, OnPathDelegate callback) 
+		{
 			var mtp = p as MultiTargetPath;
 			if (mtp != null) {
 				// TODO: Allocation, cache

@@ -16,26 +16,32 @@ namespace BehaviorDesigner.Runtime.Tasks.Movement
         {
             GameObject objectFound = null;
             var hitCount = Physics.OverlapSphereNonAlloc(transform.TransformPoint(positionOffset), viewDistance, overlapColliders, objectLayerMask, QueryTriggerInteraction.Ignore);
-            if (hitCount > 0) {
+            if (hitCount > 0) 
+            {
 #if UNITY_EDITOR
-                if (hitCount == overlapColliders.Length) {
+                if (hitCount == overlapColliders.Length) 
+                {
                     Debug.LogWarning("Warning: The hit count is equal to the max collider array size. This will cause objects to be missed. Consider increasing the max collision count size.");
                 }
 #endif
                 float minAngle = Mathf.Infinity;
-                for (int i = 0; i < hitCount; ++i) {
+                for (int i = 0; i < hitCount; ++i) 
+                {
                     float angle;
                     GameObject obj;
                     // Call the WithinSight function to determine if this specific object is within sight
-                    if ((obj = WithinSight(transform, positionOffset, fieldOfViewAngle, viewDistance, overlapColliders[i].gameObject, targetOffset, false, 0, out angle, ignoreLayerMask, useTargetBone, targetBone, drawDebugRay)) != null) {
+                    if ((obj = WithinSight(transform, positionOffset, fieldOfViewAngle, viewDistance, overlapColliders[i].gameObject, targetOffset, false, 0, out angle, ignoreLayerMask, useTargetBone, targetBone, drawDebugRay)) != null) 
+                    {
                         // This object is within sight. Set it to the objectFound GameObject if the angle is less than any of the other objects
-                        if (angle < minAngle) {
+                        if (angle < minAngle) 
+                        {
                             minAngle = angle;
                             objectFound = obj;
                         }
                     }
                 }
             }
+            
             return objectFound;
         }
 
@@ -111,7 +117,8 @@ namespace BehaviorDesigner.Runtime.Tasks.Movement
                 angle = Vector3.Angle(direction, transform.forward);
                 direction.y = 0;
             }
-            if (direction.magnitude < viewDistance && angle < fieldOfViewAngle * 0.5f) {
+            if (direction.magnitude < viewDistance && angle < fieldOfViewAngle * 0.5f) 
+            {
                 // The hit agent needs to be within view of the current agent
                 var hitTransform = LineOfSight(transform, positionOffset, targetObject, targetOffset, usePhysics2D, ignoreLayerMask, drawDebugRay);
                 if (hitTransform != null) {
@@ -239,8 +246,10 @@ namespace BehaviorDesigner.Runtime.Tasks.Movement
         {
             AudioSource[] colliderAudioSource;
             // Check to see if the hit agent has an audio source and that audio source is playing
-            if ((colliderAudioSource = GetComponentsForType<AudioSource>(targetObject)) != null) {
-                for (int i = 0; i < colliderAudioSource.Length; ++i) {
+            if ((colliderAudioSource = GetComponentsForType<AudioSource>(targetObject)) != null) 
+            {
+                for (int i = 0; i < colliderAudioSource.Length; ++i) 
+                {
                     if (colliderAudioSource[i].isPlaying) {
                         var distance = Vector3.Distance(transform.position, targetObject.transform.position);
                         if (colliderAudioSource[i].rolloffMode == AudioRolloffMode.Logarithmic) {
@@ -248,7 +257,8 @@ namespace BehaviorDesigner.Runtime.Tasks.Movement
                         } else { // linear
                             audibility = colliderAudioSource[i].volume * Mathf.Clamp01((distance - colliderAudioSource[i].minDistance) / (colliderAudioSource[i].maxDistance - colliderAudioSource[i].minDistance)); 
                         }
-                        if (audibility > audibilityThreshold) {
+                        if (audibility > audibilityThreshold) 
+                        {
                             return targetObject;
                         }
                     }

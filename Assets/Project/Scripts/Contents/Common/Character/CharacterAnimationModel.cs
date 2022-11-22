@@ -1,4 +1,3 @@
-using Core;
 using Sirenix.OdinInspector;
 using Spine.Unity;
 using UnityEngine;
@@ -14,6 +13,11 @@ namespace Common.Character
         private string currentState = string.Empty;
 
         public Animation TargetAnimation { get; private set; }
+        
+        public void Initialize(SkeletonAnimation skeletonAnimation)
+        {
+            this.skeletonAnimation = skeletonAnimation;
+        }
 
         // Look Where;
         [Button] public void LookLeft() => skeletonAnimation.Skeleton.ScaleX = 1.0f;
@@ -38,25 +42,20 @@ namespace Common.Character
             };
         }
 
-        public void SetDirection(Vector2 input)
+        public void PlayOneShot(Animation oneShot, int layer)
         {
-            skeletonAnimation.Skeleton.ScaleX = input.x switch
-            {
-                < 0 => -1.0f,
-                > 0 => 1.0f,
-                _ => skeletonAnimation.Skeleton.ScaleX
-            };
-        }
-
-        public void Initialize(SkeletonAnimation skeletonAnimation)
-        {
-            this.skeletonAnimation = skeletonAnimation;
-        }
+            var state = skeletonAnimation.AnimationState;
     
-        private void Start()
-        {
-            skeletonAnimation.AnimationState.SetAnimation(0, "idle", true);
+            state.SetAnimation(0, oneShot, false);
+    
+            if (modelData.TryGetTransition(oneShot, TargetAnimation, out var transition))
+            {
+                state.AddAnimation(0, transition, false, 0f);
+            }
+    
+            state.AddAnimation(0, TargetAnimation, true, 0f);
         }
+        
 
         private void Play(string animationKey, int layer)
         {
@@ -72,6 +71,7 @@ namespace Common.Character
     
             Play(target, layer);
         }
+        
         private void Play(Animation target, int layer)
         {
             var hasCurrent = TryGetCurrentAnimation(layer, out var current);
@@ -88,19 +88,10 @@ namespace Common.Character
             skeletonAnimation.AnimationState.SetAnimation(layer, target, true);
             TargetAnimation = target;
         }
-    
-        public void PlayOneShot(Animation oneShot, int layer)
+        
+        private void Start()
         {
-            var state = skeletonAnimation.AnimationState;
-    
-            state.SetAnimation(0, oneShot, false);
-    
-            if (modelData.TryGetTransition(oneShot, TargetAnimation, out var transition))
-            {
-                state.AddAnimation(0, transition, false, 0f);
-            }
-    
-            state.AddAnimation(0, TargetAnimation, true, 0f);
+            skeletonAnimation.AnimationState.SetAnimation(0, "idle", true);
         }
     
         private bool TryGetCurrentAnimation(int layer, out Animation result)

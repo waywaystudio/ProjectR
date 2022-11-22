@@ -7,6 +7,7 @@ namespace Common.Character.Player
 {
     public class PlayerBehaviour : MonoBehaviour, ISavable, IControlModel
     {
+        public float MoveSpeed = 5f;
         public CharacterState State;
 
         // Data
@@ -19,7 +20,6 @@ namespace Common.Character.Player
         // Graphic
         [SerializeField] private CharacterAnimationModel animationModel;
         [SerializeField] private CharacterAnimationEventModel animationEvent;
-        [SerializeField] private CharacterDirectionGuide directionGuide;
         
 
         public void Idle()
@@ -59,7 +59,7 @@ namespace Common.Character.Player
 
         public void Walk(Vector3 destination)
         {
-            characterPathfinding.Move(destination);
+            characterPathfinding.Move(destination, MoveSpeed);
             animationModel.Walk();
         }
 
@@ -80,10 +80,9 @@ namespace Common.Character.Player
             characterPathfinding ??= GetComponentInChildren<CharacterPathfinding>();
             animationModel ??= GetComponentInChildren<CharacterAnimationModel>();
             animationEvent ??= GetComponentInChildren<CharacterAnimationEventModel>();
-            directionGuide ??= GetComponentInChildren<CharacterDirectionGuide>();
             
             controller.Initialize(GetComponent<Rigidbody>());
-            characterPathfinding.Initialize(5, Idle);
+            characterPathfinding.Initialize(Idle);
             animationModel.Initialize(skeletonAnimation);
         }
 
@@ -95,8 +94,7 @@ namespace Common.Character.Player
 
         private void Update()
         {
-            animationModel.Flip(characterPathfinding.Direction);
-            directionGuide.MatchForward(characterPathfinding.Direction);
+            animationModel.Flip(transform.forward);
 
             #region TEST
             if (!Input.GetMouseButtonDown(0)) return;
@@ -108,7 +106,6 @@ namespace Common.Character.Player
             if (!Physics.Raycast(ray, out var hit)) return;
 
             Walk(hit.point);
-            
 
             #endregion
         }

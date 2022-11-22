@@ -1954,9 +1954,12 @@ public class AstarPath : VersionedMonoBehaviour {
 
 		// Will increment p.state to PathState.PathQueue
 		((IPathInternals)path).AdvanceState(PathState.PathQueue);
-		if (pushToFront) {
+		if (pushToFront) 
+		{
 			astar.pathProcessor.queue.PushFront(path);
-		} else {
+		} 
+		else 
+		{
 			astar.pathProcessor.queue.Push(path);
 		}
 

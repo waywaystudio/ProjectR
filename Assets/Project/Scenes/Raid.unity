@@ -130,6 +130,22 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1683699618266686655, guid: 9747ac49e6591ab46b0305ba2df0f21c, type: 3}
+      propertyPath: attackRadius
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 1683699618266686655, guid: 9747ac49e6591ab46b0305ba2df0f21c, type: 3}
+      propertyPath: searchingRadius
+      value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 1683699618266686655, guid: 9747ac49e6591ab46b0305ba2df0f21c, type: 3}
+      propertyPath: targetLayer.m_Bits
+      value: 256
+      objectReference: {fileID: 0}
+    - target: {fileID: 1683699618266686655, guid: 9747ac49e6591ab46b0305ba2df0f21c, type: 3}
+      propertyPath: targetlayer.m_Bits
+      value: 128
+      objectReference: {fileID: 0}
     - target: {fileID: 5624143538863965546, guid: 9747ac49e6591ab46b0305ba2df0f21c, type: 3}
       propertyPath: m_Mesh
       value: 
@@ -244,7 +260,7 @@ GameObject:
   - component: {fileID: 157212982}
   - component: {fileID: 157212981}
   - component: {fileID: 157212980}
-  m_Layer: 5
+  m_Layer: 8
   m_Name: Canvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -578,10 +594,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c592a9ccff7b6e74c99fb45e651510a7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 3
-  fleeLength: 5000
-  fleeSpread: 500
-  fleeAimStrength: 1
 --- !u!1 &287093695
 GameObject:
   m_ObjectHideFlags: 0
@@ -653,51 +665,6 @@ MonoBehaviour:
         m_Calls: []
   m_LegacyBlendHint: 0
   m_ComponentOwner: {fileID: 1821731327}
---- !u!1 &447424432
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 447424433}
-  - component: {fileID: 447424434}
-  m_Layer: 0
-  m_Name: PhysicsCollider
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &447424433
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 447424432}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 1188007380}
-  m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!65 &447424434
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 447424432}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 5, y: 5, z: 3.5}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &519695618
 GameObject:
   m_ObjectHideFlags: 0
@@ -781,7 +748,7 @@ GameObject:
   - component: {fileID: 540148623}
   - component: {fileID: 540148622}
   - component: {fileID: 540148621}
-  m_Layer: 5
+  m_Layer: 8
   m_Name: Image
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1244,7 +1211,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 868566240}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Graphic
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1259,13 +1226,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 868566239}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 2, z: 0}
+  m_LocalPosition: {x: 0, y: 1.4, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 157212979}
   m_Father: {fileID: 1188007380}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &890773670
 PrefabInstance:
@@ -1449,7 +1416,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 0.1764706}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -1707,7 +1674,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1188007380}
-  m_Layer: 0
+  - component: {fileID: 1188007381}
+  m_Layer: 8
   m_Name: MonsterGraphic
   m_TagString: Untagged
   m_Icon: {fileID: 5132851093641282708, guid: 0000000000000000d000000000000000, type: 0}
@@ -1726,11 +1694,23 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 447424433}
   - {fileID: 868566240}
   m_Father: {fileID: 0}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!135 &1188007381
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1188007379}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 2
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &1448534715
 GameObject:
   m_ObjectHideFlags: 0

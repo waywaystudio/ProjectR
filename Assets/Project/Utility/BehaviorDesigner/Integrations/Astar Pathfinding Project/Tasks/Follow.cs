@@ -29,13 +29,17 @@ namespace BehaviorDesigner.Runtime.Tasks.Movement.AstarPathfindingProject
         {
             // Move if the target has moved more than the moveDistance since the last time the agent moved.
             var targetPosition = target.Value.transform.position;
-            if ((targetPosition - lastTargetPosition).magnitude >= moveDistance.Value) {
+            if ((targetPosition - lastTargetPosition).magnitude >= moveDistance.Value) 
+            {
                 SetDestination(targetPosition);
                 lastTargetPosition = targetPosition;
                 hasMoved = true;
-            } else {
+            } 
+            else 
+            {
                 // Stop moving if the agent is within the moveDistance of the target.
-                if (hasMoved && (targetPosition - transform.position).magnitude < moveDistance.Value) {
+                if (hasMoved && (targetPosition - transform.position).magnitude < moveDistance.Value) 
+                {
                     Stop();
                     hasMoved = false;
                     lastTargetPosition = targetPosition;

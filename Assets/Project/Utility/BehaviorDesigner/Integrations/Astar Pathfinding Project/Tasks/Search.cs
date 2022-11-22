@@ -63,28 +63,37 @@ namespace BehaviorDesigner.Runtime.Tasks.Movement.AstarPathfindingProject
         // Keep searching until an object is seen or heard (if senseAudio is enabled)
         public override TaskStatus OnUpdate()
         {
-            if (!HasPath() || HasArrived()) {
+            if (!HasPath() || HasArrived()) 
+            {
                 // The agent should pause at the destination only if the max pause duration is greater than 0
-                if (maxPauseDuration.Value > 0) {
-                    if (destinationReachTime == -1) {
+                if (maxPauseDuration.Value > 0) 
+                {
+                    if (destinationReachTime == -1) 
+                    {
                         destinationReachTime = Time.time;
                         pauseTime = Random.Range(minPauseDuration.Value, maxPauseDuration.Value);
                     }
-                    if (destinationReachTime + pauseTime <= Time.time) {
+                    if (destinationReachTime + pauseTime <= Time.time) 
+                    {
                         // Only reset the time if a destination has been set.
-                        if (TrySetTarget()) {
+                        if (TrySetTarget()) 
+                        {
                             destinationReachTime = -1;
                         }
                     }
-                } else {
+                } 
+                else 
+                {
                     TrySetTarget();
                 }
             }
 
             // Detect if any objects are within sight
-            if (overlapColliders == null) {
+            if (overlapColliders == null) 
+            {
                 overlapColliders = new Collider[maxCollisionCount];
             }
+            
             returnedObject.Value = MovementUtility.WithinSight(transform, offset.Value, fieldOfViewAngle.Value, viewDistance.Value, overlapColliders, objectLayerMask, targetOffset.Value, ignoreLayerMask, useTargetBone.Value, targetBone, drawDebugRay.Value);
             // If an object was seen then return success
             if (returnedObject.Value != null) {

@@ -162,7 +162,6 @@ Transform:
   m_Children:
   - {fileID: 1217135604971748277}
   - {fileID: 5220615902031275928}
-  - {fileID: 3724704781675549474}
   m_Father: {fileID: 8119311918509560299}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -213,7 +212,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   moveSpeed: 500
   characterRigidbody: {fileID: 8119311918509560298}
-  animationModel: {fileID: 5360769843769831034}
+  animationModel: {fileID: 0}
 --- !u!114 &1844620894619860699
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -287,7 +286,6 @@ GameObject:
   - component: {fileID: 6078268597459015349}
   - component: {fileID: 2431609190123074895}
   - component: {fileID: 6865752546761714098}
-  - component: {fileID: 6492629631032469135}
   m_Layer: 5
   m_Name: DirectionGuide
   m_TagString: Untagged
@@ -353,18 +351,6 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!114 &6492629631032469135
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3259059352333038688}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a39b9d09d2270e2448d9423849c8d656, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &3525883613796328407
 GameObject:
   m_ObjectHideFlags: 0
@@ -427,70 +413,6 @@ Transform:
   m_Father: {fileID: 8119311918708140496}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &4648637498397881578
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 5346279485694813651}
-  - component: {fileID: 5360769843769831034}
-  - component: {fileID: 2418914359625135039}
-  m_Layer: 7
-  m_Name: Spine
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &5346279485694813651
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4648637498397881578}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 8119311918708140496}
-  m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &5360769843769831034
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4648637498397881578}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fb1a1c90500fd794489e616b68c900e5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  skeletonAnimation: {fileID: 4992384900474842763}
-  modelData: {fileID: 11400000, guid: 5fb6058bbb40ce847b4bcee74d3d26e3, type: 2}
---- !u!114 &2418914359625135039
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4648637498397881578}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 46742012f43f1234db54089b6d30871d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  skeletonAnimation: {fileID: 4992384900474842763}
-  eventName: footstep
-  animationEvent:
-    m_PersistentCalls:
-      m_Calls: []
 --- !u!1 &5480614394923509636
 GameObject:
   m_ObjectHideFlags: 0
@@ -569,10 +491,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c592a9ccff7b6e74c99fb45e651510a7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 7
-  fleeLength: 2000
-  fleeSpread: 500
-  fleeAimStrength: 1
 --- !u!114 &5261775962401287001
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -626,7 +544,7 @@ MonoBehaviour:
   repathRateCompatibility: NaN
   canSearchCompability: 0
   orientation: 0
-  enableRotation: 0
+  enableRotation: 1
   autoRepath:
     mode: 2
     period: 0.5
@@ -635,7 +553,7 @@ MonoBehaviour:
     visualizeSensitivity: 0
   targetCompatibility: {fileID: 0}
   maxAcceleration: 50
-  rotationSpeed: 360
+  rotationSpeed: 540
   slowdownDistance: 0
   pickNextWaypointDist: 2
   endReachedDistance: 0.6
@@ -675,6 +593,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1586898605020412687}
+  - component: {fileID: 1683699618266686655}
   m_Layer: 7
   m_Name: Targeting
   m_TagString: Untagged
@@ -697,6 +616,22 @@ Transform:
   m_Father: {fileID: 2340340124315505437}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1683699618266686655
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7645773892073466725}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 079054a3d925aa34e9db343c1497c49b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  searchingRadius: 20
+  targetlayer:
+    serializedVersion: 2
+    m_Bits: 0
 --- !u!1 &8119311918509560303
 GameObject:
   m_ObjectHideFlags: 0
@@ -747,13 +682,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d50759d0e8890244ca837e7a897eac81, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  MoveSpeed: 5
   State: 0
   skeletonAnimation: {fileID: 4992384900474842763}
   controller: {fileID: 8465506878290798802}
   characterPathfinding: {fileID: 5433417425623483359}
-  animationModel: {fileID: 5360769843769831034}
-  animationEvent: {fileID: 2418914359625135039}
-  directionGuide: {fileID: 6492629631032469135}
+  animationModel: {fileID: 711594441686645133}
+  animationEvent: {fileID: 2815777451027632908}
 --- !u!54 &8119311918509560298
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -832,7 +767,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 5346279485694813651}
+  - {fileID: 3724704781675549474}
   - {fileID: 6160341593954971907}
   - {fileID: 4034594313135705506}
   - {fileID: 6047041960895986419}
@@ -852,6 +787,8 @@ GameObject:
   - component: {fileID: 1347873746339998768}
   - component: {fileID: 4992384900474842763}
   - component: {fileID: 646094527378143822}
+  - component: {fileID: 711594441686645133}
+  - component: {fileID: 2815777451027632908}
   m_Layer: 7
   m_Name: Spine GameObject (hero-ess)
   m_TagString: Untagged
@@ -866,13 +803,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8507443490319979185}
-  m_LocalRotation: {x: 0.38268343, y: 0, z: 0, w: 0.92387956}
+  m_LocalRotation: {x: 0.38268343, y: -0, z: -0, w: 0.92387956}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 5752516890736221719}
-  m_RootOrder: 2
+  m_Father: {fileID: 8119311918708140496}
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 45, y: 0, z: 0}
 --- !u!33 &5624143538863965546
 MeshFilter:
@@ -976,6 +913,37 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 520c2fd95eb2b1a4287026dfc518c566, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &711594441686645133
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8507443490319979185}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fb1a1c90500fd794489e616b68c900e5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  skeletonAnimation: {fileID: 4992384900474842763}
+  modelData: {fileID: 11400000, guid: 5fb6058bbb40ce847b4bcee74d3d26e3, type: 2}
+--- !u!114 &2815777451027632908
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8507443490319979185}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 46742012f43f1234db54089b6d30871d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  skeletonAnimation: {fileID: 4992384900474842763}
+  eventName: footstep
+  animationEvent:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &8707246511637489726
 GameObject:
   m_ObjectHideFlags: 0

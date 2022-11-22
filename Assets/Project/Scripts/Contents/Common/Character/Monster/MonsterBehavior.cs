@@ -8,19 +8,11 @@ namespace Common.Character.Monster
         [SerializeField] private CharacterPathfinding characterPathfinding;
         
         // Graphic
-        [SerializeField] private CharacterDirectionGuide directionGuide;
-        
+
         private void Awake()
         {
             characterPathfinding ??= GetComponentInChildren<CharacterPathfinding>();
-            characterPathfinding.Initialize(5, null);
-            
-            directionGuide ??= GetComponentInChildren<CharacterDirectionGuide>();
-        }
-        
-        private void Start()
-        {
-            
+            characterPathfinding.Initialize(null);
         }
     }
 }
