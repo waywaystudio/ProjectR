@@ -15,6 +15,7 @@ namespace Common.Character
         private Seeker agent;
         private Action onTargetReached;
         private Transform rootObject;
+        private Vector3 tempDirection;
 
         public bool CanMove { get => aiMove.canMove; set => aiMove.canMove = value; }
         public float MoveSpeed => aiMove.maxSpeed;

@@ -1,5 +1,3 @@
-using System;
-using System.Collections.Generic;
 using Core;
 using Main;
 using Spine.Unity;
@@ -21,10 +19,12 @@ namespace Common.Character.Player
         // Graphic
         [SerializeField] private CharacterAnimationModel animationModel;
         [SerializeField] private CharacterAnimationEventModel animationEvent;
+        [SerializeField] private CharacterDirectionGuide directionGuide;
+        
 
         public void Idle()
         {
-            // OnIdle?.Invoke();
+            animationModel.Idle();
         }
 
         public void Attack(GameObject target)
@@ -75,13 +75,15 @@ namespace Common.Character.Player
 
         private void Awake()
         {
+            skeletonAnimation ??= GetComponentInChildren<SkeletonAnimation>();
             controller ??= GetComponentInChildren<PlayerController>();
             characterPathfinding ??= GetComponentInChildren<CharacterPathfinding>();
             animationModel ??= GetComponentInChildren<CharacterAnimationModel>();
             animationEvent ??= GetComponentInChildren<CharacterAnimationEventModel>();
+            directionGuide ??= GetComponentInChildren<CharacterDirectionGuide>();
             
             controller.Initialize(GetComponent<Rigidbody>());
-            characterPathfinding.Initialize(5, () => animationModel.Idle());
+            characterPathfinding.Initialize(5, Idle);
             animationModel.Initialize(skeletonAnimation);
         }
 
@@ -94,6 +96,7 @@ namespace Common.Character.Player
         private void Update()
         {
             animationModel.Flip(characterPathfinding.Direction);
+            directionGuide.MatchForward(characterPathfinding.Direction);
 
             #region TEST
             if (!Input.GetMouseButtonDown(0)) return;
@@ -105,6 +108,8 @@ namespace Common.Character.Player
             if (!Physics.Raycast(ray, out var hit)) return;
 
             Walk(hit.point);
+            
+
             #endregion
         }
 

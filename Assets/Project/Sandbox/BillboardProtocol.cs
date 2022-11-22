@@ -17,7 +17,7 @@ public class BillboardProtocol : MonoBehaviour
             SetAngle();
         }
     }
-    
+
     private void SetAngle() => transform.eulerAngles = new Vector3(45, 0, 0);
 }
 
