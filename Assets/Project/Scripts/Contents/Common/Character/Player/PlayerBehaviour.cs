@@ -57,17 +57,15 @@ namespace Common.Character.Player
             
         }
 
-        public void Walk(Transform destination)
+        public void Walk(Vector3 destination)
         {
-            
+            characterPathfinding.Move(destination);
+            animationModel.Walk();
         }
 
         public void Run(Vector3 position)
         {
-            characterPathfinding.Move(position);
-            animationModel.Walk();
             
-            Debug.Log(characterPathfinding.Direction);
         }
 
         public void Death()
@@ -83,7 +81,7 @@ namespace Common.Character.Player
             animationEvent ??= GetComponentInChildren<CharacterAnimationEventModel>();
             
             controller.Initialize(GetComponent<Rigidbody>());
-            characterPathfinding.Initialize(5, null);
+            characterPathfinding.Initialize(5, () => animationModel.Idle());
             animationModel.Initialize(skeletonAnimation);
         }
 
@@ -96,7 +94,8 @@ namespace Common.Character.Player
         private void Update()
         {
             animationModel.Flip(characterPathfinding.Direction);
-            
+
+            #region TEST
             if (!Input.GetMouseButtonDown(0)) return;
         
             // ReSharper disable once Unity.PerformanceCriticalCodeCameraMain
@@ -105,7 +104,8 @@ namespace Common.Character.Player
         
             if (!Physics.Raycast(ray, out var hit)) return;
 
-            Run(hit.point);
+            Walk(hit.point);
+            #endregion
         }
 
         public void Save()

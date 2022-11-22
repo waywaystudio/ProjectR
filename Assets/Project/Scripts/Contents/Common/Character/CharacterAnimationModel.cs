@@ -1,3 +1,4 @@
+using Core;
 using Sirenix.OdinInspector;
 using Spine.Unity;
 using UnityEngine;
@@ -9,6 +10,8 @@ namespace Common.Character
     {
         [SerializeField] private SkeletonAnimation skeletonAnimation;
         [SerializeField] private AnimationModelData modelData;
+
+        private string currentState = string.Empty;
 
         public Animation TargetAnimation { get; private set; }
 
@@ -55,7 +58,14 @@ namespace Common.Character
             skeletonAnimation.AnimationState.SetAnimation(0, "idle", true);
         }
 
-        private void Play(string animationKey, int layer) => Play(Animator.StringToHash(animationKey), layer);
+        private void Play(string animationKey, int layer)
+        {
+            if (currentState == animationKey) return;
+            currentState = animationKey;
+            
+            Play(Animator.StringToHash(animationKey), layer);
+        }
+
         private void Play(int nameHash, int layer)
         {
             if (!modelData.TryGetAnimation(nameHash, out var target)) return;

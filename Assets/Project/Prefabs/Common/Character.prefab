@@ -344,6 +344,7 @@ GameObject:
   - component: {fileID: 5433417425623483359}
   - component: {fileID: 5261775962401287001}
   - component: {fileID: 9027875992048801382}
+  - component: {fileID: 5507829022067935862}
   m_Layer: 7
   m_Name: Pathfinding
   m_TagString: Untagged
@@ -378,7 +379,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c592a9ccff7b6e74c99fb45e651510a7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 5
+  moveSpeed: 7
   fleeLength: 2000
   fleeSpread: 500
   fleeAimStrength: 1
@@ -405,7 +406,7 @@ MonoBehaviour:
     mask:
       serializedVersion: 2
       m_Bits: 4294967295
-    useGraphRaycasting: 0
+    useGraphRaycasting: 1
   traversableTags: -1
   tagPenalties: 0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
   graphMask:
@@ -443,16 +444,38 @@ MonoBehaviour:
     maximumPeriod: 2
     visualizeSensitivity: 0
   targetCompatibility: {fileID: 0}
-  maxAcceleration: -2.5
+  maxAcceleration: 50
   rotationSpeed: 360
-  slowdownDistance: 0.1
+  slowdownDistance: 0
   pickNextWaypointDist: 2
-  endReachedDistance: 0.1
+  endReachedDistance: 0.6
   alwaysDrawGizmos: 0
   slowWhenNotFacingTarget: 1
   whenCloseToDestination: 0
   constrainInsideGraph: 0
   rootObject: {fileID: 8119311918509560299}
+--- !u!114 &5507829022067935862
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6347497801123458715}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cb6a34d769a1e4ac7b0b30e433aa443c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  version: 1
+  smoothType: 0
+  subdivisions: 2
+  iterations: 1
+  strength: 0.5
+  uniformLength: 1
+  maxSegmentLength: 1
+  bezierTangentLength: 0.4
+  offset: 0.2
+  factor: 0.1
 --- !u!1 &7645773892073466725
 GameObject:
   m_ObjectHideFlags: 0

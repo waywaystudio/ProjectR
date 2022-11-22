@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 namespace Pathfinding
@@ -10,8 +11,20 @@ namespace Pathfinding
     public class AIMove : AIPath
     {
         [SerializeField] private Transform rootObject;
+
+        private Action onTargetReached;
         
         public Transform RootObject => rootObject;
+
+        public void Initialize(Action onTargetReached)
+        {
+            this.onTargetReached = onTargetReached;
+        }
+
+        public override void OnTargetReached()
+        {
+            onTargetReached?.Invoke();
+        }
 
         public override void FindComponents()
         {
@@ -21,6 +34,13 @@ namespace Pathfinding
             rvoController = GetComponent<RVOController>();
             controller = GetComponent<CharacterController>();
             rigid2D = GetComponent<Rigidbody2D>();
+        }
+
+        protected override void OnDisable()
+        {
+            base.OnDisable();
+
+            onTargetReached = null;
         }
     }
 }
