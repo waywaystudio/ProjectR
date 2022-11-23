@@ -10,8 +10,6 @@ namespace Common.Character
         [SerializeField] private SkeletonAnimation skeletonAnimation;
         [SerializeField] private AnimationModelData modelData;
 
-        private string currentState = string.Empty;
-
         public Animation TargetAnimation { get; private set; }
         
         public void Initialize(SkeletonAnimation skeletonAnimation)
@@ -24,11 +22,11 @@ namespace Common.Character
         [Button] public void LookRight() => skeletonAnimation.Skeleton.ScaleX = -1.0f;
         
         // Do What;
-        [Button] public void Idle() => Play("idle", 0);
-        [Button] public void Attack() => Play("attack", 0);
-        [Button] public void Walk() => Play("walk", 0);
-        [Button] public void Run()=> Play("run", 0);
-        [Button] public void Crouch() => Play("crouch", 0);
+        [Button] public void Idle() => Play("idle", 0, true);
+        [Button] public void Attack() => Play("attack", 0, false);
+        [Button] public void Walk() => Play("walk", 0, true);
+        [Button] public void Run()=> Play("run", 0, true);
+        [Button] public void Crouch() => Play("crouch", 0, true);
 
         public void Flip(Vector3 direction)
         {
@@ -57,22 +55,19 @@ namespace Common.Character
         }
         
 
-        private void Play(string animationKey, int layer)
+        private void Play(string animationKey, int layer, bool loop)
         {
-            if (currentState == animationKey) return;
-            currentState = animationKey;
-            
-            Play(Animator.StringToHash(animationKey), layer);
+            Play(Animator.StringToHash(animationKey), layer, loop);
         }
 
-        private void Play(int nameHash, int layer)
+        private void Play(int nameHash, int layer, bool loop)
         {
             if (!modelData.TryGetAnimation(nameHash, out var target)) return;
     
-            Play(target, layer);
+            Play(target, layer, loop);
         }
         
-        private void Play(Animation target, int layer)
+        private void Play(Animation target, int layer, bool loop)
         {
             var hasCurrent = TryGetCurrentAnimation(layer, out var current);
             var hasTransition = modelData.TryGetTransition(current, target, out var transition);
@@ -80,18 +75,18 @@ namespace Common.Character
             if (hasCurrent && hasTransition)
             {
                 skeletonAnimation.AnimationState.SetAnimation(layer, transition, false);
-                skeletonAnimation.AnimationState.AddAnimation(layer, target, true, 0f);
+                skeletonAnimation.AnimationState.AddAnimation(layer, target, loop, 0f);
     
                 return;
             }
-        
-            skeletonAnimation.AnimationState.SetAnimation(layer, target, true);
+            
+            skeletonAnimation.AnimationState.SetAnimation(layer, target, loop);
             TargetAnimation = target;
         }
         
         private void Start()
         {
-            skeletonAnimation.AnimationState.SetAnimation(0, "idle", true);
+            Idle();
         }
     
         private bool TryGetCurrentAnimation(int layer, out Animation result)

@@ -27,16 +27,21 @@ namespace Common.Character.Player
         public Vector3 Destination => characterPathfinding.Destination;
 
         public CharacterTargeting CharacterTargeting => characterTargeting;
+        public GameObject FocusTarget => CharacterTargeting.FocusTarget;
         
 
         public void Idle()
         {
+            Debug.Log("Player Idle In");
+            
             PlayerStatus = CharacterStatus.Idle;
             animationModel.Idle();
         }
 
         public void Attack(GameObject target)
         {
+            Debug.Log("Player Attack!");
+            
             PlayerStatus = CharacterStatus.Attack;
             animationModel.Attack();
         }
@@ -75,6 +80,8 @@ namespace Common.Character.Player
 
         public void Run(Vector3 destination)
         {
+            Debug.Log("Player Run!");
+            
             PlayerStatus = CharacterStatus.Run;
             characterPathfinding.Move(destination, MoveSpeed);
             animationModel.Run();
@@ -96,7 +103,7 @@ namespace Common.Character.Player
             animationEvent ??= GetComponentInChildren<CharacterAnimationEventModel>();
             
             controller.Initialize(GetComponent<Rigidbody>());
-            characterPathfinding.Initialize(Idle);
+            characterPathfinding.Initialize();
             // characterTargeting.Initialize(class.Range);
             animationModel.Initialize(skeletonAnimation);
         }

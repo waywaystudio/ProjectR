@@ -12,7 +12,7 @@ namespace Common.Character.Monster
         private void Awake()
         {
             characterPathfinding ??= GetComponentInChildren<CharacterPathfinding>();
-            characterPathfinding.Initialize(null);
+            characterPathfinding.Initialize();
         }
     }
 }

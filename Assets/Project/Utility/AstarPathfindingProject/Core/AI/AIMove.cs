@@ -12,19 +12,7 @@ namespace Pathfinding
     {
         [SerializeField] private Transform rootObject;
 
-        private Action onTargetReached;
-        
         public Transform RootObject => rootObject;
-
-        public void Initialize(Action onTargetReached)
-        {
-            this.onTargetReached = onTargetReached;
-        }
-
-        public override void OnTargetReached()
-        {
-            onTargetReached?.Invoke();
-        }
 
         public override void FindComponents()
         {
@@ -36,12 +24,11 @@ namespace Pathfinding
             rigid2D = GetComponent<Rigidbody2D>();
         }
 
-        protected override void OnDisable()
-        {
-            base.OnDisable();
-
-            onTargetReached = null;
-        }
+        // TODO. 패스에 도달했을 때 이벤트 호출 방법.
+        // public override void OnTargetReached()
+        // {
+        //     onTargetReached?.Invoke();
+        // }
     }
 }
 

@@ -685,12 +685,15 @@ namespace Spine {
 		///          duration. In either case<see cref="TrackEntry.TrackEnd"/> determines when the track is cleared.</param>
 		/// <returns> A track entry to allow further customization of animation playback. References to the track entry must not be kept
 		///          after the <see cref="AnimationState.Dispose"/> event occurs.</returns>
-		public TrackEntry SetAnimation (int trackIndex, Animation animation, bool loop) {
+		public TrackEntry SetAnimation (int trackIndex, Animation animation, bool loop) 
+		{
 			if (animation == null) throw new ArgumentNullException("animation", "animation cannot be null.");
 			bool interrupt = true;
 			TrackEntry current = ExpandToIndex(trackIndex);
-			if (current != null) {
-				if (current.nextTrackLast == -1) {
+			if (current != null) 
+			{
+				if (current.nextTrackLast == -1) 
+				{
 					// Don't mix from an entry that was never applied.
 					tracks.Items[trackIndex] = current.mixingFrom;
 					queue.Interrupt(current);

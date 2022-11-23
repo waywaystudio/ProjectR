@@ -1,10 +1,10 @@
 using BehaviorDesigner.Runtime.Tasks;
 using Common.Character.Player;
-using UnityEngine;
 
-namespace Common.Character
+namespace Common.Character.Behavior
 {
-    public class CharacterIdleBehavior : Action
+    [TaskCategory("Character")]
+    public class AttackBehavior : Action
     {
         private PlayerBehaviour playerBehaviour;
 
@@ -12,11 +12,11 @@ namespace Common.Character
         {
             playerBehaviour = GetComponent<PlayerBehaviour>();
         }
-
+        
         public override TaskStatus OnUpdate()
         {
-            playerBehaviour.Idle();
-
+            playerBehaviour.Attack(playerBehaviour.FocusTarget);
+            
             return TaskStatus.Success;
         }
     }
