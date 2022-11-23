@@ -124,14 +124,18 @@ namespace BehaviorDesigner.Runtime.Tasks.Movement
                 if (hitTransform != null) {
                     if (IsAncestor(targetObject.transform, hitTransform)) {
 #if UNITY_EDITOR
-                        if (drawDebugRay) {
+                        if (drawDebugRay) 
+                        {
                             Debug.DrawLine(transform.TransformPoint(positionOffset), targetObject.transform.TransformPoint(targetOffset), Color.green);
                         }
 #endif
                         return targetObject; // return the target object meaning it is within sight
 #if UNITY_EDITOR
-                    } else {
-                        if (drawDebugRay) {
+                    } 
+                    else 
+                    {
+                        if (drawDebugRay) 
+                        {
                             Debug.DrawLine(transform.TransformPoint(positionOffset), targetObject.transform.TransformPoint(targetOffset), Color.yellow);
                         }
 #endif

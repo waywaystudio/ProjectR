@@ -30,10 +30,6 @@ public class PlayerController : MonoBehaviour
         var input = context.ReadValue<Vector2>();
         
         direction = new Vector3(input.x, 0f, input.y);
-        
-        if (input.x == 0.0f && input.y == 0.0f) StateTo(CharacterState.Idle);
-        if (input.x != 0.0f || input.y != 0.0f) StateTo(CharacterState.Run);
-        
         animationModel.Flip(direction);
 
         if (context.canceled)
@@ -44,7 +40,7 @@ public class PlayerController : MonoBehaviour
 
     public void OnAttack(InputAction.CallbackContext context)
     {
-        StateTo(CharacterState.Attack);
+        
     }
 
     // UnityEvent :: PlayerInput.Events.Player.Interaction - 'E' Interaction
@@ -58,32 +54,6 @@ public class PlayerController : MonoBehaviour
     public void DirectionControl()
     {
         characterRigidbody.velocity = direction * (moveSpeed * Time.deltaTime);
-    }
-
-    [Button]
-    public void DuplicateTest() => StateTo(CharacterState.Attack | CharacterState.Idle);
-
-    public void StateTo(CharacterState state)
-    {
-        if (state.HasFlag(CharacterState.Idle))
-        {
-            animationModel.Idle();
-        }
-        
-        if (state.HasFlag(CharacterState.Attack))
-        {
-            animationModel.Attack();
-        }
-        
-        if (state.HasFlag(CharacterState.Run))
-        {
-            animationModel.Run();
-        }
-        
-        if (state.HasFlag(CharacterState.Crouch))
-        {
-            animationModel.Crouch();
-        }
     }
 
     private void OnDisable()

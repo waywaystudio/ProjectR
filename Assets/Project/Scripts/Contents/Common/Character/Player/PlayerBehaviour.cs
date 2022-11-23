@@ -8,7 +8,7 @@ namespace Common.Character.Player
     public class PlayerBehaviour : MonoBehaviour, ISavable, IControlModel
     {
         public float MoveSpeed = 5f;
-        public CharacterState State;
+        public CharacterStatus PlayerStatus = CharacterStatus.Idle;
 
         // Data
         [SerializeField] private SkeletonAnimation skeletonAnimation;
@@ -16,20 +16,29 @@ namespace Common.Character.Player
         // Operation
         [SerializeField] private PlayerController controller;
         [SerializeField] private CharacterPathfinding characterPathfinding;
+        [SerializeField] private CharacterTargeting characterTargeting;
         
         // Graphic
         [SerializeField] private CharacterAnimationModel animationModel;
         [SerializeField] private CharacterAnimationEventModel animationEvent;
         
+        // Behavior
+        public bool IsFinished => characterPathfinding.IsFinished;
+        public Vector3 Destination => characterPathfinding.Destination;
+
+        public CharacterTargeting CharacterTargeting => characterTargeting;
+        
 
         public void Idle()
         {
+            PlayerStatus = CharacterStatus.Idle;
             animationModel.Idle();
         }
 
         public void Attack(GameObject target)
         {
-            // OnAttack?.Invoke(target);
+            PlayerStatus = CharacterStatus.Attack;
+            animationModel.Attack();
         }
 
         public void Defence()
@@ -59,17 +68,21 @@ namespace Common.Character.Player
 
         public void Walk(Vector3 destination)
         {
+            PlayerStatus = CharacterStatus.Walk;
             characterPathfinding.Move(destination, MoveSpeed);
             animationModel.Walk();
         }
 
-        public void Run(Vector3 position)
+        public void Run(Vector3 destination)
         {
-            
+            PlayerStatus = CharacterStatus.Run;
+            characterPathfinding.Move(destination, MoveSpeed);
+            animationModel.Run();
         }
 
         public void Death()
         {
+            PlayerStatus = CharacterStatus.Death;
             
         }
 
@@ -78,11 +91,13 @@ namespace Common.Character.Player
             skeletonAnimation ??= GetComponentInChildren<SkeletonAnimation>();
             controller ??= GetComponentInChildren<PlayerController>();
             characterPathfinding ??= GetComponentInChildren<CharacterPathfinding>();
+            characterTargeting ??= GetComponentInChildren<CharacterTargeting>();
             animationModel ??= GetComponentInChildren<CharacterAnimationModel>();
             animationEvent ??= GetComponentInChildren<CharacterAnimationEventModel>();
             
             controller.Initialize(GetComponent<Rigidbody>());
             characterPathfinding.Initialize(Idle);
+            // characterTargeting.Initialize(class.Range);
             animationModel.Initialize(skeletonAnimation);
         }
 
@@ -94,6 +109,7 @@ namespace Common.Character.Player
 
         private void Update()
         {
+            characterTargeting.UpdateTargeting();
             animationModel.Flip(transform.forward);
 
             #region TEST

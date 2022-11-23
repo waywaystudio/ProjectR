@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 7074360088552777232}
   - component: {fileID: 6000064034395777866}
   - component: {fileID: 2058041382921754396}
+  - component: {fileID: 6088011952816824018}
   m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
@@ -101,6 +102,18 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 247
+--- !u!114 &6088011952816824018
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1045721251373807649}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 65462090ca3f7164d9003dd7862c8999, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1068238097133284307
 GameObject:
   m_ObjectHideFlags: 0
@@ -300,14 +313,14 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3259059352333038688}
-  m_LocalRotation: {x: 0, y: -0.7071068, z: 0.7071068, w: 0}
+  m_LocalRotation: {x: 0.7071068, y: 0, z: 0, w: 0.7071068}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 6047041960895986419}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 90, y: 0, z: 180}
+  m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
@@ -594,7 +607,8 @@ GameObject:
   m_Component:
   - component: {fileID: 1586898605020412687}
   - component: {fileID: 1683699618266686655}
-  m_Layer: 7
+  - component: {fileID: 536999302}
+  m_Layer: 2
   m_Name: Targeting
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -628,10 +642,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 079054a3d925aa34e9db343c1497c49b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  searchingRadius: 20
-  targetlayer:
+  attackRange: 8
+  searchingRange: 30
+  targetLayer:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 256
+--- !u!135 &536999302
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7645773892073466725}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 30
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &8119311918509560303
 GameObject:
   m_ObjectHideFlags: 0
@@ -645,6 +673,7 @@ GameObject:
   - component: {fileID: 8119311918509560298}
   - component: {fileID: 8609205788177038357}
   - component: {fileID: 8119311918509560085}
+  - component: {fileID: 6735723558417861916}
   m_Layer: 7
   m_Name: Character
   m_TagString: Player
@@ -683,10 +712,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   MoveSpeed: 5
-  State: 0
+  PlayerStatus: 1
   skeletonAnimation: {fileID: 4992384900474842763}
   controller: {fileID: 8465506878290798802}
   characterPathfinding: {fileID: 5433417425623483359}
+  characterTargeting: {fileID: 1683699618266686655}
   animationModel: {fileID: 711594441686645133}
   animationEvent: {fileID: 2815777451027632908}
 --- !u!54 &8119311918509560298
@@ -739,6 +769,49 @@ MonoBehaviour:
   loadEvent:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &6735723558417861916
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8119311918509560303}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8d7b55c7ecdb49a4a89fa5e6f9022861, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  startWhenEnabled: 1
+  asynchronousLoad: 0
+  pauseWhenDisabled: 0
+  restartWhenComplete: 1
+  logTaskChanges: 0
+  group: 0
+  resetValuesOnRestart: 0
+  externalBehavior: {fileID: 0}
+  mBehaviorSource:
+    behaviorName: PlayerBehavior
+    behaviorDescription: 
+    mTaskData:
+      types: []
+      parentIndex: 
+      startIndex: 
+      variableStartIndex: 
+      JSONSerialization: '{"EntryTask":{"Type":"BehaviorDesigner.Runtime.Tasks.EntryTask","NodeData":{"Offset":"(526.4067,-5.477539)"},"ID":0,"Name":"Entry","Instant":true},"RootTask":{"Type":"BehaviorDesigner.Runtime.Tasks.Selector","NodeData":{"Offset":"(-3.59332275,124.522461)"},"ID":1,"Name":"Selector","Instant":true,"AbortTypeabortType":"None","Children":[{"Type":"BehaviorDesigner.Runtime.Tasks.Sequence","NodeData":{"Offset":"(-213.593323,164.522461)"},"ID":2,"Name":"Sequence","Instant":true,"AbortTypeabortType":"None","Children":[{"Type":"Common.Character.CharacterSearchingBehavior","NodeData":{"Offset":"(-183.593323,184.522461)"},"ID":3,"Name":"Character
+        Searching Behavior","Instant":true},{"Type":"Common.Character.Behavior.CharacterMaxRangeMoveBehavior","NodeData":{"Offset":"(50,180)"},"ID":4,"Name":"Character
+        Max Range Move Behavior","Instant":true},{"Type":"BehaviorDesigner.Runtime.Tasks.Wait","NodeData":{"Offset":"(228.628845,184.522461)"},"ID":5,"Name":"Wait","Instant":true,"SharedFloatwaitTime":{"Type":"BehaviorDesigner.Runtime.SharedFloat","Name":null,"SinglemValue":1},"SharedBoolrandomWait":{"Type":"BehaviorDesigner.Runtime.SharedBool","Name":null,"BooleanmValue":false},"SharedFloatrandomWaitMin":{"Type":"BehaviorDesigner.Runtime.SharedFloat","Name":null,"SinglemValue":1},"SharedFloatrandomWaitMax":{"Type":"BehaviorDesigner.Runtime.SharedFloat","Name":null,"SinglemValue":1}}]},{"Type":"Common.Character.CharacterIdleBehavior","NodeData":{"Offset":"(112.184387,157.633545)"},"ID":6,"Name":"Character
+        Idle Behavior","Instant":true}]}}'
+      fieldSerializationData:
+        typeName: []
+        fieldNameHash: 
+        startIndex: 
+        dataPosition: 
+        unityObjects: []
+        byteData: 
+        byteDataArray: 
+      Version: 1.7.4
+  gizmoViewMode: 2
+  showBehaviorDesignerGizmo: 1
 --- !u!1 &8119311918708140503
 GameObject:
   m_ObjectHideFlags: 0

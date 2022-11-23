@@ -70,6 +70,11 @@ namespace Core
         {
             return gameObject.GetComponent<T>() != null;
         }
+        
+        public static bool IsInLayerMask(this GameObject obj, LayerMask mask)
+        {
+            return (mask.value & (1 << obj.layer)) > 0;
+        }
     }
 }
 

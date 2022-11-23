@@ -13,7 +13,12 @@ namespace Common.Character
         private Transform rootObject;
         private Vector3 tempDirection;
 
-        private Vector3 Destination { set => aiMove.destination = value; }
+        public bool IsFinished => aiMove.reachedEndOfPath;
+        public Vector3 Destination
+        {
+            get => aiMove.destination;
+            set => aiMove.destination = value; 
+        }
 
         public void Initialize(Action onTargetReached)
         {
