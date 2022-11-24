@@ -34,6 +34,24 @@ public class AnimationModelData : ScriptableObject
     [SerializeField] private List<AnimationIndex> animationList = new();
     [SerializeField] private List<AnimationTransitionIndex> transitionIndexList = new();
 
+    public bool TryGetAnimation(string animationName, out Animation result)
+    {
+        result = animationList.Find(x => x.AnimationName.Equals(animationName))
+                              .AnimationReferenceAsset.Animation;
+
+        return result is not null;
+    }
+
+    public bool TryGetTransition(Animation from, Animation dest, out Animation result)
+    {
+        result 
+            = transitionIndexList.Find(x => x.From.Animation == from && x.Dest.Animation == dest)?
+                .Via.Animation;
+
+        return result is not null;
+    }
+    
+    
     private void OnEnable()
     {
         animationList.ForEach(x => x.AnimationReferenceAsset.Initialize());
@@ -43,23 +61,6 @@ public class AnimationModelData : ScriptableObject
             x.Via.Initialize();
             x.Dest.Initialize();
         });
-    }
-
-    public bool TryGetAnimation(int nameHash, out Animation result)
-    {
-        result = animationList.Find(x => x.AnimationHash == nameHash)
-                              .AnimationReferenceAsset.Animation;
-
-        return result is not null;
-    }
-    
-    public bool TryGetTransition(Animation from, Animation dest, out Animation result)
-    {
-        result 
-            = transitionIndexList.Find(x => x.From.Animation == from && x.Dest.Animation == dest)?
-                .Via.Animation;
-
-        return result is not null;
     }
 
 #if UNITY_EDITOR

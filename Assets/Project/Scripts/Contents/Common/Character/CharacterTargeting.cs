@@ -8,17 +8,23 @@ namespace Common.Character
 {
     public class CharacterTargeting : MonoBehaviour
     {
-        [SerializeField] private float attackRange = 8f;
-        [SerializeField] private float searchingRange = 30f;
+        [SerializeField] private float searchingRange = 60f;
         [SerializeField] private LayerMask targetLayer;
         
         private const int MaxBufferCount = 100;
+        private float attackRange;
         private SphereCollider searchingCollider;
         private readonly Collider[] colliderBuffer = new Collider[MaxBufferCount];
         
         [ShowInInspector] public List<GameObject> SearchedTargets { get; } = new ();
         [ShowInInspector] public List<GameObject> RangedTargets { get; } = new();
         [ShowInInspector] public GameObject FocusTarget { get; private set; }
+
+        public float AttackRange
+        {
+            get => attackRange;
+            set => attackRange = value;
+        }
 
         public void Initialize(float attackRange)
         {

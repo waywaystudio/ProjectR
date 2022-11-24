@@ -13,6 +13,7 @@ namespace Common.Character
         private Transform rootObject;
         private Vector3 tempDirection;
 
+        public bool HasPath => aiMove.hasPath;
         public bool IsFinished => aiMove.reachedEndOfPath;
         public Vector3 Destination
         {

@@ -1,4 +1,6 @@
+using System;
 using Sirenix.OdinInspector;
+using Spine;
 using Spine.Unity;
 using UnityEngine;
 using Animation = Spine.Animation;
@@ -7,26 +9,23 @@ namespace Common.Character
 {
     public class CharacterAnimationModel : MonoBehaviour
     {
-        [SerializeField] private SkeletonAnimation skeletonAnimation;
         [SerializeField] private AnimationModelData modelData;
+        
+        private SkeletonAnimation skeletonAnimation;
+        private Spine.AnimationState state;
 
         public Animation TargetAnimation { get; private set; }
-        
-        public void Initialize(SkeletonAnimation skeletonAnimation)
-        {
-            this.skeletonAnimation = skeletonAnimation;
-        }
 
         // Look Where;
-        [Button] public void LookLeft() => skeletonAnimation.Skeleton.ScaleX = 1.0f;
-        [Button] public void LookRight() => skeletonAnimation.Skeleton.ScaleX = -1.0f;
+        public void LookLeft() => skeletonAnimation.Skeleton.ScaleX = 1.0f;
+        public void LookRight() => skeletonAnimation.Skeleton.ScaleX = -1.0f;
         
         // Do What;
-        [Button] public void Idle() => Play("idle", 0, true);
-        [Button] public void Attack() => Play("attack", 0, false);
-        [Button] public void Walk() => Play("walk", 0, true);
-        [Button] public void Run()=> Play("run", 0, true);
-        [Button] public void Crouch() => Play("crouch", 0, true);
+        public void Idle(bool loop = true, Action callback = null) => Play("idle", 0, loop, callback);
+        public void Attack(bool loop = false, Action callback = null) => Play("attack", 0, loop, callback);
+        public void Walk(bool loop = true, Action callback = null) => Play("walk", 0, loop, callback);
+        public void Run(bool loop = true, Action callback = null)=> Play("run", 0, loop, callback);
+        public void Crouch(bool loop = true, Action callback = null) => Play("crouch", 0, loop, callback);
 
         public void Flip(Vector3 direction)
         {
@@ -42,8 +41,6 @@ namespace Common.Character
 
         public void PlayOneShot(Animation oneShot, int layer)
         {
-            var state = skeletonAnimation.AnimationState;
-    
             state.SetAnimation(0, oneShot, false);
     
             if (modelData.TryGetTransition(oneShot, TargetAnimation, out var transition))
@@ -53,45 +50,69 @@ namespace Common.Character
     
             state.AddAnimation(0, TargetAnimation, true, 0f);
         }
-        
 
-        private void Play(string animationKey, int layer, bool loop)
+        private void Play(string animationKey, int layer, bool loop = true, Action callback = null)
         {
-            Play(Animator.StringToHash(animationKey), layer, loop);
-        }
-
-        private void Play(int nameHash, int layer, bool loop)
-        {
-            if (!modelData.TryGetAnimation(nameHash, out var target)) return;
-    
-            Play(target, layer, loop);
-        }
-        
-        private void Play(Animation target, int layer, bool loop)
-        {
-            var hasCurrent = TryGetCurrentAnimation(layer, out var current);
-            var hasTransition = modelData.TryGetTransition(current, target, out var transition);
-        
-            if (hasCurrent && hasTransition)
+            if (!modelData.TryGetAnimation(animationKey, out var target))
             {
-                skeletonAnimation.AnimationState.SetAnimation(layer, transition, false);
-                skeletonAnimation.AnimationState.AddAnimation(layer, target, loop, 0f);
-    
+                Debug.LogError($"Not Exist Animation Key {animationKey}");
                 return;
             }
             
-            skeletonAnimation.AnimationState.SetAnimation(layer, target, loop);
+            Play(target, layer, loop, callback);
+        }
+
+        private void Play(Animation target, int layer, bool loop, Action callback = null)
+        {
+            TrackEntry entry;
+            
+            if (target.Equals(TargetAnimation) && loop)
+            {
+                entry = state.GetCurrent(layer);
+                
+                if (callback != null) 
+                    entry.Complete += _ => callback.Invoke();
+                
+                return;
+            }
+            
+            var hasCurrent = TryGetCurrentAnimation(layer, out var current);
+            var hasTransition = modelData.TryGetTransition(current, target, out var transition);
+
+            if (hasCurrent && hasTransition)
+            {
+                entry = state.SetAnimation(layer, transition, false);
+
+                if (callback != null) 
+                    entry.Complete += _ => callback.Invoke();
+                
+                state.AddAnimation(layer, target, loop, 0f);
+    
+                return;
+            }
+
+            entry = state.SetAnimation(layer, target, loop);
+
+            if (callback != null) 
+                entry.Complete += _ => callback.Invoke();
+
             TargetAnimation = target;
         }
-        
-        private void Start()
+
+        private void Awake()
+        {
+            skeletonAnimation = GetComponent<SkeletonAnimation>();
+            state = skeletonAnimation.AnimationState;
+        }
+
+        private void OnEnable()
         {
             Idle();
         }
     
         private bool TryGetCurrentAnimation(int layer, out Animation result)
         {
-            result = skeletonAnimation.AnimationState.GetCurrent(layer)?.Animation;
+            result = state.GetCurrent(layer)?.Animation;
     
             return result is not null;
         }

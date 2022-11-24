@@ -642,7 +642,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 079054a3d925aa34e9db343c1497c49b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  attackRange: 8
   searchingRange: 30
   targetLayer:
     serializedVersion: 2
@@ -712,6 +711,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   MoveSpeed: 5
+  Range: 0
   PlayerStatus: 1
   skeletonAnimation: {fileID: 4992384900474842763}
   controller: {fileID: 8465506878290798802}
@@ -797,13 +797,12 @@ MonoBehaviour:
       parentIndex: 
       startIndex: 
       variableStartIndex: 
-      JSONSerialization: '{"EntryTask":{"Type":"BehaviorDesigner.Runtime.Tasks.EntryTask","NodeData":{"Offset":"(526.4067,-5.477539)"},"ID":0,"Name":"Entry","Instant":true},"RootTask":{"Type":"BehaviorDesigner.Runtime.Tasks.Selector","NodeData":{"Offset":"(-3.59332275,124.522461)"},"ID":1,"Name":"Selector","Instant":true,"AbortTypeabortType":"None","Children":[{"Type":"BehaviorDesigner.Runtime.Tasks.Sequence","NodeData":{"Offset":"(-213.593323,164.522461)"},"ID":2,"Name":"Sequence","Instant":true,"AbortTypeabortType":"None","Children":[{"Type":"Common.Character.Behavior.SearchingBehavior","NodeData":{"Offset":"(-514.444458,150)"},"ID":3,"Name":"Searching
-        Behavior","Instant":true},{"Type":"Common.Character.Behavior.MaxRangeMoveBehavior","NodeData":{"Offset":"(-340,150)"},"ID":4,"Name":"Max
-        Range Move Behavior","Instant":true},{"Type":"BehaviorDesigner.Runtime.Tasks.Wait","NodeData":{"Offset":"(-193.593323,154.522461)"},"ID":5,"Name":"Wait","Instant":true,"SharedFloatwaitTime":{"Type":"BehaviorDesigner.Runtime.SharedFloat","Name":null,"SinglemValue":1},"SharedBoolrandomWait":{"Type":"BehaviorDesigner.Runtime.SharedBool","Name":null,"BooleanmValue":false},"SharedFloatrandomWaitMin":{"Type":"BehaviorDesigner.Runtime.SharedFloat","Name":null,"SinglemValue":1},"SharedFloatrandomWaitMax":{"Type":"BehaviorDesigner.Runtime.SharedFloat","Name":null,"SinglemValue":1}},{"Type":"BehaviorDesigner.Runtime.Tasks.UntilSuccess","NodeData":{"Offset":"(-68.8888855,147.777771)"},"ID":6,"Name":"Until
-        Success","Instant":true,"Children":[{"Type":"Common.Character.Behavior.UntilMoveFinished","NodeData":{"Offset":"(-4.704422,114.522392)"},"ID":7,"Name":"Until
-        Move Finished","Instant":true}]},{"Type":"Common.Character.Behavior.AttackBehavior","NodeData":{"Offset":"(93.07333,153.411316)"},"ID":8,"Name":"Attack
-        Behavior","Instant":true},{"Type":"BehaviorDesigner.Runtime.Tasks.Wait","NodeData":{"Offset":"(217.517761,148.966888)"},"ID":9,"Name":"Wait","Instant":true,"SharedFloatwaitTime":{"Type":"BehaviorDesigner.Runtime.SharedFloat","Name":null,"SinglemValue":0.5},"SharedBoolrandomWait":{"Type":"BehaviorDesigner.Runtime.SharedBool","Name":null,"BooleanmValue":false},"SharedFloatrandomWaitMin":{"Type":"BehaviorDesigner.Runtime.SharedFloat","Name":null,"SinglemValue":1},"SharedFloatrandomWaitMax":{"Type":"BehaviorDesigner.Runtime.SharedFloat","Name":null,"SinglemValue":1}}]},{"Type":"Common.Character.Behavior.IdleBehavior","NodeData":{"Offset":"(184.4444,160)"},"ID":10,"Name":"Idle
-        Behavior","Instant":true}]}}'
+      JSONSerialization: '{"EntryTask":{"Type":"BehaviorDesigner.Runtime.Tasks.EntryTask","NodeData":{"Offset":"(526.4067,-5.477539)"},"ID":0,"Name":"Entry","Instant":true},"RootTask":{"Type":"BehaviorDesigner.Runtime.Tasks.Sequence","NodeData":{"Offset":"(2.76590538,120.425606)"},"ID":1,"Name":"Sequence","Instant":true,"AbortTypeabortType":"None","Children":[{"Type":"Common.Character.Behavior.SearchingBehavior","NodeData":{"Offset":"(-194.231659,150)"},"ID":2,"Name":"Searching
+        Behavior","Instant":true},{"Type":"BehaviorDesigner.Runtime.Tasks.UntilSuccess","NodeData":{"Offset":"(-3.14323616,151.7952)"},"ID":3,"Name":"Until
+        Success","Instant":true,"Children":[{"Type":"BehaviorDesigner.Runtime.Tasks.Sequence","NodeData":{"Offset":"(-1.39788818,126.28685)"},"ID":4,"Name":"Sequence","Instant":true,"AbortTypeabortType":"None","Children":[{"Type":"Common.Character.Behavior.MaxRangeMoveBehavior","NodeData":{"Offset":"(-145.926315,149.756134)"},"ID":5,"Name":"Max
+        Range Move Behavior","Instant":true},{"Type":"BehaviorDesigner.Runtime.Tasks.Wait","NodeData":{"Offset":"(-3.08024025,149.756134)"},"ID":6,"Name":"Wait","Instant":true,"SharedFloatwaitTime":{"Type":"BehaviorDesigner.Runtime.SharedFloat","Name":null,"SinglemValue":0.2},"SharedBoolrandomWait":{"Type":"BehaviorDesigner.Runtime.SharedBool","Name":null,"BooleanmValue":false},"SharedFloatrandomWaitMin":{"Type":"BehaviorDesigner.Runtime.SharedFloat","Name":null,"SinglemValue":1},"SharedFloatrandomWaitMax":{"Type":"BehaviorDesigner.Runtime.SharedFloat","Name":null,"SinglemValue":1}},{"Type":"Common.Character.Behavior.IsAbleToAttack","NodeData":{"Offset":"(117.5,150)"},"ID":7,"Name":"Is
+        Able To Attack","Instant":true}]}]},{"Type":"BehaviorDesigner.Runtime.Tasks.Sequence","NodeData":{"Offset":"(254.066162,154.522461)"},"ID":8,"Name":"Sequence","Instant":true,"AbortTypeabortType":"None","Children":[{"Type":"Common.Character.Behavior.AttackBehavior","NodeData":{"Offset":"(-70,130)"},"ID":9,"Name":"Attack
+        Behavior","Instant":true},{"Type":"BehaviorDesigner.Runtime.Tasks.Wait","NodeData":{"Offset":"(50,130)"},"ID":10,"Name":"Wait","Instant":true,"SharedFloatwaitTime":{"Type":"BehaviorDesigner.Runtime.SharedFloat","Name":null,"SinglemValue":1.5},"SharedBoolrandomWait":{"Type":"BehaviorDesigner.Runtime.SharedBool","Name":null,"BooleanmValue":false},"SharedFloatrandomWaitMin":{"Type":"BehaviorDesigner.Runtime.SharedFloat","Name":null,"SinglemValue":1},"SharedFloatrandomWaitMax":{"Type":"BehaviorDesigner.Runtime.SharedFloat","Name":null,"SinglemValue":1}}]}]}}'
       fieldSerializationData:
         typeName: []
         fieldNameHash: 
@@ -1001,7 +1000,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fb1a1c90500fd794489e616b68c900e5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  skeletonAnimation: {fileID: 4992384900474842763}
   modelData: {fileID: 11400000, guid: 5fb6058bbb40ce847b4bcee74d3d26e3, type: 2}
 --- !u!114 &2815777451027632908
 MonoBehaviour:

@@ -8,6 +8,7 @@ namespace Common.Character.Player
     public class PlayerBehaviour : MonoBehaviour, ISavable, IControlModel
     {
         public float MoveSpeed = 5f;
+        public float Range;
         public CharacterStatus PlayerStatus = CharacterStatus.Idle;
 
         // Data
@@ -23,27 +24,34 @@ namespace Common.Character.Player
         [SerializeField] private CharacterAnimationEventModel animationEvent;
         
         // Behavior
+        public bool HasPath => characterPathfinding.HasPath;
         public bool IsFinished => characterPathfinding.IsFinished;
+        public bool IsInRange
+        {
+            get
+            {
+                if (FocusTarget == null || !FocusTarget.activeSelf) return false;
+
+                return Vector3.Distance(transform.position, FocusTarget.transform.position) <= Range;
+            }
+        }
         public Vector3 Destination => characterPathfinding.Destination;
 
         public CharacterTargeting CharacterTargeting => characterTargeting;
         public GameObject FocusTarget => CharacterTargeting.FocusTarget;
         
+        
 
         public void Idle()
         {
-            Debug.Log("Player Idle In");
-            
             PlayerStatus = CharacterStatus.Idle;
             animationModel.Idle();
         }
 
         public void Attack(GameObject target)
         {
-            Debug.Log("Player Attack!");
-            
             PlayerStatus = CharacterStatus.Attack;
-            animationModel.Attack();
+            animationModel.Attack(false, Idle);
         }
 
         public void Defence()
@@ -104,8 +112,7 @@ namespace Common.Character.Player
             
             controller.Initialize(GetComponent<Rigidbody>());
             characterPathfinding.Initialize();
-            // characterTargeting.Initialize(class.Range);
-            animationModel.Initialize(skeletonAnimation);
+            characterTargeting.Initialize(Range);
         }
 
         private void Start()
@@ -119,18 +126,17 @@ namespace Common.Character.Player
             characterTargeting.UpdateTargeting();
             animationModel.Flip(transform.forward);
 
-            #region TEST
-            if (!Input.GetMouseButtonDown(0)) return;
-        
-            // ReSharper disable once Unity.PerformanceCriticalCodeCameraMain
-            // ReSharper disable once PossibleNullReferenceException
-            var ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-        
-            if (!Physics.Raycast(ray, out var hit)) return;
-
-            Walk(hit.point);
-
-            #endregion
+            // #region TEST
+            // if (!Input.GetMouseButtonDown(0)) return;
+            //
+            // // ReSharper disable once Unity.PerformanceCriticalCodeCameraMain
+            // // ReSharper disable once PossibleNullReferenceException
+            // var ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+            //
+            // if (!Physics.Raycast(ray, out var hit)) return;
+            //
+            // Walk(hit.point);
+            // #endregion
         }
 
         public void Save()

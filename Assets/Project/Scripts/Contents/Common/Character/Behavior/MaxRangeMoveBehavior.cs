@@ -13,12 +13,13 @@ namespace Common.Character.Behavior
         private GameObject target;
 
         private Vector3 direction;
-        private Vector3 destination;
+        private Vector3 targetPosition;
+        private Vector3 characterPosition;
 
         public override void OnAwake()
         {
             playerBehaviour = GetComponent<PlayerBehaviour>();
-            range = 6f;
+            range = playerBehaviour.CharacterTargeting.AttackRange;
             threshold.x = 0.1f;
             threshold.y = 0.2f;
         }
@@ -26,37 +27,25 @@ namespace Common.Character.Behavior
         public override TaskStatus OnUpdate()
         {
             target = playerBehaviour.CharacterTargeting.FocusTarget;
+            characterPosition = transform.position;
+            targetPosition = target.transform.position;
+            direction = (targetPosition - characterPosition).normalized;
             
-            if (target == null) 
-                return TaskStatus.Running;
-            
-            var characterPosition = transform.position;
-            var targetPosition = target.transform.position;
+            var rangeThreshold = range * Random.Range(threshold.x, threshold.y);
             var currentDistance = Vector3.Distance(targetPosition, characterPosition);
-            var magnitude = Mathf.Abs(currentDistance - range);
+            var magnitude = Mathf.Abs(currentDistance - range) + rangeThreshold;
+            var destination = characterPosition + direction * magnitude;
 
-            // 멀리 있는 경우 접근하기
-            // ex. Current 100, Range 6f
-            if (currentDistance > range)
+            // 사거리보다 너무 안쪽에 있다.
+            if (currentDistance <= range * (1f - threshold.y))
             {
-                direction = (targetPosition - characterPosition).normalized;
-                destination = characterPosition + direction * (magnitude * (1f + Random.Range(threshold.x, threshold.y)));
+                direction *= -1f;
+                magnitude = Mathf.Abs(currentDistance - range) - rangeThreshold;
+                destination = characterPosition + direction * magnitude;
             }
-            // 이미 범위 안에 있는 경우, threshold를 바탕으로 뒤로 밀거나 유지
-            else
-            {
-                // threshold 범위조차 벗어난 경우, 뒤로간다.
-                // ex. Current 4, Range 6f
-                if (currentDistance <= range * (1f - threshold.y))
-                {
-                    direction = (characterPosition - targetPosition).normalized;
-                    destination = characterPosition + direction * magnitude;
-                }
-                else
-                {
-                    return TaskStatus.Success;
-                }
-            }
+            // 최대 사거리는 아니지만, 꽤 멀리있는 편이라면 그대로 있는다.
+            else if (range * (1f - threshold.y) < currentDistance && currentDistance < range)
+                return TaskStatus.Success;
             
             playerBehaviour.Run(destination);
             return TaskStatus.Success;

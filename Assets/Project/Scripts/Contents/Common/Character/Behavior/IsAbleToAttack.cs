@@ -4,7 +4,7 @@ using Common.Character.Player;
 namespace Common.Character.Behavior
 {
     [TaskCategory("Character")]
-    public class UntilMoveFinished : Action
+    public class IsAbleToAttack : Action
     {
         private PlayerBehaviour playerBehaviour;
 
@@ -15,8 +15,11 @@ namespace Common.Character.Behavior
         
         public override TaskStatus OnUpdate()
         {
-            return playerBehaviour.IsFinished ? TaskStatus.Success 
-                                              : TaskStatus.Running;
+            var result = playerBehaviour.HasPath ? playerBehaviour.IsFinished 
+                                                     : playerBehaviour.IsInRange;
+
+            return result ? TaskStatus.Success 
+                          : TaskStatus.Failure;
         }
     }
 }
