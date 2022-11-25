@@ -18,6 +18,18 @@ namespace Shortcut
             if (method != null) 
                 method.Invoke(new object(), null);
         }
+
+        [Shortcut("HalfWork", KeyCode.F11)]
+        public static void HalfWorkLayout()
+        {
+            EditorApplication.ExecuteMenuItem("Window/Layouts/HalfWork");
+        }
+        
+        [Shortcut("FullWork", KeyCode.F12)]
+        public static void FullWorkLayout()
+        {
+            EditorApplication.ExecuteMenuItem("Window/Layouts/FullWork");
+        }
     }
 }
 

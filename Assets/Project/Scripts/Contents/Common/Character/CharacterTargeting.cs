@@ -49,10 +49,9 @@ namespace Common.Character
 
 #if UNITY_EDITOR
             if (hitCount >= MaxBufferCount)
-            {
-                Debug.LogWarning($"Overflow Collider Max Buffer size : {MaxBufferCount}");
-            }
+                Debug.LogWarning($"Overflow Collider Max Buffer size : {MaxBufferCount}");          
 #endif
+            
             SearchedTargets.Clear();
             colliderBuffer.ForEach(x =>
             {
@@ -100,7 +99,7 @@ namespace Common.Character
         {
             if (rangeTargets.IsNullOrEmpty())
             {
-                FocusTarget = searchedTargets.IsNullOrEmpty() ? gameObject 
+                FocusTarget = searchedTargets.IsNullOrEmpty() ? null 
                                                               : searchedTargets.First();
             }
             else
