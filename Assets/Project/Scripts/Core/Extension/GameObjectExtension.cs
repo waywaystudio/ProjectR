@@ -58,6 +58,17 @@ namespace Core
 
             postMove?.Invoke();
         }
+
+        public static bool IsNullOrEmpty(this GameObject gameObject)
+        {
+            return gameObject == null || gameObject.activeSelf == false;
+        }
+
+        public static bool IsNullOrEmpty(this Component component)
+        {
+            return component == null || component.gameObject.activeSelf == false;
+        }
+        
         
         public static T GetOrAddComponent<T>(this GameObject gameObject) where T : MonoBehaviour
         {

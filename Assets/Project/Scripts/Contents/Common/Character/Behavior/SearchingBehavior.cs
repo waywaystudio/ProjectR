@@ -16,12 +16,8 @@ namespace Common.Character.Behavior
 
         public override TaskStatus OnUpdate()
         {
-            if (playerBehaviour.CharacterTargeting.SearchedTargets.IsNullOrEmpty())
-            {
-                return TaskStatus.Running;
-            }
-
-            return TaskStatus.Success;
+            return playerBehaviour.CharacterTargeting.SearchedTargets.IsNullOrEmpty() ? TaskStatus.Failure 
+                                                                                      : TaskStatus.Success;
         }
     }
 }

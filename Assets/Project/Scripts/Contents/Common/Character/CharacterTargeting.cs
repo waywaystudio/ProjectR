@@ -55,7 +55,7 @@ namespace Common.Character
             SearchedTargets.Clear();
             colliderBuffer.ForEach(x =>
             {
-                if (x == null || x.gameObject.activeSelf == false) return;
+                if (x.IsNullOrEmpty()) return;
                 SearchedTargets.Add(x.gameObject);
             });
         }
