@@ -19,7 +19,7 @@ namespace Common.Character.Behavior
         public override TaskStatus OnUpdate()
         {
             targetPosition = playerBehaviour.FocusTarget.transform.position;
-            playerBehaviour.transform.DOLookAt(targetPosition, 0.1f);
+            playerBehaviour.transform.DOLookAt(targetPosition, 0.15f);
             
             return TaskStatus.Success;
         }

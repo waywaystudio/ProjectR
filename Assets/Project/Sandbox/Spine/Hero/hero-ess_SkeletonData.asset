@@ -27,11 +27,14 @@ MonoBehaviour:
   fromAnimation:
   - attack
   - attack
+  - idle
   toAnimation:
   - walk
   - run
+  - attack
   duration:
   - 0
   - 0
+  - 0.1
   defaultMix: 0.2
   controller: {fileID: 0}

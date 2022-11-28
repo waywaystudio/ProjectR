@@ -14,7 +14,7 @@ namespace Common.Character
         private Vector3 tempDirection;
 
         public bool HasPath => aiMove.hasPath;
-        public bool IsReached => aiMove.reachedDestination;
+        public bool IsReached => aiMove.reachedEndOfPath;
 
         public Vector3 Destination
         {

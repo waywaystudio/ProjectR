@@ -18,7 +18,7 @@ namespace Common.Character
         public float AttackRange { get; set; }
         public List<GameObject> SearchedTargets { get; } = new ();
         public List<GameObject> RangedTargets { get; } = new();
-        [ShowInInspector] public GameObject FocusTarget { get; private set; }
+        public GameObject FocusTarget { get; private set; }
 
         public void Initialize(float attackRange)
         {

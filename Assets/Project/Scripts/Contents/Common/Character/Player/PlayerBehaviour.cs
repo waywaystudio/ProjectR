@@ -25,7 +25,7 @@ namespace Common.Character.Player
         
         // Behavior
         public bool HasPath => characterPathfinding.HasPath;
-        public bool IsDestinationReached => characterPathfinding.IsReached;
+        public bool IsDestinationReached => !HasPath || characterPathfinding.IsReached;
         public bool IsInRange
         {
             get
@@ -86,8 +86,6 @@ namespace Common.Character.Player
 
         public void Run(Vector3 destination)
         {
-            Debug.Log("Player Run!");
-            
             PlayerStatus = CharacterStatus.Run;
             characterPathfinding.Move(destination, MoveSpeed);
             animationModel.Run();
@@ -123,18 +121,6 @@ namespace Common.Character.Player
         {
             characterTargeting.UpdateTargeting();
             animationModel.Flip(transform.forward);
-
-            // #region TEST
-            // if (!Input.GetMouseButtonDown(0)) return;
-            //
-            // // ReSharper disable once Unity.PerformanceCriticalCodeCameraMain
-            // // ReSharper disable once PossibleNullReferenceException
-            // var ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-            //
-            // if (!Physics.Raycast(ray, out var hit)) return;
-            //
-            // Walk(hit.point);
-            // #endregion
         }
 
         public void Save()

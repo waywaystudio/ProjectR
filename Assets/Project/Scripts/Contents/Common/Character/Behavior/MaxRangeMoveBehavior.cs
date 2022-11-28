@@ -33,6 +33,7 @@ namespace Common.Character.Behavior
 
             var currentDistance = Vector3.Distance(targetPosition, characterPosition);
             float magnitude;
+            
 
             //--outOfRange - MaxRange -<            SafeRange          >- CloseRange - Target
             //--------------------------safeRange.x----------safeRange.y---------------Target
@@ -69,6 +70,7 @@ namespace Common.Character.Behavior
             var destination = characterPosition + direction * magnitude;
 
             pb.Run(destination);
+
             return TaskStatus.Failure;
         }
     }

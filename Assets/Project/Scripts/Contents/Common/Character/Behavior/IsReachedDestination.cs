@@ -6,16 +6,16 @@ namespace Common.Character.Behavior
     [TaskCategory("Character")]
     public class IsReachedDestination : Action
     {
-        private PlayerBehaviour playerBehaviour;
+        private PlayerBehaviour pb;
 
         public override void OnAwake()
         {
-            playerBehaviour = GetComponent<PlayerBehaviour>();
+            pb = GetComponent<PlayerBehaviour>();
         }
         
         public override TaskStatus OnUpdate()
         {
-            return playerBehaviour.IsDestinationReached
+            return pb.IsDestinationReached
                 ? TaskStatus.Success
                 : TaskStatus.Failure;
         }

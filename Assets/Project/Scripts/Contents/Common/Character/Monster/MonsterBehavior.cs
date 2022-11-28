@@ -1,4 +1,3 @@
-using System;
 using UnityEngine;
 
 namespace Common.Character.Monster
@@ -30,11 +29,15 @@ namespace Common.Character.Monster
         
             // ReSharper disable once Unity.PerformanceCriticalCodeCameraMain
             // ReSharper disable once PossibleNullReferenceException
+            #region TEST FUNCTION
+
             var ray = Camera.main.ScreenPointToRay(Input.mousePosition);
         
             if (!Physics.Raycast(ray, out var hit)) return;
 
             Walk(hit.point);
+
+            #endregion
         }
     }
 }
