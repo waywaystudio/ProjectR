@@ -7,9 +7,10 @@ namespace Common.Character.Behavior
     [TaskCategory("Character")]
     public class MaxRangeMoveBehavior : Action
     {
-        private PlayerBehaviour playerBehaviour;
+        private PlayerBehaviour pb;
         private float range;
-        private Vector2 threshold;
+        private float safeTolerance;
+        private float safePoint;
         private GameObject target;
 
         private Vector3 direction;
@@ -18,37 +19,57 @@ namespace Common.Character.Behavior
 
         public override void OnAwake()
         {
-            playerBehaviour = GetComponent<PlayerBehaviour>();
-            range = playerBehaviour.CharacterTargeting.AttackRange;
-            threshold.x = 0.1f;
-            threshold.y = 0.2f;
+            pb = GetComponent<PlayerBehaviour>();
+            range = pb.CharacterTargeting.AttackRange;
+            safeTolerance = Random.Range(0.3f, 0.7f);
+            safePoint = Random.Range(0.3f, 0.7f);
         }
 
         public override TaskStatus OnUpdate()
         {
-            target = playerBehaviour.CharacterTargeting.FocusTarget;
-            characterPosition = transform.position;
+            target = pb.CharacterTargeting.FocusTarget;
             targetPosition = target.transform.position;
-            direction = (targetPosition - characterPosition).normalized;
-            
-            var rangeThreshold = range * Random.Range(threshold.x, threshold.y);
+            characterPosition = transform.position;
+
             var currentDistance = Vector3.Distance(targetPosition, characterPosition);
-            var magnitude = Mathf.Abs(currentDistance - range) + rangeThreshold;
+            float magnitude;
+
+            //--outOfRange - MaxRange -<            SafeRange          >- CloseRange - Target
+            //--------------------------safeRange.x----------safeRange.y---------------Target
+            //------------------------------------safeTolerance------------------------Target
+            //---------Player----------------------------------------------------------Target
+            // case Out of Range
+            if (currentDistance > range)
+            {
+                direction = (targetPosition - characterPosition).normalized;
+                magnitude = Mathf.Abs(currentDistance - range) + range * (safeTolerance * safePoint);
+            }
+            
+            //--outOfRange - MaxRange -<            SafeRange          >- CloseRange - Target
+            //--------------------------safeRange.x----------safeRange.y---------------Target
+            //------------------------------------safeTolerance------------------------Target
+            //--------------------------------------------------------------Player-----Target
+            // case Too Close Range
+            else if (currentDistance <= range * (1.0f - safeTolerance))
+            {
+                direction = (targetPosition - characterPosition).normalized * -1.0f;
+                magnitude = Mathf.Abs(currentDistance - range) - range * (safeTolerance * safePoint);
+            }
+            
+            //--outOfRange - MaxRange -<            SafeRange          >- CloseRange - Target
+            //--------------------------safeRange.x----------safeRange.y---------------Target
+            //------------------------------------safeTolerance------------------------Target
+            //-----------------------------------Player--------------------------------Target
+            // case In Safe Range
+            else // if (range * (1.0f - safeTolerance) < currentDistance && currentDistance <= range)
+            {
+                return TaskStatus.Success;
+            }
+
             var destination = characterPosition + direction * magnitude;
 
-            // 사거리보다 너무 안쪽에 있다.
-            if (currentDistance <= range * (1f - threshold.y))
-            {
-                direction *= -1f;
-                magnitude = Mathf.Abs(currentDistance - range) - rangeThreshold;
-                destination = characterPosition + direction * magnitude;
-            }
-            // 최대 사거리는 아니지만, 꽤 멀리있는 편이라면 그대로 있는다.
-            else if (range * (1f - threshold.y) < currentDistance && currentDistance < range)
-                return TaskStatus.Success;
-            
-            playerBehaviour.Run(destination);
-            return TaskStatus.Success;
+            pb.Run(destination);
+            return TaskStatus.Failure;
         }
     }
 }

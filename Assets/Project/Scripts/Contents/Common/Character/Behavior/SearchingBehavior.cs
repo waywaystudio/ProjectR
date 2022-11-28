@@ -7,17 +7,18 @@ namespace Common.Character.Behavior
     [TaskCategory("Character")]
     public class SearchingBehavior : Action
     {
-        private PlayerBehaviour playerBehaviour;
+        private PlayerBehaviour pb;
 
         public override void OnAwake()
         {
-            playerBehaviour = GetComponent<PlayerBehaviour>();
+            pb = GetComponent<PlayerBehaviour>();
         }
 
         public override TaskStatus OnUpdate()
         {
-            return playerBehaviour.CharacterTargeting.SearchedTargets.IsNullOrEmpty() ? TaskStatus.Failure 
-                                                                                      : TaskStatus.Success;
+            return pb.FocusTarget.IsNullOrEmpty() 
+                ? TaskStatus.Failure
+                : TaskStatus.Success;
         }
     }
 }

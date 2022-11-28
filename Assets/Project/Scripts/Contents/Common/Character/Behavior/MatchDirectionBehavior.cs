@@ -1,25 +1,26 @@
 using BehaviorDesigner.Runtime.Tasks;
 using Common.Character.Player;
+using DG.Tweening;
 using UnityEngine;
-using Action = BehaviorDesigner.Runtime.Tasks.Action;
 
 namespace Common.Character.Behavior
 {
     [TaskCategory("Character")]
-    public class MoveBehavior : Action
+    public class MatchDirectionBehavior : Action
     {
         private PlayerBehaviour playerBehaviour;
-
-        public Vector3 Destination => playerBehaviour.Destination;
-        public bool IsFinished => playerBehaviour.IsDestinationReached;
+        private Vector3 targetPosition;
 
         public override void OnAwake()
         {
             playerBehaviour = GetComponent<PlayerBehaviour>();
         }
-
+        
         public override TaskStatus OnUpdate()
         {
+            targetPosition = playerBehaviour.FocusTarget.transform.position;
+            playerBehaviour.transform.DOLookAt(targetPosition, 0.1f);
+            
             return TaskStatus.Success;
         }
     }

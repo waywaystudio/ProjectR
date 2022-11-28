@@ -5,20 +5,23 @@ namespace Common.Character.Monster
 {
     public class MonsterBehavior : MonoBehaviour
     {
+        // Data
+        [SerializeField] private float moveSpeed = 3f;
+        
         // Operation
         [SerializeField] private CharacterPathfinding characterPathfinding;
         
         // Graphic
-
+        
+        public void Walk(Vector3 destination)
+        {
+            characterPathfinding.Move(destination, moveSpeed);
+        }
+        
         private void Awake()
         {
             characterPathfinding ??= GetComponentInChildren<CharacterPathfinding>();
             characterPathfinding.Initialize();
-        }
-
-        private void Walk(Vector3 destination)
-        {
-            characterPathfinding.Move(destination, 10f);
         }
 
         private void Update()

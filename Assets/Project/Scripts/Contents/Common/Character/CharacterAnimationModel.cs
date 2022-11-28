@@ -22,7 +22,7 @@ namespace Common.Character
         
         // Do What;
         public void Idle(bool loop = true, Action callback = null) => Play("idle", 0, loop, callback);
-        public void Attack(bool loop = false, Action callback = null) => Play("attack", 0, loop, callback);
+        public void Attack(bool loop = true, Action callback = null) => Play("attack", 0, loop, callback);
         public void Walk(bool loop = true, Action callback = null) => Play("walk", 0, loop, callback);
         public void Run(bool loop = true, Action callback = null)=> Play("run", 0, loop, callback);
         public void Crouch(bool loop = true, Action callback = null) => Play("crouch", 0, loop, callback);
@@ -39,7 +39,18 @@ namespace Common.Character
             };
         }
 
-        public void PlayOneShot(Animation oneShot, int layer)
+        private void PlayOneShot(string animationKey, int layer)
+        {
+            if (!modelData.TryGetAnimation(animationKey, out var target))
+            {
+                Debug.LogError($"Not Exist Animation Key {animationKey}");
+                return;
+            }
+
+            PlayOneShot(target, layer);
+        }
+
+        private void PlayOneShot(Animation oneShot, int layer)
         {
             state.SetAnimation(0, oneShot, false);
     

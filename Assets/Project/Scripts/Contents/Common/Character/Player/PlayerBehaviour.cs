@@ -25,7 +25,7 @@ namespace Common.Character.Player
         
         // Behavior
         public bool HasPath => characterPathfinding.HasPath;
-        public bool IsFinished => characterPathfinding.IsFinished;
+        public bool IsDestinationReached => characterPathfinding.IsReached;
         public bool IsInRange
         {
             get
@@ -35,12 +35,10 @@ namespace Common.Character.Player
                 return Vector3.Distance(transform.position, FocusTarget.transform.position) <= Range;
             }
         }
+        
         public Vector3 Destination => characterPathfinding.Destination;
-
         public CharacterTargeting CharacterTargeting => characterTargeting;
         public GameObject FocusTarget => CharacterTargeting.FocusTarget;
-        
-        
 
         public void Idle()
         {

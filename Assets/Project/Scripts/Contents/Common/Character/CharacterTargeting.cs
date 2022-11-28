@@ -12,23 +12,17 @@ namespace Common.Character
         [SerializeField] private LayerMask targetLayer;
         
         private const int MaxBufferCount = 100;
-        private float attackRange;
         private SphereCollider searchingCollider;
         private readonly Collider[] colliderBuffer = new Collider[MaxBufferCount];
         
-        [ShowInInspector] public List<GameObject> SearchedTargets { get; } = new ();
-        [ShowInInspector] public List<GameObject> RangedTargets { get; } = new();
+        public float AttackRange { get; set; }
+        public List<GameObject> SearchedTargets { get; } = new ();
+        public List<GameObject> RangedTargets { get; } = new();
         [ShowInInspector] public GameObject FocusTarget { get; private set; }
-
-        public float AttackRange
-        {
-            get => attackRange;
-            set => attackRange = value;
-        }
 
         public void Initialize(float attackRange)
         {
-            this.attackRange = attackRange;
+            AttackRange = attackRange;
         }
         
         /// <summary>
@@ -88,7 +82,7 @@ namespace Common.Character
             searchedTargets.ForEach(x =>
             {
                 if (x == null || x.activeSelf == false) return;
-                if (Vector3.Distance(x.transform.position, selfPosition) <= attackRange)
+                if (Vector3.Distance(x.transform.position, selfPosition) <= AttackRange)
                 {
                     RangedTargets.Add(x);
                 }
@@ -111,7 +105,7 @@ namespace Common.Character
             if (RangedTargets.IsNullOrEmpty()) return;
             
             Gizmos.color = new Color(129, 0, 0, 0.3f);
-            Gizmos.DrawSphere(transform.position, attackRange);
+            Gizmos.DrawSphere(transform.position, AttackRange);
         }
 
         #region LEGACY

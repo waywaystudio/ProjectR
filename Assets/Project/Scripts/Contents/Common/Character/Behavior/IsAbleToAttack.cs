@@ -15,7 +15,7 @@ namespace Common.Character.Behavior
         
         public override TaskStatus OnUpdate()
         {
-            var result = playerBehaviour.HasPath ? playerBehaviour.IsFinished 
+            var result = playerBehaviour.HasPath ? playerBehaviour.IsDestinationReached 
                                                      : playerBehaviour.IsInRange;
 
             return result ? TaskStatus.Success 
