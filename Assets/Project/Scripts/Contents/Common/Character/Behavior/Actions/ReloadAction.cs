@@ -10,25 +10,26 @@ namespace Common.Character.Behavior.Actions
     {
         [Tooltip("The amount of time to wait")]
         public SharedFloat WaitTime = 1;
-        
-        private float waitDuration;
+        public SharedBool IsReloaded = true;
+        public float WaitDuration;
         private float pauseTime;
 
         public override void OnAwake()
         {
-            waitDuration = WaitTime.Value;
+            WaitDuration = WaitTime.Value;
+            IsReloaded = false;
         }
 
         public override TaskStatus OnUpdate()
         {
-            if (waitDuration <= 0.0f)
+            if (WaitDuration <= 0.0f)
             {
-                return TaskStatus.Success;
+                IsReloaded = true;
             }
-            
-            waitDuration -= Time.deltaTime;
-                
-            return TaskStatus.Failure;
+            else
+                WaitDuration -= Time.deltaTime;
+
+            return TaskStatus.Success;
         }
 
         public override void OnPause(bool paused)
@@ -39,13 +40,13 @@ namespace Common.Character.Behavior.Actions
             }
             else
             {
-                waitDuration += Time.time - pauseTime;
+                WaitDuration += Time.time - pauseTime;
             }
         }
 
         public override void OnReset()
         {
-            waitDuration = WaitTime.Value;
+            WaitDuration = WaitTime.Value;
         }
     }
 }

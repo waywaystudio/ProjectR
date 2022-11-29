@@ -29,6 +29,7 @@ MonoBehaviour:
     referenceMode: 2
     serializationDepthLimit: 64
     assemblyNames:
+    - BehaviorDesigner.Runtime
     - AstarPathfindingProject
     - ES3
     - spine-unity
@@ -45,7 +46,6 @@ MonoBehaviour:
     - Main
     - Audio
     - SoCreator
-    - BehaviorDesigner.Runtime
     - AstarPathfindingProjectEditor
     - spine-unity-editor
     - PPv2URPConverters
