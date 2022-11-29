@@ -15,20 +15,13 @@ namespace Common.Character
 
         public bool HasPath => aiMove.hasPath;
         public bool IsReached => aiMove.reachedEndOfPath;
-
-        public Vector3 Destination
-        {
-            get => aiMove.destination;
-            set => aiMove.destination = value; 
-        }
+        public Vector3 Destination { get => aiMove.destination; set => aiMove.destination = value; }
 
         public void Initialize()
         {
             // fleePath에 여러 값을 캐릭터 성향으로 결정할지, 영향범위에 따라서 변동하는 값일지 결정해야 한다.
             // fleePath의 모든 값을 캐릭터 성향으로 사용할 필요는 없고 한 가지 정도만 남기는 것도 방법이다.
             // 성향으로 사용된다면, Initialize 파라메타로 짜 주어야 한다.
-            
-            
             // aiMove.Initialize(onTargetReached);
         }
         
@@ -36,8 +29,6 @@ namespace Common.Character
         {
             var abPath = ABPath.Construct(rootObject.position, destination);
 
-            // aiMove.rea
-            
             aiMove.maxSpeed = speed;
             agent.StartPath(abPath);
         }

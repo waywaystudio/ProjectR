@@ -1,7 +1,7 @@
 using BehaviorDesigner.Runtime.Tasks;
 using Common.Character.Player;
 
-namespace Common.Character.Behavior
+namespace Common.Character.Behavior.Actions
 {
     [TaskCategory("Character")]
     public class IsReachedDestination : Action
@@ -13,11 +13,10 @@ namespace Common.Character.Behavior
             pb = GetComponent<PlayerBehaviour>();
         }
         
-        public override TaskStatus OnUpdate()
-        {
-            return pb.IsDestinationReached
-                ? TaskStatus.Success
+        public override TaskStatus OnUpdate() 
+            => pb.IsDestinationReached 
+                ? TaskStatus.Success 
                 : TaskStatus.Failure;
-        }
+        
     }
 }

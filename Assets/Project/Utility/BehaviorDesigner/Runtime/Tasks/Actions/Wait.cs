@@ -7,29 +7,26 @@ namespace BehaviorDesigner.Runtime.Tasks
     public class Wait : Action
     {
         [Tooltip("The amount of time to wait")]
-        public SharedFloat waitTime = 1;
+        public SharedFloat WaitTime = 1;
         [Tooltip("Should the wait be randomized?")]
-        public SharedBool randomWait = false;
+        public SharedBool RandomWait = false;
         [Tooltip("The minimum wait time if random wait is enabled")]
-        public SharedFloat randomWaitMin = 1;
+        public SharedFloat RandomWaitMin = 1;
         [Tooltip("The maximum wait time if random wait is enabled")]
-        public SharedFloat randomWaitMax = 1;
+        public SharedFloat RandomWaitMax = 1;
 
-        // The time to wait
         private float waitDuration;
-        // The time that the task started to wait.
         private float startTime;
-        // Remember the time that the task is paused so the time paused doesn't contribute to the wait time.
         private float pauseTime;
 
         public override void OnStart()
         {
             // Remember the start time.
             startTime = Time.time;
-            if (randomWait.Value) {
-                waitDuration = Random.Range(randomWaitMin.Value, randomWaitMax.Value);
+            if (RandomWait.Value) {
+                waitDuration = Random.Range(RandomWaitMin.Value, RandomWaitMax.Value);
             } else {
-                waitDuration = waitTime.Value;
+                waitDuration = WaitTime.Value;
             }
         }
 
@@ -57,10 +54,10 @@ namespace BehaviorDesigner.Runtime.Tasks
         public override void OnReset()
         {
             // Reset the public properties back to their original values
-            waitTime = 1;
-            randomWait = false;
-            randomWaitMin = 1;
-            randomWaitMax = 1;
+            WaitTime = 1;
+            RandomWait = false;
+            RandomWaitMin = 1;
+            RandomWaitMax = 1;
         }
     }
 }

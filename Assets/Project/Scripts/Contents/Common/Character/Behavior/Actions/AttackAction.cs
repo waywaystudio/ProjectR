@@ -1,12 +1,14 @@
+using BehaviorDesigner.Runtime;
 using BehaviorDesigner.Runtime.Tasks;
 using Common.Character.Player;
 using Core;
 using UnityEngine;
 
-namespace Common.Character.Behavior
+namespace Common.Character.Behavior.Actions
 {
+    [TaskIcon("{SkinColor}UI_Icon_Attack.png")]
     [TaskCategory("Character")]
-    public class AttackBehavior : Action
+    public class AttackAction : Action
     {
         private PlayerBehaviour pb;
 

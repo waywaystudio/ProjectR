@@ -7,7 +7,8 @@ namespace Common.Character.Player
 {
     public class PlayerBehaviour : MonoBehaviour, ISavable, IControlModel
     {
-        public float MoveSpeed = 5f;
+        [SerializeField] private float moveSpeed = 5f;
+        [SerializeField] private float attackSpeed = 1f;
         public float Range;
         public CharacterStatus PlayerStatus = CharacterStatus.Idle;
 
@@ -30,12 +31,14 @@ namespace Common.Character.Player
         {
             get
             {
-                if (FocusTarget == null || !FocusTarget.activeSelf) return false;
+                if (FocusTarget.IsNullOrEmpty()) return false;
 
                 return Vector3.Distance(transform.position, FocusTarget.transform.position) <= Range;
             }
         }
-        
+
+        public float MoveSpeed { get => moveSpeed; set => moveSpeed = value; }
+        public float AttackSpeed { get => attackSpeed; set => attackSpeed = value; }
         public Vector3 Destination => characterPathfinding.Destination;
         public CharacterTargeting CharacterTargeting => characterTargeting;
         public GameObject FocusTarget => CharacterTargeting.FocusTarget;
@@ -80,21 +83,27 @@ namespace Common.Character.Player
         public void Walk(Vector3 destination)
         {
             PlayerStatus = CharacterStatus.Walk;
-            characterPathfinding.Move(destination, MoveSpeed);
+            characterPathfinding.Move(destination, moveSpeed);
             animationModel.Walk();
         }
 
         public void Run(Vector3 destination)
         {
             PlayerStatus = CharacterStatus.Run;
-            characterPathfinding.Move(destination, MoveSpeed);
+            characterPathfinding.Move(destination, moveSpeed);
             animationModel.Run();
+        }
+
+        public void Stop()
+        {
+            PlayerStatus = CharacterStatus.Idle;
+            characterPathfinding.Stop();
+            animationModel.Idle();
         }
 
         public void Death()
         {
             PlayerStatus = CharacterStatus.Death;
-            
         }
 
         private void Awake()
@@ -109,12 +118,6 @@ namespace Common.Character.Player
             controller.Initialize(GetComponent<Rigidbody>());
             characterPathfinding.Initialize();
             characterTargeting.Initialize(Range);
-        }
-
-        private void Start()
-        {
-            // Temp
-            MainGame.InputManager.Register(this);
         }
 
         private void Update()

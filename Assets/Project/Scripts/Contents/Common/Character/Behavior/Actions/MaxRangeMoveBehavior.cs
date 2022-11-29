@@ -2,7 +2,7 @@ using BehaviorDesigner.Runtime.Tasks;
 using Common.Character.Player;
 using UnityEngine;
 
-namespace Common.Character.Behavior
+namespace Common.Character.Behavior.Actions
 {
     [TaskCategory("Character")]
     public class MaxRangeMoveBehavior : Action
@@ -64,7 +64,10 @@ namespace Common.Character.Behavior
             // case In Safe Range
             else // if (range * (1.0f - safeTolerance) < currentDistance && currentDistance <= range)
             {
-                return TaskStatus.Success;
+                return pb.IsDestinationReached 
+                    ? TaskStatus.Success 
+                    : TaskStatus.Failure;
+                // return TaskStatus.Success;
             }
 
             var destination = characterPosition + direction * magnitude;
