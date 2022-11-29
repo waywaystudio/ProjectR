@@ -29,12 +29,12 @@ MonoBehaviour:
     referenceMode: 2
     serializationDepthLimit: 64
     assemblyNames:
-    - Assembly-CSharp
     - AstarPathfindingProject
     - ES3
     - spine-unity-examples
     - spine-unity
     - Town
+    - Assembly-CSharp
     - Loading
     - Cinemachine
     - Common
@@ -46,6 +46,7 @@ MonoBehaviour:
     - Main
     - Audio
     - SoCreator
+    - BehaviorDesigner.Runtime
     - AstarPathfindingProjectEditor
     - spine-unity-editor
     - PPv2URPConverters
