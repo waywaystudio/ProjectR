@@ -17,36 +17,36 @@ using UnityEngine;
 
 namespace Data.ContentData
 {    
-    public partial class AdventurerData : ScriptableObject
+    public partial class CharacterClassData : ScriptableObject
     { 
 /* Fields. */    
         [SerializeField] 
         [TableList(AlwaysExpanded = true, HideToolbar = true, DrawScrollView = true, IsReadOnly = true)] 
-        private List<Adventurer> adventurerList = new ();
-        private Dictionary<int, Adventurer> adventurerTable = new ();        
+        private List<CharacterClass> characterClassList = new ();
+        private Dictionary<int, CharacterClass> characterClassTable = new ();        
 
 /* Properties. */
-        public List<Adventurer> AdventurerList => adventurerList;
-        public Dictionary<int, Adventurer> AdventurerTable => adventurerTable ??= new Dictionary<int, Adventurer>();
+        public List<CharacterClass> CharacterClassList => characterClassList;
+        public Dictionary<int, CharacterClass> CharacterClassTable => characterClassTable ??= new Dictionary<int, CharacterClass>();
 
 /* Editor Functions. */
     #if UNITY_EDITOR
         private readonly string spreadSheetID = "1yO5sJqxMvySDiihls5pwiHQWoJGysrT7LBmL16HhHRM";
-        private readonly string sheetID = "400488683";
+        private readonly string sheetID = "210782231";
     #endif
 
 #if UNITY_EDITOR        
         private void LoadFromJson()
         {
     
-            adventurerList = UnityGoogleSheet.Editor.Core.UgsEditorUtility
-                .LoadFromJson<Adventurer>("ContentData"); 
+            characterClassList = UnityGoogleSheet.Editor.Core.UgsEditorUtility
+                .LoadFromJson<CharacterClass>("ContentData"); 
         }
         
         private void LoadFromGoogleSpreadSheet()
         {
             UnityGoogleSheet.Editor.Core.UgsExplorer
-                .ParseSpreadSheet(spreadSheetID, "Adventurer");
+                .ParseSpreadSheet(spreadSheetID, "CharacterClass");
 
             LoadFromJson();
             UnityEditor.EditorUtility.SetDirty(this);
@@ -55,19 +55,20 @@ namespace Data.ContentData
 #endif
 /* innerClass. */
         [Serializable]
-        public class Adventurer
+        public class CharacterClass
         {
 			public Int32 ID;
-			public String AdventurerName;
-			public String Role;
-			public String Job;
+			public String ClassName;
+			public String BaseRole;
+			public Single AttackSpeed;
+			public Single Range;
 
         }
     }
         
 #if UNITY_EDITOR
     #region Attribute Setting
-    public class AdventurerDrawer : OdinAttributeProcessor<AdventurerData>
+    public class CharacterClassDrawer : OdinAttributeProcessor<CharacterClassData>
     {
         public override void ProcessChildMemberAttributes(InspectorProperty parentProperty, MemberInfo member, List<Attribute> attributes)
         {

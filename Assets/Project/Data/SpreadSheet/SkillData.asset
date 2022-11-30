@@ -1,0 +1,114 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f2b217ae31282844287132a48bebc8af, type: 3}
+  m_Name: SkillData
+  m_EditorClassIdentifier: 
+  skillList:
+  - ID: 12000001
+    SkillName: normalAttack
+    BaseCoolTime: 0
+    AssignedClass:
+    - All
+    ActionType: instant
+  - ID: 12000002
+    SkillName: Bash
+    BaseCoolTime: 8
+    AssignedClass:
+    - Warrior
+    ActionType: instant
+  - ID: 12000003
+    SkillName: Backstep
+    BaseCoolTime: 15
+    AssignedClass:
+    - Rogue
+    ActionType: instant
+  - ID: 12000004
+    SkillName: AimShot
+    BaseCoolTime: 6
+    AssignedClass:
+    - Hunter
+    - Sniper
+    ActionType: casting
+  - ID: 12000005
+    SkillName: Blood Drain
+    BaseCoolTime: 15
+    AssignedClass:
+    - DeathKnight
+    ActionType: instant
+  - ID: 12000006
+    SkillName: Roar
+    BaseCoolTime: 12
+    AssignedClass:
+    - Druid
+    ActionType: instant
+  - ID: 12000007
+    SkillName: Penetrate
+    BaseCoolTime: 12
+    AssignedClass:
+    - Lancer
+    ActionType: casting
+  - ID: 12000008
+    SkillName: Rapid Blow
+    BaseCoolTime: 6
+    AssignedClass:
+    - Fighter
+    ActionType: channeling
+  - ID: 12000009
+    SkillName: Fury
+    BaseCoolTime: 30
+    AssignedClass:
+    - Berserker
+    ActionType: instant
+  - ID: 12000010
+    SkillName: Lightning Slash
+    BaseCoolTime: 15
+    AssignedClass:
+    - Blade
+    ActionType: instant
+  - ID: 12000011
+    SkillName: Fireball
+    BaseCoolTime: 0
+    AssignedClass:
+    - Wizard
+    ActionType: casting
+  - ID: 12000012
+    SkillName: Corruption
+    BaseCoolTime: 0
+    AssignedClass:
+    - Warlock
+    ActionType: instant
+  - ID: 12000013
+    SkillName: Faithful Prey
+    BaseCoolTime: 0
+    AssignedClass:
+    - Priest
+    - ' Angel'
+    ActionType: casting
+  - ID: 12000014
+    SkillName: Holy Protection
+    BaseCoolTime: 30
+    AssignedClass:
+    - Angel
+    - ' HolyKnight'
+    ActionType: instant
+  - ID: 12000015
+    SkillName: Revivification
+    BaseCoolTime: 8
+    AssignedClass:
+    - Sharman
+    ActionType: instant
+  - ID: 12000016
+    SkillName: Encouraged Song
+    BaseCoolTime: 16
+    AssignedClass:
+    - Bard
+    ActionType: channeling

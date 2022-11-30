@@ -17,36 +17,36 @@ using UnityEngine;
 
 namespace Data.ContentData
 {    
-    public partial class AdventurerData : ScriptableObject
+    public partial class SkillData : ScriptableObject
     { 
 /* Fields. */    
         [SerializeField] 
         [TableList(AlwaysExpanded = true, HideToolbar = true, DrawScrollView = true, IsReadOnly = true)] 
-        private List<Adventurer> adventurerList = new ();
-        private Dictionary<int, Adventurer> adventurerTable = new ();        
+        private List<Skill> skillList = new ();
+        private Dictionary<int, Skill> skillTable = new ();        
 
 /* Properties. */
-        public List<Adventurer> AdventurerList => adventurerList;
-        public Dictionary<int, Adventurer> AdventurerTable => adventurerTable ??= new Dictionary<int, Adventurer>();
+        public List<Skill> SkillList => skillList;
+        public Dictionary<int, Skill> SkillTable => skillTable ??= new Dictionary<int, Skill>();
 
 /* Editor Functions. */
     #if UNITY_EDITOR
         private readonly string spreadSheetID = "1yO5sJqxMvySDiihls5pwiHQWoJGysrT7LBmL16HhHRM";
-        private readonly string sheetID = "400488683";
+        private readonly string sheetID = "1563938778";
     #endif
 
 #if UNITY_EDITOR        
         private void LoadFromJson()
         {
     
-            adventurerList = UnityGoogleSheet.Editor.Core.UgsEditorUtility
-                .LoadFromJson<Adventurer>("ContentData"); 
+            skillList = UnityGoogleSheet.Editor.Core.UgsEditorUtility
+                .LoadFromJson<Skill>("ContentData"); 
         }
         
         private void LoadFromGoogleSpreadSheet()
         {
             UnityGoogleSheet.Editor.Core.UgsExplorer
-                .ParseSpreadSheet(spreadSheetID, "Adventurer");
+                .ParseSpreadSheet(spreadSheetID, "Skill");
 
             LoadFromJson();
             UnityEditor.EditorUtility.SetDirty(this);
@@ -55,19 +55,20 @@ namespace Data.ContentData
 #endif
 /* innerClass. */
         [Serializable]
-        public class Adventurer
+        public class Skill
         {
 			public Int32 ID;
-			public String AdventurerName;
-			public String Role;
-			public String Job;
+			public String SkillName;
+			public Single BaseCoolTime;
+			public List<String> AssignedClass;
+			public String ActionType;
 
         }
     }
         
 #if UNITY_EDITOR
     #region Attribute Setting
-    public class AdventurerDrawer : OdinAttributeProcessor<AdventurerData>
+    public class SkillDrawer : OdinAttributeProcessor<SkillData>
     {
         public override void ProcessChildMemberAttributes(InspectorProperty parentProperty, MemberInfo member, List<Attribute> attributes)
         {
