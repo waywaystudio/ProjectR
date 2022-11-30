@@ -60,8 +60,13 @@ namespace Data.ContentData
 			public Int32 ID;
 			public String SkillName;
 			public Single BaseCoolTime;
+			public Single Range;
+			public Int32 Priority;
 			public List<String> AssignedClass;
-			public String ActionType;
+			public String MotionType;
+			public Int32 TargetCount;
+			public String TargetLayer;
+			public String SkillType;
 
         }
     }

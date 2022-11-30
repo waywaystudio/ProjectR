@@ -16,99 +16,179 @@ MonoBehaviour:
   - ID: 12000001
     SkillName: normalAttack
     BaseCoolTime: 0
+    Range: 5
+    Priority: 1
     AssignedClass:
     - All
-    ActionType: instant
+    MotionType: instant
+    TargetCount: 1
+    TargetLayer: enemy
+    SkillType: damage
   - ID: 12000002
     SkillName: Bash
     BaseCoolTime: 8
+    Range: 5
+    Priority: 5
     AssignedClass:
     - Warrior
-    ActionType: instant
+    MotionType: instant
+    TargetCount: 1
+    TargetLayer: enemy
+    SkillType: damage
   - ID: 12000003
     SkillName: Backstep
     BaseCoolTime: 15
+    Range: 18
+    Priority: 5
     AssignedClass:
     - Rogue
-    ActionType: instant
+    MotionType: instant
+    TargetCount: 1
+    TargetLayer: enemy
+    SkillType: damage
   - ID: 12000004
     SkillName: AimShot
     BaseCoolTime: 6
+    Range: 25
+    Priority: 5
     AssignedClass:
     - Hunter
     - Sniper
-    ActionType: casting
+    MotionType: casting
+    TargetCount: 1
+    TargetLayer: enemy
+    SkillType: damage
   - ID: 12000005
     SkillName: Blood Drain
     BaseCoolTime: 15
+    Range: 0
+    Priority: 1
     AssignedClass:
     - DeathKnight
-    ActionType: instant
+    MotionType: instant
+    TargetCount: 1
+    TargetLayer: ally
+    SkillType: transcendence
   - ID: 12000006
     SkillName: Roar
     BaseCoolTime: 12
+    Range: 16
+    Priority: 5
     AssignedClass:
     - Druid
-    ActionType: instant
+    MotionType: instant
+    TargetCount: 5
+    TargetLayer: enemy
+    SkillType: damage
   - ID: 12000007
     SkillName: Penetrate
     BaseCoolTime: 12
+    Range: 20
+    Priority: 5
     AssignedClass:
     - Lancer
-    ActionType: casting
+    MotionType: casting
+    TargetCount: 16
+    TargetLayer: enemy
+    SkillType: damage
   - ID: 12000008
     SkillName: Rapid Blow
     BaseCoolTime: 6
+    Range: 5
+    Priority: 5
     AssignedClass:
     - Fighter
-    ActionType: channeling
+    MotionType: channeling
+    TargetCount: 1
+    TargetLayer: enemy
+    SkillType: damage
   - ID: 12000009
     SkillName: Fury
     BaseCoolTime: 30
+    Range: 0
+    Priority: 1
     AssignedClass:
     - Berserker
-    ActionType: instant
+    MotionType: instant
+    TargetCount: 1
+    TargetLayer: ally
+    SkillType: transcendence
   - ID: 12000010
     SkillName: Lightning Slash
     BaseCoolTime: 15
+    Range: 18
+    Priority: 5
     AssignedClass:
     - Blade
-    ActionType: instant
+    MotionType: instant
+    TargetCount: 16
+    TargetLayer: enemy
+    SkillType: damage
   - ID: 12000011
     SkillName: Fireball
     BaseCoolTime: 0
+    Range: 20
+    Priority: 2
     AssignedClass:
     - Wizard
-    ActionType: casting
+    MotionType: casting
+    TargetCount: 1
+    TargetLayer: enemy
+    SkillType: damage
   - ID: 12000012
     SkillName: Corruption
     BaseCoolTime: 0
+    Range: 20
+    Priority: 2
     AssignedClass:
     - Warlock
-    ActionType: instant
+    MotionType: instant
+    TargetCount: 1
+    TargetLayer: enemy
+    SkillType: damage
   - ID: 12000013
     SkillName: Faithful Prey
     BaseCoolTime: 0
+    Range: 15
+    Priority: 5
     AssignedClass:
     - Priest
     - ' Angel'
-    ActionType: casting
+    MotionType: casting
+    TargetCount: 1
+    TargetLayer: ally
+    SkillType: heal
   - ID: 12000014
     SkillName: Holy Protection
     BaseCoolTime: 30
+    Range: 15
+    Priority: 4
     AssignedClass:
     - Angel
     - ' HolyKnight'
-    ActionType: instant
+    MotionType: instant
+    TargetCount: 1
+    TargetLayer: ally
+    SkillType: heal
   - ID: 12000015
     SkillName: Revivification
     BaseCoolTime: 8
+    Range: 15
+    Priority: 3
     AssignedClass:
     - Sharman
-    ActionType: instant
+    MotionType: instant
+    TargetCount: 1
+    TargetLayer: ally
+    SkillType: heal
   - ID: 12000016
     SkillName: Encouraged Song
     BaseCoolTime: 16
+    Range: 40
+    Priority: 5
     AssignedClass:
     - Bard
-    ActionType: channeling
+    MotionType: channeling
+    TargetCount: 8
+    TargetLayer: ally
+    SkillType: heal

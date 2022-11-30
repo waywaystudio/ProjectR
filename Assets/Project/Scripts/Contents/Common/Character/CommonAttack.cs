@@ -1,22 +1,25 @@
+using Data.ContentData;
 using UnityEngine;
 
 namespace Common.Character
 {
-    public class Skill : MonoBehaviour
+    public class CommonAttack : MonoBehaviour
     {
-        // [SerializeField] private SkillData
         /*
          * SkillData Has Main Action of "Skill";
          * actionOfType -> motionOfType;
-         * targetLayer(ally, enemy, whatever...),
-         * targetCount(1 or a.p.a many)
-         * damage, heal
-         * statusChange(buff deBuff),
+         * targetCount(1 or apa many)
+         * range
          * ...priority?
          * coolTime also
+         *
+         * * 아래 데이터는 받아서 뭘 생성하지는 않을꺼 같다.
+         * targetLayer(ally, enemy, self, whatever...),         
+         * damage, heal, statusChange(buff deBuff),         
          * 어떤 스킬인지에 따라서, 필요한 함수에 parameter가 달라보인다...
          */
-        
+
+        [SerializeField] private SkillData skillData;
         private float remainCoolTime;
         
         public bool IsReady => remainCoolTime <= 0.0f;
