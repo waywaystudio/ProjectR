@@ -18,24 +18,44 @@ using UnityEngine;
 namespace Data.ContentData
 {    
     public partial class AdventurerData : ScriptableObject
-    { 
-/* Fields. */    
-        [SerializeField] 
-        [TableList(AlwaysExpanded = true, HideToolbar = true, DrawScrollView = true, IsReadOnly = true)] 
+    {
+        [Serializable]
+        public class Adventurer
+        {
+			[SerializeField] private Int32 id;
+			[SerializeField] private String adventurerName;
+			[SerializeField] private String role;
+			[SerializeField] private String job;
+
+			public Int32 ID => id;
+			public String AdventurerName => adventurerName;
+			public String Role => role;
+			public String Job => job;
+
+        }
+
+        [SerializeField]
         private List<Adventurer> adventurerList = new ();
-        private Dictionary<int, Adventurer> adventurerTable = new ();        
+        private Dictionary<int, Adventurer> adventurerTable = new ();
 
-/* Properties. */
         public List<Adventurer> AdventurerList => adventurerList;
-        public Dictionary<int, Adventurer> AdventurerTable => adventurerTable ??= new Dictionary<int, Adventurer>();
+        public Dictionary<int, Adventurer> AdventurerTable
+        {
+            get
+            {
+                if (adventurerTable != null) return adventurerTable;
 
-/* Editor Functions. */
+                adventurerTable = new Dictionary<int, Adventurer>();
+                adventurerList.ForEach(x => adventurerTable.Add(x.ID, x));
+                return adventurerTable;
+            }
+        }
+
+#region Editor Functions.
     #if UNITY_EDITOR
         private readonly string spreadSheetID = "1yO5sJqxMvySDiihls5pwiHQWoJGysrT7LBmL16HhHRM";
-        private readonly string sheetID = "400488683";
-    #endif
-
-#if UNITY_EDITOR        
+        private readonly string sheetID = "400488683";    
+  
         private void LoadFromJson()
         {
     
@@ -52,27 +72,28 @@ namespace Data.ContentData
             UnityEditor.EditorUtility.SetDirty(this);
             UnityEditor.AssetDatabase.Refresh();
         }
-#endif
-/* innerClass. */
-        [Serializable]
-        public class Adventurer
-        {
-			public Int32 ID;
-			public String AdventurerName;
-			public String Role;
-			public String Job;
 
-        }
+    #endif
+#endregion
     }
-        
-#if UNITY_EDITOR
-    #region Attribute Setting
+
+#region Attribute Setting        
+    #if UNITY_EDITOR
     public class AdventurerDrawer : OdinAttributeProcessor<AdventurerData>
     {
         public override void ProcessChildMemberAttributes(InspectorProperty parentProperty, MemberInfo member, List<Attribute> attributes)
         {
             switch (member.Name)
             {
+                case "adventurerList":
+                    attributes.Add(new TableListAttribute
+                    {
+                        AlwaysExpanded = true,
+                        HideToolbar = true,
+                        DrawScrollView = true,
+                        IsReadOnly = true
+                    });
+                    break;
                 case "LoadFromJson":
                     attributes.Add(new PropertySpaceAttribute(5f, 0f));
                     attributes.Add(new ButtonAttribute(ButtonSizes.Medium));
@@ -82,7 +103,8 @@ namespace Data.ContentData
                     break;
             }
         }
-    }
-    #endregion
-#endif
+    }    
+    #endif
+#endregion
+
 }

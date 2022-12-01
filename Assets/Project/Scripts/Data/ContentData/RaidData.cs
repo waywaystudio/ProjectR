@@ -18,24 +18,44 @@ using UnityEngine;
 namespace Data.ContentData
 {    
     public partial class RaidData : ScriptableObject
-    { 
-/* Fields. */    
-        [SerializeField] 
-        [TableList(AlwaysExpanded = true, HideToolbar = true, DrawScrollView = true, IsReadOnly = true)] 
+    {
+        [Serializable]
+        public class Raid
+        {
+			[SerializeField] private Int32 id;
+			[SerializeField] private String raidName;
+			[SerializeField] private Int32 partyScale;
+			[SerializeField] private List<String> bossList;
+
+			public Int32 ID => id;
+			public String RaidName => raidName;
+			public Int32 PartyScale => partyScale;
+			public List<String> BossList => bossList;
+
+        }
+
+        [SerializeField]
         private List<Raid> raidList = new ();
-        private Dictionary<int, Raid> raidTable = new ();        
+        private Dictionary<int, Raid> raidTable = new ();
 
-/* Properties. */
         public List<Raid> RaidList => raidList;
-        public Dictionary<int, Raid> RaidTable => raidTable ??= new Dictionary<int, Raid>();
+        public Dictionary<int, Raid> RaidTable
+        {
+            get
+            {
+                if (raidTable != null) return raidTable;
 
-/* Editor Functions. */
+                raidTable = new Dictionary<int, Raid>();
+                raidList.ForEach(x => raidTable.Add(x.ID, x));
+                return raidTable;
+            }
+        }
+
+#region Editor Functions.
     #if UNITY_EDITOR
         private readonly string spreadSheetID = "1yO5sJqxMvySDiihls5pwiHQWoJGysrT7LBmL16HhHRM";
-        private readonly string sheetID = "898406998";
-    #endif
-
-#if UNITY_EDITOR        
+        private readonly string sheetID = "898406998";    
+  
         private void LoadFromJson()
         {
     
@@ -52,27 +72,28 @@ namespace Data.ContentData
             UnityEditor.EditorUtility.SetDirty(this);
             UnityEditor.AssetDatabase.Refresh();
         }
-#endif
-/* innerClass. */
-        [Serializable]
-        public class Raid
-        {
-			public Int32 ID;
-			public String RaidName;
-			public Int32 PartyScale;
-			public List<String> BossList;
 
-        }
+    #endif
+#endregion
     }
-        
-#if UNITY_EDITOR
-    #region Attribute Setting
+
+#region Attribute Setting        
+    #if UNITY_EDITOR
     public class RaidDrawer : OdinAttributeProcessor<RaidData>
     {
         public override void ProcessChildMemberAttributes(InspectorProperty parentProperty, MemberInfo member, List<Attribute> attributes)
         {
             switch (member.Name)
             {
+                case "raidList":
+                    attributes.Add(new TableListAttribute
+                    {
+                        AlwaysExpanded = true,
+                        HideToolbar = true,
+                        DrawScrollView = true,
+                        IsReadOnly = true
+                    });
+                    break;
                 case "LoadFromJson":
                     attributes.Add(new PropertySpaceAttribute(5f, 0f));
                     attributes.Add(new ButtonAttribute(ButtonSizes.Medium));
@@ -82,7 +103,8 @@ namespace Data.ContentData
                     break;
             }
         }
-    }
-    #endregion
-#endif
+    }    
+    #endif
+#endregion
+
 }

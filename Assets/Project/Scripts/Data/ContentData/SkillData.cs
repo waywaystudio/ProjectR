@@ -18,24 +18,58 @@ using UnityEngine;
 namespace Data.ContentData
 {    
     public partial class SkillData : ScriptableObject
-    { 
-/* Fields. */    
-        [SerializeField] 
-        [TableList(AlwaysExpanded = true, HideToolbar = true, DrawScrollView = true, IsReadOnly = true)] 
+    {
+        [Serializable]
+        public class Skill
+        {
+			[SerializeField] private Int32 id;
+			[SerializeField] private String skillName;
+			[SerializeField] private Single baseCoolTime;
+			[SerializeField] private Single range;
+			[SerializeField] private Int32 priority;
+			[SerializeField] private List<String> assignedClass;
+			[SerializeField] private String motionType;
+			[SerializeField] private Int32 targetCount;
+			[SerializeField] private String targetLayer;
+			[SerializeField] private String skillType;
+			[SerializeField] private Single castingTime;
+
+			public Int32 ID => id;
+			public String SkillName => skillName;
+			public Single BaseCoolTime => baseCoolTime;
+			public Single Range => range;
+			public Int32 Priority => priority;
+			public List<String> AssignedClass => assignedClass;
+			public String MotionType => motionType;
+			public Int32 TargetCount => targetCount;
+			public String TargetLayer => targetLayer;
+			public String SkillType => skillType;
+			public Single CastingTime => castingTime;
+
+        }
+
+        [SerializeField]
         private List<Skill> skillList = new ();
-        private Dictionary<int, Skill> skillTable = new ();        
+        private Dictionary<int, Skill> skillTable = new ();
 
-/* Properties. */
         public List<Skill> SkillList => skillList;
-        public Dictionary<int, Skill> SkillTable => skillTable ??= new Dictionary<int, Skill>();
+        public Dictionary<int, Skill> SkillTable
+        {
+            get
+            {
+                if (skillTable != null) return skillTable;
 
-/* Editor Functions. */
+                skillTable = new Dictionary<int, Skill>();
+                skillList.ForEach(x => skillTable.Add(x.ID, x));
+                return skillTable;
+            }
+        }
+
+#region Editor Functions.
     #if UNITY_EDITOR
         private readonly string spreadSheetID = "1yO5sJqxMvySDiihls5pwiHQWoJGysrT7LBmL16HhHRM";
-        private readonly string sheetID = "1563938778";
-    #endif
-
-#if UNITY_EDITOR        
+        private readonly string sheetID = "1563938778";    
+  
         private void LoadFromJson()
         {
     
@@ -52,33 +86,28 @@ namespace Data.ContentData
             UnityEditor.EditorUtility.SetDirty(this);
             UnityEditor.AssetDatabase.Refresh();
         }
-#endif
-/* innerClass. */
-        [Serializable]
-        public class Skill
-        {
-			public Int32 ID;
-			public String SkillName;
-			public Single BaseCoolTime;
-			public Single Range;
-			public Int32 Priority;
-			public List<String> AssignedClass;
-			public String MotionType;
-			public Int32 TargetCount;
-			public String TargetLayer;
-			public String SkillType;
 
-        }
+    #endif
+#endregion
     }
-        
-#if UNITY_EDITOR
-    #region Attribute Setting
+
+#region Attribute Setting        
+    #if UNITY_EDITOR
     public class SkillDrawer : OdinAttributeProcessor<SkillData>
     {
         public override void ProcessChildMemberAttributes(InspectorProperty parentProperty, MemberInfo member, List<Attribute> attributes)
         {
             switch (member.Name)
             {
+                case "skillList":
+                    attributes.Add(new TableListAttribute
+                    {
+                        AlwaysExpanded = true,
+                        HideToolbar = true,
+                        DrawScrollView = true,
+                        IsReadOnly = true
+                    });
+                    break;
                 case "LoadFromJson":
                     attributes.Add(new PropertySpaceAttribute(5f, 0f));
                     attributes.Add(new ButtonAttribute(ButtonSizes.Medium));
@@ -88,7 +117,8 @@ namespace Data.ContentData
                     break;
             }
         }
-    }
-    #endregion
-#endif
+    }    
+    #endif
+#endregion
+
 }

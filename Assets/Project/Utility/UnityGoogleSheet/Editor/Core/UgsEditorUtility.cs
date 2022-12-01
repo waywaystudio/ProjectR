@@ -73,7 +73,7 @@ namespace UnityGoogleSheet.Editor.Core
             TypeMap.Init();
             
             var list = new List<T>();
-            var fields = typeof(T).GetFields(BindingFlags.Public | BindingFlags.Instance);
+            var fields = typeof(T).GetFields(BindingFlags.NonPublic | BindingFlags.Instance);
             var typeInfos = new List<(string original, string propertyName, string type)>(); 
             var rows = new List<List<string>>();
             var sheet = jsonObject[typeof(T).Name];

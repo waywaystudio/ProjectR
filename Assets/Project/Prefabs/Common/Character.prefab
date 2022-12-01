@@ -374,6 +374,9 @@ GameObject:
   m_Component:
   - component: {fileID: 4530691504984115603}
   - component: {fileID: 2541971373313465743}
+  - component: {fileID: 7092263565204020639}
+  - component: {fileID: 2963537849272703404}
+  - component: {fileID: 1834998400352065126}
   m_Layer: 7
   m_Name: Battle
   m_TagString: Untagged
@@ -408,6 +411,76 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0aae32c4aec098a4cbf2fadbb9c0d8b7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  commonAttack: {fileID: 0}
+--- !u!114 &7092263565204020639
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3477918788823904006}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8cbd7116df6a36045a0f4b662a147e20, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  id: 12000001
+  skillName: CommonAttack
+  baseCoolTime: 0
+  range: 5
+  priority: 1
+  assignedClass:
+  - All
+  motionType: instant
+  targetCount: 1
+  targetLayer: enemy
+  skillType: damage
+--- !u!114 &2963537849272703404
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3477918788823904006}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 435ed8a2f229f994da80ebc7965e236e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  id: 12000002
+  skillName: Bash
+  baseCoolTime: 8
+  range: 5
+  priority: 5
+  assignedClass:
+  - Warrior
+  motionType: instant
+  targetCount: 1
+  targetLayer: enemy
+  skillType: damage
+--- !u!114 &1834998400352065126
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3477918788823904006}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 945b5592019fdce48918275d3f66f066, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  id: 12000003
+  skillName: BackStep
+  baseCoolTime: 15
+  range: 18
+  priority: 5
+  assignedClass:
+  - Rogue
+  motionType: instant
+  targetCount: 1
+  targetLayer: enemy
+  skillType: damage
 --- !u!1 &3525883613796328407
 GameObject:
   m_ObjectHideFlags: 0

@@ -18,24 +18,46 @@ using UnityEngine;
 namespace Data.ContentData
 {    
     public partial class BossData : ScriptableObject
-    { 
-/* Fields. */    
-        [SerializeField] 
-        [TableList(AlwaysExpanded = true, HideToolbar = true, DrawScrollView = true, IsReadOnly = true)] 
+    {
+        [Serializable]
+        public class Boss
+        {
+			[SerializeField] private Int32 id;
+			[SerializeField] private String bossName;
+			[SerializeField] private Single tempDifficulty;
+			[SerializeField] private List<Int32> dropItemIDList;
+			[SerializeField] private List<Int32> dropItemProbabilities;
+
+			public Int32 ID => id;
+			public String BossName => bossName;
+			public Single TempDifficulty => tempDifficulty;
+			public List<Int32> DropItemIdList => dropItemIDList;
+			public List<Int32> DropItemProbabilities => dropItemProbabilities;
+
+        }
+
+        [SerializeField]
         private List<Boss> bossList = new ();
-        private Dictionary<int, Boss> bossTable = new ();        
+        private Dictionary<int, Boss> bossTable = new ();
 
-/* Properties. */
         public List<Boss> BossList => bossList;
-        public Dictionary<int, Boss> BossTable => bossTable ??= new Dictionary<int, Boss>();
+        public Dictionary<int, Boss> BossTable
+        {
+            get
+            {
+                if (bossTable != null) return bossTable;
 
-/* Editor Functions. */
+                bossTable = new Dictionary<int, Boss>();
+                bossList.ForEach(x => bossTable.Add(x.ID, x));
+                return bossTable;
+            }
+        }
+
+#region Editor Functions.
     #if UNITY_EDITOR
         private readonly string spreadSheetID = "1yO5sJqxMvySDiihls5pwiHQWoJGysrT7LBmL16HhHRM";
-        private readonly string sheetID = "75529785";
-    #endif
-
-#if UNITY_EDITOR        
+        private readonly string sheetID = "75529785";    
+  
         private void LoadFromJson()
         {
     
@@ -52,28 +74,28 @@ namespace Data.ContentData
             UnityEditor.EditorUtility.SetDirty(this);
             UnityEditor.AssetDatabase.Refresh();
         }
-#endif
-/* innerClass. */
-        [Serializable]
-        public class Boss
-        {
-			public Int32 ID;
-			public String BossName;
-			public Single TempDifficulty;
-			public List<Int32> DropItemIdList;
-			public List<Int32> DropItemProbabilities;
 
-        }
+    #endif
+#endregion
     }
-        
-#if UNITY_EDITOR
-    #region Attribute Setting
+
+#region Attribute Setting        
+    #if UNITY_EDITOR
     public class BossDrawer : OdinAttributeProcessor<BossData>
     {
         public override void ProcessChildMemberAttributes(InspectorProperty parentProperty, MemberInfo member, List<Attribute> attributes)
         {
             switch (member.Name)
             {
+                case "bossList":
+                    attributes.Add(new TableListAttribute
+                    {
+                        AlwaysExpanded = true,
+                        HideToolbar = true,
+                        DrawScrollView = true,
+                        IsReadOnly = true
+                    });
+                    break;
                 case "LoadFromJson":
                     attributes.Add(new PropertySpaceAttribute(5f, 0f));
                     attributes.Add(new ButtonAttribute(ButtonSizes.Medium));
@@ -83,7 +105,8 @@ namespace Data.ContentData
                     break;
             }
         }
-    }
-    #endregion
-#endif
+    }    
+    #endif
+#endregion
+
 }

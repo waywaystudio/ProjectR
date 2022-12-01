@@ -18,24 +18,40 @@ using UnityEngine;
 namespace Data.ContentData
 {    
     public partial class EquipmentData : ScriptableObject
-    { 
-/* Fields. */    
-        [SerializeField] 
-        [TableList(AlwaysExpanded = true, HideToolbar = true, DrawScrollView = true, IsReadOnly = true)] 
+    {
+        [Serializable]
+        public class Equipment
+        {
+			[SerializeField] private Int32 id;
+			[SerializeField] private String itemName;
+
+			public Int32 ID => id;
+			public String ItemName => itemName;
+
+        }
+
+        [SerializeField]
         private List<Equipment> equipmentList = new ();
-        private Dictionary<int, Equipment> equipmentTable = new ();        
+        private Dictionary<int, Equipment> equipmentTable = new ();
 
-/* Properties. */
         public List<Equipment> EquipmentList => equipmentList;
-        public Dictionary<int, Equipment> EquipmentTable => equipmentTable ??= new Dictionary<int, Equipment>();
+        public Dictionary<int, Equipment> EquipmentTable
+        {
+            get
+            {
+                if (equipmentTable != null) return equipmentTable;
 
-/* Editor Functions. */
+                equipmentTable = new Dictionary<int, Equipment>();
+                equipmentList.ForEach(x => equipmentTable.Add(x.ID, x));
+                return equipmentTable;
+            }
+        }
+
+#region Editor Functions.
     #if UNITY_EDITOR
         private readonly string spreadSheetID = "1yO5sJqxMvySDiihls5pwiHQWoJGysrT7LBmL16HhHRM";
-        private readonly string sheetID = "94325414";
-    #endif
-
-#if UNITY_EDITOR        
+        private readonly string sheetID = "94325414";    
+  
         private void LoadFromJson()
         {
     
@@ -52,25 +68,28 @@ namespace Data.ContentData
             UnityEditor.EditorUtility.SetDirty(this);
             UnityEditor.AssetDatabase.Refresh();
         }
-#endif
-/* innerClass. */
-        [Serializable]
-        public class Equipment
-        {
-			public Int32 ID;
-			public String ItemName;
 
-        }
+    #endif
+#endregion
     }
-        
-#if UNITY_EDITOR
-    #region Attribute Setting
+
+#region Attribute Setting        
+    #if UNITY_EDITOR
     public class EquipmentDrawer : OdinAttributeProcessor<EquipmentData>
     {
         public override void ProcessChildMemberAttributes(InspectorProperty parentProperty, MemberInfo member, List<Attribute> attributes)
         {
             switch (member.Name)
             {
+                case "equipmentList":
+                    attributes.Add(new TableListAttribute
+                    {
+                        AlwaysExpanded = true,
+                        HideToolbar = true,
+                        DrawScrollView = true,
+                        IsReadOnly = true
+                    });
+                    break;
                 case "LoadFromJson":
                     attributes.Add(new PropertySpaceAttribute(5f, 0f));
                     attributes.Add(new ButtonAttribute(ButtonSizes.Medium));
@@ -80,7 +99,8 @@ namespace Data.ContentData
                     break;
             }
         }
-    }
-    #endregion
-#endif
+    }    
+    #endif
+#endregion
+
 }

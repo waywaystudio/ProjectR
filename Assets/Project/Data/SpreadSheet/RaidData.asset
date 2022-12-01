@@ -13,51 +13,51 @@ MonoBehaviour:
   m_Name: RaidData
   m_EditorClassIdentifier: 
   raidList:
-  - ID: 15000001
-    RaidName: Forge of Souls
-    PartyScale: 4
-    BossList:
+  - id: 15000001
+    raidName: Forge of Souls
+    partyScale: 4
+    bossList:
     - Devourer of Souls
-  - ID: 15000002
-    RaidName: Violet Hold
-    PartyScale: 4
-    BossList:
+  - id: 15000002
+    raidName: Violet Hold
+    partyScale: 4
+    bossList:
     - Moragg
-  - ID: 15000003
-    RaidName: Halls of Stone
-    PartyScale: 4
-    BossList:
+  - id: 15000003
+    raidName: Halls of Stone
+    partyScale: 4
+    bossList:
     - Maiden of Grief
-  - ID: 15000004
-    RaidName: The Nexus
-    PartyScale: 4
-    BossList:
+  - id: 15000004
+    raidName: The Nexus
+    partyScale: 4
+    bossList:
     - Keristrasza
-  - ID: 15000005
-    RaidName: Black Temple
-    PartyScale: 8
-    BossList:
+  - id: 15000005
+    raidName: Black Temple
+    partyScale: 8
+    bossList:
     - Teron Gorefiend
     - ' Mother Shahraz'
     - ' Illidan Stormrage'
-  - ID: 15000006
-    RaidName: Naxxramas
-    PartyScale: 8
-    BossList:
+  - id: 15000006
+    raidName: Naxxramas
+    partyScale: 8
+    bossList:
     - Patchwerk
     - ' Sapphiron'
     - ' Kel''Thuzad'
-  - ID: 15000007
-    RaidName: Molten Core
-    PartyScale: 8
-    BossList:
+  - id: 15000007
+    raidName: Molten Core
+    partyScale: 8
+    bossList:
     - Magmadar
     - ' Baron Geddon'
     - ' Ragnaros'
-  - ID: 15000008
-    RaidName: Blackwing Lair
-    PartyScale: 8
-    BossList:
+  - id: 15000008
+    raidName: Blackwing Lair
+    partyScale: 8
+    bossList:
     - Vaelastrasz the Corrupt
     - ' Chromaggus'
     - ' Nefarian'

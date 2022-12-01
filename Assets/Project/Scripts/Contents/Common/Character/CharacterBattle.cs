@@ -1,4 +1,5 @@
 using System;
+using Common.Character.Skills;
 using UnityEngine;
 
 namespace Common.Character
@@ -8,41 +9,19 @@ namespace Common.Character
         // SkillDataList;
         // each coolTime tick;
         // Update
+        [SerializeField] private CommonAttack commonAttack;
         
-        [SerializeField] private float coolTime = 2f;
-
-        private bool isReady;
-        private float tick;
-        private float remainCoolTime;
-
-        public bool IsReady => isReady;
-
-        public void DoSkill(GameObject target)
-        {
-            if (!isReady)
-            {
-                Debug.Log("Not Ready");
-                return;
-            }
-
-            isReady = false;
-            remainCoolTime = coolTime;
-        }
-
-        private void Awake()
-        {
-            tick = Time.deltaTime;
-        }
+        // Global CoolDown Packages;
+        // private Skill(?) nextSkill;
+        // public void DoSkill() => nextSkill.Invoke();
 
         private void Update()
         {
-            if (remainCoolTime > 0.0f)
+            // CommonAttack Update
+            if (!commonAttack.IsCoolOn)
             {
-                remainCoolTime -= tick;
-                return;
+                // commonAttack.DecreaseCoolTime();
             }
-
-            isReady = true;
         }
     }
 }

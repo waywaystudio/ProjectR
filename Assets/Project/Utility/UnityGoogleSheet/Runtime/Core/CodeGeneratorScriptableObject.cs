@@ -20,7 +20,7 @@ namespace UnityGoogleSheet.Core
         private static SheetInfo sheetInfo;
 
         public string GenerateForm { get; private set; } = 
-@"/*     ===== Do not touch this. Auto Generated Code. =====    */
+$@"/*     ===== Do not touch this. Auto Generated Code. =====    */
 /*     If you want custom code generation modify this => 'CodeGeneratorScriptableObject.cs'  */
 //     ReSharper disable BuiltInTypeReferenceStyle
 //     ReSharper disable PartialTypeWithSinglePart
@@ -34,36 +34,44 @@ using Sirenix.OdinInspector.Editor;
 using Sirenix.OdinInspector;
 @assemblies
 namespace @namespace
-{    
+{{    
     public partial class @Class@suffix : ScriptableObject
-    { 
-/* Fields. */    
-        [SerializeField] 
-        [TableList(AlwaysExpanded = true, HideToolbar = true, DrawScrollView = true, IsReadOnly = true)] 
-        private List<@Class> @classList = new ();
-        private Dictionary<@keyType, @Class> @classTable = new ();        
-
-/* Properties. */
-        public List<@Class> @ClassList => @classList;
-        public Dictionary<@keyType, @Class> @ClassTable => @classTable ??= new Dictionary<@keyType, @Class>();
-
-/* Editor Functions. */
-    #if UNITY_EDITOR
-        private readonly string spreadSheetID = ""@spreadSheetID"";
-        private readonly string sheetID = ""@sheetID"";
-    #endif
-@loadFunctions
-/* innerClass. */
+    {{
         [Serializable]
         public class @Class
-        {
+        {{
 @types
-        }
-    }
-@drawer
-}
-";
+@properties
+        }}
 
+        [SerializeField]
+        private List<@Class> @classList = new ();
+        private Dictionary<@keyType, @Class> @classTable = new ();
+
+        public List<@Class> @ClassList => @classList;
+        public Dictionary<@keyType, @Class> @ClassTable
+        {{
+            get
+            {{
+                if (@classTable != null) return @classTable;
+
+                @classTable = new Dictionary<int, @Class>();
+                @classList.ForEach(x => @classTable.Add(x.ID, x));
+                return @classTable;
+            }}
+        }}
+
+#region Editor Functions.
+    #if UNITY_EDITOR
+        private readonly string spreadSheetID = ""@spreadSheetID"";
+        private readonly string sheetID = ""@sheetID"";    
+@loadFunctions
+    #endif
+#endregion
+    }}
+@drawer
+}}
+";
         public string Generate()
         {
             var @namespace = $"Data.{sheetInfo.sheetFileName}";
@@ -96,6 +104,7 @@ namespace @namespace
             return GenerateForm;
         }
         
+
         private void WriteAssembly(string[] assemblies, IReadOnlyList<string> types, IReadOnlyList<bool> isEnums)
         {
             if (assemblies != null)
@@ -114,7 +123,7 @@ namespace @namespace
             {
                 var builder = new StringBuilder();
                 var duplicationCheck = new List<string>();
-                
+
                 for (var i = 0; i < types.Count; i++)
                 {
                     var type = types[i];
@@ -164,10 +173,13 @@ namespace @namespace
         {
             if (types == null) return;
             
-            var builder = new StringBuilder();
+            var typeBuilder = new StringBuilder();
+            var propertyBuilder = new StringBuilder();
                 
-            for (var i = 0; i < types.Count(); i++)
+            for (var i = 0; i < types.Count; i++)
             {
+                var condensedFieldName = fieldNames[i].Replace("\n", "");
+                
                 if (isEnum[i] == false)
                 {
                     var targetType = types[i];
@@ -186,7 +198,8 @@ namespace @namespace
                         throw new TypeParserNotFoundException("Type Parser Not Found, You made your own type parser? check custom type document on gitbook document.");
                     }
                         
-                    builder.AppendLine($"\t\t\tpublic {GetCSharpRepresentation(TypeMap.StrMap[types[i]], true)} {ToPascalCasing(fieldNames[i])};");
+                    typeBuilder.AppendLine($"\t\t\t[SerializeField] private {GetCSharpRepresentation(TypeMap.StrMap[types[i]], true)} {ToCamelCasing(condensedFieldName)};");
+                    propertyBuilder.AppendLine($"\t\t\tpublic {GetCSharpRepresentation(TypeMap.StrMap[types[i]], true)} {ToPascalCasing(condensedFieldName)} => {ToCamelCasing(condensedFieldName)};");
                 }
                 else
                 {
@@ -197,14 +210,16 @@ namespace @namespace
                     str = str.Replace(" ", null);
                     str = str.Remove(0, 4);
 
-                    builder.AppendLine($"\t\t\tpublic {GetCSharpRepresentation(TypeMap.EnumMap[str].Type, true)} {ToPascalCasing(fieldNames[i])};");
+                    typeBuilder.AppendLine($"\t\t\t[SerializeField] private {GetCSharpRepresentation(TypeMap.EnumMap[str].Type, true)} {ToCamelCasing(condensedFieldName)};");
+                    propertyBuilder.AppendLine($"\t\t\tpublic {GetCSharpRepresentation(TypeMap.StrMap[types[i]], true)} {ToPascalCasing(condensedFieldName)} => {ToCamelCasing(condensedFieldName)};");
                 }
             }
                 
-            GenerateForm = GenerateForm.Replace("@types", builder.ToString());
+            GenerateForm = GenerateForm.Replace("@types", typeBuilder.ToString());
+            GenerateForm = GenerateForm.Replace("@properties", propertyBuilder.ToString());
             GenerateForm = GenerateForm.Replace("@keyType", types[0]);
         }
-        
+
         private void WriteSpreadSheetData(string spreadID, string sheetID)
         {
             GenerateForm = GenerateForm.Replace("@spreadSheetID", spreadID);
@@ -214,8 +229,7 @@ namespace @namespace
         private void WriteLoadFunction(string sheetFileName)
         {
             var builder = new StringBuilder();
-            builder.Append(@"
-#if UNITY_EDITOR        
+            builder.Append(@"  
         private void LoadFromJson()
         {
     
@@ -232,7 +246,7 @@ namespace @namespace
             UnityEditor.EditorUtility.SetDirty(this);
             UnityEditor.AssetDatabase.Refresh();
         }
-#endif");
+");
             
             GenerateForm = GenerateForm.Replace("@loadFunctions", builder.ToString());
             GenerateForm = GenerateForm.Replace("@sheetFileName", sheetFileName);
@@ -246,15 +260,24 @@ namespace @namespace
         private void WriteDrawer()
         {
             var builder = new StringBuilder();
-            builder.Append(@"        
-#if UNITY_EDITOR
-    #region Attribute Setting
+            builder.Append(@"
+#region Attribute Setting        
+    #if UNITY_EDITOR
     public class @ClassDrawer : OdinAttributeProcessor<@Class@suffix>
     {
         public override void ProcessChildMemberAttributes(InspectorProperty parentProperty, MemberInfo member, List<Attribute> attributes)
         {
             switch (member.Name)
             {
+                case ""@classList"":
+                    attributes.Add(new TableListAttribute
+                    {
+                        AlwaysExpanded = true,
+                        HideToolbar = true,
+                        DrawScrollView = true,
+                        IsReadOnly = true
+                    });
+                    break;
                 case ""LoadFromJson"":
                     attributes.Add(new PropertySpaceAttribute(5f, 0f));
                     attributes.Add(new ButtonAttribute(ButtonSizes.Medium));
@@ -264,9 +287,10 @@ namespace @namespace
                     break;
             }
         }
-    }
-    #endregion
-#endif");
+    }    
+    #endif
+#endregion
+");
             
             GenerateForm = GenerateForm.Replace("@drawer", builder.ToString());
         }

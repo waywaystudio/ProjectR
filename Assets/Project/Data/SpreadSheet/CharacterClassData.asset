@@ -13,103 +13,103 @@ MonoBehaviour:
   m_Name: CharacterClassData
   m_EditorClassIdentifier: 
   characterClassList:
-  - ID: 11000001
-    ClassName: Warrior
-    BaseRole: Tank
-    AttackSpeed: 1
-    Range: 5
-  - ID: 11000002
-    ClassName: Paladin
-    BaseRole: Tank
-    AttackSpeed: 1
-    Range: 5
-  - ID: 11000003
-    ClassName: Load
-    BaseRole: Tank
-    AttackSpeed: 2
-    Range: 5
-  - ID: 11000004
-    ClassName: DeathKnight
-    BaseRole: Tank
-    AttackSpeed: 2
-    Range: 5
-  - ID: 11000005
-    ClassName: Druid
-    BaseRole: Tank
-    AttackSpeed: 1.5
-    Range: 5
-  - ID: 11000006
-    ClassName: Rogue
-    BaseRole: Melee
-    AttackSpeed: 0.5
-    Range: 5
-  - ID: 11000007
-    ClassName: Lancer
-    BaseRole: Melee
-    AttackSpeed: 1.2
-    Range: 8
-  - ID: 11000008
-    ClassName: Fighter
-    BaseRole: Melee
-    AttackSpeed: 0.5
-    Range: 4
-  - ID: 11000009
-    ClassName: Berserker
-    BaseRole: Melee
-    AttackSpeed: 1.8
-    Range: 7
-  - ID: 11000010
-    ClassName: Blade
-    BaseRole: Melee
-    AttackSpeed: 1
-    Range: 6
-  - ID: 11000011
-    ClassName: Hunter
-    BaseRole: Range
-    AttackSpeed: 1.8
-    Range: 20
-  - ID: 11000012
-    ClassName: Wizard
-    BaseRole: Range
-    AttackSpeed: 1
-    Range: 20
-  - ID: 11000013
-    ClassName: Warlock
-    BaseRole: Range
-    AttackSpeed: 1
-    Range: 20
-  - ID: 11000014
-    ClassName: Sniper
-    BaseRole: Range
-    AttackSpeed: 2
-    Range: 25
-  - ID: 11000015
-    ClassName: Summoner
-    BaseRole: Range
-    AttackSpeed: 1
-    Range: 20
-  - ID: 11000016
-    ClassName: Priest
-    BaseRole: Support
-    AttackSpeed: 1
-    Range: 20
-  - ID: 11000017
-    ClassName: Angel
-    BaseRole: Support
-    AttackSpeed: 1
-    Range: 20
-  - ID: 11000018
-    ClassName: Bard
-    BaseRole: Support
-    AttackSpeed: 1
-    Range: 20
-  - ID: 11000019
-    ClassName: Shaman
-    BaseRole: Support
-    AttackSpeed: 1
-    Range: 20
-  - ID: 11000020
-    ClassName: HolyKnight
-    BaseRole: Support
-    AttackSpeed: 1
-    Range: 5
+  - id: 11000001
+    className: Warrior
+    baseRole: Tank
+    attackSpeed: 1
+    range: 5
+  - id: 11000002
+    className: Paladin
+    baseRole: Tank
+    attackSpeed: 1
+    range: 5
+  - id: 11000003
+    className: Load
+    baseRole: Tank
+    attackSpeed: 2
+    range: 5
+  - id: 11000004
+    className: DeathKnight
+    baseRole: Tank
+    attackSpeed: 2
+    range: 5
+  - id: 11000005
+    className: Druid
+    baseRole: Tank
+    attackSpeed: 1.5
+    range: 5
+  - id: 11000006
+    className: Rogue
+    baseRole: Melee
+    attackSpeed: 0.5
+    range: 5
+  - id: 11000007
+    className: Lancer
+    baseRole: Melee
+    attackSpeed: 1.2
+    range: 8
+  - id: 11000008
+    className: Fighter
+    baseRole: Melee
+    attackSpeed: 0.5
+    range: 4
+  - id: 11000009
+    className: Berserker
+    baseRole: Melee
+    attackSpeed: 1.8
+    range: 7
+  - id: 11000010
+    className: Blade
+    baseRole: Melee
+    attackSpeed: 1
+    range: 6
+  - id: 11000011
+    className: Hunter
+    baseRole: Range
+    attackSpeed: 1.8
+    range: 20
+  - id: 11000012
+    className: Wizard
+    baseRole: Range
+    attackSpeed: 1
+    range: 20
+  - id: 11000013
+    className: Warlock
+    baseRole: Range
+    attackSpeed: 1
+    range: 20
+  - id: 11000014
+    className: Sniper
+    baseRole: Range
+    attackSpeed: 2
+    range: 25
+  - id: 11000015
+    className: Summoner
+    baseRole: Range
+    attackSpeed: 1
+    range: 20
+  - id: 11000016
+    className: Priest
+    baseRole: Support
+    attackSpeed: 1
+    range: 20
+  - id: 11000017
+    className: Angel
+    baseRole: Support
+    attackSpeed: 1
+    range: 20
+  - id: 11000018
+    className: Bard
+    baseRole: Support
+    attackSpeed: 1
+    range: 20
+  - id: 11000019
+    className: Shaman
+    baseRole: Support
+    attackSpeed: 1
+    range: 20
+  - id: 11000020
+    className: HolyKnight
+    baseRole: Support
+    attackSpeed: 1
+    range: 5

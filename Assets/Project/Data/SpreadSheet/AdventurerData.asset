@@ -13,163 +13,163 @@ MonoBehaviour:
   m_Name: AdventurerData
   m_EditorClassIdentifier: 
   adventurerList:
-  - ID: 10000001
-    AdventurerName: Kungen
-    Role: Tank
-    Job: Warrior
-  - ID: 10000002
-    AdventurerName: Muradin
-    Role: Tank
-    Job: Warrior
-  - ID: 10000003
-    AdventurerName: Anduin
-    Role: Tank
-    Job: Paladin
-  - ID: 10000004
-    AdventurerName: Leo
-    Role: Tank
-    Job: Paladin
-  - ID: 10000005
-    AdventurerName: Diablo
-    Role: Tank
-    Job: Load
-  - ID: 10000006
-    AdventurerName: Muradin
-    Role: Tank
-    Job: Load
-  - ID: 10000007
-    AdventurerName: LichKing
-    Role: Tank
-    Job: DeathKnight
-  - ID: 10000008
-    AdventurerName: Mogreign
-    Role: Tank
-    Job: DeathKnight
-  - ID: 10000009
-    AdventurerName: Malfurion
-    Role: Tank
-    Job: Druid
-  - ID: 10000010
-    AdventurerName: Noru
-    Role: Tank
-    Job: Druid
-  - ID: 10000011
-    AdventurerName: Vanclief
-    Role: Melee
-    Job: Rogue
-  - ID: 10000012
-    AdventurerName: Assassin
-    Role: Melee
-    Job: Rogue
-  - ID: 10000013
-    AdventurerName: Siryu
-    Role: Melee
-    Job: Lancer
-  - ID: 10000014
-    AdventurerName: Kwanu
-    Role: Melee
-    Job: Lancer
-  - ID: 10000015
-    AdventurerName: Ypman
-    Role: Melee
-    Job: Fighter
-  - ID: 10000016
-    AdventurerName: Opman
-    Role: Melee
-    Job: Fighter
-  - ID: 10000017
-    AdventurerName: Gatz
-    Role: Melee
-    Job: Berserker
-  - ID: 10000018
-    AdventurerName: Waterdog
-    Role: Melee
-    Job: Berserker
-  - ID: 10000019
-    AdventurerName: Zoro
-    Role: Melee
-    Job: Blade
-  - ID: 10000020
-    AdventurerName: Kenshin
-    Role: Melee
-    Job: Blade
-  - ID: 10000021
-    AdventurerName: Yohee
-    Role: Range
-    Job: Hunter
-  - ID: 10000022
-    AdventurerName: Robinhood
-    Role: Range
-    Job: Hunter
-  - ID: 10000023
-    AdventurerName: Jeina
-    Role: Range
-    Job: Wizard
-  - ID: 10000024
-    AdventurerName: HarryPotter
-    Role: Range
-    Job: Wizard
-  - ID: 10000025
-    AdventurerName: KelThuzad
-    Role: Range
-    Job: Warlock
-  - ID: 10000026
-    AdventurerName: Drakedog
-    Role: Range
-    Job: Warlock
-  - ID: 10000027
-    AdventurerName: Sylvanas
-    Role: Range
-    Job: Sniper
-  - ID: 10000028
-    AdventurerName: Hanzo
-    Role: Range
-    Job: Sniper
-  - ID: 10000029
-    AdventurerName: Sirke
-    Role: Range
-    Job: Summoner
-  - ID: 10000030
-    AdventurerName: Mephisto
-    Role: Range
-    Job: Summoner
-  - ID: 10000031
-    AdventurerName: Whitemane
-    Role: Healer
-    Job: Priest
-  - ID: 10000032
-    AdventurerName: Deckard
-    Role: Healer
-    Job: Priest
-  - ID: 10000033
-    AdventurerName: Tyrael
-    Role: Healer
-    Job: Angel
-  - ID: 10000034
-    AdventurerName: Mercy
-    Role: Healer
-    Job: Angel
-  - ID: 10000035
-    AdventurerName: Lili
-    Role: Healer
-    Job: Bard
-  - ID: 10000036
-    AdventurerName: Hammer
-    Role: Healer
-    Job: Bard
-  - ID: 10000037
-    AdventurerName: Thrall
-    Role: Healer
-    Job: Shaman
-  - ID: 10000038
-    AdventurerName: Brightwing
-    Role: Healer
-    Job: Shaman
-  - ID: 10000039
-    AdventurerName: Johanna
-    Role: Healer
-    Job: HolyKnight
-  - ID: 10000040
-    AdventurerName: Uther
-    Role: Healer
-    Job: HolyKnight
+  - id: 10000001
+    adventurerName: Kungen
+    role: Tank
+    job: Warrior
+  - id: 10000002
+    adventurerName: Muradin
+    role: Tank
+    job: Warrior
+  - id: 10000003
+    adventurerName: Anduin
+    role: Tank
+    job: Paladin
+  - id: 10000004
+    adventurerName: Leo
+    role: Tank
+    job: Paladin
+  - id: 10000005
+    adventurerName: Diablo
+    role: Tank
+    job: Load
+  - id: 10000006
+    adventurerName: Muradin
+    role: Tank
+    job: Load
+  - id: 10000007
+    adventurerName: LichKing
+    role: Tank
+    job: DeathKnight
+  - id: 10000008
+    adventurerName: Mogreign
+    role: Tank
+    job: DeathKnight
+  - id: 10000009
+    adventurerName: Malfurion
+    role: Tank
+    job: Druid
+  - id: 10000010
+    adventurerName: Noru
+    role: Tank
+    job: Druid
+  - id: 10000011
+    adventurerName: Vanclief
+    role: Melee
+    job: Rogue
+  - id: 10000012
+    adventurerName: Assassin
+    role: Melee
+    job: Rogue
+  - id: 10000013
+    adventurerName: Siryu
+    role: Melee
+    job: Lancer
+  - id: 10000014
+    adventurerName: Kwanu
+    role: Melee
+    job: Lancer
+  - id: 10000015
+    adventurerName: Ypman
+    role: Melee
+    job: Fighter
+  - id: 10000016
+    adventurerName: Opman
+    role: Melee
+    job: Fighter
+  - id: 10000017
+    adventurerName: Gatz
+    role: Melee
+    job: Berserker
+  - id: 10000018
+    adventurerName: Waterdog
+    role: Melee
+    job: Berserker
+  - id: 10000019
+    adventurerName: Zoro
+    role: Melee
+    job: Blade
+  - id: 10000020
+    adventurerName: Kenshin
+    role: Melee
+    job: Blade
+  - id: 10000021
+    adventurerName: Yohee
+    role: Range
+    job: Hunter
+  - id: 10000022
+    adventurerName: Robinhood
+    role: Range
+    job: Hunter
+  - id: 10000023
+    adventurerName: Jeina
+    role: Range
+    job: Wizard
+  - id: 10000024
+    adventurerName: HarryPotter
+    role: Range
+    job: Wizard
+  - id: 10000025
+    adventurerName: KelThuzad
+    role: Range
+    job: Warlock
+  - id: 10000026
+    adventurerName: Drakedog
+    role: Range
+    job: Warlock
+  - id: 10000027
+    adventurerName: Sylvanas
+    role: Range
+    job: Sniper
+  - id: 10000028
+    adventurerName: Hanzo
+    role: Range
+    job: Sniper
+  - id: 10000029
+    adventurerName: Sirke
+    role: Range
+    job: Summoner
+  - id: 10000030
+    adventurerName: Mephisto
+    role: Range
+    job: Summoner
+  - id: 10000031
+    adventurerName: Whitemane
+    role: Healer
+    job: Priest
+  - id: 10000032
+    adventurerName: Deckard
+    role: Healer
+    job: Priest
+  - id: 10000033
+    adventurerName: Tyrael
+    role: Healer
+    job: Angel
+  - id: 10000034
+    adventurerName: Mercy
+    role: Healer
+    job: Angel
+  - id: 10000035
+    adventurerName: Lili
+    role: Healer
+    job: Bard
+  - id: 10000036
+    adventurerName: Hammer
+    role: Healer
+    job: Bard
+  - id: 10000037
+    adventurerName: Thrall
+    role: Healer
+    job: Shaman
+  - id: 10000038
+    adventurerName: Brightwing
+    role: Healer
+    job: Shaman
+  - id: 10000039
+    adventurerName: Johanna
+    role: Healer
+    job: HolyKnight
+  - id: 10000040
+    adventurerName: Uther
+    role: Healer
+    job: HolyKnight
