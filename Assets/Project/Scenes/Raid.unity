@@ -154,6 +154,10 @@ PrefabInstance:
       propertyPath: restartWhenComplete
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 6865752546761714098, guid: 9747ac49e6591ab46b0305ba2df0f21c, type: 3}
+      propertyPath: m_UseSpriteMesh
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8119311918509560299, guid: 9747ac49e6591ab46b0305ba2df0f21c, type: 3}
       propertyPath: m_RootOrder
       value: 3
@@ -2404,7 +2408,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8119311918509560303, guid: 9747ac49e6591ab46b0305ba2df0f21c, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8230474300003447027, guid: 9747ac49e6591ab46b0305ba2df0f21c, type: 3}
       propertyPath: Range

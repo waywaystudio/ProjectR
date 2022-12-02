@@ -145,6 +145,110 @@ Transform:
   m_Father: {fileID: 5752516890736221719}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1712735323177700049
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3337188631757847715}
+  - component: {fileID: 1105832479219626301}
+  - component: {fileID: 5533995544325464706}
+  - component: {fileID: 4418121163623458420}
+  - component: {fileID: 8655008688035319401}
+  m_Layer: 7
+  m_Name: CommonAttack
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3337188631757847715
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1712735323177700049}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 4530691504984115603}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1105832479219626301
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1712735323177700049}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8cbd7116df6a36045a0f4b662a147e20, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  id: 12000001
+  skillName: CommonAttack
+  animationKey: attack
+  priority: 1
+  entityTypeList: 7
+  damageEntity: {fileID: 5533995544325464706}
+  coolTimeEntity: {fileID: 4418121163623458420}
+  rangeEntity: {fileID: 8655008688035319401}
+--- !u!114 &5533995544325464706
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1712735323177700049}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bd2d098c14bb73641bcc6faff29af210, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  SkillName: CommonAttack
+  Flag: 1
+  value: 0
+  additionalValue: 1
+  criticalChance: 0
+  hitChance: 0
+  aggroCoefficient: 0
+--- !u!114 &4418121163623458420
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1712735323177700049}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9b71247a0c6287f44b49f848d90d357e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  SkillName: CommonAttack
+  Flag: 2
+  coolTime: 0
+--- !u!114 &8655008688035319401
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1712735323177700049}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 39322dc42ccb47c49b30a8eafb914260, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  SkillName: CommonAttack
+  Flag: 4
+  range: 5
 --- !u!1 &1811101879425444746
 GameObject:
   m_ObjectHideFlags: 0
@@ -288,6 +392,111 @@ MonoBehaviour:
   m_DefaultActionMap: Player
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
+--- !u!1 &2831006560795042914
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4854559846427955077}
+  - component: {fileID: 3652819614560570534}
+  - component: {fileID: 1868040003090756390}
+  - component: {fileID: 3024998528279243812}
+  - component: {fileID: 8012866365531131646}
+  m_Layer: 7
+  m_Name: AimShot
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4854559846427955077
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2831006560795042914}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 4530691504984115603}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &3652819614560570534
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2831006560795042914}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a33b5f883023fa545a39991272bc1cfc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  id: 12000004
+  skillName: AimShot
+  animationKey: casting
+  priority: 5
+  entityTypeList: 13
+  damageEntity: {fileID: 1868040003090756390}
+  rangeEntity: {fileID: 3024998528279243812}
+  castingEntity: {fileID: 8012866365531131646}
+--- !u!114 &1868040003090756390
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2831006560795042914}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bd2d098c14bb73641bcc6faff29af210, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  SkillName: AimShot
+  Flag: 1
+  value: 0
+  additionalValue: 1
+  criticalChance: 0
+  hitChance: 1
+  aggroCoefficient: 1
+--- !u!114 &3024998528279243812
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2831006560795042914}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 39322dc42ccb47c49b30a8eafb914260, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  SkillName: AimShot
+  Flag: 4
+  range: 25
+--- !u!114 &8012866365531131646
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2831006560795042914}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cc73b176d16ea8448a48d598b41a08b5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  SkillName: AimShot
+  Flag: 8
+  castingTime: 1.5
+  castingType: 0
 --- !u!1 &3259059352333038688
 GameObject:
   m_ObjectHideFlags: 0
@@ -374,11 +583,8 @@ GameObject:
   m_Component:
   - component: {fileID: 4530691504984115603}
   - component: {fileID: 2541971373313465743}
-  - component: {fileID: 7092263565204020639}
-  - component: {fileID: 2963537849272703404}
-  - component: {fileID: 1834998400352065126}
   m_Layer: 7
-  m_Name: Battle
+  m_Name: Skills
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -395,7 +601,9 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 3337188631757847715}
+  - {fileID: 4854559846427955077}
   m_Father: {fileID: 2340340124315505437}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -411,76 +619,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0aae32c4aec098a4cbf2fadbb9c0d8b7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  commonAttack: {fileID: 0}
---- !u!114 &7092263565204020639
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3477918788823904006}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8cbd7116df6a36045a0f4b662a147e20, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  id: 12000001
-  skillName: CommonAttack
-  baseCoolTime: 0
-  range: 5
-  priority: 1
-  assignedClass:
-  - All
-  motionType: instant
-  targetCount: 1
-  targetLayer: enemy
-  skillType: damage
---- !u!114 &2963537849272703404
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3477918788823904006}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 435ed8a2f229f994da80ebc7965e236e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  id: 12000002
-  skillName: Bash
-  baseCoolTime: 8
-  range: 5
-  priority: 5
-  assignedClass:
-  - Warrior
-  motionType: instant
-  targetCount: 1
-  targetLayer: enemy
-  skillType: damage
---- !u!114 &1834998400352065126
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3477918788823904006}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 945b5592019fdce48918275d3f66f066, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  id: 12000003
-  skillName: BackStep
-  baseCoolTime: 15
-  range: 18
-  priority: 5
-  assignedClass:
-  - Rogue
-  motionType: instant
-  targetCount: 1
-  targetLayer: enemy
-  skillType: damage
+  commonAttack: {fileID: 1105832479219626301}
+  aimShot: {fileID: 3652819614560570534}
 --- !u!1 &3525883613796328407
 GameObject:
   m_ObjectHideFlags: 0
