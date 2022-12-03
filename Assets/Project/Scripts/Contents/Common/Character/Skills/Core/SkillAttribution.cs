@@ -14,33 +14,35 @@ namespace Common.Character.Skills.Core
         [SerializeField] protected int priority;
         [SerializeField] private EntityType entityTypeList;
         
-        private List<EntityAttribution> skillEntities;
+        private List<EntityAttribution> skillEntities = new();
+        private List<IReadyRequired> readyRequiredSkillEntities;
         private List<IUpdateRequired> updateRequiredSkillEntities;
         
         public int ID { get => id; set => id = value; }
         public string SkillName { get => skillName; set => skillName = value; }
         public string AnimationKey { get => animationKey; set => animationKey = value; }
         public int Priority { get => priority; set => priority = value; }
+        public bool IsReady => readyRequiredSkillEntities.All(x => x.IsReady);
 
-        public EntityType EntityTypeList => entityTypeList;
-        public List<EntityAttribution> SkillEntities => skillEntities ??= GetComponents<EntityAttribution>().ToList();
-        public List<IUpdateRequired> UpdateRequiredSkillEntities => updateRequiredSkillEntities ??= GetComponents<IUpdateRequired>().ToList();
-        
-        public void SetEntities(ISkillEntity skillEntityInfo)
+        public void SetEntities(ICombatAttribution combatAttributionInfo)
         {
-            SkillEntities.ForEach(x => x.Set(skillEntityInfo));
+            skillEntities.ForEach(x => x.Set(combatAttributionInfo));
         }
 
         public void UpdateStatus()
         {
-            if (UpdateRequiredSkillEntities.IsNullOrEmpty()) return;
+            if (updateRequiredSkillEntities.IsNullOrEmpty()) return;
             
-            UpdateRequiredSkillEntities.ForEach(x => x.UpdateStatus());
+            updateRequiredSkillEntities.ForEach(x => x.UpdateStatus());
         }
 
         protected virtual void Awake()
         {
             UpdateEntityType();
+
+            skillEntities = GetComponents<EntityAttribution>().ToList();
+            readyRequiredSkillEntities = GetComponents<IReadyRequired>().ToList();
+            updateRequiredSkillEntities = GetComponents<IUpdateRequired>().ToList();
         }
 
         private void UpdateEntityType()

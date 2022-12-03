@@ -8,6 +8,7 @@ namespace Common.Character.Skills.Entity
         CoolTime = 1 << 1,
         Range = 1 << 2,
         Casting = 1 << 3,
+        Target = 1  << 4,
     
         All = int.MaxValue
     }

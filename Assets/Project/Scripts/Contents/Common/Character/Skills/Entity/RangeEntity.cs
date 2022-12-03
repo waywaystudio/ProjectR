@@ -8,15 +8,8 @@ namespace Common.Character.Skills.Entity
         [SerializeField] private float range;
         
         public float Range { get => range; set => range = value; }
-        public GameObject Target { get; set; }
-        public bool IsReady
-        { 
-            get
-            {
-                if (Target.IsNullOrEmpty()) return false;
-                return Vector3.Distance(Target.transform.position, transform.position) <= Range;
-            }
-        }
+        public Vector3 TargetPosition { get; set; } = Vector3.negativeInfinity;
+        public bool IsReady => Vector3.Distance(TargetPosition, transform.position) <= Range;
 
 #if UNITY_EDITOR
         protected override void OnEditorInitialize()

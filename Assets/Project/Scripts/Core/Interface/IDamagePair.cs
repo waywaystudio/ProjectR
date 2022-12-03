@@ -7,10 +7,11 @@ namespace Core
         float Hit { get; }
     }
     
-    public interface IDamageTaker
+    public interface ICombatTaker
     {
-        double Hp { get; set; }
-        float Evade { get; set; }
-        float AdditionalValue { get; set; }
+        UnityEngine.GameObject TargetObject { get; }
+        void TakeDamage(IDamageProvider damageInfo);
+        void TakeHeal(IHealProvider healInfo);
+        void TakeExtra();
     }
 }

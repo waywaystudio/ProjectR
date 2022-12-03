@@ -5,13 +5,11 @@ namespace Main.Manager.Combat
 {
     public class CombatManager : MonoBehaviour
     {
-        public void Damage(IDamageProvider damageInfo, IDamageTaker takerInfo)
+        public void Damage(IDamageProvider damageInfo, ICombatTaker target)
         {
-            if (!IsHit(damageInfo.Hit, takerInfo.Evade)) return;
-
-            var critical = IsCritical(damageInfo.Critical);
-
-            takerInfo.Hp -= System.Math.Max(0d, damageInfo.Value * critical * takerInfo.AdditionalValue);
+            // if (!IsHit(damageInfo.Hit, takerInfo.Evade)) return;
+            // var critical = IsCritical(damageInfo.Critical);
+            // takerInfo.Hp -= System.Math.Max(0d, damageInfo.Value * critical * takerInfo.AdditionalValue);
         }
 
         public void Heal(IHealProvider healInfo, IHealTaker takerInfo)

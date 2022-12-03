@@ -1,3 +1,4 @@
+using Common.Character.Skills.Entity;
 using Core;
 using Main;
 using Spine.Unity;
@@ -7,6 +8,7 @@ namespace Common.Character.Player
 {
     public class PlayerBehaviour : MonoBehaviour, ISavable, IControlModel
     {
+        // Temp for Test
         [SerializeField] private float moveSpeed = 5f;
         [SerializeField] private float attackSpeed = 1f;
         public float Range;
@@ -16,6 +18,7 @@ namespace Common.Character.Player
         [SerializeField] private SkeletonAnimation skeletonAnimation;
         
         // Operation
+        [SerializeField] private CharacterBattle skills;
         [SerializeField] private PlayerController controller;
         [SerializeField] private CharacterPathfinding characterPathfinding;
         [SerializeField] private CharacterTargeting characterTargeting;
@@ -55,20 +58,24 @@ namespace Common.Character.Player
             animationModel.Attack(false, Idle);
         }
 
-        public void Defence()
+        private ICombatAttribution temp;
+
+        public void CommonAttack()
         {
-            
+            PlayerStatus = CharacterStatus.Attack;
+            animationModel.Attack(false, Idle);
         }
 
-        public void Damaged(GameObject from)
+        public void CommonAttackDamage() => skills.CommonAttack.OnDamage(temp);
+        
+        public void AimShot()
         {
-            
+            PlayerStatus = CharacterStatus.Attack;
+            animationModel.Attack(false, Idle);
+            // Create Projectile Prefab;
         }
 
-        public void Skill(GameObject target)
-        {
-            
-        }
+        public void AimShotDamage() => skills.AimShot.OnDamage(temp);
 
         public void UseItem(GameObject item)
         {
@@ -110,6 +117,7 @@ namespace Common.Character.Player
         {
             skeletonAnimation ??= GetComponentInChildren<SkeletonAnimation>();
             controller ??= GetComponentInChildren<PlayerController>();
+            skills ??= GetComponentInChildren<CharacterBattle>();
             characterPathfinding ??= GetComponentInChildren<CharacterPathfinding>();
             characterTargeting ??= GetComponentInChildren<CharacterTargeting>();
             animationModel ??= GetComponentInChildren<CharacterAnimationModel>();
