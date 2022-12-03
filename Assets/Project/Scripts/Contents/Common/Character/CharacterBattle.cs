@@ -22,21 +22,6 @@ namespace Common.Character
         public CommonAttack CommonAttack => commonAttack;
         public AimShot AimShot => aimShot;
 
-        // public void CommonAttack(ICombatAttribution combatAttribution, List<ICombatTaker> targetList)
-        // {
-            // commonAttack.SetEntities(combatAttribution);
-            
-            // 근데 결국에 데미지 주는 것도, 함수에서 이렇게 바로 실행하는게 아니라 애니매이션 이벤트에 달려있어야 할텐데;
-            // commonAttack.TargetList.ForEach(x => x.TakeDamage(commonAttack));
-            // targetList.ForEach(x => x.TakeDamage(commonAttack));
-        // }
-
-        // public void AimShot(ICombatAttribution combatAttribution, List<ICombatTaker> targetList)
-        // {
-        //     aimShot.SetEntities(combatAttribution);
-        //     targetList.ForEach(x => x.TakeDamage(commonAttack));
-        // }
-
         // public bool TrySetEntity<T>(string skillName, ISkillEntity skillEntity, out T skill) where T : SkillAttribution
         // {
         //     if (!SkillTable.TryGetValue(skillName, out var result))

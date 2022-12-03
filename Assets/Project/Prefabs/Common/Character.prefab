@@ -464,10 +464,11 @@ MonoBehaviour:
   skillName: AimShot
   animationKey: casting
   priority: 5
-  entityTypeList: 13
+  entityTypeList: 29
   damageEntity: {fileID: 1868040003090756390}
   rangeEntity: {fileID: 3024998528279243812}
   castingEntity: {fileID: 8012866365531131646}
+  targetEntity: {fileID: 6572878460508154855}
 --- !u!114 &1868040003090756390
 MonoBehaviour:
   m_ObjectHideFlags: 0

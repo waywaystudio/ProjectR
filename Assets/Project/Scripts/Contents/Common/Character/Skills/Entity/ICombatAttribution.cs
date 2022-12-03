@@ -44,7 +44,7 @@ namespace Common.Character.Skills.Entity
     {
         int TargetCount { get; set; }
         UnityEngine.LayerMask TargetLayer { get; set; }
-        System.Collections.Generic.List<ICombatTaker> TargetList { get; set; }
+        ICombatTaker Target { get; set; }
     }
     
     public interface IReadyRequired

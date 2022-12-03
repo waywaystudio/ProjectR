@@ -24,7 +24,7 @@ namespace Common.Character.Skills
             
             if (!IsReady) return;
 
-            targetEntity.TargetList.ForEach(damageTaker => damageTaker.TakeDamage(this));
+            targetEntity.Target.TakeDamage(this);
         }
 
         protected override void Awake()
