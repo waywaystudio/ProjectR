@@ -59,36 +59,36 @@ namespace Common.Character.Skills
             return result;
         }
         
-#if UNITY_EDITOR
-        #region EditorOnly
-        
-        [OnInspectorInit]
-        private void Initialize() => Initialize("BackStep");
-        private void Initialize(string skillName)
-        {
-            Finder.TryGetObject(out Data.ContentData.SkillData skillData);
-
-            var staticData = skillData.SkillList.Find(x => x.SkillName.Equals(skillName.ToPascalCase()));
-            if (staticData is null)
-            {
-                Debug.LogWarning($"Can't Find {skillName} in {skillData} ScriptableObject");
-                return;
-            }
-
-            id = staticData.ID;
-            this.skillName = staticData.SkillName;
-            baseCoolTime = staticData.BaseCoolTime;
-            castingTime = staticData.CastingTime;
-            range = staticData.Range;
-            priority = staticData.Priority;
-            assignedClass = staticData.AssignedClass.ToList();
-            motionType = staticData.MotionType;
-            targetCount = staticData.TargetCount;
-            targetLayer = staticData.TargetLayer;
-            skillType = staticData.SkillType;
-        }
-        
-        #endregion
-#endif
+// #if UNITY_EDITOR
+//         #region EditorOnly
+//         
+//         [OnInspectorInit]
+//         private void Initialize() => Initialize("BackStep");
+//         private void Initialize(string skillName)
+//         {
+//             Finder.TryGetObject(out Data.ContentData.SkillData skillData);
+//
+//             var staticData = skillData.SkillList.Find(x => x.SkillName.Equals(skillName.ToPascalCase()));
+//             if (staticData is null)
+//             {
+//                 Debug.LogWarning($"Can't Find {skillName} in {skillData} ScriptableObject");
+//                 return;
+//             }
+//
+//             id = staticData.ID;
+//             this.skillName = staticData.SkillName;
+//             baseCoolTime = staticData.BaseCoolTime;
+//             castingTime = staticData.CastingTime;
+//             range = staticData.Range;
+//             priority = staticData.Priority;
+//             assignedClass = staticData.AssignedClass.ToList();
+//             motionType = staticData.MotionType;
+//             targetCount = staticData.TargetCount;
+//             targetLayer = staticData.TargetLayer;
+//             skillType = staticData.SkillType;
+//         }
+//         
+//         #endregion
+// #endif
     }
 }

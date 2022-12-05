@@ -1,25 +1,24 @@
 using BehaviorDesigner.Runtime.Tasks;
-using Common.Character.Player;
 using UnityEngine;
 
-namespace Common.Character.Behavior
+namespace Common.Character.Behavior.Actions
 {
     [TaskCategory("Character")]
     public class IsInRangedBehavior : Action
     {
-        private PlayerBehaviour playerBehaviour;
+        private OLD_CharacterBehaviour oldCharacterBehaviour;
         private GameObject target;
         private float range;
 
         public override void OnAwake()
         {
-            playerBehaviour = GetComponent<PlayerBehaviour>();
+            oldCharacterBehaviour = GetComponent<OLD_CharacterBehaviour>();
         }
         
         public override TaskStatus OnUpdate()
         {
-            target = playerBehaviour.CharacterTargeting.FocusTarget;
-            range = playerBehaviour.CharacterTargeting.AttackRange;
+            target = oldCharacterBehaviour.Targeting.FocusTarget;
+            range = oldCharacterBehaviour.Targeting.AttackRange;
             
             var characterPosition = transform.position;
             var targetPosition = target.transform.position;

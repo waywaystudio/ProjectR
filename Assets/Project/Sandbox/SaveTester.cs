@@ -1,7 +1,6 @@
 using System.Collections.Generic;
 using Core;
-using Main;
-using Main.Manager.Save;
+using MainGame;
 using UnityEngine;
 
 public class SaveTester : MonoBehaviour, ISavable
@@ -13,17 +12,17 @@ public class SaveTester : MonoBehaviour, ISavable
 
     public void Save()
     {
-        SaveManager.Save("SaveLabInt", IntegerValue);
-        SaveManager.Save("SaveLabString", StringValue);
-        SaveManager.Save("SaveLabFloat", FloatValue);
-        SaveManager.Save("SaveLabListInt", ListValue);
+        MainManager.Save.Save("SaveLabInt", IntegerValue);
+        MainManager.Save.Save("SaveLabString", StringValue);
+        MainManager.Save.Save("SaveLabFloat", FloatValue);
+        MainManager.Save.Save("SaveLabListInt", ListValue);
     }
 
     public void Load()
     {
-        IntegerValue = SaveManager.Load("SaveLabInt", IntegerValue);
-        StringValue = SaveManager.Load("SaveLabString", StringValue);
-        FloatValue = SaveManager.Load("SaveLabFloat", FloatValue);
-        ListValue = SaveManager.Load("SaveLabListInt", ListValue);
+        IntegerValue = MainManager.Save.Load("SaveLabInt", IntegerValue);
+        StringValue =  MainManager.Save.Load("SaveLabString", StringValue);
+        FloatValue =   MainManager.Save.Load("SaveLabFloat", FloatValue);
+        ListValue =    MainManager.Save.Load("SaveLabListInt", ListValue);
     }
 }

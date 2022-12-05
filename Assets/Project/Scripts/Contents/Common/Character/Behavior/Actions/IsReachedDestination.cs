@@ -1,16 +1,15 @@
 using BehaviorDesigner.Runtime.Tasks;
-using Common.Character.Player;
 
 namespace Common.Character.Behavior.Actions
 {
     [TaskCategory("Character")]
     public class IsReachedDestination : Action
     {
-        private PlayerBehaviour pb;
+        private OLD_CharacterBehaviour pb;
 
         public override void OnAwake()
         {
-            pb = GetComponent<PlayerBehaviour>();
+            pb = GetComponent<OLD_CharacterBehaviour>();
         }
         
         public override TaskStatus OnUpdate() 

@@ -17,15 +17,18 @@ namespace Common.Character.Skills
         public double Value => damageEntity.Value * damageEntity.AdditionalValue;
         public float Critical => damageEntity.CriticalChance;
         public float Hit => damageEntity.HitChance;
+        public override List<ICombatTaker> TargetList => targetEntity.TargetList;
 
-        public void OnDamage(ICombatAttribution combatInfo)
+        public override void Invoke(ICombatAttribution combatInfo)
         {
-            SetEntities(combatInfo);
-            
-            if (!IsReady) return;
-
-            targetEntity.Target.TakeDamage(this);
+            TargetList.ForEach(target =>
+            {
+                if (!TrySetEntities(combatInfo)) return;
+                
+                target.TakeDamage(this);
+            });
         }
+        
 
         protected override void Awake()
         {

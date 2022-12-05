@@ -6,7 +6,7 @@ using UnityEngine;
 
 namespace Common.Character.Skills.Core
 {
-    public class SkillAttribution : MonoBehaviour
+    public abstract class SkillAttribution : MonoBehaviour
     {
         [SerializeField] protected int id;
         [SerializeField] protected string skillName;
@@ -17,17 +17,23 @@ namespace Common.Character.Skills.Core
         private List<EntityAttribution> skillEntities = new();
         private List<IReadyRequired> readyRequiredSkillEntities;
         private List<IUpdateRequired> updateRequiredSkillEntities;
-        
+
+        public abstract List<ICombatTaker> TargetList { get; }
         public int ID { get => id; set => id = value; }
         public string SkillName { get => skillName; set => skillName = value; }
-        public string AnimationKey { get => animationKey; set => animationKey = value; }
-        public int Priority { get => priority; set => priority = value; }
-        public bool IsReady => readyRequiredSkillEntities.All(x => x.IsReady);
 
-        public void SetEntities(ICombatAttribution combatAttributionInfo)
+        public string AnimationKey
         {
-            skillEntities.ForEach(x => x.Set(combatAttributionInfo));
+            get => "Attack"; // isTemporary
+                // animationKey;
+            set => animationKey = value;
         }
+        public int Priority { get => priority; set => priority = value; }
+        
+        private bool IsEntityReady => readyRequiredSkillEntities.All(x => x.IsReady);
+
+
+        public abstract void Invoke(ICombatAttribution combatInfo);
 
         public void UpdateStatus()
         {
@@ -35,6 +41,7 @@ namespace Common.Character.Skills.Core
             
             updateRequiredSkillEntities.ForEach(x => x.UpdateStatus());
         }
+        
 
         protected virtual void Awake()
         {
@@ -43,6 +50,12 @@ namespace Common.Character.Skills.Core
             skillEntities = GetComponents<EntityAttribution>().ToList();
             readyRequiredSkillEntities = GetComponents<IReadyRequired>().ToList();
             updateRequiredSkillEntities = GetComponents<IUpdateRequired>().ToList();
+        }
+
+        protected bool TrySetEntities(ICombatAttribution combatInfo)
+        {
+            skillEntities.ForEach(x => x.Set(combatInfo));
+            return IsEntityReady;
         }
 
         private void UpdateEntityType()
@@ -55,9 +68,9 @@ namespace Common.Character.Skills.Core
         [Sirenix.OdinInspector.OnInspectorInit]
         protected virtual void Initialize()
         {
-            Finder.TryGetObject(out Data.ContentData.SkillData skillData);
+            Finder.TryGetObject(out MainGame.Data.ContentData.SkillData skillData);
         
-            var staticData = skillData.SkillList.Find(x => x.SkillName.Equals(GetType().Name));
+            var staticData = skillData.List.Find(x => x.SkillName.Equals(GetType().Name));
             if (staticData is null)
             {
                 Debug.LogWarning($"Can't Find {skillName} in {skillData} ScriptableObject");
@@ -67,7 +80,7 @@ namespace Common.Character.Skills.Core
             id = staticData.ID;
             skillName = staticData.SkillName;
             priority = staticData.Priority;
-            animationKey = staticData.MotionType;
+            animationKey = staticData.AnimationKey;
             
             GetComponents<EntityAttribution>().ForEach(x =>
             {

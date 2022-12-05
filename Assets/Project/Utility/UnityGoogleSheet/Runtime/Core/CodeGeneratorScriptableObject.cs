@@ -24,57 +24,34 @@ $@"/*     ===== Do not touch this. Auto Generated Code. =====    */
 /*     If you want custom code generation modify this => 'CodeGeneratorScriptableObject.cs'  */
 //     ReSharper disable BuiltInTypeReferenceStyle
 //     ReSharper disable PartialTypeWithSinglePart
-//     ReSharper disable ConvertToConstant.Local
-#pragma warning disable CS0414
-
-#if UNITY_EDITOR
-using System.Reflection;
-using Sirenix.OdinInspector.Editor;
-#endif
-using Sirenix.OdinInspector;
 @assemblies
 namespace @namespace
 {{    
-    public partial class @Class@suffix : ScriptableObject
+    public partial class @Class@suffix : DataObject<@Class@suffix.@Class>
     {{
         [Serializable]
-        public class @Class
+        public class @Class : Row
         {{
 @types
 @properties
         }}
-
-        [SerializeField]
-        private List<@Class> @classList = new ();
-        private Dictionary<@keyType, @Class> @classTable = new ();
-
-        public List<@Class> @ClassList => @classList;
-        public Dictionary<@keyType, @Class> @ClassTable
-        {{
-            get
-            {{
-                if (@classTable != null) return @classTable;
-
-                @classTable = new Dictionary<int, @Class>();
-                @classList.ForEach(x => @classTable.Add(x.ID, x));
-                return @classTable;
-            }}
-        }}
-
+        
 #region Editor Functions.
     #if UNITY_EDITOR
-        private readonly string spreadSheetID = ""@spreadSheetID"";
-        private readonly string sheetID = ""@sheetID"";    
+        public override string SpreadSheetID => ""@spreadSheetID"";
+        public override string SpreadSheetName => ""@spreadSheetName"";
+        public override string WorkSheetName => ""@Class"";    
 @loadFunctions
     #endif
 #endregion
     }}
-@drawer
 }}
 ";
         public string Generate()
         {
-            var @namespace = $"Data.{sheetInfo.sheetFileName}";
+            var soScriptPath = UgsConfig.Instance.ScriptableObjectScriptPath; // = Assets/Project/Scripts/MainGame/Data
+            var trimmedPath = soScriptPath.Replace("Assets/Project/Scripts/", "").Replace("/", ".");
+            var @namespace = $"{trimmedPath}.{sheetInfo.sheetFileName}";
             var className = sheetInfo.sheetName;
             
             TypeMap.Init();
@@ -90,11 +67,10 @@ namespace @namespace
 
             WriteNamespace(@namespace);
             WriteLoadFunction(sheetInfo.sheetFileName);
-            WriteDrawer();
             WritePascalClassReplace(ToPascalCasing(className));
             WriteCamelClassReplace(ToCamelCasing(className));
             WriteClassSuffix(UgsConfig.Instance.Suffix);
-            WriteSpreadSheetData(sheetInfo.spreadSheetID, sheetInfo.sheetID);
+            WriteSpreadSheetData(sheetInfo.spreadSheetID, sheetInfo.sheetFileName);
             WriteTypes(sheetInfo.sheetTypes, 
                        sheetInfo.sheetVariableNames, 
                        sheetInfo.isEnumChecks);
@@ -197,12 +173,20 @@ namespace @namespace
                             
                         throw new TypeParserNotFoundException("Type Parser Not Found, You made your own type parser? check custom type document on gitbook document.");
                     }
-                        
-                    typeBuilder.AppendLine($"\t\t\t[SerializeField] private {GetCSharpRepresentation(TypeMap.StrMap[types[i]], true)} {ToCamelCasing(condensedFieldName)};");
-                    propertyBuilder.AppendLine($"\t\t\tpublic {GetCSharpRepresentation(TypeMap.StrMap[types[i]], true)} {ToPascalCasing(condensedFieldName)} => {ToCamelCasing(condensedFieldName)};");
+
+                    var typeName = GetCSharpRepresentation(TypeMap.StrMap[types[i]], true);
+                    var camelFieldName = ToCamelCasing(condensedFieldName);
+                    var pascalFieldName = ToPascalCasing(condensedFieldName);
+                    
+                    typeBuilder.AppendLine($"\t\t\t[SerializeField] private {typeName} {camelFieldName};");
+                    propertyBuilder.AppendLine(pascalFieldName == "ID"
+                        ? $"\t\t\tpublic override {typeName} {pascalFieldName} => {camelFieldName};"
+                        : $"\t\t\tpublic {typeName} {pascalFieldName} => {camelFieldName};");
                 }
                 else
                 {
+                    // TODO. 본 프로젝트는 Assembly definition 적용하였다. UGS Attribute를 사용하기가 힘들다보니 Sheet에 EnumType 을 안쓰게 되어 필요없는 else절이 됐다.
+                    // TODO. 나중에라도 사용한다면 위 if절과 비슷하게 바꾸어야 한다.
                     var str = types[i];
 
                     str = str.Replace("<", null);
@@ -220,10 +204,10 @@ namespace @namespace
             GenerateForm = GenerateForm.Replace("@keyType", types[0]);
         }
 
-        private void WriteSpreadSheetData(string spreadID, string sheetID)
+        private void WriteSpreadSheetData(string spreadID, string spreadName)
         {
             GenerateForm = GenerateForm.Replace("@spreadSheetID", spreadID);
-            GenerateForm = GenerateForm.Replace("@sheetID", sheetID);
+            GenerateForm = GenerateForm.Replace("@spreadSheetName", spreadName);
         }
 
         private void WriteLoadFunction(string sheetFileName)
@@ -233,14 +217,14 @@ namespace @namespace
         private void LoadFromJson()
         {
     
-            @classList = UnityGoogleSheet.Editor.Core.UgsEditorUtility
+            List = UnityGoogleSheet.Editor.Core.UgsEditorUtility
                 .LoadFromJson<@Class>(""@sheetFileName""); 
         }
         
         private void LoadFromGoogleSpreadSheet()
         {
             UnityGoogleSheet.Editor.Core.UgsExplorer
-                .ParseSpreadSheet(spreadSheetID, ""@Class"");
+                .ParseSpreadSheet(SpreadSheetID, ""@Class"");
 
             LoadFromJson();
             UnityEditor.EditorUtility.SetDirty(this);
@@ -256,45 +240,7 @@ namespace @namespace
         {
             GenerateForm = GenerateForm.Replace("@suffix", suffix);
         }
-
-        private void WriteDrawer()
-        {
-            var builder = new StringBuilder();
-            builder.Append(@"
-#region Attribute Setting        
-    #if UNITY_EDITOR
-    public class @ClassDrawer : OdinAttributeProcessor<@Class@suffix>
-    {
-        public override void ProcessChildMemberAttributes(InspectorProperty parentProperty, MemberInfo member, List<Attribute> attributes)
-        {
-            switch (member.Name)
-            {
-                case ""@classList"":
-                    attributes.Add(new TableListAttribute
-                    {
-                        AlwaysExpanded = true,
-                        HideToolbar = true,
-                        DrawScrollView = true,
-                        IsReadOnly = true
-                    });
-                    break;
-                case ""LoadFromJson"":
-                    attributes.Add(new PropertySpaceAttribute(5f, 0f));
-                    attributes.Add(new ButtonAttribute(ButtonSizes.Medium));
-                    break;
-                case ""LoadFromGoogleSpreadSheet"":
-                    attributes.Add(new ButtonAttribute(ButtonSizes.Medium));
-                    break;
-            }
-        }
-    }    
-    #endif
-#endregion
-");
-            
-            GenerateForm = GenerateForm.Replace("@drawer", builder.ToString());
-        }
-
+        
         private static string GetCSharpRepresentation(System.Type t, bool trimArgCount)
         {
             if (!t.IsGenericType) return t.Name;

@@ -1,7 +1,6 @@
 using System;
 using Common.Character;
-using Main;
-using Sirenix.OdinInspector;
+using MainGame;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -48,7 +47,7 @@ public class PlayerController : MonoBehaviour
     {
         if (!context.started) return;
 
-        MainGame.InputManager.InvokeEvents();
+        MainManager.InputManager.InvokeEvents();
     }
 
     public void DirectionControl()
@@ -58,8 +57,8 @@ public class PlayerController : MonoBehaviour
 
     private void OnDisable()
     {
-        if (MainGame.Instance is null) return;
+        if (MainManager.Instance is null) return;
 
-        MainGame.InputManager.Unregister();
+        MainManager.InputManager.Unregister();
     }
 }

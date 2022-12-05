@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using Core;
 
 namespace Common.Character.Skills.Entity
@@ -45,6 +46,7 @@ namespace Common.Character.Skills.Entity
         int TargetCount { get; set; }
         UnityEngine.LayerMask TargetLayer { get; set; }
         ICombatTaker Target { get; set; }
+        List<ICombatTaker> TargetList { get; set; }
     }
     
     public interface IReadyRequired

@@ -1,5 +1,4 @@
-using DG.Tweening;
-using Main;
+using MainGame;
 using UnityEngine;
 
 namespace Raid
@@ -11,9 +10,8 @@ namespace Raid
         private void Awake()
         {
             cameraDirector ??= GetComponent<RaidCameraDirector>();
-            
-            
-            MainGame.UI.FadePanel.PlayFadeIn();
+
+            MainUI.FadePanel.PlayFadeIn();
         }
     }
 }

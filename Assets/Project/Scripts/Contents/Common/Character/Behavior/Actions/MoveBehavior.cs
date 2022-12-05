@@ -1,21 +1,20 @@
 using BehaviorDesigner.Runtime.Tasks;
-using Common.Character.Player;
 using UnityEngine;
 using Action = BehaviorDesigner.Runtime.Tasks.Action;
 
-namespace Common.Character.Behavior
+namespace Common.Character.Behavior.Actions
 {
     [TaskCategory("Character")]
     public class MoveBehavior : Action
     {
-        private PlayerBehaviour playerBehaviour;
+        private OLD_CharacterBehaviour oldCharacterBehaviour;
 
-        public Vector3 Destination => playerBehaviour.Destination;
-        public bool IsFinished => playerBehaviour.IsDestinationReached;
+        public Vector3 Destination => oldCharacterBehaviour.Destination;
+        public bool IsFinished => oldCharacterBehaviour.IsDestinationReached;
 
         public override void OnAwake()
         {
-            playerBehaviour = GetComponent<PlayerBehaviour>();
+            oldCharacterBehaviour = GetComponent<OLD_CharacterBehaviour>();
         }
 
         public override TaskStatus OnUpdate()

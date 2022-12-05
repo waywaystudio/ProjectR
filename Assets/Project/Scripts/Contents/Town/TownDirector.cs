@@ -1,4 +1,4 @@
-using Main;
+using MainGame;
 using UnityEngine;
 
 namespace Town
@@ -15,7 +15,7 @@ namespace Town
             cameraDirector ??= GetComponentInChildren<TownCameraDirector>();
             cameraDirector.SetPlayerCameraFocus(player.transform);
             
-            MainGame.UI.FadePanel.PlayFadeIn();
+            MainUI.FadePanel.PlayFadeIn();
         }
     }
 }

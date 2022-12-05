@@ -1,5 +1,4 @@
 using BehaviorDesigner.Runtime.Tasks;
-using Common.Character.Player;
 using UnityEngine;
 
 namespace Common.Character.Behavior.Actions
@@ -7,7 +6,7 @@ namespace Common.Character.Behavior.Actions
     [TaskCategory("Character")]
     public class MaxRangeMoveBehavior : Action
     {
-        private PlayerBehaviour pb;
+        private OLD_CharacterBehaviour pb;
         private float range;
         private float safeTolerance;
         private float safePoint;
@@ -19,15 +18,15 @@ namespace Common.Character.Behavior.Actions
 
         public override void OnAwake()
         {
-            pb = GetComponent<PlayerBehaviour>();
-            range = pb.CharacterTargeting.AttackRange;
+            pb = GetComponent<OLD_CharacterBehaviour>();
+            range = pb.Targeting.AttackRange;
             safeTolerance = Random.Range(0.3f, 0.7f);
             safePoint = Random.Range(0.3f, 0.7f);
         }
 
         public override TaskStatus OnUpdate()
         {
-            target = pb.CharacterTargeting.FocusTarget;
+            target = pb.Targeting.FocusTarget;
             targetPosition = target.transform.position;
             characterPosition = transform.position;
 

@@ -1,5 +1,5 @@
 using Core;
-using Main;
+using MainGame;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -9,7 +9,7 @@ public class ObstacleEvent : MonoBehaviour, IEventModel
 
     public void Register()
     {
-        MainGame.InputManager.Register(this);
+        MainManager.InputManager.Register(this);
     }
 
     public void Invoke()
@@ -19,19 +19,19 @@ public class ObstacleEvent : MonoBehaviour, IEventModel
 
     public void ToTownScene()
     {
-        MainGame.SceneManager.LoadScene("Town");
+        MainManager.SceneManager.LoadScene("Town");
     }
 
     public void ToRaidScene()
     {
-        MainGame.SceneManager.LoadScene("Raid");
+        MainManager.SceneManager.LoadScene("Raid");
     }
 
     public void Unregister()
     {
-        if (MainGame.Instance is null) return;
+        if (MainManager.Instance is null) return;
         
-        MainGame.InputManager.Unregister(this);
+        MainManager.InputManager.Unregister(this);
     }
 
     private void OnTriggerEnter(Collider other)

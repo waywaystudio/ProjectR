@@ -12,44 +12,44 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f2b217ae31282844287132a48bebc8af, type: 3}
   m_Name: SkillData
   m_EditorClassIdentifier: 
-  skillList:
-  - id: 12000001
+  list:
+  - id: 13000001
     skillName: CommonAttack
     baseCoolTime: 0
     range: 5
     priority: 1
     assignedClass:
     - All
-    motionType: attack
+    animationKey: attack
     targetCount: 1
     targetLayer: enemy
     skillType: damage
     castingTime: 0
-  - id: 12000002
+  - id: 13000002
     skillName: Bash
     baseCoolTime: 8
     range: 5
     priority: 5
     assignedClass:
     - Warrior
-    motionType: instantSkill
+    animationKey: instantSkill
     targetCount: 1
     targetLayer: enemy
     skillType: damage
     castingTime: 0
-  - id: 12000003
+  - id: 13000003
     skillName: BackStep
     baseCoolTime: 15
     range: 18
     priority: 5
     assignedClass:
     - Rogue
-    motionType: instantSkill
+    animationKey: instantSkill
     targetCount: 1
     targetLayer: enemy
     skillType: damage
     castingTime: 0
-  - id: 12000004
+  - id: 13000004
     skillName: AimShot
     baseCoolTime: 6
     range: 25
@@ -57,108 +57,108 @@ MonoBehaviour:
     assignedClass:
     - Hunter
     - Sniper
-    motionType: casting
+    animationKey: casting
     targetCount: 1
     targetLayer: enemy
     skillType: damage
     castingTime: 1.5
-  - id: 12000005
+  - id: 13000005
     skillName: Blood Drain
     baseCoolTime: 15
     range: 0
     priority: 1
     assignedClass:
     - DeathKnight
-    motionType: instantSelfSkill
+    animationKey: instantSelfSkill
     targetCount: 1
     targetLayer: ally
     skillType: transcendence
     castingTime: 0
-  - id: 12000006
+  - id: 13000006
     skillName: Roar
     baseCoolTime: 12
     range: 16
     priority: 5
     assignedClass:
     - Druid
-    motionType: instantSelfSkill
+    animationKey: instantSelfSkill
     targetCount: 5
     targetLayer: enemy
     skillType: damage
     castingTime: 0
-  - id: 12000007
+  - id: 13000007
     skillName: Penetrate
     baseCoolTime: 12
     range: 20
     priority: 5
     assignedClass:
     - Lancer
-    motionType: casting
+    animationKey: casting
     targetCount: 16
     targetLayer: enemy
     skillType: damage
     castingTime: 3
-  - id: 12000008
+  - id: 13000008
     skillName: Rapid Blow
     baseCoolTime: 6
     range: 5
     priority: 5
     assignedClass:
     - Fighter
-    motionType: channeling
+    animationKey: channeling
     targetCount: 1
     targetLayer: enemy
     skillType: damage
     castingTime: 2
-  - id: 12000009
+  - id: 13000009
     skillName: Fury
     baseCoolTime: 30
     range: 0
     priority: 1
     assignedClass:
     - Berserker
-    motionType: instantSelfSkill
+    animationKey: instantSelfSkill
     targetCount: 1
     targetLayer: ally
     skillType: transcendence
     castingTime: 0
-  - id: 12000010
+  - id: 13000010
     skillName: Lightning Slash
     baseCoolTime: 15
     range: 18
     priority: 5
     assignedClass:
     - Blade
-    motionType: instantSkill
+    animationKey: instantSkill
     targetCount: 16
     targetLayer: enemy
     skillType: damage
     castingTime: 0
-  - id: 12000011
+  - id: 13000011
     skillName: Fireball
     baseCoolTime: 0
     range: 20
     priority: 2
     assignedClass:
     - Wizard
-    motionType: casting
+    animationKey: casting
     targetCount: 1
     targetLayer: enemy
     skillType: damage
     castingTime: 1.5
-  - id: 12000012
+  - id: 13000012
     skillName: Corruption
     baseCoolTime: 0
     range: 20
     priority: 2
     assignedClass:
     - Warlock
-    motionType: instantSkill
+    animationKey: instantSkill
     targetCount: 1
     targetLayer: enemy
     skillType: damage
     castingTime: 0
-  - id: 12000013
+  - id: 13000013
     skillName: Faithful Prey
     baseCoolTime: 0
     range: 15
@@ -166,12 +166,12 @@ MonoBehaviour:
     assignedClass:
     - Priest
     - ' Angel'
-    motionType: casting
+    animationKey: casting
     targetCount: 1
     targetLayer: ally
     skillType: heal
     castingTime: 1.5
-  - id: 12000014
+  - id: 13000014
     skillName: Holy Protection
     baseCoolTime: 30
     range: 15
@@ -179,31 +179,31 @@ MonoBehaviour:
     assignedClass:
     - Angel
     - ' HolyKnight'
-    motionType: instantSkill
+    animationKey: instantSkill
     targetCount: 1
     targetLayer: ally
     skillType: heal
     castingTime: 0
-  - id: 12000015
+  - id: 13000015
     skillName: Revivification
     baseCoolTime: 8
     range: 15
     priority: 3
     assignedClass:
     - Sharman
-    motionType: instantSkill
+    animationKey: instantSkill
     targetCount: 1
     targetLayer: ally
     skillType: heal
     castingTime: 0
-  - id: 12000016
+  - id: 13000016
     skillName: Encouraged Song
     baseCoolTime: 16
     range: 40
     priority: 5
     assignedClass:
     - Bard
-    motionType: channeling
+    animationKey: channeling
     targetCount: 8
     targetLayer: ally
     skillType: heal

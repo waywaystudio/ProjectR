@@ -77,7 +77,7 @@ namespace Common.Character.Skills.Entity
             
             Flag = EntityType.Casting;
             CastingTime = StaticData.CastingTime;
-            castingType = StaticData.MotionType == "casting"
+            castingType = StaticData.AnimationKey == "casting"
                 ? CastingType.Casting
                 : CastingType.Channeling;
         }

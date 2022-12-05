@@ -1,5 +1,5 @@
 using Core;
-using Data.ContentData;
+using MainGame.Data.ContentData;
 using Sirenix.OdinInspector;
 using UnityEngine;
 
@@ -23,7 +23,7 @@ namespace Common.Character.Skills.Entity
             if (SkillName.IsNullOrEmpty()) return;
 
             Finder.TryGetObject(out SkillData skillData);
-            StaticData = skillData.SkillList.Find(x => x.SkillName == SkillName);
+            StaticData = skillData.List.Find(x => x.SkillName == SkillName);
         }
 #endif
     }

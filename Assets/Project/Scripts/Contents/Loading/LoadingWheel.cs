@@ -1,4 +1,4 @@
-using Main;
+using MainGame;
 using UnityEngine;
 
 namespace Loading
@@ -24,7 +24,7 @@ namespace Loading
 
         private void Update()
         {
-            var progress = MainGame.SceneManager.Progress
+            var progress = MainManager.SceneManager.Progress
                            * barMaxLength;
 
             barTransform.sizeDelta = new Vector2(progress, barHeight);

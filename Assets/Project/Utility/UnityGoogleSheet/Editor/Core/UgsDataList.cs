@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 using System.Reflection;
 using UnityEditor;
 using UnityEngine;
@@ -31,6 +32,7 @@ namespace UnityGoogleSheet.Editor.Core
 
             tableObjectList.ForEach(x =>
             {
+                if (x.name.First() == 'I') return; 
                 if (!UgsUtility.FindScriptableObject(x.name, UgsConfig.Instance.ScriptableObjectDataPath,
                         out var result))
                 {

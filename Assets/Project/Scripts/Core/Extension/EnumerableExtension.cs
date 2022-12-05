@@ -14,6 +14,19 @@ namespace Core
                 action(item);
         }
         
+        /// <summary>
+        /// ForEach with Index : .ForEach((x, index) => x.Index() == index));
+        /// </summary>
+        public static void ForEach<T>(this IEnumerable<T> sequence, Action<T, int> action)
+        {
+            var i = 0;
+            foreach (var item in sequence)
+            {
+                action(item, i);
+                i++;
+            }
+        }
+        
         public static TSource MinBy<TSource, TKey>(this IEnumerable<TSource> source, Func<TSource, TKey> selector) => source.MinBy(selector, null);
         public static TSource MinBy<TSource, TKey>(this IEnumerable<TSource> source, Func<TSource, TKey> selector, IComparer<TKey> comparer)
         {

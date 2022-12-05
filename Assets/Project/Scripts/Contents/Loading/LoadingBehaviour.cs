@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
 using Core;
-using Main;
+using MainGame;
 using UnityEngine;
 
 namespace Loading
@@ -24,7 +24,7 @@ namespace Loading
 
         private void Start()
         {
-            MainGame.SceneManager.LoadNextScene();
+            MainManager.SceneManager.LoadNextScene();
         }
 
         private void OnDisable()

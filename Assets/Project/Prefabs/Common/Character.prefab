@@ -661,6 +661,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   commonAttack: {fileID: 1105832479219626301}
   aimShot: {fileID: 3652819614560570534}
+  skillList: []
 --- !u!1 &3525883613796328407
 GameObject:
   m_ObjectHideFlags: 0
@@ -1093,13 +1094,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   moveSpeed: 5
   attackSpeed: 1
-  Range: 0
-  PlayerStatus: 1
+  range: 0
   skeletonAnimation: {fileID: 4992384900474842763}
-  skills: {fileID: 0}
+  combat: {fileID: 2541971373313465743}
   controller: {fileID: 8465506878290798802}
-  characterPathfinding: {fileID: 5433417425623483359}
-  characterTargeting: {fileID: 1683699618266686655}
+  pathfinding: {fileID: 5433417425623483359}
+  targeting: {fileID: 1683699618266686655}
   animationModel: {fileID: 711594441686645133}
   animationEvent: {fileID: 2815777451027632908}
 --- !u!54 &8119311918509560298

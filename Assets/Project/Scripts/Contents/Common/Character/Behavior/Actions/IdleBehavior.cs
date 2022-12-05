@@ -1,21 +1,20 @@
 using BehaviorDesigner.Runtime.Tasks;
-using Common.Character.Player;
 
-namespace Common.Character.Behavior
+namespace Common.Character.Behavior.Actions
 {
     [TaskCategory("Character")]
     public class IdleBehavior : Action
     {
-        private PlayerBehaviour playerBehaviour;
+        private OLD_CharacterBehaviour oldCharacterBehaviour;
 
         public override void OnAwake()
         {
-            playerBehaviour = GetComponent<PlayerBehaviour>();
+            oldCharacterBehaviour = GetComponent<OLD_CharacterBehaviour>();
         }
 
         public override TaskStatus OnUpdate()
         {
-            playerBehaviour.Idle();
+            oldCharacterBehaviour.Idle();
 
             return TaskStatus.Success;
         }

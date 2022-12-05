@@ -1,6 +1,4 @@
-using BehaviorDesigner.Runtime;
 using BehaviorDesigner.Runtime.Tasks;
-using Common.Character.Player;
 using Core;
 using UnityEngine;
 
@@ -10,11 +8,11 @@ namespace Common.Character.Behavior.Actions
     [TaskCategory("Character")]
     public class AttackAction : Action
     {
-        private PlayerBehaviour pb;
+        private OLD_CharacterBehaviour pb;
 
         public override void OnAwake()
         {
-            pb = GetComponent<PlayerBehaviour>();
+            pb = GetComponent<OLD_CharacterBehaviour>();
         }
         
         public override TaskStatus OnUpdate()

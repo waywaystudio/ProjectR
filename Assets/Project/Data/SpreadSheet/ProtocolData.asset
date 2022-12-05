@@ -1,0 +1,63 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dfdee459f65ff3845a28dbb513ef7782, type: 3}
+  m_Name: ProtocolData
+  m_EditorClassIdentifier: 
+  list:
+  - id: 10
+    index: 1
+    content: Protocol
+    description: Category ID Information
+  - id: 11
+    index: 2
+    content: Adventurer
+    description: "\uBAA8\uD5D8\uAC00"
+  - id: 12
+    index: 3
+    content: CharacterClass
+    description: "\uC9C1\uC5C5"
+  - id: 13
+    index: 4
+    content: Skill
+    description: "\uAE30\uC220"
+  - id: 14
+    index: 5
+    content: 
+    description: 
+  - id: 15
+    index: 6
+    content: 
+    description: 
+  - id: 16
+    index: 7
+    content: Raid
+    description: "\uB808\uC774\uB4DC & \uB358\uC804"
+  - id: 17
+    index: 8
+    content: Boss
+    description: "\uBCF4\uC2A4"
+  - id: 18
+    index: 9
+    content: 
+    description: 
+  - id: 19
+    index: 10
+    content: 
+    description: 
+  - id: 20
+    index: 11
+    content: 
+    description: 
+  - id: 21
+    index: 12
+    content: Equipment
+    description: "\uC7A5\uBE44"

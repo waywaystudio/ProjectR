@@ -8,14 +8,14 @@ namespace Core.Singleton
     public class MonoSingleton<T> : MonoBehaviour where T : MonoBehaviour
     {
         private static T instance;
-        private static object @lock = new ();
+        private static readonly object Lock = new ();
         private static bool isFirst = true;
 
         public static T Instance
         {
             get
             {
-                lock (@lock)
+                lock (Lock)
                 {
                     if (instance != null) 
                         return instance;
