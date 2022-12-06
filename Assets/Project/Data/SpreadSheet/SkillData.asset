@@ -15,7 +15,7 @@ MonoBehaviour:
   category: 13
   list:
   - id: 13000001
-    textKey: CommonAttack
+    name: CommonAttack
     baseCoolTime: 0
     range: 5
     priority: 1
@@ -27,7 +27,7 @@ MonoBehaviour:
     skillType: damage
     castingTime: 0
   - id: 13000002
-    textKey: Bash
+    name: Bash
     baseCoolTime: 8
     range: 5
     priority: 5
@@ -39,7 +39,7 @@ MonoBehaviour:
     skillType: damage
     castingTime: 0
   - id: 13000003
-    textKey: BackStep
+    name: BackStep
     baseCoolTime: 15
     range: 18
     priority: 5
@@ -51,7 +51,7 @@ MonoBehaviour:
     skillType: damage
     castingTime: 0
   - id: 13000004
-    textKey: AimShot
+    name: AimShot
     baseCoolTime: 6
     range: 25
     priority: 5
@@ -64,7 +64,7 @@ MonoBehaviour:
     skillType: damage
     castingTime: 1.5
   - id: 13000005
-    textKey: Blood Drain
+    name: Blood Drain
     baseCoolTime: 15
     range: 0
     priority: 1
@@ -76,7 +76,7 @@ MonoBehaviour:
     skillType: transcendence
     castingTime: 0
   - id: 13000006
-    textKey: Roar
+    name: Roar
     baseCoolTime: 12
     range: 16
     priority: 5
@@ -88,7 +88,7 @@ MonoBehaviour:
     skillType: damage
     castingTime: 0
   - id: 13000007
-    textKey: Penetrate
+    name: Penetrate
     baseCoolTime: 12
     range: 20
     priority: 5
@@ -100,7 +100,7 @@ MonoBehaviour:
     skillType: damage
     castingTime: 3
   - id: 13000008
-    textKey: Rapid Blow
+    name: Rapid Blow
     baseCoolTime: 6
     range: 5
     priority: 5
@@ -112,7 +112,7 @@ MonoBehaviour:
     skillType: damage
     castingTime: 2
   - id: 13000009
-    textKey: Fury
+    name: Fury
     baseCoolTime: 30
     range: 0
     priority: 1
@@ -124,7 +124,7 @@ MonoBehaviour:
     skillType: transcendence
     castingTime: 0
   - id: 13000010
-    textKey: Lightning Slash
+    name: Lightning Slash
     baseCoolTime: 15
     range: 18
     priority: 5
@@ -136,7 +136,7 @@ MonoBehaviour:
     skillType: damage
     castingTime: 0
   - id: 13000011
-    textKey: Fireball
+    name: Fireball
     baseCoolTime: 0
     range: 20
     priority: 2
@@ -148,7 +148,7 @@ MonoBehaviour:
     skillType: damage
     castingTime: 1.5
   - id: 13000012
-    textKey: Corruption
+    name: Corruption
     baseCoolTime: 0
     range: 20
     priority: 2
@@ -160,7 +160,7 @@ MonoBehaviour:
     skillType: damage
     castingTime: 0
   - id: 13000013
-    textKey: Faithful Prey
+    name: Faithful Prey
     baseCoolTime: 0
     range: 15
     priority: 5
@@ -173,7 +173,7 @@ MonoBehaviour:
     skillType: heal
     castingTime: 1.5
   - id: 13000014
-    textKey: Holy Protection
+    name: Holy Protection
     baseCoolTime: 30
     range: 15
     priority: 4
@@ -186,7 +186,7 @@ MonoBehaviour:
     skillType: heal
     castingTime: 0
   - id: 13000015
-    textKey: Revivification
+    name: Revivification
     baseCoolTime: 8
     range: 15
     priority: 3
@@ -198,7 +198,7 @@ MonoBehaviour:
     skillType: heal
     castingTime: 0
   - id: 13000016
-    textKey: Encouraged Song
+    name: Encouraged Song
     baseCoolTime: 16
     range: 40
     priority: 5

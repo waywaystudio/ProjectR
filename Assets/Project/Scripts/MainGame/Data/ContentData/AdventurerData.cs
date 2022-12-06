@@ -15,12 +15,12 @@ namespace MainGame.Data.ContentData
         public class Adventurer : IIdentifier
         {
 			[SerializeField] private Int32 id;
-			[SerializeField] private String textKey;
+			[SerializeField] private String name;
 			[SerializeField] private String role;
 			[SerializeField] private String job;
 
 			public Int32 ID => id;
-			public String TextKey => textKey;
+			public String Name => name;
 			public String Role => role;
 			public String Job => job;
 
@@ -28,9 +28,9 @@ namespace MainGame.Data.ContentData
         
 #region Editor Functions.
     #if UNITY_EDITOR
-        public override string SpreadSheetID => "1yO5sJqxMvySDiihls5pwiHQWoJGysrT7LBmL16HhHRM";
-        public override string SpreadSheetName => "ContentData";
-        public override string WorkSheetName => "Adventurer";    
+        public readonly string SpreadSheetID = "1yO5sJqxMvySDiihls5pwiHQWoJGysrT7LBmL16HhHRM";
+        public readonly string SpreadSheetName = "ContentData";
+        public readonly string WorkSheetName = "Adventurer";    
   
         private void LoadFromJson()
         {

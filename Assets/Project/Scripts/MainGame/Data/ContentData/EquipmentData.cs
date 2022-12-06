@@ -15,18 +15,18 @@ namespace MainGame.Data.ContentData
         public class Equipment : IIdentifier
         {
 			[SerializeField] private Int32 id;
-			[SerializeField] private String textKey;
+			[SerializeField] private String name;
 
 			public Int32 ID => id;
-			public String TextKey => textKey;
+			public String Name => name;
 
         }
         
 #region Editor Functions.
     #if UNITY_EDITOR
-        public override string SpreadSheetID => "1yO5sJqxMvySDiihls5pwiHQWoJGysrT7LBmL16HhHRM";
-        public override string SpreadSheetName => "ContentData";
-        public override string WorkSheetName => "Equipment";    
+        public readonly string SpreadSheetID = "1yO5sJqxMvySDiihls5pwiHQWoJGysrT7LBmL16HhHRM";
+        public readonly string SpreadSheetName = "ContentData";
+        public readonly string WorkSheetName = "Equipment";    
   
         private void LoadFromJson()
         {

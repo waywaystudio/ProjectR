@@ -15,7 +15,7 @@ namespace MainGame.Data.ContentData
         public class Skill : IIdentifier
         {
 			[SerializeField] private Int32 id;
-			[SerializeField] private String textKey;
+			[SerializeField] private String name;
 			[SerializeField] private Single baseCoolTime;
 			[SerializeField] private Single range;
 			[SerializeField] private Int32 priority;
@@ -27,7 +27,7 @@ namespace MainGame.Data.ContentData
 			[SerializeField] private Single castingTime;
 
 			public Int32 ID => id;
-			public String TextKey => textKey;
+			public String Name => name;
 			public Single BaseCoolTime => baseCoolTime;
 			public Single Range => range;
 			public Int32 Priority => priority;
@@ -42,9 +42,9 @@ namespace MainGame.Data.ContentData
         
 #region Editor Functions.
     #if UNITY_EDITOR
-        public override string SpreadSheetID => "1yO5sJqxMvySDiihls5pwiHQWoJGysrT7LBmL16HhHRM";
-        public override string SpreadSheetName => "ContentData";
-        public override string WorkSheetName => "Skill";    
+        public readonly string SpreadSheetID = "1yO5sJqxMvySDiihls5pwiHQWoJGysrT7LBmL16HhHRM";
+        public readonly string SpreadSheetName = "ContentData";
+        public readonly string WorkSheetName = "Skill";    
   
         private void LoadFromJson()
         {

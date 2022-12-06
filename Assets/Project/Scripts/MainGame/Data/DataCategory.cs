@@ -5,7 +5,7 @@ namespace MainGame.Data
         None = 0,
         Protocol = 10,
         Adventurer = 11,
-        CharacterClass = 12,
+        CombatClass = 12,
         Skill = 13,
         // 14
         // 15

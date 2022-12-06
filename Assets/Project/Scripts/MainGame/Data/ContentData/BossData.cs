@@ -15,13 +15,13 @@ namespace MainGame.Data.ContentData
         public class Boss : IIdentifier
         {
 			[SerializeField] private Int32 id;
-			[SerializeField] private String textKey;
+			[SerializeField] private String name;
 			[SerializeField] private Single tempDifficulty;
 			[SerializeField] private List<Int32> dropItemIDList;
 			[SerializeField] private List<Int32> dropItemProbabilities;
 
 			public Int32 ID => id;
-			public String TextKey => textKey;
+			public String Name => name;
 			public Single TempDifficulty => tempDifficulty;
 			public List<Int32> DropItemIdList => dropItemIDList;
 			public List<Int32> DropItemProbabilities => dropItemProbabilities;
@@ -30,9 +30,9 @@ namespace MainGame.Data.ContentData
         
 #region Editor Functions.
     #if UNITY_EDITOR
-        public override string SpreadSheetID => "1yO5sJqxMvySDiihls5pwiHQWoJGysrT7LBmL16HhHRM";
-        public override string SpreadSheetName => "ContentData";
-        public override string WorkSheetName => "Boss";    
+        public readonly string SpreadSheetID = "1yO5sJqxMvySDiihls5pwiHQWoJGysrT7LBmL16HhHRM";
+        public readonly string SpreadSheetName = "ContentData";
+        public readonly string WorkSheetName = "Boss";    
   
         private void LoadFromJson()
         {

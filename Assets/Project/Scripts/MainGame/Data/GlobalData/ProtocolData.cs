@@ -21,24 +21,16 @@ namespace MainGame.Data.GlobalData
 
 			public Int32 ID => id;
 			public Int32 Index => index;
-			public String TextKey => name;
+			public String Name => name;
 			public String Description => description;
 
         }
         
-        // public override bool TryGetData<T>(int id, out T result)
-        // {
-        //     Table.TryGetValue(id, out var value);
-        //
-        //     result = value;
-        //     return true;
-        // }
-        
 #region Editor Functions.
     #if UNITY_EDITOR
-        public override string SpreadSheetID => "1ql3syYiTkqAEe3caNCL2zhg2EMIivp9Q4MZACx2e6iY";
-        public override string SpreadSheetName => "GlobalData";
-        public override string WorkSheetName => "Protocol";    
+        public readonly string SpreadSheetID = "1ql3syYiTkqAEe3caNCL2zhg2EMIivp9Q4MZACx2e6iY";
+        public readonly string SpreadSheetName = "GlobalData";
+        public readonly string WorkSheetName = "Protocol";    
   
         private void LoadFromJson()
         {

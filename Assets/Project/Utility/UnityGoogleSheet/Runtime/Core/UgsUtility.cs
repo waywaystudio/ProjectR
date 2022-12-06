@@ -124,6 +124,8 @@ namespace UnityGoogleSheet.Core
                     result.Add(data);
             }
 
+            result.RemoveAll(x => !x.name.EndsWith("Data"));
+
             return result;
         }
 #endif

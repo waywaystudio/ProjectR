@@ -38,9 +38,9 @@ namespace @namespace
         
 #region Editor Functions.
     #if UNITY_EDITOR
-        public override string SpreadSheetID => ""@spreadSheetID"";
-        public override string SpreadSheetName => ""@spreadSheetName"";
-        public override string WorkSheetName => ""@Class"";    
+        public readonly string SpreadSheetID = ""@spreadSheetID"";
+        public readonly string SpreadSheetName = ""@spreadSheetName"";
+        public readonly string WorkSheetName = ""@Class"";    
 @loadFunctions
     #endif
 #endregion

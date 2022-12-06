@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
@@ -23,7 +24,7 @@ namespace UnityGoogleSheet.Editor.Core
             tableDataList.Clear();
             
             spreadSheetDataList = GetScriptableObjectList(UgsConfig.Instance.ScriptableObjectDataPath, UgsConfig.Instance.Suffix);
-            tableDataList = UgsUtility.GetMonoScriptList(UgsConfig.Instance.ScriptableObjectScriptPath, $"{UgsConfig.Instance.Suffix}");
+            tableDataList = UgsUtility.GetMonoScriptList(UgsConfig.Instance.ScriptableObjectScriptPath, $"{UgsConfig.Instance.Suffix} t:MonoScript");
         }
         
         private void UpdateTableObjectList()
