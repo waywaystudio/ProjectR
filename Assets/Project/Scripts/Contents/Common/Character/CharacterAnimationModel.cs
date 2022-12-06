@@ -1,5 +1,4 @@
 using System;
-using Sirenix.OdinInspector;
 using Spine;
 using Spine.Unity;
 using UnityEngine;
@@ -9,6 +8,7 @@ namespace Common.Character
 {
     public class CharacterAnimationModel : MonoBehaviour
     {
+        [SerializeField] private CharacterBehaviour cb;
         [SerializeField] private AnimationModelData modelData;
         
         private SkeletonAnimation skeletonAnimation;
@@ -16,9 +16,14 @@ namespace Common.Character
 
         public Animation TargetAnimation { get; private set; }
 
-        // Look Where;
         public void LookLeft() => skeletonAnimation.Skeleton.ScaleX = 1.0f;
         public void LookRight() => skeletonAnimation.Skeleton.ScaleX = -1.0f;
+
+        // Preset :: Do What;
+        public void Idle(bool loop = true, Action callback = null) => Play("idle", 0, loop, callback);
+        public void Attack(bool loop = true, Action callback = null) => Play("attack", 0, loop, callback);
+        public void Walk(bool loop = true, Action callback = null) => Play("walk", 0, loop, callback);
+        public void Run(bool loop = true, Action callback = null)=> Play("run", 0, loop, callback);
         
         // Main
         public void Play(string animationKey, int layer, bool loop = true, Action callback = null)
@@ -31,13 +36,6 @@ namespace Common.Character
             
             Play(target, layer, loop, callback);
         }
-        
-        // Preset :: Do What;
-        public void Idle(bool loop = true, Action callback = null) => Play("idle", 0, loop, callback);
-        public void Attack(bool loop = true, Action callback = null) => Play("attack", 0, loop, callback);
-        public void Walk(bool loop = true, Action callback = null) => Play("walk", 0, loop, callback);
-        public void Run(bool loop = true, Action callback = null)=> Play("run", 0, loop, callback);
-        public void Crouch(bool loop = true, Action callback = null) => Play("crouch", 0, loop, callback);
 
         public void Flip(Vector3 direction)
         {
@@ -50,30 +48,26 @@ namespace Common.Character
                 _ => skeletonAnimation.Skeleton.ScaleX
             };
         }
+        
 
-        private void PlayOneShot(string animationKey, int layer)
+        private void Awake()
         {
-            if (!modelData.TryGetAnimation(animationKey, out var target))
-            {
-                Debug.LogError($"Not Exist Animation Key {animationKey}");
-                return;
-            }
-
-            PlayOneShot(target, layer);
+            skeletonAnimation = GetComponent<SkeletonAnimation>();
+            state = skeletonAnimation.AnimationState;
         }
 
-        private void PlayOneShot(Animation oneShot, int layer)
+        private void OnEnable()
         {
-            state.SetAnimation(0, oneShot, false);
-    
-            if (modelData.TryGetTransition(oneShot, TargetAnimation, out var transition))
-            {
-                state.AddAnimation(0, transition, false, 0f);
-            }
-    
-            state.AddAnimation(0, TargetAnimation, true, 0f);
+            cb.OnIdle += () => Idle();
+            cb.OnWork += () => Walk();
+            cb.OnRun += () => Run();
+            cb.OnAttack += () => Attack(false, () => Idle());
+            cb.OnSkill += () => Attack(false, () => Idle());
+            
+            cb.OnLookLeft += LookLeft;
+            cb.OnLookRight += LookRight;
         }
-
+        
         private void Play(Animation target, int layer, bool loop, Action callback = null)
         {
             TrackEntry entry;
@@ -110,17 +104,6 @@ namespace Common.Character
 
             TargetAnimation = target;
         }
-
-        private void Awake()
-        {
-            skeletonAnimation = GetComponent<SkeletonAnimation>();
-            state = skeletonAnimation.AnimationState;
-        }
-
-        private void OnEnable()
-        {
-            Idle();
-        }
     
         private bool TryGetCurrentAnimation(int layer, out Animation result)
         {
@@ -128,5 +111,41 @@ namespace Common.Character
     
             return result is not null;
         }
+
+        private void OnDisable()
+        {
+            cb.OnIdle -= () => Idle();
+            cb.OnWork -= () => Walk();
+            cb.OnRun -= () => Run();
+            cb.OnAttack -= () => Attack(false);
+            cb.OnSkill -= () => Attack(false);
+            
+            cb.OnLookLeft -= LookLeft;
+            cb.OnLookRight -= LookRight;
+        }
     }
 }
+
+
+// private void PlayOneShot(string animationKey, int layer)
+// {
+//     if (!modelData.TryGetAnimation(animationKey, out var target))
+//     {
+//         Debug.LogError($"Not Exist Animation Key {animationKey}");
+//         return;
+//     }
+//
+//     PlayOneShot(target, layer);
+// }
+//
+// private void PlayOneShot(Animation oneShot, int layer)
+// {
+//     state.SetAnimation(0, oneShot, false);
+//
+//     if (modelData.TryGetTransition(oneShot, TargetAnimation, out var transition))
+//     {
+//         state.AddAnimation(0, transition, false, 0f);
+//     }
+//
+//     state.AddAnimation(0, TargetAnimation, true, 0f);
+// }

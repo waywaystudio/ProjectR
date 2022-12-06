@@ -1,4 +1,5 @@
 using BehaviorDesigner.Runtime.Tasks;
+using Core;
 using UnityEngine;
 
 namespace Common.Character.Behavior.Actions
@@ -27,6 +28,9 @@ namespace Common.Character.Behavior.Actions
         public override TaskStatus OnUpdate()
         {
             target = pb.Targeting.FocusTarget;
+
+            if (target.IsNullOrEmpty()) return TaskStatus.Failure;
+            
             targetPosition = target.transform.position;
             characterPosition = transform.position;
 

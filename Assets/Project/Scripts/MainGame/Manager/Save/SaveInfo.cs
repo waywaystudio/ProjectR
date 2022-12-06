@@ -36,12 +36,12 @@ namespace MainGame.Manager.Save
         public float Version => version;
         public void Save()
         {
-            throw new NotImplementedException();
+            
         }
 
         public void Load()
         {
-            throw new NotImplementedException();
+            
         }
     }
 }

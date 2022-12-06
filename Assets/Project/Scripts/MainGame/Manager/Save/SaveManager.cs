@@ -27,11 +27,6 @@ namespace MainGame.Manager.Save
         private static string PlaySavePath => GetFilePath(PlaySaveFile);
         private static string AutoSavePath => GetFilePath(AutoSaveFile);
 
-        private void Awake()
-        {
-            if (isInitiated is false) Initialize();
-        }
-
         [Sirenix.OdinInspector.Button]
         public void Initialize()
         {

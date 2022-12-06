@@ -39,6 +39,7 @@ namespace MainGame.Data
         {
             list.ForEach(x =>
             {
+                if (x.Name == "") return;
                 if (x.Name != "" && !nameTable.ContainsKey(x.Name))
                 {
                     nameTable.Add(x.Name, x.ID);

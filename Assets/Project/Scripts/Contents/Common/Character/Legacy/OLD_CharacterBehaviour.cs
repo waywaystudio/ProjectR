@@ -64,7 +64,7 @@ namespace Common.Character
 
         public float MoveSpeed { get => moveSpeed; set => moveSpeed = value; }
         public float AttackSpeed { get => attackSpeed; set => attackSpeed = value; }
-        public Vector3 Destination => pathfinding.Destination;
+        public Vector3 Destination => Vector3.zero;
         public CharacterTargeting Targeting => targeting;
         public GameObject FocusTarget => Targeting.FocusTarget;
 
@@ -96,13 +96,13 @@ namespace Common.Character
 
         public void Walk(Vector3 destination)
         {
-            pathfinding.Move(destination, moveSpeed);
+            // pathfinding.OLD_Move(destination, moveSpeed);
             animationModel.Walk();
         }
 
         public void Run(Vector3 destination)
         {
-            pathfinding.Move(destination, moveSpeed);
+            // pathfinding.OLD_Move(destination, moveSpeed);
             animationModel.Run();
         }
 
@@ -128,7 +128,6 @@ namespace Common.Character
             animationEvent ??= GetComponentInChildren<CharacterAnimationEventModel>();
             
             controller.Initialize(GetComponent<Rigidbody>());
-            pathfinding.Initialize();
             targeting.Initialize(range);
         }
 
