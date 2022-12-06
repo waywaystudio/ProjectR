@@ -12,16 +12,16 @@ namespace MainGame.Data.ContentData
     public partial class CharacterClassData : DataObject<CharacterClassData.CharacterClass>
     {
         [Serializable]
-        public class CharacterClass : Row
+        public class CharacterClass : IIdentifier
         {
 			[SerializeField] private Int32 id;
-			[SerializeField] private String className;
+			[SerializeField] private String textKey;
 			[SerializeField] private String baseRole;
 			[SerializeField] private Single attackSpeed;
 			[SerializeField] private Single range;
 
-			public override Int32 ID => id;
-			public String ClassName => className;
+			public Int32 ID => id;
+			public String TextKey => textKey;
 			public String BaseRole => baseRole;
 			public Single AttackSpeed => attackSpeed;
 			public Single Range => range;

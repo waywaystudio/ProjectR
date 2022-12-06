@@ -86,13 +86,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8d1304eb36b0d4a47b7bec06855bc80e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dataList:
-  - {fileID: 11400000, guid: 294332ae82d2c7046b37095f9025b510, type: 2}
-  - {fileID: 11400000, guid: afdb984896de2944a8a2ecf72158de10, type: 2}
-  - {fileID: 11400000, guid: 6ea14045c9b33ac488256a3294a35357, type: 2}
-  - {fileID: 11400000, guid: a1c1bb93fb25c6344bfbcaeb5b44cf60, type: 2}
-  - {fileID: 11400000, guid: 5a46d34d812abe740839bfed1ce08573, type: 2}
-  - {fileID: 11400000, guid: d5fa5f323244127428ad66d0bf80b6ed, type: 2}
+  dataObjectList:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
 --- !u!114 &6673278252666892873
 MonoBehaviour:
   m_ObjectHideFlags: 0

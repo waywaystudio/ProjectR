@@ -148,7 +148,7 @@ public static class Finder
         value = null;
         return false;
     }
-    
+
     /// <summary>
     /// Create Prefab at specific Path
     /// </summary>

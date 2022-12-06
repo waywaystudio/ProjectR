@@ -12,164 +12,165 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5a750eabd4349a44fa6282e6cd0436ba, type: 3}
   m_Name: AdventurerData
   m_EditorClassIdentifier: 
+  category: 11
   list:
   - id: 11000001
-    adventurerName: Kungen
+    textKey: Kungen
     role: Tank
     job: Warrior
   - id: 11000002
-    adventurerName: Muradin
+    textKey: Muradin
     role: Tank
     job: Warrior
   - id: 11000003
-    adventurerName: Anduin
+    textKey: Anduin
     role: Tank
     job: Paladin
   - id: 11000004
-    adventurerName: Leo
+    textKey: Leo
     role: Tank
     job: Paladin
   - id: 11000005
-    adventurerName: Diablo
+    textKey: Diablo
     role: Tank
     job: Load
   - id: 11000006
-    adventurerName: Muradin
+    textKey: Sauron
     role: Tank
     job: Load
   - id: 11000007
-    adventurerName: LichKing
+    textKey: LichKing
     role: Tank
     job: DeathKnight
   - id: 11000008
-    adventurerName: Mogreign
+    textKey: Mogreign
     role: Tank
     job: DeathKnight
   - id: 11000009
-    adventurerName: Malfurion
+    textKey: Malfurion
     role: Tank
     job: Druid
   - id: 11000010
-    adventurerName: Noru
+    textKey: Noru
     role: Tank
     job: Druid
   - id: 11000011
-    adventurerName: Vanclief
+    textKey: Vanclief
     role: Melee
     job: Rogue
   - id: 11000012
-    adventurerName: Assassin
+    textKey: Assassin
     role: Melee
     job: Rogue
   - id: 11000013
-    adventurerName: Siryu
+    textKey: Siryu
     role: Melee
     job: Lancer
   - id: 11000014
-    adventurerName: Kwanu
+    textKey: Kwanu
     role: Melee
     job: Lancer
   - id: 11000015
-    adventurerName: Ypman
+    textKey: Ypman
     role: Melee
     job: Fighter
   - id: 11000016
-    adventurerName: Opman
+    textKey: Opman
     role: Melee
     job: Fighter
   - id: 11000017
-    adventurerName: Gatz
+    textKey: Gatz
     role: Melee
     job: Berserker
   - id: 11000018
-    adventurerName: Waterdog
+    textKey: Waterdog
     role: Melee
     job: Berserker
   - id: 11000019
-    adventurerName: Zoro
+    textKey: Zoro
     role: Melee
     job: Blade
   - id: 11000020
-    adventurerName: Kenshin
+    textKey: Kenshin
     role: Melee
     job: Blade
   - id: 11000021
-    adventurerName: Yohee
+    textKey: Yohee
     role: Range
     job: Hunter
   - id: 11000022
-    adventurerName: Robinhood
+    textKey: Robinhood
     role: Range
     job: Hunter
   - id: 11000023
-    adventurerName: Jeina
+    textKey: Jeina
     role: Range
     job: Wizard
   - id: 11000024
-    adventurerName: HarryPotter
+    textKey: HarryPotter
     role: Range
     job: Wizard
   - id: 11000025
-    adventurerName: KelThuzad
+    textKey: KelThuzad
     role: Range
     job: Warlock
   - id: 11000026
-    adventurerName: Drakedog
+    textKey: Drakedog
     role: Range
     job: Warlock
   - id: 11000027
-    adventurerName: Sylvanas
+    textKey: Sylvanas
     role: Range
     job: Sniper
   - id: 11000028
-    adventurerName: Hanzo
+    textKey: Hanzo
     role: Range
     job: Sniper
   - id: 11000029
-    adventurerName: Sirke
+    textKey: Sirke
     role: Range
     job: Summoner
   - id: 11000030
-    adventurerName: Mephisto
+    textKey: Mephisto
     role: Range
     job: Summoner
   - id: 11000031
-    adventurerName: Whitemane
+    textKey: Whitemane
     role: Healer
     job: Priest
   - id: 11000032
-    adventurerName: Deckard
+    textKey: Deckard
     role: Healer
     job: Priest
   - id: 11000033
-    adventurerName: Tyrael
+    textKey: Tyrael
     role: Healer
     job: Angel
   - id: 11000034
-    adventurerName: Mercy
+    textKey: Mercy
     role: Healer
     job: Angel
   - id: 11000035
-    adventurerName: Lili
+    textKey: Lili
     role: Healer
     job: Bard
   - id: 11000036
-    adventurerName: Hammer
+    textKey: Hammer
     role: Healer
     job: Bard
   - id: 11000037
-    adventurerName: Thrall
+    textKey: Thrall
     role: Healer
     job: Shaman
   - id: 11000038
-    adventurerName: Brightwing
+    textKey: Brightwing
     role: Healer
     job: Shaman
   - id: 11000039
-    adventurerName: Johanna
+    textKey: Johanna
     role: Healer
     job: HolyKnight
   - id: 11000040
-    adventurerName: Uther
+    textKey: Uther
     role: Healer
     job: HolyKnight

@@ -12,13 +12,13 @@ namespace MainGame.Data.ContentData
     public partial class EquipmentData : DataObject<EquipmentData.Equipment>
     {
         [Serializable]
-        public class Equipment : Row
+        public class Equipment : IIdentifier
         {
 			[SerializeField] private Int32 id;
-			[SerializeField] private String itemName;
+			[SerializeField] private String textKey;
 
-			public override Int32 ID => id;
-			public String ItemName => itemName;
+			public Int32 ID => id;
+			public String TextKey => textKey;
 
         }
         

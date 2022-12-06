@@ -12,36 +12,37 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d290b498924148f43aa5ad68af4e05d6, type: 3}
   m_Name: EquipmentData
   m_EditorClassIdentifier: 
+  category: 21
   list:
   - id: 21000001
-    itemName: Blood  Boil Lancet
+    textKey: Blood  Boil Lancet
   - id: 21000002
-    itemName: Heartshiver
+    textKey: Heartshiver
   - id: 21000003
-    itemName: Tower of the Mouldering Sorpse
+    textKey: Tower of the Mouldering Sorpse
   - id: 21000004
-    itemName: Coil of Missing Gems
+    textKey: Coil of Missing Gems
   - id: 21000005
-    itemName: Brace Guards of the  Starless Night
+    textKey: Brace Guards of the  Starless Night
   - id: 21000006
-    itemName: Sollerets of Suffering
+    textKey: Sollerets of Suffering
   - id: 21000007
-    itemName: Soul Screaming Boots
+    textKey: Soul Screaming Boots
   - id: 21000008
-    itemName: Spiteful Signet
+    textKey: Spiteful Signet
   - id: 21000009
-    itemName: Essence of Anger
+    textKey: Essence of Anger
   - id: 21000010
-    itemName: Lost Reliquary Chestguard
+    textKey: Lost Reliquary Chestguard
   - id: 21000011
-    itemName: Accursed Crawling Cape
+    textKey: Accursed Crawling Cape
   - id: 21000012
-    itemName: Legplates of Frozen Granite
+    textKey: Legplates of Frozen Granite
   - id: 21000013
-    itemName: Shard of Azzinoth
+    textKey: Shard of Azzinoth
   - id: 21000014
-    itemName: Bulwark of Azzinoth
+    textKey: Bulwark of Azzinoth
   - id: 21000015
-    itemName: Warglaive of Azzinoth
+    textKey: Warglaive of Azzinoth
   - id: 21000016
-    itemName: The Skull of Gul'dan
+    textKey: The Skull of Gul'dan

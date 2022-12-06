@@ -1,4 +1,6 @@
 using MainGame;
+using MainGame.Data;
+using MainGame.Data.ContentData;
 using UnityEngine;
 
 namespace Town

@@ -12,104 +12,105 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9692b06471efc7045b2297e745272ac1, type: 3}
   m_Name: CharacterClassData
   m_EditorClassIdentifier: 
+  category: 12
   list:
   - id: 12000001
-    className: Warrior
+    textKey: Warrior
     baseRole: Tank
     attackSpeed: 1
     range: 5
   - id: 12000002
-    className: Paladin
+    textKey: Paladin
     baseRole: Tank
     attackSpeed: 1
     range: 5
   - id: 12000003
-    className: Load
+    textKey: Load
     baseRole: Tank
     attackSpeed: 2
     range: 5
   - id: 12000004
-    className: DeathKnight
+    textKey: DeathKnight
     baseRole: Tank
     attackSpeed: 2
     range: 5
   - id: 12000005
-    className: Druid
+    textKey: Druid
     baseRole: Tank
     attackSpeed: 1.5
     range: 5
   - id: 12000006
-    className: Rogue
+    textKey: Rogue
     baseRole: Melee
     attackSpeed: 0.5
     range: 5
   - id: 12000007
-    className: Lancer
+    textKey: Lancer
     baseRole: Melee
     attackSpeed: 1.2
     range: 8
   - id: 12000008
-    className: Fighter
+    textKey: Fighter
     baseRole: Melee
     attackSpeed: 0.5
     range: 4
   - id: 12000009
-    className: Berserker
+    textKey: Berserker
     baseRole: Melee
     attackSpeed: 1.8
     range: 7
   - id: 12000010
-    className: Blade
+    textKey: Blade
     baseRole: Melee
     attackSpeed: 1
     range: 6
   - id: 12000011
-    className: Hunter
+    textKey: Hunter
     baseRole: Range
     attackSpeed: 1.8
     range: 20
   - id: 12000012
-    className: Wizard
+    textKey: Wizard
     baseRole: Range
     attackSpeed: 1
     range: 20
   - id: 12000013
-    className: Warlock
+    textKey: Warlock
     baseRole: Range
     attackSpeed: 1
     range: 20
   - id: 12000014
-    className: Sniper
+    textKey: Sniper
     baseRole: Range
     attackSpeed: 2
     range: 25
   - id: 12000015
-    className: Summoner
+    textKey: Summoner
     baseRole: Range
     attackSpeed: 1
     range: 20
   - id: 12000016
-    className: Priest
+    textKey: Priest
     baseRole: Support
     attackSpeed: 1
     range: 20
   - id: 12000017
-    className: Angel
+    textKey: Angel
     baseRole: Support
     attackSpeed: 1
     range: 20
   - id: 12000018
-    className: Bard
+    textKey: Bard
     baseRole: Support
     attackSpeed: 1
     range: 20
   - id: 12000019
-    className: Shaman
+    textKey: Shaman
     baseRole: Support
     attackSpeed: 1
     range: 20
   - id: 12000020
-    className: HolyKnight
+    textKey: HolyKnight
     baseRole: Support
     attackSpeed: 1
     range: 5

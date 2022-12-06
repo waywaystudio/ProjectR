@@ -12,16 +12,16 @@ namespace MainGame.Data.ContentData
     public partial class BossData : DataObject<BossData.Boss>
     {
         [Serializable]
-        public class Boss : Row
+        public class Boss : IIdentifier
         {
 			[SerializeField] private Int32 id;
-			[SerializeField] private String bossName;
+			[SerializeField] private String textKey;
 			[SerializeField] private Single tempDifficulty;
 			[SerializeField] private List<Int32> dropItemIDList;
 			[SerializeField] private List<Int32> dropItemProbabilities;
 
-			public override Int32 ID => id;
-			public String BossName => bossName;
+			public Int32 ID => id;
+			public String TextKey => textKey;
 			public Single TempDifficulty => tempDifficulty;
 			public List<Int32> DropItemIdList => dropItemIDList;
 			public List<Int32> DropItemProbabilities => dropItemProbabilities;

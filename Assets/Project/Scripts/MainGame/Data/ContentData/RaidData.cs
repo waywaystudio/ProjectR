@@ -12,15 +12,15 @@ namespace MainGame.Data.ContentData
     public partial class RaidData : DataObject<RaidData.Raid>
     {
         [Serializable]
-        public class Raid : Row
+        public class Raid : IIdentifier
         {
 			[SerializeField] private Int32 id;
-			[SerializeField] private String raidName;
+			[SerializeField] private String textKey;
 			[SerializeField] private Int32 partyScale;
 			[SerializeField] private List<String> bossList;
 
-			public override Int32 ID => id;
-			public String RaidName => raidName;
+			public Int32 ID => id;
+			public String TextKey => textKey;
 			public Int32 PartyScale => partyScale;
 			public List<String> BossList => bossList;
 

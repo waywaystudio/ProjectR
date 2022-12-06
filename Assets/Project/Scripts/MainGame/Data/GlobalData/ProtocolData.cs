@@ -12,19 +12,27 @@ namespace MainGame.Data.GlobalData
     public partial class ProtocolData : DataObject<ProtocolData.Protocol>
     {
         [Serializable]
-        public class Protocol : Row
+        public class Protocol : IIdentifier
         {
 			[SerializeField] private Int32 id;
 			[SerializeField] private Int32 index;
-			[SerializeField] private String content;
+			[SerializeField] private String name;
 			[SerializeField] private String description;
 
-			public override Int32 ID => id;
+			public Int32 ID => id;
 			public Int32 Index => index;
-			public String Content => content;
+			public String TextKey => name;
 			public String Description => description;
 
         }
+        
+        // public override bool TryGetData<T>(int id, out T result)
+        // {
+        //     Table.TryGetValue(id, out var value);
+        //
+        //     result = value;
+        //     return true;
+        // }
         
 #region Editor Functions.
     #if UNITY_EDITOR

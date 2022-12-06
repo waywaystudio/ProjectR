@@ -20,10 +20,10 @@ namespace Common.Character.Skills.Entity
         [OnInspectorInit]
         protected virtual void OnEditorInitialize()
         {
-            if (SkillName.IsNullOrEmpty()) return;
-
-            Finder.TryGetObject(out SkillData skillData);
-            StaticData = skillData.List.Find(x => x.SkillName == SkillName);
+            // if (SkillName.IsNullOrEmpty()) return;
+            //
+            // Finder.TryGetObject(out SkillData skillData);
+            // StaticData = skillData.List.Find(x => x.Name == SkillName);
         }
 #endif
     }

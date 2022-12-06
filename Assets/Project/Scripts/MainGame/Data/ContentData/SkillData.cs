@@ -12,10 +12,10 @@ namespace MainGame.Data.ContentData
     public partial class SkillData : DataObject<SkillData.Skill>
     {
         [Serializable]
-        public class Skill : Row
+        public class Skill : IIdentifier
         {
 			[SerializeField] private Int32 id;
-			[SerializeField] private String skillName;
+			[SerializeField] private String textKey;
 			[SerializeField] private Single baseCoolTime;
 			[SerializeField] private Single range;
 			[SerializeField] private Int32 priority;
@@ -26,8 +26,8 @@ namespace MainGame.Data.ContentData
 			[SerializeField] private String skillType;
 			[SerializeField] private Single castingTime;
 
-			public override Int32 ID => id;
-			public String SkillName => skillName;
+			public Int32 ID => id;
+			public String TextKey => textKey;
 			public Single BaseCoolTime => baseCoolTime;
 			public Single Range => range;
 			public Int32 Priority => priority;

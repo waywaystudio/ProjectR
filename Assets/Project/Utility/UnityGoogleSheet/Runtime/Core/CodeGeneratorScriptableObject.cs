@@ -30,7 +30,7 @@ namespace @namespace
     public partial class @Class@suffix : DataObject<@Class@suffix.@Class>
     {{
         [Serializable]
-        public class @Class : Row
+        public class @Class : IIdentifier
         {{
 @types
 @properties
@@ -179,9 +179,7 @@ namespace @namespace
                     var pascalFieldName = ToPascalCasing(condensedFieldName);
                     
                     typeBuilder.AppendLine($"\t\t\t[SerializeField] private {typeName} {camelFieldName};");
-                    propertyBuilder.AppendLine(pascalFieldName == "ID"
-                        ? $"\t\t\tpublic override {typeName} {pascalFieldName} => {camelFieldName};"
-                        : $"\t\t\tpublic {typeName} {pascalFieldName} => {camelFieldName};");
+                    propertyBuilder.AppendLine($"\t\t\tpublic {typeName} {pascalFieldName} => {camelFieldName};");
                 }
                 else
                 {

@@ -12,52 +12,53 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dfdee459f65ff3845a28dbb513ef7782, type: 3}
   m_Name: ProtocolData
   m_EditorClassIdentifier: 
+  category: 10
   list:
   - id: 10
     index: 1
-    content: Protocol
+    name: Protocol
     description: Category ID Information
   - id: 11
     index: 2
-    content: Adventurer
+    name: Adventurer
     description: "\uBAA8\uD5D8\uAC00"
   - id: 12
     index: 3
-    content: CharacterClass
+    name: CharacterClass
     description: "\uC9C1\uC5C5"
   - id: 13
     index: 4
-    content: Skill
+    name: Skill
     description: "\uAE30\uC220"
   - id: 14
     index: 5
-    content: 
+    name: 
     description: 
   - id: 15
     index: 6
-    content: 
+    name: 
     description: 
   - id: 16
     index: 7
-    content: Raid
+    name: Raid
     description: "\uB808\uC774\uB4DC & \uB358\uC804"
   - id: 17
     index: 8
-    content: Boss
+    name: Boss
     description: "\uBCF4\uC2A4"
   - id: 18
     index: 9
-    content: 
+    name: 
     description: 
   - id: 19
     index: 10
-    content: 
+    name: 
     description: 
   - id: 20
     index: 11
-    content: 
+    name: 
     description: 
   - id: 21
     index: 12
-    content: Equipment
+    name: Equipment
     description: "\uC7A5\uBE44"

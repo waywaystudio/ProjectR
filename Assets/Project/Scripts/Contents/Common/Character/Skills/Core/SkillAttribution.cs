@@ -68,27 +68,27 @@ namespace Common.Character.Skills.Core
         [Sirenix.OdinInspector.OnInspectorInit]
         protected virtual void Initialize()
         {
-            Finder.TryGetObject(out MainGame.Data.ContentData.SkillData skillData);
-        
-            var staticData = skillData.List.Find(x => x.SkillName.Equals(GetType().Name));
-            if (staticData is null)
-            {
-                Debug.LogWarning($"Can't Find {skillName} in {skillData} ScriptableObject");
-                return;
-            }
-        
-            id = staticData.ID;
-            skillName = staticData.SkillName;
-            priority = staticData.Priority;
-            animationKey = staticData.AnimationKey;
-            
-            GetComponents<EntityAttribution>().ForEach(x =>
-            {
-                if (x.SkillName != this.GetType().Name)
-                    x.SkillName = GetType().Name;
-            });
-
-            UpdateEntityType();
+            // Finder.TryGetObject(out MainGame.Data.ContentData.SkillData skillData);
+            //
+            // var staticData = skillData.List.Find(x => x.Name.Equals(GetType().Name));
+            // if (staticData is null)
+            // {
+            //     Debug.LogWarning($"Can't Find {skillName} in {skillData} ScriptableObject");
+            //     return;
+            // }
+            //
+            // id = staticData.ID;
+            // skillName = staticData.Name;
+            // priority = staticData.Priority;
+            // animationKey = staticData.AnimationKey;
+            //
+            // GetComponents<EntityAttribution>().ForEach(x =>
+            // {
+            //     if (x.SkillName != this.GetType().Name)
+            //         x.SkillName = GetType().Name;
+            // });
+            //
+            // UpdateEntityType();
         }
         #endregion
 #endif

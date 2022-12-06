@@ -12,15 +12,15 @@ namespace MainGame.Data.ContentData
     public partial class AdventurerData : DataObject<AdventurerData.Adventurer>
     {
         [Serializable]
-        public class Adventurer : Row
+        public class Adventurer : IIdentifier
         {
 			[SerializeField] private Int32 id;
-			[SerializeField] private String adventurerName;
+			[SerializeField] private String textKey;
 			[SerializeField] private String role;
 			[SerializeField] private String job;
 
-			public override Int32 ID => id;
-			public String AdventurerName => adventurerName;
+			public Int32 ID => id;
+			public String TextKey => textKey;
 			public String Role => role;
 			public String Job => job;
 

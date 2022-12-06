@@ -1,7 +1,9 @@
 namespace MainGame.Data
 {
-    public abstract class Row
+    public interface IIdentifier
     {
-        public abstract int ID { get; }
+        public int ID { get; }
+        // public string Name { get; }
+        public string TextKey { get; }
     }
 }
