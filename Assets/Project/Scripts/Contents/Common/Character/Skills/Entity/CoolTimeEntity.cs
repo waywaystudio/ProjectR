@@ -1,17 +1,16 @@
+using System;
 using UnityEngine;
 
 namespace Common.Character.Skills.Entity
 {
-    public class CoolTimeEntity : EntityAttribution, ICoolTimeEntity, IUpdateRequired ,IReadyRequired
-    {   
-        [SerializeField] private float coolTime;
-
+    public class CoolTimeEntity : EntityAttribution, IReadyRequired
+    {
         private float remainCoolTime;
-        private float tick;
 
         public bool IsReady => remainCoolTime <= 0.0f;
-        public float CoolTime { get => coolTime; set => coolTime = value; }
-        public float CoolTimeTick { get => tick; set => tick = value; }
+        public float CoolTime { get; set; }
+        public float CoolTimeTick { get; set; }
+
         public float RemainCoolTime
         {
             get => remainCoolTime;
@@ -22,22 +21,35 @@ namespace Common.Character.Skills.Entity
         {
             if (IsReady) return;
             
-            RemainCoolTime -= tick;
+            RemainCoolTime -= CoolTimeTick;
+        }
+
+        public void SetEntity()
+        {
+            CoolTime = SkillData.BaseCoolTime;
         }
 
         private void Awake()
         {
-            Flag = EntityType.CoolTime;
-            tick = Time.deltaTime;
+            CoolTimeTick = Time.deltaTime;
+        }
+
+        private void OnEnable()
+        {
+            Cb.OnUpdate += UpdateStatus;
+        }
+
+        private void OnDisable()
+        {
+            Cb.OnUpdate -= UpdateStatus;
         }
 
 #if UNITY_EDITOR
         protected override void OnEditorInitialize()
         {
-            base.OnEditorInitialize();
-            
             Flag = EntityType.CoolTime;
-            CoolTime = StaticData.BaseCoolTime;
+
+            SetEntity();
         }
 #endif
     }

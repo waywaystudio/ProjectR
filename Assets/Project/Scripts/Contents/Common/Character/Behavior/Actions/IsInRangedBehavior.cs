@@ -17,8 +17,8 @@ namespace Common.Character.Behavior.Actions
         
         public override TaskStatus OnUpdate()
         {
-            target = oldCharacterBehaviour.Targeting.FocusTarget;
-            range = oldCharacterBehaviour.Targeting.AttackRange;
+            // target = oldCharacterBehaviour.Searching.FocusTarget;
+            // range = oldCharacterBehaviour.Searching.AttackRange;
             
             var characterPosition = transform.position;
             var targetPosition = target.transform.position;

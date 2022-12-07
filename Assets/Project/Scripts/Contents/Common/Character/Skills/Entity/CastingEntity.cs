@@ -5,25 +5,22 @@ using UnityEngine;
 namespace Common.Character.Skills.Entity
 {
     [Serializable]
-    public class CastingEntity : EntityAttribution, ICastingEntity, IReadyRequired
+    public class CastingEntity : EntityAttribution, IReadyRequired
     {
         private enum CastingType { Casting, Channeling }
+        private CastingType castingType = CastingType.Casting;
         
-        [SerializeField] private float castingTime;
-        [SerializeField] private CastingType castingType = CastingType.Casting;
-
-        public bool IsReady => !onCasting;
         private bool onCasting;
-        private float tick;
         private float remainCastingTime;
 
+        public bool IsReady => !onCasting;
+        public float CastingTime { get; set; }
         public Action OnStart { get; set; }
         public Action OnBroken { get; set; }
         public Action OnCompleted { get; set; }
         
-        public float CastingTime { get => castingTime; set => castingTime = value; }
-        public float CastingTick { get => tick; set => tick = value; }
-        public float RemainCastingTime
+        private float CastingTick { get; set; }
+        private float RemainCastingTime
         {
             get => remainCastingTime; 
             set => remainCastingTime = Mathf.Max(0, value);
@@ -36,9 +33,17 @@ namespace Common.Character.Skills.Entity
             StopAllCoroutines();
         }
 
+        public void SetEntity()
+        {
+            CastingTime = SkillData.CastingTime;
+            castingType = SkillData.AnimationKey == "casting"
+                ? CastingType.Casting
+                : CastingType.Channeling;
+        }
+
         private void Awake()
         {
-            tick = Time.deltaTime;
+            CastingTick = Time.deltaTime;
         }
 
         private void OnEnable()
@@ -73,13 +78,9 @@ namespace Common.Character.Skills.Entity
 #if UNITY_EDITOR
         protected override void OnEditorInitialize()
         {
-            base.OnEditorInitialize();
-            
             Flag = EntityType.Casting;
-            CastingTime = StaticData.CastingTime;
-            castingType = StaticData.AnimationKey == "casting"
-                ? CastingType.Casting
-                : CastingType.Channeling;
+            
+            SetEntity();
         }
 #endif
     }

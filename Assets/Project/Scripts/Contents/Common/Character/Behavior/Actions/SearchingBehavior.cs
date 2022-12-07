@@ -15,9 +15,11 @@ namespace Common.Character.Behavior.Actions
 
         public override TaskStatus OnUpdate()
         {
-            return pb.FocusTarget.IsNullOrEmpty() 
-                ? TaskStatus.Failure
-                : TaskStatus.Success;
+            // return pb.FocusTarget.IsNullOrEmpty() 
+            //     ? TaskStatus.Failure
+            //     : TaskStatus.Success;
+
+            return TaskStatus.Failure;
         }
     }
 }

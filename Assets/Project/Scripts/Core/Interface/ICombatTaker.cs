@@ -2,7 +2,8 @@ namespace Core
 {
     public interface ICombatTaker
     {
-        UnityEngine.GameObject TargetObject { get; }
+        UnityEngine.GameObject Taker { get; }
+        
         void TakeDamage(IDamageProvider damageInfo);
         void TakeHeal(IHealProvider healInfo);
         void TakeExtra(IExtraProvider extra);

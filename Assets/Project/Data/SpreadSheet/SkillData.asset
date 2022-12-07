@@ -16,6 +16,7 @@ MonoBehaviour:
   list:
   - id: 13000001
     name: CommonAttack
+    baseValue: 1
     baseCoolTime: 0
     range: 5
     priority: 1
@@ -28,6 +29,7 @@ MonoBehaviour:
     castingTime: 0
   - id: 13000002
     name: Bash
+    baseValue: 2
     baseCoolTime: 8
     range: 5
     priority: 5
@@ -40,6 +42,7 @@ MonoBehaviour:
     castingTime: 0
   - id: 13000003
     name: BackStep
+    baseValue: 8
     baseCoolTime: 15
     range: 18
     priority: 5
@@ -52,6 +55,7 @@ MonoBehaviour:
     castingTime: 0
   - id: 13000004
     name: AimShot
+    baseValue: 15
     baseCoolTime: 6
     range: 25
     priority: 5
@@ -65,6 +69,7 @@ MonoBehaviour:
     castingTime: 1.5
   - id: 13000005
     name: Blood Drain
+    baseValue: 0
     baseCoolTime: 15
     range: 0
     priority: 1
@@ -77,6 +82,7 @@ MonoBehaviour:
     castingTime: 0
   - id: 13000006
     name: Roar
+    baseValue: 1.2
     baseCoolTime: 12
     range: 16
     priority: 5
@@ -89,6 +95,7 @@ MonoBehaviour:
     castingTime: 0
   - id: 13000007
     name: Penetrate
+    baseValue: 21
     baseCoolTime: 12
     range: 20
     priority: 5
@@ -101,6 +108,7 @@ MonoBehaviour:
     castingTime: 3
   - id: 13000008
     name: Rapid Blow
+    baseValue: 2
     baseCoolTime: 6
     range: 5
     priority: 5
@@ -113,6 +121,7 @@ MonoBehaviour:
     castingTime: 2
   - id: 13000009
     name: Fury
+    baseValue: 0
     baseCoolTime: 30
     range: 0
     priority: 1
@@ -125,6 +134,7 @@ MonoBehaviour:
     castingTime: 0
   - id: 13000010
     name: Lightning Slash
+    baseValue: 8
     baseCoolTime: 15
     range: 18
     priority: 5
@@ -137,6 +147,7 @@ MonoBehaviour:
     castingTime: 0
   - id: 13000011
     name: Fireball
+    baseValue: 2
     baseCoolTime: 0
     range: 20
     priority: 2
@@ -149,6 +160,7 @@ MonoBehaviour:
     castingTime: 1.5
   - id: 13000012
     name: Corruption
+    baseValue: 3
     baseCoolTime: 0
     range: 20
     priority: 2
@@ -161,6 +173,7 @@ MonoBehaviour:
     castingTime: 0
   - id: 13000013
     name: Faithful Prey
+    baseValue: 3
     baseCoolTime: 0
     range: 15
     priority: 5
@@ -174,6 +187,7 @@ MonoBehaviour:
     castingTime: 1.5
   - id: 13000014
     name: Holy Protection
+    baseValue: 5
     baseCoolTime: 30
     range: 15
     priority: 4
@@ -187,6 +201,7 @@ MonoBehaviour:
     castingTime: 0
   - id: 13000015
     name: Revivification
+    baseValue: 5
     baseCoolTime: 8
     range: 15
     priority: 3
@@ -199,6 +214,7 @@ MonoBehaviour:
     castingTime: 0
   - id: 13000016
     name: Encouraged Song
+    baseValue: 10
     baseCoolTime: 16
     range: 40
     priority: 5

@@ -13,8 +13,8 @@ namespace Common.Character.Skills.Entity
     
     public interface IDamageEntity
     {
-        double Value { get; set; }
-        float AdditionalValue { get; set; }
+        double CombatValue { get; set; }
+        float AdditionalCombat { get; set; }
         float CriticalChance { get; set; }
         float HitChance { get; set; }
         float AdditionalAggro { get; set; }
@@ -41,7 +41,7 @@ namespace Common.Character.Skills.Entity
         System.Action OnCompleted { get; set; }
     }
 
-    public interface ITargetEntity
+    public interface ITargetEntity : IRangeEntity
     {
         int TargetCount { get; set; }
         UnityEngine.LayerMask TargetLayer { get; set; }

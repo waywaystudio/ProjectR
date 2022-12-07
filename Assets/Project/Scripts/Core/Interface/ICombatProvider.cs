@@ -2,6 +2,8 @@ namespace Core
 {
     public interface IDamageProvider
     {
+        UnityEngine.GameObject Provider { get; }
+        
         double Value { get; }
         float Critical { get; }
         float Hit { get; }

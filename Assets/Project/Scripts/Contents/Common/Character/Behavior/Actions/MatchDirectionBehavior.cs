@@ -17,7 +17,7 @@ namespace Common.Character.Behavior.Actions
         
         public override TaskStatus OnUpdate()
         {
-            targetPosition = oldCharacterBehaviour.FocusTarget.transform.position;
+            // targetPosition = oldCharacterBehaviour.FocusTarget.transform.position;
             oldCharacterBehaviour.transform.DOLookAt(targetPosition, 0.15f);
             
             return TaskStatus.Success;

@@ -17,13 +17,13 @@ namespace Common.Character.Behavior.Actions
         
         public override TaskStatus OnUpdate()
         {
-            var distance = Vector3.Distance(pb.transform.position, pb.FocusTarget.transform.position);
-
-            if (pb.Range >= distance && !pb.FocusTarget.IsNullOrEmpty())
-            {
-                pb.Attack(pb.FocusTarget);
-                return TaskStatus.Success;
-            }
+            // var distance = Vector3.Distance(pb.transform.position, pb.FocusTarget.transform.position);
+            //
+            // if (pb.Range >= distance && !pb.FocusTarget.IsNullOrEmpty())
+            // {
+            //     pb.Attack(pb.FocusTarget);
+            //     return TaskStatus.Success;
+            // }
            
             return TaskStatus.Failure;
           

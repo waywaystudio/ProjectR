@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.Linq;
+using Core;
 using UnityEngine;
 
 namespace MainGame
@@ -13,10 +14,30 @@ namespace MainGame
     {
         [SerializeField] private List<DataObject> dataObjectList;
 
-        private static readonly Dictionary<string, int> NameTable = new();
-        private static Dictionary<DataCategory, DataObject> categoryTable = new();
+        private readonly Dictionary<string, int> nameTable = new();
+        private Dictionary<DataCategory, DataObject> categoryTable = new();
         
+        public static List<DataObject> DataObjectList => Instance.dataObjectList;
+        public static Dictionary<string, int> NameTable
+        {
+            get
+            {
+                if (Instance.nameTable.IsNullOrEmpty()) DataObjectList.ForEach(x => x.RegisterNameTable(Instance.nameTable));
+
+                return Instance.nameTable;
+            }
+        }
+        public static Dictionary<DataCategory, DataObject> CategoryTable
+        {
+            get
+            {
+                if (Instance.categoryTable.IsNullOrEmpty()) Instance.categoryTable = DataObjectList.ToDictionary(x => x.Category);
+
+                return Instance.categoryTable;
+            }
+        }
         
+
         public static T GetData<T>(DataCategory category, int id) where T : class 
             => TryGetData(category, id, out T result) ? result : null;
         public static T GetData<T>(DataCategory category, string nameKey) where T : class 
@@ -30,17 +51,10 @@ namespace MainGame
         public static CombatClass GetCombatClassData(int id) => GetData<CombatClass>(DataCategory.CombatClass, id);
         // AddMoreDataSet...
 
-        protected override void Awake()
-        {
-            base.Awake();
-
-            dataObjectList.ForEach(x => x.RegisterNameTable(NameTable));
-            categoryTable = dataObjectList.ToDictionary(x => x.Category);
-        }
 
         private static bool TryGetData<T>(DataCategory category, string nameKey, out T result) where T : class
         {
-            var hasCategory = categoryTable.TryGetValue(category, out var dataObject);
+            var hasCategory = CategoryTable.TryGetValue(category, out var dataObject);
             var hasKey = NameTable.TryGetValue(nameKey, out var id);
 
             if (!hasCategory || !hasKey)
@@ -55,7 +69,7 @@ namespace MainGame
         
         private static bool TryGetData<T>(DataCategory category, int id, out T result) where T : class
         {
-            if (!categoryTable.TryGetValue(category, out var dataObject))
+            if (!CategoryTable.TryGetValue(category, out var dataObject))
             {
                 Debug.LogError($"No Category in Database. Key : {category}");
                 result = null;
@@ -64,9 +78,19 @@ namespace MainGame
 
             return dataObject.TryGetData(id, out result);
         }
+        
+        
 
 #if UNITY_EDITOR
         private const string DataPath = "Assets/Project/Data/SpreadSheet/";
+
+        public static bool EditorTryGetValue<T>(DataCategory category, string nameKey, out T result) where T : class
+        {
+            NameTable.TryGetValue(nameKey, out var id);
+            
+            return DataObjectList.Find(x => x.Category == category).TryGetData(id, out result);
+        }
+        
         private void GetAllData()
         {
             Finder.TryGetObjectList(DataPath, "Data", out dataObjectList);

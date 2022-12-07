@@ -86,6 +86,16 @@ namespace Core
         {
             return (mask.value & (1 << obj.layer)) > 0;
         }
+
+        public static bool Includes(this LayerMask mask, int layer)
+        {
+            return (mask.value & 1 << layer) > 0;
+        }
+        
+        public static LayerMask Inverse(this LayerMask original)
+        {
+            return ~original;
+        }
     }
 }
 

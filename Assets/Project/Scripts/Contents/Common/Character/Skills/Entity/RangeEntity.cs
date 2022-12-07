@@ -13,10 +13,8 @@ namespace Common.Character.Skills.Entity
 #if UNITY_EDITOR
         protected override void OnEditorInitialize()
         {
-            base.OnEditorInitialize();
-            
             Flag = EntityType.Range;
-            Range = StaticData.Range;
+            Range = SkillData.Range;
         }
 #endif
     }

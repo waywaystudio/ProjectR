@@ -20,14 +20,14 @@ namespace Common.Character.Behavior.Actions
         public override void OnAwake()
         {
             pb = GetComponent<OLD_CharacterBehaviour>();
-            range = pb.Targeting.AttackRange;
+            // range = pb.Searching.AttackRange;
             safeTolerance = Random.Range(0.3f, 0.7f);
             safePoint = Random.Range(0.3f, 0.7f);
         }
 
         public override TaskStatus OnUpdate()
         {
-            target = pb.Targeting.FocusTarget;
+            // target = pb.Searching.FocusTarget;
 
             if (target.IsNullOrEmpty()) return TaskStatus.Failure;
             

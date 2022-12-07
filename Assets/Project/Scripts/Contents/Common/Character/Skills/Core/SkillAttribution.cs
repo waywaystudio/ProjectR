@@ -2,44 +2,43 @@ using System.Collections.Generic;
 using System.Linq;
 using Common.Character.Skills.Entity;
 using Core;
+using MainGame;
+using MainGame.Data.ContentData;
 using UnityEngine;
 
 namespace Common.Character.Skills.Core
 {
     public abstract class SkillAttribution : MonoBehaviour
     {
+        [SerializeField] protected CharacterCombat combat;
         [SerializeField] protected int id;
         [SerializeField] protected string skillName;
-        [SerializeField] protected string animationKey;
-        [SerializeField] protected int priority;
-        [SerializeField] private EntityType entityTypeList;
-        
+        protected string animationKey;
+        protected int priority;
+        private EntityType entityTypeList;
+
+        private SkillData.Skill skillData;
         private List<EntityAttribution> skillEntities = new();
-        private List<IReadyRequired> readyRequiredSkillEntities;
-        private List<IUpdateRequired> updateRequiredSkillEntities;
+        private List<IReadyRequired> readyRequiredEntities;
+        private List<IUpdateRequired> updateRequiredEntities;
 
         public abstract List<ICombatTaker> TargetList { get; }
-        public int ID { get => id; set => id = value; }
-        public string SkillName { get => skillName; set => skillName = value; }
+        public string SkillName => skillName ??= GetType().Name;
+        public SkillData.Skill SkillData => skillData ??= MainData.GetSkillData(SkillName);
+        public CharacterCombat Combat => combat ??= GetComponent<CharacterCombat>();
+        protected CharacterBehaviour Cb => Combat.Cb;
 
-        public string AnimationKey
-        {
-            get => "Attack"; // isTemporary
-                // animationKey;
-            set => animationKey = value;
-        }
+        public string AnimationKey => "Attack"; // isTemporary, originally : animationKey;
         public int Priority { get => priority; set => priority = value; }
-        
-        private bool IsEntityReady => readyRequiredSkillEntities.All(x => x.IsReady);
+        private bool IsEntityReady => readyRequiredEntities.All(x => x.IsReady);
 
-
-        public abstract void Invoke(ICombatAttribution combatInfo);
+        public abstract void Invoke();
 
         public void UpdateStatus()
         {
-            if (updateRequiredSkillEntities.IsNullOrEmpty()) return;
+            if (updateRequiredEntities.IsNullOrEmpty()) return;
             
-            updateRequiredSkillEntities.ForEach(x => x.UpdateStatus());
+            updateRequiredEntities.ForEach(x => x.UpdateStatus());
         }
         
 
@@ -48,8 +47,8 @@ namespace Common.Character.Skills.Core
             UpdateEntityType();
 
             skillEntities = GetComponents<EntityAttribution>().ToList();
-            readyRequiredSkillEntities = GetComponents<IReadyRequired>().ToList();
-            updateRequiredSkillEntities = GetComponents<IUpdateRequired>().ToList();
+            readyRequiredEntities = GetComponents<IReadyRequired>().ToList();
+            updateRequiredEntities = GetComponents<IUpdateRequired>().ToList();
         }
 
         protected bool TrySetEntities(ICombatAttribution combatInfo)
@@ -68,33 +67,16 @@ namespace Common.Character.Skills.Core
         [Sirenix.OdinInspector.OnInspectorInit]
         protected virtual void Initialize()
         {
-            // Finder.TryGetObject(out MainGame.Data.ContentData.SkillData skillData);
-            //
-            // var staticData = skillData.List.Find(x => x.Name.Equals(GetType().Name));
-            // if (staticData is null)
-            // {
-            //     Debug.LogWarning($"Can't Find {skillName} in {skillData} ScriptableObject");
-            //     return;
-            // }
-            //
-            // id = staticData.ID;
-            // skillName = staticData.Name;
-            // priority = staticData.Priority;
-            // animationKey = staticData.AnimationKey;
-            //
-            // GetComponents<EntityAttribution>().ForEach(x =>
-            // {
-            //     if (x.SkillName != this.GetType().Name)
-            //         x.SkillName = GetType().Name;
-            // });
-            //
-            // UpdateEntityType();
+            id = SkillData.ID;
+            priority = SkillData.Priority;
+            animationKey = SkillData.AnimationKey;
+
+            UpdateEntityType();
         }
         #endregion
 #endif
 
         // public virtual string ExtraStatus { get; protected set; } = string.Empty;
-
         // 사용 전 갱신함수
         // public void CommonAttack()
         // {
@@ -102,16 +84,6 @@ namespace Common.Character.Skills.Core
         //      CombatManager.Damage(Skill, FocusTarget);
         // }
         // public bool TrySetSkillValues(IDamageInfo damageInfo, ref Skill refreshedSkillOrigin);
-        
-        // 방향, 거리 등 추가적으로 데미지계산에 관련된 스킬도 있을 수 있다.
-        // 이 값들은 TakeDamage 호출전에 Value에 합산되어도 되어야 한다.
-        // public void Damage(IDamage Skill, GameObject Target)
-        // => CombatManager.Damage(Skill, Target);
-        // public void TakeDamage(IDamage Skill)
-        // => CombatManager.TakeDamage(self, Skill);
-        // public void TakeHeal(IHeal Skill)
-        // => CombatManager.TakeHeal(self, Skill);
-        
         // Buff & DeBuff Type
         // BUff
         // public double Value : 뭔가 올려줄테니까 값이 있어야 한다.
@@ -119,7 +91,6 @@ namespace Common.Character.Skills.Core
         // public string(==Key) BuffName : BuffData에서 Key값으로 찾아서 대상에게 적용한다.
         // public void Buff(IBuff Skill, ITakeBuff Target) // 동사 + 목적어가 자연스러운데...
         // => CombatManager.Buff(Skill, Target);
-        
         // 사용 전 갱신함수
         // public void Protection()
         // {

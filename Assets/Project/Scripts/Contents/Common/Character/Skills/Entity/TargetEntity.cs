@@ -5,57 +5,88 @@ using UnityEngine;
 
 namespace Common.Character.Skills.Entity
 {
-    public class TargetEntity : EntityAttribution, ITargetEntity
+    public class TargetEntity : EntityAttribution
     {
-        [SerializeField] private int targetCount;
-        [SerializeField] private LayerMask targetLayer;
-
-        private ICombatTaker target;
+        private string targetLayerType;
+        private int targetCount;
+        private float range;
+        private List<GameObject> searchedList;
+        private ICombatTaker mainTarget;
         private List<ICombatTaker> targetList;
-
-        public int TargetCount { get => targetCount; set => targetCount = value; }
-        public LayerMask TargetLayer { get =>  targetLayer; set => targetLayer = value; }
-
-        public ICombatTaker Target
-        {
-            get => target;
-            set
-            {
-                if (!value.TargetObject.IsInLayerMask(TargetLayer)) return;
-                target = value;
-            }
-        }
+        private readonly List<ICombatTaker> combatTakerList = new();
         
         public List<ICombatTaker> TargetList
         {
-            get => targetList;
-            set
+            get
             {
-                var result = value.Where(x => x.TargetObject.IsInLayerMask(TargetLayer))
-                                                 .ToList();
+                SetEntity();
+                UpdateTargetList();
                 
-                var capacity = targetCount >= result.Count
-                    ? result.Count
-                    : targetCount;
+                return targetList;
+            }
+            private set => targetList = value;
+        }
 
-                targetList = result.GetRange(0, capacity);
+        public ICombatTaker MainTarget
+        {
+            get
+            {
+                SetEntity();
+                UpdateMainTarget();
+                
+                return mainTarget;
             }
         }
         
+
+        public void UpdateTargetList()
+        {
+            combatTakerList.Clear();
+
+            searchedList.ForEach(x =>
+            {
+                var combatTaker = x.GetComponent<ICombatTaker>();
+                if (combatTaker != null) combatTakerList.Add(combatTaker);
+            });
+            
+            var inRangedTargetList =
+                combatTakerList.Where(x => Vector3.Distance(x.Taker.transform.position, transform.position) <= range)
+                               .ToList();
+
+            TargetList = inRangedTargetList.Count >= targetCount
+                ? inRangedTargetList.Take(targetCount).ToList()
+                : inRangedTargetList;
+        }
+
+        public void UpdateMainTarget()
+        {
+            mainTarget = TargetList.IsNullOrEmpty() 
+                ? Cb.CharacterSearchedList.Select(x => x.GetComponent<ICombatTaker>()).FirstOrDefault()
+                : targetList.First();
+        }
+
+        public void SetEntity()
+        {
+            targetCount = SkillData.TargetCount;
+            range = SkillData.Range;
+        }
+
         private void Awake()
         {
-            Flag = EntityType.Target;
+            searchedList = targetLayerType is "ally"
+                ? Cb.CharacterSearchedList // ally
+                : Cb.MonsterSearchedList;  // enemy
         }
+
 
 #if UNITY_EDITOR
         protected override void OnEditorInitialize()
         {
-            base.OnEditorInitialize();
-            
             Flag = EntityType.Target;
-            TargetCount = StaticData.TargetCount;
+
+            SetEntity();
+            targetLayerType = SkillData.TargetLayer; // ally or enemy
         }
 #endif
-        
     }
 }

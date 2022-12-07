@@ -37,10 +37,10 @@ namespace Common.Character
         [SerializeField] private SkeletonAnimation skeletonAnimation;
         
         // Operation
-        [SerializeField] private CharacterBattle combat;
+        [SerializeField] private CharacterCombat combat;
         [SerializeField] private PlayerController controller;
         [SerializeField] private CharacterPathfinding pathfinding;
-        [SerializeField] private CharacterTargeting targeting;
+        [SerializeField] private CharacterSearching searching;
         
         // Graphic
         [SerializeField] private CharacterAnimationModel animationModel;
@@ -52,21 +52,21 @@ namespace Common.Character
         // Behavior
         public bool HasPath => pathfinding.HasPath;
         public bool IsDestinationReached => !HasPath || pathfinding.IsReached;
-        public bool IsInRange
-        {
-            get
-            {
-                if (FocusTarget.IsNullOrEmpty()) return false;
-
-                return Vector3.Distance(transform.position, FocusTarget.transform.position) <= range;
-            }
-        }
+        // public bool IsInRange
+        // {
+        //     get
+        //     {
+        //         if (FocusTarget.IsNullOrEmpty()) return false;
+        //
+        //         return Vector3.Distance(transform.position, FocusTarget.transform.position) <= range;
+        //     }
+        // }
 
         public float MoveSpeed { get => moveSpeed; set => moveSpeed = value; }
         public float AttackSpeed { get => attackSpeed; set => attackSpeed = value; }
         public Vector3 Destination => Vector3.zero;
-        public CharacterTargeting Targeting => targeting;
-        public GameObject FocusTarget => Targeting.FocusTarget;
+        public CharacterSearching Searching => searching;
+        // public GameObject FocusTarget => Searching.FocusTarget;
 
         public void Idle()
         {
@@ -80,8 +80,9 @@ namespace Common.Character
 
         public void CombatAction()
         {
-            combat.Invoke(temp);
-            animationModel.Play(combat.AnimationKey, 0, false, Idle);
+            
+            // combat.Invoke(temp);
+            // animationModel.Play(combat.AnimationKey, 0, false, Idle);
         }
 
         public void UseItem(GameObject item)
@@ -121,19 +122,19 @@ namespace Common.Character
         {
             skeletonAnimation ??= GetComponentInChildren<SkeletonAnimation>();
             controller ??= GetComponentInChildren<PlayerController>();
-            combat ??= GetComponentInChildren<CharacterBattle>();
+            combat ??= GetComponentInChildren<CharacterCombat>();
             pathfinding ??= GetComponentInChildren<CharacterPathfinding>();
-            targeting ??= GetComponentInChildren<CharacterTargeting>();
+            searching ??= GetComponentInChildren<CharacterSearching>();
             animationModel ??= GetComponentInChildren<CharacterAnimationModel>();
             animationEvent ??= GetComponentInChildren<CharacterAnimationEventModel>();
             
             controller.Initialize(GetComponent<Rigidbody>());
-            targeting.Initialize(range);
+            // searching.Initialize(range);
         }
 
         private void Update()
         {
-            targeting.UpdateTargeting();
+            // searching.UpdateTargeting();
             animationModel.Flip(transform.forward);
         }
 

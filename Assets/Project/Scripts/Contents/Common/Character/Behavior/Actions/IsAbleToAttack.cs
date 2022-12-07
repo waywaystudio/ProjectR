@@ -14,11 +14,13 @@ namespace Common.Character.Behavior.Actions
         
         public override TaskStatus OnUpdate()
         {
-            var result = oldCharacterBehaviour.HasPath ? oldCharacterBehaviour.IsDestinationReached 
-                                                     : oldCharacterBehaviour.IsInRange;
+            // var result = oldCharacterBehaviour.HasPath ? oldCharacterBehaviour.IsDestinationReached 
+            //                                          : oldCharacterBehaviour.IsInRange;
+            //
+            // return result ? TaskStatus.Success 
+            //               : TaskStatus.Failure;
 
-            return result ? TaskStatus.Success 
-                          : TaskStatus.Failure;
+            return TaskStatus.Failure;
         }
     }
 }

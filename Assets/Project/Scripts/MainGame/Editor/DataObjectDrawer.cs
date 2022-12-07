@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Reflection;
 using Sirenix.OdinInspector;
 using Sirenix.OdinInspector.Editor;
-using UnityEngine;
 
 namespace MainGame.Editor
 {
@@ -13,7 +12,7 @@ namespace MainGame.Editor
         {
             if (member.Name == "category")
             {
-                attributes.Add(new HideInInspector());
+                // attributes.Add(new HideInInspector());
             }
             
             if (member.Name == "list")

@@ -1,11 +1,13 @@
 using System;
 using System.Collections.Generic;
+using Core;
 using MainGame;
+using Sirenix.OdinInspector;
 using UnityEngine;
 
 namespace Common.Character
 {
-    public class CharacterBehaviour : MonoBehaviour
+    public class CharacterBehaviour : MonoBehaviour, ICombatTaker
     {
         [SerializeField] private string characterName = string.Empty;
         [SerializeField] private int id;
@@ -14,12 +16,18 @@ namespace Common.Character
         [SerializeField] private float baseMoveSpeed = 7;
         [SerializeField] private float baseAttackSpeed;
         [SerializeField] private float baseRange;
+        [SerializeField] private float searchingRange = 60;
+        [SerializeField] private LayerMask allyLayer;
 
         public string CharacterName => characterName;
         public int ID => id;
         public string CombatClass => combatClass;
         public string Role => role;
+        public float SearchingRange => searchingRange;
+        public LayerMask AllyLayer => allyLayer;
+        public LayerMask EnemyLayer => allyLayer.Inverse();
 
+        public Action OnUpdate { get; set; }
         public Action OnIdle { get; set; }
         public Action OnWork { get; set; }
         public Action OnRun { get; set; }
@@ -45,8 +53,20 @@ namespace Common.Character
             get => baseRange;
             set => baseRange = value;
         }
-        
 
+        [ShowInInspector]
+        public List<GameObject> CharacterSearchedList { get; } = new();
+        public List<GameObject> MonsterSearchedList { get; } = new();
+
+        public void Idle() => OnIdle?.Invoke();
+        public void Walk() => OnWork?.Invoke();
+        public void Run() => OnRun?.Invoke();
+        public void Attack() => OnAttack?.Invoke();
+        public void Skill() => OnSkill?.Invoke();
+        public void LookLeft() => OnLookLeft?.Invoke();
+        public void LookRight() => OnLookRight?.Invoke();
+        
+        
         public void Initialize(string characterName)
         {
             var profile = MainData.GetAdventurerData(characterName);
@@ -62,19 +82,22 @@ namespace Common.Character
             baseRange = classData.Range;
         }
 
-        public void Idle() => OnIdle?.Invoke();
-        public void Walk() => OnWork?.Invoke();
-        public void Run() => OnRun?.Invoke();
-        public void Attack() => OnAttack?.Invoke();
-        public void Skill() => OnSkill?.Invoke();
-        public void LookLeft() => OnLookLeft?.Invoke();
-        public void LookRight() => OnLookRight?.Invoke();
-        
-
 
         private void Awake()
         {
+            // TODO. OnTest
             Initialize("Kungen");
         }
+
+        private void Update()
+        {
+            OnUpdate?.Invoke();
+        }
+
+        public GameObject Taker => gameObject;
+
+        public void TakeDamage(IDamageProvider damageInfo){}
+        public void TakeHeal(IHealProvider healInfo){}
+        public void TakeExtra(IExtraProvider extra){}
     }
 }
