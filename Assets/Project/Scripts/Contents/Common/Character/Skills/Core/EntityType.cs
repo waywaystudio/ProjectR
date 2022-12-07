@@ -1,4 +1,4 @@
-namespace Common.Character.Skills.Entity
+namespace Common.Character.Skills.Core
 {
     [System.Flags]
     public enum EntityType
@@ -9,6 +9,7 @@ namespace Common.Character.Skills.Entity
         Range = 1 << 2,
         Casting = 1 << 3,
         Target = 1  << 4,
+        Projectile = 1 << 5,
     
         All = int.MaxValue
     }

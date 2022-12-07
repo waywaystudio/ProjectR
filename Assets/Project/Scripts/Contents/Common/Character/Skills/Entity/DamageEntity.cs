@@ -1,14 +1,21 @@
+using Common.Character.Skills.Core;
+using Core;
+using UnityEngine;
+
 namespace Common.Character.Skills.Entity
 {
-    public class DamageEntity : EntityAttribution
+    public class DamageEntity : EntityAttribution, IDamageProvider
     {
-        public double CombatValue { get; set; }
+        public GameObject Provider => Cb.gameObject;
+        public double CombatValue { get; set; } = 0d;
         public float AdditionalValue { get; set; }
-        public float CriticalChance { get; set; }
-        public float HitChance { get; set; }
+        public float Critical { get; set; }
+        public float Hit { get; set; }
         public float AdditionalAggro { get; set; }
 
-        public void SetEntity()
+        public override bool IsReady => true;
+
+        protected override void SetEntity()
         {
             // CombatValue = Cb.BaseStats.CombatValue
             AdditionalValue = SkillData.BaseValue;

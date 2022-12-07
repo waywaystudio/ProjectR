@@ -1,10 +1,12 @@
+using UnityEngine;
+
 namespace Core
 {
     public interface IDamageProvider
     {
-        UnityEngine.GameObject Provider { get; }
+        GameObject Provider { get; }
         
-        double Value { get; }
+        double CombatValue { get; }
         float Critical { get; }
         float Hit { get; }
     }

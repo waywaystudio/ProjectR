@@ -1,4 +1,5 @@
 using System;
+using Common.Character.Skills.Core;
 using UnityEngine;
 
 namespace Common.Character.Skills.Entity
@@ -7,7 +8,7 @@ namespace Common.Character.Skills.Entity
     {
         private float remainCoolTime;
 
-        public bool IsReady => remainCoolTime <= 0.0f;
+        public override bool IsReady => remainCoolTime <= 0.0f;
         public float CoolTime { get; set; }
         public float CoolTimeTick { get; set; }
 
@@ -24,13 +25,15 @@ namespace Common.Character.Skills.Entity
             RemainCoolTime -= CoolTimeTick;
         }
 
-        public void SetEntity()
+        protected override void SetEntity()
         {
             CoolTime = SkillData.BaseCoolTime;
         }
 
-        private void Awake()
+        protected override void Awake()
         {
+            base.Awake();
+            
             CoolTimeTick = Time.deltaTime;
         }
 

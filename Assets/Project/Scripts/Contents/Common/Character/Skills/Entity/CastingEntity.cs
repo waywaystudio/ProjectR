@@ -1,11 +1,12 @@
 using System;
 using System.Collections;
+using Common.Character.Skills.Core;
 using UnityEngine;
 
 namespace Common.Character.Skills.Entity
 {
     [Serializable]
-    public class CastingEntity : EntityAttribution, IReadyRequired
+    public class CastingEntity : EntityAttribution
     {
         private enum CastingType { Casting, Channeling }
         private CastingType castingType = CastingType.Casting;
@@ -13,12 +14,8 @@ namespace Common.Character.Skills.Entity
         private bool onCasting;
         private float remainCastingTime;
 
-        public bool IsReady => !onCasting;
+        public override bool IsReady => !onCasting;
         public float CastingTime { get; set; }
-        public Action OnStart { get; set; }
-        public Action OnBroken { get; set; }
-        public Action OnCompleted { get; set; }
-        
         private float CastingTick { get; set; }
         private float RemainCastingTime
         {
@@ -30,27 +27,19 @@ namespace Common.Character.Skills.Entity
         public void BreakCasting()
         {
             onCasting = false;
+            RemainCastingTime = CastingTime;
+            
             StopAllCoroutines();
         }
 
-        public void SetEntity()
+        protected override void SetEntity()
         {
             CastingTime = SkillData.CastingTime;
             castingType = SkillData.AnimationKey == "casting"
-                ? CastingType.Casting
-                : CastingType.Channeling;
+                        ? CastingType.Casting
+                        : CastingType.Channeling;
         }
-
-        private void Awake()
-        {
-            CastingTick = Time.deltaTime;
-        }
-
-        private void OnEnable()
-        {
-            OnStart += StartCasting;
-            OnBroken += BreakCasting;
-        }
+        
         
         private IEnumerator Casting()
         {
@@ -64,15 +53,28 @@ namespace Common.Character.Skills.Entity
             }
             
             onCasting = false;
-            OnCompleted?.Invoke();
+            Skill.OnCompleted?.Invoke();
 
             yield return null;
         }
 
+        protected override void Awake()
+        {
+            base.Awake();
+            
+            CastingTick = Time.deltaTime;
+        }
+
+        private void OnEnable()
+        {
+            Skill.OnStarted += StartCasting;
+            Skill.OnInterrupted += BreakCasting;
+        }
+        
         private void OnDisable()
         {
-            OnStart -= StartCasting;
-            OnBroken -= BreakCasting;
+            Skill.OnStarted -= StartCasting;
+            Skill.OnInterrupted -= BreakCasting;
         }
 
 #if UNITY_EDITOR

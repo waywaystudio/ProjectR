@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.Linq;
+using Common.Character.Skills.Core;
 using Core;
 using UnityEngine;
 
@@ -11,72 +12,88 @@ namespace Common.Character.Skills.Entity
         private int targetCount;
         private float range;
         private List<GameObject> searchedList;
-        private ICombatTaker mainTarget;
-        private List<ICombatTaker> targetList;
-        private readonly List<ICombatTaker> combatTakerList = new();
-        
-        public List<ICombatTaker> TargetList
+        private ICombatTaker combatTaker;
+        private List<ICombatTaker> combatTakerList;
+        private readonly List<ICombatTaker> combatTakerFilterCache = new();
+
+        public override bool IsReady => CombatTaker != null;
+
+        public List<ICombatTaker> CombatTakerList
         {
             get
             {
                 SetEntity();
                 UpdateTargetList();
                 
-                return targetList;
+                return combatTakerList;
             }
-            private set => targetList = value;
+            private set => combatTakerList = value;
         }
 
-        public ICombatTaker MainTarget
+        public ICombatTaker CombatTaker
         {
             get
             {
                 SetEntity();
                 UpdateMainTarget();
                 
-                return mainTarget;
+                return combatTaker;
             }
         }
-        
 
         public void UpdateTargetList()
         {
-            combatTakerList.Clear();
+            combatTakerFilterCache.Clear();
 
             searchedList.ForEach(x =>
             {
-                var combatTaker = x.GetComponent<ICombatTaker>();
-                if (combatTaker != null) combatTakerList.Add(combatTaker);
+                if (x.TryGetComponent(out ICombatTaker taker))
+                    combatTakerFilterCache.Add(taker);
             });
             
             var inRangedTargetList =
-                combatTakerList.Where(x => Vector3.Distance(x.Taker.transform.position, transform.position) <= range)
+                combatTakerFilterCache.Where(x => Vector3.Distance(x.Taker.transform.position, transform.position) <= range)
                                .ToList();
 
-            TargetList = inRangedTargetList.Count >= targetCount
+            CombatTakerList = inRangedTargetList.Count >= targetCount
                 ? inRangedTargetList.Take(targetCount).ToList()
                 : inRangedTargetList;
         }
 
         public void UpdateMainTarget()
         {
-            mainTarget = TargetList.IsNullOrEmpty() 
+            combatTaker = CombatTakerList.IsNullOrEmpty() 
                 ? Cb.CharacterSearchedList.Select(x => x.GetComponent<ICombatTaker>()).FirstOrDefault()
-                : targetList.First();
+                : combatTakerList.First();
         }
 
-        public void SetEntity()
+        protected override void SetEntity()
         {
             targetCount = SkillData.TargetCount;
             range = SkillData.Range;
         }
 
-        private void Awake()
+        protected override void Awake()
         {
+            base.Awake();
+            
             searchedList = targetLayerType is "ally"
                 ? Cb.CharacterSearchedList // ally
                 : Cb.MonsterSearchedList;  // enemy
         }
+        
+
+        // private void OnEnable()
+        // {
+        //     Cb.GetCombatTaker += () => CombatTaker;
+        //     Cb.GetCombatTakerList += () => CombatTakerList;
+        // }
+        //
+        // private void OnDisable()
+        // {
+        //     Cb.GetCombatTaker -= () => CombatTaker;
+        //     Cb.GetCombatTakerList -= () => CombatTakerList;
+        // }
 
 
 #if UNITY_EDITOR

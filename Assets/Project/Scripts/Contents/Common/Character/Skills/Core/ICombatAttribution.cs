@@ -6,7 +6,6 @@ namespace Common.Character.Skills.Entity
     public interface ICombatAttribution :
         IDamageEntity,
         ICoolTimeEntity,
-        IRangeEntity,
         ICastingEntity,
         ITargetEntity
     {}

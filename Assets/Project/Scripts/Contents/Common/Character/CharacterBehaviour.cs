@@ -2,7 +2,6 @@ using System;
 using System.Collections.Generic;
 using Core;
 using MainGame;
-using Sirenix.OdinInspector;
 using UnityEngine;
 
 namespace Common.Character
@@ -35,6 +34,8 @@ namespace Common.Character
         public Action OnSkill { get; set; }
         public Action OnLookLeft { get; set; }
         public Action OnLookRight { get; set; }
+        // public Func<ICombatTaker> GetCombatTaker { get; set; }
+        // public Func<List<ICombatTaker>> GetCombatTakerList { get; set; }
 
         public float MoveSpeed
         {
@@ -54,7 +55,8 @@ namespace Common.Character
             set => baseRange = value;
         }
 
-        [ShowInInspector]
+        // public ICombatTaker CombatTaker => GetCombatTaker?.Invoke();
+        // public List<ICombatTaker> CombatTakerList => GetCombatTakerList?.Invoke();
         public List<GameObject> CharacterSearchedList { get; } = new();
         public List<GameObject> MonsterSearchedList { get; } = new();
 
