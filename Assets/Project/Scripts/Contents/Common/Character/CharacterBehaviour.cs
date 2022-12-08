@@ -14,7 +14,6 @@ namespace Common.Character
         [SerializeField] private string role;
         [SerializeField] private float baseMoveSpeed = 7;
         [SerializeField] private float baseAttackSpeed;
-        [SerializeField] private float baseRange;
         [SerializeField] private float searchingRange = 60;
         [SerializeField] private LayerMask allyLayer;
 
@@ -31,32 +30,16 @@ namespace Common.Character
         public Action OnWork { get; set; }
         public Action OnRun { get; set; }
         public Action OnAttack { get; set; }
+        public Action OnAttackHit { get; set; }
+        public Action OnFootstep { get; set; }
         public Action OnSkill { get; set; }
+        public Action OnSkillHit { get; set; }
         public Action OnLookLeft { get; set; }
         public Action OnLookRight { get; set; }
-        // public Func<ICombatTaker> GetCombatTaker { get; set; }
-        // public Func<List<ICombatTaker>> GetCombatTakerList { get; set; }
 
-        public float MoveSpeed
-        {
-            get => baseMoveSpeed;
-            set => baseMoveSpeed = value;
-        }
-        
-        public float AttackSpeed
-        {
-            get => baseAttackSpeed;
-            set => baseAttackSpeed = value;
-        }
+        public float MoveSpeed { get => baseMoveSpeed; set => baseMoveSpeed = value; }
+        public float AttackSpeed { get => baseAttackSpeed; set => baseAttackSpeed = value; } // 이게 무슨 의미가 있을라나...전반적인 가속 계수가 되려나
 
-        public float Range
-        {
-            get => baseRange;
-            set => baseRange = value;
-        }
-
-        // public ICombatTaker CombatTaker => GetCombatTaker?.Invoke();
-        // public List<ICombatTaker> CombatTakerList => GetCombatTakerList?.Invoke();
         public List<GameObject> CharacterSearchedList { get; } = new();
         public List<GameObject> MonsterSearchedList { get; } = new();
 
@@ -65,15 +48,18 @@ namespace Common.Character
         public void Run() => OnRun?.Invoke();
         public void Attack() => OnAttack?.Invoke();
         public void Skill() => OnSkill?.Invoke();
+        public void AttackHit() => OnAttackHit?.Invoke();
+        public void Footstep() => OnFootstep?.Invoke();
+        public void SkillHit() => OnSkillHit?.Invoke();
         public void LookLeft() => OnLookLeft?.Invoke();
         public void LookRight() => OnLookRight?.Invoke();
         
         
-        public void Initialize(string characterName)
+        public void Initialize(string character)
         {
-            var profile = MainData.GetAdventurerData(characterName);
+            var profile = MainData.GetAdventurerData(character);
 
-            this.characterName = profile.Name;
+            characterName = profile.Name;
             id = profile.ID;
             combatClass = profile.Job;
             role = profile.Role;
@@ -81,7 +67,6 @@ namespace Common.Character
             var classData = MainData.GetCombatClassData(combatClass);
 
             baseAttackSpeed = classData.AttackSpeed;
-            baseRange = classData.Range;
         }
 
 

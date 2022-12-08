@@ -37,10 +37,10 @@ namespace Common.Character
         [SerializeField] private SkeletonAnimation skeletonAnimation;
         
         // Operation
-        [SerializeField] private CharacterCombat combat;
+        [SerializeField] private Combat combat;
         [SerializeField] private PlayerController controller;
         [SerializeField] private CharacterPathfinding pathfinding;
-        [SerializeField] private CharacterSearching searching;
+        [SerializeField] private Searching searching;
         
         // Graphic
         [SerializeField] private CharacterAnimationModel animationModel;
@@ -65,7 +65,7 @@ namespace Common.Character
         public float MoveSpeed { get => moveSpeed; set => moveSpeed = value; }
         public float AttackSpeed { get => attackSpeed; set => attackSpeed = value; }
         public Vector3 Destination => Vector3.zero;
-        public CharacterSearching Searching => searching;
+        public Searching Searching => searching;
         // public GameObject FocusTarget => Searching.FocusTarget;
 
         public void Idle()
@@ -122,9 +122,9 @@ namespace Common.Character
         {
             skeletonAnimation ??= GetComponentInChildren<SkeletonAnimation>();
             controller ??= GetComponentInChildren<PlayerController>();
-            combat ??= GetComponentInChildren<CharacterCombat>();
+            combat ??= GetComponentInChildren<Combat>();
             pathfinding ??= GetComponentInChildren<CharacterPathfinding>();
-            searching ??= GetComponentInChildren<CharacterSearching>();
+            searching ??= GetComponentInChildren<Searching>();
             animationModel ??= GetComponentInChildren<CharacterAnimationModel>();
             animationEvent ??= GetComponentInChildren<CharacterAnimationEventModel>();
             

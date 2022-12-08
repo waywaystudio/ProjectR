@@ -1,12 +1,13 @@
 using System;
 using System.Collections.Generic;
 using System.Reflection;
+using MainGame.Data;
 using Sirenix.OdinInspector;
 using Sirenix.OdinInspector.Editor;
 
 namespace MainGame.Editor
 {
-    public class DataObjectDrawer : OdinAttributeProcessor
+    public class DataObjectDrawer : OdinAttributeProcessor<DataObject>
     {
         public override void ProcessChildMemberAttributes(InspectorProperty parentProperty, MemberInfo member, List<Attribute> attributes)
         {

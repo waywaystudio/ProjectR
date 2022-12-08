@@ -6,7 +6,7 @@ using UnityEngine;
 
 namespace Common.Character.Skills.Entity
 {
-    public class TargetEntity : EntityAttribution
+    public class TargetEntity : BaseEntity
     {
         private string targetLayerType;
         private int targetCount;
@@ -17,7 +17,7 @@ namespace Common.Character.Skills.Entity
         private readonly List<ICombatTaker> combatTakerFilterCache = new();
 
         public override bool IsReady => CombatTaker != null;
-
+        
         public List<ICombatTaker> CombatTakerList
         {
             get
@@ -43,6 +43,8 @@ namespace Common.Character.Skills.Entity
 
         public void UpdateTargetList()
         {
+            if (searchedList.IsNullOrEmpty()) return;
+            
             combatTakerFilterCache.Clear();
 
             searchedList.ForEach(x =>
@@ -67,7 +69,7 @@ namespace Common.Character.Skills.Entity
                 : combatTakerList.First();
         }
 
-        protected override void SetEntity()
+        protected void SetEntity()
         {
             targetCount = SkillData.TargetCount;
             range = SkillData.Range;
@@ -81,25 +83,12 @@ namespace Common.Character.Skills.Entity
                 ? Cb.CharacterSearchedList // ally
                 : Cb.MonsterSearchedList;  // enemy
         }
-        
-
-        // private void OnEnable()
-        // {
-        //     Cb.GetCombatTaker += () => CombatTaker;
-        //     Cb.GetCombatTakerList += () => CombatTakerList;
-        // }
-        //
-        // private void OnDisable()
-        // {
-        //     Cb.GetCombatTaker -= () => CombatTaker;
-        //     Cb.GetCombatTakerList -= () => CombatTakerList;
-        // }
 
 
 #if UNITY_EDITOR
         protected override void OnEditorInitialize()
         {
-            Flag = EntityType.Target;
+            flag = EntityType.Target;
 
             SetEntity();
             targetLayerType = SkillData.TargetLayer; // ally or enemy

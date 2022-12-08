@@ -1,10 +1,11 @@
-using System;
 using Common.Character.Skills.Core;
+using Core;
+using Sirenix.OdinInspector;
 using UnityEngine;
 
 namespace Common.Character.Skills.Entity
 {
-    public class CoolTimeEntity : EntityAttribution, IReadyRequired
+    public class CoolTimeEntity : BaseEntity, IReadyRequired
     {
         private float remainCoolTime;
 
@@ -12,45 +13,42 @@ namespace Common.Character.Skills.Entity
         public float CoolTime { get; set; }
         public float CoolTimeTick { get; set; }
 
+        [ShowInInspector]
         public float RemainCoolTime
         {
             get => remainCoolTime;
             set => remainCoolTime = Mathf.Max(0, value);
         }
 
-        public void UpdateStatus()
+        public override void OnRegistered()
         {
-            if (IsReady) return;
-            
-            RemainCoolTime -= CoolTimeTick;
+            Skill.OnCompleted += SetEntity;
         }
 
-        protected override void SetEntity()
+        public override void OnUnregistered()
         {
-            CoolTime = SkillData.BaseCoolTime;
+            Skill.OnCompleted -= SetEntity;
         }
+        
+
+        protected virtual void SetEntity() => (CoolTime, RemainCoolTime) = (SkillData.BaseCoolTime, CoolTime);
+        private void UpdateStatus() => IsReady.OnFalse(() => RemainCoolTime -= CoolTimeTick);
 
         protected override void Awake()
         {
             base.Awake();
-            
+
+            SetEntity();
             CoolTimeTick = Time.deltaTime;
         }
 
-        private void OnEnable()
-        {
-            Cb.OnUpdate += UpdateStatus;
-        }
-
-        private void OnDisable()
-        {
-            Cb.OnUpdate -= UpdateStatus;
-        }
+        private void OnEnable() => Cb.OnUpdate += UpdateStatus;
+        private void OnDisable() => Cb.OnUpdate -= UpdateStatus;
 
 #if UNITY_EDITOR
         protected override void OnEditorInitialize()
         {
-            Flag = EntityType.CoolTime;
+            flag = EntityType.CoolTime;
 
             SetEntity();
         }

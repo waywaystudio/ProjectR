@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace Common.Character.Skills.Entity
 {
-    public class ProjectileEntity : EntityAttribution
+    public class ProjectileEntity : BaseEntity
     {
         // TODO. Projectile Master같은 곳에서 키 값으로 가져오고, SerializeField 띄어내볼까...
         [SerializeField] private GameObject projectile;
@@ -12,6 +12,16 @@ namespace Common.Character.Skills.Entity
         private ICombatTaker taker;
         
         public override bool IsReady => true;
+        
+        public override void OnRegistered()
+        {
+            Skill.OnCompleted += Fire;
+        }
+
+        public override void OnUnregistered()
+        {
+            Skill.OnCompleted -= Fire;
+        }
 
         public void Initialize(IDamageProvider provider, ICombatTaker taker)
         {
@@ -20,30 +30,21 @@ namespace Common.Character.Skills.Entity
 
         public void Fire()
         {
+            Debug.Log("Projectile Fire!");
             // projectile.Instantiate or Draw(Spawn...Whatever);
             // projectile.SetDestination(destination)
         }
         
-        protected override void SetEntity()
+        protected virtual void SetEntity()
         {
             // projectile = MainData.TryGetProjectile(projectileName...);
         }
 
 
-        private void OnEnable()
-        {
-            Skill.OnCompleted += Fire;
-        }
-
-        private void OnDisable()
-        {
-            Skill.OnCompleted -= Fire;
-        }
-
 #if UNITY_EDITOR
         protected override void OnEditorInitialize()
         {
-            Flag = EntityType.Projectile;
+            flag = EntityType.Projectile;
             
             SetEntity();
         }

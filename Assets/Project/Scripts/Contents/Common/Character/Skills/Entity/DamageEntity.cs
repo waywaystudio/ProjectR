@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace Common.Character.Skills.Entity
 {
-    public class DamageEntity : EntityAttribution, IDamageProvider
+    public class DamageEntity : BaseEntity, IDamageProvider
     {
         public GameObject Provider => Cb.gameObject;
         public double CombatValue { get; set; } = 0d;
@@ -15,7 +15,7 @@ namespace Common.Character.Skills.Entity
 
         public override bool IsReady => true;
 
-        protected override void SetEntity()
+        protected void SetEntity()
         {
             // CombatValue = Cb.BaseStats.CombatValue
             AdditionalValue = SkillData.BaseValue;
@@ -27,7 +27,7 @@ namespace Common.Character.Skills.Entity
 #if UNITY_EDITOR
         protected override void OnEditorInitialize()
         {
-            Flag = EntityType.Damage;
+            flag = EntityType.Damage;
 
             SetEntity();
         }

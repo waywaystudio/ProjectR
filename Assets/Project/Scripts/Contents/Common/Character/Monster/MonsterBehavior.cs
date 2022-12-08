@@ -1,12 +1,10 @@
+using Core;
 using UnityEngine;
 
 namespace Common.Character.Monster
 {
-    public class MonsterBehavior : MonoBehaviour
+    public class MonsterBehavior : MonoBehaviour, ICombatTaker
     {
-        // Data
-        // [SerializeField] private float moveSpeed = 3f;
-        
         // Operation
         [SerializeField] private CharacterPathfinding characterPathfinding;
         
@@ -38,6 +36,22 @@ namespace Common.Character.Monster
             Walk(hit.point);
 
             #endregion
+        }
+
+        public GameObject Taker => gameObject;
+        public void TakeDamage(IDamageProvider damageInfo)
+        {
+            Debug.Log("TakeDamage!");
+        }
+
+        public void TakeHeal(IHealProvider healInfo)
+        {
+            Debug.Log("TakeHeal!");
+        }
+
+        public void TakeExtra(IExtraProvider extra)
+        {
+            Debug.Log("TakeExtra!");
         }
     }
 }

@@ -22,6 +22,7 @@ namespace Common.Character
         // Preset :: Do What;
         public void Idle(bool loop = true, Action callback = null) => Play("idle", 0, loop, callback);
         public void Attack(bool loop = true, Action callback = null) => Play("attack", 0, loop, callback);
+        public void Skill(bool loop = true, Action callback = null) => Play("skill", 0, loop, callback);
         public void Walk(bool loop = true, Action callback = null) => Play("walk", 0, loop, callback);
         public void Run(bool loop = true, Action callback = null)=> Play("run", 0, loop, callback);
         
@@ -62,7 +63,7 @@ namespace Common.Character
             cb.OnWork += () => Walk();
             cb.OnRun += () => Run();
             cb.OnAttack += () => Attack(false, () => Idle());
-            cb.OnSkill += () => Attack(false, () => Idle());
+            cb.OnSkill += () => Skill(false, () => Idle());
             
             cb.OnLookLeft += LookLeft;
             cb.OnLookRight += LookRight;
@@ -118,7 +119,7 @@ namespace Common.Character
             cb.OnWork -= () => Walk();
             cb.OnRun -= () => Run();
             cb.OnAttack -= () => Attack(false);
-            cb.OnSkill -= () => Attack(false);
+            cb.OnAttackHit -= () => Attack(false);
             
             cb.OnLookLeft -= LookLeft;
             cb.OnLookRight -= LookRight;
