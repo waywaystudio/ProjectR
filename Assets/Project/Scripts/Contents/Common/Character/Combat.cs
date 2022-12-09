@@ -72,10 +72,8 @@ namespace Common.Character
         {
             switch (animationKey)
             {
-                case "Attack" : Cb.Attack();
-                    break;
-                case "Skill" : Cb.Skill();
-                    break;
+                case "Attack" : Cb.Attack(); break;
+                case "Skill" : Cb.Skill(); break;
                 // add more case according to Animation, DamageMechanic...
             }
         }
