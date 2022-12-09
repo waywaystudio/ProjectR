@@ -1,8 +1,7 @@
-namespace Common.Character.Skills
-{
-    using Core;
-    using Entity;
+using Common.Character.Operation.Combating.Entity;
 
+namespace Common.Character.Operation.Combating.Skills
+{
     public class AimShot : BaseSkill
     {
         public override void CompleteSkill()

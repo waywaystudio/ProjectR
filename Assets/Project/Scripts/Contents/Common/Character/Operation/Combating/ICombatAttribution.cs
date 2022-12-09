@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using Core;
 
-namespace Common.Character.Skills.Entity
+namespace Common.Character.Operation.Combating
 {
     public interface ICombatAttribution :
         IDamageEntity,

@@ -1,18 +1,17 @@
 #if UNITY_EDITOR
-using System.Reflection;
 using Sirenix.OdinInspector.Editor;
+using System.Reflection;
 #endif
-
 using System;
-using MainGame;
-using Skill = MainGame.Data.ContentData.SkillData.Skill;
 using System.Collections.Generic;
 using System.Linq;
 using Core;
+using MainGame;
 using Sirenix.OdinInspector;
 using UnityEngine;
+using Skill = MainGame.Data.ContentData.SkillData.Skill;
 
-/*
+/* EntityList
  * Buff
  * Casting
  * CoolTime
@@ -23,43 +22,111 @@ using UnityEngine;
  * Target
  */
 
-namespace Common.Character.Skills.Core
+namespace Common.Character.Operation.Combating
 {
     public class BaseSkill : MonoBehaviour
     {
         [SerializeField] protected int id;
         [SerializeField] protected string skillName;
-
+        
         private Combat combat;
+        private CharacterBehaviour cb;
         private Skill skillData;
 
         public Combat Combat => combat ??= GetComponentInParent<Combat>();
+        public CharacterBehaviour Cb => cb ??= Combat.Cb;
         public string SkillName => skillName ??= GetType().Name;
         public Skill SkillData => skillData ??= MainData.GetSkillData(skillName);
-        public Dictionary<EntityType, BaseEntity> EntityTable { get; } = new();
-
         public string AnimationKey { get; private set; }
+        public int Priority { get; set; }
+
+        public Dictionary<EntityType, BaseEntity> EntityTable { get; } = new();
         public bool IsSkillReady => EntityTable.All(x => x.Value.IsReady);
         public bool IsCoolTimeReady =>!EntityTable.ContainsKey(EntityType.CoolTime) || 
                                        EntityTable[EntityType.CoolTime].IsReady;
 
-        [ShowInInspector] public Action OnStarted { get; set; }
-        [ShowInInspector] public Action OnInterrupted { get; set; }
-        [ShowInInspector] public Action OnCompleted { get; set; }
+        public Action OnStarted { get; set; }
+        public Action OnInterrupted { get; set; }
+        public Action OnCompleted { get; set; }
 
         
         public virtual void StartSkill() => OnStarted?.Invoke();
         public virtual void InterruptedSkill() => OnInterrupted?.Invoke();
         public virtual void CompleteSkill() => OnCompleted?.Invoke();
         public virtual void InvokeEvent(){}
-        
-        public void Register() => EntityTable.ForEach(x => x.Value.OnRegistered());
-        public void UnRegister() => EntityTable.ForEach(x => x.Value.OnUnregistered());
+
+        public void OnActiveSkill()
+        {
+            EntityTable.ForEach(x => x.Value.OnRegistered());
+            
+            Debug.Log($"Animation Key : {AnimationKey}");
+            
+            switch (AnimationKey)
+            {
+                case "Attack":
+                {
+                    Debug.Log("Attack!");
+                    
+                    Cb.OnAttack += StartSkill;
+                    Cb.OnAttackHit += InvokeEvent;
+                    Cb.Attack();
+                    break;
+                }
+                case "Skill":
+                {
+                    Debug.Log("Skill!");
+                    
+                    Cb.OnSkill += StartSkill;
+                    Cb.OnSkillHit += InvokeEvent;
+                    Cb.Skill();
+                    break;
+                }
+                // add more case according to Animation, DamageMechanic...
+            }
+        }
+
+        public void DeActiveSkill()
+        {
+            EntityTable.ForEach(x => x.Value.OnUnregistered());
+            
+            switch (AnimationKey)
+            {
+                case "Attack":
+                {
+                    Cb.OnAttack -= StartSkill;
+                    Cb.OnAttackHit -= InvokeEvent;
+                    break;
+                }
+                case "Skill":
+                {
+                    Cb.OnSkill -= StartSkill;
+                    Cb.OnSkillHit -= InvokeEvent;
+                    break;
+                }
+                // add more case according to Animation, DamageMechanic...
+            }
+        }
+
 
         protected void Awake()
         {
+            skillName ??= GetType().Name;
+            AnimationKey = SkillData.AnimationKey;
+            Priority = SkillData.Priority;
+        }
+
+
+        protected void OnEnable()
+        {
             Combat.SkillTable.TryAdd(id, this);
         }
+
+        protected void OnDisable()
+        {
+            Combat.SkillTable.RemoveSafely(id);
+            DeActiveSkill();
+        }
+
 
 #if UNITY_EDITOR
         #region EditorOnly
@@ -69,10 +136,9 @@ namespace Common.Character.Skills.Core
         [Button]
         protected void InEditorGetData()
         {
-            var skillDb = MainData.GetSkillData(SkillName);
-            
-            id = skillDb.ID;
-            AnimationKey = skillDb.AnimationKey;
+            id = SkillData.ID;
+            AnimationKey = SkillData.AnimationKey;
+            Priority = SkillData.Priority;
             UnityEditor.EditorUtility.SetDirty(this);
         }
         #endregion

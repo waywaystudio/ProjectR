@@ -1,11 +1,10 @@
 using System;
 using System.Collections;
-using Common.Character.Skills.Core;
 using Core;
 using Sirenix.OdinInspector;
 using UnityEngine;
 
-namespace Common.Character.Skills.Entity
+namespace Common.Character.Operation.Combating.Entity
 {
     [Serializable]
     public class CastingEntity : BaseEntity

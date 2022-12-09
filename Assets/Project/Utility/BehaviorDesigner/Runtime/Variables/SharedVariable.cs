@@ -76,37 +76,50 @@ namespace BehaviorDesigner.Runtime
                 return;
             }
 
-            if (!string.IsNullOrEmpty(PropertyMapping)) {
+            if (!string.IsNullOrEmpty(PropertyMapping)) 
+            {
                 var propertyValue = PropertyMapping.Split('/');
 
                 GameObject gameObject = null;
-                try {
-                    if (!Equals(PropertyMappingOwner, null)) {
+                try 
+                {
+                    if (!Equals(PropertyMappingOwner, null)) 
+                    {
                         gameObject = PropertyMappingOwner;
-                    } else {
+                    } 
+                    else 
+                    {
                         gameObject = (behaviorSource.Owner.GetObject() as Behavior).gameObject;
                     }
-                } catch (Exception /*e*/) {
+                } 
+                catch (Exception /*e*/) 
+                {
                     var behavior = behaviorSource.Owner.GetObject() as Behavior;
-                    if (behavior != null && behavior.AsynchronousLoad) {
+                    if (behavior != null && behavior.AsynchronousLoad) 
+                    {
                         Debug.LogError("Error: Unable to retrieve GameObject. Properties cannot be mapped while using asynchronous load.");
                         return;
                     }
                 }
+                
                 if (gameObject == null) {
                     Debug.LogError("Error: Unable to find GameObject on " + behaviorSource.behaviorName + " for property mapping with variable " + Name);
                     return;
                 }
+                
                 var component = gameObject.GetComponent(TaskUtility.GetTypeWithinAssembly(propertyValue[0]));
                 if (component == null) {
                     Debug.LogError("Error: Unable to find component on " + behaviorSource.behaviorName + " for property mapping with variable " + Name);
                     return;
                 }
+                
                 var componentType = component.GetType();
                 var property = componentType.GetProperty(propertyValue[1]);
-                if (property != null) {
+                if (property != null) 
+                {
                     var propertyMethod = property.GetGetMethod();
-                    if (propertyMethod != null) {
+                    if (propertyMethod != null) 
+                    {
 #if NETFX_CORE && !UNITY_EDITOR
                         mGetter = (Func<T>)propertyMethod.CreateDelegate(typeof(Func<T>), component);
 #else
@@ -114,7 +127,8 @@ namespace BehaviorDesigner.Runtime
 #endif
                     }
                     propertyMethod = property.GetSetMethod();
-                    if (propertyMethod != null) {
+                    if (propertyMethod != null) 
+                    {
 #if NETFX_CORE && !UNITY_EDITOR
                         mSetter = (Action<T>)propertyMethod.CreateDelegate(typeof(Action<T>), component);
 #else

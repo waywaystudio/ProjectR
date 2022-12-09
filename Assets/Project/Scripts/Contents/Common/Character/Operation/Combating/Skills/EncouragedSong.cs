@@ -1,11 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
-using System.Linq;
-using Core;
-using Sirenix.OdinInspector;
 using UnityEngine;
 
-namespace Common.Character.Skills
+namespace Common.Character.Operation.Combating.Skills
 {
     public class EncouragedSong : MonoBehaviour
     {

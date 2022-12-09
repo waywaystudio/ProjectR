@@ -1,6 +1,4 @@
-using Common.Character.Skills.Core;
-
-namespace Common.Character.Skills
+namespace Common.Character.Operation.Combating.Skills
 {
     public class BackStep : BaseSkill
     {

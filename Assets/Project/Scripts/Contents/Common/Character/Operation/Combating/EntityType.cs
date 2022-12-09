@@ -1,4 +1,4 @@
-namespace Common.Character.Skills.Core
+namespace Common.Character.Operation.Combating
 {
     [System.Flags]
     public enum EntityType

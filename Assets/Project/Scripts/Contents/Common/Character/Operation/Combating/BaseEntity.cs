@@ -1,15 +1,15 @@
 #if UNITY_EDITOR
-using Sirenix.OdinInspector.Editor;
 using System.Reflection;
+using Sirenix.OdinInspector.Editor;
 #endif
 
 using System;
 using System.Collections.Generic;
 using Sirenix.OdinInspector;
-using Skill = MainGame.Data.ContentData.SkillData.Skill;
 using UnityEngine;
+using Skill = MainGame.Data.ContentData.SkillData.Skill;
 
-namespace Common.Character.Skills.Core
+namespace Common.Character.Operation.Combating
 {
     public abstract class BaseEntity : MonoBehaviour
     {
@@ -27,8 +27,7 @@ namespace Common.Character.Skills.Core
 
         protected virtual void Awake()
         {
-            if (!Skill.EntityTable.ContainsKey(flag))
-                Skill.EntityTable.Add(flag, this);
+            Skill.EntityTable.TryAdd(flag, this);
         }
 
 #if UNITY_EDITOR

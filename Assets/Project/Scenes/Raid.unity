@@ -1667,8 +1667,9 @@ GameObject:
   m_Component:
   - component: {fileID: 1499100770}
   - component: {fileID: 1499100771}
+  - component: {fileID: 2599582687860374158}
   m_Layer: 0
-  m_Name: Combat
+  m_Name: Combating
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2097,6 +2098,7 @@ GameObject:
   - component: {fileID: 1901389501}
   - component: {fileID: 1901389500}
   - component: {fileID: 1901389499}
+  - component: {fileID: 1901389502}
   - component: {fileID: 1901389498}
   - component: {fileID: 1901389497}
   m_Layer: 0
@@ -2192,6 +2194,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   id: 13000004
   skillName: AimShot
+--- !u!114 &1901389502
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1901389495}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9b71247a0c6287f44b49f848d90d357e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  skill: {fileID: 1901389501}
+  flag: 2
 --- !u!1 &1943438064
 GameObject:
   m_ObjectHideFlags: 0
@@ -2550,6 +2566,47 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2084557171}
   m_Mesh: {fileID: 0}
+--- !u!114 &2599582687860374158
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1499100769}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8d7b55c7ecdb49a4a89fa5e6f9022861, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  startWhenEnabled: 1
+  asynchronousLoad: 0
+  pauseWhenDisabled: 0
+  restartWhenComplete: 1
+  logTaskChanges: 0
+  group: 0
+  resetValuesOnRestart: 0
+  externalBehavior: {fileID: 0}
+  mBehaviorSource:
+    behaviorName: CombatSkill
+    behaviorDescription: 
+    mTaskData:
+      types: []
+      parentIndex: 
+      startIndex: 
+      variableStartIndex: 
+      JSONSerialization: '{"EntryTask":{"Type":"BehaviorDesigner.Runtime.Tasks.EntryTask","NodeData":{"Offset":"(467,30)"},"ID":0,"Name":"Entry","Instant":true},"RootTask":{"Type":"BehaviorDesigner.Runtime.Tasks.Sequence","NodeData":{"Offset":"(-3,120)"},"ID":1,"Name":"Sequence","Instant":true,"AbortTypeabortType":"None","Children":[{"Type":"Common.Character.Operation.Combating.Behavior.UseSkillBehavior","NodeData":{"Offset":"(0,190)"},"ID":2,"Name":"Use
+        Skill Behavior","Instant":true}]},"Variables":[{"Type":"BehaviorDesigner.Runtime.SharedBool","Name":"GlobalCool","IsShared":true,"BooleanmValue":false}]}'
+      fieldSerializationData:
+        typeName: []
+        fieldNameHash: 
+        startIndex: 
+        dataPosition: 
+        unityObjects: []
+        byteData: 
+        byteDataArray: 
+      Version: 1.7.4
+  gizmoViewMode: 2
+  showBehaviorDesignerGizmo: 1
 --- !u!1001 &8286929274760595476
 PrefabInstance:
   m_ObjectHideFlags: 0

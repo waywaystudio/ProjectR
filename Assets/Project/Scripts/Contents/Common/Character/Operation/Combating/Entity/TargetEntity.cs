@@ -1,23 +1,22 @@
 using System.Collections.Generic;
 using System.Linq;
-using Common.Character.Skills.Core;
 using Core;
 using UnityEngine;
 
-namespace Common.Character.Skills.Entity
+namespace Common.Character.Operation.Combating.Entity
 {
     public class TargetEntity : BaseEntity
     {
         private string targetLayerType;
         private int targetCount;
-        private float range;
         private List<GameObject> searchedList;
         private ICombatTaker combatTaker;
         private List<ICombatTaker> combatTakerList;
         private readonly List<ICombatTaker> combatTakerFilterCache = new();
 
         public override bool IsReady => CombatTaker != null;
-        
+        public float Range { get; private set; }
+
         public List<ICombatTaker> CombatTakerList
         {
             get
@@ -54,7 +53,7 @@ namespace Common.Character.Skills.Entity
             });
             
             var inRangedTargetList =
-                combatTakerFilterCache.Where(x => Vector3.Distance(x.Taker.transform.position, transform.position) <= range)
+                combatTakerFilterCache.Where(x => Vector3.Distance(x.Taker.transform.position, transform.position) <= Range)
                                .ToList();
 
             CombatTakerList = inRangedTargetList.Count >= targetCount
@@ -72,7 +71,7 @@ namespace Common.Character.Skills.Entity
         protected void SetEntity()
         {
             targetCount = SkillData.TargetCount;
-            range = SkillData.Range;
+            Range = SkillData.Range;
         }
 
         protected override void Awake()

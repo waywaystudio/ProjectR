@@ -1,8 +1,7 @@
-using Common.Character.Skills.Core;
 using Core;
 using UnityEngine;
 
-namespace Common.Character.Skills.Entity
+namespace Common.Character.Operation.Combating.Entity
 {
     public class ProjectileEntity : BaseEntity
     {
@@ -35,7 +34,7 @@ namespace Common.Character.Skills.Entity
             // projectile.SetDestination(destination)
         }
         
-        protected virtual void SetEntity()
+        protected void SetEntity()
         {
             // projectile = MainData.TryGetProjectile(projectileName...);
         }

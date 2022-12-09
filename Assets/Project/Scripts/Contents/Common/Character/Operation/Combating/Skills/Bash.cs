@@ -1,12 +1,9 @@
 using System.Collections.Generic;
-using System.Linq;
-using Core;
-using Sirenix.OdinInspector;
 using UnityEngine;
 
-namespace Common.Character.Skills
+namespace Common.Character.Operation.Combating.Skills
 {
-    public class BloodDrain : MonoBehaviour
+    public class Bash : MonoBehaviour
     {
         [SerializeField] private int id;
         [SerializeField] private string skillName;
@@ -30,28 +27,25 @@ namespace Common.Character.Skills
             get => remainCoolTime;
             set => remainCoolTime = Mathf.Max(0, value);
         }
-
-        public void DoSkill()
+        
+        public void DoSkill(GameObject target)
         {
-            if (!PreRequisition())
+            if (!IsCoolOn)
             {
                 Debug.Log("Not Ready");
                 return;
             }
             
             // Implement Combat.
-            // var player = GetComponent<IAttackable>();
-            // player.RegisterBuff((IBuffable) buffValue);
-            // OnBuffActive?.Invoke();
-            // OnBuffDeActive?.Invoke();
-            // IBuffable -> 내용, 지속시간
+            // var enemy = target.GetComponent<IDamageable>();
+            // enemy.GetDamage((IAttackable) attackValue);
 
             remainCoolTime = CoolTime;
         }
-
+        
         public void DecreaseCoolTime() => DecreaseCoolTime(Time.deltaTime);
         public void DecreaseCoolTime(float tick) => RemainCoolTime -= tick;
-
+        
         private bool PreRequisition()
         {
             var result =
@@ -59,12 +53,12 @@ namespace Common.Character.Skills
             
             return result;
         }
-
+        
 // #if UNITY_EDITOR
 //         #region EditorOnly
 //         
 //         [OnInspectorInit]
-//         private void Initialize() => Initialize("BloodDrain");
+//         private void Initialize() => Initialize("bash");
 //         private void Initialize(string skillName)
 //         {
 //             Finder.TryGetObject(out Data.ContentData.SkillData skillData);

@@ -1,12 +1,9 @@
 using System.Collections.Generic;
-using System.Linq;
-using Core;
-using Sirenix.OdinInspector;
 using UnityEngine;
 
-namespace Common.Character.Skills
+namespace Common.Character.Operation.Combating.Skills
 {
-    public class Revivification : MonoBehaviour
+    public class BloodDrain : MonoBehaviour
     {
         [SerializeField] private int id;
         [SerializeField] private string skillName;
@@ -20,48 +17,51 @@ namespace Common.Character.Skills
         [SerializeField] private string targetLayer;
         [SerializeField] private string skillType;
         
-//         private float remainCoolTime;
-//         
-//         public bool IsCoolOn => RemainCoolTime <= 0.0f;
-//         public string SkillName => skillName;
-//         public float CoolTime => baseCoolTime;
-//         public float RemainCoolTime
-//         {
-//             get => remainCoolTime;
-//             set => remainCoolTime = Mathf.Max(0, value);
-//         }
-//
-//         public void DoSkill(GameObject target)
-//         {
-//             if (!PreRequisition())
-//             {
-//                 Debug.Log("Not Ready");
-//                 return;
-//             }
-//             
-//             // Implement Combat.
-//             // var player = target.GetComponent<IHealable>();
-//             // player.GetHeal((IHealable) healValue);
-//
-//             remainCoolTime = CoolTime;
-//         }
-//
-//         public void DecreaseCoolTime() => DecreaseCoolTime(Time.deltaTime);
-//         public void DecreaseCoolTime(float tick) => RemainCoolTime -= tick;
-//
-//         private bool PreRequisition()
-//         {
-//             var result =
-//                 IsCoolOn;
-//             
-//             return result;
-//         }
-//
+        private float remainCoolTime;
+        
+        public bool IsCoolOn => RemainCoolTime <= 0.0f;
+        public string SkillName => skillName;
+        public float CoolTime => baseCoolTime;
+        public float RemainCoolTime
+        {
+            get => remainCoolTime;
+            set => remainCoolTime = Mathf.Max(0, value);
+        }
+
+        public void DoSkill()
+        {
+            if (!PreRequisition())
+            {
+                Debug.Log("Not Ready");
+                return;
+            }
+            
+            // Implement Combat.
+            // var player = GetComponent<IAttackable>();
+            // player.RegisterBuff((IBuffable) buffValue);
+            // OnBuffActive?.Invoke();
+            // OnBuffDeActive?.Invoke();
+            // IBuffable -> 내용, 지속시간
+
+            remainCoolTime = CoolTime;
+        }
+
+        public void DecreaseCoolTime() => DecreaseCoolTime(Time.deltaTime);
+        public void DecreaseCoolTime(float tick) => RemainCoolTime -= tick;
+
+        private bool PreRequisition()
+        {
+            var result =
+                IsCoolOn;
+            
+            return result;
+        }
+
 // #if UNITY_EDITOR
 //         #region EditorOnly
 //         
 //         [OnInspectorInit]
-//         private void Initialize() => Initialize("Revivification");
+//         private void Initialize() => Initialize("BloodDrain");
 //         private void Initialize(string skillName)
 //         {
 //             Finder.TryGetObject(out Data.ContentData.SkillData skillData);

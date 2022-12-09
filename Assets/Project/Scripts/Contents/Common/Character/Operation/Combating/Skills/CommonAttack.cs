@@ -1,8 +1,7 @@
-namespace Common.Character.Skills
+using Common.Character.Operation.Combating.Entity;
+
+namespace Common.Character.Operation.Combating.Skills
 {
-    using Core;
-    using Entity;
-    
     public class CommonAttack : BaseSkill
     {
         public override void InvokeEvent()

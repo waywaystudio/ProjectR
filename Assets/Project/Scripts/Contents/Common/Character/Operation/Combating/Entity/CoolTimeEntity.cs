@@ -1,9 +1,8 @@
-using Common.Character.Skills.Core;
 using Core;
 using Sirenix.OdinInspector;
 using UnityEngine;
 
-namespace Common.Character.Skills.Entity
+namespace Common.Character.Operation.Combating.Entity
 {
     public class CoolTimeEntity : BaseEntity, IReadyRequired
     {
@@ -31,7 +30,7 @@ namespace Common.Character.Skills.Entity
         }
         
 
-        protected virtual void SetEntity() => (CoolTime, RemainCoolTime) = (SkillData.BaseCoolTime, CoolTime);
+        protected void SetEntity() => (CoolTime, RemainCoolTime) = (SkillData.BaseCoolTime, CoolTime);
         private void UpdateStatus() => IsReady.OnFalse(() => RemainCoolTime -= CoolTimeTick);
 
         protected override void Awake()

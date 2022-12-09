@@ -28,7 +28,6 @@ namespace Common.Character.Behavior.Actions
         public override TaskStatus OnUpdate()
         {
             // target = pb.Searching.FocusTarget;
-
             if (target.IsNullOrEmpty()) return TaskStatus.Failure;
             
             targetPosition = target.transform.position;

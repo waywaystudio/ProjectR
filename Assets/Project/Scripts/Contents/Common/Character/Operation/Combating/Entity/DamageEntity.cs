@@ -1,8 +1,7 @@
-using Common.Character.Skills.Core;
 using Core;
 using UnityEngine;
 
-namespace Common.Character.Skills.Entity
+namespace Common.Character.Operation.Combating.Entity
 {
     public class DamageEntity : BaseEntity, IDamageProvider
     {

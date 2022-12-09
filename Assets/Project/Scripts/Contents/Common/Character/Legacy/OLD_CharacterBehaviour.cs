@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
-using Common.Character.Skills.Entity;
+using Common.Character.Operation;
+using Common.Character.Operation.Combating;
 using Core;
 using Spine.Unity;
 using UnityEngine;
