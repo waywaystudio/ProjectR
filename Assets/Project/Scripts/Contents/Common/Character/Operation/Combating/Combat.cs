@@ -28,13 +28,11 @@ namespace Common.Character.Operation.Combating
             mostPrioritySkill = SkillTable
                 .Where(x => x.Value.IsCoolTimeReady)
                 .MaxBy(x => x.Value.Priority).Value;
-            
-            Debug.Log($"count : {SkillTable.Count} : {mostPrioritySkill.SkillName}");
 
             return mostPrioritySkill != null;
         }
         
-        // TEST
+        // TEST\
         [Button] private void ActiveCommonAttack() => UseSkill(commonAttack);
         [Button] private void ActiveAimShot() => UseSkill(aimShot);
         //
@@ -44,11 +42,23 @@ namespace Common.Character.Operation.Combating
             // 아래 조건은 BD에서 처리할 예정
             if (IsGlobalCooling || !IsCoolOnAnySkill || !skill.IsSkillReady)
             {
-                Debug.Log($"Skill is not Ready. Global Cool? : {IsGlobalCooling}, IsAny Skill Ready? : {IsCoolOnAnySkill}, Specific Skill Ready ? : {skill.IsSkillReady}");
+                Debug.Log($"Skill is not Ready. Global Cool? : {IsGlobalCooling}, " +
+                          $"IsAny Skill Ready? : {IsCoolOnAnySkill}, " +
+                          $"Specific Skill Ready ? : {skill.IsSkillReady}");
+                
                 return;
             }
 
-            if (CurrentSkill != null) DeActiveSkill(CurrentSkill);
+            if (CurrentSkill != null)
+            {
+                if (!CurrentSkill.IsSkillFinished)
+                {
+                    Debug.Log($"{CurrentSkill.SkillName} is Not Finished!");
+                    return;
+                }
+                
+                DeActiveSkill(CurrentSkill);
+            }
 
             ActiveSkill(skill);
             GlobalCoolDownOn();

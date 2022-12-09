@@ -37,10 +37,13 @@ namespace Common.Character.Operation.Combating
         public CharacterBehaviour Cb => cb ??= Combat.Cb;
         public string SkillName => skillName ??= GetType().Name;
         public Skill SkillData => skillData ??= MainData.GetSkillData(skillName);
+        
         public string AnimationKey { get; private set; }
         public int Priority { get; set; }
-
+        [ShowInInspector]
+        public bool IsSkillFinished { get; set; }
         public Dictionary<EntityType, BaseEntity> EntityTable { get; } = new();
+        
         public bool IsSkillReady => EntityTable.All(x => x.Value.IsReady);
         public bool IsCoolTimeReady =>!EntityTable.ContainsKey(EntityType.CoolTime) || 
                                        EntityTable[EntityType.CoolTime].IsReady;
@@ -49,24 +52,28 @@ namespace Common.Character.Operation.Combating
         public Action OnInterrupted { get; set; }
         public Action OnCompleted { get; set; }
 
+        public virtual void StartSkill()
+        {
+            OnStarted?.Invoke();
+            IsSkillFinished = false;
+        }
         
-        public virtual void StartSkill() => OnStarted?.Invoke();
         public virtual void InterruptedSkill() => OnInterrupted?.Invoke();
-        public virtual void CompleteSkill() => OnCompleted?.Invoke();
+
+        public virtual void CompleteSkill()
+        {
+            OnCompleted?.Invoke();
+            IsSkillFinished = true;
+        }
+        
         public virtual void InvokeEvent(){}
 
         public void OnActiveSkill()
         {
-            EntityTable.ForEach(x => x.Value.OnRegistered());
-            
-            Debug.Log($"Animation Key : {AnimationKey}");
-            
             switch (AnimationKey)
             {
                 case "Attack":
                 {
-                    Debug.Log("Attack!");
-                    
                     Cb.OnAttack += StartSkill;
                     Cb.OnAttackHit += InvokeEvent;
                     Cb.Attack();
@@ -74,8 +81,6 @@ namespace Common.Character.Operation.Combating
                 }
                 case "Skill":
                 {
-                    Debug.Log("Skill!");
-                    
                     Cb.OnSkill += StartSkill;
                     Cb.OnSkillHit += InvokeEvent;
                     Cb.Skill();
@@ -87,8 +92,6 @@ namespace Common.Character.Operation.Combating
 
         public void DeActiveSkill()
         {
-            EntityTable.ForEach(x => x.Value.OnUnregistered());
-            
             switch (AnimationKey)
             {
                 case "Attack":
@@ -114,7 +117,6 @@ namespace Common.Character.Operation.Combating
             AnimationKey = SkillData.AnimationKey;
             Priority = SkillData.Priority;
         }
-
 
         protected void OnEnable()
         {

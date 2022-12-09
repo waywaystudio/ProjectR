@@ -6,32 +6,28 @@ namespace Common.Character.Operation.Combating.Entity
 {
     public class CoolTimeEntity : BaseEntity, IReadyRequired
     {
-        private float remainCoolTime;
+        private float remainTimer;
 
-        public override bool IsReady => remainCoolTime <= 0.0f;
+        public override bool IsReady => remainTimer <= 0.0f;
+        [ShowInInspector]
         public float CoolTime { get; set; }
         public float CoolTimeTick { get; set; }
-
         [ShowInInspector]
-        public float RemainCoolTime
+        public float RemainTimer
         {
-            get => remainCoolTime;
-            set => remainCoolTime = Mathf.Max(0, value);
+            get => remainTimer;
+            set => remainTimer = Mathf.Max(0, value);
         }
 
-        public override void OnRegistered()
-        {
-            Skill.OnCompleted += SetEntity;
-        }
 
-        public override void OnUnregistered()
+        protected void SetEntity()
         {
-            Skill.OnCompleted -= SetEntity;
+            CoolTime = SkillData.BaseCoolTime;
+            RemainTimer = CoolTime;
         }
         
-
-        protected void SetEntity() => (CoolTime, RemainCoolTime) = (SkillData.BaseCoolTime, CoolTime);
-        private void UpdateStatus() => IsReady.OnFalse(() => RemainCoolTime -= CoolTimeTick);
+        private void UpdateStatus() => IsReady.OnFalse(() => RemainTimer -= CoolTimeTick);
+        private void ResetRemainTime() => RemainTimer = CoolTime;
 
         protected override void Awake()
         {
@@ -41,16 +37,22 @@ namespace Common.Character.Operation.Combating.Entity
             CoolTimeTick = Time.deltaTime;
         }
 
-        private void OnEnable() => Cb.OnUpdate += UpdateStatus;
-        private void OnDisable() => Cb.OnUpdate -= UpdateStatus;
+        private void OnEnable()
+        {
+            Cb.OnUpdate += UpdateStatus;
+            Skill.OnCompleted += ResetRemainTime;
+        }
+        
+        private void OnDisable()
+        { 
+            Cb.OnUpdate -= UpdateStatus;
+            Skill.OnCompleted -= ResetRemainTime;
+        }
 
-#if UNITY_EDITOR
-        protected override void OnEditorInitialize()
+        private void Reset()
         {
             flag = EntityType.CoolTime;
-
             SetEntity();
         }
-#endif
     }
 }

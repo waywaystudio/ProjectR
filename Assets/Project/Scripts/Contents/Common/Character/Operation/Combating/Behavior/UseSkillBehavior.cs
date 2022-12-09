@@ -1,6 +1,5 @@
-using System.Linq;
 using BehaviorDesigner.Runtime.Tasks;
-using Core;
+using UnityEngine;
 
 namespace Common.Character.Operation.Combating.Behavior
 {
@@ -24,10 +23,18 @@ namespace Common.Character.Operation.Combating.Behavior
                 return TaskStatus.Failure;
             }
 
+            if (combat.CurrentSkill != null && !combat.CurrentSkill.IsSkillFinished)
+            {
+                Debug.Log($"Return by {combat.CurrentSkill.SkillName} is Not Finished");
+                return TaskStatus.Failure;
+            }
+
             if (!combat.TryGetMostPrioritySkill(out var skill))
             {
                 return TaskStatus.Failure;
             }
+            
+            Debug.Log($"Most Priority Skill is : {skill.SkillName}");
 
             if (skill.IsSkillReady)
             {

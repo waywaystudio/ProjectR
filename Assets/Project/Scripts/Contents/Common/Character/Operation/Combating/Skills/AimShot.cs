@@ -1,4 +1,5 @@
 using Common.Character.Operation.Combating.Entity;
+using UnityEngine;
 
 namespace Common.Character.Operation.Combating.Skills
 {
@@ -14,7 +15,6 @@ namespace Common.Character.Operation.Combating.Skills
             {
                 targetEntity.CombatTakerList.ForEach(target =>
                 {
-                    
                     projectileEntity.Initialize(damageEntity, target);
                 });
             }

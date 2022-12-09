@@ -72,6 +72,7 @@ namespace Common.Character.Operation.Combating.Entity
         {
             targetCount = SkillData.TargetCount;
             Range = SkillData.Range;
+            targetLayerType = SkillData.TargetLayer;
         }
 
         protected override void Awake()
@@ -83,15 +84,11 @@ namespace Common.Character.Operation.Combating.Entity
                 : Cb.MonsterSearchedList;  // enemy
         }
 
-
-#if UNITY_EDITOR
-        protected override void OnEditorInitialize()
+        private void Reset()
         {
             flag = EntityType.Target;
-
             SetEntity();
-            targetLayerType = SkillData.TargetLayer; // ally or enemy
         }
-#endif
+
     }
 }

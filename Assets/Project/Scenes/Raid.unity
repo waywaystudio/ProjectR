@@ -1460,8 +1460,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4c5f541185aa92b488eeff9b9e07cdfc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  skill: {fileID: 1371307516}
-  flag: 16
+  flag: 0
+  skill: {fileID: 0}
 --- !u!114 &1371307514
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1474,8 +1474,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9b71247a0c6287f44b49f848d90d357e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  skill: {fileID: 1371307516}
-  flag: 2
+  flag: 0
+  skill: {fileID: 0}
 --- !u!114 &1371307515
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1488,8 +1488,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bd2d098c14bb73641bcc6faff29af210, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  skill: {fileID: 1371307516}
-  flag: 1
+  flag: 0
+  skill: {fileID: 0}
 --- !u!114 &1371307516
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2135,8 +2135,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7142e0a43af74e747a185ee0b65f9c41, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  skill: {fileID: 1901389501}
   flag: 32
+  skill: {fileID: 0}
   projectile: {fileID: 8681916138048610995, guid: 72fdc730ed0948741adfb101f8302aec, type: 3}
 --- !u!114 &1901389498
 MonoBehaviour:
@@ -2150,8 +2150,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4c5f541185aa92b488eeff9b9e07cdfc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  skill: {fileID: 1901389501}
   flag: 16
+  skill: {fileID: 1901389501}
 --- !u!114 &1901389499
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2164,8 +2164,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cc73b176d16ea8448a48d598b41a08b5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  skill: {fileID: 1901389501}
   flag: 8
+  skill: {fileID: 1901389501}
 --- !u!114 &1901389500
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2178,8 +2178,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bd2d098c14bb73641bcc6faff29af210, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  skill: {fileID: 1901389501}
   flag: 1
+  skill: {fileID: 1901389501}
 --- !u!114 &1901389501
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2206,8 +2206,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9b71247a0c6287f44b49f848d90d357e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  skill: {fileID: 1901389501}
   flag: 2
+  skill: {fileID: 1901389501}
 --- !u!1 &1943438064
 GameObject:
   m_ObjectHideFlags: 0

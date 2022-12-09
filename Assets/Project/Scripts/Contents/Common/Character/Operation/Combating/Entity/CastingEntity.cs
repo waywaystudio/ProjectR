@@ -10,45 +10,24 @@ namespace Common.Character.Operation.Combating.Entity
     public class CastingEntity : BaseEntity
     {
         private bool onCasting;
-        
-        [ShowInInspector] private float remainCastingTime;
-
-        public override bool IsReady => !onCasting;
-        
+        private float remainTimer;
+        [ShowInInspector]
         private float CastingTime { get; set; }
         private float CastingTick { get; set; }
-        private float RemainCastingTime
+        private float RemainTimer
         {
-            get => remainCastingTime; 
-            set => remainCastingTime = Mathf.Max(0, value);
+            get => remainTimer; 
+            set => remainTimer = Mathf.Max(0, value);
         }
         
-        public override void OnRegistered()
-        {
-            Skill.OnStarted += StartCasting;
-            Skill.OnInterrupted += BreakCasting;
-            Skill.OnCompleted += ResetTick;
-        }
+        public override bool IsReady => !onCasting;
 
-        public override void OnUnregistered()
-        {
-            Skill.OnStarted -= StartCasting;
-            Skill.OnInterrupted -= BreakCasting;
-            Skill.OnCompleted -= ResetTick;
-        }
-
-
-        protected virtual void SetEntity()
-        {
-            CastingTime = SkillData.CastingTime;
-        }
-        
         private void StartCasting() => StartCoroutine(Casting());
         private void BreakCasting()
         {
             onCasting = false;
-            RemainCastingTime = CastingTime;
             
+            ResetRemainTimer();
             StopAllCoroutines();
         }
         
@@ -61,35 +40,45 @@ namespace Common.Character.Operation.Combating.Entity
             });
             
             onCasting = true;
-            RemainCastingTime = CastingTime;
-            
-            while (RemainCastingTime > 0f)
+
+            while (RemainTimer > 0f)
             {
-                RemainCastingTime -= CastingTick;
+                RemainTimer -= CastingTick;
                 yield return null;
             }
             
             onCasting = false;
+            
+            ResetRemainTimer();
             Skill.CompleteSkill();
         }
         
-        private void ResetTick() => RemainCastingTime = CastingTime;
+        private void ResetRemainTimer() => RemainTimer = CastingTime;
 
         protected override void Awake()
         {
             base.Awake();
-            
+
+            CastingTime = SkillData.CastingTime;
+            RemainTimer = CastingTime;
             CastingTick = Time.deltaTime;
         }
 
+        private void OnEnable()
+        {
+            Skill.OnStarted += StartCasting;
+            Skill.OnInterrupted += BreakCasting;
+        }
 
-#if UNITY_EDITOR
-        protected override void OnEditorInitialize()
+        private void OnDisable()
+        {
+            Skill.OnStarted -= StartCasting;
+            Skill.OnInterrupted -= BreakCasting;
+        }
+
+        private void Reset()
         {
             flag = EntityType.Casting;
-            
-            SetEntity();
         }
-#endif
     }
 }

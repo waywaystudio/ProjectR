@@ -10,7 +10,6 @@ namespace Common.Character.Operation.Combating.Entity
         public float AdditionalValue { get; set; }
         public float Critical { get; set; }
         public float Hit { get; set; }
-        public float AdditionalAggro { get; set; }
 
         public override bool IsReady => true;
 
@@ -20,16 +19,12 @@ namespace Common.Character.Operation.Combating.Entity
             AdditionalValue = SkillData.BaseValue;
             // CriticalChance = Cb.BaseStats.CriticalChance
             // HitChance = Cb.BaseStats.HitChance
-            // AdditionalAggro = Cb.BaseStats.AdditionalAggro
         }
 
-#if UNITY_EDITOR
-        protected override void OnEditorInitialize()
+        private void Reset()
         {
             flag = EntityType.Damage;
-
             SetEntity();
         }
-#endif
     }
 }

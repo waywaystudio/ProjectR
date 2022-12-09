@@ -14,7 +14,7 @@ namespace Common.Character
         [SerializeField] private string role;
         [SerializeField] private float baseMoveSpeed = 7;
         [SerializeField] private float baseAttackSpeed;
-        [SerializeField] private float searchingRange = 60;
+        [SerializeField] private float searchingRange;
         [SerializeField] private LayerMask allyLayer;
 
         public string CharacterName => characterName;
