@@ -68,7 +68,7 @@ namespace Common.Character.Operation.Combating
         
         public virtual void InvokeEvent(){}
 
-        public void OnActiveSkill()
+        public void ActiveSkill()
         {
             switch (AnimationKey)
             {

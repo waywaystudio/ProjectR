@@ -6,7 +6,7 @@ namespace Common.Character.Monster
     public class MonsterBehavior : MonoBehaviour, ICombatTaker
     {
         // Operation
-        [SerializeField] private CharacterPathfinding characterPathfinding;
+        [SerializeField] private Operation.Pathfinding Pathfinding;
         
         // Graphic
         
@@ -17,7 +17,7 @@ namespace Common.Character.Monster
         
         private void Awake()
         {
-            characterPathfinding ??= GetComponentInChildren<CharacterPathfinding>();
+            Pathfinding ??= GetComponentInChildren<Operation.Pathfinding>();
             // characterPathfinding.Initialize();
         }
 

@@ -27,8 +27,9 @@ namespace Common.Character
 
         public Action OnUpdate { get; set; }
         public Action OnIdle { get; set; }
-        public Action OnWork { get; set; }
+        public Action OnWalk { get; set; }
         public Action OnRun { get; set; }
+        public Action<Vector3> OnTacticalMove { get; set; }
         public Action OnAttack { get; set; }
         public Action OnAttackHit { get; set; }
         public Action OnFootstep { get; set; }
@@ -44,8 +45,9 @@ namespace Common.Character
         public List<GameObject> MonsterSearchedList { get; } = new();
 
         public void Idle() => OnIdle?.Invoke();
-        public void Walk() => OnWork?.Invoke();
+        public void Walk() => OnWalk?.Invoke();
         public void Run() => OnRun?.Invoke();
+        public void TacticalMove(Vector3 destination) => OnTacticalMove?.Invoke(destination);
         public void Attack() => OnAttack?.Invoke();
         public void Skill() => OnSkill?.Invoke();
         public void AttackHit() => OnAttackHit?.Invoke();

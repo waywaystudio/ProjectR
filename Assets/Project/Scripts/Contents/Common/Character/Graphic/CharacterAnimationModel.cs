@@ -60,7 +60,7 @@ namespace Common.Character
         private void OnEnable()
         {
             cb.OnIdle += () => Idle();
-            cb.OnWork += () => Walk();
+            cb.OnWalk += () => Walk();
             cb.OnRun += () => Run();
             cb.OnAttack += () => Attack(false, () => Idle());
             cb.OnSkill += () => Skill(false, () => Idle());
@@ -116,7 +116,7 @@ namespace Common.Character
         private void OnDisable()
         {
             cb.OnIdle -= () => Idle();
-            cb.OnWork -= () => Walk();
+            cb.OnWalk -= () => Walk();
             cb.OnRun -= () => Run();
             cb.OnAttack -= () => Attack(false);
             cb.OnAttackHit -= () => Attack(false);

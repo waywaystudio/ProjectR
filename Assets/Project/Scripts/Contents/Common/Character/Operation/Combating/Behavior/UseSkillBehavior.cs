@@ -53,22 +53,3 @@ namespace Common.Character.Operation.Combating.Behavior
         }
     }
 }
-
-
-// 일단 두 가지만 생각해보자.
-// 1. CommonAttack
-// 2. AimShot
-// 에임샷 쏘려는데 거리가 안되면 이동시키고
-// 도착하기 전 까지 대기하고
-// 도착하면 에임샷 쏘고, BD 재시작.
-// 에임샷을 쿨 안되니 넘기고, 
-// CommonAttack 가능하니 공격
-// BD 재시작
-// 에임샷을 쿨 안되니 넘기고, 
-// CommonAttack 가능하니 공격
-// BD 재시작
-// 에임샷을 쿨 안되니 넘기고, 
-// CommonAttack 가능하니 공격
-// BD 재시작
-// 에임샷 쿨 왔으니 공격
-// BD 재시작

@@ -12,10 +12,12 @@ namespace Common.Character.Operation.Combating
     public class Combat : MonoBehaviour
     {
         [SerializeField] private CharacterBehaviour cb;
+        [SerializeField] private CombatPosition combatPosition;
         [SerializeField] private CommonAttack commonAttack;
         [SerializeField] private AimShot aimShot;
 
         public CharacterBehaviour Cb => cb ??= GetComponentInParent<CharacterBehaviour>();
+        public CombatPosition CombatPosition => combatPosition ??= GetComponent<CombatPosition>();
         [ShowInInspector]
         public Dictionary<int, BaseSkill> SkillTable { get; } = new();
         public BaseSkill CurrentSkill { get; set; }
@@ -48,6 +50,7 @@ namespace Common.Character.Operation.Combating
                 
                 return;
             }
+            //
 
             if (CurrentSkill != null)
             {
@@ -56,24 +59,15 @@ namespace Common.Character.Operation.Combating
                     Debug.Log($"{CurrentSkill.SkillName} is Not Finished!");
                     return;
                 }
-                
-                DeActiveSkill(CurrentSkill);
+
+                CurrentSkill.DeActiveSkill();
+                CurrentSkill = null;
             }
 
-            ActiveSkill(skill);
-            GlobalCoolDownOn();
-        }
-
-        private void ActiveSkill(BaseSkill skill)
-        {
             CurrentSkill = skill;
-            skill.OnActiveSkill();
-        }
-
-        private void DeActiveSkill(BaseSkill skill)
-        {
-            CurrentSkill = null;
-            skill.DeActiveSkill();
+            CurrentSkill.ActiveSkill();
+            
+            GlobalCoolDownOn();
         }
 
         private void GlobalCoolDownOn() => StartCoroutine(GlobalCoolDownRoutine(GlobalCoolTime));

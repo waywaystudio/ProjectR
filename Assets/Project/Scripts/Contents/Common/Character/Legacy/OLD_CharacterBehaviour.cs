@@ -40,7 +40,7 @@ namespace Common.Character
         // Operation
         [SerializeField] private Combat combat;
         [SerializeField] private PlayerController controller;
-        [SerializeField] private CharacterPathfinding pathfinding;
+        [SerializeField] private Operation.Pathfinding pathfinding;
         [SerializeField] private Searching searching;
         
         // Graphic
@@ -124,7 +124,7 @@ namespace Common.Character
             skeletonAnimation ??= GetComponentInChildren<SkeletonAnimation>();
             controller ??= GetComponentInChildren<PlayerController>();
             combat ??= GetComponentInChildren<Combat>();
-            pathfinding ??= GetComponentInChildren<CharacterPathfinding>();
+            pathfinding ??= GetComponentInChildren<Operation.Pathfinding>();
             searching ??= GetComponentInChildren<Searching>();
             animationModel ??= GetComponentInChildren<CharacterAnimationModel>();
             animationEvent ??= GetComponentInChildren<CharacterAnimationEventModel>();

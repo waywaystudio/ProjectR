@@ -1371,7 +1371,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5da1aceb92aa1a04d9e11a9111e1f36a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  characterPathfinding: {fileID: 882214522}
+  Pathfinding: {fileID: 0}
 --- !u!114 &1188007383
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1667,6 +1667,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1499100770}
   - component: {fileID: 1499100771}
+  - component: {fileID: 2599582687860374159}
   - component: {fileID: 2599582687860374158}
   m_Layer: 0
   m_Name: Combating
@@ -1705,6 +1706,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cb: {fileID: 445674124}
+  combatPosition: {fileID: 2599582687860374159}
   commonAttack: {fileID: 1371307516}
   aimShot: {fileID: 1901389501}
 --- !u!1 &1699538260
@@ -2607,6 +2609,19 @@ MonoBehaviour:
       Version: 1.7.4
   gizmoViewMode: 2
   showBehaviorDesignerGizmo: 1
+--- !u!114 &2599582687860374159
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1499100769}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d85ed52fc74d3dd4da769a48f54759e2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cb: {fileID: 445674124}
 --- !u!1001 &8286929274760595476
 PrefabInstance:
   m_ObjectHideFlags: 0
