@@ -2,7 +2,7 @@ using System.Collections.Generic;
 using Core;
 using UnityEngine;
 
-namespace Common.Character
+namespace Common.Character.Operation
 {
     [RequireComponent(typeof(SphereCollider))]
     public class Searching : MonoBehaviour

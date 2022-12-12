@@ -16,7 +16,7 @@ namespace MainGame.Data.ContentData
         {
 			[SerializeField] private Int32 id;
 			[SerializeField] private String name;
-			[SerializeField] private Single baseValue;
+			[SerializeField] private Double baseValue;
 			[SerializeField] private Single baseCoolTime;
 			[SerializeField] private Single range;
 			[SerializeField] private Int32 priority;
@@ -29,7 +29,7 @@ namespace MainGame.Data.ContentData
 
 			public Int32 ID => id;
 			public String Name => name;
-			public Single BaseValue => baseValue;
+			public Double BaseValue => baseValue;
 			public Single BaseCoolTime => baseCoolTime;
 			public Single Range => range;
 			public Int32 Priority => priority;

@@ -16,20 +16,24 @@ namespace Common.Character
         [SerializeField] private float baseAttackSpeed;
         [SerializeField] private float searchingRange;
         [SerializeField] private LayerMask allyLayer;
+        [SerializeField] private LayerMask enemyLayer;
 
+        // TEST
+        [SerializeField] private bool isAlive = true;
+        //
+        
         public string CharacterName => characterName;
         public int ID => id;
         public string CombatClass => combatClass;
         public string Role => role;
         public float SearchingRange => searchingRange;
         public LayerMask AllyLayer => allyLayer;
-        public LayerMask EnemyLayer => allyLayer.Inverse();
+        public LayerMask EnemyLayer => enemyLayer;
 
         public Action OnUpdate { get; set; }
         public Action OnIdle { get; set; }
-        public Action OnWalk { get; set; }
-        public Action OnRun { get; set; }
-        public Action<Vector3> OnTacticalMove { get; set; }
+        public Action<Vector3> OnWalk { get; set; }
+        public Action<Vector3> OnRun { get; set; }
         public Action OnAttack { get; set; }
         public Action OnAttackHit { get; set; }
         public Action OnFootstep { get; set; }
@@ -38,6 +42,9 @@ namespace Common.Character
         public Action OnLookLeft { get; set; }
         public Action OnLookRight { get; set; }
 
+        public Func<bool> IsReached { get; set; }
+        public bool IsAlive { get => isAlive; set => isAlive = value; }
+
         public float MoveSpeed { get => baseMoveSpeed; set => baseMoveSpeed = value; }
         public float AttackSpeed { get => baseAttackSpeed; set => baseAttackSpeed = value; } // 이게 무슨 의미가 있을라나...전반적인 가속 계수가 되려나
 
@@ -45,9 +52,8 @@ namespace Common.Character
         public List<GameObject> MonsterSearchedList { get; } = new();
 
         public void Idle() => OnIdle?.Invoke();
-        public void Walk() => OnWalk?.Invoke();
-        public void Run() => OnRun?.Invoke();
-        public void TacticalMove(Vector3 destination) => OnTacticalMove?.Invoke(destination);
+        public void Walk(Vector3 destination) => OnWalk?.Invoke(destination);
+        public void Run(Vector3 destination) => OnRun?.Invoke(destination);
         public void Attack() => OnAttack?.Invoke();
         public void Skill() => OnSkill?.Invoke();
         public void AttackHit() => OnAttackHit?.Invoke();
@@ -83,10 +89,10 @@ namespace Common.Character
             OnUpdate?.Invoke();
         }
 
-        public GameObject Taker => gameObject;
+        public virtual GameObject Taker => gameObject;
 
-        public void TakeDamage(IDamageProvider damageInfo){}
-        public void TakeHeal(IHealProvider healInfo){}
-        public void TakeExtra(IExtraProvider extra){}
+        public virtual void TakeDamage(IDamageProvider damageInfo){}
+        public virtual void TakeHeal(IHealProvider healInfo){}
+        public virtual void TakeExtra(IExtraProvider extra){}
     }
 }

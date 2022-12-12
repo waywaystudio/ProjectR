@@ -33,7 +33,8 @@
 
 using UnityEngine;
 
-namespace Spine.Unity {
+namespace Spine.Unity 
+{
 
 #if NEW_PREFAB_SYSTEM
 	[ExecuteAlways]
@@ -42,7 +43,8 @@ namespace Spine.Unity {
 #endif
 	[AddComponentMenu("Spine/SkeletonAnimation")]
 	[HelpURL("http://esotericsoftware.com/spine-unity#SkeletonAnimation-Component")]
-	public class SkeletonAnimation : SkeletonRenderer, ISkeletonAnimation, IAnimationStateComponent {
+	public class SkeletonAnimation : SkeletonRenderer, ISkeletonAnimation, IAnimationStateComponent 
+	{
 
 		#region IAnimationStateComponent
 		/// <summary>
@@ -52,8 +54,10 @@ namespace Spine.Unity {
 		/// <summary>
 		/// This is the Spine.AnimationState object of this SkeletonAnimation. You can control animations through it.
 		/// Note that this object, like .skeleton, is not guaranteed to exist in Awake. Do all accesses and caching to it in Start</summary>
-		public Spine.AnimationState AnimationState {
-			get {
+		public Spine.AnimationState AnimationState 
+		{
+			get 
+			{
 				Initialize(false);
 				return this.state;
 			}
@@ -169,7 +173,8 @@ namespace Spine.Unity {
 
 		/// <summary>
 		/// Clears the previously generated mesh, resets the skeleton's pose, and clears all previously active animations.</summary>
-		public override void ClearState () {
+		public override void ClearState () 
+		{
 			base.ClearState();
 			if (state != null) state.ClearTracks();
 		}
@@ -177,7 +182,8 @@ namespace Spine.Unity {
 		/// <summary>
 		/// Initialize this component. Attempts to load the SkeletonData and creates the internal Spine objects and buffers.</summary>
 		/// <param name="overwrite">If set to <c>true</c>, force overwrite an already initialized object.</param>
-		public override void Initialize (bool overwrite, bool quiet = false) {
+		public override void Initialize (bool overwrite, bool quiet = false) 
+		{
 			if (valid && !overwrite)
 				return;
 #if UNITY_EDITOR
@@ -206,7 +212,8 @@ namespace Spine.Unity {
 				_OnAnimationRebuild(this);
 		}
 
-		virtual protected void Update () {
+		virtual protected void Update () 
+		{
 #if UNITY_EDITOR
 			if (!Application.isPlaying) {
 				Update(0f);

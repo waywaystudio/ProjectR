@@ -33,6 +33,7 @@ namespace Common.Character.Operation.Combating
         private CharacterBehaviour cb;
         private Skill skillData;
 
+        public int ID => id;
         public Combat Combat => combat ??= GetComponentInParent<Combat>();
         public CharacterBehaviour Cb => cb ??= Combat.Cb;
         public string SkillName => skillName ??= GetType().Name;
@@ -108,6 +109,20 @@ namespace Common.Character.Operation.Combating
                 }
                 // add more case according to Animation, DamageMechanic...
             }
+        }
+
+        public bool TryGetEntity<T>(EntityType entityType, out T result) where T : BaseEntity
+        {
+            var hasEntity = EntityTable.TryGetValue(entityType, out var entity);
+
+            if (hasEntity)
+            {
+                result = entity as T;
+                return true;
+            }
+
+            result = null;
+            return false;
         }
 
 

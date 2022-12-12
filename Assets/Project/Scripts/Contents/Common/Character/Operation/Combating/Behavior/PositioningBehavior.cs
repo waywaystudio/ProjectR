@@ -1,16 +1,14 @@
-using BehaviorDesigner.Runtime;
 using BehaviorDesigner.Runtime.Tasks;
-using UnityEngine;
+using Common.Character.Operation.Combating.Entity;
 
 namespace Common.Character.Operation.Combating.Behavior
 {
     [TaskCategory("Character/Combat")]
-    public class UseSkillBehavior : Action
+    public class PositioningBehavior : Action
     {
-        public SharedInt TargetSkillID;
-        
         private Combat combat;
         private CharacterBehaviour cb;
+        
 
         public override void OnAwake()
         {
@@ -25,14 +23,17 @@ namespace Common.Character.Operation.Combating.Behavior
                 return TaskStatus.Failure;
             }
 
-            // Remove When All Condition Check Function Implemented
-            if (skill.IsSkillReady)
+            if (!skill.TryGetEntity<TargetEntity>(EntityType.Target, out var targetEntity))
             {
-                combat.UseSkill(skill);
                 return TaskStatus.Success;
             }
+
+            var isMovable = combat.CombatPosition.TryGetCombatPosition(
+                targetEntity.CombatTaker, targetEntity.Range, out var destination);
+
+            if (!isMovable && cb.IsReached.Invoke()) return TaskStatus.Success;
             
-            Debug.Log($"{skill.SkillName} is Not Ready");
+            cb.Run(destination); // destination
             return TaskStatus.Failure;
         }
     }

@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using Core;
+using Sirenix.OdinInspector;
 using UnityEngine;
 
 namespace Common.Character.Operation.Combating.Entity
@@ -9,6 +10,7 @@ namespace Common.Character.Operation.Combating.Entity
     {
         private string targetLayerType;
         private int targetCount;
+        [ShowInInspector]
         private List<GameObject> searchedList;
         private ICombatTaker combatTaker;
         private List<ICombatTaker> combatTakerList;
@@ -64,7 +66,7 @@ namespace Common.Character.Operation.Combating.Entity
         public void UpdateMainTarget()
         {
             combatTaker = CombatTakerList.IsNullOrEmpty() 
-                ? Cb.CharacterSearchedList.Select(x => x.GetComponent<ICombatTaker>()).FirstOrDefault()
+                ? searchedList.Select(x => x.GetComponent<ICombatTaker>()).FirstOrDefault()
                 : combatTakerList.First();
         }
 

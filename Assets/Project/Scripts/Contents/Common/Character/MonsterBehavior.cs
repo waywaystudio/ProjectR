@@ -1,26 +1,20 @@
+using System;
 using Core;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
-namespace Common.Character.Monster
+namespace Common.Character
 {
-    public class MonsterBehavior : MonoBehaviour, ICombatTaker
+    public class MonsterBehavior : CharacterBehaviour
     {
-        // Operation
-        [SerializeField] private Operation.Pathfinding Pathfinding;
-        
-        // Graphic
-        
-        public void Walk(Vector3 destination)
-        {
-            // characterPathfinding.OLD_Move(destination, moveSpeed);
-        }
-        
-        private void Awake()
-        {
-            Pathfinding ??= GetComponentInChildren<Operation.Pathfinding>();
-            // characterPathfinding.Initialize();
-        }
+        [SerializeField] private double hp = 100;
 
+        public double Hp
+        {
+            get => Math.Max(0, hp);
+            set => hp = Math.Max(0, value);
+        }
+        
         private void Update()
         {
             if (!Input.GetMouseButtonDown(0)) return;
@@ -33,23 +27,47 @@ namespace Common.Character.Monster
         
             if (!Physics.Raycast(ray, out var hit)) return;
 
-            Walk(hit.point);
+            // Walk(hit.point);
 
             #endregion
         }
 
-        public GameObject Taker => gameObject;
-        public void TakeDamage(IDamageProvider damageInfo)
+        public override GameObject Taker => gameObject;
+        public override void TakeDamage(IDamageProvider damageInfo)
         {
-            Debug.Log("TakeDamage!");
+            var hitChance = Random.Range(0f, 1.0f);
+            
+            if (hitChance > damageInfo.Hit)
+            {
+                Debug.Log($"hitChance : {hitChance} hit : {damageInfo.Hit} Miss");
+                
+                return;
+            }
+
+            if (Random.Range(0f, 1.0f) > damageInfo.Critical)
+            {
+                Debug.Log("Critical!");
+                hp -= damageInfo.CombatValue * 2d;
+            }
+            else
+            {
+                Debug.Log("TakeDamage!");
+                hp -= damageInfo.CombatValue;
+            }
+
+            if (hp <= 0.0d)
+            {
+                Debug.Log("Dead!");
+                IsAlive = false;
+            }
         }
 
-        public void TakeHeal(IHealProvider healInfo)
+        public override void TakeHeal(IHealProvider healInfo)
         {
             Debug.Log("TakeHeal!");
         }
 
-        public void TakeExtra(IExtraProvider extra)
+        public override void TakeExtra(IExtraProvider extra)
         {
             Debug.Log("TakeExtra!");
         }

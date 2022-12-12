@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using Common.Character.Graphic;
 using Common.Character.Operation;
 using Common.Character.Operation.Combating;
 using Core;
@@ -44,7 +45,7 @@ namespace Common.Character
         [SerializeField] private Searching searching;
         
         // Graphic
-        [SerializeField] private CharacterAnimationModel animationModel;
+        [SerializeField] private AnimationModel animationModel;
         [SerializeField] private CharacterAnimationEventModel animationEvent;
 
         // ICombatTaker
@@ -76,7 +77,7 @@ namespace Common.Character
 
         public void Attack(GameObject target)
         {
-            animationModel.Attack(false, Idle);
+            // animationModel.Attack(false, Idle);
         }
 
         public void CombatAction()
@@ -99,13 +100,13 @@ namespace Common.Character
         public void Walk(Vector3 destination)
         {
             // pathfinding.OLD_Move(destination, moveSpeed);
-            animationModel.Walk();
+            // animationModel.Walk();
         }
 
         public void Run(Vector3 destination)
         {
             // pathfinding.OLD_Move(destination, moveSpeed);
-            animationModel.Run();
+            // animationModel.Run();
         }
 
         public void Stop()
@@ -126,7 +127,7 @@ namespace Common.Character
             combat ??= GetComponentInChildren<Combat>();
             pathfinding ??= GetComponentInChildren<Operation.Pathfinding>();
             searching ??= GetComponentInChildren<Searching>();
-            animationModel ??= GetComponentInChildren<CharacterAnimationModel>();
+            animationModel ??= GetComponentInChildren<AnimationModel>();
             animationEvent ??= GetComponentInChildren<CharacterAnimationEventModel>();
             
             controller.Initialize(GetComponent<Rigidbody>());

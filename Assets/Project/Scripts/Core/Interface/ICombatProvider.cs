@@ -5,7 +5,6 @@ namespace Core
     public interface IDamageProvider
     {
         GameObject Provider { get; }
-        
         double CombatValue { get; }
         float Critical { get; }
         float Hit { get; }

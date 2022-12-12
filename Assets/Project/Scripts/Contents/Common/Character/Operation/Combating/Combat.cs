@@ -7,67 +7,66 @@ using UnityEngine;
 
 namespace Common.Character.Operation.Combating
 {
-    using Skills;
-    
     public class Combat : MonoBehaviour
     {
         [SerializeField] private CharacterBehaviour cb;
         [SerializeField] private CombatPosition combatPosition;
-        [SerializeField] private CommonAttack commonAttack;
-        [SerializeField] private AimShot aimShot;
 
         public CharacterBehaviour Cb => cb ??= GetComponentInParent<CharacterBehaviour>();
         public CombatPosition CombatPosition => combatPosition ??= GetComponent<CombatPosition>();
+        
         [ShowInInspector]
         public Dictionary<int, BaseSkill> SkillTable { get; } = new();
         public BaseSkill CurrentSkill { get; set; }
         public float GlobalCoolTime { get; set; } = 1.2f;
         public bool IsGlobalCooling { get; set; }
+        public bool IsCurrentSkillFinished => CurrentSkill == null || CurrentSkill.IsSkillFinished;
+        
+        // SharedBool :: CombatBehaviorDesigner
         public bool IsCoolOnAnySkill => SkillTable.Any(x => x.Value.IsCoolTimeReady);
 
-        public bool TryGetMostPrioritySkill(out BaseSkill mostPrioritySkill)
-        {
-            mostPrioritySkill = SkillTable
-                .Where(x => x.Value.IsCoolTimeReady)
-                .MaxBy(x => x.Value.Priority).Value;
+        // ShardInt :: CombatBehaviorDesigner
+        public int MostPrioritySkillID => GetMostPrioritySkillID();
 
-            return mostPrioritySkill != null;
+        public bool TryGetMostPrioritySkill(out BaseSkill skill)
+        {
+            var coolOnSkill = SkillTable.Where(x => x.Value.IsCoolTimeReady)
+                .ToList();
+            
+            if (!coolOnSkill.IsNullOrEmpty())
+            {
+                skill = coolOnSkill.MaxBy(x => x.Value.Priority).Value;
+                return true;
+            }
+
+            skill = null;
+            return skill is not null;
         }
-        
-        // TEST\
-        [Button] private void ActiveCommonAttack() => UseSkill(commonAttack);
-        [Button] private void ActiveAimShot() => UseSkill(aimShot);
-        //
 
         public void UseSkill(BaseSkill skill)
         {
-            // 아래 조건은 BD에서 처리할 예정
-            if (IsGlobalCooling || !IsCoolOnAnySkill || !skill.IsSkillReady)
-            {
-                Debug.Log($"Skill is not Ready. Global Cool? : {IsGlobalCooling}, " +
-                          $"IsAny Skill Ready? : {IsCoolOnAnySkill}, " +
-                          $"Specific Skill Ready ? : {skill.IsSkillReady}");
-                
-                return;
-            }
-            //
-
             if (CurrentSkill != null)
             {
-                if (!CurrentSkill.IsSkillFinished)
-                {
-                    Debug.Log($"{CurrentSkill.SkillName} is Not Finished!");
-                    return;
-                }
-
                 CurrentSkill.DeActiveSkill();
-                CurrentSkill = null;
             }
 
             CurrentSkill = skill;
             CurrentSkill.ActiveSkill();
             
             GlobalCoolDownOn();
+        }
+
+
+        private int GetMostPrioritySkillID()
+        {
+            /*
+             * Require Priority Algorithm
+             */
+            var mostPrioritySkillID = SkillTable
+                .Where(x => x.Value.IsCoolTimeReady)
+                .MaxBy(x => x.Value.Priority).Value.ID;
+
+            return mostPrioritySkillID;
         }
 
         private void GlobalCoolDownOn() => StartCoroutine(GlobalCoolDownRoutine(GlobalCoolTime));

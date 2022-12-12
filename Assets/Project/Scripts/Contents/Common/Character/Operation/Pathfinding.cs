@@ -1,3 +1,4 @@
+using System;
 using Pathfinding;
 using UnityEngine;
 
@@ -33,6 +34,20 @@ namespace Common.Character.Operation
         {
             agent = GetComponent<Seeker>();
             aiMove = GetComponent<AIMove>();
+        }
+
+        private void OnEnable()
+        {
+            cb.IsReached += () => IsReached;
+            cb.OnWalk += Move;
+            cb.OnRun += Move;
+        }
+
+        private void OnDisable()
+        {
+            cb.IsReached -= () => IsReached;
+            cb.OnWalk -= Move;
+            cb.OnRun -= Move;
         }
     }
 }

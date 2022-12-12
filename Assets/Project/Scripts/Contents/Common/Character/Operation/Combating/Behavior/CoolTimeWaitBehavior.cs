@@ -1,23 +1,18 @@
-using BehaviorDesigner.Runtime;
 using BehaviorDesigner.Runtime.Tasks;
-using UnityEngine;
+using Common.Character.Operation.Combating.Entity;
 
 namespace Common.Character.Operation.Combating.Behavior
 {
-    [TaskCategory("Character/Combat")]
-    public class UseSkillBehavior : Action
+    [TaskIcon("{SkinColor}IdleIcon.png"), TaskCategory("Character/Combat")]
+    public class CoolTimeWaitBehavior : Action
     {
-        public SharedInt TargetSkillID;
-        
         private Combat combat;
-        private CharacterBehaviour cb;
-
+        
         public override void OnAwake()
         {
             combat = GetComponent<Combat>();
-            cb = combat.Cb;
         }
-
+        
         public override TaskStatus OnUpdate()
         {
             if (!combat.TryGetMostPrioritySkill(out var skill))
@@ -25,15 +20,14 @@ namespace Common.Character.Operation.Combating.Behavior
                 return TaskStatus.Failure;
             }
 
-            // Remove When All Condition Check Function Implemented
-            if (skill.IsSkillReady)
+            if (!skill.TryGetEntity<CoolTimeEntity>(EntityType.CoolTime, out var coolTimeEntity))
             {
-                combat.UseSkill(skill);
                 return TaskStatus.Success;
             }
-            
-            Debug.Log($"{skill.SkillName} is Not Ready");
-            return TaskStatus.Failure;
+
+            return coolTimeEntity.IsReady
+                ? TaskStatus.Success
+                : TaskStatus.Failure;
         }
     }
 }

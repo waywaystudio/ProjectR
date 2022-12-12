@@ -6,19 +6,25 @@ namespace Common.Character.Operation.Combating.Entity
     public class DamageEntity : BaseEntity, IDamageProvider
     {
         public GameObject Provider => Cb.gameObject;
-        public double CombatValue { get; set; } = 0d;
-        public float AdditionalValue { get; set; }
+        public double CombatValue { get; set; }
         public float Critical { get; set; }
         public float Hit { get; set; }
 
         public override bool IsReady => true;
 
+
+        protected override void Awake()
+        {
+            base.Awake();
+
+            SetEntity();
+        }
+
         protected void SetEntity()
         {
-            // CombatValue = Cb.BaseStats.CombatValue
-            AdditionalValue = SkillData.BaseValue;
-            // CriticalChance = Cb.BaseStats.CriticalChance
-            // HitChance = Cb.BaseStats.HitChance
+            CombatValue = SkillData.BaseValue;
+            Critical = 0.2f;
+            Hit = 0.95f;
         }
 
         private void Reset()

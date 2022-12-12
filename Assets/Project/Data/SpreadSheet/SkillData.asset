@@ -16,7 +16,7 @@ MonoBehaviour:
   list:
   - id: 13000001
     name: CommonAttack
-    baseValue: 1
+    baseValue: 5
     baseCoolTime: 0
     range: 5
     priority: 1
@@ -29,7 +29,7 @@ MonoBehaviour:
     castingTime: 0
   - id: 13000002
     name: Bash
-    baseValue: 2
+    baseValue: 4
     baseCoolTime: 8
     range: 5
     priority: 5
@@ -55,8 +55,8 @@ MonoBehaviour:
     castingTime: 0
   - id: 13000004
     name: AimShot
-    baseValue: 15
-    baseCoolTime: 5
+    baseValue: 25
+    baseCoolTime: 8
     range: 25
     priority: 5
     assignedClass:

@@ -1,3 +1,5 @@
+using System.Collections.Generic;
+using System.Linq;
 using Core;
 using UnityEngine;
 using Random = UnityEngine.Random;
@@ -19,12 +21,17 @@ namespace Common.Character.Operation.Combating
         private Vector3 characterPosition;
 
         public CharacterBehaviour Cb => cb ??= GetComponentInParent<CharacterBehaviour>();
-        
-        public Vector3 GetCombatPosition(ICombatTaker taker, float range) /* CharacterBehaviour cb */
-        {
-            var target = taker.Taker;
 
-            if (target.IsNullOrEmpty()) return Vector3.negativeInfinity;
+        public bool TryGetCombatPosition(ICombatTaker taker, float range, out Vector3 combatPosition)
+        {
+            var target = taker?.Taker;
+
+            if (target.IsNullOrEmpty())
+            {
+                Debug.Log("Target is Null");
+                combatPosition = Vector3.negativeInfinity;
+                return false;
+            }
             
             targetPosition = target.transform.position;
             characterPosition = transform.position;
@@ -61,12 +68,14 @@ namespace Common.Character.Operation.Combating
             // case In Safe Range
             else
             {
-                return characterPosition;
+                combatPosition = characterPosition;
+                return false;
             }
 
-            return characterPosition + direction * magnitude;
+            combatPosition = characterPosition + direction * magnitude;
+            return true;
         }
-
+        
 
         private void Awake()
         {

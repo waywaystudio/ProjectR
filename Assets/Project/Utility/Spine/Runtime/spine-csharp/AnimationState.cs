@@ -31,7 +31,8 @@ using System;
 using System.Collections.Generic;
 using Animation = Spine.Animation;
 
-namespace Spine {
+namespace Spine 
+{
 
 	/// <summary>
 	/// <para>
@@ -124,7 +125,8 @@ namespace Spine {
 
 		private readonly Pool<TrackEntry> trackEntryPool = new Pool<TrackEntry>();
 
-		public AnimationState (AnimationStateData data) {
+		public AnimationState (AnimationStateData data) 
+		{
 			if (data == null) throw new ArgumentNullException("data", "data cannot be null.");
 			this.data = data;
 			this.queue = new EventQueue(
@@ -137,7 +139,8 @@ namespace Spine {
 		/// <summary>
 		/// Increments the track entry <see cref="TrackEntry.TrackTime"/>, setting queued animations as current if needed.</summary>
 		/// <param name="delta">delta time</param>
-		public void Update (float delta) {
+		public void Update (float delta) 
+		{
 			delta *= timeScale;
 			TrackEntry[] tracksItems = tracks.Items;
 			for (int i = 0, n = tracks.Count; i < n; i++) {
@@ -687,7 +690,7 @@ namespace Spine {
 		///          after the <see cref="AnimationState.Dispose"/> event occurs.</returns>
 		public TrackEntry SetAnimation (int trackIndex, Animation animation, bool loop) 
 		{
-			if (animation == null) throw new ArgumentNullException("animation", "animation cannot be null.");
+			if (animation == null) throw new ArgumentNullException(nameof(animation), "animation cannot be null.");
 			bool interrupt = true;
 			TrackEntry current = ExpandToIndex(trackIndex);
 			if (current != null) 
@@ -701,7 +704,8 @@ namespace Spine {
 					ClearNext(current);
 					current = current.mixingFrom;
 					interrupt = false; // mixingFrom is current again, but don't interrupt it twice.
-				} else
+				} 
+				else
 					ClearNext(current);
 			}
 			TrackEntry entry = NewTrackEntry(trackIndex, animation, loop, current);
@@ -712,7 +716,8 @@ namespace Spine {
 
 		/// <summary>Queues an animation by name.</summary>
 		/// <seealso cref="AddAnimation(int, Animation, bool, float)" />
-		public TrackEntry AddAnimation (int trackIndex, string animationName, bool loop, float delay) {
+		public TrackEntry AddAnimation (int trackIndex, string animationName, bool loop, float delay) 
+		{
 			Animation animation = data.skeletonData.FindAnimation(animationName);
 			if (animation == null) throw new ArgumentException("Animation not found: " + animationName, "animationName");
 			return AddAnimation(trackIndex, animation, loop, delay);
@@ -728,7 +733,8 @@ namespace Spine {
 		/// </param>
 		/// <returns>A track entry to allow further customization of animation playback. References to the track entry must not be kept
 		/// after the <see cref="AnimationState.Dispose"/> event occurs.</returns>
-		public TrackEntry AddAnimation (int trackIndex, Animation animation, bool loop, float delay) {
+		public TrackEntry AddAnimation (int trackIndex, Animation animation, bool loop, float delay) 
+		{
 			if (animation == null) throw new ArgumentNullException("animation", "animation cannot be null.");
 
 			TrackEntry last = ExpandToIndex(trackIndex);
@@ -820,7 +826,8 @@ namespace Spine {
 
 		/// <summary>Object-pooling version of new TrackEntry. Obtain an unused TrackEntry from the pool and clear/initialize its values.</summary>
 		/// <param name="last">May be null.</param>
-		private TrackEntry NewTrackEntry (int trackIndex, Animation animation, bool loop, TrackEntry last) {
+		private TrackEntry NewTrackEntry (int trackIndex, Animation animation, bool loop, TrackEntry last) 
+		{
 			TrackEntry entry = trackEntryPool.Obtain();
 			entry.trackIndex = trackIndex;
 			entry.animation = animation;
@@ -880,7 +887,8 @@ namespace Spine {
 			}
 		}
 
-		private void ComputeHold (TrackEntry entry) {
+		private void ComputeHold (TrackEntry entry) 
+		{
 			TrackEntry to = entry.mixingTo;
 			Timeline[] timelines = entry.animation.timelines.Items;
 			int timelinesCount = entry.animation.timelines.Count;
@@ -940,31 +948,34 @@ namespace Spine {
 		/// <para>
 		/// See TrackEntry <see cref="TrackEntry.TimeScale"/> for affecting a single animation.</para>
 		/// </summary>
-		public float TimeScale { get { return timeScale; } set { timeScale = value; } }
+		public float TimeScale { get => timeScale; set => timeScale = value; }
 
 		/// <summary>The AnimationStateData to look up mix durations.</summary>
-		public AnimationStateData Data {
-			get {
-				return data;
-			}
-			set {
+		public AnimationStateData Data 
+		{
+			get => data;
+			set 
+			{
 				if (data == null) throw new ArgumentNullException("data", "data cannot be null.");
 				this.data = value;
 			}
 		}
 
 		/// <summary>A list of tracks that have animations, which may contain nulls.</summary>
-		public ExposedList<TrackEntry> Tracks { get { return tracks; } }
+		public ExposedList<TrackEntry> Tracks => tracks;
 
-		override public string ToString () {
+		override public string ToString () 
+		{
 			var buffer = new System.Text.StringBuilder();
 			TrackEntry[] tracksItems = tracks.Items;
-			for (int i = 0, n = tracks.Count; i < n; i++) {
+			for (int i = 0, n = tracks.Count; i < n; i++) 
+			{
 				TrackEntry entry = tracksItems[i];
 				if (entry == null) continue;
 				if (buffer.Length > 0) buffer.Append(", ");
 				buffer.Append(entry.ToString());
 			}
+			
 			if (buffer.Length == 0) return "<none>";
 			return buffer.ToString();
 		}
@@ -976,9 +987,9 @@ namespace Spine {
 	/// <para>
 	/// References to a track entry must not be kept after the <see cref="AnimationStateListener.Dispose(TrackEntry)"/> event occurs.</para>
 	/// </summary>
-	public class TrackEntry : Pool<TrackEntry>.IPoolable {
+	public class TrackEntry : Pool<TrackEntry>.IPoolable 
+	{
 		internal Animation animation;
-
 		internal TrackEntry previous, next, mixingFrom, mixingTo;
 		// difference to libgdx reference: delegates are used for event callbacks instead of 'AnimationStateListener listener'.
 		/// <summary>See <see href="http://esotericsoftware.com/spine-api-reference#AnimationStateListener-Methods">
@@ -1007,7 +1018,8 @@ namespace Spine {
 		internal readonly ExposedList<float> timelinesRotation = new ExposedList<float>();
 
 		// IPoolable.Reset()
-		public void Reset () {
+		public void Reset () 
+		{
 			previous = null;
 			next = null;
 			mixingFrom = null;
@@ -1027,15 +1039,15 @@ namespace Spine {
 
 		/// <summary>The index of the track where this entry is either current or queued.</summary>
 		/// <seealso cref="AnimationState.GetCurrent(int)"/>
-		public int TrackIndex { get { return trackIndex; } }
+		public int TrackIndex => trackIndex;
 
 		/// <summary>The animation to apply for this track entry.</summary>
-		public Animation Animation { get { return animation; } }
+		public Animation Animation => animation;
 
 		/// <summary>
 		/// If true, the animation will repeat. If false it will not, instead its last frame is applied if played beyond its
 		/// duration.</summary>
-		public bool Loop { get { return loop; } set { loop = value; } }
+		public bool Loop { get => loop; set => loop = value; }
 
 		///<summary>
 		/// <para>
@@ -1073,10 +1085,13 @@ namespace Spine {
 		/// If this track entry is non-looping, the track time in seconds when <see cref="AnimationEnd"/> is reached, or the current
 		/// <see cref="TrackTime"/> if it has already been reached. If this track entry is looping, the track time when this
 		/// animation will reach its next <see cref="AnimationEnd"/> (the next loop completion).</summary>
-		public float TrackComplete {
-			get {
+		public float TrackComplete 
+		{
+			get 
+			{
 				float duration = animationEnd - animationStart;
-				if (duration != 0) {
+				if (duration != 0) 
+				{
 					if (loop) return duration * (1 + (int)(trackTime / duration)); // Completion of next loop.
 					if (trackTime < duration) return duration; // Before duration.
 				}
@@ -1104,9 +1119,11 @@ namespace Spine {
 		/// animation is applied, event timelines will fire all events between the <code>AnimationLast</code> time (exclusive) and
 		/// <code>AnimationTime</code> (inclusive). Defaults to -1 to ensure triggers on frame 0 happen the first time this animation
 		/// is applied.</summary>
-		public float AnimationLast {
-			get { return animationLast; }
-			set {
+		public float AnimationLast 
+		{
+			get => animationLast;
+			set 
+			{
 				animationLast = value;
 				nextAnimationLast = value;
 			}
@@ -1148,7 +1165,7 @@ namespace Spine {
 		/// <para>
 		/// See AnimationState <see cref="AnimationState.TimeScale"/> for affecting all animations.</para>
 		/// </summary>
-		public float TimeScale { get { return timeScale; } set { timeScale = value; } }
+		public float TimeScale { get => timeScale; set => timeScale = value; }
 
 		/// <summary>
 		/// <para>
@@ -1197,9 +1214,7 @@ namespace Spine {
 		/// <summary>
 		/// Returns true if at least one loop has been completed.</summary>
 		/// <seealso cref="TrackEntry.Complete"/>
-		public bool IsComplete {
-			get { return trackTime >= animationEnd - animationStart; }
-		}
+		public bool IsComplete => trackTime >= animationEnd - animationStart;
 
 		/// <summary>
 		/// Seconds from 0 to the <see cref="TrackEntry.MixDuration"/> when mixing from the previous animation to this animation. May be
@@ -1289,7 +1304,7 @@ namespace Spine {
 			timelinesRotation.Clear();
 		}
 
-		override public string ToString () {
+		public override string ToString () {
 			return animation == null ? "<none>" : animation.name;
 		}
 
@@ -1302,7 +1317,8 @@ namespace Spine {
 		}
 	}
 
-	class EventQueue {
+	class EventQueue 
+	{
 		private readonly List<EventQueueEntry> eventQueueEntries = new List<EventQueueEntry>();
 		internal bool drainDisabled;
 

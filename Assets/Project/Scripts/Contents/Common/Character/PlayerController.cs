@@ -1,5 +1,6 @@
 using System;
 using Common.Character;
+using Common.Character.Graphic;
 using MainGame;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -8,14 +9,14 @@ public class PlayerController : MonoBehaviour
 {
     [SerializeField] private float moveSpeed;
     [SerializeField] private Rigidbody characterRigidbody;
-    [SerializeField] private CharacterAnimationModel animationModel;
+    [SerializeField] private AnimationModel animationModel;
 
     private Vector3 direction;
 
     private void Awake()
     {
         characterRigidbody ??= GetComponent<Rigidbody>();
-        animationModel ??= GetComponentInChildren<CharacterAnimationModel>();
+        animationModel ??= GetComponentInChildren<AnimationModel>();
     }
 
     public void Initialize(Rigidbody rigidBody)
