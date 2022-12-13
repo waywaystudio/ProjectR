@@ -39,14 +39,14 @@ namespace Common.Character.Operation.Combating.Entity
 
         private void OnEnable()
         {
-            Cb.OnUpdate += UpdateStatus;
-            Skill.OnCompleted += ResetRemainTime;
+            Cb.OnUpdate.Register(InstanceID, UpdateStatus);
+            Skill.OnCompleted.Register(InstanceID, ResetRemainTime);
         }
         
         private void OnDisable()
         { 
-            Cb.OnUpdate -= UpdateStatus;
-            Skill.OnCompleted -= ResetRemainTime;
+            Cb.OnUpdate.UnRegister(InstanceID);
+            Skill.OnCompleted.UnRegister(InstanceID);
         }
 
         private void Reset()

@@ -1,4 +1,3 @@
-using System;
 using Core;
 using UnityEngine;
 using Random = UnityEngine.Random;
@@ -7,14 +6,6 @@ namespace Common.Character
 {
     public class MonsterBehavior : CharacterBehaviour
     {
-        [SerializeField] private double hp = 100;
-
-        public double Hp
-        {
-            get => Math.Max(0, hp);
-            set => hp = Math.Max(0, value);
-        }
-        
         private void Update()
         {
             if (!Input.GetMouseButtonDown(0)) return;
@@ -39,23 +30,23 @@ namespace Common.Character
             
             if (hitChance > damageInfo.Hit)
             {
-                Debug.Log($"hitChance : {hitChance} hit : {damageInfo.Hit} Miss");
+                // Debug.Log($"hitChance : {hitChance} hit : {damageInfo.Hit} Miss");
                 
                 return;
             }
 
             if (Random.Range(0f, 1.0f) > damageInfo.Critical)
             {
-                Debug.Log("Critical!");
-                hp -= damageInfo.CombatValue * 2d;
+                // Debug.Log("Critical!");
+                Hp -= damageInfo.CombatValue * 2d;
             }
             else
             {
-                Debug.Log("TakeDamage!");
-                hp -= damageInfo.CombatValue;
+                // Debug.Log("TakeDamage!");
+                Hp -= damageInfo.CombatValue;
             }
 
-            if (hp <= 0.0d)
+            if (Hp <= 0.0d)
             {
                 Debug.Log("Dead!");
                 IsAlive = false;

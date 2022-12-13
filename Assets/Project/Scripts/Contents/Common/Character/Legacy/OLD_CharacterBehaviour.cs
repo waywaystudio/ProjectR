@@ -46,7 +46,7 @@ namespace Common.Character
         
         // Graphic
         [SerializeField] private AnimationModel animationModel;
-        [SerializeField] private CharacterAnimationEventModel animationEvent;
+        [SerializeField] private AnimationEventModel animationEvent;
 
         // ICombatTaker
         public GameObject TargetObject => gameObject;
@@ -128,7 +128,7 @@ namespace Common.Character
             pathfinding ??= GetComponentInChildren<Operation.Pathfinding>();
             searching ??= GetComponentInChildren<Searching>();
             animationModel ??= GetComponentInChildren<AnimationModel>();
-            animationEvent ??= GetComponentInChildren<CharacterAnimationEventModel>();
+            animationEvent ??= GetComponentInChildren<AnimationEventModel>();
             
             controller.Initialize(GetComponent<Rigidbody>());
             // searching.Initialize(range);

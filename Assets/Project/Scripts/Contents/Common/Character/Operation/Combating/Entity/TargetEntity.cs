@@ -80,6 +80,8 @@ namespace Common.Character.Operation.Combating.Entity
         protected override void Awake()
         {
             base.Awake();
+
+            SetEntity();
             
             searchedList = targetLayerType is "ally"
                 ? Cb.CharacterSearchedList // ally

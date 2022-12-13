@@ -12,7 +12,8 @@ namespace Core
 
     public interface IHealProvider
     {
-        double Value { get; }
+        GameObject Provider { get; }
+        double CombatValue { get; }
         float Critical { get; }
     }
 

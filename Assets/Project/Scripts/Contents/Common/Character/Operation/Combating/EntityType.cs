@@ -10,6 +10,7 @@ namespace Common.Character.Operation.Combating
         Casting = 1 << 3,
         Target = 1  << 4,
         Projectile = 1 << 5,
+        Heal = 1 << 6,
     
         All = int.MaxValue
     }

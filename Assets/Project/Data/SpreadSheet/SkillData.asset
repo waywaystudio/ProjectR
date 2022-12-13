@@ -68,7 +68,7 @@ MonoBehaviour:
     skillType: damage
     castingTime: 3
   - id: 13000005
-    name: Blood Drain
+    name: BloodDrain
     baseValue: 0
     baseCoolTime: 15
     range: 0
@@ -107,18 +107,18 @@ MonoBehaviour:
     skillType: damage
     castingTime: 3
   - id: 13000008
-    name: Rapid Blow
+    name: RapidBlow
     baseValue: 2
     baseCoolTime: 6
     range: 5
     priority: 5
     assignedClass:
     - Fighter
-    animationKey: Skill
+    animationKey: Channeling
     targetCount: 1
     targetLayer: enemy
     skillType: damage
-    castingTime: 2
+    castingTime: 0.8
   - id: 13000009
     name: Fury
     baseValue: 0
@@ -133,7 +133,7 @@ MonoBehaviour:
     skillType: transcendence
     castingTime: 0
   - id: 13000010
-    name: Lightning Slash
+    name: LightningSlash
     baseValue: 8
     baseCoolTime: 15
     range: 18
@@ -172,11 +172,11 @@ MonoBehaviour:
     skillType: damage
     castingTime: 0
   - id: 13000013
-    name: Faithful Prey
+    name: FaithfulPrey
     baseValue: 3
     baseCoolTime: 0
     range: 15
-    priority: 5
+    priority: 1
     assignedClass:
     - Priest
     - ' Angel'
@@ -186,7 +186,7 @@ MonoBehaviour:
     skillType: heal
     castingTime: 1.5
   - id: 13000014
-    name: Holy Protection
+    name: HolyProtection
     baseValue: 5
     baseCoolTime: 30
     range: 15
@@ -213,7 +213,7 @@ MonoBehaviour:
     skillType: heal
     castingTime: 0
   - id: 13000016
-    name: Encouraged Song
+    name: EncouragedSong
     baseValue: 10
     baseCoolTime: 16
     range: 40

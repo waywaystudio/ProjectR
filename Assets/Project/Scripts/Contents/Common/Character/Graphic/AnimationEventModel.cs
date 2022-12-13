@@ -5,9 +5,9 @@ using Spine.Unity;
 using UnityEngine;
 using Event = Spine.Event;
 
-namespace Common.Character
+namespace Common.Character.Graphic
 {
-    public class CharacterAnimationEventModel : MonoBehaviour
+    public class AnimationEventModel : MonoBehaviour
     {
         /*
          * Animation Event Key
@@ -41,11 +41,15 @@ namespace Common.Character
             }
             else if (e.Data == EventTable["footstep"])
             {
-                Cb.Footstep();
+                // Cb.Footstep();
             }
             else if (e.Data == EventTable["skillHit"])
             {
                 Cb.SkillHit();
+            }
+            else if (e.Data == EventTable["channelingHit"])
+            {
+                Cb.ChannelingHit();
             }
         }
 

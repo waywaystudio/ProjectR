@@ -1,4 +1,5 @@
 using System;
+using MainGame;
 using Spine;
 using Spine.Unity;
 using UnityEngine;
@@ -13,6 +14,8 @@ namespace Common.Character.Graphic
         private CharacterBehaviour cb;
         private SkeletonAnimation skeletonAnimation;
         private Spine.AnimationState state;
+        private Action actionBuffer;
+        private int instanceID;
 
         public Animation TargetAnimation { get; private set; }
         private CharacterBehaviour Cb => cb ??= GetComponentInParent<CharacterBehaviour>();
@@ -22,32 +25,53 @@ namespace Common.Character.Graphic
         public void LookRight() => skeletonAnimation.Skeleton.ScaleX = -1.0f;
 
         // Preset :: Do What;
-        public void Idle() => Play("idle", 0);
-        public void Attack() => Play("attack", 0, false, Idle);
-        public void Skill() => Play("skill", 0, false, Idle);
-        public void Walk(Vector3 fakeValue) => Play("walk", 0);
-        public void Run(Vector3 fakeValue)=> Play("run", 0);
-        // AttackVariant...
+        public void Idle() => Play("idle");
+        public void Attack(string skillName, Action callback)
+        {
+            var skillData = MainData.GetSkillData(skillName);
+            var fixedTime = skillData.CastingTime;
+
+            actionBuffer = null;
+            actionBuffer += callback;
+            actionBuffer += Idle;
+
+            Play("attack", 0, false, fixedTime, actionBuffer);
+        }
+
+        public void Skill(string skillName, Action callback)
+        {
+            var skillData = MainData.GetSkillData(skillName);
+            var fixedTime = skillData.CastingTime;
+            
+            actionBuffer = null;
+            actionBuffer += callback;
+            actionBuffer += Idle;
+            
+            Play("skill", 0, false, fixedTime, actionBuffer);
+        }
+        
+        public void Channeling(string skillName, Action callback)
+        {
+            var skillData = MainData.GetSkillData(skillName);
+            var fixedTime = skillData.CastingTime;
+
+            actionBuffer = null;
+            actionBuffer += callback;
+            actionBuffer += Idle;
+            
+            Play("channeling", 0, false, fixedTime, actionBuffer);
+        }
+        
+        public void Walk(Vector3 fakeValue) => Play("walk");
+        public void Run(Vector3 fakeValue)=> Play("run");
+        // Attack Variants...
         // PowerAttack
         // Ultimate
-        // Hit
         // Groggy
         // Stun
         // Dead
         // InstantSpell
         // CastingSpell
-        // ChannelingSpell
-
-        public void Play(string animationKey, int layer, bool loop = true, Action callback = null)
-        {
-            if (!modelData.TryGetAnimation(animationKey, out var target))
-            {
-                Debug.LogError($"Not Exist Animation Key {animationKey}");
-                return;
-            }
-            
-            Play(target, layer, loop, callback);
-        }
 
         public void Flip(Vector3 direction)
         {
@@ -60,48 +84,19 @@ namespace Common.Character.Graphic
                 _ => skeletonAnimation.Skeleton.ScaleX
             };
         }
-        
-        
-        private void Play(Animation target, int layer, bool loop, Action callback = null)
+
+        public void Play(string animationKey, int layer = 0, bool loop = true, float fixedTime = 0f, Action callback = null)
         {
-            TrackEntry entry;
-            
-            if (target.Equals(TargetAnimation) && loop)
+            if (!modelData.TryGetAnimation(animationKey, out var target))
             {
-                entry = state.GetCurrent(layer);
-                
-                if (callback != null) 
-                    entry.Complete += _ => callback.Invoke();
-                
+                Debug.LogError($"Not Exist Animation Key {animationKey}");
                 return;
             }
             
-            var hasCurrent = TryGetCurrentAnimation(layer, out var current);
-            var hasTransition = modelData.TryGetTransition(current, target, out var transition);
-
-            if (hasCurrent && hasTransition)
-            {
-                entry = state.SetAnimation(layer, transition, false);
-
-                if (callback != null) 
-                    entry.Complete += _ => callback.Invoke();
-                
-                state.AddAnimation(layer, target, loop, 0f);
-    
-                return;
-            }
-
-            
-            entry = state.SetAnimation(layer, target, loop);
-            
-
-            if (callback != null) 
-                entry.Complete += _ => callback.Invoke();
-
-            TargetAnimation = target;
+            Play(target, layer, loop, fixedTime, callback);
         }
-        
-        private void Play(Animation target, int layer, bool loop, float speed, Action callback = null)
+
+        private void Play(Animation target, int layer, bool loop, float speed = 0f, Action callback = null)
         {
             TrackEntry entry;
             
@@ -130,9 +125,17 @@ namespace Common.Character.Graphic
                 return;
             }
 
-            
             entry = state.SetAnimation(layer, target, loop);
             
+            if (speed != 0f)
+            {
+                var originalDuration = target.Duration;
+                var toStaticValue = originalDuration / speed;
+                var inverseValue = 1.0f / toStaticValue;
+
+                state.TimeScale *= toStaticValue;
+                entry.Complete += _ => state.TimeScale *= inverseValue;
+            }
 
             if (callback != null) 
                 entry.Complete += _ => callback.Invoke();
@@ -147,46 +150,38 @@ namespace Common.Character.Graphic
             return result is not null;
         }
 
-        private float ToStaticPlayTime(Animation original, float to)
-        {
-            var result = 1.0f;
-
-            if (to != 0.0f && original.Duration != 0.0f)
-            {
-                result = to / original.Duration;
-            }
-
-            return result;
-        }
-        
         private void Awake()
         {
-            skeletonAnimation = GetComponent<SkeletonAnimation>();
+            TryGetComponent(out skeletonAnimation);
+            
             state = skeletonAnimation.AnimationState;
+            instanceID = GetInstanceID();
         }
 
         private void OnEnable()
         {
-            Cb.OnIdle += Idle;
-            Cb.OnWalk += Walk;
-            Cb.OnRun += Run;
-            Cb.OnAttack += Attack;
-            Cb.OnSkill += Skill;
+            Cb.OnIdle.Register(instanceID, Idle);
+            Cb.OnWalk.Register(instanceID, Walk);
+            Cb.OnRun.Register(instanceID, Run);
+            Cb.OnAttack.Register(instanceID, Attack);
+            Cb.OnSkill.Register(instanceID, Skill);
+            Cb.OnChanneling.Register(instanceID, Channeling);
             
-            Cb.OnLookLeft += LookLeft;
-            Cb.OnLookRight += LookRight;
+            Cb.OnLookLeft.Register(instanceID, LookLeft);
+            Cb.OnLookRight.Register(instanceID, LookRight);
         }
 
         private void OnDisable()
         {
-            Cb.OnIdle -= Idle;
-            Cb.OnWalk -= Walk;
-            Cb.OnRun -= Run;
-            Cb.OnAttack -= Attack;
-            Cb.OnSkill -= Skill;
+            Cb.OnIdle.UnRegister(instanceID);
+            Cb.OnWalk.UnRegister(instanceID);
+            Cb.OnRun.UnRegister(instanceID);
+            Cb.OnAttack.UnRegister(instanceID);
+            Cb.OnSkill.UnRegister(instanceID);
+            Cb.OnChanneling.UnRegister(instanceID);
             
-            Cb.OnLookLeft -= LookLeft;
-            Cb.OnLookRight -= LookRight;
+            Cb.OnLookLeft.UnRegister(instanceID);
+            Cb.OnLookRight.UnRegister(instanceID);
         }
     }
 }

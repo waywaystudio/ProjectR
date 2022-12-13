@@ -2,7 +2,7 @@ using Common.Character.Operation.Combating.Entity;
 
 namespace Common.Character.Operation.Combating.Skills
 {
-    public class CommonAttack : BaseSkill
+    public class RapidBlow : BaseSkill
     {
         public override void InvokeEvent()
         {

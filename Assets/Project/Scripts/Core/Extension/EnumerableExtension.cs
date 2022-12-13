@@ -14,6 +14,7 @@ namespace Core
                 action(item);
         }
         
+
         /// <summary>
         /// ForEach with Index : .ForEach((x, index) => x.Index() == index));
         /// </summary>

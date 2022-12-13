@@ -28,6 +28,7 @@ namespace Common.Character.Operation.Combating
     {
         [SerializeField] protected int id;
         [SerializeField] protected string skillName;
+        protected int InstanceID;
         
         private Combat combat;
         private CharacterBehaviour cb;
@@ -37,11 +38,10 @@ namespace Common.Character.Operation.Combating
         public Combat Combat => combat ??= GetComponentInParent<Combat>();
         public CharacterBehaviour Cb => cb ??= Combat.Cb;
         public string SkillName => skillName ??= GetType().Name;
-        public Skill SkillData => skillData ??= MainData.GetSkillData(skillName);
+        public Skill SkillData => skillData ??= MainData.GetSkillData(SkillName);
         
         public string AnimationKey { get; private set; }
         public int Priority { get; set; }
-        [ShowInInspector]
         public bool IsSkillFinished { get; set; }
         public Dictionary<EntityType, BaseEntity> EntityTable { get; } = new();
         
@@ -49,17 +49,17 @@ namespace Common.Character.Operation.Combating
         public bool IsCoolTimeReady =>!EntityTable.ContainsKey(EntityType.CoolTime) || 
                                        EntityTable[EntityType.CoolTime].IsReady;
 
-        public Action OnStarted { get; set; }
-        public Action OnInterrupted { get; set; }
-        public Action OnCompleted { get; set; }
+        public ActionTable OnStarted { get; } = new();
+        public ActionTable OnInterrupted { get; } = new();
+        public ActionTable OnCompleted { get; } = new();
 
-        public virtual void StartSkill()
+        public void StartSkill()
         {
             OnStarted?.Invoke();
             IsSkillFinished = false;
         }
         
-        public virtual void InterruptedSkill() => OnInterrupted?.Invoke();
+        public void InterruptedSkill() => OnInterrupted?.Invoke();
 
         public virtual void CompleteSkill()
         {
@@ -75,18 +75,26 @@ namespace Common.Character.Operation.Combating
             {
                 case "Attack":
                 {
-                    Cb.OnAttack += StartSkill;
-                    Cb.OnAttackHit += InvokeEvent;
-                    Cb.Attack();
+                    Cb.OnAttack.Register(InstanceID, StartSkill);
+                    Cb.OnAttackHit.Register(InstanceID, InvokeEvent);
+                    Cb.Attack(SkillName, CompleteSkill);
                     break;
                 }
                 case "Skill":
                 {
-                    Cb.OnSkill += StartSkill;
-                    Cb.OnSkillHit += InvokeEvent;
-                    Cb.Skill();
+                    Cb.OnSkill.Register(InstanceID, StartSkill);
+                    Cb.OnSkillHit.Register(InstanceID, InvokeEvent);
+                    Cb.Skill(SkillName, CompleteSkill);
                     break;
                 }
+                case "Channeling":
+                {
+                    Cb.OnChanneling.Register(InstanceID, StartSkill);
+                    Cb.OnChannelingHit.Register(InstanceID, InvokeEvent);
+                    Cb.Channeling(SkillName, CompleteSkill);
+                    break;
+                }
+
                 // add more case according to Animation, DamageMechanic...
             }
         }
@@ -97,14 +105,20 @@ namespace Common.Character.Operation.Combating
             {
                 case "Attack":
                 {
-                    Cb.OnAttack -= StartSkill;
-                    Cb.OnAttackHit -= InvokeEvent;
+                    Cb.OnAttack.UnRegister(InstanceID);
+                    Cb.OnAttackHit.UnRegister(InstanceID);
                     break;
                 }
                 case "Skill":
                 {
-                    Cb.OnSkill -= StartSkill;
-                    Cb.OnSkillHit -= InvokeEvent;
+                    Cb.OnSkill.UnRegister(InstanceID);
+                    Cb.OnSkillHit.UnRegister(InstanceID);
+                    break;
+                }
+                case "Channeling":
+                {
+                    Cb.OnChanneling.UnRegister(InstanceID);
+                    Cb.OnChannelingHit.UnRegister(InstanceID);
                     break;
                 }
                 // add more case according to Animation, DamageMechanic...
@@ -131,6 +145,7 @@ namespace Common.Character.Operation.Combating
             skillName ??= GetType().Name;
             AnimationKey = SkillData.AnimationKey;
             Priority = SkillData.Priority;
+            InstanceID = GetInstanceID();
         }
 
         protected void OnEnable()
@@ -147,8 +162,8 @@ namespace Common.Character.Operation.Combating
 
 #if UNITY_EDITOR
         #region EditorOnly
-        [OnInspectorInit]
-        protected virtual void InEditorOnInit() => InEditorGetData();
+        // [OnInspectorInit]
+        // protected virtual void InEditorOnInit() => InEditorGetData();
 
         [Button]
         protected void InEditorGetData()
@@ -174,7 +189,7 @@ namespace Common.Character.Operation.Combating
             
             if (member.Name == "skillName")
             {
-                attributes.Add(new DisplayAsStringAttribute());
+                // attributes.Add(new DisplayAsStringAttribute());
             }
             
             if (member.Name == "SkillData")

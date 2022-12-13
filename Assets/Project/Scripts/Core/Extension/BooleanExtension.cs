@@ -20,5 +20,15 @@ namespace Core
         {
             if (value) callback?.Invoke();
         }
+        
+        public static void OnTrue(this bool value, Func<bool> callback)
+        {
+            if (value) callback?.Invoke();
+        }
+        
+        public static void OnTrue(this bool value, Func<int> callback)
+        {
+            if (value) callback?.Invoke();
+        }
     }
 }

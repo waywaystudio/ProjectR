@@ -1,4 +1,3 @@
-using System;
 using Pathfinding;
 using UnityEngine;
 
@@ -10,6 +9,7 @@ namespace Common.Character.Operation
         
         private AIMove aiMove;
         private Seeker agent;
+        private int instanceID;
 
         public bool HasPath => aiMove.hasPath;
         public bool IsReached => aiMove.reachedEndOfPath;
@@ -28,26 +28,27 @@ namespace Common.Character.Operation
             // 위 경우에 Flip 덜덜이 발생함.
             aiMove.destination = aiMove.steeringTarget;
         }
-        
+
 
         private void Awake()
         {
             agent = GetComponent<Seeker>();
             aiMove = GetComponent<AIMove>();
+            instanceID = GetInstanceID();
         }
 
         private void OnEnable()
         {
-            cb.IsReached += () => IsReached;
-            cb.OnWalk += Move;
-            cb.OnRun += Move;
+            cb.IsReached.Register(instanceID, () => IsReached);
+            cb.OnWalk.Register(instanceID, Move);
+            cb.OnRun.Register(instanceID, Move);
         }
 
         private void OnDisable()
         {
-            cb.IsReached -= () => IsReached;
-            cb.OnWalk -= Move;
-            cb.OnRun -= Move;
+            cb.IsReached.UnRegister(instanceID);
+            cb.OnWalk.UnRegister(instanceID);
+            cb.OnRun.UnRegister(instanceID);
         }
     }
 }

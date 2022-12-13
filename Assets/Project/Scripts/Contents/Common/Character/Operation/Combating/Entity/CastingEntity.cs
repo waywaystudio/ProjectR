@@ -1,6 +1,5 @@
 using System;
 using System.Collections;
-using Core;
 using Sirenix.OdinInspector;
 using UnityEngine;
 
@@ -10,6 +9,7 @@ namespace Common.Character.Operation.Combating.Entity
     public class CastingEntity : BaseEntity
     {
         private bool onCasting;
+        [ShowInInspector]
         private float remainTimer;
         [ShowInInspector]
         private float CastingTime { get; set; }
@@ -33,12 +33,12 @@ namespace Common.Character.Operation.Combating.Entity
         
         private IEnumerator Casting()
         {
-            onCasting.OnTrue(() =>
+            if (onCasting)
             {
                 Debug.Log("Casting Interrupted");
                 Skill.InterruptedSkill();
-            });
-            
+            }
+
             onCasting = true;
 
             while (RemainTimer > 0f)
@@ -50,7 +50,6 @@ namespace Common.Character.Operation.Combating.Entity
             onCasting = false;
             
             ResetRemainTimer();
-            Skill.CompleteSkill();
         }
         
         private void ResetRemainTimer() => RemainTimer = CastingTime;
@@ -66,14 +65,14 @@ namespace Common.Character.Operation.Combating.Entity
 
         private void OnEnable()
         {
-            Skill.OnStarted += StartCasting;
-            Skill.OnInterrupted += BreakCasting;
+            Skill.OnStarted.Register(InstanceID, StartCasting);
+            Skill.OnInterrupted.Register(InstanceID, BreakCasting);
         }
 
         private void OnDisable()
         {
-            Skill.OnStarted -= StartCasting;
-            Skill.OnInterrupted -= BreakCasting;
+            Skill.OnStarted.UnRegister(InstanceID);
+            Skill.OnInterrupted.UnRegister(InstanceID);
         }
 
         private void Reset()

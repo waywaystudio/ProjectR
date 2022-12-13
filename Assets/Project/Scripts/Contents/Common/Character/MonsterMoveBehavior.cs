@@ -19,7 +19,7 @@ namespace Common.Character.Monster
             var posZ = Random.Range(-10f, 10f);
 
             var destination = new Vector3(posX, 0f, posZ);
-            mb.Walk(destination);
+            // mb.Walk(destination);
             
             return TaskStatus.Success;
         }

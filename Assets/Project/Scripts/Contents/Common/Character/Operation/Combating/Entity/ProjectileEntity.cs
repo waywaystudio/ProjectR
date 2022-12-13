@@ -27,12 +27,12 @@ namespace Common.Character.Operation.Combating.Entity
 
         private void OnEnable()
         {
-            Skill.OnCompleted += Fire;
+            Skill.OnCompleted.Register(InstanceID, Fire);
         }
 
         private void OnDisable()
         {
-            Skill.OnCompleted -= Fire;
+            Skill.OnCompleted.UnRegister(InstanceID);
         }
 
         private void Reset()
