@@ -69,7 +69,7 @@ namespace Core
         {
             return !original.Contains(value);
         }
-
+        
         /// <summary>
         /// Add strings on array like CollectionType. Not obsolete but less recommendation...
         /// </summary>

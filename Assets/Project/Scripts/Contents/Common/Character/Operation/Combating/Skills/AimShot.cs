@@ -1,6 +1,4 @@
 using Common.Character.Operation.Combating.Entity;
-using Core;
-using UnityEngine;
 
 namespace Common.Character.Operation.Combating.Skills
 {

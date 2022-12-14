@@ -8,8 +8,9 @@ namespace Common.Character.Operation.Combating.Entity
 {
     public class TargetEntity : BaseEntity
     {
-        private string targetLayerType;
-        private int targetCount;
+        [SerializeField] private string targetLayerType;
+        [SerializeField] private int targetCount;
+        [SerializeField] private float range;
         [ShowInInspector]
         private List<GameObject> searchedList;
         private ICombatTaker combatTaker;
@@ -17,7 +18,7 @@ namespace Common.Character.Operation.Combating.Entity
         private readonly List<ICombatTaker> combatTakerFilterCache = new();
 
         public override bool IsReady => CombatTaker != null;
-        public float Range { get; private set; }
+        public float Range { get => range; set => range = value; }
 
         public List<ICombatTaker> CombatTakerList
         {
@@ -70,10 +71,10 @@ namespace Common.Character.Operation.Combating.Entity
                 : combatTakerList.First();
         }
 
-        protected void SetEntity()
+        public override void SetEntity()
         {
             targetCount = SkillData.TargetCount;
-            Range = SkillData.Range;
+            range = SkillData.Range;
             targetLayerType = SkillData.TargetLayer;
         }
 

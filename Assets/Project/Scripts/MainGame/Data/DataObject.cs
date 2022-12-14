@@ -14,6 +14,8 @@ namespace MainGame.Data
         public DataCategory Category => category;
         public abstract void RegisterNameTable(Dictionary<string, int> nameTable);
         public abstract bool TryGetData<T>(int id, out T result) where T : class;
+        public abstract T EditorGetData<T>(string nameKey) where T : class;
+        public abstract T EditorGetData<T>(int id) where T : class;
     }
 
     public abstract class DataObject<T> : DataObject where T : IIdentifier
@@ -59,6 +61,24 @@ namespace MainGame.Data
         
             result = value as T1;
             return true;
+        }
+
+        public override T1 EditorGetData<T1>(string nameKey) where T1 : class
+        {
+            T1 result = null;
+#if UNITY_EDITOR
+            result = List.Find(x => x.Name == nameKey) as T1;
+#endif
+            return result;
+        }
+        
+        public override T1 EditorGetData<T1>(int id) where T1 : class
+        {
+            T1 result = null;
+#if UNITY_EDITOR
+            result = List.Find(x => x.ID == id) as T1;
+#endif
+            return result;
         }
 
 

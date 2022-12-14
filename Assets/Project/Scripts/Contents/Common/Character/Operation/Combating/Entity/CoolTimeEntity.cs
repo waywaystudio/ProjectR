@@ -6,11 +6,11 @@ namespace Common.Character.Operation.Combating.Entity
 {
     public class CoolTimeEntity : BaseEntity, IReadyRequired
     {
+        [SerializeField] private float coolTime;
         private float remainTimer;
 
         public override bool IsReady => remainTimer <= 0.0f;
-        [ShowInInspector]
-        public float CoolTime { get; set; }
+        public float CoolTime { get => coolTime; set => coolTime = value; }
         public float CoolTimeTick { get; set; }
         [ShowInInspector]
         public float RemainTimer
@@ -20,7 +20,7 @@ namespace Common.Character.Operation.Combating.Entity
         }
 
 
-        protected void SetEntity()
+        public override void SetEntity()
         {
             CoolTime = SkillData.BaseCoolTime;
             RemainTimer = CoolTime;
@@ -33,7 +33,8 @@ namespace Common.Character.Operation.Combating.Entity
         {
             base.Awake();
 
-            SetEntity();
+            CoolTime = SkillData.BaseCoolTime;
+            RemainTimer = 0f;
             CoolTimeTick = Time.deltaTime;
         }
 

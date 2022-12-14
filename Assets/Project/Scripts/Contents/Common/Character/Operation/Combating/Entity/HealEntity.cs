@@ -5,9 +5,12 @@ namespace Common.Character.Operation.Combating.Entity
 {
     public class HealEntity : BaseEntity, IHealProvider
     {
+        [SerializeField] private double combatValue;
+        [SerializeField] private float critical;
+        
         public GameObject Provider => Cb.gameObject;
-        public double CombatValue { get; set; }
-        public float Critical { get; set; }
+        public double CombatValue { get => combatValue; set => combatValue = value; }
+        public float Critical { get => critical; set => critical = value; }
 
         public override bool IsReady => true;
         
@@ -19,10 +22,10 @@ namespace Common.Character.Operation.Combating.Entity
             SetEntity();
         }
         
-        protected void SetEntity()
+        public override void SetEntity()
         {
-            CombatValue = SkillData.BaseValue;
-            Critical = 0.2f;
+            combatValue = SkillData.BaseValue;
+            critical = 0.2f;
         }
 
         private void Reset()

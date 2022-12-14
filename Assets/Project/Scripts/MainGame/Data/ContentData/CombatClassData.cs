@@ -9,22 +9,28 @@ using UnityEngine;
 
 namespace MainGame.Data.ContentData
 {    
-    public partial class CharacterClassData : DataObject<CharacterClassData.CharacterClass>
+    public partial class CombatClassData : DataObject<CombatClassData.CombatClass>
     {
         [Serializable]
-        public class CharacterClass : IIdentifier
+        public class CombatClass : IIdentifier
         {
 			[SerializeField] private Int32 id;
 			[SerializeField] private String name;
-			[SerializeField] private String baseRole;
-			[SerializeField] private Single attackSpeed;
-			[SerializeField] private Single range;
+			[SerializeField] private Single maxHp;
+			[SerializeField] private Single moveSpeed;
+			[SerializeField] private Single critical;
+			[SerializeField] private Single haste;
+			[SerializeField] private Single hit;
+			[SerializeField] private Single evade;
 
 			public Int32 ID => id;
 			public String Name => name;
-			public String BaseRole => baseRole;
-			public Single AttackSpeed => attackSpeed;
-			public Single Range => range;
+			public Single MaxHp => maxHp;
+			public Single MoveSpeed => moveSpeed;
+			public Single Critical => critical;
+			public Single Haste => haste;
+			public Single Hit => hit;
+			public Single Evade => evade;
 
         }
         
@@ -32,19 +38,19 @@ namespace MainGame.Data.ContentData
     #if UNITY_EDITOR
         public readonly string SpreadSheetID = "1yO5sJqxMvySDiihls5pwiHQWoJGysrT7LBmL16HhHRM";
         public readonly string SpreadSheetName = "ContentData";
-        public readonly string WorkSheetName = "CharacterClass";    
+        public readonly string WorkSheetName = "CombatClass";    
   
         private void LoadFromJson()
         {
     
             List = UnityGoogleSheet.Editor.Core.UgsEditorUtility
-                .LoadFromJson<CharacterClass>("ContentData"); 
+                .LoadFromJson<CombatClass>("ContentData"); 
         }
         
         private void LoadFromGoogleSpreadSheet()
         {
             UnityGoogleSheet.Editor.Core.UgsExplorer
-                .ParseSpreadSheet(SpreadSheetID, "CharacterClass");
+                .ParseSpreadSheet(SpreadSheetID, "CombatClass");
 
             LoadFromJson();
             UnityEditor.EditorUtility.SetDirty(this);

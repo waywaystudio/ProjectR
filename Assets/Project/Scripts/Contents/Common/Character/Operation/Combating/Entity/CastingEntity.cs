@@ -8,12 +8,15 @@ namespace Common.Character.Operation.Combating.Entity
     [Serializable]
     public class CastingEntity : BaseEntity
     {
+        [SerializeField] private float castingTime;
+        private float castingTick;
         private bool onCasting;
-        [ShowInInspector]
         private float remainTimer;
+        
         [ShowInInspector]
-        private float CastingTime { get; set; }
-        private float CastingTick { get; set; }
+        private float CastingTime { get => castingTime; set => castingTime = value; }
+        private float CastingTick { get => castingTick; set => castingTick = value; }
+        [ShowInInspector]
         private float RemainTimer
         {
             get => remainTimer; 
@@ -21,6 +24,13 @@ namespace Common.Character.Operation.Combating.Entity
         }
         
         public override bool IsReady => !onCasting;
+
+        public override void SetEntity()
+        {
+            CastingTime = SkillData.CastingTime;
+            RemainTimer = 0;
+            CastingTick = Time.deltaTime;
+        }
 
         private void StartCasting() => StartCoroutine(Casting());
         private void BreakCasting()
@@ -58,9 +68,7 @@ namespace Common.Character.Operation.Combating.Entity
         {
             base.Awake();
 
-            CastingTime = SkillData.CastingTime;
-            RemainTimer = CastingTime;
-            CastingTick = Time.deltaTime;
+            SetEntity();
         }
 
         private void OnEnable()

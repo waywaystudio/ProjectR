@@ -12,29 +12,29 @@ namespace Common.Character
         [SerializeField] private string characterName = string.Empty;
         [SerializeField] private int id;
         [SerializeField] private string combatClass;
-        [SerializeField] private string role;
-        [SerializeField] private float baseMoveSpeed = 7;
-        [SerializeField] private float baseAttackSpeed = 1f;
-        [SerializeField] private float searchingRange;
+        [SerializeField] private float searchingRange = 50f;
         [SerializeField] private LayerMask allyLayer;
         [SerializeField] private LayerMask enemyLayer;
 
         // TEST
-        [ShowInInspector] private Dictionary<Type, Action> typeActionTable = new(4);
         [SerializeField] private bool isAlive = true;
-        [SerializeField] private double hp = 50;
-
-        public Dictionary<Type, Action> TypeActionTable => typeActionTable;
+        [SerializeField] private ValueTable maxHp = new();
+        [SerializeField] private ValueTable moveSpeed = new();
+        [SerializeField] private ValueTable critical = new();
+        [SerializeField] private ValueTable haste = new();
+        [SerializeField] private ValueTable hit = new();
+        [SerializeField] private ValueTable evade = new();
+        [SerializeField] private double hp = 1000;
         //
         
-        public string CharacterName => characterName;
+        public string CharacterName => characterName ??= "Diablo";
         public int ID => id;
-        public string CombatClass => combatClass;
-        public string Role => role;
+        public string CombatClass => combatClass ??= MainData.GetAdventurerData(CharacterName).Job;
         public float SearchingRange => searchingRange;
         public LayerMask AllyLayer => allyLayer;
         public LayerMask EnemyLayer => enemyLayer;
 
+        public ActionTable OnStart { get; } = new();
         public ActionTable OnUpdate { get; } = new();
         public ActionTable OnIdle { get; } = new();
         public ActionTable<Vector3> OnWalk { get; } = new();
@@ -50,9 +50,14 @@ namespace Common.Character
 
         public FunctionTable<bool> IsReached { get; } = new();
         public bool IsAlive { get => isAlive; set => isAlive = value; }
-        public double Hp { get => Math.Max(0d, hp); set => hp = Math.Max(0d, value); }
-        public float MoveSpeed { get => baseMoveSpeed; set => baseMoveSpeed = value; }
-        public float AttackSpeed { get => baseAttackSpeed; set => baseAttackSpeed = value; } // 이게 무슨 의미가 있을라나...가속 계수가 되려나
+        public double Hp { get => hp; set => hp = value; }
+        
+        public ValueTable MaxHp => maxHp;
+        public ValueTable MoveSpeed => moveSpeed;
+        public ValueTable Critical => critical;
+        public ValueTable Haste => haste;
+        public ValueTable Hit => hit;
+        public ValueTable Evade => evade;
 
         public List<GameObject> CharacterSearchedList { get; } = new();
         public List<GameObject> MonsterSearchedList { get; } = new();
@@ -77,18 +82,15 @@ namespace Common.Character
             characterName = profile.Name;
             id = profile.ID;
             combatClass = profile.Job;
-            role = profile.Role;
 
             var classData = MainData.GetCombatClassData(combatClass);
-
-            baseAttackSpeed = classData.AttackSpeed;
         }
 
-
-        private void Awake()
+        protected void Start()
         {
-            // TODO. OnTest
             Initialize(characterName ?? "Diablo");
+            
+            OnStart?.Invoke();
         }
 
         private void Update()
@@ -116,5 +118,10 @@ namespace Common.Character
             // Debug.Log($"{CharacterName} healed {healValue} by {healInfo.Provider.GetComponent<CharacterBehaviour>().CharacterName}");
         }
         public virtual void TakeExtra(IExtraProvider extra) {}
+
+#if UNITY_EDITOR
+        [Button]
+        private void Initialize() => Initialize(characterName);
+#endif
     }
 }

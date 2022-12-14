@@ -16,9 +16,21 @@ namespace MainGame.Data.ContentData
         {
 			[SerializeField] private Int32 id;
 			[SerializeField] private String name;
+			[SerializeField] private String part;
+			[SerializeField] private Double hp;
+			[SerializeField] private Single critical;
+			[SerializeField] private Single haste;
+			[SerializeField] private Single hit;
+			[SerializeField] private Single evade;
 
 			public Int32 ID => id;
 			public String Name => name;
+			public String Part => part;
+			public Double HP => hp;
+			public Single Critical => critical;
+			public Single Haste => haste;
+			public Single Hit => hit;
+			public Single Evade => evade;
 
         }
         

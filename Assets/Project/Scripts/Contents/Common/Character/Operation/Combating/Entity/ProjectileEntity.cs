@@ -25,6 +25,11 @@ namespace Common.Character.Operation.Combating.Entity
             // projectile.SetDestination(destination)
         }
 
+        public override void SetEntity()
+        {
+            
+        }
+
         private void OnEnable()
         {
             Skill.OnCompleted.Register(InstanceID, Fire);

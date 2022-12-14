@@ -5,7 +5,6 @@ using Sirenix.OdinInspector.Editor;
 
 using System;
 using System.Collections.Generic;
-using Sirenix.OdinInspector;
 using UnityEngine;
 using Skill = MainGame.Data.ContentData.SkillData.Skill;
 
@@ -21,8 +20,8 @@ namespace Common.Character.Operation.Combating
         protected Skill SkillData => Skill.SkillData;
         protected CharacterBehaviour Cb => Skill.Combat.Cb;
 
-        [ShowInInspector]
         public abstract bool IsReady { get; }
+        public abstract void SetEntity();
 
         protected virtual void Awake()
         {

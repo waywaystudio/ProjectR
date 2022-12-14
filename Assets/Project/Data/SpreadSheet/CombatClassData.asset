@@ -1,0 +1,176 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c7a20a4b652ae1e4a8b2a152202017b8, type: 3}
+  m_Name: CombatClassData
+  m_EditorClassIdentifier: 
+  category: 12
+  list:
+  - id: 12000001
+    name: Warrior
+    maxHp: 1000
+    moveSpeed: 7
+    critical: 0.05
+    haste: 0
+    hit: 0.95
+    evade: 0
+  - id: 12000002
+    name: Paladin
+    maxHp: 1000
+    moveSpeed: 7
+    critical: 0.05
+    haste: 0
+    hit: 0.95
+    evade: 0
+  - id: 12000003
+    name: Load
+    maxHp: 1000
+    moveSpeed: 7
+    critical: 0.05
+    haste: 0
+    hit: 0.95
+    evade: 0
+  - id: 12000004
+    name: DeathKnight
+    maxHp: 1000
+    moveSpeed: 7
+    critical: 0.05
+    haste: 0
+    hit: 0.95
+    evade: 0
+  - id: 12000005
+    name: Druid
+    maxHp: 1000
+    moveSpeed: 7
+    critical: 0.05
+    haste: 0
+    hit: 0.95
+    evade: 0.05
+  - id: 12000006
+    name: Rogue
+    maxHp: 700
+    moveSpeed: 7
+    critical: 0.05
+    haste: 0.05
+    hit: 0.95
+    evade: 0.05
+  - id: 12000007
+    name: Lancer
+    maxHp: 700
+    moveSpeed: 7
+    critical: 0.05
+    haste: 0.05
+    hit: 0.95
+    evade: 0
+  - id: 12000008
+    name: Fighter
+    maxHp: 700
+    moveSpeed: 7
+    critical: 0.05
+    haste: 0.05
+    hit: 0.95
+    evade: 0.05
+  - id: 12000009
+    name: Berserker
+    maxHp: 700
+    moveSpeed: 7
+    critical: 0.05
+    haste: 0.05
+    hit: 0.95
+    evade: 0
+  - id: 12000010
+    name: Blade
+    maxHp: 700
+    moveSpeed: 7
+    critical: 0.05
+    haste: 0.05
+    hit: 0.95
+    evade: 0
+  - id: 12000011
+    name: Hunter
+    maxHp: 600
+    moveSpeed: 7
+    critical: 0.05
+    haste: 0.05
+    hit: 0.95
+    evade: 0
+  - id: 12000012
+    name: Wizard
+    maxHp: 600
+    moveSpeed: 7
+    critical: 0.05
+    haste: 0
+    hit: 0.95
+    evade: 0
+  - id: 12000013
+    name: Warlock
+    maxHp: 600
+    moveSpeed: 7
+    critical: 0.05
+    haste: 0
+    hit: 0.95
+    evade: 0
+  - id: 12000014
+    name: Sniper
+    maxHp: 600
+    moveSpeed: 7
+    critical: 0.05
+    haste: 0
+    hit: 0.95
+    evade: 0
+  - id: 12000015
+    name: Summoner
+    maxHp: 600
+    moveSpeed: 7
+    critical: 0.05
+    haste: 0
+    hit: 0.95
+    evade: 0
+  - id: 12000016
+    name: Priest
+    maxHp: 500
+    moveSpeed: 7
+    critical: 0.05
+    haste: 0
+    hit: 0.95
+    evade: 0
+  - id: 12000017
+    name: Angel
+    maxHp: 500
+    moveSpeed: 7
+    critical: 0.05
+    haste: 0
+    hit: 0.95
+    evade: 0.05
+  - id: 12000018
+    name: Bard
+    maxHp: 500
+    moveSpeed: 7
+    critical: 0.05
+    haste: 0
+    hit: 0.95
+    evade: 0
+  - id: 12000019
+    name: Shaman
+    maxHp: 500
+    moveSpeed: 7
+    critical: 0.05
+    haste: 0
+    hit: 0.95
+    evade: 0
+  - id: 12000020
+    name: HolyKnight
+    maxHp: 500
+    moveSpeed: 7
+    critical: 0.05
+    haste: 0
+    hit: 0.95
+    evade: 0

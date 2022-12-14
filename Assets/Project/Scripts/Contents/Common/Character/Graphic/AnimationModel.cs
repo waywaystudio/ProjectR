@@ -62,8 +62,8 @@ namespace Common.Character.Graphic
             Play("channeling", 0, false, fixedTime, actionBuffer);
         }
         
-        public void Walk(Vector3 fakeValue) => Play("walk");
-        public void Run(Vector3 fakeValue)=> Play("run");
+        public void Walk() => Play("walk");
+        public void Run()=> Play("run");
         // Attack Variants...
         // PowerAttack
         // Ultimate

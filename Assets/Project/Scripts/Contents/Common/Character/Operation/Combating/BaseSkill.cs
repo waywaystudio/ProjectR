@@ -28,6 +28,9 @@ namespace Common.Character.Operation.Combating
     {
         [SerializeField] protected int id;
         [SerializeField] protected string skillName;
+        [SerializeField] protected string animationKey;
+        [SerializeField] protected int priority;
+        
         protected int InstanceID;
         
         private Combat combat;
@@ -35,16 +38,16 @@ namespace Common.Character.Operation.Combating
         private Skill skillData;
 
         public int ID => id;
+        public string SkillName => skillName ??= GetType().Name;
+        public string AnimationKey { get => animationKey; set => animationKey = value; }
+        public int Priority { get => priority; set => priority = value; }
+        
         public Combat Combat => combat ??= GetComponentInParent<Combat>();
         public CharacterBehaviour Cb => cb ??= Combat.Cb;
-        public string SkillName => skillName ??= GetType().Name;
         public Skill SkillData => skillData ??= MainData.GetSkillData(SkillName);
-        
-        public string AnimationKey { get; private set; }
-        public int Priority { get; set; }
-        public bool IsSkillFinished { get; set; }
         public Dictionary<EntityType, BaseEntity> EntityTable { get; } = new();
         
+        public bool IsSkillFinished { get; set; }
         public bool IsSkillReady => EntityTable.All(x => x.Value.IsReady);
         public bool IsCoolTimeReady =>!EntityTable.ContainsKey(EntityType.CoolTime) || 
                                        EntityTable[EntityType.CoolTime].IsReady;
@@ -143,8 +146,9 @@ namespace Common.Character.Operation.Combating
         protected void Awake()
         {
             skillName ??= GetType().Name;
-            AnimationKey = SkillData.AnimationKey;
-            Priority = SkillData.Priority;
+            skillData = MainData.GetSkillData(skillName);
+            animationKey = SkillData.AnimationKey;
+            priority = SkillData.Priority;
             InstanceID = GetInstanceID();
         }
 
@@ -155,7 +159,7 @@ namespace Common.Character.Operation.Combating
 
         protected void OnDisable()
         {
-            Combat.SkillTable.RemoveSafely(id);
+            Combat.SkillTable.TryRemove(id);
             DeActiveSkill();
         }
 
@@ -168,10 +172,14 @@ namespace Common.Character.Operation.Combating
         [Button]
         protected void InEditorGetData()
         {
-            id = SkillData.ID;
-            AnimationKey = SkillData.AnimationKey;
-            Priority = SkillData.Priority;
+            skillName = GetType().Name;
+            skillData = MainData.GetSkillData(skillName);
+            id = skillData.ID;
+            AnimationKey = skillData.AnimationKey;
+            Priority = skillData.Priority;
             UnityEditor.EditorUtility.SetDirty(this);
+
+            GetComponents<BaseEntity>().ForEach(x => x.SetEntity());
         }
         #endregion
 #endif
