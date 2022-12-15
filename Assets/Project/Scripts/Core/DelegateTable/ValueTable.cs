@@ -77,7 +77,7 @@ namespace Core
         /// <param>double type value
         ///     <name>value</name>
         /// </param>
-        public void RegisterMultiplyType(string key, float value, bool compare = true)
+        public void RegisterMultiType(string key, float value, bool compare = true)
         {
             if (compare)
             {
@@ -123,6 +123,7 @@ namespace Core
 
             return result;
         }
+        
         private float MultiPly()
         {
             var result = 1.0f;
