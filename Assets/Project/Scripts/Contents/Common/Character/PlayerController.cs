@@ -30,7 +30,7 @@ public class PlayerController : MonoBehaviour
         var input = context.ReadValue<Vector2>();
         
         direction = new Vector3(input.x, 0f, input.y);
-        animationModel.Flip(direction);
+        // animationModel.Flip(direction);
 
         if (context.canceled)
         {

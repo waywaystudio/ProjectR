@@ -4,6 +4,11 @@ namespace MainGame.Manager.Combat
 {
     public class CombatManager : MonoBehaviour
     {
+        // for GlobalCoolTime, CoolTime multiplier (reduce)
+        public static float GetHasteValue(float haste) => 100f * (1f / (100 * (1f + haste)));
+        // for Animation speed (increase)
+        public static float GetInverseHasteValue(float haste) => 1f + haste;
+
         private static bool IsHit(float hit, float evade)
         {
             var hitChance = hit - evade;

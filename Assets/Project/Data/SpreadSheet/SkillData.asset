@@ -22,7 +22,7 @@ MonoBehaviour:
     priority: 1
     assignedClass:
     - All
-    animationKey: Attack
+    animationKey: attack
     targetCount: 1
     targetLayer: enemy
     skillType: damage
@@ -35,7 +35,7 @@ MonoBehaviour:
     priority: 5
     assignedClass:
     - Warrior
-    animationKey: Skill
+    animationKey: skill
     targetCount: 1
     targetLayer: enemy
     skillType: damage
@@ -48,7 +48,7 @@ MonoBehaviour:
     priority: 5
     assignedClass:
     - Rogue
-    animationKey: Skill
+    animationKey: skill
     targetCount: 1
     targetLayer: enemy
     skillType: damage
@@ -62,7 +62,7 @@ MonoBehaviour:
     assignedClass:
     - Hunter
     - Sniper
-    animationKey: Skill
+    animationKey: skill
     targetCount: 1
     targetLayer: enemy
     skillType: damage
@@ -75,7 +75,7 @@ MonoBehaviour:
     priority: 1
     assignedClass:
     - DeathKnight
-    animationKey: Skill
+    animationKey: skill
     targetCount: 1
     targetLayer: ally
     skillType: transcendence
@@ -88,7 +88,7 @@ MonoBehaviour:
     priority: 5
     assignedClass:
     - Druid
-    animationKey: Skill
+    animationKey: skill
     targetCount: 5
     targetLayer: enemy
     skillType: damage
@@ -101,7 +101,7 @@ MonoBehaviour:
     priority: 5
     assignedClass:
     - Lancer
-    animationKey: Skill
+    animationKey: skill
     targetCount: 16
     targetLayer: enemy
     skillType: damage
@@ -114,7 +114,7 @@ MonoBehaviour:
     priority: 5
     assignedClass:
     - Fighter
-    animationKey: Channeling
+    animationKey: channeling
     targetCount: 1
     targetLayer: enemy
     skillType: damage
@@ -127,7 +127,7 @@ MonoBehaviour:
     priority: 1
     assignedClass:
     - Berserker
-    animationKey: Skill
+    animationKey: skill
     targetCount: 1
     targetLayer: ally
     skillType: transcendence
@@ -140,7 +140,7 @@ MonoBehaviour:
     priority: 5
     assignedClass:
     - Blade
-    animationKey: Skill
+    animationKey: skill
     targetCount: 16
     targetLayer: enemy
     skillType: damage
@@ -153,7 +153,7 @@ MonoBehaviour:
     priority: 2
     assignedClass:
     - Wizard
-    animationKey: Skill
+    animationKey: skill
     targetCount: 1
     targetLayer: enemy
     skillType: damage
@@ -166,7 +166,7 @@ MonoBehaviour:
     priority: 2
     assignedClass:
     - Warlock
-    animationKey: Skill
+    animationKey: skill
     targetCount: 1
     targetLayer: enemy
     skillType: damage
@@ -180,7 +180,7 @@ MonoBehaviour:
     assignedClass:
     - Priest
     - ' Angel'
-    animationKey: Skill
+    animationKey: skill
     targetCount: 1
     targetLayer: ally
     skillType: heal
@@ -194,7 +194,7 @@ MonoBehaviour:
     assignedClass:
     - Angel
     - ' HolyKnight'
-    animationKey: Skill
+    animationKey: skill
     targetCount: 1
     targetLayer: ally
     skillType: heal
@@ -207,7 +207,7 @@ MonoBehaviour:
     priority: 3
     assignedClass:
     - Sharman
-    animationKey: Skill
+    animationKey: skill
     targetCount: 1
     targetLayer: ally
     skillType: heal
@@ -220,7 +220,7 @@ MonoBehaviour:
     priority: 5
     assignedClass:
     - Bard
-    animationKey: Skill
+    animationKey: channeling
     targetCount: 8
     targetLayer: ally
     skillType: heal

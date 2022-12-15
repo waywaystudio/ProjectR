@@ -67,7 +67,6 @@ MonoBehaviour:
   flag: 64
   skill: {fileID: 3073268482839418820}
   combatValue: 3
-  critical: 0.2
 --- !u!114 &8851566931181336460
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -114,7 +113,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   flag: 8
   skill: {fileID: 3073268482839418820}
-  castingTime: 1.5
+  originalCastingTime: 0
 --- !u!1 &2149634195031184608
 GameObject:
   m_ObjectHideFlags: 0
@@ -182,8 +181,6 @@ MonoBehaviour:
   flag: 1
   skill: {fileID: 5218544908929011682}
   combatValue: 2
-  critical: 0.2
-  hit: 0.95
 --- !u!114 &6818239259262965119
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -213,7 +210,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   flag: 8
   skill: {fileID: 5218544908929011682}
-  castingTime: 0.8
+  originalCastingTime: 0
 --- !u!114 &8976578391784397922
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -398,6 +395,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9ce0917d535b91a4b86058ce06b520a2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isAlive: 1
+  hp: 50
   characterName: Sylvanas
   id: 11000027
   combatClass: Sniper
@@ -408,8 +407,6 @@ MonoBehaviour:
   enemyLayer:
     serializedVersion: 2
     m_Bits: 256
-  isAlive: 1
-  hp: 50
 --- !u!54 &3744010700067239343
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -766,8 +763,6 @@ MonoBehaviour:
   flag: 1
   skill: {fileID: 3744010700775776668}
   combatValue: 25
-  critical: 0.2
-  hit: 0.95
 --- !u!114 &3744010700775776666
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -782,7 +777,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   flag: 8
   skill: {fileID: 3744010700775776668}
-  castingTime: 3
+  originalCastingTime: 0
 --- !u!114 &3744010700775776671
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1180,8 +1175,6 @@ MonoBehaviour:
   flag: 1
   skill: {fileID: 3744010701327891165}
   combatValue: 5
-  critical: 0.2
-  hit: 0.95
 --- !u!114 &3744010701327891163
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1261,7 +1254,7 @@ GameObject:
   - component: {fileID: 7579242206591959061}
   - component: {fileID: 2848071656403043623}
   m_Layer: 0
-  m_Name: Spine GameObject (hero-ess)
+  m_Name: SpineAnimation
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1369,7 +1362,7 @@ MonoBehaviour:
   disableRenderingOnOverride: 1
   updateTiming: 1
   unscaledTime: 0
-  _animationName: 
+  _animationName: idle
   loop: 1
   timeScale: 1
 --- !u!114 &6559285534544519571

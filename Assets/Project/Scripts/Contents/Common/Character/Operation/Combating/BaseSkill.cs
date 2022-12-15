@@ -74,58 +74,15 @@ namespace Common.Character.Operation.Combating
 
         public void ActiveSkill()
         {
-            switch (AnimationKey)
-            {
-                case "Attack":
-                {
-                    Cb.OnAttack.Register(InstanceID, StartSkill);
-                    Cb.OnAttackHit.Register(InstanceID, InvokeEvent);
-                    Cb.Attack(SkillName, CompleteSkill);
-                    break;
-                }
-                case "Skill":
-                {
-                    Cb.OnSkill.Register(InstanceID, StartSkill);
-                    Cb.OnSkillHit.Register(InstanceID, InvokeEvent);
-                    Cb.Skill(SkillName, CompleteSkill);
-                    break;
-                }
-                case "Channeling":
-                {
-                    Cb.OnChanneling.Register(InstanceID, StartSkill);
-                    Cb.OnChannelingHit.Register(InstanceID, InvokeEvent);
-                    Cb.Channeling(SkillName, CompleteSkill);
-                    break;
-                }
-
-                // add more case according to Animation, DamageMechanic...
-            }
+            Cb.OnSkill.Register(InstanceID, StartSkill);
+            Cb.OnSkillHit.Register(InstanceID, InvokeEvent);
+            Cb.Skill(SkillName, CompleteSkill);
         }
 
         public void DeActiveSkill()
         {
-            switch (AnimationKey)
-            {
-                case "Attack":
-                {
-                    Cb.OnAttack.UnRegister(InstanceID);
-                    Cb.OnAttackHit.UnRegister(InstanceID);
-                    break;
-                }
-                case "Skill":
-                {
-                    Cb.OnSkill.UnRegister(InstanceID);
-                    Cb.OnSkillHit.UnRegister(InstanceID);
-                    break;
-                }
-                case "Channeling":
-                {
-                    Cb.OnChanneling.UnRegister(InstanceID);
-                    Cb.OnChannelingHit.UnRegister(InstanceID);
-                    break;
-                }
-                // add more case according to Animation, DamageMechanic...
-            }
+            Cb.OnSkill.UnRegister(InstanceID);
+            Cb.OnSkillHit.UnRegister(InstanceID);
         }
 
         public bool TryGetEntity<T>(EntityType entityType, out T result) where T : BaseEntity

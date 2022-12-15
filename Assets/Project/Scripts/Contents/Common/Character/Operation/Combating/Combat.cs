@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using Core;
+using MainGame.Manager.Combat;
 using Sirenix.OdinInspector;
 using UnityEngine;
 
@@ -18,7 +19,7 @@ namespace Common.Character.Operation.Combating
         [ShowInInspector]
         public Dictionary<int, BaseSkill> SkillTable { get; } = new();
         public BaseSkill CurrentSkill { get; set; }
-        public float GlobalCoolTime { get; set; } = 1.2f;
+        public float GlobalCoolTime => 1.2f * CombatManager.GetHasteValue(Cb.Haste.ResultToFloat);
         public bool IsGlobalCooling { get; set; }
         public bool IsCurrentSkillFinished => CurrentSkill == null || CurrentSkill.IsSkillFinished;
         

@@ -18,7 +18,7 @@ namespace Common.Character.Operation.Combating.Entity
         private readonly List<ICombatTaker> combatTakerFilterCache = new();
 
         public override bool IsReady => CombatTaker != null;
-        public float Range { get => range; set => range = value; }
+        public float Range => range;
 
         public List<ICombatTaker> CombatTakerList
         {
@@ -69,6 +69,8 @@ namespace Common.Character.Operation.Combating.Entity
             combatTaker = CombatTakerList.IsNullOrEmpty() 
                 ? searchedList.Select(x => x.GetComponent<ICombatTaker>()).FirstOrDefault()
                 : combatTakerList.First();
+
+            Cb.MainTarget = combatTaker;
         }
 
         public override void SetEntity()
@@ -83,7 +85,7 @@ namespace Common.Character.Operation.Combating.Entity
             base.Awake();
 
             SetEntity();
-            
+
             searchedList = targetLayerType is "ally"
                 ? Cb.CharacterSearchedList // ally
                 : Cb.MonsterSearchedList;  // enemy

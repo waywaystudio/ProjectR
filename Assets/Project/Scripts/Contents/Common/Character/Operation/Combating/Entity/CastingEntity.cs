@@ -1,5 +1,6 @@
 using System;
 using System.Collections;
+using MainGame.Manager.Combat;
 using Sirenix.OdinInspector;
 using UnityEngine;
 
@@ -8,13 +9,13 @@ namespace Common.Character.Operation.Combating.Entity
     [Serializable]
     public class CastingEntity : BaseEntity
     {
-        [SerializeField] private float castingTime;
+        [SerializeField] private float originalCastingTime;
         private float castingTick;
         private bool onCasting;
         private float remainTimer;
         
         [ShowInInspector]
-        private float CastingTime { get => castingTime; set => castingTime = value; }
+        private float CastingTime => originalCastingTime * CombatManager.GetHasteValue(Cb.Haste.ResultToFloat);
         private float CastingTick { get => castingTick; set => castingTick = value; }
         [ShowInInspector]
         private float RemainTimer
@@ -27,7 +28,7 @@ namespace Common.Character.Operation.Combating.Entity
 
         public override void SetEntity()
         {
-            CastingTime = SkillData.CastingTime;
+            originalCastingTime = SkillData.CastingTime;
             RemainTimer = 0;
             CastingTick = Time.deltaTime;
         }

@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using Sirenix.OdinInspector;
 using Spine;
@@ -21,7 +22,12 @@ namespace Common.Character.Graphic
 
         private SkeletonAnimation SkAnimation => skAnimation ??= GetComponent<SkeletonAnimation>();
         private CharacterBehaviour Cb => cb ??= GetComponentInParent<CharacterBehaviour>();
-        private Dictionary<string, EventData> EventTable { get; set; } = new();
+        private Dictionary<string, EventData> EventTable { get; } = new();
+
+        private void OnEnable()
+        {
+            SkAnimation.AnimationState.Event += EventHandler;
+        }
 
         private void Start()
         {
@@ -29,27 +35,21 @@ namespace Common.Character.Graphic
             
             var eventHolder = SkAnimation.Skeleton.Data;
             eventHolder.Events.ForEach(x => EventTable.Add(x.Name, eventHolder.FindEvent(x.Name)));
-            
-            SkAnimation.AnimationState.Event += EventHandler;
         }
 
         private void EventHandler(TrackEntry trackEntry, Event e)
         {
             if (e.Data == EventTable["attackHit"])
             {
-                Cb.AttackHit();
+                Cb.SkillHit();
             }
-            else if (e.Data == EventTable["footstep"])
-            {
-                // Cb.Footstep();
-            }
-            else if (e.Data == EventTable["skillHit"])
+            if (e.Data == EventTable["skillHit"])
             {
                 Cb.SkillHit();
             }
             else if (e.Data == EventTable["channelingHit"])
             {
-                Cb.ChannelingHit();
+                Cb.SkillHit();
             }
         }
 

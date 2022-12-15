@@ -15,6 +15,7 @@ namespace Core
         ///     <name>key</name>
         /// </param>
         public void UnRegister(int key) => ContainsKey(key).OnTrue(() => Remove(key));
+        public void UnRegister() => Clear();
     }
 
     public class ActionTable : DelegateTable<Action>

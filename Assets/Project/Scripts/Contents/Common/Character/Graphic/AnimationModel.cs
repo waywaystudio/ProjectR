@@ -1,5 +1,6 @@
 using System;
 using MainGame;
+using MainGame.Manager.Combat;
 using Spine;
 using Spine.Unity;
 using UnityEngine;
@@ -14,54 +15,33 @@ namespace Common.Character.Graphic
         private CharacterBehaviour cb;
         private SkeletonAnimation skeletonAnimation;
         private Spine.AnimationState state;
-        private Action actionBuffer;
         private int instanceID;
+        private Action actionBuffer;
+        private TrackEntry entryBuffer;
 
         public Animation TargetAnimation { get; private set; }
         private CharacterBehaviour Cb => cb ??= GetComponentInParent<CharacterBehaviour>();
 
-
-        public void LookLeft() => skeletonAnimation.Skeleton.ScaleX = 1.0f;
-        public void LookRight() => skeletonAnimation.Skeleton.ScaleX = -1.0f;
-
         // Preset :: Do What;
         public void Idle() => Play("idle");
-        public void Attack(string skillName, Action callback)
-        {
-            var skillData = MainData.GetSkillData(skillName);
-            var fixedTime = skillData.CastingTime;
-
-            actionBuffer = null;
-            actionBuffer += callback;
-            actionBuffer += Idle;
-
-            Play("attack", 0, false, fixedTime, actionBuffer);
-        }
-
         public void Skill(string skillName, Action callback)
         {
             var skillData = MainData.GetSkillData(skillName);
             var fixedTime = skillData.CastingTime;
+            var animationKey = skillData.AnimationKey;
+            
+            // Assign Haste 
+            var animationHasteValue = CombatManager.GetInverseHasteValue(Cb.Haste.ResultToFloat);
+            var inverse = CombatManager.GetHasteValue(Cb.Haste.ResultToFloat);
+            state.TimeScale *= animationHasteValue;
             
             actionBuffer = null;
             actionBuffer += callback;
             actionBuffer += Idle;
+            actionBuffer += () => state.TimeScale *= inverse;
             
-            Play("skill", 0, false, fixedTime, actionBuffer);
+            Play(animationKey, 0, false, fixedTime, actionBuffer);
         }
-        
-        public void Channeling(string skillName, Action callback)
-        {
-            var skillData = MainData.GetSkillData(skillName);
-            var fixedTime = skillData.CastingTime;
-
-            actionBuffer = null;
-            actionBuffer += callback;
-            actionBuffer += Idle;
-            
-            Play("channeling", 0, false, fixedTime, actionBuffer);
-        }
-        
         public void Walk() => Play("walk");
         public void Run()=> Play("run");
         // Attack Variants...
@@ -72,8 +52,73 @@ namespace Common.Character.Graphic
         // Dead
         // InstantSpell
         // CastingSpell
+        
 
-        public void Flip(Vector3 direction)
+        private void Play(string animationKey, int layer = 0, bool loop = true, float fixedTime = 0f, Action callback = null)
+        {
+            if (!modelData.TryGetAnimation(animationKey, out var target))
+            {
+                Debug.LogError($"Not Exist Animation Key {animationKey}");
+                return;
+            }
+            
+            Play(target, layer, loop, fixedTime, callback);
+        }
+
+        private void Play(Animation target, int layer, bool loop, float customTime, Action callback)
+        {
+            entryBuffer = null;
+            
+            // if Target Animation is same with Current, and it is loopTime, 
+            // but include callback.
+            if (target.Equals(TargetAnimation) && loop)
+            {
+                entryBuffer = state.GetCurrent(layer);
+                
+                if (callback != null) 
+                    entryBuffer.Complete += _ => callback.Invoke();
+                
+                return;
+            }
+            
+            // TODO. 현재 Animation A에서 B로 넘어갈때 트랜지션 Animation이 따로 있는 경우가 없다.
+            var hasCurrent = TryGetCurrentAnimation(layer, out var current);
+            var hasTransition = modelData.TryGetTransition(current, target, out var transition);
+
+            if (hasCurrent && hasTransition)
+            {
+                entryBuffer = state.SetAnimation(layer, transition, false);
+
+                if (callback != null) 
+                    entryBuffer.Complete += _ => callback.Invoke();
+                
+                state.AddAnimation(layer, target, loop, 0f);
+                return;
+            }
+
+            entryBuffer = state.SetAnimation(layer, target, loop);
+
+            // Assign Custom Fixed Animation Speed
+            if (customTime != 0f)
+            {
+                var originalDuration = target.Duration;
+                var toStaticValue = originalDuration / customTime;
+
+                state.TimeScale *= toStaticValue;
+                entryBuffer.Complete += _ => state.TimeScale /= toStaticValue;
+            }
+
+            // Handle Callback
+            if (callback != null)
+            {
+                entryBuffer.Complete += _ => callback.Invoke();
+            }
+
+            TargetAnimation = target;
+        }
+        
+        private void Flip() => Flip(Cb.Direction.Invoke());
+        private void Flip(Vector3 direction)
         {
             // 추후에는 x, z를 비교하여 캐릭터 방향의 상하좌우를 결정한다.
             // 지금 좌우 뿐이니, direction 의 x값만 알면된다.
@@ -85,64 +130,6 @@ namespace Common.Character.Graphic
             };
         }
 
-        public void Play(string animationKey, int layer = 0, bool loop = true, float fixedTime = 0f, Action callback = null)
-        {
-            if (!modelData.TryGetAnimation(animationKey, out var target))
-            {
-                Debug.LogError($"Not Exist Animation Key {animationKey}");
-                return;
-            }
-            
-            Play(target, layer, loop, fixedTime, callback);
-        }
-
-        private void Play(Animation target, int layer, bool loop, float speed = 0f, Action callback = null)
-        {
-            TrackEntry entry;
-            
-            if (target.Equals(TargetAnimation) && loop)
-            {
-                entry = state.GetCurrent(layer);
-                
-                if (callback != null) 
-                    entry.Complete += _ => callback.Invoke();
-                
-                return;
-            }
-            
-            var hasCurrent = TryGetCurrentAnimation(layer, out var current);
-            var hasTransition = modelData.TryGetTransition(current, target, out var transition);
-
-            if (hasCurrent && hasTransition)
-            {
-                entry = state.SetAnimation(layer, transition, false);
-
-                if (callback != null) 
-                    entry.Complete += _ => callback.Invoke();
-                
-                state.AddAnimation(layer, target, loop, 0f);
-    
-                return;
-            }
-
-            entry = state.SetAnimation(layer, target, loop);
-            
-            if (speed != 0f)
-            {
-                var originalDuration = target.Duration;
-                var toStaticValue = originalDuration / speed;
-                var inverseValue = 1.0f / toStaticValue;
-
-                state.TimeScale *= toStaticValue;
-                entry.Complete += _ => state.TimeScale *= inverseValue;
-            }
-
-            if (callback != null) 
-                entry.Complete += _ => callback.Invoke();
-
-            TargetAnimation = target;
-        }
-    
         private bool TryGetCurrentAnimation(int layer, out Animation result)
         {
             result = state.GetCurrent(layer)?.Animation;
@@ -163,12 +150,8 @@ namespace Common.Character.Graphic
             Cb.OnIdle.Register(instanceID, Idle);
             Cb.OnWalk.Register(instanceID, Walk);
             Cb.OnRun.Register(instanceID, Run);
-            Cb.OnAttack.Register(instanceID, Attack);
             Cb.OnSkill.Register(instanceID, Skill);
-            Cb.OnChanneling.Register(instanceID, Channeling);
-            
-            Cb.OnLookLeft.Register(instanceID, LookLeft);
-            Cb.OnLookRight.Register(instanceID, LookRight);
+            Cb.OnUpdate.Register(instanceID, Flip);
         }
 
         private void OnDisable()
@@ -176,12 +159,8 @@ namespace Common.Character.Graphic
             Cb.OnIdle.UnRegister(instanceID);
             Cb.OnWalk.UnRegister(instanceID);
             Cb.OnRun.UnRegister(instanceID);
-            Cb.OnAttack.UnRegister(instanceID);
             Cb.OnSkill.UnRegister(instanceID);
-            Cb.OnChanneling.UnRegister(instanceID);
-            
-            Cb.OnLookLeft.UnRegister(instanceID);
-            Cb.OnLookRight.UnRegister(instanceID);
+            Cb.OnUpdate.UnRegister(instanceID);
         }
     }
 }

@@ -137,7 +137,7 @@ namespace Common.Character
         private void Update()
         {
             // searching.UpdateTargeting();
-            animationModel.Flip(transform.forward);
+            // animationModel.Flip(transform.forward);
         }
 
         public void Save()
