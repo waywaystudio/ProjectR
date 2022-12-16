@@ -34,8 +34,7 @@ namespace Unity.Linq
 
     public static partial class GameObjectExtensions
     {
-        static UnityEngine.GameObject GetGameObject<T>(T obj)
-            where T : UnityEngine.Object
+        private static UnityEngine.GameObject GetGameObject<T>(T obj) where T : UnityEngine.Object
         {
             var gameObject = obj as GameObject;
             if (gameObject == null)

@@ -13,7 +13,6 @@ namespace Core
             foreach (var item in list)
                 action(item);
         }
-        
 
         /// <summary>
         /// ForEach with Index : .ForEach((x, index) => x.Index() == index));

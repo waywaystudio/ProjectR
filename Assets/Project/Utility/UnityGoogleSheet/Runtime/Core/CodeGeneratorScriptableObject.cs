@@ -17,7 +17,7 @@ namespace UnityGoogleSheet.Core
             sheetInfo = info;
         }
         
-        private static SheetInfo sheetInfo;
+        private SheetInfo sheetInfo;
 
         public string GenerateForm { get; private set; } = 
 $@"/*     ===== Do not touch this. Auto Generated Code. =====    */

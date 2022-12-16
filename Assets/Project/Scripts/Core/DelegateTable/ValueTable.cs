@@ -80,7 +80,6 @@ namespace Core
         /// Return PlusTable.Sum + MultiplyTable.Multiply.
         /// Project R Calculate Sum Value First.
         /// </summary>
-        /// <returns>Calculated Value</returns>
         public override double Result => Sum * Multiply;
         private double Sum
         {
@@ -100,7 +99,6 @@ namespace Core
         /// Return PlusTable.Sum + MultiplyTable.Multiply.
         /// Project R Calculate Sum Value First.
         /// </summary>
-        /// <returns>Calculated Value</returns>
         public override float Result => Sum * Multiply;
         private float Sum
         {

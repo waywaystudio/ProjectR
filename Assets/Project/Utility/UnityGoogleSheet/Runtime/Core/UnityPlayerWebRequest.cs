@@ -4,16 +4,22 @@ using System.Text;
 using Newtonsoft.Json.Linq;
 using UnityEngine;
 using UnityEngine.Networking;
-using UnityGoogleSheet.Core.Exception;
-using UnityGoogleSheet.Core.HttpProtocolV2;
-using UnityGoogleSheet.Core.HttpProtocolV2.Models;
-using UnityGoogleSheet.Core.HttpProtocolV2.Res;
 
 namespace UnityGoogleSheet.Core
 {
+    using Exception;
+    using HttpProtocolV2;
+    using HttpProtocolV2.Models;
+    using HttpProtocolV2.Res;
+
     public class UnityPlayerWebRequest : MonoBehaviour, IHttpProtocol
     {
+        [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.SubsystemRegistration)]
+        public static void RuntimeInitialize() => instance = null;
+        
         public bool reqProcessing;
+        private static UnityPlayerWebRequest instance;
+
         public static UnityPlayerWebRequest Instance
         {
             get
@@ -27,13 +33,12 @@ namespace UnityGoogleSheet.Core
                 return instance;
             }
         }
-        private static UnityPlayerWebRequest instance;
+        
 
         public string baseURL => UgsConfig.Instance.GoogleScriptUrl;
 
         private void Awake()
         {
-            //singleton
             if (instance != null && instance != this)
             {
                 Destroy(gameObject);

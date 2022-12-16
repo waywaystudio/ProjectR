@@ -23,7 +23,7 @@ namespace UnityGoogleSheet.Editor.Core
     {
         public List<FileData> DriveFileDataList = new ();
         
-        private static readonly Stack<string> PrevFolderIDStack = new ();
+        private readonly Stack<string> prevFolderIDStack = new ();
         private string currentViewFolderID;
         private bool isWaitForCreate;
         private bool isInitiated;
@@ -100,14 +100,14 @@ namespace UnityGoogleSheet.Editor.Core
 
         private void ExplorerFolder(string fileID)
         {
-            PrevFolderIDStack.Push(currentViewFolderID);
+            prevFolderIDStack.Push(currentViewFolderID);
             currentViewFolderID = fileID;
             LoadDriveFiles(currentViewFolderID);
         }
 
         private void ToParent()
         {
-            var prevFolder = PrevFolderIDStack.Pop();
+            var prevFolder = prevFolderIDStack.Pop();
             currentViewFolderID = prevFolder;
             LoadDriveFiles(currentViewFolderID);
         }
@@ -118,7 +118,7 @@ namespace UnityGoogleSheet.Editor.Core
         {
             isInitiated = false;
             isWaitForCreate = false;
-            PrevFolderIDStack.Clear();
+            prevFolderIDStack.Clear();
             DriveFileDataList.Clear();
         }
     }

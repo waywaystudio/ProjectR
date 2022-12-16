@@ -5,6 +5,7 @@ using Spine;
 using Spine.Unity;
 using UnityEngine;
 using Animation = Spine.Animation;
+using AnimationState = Spine.AnimationState;
 
 namespace Common.Character.Graphic
 {
@@ -14,7 +15,7 @@ namespace Common.Character.Graphic
 
         private CharacterBehaviour cb;
         private SkeletonAnimation skeletonAnimation;
-        private Spine.AnimationState state;
+        private AnimationState state;
         private int instanceID;
         private Action actionBuffer;
         private TrackEntry entryBuffer;

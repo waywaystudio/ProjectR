@@ -49,6 +49,7 @@ namespace Core.Singleton
                 return;
 
             instance = null;
+            isFirst = false;
         }
     }
 }

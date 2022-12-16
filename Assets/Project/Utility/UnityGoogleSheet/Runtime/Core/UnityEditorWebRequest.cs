@@ -15,8 +15,12 @@ namespace UnityGoogleSheet.Core
 {
     public class UnityEditorWebRequest : IHttpProtocol
     {
-        public static UnityEditorWebRequest Instance => instance ??= new UnityEditorWebRequest();
+        [InitializeOnEnterPlayMode]
+        public static void RuntimeInitialize() => instance = null;
+        
         private static UnityEditorWebRequest instance;
+        
+        public static UnityEditorWebRequest Instance => instance ??= new UnityEditorWebRequest();
         public static string BaseUrl => UgsConfig.Instance.GoogleScriptUrl;
 
         private void Get<T>(string url, Action<System.Exception> errCallback, Action<T> callback) where T : Response

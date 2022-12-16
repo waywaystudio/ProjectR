@@ -6,7 +6,7 @@ namespace UnityGoogleSheet.Core.Type
     [Type(typeof(bool), "bool", "Bool")]
     public class BooleanType : IType
     {
-        public object DefaultValue => 0.0f;
+        public object DefaultValue => false;
         public object Read(string value)
         {
             if (string.IsNullOrEmpty(value))

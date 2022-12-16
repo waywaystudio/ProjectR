@@ -4,6 +4,5 @@ namespace MainGame.Data
     {
         public int ID { get; }
         public string Name { get; }
-        // public string TextKey { get; }
     }
 }

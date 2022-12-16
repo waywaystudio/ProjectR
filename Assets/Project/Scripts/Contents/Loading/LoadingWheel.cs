@@ -10,7 +10,7 @@ namespace Loading
 
         private float barMaxLength = 800.0f;
         private float barHeight = 10.0f;
-        private static readonly int RotateWheel = Animator.StringToHash("RotateWheel");
+        private readonly int rotateWheel = Animator.StringToHash("RotateWheel");
 
         private void Awake()
         {
@@ -32,12 +32,12 @@ namespace Loading
 
         public void Play()
         {
-            animator.SetBool(RotateWheel, true);
+            animator.SetBool(rotateWheel, true);
         }
 
         public void Stop()
         {
-            animator.SetBool(RotateWheel, false);
+            animator.SetBool(rotateWheel, false);
         }
     }
 }

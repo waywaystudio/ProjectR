@@ -11,7 +11,7 @@ namespace Unity.Linq
         {
             foreach (var item in source)
             {
-                var e = item.Ancestors().GetEnumerator();
+                using var e = item.Ancestors().GetEnumerator();
                 while (e.MoveNext())
                 {
                     yield return e.Current;

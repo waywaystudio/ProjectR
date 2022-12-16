@@ -103,6 +103,6 @@ namespace MainGame.Data
         {
             SetCategory();
         }
-    }
 #endif
+    }
 }

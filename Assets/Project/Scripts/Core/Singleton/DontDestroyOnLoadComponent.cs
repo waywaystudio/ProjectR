@@ -63,4 +63,5 @@ namespace Core.Singleton
 
 /* Annotation
 MainGame 프리팹이 있는 씬에서 시작하여 다시 돌아올 때 새로 불려지는 씬의 MainGame 프리팹을 바로 삭제하기 위하여 
-해당 함수내에(38) DestroyImmediately를 사용했다. 조금 찝찝한 구석이 있다. */
+해당 함수내에(38) DestroyImmediately를 사용했다. 조금 찝찝한 구석이 있다. 
+DontDestroyOnLoadComponent 는 Script Execution Order 가 -10 으로 수동 설정되어 있다. */

@@ -38,29 +38,51 @@
 using UnityEditor;
 using UnityEngine;
 
-namespace Spine.Unity.Editor {
+namespace Spine.Unity.Editor 
+{
 	using Icons = SpineEditorUtilities.Icons;
 
 	[CustomEditor(typeof(SkeletonGraphic))]
 	[CanEditMultipleObjects]
-	public class SkeletonGraphicInspector : UnityEditor.Editor {
-
-		const string SeparatorSlotNamesFieldName = "separatorSlotNames";
-		const string ReloadButtonString = "Reload";
+	public class SkeletonGraphicInspector : UnityEditor.Editor 
+	{
+		private const string SeparatorSlotNamesFieldName = "separatorSlotNames";
+		private const string ReloadButtonString = "Reload";
 		protected GUIContent SkeletonDataAssetLabel, UpdateTimingLabel;
-		static GUILayoutOption reloadButtonWidth;
-		static GUILayoutOption ReloadButtonWidth { get { return reloadButtonWidth = reloadButtonWidth ?? GUILayout.Width(GUI.skin.label.CalcSize(new GUIContent(ReloadButtonString)).x + 20); } }
-		static GUIStyle ReloadButtonStyle { get { return EditorStyles.miniButton; } }
+		private static GUILayoutOption reloadButtonWidth;
 
-		SerializedProperty material, color;
-		SerializedProperty additiveMaterial, multiplyMaterial, screenMaterial;
-		SerializedProperty skeletonDataAsset, initialSkinName;
-		SerializedProperty startingAnimation, startingLoop, timeScale, freeze,
-			updateTiming, updateWhenInvisible, unscaledTime, tintBlack;
-		SerializedProperty initialFlipX, initialFlipY;
-		SerializedProperty meshGeneratorSettings;
-		SerializedProperty allowMultipleCanvasRenderers, separatorSlotNames, enableSeparatorSlots, updateSeparatorPartLocation;
-		SerializedProperty raycastTarget, maskable;
+		private static GUILayoutOption ReloadButtonWidth
+		{
+			get
+			{
+				return reloadButtonWidth = reloadButtonWidth ??
+										   GUILayout.Width(GUI.skin.label.CalcSize(new GUIContent(ReloadButtonString))
+															  .x + 20);
+			}
+		}
+
+		private static GUIStyle ReloadButtonStyle => EditorStyles.miniButton;
+
+		private SerializedProperty material, color;
+		private SerializedProperty additiveMaterial, multiplyMaterial, screenMaterial;
+		private SerializedProperty skeletonDataAsset, initialSkinName;
+		private SerializedProperty startingAnimation,
+								   startingLoop,
+								   timeScale,
+								   freeze,
+								   updateTiming,
+								   updateWhenInvisible,
+								   unscaledTime,
+								   tintBlack;
+
+		private SerializedProperty initialFlipX, initialFlipY;
+		private SerializedProperty meshGeneratorSettings;
+		private SerializedProperty allowMultipleCanvasRenderers,
+								   separatorSlotNames,
+								   enableSeparatorSlots,
+								   updateSeparatorPartLocation;
+
+		private SerializedProperty raycastTarget, maskable;
 
 		readonly GUIContent UnscaledTimeLabel = new GUIContent("Unscaled Time",
 			"If enabled, AnimationState uses unscaled game time (Time.unscaledDeltaTime), " +

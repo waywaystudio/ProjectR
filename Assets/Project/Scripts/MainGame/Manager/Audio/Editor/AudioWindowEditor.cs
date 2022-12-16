@@ -1,14 +1,12 @@
 ﻿#if ODIN_INSPECTOR
 using System.Collections.Generic;
-using MainGame.Manager.Audio;
 using Sirenix.OdinInspector;
 using Sirenix.OdinInspector.Editor;
 using Sirenix.Utilities.Editor;
 using UnityEditor;
 using UnityEngine;
-using AudioType = MainGame.Manager.Audio.AudioType;
 
-namespace Main.Manager.Audio.Editor
+namespace MainGame.Manager.Audio.Editor
 {
     public class AudioWindowEditor : OdinMenuEditorWindow
     {
