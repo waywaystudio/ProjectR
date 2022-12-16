@@ -5,140 +5,111 @@ using UnityEngine;
 
 namespace Core
 {
-    [Serializable]
-    public class ValueTable
+    public abstract class BaseValueTable<T> where T : IComparable
     {
-        [ShowInInspector] protected Dictionary<string, double> SumTable = new();
-        [ShowInInspector] protected Dictionary<string, float> MultiplyTable = new();
-        
-        /// <summary>
-        /// Return PlusTable.Sum() + MultiplyTable.Multiply.
-        /// Project R Calculate Sum Value First.
-        /// </summary>
-        /// <returns>Calculated Value</returns>
-        [ShowInInspector] public double Result => Sum() * MultiPly();
-        public float ResultToFloat => (float)Sum() * MultiPly();
+        [ShowInInspector] protected Dictionary<string, Func<T>> SumTable = new();
+        [ShowInInspector] protected Dictionary<string, Func<float>> MultiTable = new();
+        [ShowInInspector]
+        public abstract T Result { get; }
+        protected float Multiply
+        {
+            get
+            {
+                var result = 1.0f;
+            
+                MultiTable.ForEach(x =>
+                {
+                    if (x.Value.Invoke() == 0.0f) Debug.LogWarning($"0 multiplied from : {x.Key}");
+                    result *= x.Value.Invoke();
+                });
 
+                return result;
+            }
+        }
+        
         /// <summary>
         /// Register SumType Value.
         /// if Table has already key, compare absolute Value and select bigger.
+        /// highly recommend on static value. (ex. field)
         /// </summary>
-        /// <param>custom key (ex.Equipment)
-        ///     <name>key</name>
-        /// </param>
-        /// <param>double type value
-        ///     <name>value</name>
-        /// </param>
-        public void RegisterSumType(string key, double value, bool compare = true)
-        {
-            if (compare)
-            {
-                if (SumTable.ContainsKey(key))
-                {
-                    if (Math.Abs(SumTable[key]) < Math.Abs(value))
-                    {
-                        SumTable[key] = value;
-                    }
-                }
-
-                SumTable.TryAdd(key, value);
-                return;
-            }
-            
-            if (SumTable.ContainsKey(key))
-            {
-                SumTable[key] = value;
-                return;
-            }
-
-            SumTable.TryAdd(key, value);
-        }
-
-        public void RegisterSumTypeOverwrite(string key, double value)
-        {
-            if (SumTable.ContainsKey(key))
-            {
-                SumTable[key] = value;
-            }
-            
-            SumTable.TryAdd(key, value);
-        }
-
-        public void UnregisterSumType(string key) => SumTable.TryRemove(key);
+        public void RegisterSumType(string key, T value, bool overwrite = false) => RegisterType(SumTable, key, () => value, overwrite);
+        
+        
+        /// <summary>
+        /// Register SumType Value.
+        /// if Table has already key, compare absolute Value and select bigger.
+        /// highly recommend on dynamic value. (ex. property, function)
+        /// </summary>
+        public void RegisterSumType(string key, Func<T> value, bool overwrite = false) => RegisterType(SumTable, key, value, overwrite);
         
         /// <summary>
         /// Register MultiplyType Value.
         /// if Table has already key, compare absolute Value and select bigger.
+        /// highly recommend on static value.
         /// </summary>
+        public void RegisterMultiType(string key, float value, bool overwrite = false) => RegisterType(MultiTable, key, () => value, overwrite);
+        
+        /// <summary>
+        /// Register MultiplyType Value.
+        /// if Table has already key, compare absolute Value and select bigger.
+        /// highly recommend on dynamic value.
         /// </summary>
-        /// <param>custom key (ex.Equipment)
-        ///     <name>key</name>
-        /// </param>
-        /// <param>double type value
-        ///     <name>value</name>
-        /// </param>
-        public void RegisterMultiType(string key, float value, bool compare = true)
+        public void RegisterMultiType(string key, Func<float> value, bool overwrite = false) => RegisterType(MultiTable, key, value, overwrite);
+        public void UnregisterSumType(string key) => SumTable.TryRemove(key);
+        public void UnregisterMultiType(string key) => MultiTable.TryRemove(key);
+
+        protected void RegisterType<TValue>(IDictionary<string, Func<TValue>> table, string key, Func<TValue> value, bool overwrite = false) where TValue : IComparable
         {
-            if (compare)
+            if (table.ContainsKey(key))
             {
-                if (MultiplyTable.ContainsKey(key))
-                {
-                    if (Math.Abs(MultiplyTable[key]) < Math.Abs(value))
-                    {
-                        MultiplyTable[key] = value;
-                    }
-                }
-
-                MultiplyTable.TryAdd(key, value);
-                return;
+                if (overwrite || table[key].Invoke().CompareTo(value) == -1)
+                    table[key] = value;
             }
-            
-            if (MultiplyTable.ContainsKey(key))
-            {
-                MultiplyTable[key] = value;
-                return;
-            }
-
-            MultiplyTable.TryAdd(key, value);
+            else
+                table.Add(key, value);
         }
         
-        public void RegisterMultiplyTypeOverwrite(string key, float value)
+        public static bool operator >(BaseValueTable<T> tableA, BaseValueTable<T> tableB) => tableA.Result.CompareTo(tableB.Result) == -1;
+        public static bool operator <(BaseValueTable<T> tableA, BaseValueTable<T> tableB) => tableA.Result.CompareTo(tableB.Result) == 1;
+    }
+
+    [Serializable]
+    public class DoubleTable : BaseValueTable<double>
+    {
+        /// <summary>
+        /// Return PlusTable.Sum + MultiplyTable.Multiply.
+        /// Project R Calculate Sum Value First.
+        /// </summary>
+        /// <returns>Calculated Value</returns>
+        public override double Result => Sum * Multiply;
+        private double Sum
         {
-            if (MultiplyTable.ContainsKey(key))
+            get
             {
-                MultiplyTable[key] = value;
+                var value = 0d;
+                SumTable.ForEach(x => value += x.Value.Invoke());
+                return value;
             }
-            
-            MultiplyTable.TryAdd(key, value);
         }
-        
-        public void UnregisterMultiplyType(string key) => MultiplyTable.TryRemove(key);
-        
-        
-        private double Sum()
+    }
+    
+    [Serializable]
+    public class FloatTable : BaseValueTable<float>
+    {
+        /// <summary>
+        /// Return PlusTable.Sum + MultiplyTable.Multiply.
+        /// Project R Calculate Sum Value First.
+        /// </summary>
+        /// <returns>Calculated Value</returns>
+        public override float Result => Sum * Multiply;
+        private float Sum
         {
-            var result = 0d;
-            
-            SumTable.ForEach(x => result += x.Value);
-
-            return result;
-        }
-        
-        private float MultiPly()
-        {
-            var result = 1.0f;
-            
-            MultiplyTable.ForEach(x =>
+            get
             {
-                if (x.Value <= 0.0f)
-                {
-                    Debug.LogWarning($"{x.Value} multiplied from : {x.Key}");
-                }
-                
-                result *= x.Value;
-            });
-
-            return result;
+                var value = 0f;
+                SumTable.ForEach(x => value += x.Value.Invoke());
+                return value;
+            }
         }
     }
 }

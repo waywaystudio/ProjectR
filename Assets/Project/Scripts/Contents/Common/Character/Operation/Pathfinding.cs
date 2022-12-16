@@ -44,7 +44,7 @@ namespace Common.Character.Operation
         {
             var abPath = ABPath.Construct(cb.transform.position, destination);
 
-            aiMove.maxSpeed = cb.MoveSpeed.ResultToFloat;
+            aiMove.maxSpeed = cb.MoveSpeed.Result;
             agent.StartPath(abPath);
         }
 

@@ -34,11 +34,12 @@ namespace Common.Character.Data
 
         public List<EquipmentItem> EquipmentItemList => equipmentItemList;
         public CharacterBehaviour Cb => cb ??= GetComponentInParent<CharacterBehaviour>();
-        public double Hp { get; set; }
-        public float Critical { get; set; }
-        public float Haste { get; set; }
-        public float Hit { get; set; }
-        public float Evade { get; set; }
+
+        public double Hp => EquipmentItemList.Sum(x => x.Hp);
+        public float Critical => EquipmentItemList.Sum(x => x.Critical);
+        public float Haste => EquipmentItemList.Sum(x => x.Haste);
+        public float Hit => EquipmentItemList.Sum(x => x.Hit);
+        public float Evade => EquipmentItemList.Sum(x => x.Evade);
 
 
         private void Initialize()
@@ -48,22 +49,22 @@ namespace Common.Character.Data
 
         private void OnEquipmentChanged()
         {
-            Hp = EquipmentItemList.Sum(x => x.Hp);
-            Critical = EquipmentItemList.Sum(x => x.Critical);
-            Haste = EquipmentItemList.Sum(x => x.Haste);
-            Hit = EquipmentItemList.Sum(x => x.Hit);
-            Evade = EquipmentItemList.Sum(x => x.Evade);
+            // Hp = EquipmentItemList.Sum(x => x.Hp);
+            // Critical = EquipmentItemList.Sum(x => x.Critical);
+            // Haste = EquipmentItemList.Sum(x => x.Haste);
+            // Hit = EquipmentItemList.Sum(x => x.Hit);
+            // Evade = EquipmentItemList.Sum(x => x.Evade);
             
             AddValueTable();
         }
         
         private void AddValueTable()
         {
-            Cb.MaxHp.RegisterSumTypeOverwrite(EquipmentKey, Hp);
-            Cb.Critical.RegisterSumTypeOverwrite(EquipmentKey, Critical);
-            Cb.Haste.RegisterSumTypeOverwrite(EquipmentKey, Haste);
-            Cb.Hit.RegisterSumTypeOverwrite(EquipmentKey, Hit);
-            Cb.Evade.RegisterSumTypeOverwrite(EquipmentKey, Evade);
+            Cb.MaxHp.RegisterSumType(EquipmentKey, () => Hp, true);
+            Cb.Critical.RegisterSumType(EquipmentKey, () => Critical, true);
+            Cb.Haste.RegisterSumType(EquipmentKey, () => Haste, true);
+            Cb.Hit.RegisterSumType(EquipmentKey, () => Hit, true);
+            Cb.Evade.RegisterSumType(EquipmentKey, () => Evade, true);
         }
 
         private void Awake()

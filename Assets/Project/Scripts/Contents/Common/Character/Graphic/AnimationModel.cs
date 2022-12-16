@@ -21,8 +21,8 @@ namespace Common.Character.Graphic
 
         public Animation TargetAnimation { get; private set; }
         private CharacterBehaviour Cb => cb ??= GetComponentInParent<CharacterBehaviour>();
-
-        // Preset :: Do What;
+        
+        
         public void Idle() => Play("idle");
         public void Skill(string skillName, Action callback)
         {
@@ -31,8 +31,8 @@ namespace Common.Character.Graphic
             var animationKey = skillData.AnimationKey;
             
             // Assign Haste 
-            var animationHasteValue = CombatManager.GetInverseHasteValue(Cb.Haste.ResultToFloat);
-            var inverse = CombatManager.GetHasteValue(Cb.Haste.ResultToFloat);
+            var animationHasteValue = CombatManager.GetInverseHasteValue(Cb.Haste.Result);
+            var inverse = CombatManager.GetHasteValue(Cb.Haste.Result);
             state.TimeScale *= animationHasteValue;
             
             actionBuffer = null;

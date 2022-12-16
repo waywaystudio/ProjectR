@@ -3,16 +3,20 @@
     public class Singleton<T> where T : class, new()
     {
         private static T instance;
-        private static object @lock = new ();
-
         public static T Instance
         {
             get
             {
-                lock (@lock)
+                if (instance == null)
                 {
-                    return instance ??= new T();
+                    // Debug.Log("instance is null");
+                    instance = new T();
+
+                    return instance;
                 }
+
+                // Debug.Log("instance is Not null");
+                return instance;
             }
         }
 

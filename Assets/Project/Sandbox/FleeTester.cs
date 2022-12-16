@@ -40,7 +40,7 @@ public class FleeTester : MonoBehaviour
         
         dropPosition = hit.point;
         //
-        Debug.Log("Flee In");
+        // Debug.Log("Flee In");
         path = FleePath.Construct(transform.position, dropPosition, searchLength);
         path.aimStrength = strength;
         path.spread = spread;

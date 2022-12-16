@@ -12,6 +12,8 @@ namespace Common.Character
         // TEST
         [SerializeField] private bool isAlive = true;
         [SerializeField] private double hp = 1000;
+        public bool IsAlive { get => isAlive; set => isAlive = value; }
+        public double Hp { get => hp; set => hp = value; }
         //
         
         [SerializeField] private string characterName = string.Empty;
@@ -20,12 +22,12 @@ namespace Common.Character
         [SerializeField] private float searchingRange = 50f;
         [SerializeField] private LayerMask allyLayer;
         [SerializeField] private LayerMask enemyLayer;
-        [SerializeField] private ValueTable maxHp = new();
-        [SerializeField] private ValueTable moveSpeed = new();
-        [SerializeField] private ValueTable critical = new();
-        [SerializeField] private ValueTable haste = new();
-        [SerializeField] private ValueTable hit = new();
-        [SerializeField] private ValueTable evade = new();
+        [SerializeField] private DoubleTable maxHp = new();
+        [SerializeField] private FloatTable moveSpeed = new();
+        [SerializeField] private FloatTable critical = new();
+        [SerializeField] private FloatTable haste = new();
+        [SerializeField] private FloatTable hit = new();
+        [SerializeField] private FloatTable evade = new();
         
         public string CharacterName => characterName ??= "Diablo";
         public int ID => id;
@@ -41,18 +43,14 @@ namespace Common.Character
         public ActionTable<Vector3> OnRun { get; } = new();
         public ActionTable<string, Action> OnSkill { get; } = new();
         public ActionTable OnSkillHit { get; } = new(1);
-
         public FunctionTable<bool> IsReached { get; } = new();
         public FunctionTable<Vector3> Direction { get; } = new();
-        public bool IsAlive { get => isAlive; set => isAlive = value; }
-        public double Hp { get => hp; set => hp = value; }
-        
-        public ValueTable MaxHp => maxHp;
-        public ValueTable MoveSpeed => moveSpeed;
-        public ValueTable Critical => critical;
-        public ValueTable Haste => haste;
-        public ValueTable Hit => hit;
-        public ValueTable Evade => evade;
+        public DoubleTable MaxHp => maxHp;
+        public FloatTable MoveSpeed => moveSpeed;
+        public FloatTable Critical => critical;
+        public FloatTable Haste => haste;
+        public FloatTable Hit => hit;
+        public FloatTable Evade => evade;
 
         public List<GameObject> CharacterSearchedList { get; } = new();
         public List<GameObject> MonsterSearchedList { get; } = new();
@@ -71,21 +69,16 @@ namespace Common.Character
             characterName = profile.Name;
             id = profile.ID;
             combatClass = profile.Job;
-
-            var classData = MainData.GetCombatClassData(combatClass);
         }
 
         protected void Start()
         {
-            Initialize(characterName ?? "Diablo");
+            Initialize(CharacterName);
             
             OnStart?.Invoke();
         }
 
-        private void Update()
-        {
-            OnUpdate?.Invoke();
-        }
+        protected void Update() => OnUpdate?.Invoke();
 
         public virtual GameObject Taker => gameObject;
         public virtual void TakeDamage(IDamageProvider damageInfo) {}

@@ -9,8 +9,8 @@ namespace Common.Character.Operation.Combating.Entity
         
         public GameObject Provider => Cb.gameObject;
         public double CombatValue { get => combatValue; set => combatValue = value; }
-        public float Critical => Cb.Critical.ResultToFloat;
-        public float Hit => Cb.Hit.ResultToFloat;
+        public float Critical => Cb.Critical.Result;
+        public float Hit => Cb.Hit.Result;
 
         public override bool IsReady => true;
 

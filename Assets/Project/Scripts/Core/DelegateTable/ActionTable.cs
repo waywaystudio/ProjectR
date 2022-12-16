@@ -11,9 +11,6 @@ namespace Core
         /// <summary>
         /// Unregister Delegate by custom Key (like as Remove())
         /// </summary>
-        /// <param>Unique Custom key for find in Tables
-        ///     <name>key</name>
-        /// </param>
         public void UnRegister(int key) => ContainsKey(key).OnTrue(() => Remove(key));
         public void UnRegister() => Clear();
     }
@@ -26,12 +23,6 @@ namespace Core
         /// <summary>
         /// Register Delegate by custom Key (like as TryAdd())
         /// </summary>
-        /// <param>Unique Custom key for Add in Table (InstanceID Recommend)
-        ///     <name>key</name>
-        /// </param>
-        /// <param>Custom Action
-        ///     <name>action</name>
-        /// </param>
         public void Register(int key, Action action) => TryAdd(key, action);
         
         /// <summary>
@@ -48,12 +39,6 @@ namespace Core
         /// <summary>
         /// Register Delegate by custom Key (like as TryAdd())
         /// </summary>
-        /// <param>Unique Custom key for Add in Table (InstanceID Recommend)
-        ///     <name>key</name>
-        /// </param>
-        /// <param>Custom Action
-        ///     <name>action</name>
-        /// </param>
         public void Register(int key, Action action) => TryAdd(key, _ => action());
         public void Register(int key, Action<T0> action) => TryAdd(key, action);
         
@@ -68,12 +53,6 @@ namespace Core
         /// <summary>
         /// Register Delegate by custom Key (like as TryAdd())
         /// </summary>
-        /// <param>Unique Custom key for Add in Table (InstanceID Recommend)
-        ///     <name>key</name>
-        /// </param>
-        /// <param>Custom Action
-        ///     <name>action</name>
-        /// </param>
         public void Register(int key, Action action) => TryAdd(key, (_, _) => action?.Invoke());
         public void Register(int key, Action<T0> action) => TryAdd(key, (t0, _) => action?.Invoke(t0));
         public void Register(int key, Action<T1> action) => TryAdd(key, (_, t1) => action?.Invoke(t1));

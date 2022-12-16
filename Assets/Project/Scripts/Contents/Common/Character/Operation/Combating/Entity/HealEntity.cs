@@ -9,7 +9,7 @@ namespace Common.Character.Operation.Combating.Entity
         
         public GameObject Provider => Cb.gameObject;
         public double CombatValue => combatValue;
-        public float Critical => Cb.Critical.ResultToFloat;
+        public float Critical => Cb.Critical.Result;
 
         public override bool IsReady => true;
         

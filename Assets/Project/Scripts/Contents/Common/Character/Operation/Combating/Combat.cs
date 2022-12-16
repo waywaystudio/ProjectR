@@ -19,7 +19,7 @@ namespace Common.Character.Operation.Combating
         [ShowInInspector]
         public Dictionary<int, BaseSkill> SkillTable { get; } = new();
         public BaseSkill CurrentSkill { get; set; }
-        public float GlobalCoolTime => 1.2f * CombatManager.GetHasteValue(Cb.Haste.ResultToFloat);
+        public float GlobalCoolTime => 1.2f * CombatManager.GetHasteValue(Cb.Haste.Result);
         public bool IsGlobalCooling { get; set; }
         public bool IsCurrentSkillFinished => CurrentSkill == null || CurrentSkill.IsSkillFinished;
         

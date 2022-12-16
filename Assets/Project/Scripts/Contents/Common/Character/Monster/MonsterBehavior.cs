@@ -6,7 +6,7 @@ namespace Common.Character
 {
     public class MonsterBehavior : CharacterBehaviour
     {
-        private void Update()
+        protected new void Update()
         {
             if (!Input.GetMouseButtonDown(0)) return;
         
