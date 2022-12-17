@@ -1,5 +1,104 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &286356721480540612
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4099765645359084170}
+  - component: {fileID: 2330787471297126836}
+  - component: {fileID: 5386481532309463687}
+  - component: {fileID: 3765643770630641843}
+  - component: {fileID: 2448565528259500646}
+  m_Layer: 0
+  m_Name: BackStep
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4099765645359084170
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 286356721480540612}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 3744010701179384131}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2330787471297126836
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 286356721480540612}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 945b5592019fdce48918275d3f66f066, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  id: 13000003
+  skillName: BackStep
+  animationKey: skill
+  priority: 5
+  backMagnitude: 4.2
+--- !u!114 &5386481532309463687
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 286356721480540612}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bd2d098c14bb73641bcc6faff29af210, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  flag: 1
+  skill: {fileID: 2330787471297126836}
+  combatValue: 8
+--- !u!114 &3765643770630641843
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 286356721480540612}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9b71247a0c6287f44b49f848d90d357e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  flag: 2
+  skill: {fileID: 2330787471297126836}
+  coolTime: 15
+--- !u!114 &2448565528259500646
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 286356721480540612}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4c5f541185aa92b488eeff9b9e07cdfc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  flag: 16
+  skill: {fileID: 2330787471297126836}
+  targetLayerType: enemy
+  targetCount: 1
+  range: 18
 --- !u!1 &1262598914036150766
 GameObject:
   m_ObjectHideFlags: 0
@@ -12,7 +111,6 @@ GameObject:
   - component: {fileID: 3073268482839418820}
   - component: {fileID: 8565042087880124505}
   - component: {fileID: 8851566931181336460}
-  - component: {fileID: 1323641771641444915}
   - component: {fileID: 7186045105482579143}
   m_Layer: 0
   m_Name: FaithfulPrey
@@ -34,7 +132,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 3744010701179384131}
-  m_RootOrder: 3
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &3073268482839418820
 MonoBehaviour:
@@ -50,7 +148,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   id: 13000013
   skillName: FaithfulPrey
-  animationKey: Skill
+  animationKey: skill
   priority: 1
 --- !u!114 &8565042087880124505
 MonoBehaviour:
@@ -84,21 +182,6 @@ MonoBehaviour:
   targetLayerType: ally
   targetCount: 1
   range: 15
---- !u!114 &1323641771641444915
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1262598914036150766}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9b71247a0c6287f44b49f848d90d357e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  flag: 2
-  skill: {fileID: 3073268482839418820}
-  coolTime: 0
 --- !u!114 &7186045105482579143
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -113,7 +196,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   flag: 8
   skill: {fileID: 3073268482839418820}
-  originalCastingTime: 0
+  originalCastingTime: 1.5
 --- !u!1 &2149634195031184608
 GameObject:
   m_ObjectHideFlags: 0
@@ -148,7 +231,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 3744010701179384131}
-  m_RootOrder: 2
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &5218544908929011682
 MonoBehaviour:
@@ -1026,6 +1109,8 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 3744010700775776665}
+  - {fileID: 4099765645359084170}
+  - {fileID: 1446163995460283899}
   - {fileID: 3744010701327891158}
   - {fileID: 7465841416723213854}
   - {fileID: 3941671904429421807}
@@ -1089,7 +1174,7 @@ MonoBehaviour:
       startIndex: 
       variableStartIndex: 
       JSONSerialization: '{"EntryTask":{"Type":"BehaviorDesigner.Runtime.Tasks.EntryTask","NodeData":{"Offset":"(467,30)"},"ID":0,"Name":"Entry","Instant":true},"RootTask":{"Type":"BehaviorDesigner.Runtime.Tasks.Repeater","NodeData":{"Offset":"(-1.12313652,97.03823)"},"ID":1,"Name":"Repeater","Instant":true,"SharedIntcount":{"Type":"BehaviorDesigner.Runtime.SharedInt","Name":null,"Int32mValue":0},"SharedBoolrepeatForever":{"Type":"BehaviorDesigner.Runtime.SharedBool","Name":null,"BooleanmValue":true},"SharedBoolendOnFailure":{"Type":"BehaviorDesigner.Runtime.SharedBool","Name":null,"BooleanmValue":true},"Children":[{"Type":"BehaviorDesigner.Runtime.Tasks.Selector","NodeData":{"Offset":"(2,111)"},"ID":2,"Name":"Selector","Instant":true,"AbortTypeabortType":"None","Children":[{"Type":"BehaviorDesigner.Runtime.Tasks.Sequence","NodeData":{"Offset":"(0,120)"},"ID":3,"Name":"Sequence","Instant":true,"AbortTypeabortType":"None","Children":[{"Type":"BehaviorDesigner.Runtime.Tasks.Inverter","NodeData":{"Offset":"(-396.749878,189.583252)"},"ID":4,"Name":"Inverter","Instant":true,"Children":[{"Type":"Common.Character.Behavior.Actions.CheckBoolean","NodeData":{"Offset":"(2.20835876,98.5415039)"},"ID":5,"Name":"IsGlobalCool","Instant":true,"SharedBoolCondition":{"Type":"BehaviorDesigner.Runtime.SharedBool","Name":"IsGlobalCooling","IsShared":true,"PropertyMapping":"Common.Character.Operation.Combating.Combat/IsGlobalCooling","PropertyMappingOwner":0,"BooleanmValue":false}}]},{"Type":"Common.Character.Behavior.Actions.CheckBoolean","NodeData":{"Offset":"(-256.124939,192.708237)"},"ID":6,"Name":"FinishSkillCheck","Instant":true,"SharedBoolCondition":{"Type":"BehaviorDesigner.Runtime.SharedBool","Name":"IsCurrentSkillFinished","IsShared":true,"PropertyMapping":"Common.Character.Operation.Combating.Combat/IsCurrentSkillFinished","PropertyMappingOwner":1,"BooleanmValue":false}},{"Type":"Common.Character.Operation.Combating.Behavior.TargetValidator","NodeData":{"Offset":"(-112.18367,193.877472)"},"ID":7,"Name":"Target
-        Validator","Instant":true},{"Type":"Common.Character.Operation.Combating.Behavior.PositioningBehavior","NodeData":{"Offset":"(8.852433,188.333313)"},"ID":8,"Name":"Positioning","Instant":true},{"Type":"Common.Character.Operation.Combating.Behavior.CoolTimeWaitBehavior","NodeData":{"Offset":"(123.958336,194.912109)"},"ID":9,"Name":"Cool
+        Validator","Instant":true},{"Type":"Common.Character.Operation.Combating.Behavior.PositioningBehavior","NodeData":{"Offset":"(8.852433,188.3333)"},"ID":8,"Name":"Positioning","Instant":true},{"Type":"Common.Character.Operation.Combating.Behavior.CoolTimeWaitBehavior","NodeData":{"Offset":"(123.958336,194.912109)"},"ID":9,"Name":"Cool
         Time","Instant":true},{"Type":"Common.Character.Operation.Combating.Behavior.UseSkillBehavior","NodeData":{"Offset":"(252.8799,190)"},"ID":10,"Name":"Use
         Skill Behavior","Instant":true,"SharedIntTargetSkillID":{"Type":"BehaviorDesigner.Runtime.SharedInt","Name":"MostPrioritySkillID","IsShared":true,"PropertyMapping":"Common.Character.Operation.Combating.Combat/MostPrioritySkillID","PropertyMappingOwner":2,"Int32mValue":0}}]}]}]},"Variables":[{"Type":"BehaviorDesigner.Runtime.SharedBool","Name":"IsGlobalCooling","IsShared":true,"PropertyMapping":"Common.Character.Operation.Combating.Combat/IsGlobalCooling","PropertyMappingOwner":3,"BooleanmValue":false},{"Type":"BehaviorDesigner.Runtime.SharedBool","Name":"IsCurrentSkillFinished","IsShared":true,"PropertyMapping":"Common.Character.Operation.Combating.Combat/IsCurrentSkillFinished","PropertyMappingOwner":4,"BooleanmValue":false},{"Type":"BehaviorDesigner.Runtime.SharedInt","Name":"MostPrioritySkillID","IsShared":true,"PropertyMapping":"Common.Character.Operation.Combating.Combat/MostPrioritySkillID","PropertyMappingOwner":5,"Int32mValue":0}]}'
       fieldSerializationData:
@@ -1120,7 +1205,6 @@ GameObject:
   - component: {fileID: 3744010701327891158}
   - component: {fileID: 3744010701327891165}
   - component: {fileID: 3744010701327891162}
-  - component: {fileID: 3744010701327891163}
   - component: {fileID: 3744010701327891161}
   m_Layer: 0
   m_Name: CommonAttack
@@ -1142,7 +1226,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 3744010701179384131}
-  m_RootOrder: 1
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &3744010701327891165
 MonoBehaviour:
@@ -1175,21 +1259,6 @@ MonoBehaviour:
   flag: 1
   skill: {fileID: 3744010701327891165}
   combatValue: 5
---- !u!114 &3744010701327891163
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3744010701327891159}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9b71247a0c6287f44b49f848d90d357e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  flag: 2
-  skill: {fileID: 3744010701327891165}
-  coolTime: 0
 --- !u!114 &3744010701327891161
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1207,6 +1276,106 @@ MonoBehaviour:
   targetLayerType: enemy
   targetCount: 1
   range: 5
+--- !u!1 &5474161830410180337
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1446163995460283899}
+  - component: {fileID: 3779498063899901923}
+  - component: {fileID: 7681704895388235946}
+  - component: {fileID: 8392186021241681492}
+  - component: {fileID: 850913637087685088}
+  m_Layer: 0
+  m_Name: Charge
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1446163995460283899
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5474161830410180337}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 3744010701179384131}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &3779498063899901923
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5474161830410180337}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 435ed8a2f229f994da80ebc7965e236e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  id: 13000002
+  skillName: Charge
+  animationKey: skill
+  priority: 5
+  dashSpeed: 30
+  offsetDistance: 3.5
+--- !u!114 &7681704895388235946
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5474161830410180337}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bd2d098c14bb73641bcc6faff29af210, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  flag: 1
+  skill: {fileID: 3779498063899901923}
+  combatValue: 4
+--- !u!114 &8392186021241681492
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5474161830410180337}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9b71247a0c6287f44b49f848d90d357e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  flag: 2
+  skill: {fileID: 3779498063899901923}
+  coolTime: 8
+--- !u!114 &850913637087685088
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5474161830410180337}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4c5f541185aa92b488eeff9b9e07cdfc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  flag: 16
+  skill: {fileID: 3779498063899901923}
+  targetLayerType: enemy
+  targetCount: 1
+  range: 18
 --- !u!1 &7281782007172129132
 GameObject:
   m_ObjectHideFlags: 0
@@ -1236,7 +1405,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 3744010701179384131}
-  m_RootOrder: 4
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &7656701811667595336
 GameObject:

@@ -20,21 +20,17 @@ MonoBehaviour:
     baseCoolTime: 0
     range: 5
     priority: 1
-    assignedClass:
-    - All
     animationKey: attack
     targetCount: 1
     targetLayer: enemy
     skillType: damage
     castingTime: 0
   - id: 13000002
-    name: Bash
+    name: Charge
     baseValue: 4
     baseCoolTime: 8
-    range: 5
+    range: 18
     priority: 5
-    assignedClass:
-    - Warrior
     animationKey: skill
     targetCount: 1
     targetLayer: enemy
@@ -42,12 +38,10 @@ MonoBehaviour:
     castingTime: 0
   - id: 13000003
     name: BackStep
-    baseValue: 8
+    baseValue: 4
     baseCoolTime: 15
     range: 18
     priority: 5
-    assignedClass:
-    - Rogue
     animationKey: skill
     targetCount: 1
     targetLayer: enemy
@@ -59,9 +53,6 @@ MonoBehaviour:
     baseCoolTime: 8
     range: 25
     priority: 5
-    assignedClass:
-    - Hunter
-    - Sniper
     animationKey: skill
     targetCount: 1
     targetLayer: enemy
@@ -73,8 +64,6 @@ MonoBehaviour:
     baseCoolTime: 15
     range: 0
     priority: 1
-    assignedClass:
-    - DeathKnight
     animationKey: skill
     targetCount: 1
     targetLayer: ally
@@ -86,8 +75,6 @@ MonoBehaviour:
     baseCoolTime: 12
     range: 16
     priority: 5
-    assignedClass:
-    - Druid
     animationKey: skill
     targetCount: 5
     targetLayer: enemy
@@ -99,8 +86,6 @@ MonoBehaviour:
     baseCoolTime: 12
     range: 20
     priority: 5
-    assignedClass:
-    - Lancer
     animationKey: skill
     targetCount: 16
     targetLayer: enemy
@@ -112,8 +97,6 @@ MonoBehaviour:
     baseCoolTime: 6
     range: 5
     priority: 5
-    assignedClass:
-    - Fighter
     animationKey: channeling
     targetCount: 1
     targetLayer: enemy
@@ -125,8 +108,6 @@ MonoBehaviour:
     baseCoolTime: 30
     range: 0
     priority: 1
-    assignedClass:
-    - Berserker
     animationKey: skill
     targetCount: 1
     targetLayer: ally
@@ -138,8 +119,6 @@ MonoBehaviour:
     baseCoolTime: 15
     range: 18
     priority: 5
-    assignedClass:
-    - Blade
     animationKey: skill
     targetCount: 16
     targetLayer: enemy
@@ -151,8 +130,6 @@ MonoBehaviour:
     baseCoolTime: 0
     range: 20
     priority: 2
-    assignedClass:
-    - Wizard
     animationKey: skill
     targetCount: 1
     targetLayer: enemy
@@ -164,8 +141,6 @@ MonoBehaviour:
     baseCoolTime: 0
     range: 20
     priority: 2
-    assignedClass:
-    - Warlock
     animationKey: skill
     targetCount: 1
     targetLayer: enemy
@@ -177,9 +152,6 @@ MonoBehaviour:
     baseCoolTime: 0
     range: 15
     priority: 1
-    assignedClass:
-    - Priest
-    - ' Angel'
     animationKey: skill
     targetCount: 1
     targetLayer: ally
@@ -191,9 +163,6 @@ MonoBehaviour:
     baseCoolTime: 30
     range: 15
     priority: 4
-    assignedClass:
-    - Angel
-    - ' HolyKnight'
     animationKey: skill
     targetCount: 1
     targetLayer: ally
@@ -205,8 +174,6 @@ MonoBehaviour:
     baseCoolTime: 8
     range: 15
     priority: 3
-    assignedClass:
-    - Sharman
     animationKey: skill
     targetCount: 1
     targetLayer: ally
@@ -218,8 +185,6 @@ MonoBehaviour:
     baseCoolTime: 16
     range: 40
     priority: 5
-    assignedClass:
-    - Bard
     animationKey: channeling
     targetCount: 8
     targetLayer: ally

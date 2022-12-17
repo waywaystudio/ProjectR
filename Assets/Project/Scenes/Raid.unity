@@ -1048,7 +1048,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &882214522
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1061,7 +1061,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c592a9ccff7b6e74c99fb45e651510a7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cb: {fileID: 0}
+  cb: {fileID: 1188007382}
 --- !u!114 &882214523
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1117,11 +1117,11 @@ MonoBehaviour:
     maximumPeriod: 2
     visualizeSensitivity: 0
   targetCompatibility: {fileID: 0}
-  maxAcceleration: 50
+  maxAcceleration: 200
   rotationSpeed: 540
   slowdownDistance: 0
   pickNextWaypointDist: 2
-  endReachedDistance: 0.3
+  endReachedDistance: 1.5
   alwaysDrawGizmos: 0
   slowWhenNotFacingTarget: 1
   whenCloseToDestination: 0
@@ -1568,8 +1568,8 @@ MonoBehaviour:
   isAlive: 1
   hp: 1000
   characterName: Diablo
-  id: 0
-  combatClass: 
+  id: 11000005
+  combatClass: Load
   searchingRange: 0
   allyLayer:
     serializedVersion: 2
@@ -2138,6 +2138,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 286356721480540612, guid: 1a31cf557034ca040bd315b28824b3f0, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 850913637087685088, guid: 1a31cf557034ca040bd315b28824b3f0, type: 3}
+      propertyPath: range
+      value: 20
+      objectReference: {fileID: 0}
     - target: {fileID: 2149634195031184608, guid: 1a31cf557034ca040bd315b28824b3f0, type: 3}
       propertyPath: m_IsActive
       value: 0
@@ -2156,7 +2164,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2790523001659139865, guid: 1a31cf557034ca040bd315b28824b3f0, type: 3}
       propertyPath: moveSpeed
-      value: 7
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 2790523001659139865, guid: 1a31cf557034ca040bd315b28824b3f0, type: 3}
       propertyPath: combatClass
@@ -2210,21 +2218,53 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3744010700621091313, guid: 1a31cf557034ca040bd315b28824b3f0, type: 3}
+      propertyPath: maxAcceleration
+      value: 200
+      objectReference: {fileID: 0}
+    - target: {fileID: 3744010700621091313, guid: 1a31cf557034ca040bd315b28824b3f0, type: 3}
+      propertyPath: endReachedDistance
+      value: 1.5
+      objectReference: {fileID: 0}
     - target: {fileID: 3744010700775776662, guid: 1a31cf557034ca040bd315b28824b3f0, type: 3}
       propertyPath: m_IsActive
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3744010700929808893, guid: 1a31cf557034ca040bd315b28824b3f0, type: 3}
+      propertyPath: m_Layer
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 3744010701327891159, guid: 1a31cf557034ca040bd315b28824b3f0, type: 3}
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 3744010701327891165, guid: 1a31cf557034ca040bd315b28824b3f0, type: 3}
+      propertyPath: animationKey
+      value: attack
+      objectReference: {fileID: 0}
+    - target: {fileID: 3765643770630641843, guid: 1a31cf557034ca040bd315b28824b3f0, type: 3}
+      propertyPath: coolTime
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 3779498063899901923, guid: 1a31cf557034ca040bd315b28824b3f0, type: 3}
+      propertyPath: offsetDistance
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 4037941655105705143, guid: 1a31cf557034ca040bd315b28824b3f0, type: 3}
       propertyPath: weapon.Haste
       value: 0.05
       objectReference: {fileID: 0}
+    - target: {fileID: 5474161830410180337, guid: 1a31cf557034ca040bd315b28824b3f0, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6963563523162028877, guid: 1a31cf557034ca040bd315b28824b3f0, type: 3}
       propertyPath: m_Mesh
       value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 8392186021241681492, guid: 1a31cf557034ca040bd315b28824b3f0, type: 3}
+      propertyPath: coolTime
+      value: 3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1a31cf557034ca040bd315b28824b3f0, type: 3}

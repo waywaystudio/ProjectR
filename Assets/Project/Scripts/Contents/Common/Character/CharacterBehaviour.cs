@@ -39,8 +39,9 @@ namespace Common.Character
         public ActionTable OnStart { get; } = new();
         public ActionTable OnUpdate { get; } = new();
         public ActionTable OnIdle { get; } = new();
-        public ActionTable<Vector3> OnWalk { get; } = new();
-        public ActionTable<Vector3> OnRun { get; } = new();
+        public ActionTable<Vector3, Action> OnWalk { get; } = new();
+        public ActionTable<Vector3, Action> OnRun { get; } = new();
+        public ActionTable<Vector3> OnTeleport { get; } = new();
         public ActionTable<string, Action> OnSkill { get; } = new();
         public ActionTable OnSkillHit { get; } = new(1);
         public FunctionTable<bool> IsReached { get; } = new();
@@ -57,9 +58,10 @@ namespace Common.Character
         public ICombatTaker MainTarget { get; set; }
 
         public void Idle() => OnIdle?.Invoke();
-        public void Walk(Vector3 destination) => OnWalk?.Invoke(destination);
-        public void Run(Vector3 destination) => OnRun?.Invoke(destination);
-        public void Skill(string skillName, Action callback) => OnSkill?.Invoke(skillName, callback);
+        public void Walk(Vector3 destination, Action pathfindingCallback = null) => OnWalk?.Invoke(destination, pathfindingCallback);
+        public void Run(Vector3 destination, Action pathfindingCallback = null) => OnRun?.Invoke(destination, pathfindingCallback);
+        public void Teleport(Vector3 destination) => OnTeleport?.Invoke(destination);
+        public void Skill(string skillName, Action animationCallback) => OnSkill?.Invoke(skillName, animationCallback);
         public void SkillHit() => OnSkillHit?.Invoke();
 
         public void Initialize(string character)
@@ -71,7 +73,7 @@ namespace Common.Character
             combatClass = profile.Job;
         }
 
-        protected void Start()
+        protected virtual void Start()
         {
             Initialize(CharacterName);
             

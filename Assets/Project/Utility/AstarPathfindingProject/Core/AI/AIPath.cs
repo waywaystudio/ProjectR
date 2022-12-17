@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
@@ -170,31 +171,35 @@ namespace Pathfinding
 		#region IAstarAI implementation
 
 		/// <summary>\copydoc Pathfinding::IAstarAI::Teleport</summary>
-		public override void Teleport (Vector3 newPosition, bool clearPath = true) {
+		public override void Teleport(Vector3 newPosition, bool clearPath = true)
+		{
 			reachedEndOfPath = false;
 			base.Teleport(newPosition, clearPath);
 		}
 
 		/// <summary>\copydoc Pathfinding::IAstarAI::remainingDistance</summary>
-		public float remainingDistance {
-			get {
-				return interpolator.valid ? interpolator.remainingDistance + movementPlane.ToPlane(interpolator.position - position).magnitude : float.PositiveInfinity;
-			}
-		}
+		public float remainingDistance => interpolator.valid
+			? interpolator.remainingDistance + movementPlane.ToPlane(interpolator.position - position).magnitude
+			: float.PositiveInfinity;
 
 		/// <summary>\copydoc Pathfinding::IAstarAI::reachedDestination</summary>
-		public bool reachedDestination {
-			get {
+		public bool reachedDestination
+		{
+			get
+			{
 				if (!reachedEndOfPath) return false;
-				if (!interpolator.valid || remainingDistance + movementPlane.ToPlane(destination - interpolator.endPoint).magnitude > endReachedDistance) return false;
+				if (!interpolator.valid ||
+				    remainingDistance + movementPlane.ToPlane(destination - interpolator.endPoint).magnitude >
+				    endReachedDistance) return false;
 
 				// Don't do height checks in 2D mode
-				if (orientation != OrientationMode.YAxisForward) {
+				if (orientation != OrientationMode.YAxisForward)
+				{
 					// Check if the destination is above the head of the character or far below the feet of it
 					float yDifference;
 					movementPlane.ToPlane(destination - position, out yDifference);
 					var h = tr.localScale.y * height;
-					if (yDifference > h || yDifference < -h*0.5) return false;
+					if (yDifference > h || yDifference < -h * 0.5) return false;
 				}
 
 				return true;
@@ -205,40 +210,28 @@ namespace Pathfinding
 		public bool reachedEndOfPath { get; protected set; }
 
 		/// <summary>\copydoc Pathfinding::IAstarAI::hasPath</summary>
-		public bool hasPath {
-			get {
-				return interpolator.valid;
-			}
-		}
+		public bool hasPath => interpolator.valid;
 
 		/// <summary>\copydoc Pathfinding::IAstarAI::pathPending</summary>
-		public bool pathPending {
-			get {
-				return waitingForPathCalculation;
-			}
-		}
+		public bool pathPending => waitingForPathCalculation;
 
 		/// <summary>\copydoc Pathfinding::IAstarAI::steeringTarget</summary>
-		public Vector3 steeringTarget {
-			get {
-				return interpolator.valid ? interpolator.position : position;
-			}
-		}
+		public Vector3 steeringTarget => interpolator.valid ? interpolator.position : position;
 
 		/// <summary>\copydoc Pathfinding::IAstarAI::radius</summary>
-		float IAstarAI.radius { get { return radius; } set { radius = value; } }
+		float IAstarAI.radius { get => radius; set => radius = value; }
 
 		/// <summary>\copydoc Pathfinding::IAstarAI::height</summary>
-		float IAstarAI.height { get { return height; } set { height = value; } }
+		float IAstarAI.height { get => height; set => height = value; }
 
 		/// <summary>\copydoc Pathfinding::IAstarAI::maxSpeed</summary>
-		float IAstarAI.maxSpeed { get { return maxSpeed; } set { maxSpeed = value; } }
+		float IAstarAI.maxSpeed { get => maxSpeed; set => maxSpeed = value; }
 
 		/// <summary>\copydoc Pathfinding::IAstarAI::canSearch</summary>
-		bool IAstarAI.canSearch { get { return canSearch; } set { canSearch = value; } }
+		bool IAstarAI.canSearch { get => canSearch; set => canSearch = value; }
 
 		/// <summary>\copydoc Pathfinding::IAstarAI::canMove</summary>
-		bool IAstarAI.canMove { get { return canMove; } set { canMove = value; } }
+		bool IAstarAI.canMove { get => canMove; set => canMove = value; }
 
 		#endregion
 
@@ -273,19 +266,18 @@ namespace Pathfinding
 		/// This method will be called again if a new path is calculated as the destination may have changed.
 		/// So when the agent is close to the destination this method will typically be called every <see cref="repathRate"/> seconds.
 		/// </summary>
-		public virtual void OnTargetReached () {
-		}
+		public virtual void OnTargetReached () {}
 
 		/// <summary>
 		/// Called when a requested path has been calculated.
 		/// A path is first requested by <see cref="UpdatePath"/>, it is then calculated, probably in the same or the next frame.
 		/// Finally it is returned to the seeker which forwards it to this function.
 		/// </summary>
-		protected override void OnPathComplete (Path newPath) 
+		protected override void OnPathComplete(Path newPath)
 		{
 			var p = newPath as ABPath;
 
-			if (p == null) throw new System.Exception("This function only handles ABPaths, do not use special path types");
+			if (p == null) throw new Exception("This function only handles ABPaths, do not use special path types");
 
 			waitingForPathCalculation = false;
 
@@ -295,7 +287,8 @@ namespace Pathfinding
 
 			// Path couldn't be calculated of some reason.
 			// More info in p.errorLog (debug string)
-			if (p.error) {
+			if (p.error)
+			{
 				p.Release(this);
 				SetPath(null);
 				return;
@@ -310,18 +303,22 @@ namespace Pathfinding
 			// The RandomPath and MultiTargetPath do not have a well defined destination that could have been
 			// set before the paths were calculated. So we instead set the destination here so that some properties
 			// like #reachedDestination and #remainingDistance work correctly.
-			if (path is RandomPath rpath) {
+			if (path is RandomPath rpath)
 				destination = rpath.originalEndPoint;
-			} else if (path is MultiTargetPath mpath) {
-				destination = mpath.originalEndPoint;
-			}
+			else if (path is MultiTargetPath mpath) destination = mpath.originalEndPoint;
 
 			// Make sure the path contains at least 2 points
 			if (path.vectorPath.Count == 1) path.vectorPath.Add(path.vectorPath[0]);
 			interpolator.SetPath(path.vectorPath);
 
 			var graph = path.path.Count > 0 ? AstarData.GetGraph(path.path[0]) as ITransformedGraph : null;
-			movementPlane = graph != null ? graph.transform : (orientation == OrientationMode.YAxisForward ? new GraphTransform(Matrix4x4.TRS(Vector3.zero, Quaternion.Euler(-90, 270, 90), Vector3.one)) : GraphTransform.identityTransform);
+			movementPlane = graph != null
+				? graph.transform
+				:
+				orientation == OrientationMode.YAxisForward
+					?
+					new GraphTransform(Matrix4x4.TRS(Vector3.zero, Quaternion.Euler(-90, 270, 90), Vector3.one))
+					: GraphTransform.identityTransform;
 
 			// Reset some variables
 			reachedEndOfPath = false;
@@ -340,7 +337,8 @@ namespace Pathfinding
 			interpolator.MoveToCircleIntersection2D(position, pickNextWaypointDist, movementPlane);
 
 			var distanceToEnd = remainingDistance;
-			if (distanceToEnd <= endReachedDistance) {
+			if (distanceToEnd <= endReachedDistance)
+			{
 				reachedEndOfPath = true;
 				OnTargetReached();
 			}

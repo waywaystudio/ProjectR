@@ -62,7 +62,9 @@ namespace Core
         {
             if (table.ContainsKey(key))
             {
-                if (overwrite || table[key].Invoke().CompareTo(value) == -1)
+                if (overwrite || 
+                    table[key].Invoke().CompareTo(value.Invoke()) == -1 || 
+                    table[key].Invoke().CompareTo(value.Invoke()) == 0)
                     table[key] = value;
             }
             else

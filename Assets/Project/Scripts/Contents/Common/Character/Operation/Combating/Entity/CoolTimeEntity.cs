@@ -53,7 +53,9 @@ namespace Common.Character.Operation.Combating.Entity
         private void Reset()
         {
             flag = EntityType.CoolTime;
+            
             SetEntity();
+            RemainTimer = 0f;
         }
     }
 }

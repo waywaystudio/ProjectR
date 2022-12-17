@@ -39,7 +39,6 @@ namespace Common.Character.Operation.Combating
 
         public int ID => id;
         public string SkillName => skillName ??= GetType().Name;
-        public string AnimationKey { get => animationKey; set => animationKey = value; }
         public int Priority { get => priority; set => priority = value; }
         
         public Combat Combat => combat ??= GetComponentInParent<Combat>();
@@ -56,7 +55,7 @@ namespace Common.Character.Operation.Combating
         public ActionTable OnInterrupted { get; } = new();
         public ActionTable OnCompleted { get; } = new();
 
-        public void StartSkill()
+        public virtual void StartSkill()
         {
             OnStarted?.Invoke();
             IsSkillFinished = false;
@@ -70,10 +69,15 @@ namespace Common.Character.Operation.Combating
             IsSkillFinished = true;
         }
         
+        /// <summary>
+        /// Register Animation Event.
+        /// </summary>
         public virtual void InvokeEvent(){}
 
-        public void ActiveSkill()
+        public virtual void ActiveSkill()
         {
+            Debug.Log("Active Skill!");
+            
             Cb.OnSkill.Register(InstanceID, StartSkill);
             Cb.OnSkillHit.Register(InstanceID, InvokeEvent);
             Cb.Skill(SkillName, CompleteSkill);
@@ -123,16 +127,13 @@ namespace Common.Character.Operation.Combating
 
 #if UNITY_EDITOR
         #region EditorOnly
-        // [OnInspectorInit]
-        // protected virtual void InEditorOnInit() => InEditorGetData();
-
         [Button]
         protected void InEditorGetData()
         {
             skillName = GetType().Name;
             skillData = MainData.GetSkillData(skillName);
             id = skillData.ID;
-            AnimationKey = skillData.AnimationKey;
+            animationKey = skillData.AnimationKey;
             Priority = skillData.Priority;
             UnityEditor.EditorUtility.SetDirty(this);
 

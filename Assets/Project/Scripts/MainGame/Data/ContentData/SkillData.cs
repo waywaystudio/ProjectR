@@ -20,7 +20,6 @@ namespace MainGame.Data.ContentData
 			[SerializeField] private Single baseCoolTime;
 			[SerializeField] private Single range;
 			[SerializeField] private Int32 priority;
-			[SerializeField] private List<String> assignedClass;
 			[SerializeField] private String animationKey;
 			[SerializeField] private Int32 targetCount;
 			[SerializeField] private String targetLayer;
@@ -33,7 +32,6 @@ namespace MainGame.Data.ContentData
 			public Single BaseCoolTime => baseCoolTime;
 			public Single Range => range;
 			public Int32 Priority => priority;
-			public List<String> AssignedClass => assignedClass;
 			public String AnimationKey => animationKey;
 			public Int32 TargetCount => targetCount;
 			public String TargetLayer => targetLayer;

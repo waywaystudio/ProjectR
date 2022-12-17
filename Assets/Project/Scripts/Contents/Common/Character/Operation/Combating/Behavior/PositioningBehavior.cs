@@ -1,5 +1,6 @@
 using BehaviorDesigner.Runtime.Tasks;
 using Common.Character.Operation.Combating.Entity;
+using UnityEngine;
 
 namespace Common.Character.Operation.Combating.Behavior
 {
@@ -31,7 +32,10 @@ namespace Common.Character.Operation.Combating.Behavior
             var isMovable = combat.CombatPosition.TryGetCombatPosition(
                 targetEntity.CombatTaker, targetEntity.Range, out var destination);
 
-            if (!isMovable && cb.IsReached.Invoke()) return TaskStatus.Success;
+            if (!isMovable && cb.IsReached.Invoke())
+            {
+                return TaskStatus.Success;
+            }
             
             cb.Run(destination); // destination
             return TaskStatus.Failure;

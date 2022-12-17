@@ -17,7 +17,7 @@ namespace Common.Character.Graphic
         private SkeletonAnimation skeletonAnimation;
         private AnimationState state;
         private int instanceID;
-        private Action actionBuffer;
+        private Action callbackBuffer;
         private TrackEntry entryBuffer;
 
         public Animation TargetAnimation { get; private set; }
@@ -36,12 +36,13 @@ namespace Common.Character.Graphic
             var inverse = CombatManager.GetHasteValue(Cb.Haste.Result);
             state.TimeScale *= animationHasteValue;
             
-            actionBuffer = null;
-            actionBuffer += callback;
-            actionBuffer += Idle;
-            actionBuffer += () => state.TimeScale *= inverse;
-            
-            Play(animationKey, 0, false, fixedTime, actionBuffer);
+            callbackBuffer = null;
+            callbackBuffer += callback;
+            callbackBuffer += Idle;
+            callbackBuffer += () => state.TimeScale *= inverse;
+
+            Flip();
+            Play(animationKey, 0, false, fixedTime, callbackBuffer);
         }
         public void Walk() => Play("walk");
         public void Run()=> Play("run");

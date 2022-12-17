@@ -1,7 +1,8 @@
 using UnityEngine;
 using System.Collections.Generic;
 
-namespace Pathfinding {
+namespace Pathfinding 
+{
 	/// <summary>
 	/// Basic path, finds the shortest path from A to B.
 	///
@@ -11,7 +12,8 @@ namespace Pathfinding {
 	/// See: calling-pathfinding (view in online documentation for working links)
 	/// See: getstarted (view in online documentation for working links)
 	/// </summary>
-	public class ABPath : Path {
+	public class ABPath : Path 
+	{
 		/// <summary>Start node of the path</summary>
 		public GraphNode startNode;
 
@@ -25,27 +27,23 @@ namespace Pathfinding {
 		public Vector3 originalEndPoint;
 
 		/// <summary>
-		/// Start point of the path.
-		/// This is the closest point on the <see cref="startNode"/> to <see cref="originalStartPoint"/>
+		///     Start point of the path.
+		///     This is the closest point on the <see cref="startNode" /> to <see cref="originalStartPoint" />
 		/// </summary>
 		public Vector3 startPoint;
 
 		/// <summary>
-		/// End point of the path.
-		/// This is the closest point on the <see cref="endNode"/> to <see cref="originalEndPoint"/>
+		///     End point of the path.
+		///     This is the closest point on the <see cref="endNode" /> to <see cref="originalEndPoint" />
 		/// </summary>
 		public Vector3 endPoint;
 
 		/// <summary>
-		/// Determines if a search for an end node should be done.
-		/// Set by different path types.
-		/// Since: Added in 3.0.8.3
+		///     Determines if a search for an end node should be done.
+		///     Set by different path types.
+		///     Since: Added in 3.0.8.3
 		/// </summary>
-		protected virtual bool hasEndPoint {
-			get {
-				return true;
-			}
-		}
+		protected virtual bool hasEndPoint => true;
 
 		public Int3 startIntPoint; /// <summary>< Start point in integer coordinates</summary>
 
@@ -95,44 +93,43 @@ namespace Pathfinding {
 		///
 		/// Returns: The constructed path object
 		/// </summary>
-		public static ABPath Construct (Vector3 start, Vector3 end, OnPathDelegate callback = null) {
+		public static ABPath Construct(Vector3 start, Vector3 end, OnPathDelegate callback = null)
+		{
 			var p = PathPool.GetPath<ABPath>();
 
 			p.Setup(start, end, callback);
 			return p;
 		}
 
-		protected void Setup (Vector3 start, Vector3 end, OnPathDelegate callbackDelegate) {
+		protected void Setup(Vector3 start, Vector3 end, OnPathDelegate callbackDelegate)
+		{
 			callback = callbackDelegate;
 			UpdateStartEnd(start, end);
 		}
 
 		/// <summary>
-		/// Creates a fake path.
-		/// Creates a path that looks almost exactly like it would if the pathfinding system had calculated it.
-		///
-		/// This is useful if you want your agents to follow some known path that cannot be calculated using the pathfinding system for some reason.
-		///
-		/// <code>
-		/// var path = ABPath.FakePath(new List<Vector3> { new Vector3(1, 2, 3), new Vector3(4, 5, 6) });
-		///
-		/// ai.SetPath(path);
+		///     Creates a fake path.
+		///     Creates a path that looks almost exactly like it would if the pathfinding system had calculated it.
+		///     This is useful if you want your agents to follow some known path that cannot be calculated using the pathfinding
+		///     system for some reason.
+		///     <code>
+		/// var path = ABPath.FakePath(new List<Vector3>
+		///             { new Vector3(1, 2, 3), new Vector3(4, 5, 6) });
+		///             ai.SetPath(path);
 		/// </code>
-		///
-		/// You can use it to combine existing paths like this:
-		///
-		/// <code>
+		///     You can use it to combine existing paths like this:
+		///     <code>
 		/// var a = Vector3.zero;
 		/// var b = new Vector3(1, 2, 3);
 		/// var c = new Vector3(2, 3, 4);
 		/// var path1 = ABPath.Construct(a, b);
 		/// var path2 = ABPath.Construct(b, c);
-		///
+		/// 
 		/// AstarPath.StartPath(path1);
 		/// AstarPath.StartPath(path2);
 		/// path1.BlockUntilCalculated();
 		/// path2.BlockUntilCalculated();
-		///
+		/// 
 		/// // Combine the paths
 		/// // Note: Skip the first element in the second path as that will likely be the last element in the first path
 		/// var newVectorPath = path1.vectorPath.Concat(path2.vectorPath.Skip(1)).ToList();
@@ -140,21 +137,22 @@ namespace Pathfinding {
 		/// var combinedPath = ABPath.FakePath(newVectorPath, newNodePath);
 		/// </code>
 		/// </summary>
-		public static ABPath FakePath (List<Vector3> vectorPath, List<GraphNode> nodePath = null) {
+		public static ABPath FakePath(List<Vector3> vectorPath, List<GraphNode> nodePath = null)
+		{
 			var path = PathPool.GetPath<ABPath>();
 
-			for (int i = 0; i < vectorPath.Count; i++) path.vectorPath.Add(vectorPath[i]);
+			for (var i = 0; i < vectorPath.Count; i++) path.vectorPath.Add(vectorPath[i]);
 
 			path.completeState = PathCompleteState.Complete;
 			((IPathInternals)path).AdvanceState(PathState.Returned);
 
-			if (vectorPath.Count > 0) {
-				path.UpdateStartEnd(vectorPath[0], vectorPath[vectorPath.Count - 1]);
-			}
+			if (vectorPath.Count > 0) path.UpdateStartEnd(vectorPath[0], vectorPath[vectorPath.Count - 1]);
 
-			if (nodePath != null) {
-				for (int i = 0; i < nodePath.Count; i++) path.path.Add(nodePath[i]);
-				if (nodePath.Count > 0) {
+			if (nodePath != null)
+			{
+				for (var i = 0; i < nodePath.Count; i++) path.path.Add(nodePath[i]);
+				if (nodePath.Count > 0)
+				{
 					path.startNode = nodePath[0];
 					path.endNode = nodePath[nodePath.Count - 1];
 				}
@@ -164,12 +162,13 @@ namespace Pathfinding {
 		}
 
 		/// <summary>@}</summary>
-
 		/// <summary>
-		/// Sets the start and end points.
-		/// Sets <see cref="originalStartPoint"/>, <see cref="originalEndPoint"/>, <see cref="startPoint"/>, <see cref="endPoint"/>, <see cref="startIntPoint"/> and <see cref="hTarget"/> (to end )
+		///     Sets the start and end points.
+		///     Sets <see cref="originalStartPoint" />, <see cref="originalEndPoint" />, <see cref="startPoint" />,
+		///     <see cref="endPoint" />, <see cref="startIntPoint" /> and <see cref="hTarget" /> (to end )
 		/// </summary>
-		protected void UpdateStartEnd (Vector3 start, Vector3 end) {
+		protected void UpdateStartEnd(Vector3 start, Vector3 end)
+		{
 			originalStartPoint = start;
 			originalEndPoint = end;
 
@@ -180,28 +179,32 @@ namespace Pathfinding {
 			hTarget = (Int3)end;
 		}
 
-		public override uint GetConnectionSpecialCost (GraphNode a, GraphNode b, uint currentCost) {
-			if (startNode != null && endNode != null) {
-				if (a == startNode) {
-					return (uint)((startIntPoint - (b == endNode ? hTarget : b.position)).costMagnitude * (currentCost*1.0/(a.position-b.position).costMagnitude));
-				}
-				if (b == startNode) {
-					return (uint)((startIntPoint - (a == endNode ? hTarget : a.position)).costMagnitude * (currentCost*1.0/(a.position-b.position).costMagnitude));
-				}
-				if (a == endNode) {
-					return (uint)((hTarget - b.position).costMagnitude * (currentCost*1.0/(a.position-b.position).costMagnitude));
-				}
-				if (b == endNode) {
-					return (uint)((hTarget - a.position).costMagnitude * (currentCost*1.0/(a.position-b.position).costMagnitude));
-				}
-			} else {
+		public override uint GetConnectionSpecialCost(GraphNode a, GraphNode b, uint currentCost)
+		{
+			if (startNode != null && endNode != null)
+			{
+				if (a == startNode)
+					return (uint)((startIntPoint - (b == endNode ? hTarget : b.position)).costMagnitude *
+					              (currentCost * 1.0 / (a.position - b.position).costMagnitude));
+				if (b == startNode)
+					return (uint)((startIntPoint - (a == endNode ? hTarget : a.position)).costMagnitude *
+					              (currentCost * 1.0 / (a.position - b.position).costMagnitude));
+				if (a == endNode)
+					return (uint)((hTarget - b.position).costMagnitude *
+					              (currentCost * 1.0 / (a.position - b.position).costMagnitude));
+				if (b == endNode)
+					return (uint)((hTarget - a.position).costMagnitude *
+					              (currentCost * 1.0 / (a.position - b.position).costMagnitude));
+			}
+			else
+			{
 				// endNode is null, startNode should never be null for an ABPath
-				if (a == startNode) {
-					return (uint)((startIntPoint - b.position).costMagnitude * (currentCost*1.0/(a.position-b.position).costMagnitude));
-				}
-				if (b == startNode) {
-					return (uint)((startIntPoint - a.position).costMagnitude * (currentCost*1.0/(a.position-b.position).costMagnitude));
-				}
+				if (a == startNode)
+					return (uint)((startIntPoint - b.position).costMagnitude *
+					              (currentCost * 1.0 / (a.position - b.position).costMagnitude));
+				if (b == startNode)
+					return (uint)((startIntPoint - a.position).costMagnitude *
+					              (currentCost * 1.0 / (a.position - b.position).costMagnitude));
 			}
 
 			return currentCost;

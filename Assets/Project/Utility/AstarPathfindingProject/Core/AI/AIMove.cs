@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 namespace Pathfinding
@@ -11,6 +12,7 @@ namespace Pathfinding
     {
         [SerializeField] private Transform rootObject;
 
+        public Action Callback { get; set; }
         public Transform RootObject => rootObject;
 
         public override void FindComponents()
@@ -24,10 +26,10 @@ namespace Pathfinding
         }
 
         // TODO. 패스에 도달했을 때 이벤트 호출 방법.
-        // public override void OnTargetReached()
-        // {
-        //     onTargetReached?.Invoke();
-        // }
+        public override void OnTargetReached()
+        {
+            Callback?.Invoke();
+        }
     }
 }
 

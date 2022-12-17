@@ -1,3 +1,5 @@
+using System;
+using Core;
 using Pathfinding;
 using UnityEngine;
 
@@ -10,6 +12,7 @@ namespace Common.Character.Operation
         private AIMove aiMove;
         private Seeker agent;
         private int instanceID;
+        private ABPath pathBuffer;
 
         public bool HasPath => aiMove.hasPath;
         public bool IsReached => aiMove.reachedEndOfPath;
@@ -40,18 +43,29 @@ namespace Common.Character.Operation
         }
             
 
-        public void Move(Vector3 destination)
+        public void Move(Vector3 destination, Action callback)
         {
-            var abPath = ABPath.Construct(cb.transform.position, destination);
-
+            pathBuffer = ABPath.Construct(cb.transform.position, destination);
             aiMove.maxSpeed = cb.MoveSpeed.Result;
-            agent.StartPath(abPath);
+
+            if (aiMove.Callback != null || callback != null)
+            {
+                aiMove.Callback = callback;
+            }
+
+            agent.StartPath(pathBuffer);
+        }
+
+        public void TeleportTo(Vector3 destination)
+        {
+            aiMove.Teleport(destination);
         }
 
         public void Stop()
         {
             // Destination = rootObject.position; 경우에 Flip 덜덜이 발생함.
-            aiMove.destination = aiMove.steeringTarget;
+            // aiMove.destination = aiMove.steeringTarget;
+            aiMove.destination = cb.transform.position;
         }
 
 
@@ -66,6 +80,7 @@ namespace Common.Character.Operation
         {
             cb.Direction.Register(instanceID, () => Direction);
             cb.IsReached.Register(instanceID, () => IsReached);
+            cb.OnTeleport.Register(instanceID, TeleportTo);
             cb.OnWalk.Register(instanceID, Move);
             cb.OnRun.Register(instanceID, Move);
         }
@@ -74,6 +89,7 @@ namespace Common.Character.Operation
         {
             cb.Direction.UnRegister();
             cb.IsReached.UnRegister(instanceID);
+            cb.OnTeleport.UnRegister(instanceID);
             cb.OnWalk.UnRegister(instanceID);
             cb.OnRun.UnRegister(instanceID);
         }
