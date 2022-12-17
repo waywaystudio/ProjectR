@@ -746,11 +746,11 @@ MonoBehaviour:
     maximumPeriod: 2
     visualizeSensitivity: 0
   targetCompatibility: {fileID: 0}
-  maxAcceleration: 50
+  maxAcceleration: 150
   rotationSpeed: 540
   slowdownDistance: 0
   pickNextWaypointDist: 2
-  endReachedDistance: 0.6
+  endReachedDistance: 1
   alwaysDrawGizmos: 0
   slowWhenNotFacingTarget: 1
   whenCloseToDestination: 0
@@ -829,7 +829,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   id: 13000004
   skillName: AimShot
-  animationKey: Skill
+  animationKey: skill
   priority: 5
 --- !u!114 &3744010700775776669
 MonoBehaviour:
@@ -860,7 +860,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   flag: 8
   skill: {fileID: 3744010700775776668}
-  originalCastingTime: 0
+  originalCastingTime: 3
 --- !u!114 &3744010700775776671
 MonoBehaviour:
   m_ObjectHideFlags: 0

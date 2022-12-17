@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Core;
 using MainGame;
+using MainGame.Data;
 using Sirenix.OdinInspector;
 using UnityEngine;
 using Skill = MainGame.Data.ContentData.SkillData.Skill;
@@ -127,8 +128,7 @@ namespace Common.Character.Operation.Combating
 
 #if UNITY_EDITOR
         #region EditorOnly
-        [Button]
-        protected void InEditorGetData()
+        protected void GetDataFromDB()
         {
             skillName = GetType().Name;
             skillData = MainData.GetSkillData(skillName);
@@ -138,6 +138,11 @@ namespace Common.Character.Operation.Combating
             UnityEditor.EditorUtility.SetDirty(this);
 
             GetComponents<BaseEntity>().ForEach(x => x.SetEntity());
+        }
+        
+        protected void ShowDB()
+        {
+            UnityEditor.EditorUtility.OpenPropertyEditor(MainData.DataObjectList.Find(x => x.Category == DataCategory.Skill));
         }
         #endregion
 #endif
@@ -155,7 +160,7 @@ namespace Common.Character.Operation.Combating
             
             if (member.Name == "skillName")
             {
-                // attributes.Add(new DisplayAsStringAttribute());
+                attributes.Add(new DisplayAsStringAttribute());
             }
             
             if (member.Name == "SkillData")
@@ -176,6 +181,26 @@ namespace Common.Character.Operation.Combating
             if (member.Name == "OnCompleted")
             {
                 attributes.Add(new ShowIfAttribute("@UnityEngine.Application.isPlaying"));
+            }
+            
+            if (member.Name == "GetDataFromDB")
+            {
+                attributes.Add(new HorizontalGroupAttribute("Editor Functions"));
+                attributes.Add(new PropertySpaceAttribute(15, 0));
+                attributes.Add(new ButtonAttribute(ButtonSizes.Large)
+                               {
+                                       Icon = SdfIconType.ArrowRepeat,
+                               });
+            }
+            
+            if (member.Name == "ShowDB")
+            {
+                attributes.Add(new HorizontalGroupAttribute("Editor Functions"));
+                attributes.Add(new PropertySpaceAttribute(15, 0));
+                attributes.Add(new ButtonAttribute(ButtonSizes.Large)
+                               {
+                                       Icon = SdfIconType.ListColumnsReverse,
+                               });
             }
         }
     }

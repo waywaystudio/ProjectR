@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
@@ -34,8 +33,7 @@ namespace UnityGoogleSheet.Editor.Core
             tableObjectList.ForEach(x =>
             {
                 if (x.name.First() == 'I') return; 
-                if (!UgsUtility.FindScriptableObject(x.name, UgsConfig.Instance.ScriptableObjectDataPath,
-                        out var result))
+                if (!UgsUtility.FindScriptableObject(x.name, UgsConfig.Instance.ScriptableObjectDataPath, out var result))
                 {
                     result = UgsUtility.CreateScriptableObject(x.name, UgsConfig.Instance.ScriptableObjectDataPath);
                 }
@@ -105,7 +103,11 @@ namespace UnityGoogleSheet.Editor.Core
                     attributes.Add(new PropertySpaceAttribute(0f, 20f));
                     break;
                 case "UpdateTableObjectList":
-                    attributes.Add(new ButtonAttribute("Create & Update", ButtonSizes.Large));
+                    attributes.Add(new ButtonAttribute("Create & Update", ButtonSizes.Large)
+                                   {
+                                           Icon = SdfIconType.ArrowRepeat,
+                                           Stretch = false
+                                   });
                     break;
             }
         }

@@ -111,7 +111,6 @@ namespace UnityGoogleSheet.Editor.Core
             currentViewFolderID = prevFolder;
             LoadDriveFiles(currentViewFolderID);
         }
-        
 
         [OnInspectorDispose]
         private void Clear()
@@ -141,16 +140,24 @@ namespace UnityGoogleSheet.Editor.Core
                     break;
                 case "Show":
                     attributes.Add(new HideIfAttribute("isInitiated"));
+                    attributes.Add(new PropertySpaceAttribute(20, 0));
                     attributes.Add(new ButtonAttribute(ButtonSizes.Large)
                     {
-                        Name = "Load from GoogleDrive"
+                            Icon = SdfIconType.Cloud,
+                            IconAlignment = IconAlignment.LeftOfText,
+                            Stretch = false,
+                            Name = "Load from GoogleDrive"
                     });
                     break;
                 case "ParseAllSpreadSheet":
                     attributes.Add(new ShowIfAttribute("isInitiated"));
+                    attributes.Add(new PropertySpaceAttribute(20, 0));
                     attributes.Add(new ButtonAttribute(ButtonSizes.Large)
                     {
-                        Name = "Parse All Spread Sheet in this Section"
+                            Icon = SdfIconType.CloudDownloadFill,
+                            IconAlignment = IconAlignment.LeftOfText,
+                            Stretch = false,
+                            Name = "Parse All Spread Sheet in this Section"
                     });
                     break;
             }
