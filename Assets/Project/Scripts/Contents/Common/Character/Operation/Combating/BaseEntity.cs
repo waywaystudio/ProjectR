@@ -6,7 +6,7 @@ using Sirenix.OdinInspector.Editor;
 using System;
 using System.Collections.Generic;
 using UnityEngine;
-using Skill = MainGame.Data.ContentData.SkillData.Skill;
+using SkillData = MainGame.Data.ContentData.SkillData.Skill;
 
 namespace Common.Character.Operation.Combating
 {
@@ -17,7 +17,7 @@ namespace Common.Character.Operation.Combating
         protected int InstanceID;
         
         protected BaseSkill Skill => skill ??= GetComponent<BaseSkill>();
-        protected Skill SkillData => Skill.SkillData;
+        protected SkillData SkillData => Skill.SkillData;
         protected CharacterBehaviour Cb => Skill.Combat.Cb;
 
         public abstract bool IsReady { get; }

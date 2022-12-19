@@ -23,14 +23,20 @@ namespace Common.Character
         [SerializeField] private LayerMask allyLayer;
         [SerializeField] private LayerMask enemyLayer;
         [SerializeField] private DoubleTable maxHp = new();
+        [SerializeField] private FloatTable combatPower = new();
         [SerializeField] private FloatTable moveSpeed = new();
         [SerializeField] private FloatTable critical = new();
         [SerializeField] private FloatTable haste = new();
         [SerializeField] private FloatTable hit = new();
         [SerializeField] private FloatTable evade = new();
-        
+        private float combatPower1;
+        private float critical1;
+        private float haste1;
+        private float hit1;
+
         public string CharacterName => characterName ??= "Diablo";
         public int ID => id;
+
         public string CombatClass => combatClass ??= MainData.GetAdventurerData(CharacterName).Job;
         public float SearchingRange => searchingRange;
         public LayerMask AllyLayer => allyLayer;
@@ -44,9 +50,11 @@ namespace Common.Character
         public ActionTable<Vector3> OnTeleport { get; } = new();
         public ActionTable<string, Action> OnSkill { get; } = new();
         public ActionTable OnSkillHit { get; } = new(1);
+        public ActionTable<string, ICombatProvider> OnTakeStatusEffect { get; } = new();
         public FunctionTable<bool> IsReached { get; } = new();
         public FunctionTable<Vector3> Direction { get; } = new();
         public DoubleTable MaxHp => maxHp;
+        public FloatTable CombatPower => combatPower;
         public FloatTable MoveSpeed => moveSpeed;
         public FloatTable Critical => critical;
         public FloatTable Haste => haste;
@@ -83,23 +91,23 @@ namespace Common.Character
         protected void Update() => OnUpdate?.Invoke();
 
         public virtual GameObject Taker => gameObject;
-        public virtual void TakeDamage(IDamageProvider damageInfo) {}
-        public virtual void TakeHeal(IHealProvider healInfo)
+        public virtual void TakeDamage(ICombatProvider combatInfo) {}
+        public virtual void TakeHeal(ICombatProvider healInfo)
         {
             double healValue;
             
             if (UnityEngine.Random.Range(0f, 1.0f) > healInfo.Critical)
             {
-                healValue = healInfo.CombatValue * 2d; 
+                healValue = healInfo.CombatPower * 2d; 
             }
             else
             {
-                healValue = healInfo.CombatValue;
+                healValue = healInfo.CombatPower;
             }
 
             Hp += healValue;
         }
-        public virtual void TakeExtra(IExtraProvider extra) {}
+        public virtual void TakeStatusEffect(ICombatProvider statusEffect) {}
 
 #if UNITY_EDITOR
         [Button]

@@ -11,6 +11,9 @@ namespace Common.Character.Operation.Combating
         Target = 1  << 4,
         Projectile = 1 << 5,
         Heal = 1 << 6,
+        Buff = 1 << 7,
+        DeBuff = 1 << 8,
+        StatusEffect = 1 << 9,
     
         All = int.MaxValue
     }

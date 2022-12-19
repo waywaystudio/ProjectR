@@ -9,36 +9,22 @@ using UnityEngine;
 
 namespace MainGame.Data.ContentData
 {    
-    public partial class SkillData : DataObject<SkillData.Skill>
+    public partial class StatusEffectData : DataObject<StatusEffectData.StatusEffect>
     {
         [Serializable]
-        public class Skill : IIdentifier
+        public class StatusEffect : IIdentifier
         {
 			[SerializeField] private Int32 id;
 			[SerializeField] private String name;
-			[SerializeField] private Single baseValue;
-			[SerializeField] private Single baseCoolTime;
-			[SerializeField] private Single range;
-			[SerializeField] private Int32 priority;
-			[SerializeField] private String animationKey;
-			[SerializeField] private Int32 targetCount;
-			[SerializeField] private String targetLayer;
-			[SerializeField] private String skillType;
-			[SerializeField] private Single castingTime;
-			[SerializeField] private Int32 statusEffect;
+			[SerializeField] private Boolean isBuff;
+			[SerializeField] private Single duration;
+			[SerializeField] private Single combatValue;
 
 			public Int32 ID => id;
 			public String Name => name;
-			public Single BaseValue => baseValue;
-			public Single BaseCoolTime => baseCoolTime;
-			public Single Range => range;
-			public Int32 Priority => priority;
-			public String AnimationKey => animationKey;
-			public Int32 TargetCount => targetCount;
-			public String TargetLayer => targetLayer;
-			public String SkillType => skillType;
-			public Single CastingTime => castingTime;
-			public Int32 StatusEffect => statusEffect;
+			public Boolean IsBuff => isBuff;
+			public Single Duration => duration;
+			public Single CombatValue => combatValue;
 
         }
         
@@ -46,19 +32,19 @@ namespace MainGame.Data.ContentData
     #if UNITY_EDITOR
         public readonly string SpreadSheetID = "1yO5sJqxMvySDiihls5pwiHQWoJGysrT7LBmL16HhHRM";
         public readonly string SpreadSheetName = "ContentData";
-        public readonly string WorkSheetName = "Skill";    
+        public readonly string WorkSheetName = "StatusEffect";    
   
         private void LoadFromJson()
         {
     
             List = UnityGoogleSheet.Editor.Core.UgsEditorUtility
-                .LoadFromJson<Skill>("ContentData"); 
+                .LoadFromJson<StatusEffect>("ContentData"); 
         }
         
         private void LoadFromGoogleSpreadSheet()
         {
             UnityGoogleSheet.Editor.Core.UgsExplorer
-                .ParseSpreadSheet(SpreadSheetID, "Skill");
+                .ParseSpreadSheet(SpreadSheetID, "StatusEffect");
 
             LoadFromJson();
             UnityEditor.EditorUtility.SetDirty(this);

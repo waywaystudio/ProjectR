@@ -10,7 +10,10 @@ namespace Common.Character.Operation.Combating.Skills
             var hasTargetList = TryGetComponent(out TargetEntity targetEntity);
             
             if (hasProvider && hasTargetList)
-                targetEntity.CombatTakerList.ForEach(target => target.TakeDamage(damageEntity));
+                targetEntity.CombatTakerList.ForEach(target =>
+                {
+                    target.TakeDamage(damageEntity);
+                });
         }
     }
 }

@@ -5,8 +5,8 @@ namespace Core
         bool IsAlive { get; set; }
         UnityEngine.GameObject Taker { get; }
         
-        void TakeDamage(IDamageProvider damageInfo);
-        void TakeHeal(IHealProvider healInfo);
-        void TakeExtra(IExtraProvider extra);
+        void TakeDamage(ICombatProvider combatInfo);
+        void TakeHeal(ICombatProvider healInfo);
+        void TakeStatusEffect(ICombatProvider statusEffect);
     }
 }

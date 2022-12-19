@@ -3,13 +3,19 @@ using UnityEngine;
 
 namespace Common.Character.Operation.Combating.Entity
 {
-    public class HealEntity : BaseEntity, IHealProvider
+    public class HealEntity : BaseEntity, ICombatProvider
     {
-        [SerializeField] private double combatValue;
+        [SerializeField] private float combatValue;
+
+        public int ID => Skill.ID;
+        public string Name => Skill.SkillName;
         
         public GameObject Provider => Cb.gameObject;
-        public double CombatValue => combatValue;
+        public string ProviderName => Cb.CharacterName;
+        public float CombatPower => combatValue;
         public float Critical => Cb.Critical.Result;
+        public float Haste => Cb.Haste.Result;
+        public float Hit => 1.0f;
 
         public override bool IsReady => true;
         

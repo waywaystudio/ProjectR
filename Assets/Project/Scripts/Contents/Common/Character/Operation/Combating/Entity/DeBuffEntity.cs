@@ -1,10 +1,10 @@
 namespace Common.Character.Operation.Combating.Entity
 {
-    public class BuffEntity : StatusEffectEntity
+    public class DeBuffEntity : StatusEffectEntity
     {
         private void Reset()
         {
-            flag = EntityType.Buff;
+            flag = EntityType.DeBuff;
             SetEntity();
         }
     }

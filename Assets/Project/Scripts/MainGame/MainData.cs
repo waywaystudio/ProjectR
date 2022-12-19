@@ -11,6 +11,7 @@ namespace MainGame
     using Skill = Data.ContentData.SkillData.Skill;
     using CombatClass = Data.ContentData.CombatClassData.CombatClass;
     using Equipment = Data.ContentData.EquipmentData.Equipment;
+    using StatusEffect = Data.ContentData.StatusEffectData.StatusEffect;
 
     public class MainData : Core.Singleton.MonoSingleton<MainData>
     {
@@ -53,6 +54,8 @@ namespace MainGame
         public static CombatClass GetCombatClassData(int id) => GetData<CombatClass>(DataCategory.CombatClass, id);
         public static Equipment GetEquipmentData(string nameKey) => GetData<Equipment>(DataCategory.Equipment, nameKey);
         public static Equipment GetEquipmentData(int id) => GetData<Equipment>(DataCategory.Equipment, id);
+        public static StatusEffect GetStatusEffectData(string nameKey) => GetData<StatusEffect>(DataCategory.StatusEffect, nameKey);
+        public static StatusEffect GetStatusEffectData(int id) => GetData<StatusEffect>(DataCategory.StatusEffect, id);
 
         // AddMoreDataSet...
 

@@ -25,6 +25,7 @@ MonoBehaviour:
     targetLayer: enemy
     skillType: damage
     castingTime: 0
+    statusEffect: 0
   - id: 13000002
     name: Charge
     baseValue: 4
@@ -36,6 +37,7 @@ MonoBehaviour:
     targetLayer: enemy
     skillType: damage
     castingTime: 0
+    statusEffect: 0
   - id: 13000003
     name: BackStep
     baseValue: 4
@@ -47,6 +49,7 @@ MonoBehaviour:
     targetLayer: enemy
     skillType: damage
     castingTime: 0
+    statusEffect: 0
   - id: 13000004
     name: AimShot
     baseValue: 25
@@ -58,6 +61,7 @@ MonoBehaviour:
     targetLayer: enemy
     skillType: damage
     castingTime: 3
+    statusEffect: 0
   - id: 13000005
     name: BloodDrain
     baseValue: 0
@@ -69,6 +73,7 @@ MonoBehaviour:
     targetLayer: ally
     skillType: transcendence
     castingTime: 0
+    statusEffect: 0
   - id: 13000006
     name: Roar
     baseValue: 1.2
@@ -80,6 +85,7 @@ MonoBehaviour:
     targetLayer: enemy
     skillType: damage
     castingTime: 0
+    statusEffect: 0
   - id: 13000007
     name: Penetrate
     baseValue: 21
@@ -91,6 +97,7 @@ MonoBehaviour:
     targetLayer: enemy
     skillType: damage
     castingTime: 3
+    statusEffect: 0
   - id: 13000008
     name: RapidBlow
     baseValue: 2
@@ -102,6 +109,7 @@ MonoBehaviour:
     targetLayer: enemy
     skillType: damage
     castingTime: 0.8
+    statusEffect: 0
   - id: 13000009
     name: Fury
     baseValue: 0
@@ -113,6 +121,7 @@ MonoBehaviour:
     targetLayer: ally
     skillType: transcendence
     castingTime: 0
+    statusEffect: 0
   - id: 13000010
     name: LightningSlash
     baseValue: 8
@@ -124,6 +133,7 @@ MonoBehaviour:
     targetLayer: enemy
     skillType: damage
     castingTime: 0
+    statusEffect: 0
   - id: 13000011
     name: Fireball
     baseValue: 2
@@ -135,6 +145,7 @@ MonoBehaviour:
     targetLayer: enemy
     skillType: damage
     castingTime: 1.5
+    statusEffect: 0
   - id: 13000012
     name: Corruption
     baseValue: 3
@@ -146,6 +157,7 @@ MonoBehaviour:
     targetLayer: enemy
     skillType: damage
     castingTime: 0
+    statusEffect: 14000001
   - id: 13000013
     name: FaithfulPrey
     baseValue: 3
@@ -157,6 +169,7 @@ MonoBehaviour:
     targetLayer: ally
     skillType: heal
     castingTime: 1.5
+    statusEffect: 0
   - id: 13000014
     name: HolyProtection
     baseValue: 5
@@ -168,6 +181,7 @@ MonoBehaviour:
     targetLayer: ally
     skillType: heal
     castingTime: 0
+    statusEffect: 0
   - id: 13000015
     name: Revivification
     baseValue: 5
@@ -179,6 +193,7 @@ MonoBehaviour:
     targetLayer: ally
     skillType: heal
     castingTime: 0
+    statusEffect: 0
   - id: 13000016
     name: EncouragedSong
     baseValue: 10
@@ -190,3 +205,4 @@ MonoBehaviour:
     targetLayer: ally
     skillType: heal
     castingTime: 6
+    statusEffect: 0

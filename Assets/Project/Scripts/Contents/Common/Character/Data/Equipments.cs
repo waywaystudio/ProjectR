@@ -60,6 +60,9 @@ namespace Common.Character.Data
         
         private void AddValueTable()
         {
+            // TEMP
+            Cb.CombatPower.RegisterSumType(EquipmentKey, 1, true);
+            
             Cb.MaxHp.RegisterSumType(EquipmentKey, () => Hp, true);
             Cb.Critical.RegisterSumType(EquipmentKey, () => Critical, true);
             Cb.Haste.RegisterSumType(EquipmentKey, () => Haste, true);

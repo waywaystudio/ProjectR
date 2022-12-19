@@ -8,12 +8,12 @@ namespace Common.Character.Operation.Combating.Entity
         // TODO. Projectile Master같은 곳에서 키 값으로 가져오고,
         // SerializeField 띄어내볼까...
         [SerializeField] private GameObject projectile;
-        private IDamageProvider provider;
+        private ICombatProvider provider;
         private ICombatTaker taker;
         
         public override bool IsReady => true;
 
-        public void Initialize(IDamageProvider provider, ICombatTaker taker)
+        public void Initialize(ICombatProvider provider, ICombatTaker taker)
         {
             // SetEntity...
         }

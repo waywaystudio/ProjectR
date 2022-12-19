@@ -7,7 +7,7 @@ namespace MainGame.Data
         Adventurer = 11,
         CombatClass = 12,
         Skill = 13,
-        // 14
+        StatusEffect = 14,
         // 15
         Raid = 16,
         Boss = 17,

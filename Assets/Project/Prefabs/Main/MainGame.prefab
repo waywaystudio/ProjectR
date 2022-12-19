@@ -94,6 +94,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 6896170e351b6824abfad379ecfdcb44, type: 2}
   - {fileID: 11400000, guid: 5a46d34d812abe740839bfed1ce08573, type: 2}
   - {fileID: 11400000, guid: d5fa5f323244127428ad66d0bf80b6ed, type: 2}
+  - {fileID: 11400000, guid: ce53f117c95942640ac5d0f45e88839d, type: 2}
 --- !u!114 &6673278252666892873
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -480,7 +481,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -6281434823882327373, guid: 10fc25fac0ad29e44ae1c844f25bee3c, type: 3}
       propertyPath: saveInfoList.Array.data[0].saveTime
-      value: 2022.11.15.07.00.20
+      value: 2022.12.07.18.18.18
       objectReference: {fileID: 0}
     - target: {fileID: -6281434823882327373, guid: 10fc25fac0ad29e44ae1c844f25bee3c, type: 3}
       propertyPath: saveInfoList.Array.data[0].lastSceneName

@@ -1177,74 +1177,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 89895006124198827, guid: 9f6a97e7e5739ea469cdeb8ceab14b08, type: 3}
-      propertyPath: skillDebug.doNotShow
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 89895006124198827, guid: 9f6a97e7e5739ea469cdeb8ceab14b08, type: 3}
-      propertyPath: skillDebug.isShowLog
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 89895006124198827, guid: 9f6a97e7e5739ea469cdeb8ceab14b08, type: 3}
-      propertyPath: combatDebug.doNotShow
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 89895006124198827, guid: 9f6a97e7e5739ea469cdeb8ceab14b08, type: 3}
-      propertyPath: debuggerList.Array.size
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 89895006124198827, guid: 9f6a97e7e5739ea469cdeb8ceab14b08, type: 3}
-      propertyPath: skillDebugger.doNotShow
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 89895006124198827, guid: 9f6a97e7e5739ea469cdeb8ceab14b08, type: 3}
-      propertyPath: skillDebugger.isShowLog
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 89895006124198827, guid: 9f6a97e7e5739ea469cdeb8ceab14b08, type: 3}
-      propertyPath: skillDebug.isShowWarning
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 89895006124198827, guid: 9f6a97e7e5739ea469cdeb8ceab14b08, type: 3}
-      propertyPath: debuggerList.Array.data[0].doNotShow
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 89895006124198827, guid: 9f6a97e7e5739ea469cdeb8ceab14b08, type: 3}
-      propertyPath: debuggerList.Array.data[0].isShowLog
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 89895006124198827, guid: 9f6a97e7e5739ea469cdeb8ceab14b08, type: 3}
-      propertyPath: debuggerList.Array.data[1].doNotShow
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 89895006124198827, guid: 9f6a97e7e5739ea469cdeb8ceab14b08, type: 3}
-      propertyPath: debuggerList.Array.data[1].isShowLog
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 89895006124198827, guid: 9f6a97e7e5739ea469cdeb8ceab14b08, type: 3}
-      propertyPath: debuggerList.Array.data[0].isShowElse
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 89895006124198827, guid: 9f6a97e7e5739ea469cdeb8ceab14b08, type: 3}
-      propertyPath: debuggerList.Array.data[1].isShowElse
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 89895006124198827, guid: 9f6a97e7e5739ea469cdeb8ceab14b08, type: 3}
-      propertyPath: debuggerList.Array.data[0].isShowError
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 89895006124198827, guid: 9f6a97e7e5739ea469cdeb8ceab14b08, type: 3}
-      propertyPath: debuggerList.Array.data[1].isShowError
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 89895006124198827, guid: 9f6a97e7e5739ea469cdeb8ceab14b08, type: 3}
-      propertyPath: debuggerList.Array.data[0].isShowWarning
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 89895006124198827, guid: 9f6a97e7e5739ea469cdeb8ceab14b08, type: 3}
-      propertyPath: debuggerList.Array.data[1].isShowWarning
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 4672108652296497339, guid: 9f6a97e7e5739ea469cdeb8ceab14b08, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -1292,14 +1224,6 @@ PrefabInstance:
     - target: {fileID: 5948248387940990852, guid: 9f6a97e7e5739ea469cdeb8ceab14b08, type: 3}
       propertyPath: m_Name
       value: MainGame
-      objectReference: {fileID: 0}
-    - target: {fileID: 7364561384061389512, guid: 9f6a97e7e5739ea469cdeb8ceab14b08, type: 3}
-      propertyPath: saveInfoList.Array.size
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7364561384061389512, guid: 9f6a97e7e5739ea469cdeb8ceab14b08, type: 3}
-      propertyPath: saveInfoList.Array.data[0].saveTime
-      value: 2022.12.07.18.18.18
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9f6a97e7e5739ea469cdeb8ceab14b08, type: 3}

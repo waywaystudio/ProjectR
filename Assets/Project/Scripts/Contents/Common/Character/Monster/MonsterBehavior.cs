@@ -1,4 +1,4 @@
-using System;
+using Common.Character.Operation.Combating;
 using Core;
 using UnityEngine;
 using Random = UnityEngine.Random;
@@ -36,11 +36,11 @@ namespace Common.Character
         }
 
         public override GameObject Taker => gameObject;
-        public override void TakeDamage(IDamageProvider damageInfo)
+        public override void TakeDamage(ICombatProvider combatInfo)
         {
             var hitChance = Random.Range(0f, 1.0f);
             
-            if (hitChance > damageInfo.Hit)
+            if (hitChance > combatInfo.Hit)
             {
                 // Debug.Log($"hitChance : {hitChance} hit : {damageInfo.Hit} Miss");
                 return;
@@ -48,15 +48,15 @@ namespace Common.Character
 
             var damageAmount = 0d;
 
-            if (Random.Range(0f, 1.0f) > damageInfo.Critical)
+            if (Random.Range(0f, 1.0f) > combatInfo.Critical)
             {
                 // Debug.Log("Critical!");
-                damageAmount = damageInfo.CombatValue * 2d;
+                damageAmount = combatInfo.CombatPower * 2d;
             }
             else
             {
                 // Debug.Log("TakeDamage!");
-                damageAmount = damageInfo.CombatValue;
+                damageAmount = combatInfo.CombatPower;
             }
             
             Hp -= damageAmount;
@@ -70,13 +70,27 @@ namespace Common.Character
             Debug.Log("TakeDamage");
             // Debug.Log($"{damageAmount} from {damageInfo.Provider.name}!");
         }
-        public override void TakeHeal(IHealProvider healInfo)
+        public override void TakeHeal(ICombatProvider healInfo)
         {
             Debug.Log("TakeHeal!");
         }
-        public override void TakeExtra(IExtraProvider extra)
+        public override void TakeStatusEffect(ICombatProvider statusEffect)
         {
+            // var statusEffect = CombatManager.GenerateStatusEffect(statusEffect);
+            // StatusEffectTable.Register(statusEffectInfo)
+            
             Debug.Log("TakeExtra!");
+        }
+
+        public StatusEffect GenerateStatusEffect(ICombatProvider provider)
+        {
+            switch (provider.Name)
+            {
+                case "Corruption" : break;
+                case "BloodDrain" : break;
+            }
+
+            return null;
         }
     }
 }
