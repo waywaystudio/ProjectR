@@ -70,10 +70,10 @@ MonoBehaviour:
     priority: 1
     animationKey: skill
     targetCount: 1
-    targetLayer: ally
+    targetLayer: self
     skillType: transcendence
     castingTime: 0
-    statusEffect: 0
+    statusEffect: 14001003
   - id: 13000006
     name: Roar
     baseValue: 1.2
@@ -85,7 +85,7 @@ MonoBehaviour:
     targetLayer: enemy
     skillType: damage
     castingTime: 0
-    statusEffect: 0
+    statusEffect: 14000004
   - id: 13000007
     name: Penetrate
     baseValue: 21
@@ -118,7 +118,7 @@ MonoBehaviour:
     priority: 1
     animationKey: skill
     targetCount: 1
-    targetLayer: ally
+    targetLayer: self
     skillType: transcendence
     castingTime: 0
     statusEffect: 0
@@ -149,7 +149,7 @@ MonoBehaviour:
   - id: 13000012
     name: Corruption
     baseValue: 3
-    baseCoolTime: 0
+    baseCoolTime: 15
     range: 20
     priority: 2
     animationKey: skill

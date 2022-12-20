@@ -132,7 +132,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 3744010701179384131}
-  m_RootOrder: 5
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &3073268482839418820
 MonoBehaviour:
@@ -197,6 +197,105 @@ MonoBehaviour:
   flag: 8
   skill: {fileID: 3073268482839418820}
   originalCastingTime: 1.5
+--- !u!1 &1395558016746253724
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6683087271973930562}
+  - component: {fileID: 6479502405617291387}
+  - component: {fileID: 6291252832563897115}
+  - component: {fileID: 7875250353425473752}
+  - component: {fileID: 3209702092269156988}
+  m_Layer: 0
+  m_Name: Corruption
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6683087271973930562
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1395558016746253724}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 3744010701179384131}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &6479502405617291387
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1395558016746253724}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bd85932ebd5c96c4ab6a3f2130e5b30a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  id: 13000012
+  skillName: Corruption
+  animationKey: skill
+  priority: 2
+--- !u!114 &6291252832563897115
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1395558016746253724}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 220707aa24bd15e4d9a9240e827cb4a3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  flag: 512
+  skill: {fileID: 6479502405617291387}
+  id: 14000001
+  statusEffectName: CorruptionDeBuff
+--- !u!114 &7875250353425473752
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1395558016746253724}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9b71247a0c6287f44b49f848d90d357e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  flag: 2
+  skill: {fileID: 6479502405617291387}
+  coolTime: 15
+--- !u!114 &3209702092269156988
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1395558016746253724}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4c5f541185aa92b488eeff9b9e07cdfc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  flag: 16
+  skill: {fileID: 6479502405617291387}
+  targetLayerType: enemy
+  targetCount: 1
+  range: 20
 --- !u!1 &2149634195031184608
 GameObject:
   m_ObjectHideFlags: 0
@@ -231,7 +330,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 3744010701179384131}
-  m_RootOrder: 4
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &5218544908929011682
 MonoBehaviour:
@@ -362,6 +461,7 @@ MonoBehaviour:
   haste: 0
   hit: 0.95
   evade: 0
+  armor: 0
 --- !u!1 &3744010699582125756
 GameObject:
   m_ObjectHideFlags: 0
@@ -393,6 +493,7 @@ Transform:
   - {fileID: 3744010701179384131}
   - {fileID: 3744010700621091311}
   - {fileID: 3744010700929808892}
+  - {fileID: 8673068189234025519}
   m_Father: {fileID: 3744010700067239340}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1112,9 +1213,11 @@ Transform:
   - {fileID: 4099765645359084170}
   - {fileID: 1446163995460283899}
   - {fileID: 3744010701327891158}
+  - {fileID: 6683087271973930562}
   - {fileID: 7465841416723213854}
   - {fileID: 3941671904429421807}
-  - {fileID: 8673068189234025519}
+  - {fileID: 2801546766442355168}
+  - {fileID: 7864773309251796700}
   m_Father: {fileID: 3744010699582125759}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1385,8 +1488,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8673068189234025519}
+  - component: {fileID: 3743676545280844815}
   m_Layer: 0
-  m_Name: Buff
+  m_Name: StatusEffecting
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1399,14 +1503,125 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7281782007172129132}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 3744010699582125759}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &3743676545280844815
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7281782007172129132}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 32153423a38227e41aa7409d16f4531d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!1 &7428287362035983856
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2801546766442355168}
+  - component: {fileID: 4824280575348527026}
+  - component: {fileID: 6546515311254796486}
+  - component: {fileID: 5473161076300969417}
+  - component: {fileID: 4128766686330263056}
+  m_Layer: 0
+  m_Name: BloodDrain
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2801546766442355168
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7428287362035983856}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 3744010701179384131}
-  m_RootOrder: 6
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &4824280575348527026
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7428287362035983856}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ad7e735577a60dc41b683e6ca92ebbf4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  id: 13000005
+  skillName: BloodDrain
+  animationKey: skill
+  priority: 1
+--- !u!114 &6546515311254796486
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7428287362035983856}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 220707aa24bd15e4d9a9240e827cb4a3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  flag: 512
+  skill: {fileID: 4824280575348527026}
+  id: 14001003
+  statusEffectName: BloodDrainBuff
+--- !u!114 &5473161076300969417
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7428287362035983856}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9b71247a0c6287f44b49f848d90d357e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  flag: 2
+  skill: {fileID: 4824280575348527026}
+  coolTime: 15
+--- !u!114 &4128766686330263056
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7428287362035983856}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4c5f541185aa92b488eeff9b9e07cdfc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  flag: 16
+  skill: {fileID: 4824280575348527026}
+  targetLayerType: self
+  targetCount: 1
+  range: 0
 --- !u!1 &7656701811667595336
 GameObject:
   m_ObjectHideFlags: 0
@@ -1573,3 +1788,118 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 520c2fd95eb2b1a4287026dfc518c566, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &9117587234178573487
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7864773309251796700}
+  - component: {fileID: 8749851631722230459}
+  - component: {fileID: 3520732832617858417}
+  - component: {fileID: 5453660131098555466}
+  - component: {fileID: 1562587358509214084}
+  - component: {fileID: 4681170025766940016}
+  m_Layer: 0
+  m_Name: Roar
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7864773309251796700
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9117587234178573487}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 3744010701179384131}
+  m_RootOrder: 8
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &8749851631722230459
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9117587234178573487}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b258e69d46d896d469bdf3cdfe6b130f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  id: 13000006
+  skillName: Roar
+  animationKey: skill
+  priority: 5
+--- !u!114 &3520732832617858417
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9117587234178573487}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bd2d098c14bb73641bcc6faff29af210, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  flag: 1
+  skill: {fileID: 8749851631722230459}
+  combatValue: 1.2
+--- !u!114 &5453660131098555466
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9117587234178573487}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9b71247a0c6287f44b49f848d90d357e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  flag: 2
+  skill: {fileID: 8749851631722230459}
+  coolTime: 12
+--- !u!114 &1562587358509214084
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9117587234178573487}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4c5f541185aa92b488eeff9b9e07cdfc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  flag: 16
+  skill: {fileID: 8749851631722230459}
+  targetLayerType: enemy
+  targetCount: 5
+  range: 16
+--- !u!114 &4681170025766940016
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9117587234178573487}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 220707aa24bd15e4d9a9240e827cb4a3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  flag: 512
+  skill: {fileID: 8749851631722230459}
+  id: 14000004
+  statusEffectName: RoarDeBuff

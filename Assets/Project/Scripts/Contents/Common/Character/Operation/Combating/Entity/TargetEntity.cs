@@ -13,6 +13,7 @@ namespace Common.Character.Operation.Combating.Entity
         [SerializeField] private float range;
         [ShowInInspector]
         private List<GameObject> searchedList;
+        [ShowInInspector]
         private ICombatTaker combatTaker;
         private List<ICombatTaker> combatTakerList;
         private readonly List<ICombatTaker> combatTakerFilterCache = new();
@@ -66,9 +67,16 @@ namespace Common.Character.Operation.Combating.Entity
 
         public void UpdateMainTarget()
         {
-            combatTaker = CombatTakerList.IsNullOrEmpty() 
-                ? searchedList.Select(x => x.GetComponent<ICombatTaker>()).FirstOrDefault()
-                : combatTakerList.First();
+            if (targetLayerType is "self")
+            {
+                combatTaker = Cb;
+            }
+            else
+            {
+                combatTaker = CombatTakerList.IsNullOrEmpty() 
+                    ? searchedList.Select(x => x.GetComponent<ICombatTaker>()).FirstOrDefault()
+                    : combatTakerList.First();
+            }
 
             Cb.MainTarget = combatTaker;
         }
@@ -86,7 +94,7 @@ namespace Common.Character.Operation.Combating.Entity
 
             SetEntity();
 
-            searchedList = targetLayerType is "ally"
+            searchedList = targetLayerType is "ally" or "self"
                 ? Cb.CharacterSearchedList // ally
                 : Cb.MonsterSearchedList;  // enemy
         }

@@ -16,13 +16,13 @@ namespace MainGame.Data.ContentData
         {
 			[SerializeField] private Int32 id;
 			[SerializeField] private String name;
+			[SerializeField] private String combatClass;
 			[SerializeField] private String role;
-			[SerializeField] private String job;
 
 			public Int32 ID => id;
 			public String Name => name;
+			public String CombatClass => combatClass;
 			public String Role => role;
-			public String Job => job;
 
         }
         

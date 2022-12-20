@@ -1,3 +1,9 @@
+#if UNITY_EDITOR
+using System.Reflection;
+using Sirenix.OdinInspector.Editor;
+#endif
+using System;
+using System.Collections.Generic;
 using Core;
 using MainGame;
 using Sirenix.OdinInspector;
@@ -17,6 +23,7 @@ namespace Common.Character.Data
         [SerializeField] private float haste;
         [SerializeField] private float hit;
         [SerializeField] private float evade;
+        [SerializeField] private float armor;
         
         private CharacterBehaviour cb;
         private CombatClassData classData;
@@ -24,8 +31,8 @@ namespace Common.Character.Data
 
         private CharacterBehaviour Cb => cb ??= GetComponentInParent<CharacterBehaviour>();
         private CombatClassData ClassData => classData ??= MainData.GetCombatClassData(combatClass);
+        
 
-        [Button]
         public void Initialize()
         {
             combatClass.IsNullOrEmpty().OnTrue(() => combatClass = Cb.CombatClass);
@@ -37,6 +44,7 @@ namespace Common.Character.Data
             haste = ClassData.Haste;
             hit = ClassData.Hit;
             evade = ClassData.Evade;
+            armor = ClassData.Armor;
             
             AddValueTable();
         }
@@ -44,11 +52,12 @@ namespace Common.Character.Data
         public void AddValueTable()
         {
             Cb.MaxHp.RegisterSumType(BaseStatsKey, maxHp);
-            Cb.MoveSpeed.RegisterSumType(BaseStatsKey, moveSpeed);
-            Cb.Critical.RegisterSumType(BaseStatsKey, critical);
-            Cb.Haste.RegisterSumType(BaseStatsKey, haste);
-            Cb.Hit.RegisterSumType(BaseStatsKey, hit);
-            Cb.Evade.RegisterSumType(BaseStatsKey, evade);
+            Cb.MoveSpeedTable.RegisterSumType(BaseStatsKey, moveSpeed);
+            Cb.CriticalTable.RegisterSumType(BaseStatsKey, critical);
+            Cb.HasteTable.RegisterSumType(BaseStatsKey, haste);
+            Cb.HitTable.RegisterSumType(BaseStatsKey, hit);
+            Cb.EvadeTable.RegisterSumType(BaseStatsKey, evade);
+            Cb.ArmorTable.RegisterSumType(BaseStatsKey, armor);
         }
         
         private void Awake()
@@ -56,4 +65,22 @@ namespace Common.Character.Data
             Cb.OnStart.Register(GetInstanceID(), Initialize);
         }
     }
+    
+#if UNITY_EDITOR
+    public class BaseSkillDrawer : OdinAttributeProcessor<ClassBaseStats>
+    {
+        public override void ProcessChildMemberAttributes(InspectorProperty parentProperty, MemberInfo member, List<Attribute> attributes)
+        {
+            if (member.Name == "Initialize")
+            {
+                attributes.Add(new PropertySpaceAttribute(15f, 0f));
+                attributes.Add(new ButtonAttribute(ButtonSizes.Medium)
+                {
+                    Icon = SdfIconType.ArrowRepeat,
+                    Stretch = false,
+                });
+            }
+        }
+    }
+#endif
 }

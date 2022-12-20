@@ -30,5 +30,14 @@ namespace Core
         {
             if (value) callback?.Invoke();
         }
+
+        public static void OnTrue(this bool value, Action onTrueAction, Action onFalseAction)
+        {
+            if (value) onTrueAction?.Invoke();
+            else
+            {
+                onFalseAction?.Invoke();
+            }
+        }
     }
 }

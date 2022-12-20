@@ -9,17 +9,24 @@ namespace Common.Character.Operation.Combating.Entity
 
         public int ID => Skill.ID;
         public string Name => Skill.SkillName;
-        public float BaseCombatPower => Cb.CombatPower.Result;
-        
+        public float BaseCombatPower => Cb.CombatPowerTable.Result;
+
         public GameObject Provider => Cb.gameObject;
         public string ProviderName => Cb.CharacterName;
         public float CombatPower => BaseCombatPower * combatValue;
-        public float Critical => Cb.Critical.Result;
-        public float Haste => Cb.Haste.Result;
-        public float Hit => Cb.Hit.Result;
+        public float Critical => Cb.CriticalTable.Result;
+        public float Haste => Cb.HasteTable.Result;
+        public float Hit => Cb.HitTable.Result;
 
         public override bool IsReady => true;
-
+        
+        public void CombatReport(ILog log)
+        {
+            if (log is CombatLog combatLog)
+            {
+                Cb.ReportDamage(combatLog);
+            } 
+        }
 
         protected override void Awake()
         {

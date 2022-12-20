@@ -1,4 +1,5 @@
 using Common.Character.Operation.Combating.Entity;
+using UnityEngine;
 
 namespace Common.Character.Operation.Combating.Skills
 {
@@ -12,6 +13,7 @@ namespace Common.Character.Operation.Combating.Skills
             if (hasProvider && hasTargetList)
                 targetEntity.CombatTakerList.ForEach(target =>
                 {
+                    Debug.Log("CommonAttack In");
                     target.TakeDamage(damageEntity);
                 });
         }

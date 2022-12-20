@@ -13,11 +13,19 @@ namespace Common.Character.Operation.Combating.Entity
         public GameObject Provider => Cb.gameObject;
         public string ProviderName => Cb.CharacterName;
         public float CombatPower => combatValue;
-        public float Critical => Cb.Critical.Result;
-        public float Haste => Cb.Haste.Result;
+        public float Critical => Cb.CriticalTable.Result;
+        public float Haste => Cb.HasteTable.Result;
         public float Hit => 1.0f;
 
         public override bool IsReady => true;
+        
+        public void CombatReport(ILog log)
+        {
+            if (log is CombatLog combatLog)
+            {
+                Cb.ReportHeal(combatLog);
+            } 
+        }
         
         
         protected override void Awake()

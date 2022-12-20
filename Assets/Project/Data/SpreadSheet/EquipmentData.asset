@@ -22,6 +22,7 @@ MonoBehaviour:
     haste: 0.05
     hit: 0.02
     evade: 0
+    armor: 0
   - id: 21000002
     name: Heartshiver
     part: shoulder
@@ -30,6 +31,7 @@ MonoBehaviour:
     haste: 0.1
     hit: 0
     evade: 0
+    armor: 20
   - id: 21000003
     name: Tower of the Mouldering Sorpse
     part: leg
@@ -38,6 +40,7 @@ MonoBehaviour:
     haste: 0
     hit: 0
     evade: 0.03
+    armor: 30
   - id: 21000004
     name: Coil of Missing Gems
     part: ring
@@ -46,6 +49,7 @@ MonoBehaviour:
     haste: 0
     hit: 0
     evade: 0
+    armor: 0
   - id: 21000005
     name: Brace Guards of the  Starless Night
     part: chest
@@ -54,6 +58,7 @@ MonoBehaviour:
     haste: 0
     hit: 0
     evade: 0.05
+    armor: 50
   - id: 21000006
     name: Sollerets of Suffering
     part: ring
@@ -62,6 +67,7 @@ MonoBehaviour:
     haste: 0
     hit: 0
     evade: 0
+    armor: 0
   - id: 21000007
     name: Soul Screaming Boots
     part: leg
@@ -70,6 +76,7 @@ MonoBehaviour:
     haste: 0
     hit: 0
     evade: 0.03
+    armor: 30
   - id: 21000008
     name: Spiteful Signet
     part: head
@@ -78,6 +85,7 @@ MonoBehaviour:
     haste: 0
     hit: 0.01
     evade: 0
+    armor: 25
   - id: 21000009
     name: Essence of Anger
     part: ring
@@ -86,6 +94,7 @@ MonoBehaviour:
     haste: 0
     hit: 0
     evade: 0.05
+    armor: 0
   - id: 21000010
     name: Lost Reliquary Chestguard
     part: chest
@@ -94,6 +103,7 @@ MonoBehaviour:
     haste: 0
     hit: 0
     evade: 0.05
+    armor: 55
   - id: 21000011
     name: Accursed Crawling Cape
     part: head
@@ -102,6 +112,7 @@ MonoBehaviour:
     haste: 0
     hit: 0.01
     evade: 0
+    armor: 27
   - id: 21000012
     name: Legplates of Frozen Granite
     part: leg
@@ -110,6 +121,7 @@ MonoBehaviour:
     haste: 0
     hit: 0
     evade: 0.03
+    armor: 35
   - id: 21000013
     name: Shard of Azzinoth
     part: weapon
@@ -118,6 +130,7 @@ MonoBehaviour:
     haste: 0.05
     hit: 0.02
     evade: 0
+    armor: 0
   - id: 21000014
     name: Bulwark of Azzinoth
     part: weapon
@@ -126,6 +139,7 @@ MonoBehaviour:
     haste: 0.05
     hit: 0.02
     evade: 0
+    armor: 0
   - id: 21000015
     name: Warglaive of Azzinoth
     part: weapon
@@ -134,6 +148,7 @@ MonoBehaviour:
     haste: 0.05
     hit: 0.02
     evade: 0
+    armor: 0
   - id: 21000016
     name: The Skull of Gul'dan
     part: head
@@ -142,3 +157,4 @@ MonoBehaviour:
     haste: 0
     hit: 0.01
     evade: 0
+    armor: 36

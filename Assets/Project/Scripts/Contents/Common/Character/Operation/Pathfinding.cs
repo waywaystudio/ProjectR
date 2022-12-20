@@ -46,7 +46,7 @@ namespace Common.Character.Operation
         public void Move(Vector3 destination, Action callback)
         {
             pathBuffer = ABPath.Construct(cb.transform.position, destination);
-            aiMove.maxSpeed = cb.MoveSpeed.Result;
+            aiMove.maxSpeed = cb.MoveSpeedTable.Result;
 
             if (aiMove.Callback != null || callback != null)
             {
@@ -87,7 +87,7 @@ namespace Common.Character.Operation
 
         private void OnDisable()
         {
-            cb.Direction.UnRegister();
+            cb.Direction.UnRegisterAll();
             cb.IsReached.UnRegister(instanceID);
             cb.OnTeleport.UnRegister(instanceID);
             cb.OnWalk.UnRegister(instanceID);

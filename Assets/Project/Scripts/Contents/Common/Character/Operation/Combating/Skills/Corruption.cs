@@ -2,7 +2,7 @@ using Common.Character.Operation.Combating.Entity;
 
 namespace Common.Character.Operation.Combating.Skills
 {
-    public class BloodDrain : BaseSkill
+    public class Corruption : BaseSkill
     {
         public override void StartSkill()
         {
@@ -10,11 +10,12 @@ namespace Common.Character.Operation.Combating.Skills
             
             var hasStatusEffect = TryGetComponent(out StatusEffectEntity statusEffectEntity);
             var hasTargetList = TryGetComponent(out TargetEntity targetEntity);
-
+            
             if (hasStatusEffect && hasTargetList)
-            {
-                targetEntity.CombatTaker.TakeBuff(statusEffectEntity.Name, statusEffectEntity);
-            }
+                targetEntity.CombatTakerList.ForEach(target =>
+                {
+                    target.TakeDeBuff(statusEffectEntity.Name, statusEffectEntity);
+                });
         }
     }
 }

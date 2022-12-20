@@ -15,7 +15,7 @@ namespace Common.Character.Operation.Combating.Entity
         private float remainTimer;
         
         [ShowInInspector]
-        private float CastingTime => originalCastingTime * CombatManager.GetHasteValue(Cb.Haste.Result);
+        private float CastingTime => originalCastingTime * CombatManager.GetHasteValue(Cb.HasteTable.Result);
         private float CastingTick { get => castingTick; set => castingTick = value; }
         [ShowInInspector]
         private float RemainTimer

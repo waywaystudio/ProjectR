@@ -26,7 +26,6 @@ namespace MainGame
             get
             {
                 if (Instance.nameTable.IsNullOrEmpty()) DataObjectList.ForEach(x => x.RegisterNameTable(Instance.nameTable));
-
                 return Instance.nameTable;
             }
         }
@@ -35,7 +34,6 @@ namespace MainGame
             get
             {
                 if (Instance.categoryTable.IsNullOrEmpty()) Instance.categoryTable = DataObjectList.ToDictionary(x => x.Category);
-
                 return Instance.categoryTable;
             }
         }

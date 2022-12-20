@@ -32,8 +32,8 @@ namespace Common.Character.Graphic
             var animationKey = skillData.AnimationKey;
             
             // Assign Haste 
-            var animationHasteValue = CombatManager.GetInverseHasteValue(Cb.Haste.Result);
-            var inverse = CombatManager.GetHasteValue(Cb.Haste.Result);
+            var animationHasteValue = CombatManager.GetInverseHasteValue(Cb.HasteTable.Result);
+            var inverse = CombatManager.GetHasteValue(Cb.HasteTable.Result);
             state.TimeScale *= animationHasteValue;
             
             callbackBuffer = null;

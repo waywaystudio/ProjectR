@@ -77,8 +77,6 @@ namespace Common.Character.Operation.Combating
 
         public virtual void ActiveSkill()
         {
-            Debug.Log("Active Skill!");
-            
             Cb.OnSkill.Register(InstanceID, StartSkill);
             Cb.OnSkillHit.Register(InstanceID, InvokeEvent);
             Cb.Skill(SkillName, CompleteSkill);

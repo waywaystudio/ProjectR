@@ -22,6 +22,7 @@ MonoBehaviour:
     haste: 0
     hit: 0.95
     evade: 0
+    armor: 20
   - id: 12000002
     name: Paladin
     maxHp: 1000
@@ -30,6 +31,7 @@ MonoBehaviour:
     haste: 0
     hit: 0.95
     evade: 0
+    armor: 20
   - id: 12000003
     name: Load
     maxHp: 1000
@@ -38,6 +40,7 @@ MonoBehaviour:
     haste: 0
     hit: 0.95
     evade: 0
+    armor: 20
   - id: 12000004
     name: DeathKnight
     maxHp: 1000
@@ -46,6 +49,7 @@ MonoBehaviour:
     haste: 0
     hit: 0.95
     evade: 0
+    armor: 20
   - id: 12000005
     name: Druid
     maxHp: 1000
@@ -54,6 +58,7 @@ MonoBehaviour:
     haste: 0
     hit: 0.95
     evade: 0.05
+    armor: 20
   - id: 12000006
     name: Rogue
     maxHp: 700
@@ -62,6 +67,7 @@ MonoBehaviour:
     haste: 0.05
     hit: 0.95
     evade: 0.05
+    armor: 15
   - id: 12000007
     name: Lancer
     maxHp: 700
@@ -70,6 +76,7 @@ MonoBehaviour:
     haste: 0.05
     hit: 0.95
     evade: 0
+    armor: 15
   - id: 12000008
     name: Fighter
     maxHp: 700
@@ -78,6 +85,7 @@ MonoBehaviour:
     haste: 0.05
     hit: 0.95
     evade: 0.05
+    armor: 15
   - id: 12000009
     name: Berserker
     maxHp: 700
@@ -86,6 +94,7 @@ MonoBehaviour:
     haste: 0.05
     hit: 0.95
     evade: 0
+    armor: 15
   - id: 12000010
     name: Blade
     maxHp: 700
@@ -94,6 +103,7 @@ MonoBehaviour:
     haste: 0.05
     hit: 0.95
     evade: 0
+    armor: 15
   - id: 12000011
     name: Hunter
     maxHp: 600
@@ -102,6 +112,7 @@ MonoBehaviour:
     haste: 0.05
     hit: 0.95
     evade: 0
+    armor: 12
   - id: 12000012
     name: Wizard
     maxHp: 600
@@ -110,6 +121,7 @@ MonoBehaviour:
     haste: 0
     hit: 0.95
     evade: 0
+    armor: 12
   - id: 12000013
     name: Warlock
     maxHp: 600
@@ -118,6 +130,7 @@ MonoBehaviour:
     haste: 0
     hit: 0.95
     evade: 0
+    armor: 12
   - id: 12000014
     name: Sniper
     maxHp: 600
@@ -126,6 +139,7 @@ MonoBehaviour:
     haste: 0
     hit: 0.95
     evade: 0
+    armor: 12
   - id: 12000015
     name: Summoner
     maxHp: 600
@@ -134,6 +148,7 @@ MonoBehaviour:
     haste: 0
     hit: 0.95
     evade: 0
+    armor: 12
   - id: 12000016
     name: Priest
     maxHp: 500
@@ -142,6 +157,7 @@ MonoBehaviour:
     haste: 0
     hit: 0.95
     evade: 0
+    armor: 10
   - id: 12000017
     name: Angel
     maxHp: 500
@@ -150,6 +166,7 @@ MonoBehaviour:
     haste: 0
     hit: 0.95
     evade: 0.05
+    armor: 10
   - id: 12000018
     name: Bard
     maxHp: 500
@@ -158,6 +175,7 @@ MonoBehaviour:
     haste: 0
     hit: 0.95
     evade: 0
+    armor: 10
   - id: 12000019
     name: Shaman
     maxHp: 500
@@ -166,6 +184,7 @@ MonoBehaviour:
     haste: 0
     hit: 0.95
     evade: 0
+    armor: 12
   - id: 12000020
     name: HolyKnight
     maxHp: 500
@@ -174,3 +193,4 @@ MonoBehaviour:
     haste: 0
     hit: 0.95
     evade: 0
+    armor: 20

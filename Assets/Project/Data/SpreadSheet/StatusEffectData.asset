@@ -15,22 +15,22 @@ MonoBehaviour:
   category: 14
   list:
   - id: 14000001
-    name: Corruption
+    name: CorruptionDeBuff
     isBuff: 0
     duration: 15
     combatValue: 1.5
   - id: 14001002
-    name: Revivication
+    name: RevivicationBuff
     isBuff: 1
     duration: 15
     combatValue: 1.2
   - id: 14001003
-    name: BloodDrain
+    name: BloodDrainBuff
     isBuff: 1
     duration: 8
     combatValue: 0.3
   - id: 14000004
-    name: Roar
+    name: RoarDeBuff
     isBuff: 0
     duration: 15
     combatValue: 0.15

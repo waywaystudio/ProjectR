@@ -22,6 +22,7 @@ namespace MainGame.Data.ContentData
 			[SerializeField] private Single haste;
 			[SerializeField] private Single hit;
 			[SerializeField] private Single evade;
+			[SerializeField] private Single armor;
 
 			public Int32 ID => id;
 			public String Name => name;
@@ -31,6 +32,7 @@ namespace MainGame.Data.ContentData
 			public Single Haste => haste;
 			public Single Hit => hit;
 			public Single Evade => evade;
+			public Single Armor => armor;
 
         }
         
