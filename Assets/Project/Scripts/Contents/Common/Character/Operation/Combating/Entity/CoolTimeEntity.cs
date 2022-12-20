@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace Common.Character.Operation.Combating.Entity
 {
-    public class CoolTimeEntity : BaseEntity, IReadyRequired
+    public class CoolTimeEntity : BaseEntity
     {
         [SerializeField] private float coolTime;
         private float remainTimer;

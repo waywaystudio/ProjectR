@@ -54,6 +54,7 @@ namespace Common.Character
         public ActionTable<CombatLog> OnReportHeal { get; } = new();
         public ActionTable<CombatLog> OnReportStatusEffect { get; } = new();
 
+        public virtual GameObject Taker => gameObject;
         public FunctionTable<bool> IsReached { get; } = new();
         public FunctionTable<Vector3> Direction { get; } = new();
         public DoubleTable MaxHp => maxHp;
@@ -64,7 +65,6 @@ namespace Common.Character
         public FloatTable HitTable => hitTable;
         public FloatTable EvadeTable => evadeTable;
         public FloatTable ArmorTable => armorTable;
-
         public List<GameObject> CharacterSearchedList { get; } = new();
         public List<GameObject> MonsterSearchedList { get; } = new();
         public ICombatTaker MainTarget { get; set; }
@@ -75,6 +75,9 @@ namespace Common.Character
         public void Teleport(Vector3 destination) => OnTeleport?.Invoke(destination);
         public void Skill(string skillName, Action animationCallback) => OnSkill?.Invoke(skillName, animationCallback);
         public void SkillHit() => OnSkillHit?.Invoke();
+        public void ReportDamage(CombatLog log) => OnReportDamage?.Invoke(log);
+        public void ReportHeal(CombatLog log) => OnReportHeal?.Invoke(log);
+        public void ReportStatusEffect(CombatLog log) => OnReportStatusEffect?.Invoke(log);
 
         public void Initialize(string character)
         {
@@ -95,10 +98,8 @@ namespace Common.Character
 
         protected void Update() => OnUpdate?.Invoke();
 
-        public virtual GameObject Taker => gameObject;
-        public void ReportDamage(CombatLog log) => OnReportDamage?.Invoke(log);
-        public void ReportHeal(CombatLog log) => OnReportHeal?.Invoke(log);
-        public void ReportStatusEffect(CombatLog log) => OnReportStatusEffect?.Invoke(log);
+        
+        
         public virtual void TakeDamage(ICombatProvider combatInfo)
         {
             var log = new CombatLog
@@ -108,7 +109,6 @@ namespace Common.Character
                 SkillName = combatInfo.Name,
             };
 
-            
             // Hit Chance
             var hitChance = UnityEngine.Random.Range(0f, 1.0f);
             if (hitChance > combatInfo.Hit)
@@ -122,7 +122,7 @@ namespace Common.Character
             float damageAmount;
 
             // Critical
-            if (UnityEngine.Random.Range(0f, 1.0f) > combatInfo.Critical)
+            if (UnityEngine.Random.Range(0f, 1.0f) < combatInfo.Critical)
             {
                 log.IsCritical = true;
                 damageAmount = combatInfo.CombatPower * 2f;

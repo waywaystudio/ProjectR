@@ -15,7 +15,5 @@ namespace Core
         float Hit { get; }
 
         void CombatReport(ILog log);
-        // void ReportHeal(ILog log);
-        // void ReportStatusEffect(ILog log);
     }
 }

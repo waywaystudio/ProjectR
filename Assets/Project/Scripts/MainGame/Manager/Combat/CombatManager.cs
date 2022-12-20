@@ -29,27 +29,16 @@ namespace MainGame.Manager.Combat
 
         private static bool IsHit(float hit, float evade)
         {
-            var hitChance = hit - evade;
-
-            if (Random.Range(0f, 1f) < hitChance)
-            {
-                return true;
-            }
+            // 100% 명중과 100% 회피 구현
             
-            // Log : Evade
-            return false;
+            return Random.Range(0f, 1f) < hit - evade;
         }
 
         private static float IsCritical(float criticalChance)
         {
-            if (Random.Range(0f, 1f) < criticalChance)
-            {
-                // Log : Critical Hit
-                return 2f;
-            }
-
-            // Log : Hit
-            return 1f;
+            // 100% 크리티컬 구현
+            
+            return Random.Range(0f, 1f) < criticalChance ? 2f : 1f;
         }
 
         

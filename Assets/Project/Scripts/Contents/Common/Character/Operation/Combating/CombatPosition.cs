@@ -30,7 +30,7 @@ namespace Common.Character.Operation.Combating
 
             if (target.IsNullOrEmpty())
             {
-                Debug.Log("Target is Null");
+                Debug.LogWarning("Target is Null");
                 combatPosition = Vector3.negativeInfinity;
                 return false;
             }
@@ -51,18 +51,7 @@ namespace Common.Character.Operation.Combating
                 direction = (targetPosition - characterPosition).normalized;
                 magnitude = Mathf.Abs(currentDistance - range) + range * (safeTolerance * safePoint);
             }
-            
-            //--outOfRange - MaxRange -<            SafeRange          >- CloseRange - Target
-            //--------------------------safeRange.x----------safeRange.y---------------Target
-            //------------------------------------safeTolerance------------------------Target
-            //--------------------------------------------------------------Player-----Target
-            // case Too Close Range
-            // else if (currentDistance <= range * (1.0f - safeTolerance))
-            // {
-            //     direction = (targetPosition - characterPosition).normalized * -1.0f;
-            //     magnitude = Mathf.Abs(currentDistance - range) - range * (safeTolerance * safePoint);
-            // }
-            
+
             //--outOfRange - MaxRange -<            SafeRange          >- CloseRange - Target
             //--------------------------safeRange.x----------safeRange.y---------------Target
             //------------------------------------safeTolerance------------------------Target

@@ -1,14 +1,8 @@
-#if UNITY_EDITOR
-using Sirenix.OdinInspector.Editor;
-using System.Reflection;
-#endif
-using System;
 using System.Collections.Generic;
 using System.Linq;
 using Core;
 using MainGame;
 using MainGame.Data;
-using Sirenix.OdinInspector;
 using UnityEngine;
 using Skill = MainGame.Data.ContentData.SkillData.Skill;
 
@@ -41,7 +35,6 @@ namespace Common.Character.Operation.Combating
         public int ID => id;
         public string SkillName => skillName ??= GetType().Name;
         public int Priority { get => priority; set => priority = value; }
-        
         public Combat Combat => combat ??= GetComponentInParent<Combat>();
         public CharacterBehaviour Cb => cb ??= Combat.Cb;
         public Skill SkillData => skillData ??= MainData.GetSkillData(SkillName);
@@ -90,16 +83,14 @@ namespace Common.Character.Operation.Combating
 
         public bool TryGetEntity<T>(EntityType entityType, out T result) where T : BaseEntity
         {
-            var hasEntity = EntityTable.TryGetValue(entityType, out var entity);
-
-            if (hasEntity)
+            if (!EntityTable.TryGetValue(entityType, out var entity))
             {
-                result = entity as T;
-                return true;
+                result = null;
+                return false;
             }
-
-            result = null;
-            return false;
+            
+            result = entity as T;
+            return true;
         }
 
 
@@ -145,62 +136,4 @@ namespace Common.Character.Operation.Combating
         #endregion
 #endif
     }
-
-#if UNITY_EDITOR
-    public class BaseSkillDrawer : OdinAttributeProcessor<BaseSkill>
-    {
-        public override void ProcessChildMemberAttributes(InspectorProperty parentProperty, MemberInfo member, List<Attribute> attributes)
-        {
-            if (member.Name == "id")
-            {
-                attributes.Add(new DisplayAsStringAttribute());
-            }
-            
-            if (member.Name == "skillName")
-            {
-                attributes.Add(new DisplayAsStringAttribute());
-            }
-            
-            if (member.Name == "SkillData")
-            {
-                attributes.Add(new ShowInInspectorAttribute());
-            }
-            
-            if (member.Name == "OnStarted")
-            {
-                attributes.Add(new ShowIfAttribute("@UnityEngine.Application.isPlaying"));
-            }
-            
-            if (member.Name == "OnInterrupted")
-            {
-                attributes.Add(new ShowIfAttribute("@UnityEngine.Application.isPlaying"));
-            }
-            
-            if (member.Name == "OnCompleted")
-            {
-                attributes.Add(new ShowIfAttribute("@UnityEngine.Application.isPlaying"));
-            }
-            
-            if (member.Name == "GetDataFromDB")
-            {
-                attributes.Add(new HorizontalGroupAttribute("Editor Functions"));
-                attributes.Add(new PropertySpaceAttribute(15, 0));
-                attributes.Add(new ButtonAttribute(ButtonSizes.Large)
-                               {
-                                       Icon = SdfIconType.ArrowRepeat,
-                               });
-            }
-            
-            if (member.Name == "ShowDB")
-            {
-                attributes.Add(new HorizontalGroupAttribute("Editor Functions"));
-                attributes.Add(new PropertySpaceAttribute(15, 0));
-                attributes.Add(new ButtonAttribute(ButtonSizes.Large)
-                               {
-                                       Icon = SdfIconType.ListColumnsReverse,
-                               });
-            }
-        }
-    }
-#endif
 }

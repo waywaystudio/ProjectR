@@ -4,37 +4,37 @@ using Core;
 using Spine.Unity;
 using UnityEngine;
 using Animation = Spine.Animation;
+using AnimationAsset = Spine.Unity.AnimationReferenceAsset;
 
 namespace Common.Character.Graphic
 {
     public class AnimationModelData : ScriptableObject
     {
         [Serializable]
-        public class AnimationIndex
+        public class Index
         {
-            public AnimationIndex(AnimationReferenceAsset asset)
+            public Index(AnimationReferenceAsset asset)
             {
-                AnimationHash = Animator.StringToHash(asset.name);
-                AnimationReferenceAsset = asset;
+                Hash = Animator.StringToHash(asset.name);
+                Asset = asset;
             }
         
-            public int AnimationHash;
-            public AnimationReferenceAsset AnimationReferenceAsset;
+            public int Hash;
+            public AnimationAsset Asset;
         
-            public string AnimationName => AnimationReferenceAsset ? AnimationReferenceAsset.name 
-                : string.Empty;
+            public string AnimationName => Asset ? Asset.name : string.Empty;
         }
     
         [Serializable]
-        public class AnimationTransitionIndex
+        public class TransitionIndex
         {
-            public AnimationReferenceAsset From;
-            public AnimationReferenceAsset Via;
-            public AnimationReferenceAsset Dest;
+            public AnimationAsset From;
+            public AnimationAsset Via;
+            public AnimationAsset Dest;
         }
 
-        [SerializeField] private List<AnimationIndex> animationList = new();
-        [SerializeField] private List<AnimationTransitionIndex> transitionIndexList = new();
+        [SerializeField] private List<Index> animationList = new();
+        [SerializeField] private List<TransitionIndex> transitionIndexList = new();
         private readonly Dictionary<string, Animation> animationTable = new();
         private readonly Dictionary<(Animation, Animation), Animation> transitionTable = new();
 
@@ -44,7 +44,7 @@ namespace Common.Character.Graphic
             {
                 if (animationTable.IsNullOrEmpty())
                 {
-                    animationList.ForEach(x => animationTable.Add(x.AnimationName, x.AnimationReferenceAsset.Animation));
+                    animationList.ForEach(x => animationTable.Add(x.AnimationName, x.Asset.Animation));
                 }
 
                 return animationTable;
@@ -74,7 +74,7 @@ namespace Common.Character.Graphic
     
         private void OnEnable()
         {
-            animationList.ForEach(x => x.AnimationReferenceAsset.Initialize());
+            animationList.ForEach(x => x.Asset.Initialize());
             transitionIndexList.ForEach(x =>
             {
                 x.From.Initialize();
@@ -93,7 +93,7 @@ namespace Common.Character.Graphic
             Finder.TryGetObjectList(referenceDirectory, "", out List<AnimationReferenceAsset> referenceAssetList);
         
             animationList.Clear();
-            referenceAssetList.ForEach(x => animationList.Add(new AnimationIndex(x)));
+            referenceAssetList.ForEach(x => animationList.Add(new Index(x)));
         }
 #endif
     }

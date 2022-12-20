@@ -32,7 +32,7 @@ namespace Common.Character
         [SerializeField] private float moveSpeed = 5f;
         [SerializeField] private float attackSpeed = 1f;
         [SerializeField] private float range;
-        private ICombatAttribution temp;
+        // private ICombatAttribution temp;
         public float Range => range;
 
         // Data

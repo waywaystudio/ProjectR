@@ -13,23 +13,23 @@ MonoBehaviour:
   m_Name: HeroAnimation
   m_EditorClassIdentifier: 
   animationList:
-  - AnimationHash: 1203776827
-    AnimationReferenceAsset: {fileID: 11400000, guid: 60a2f9c3bf3c8d348a79a55947441d11, type: 2}
-  - AnimationHash: -2074345483
-    AnimationReferenceAsset: {fileID: 11400000, guid: 57476affdce88fa46a3a37faf955e690, type: 2}
-  - AnimationHash: -2139688168
-    AnimationReferenceAsset: {fileID: 11400000, guid: 168c50c30d645fe4e9e957ec3398b28e, type: 2}
-  - AnimationHash: -78586100
-    AnimationReferenceAsset: {fileID: 11400000, guid: 2395580990e0ca341bd68b805d47a265, type: 2}
-  - AnimationHash: -601574123
-    AnimationReferenceAsset: {fileID: 11400000, guid: cfca4d73d4534d44d8050a3d06af950b, type: 2}
-  - AnimationHash: -1481439722
-    AnimationReferenceAsset: {fileID: 11400000, guid: 8fa77c991d6c48242b15038ba1af7489, type: 2}
-  - AnimationHash: 1349952704
-    AnimationReferenceAsset: {fileID: 11400000, guid: 54ae7fcef26ebf24882f66113daf88af, type: 2}
-  - AnimationHash: 1581114487
-    AnimationReferenceAsset: {fileID: 11400000, guid: 44c827865d9135040b893352787b10aa, type: 2}
-  - AnimationHash: -1919845803
-    AnimationReferenceAsset: {fileID: 11400000, guid: 7c35ac9a4d6b7a0458f403c858a25a16, type: 2}
+  - Hash: 1203776827
+    Asset: {fileID: 11400000, guid: 60a2f9c3bf3c8d348a79a55947441d11, type: 2}
+  - Hash: -2074345483
+    Asset: {fileID: 11400000, guid: 57476affdce88fa46a3a37faf955e690, type: 2}
+  - Hash: -2139688168
+    Asset: {fileID: 11400000, guid: 168c50c30d645fe4e9e957ec3398b28e, type: 2}
+  - Hash: -78586100
+    Asset: {fileID: 11400000, guid: 2395580990e0ca341bd68b805d47a265, type: 2}
+  - Hash: -601574123
+    Asset: {fileID: 11400000, guid: cfca4d73d4534d44d8050a3d06af950b, type: 2}
+  - Hash: -1481439722
+    Asset: {fileID: 11400000, guid: 8fa77c991d6c48242b15038ba1af7489, type: 2}
+  - Hash: 1349952704
+    Asset: {fileID: 11400000, guid: 54ae7fcef26ebf24882f66113daf88af, type: 2}
+  - Hash: 1581114487
+    Asset: {fileID: 11400000, guid: 44c827865d9135040b893352787b10aa, type: 2}
+  - Hash: -1919845803
+    Asset: {fileID: 11400000, guid: 7c35ac9a4d6b7a0458f403c858a25a16, type: 2}
   transitionIndexList: []
   referenceDirectory: Assets/Project/Graphics/Spine/SampleHero/ReferenceAssets

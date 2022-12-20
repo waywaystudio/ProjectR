@@ -42,8 +42,24 @@ namespace Common.Character.Operation.StatusEffecting
 
             StatusEffectTable.TryAdd(key, statusEffect);
         }
+        
+        public bool TryDispel(string key)
+        {
+            if (!StatusEffectTable.TryGetValue(key, out var statusEffect)) return false;
 
-        public T GenerateStatusEffect<T>(string key, ICombatProvider provider) where T : BaseStatusEffect, new()
+            // TODO. 수정했다...근데 맞나? 테스트해봐야 한다.
+            if (statusEffect.InvokeRoutine != null)
+            {
+                StopCoroutine(statusEffect.InvokeRoutine);
+            }
+
+            StatusEffectTable.TryRemove(key);
+
+            return true;
+        }
+        
+
+        private T GenerateStatusEffect<T>(string key, ICombatProvider provider) where T : BaseStatusEffect, new()
         {
             var statusEffectData = MainData.GetStatusEffectData(key);
             
@@ -59,21 +75,7 @@ namespace Common.Character.Operation.StatusEffecting
             };
         }
 
-        public void Remove(string key) => StatusEffectTable.TryRemove(key);
-        public bool TryDispel(string key)
-        {
-            if (!StatusEffectTable.TryGetValue(key, out var statusEffect)) return false;
-
-            // TODO. 수정했다...근데 맞나? 테스트해봐야 한다.
-            if (statusEffect.InvokeRoutine != null)
-            {
-                StopCoroutine(statusEffect.InvokeRoutine);
-            }
-
-            StatusEffectTable.TryRemove(key);
-
-            return true;
-        }
+        private void Remove(string key) => StatusEffectTable.TryRemove(key);
 
         private void Awake()
         {

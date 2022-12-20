@@ -9,11 +9,9 @@ namespace Common.Character.Operation.Combating.Entity
 
         public int ID => Skill.ID;
         public string Name => Skill.SkillName;
-        public float BaseCombatPower => Cb.CombatPowerTable.Result;
-
         public GameObject Provider => Cb.gameObject;
         public string ProviderName => Cb.CharacterName;
-        public float CombatPower => BaseCombatPower * combatValue;
+        public float CombatPower => Cb.CombatPowerTable.Result * combatValue;
         public float Critical => Cb.CriticalTable.Result;
         public float Haste => Cb.HasteTable.Result;
         public float Hit => Cb.HitTable.Result;
@@ -31,7 +29,6 @@ namespace Common.Character.Operation.Combating.Entity
         protected override void Awake()
         {
             base.Awake();
-
             SetEntity();
         }
 

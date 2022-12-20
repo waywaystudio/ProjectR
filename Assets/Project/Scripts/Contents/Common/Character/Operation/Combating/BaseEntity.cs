@@ -1,10 +1,3 @@
-#if UNITY_EDITOR
-using System.Reflection;
-using Sirenix.OdinInspector.Editor;
-#endif
-
-using System;
-using System.Collections.Generic;
 using UnityEngine;
 using SkillData = MainGame.Data.ContentData.SkillData.Skill;
 
@@ -31,17 +24,4 @@ namespace Common.Character.Operation.Combating
             Skill.EntityTable.TryAdd(flag, this);
         }
     }
-
-#if UNITY_EDITOR
-    public class BaseEntityDrawer : OdinAttributeProcessor<BaseEntity>
-    {
-        public override void ProcessChildMemberAttributes(InspectorProperty parentProperty, MemberInfo member, List<Attribute> attributes)
-        {
-            if (member.Name == "skill")
-            {
-                attributes.Add(new HideInInspector());
-            }
-        }
-    }
-#endif
 }

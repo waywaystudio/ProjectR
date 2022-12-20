@@ -1,9 +1,9 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using Core;
 using MainGame.Manager.Combat;
-using Sirenix.OdinInspector;
 using UnityEngine;
 
 namespace Common.Character.Operation.Combating
@@ -12,16 +12,16 @@ namespace Common.Character.Operation.Combating
     {
         [SerializeField] private CharacterBehaviour cb;
         [SerializeField] private CombatPosition combatPosition;
+        private IEnumerator globalCoolDownEnumerator;
 
         public CharacterBehaviour Cb => cb ??= GetComponentInParent<CharacterBehaviour>();
         public CombatPosition CombatPosition => combatPosition ??= GetComponent<CombatPosition>();
-        
-        [ShowInInspector]
+
         public Dictionary<int, BaseSkill> SkillTable { get; } = new();
         public BaseSkill CurrentSkill { get; set; }
-        public float GlobalCoolTime => 1.2f * CombatManager.GetHasteValue(Cb.HasteTable.Result);
         public bool IsGlobalCooling { get; set; }
         public bool IsCurrentSkillFinished => CurrentSkill == null || CurrentSkill.IsSkillFinished;
+        public float GlobalCoolTime => 1.2f * CombatManager.GetHasteValue(Cb.HasteTable.Result);
         
         // SharedBool :: CombatBehaviorDesigner
         public bool IsCoolOnAnySkill => SkillTable.Any(x => x.Value.IsCoolTimeReady);
@@ -46,15 +46,13 @@ namespace Common.Character.Operation.Combating
 
         public void UseSkill(BaseSkill skill)
         {
-            if (CurrentSkill != null)
-            {
+            if (CurrentSkill != null) 
                 CurrentSkill.DeActiveSkill();
-            }
 
             CurrentSkill = skill;
             CurrentSkill.ActiveSkill();
             
-            GlobalCoolDownOn();
+            StartCoroutine(globalCoolDownEnumerator);
         }
 
 
@@ -70,10 +68,9 @@ namespace Common.Character.Operation.Combating
             return mostPrioritySkillID;
         }
 
-        private void GlobalCoolDownOn() => StartCoroutine(GlobalCoolDownRoutine(GlobalCoolTime));
-        private IEnumerator GlobalCoolDownRoutine(float coolTime)
+        private IEnumerator GlobalCoolDownRoutine()
         {
-            var coolTimer = coolTime;
+            var coolTimer = GlobalCoolTime;
             
             IsGlobalCooling = true;
 
@@ -85,5 +82,7 @@ namespace Common.Character.Operation.Combating
 
             IsGlobalCooling = false;
         }
+
+        private void Awake() => globalCoolDownEnumerator = GlobalCoolDownRoutine();
     }
 }
