@@ -48,13 +48,13 @@ namespace Common.Character
         public ActionTable<Vector3> OnTeleport { get; } = new();
         public ActionTable<string, Action> OnSkill { get; } = new();
         public ActionTable OnSkillHit { get; } = new(1);
-        public ActionTable<string, ICombatProvider> OnTakeBuff { get; } = new();
-        public ActionTable<string, ICombatProvider> OnTakeDeBuff { get; } = new();
+        public ActionTable<ICombatProvider> OnTakeBuff { get; } = new();
+        public ActionTable<ICombatProvider> OnTakeDeBuff { get; } = new();
         public ActionTable<CombatLog> OnReportDamage { get; } = new();
         public ActionTable<CombatLog> OnReportHeal { get; } = new();
         public ActionTable<CombatLog> OnReportStatusEffect { get; } = new();
 
-        public virtual GameObject Taker => gameObject;
+        public virtual GameObject Object => gameObject;
         public FunctionTable<bool> IsReached { get; } = new();
         public FunctionTable<Vector3> Direction { get; } = new();
         public DoubleTable MaxHp => maxHp;
@@ -106,7 +106,7 @@ namespace Common.Character
             {
                 Provider = combatInfo.ProviderName,
                 Taker = CharacterName,
-                SkillName = combatInfo.Name,
+                SkillName = combatInfo.ActionName,
             };
 
             // Hit Chance
@@ -163,8 +163,8 @@ namespace Common.Character
 
             Hp += healValue;
         }
-        public virtual void TakeBuff(string key, ICombatProvider statusEffect) => OnTakeBuff?.Invoke(key, statusEffect);
-        public virtual void TakeDeBuff(string key, ICombatProvider statusEffect) => OnTakeDeBuff?.Invoke(key, statusEffect);
+        public virtual void TakeBuff(ICombatProvider statusEffect) => OnTakeBuff?.Invoke(statusEffect);
+        public virtual void TakeDeBuff(ICombatProvider statusEffect) => OnTakeDeBuff?.Invoke(statusEffect);
         
         private void ShowLog(CombatLog log)
         {

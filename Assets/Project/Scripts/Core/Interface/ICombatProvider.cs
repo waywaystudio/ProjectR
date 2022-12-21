@@ -5,9 +5,9 @@ namespace Core
     public interface ICombatProvider
     {
         int ID { get; }
-        string Name { get; }
+        string ActionName { get; }
 
-        GameObject Provider { get; }
+        GameObject Object { get; }
         string ProviderName { get; }
         float CombatPower { get; }
         float Critical { get; }

@@ -1,5 +1,4 @@
 using System;
-using Core;
 using Pathfinding;
 using UnityEngine;
 
@@ -7,12 +6,11 @@ namespace Common.Character.Operation
 {
     public class Pathfinding : MonoBehaviour
     {
-        [SerializeField] private CharacterBehaviour cb;
-        
+        private CharacterBehaviour cb;
         private AIMove aiMove;
         private Seeker agent;
-        private int instanceID;
         private ABPath pathBuffer;
+        private int instanceID;
 
         public bool HasPath => aiMove.hasPath;
         public bool IsReached => aiMove.reachedEndOfPath;
@@ -34,7 +32,7 @@ namespace Common.Character.Operation
 
                 if (cb.MainTarget != default)
                 {
-                    return (cb.MainTarget.Taker.transform.position - cb.transform.position).normalized;
+                    return (cb.MainTarget.Object.transform.position - cb.transform.position).normalized;
                 }
 
                 Debug.LogWarning("Hmm...Where is Target?");
@@ -71,6 +69,7 @@ namespace Common.Character.Operation
 
         private void Awake()
         {
+            cb ??= GetComponentInParent<CharacterBehaviour>();
             agent = GetComponent<Seeker>();
             aiMove = GetComponent<AIMove>();
             instanceID = GetInstanceID();

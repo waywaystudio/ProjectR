@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using Common.Character.Graphic;
 using Common.Character.Operation;
-using Common.Character.Operation.Combating;
+using Common.Character.Operation.Combat;
 using Core;
 using Spine.Unity;
 using UnityEngine;
@@ -39,7 +39,7 @@ namespace Common.Character
         [SerializeField] private SkeletonAnimation skeletonAnimation;
         
         // Operation
-        [SerializeField] private Combat combat;
+        [SerializeField] private Combating combat;
         [SerializeField] private PlayerController controller;
         [SerializeField] private Operation.Pathfinding pathfinding;
         [SerializeField] private Searching searching;
@@ -124,7 +124,7 @@ namespace Common.Character
         {
             skeletonAnimation ??= GetComponentInChildren<SkeletonAnimation>();
             controller ??= GetComponentInChildren<PlayerController>();
-            combat ??= GetComponentInChildren<Combat>();
+            combat ??= GetComponentInChildren<Combating>();
             pathfinding ??= GetComponentInChildren<Operation.Pathfinding>();
             searching ??= GetComponentInChildren<Searching>();
             animationModel ??= GetComponentInChildren<AnimationModel>();

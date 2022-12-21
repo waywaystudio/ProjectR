@@ -33,6 +33,6 @@ namespace Common.Character
             MoveSpeedTable.UnregisterSumType("MB");
         }
 
-        public override GameObject Taker => gameObject;
+        public override GameObject Object => gameObject;
     }
 }

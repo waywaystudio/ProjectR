@@ -14,13 +14,11 @@ namespace Core.Singleton
             {
                 if (instance == null)
                 {
-                    // Debug.Log("instance is null");
                     instance = new T();
 
                     return instance;
                 }
 
-                // Debug.Log("instance is Not null");
                 return instance;
             }
         }
