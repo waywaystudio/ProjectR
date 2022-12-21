@@ -9,13 +9,12 @@ namespace Common.Character.Operation.Combat.Behavior
     {
         public SharedInt TargetSkillID;
         
-        private Combat.Combating combat;
-        private CharacterBehaviour cb;
+        private Combating combat;
+        
 
         public override void OnAwake()
         {
-            combat = GetComponent<Combat.Combating>();
-            cb = combat.Cb;
+            combat = GetComponent<Combating>();
         }
 
         public override TaskStatus OnUpdate()
@@ -31,8 +30,7 @@ namespace Common.Character.Operation.Combat.Behavior
                 combat.UseSkill(skill);
                 return TaskStatus.Success;
             }
-            
-            Debug.Log($"{skill.SkillName} is Not Ready");
+
             return TaskStatus.Failure;
         }
     }

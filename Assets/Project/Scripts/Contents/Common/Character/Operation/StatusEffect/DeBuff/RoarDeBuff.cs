@@ -7,17 +7,18 @@ namespace Common.Character.Operation.StatusEffect.DeBuff
     {
         private const string Roar = "Roar";
         private WaitForSeconds waitForSeconds;
+        private CharacterBehaviour cb;
         
         public override IEnumerator MainAction()
         {
             waitForSeconds = new WaitForSeconds(Duration);
 
-            var cb = TakerInfo.Object.GetComponent<CharacterBehaviour>();
-            cb.ArmorTable.RegisterMultiType(Roar, () => 0.85f);
+            cb ??= TakerInfo.Object.GetComponent<CharacterBehaviour>();
+            cb.ArmorMultiTable.Register(Roar, () => 0.85f);
 
             yield return waitForSeconds;
             
-            cb.ArmorTable.UnregisterMultiType(Roar);
+            cb.ArmorMultiTable.Unregister(Roar);
             Callback?.Invoke();
         }
     }

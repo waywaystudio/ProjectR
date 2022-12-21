@@ -8,11 +8,11 @@ namespace Common.Character.Operation.Combat.Behavior
     public class TargetValidator : Action
     {
         private ICombatTaker taker;
-        private Combat.Combating combat;
+        private Combating combat;
         
         public override void OnAwake()
         {
-            combat = GetComponent<Combat.Combating>();
+            combat = GetComponent<Combating>();
         }
         
         public override TaskStatus OnUpdate()

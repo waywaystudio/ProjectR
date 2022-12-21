@@ -61,13 +61,13 @@ namespace Common.Character.Data
         private void AddValueTable()
         {
             // TEMP
-            Cb.CombatPowerTable.RegisterSumType(EquipmentKey, 1, true);
+            Cb.CombatPowerTable.Register(EquipmentKey, 1, true);
             
-            Cb.MaxHp.RegisterSumType(EquipmentKey, () => Hp, true);
-            Cb.CriticalTable.RegisterSumType(EquipmentKey, () => Critical, true);
-            Cb.HasteTable.RegisterSumType(EquipmentKey, () => Haste, true);
-            Cb.HitTable.RegisterSumType(EquipmentKey, () => Hit, true);
-            Cb.EvadeTable.RegisterSumType(EquipmentKey, () => Evade, true);
+            Cb.MaxHpTable.Register(EquipmentKey, () => Hp, true);
+            Cb.CriticalTable.Register(EquipmentKey, () => Critical, true);
+            Cb.HasteTable.Register(EquipmentKey, () => Haste, true);
+            Cb.HitTable.Register(EquipmentKey, () => Hit, true);
+            Cb.EvadeTable.Register(EquipmentKey, () => Evade, true);
         }
 
         private void Awake()

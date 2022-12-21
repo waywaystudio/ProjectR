@@ -11,10 +11,10 @@ namespace Common.Character.Operation.Combat.Entity
         public string ActionName => Skill.SkillName;
         public GameObject Object => Cb.gameObject;
         public string ProviderName => Cb.CharacterName;
-        public float CombatPower => Cb.CombatPowerTable.Result * combatValue;
-        public float Critical => Cb.CriticalTable.Result;
-        public float Haste => Cb.HasteTable.Result;
-        public float Hit => Cb.HitTable.Result;
+        public float CombatPower => Cb.CombatPower * combatValue;
+        public float Critical => Cb.Critical;
+        public float Haste => Cb.Haste;
+        public float Hit => Cb.Hit;
 
         public override bool IsReady => true;
         
@@ -22,7 +22,7 @@ namespace Common.Character.Operation.Combat.Entity
         {
             if (log is CombatLog combatLog)
             {
-                Cb.ReportDamage(combatLog);
+                Cb.CombatReport(combatLog);
             } 
         }
 

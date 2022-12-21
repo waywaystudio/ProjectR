@@ -158,11 +158,11 @@ namespace Common.Character.Graphic
 
         private void OnDisable()
         {
-            Cb.OnIdle.UnRegister(instanceID);
-            Cb.OnWalk.UnRegister(instanceID);
-            Cb.OnRun.UnRegister(instanceID);
-            Cb.OnSkill.UnRegister(instanceID);
-            Cb.OnUpdate.UnRegister(instanceID);
+            Cb.OnIdle.Unregister(instanceID);
+            Cb.OnWalk.Unregister(instanceID);
+            Cb.OnRun.Unregister(instanceID);
+            Cb.OnSkill.Unregister(instanceID);
+            Cb.OnUpdate.Unregister(instanceID);
         }
     }
 }

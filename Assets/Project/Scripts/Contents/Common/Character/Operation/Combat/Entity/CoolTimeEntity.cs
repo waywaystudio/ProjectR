@@ -46,8 +46,8 @@ namespace Common.Character.Operation.Combat.Entity
         
         private void OnDisable()
         { 
-            Cb.OnUpdate.UnRegister(InstanceID);
-            Skill.OnCompleted.UnRegister(InstanceID);
+            Cb.OnUpdate.Unregister(InstanceID);
+            Skill.OnCompleted.Unregister(InstanceID);
         }
 
         private void Reset()

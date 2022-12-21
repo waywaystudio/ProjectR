@@ -9,7 +9,7 @@ namespace Common.Character
         {
             base.Start();
             
-            MoveSpeedTable.RegisterSumType("MB", 20f);
+            MoveSpeedTable.Register("MB", 20f);
         }
 
         protected new void Update()
@@ -30,7 +30,7 @@ namespace Common.Character
 
         private void OnDisable()
         {
-            MoveSpeedTable.UnregisterSumType("MB");
+            MoveSpeedTable.Unregister("MB");
         }
 
         public override GameObject Object => gameObject;

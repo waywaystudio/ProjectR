@@ -14,7 +14,7 @@ namespace Common.Character.Operation.Combat.Entity
         private bool onCasting;
         private float remainTimer;
 
-        private float CastingTime => originalCastingTime * CombatManager.GetHasteValue(Cb.HasteTable.Result);
+        private float CastingTime => originalCastingTime * CombatManager.GetHasteValue(Cb.Haste);
         private float CastingTick { get => castingTick; set => castingTick = value; }
         private float RemainTimer
         {
@@ -78,8 +78,8 @@ namespace Common.Character.Operation.Combat.Entity
 
         private void OnDisable()
         {
-            Skill.OnStarted.UnRegister(InstanceID);
-            Skill.OnInterrupted.UnRegister(InstanceID);
+            Skill.OnStarted.Unregister(InstanceID);
+            Skill.OnInterrupted.Unregister(InstanceID);
         }
 
         private void Reset()

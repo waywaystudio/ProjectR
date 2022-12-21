@@ -7,14 +7,12 @@ namespace MainGame.Manager.Combat
         /// <summary>
         /// Haste Additional Value, for reduce GlobalCoolTime, Casting Time, BuffDuration
         /// </summary>
-        /// <param name="haste">Character.HasteTable.Result</param>
         /// <returns>usually less than 1.0f value</returns>
         public static float GetHasteValue(float haste) => 100f * (1f / (100 * (1f + haste)));
 
         /// <summary>
         /// Inversed Haste Additional Value for faster Animation Speed
         /// </summary>
-        /// <param name="haste">Character.HasteTable.Result</param>
         /// <returns>usually more than 1.0f value</returns>
         public static float GetInverseHasteValue(float haste) => 1f + haste;
 
@@ -27,18 +25,34 @@ namespace MainGame.Manager.Combat
             return (float)(damageValue * (1f - armor * 0.001f / (1f + 0.001 * armor)));
         }
 
-        private static bool IsHit(float hit, float evade)
+        /// <summary>
+        /// Hit Chance Check. Must hit, Must evade are available
+        /// </summary>
+        /// <returns>is hit success</returns>
+        public static bool IsHit(float hit, float evade)
         {
             // 100% 명중과 100% 회피 구현
-            
-            return Random.Range(0f, 1f) < hit - evade;
+            var mustHit = hit > 1.0f;
+            var mustEvade = evade > 1.0f;
+
+            if (mustHit ^ mustEvade == false)
+            {
+                return Random.Range(0f, 1f) <= hit - evade;
+            }
+
+            return mustHit;
         }
 
-        private static float IsCritical(float criticalChance)
+        /// <summary>
+        /// Critical Chance Check. Must Critical is available
+        /// </summary>
+        /// <returns>is critical success</returns>
+        public static bool IsCritical(float criticalChance)
         {
             // 100% 크리티컬 구현
-            
-            return Random.Range(0f, 1f) < criticalChance ? 2f : 1f;
+            var mustCritical = criticalChance > 1.0f;
+
+            return mustCritical || Random.Range(0f, 1f) < criticalChance;
         }
 
         

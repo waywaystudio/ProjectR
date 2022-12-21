@@ -3,6 +3,10 @@ using UnityEngine;
 
 namespace Common.Character.Operation.Combat.Entity
 {
+    // Projectile Entity의 주요 목표는
+    // 알맞은 Prefab을 찾고, 전투관련 Value를 전달 혹은 복사시키는 것.
+    // 속도, 운동방법, 후처리 등은 Prefab이 결정.
+    // 따라서 ProjectilePrefab.Initialize()를 어떻게 해줄 것인가가 관건.
     public class ProjectileEntity : BaseEntity
     {
         // TODO. Projectile Master같은 곳에서 키 값으로 가져오고,
@@ -37,7 +41,7 @@ namespace Common.Character.Operation.Combat.Entity
 
         private void OnDisable()
         {
-            Skill.OnCompleted.UnRegister(InstanceID);
+            Skill.OnCompleted.Unregister(InstanceID);
         }
 
         private void Reset()

@@ -26,14 +26,14 @@ namespace Common.Character.Operation.Combat.Skills
             var offset = Cb.Direction.Invoke() * (offsetDistance * -1f);
             var targetFrontPosition = takerTransform.position + offset;
             
-            Cb.MoveSpeedTable.RegisterSumType("Charge", () => dashSpeed, true);
+            Cb.MoveSpeedTable.Register("Charge", () => dashSpeed, true);
             Cb.Run(targetFrontPosition, base.ActiveSkill);
         }
 
         public override void CompleteSkill()
         {
             base.CompleteSkill();
-            Cb.MoveSpeedTable.UnregisterSumType("Charge");
+            Cb.MoveSpeedTable.Unregister("Charge");
         }
     }
 }

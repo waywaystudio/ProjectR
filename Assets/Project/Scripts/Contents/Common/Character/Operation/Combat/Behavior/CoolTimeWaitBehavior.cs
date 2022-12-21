@@ -6,11 +6,11 @@ namespace Common.Character.Operation.Combat.Behavior
     [TaskIcon("{SkinColor}IdleIcon.png"), TaskCategory("Character/Combat")]
     public class CoolTimeWaitBehavior : Action
     {
-        private Combat.Combating combat;
+        private Combating combat;
         
         public override void OnAwake()
         {
-            combat = GetComponent<Combat.Combating>();
+            combat = GetComponent<Combating>();
         }
         
         public override TaskStatus OnUpdate()

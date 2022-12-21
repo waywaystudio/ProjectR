@@ -5,11 +5,11 @@ namespace Common.Character.Operation.Combat.Behavior
     [TaskIcon("{SkinColor}SelectorIcon.png"), TaskCategory("Character/Combat")]
     public class GlobalCoolTimeBehavior : Action
     {
-        private Combat.Combating combat;
+        private Combating combat;
         
         public override void OnAwake()
         {
-            combat = GetComponent<Combat.Combating>();
+            combat = GetComponent<Combating>();
         }
 
         public override TaskStatus OnUpdate() => combat.IsGlobalCooling

@@ -51,13 +51,13 @@ namespace Common.Character.Data
 
         public void AddValueTable()
         {
-            Cb.MaxHp.RegisterSumType(BaseStatsKey, maxHp);
-            Cb.MoveSpeedTable.RegisterSumType(BaseStatsKey, moveSpeed);
-            Cb.CriticalTable.RegisterSumType(BaseStatsKey, critical);
-            Cb.HasteTable.RegisterSumType(BaseStatsKey, haste);
-            Cb.HitTable.RegisterSumType(BaseStatsKey, hit);
-            Cb.EvadeTable.RegisterSumType(BaseStatsKey, evade);
-            Cb.ArmorTable.RegisterSumType(BaseStatsKey, armor);
+            Cb.MaxHpTable.Register(BaseStatsKey, maxHp);
+            Cb.MoveSpeedTable.Register(BaseStatsKey, moveSpeed);
+            Cb.CriticalTable.Register(BaseStatsKey, critical);
+            Cb.HasteTable.Register(BaseStatsKey, haste);
+            Cb.HitTable.Register(BaseStatsKey, hit);
+            Cb.EvadeTable.Register(BaseStatsKey, evade);
+            Cb.ArmorTable.Register(BaseStatsKey, armor);
         }
         
         private void Awake()
@@ -67,7 +67,7 @@ namespace Common.Character.Data
     }
     
 #if UNITY_EDITOR
-    public class BaseSkillDrawer : OdinAttributeProcessor<ClassBaseStats>
+    public class BaseStatsDrawer : OdinAttributeProcessor<ClassBaseStats>
     {
         public override void ProcessChildMemberAttributes(InspectorProperty parentProperty, MemberInfo member, List<Attribute> attributes)
         {

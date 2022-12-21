@@ -14,7 +14,7 @@ namespace Common.Character
         [SerializeField] private bool isAlive = true;
         [SerializeField] private double hp = 1000;
         public bool IsAlive { get => isAlive; set => isAlive = value; }
-        public double Hp { get => hp; set => hp = value; }
+        public double Hp { get => hp; set => hp = Math.Min(MaxHp, value); }
         //
         
         [SerializeField] private string characterName = string.Empty;
@@ -23,22 +23,40 @@ namespace Common.Character
         [SerializeField] private float searchingRange = 50f;
         [SerializeField] private LayerMask allyLayer;
         [SerializeField] private LayerMask enemyLayer;
-        [SerializeField] private DoubleTable maxHp = new();
-        [SerializeField] private FloatTable combatPowerTable = new();
-        [SerializeField] private FloatTable moveSpeedTable = new();
-        [SerializeField] private FloatTable criticalTable = new();
-        [SerializeField] private FloatTable hasteTable = new();
-        [SerializeField] private FloatTable hitTable = new();
-        [SerializeField] private FloatTable evadeTable = new();
-        [SerializeField] private FloatTable armorTable = new();
 
         public string CharacterName => characterName ??= "Diablo";
         public int ID => id;
-
         public string CombatClass => combatClass ??= MainData.GetAdventurerData(CharacterName).CombatClass;
         public float SearchingRange => searchingRange;
         public LayerMask AllyLayer => allyLayer;
         public LayerMask EnemyLayer => enemyLayer;
+        public virtual GameObject Object => gameObject;
+        
+        public DoubleSumTable MaxHpTable { get; } = new();
+        public FloatSumTable CombatPowerTable { get; } = new();
+        public FloatSumTable MoveSpeedTable { get; } = new();
+        public FloatSumTable CriticalTable { get; } = new();
+        public FloatSumTable HasteTable { get; } = new();
+        public FloatSumTable HitTable { get; } = new();
+        public FloatSumTable EvadeTable { get; } = new();
+        public FloatSumTable ArmorTable { get; } = new();
+        public DoubleMultiTable MaxHpMultiTable { get; } = new();
+        public FloatMultiTable CombatPowerMultiTable { get; } = new();
+        public FloatMultiTable MoveSpeedMultiTable { get; } = new();
+        public FloatMultiTable CriticalMultiTable { get; } = new();
+        public FloatMultiTable HasteMultiTable { get; } = new();
+        public FloatMultiTable HitMultiTable { get; } = new();
+        public FloatMultiTable EvadeMultiTable { get; } = new();
+        public FloatMultiTable ArmorMultiTable { get; } = new();
+
+        public double MaxHp => MaxHpTable.Result * MaxHpMultiTable.Result;
+        public float CombatPower => CombatPowerTable.Result * CombatPowerMultiTable.Result;
+        public float MoveSpeed => MoveSpeedTable.Result * MoveSpeedMultiTable.Result;
+        public float Critical => CriticalTable.Result * CriticalMultiTable.Result;
+        public float Haste => HasteTable.Result * HasteMultiTable.Result;
+        public float Hit => HitTable.Result * HitMultiTable.Result;
+        public float Evade => EvadeTable.Result * EvadeMultiTable.Result;
+        public float Armor => ArmorTable.Result * ArmorMultiTable.Result;
 
         public ActionTable OnStart { get; } = new();
         public ActionTable OnUpdate { get; } = new();
@@ -50,21 +68,10 @@ namespace Common.Character
         public ActionTable OnSkillHit { get; } = new(1);
         public ActionTable<ICombatProvider> OnTakeBuff { get; } = new();
         public ActionTable<ICombatProvider> OnTakeDeBuff { get; } = new();
-        public ActionTable<CombatLog> OnReportDamage { get; } = new();
-        public ActionTable<CombatLog> OnReportHeal { get; } = new();
-        public ActionTable<CombatLog> OnReportStatusEffect { get; } = new();
-
-        public virtual GameObject Object => gameObject;
+        public ActionTable<CombatLog> OnCombatReporting { get; } = new();
         public FunctionTable<bool> IsReached { get; } = new();
         public FunctionTable<Vector3> Direction { get; } = new();
-        public DoubleTable MaxHp => maxHp;
-        public FloatTable CombatPowerTable => combatPowerTable;
-        public FloatTable MoveSpeedTable => moveSpeedTable;
-        public FloatTable CriticalTable => criticalTable;
-        public FloatTable HasteTable => hasteTable;
-        public FloatTable HitTable => hitTable;
-        public FloatTable EvadeTable => evadeTable;
-        public FloatTable ArmorTable => armorTable;
+        
         public List<GameObject> CharacterSearchedList { get; } = new();
         public List<GameObject> MonsterSearchedList { get; } = new();
         public ICombatTaker MainTarget { get; set; }
@@ -75,9 +82,7 @@ namespace Common.Character
         public void Teleport(Vector3 destination) => OnTeleport?.Invoke(destination);
         public void Skill(string skillName, Action animationCallback) => OnSkill?.Invoke(skillName, animationCallback);
         public void SkillHit() => OnSkillHit?.Invoke();
-        public void ReportDamage(CombatLog log) => OnReportDamage?.Invoke(log);
-        public void ReportHeal(CombatLog log) => OnReportHeal?.Invoke(log);
-        public void ReportStatusEffect(CombatLog log) => OnReportStatusEffect?.Invoke(log);
+        public void CombatReport(ILog log) => OnCombatReporting?.Invoke(log as CombatLog);
 
         public void Initialize(string character)
         {
@@ -87,53 +92,39 @@ namespace Common.Character
             id = profile.ID;
             combatClass = profile.CombatClass;
         }
-
-        protected virtual void Start()
-        {
-            Initialize(CharacterName);
-            
-            OnReportDamage.Register(GetInstanceID(), ShowLog);
-            OnStart?.Invoke();
-        }
-
-        protected void Update() => OnUpdate?.Invoke();
-
         
-        
-        public virtual void TakeDamage(ICombatProvider combatInfo)
+        public virtual void TakeDamage(ICombatProvider provider)
         {
             var log = new CombatLog
             {
-                Provider = combatInfo.ProviderName,
+                Provider = provider.ProviderName,
                 Taker = CharacterName,
-                SkillName = combatInfo.ActionName,
+                SkillName = provider.ActionName,
             };
 
             // Hit Chance
-            var hitChance = UnityEngine.Random.Range(0f, 1.0f);
-            if (hitChance > combatInfo.Hit)
+            if (CombatManager.IsHit(provider.Hit, Evade))
             {
                 log.IsHit = true;
-                combatInfo.CombatReport(log);
-                return;
-            }
-
-            log.IsHit = true;
-            float damageAmount;
-
-            // Critical
-            if (UnityEngine.Random.Range(0f, 1.0f) < combatInfo.Critical)
-            {
-                log.IsCritical = true;
-                damageAmount = combatInfo.CombatPower * 2f;
             }
             else
             {
-                damageAmount = combatInfo.CombatPower;
+                log.IsHit = false;
+                provider.CombatReport(log);
+                return;
             }
-            
+
+            var damageAmount = provider.CombatPower;
+
+            // Critical
+            if (CombatManager.IsCritical(provider.CombatPower))
+            {
+                log.IsCritical = true;
+                damageAmount *= 2f;
+            }
+
             // Armor
-            damageAmount = CombatManager.ArmorReduce(ArmorTable.Result, damageAmount);
+            damageAmount = CombatManager.ArmorReduce(Armor, damageAmount);
             
             Hp -= damageAmount;
             log.Value = damageAmount;
@@ -145,26 +136,49 @@ namespace Common.Character
                 IsAlive = false;
             }
             
-            combatInfo.CombatReport(log);
+            provider.CombatReport(log);
         }
         
-        public virtual void TakeHeal(ICombatProvider healInfo)
+        public virtual void TakeHeal(ICombatProvider provider)
         {
-            float healValue;
-            
-            if (UnityEngine.Random.Range(0f, 1.0f) > healInfo.Critical)
+            var log = new CombatLog
             {
-                healValue = healInfo.CombatPower * 2f; 
-            }
-            else
+                Provider = provider.ProviderName,
+                Taker = CharacterName,
+                SkillName = provider.ActionName,
+            };
+
+            var healAmount = provider.CombatPower;
+
+            if (CombatManager.IsCritical(provider.CombatPower))
             {
-                healValue = healInfo.CombatPower;
+                log.IsCritical = true;
+                healAmount *= 2f;
             }
 
-            Hp += healValue;
+            if (Hp + healAmount >= MaxHp)
+            {
+                healAmount = (float)(MaxHp - Hp);
+            }
+
+            Hp += healAmount;
+            log.Value = healAmount;
+
+            provider.CombatReport(log);
         }
         public virtual void TakeBuff(ICombatProvider statusEffect) => OnTakeBuff?.Invoke(statusEffect);
         public virtual void TakeDeBuff(ICombatProvider statusEffect) => OnTakeDeBuff?.Invoke(statusEffect);
+        
+        
+        protected virtual void Start()
+        {
+            Initialize(CharacterName);
+            
+            OnCombatReporting.Register(GetInstanceID(), ShowLog);
+            OnStart?.Invoke();
+        }
+
+        protected void Update() => OnUpdate?.Invoke();
         
         private void ShowLog(CombatLog log)
         {

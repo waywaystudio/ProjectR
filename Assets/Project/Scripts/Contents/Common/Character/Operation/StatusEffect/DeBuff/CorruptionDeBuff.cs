@@ -38,12 +38,6 @@ namespace Common.Character.Operation.StatusEffect.DeBuff
             Callback?.Invoke();
         }
         
-        public void CombatReport(ILog log)
-        {
-            if (log is CombatLog combatLog)
-            {
-                Cb.ReportDamage(combatLog);
-            } 
-        }
+        public void CombatReport(ILog log) => Cb.CombatReport(log);
     }
 }

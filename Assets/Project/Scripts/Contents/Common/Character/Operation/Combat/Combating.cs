@@ -18,10 +18,9 @@ namespace Common.Character.Operation.Combat
 
         public Dictionary<int, BaseSkill> SkillTable { get; } = new();
         public BaseSkill CurrentSkill { get; set; }
-        [Sirenix.OdinInspector.ShowInInspector]
         public bool IsGlobalCooling { get; set; }
         public bool IsCurrentSkillFinished => CurrentSkill == null || CurrentSkill.IsSkillFinished;
-        public float GlobalCoolTime => 2.0f * CombatManager.GetHasteValue(Cb.HasteTable.Result);
+        public float GlobalCoolTime => 2.0f * CombatManager.GetHasteValue(Cb.Haste);
         
         // SharedBool :: CombatBehaviorDesigner
         public bool IsCoolOnAnySkill => SkillTable.Any(x => x.Value.IsCoolTimeReady);

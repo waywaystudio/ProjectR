@@ -1,19 +1,18 @@
 using BehaviorDesigner.Runtime.Tasks;
 using Common.Character.Operation.Combat.Entity;
-using UnityEngine;
 
 namespace Common.Character.Operation.Combat.Behavior
 {
     [TaskCategory("Character/Combat")]
     public class PositioningBehavior : Action
     {
-        private Combat.Combating combat;
+        private Combating combat;
         private CharacterBehaviour cb;
         
 
         public override void OnAwake()
         {
-            combat = GetComponent<Combat.Combating>();
+            combat = GetComponent<Combating>();
             cb = combat.Cb;
         }
 

@@ -11,23 +11,16 @@ namespace Common.Character.Operation.Combat.Entity
         
         public int ID => id;
         public string ActionName => statusEffectName;
-        
         public GameObject Object => Cb.gameObject;
         public string ProviderName => Cb.CharacterName;
-        public float CombatPower => Cb.CombatPowerTable.Result;
-        public float Critical => Cb.CriticalTable.Result;
-        public float Haste => Cb.HasteTable.Result;
-        public float Hit => Cb.HitTable.Result;
+        public float CombatPower => Cb.CombatPower;
+        public float Critical => Cb.Critical;
+        public float Haste => Cb.Haste;
+        public float Hit => Cb.Hit;
 
         public override bool IsReady => true;
         
-        public void CombatReport(ILog log)
-        {
-            if (log is CombatLog combatLog)
-            {
-                Cb.ReportStatusEffect(combatLog);
-            } 
-        }
+        public void CombatReport(ILog log) => Cb.CombatReport(log);
         
         public override void SetEntity()
         {

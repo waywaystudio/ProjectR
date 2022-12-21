@@ -1,5 +1,4 @@
 using Common.Character.Operation.Combat.Entity;
-using UnityEngine;
 
 namespace Common.Character.Operation.Combat.Skills
 {
@@ -7,9 +6,9 @@ namespace Common.Character.Operation.Combat.Skills
     {
         public override void InvokeEvent()
         {
-            var hasProvider = TryGetComponent(out DamageEntity damageEntity);
-            var hasTargetList = TryGetComponent(out TargetEntity targetEntity);
-            
+            var hasProvider = TryGetEntity(EntityType.Damage, out DamageEntity damageEntity);
+            var hasTargetList = TryGetEntity(EntityType.Target, out TargetEntity targetEntity);
+
             if (hasProvider && hasTargetList)
                 targetEntity.CombatTakerList.ForEach(target =>
                 {

@@ -16,7 +16,6 @@ using Skill = MainGame.Data.ContentData.SkillData.Skill;
  * Projectile
  * Target
  */
-
 namespace Common.Character.Operation.Combat
 {
     public class BaseSkill : MonoBehaviour
@@ -28,14 +27,14 @@ namespace Common.Character.Operation.Combat
         
         protected int InstanceID;
         
-        private Combat.Combating combat;
+        private Combating combat;
         private CharacterBehaviour cb;
         private Skill skillData;
 
         public int ID => id;
         public string SkillName => skillName ??= GetType().Name;
         public int Priority { get => priority; set => priority = value; }
-        public Combat.Combating Combat => combat ??= GetComponentInParent<Combat.Combating>();
+        public Combating Combat => combat ??= GetComponentInParent<Combat.Combating>();
         public CharacterBehaviour Cb => cb ??= Combat.Cb;
         public Skill SkillData => skillData ??= MainData.GetSkillData(SkillName);
         public Dictionary<EntityType, BaseEntity> EntityTable { get; } = new();
@@ -77,8 +76,8 @@ namespace Common.Character.Operation.Combat
 
         public void DeActiveSkill()
         {
-            Cb.OnSkill.UnRegister(InstanceID);
-            Cb.OnSkillHit.UnRegister(InstanceID);
+            Cb.OnSkill.Unregister(InstanceID);
+            Cb.OnSkillHit.Unregister(InstanceID);
         }
 
         public bool TryGetEntity<T>(EntityType entityType, out T result) where T : BaseEntity
@@ -92,7 +91,6 @@ namespace Common.Character.Operation.Combat
             result = entity as T;
             return true;
         }
-
 
         protected void Awake()
         {
