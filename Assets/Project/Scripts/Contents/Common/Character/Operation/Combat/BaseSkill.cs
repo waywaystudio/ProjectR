@@ -91,6 +91,7 @@ namespace Common.Character.Operation.Combat
             result = entity as T;
             return true;
         }
+        
 
         protected void Awake()
         {

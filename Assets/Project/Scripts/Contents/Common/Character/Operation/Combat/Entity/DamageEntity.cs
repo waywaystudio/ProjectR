@@ -7,10 +7,15 @@ namespace Common.Character.Operation.Combat.Entity
     {
         [SerializeField] private float combatValue;
 
+        private CombatEntity skillCombatEntity;
+        public CombatEntity CombatEntity => skillCombatEntity + Cb.CombatEntity;
+
         public int ID => Skill.ID;
         public string ActionName => Skill.SkillName;
-        public GameObject Object => Cb.gameObject;
         public string ProviderName => Cb.CharacterName;
+        public GameObject Object => Cb.gameObject;
+        
+        
         public float CombatPower => Cb.CombatPower * combatValue;
         public float Critical => Cb.Critical;
         public float Haste => Cb.Haste;
@@ -18,13 +23,7 @@ namespace Common.Character.Operation.Combat.Entity
 
         public override bool IsReady => true;
         
-        public void CombatReport(ILog log)
-        {
-            if (log is CombatLog combatLog)
-            {
-                Cb.CombatReport(combatLog);
-            } 
-        }
+        public void CombatReport(ILog log) => Cb.CombatReport(log);
 
         protected override void Awake()
         {
@@ -35,6 +34,13 @@ namespace Common.Character.Operation.Combat.Entity
         public override void SetEntity()
         {
             combatValue = SkillData.BaseValue;
+            skillCombatEntity = new CombatEntity
+                           {
+                                   CombatPower = SkillData.BaseValue
+                                   // Critical = 
+                                   // Haste = 
+                                   // Hit = 
+                           };
         }
 
         private void Reset()

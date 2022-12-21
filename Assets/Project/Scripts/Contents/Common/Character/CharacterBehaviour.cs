@@ -15,6 +15,26 @@ namespace Common.Character
         [SerializeField] private double hp = 1000;
         public bool IsAlive { get => isAlive; set => isAlive = value; }
         public double Hp { get => hp; set => hp = Math.Min(MaxHp, value); }
+        
+        public float CombatPower => CombatPowerTable.Result * CombatPowerMultiTable.Result;
+        public float Critical => CriticalTable.Result * CriticalMultiTable.Result;
+        public float Haste => HasteTable.Result * HasteMultiTable.Result;
+        public float Hit => HitTable.Result * HitMultiTable.Result;
+
+        private CombatEntity combatEntity;
+        public CombatEntity CombatEntity
+        {
+            get
+            {
+                combatEntity.CombatPower = CombatPowerTable.Result * CombatPowerMultiTable.Result;
+                combatEntity.Critical = CriticalTable.Result * CriticalMultiTable.Result;
+                combatEntity.Haste = HasteTable.Result * HasteMultiTable.Result;
+                combatEntity.Hit = HitTable.Result * HitMultiTable.Result;
+
+                return combatEntity;
+            }
+        }
+        
         //
         
         [SerializeField] private string characterName = string.Empty;
@@ -50,13 +70,9 @@ namespace Common.Character
         public FloatMultiTable ArmorMultiTable { get; } = new();
 
         public double MaxHp => MaxHpTable.Result * MaxHpMultiTable.Result;
-        public float CombatPower => CombatPowerTable.Result * CombatPowerMultiTable.Result;
         public float MoveSpeed => MoveSpeedTable.Result * MoveSpeedMultiTable.Result;
-        public float Critical => CriticalTable.Result * CriticalMultiTable.Result;
-        public float Haste => HasteTable.Result * HasteMultiTable.Result;
-        public float Hit => HitTable.Result * HitMultiTable.Result;
-        public float Evade => EvadeTable.Result * EvadeMultiTable.Result;
         public float Armor => ArmorTable.Result * ArmorMultiTable.Result;
+        public float Evade => EvadeTable.Result * EvadeMultiTable.Result;
 
         public ActionTable OnStart { get; } = new();
         public ActionTable OnUpdate { get; } = new();
