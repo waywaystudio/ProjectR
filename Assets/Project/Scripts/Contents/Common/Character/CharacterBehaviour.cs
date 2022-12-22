@@ -15,12 +15,14 @@ namespace Common.Character
         [SerializeField] private double hp = 1000;
         public bool IsAlive { get => isAlive; set => isAlive = value; }
         public double Hp { get => hp; set => hp = Math.Min(MaxHp, value); }
-        
+
         public float CombatPower => CombatPowerTable.Result * CombatPowerMultiTable.Result;
+        [ShowInInspector]
         public float Critical => CriticalTable.Result * CriticalMultiTable.Result;
         public float Haste => HasteTable.Result * HasteMultiTable.Result;
         public float Hit => HitTable.Result * HitMultiTable.Result;
 
+        
         private CombatEntity combatEntity;
         public CombatEntity CombatEntity
         {
@@ -34,7 +36,6 @@ namespace Common.Character
                 return combatEntity;
             }
         }
-        
         //
         
         [SerializeField] private string characterName = string.Empty;
@@ -133,7 +134,7 @@ namespace Common.Character
             var damageAmount = provider.CombatPower;
 
             // Critical
-            if (CombatManager.IsCritical(provider.CombatPower))
+            if (CombatManager.IsCritical(provider.Critical))
             {
                 log.IsCritical = true;
                 damageAmount *= 2f;

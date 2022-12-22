@@ -51,7 +51,6 @@ namespace MainGame.Manager.Combat
         {
             // 100% 크리티컬 구현
             var mustCritical = criticalChance > 1.0f;
-
             return mustCritical || Random.Range(0f, 1f) < criticalChance;
         }
 

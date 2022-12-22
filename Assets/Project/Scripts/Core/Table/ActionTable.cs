@@ -13,7 +13,7 @@ namespace Core
         /// </summary>
         public void Unregister(int key) => ContainsKey(key).OnTrue(() => Remove(key));
         public void UnregisterAll() => Clear();
-        
+
         protected void TryAdd(int key, T value, bool overwrite)
         {
             if (!TryAdd(key, value) && overwrite) this[key] = value;

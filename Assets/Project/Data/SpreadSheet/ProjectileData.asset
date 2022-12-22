@@ -1,0 +1,32 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 09e357beaa3418045ac4a95ac9906f3e, type: 3}
+  m_Name: ProjectileData
+  m_EditorClassIdentifier: 
+  category: 15
+  list:
+  - id: 15000001
+    name: AimShotProjectile
+    speed: 30
+    particleKey: AimShotParticle
+  - id: 15000002
+    name: FireballProjectile
+    speed: 24
+    particleKey: FireballParticle
+  - id: 15000003
+    name: ChainHealingProjectile
+    speed: 100
+    particleKey: ChainHealingParticle
+  - id: 15000004
+    name: HealOrbProjectile
+    speed: 15
+    particleKey: HealOrbParticle

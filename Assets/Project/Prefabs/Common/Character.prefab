@@ -132,7 +132,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 3744010701179384131}
-  m_RootOrder: 6
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &3073268482839418820
 MonoBehaviour:
@@ -296,6 +296,137 @@ MonoBehaviour:
   targetLayerType: enemy
   targetCount: 1
   range: 20
+--- !u!1 &1447973257328576627
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3654033489274990016}
+  - component: {fileID: 1427536151393672886}
+  - component: {fileID: 4535373001510308994}
+  - component: {fileID: 9046075864732758135}
+  - component: {fileID: 4152075476344098872}
+  - component: {fileID: 3303418638668170366}
+  - component: {fileID: 3538037034823304809}
+  m_Layer: 0
+  m_Name: ChainHealing
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3654033489274990016
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1447973257328576627}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 3744010701179384131}
+  m_RootOrder: 11
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1427536151393672886
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1447973257328576627}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2280ce6c477f1ff4d96c35bacb2fdb95, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  id: 13000017
+  skillName: ChainHealing
+  animationKey: skill
+  priority: 5
+--- !u!114 &4535373001510308994
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1447973257328576627}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3866fc5b909cf064b9fd1dce2842c40b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  flag: 64
+  skill: {fileID: 1427536151393672886}
+  combatValue: 12
+--- !u!114 &9046075864732758135
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1447973257328576627}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9b71247a0c6287f44b49f848d90d357e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  flag: 2
+  skill: {fileID: 1427536151393672886}
+  coolTime: 5
+--- !u!114 &4152075476344098872
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1447973257328576627}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cc73b176d16ea8448a48d598b41a08b5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  flag: 8
+  skill: {fileID: 1427536151393672886}
+  originalCastingTime: 2
+--- !u!114 &3303418638668170366
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1447973257328576627}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4c5f541185aa92b488eeff9b9e07cdfc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  flag: 16
+  skill: {fileID: 1427536151393672886}
+  targetLayerType: ally
+  targetCount: 1
+  range: 25
+--- !u!114 &3538037034823304809
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1447973257328576627}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7142e0a43af74e747a185ee0b65f9c41, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  flag: 32
+  skill: {fileID: 1427536151393672886}
+  projectileID: 15000003
+  projectile: {fileID: 5223207423503661573, guid: 778d5e81bde95a045ac93cc2673ae572, type: 3}
 --- !u!1 &2149634195031184608
 GameObject:
   m_ObjectHideFlags: 0
@@ -330,7 +461,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 3744010701179384131}
-  m_RootOrder: 5
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &5218544908929011682
 MonoBehaviour:
@@ -1007,7 +1138,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   flag: 32
   skill: {fileID: 0}
-  projectile: {fileID: 8681916138048610995, guid: 72fdc730ed0948741adfb101f8302aec, type: 3}
+  projectileID: 0
+  projectile: {fileID: 5223207423503661573, guid: 9be681468222de24bad1b3d289d71f86, type: 3}
 --- !u!1 &3744010700929808893
 GameObject:
   m_ObjectHideFlags: 0
@@ -1213,10 +1345,13 @@ Transform:
   - {fileID: 1446163995460283899}
   - {fileID: 3744010701327891158}
   - {fileID: 6683087271973930562}
+  - {fileID: 1063164405838592513}
+  - {fileID: 1932514036660545830}
   - {fileID: 7465841416723213854}
   - {fileID: 3941671904429421807}
   - {fileID: 2801546766442355168}
   - {fileID: 7864773309251796700}
+  - {fileID: 3654033489274990016}
   m_Father: {fileID: 3744010699582125759}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1379,6 +1514,269 @@ MonoBehaviour:
   targetLayerType: enemy
   targetCount: 1
   range: 5
+--- !u!1 &4469171862292128997
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1063164405838592513}
+  - component: {fileID: 3108828579097521249}
+  - component: {fileID: 1341503458971635025}
+  - component: {fileID: 7025747630867849109}
+  - component: {fileID: 4517806761421872203}
+  - component: {fileID: 2510908845857993706}
+  - component: {fileID: 2747193873913511430}
+  m_Layer: 0
+  m_Name: Fireball
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1063164405838592513
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4469171862292128997}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 3744010701179384131}
+  m_RootOrder: 5
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &3108828579097521249
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4469171862292128997}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c99efdb89c2742a4aaa450a827f03532, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  id: 13000011
+  skillName: Fireball
+  animationKey: skill
+  priority: 2
+--- !u!114 &1341503458971635025
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4469171862292128997}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bd2d098c14bb73641bcc6faff29af210, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  flag: 1
+  skill: {fileID: 3108828579097521249}
+  combatValue: 2
+--- !u!114 &7025747630867849109
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4469171862292128997}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4c5f541185aa92b488eeff9b9e07cdfc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  flag: 16
+  skill: {fileID: 3108828579097521249}
+  targetLayerType: enemy
+  targetCount: 1
+  range: 20
+--- !u!114 &4517806761421872203
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4469171862292128997}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cc73b176d16ea8448a48d598b41a08b5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  flag: 8
+  skill: {fileID: 3108828579097521249}
+  originalCastingTime: 1.5
+--- !u!114 &2510908845857993706
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4469171862292128997}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7142e0a43af74e747a185ee0b65f9c41, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  flag: 32
+  skill: {fileID: 3108828579097521249}
+  projectileID: 15000002
+  projectile: {fileID: 5223207423503661573, guid: 9af98811cdcc08d45970ab3fea66e6fd, type: 3}
+--- !u!114 &2747193873913511430
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4469171862292128997}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 220707aa24bd15e4d9a9240e827cb4a3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  flag: 512
+  skill: {fileID: 3108828579097521249}
+  id: 14000006
+  statusEffectName: FireballDeBuff
+--- !u!1 &4579024629312635931
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1932514036660545830}
+  - component: {fileID: 8566922589576899893}
+  - component: {fileID: 7543160313366787145}
+  - component: {fileID: 2303779788911340654}
+  - component: {fileID: 2672525273206534427}
+  - component: {fileID: 8569279325747102475}
+  - component: {fileID: 6639948775891502924}
+  m_Layer: 0
+  m_Name: HealOrb
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1932514036660545830
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4579024629312635931}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 3744010701179384131}
+  m_RootOrder: 6
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &8566922589576899893
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4579024629312635931}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4090c44d43ec6d046b33d371982c1a53, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  id: 13000018
+  skillName: HealOrb
+  animationKey: skill
+  priority: 5
+--- !u!114 &7543160313366787145
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4579024629312635931}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bd2d098c14bb73641bcc6faff29af210, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  flag: 1
+  skill: {fileID: 8566922589576899893}
+  combatValue: 20
+--- !u!114 &2303779788911340654
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4579024629312635931}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3866fc5b909cf064b9fd1dce2842c40b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  flag: 64
+  skill: {fileID: 8566922589576899893}
+  combatValue: 20
+--- !u!114 &2672525273206534427
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4579024629312635931}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4c5f541185aa92b488eeff9b9e07cdfc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  flag: 16
+  skill: {fileID: 8566922589576899893}
+  targetLayerType: enemy
+  targetCount: 1
+  range: 25
+--- !u!114 &8569279325747102475
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4579024629312635931}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9b71247a0c6287f44b49f848d90d357e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  flag: 2
+  skill: {fileID: 8566922589576899893}
+  coolTime: 3
+--- !u!114 &6639948775891502924
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4579024629312635931}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7142e0a43af74e747a185ee0b65f9c41, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  flag: 32
+  skill: {fileID: 8566922589576899893}
+  projectileID: 15000004
+  projectile: {fileID: 5223207423503661573, guid: b37f63199f85ecd4cb34c001855c1c60, type: 3}
 --- !u!1 &5474161830410180337
 GameObject:
   m_ObjectHideFlags: 0
@@ -1556,7 +1954,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 3744010701179384131}
-  m_RootOrder: 7
+  m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &4824280575348527026
 MonoBehaviour:
@@ -1822,7 +2220,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 3744010701179384131}
-  m_RootOrder: 8
+  m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &8749851631722230459
 MonoBehaviour:

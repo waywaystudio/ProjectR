@@ -9,20 +9,20 @@ using UnityEngine;
 
 namespace MainGame.Data.ContentData
 {    
-    public partial class StatusEffectData : DataObject<StatusEffectData.StatusEffect>
+    public partial class ProjectileData : DataObject<ProjectileData.Projectile>
     {
         [Serializable]
-        public class StatusEffect : IIdentifier
+        public class Projectile : IIdentifier
         {
 			[SerializeField] private Int32 id;
 			[SerializeField] private String name;
-			[SerializeField] private Single duration;
-			[SerializeField] private Single combatValue;
+			[SerializeField] private Single speed;
+			[SerializeField] private String particleKey;
 
 			public Int32 ID => id;
 			public String Name => name;
-			public Single Duration => duration;
-			public Single CombatValue => combatValue;
+			public Single Speed => speed;
+			public String ParticleKey => particleKey;
 
         }
         
@@ -30,19 +30,19 @@ namespace MainGame.Data.ContentData
     #if UNITY_EDITOR
         public readonly string SpreadSheetID = "1yO5sJqxMvySDiihls5pwiHQWoJGysrT7LBmL16HhHRM";
         public readonly string SpreadSheetName = "ContentData";
-        public readonly string WorkSheetName = "StatusEffect";    
+        public readonly string WorkSheetName = "Projectile";    
   
         private void LoadFromJson()
         {
     
             List = UnityGoogleSheet.Editor.Core.UgsEditorUtility
-                .LoadFromJson<StatusEffect>("ContentData"); 
+                .LoadFromJson<Projectile>("ContentData"); 
         }
         
         private void LoadFromGoogleSpreadSheet()
         {
             UnityGoogleSheet.Editor.Core.UgsExplorer
-                .ParseSpreadSheet(SpreadSheetID, "StatusEffect");
+                .ParseSpreadSheet(SpreadSheetID, "Projectile");
 
             LoadFromJson();
             UnityEditor.EditorUtility.SetDirty(this);

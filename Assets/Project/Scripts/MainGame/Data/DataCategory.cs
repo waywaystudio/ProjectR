@@ -8,12 +8,12 @@ namespace MainGame.Data
         CombatClass = 12,
         Skill = 13,
         StatusEffect = 14,
-        // 15
+        Projectile = 15,
         Raid = 16,
         Boss = 17,
-        // 18
-        // 19
-        // 20
+        // 18,
+        // 19,
+        // 20,
         Equipment = 21,
         End = int.MaxValue, 
     }

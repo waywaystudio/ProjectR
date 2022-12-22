@@ -6,13 +6,14 @@ namespace Core
     {
         int ID { get; }
         string ActionName { get; }
-
-        GameObject Object { get; }
         string ProviderName { get; }
+        GameObject Object { get; }
+        
         float CombatPower { get; }
         float Critical { get; }
         float Haste { get; }
         float Hit { get; }
+        // CombatEntity CombatEntity { get; }
         // ICombatProvider Origin { get; }
 
         void CombatReport(ILog log);

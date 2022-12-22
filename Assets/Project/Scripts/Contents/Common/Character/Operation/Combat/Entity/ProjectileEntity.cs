@@ -1,3 +1,4 @@
+using Common.Projectile;
 using Core;
 using UnityEngine;
 
@@ -10,28 +11,42 @@ namespace Common.Character.Operation.Combat.Entity
     public class ProjectileEntity : BaseEntity
     {
         // TODO. Projectile Master같은 곳에서 키 값으로 가져오고,
-        // SerializeField 띄어내볼까...
+        [SerializeField] private int projectileID;
         [SerializeField] private GameObject projectile;
-        private ICombatProvider provider;
         private ICombatTaker taker;
         
         public override bool IsReady => true;
+        public ActionTable OnArrived { get; } = new();
+        public ActionTable OnCollided { get; } = new();
 
-        public void Initialize(ICombatProvider provider, ICombatTaker taker)
+        public void Initialize(ICombatTaker taker)
         {
-            // SetEntity...
+            this.taker = taker;
+        }
+
+        public void TakeHeal(ICombatProvider provider, ICombatTaker taker)
+        {
+            taker.TakeHeal(provider);
         }
 
         public void Fire()
         {
-            Debug.Log("Projectile Fire!");
-            // projectile.Instantiate or Draw(Spawn...Whatever);
-            // projectile.SetDestination(destination)
+            if (taker == null) return;
+            
+            // Pooling
+            var cbPosition = Cb.transform.position;
+            var tkPosition = taker.Object.transform.position;
+            var lookAt = Quaternion.LookRotation(tkPosition - cbPosition);
+            var newProjectile = Instantiate(projectile, cbPosition, lookAt);
+            //
+            
+            newProjectile.TryGetComponent(out ProjectileBehaviour pb);
+            pb.Initialize(taker, OnArrived, OnCollided);
         }
 
         public override void SetEntity()
         {
-            
+            projectileID = SkillData.Projectile;
         }
 
         private void OnEnable()
@@ -47,6 +62,7 @@ namespace Common.Character.Operation.Combat.Entity
         private void Reset()
         {
             flag = EntityType.Projectile;
+            projectileID = SkillData.Projectile;
         }
     }
 }
