@@ -1,5 +1,5 @@
 using Core;
-using DG.Tweening;
+// using DG.Tweening;
 using MainGame;
 using Sirenix.OdinInspector;
 using UnityEngine;
@@ -13,7 +13,7 @@ namespace Common.Projectile
         [SerializeField] protected float speed = 20f;
         [SerializeField] private GameObject particle;
 
-        protected Tweener TrajectoryTweener;
+        // protected Tweener TrajectoryTweener;
         protected Vector3 destination;
 
         public int ID { get; set; }
@@ -49,31 +49,28 @@ namespace Common.Projectile
             // Trajectory do first then onComplete +
             Trajectory();
 
-            TrajectoryTweener.onComplete = null;
-            TrajectoryTweener.onComplete += completeAction.Invoke;
-
-            // Set onComplete Action;
-            // identity Action (ex. Chain)
+            // TrajectoryTweener.onComplete = null;
+            // TrajectoryTweener.onComplete += completeAction.Invoke;
         }
 
         public virtual void Trajectory()
         {
-            TrajectoryTweener = transform
-                .DOMove(Destination, speed)
-                .SetEase(Ease.Linear)
-                .SetSpeedBased();
-
-            TrajectoryTweener.OnUpdate(() =>
-            {
-                var takerPosition = Taker.Object.transform.position;
-                
-                if (Vector3.Distance(transform.position, takerPosition) > 1f)
-                {
-                    TrajectoryTweener
-                        .ChangeEndValue(takerPosition, speed, true)
-                        .SetSpeedBased();
-                }
-            });
+            // TrajectoryTweener = transform
+            //     .DOMove(Destination, speed)
+            //     .SetEase(Ease.Linear)
+            //     .SetSpeedBased();
+            //
+            // TrajectoryTweener.OnUpdate(() =>
+            // {
+            //     var takerPosition = Taker.Object.transform.position;
+            //     
+            //     if (Vector3.Distance(transform.position, takerPosition) > 1f)
+            //     {
+            //         TrajectoryTweener
+            //             .ChangeEndValue(takerPosition, speed, true)
+            //             .SetSpeedBased();
+            //     }
+            // });
         }
 
 #if UNITY_EDITOR

@@ -1,14 +1,26 @@
 using Common.Character.Operation.Combat.Entity;
+using UnityEngine;
 
 namespace Common.Character.Operation.Combat.Skills
 {
     public class ChainHealing : BaseSkill
     {
+        [SerializeField] private float combatValue;
+        
+        public override CombatValueEntity CombatValue
+        {
+            get
+            {
+                var healValue = Cb.CombatValue;
+                healValue.Power = Cb.CombatValue.Power * combatValue;
+                healValue.Hit = 1.0f;
+
+                return healValue;
+            }
+        }
+        
         public override void CompleteSkill()
         {
-            // var hasDamageProvider = TryGetComponent(out DamageEntity damageEntity);
-            var hasHealProvider = TryGetComponent(out HealEntity hasHealEntity);
-            // var hasStatusEffectProvider = TryGetComponent(out StatusEffectEntity statusEffectEntity);
             var hasTargetList = TryGetComponent(out TargetEntity targetEntity);
             var hasProjectile = TryGetComponent(out ProjectileEntity projectileEntity);
 
@@ -17,25 +29,17 @@ namespace Common.Character.Operation.Combat.Skills
                 targetEntity.CombatTakerList.ForEach(target =>
                 {
                     projectileEntity.Initialize(target);
-
-                    // if (hasDamageProvider)
-                    // {
-                    //     projectileEntity.OnArrived.Register(damageEntity.GetInstanceID(), () => target.TakeDamage(damageEntity));
-                    // }
-                    
-                    if (hasHealProvider)
-                    {
-                        projectileEntity.OnArrived.Register(hasHealEntity.GetInstanceID(), () => target.TakeHeal(hasHealEntity));
-                    }
-
-                    // if (hasStatusEffectProvider)
-                    // {
-                    //     // projectileEntity.OnArrived.Register(projectileInstanceID, () => projectileEntity.Damage(damageEntity));
-                    // }
+                    projectileEntity.OnArrived.Register(InstanceID, () => target.TakeHeal(this));
                 });
             }
 
             base.CompleteSkill();
+        }
+        
+        protected override void Reset()
+        {
+            var skillData = MainGame.MainData.GetSkillData(GetComponent<BaseSkill>().ActionName);
+            combatValue = skillData.BaseValue;
         }
     }
 }

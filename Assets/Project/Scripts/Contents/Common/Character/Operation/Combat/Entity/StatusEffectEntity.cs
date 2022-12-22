@@ -1,36 +1,32 @@
-using Core;
-using MainGame;
 using UnityEngine;
 
 namespace Common.Character.Operation.Combat.Entity
 {
-    public class StatusEffectEntity : BaseEntity, ICombatProvider
+    public class StatusEffectEntity : BaseEntity
     {
         [SerializeField] private int id;
         [SerializeField] private string statusEffectName;
         
         public int ID => id;
-        public string ActionName => statusEffectName;
-        public GameObject Object => Cb.gameObject;
-        public string ProviderName => Cb.CharacterName;
-        public float CombatPower => Cb.CombatPower;
-        public float Critical => Cb.Critical;
-        public float Haste => Cb.Haste;
-        public float Hit => Cb.Hit;
+        public ICombatProvider Origin => Cb;
 
         public override bool IsReady => true;
         
-        public void CombatReport(ILog log) => Cb.CombatReport(log);
+        public void CombatReport(CombatLog log) => Cb.CombatReport(log);
         
         public override void SetEntity()
         {
-            id = SkillData.StatusEffect;
-            statusEffectName = MainData.GetStatusEffectData(id).Name;
+            // 
         }
+        
 
         private void Reset()
         {
             flag = EntityType.StatusEffect;
+            
+            var skillData = MainGame.MainData.GetSkillData(GetComponent<BaseSkill>().ActionName);
+            id = skillData.ID;
+            statusEffectName = skillData.Name;
             SetEntity();
         }
     }

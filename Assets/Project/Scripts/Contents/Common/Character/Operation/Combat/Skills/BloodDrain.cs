@@ -4,16 +4,17 @@ namespace Common.Character.Operation.Combat.Skills
 {
     public class BloodDrain : BaseSkill
     {
+        public override CombatValueEntity CombatValue => Cb.CombatValue;
+        
         public override void StartSkill()
         {
             base.StartSkill();
-            
-            var hasStatusEffect = TryGetComponent(out StatusEffectEntity statusEffectEntity);
+
             var hasTargetList = TryGetComponent(out TargetEntity targetEntity);
 
-            if (hasStatusEffect && hasTargetList)
+            if (hasTargetList)
             {
-                targetEntity.CombatTaker.TakeBuff(statusEffectEntity);
+                targetEntity.CombatTaker.TakeStatusEffect(this);
             }
         }
     }

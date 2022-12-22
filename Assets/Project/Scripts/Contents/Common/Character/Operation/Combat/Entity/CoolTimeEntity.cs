@@ -22,7 +22,7 @@ namespace Common.Character.Operation.Combat.Entity
 
         public override void SetEntity()
         {
-            CoolTime = SkillData.BaseCoolTime;
+            CoolTime = coolTime;
             RemainTimer = CoolTime;
         }
         
@@ -32,8 +32,8 @@ namespace Common.Character.Operation.Combat.Entity
         protected override void Awake()
         {
             base.Awake();
-
-            CoolTime = SkillData.BaseCoolTime;
+            
+            CoolTime = coolTime;
             RemainTimer = 0f;
             CoolTimeTick = Time.deltaTime;
         }
@@ -41,20 +41,21 @@ namespace Common.Character.Operation.Combat.Entity
         private void OnEnable()
         {
             Cb.OnUpdate.Register(InstanceID, UpdateStatus);
-            Skill.OnCompleted.Register(InstanceID, ResetRemainTime);
+            AssignedSkill.OnCompleted.Register(InstanceID, ResetRemainTime);
         }
         
         private void OnDisable()
         { 
             Cb.OnUpdate.Unregister(InstanceID);
-            Skill.OnCompleted.Unregister(InstanceID);
+            AssignedSkill.OnCompleted.Unregister(InstanceID);
         }
 
         private void Reset()
         {
             flag = EntityType.CoolTime;
             
-            SetEntity();
+            var skillData = MainGame.MainData.GetSkillData(GetComponent<BaseSkill>().ActionName);
+            coolTime = skillData.BaseCoolTime;
             RemainTimer = 0f;
         }
     }

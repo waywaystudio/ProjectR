@@ -1,22 +1,40 @@
 using Common.Character.Operation.Combat.Entity;
+using UnityEngine;
 
 namespace Common.Character.Operation.Combat.Skills
 {
     public class FaithfulPrey : BaseSkill
     {
+        [SerializeField] private float combatValue;
+        
+        public override CombatValueEntity CombatValue
+        {
+            get
+            {
+                var healValue = Cb.CombatValue;
+                healValue.Power = Cb.CombatValue.Power * combatValue;
+                healValue.Hit = 1.0f;
+
+                return healValue;
+            }
+        }
+        
         public override void CompleteSkill()
         {
-            var hasProvider = TryGetComponent(out HealEntity healEntity);
             var hasTargetList = TryGetComponent(out TargetEntity targetEntity);
 
-            if (hasProvider && hasTargetList)
+            if (hasTargetList)
             {
-                targetEntity.CombatTakerList.ForEach(target => target.TakeHeal(healEntity));
+                targetEntity.CombatTakerList.ForEach(target => target.TakeHeal(this));
             }
-            
-            // Set Projectile Information before projectile Fire
-            // base.CompleteSkill == Projectile Fire
+
             base.CompleteSkill();
+        }
+        
+        protected override void Reset()
+        {
+            var skillData = MainGame.MainData.GetSkillData(GetComponent<BaseSkill>().ActionName);
+            combatValue = skillData.BaseValue;
         }
     }
 }

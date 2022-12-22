@@ -1,6 +1,4 @@
 using System.Collections;
-using Core;
-using MainGame.Manager.Combat;
 using UnityEngine;
 
 namespace Common.Character.Operation.StatusEffect.DeBuff
@@ -8,18 +6,24 @@ namespace Common.Character.Operation.StatusEffect.DeBuff
     public sealed class CorruptionDeBuff : BaseStatusEffect, ICombatProvider
     {
         private const int TickCount = 5;
-        private CharacterBehaviour Cb => Object.GetComponent<CharacterBehaviour>();
 
+        public ICombatProvider Predecessor => ProviderInfo.Predecessor;
+        public string Name => ProviderInfo.Name;
         public GameObject Object => ProviderInfo.Object;
-        public string ProviderName => ProviderInfo.ProviderName;
-        public float CombatPower => ProviderInfo.CombatPower * BaseData.CombatValue;
-        public float Critical => ProviderInfo.Critical;
-        public float Haste => ProviderInfo.Haste;
-        public float Hit => ProviderInfo.Hit;
+        public CombatValueEntity CombatValue
+        {
+            get
+            {
+                var corruptionValue = ProviderInfo.CombatValue;
+                corruptionValue.Power = ProviderInfo.CombatValue.Power * BaseData.CombatValue;
+
+                return corruptionValue;
+            }
+        }
 
         public override IEnumerator MainAction()
         {
-            var corruptionDuration = Duration * CombatManager.GetHasteValue(ProviderInfo.Haste);
+            var corruptionDuration = Duration * CharacterUtility.GetHasteValue(CombatValue.Haste);
             var tickInterval = corruptionDuration / TickCount;
             var currentTick = tickInterval;
 
@@ -38,6 +42,6 @@ namespace Common.Character.Operation.StatusEffect.DeBuff
             Callback?.Invoke();
         }
         
-        public void CombatReport(ILog log) => Cb.CombatReport(log);
+        public void CombatReport(CombatLog log) => Predecessor.CombatReport(log);
     }
 }

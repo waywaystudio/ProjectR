@@ -14,8 +14,8 @@ namespace Common.Character.Data
 {
     public class ClassBaseStats : MonoBehaviour
     {
-        private const string BaseStatsKey = "BaseStats";
-        
+        private const string BaseStatsCode = "BaseStats";
+
         [SerializeField] private string combatClass;
         [SerializeField] private float maxHp;
         [SerializeField] private float moveSpeed;
@@ -28,6 +28,7 @@ namespace Common.Character.Data
         private CharacterBehaviour cb;
         private CombatClassData classData;
         private string characterName;
+        private int instanceID;
 
         private CharacterBehaviour Cb => cb ??= GetComponentInParent<CharacterBehaviour>();
         private CombatClassData ClassData => classData ??= MainData.GetCombatClassData(combatClass);
@@ -35,6 +36,7 @@ namespace Common.Character.Data
 
         public void Initialize()
         {
+            instanceID = GetInstanceID();
             combatClass.IsNullOrEmpty().OnTrue(() => combatClass = Cb.CombatClass);
             classData = MainData.GetCombatClassData(combatClass);
 
@@ -51,13 +53,21 @@ namespace Common.Character.Data
 
         public void AddValueTable()
         {
-            Cb.MaxHpTable.Register(BaseStatsKey, maxHp);
-            Cb.MoveSpeedTable.Register(BaseStatsKey, moveSpeed);
-            Cb.CriticalTable.Register(BaseStatsKey, critical);
-            Cb.HasteTable.Register(BaseStatsKey, haste);
-            Cb.HitTable.Register(BaseStatsKey, hit);
-            Cb.EvadeTable.Register(BaseStatsKey, evade);
-            Cb.ArmorTable.Register(BaseStatsKey, armor);
+            Cb.MaxHpTable.Register(BaseStatsCode, maxHp);
+            Cb.MoveSpeedTable.Register(BaseStatsCode, moveSpeed);
+            Cb.CriticalTable.Register(BaseStatsCode, critical);
+            Cb.HasteTable.Register(BaseStatsCode, haste);
+            Cb.HitTable.Register(BaseStatsCode, hit);
+            Cb.EvadeTable.Register(BaseStatsCode, evade);
+            Cb.ArmorTable.Register(BaseStatsCode, armor);
+            
+            Cb.StatTable.Register(StatCode.AddMaxHp, instanceID, () => maxHp, true);
+            Cb.StatTable.Register(StatCode.AddMoveSpeed, instanceID, () => moveSpeed, true);
+            Cb.StatTable.Register(StatCode.AddCritical, instanceID, () => critical, true);
+            Cb.StatTable.Register(StatCode.AddHaste, instanceID, () => haste, true);
+            Cb.StatTable.Register(StatCode.AddHit, instanceID, () => hit, true);
+            Cb.StatTable.Register(StatCode.AddEvade, instanceID, () => evade, true);
+            Cb.StatTable.Register(StatCode.AddArmor, instanceID, () => armor, true);
         }
         
         private void Awake()

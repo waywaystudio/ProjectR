@@ -1,4 +1,3 @@
-using Core;
 using UnityEngine;
 
 namespace Common.Character.Operation.Combat.Entity
@@ -7,19 +6,26 @@ namespace Common.Character.Operation.Combat.Entity
     {
         [SerializeField] private float combatValue;
 
-        public int ID => Skill.ID;
-        public string ActionName => Skill.SkillName;
+        public int ID => AssignedSkill.ID;
+        public string Name => Cb.CharacterName;
+        public string ActionName => AssignedSkill.ActionName;
         public GameObject Object => Cb.gameObject;
-        public string ProviderName => Cb.CharacterName;
-        
-        public float CombatPower => Cb.CombatPower * combatValue;
-        public float Critical => Cb.Critical;
-        public float Haste => Cb.Haste;
-        public float Hit => 1.0f;
+        public ICombatProvider Predecessor => Cb;
+        public CombatValueEntity CombatValue
+        {
+            get
+            {
+                var healValue = Cb.CombatValue;
+                healValue.Power = Cb.CombatValue.Power * combatValue;
+                healValue.Hit = 1.0f;
+
+                return healValue;
+            }
+        }
 
         public override bool IsReady => true;
         
-        public void CombatReport(ILog log) => Cb.CombatReport(log);
+        public void CombatReport(CombatLog log) => Predecessor.CombatReport(log);
         
 
         protected override void Awake()
@@ -31,7 +37,7 @@ namespace Common.Character.Operation.Combat.Entity
         
         public override void SetEntity()
         {
-            combatValue = SkillData.BaseValue;
+            // combatValue = SkillData.BaseValue;
         }
 
         private void Reset()

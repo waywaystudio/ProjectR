@@ -453,7 +453,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3744010700067239340, guid: 1a31cf557034ca040bd315b28824b3f0, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -5.8
+      value: 0.05
       objectReference: {fileID: 0}
     - target: {fileID: 3744010700067239340, guid: 1a31cf557034ca040bd315b28824b3f0, type: 3}
       propertyPath: m_LocalPosition.y
@@ -461,7 +461,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3744010700067239340, guid: 1a31cf557034ca040bd315b28824b3f0, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 10.8
+      value: 1.6
       objectReference: {fileID: 0}
     - target: {fileID: 3744010700067239340, guid: 1a31cf557034ca040bd315b28824b3f0, type: 3}
       propertyPath: m_LocalRotation.w
@@ -2071,7 +2071,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3744010700067239340, guid: 1a31cf557034ca040bd315b28824b3f0, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 10.9
+      value: 3.21
       objectReference: {fileID: 0}
     - target: {fileID: 3744010700067239340, guid: 1a31cf557034ca040bd315b28824b3f0, type: 3}
       propertyPath: m_LocalPosition.y
@@ -2079,7 +2079,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3744010700067239340, guid: 1a31cf557034ca040bd315b28824b3f0, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -4.6
+      value: 2.68
       objectReference: {fileID: 0}
     - target: {fileID: 3744010700067239340, guid: 1a31cf557034ca040bd315b28824b3f0, type: 3}
       propertyPath: m_LocalRotation.w
@@ -2578,7 +2578,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3744010700067239340, guid: 1a31cf557034ca040bd315b28824b3f0, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 4.9
+      value: 5.62
       objectReference: {fileID: 0}
     - target: {fileID: 3744010700067239340, guid: 1a31cf557034ca040bd315b28824b3f0, type: 3}
       propertyPath: m_LocalPosition.y
@@ -2586,7 +2586,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3744010700067239340, guid: 1a31cf557034ca040bd315b28824b3f0, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 16.4
+      value: 5.55
       objectReference: {fileID: 0}
     - target: {fileID: 3744010700067239340, guid: 1a31cf557034ca040bd315b28824b3f0, type: 3}
       propertyPath: m_LocalRotation.w
@@ -2705,9 +2705,21 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1427536151393672886, guid: 1a31cf557034ca040bd315b28824b3f0, type: 3}
+      propertyPath: actionName
+      value: ChainHealing
+      objectReference: {fileID: 0}
+    - target: {fileID: 1447973257328576627, guid: 1a31cf557034ca040bd315b28824b3f0, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2149634195031184608, guid: 1a31cf557034ca040bd315b28824b3f0, type: 3}
       propertyPath: m_IsActive
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2330787471297126836, guid: 1a31cf557034ca040bd315b28824b3f0, type: 3}
+      propertyPath: actionName
+      value: BackStep
       objectReference: {fileID: 0}
     - target: {fileID: 2790523001659139865, guid: 1a31cf557034ca040bd315b28824b3f0, type: 3}
       propertyPath: hit
@@ -2732,6 +2744,14 @@ PrefabInstance:
     - target: {fileID: 2790523001659139865, guid: 1a31cf557034ca040bd315b28824b3f0, type: 3}
       propertyPath: combatClass
       value: Sniper
+      objectReference: {fileID: 0}
+    - target: {fileID: 3073268482839418820, guid: 1a31cf557034ca040bd315b28824b3f0, type: 3}
+      propertyPath: actionName
+      value: FaithfulPrey
+      objectReference: {fileID: 0}
+    - target: {fileID: 3108828579097521249, guid: 1a31cf557034ca040bd315b28824b3f0, type: 3}
+      propertyPath: actionName
+      value: Fireball
       objectReference: {fileID: 0}
     - target: {fileID: 3538037034823304809, guid: 1a31cf557034ca040bd315b28824b3f0, type: 3}
       propertyPath: projectile
@@ -2799,7 +2819,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3744010700775776668, guid: 1a31cf557034ca040bd315b28824b3f0, type: 3}
       propertyPath: m_Enabled
-      value: 0
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3744010700775776668, guid: 1a31cf557034ca040bd315b28824b3f0, type: 3}
+      propertyPath: actionName
+      value: AimShot
       objectReference: {fileID: 0}
     - target: {fileID: 3744010700929808893, guid: 1a31cf557034ca040bd315b28824b3f0, type: 3}
       propertyPath: m_Layer
@@ -2810,12 +2834,24 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3744010701327891165, guid: 1a31cf557034ca040bd315b28824b3f0, type: 3}
+      propertyPath: actionName
+      value: CommonAttack
+      objectReference: {fileID: 0}
+    - target: {fileID: 3744010701327891165, guid: 1a31cf557034ca040bd315b28824b3f0, type: 3}
+      propertyPath: combatValue
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 3744010701327891165, guid: 1a31cf557034ca040bd315b28824b3f0, type: 3}
       propertyPath: animationKey
       value: attack
       objectReference: {fileID: 0}
     - target: {fileID: 3765643770630641843, guid: 1a31cf557034ca040bd315b28824b3f0, type: 3}
       propertyPath: coolTime
       value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 3779498063899901923, guid: 1a31cf557034ca040bd315b28824b3f0, type: 3}
+      propertyPath: actionName
+      value: Charge
       objectReference: {fileID: 0}
     - target: {fileID: 3779498063899901923, guid: 1a31cf557034ca040bd315b28824b3f0, type: 3}
       propertyPath: offsetDistance
@@ -2831,11 +2867,39 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4579024629312635931, guid: 1a31cf557034ca040bd315b28824b3f0, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4681170025766940016, guid: 1a31cf557034ca040bd315b28824b3f0, type: 3}
+      propertyPath: id
+      value: 13000006
+      objectReference: {fileID: 0}
+    - target: {fileID: 4681170025766940016, guid: 1a31cf557034ca040bd315b28824b3f0, type: 3}
+      propertyPath: statusEffectName
+      value: Roar
+      objectReference: {fileID: 0}
+    - target: {fileID: 4824280575348527026, guid: 1a31cf557034ca040bd315b28824b3f0, type: 3}
+      propertyPath: actionName
+      value: BloodDrain
+      objectReference: {fileID: 0}
+    - target: {fileID: 5218544908929011682, guid: 1a31cf557034ca040bd315b28824b3f0, type: 3}
+      propertyPath: actionName
+      value: RapidBlow
+      objectReference: {fileID: 0}
+    - target: {fileID: 5218544908929011682, guid: 1a31cf557034ca040bd315b28824b3f0, type: 3}
+      propertyPath: animationKey
+      value: channeling
       objectReference: {fileID: 0}
     - target: {fileID: 5474161830410180337, guid: 1a31cf557034ca040bd315b28824b3f0, type: 3}
       propertyPath: m_IsActive
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6291252832563897115, guid: 1a31cf557034ca040bd315b28824b3f0, type: 3}
+      propertyPath: id
+      value: 14000001
+      objectReference: {fileID: 0}
+    - target: {fileID: 6479502405617291387, guid: 1a31cf557034ca040bd315b28824b3f0, type: 3}
+      propertyPath: actionName
+      value: Corruption
       objectReference: {fileID: 0}
     - target: {fileID: 6963563523162028877, guid: 1a31cf557034ca040bd315b28824b3f0, type: 3}
       propertyPath: m_Mesh
@@ -2848,6 +2912,14 @@ PrefabInstance:
     - target: {fileID: 8392186021241681492, guid: 1a31cf557034ca040bd315b28824b3f0, type: 3}
       propertyPath: coolTime
       value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 8566922589576899893, guid: 1a31cf557034ca040bd315b28824b3f0, type: 3}
+      propertyPath: actionName
+      value: HealOrb
+      objectReference: {fileID: 0}
+    - target: {fileID: 8749851631722230459, guid: 1a31cf557034ca040bd315b28824b3f0, type: 3}
+      propertyPath: actionName
+      value: Roar
       objectReference: {fileID: 0}
     - target: {fileID: 9117587234178573487, guid: 1a31cf557034ca040bd315b28824b3f0, type: 3}
       propertyPath: m_IsActive

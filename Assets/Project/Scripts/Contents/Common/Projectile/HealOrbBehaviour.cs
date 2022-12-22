@@ -1,5 +1,4 @@
 using Core;
-using DG.Tweening;
 using UnityEngine;
 
 namespace Common.Projectile
@@ -26,11 +25,11 @@ namespace Common.Projectile
         
         public override void Trajectory()
         {
-            TrajectoryTweener = transform
-                .DOMove(Destination, speed)
-                .SetEase(Ease.OutCubic)
-                .SetLoops(2, LoopType.Yoyo)
-                .SetSpeedBased();
+            // TrajectoryTweener = transform
+            //     .DOMove(Destination, speed)
+            //     .SetEase(Ease.OutCubic)
+            //     .SetLoops(2, LoopType.Yoyo)
+            //     .SetSpeedBased();
         }
     }
 }

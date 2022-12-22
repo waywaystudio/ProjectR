@@ -16,11 +16,13 @@ namespace MainGame.Data.ContentData
         {
 			[SerializeField] private Int32 id;
 			[SerializeField] private String name;
+			[SerializeField] private Boolean isBuff;
 			[SerializeField] private Single duration;
 			[SerializeField] private Single combatValue;
 
 			public Int32 ID => id;
 			public String Name => name;
+			public Boolean IsBuff => isBuff;
 			public Single Duration => duration;
 			public Single CombatValue => combatValue;
 

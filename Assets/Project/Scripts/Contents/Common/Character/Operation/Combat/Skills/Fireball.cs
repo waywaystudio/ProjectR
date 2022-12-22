@@ -1,10 +1,24 @@
 
 using Common.Character.Operation.Combat.Entity;
+using UnityEngine;
 
 namespace Common.Character.Operation.Combat.Skills
 {
     public class Fireball : BaseSkill
     {
+        [SerializeField] private float combatValue;
+        
+        public override CombatValueEntity CombatValue
+        {
+            get
+            {
+                var damageValue = Cb.CombatValue;
+                damageValue.Power = Cb.CombatValue.Power * combatValue;
+
+                return damageValue;
+            }
+        }
+        
         public override void CompleteSkill()
         {
             var hasDamageProvider = TryGetComponent(out DamageEntity damageEntity);
@@ -20,12 +34,14 @@ namespace Common.Character.Operation.Combat.Skills
 
                     if (hasDamageProvider)
                     {
-                        projectileEntity.OnArrived.Register(damageEntity.GetInstanceID(), () => target.TakeDamage(damageEntity));
+                        projectileEntity.OnArrived.Register
+                            (damageEntity.GetInstanceID(), () => target.TakeDamage(damageEntity));
                     }
 
                     if (hasStatusEffectProvider)
                     {
-                        projectileEntity.OnArrived.Register(statusEffectEntity.GetInstanceID(), () => target.TakeDeBuff(statusEffectEntity));
+                        projectileEntity.OnArrived.Register
+                            (statusEffectEntity.GetInstanceID(), () => target.TakeStatusEffect(statusEffectEntity.Origin));
                     }
                 });
             }

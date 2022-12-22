@@ -1,5 +1,6 @@
 using Common.Projectile;
 using Core;
+using Sirenix.OdinInspector;
 using UnityEngine;
 
 namespace Common.Character.Operation.Combat.Entity
@@ -24,11 +25,6 @@ namespace Common.Character.Operation.Combat.Entity
             this.taker = taker;
         }
 
-        public void TakeHeal(ICombatProvider provider, ICombatTaker taker)
-        {
-            taker.TakeHeal(provider);
-        }
-
         public void Fire()
         {
             if (taker == null) return;
@@ -46,23 +42,25 @@ namespace Common.Character.Operation.Combat.Entity
 
         public override void SetEntity()
         {
-            projectileID = SkillData.Projectile;
+            // projectileID = SkillData.Projectile;
         }
 
         private void OnEnable()
         {
-            Skill.OnCompleted.Register(InstanceID, Fire);
+            AssignedSkill.OnCompleted.Register(InstanceID, Fire);
         }
 
         private void OnDisable()
         {
-            Skill.OnCompleted.Unregister(InstanceID);
+            AssignedSkill.OnCompleted.Unregister(InstanceID);
         }
-
+        
         private void Reset()
         {
             flag = EntityType.Projectile;
-            projectileID = SkillData.Projectile;
+            
+            var skillData = MainGame.MainData.GetSkillData(GetComponent<BaseSkill>().ActionName);
+            projectileID = skillData.Projectile;
         }
     }
 }

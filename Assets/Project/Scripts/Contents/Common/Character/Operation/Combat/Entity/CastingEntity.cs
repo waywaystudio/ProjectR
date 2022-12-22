@@ -1,6 +1,5 @@
 using System;
 using System.Collections;
-using MainGame.Manager.Combat;
 using Sirenix.OdinInspector;
 using UnityEngine;
 
@@ -10,11 +9,12 @@ namespace Common.Character.Operation.Combat.Entity
     public class CastingEntity : BaseEntity
     {
         [SerializeField] private float originalCastingTime;
+        
         private float castingTick;
         private bool onCasting;
         private float remainTimer;
 
-        private float CastingTime => originalCastingTime * CombatManager.GetHasteValue(Cb.Haste);
+        private float CastingTime => originalCastingTime * CharacterUtility.GetHasteValue(Cb.CombatValue.Haste);
         private float CastingTick { get => castingTick; set => castingTick = value; }
         private float RemainTimer
         {
@@ -26,7 +26,6 @@ namespace Common.Character.Operation.Combat.Entity
 
         public override void SetEntity()
         {
-            originalCastingTime = SkillData.CastingTime;
             RemainTimer = 0;
             CastingTick = Time.deltaTime;
         }
@@ -45,7 +44,7 @@ namespace Common.Character.Operation.Combat.Entity
             if (onCasting)
             {
                 Debug.Log("Casting Interrupted");
-                Skill.InterruptedSkill();
+                AssignedSkill.InterruptedSkill();
             }
 
             onCasting = true;
@@ -72,19 +71,23 @@ namespace Common.Character.Operation.Combat.Entity
 
         private void OnEnable()
         {
-            Skill.OnStarted.Register(InstanceID, StartCasting);
-            Skill.OnInterrupted.Register(InstanceID, BreakCasting);
+            AssignedSkill.OnStarted.Register(InstanceID, StartCasting);
+            AssignedSkill.OnInterrupted.Register(InstanceID, BreakCasting);
         }
 
         private void OnDisable()
         {
-            Skill.OnStarted.Unregister(InstanceID);
-            Skill.OnInterrupted.Unregister(InstanceID);
+            AssignedSkill.OnStarted.Unregister(InstanceID);
+            AssignedSkill.OnInterrupted.Unregister(InstanceID);
         }
 
+        
         private void Reset()
         {
             flag = EntityType.Casting;
+
+            var skillData = MainGame.MainData.GetSkillData(GetComponent<BaseSkill>().ActionName); 
+            originalCastingTime = skillData.CastingTime;
         }
     }
 }

@@ -11,10 +11,8 @@ namespace Common.Character.Operation.Combat.Entity
         [SerializeField] private string targetLayerType;
         [SerializeField] private int targetCount;
         [SerializeField] private float range;
-        [ShowInInspector]
-        private List<GameObject> searchedList;
-        [ShowInInspector]
-        private ICombatTaker combatTaker;
+        [ShowInInspector] private List<GameObject> searchedList;
+        [ShowInInspector] private ICombatTaker combatTaker;
         private List<ICombatTaker> combatTakerList;
         private readonly List<ICombatTaker> combatTakerFilterCache = new();
 
@@ -83,9 +81,7 @@ namespace Common.Character.Operation.Combat.Entity
 
         public override void SetEntity()
         {
-            targetCount = SkillData.TargetCount;
-            range = SkillData.Range;
-            targetLayerType = SkillData.TargetLayer;
+            
         }
 
         protected override void Awake()
@@ -102,7 +98,12 @@ namespace Common.Character.Operation.Combat.Entity
         private void Reset()
         {
             flag = EntityType.Target;
-            SetEntity();
+            
+            var skillData = MainGame.MainData.GetSkillData(GetComponent<BaseSkill>().ActionName);
+
+            targetCount = skillData.TargetCount;
+            range = skillData.Range;
+            targetLayerType = skillData.TargetLayer;
         }
 
     }

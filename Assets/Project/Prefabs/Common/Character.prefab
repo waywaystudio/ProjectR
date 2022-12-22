@@ -1,5 +1,36 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &130337203696482473
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 9160038010263774325}
+  m_Layer: 0
+  m_Name: Auction
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &9160038010263774325
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 130337203696482473}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 3744010699582125759}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &286356721480540612
 GameObject:
   m_ObjectHideFlags: 0
@@ -48,10 +79,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   id: 13000003
-  skillName: BackStep
-  animationKey: skill
+  actionName: 
   priority: 5
   backMagnitude: 4.2
+  combatValue: 0
 --- !u!114 &5386481532309463687
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -65,7 +96,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   flag: 1
-  skill: {fileID: 2330787471297126836}
   combatValue: 8
 --- !u!114 &3765643770630641843
 MonoBehaviour:
@@ -80,7 +110,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   flag: 2
-  skill: {fileID: 2330787471297126836}
   coolTime: 15
 --- !u!114 &2448565528259500646
 MonoBehaviour:
@@ -95,7 +124,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   flag: 16
-  skill: {fileID: 2330787471297126836}
   targetLayerType: enemy
   targetCount: 1
   range: 18
@@ -147,9 +175,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   id: 13000013
-  skillName: FaithfulPrey
-  animationKey: skill
+  actionName: 
   priority: 1
+  combatValue: 0
 --- !u!114 &8565042087880124505
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -163,7 +191,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   flag: 64
-  skill: {fileID: 3073268482839418820}
   combatValue: 3
 --- !u!114 &8851566931181336460
 MonoBehaviour:
@@ -178,7 +205,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   flag: 16
-  skill: {fileID: 3073268482839418820}
   targetLayerType: ally
   targetCount: 1
   range: 15
@@ -195,7 +221,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   flag: 8
-  skill: {fileID: 3073268482839418820}
   originalCastingTime: 1.5
 --- !u!1 &1395558016746253724
 GameObject:
@@ -245,8 +270,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   id: 13000012
-  skillName: Corruption
-  animationKey: skill
+  actionName: 
   priority: 2
 --- !u!114 &6291252832563897115
 MonoBehaviour:
@@ -261,7 +285,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   flag: 512
-  skill: {fileID: 6479502405617291387}
   id: 14000001
   statusEffectName: CorruptionDeBuff
 --- !u!114 &7875250353425473752
@@ -277,7 +300,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   flag: 2
-  skill: {fileID: 6479502405617291387}
   coolTime: 15
 --- !u!114 &3209702092269156988
 MonoBehaviour:
@@ -292,7 +314,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   flag: 16
-  skill: {fileID: 6479502405617291387}
   targetLayerType: enemy
   targetCount: 1
   range: 20
@@ -346,9 +367,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   id: 13000017
-  skillName: ChainHealing
-  animationKey: skill
+  actionName: 
   priority: 5
+  combatValue: 0
 --- !u!114 &4535373001510308994
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -362,7 +383,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   flag: 64
-  skill: {fileID: 1427536151393672886}
   combatValue: 12
 --- !u!114 &9046075864732758135
 MonoBehaviour:
@@ -377,8 +397,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   flag: 2
-  skill: {fileID: 1427536151393672886}
-  coolTime: 5
+  coolTime: 0
 --- !u!114 &4152075476344098872
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -392,7 +411,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   flag: 8
-  skill: {fileID: 1427536151393672886}
   originalCastingTime: 2
 --- !u!114 &3303418638668170366
 MonoBehaviour:
@@ -407,7 +425,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   flag: 16
-  skill: {fileID: 1427536151393672886}
   targetLayerType: ally
   targetCount: 1
   range: 25
@@ -424,7 +441,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   flag: 32
-  skill: {fileID: 1427536151393672886}
   projectileID: 15000003
   projectile: {fileID: 5223207423503661573, guid: 778d5e81bde95a045ac93cc2673ae572, type: 3}
 --- !u!1 &2149634195031184608
@@ -476,8 +492,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   id: 13000008
-  skillName: RapidBlow
-  animationKey: Channeling
+  actionName: 
   priority: 5
 --- !u!114 &4110535229481813574
 MonoBehaviour:
@@ -492,7 +507,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   flag: 1
-  skill: {fileID: 5218544908929011682}
   combatValue: 2
 --- !u!114 &6818239259262965119
 MonoBehaviour:
@@ -507,7 +521,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   flag: 2
-  skill: {fileID: 5218544908929011682}
   coolTime: 6
 --- !u!114 &8212931962931820880
 MonoBehaviour:
@@ -522,7 +535,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   flag: 8
-  skill: {fileID: 5218544908929011682}
   originalCastingTime: 0
 --- !u!114 &8976578391784397922
 MonoBehaviour:
@@ -537,7 +549,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   flag: 16
-  skill: {fileID: 5218544908929011682}
   targetLayerType: enemy
   targetCount: 1
   range: 5
@@ -625,6 +636,8 @@ Transform:
   - {fileID: 3744010700621091311}
   - {fileID: 3744010700929808892}
   - {fileID: 8673068189234025519}
+  - {fileID: 9160038010263774325}
+  - {fileID: 8651108670824624026}
   m_Father: {fileID: 3744010700067239340}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1059,9 +1072,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   id: 13000004
-  skillName: AimShot
-  animationKey: skill
+  actionName: 
   priority: 5
+  combatValue: 0
 --- !u!114 &3744010700775776669
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1075,7 +1088,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   flag: 1
-  skill: {fileID: 3744010700775776668}
   combatValue: 25
 --- !u!114 &3744010700775776666
 MonoBehaviour:
@@ -1090,7 +1102,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   flag: 8
-  skill: {fileID: 3744010700775776668}
   originalCastingTime: 3
 --- !u!114 &3744010700775776671
 MonoBehaviour:
@@ -1105,7 +1116,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   flag: 2
-  skill: {fileID: 3744010700775776668}
   coolTime: 8
 --- !u!114 &3744010700775776667
 MonoBehaviour:
@@ -1120,7 +1130,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   flag: 16
-  skill: {fileID: 3744010700775776668}
   targetLayerType: enemy
   targetCount: 1
   range: 25
@@ -1137,7 +1146,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   flag: 32
-  skill: {fileID: 0}
   projectileID: 0
   projectile: {fileID: 5223207423503661573, guid: 9be681468222de24bad1b3d289d71f86, type: 3}
 --- !u!1 &3744010700929808893
@@ -1479,8 +1487,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   id: 13000001
-  skillName: CommonAttack
-  animationKey: Attack
+  actionName: 
   priority: 1
 --- !u!114 &3744010701327891162
 MonoBehaviour:
@@ -1495,7 +1502,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   flag: 1
-  skill: {fileID: 3744010701327891165}
   combatValue: 5
 --- !u!114 &3744010701327891161
 MonoBehaviour:
@@ -1510,7 +1516,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   flag: 16
-  skill: {fileID: 3744010701327891165}
   targetLayerType: enemy
   targetCount: 1
   range: 5
@@ -1564,9 +1569,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   id: 13000011
-  skillName: Fireball
-  animationKey: skill
+  actionName: 
   priority: 2
+  combatValue: 0
 --- !u!114 &1341503458971635025
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1580,7 +1585,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   flag: 1
-  skill: {fileID: 3108828579097521249}
   combatValue: 2
 --- !u!114 &7025747630867849109
 MonoBehaviour:
@@ -1595,7 +1599,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   flag: 16
-  skill: {fileID: 3108828579097521249}
   targetLayerType: enemy
   targetCount: 1
   range: 20
@@ -1612,7 +1615,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   flag: 8
-  skill: {fileID: 3108828579097521249}
   originalCastingTime: 1.5
 --- !u!114 &2510908845857993706
 MonoBehaviour:
@@ -1627,7 +1629,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   flag: 32
-  skill: {fileID: 3108828579097521249}
   projectileID: 15000002
   projectile: {fileID: 5223207423503661573, guid: 9af98811cdcc08d45970ab3fea66e6fd, type: 3}
 --- !u!114 &2747193873913511430
@@ -1643,7 +1644,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   flag: 512
-  skill: {fileID: 3108828579097521249}
   id: 14000006
   statusEffectName: FireballDeBuff
 --- !u!1 &4579024629312635931
@@ -1696,8 +1696,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   id: 13000018
-  skillName: HealOrb
-  animationKey: skill
+  actionName: 
   priority: 5
 --- !u!114 &7543160313366787145
 MonoBehaviour:
@@ -1712,7 +1711,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   flag: 1
-  skill: {fileID: 8566922589576899893}
   combatValue: 20
 --- !u!114 &2303779788911340654
 MonoBehaviour:
@@ -1727,7 +1725,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   flag: 64
-  skill: {fileID: 8566922589576899893}
   combatValue: 20
 --- !u!114 &2672525273206534427
 MonoBehaviour:
@@ -1742,7 +1739,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   flag: 16
-  skill: {fileID: 8566922589576899893}
   targetLayerType: enemy
   targetCount: 1
   range: 25
@@ -1759,7 +1755,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   flag: 2
-  skill: {fileID: 8566922589576899893}
   coolTime: 3
 --- !u!114 &6639948775891502924
 MonoBehaviour:
@@ -1774,7 +1769,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   flag: 32
-  skill: {fileID: 8566922589576899893}
   projectileID: 15000004
   projectile: {fileID: 5223207423503661573, guid: b37f63199f85ecd4cb34c001855c1c60, type: 3}
 --- !u!1 &5474161830410180337
@@ -1825,11 +1819,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   id: 13000002
-  skillName: Charge
-  animationKey: skill
+  actionName: 
   priority: 5
   dashSpeed: 30
   offsetDistance: 3.5
+  combatValue: 0
 --- !u!114 &7681704895388235946
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1843,7 +1837,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   flag: 1
-  skill: {fileID: 3779498063899901923}
   combatValue: 4
 --- !u!114 &8392186021241681492
 MonoBehaviour:
@@ -1858,7 +1851,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   flag: 2
-  skill: {fileID: 3779498063899901923}
   coolTime: 8
 --- !u!114 &850913637087685088
 MonoBehaviour:
@@ -1873,7 +1865,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   flag: 16
-  skill: {fileID: 3779498063899901923}
   targetLayerType: enemy
   targetCount: 1
   range: 18
@@ -1969,8 +1960,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   id: 13000005
-  skillName: BloodDrain
-  animationKey: skill
+  actionName: 
   priority: 1
 --- !u!114 &6546515311254796486
 MonoBehaviour:
@@ -1985,7 +1975,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   flag: 512
-  skill: {fileID: 4824280575348527026}
   id: 14001003
   statusEffectName: BloodDrainBuff
 --- !u!114 &5473161076300969417
@@ -2001,7 +1990,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   flag: 2
-  skill: {fileID: 4824280575348527026}
   coolTime: 15
 --- !u!114 &4128766686330263056
 MonoBehaviour:
@@ -2016,7 +2004,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   flag: 16
-  skill: {fileID: 4824280575348527026}
   targetLayerType: self
   targetCount: 1
   range: 0
@@ -2186,6 +2173,37 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 520c2fd95eb2b1a4287026dfc518c566, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &8964806259326648301
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8651108670824624026}
+  m_Layer: 0
+  m_Name: Favour
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8651108670824624026
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8964806259326648301}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 3744010699582125759}
+  m_RootOrder: 5
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &9117587234178573487
 GameObject:
   m_ObjectHideFlags: 0
@@ -2235,8 +2253,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   id: 13000006
-  skillName: Roar
-  animationKey: skill
+  actionName: 
   priority: 5
 --- !u!114 &3520732832617858417
 MonoBehaviour:
@@ -2251,7 +2268,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   flag: 1
-  skill: {fileID: 8749851631722230459}
   combatValue: 1.2
 --- !u!114 &5453660131098555466
 MonoBehaviour:
@@ -2266,7 +2282,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   flag: 2
-  skill: {fileID: 8749851631722230459}
   coolTime: 12
 --- !u!114 &1562587358509214084
 MonoBehaviour:
@@ -2281,7 +2296,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   flag: 16
-  skill: {fileID: 8749851631722230459}
   targetLayerType: enemy
   targetCount: 5
   range: 16
@@ -2298,6 +2312,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   flag: 512
-  skill: {fileID: 8749851631722230459}
   id: 14000004
   statusEffectName: RoarDeBuff

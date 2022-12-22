@@ -10,7 +10,7 @@ namespace Common.Character.Data
         public string ItemName;
         public int ID;
         
-        public double Hp;
+        public float MaxHp;
         public float Critical;
         public float Haste;
         public float Hit;
@@ -22,7 +22,7 @@ namespace Common.Character.Data
         {
             var equipmentData = MainData.GetEquipmentData(itemName);
             
-            Hp = equipmentData.HP;
+            MaxHp = equipmentData.HP;
             Critical = equipmentData.Critical;
             Haste = equipmentData.Haste;
             Hit = equipmentData.Hit;

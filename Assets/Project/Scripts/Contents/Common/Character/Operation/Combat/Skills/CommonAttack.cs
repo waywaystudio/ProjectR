@@ -6,10 +6,10 @@ namespace Common.Character.Operation.Combat.Skills
     {
         public override void InvokeEvent()
         {
-            var hasProvider = TryGetEntity(EntityType.Damage, out DamageEntity damageEntity);
-            var hasTargetList = TryGetEntity(EntityType.Target, out TargetEntity targetEntity);
+            var hasDamage = TryGetEntity(EntityType.Damage, out DamageEntity damageEntity);
+            var hasTarget = TryGetEntity(EntityType.Target, out TargetEntity targetEntity);
 
-            if (hasProvider && hasTargetList)
+            if (hasDamage && hasTarget)
                 targetEntity.CombatTakerList.ForEach(target =>
                 {
                     target.TakeDamage(damageEntity);

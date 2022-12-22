@@ -1,6 +1,5 @@
 using System;
 using MainGame;
-using MainGame.Manager.Combat;
 using Spine;
 using Spine.Unity;
 using UnityEngine;
@@ -32,8 +31,8 @@ namespace Common.Character.Graphic
             var animationKey = skillData.AnimationKey;
             
             // Assign Haste 
-            var animationHasteValue = CombatManager.GetInverseHasteValue(Cb.HasteTable.Result);
-            var inverse = CombatManager.GetHasteValue(Cb.HasteTable.Result);
+            var animationHasteValue = CharacterUtility.GetInverseHasteValue(Cb.HasteTable.Result);
+            var inverse = CharacterUtility.GetHasteValue(Cb.HasteTable.Result);
             state.TimeScale *= animationHasteValue;
             
             callbackBuffer = null;

@@ -6,12 +6,10 @@ namespace Common.Character.Operation.Combat
     public abstract class BaseEntity : MonoBehaviour
     {
         [SerializeField] protected EntityType flag;
-        [SerializeField] private BaseSkill skill;
-        protected int InstanceID;
         
-        protected BaseSkill Skill => skill ??= GetComponent<BaseSkill>();
-        protected SkillData SkillData => Skill.SkillData;
-        protected CharacterBehaviour Cb => Skill.Combat.Cb;
+        protected int InstanceID;
+        protected CharacterBehaviour Cb;
+        protected BaseSkill AssignedSkill;
 
         public abstract bool IsReady { get; }
         public abstract void SetEntity();
@@ -19,9 +17,9 @@ namespace Common.Character.Operation.Combat
         protected virtual void Awake()
         {
             InstanceID = GetInstanceID();
-            
-            skill ??= GetComponent<BaseSkill>();
-            Skill.EntityTable.TryAdd(flag, this);
+            Cb = GetComponentInParent<CharacterBehaviour>();
+            AssignedSkill = GetComponent<BaseSkill>();
+            AssignedSkill.EntityTable.TryAdd(flag, this);
         }
     }
 }

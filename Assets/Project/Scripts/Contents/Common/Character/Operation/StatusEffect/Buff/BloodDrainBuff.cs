@@ -5,19 +5,20 @@ namespace Common.Character.Operation.StatusEffect.Buff
 {
     public class BloodDrainBuff : BaseStatusEffect
     {
-        private CharacterBehaviour Cb => ProviderInfo.Object.GetComponent<CharacterBehaviour>();
+        private CharacterBehaviour cb;
+        
+        private CharacterBehaviour Cb => cb ??= ProviderInfo.Object.GetComponent<CharacterBehaviour>();
         private WaitForSeconds waitForSeconds;
         
         public override IEnumerator MainAction()
         {
             waitForSeconds = new WaitForSeconds(Duration);
-            
-            var cb = ProviderInfo.Object.GetComponent<CharacterBehaviour>();
-            cb.OnCombatReporting.Register(BaseData.ID, BloodDrain);
+
+            Cb.OnCombatReporting.Register(BaseData.ID, BloodDrain);
 
             yield return waitForSeconds;
             
-            cb.OnCombatReporting.Unregister(BaseData.ID);
+            Cb.OnCombatReporting.Unregister(BaseData.ID);
             Callback?.Invoke();
         }
         
@@ -25,7 +26,7 @@ namespace Common.Character.Operation.StatusEffect.Buff
         {
             var drainValue = log.Value * BaseData.CombatValue;
             
-            Cb.Hp += drainValue;
+            Cb.DefenseValue.Hp += drainValue;
         }
     }
 }

@@ -12,13 +12,11 @@ namespace MainGame
     public class MainManager : MonoSingleton<MainManager>
     {
         [SerializeField] private AudioManager audioManager;
-        [SerializeField] private CombatManager combatManager;
         [SerializeField] private InputManager inputManager;
         [SerializeField] private SaveManager saveManager;
         [SerializeField] private SceneManager sceneManager;
 
         public static AudioManager Audio => Instance.audioManager;
-        public static CombatManager Combat => Instance.combatManager;
         public static InputManager InputManager => Instance.inputManager;
         public static SaveManager Save => Instance.saveManager;
         public static SceneManager SceneManager => Instance.sceneManager;

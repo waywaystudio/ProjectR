@@ -29,7 +29,7 @@ namespace Common.Projectile
 
             if (TryAddHash(out var newTarget))
             {
-                TrajectoryTweener.onComplete += () => Initialize(newTarget, completeAction, collidedAction);
+                // TrajectoryTweener.onComplete += () => Initialize(newTarget, completeAction, collidedAction);
             }
             
         }

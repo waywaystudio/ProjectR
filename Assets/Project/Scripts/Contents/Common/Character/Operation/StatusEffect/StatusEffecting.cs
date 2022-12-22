@@ -14,13 +14,13 @@ namespace Common.Character.Operation.StatusEffect
     public class StatusEffecting : MonoBehaviour
     {
         private CharacterBehaviour cb;
-        
-        [ShowInInspector]
-        private Dictionary<string, BaseStatusEffect> statusEffectTable = new ();
+
+        [ShowInInspector] public Dictionary<string, BaseStatusEffect> BuffTable { get; set; } = new();
+        [ShowInInspector] public Dictionary<string, BaseStatusEffect> DeBuffTable { get; set; } = new();
 
         public void TryAdd(ICombatProvider provider)
         {
-            if (statusEffectTable.ContainsKey(provider.ActionName))
+            if (BuffTable.ContainsKey(provider.ActionName))
             {
                 // Implement Compare
                 return;
@@ -40,13 +40,16 @@ namespace Common.Character.Operation.StatusEffect
 
             statusEffect.InvokeRoutine = StartCoroutine(statusEffect.MainAction());
 
-            statusEffectTable.TryAdd(provider.ActionName, statusEffect);
+            if (statusEffect.IsBuff) BuffTable.TryAdd(provider.ActionName, statusEffect);
+            else 
+                DeBuffTable.TryAdd(provider.ActionName, statusEffect);
+           
         }
 
         public bool TryRemove(ICombatProvider provider) => TryRemove(provider.ActionName);
         public bool TryRemove(string key)
         {
-            if (!statusEffectTable.TryGetValue(key, out var statusEffect)) return false;
+            if (!BuffTable.TryGetValue(key, out var statusEffect)) return false;
 
             // TODO. 수정했다...근데 맞나? 테스트해봐야 한다.
             if (statusEffect.InvokeRoutine != null)
@@ -54,7 +57,7 @@ namespace Common.Character.Operation.StatusEffect
                 StopCoroutine(statusEffect.InvokeRoutine);
             }
 
-            statusEffectTable.TryRemove(key);
+            BuffTable.TryRemove(key);
 
             return true;
         }
@@ -66,12 +69,13 @@ namespace Common.Character.Operation.StatusEffect
             
             return new T
             {
-                ActionName = provider.ActionName,
-                ID = statusEffectData.ID,
-                Duration = statusEffectData.Duration,
-                TakerInfo = cb,
-                ProviderInfo = provider,
                 BaseData = statusEffectData,
+                ID = statusEffectData.ID,
+                IsBuff = statusEffectData.IsBuff,
+                Duration = statusEffectData.Duration,
+                ProviderInfo = provider,
+                ActionName = provider.ActionName,
+                TakerInfo = cb,
                 Callback = () => TryRemove(provider),
             };
         }
@@ -79,8 +83,7 @@ namespace Common.Character.Operation.StatusEffect
         private void Awake()
         {
             cb = GetComponentInParent<CharacterBehaviour>();
-            cb.OnTakeDeBuff.Register(GetInstanceID(), TryAdd);
-            cb.OnTakeBuff.Register(GetInstanceID(), TryAdd);
+            cb.OnTakeStatusEffect.Register(GetInstanceID(), TryAdd);
         }
     }
 }

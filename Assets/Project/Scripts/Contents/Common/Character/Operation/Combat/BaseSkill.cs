@@ -1,42 +1,34 @@
 using System.Collections.Generic;
 using System.Linq;
 using Core;
-using MainGame;
-using MainGame.Data;
 using UnityEngine;
-using Skill = MainGame.Data.ContentData.SkillData.Skill;
+// ReSharper disable MemberCanBeProtected.Global
 
-/* EntityList
- * Buff
- * Casting
- * CoolTime
- * Damage
- * Heal
- * Position
- * Projectile
- * Target
- */
 namespace Common.Character.Operation.Combat
 {
-    public class BaseSkill : MonoBehaviour
+    public abstract class BaseSkill : MonoBehaviour, ICombatProvider
     {
         [SerializeField] protected int id;
-        [SerializeField] protected string skillName;
-        [SerializeField] protected string animationKey;
+        [SerializeField] protected string actionName;
         [SerializeField] protected int priority;
         
         protected int InstanceID;
-        
-        private Combating combat;
-        private CharacterBehaviour cb;
-        private Skill skillData;
+        protected CharacterBehaviour Cb;
+        protected Combating Combat;
+
+        private int isFinishHash;
 
         public int ID => id;
-        public string SkillName => skillName ??= GetType().Name;
-        public int Priority { get => priority; set => priority = value; }
-        public Combating Combat => combat ??= GetComponentInParent<Combat.Combating>();
-        public CharacterBehaviour Cb => cb ??= Combat.Cb;
-        public Skill SkillData => skillData ??= MainData.GetSkillData(SkillName);
+        public string ActionName => actionName;
+        public string Name => Predecessor.Name;
+        public GameObject Object => Predecessor.Object;
+        public ICombatProvider Predecessor => Cb;
+        public virtual CombatValueEntity CombatValue { get; }
+        
+        public void CombatReport(CombatLog log) => Predecessor.CombatReport(log);
+
+        public int Priority => priority;
+
         public Dictionary<EntityType, BaseEntity> EntityTable { get; } = new();
         
         public bool IsSkillFinished { get; set; }
@@ -48,19 +40,9 @@ namespace Common.Character.Operation.Combat
         public ActionTable OnInterrupted { get; } = new();
         public ActionTable OnCompleted { get; } = new();
 
-        public virtual void StartSkill()
-        {
-            OnStarted?.Invoke();
-            IsSkillFinished = false;
-        }
-        
+        public virtual void StartSkill() => OnStarted?.Invoke();
         public void InterruptedSkill() => OnInterrupted?.Invoke();
-
-        public virtual void CompleteSkill()
-        {
-            OnCompleted?.Invoke();
-            IsSkillFinished = true;
-        }
+        public virtual void CompleteSkill() => OnCompleted?.Invoke();
         
         /// <summary>
         /// Register Animation Event.
@@ -71,7 +53,7 @@ namespace Common.Character.Operation.Combat
         {
             Cb.OnSkill.Register(InstanceID, StartSkill);
             Cb.OnSkillHit.Register(InstanceID, InvokeEvent);
-            Cb.Skill(SkillName, CompleteSkill);
+            Cb.Skill(ActionName, CompleteSkill);
         }
 
         public void DeActiveSkill()
@@ -95,42 +77,51 @@ namespace Common.Character.Operation.Combat
 
         protected void Awake()
         {
-            skillName ??= GetType().Name;
-            skillData = MainData.GetSkillData(skillName);
-            animationKey = SkillData.AnimationKey;
-            priority = SkillData.Priority;
             InstanceID = GetInstanceID();
+            Cb = GetComponentInParent<CharacterBehaviour>();
+            Combat = GetComponentInParent<Combating>();
+            isFinishHash = IsSkillFinished.GetHashCode();
+            
+            actionName ??= GetType().Name;
         }
 
         protected void OnEnable()
         {
             Combat.SkillTable.TryAdd(id, this);
+            
+            OnStarted.Register(isFinishHash, () => IsSkillFinished = false);
+            OnCompleted.Register(isFinishHash, () => IsSkillFinished = true);
         }
 
         protected void OnDisable()
         {
             Combat.SkillTable.TryRemove(id);
             DeActiveSkill();
+            
+            OnStarted.Unregister(isFinishHash);
+            OnCompleted.Unregister(isFinishHash);
         }
 
+        protected virtual void Reset() => actionName = GetType().Name;
 
 #if UNITY_EDITOR
         #region EditorOnly
         protected void GetDataFromDB()
         {
-            skillName = GetType().Name;
-            skillData = MainData.GetSkillData(skillName);
+            var skillData = MainGame.MainData.GetSkillData(actionName);
+            
+            actionName.IsNullOrEmpty().OnTrue(() => actionName = GetType().Name);
             id = skillData.ID;
-            animationKey = skillData.AnimationKey;
-            Priority = skillData.Priority;
-            UnityEditor.EditorUtility.SetDirty(this);
-
+            priority = skillData.Priority;
             GetComponents<BaseEntity>().ForEach(x => x.SetEntity());
+            
+            UnityEditor.EditorUtility.SetDirty(this);
         }
         
         protected void ShowDB()
         {
-            UnityEditor.EditorUtility.OpenPropertyEditor(MainData.DataObjectList.Find(x => x.Category == DataCategory.Skill));
+            UnityEditor.EditorUtility.OpenPropertyEditor
+                (MainGame.MainData.DataObjectList.Find(x => x.Category == MainGame.Data.DataCategory.Skill));
         }
         #endregion
 #endif

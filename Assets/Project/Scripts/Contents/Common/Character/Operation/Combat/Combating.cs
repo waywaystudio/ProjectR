@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using Core;
-using MainGame.Manager.Combat;
+// using MainGame.Manager.Combat;
 using UnityEngine;
 
 namespace Common.Character.Operation.Combat
@@ -20,7 +20,7 @@ namespace Common.Character.Operation.Combat
         public BaseSkill CurrentSkill { get; set; }
         public bool IsGlobalCooling { get; set; }
         public bool IsCurrentSkillFinished => CurrentSkill == null || CurrentSkill.IsSkillFinished;
-        public float GlobalCoolTime => 2.0f * CombatManager.GetHasteValue(Cb.Haste);
+        public float GlobalCoolTime => 2.0f * CharacterUtility.GetHasteValue(Cb.CombatValue.Haste);
         
         // SharedBool :: CombatBehaviorDesigner
         public bool IsCoolOnAnySkill => SkillTable.Any(x => x.Value.IsCoolTimeReady);

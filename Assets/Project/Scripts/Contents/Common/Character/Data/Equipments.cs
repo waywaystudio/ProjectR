@@ -28,14 +28,14 @@ namespace Common.Character.Data
         [SerializeField] private EquipmentItem ring;
         [SerializeField] private EquipmentItem trinket;
 
-        private const string EquipmentKey = "Equipment";
+        private const string EquipmentCode = "Equipment";
         private int instanceID;
         private CharacterBehaviour cb;
 
         public List<EquipmentItem> EquipmentItemList => equipmentItemList;
         public CharacterBehaviour Cb => cb ??= GetComponentInParent<CharacterBehaviour>();
 
-        public double Hp => EquipmentItemList.Sum(x => x.Hp);
+        public float MaxHp => EquipmentItemList.Sum(x => x.MaxHp);
         public float Critical => EquipmentItemList.Sum(x => x.Critical);
         public float Haste => EquipmentItemList.Sum(x => x.Haste);
         public float Hit => EquipmentItemList.Sum(x => x.Hit);
@@ -49,25 +49,25 @@ namespace Common.Character.Data
 
         private void OnEquipmentChanged()
         {
-            // Hp = EquipmentItemList.Sum(x => x.Hp);
-            // Critical = EquipmentItemList.Sum(x => x.Critical);
-            // Haste = EquipmentItemList.Sum(x => x.Haste);
-            // Hit = EquipmentItemList.Sum(x => x.Hit);
-            // Evade = EquipmentItemList.Sum(x => x.Evade);
-            
             AddValueTable();
         }
         
         private void AddValueTable()
         {
             // TEMP
-            Cb.CombatPowerTable.Register(EquipmentKey, 1, true);
+            Cb.CombatPowerTable.Register(EquipmentCode, 1, true);
             
-            Cb.MaxHpTable.Register(EquipmentKey, () => Hp, true);
-            Cb.CriticalTable.Register(EquipmentKey, () => Critical, true);
-            Cb.HasteTable.Register(EquipmentKey, () => Haste, true);
-            Cb.HitTable.Register(EquipmentKey, () => Hit, true);
-            Cb.EvadeTable.Register(EquipmentKey, () => Evade, true);
+            Cb.MaxHpTable.Register(EquipmentCode, () => MaxHp, true);
+            Cb.CriticalTable.Register(EquipmentCode, () => Critical, true);
+            Cb.HasteTable.Register(EquipmentCode, () => Haste, true);
+            Cb.HitTable.Register(EquipmentCode, () => Hit, true);
+            Cb.EvadeTable.Register(EquipmentCode, () => Evade, true);
+            
+            Cb.StatTable.Register(StatCode.AddMaxHp, instanceID, () => MaxHp, true);
+            Cb.StatTable.Register(StatCode.AddCritical, instanceID, () => Critical, true);
+            Cb.StatTable.Register(StatCode.AddHaste, instanceID, () => Haste, true);
+            Cb.StatTable.Register(StatCode.AddHit, instanceID, () => Hit, true);
+            Cb.StatTable.Register(StatCode.AddEvade, instanceID, () => Evade, true);
         }
 
         private void Awake()

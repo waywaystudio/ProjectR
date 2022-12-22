@@ -15,6 +15,7 @@ namespace Common.Character.Operation.StatusEffect
 
         public int ID { get; set; }
         public string ActionName { get; set; }
+        public bool IsBuff { get; set; }
         public float Duration { get; set; }
         public StatusEffectData BaseData { get; set; }
 

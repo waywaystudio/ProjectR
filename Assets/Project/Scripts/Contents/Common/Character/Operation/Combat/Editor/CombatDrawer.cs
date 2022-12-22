@@ -34,7 +34,7 @@ namespace Common.Character.Operation.Combat.Editor
         {
             if (member.Name == "CastingTime")
             {
-                attributes.Add(new ShowInInspectorAttribute());
+                // attributes.Add(new ShowInInspectorAttribute());
             }
             if (member.Name == "RemainTimer")
             {

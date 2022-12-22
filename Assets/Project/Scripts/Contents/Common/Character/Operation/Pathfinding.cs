@@ -44,7 +44,7 @@ namespace Common.Character.Operation
         public void Move(Vector3 destination, Action callback)
         {
             pathBuffer = ABPath.Construct(cb.transform.position, destination);
-            aiMove.maxSpeed = cb.MoveSpeed;
+            aiMove.maxSpeed = cb.DefenseValue.MoveSpeed;
 
             if (aiMove.Callback != null || callback != null)
             {
