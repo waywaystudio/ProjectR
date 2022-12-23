@@ -17,11 +17,15 @@ namespace MainGame.Data.ContentData
 			[SerializeField] private Int32 id;
 			[SerializeField] private String name;
 			[SerializeField] private Single speed;
+			[SerializeField] private Single baseValue;
+			[SerializeField] private String statusEffect;
 			[SerializeField] private String particleKey;
 
 			public Int32 ID => id;
 			public String Name => name;
 			public Single Speed => speed;
+			public Single BaseValue => baseValue;
+			public String StatusEffect => statusEffect;
 			public String ParticleKey => particleKey;
 
         }

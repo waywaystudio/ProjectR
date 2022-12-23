@@ -25,8 +25,8 @@ MonoBehaviour:
     targetLayer: enemy
     skillType: damage
     castingTime: 0
-    statusEffect: 0
-    projectile: 0
+    statusEffect: 
+    projectile: 
   - id: 13000002
     name: Charge
     baseValue: 4
@@ -38,8 +38,8 @@ MonoBehaviour:
     targetLayer: enemy
     skillType: damage
     castingTime: 0
-    statusEffect: 0
-    projectile: 0
+    statusEffect: 
+    projectile: 
   - id: 13000003
     name: BackStep
     baseValue: 4
@@ -51,21 +51,21 @@ MonoBehaviour:
     targetLayer: enemy
     skillType: damage
     castingTime: 0
-    statusEffect: 0
-    projectile: 0
+    statusEffect: 
+    projectile: 
   - id: 13000004
     name: AimShot
-    baseValue: 25
+    baseValue: 0
     baseCoolTime: 8
     range: 25
     priority: 5
     animationKey: skill
     targetCount: 1
     targetLayer: enemy
-    skillType: damage
+    skillType: projectile
     castingTime: 3
-    statusEffect: 0
-    projectile: 15000001
+    statusEffect: 
+    projectile: AimShotProjectile
   - id: 13000005
     name: BloodDrain
     baseValue: 0
@@ -77,8 +77,8 @@ MonoBehaviour:
     targetLayer: self
     skillType: transcendence
     castingTime: 0
-    statusEffect: 14001003
-    projectile: 0
+    statusEffect: BloodDrainBuff
+    projectile: 
   - id: 13000006
     name: Roar
     baseValue: 1.2
@@ -90,8 +90,8 @@ MonoBehaviour:
     targetLayer: enemy
     skillType: damage
     castingTime: 0
-    statusEffect: 14000004
-    projectile: 0
+    statusEffect: RoarDeBuff
+    projectile: 
   - id: 13000007
     name: Penetrate
     baseValue: 21
@@ -103,8 +103,8 @@ MonoBehaviour:
     targetLayer: enemy
     skillType: damage
     castingTime: 3
-    statusEffect: 0
-    projectile: 0
+    statusEffect: 
+    projectile: 
   - id: 13000008
     name: RapidBlow
     baseValue: 2
@@ -116,8 +116,8 @@ MonoBehaviour:
     targetLayer: enemy
     skillType: damage
     castingTime: 0.8
-    statusEffect: 0
-    projectile: 0
+    statusEffect: 
+    projectile: 
   - id: 13000009
     name: Fury
     baseValue: 0
@@ -129,8 +129,8 @@ MonoBehaviour:
     targetLayer: self
     skillType: transcendence
     castingTime: 0
-    statusEffect: 14001005
-    projectile: 0
+    statusEffect: FuryBuff
+    projectile: 
   - id: 13000010
     name: LightningSlash
     baseValue: 8
@@ -142,21 +142,21 @@ MonoBehaviour:
     targetLayer: enemy
     skillType: damage
     castingTime: 0
-    statusEffect: 0
-    projectile: 0
+    statusEffect: 
+    projectile: 
   - id: 13000011
     name: Fireball
-    baseValue: 2
+    baseValue: 0
     baseCoolTime: 0
     range: 20
     priority: 2
     animationKey: skill
     targetCount: 1
     targetLayer: enemy
-    skillType: damage
+    skillType: projectile
     castingTime: 1.5
-    statusEffect: 14000006
-    projectile: 15000002
+    statusEffect: FireballDeBuff
+    projectile: FireballProjectile
   - id: 13000012
     name: Corruption
     baseValue: 3
@@ -168,8 +168,8 @@ MonoBehaviour:
     targetLayer: enemy
     skillType: damage
     castingTime: 0
-    statusEffect: 14000001
-    projectile: 0
+    statusEffect: CorruptionDeBuff
+    projectile: 
   - id: 13000013
     name: FaithfulPrey
     baseValue: 3
@@ -181,8 +181,8 @@ MonoBehaviour:
     targetLayer: ally
     skillType: heal
     castingTime: 1.5
-    statusEffect: 0
-    projectile: 0
+    statusEffect: 
+    projectile: 
   - id: 13000014
     name: HolyProtection
     baseValue: 5
@@ -194,8 +194,8 @@ MonoBehaviour:
     targetLayer: ally
     skillType: heal
     castingTime: 0
-    statusEffect: 0
-    projectile: 0
+    statusEffect: 
+    projectile: 
   - id: 13000015
     name: Revivification
     baseValue: 5
@@ -207,8 +207,8 @@ MonoBehaviour:
     targetLayer: ally
     skillType: heal
     castingTime: 0
-    statusEffect: 0
-    projectile: 0
+    statusEffect: 
+    projectile: 
   - id: 13000016
     name: EncouragedSong
     baseValue: 10
@@ -220,31 +220,31 @@ MonoBehaviour:
     targetLayer: ally
     skillType: heal
     castingTime: 6
-    statusEffect: 0
-    projectile: 0
+    statusEffect: 
+    projectile: 
   - id: 13000017
     name: ChainHealing
-    baseValue: 12
+    baseValue: 0
     baseCoolTime: 5
     range: 25
     priority: 5
     animationKey: skill
     targetCount: 1
     targetLayer: ally
-    skillType: heal
+    skillType: projectile
     castingTime: 2
-    statusEffect: 0
-    projectile: 15000003
+    statusEffect: 
+    projectile: ChainHealingProjectile
   - id: 13000018
     name: HealOrb
-    baseValue: 20
+    baseValue: 0
     baseCoolTime: 15
     range: 25
     priority: 5
     animationKey: skill
     targetCount: 1
     targetLayer: ally
-    skillType: heal
+    skillType: projectile
     castingTime: 0
-    statusEffect: 0
-    projectile: 15000004
+    statusEffect: 
+    projectile: HealOrbProjectile

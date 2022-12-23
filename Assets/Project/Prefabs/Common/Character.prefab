@@ -79,10 +79,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   id: 13000003
-  actionName: 
+  actionName: BackStep
   priority: 5
   backMagnitude: 4.2
-  combatValue: 0
 --- !u!114 &5386481532309463687
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -96,7 +95,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   flag: 1
-  combatValue: 8
+  damageValue: 4
 --- !u!114 &3765643770630641843
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -175,9 +174,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   id: 13000013
-  actionName: 
+  actionName: FaithfulPrey
   priority: 1
-  combatValue: 0
 --- !u!114 &8565042087880124505
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -191,7 +189,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   flag: 64
-  combatValue: 3
+  healValue: 3
 --- !u!114 &8851566931181336460
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -270,7 +268,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   id: 13000012
-  actionName: 
+  actionName: Corruption
   priority: 2
 --- !u!114 &6291252832563897115
 MonoBehaviour:
@@ -285,7 +283,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   flag: 512
-  id: 14000001
   statusEffectName: CorruptionDeBuff
 --- !u!114 &7875250353425473752
 MonoBehaviour:
@@ -367,9 +364,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   id: 13000017
-  actionName: 
+  actionName: ChainHealing
   priority: 5
-  combatValue: 0
 --- !u!114 &4535373001510308994
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -383,7 +379,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   flag: 64
-  combatValue: 12
+  healValue: 0
 --- !u!114 &9046075864732758135
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -397,7 +393,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   flag: 2
-  coolTime: 0
+  coolTime: 5
 --- !u!114 &4152075476344098872
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -441,8 +437,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   flag: 32
-  projectileID: 15000003
-  projectile: {fileID: 5223207423503661573, guid: 778d5e81bde95a045ac93cc2673ae572, type: 3}
+  projectileName: ChainHealingProjectile
+  projectilePrefab: {fileID: 0}
 --- !u!1 &2149634195031184608
 GameObject:
   m_ObjectHideFlags: 0
@@ -492,7 +488,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   id: 13000008
-  actionName: 
+  actionName: RapidBlow
   priority: 5
 --- !u!114 &4110535229481813574
 MonoBehaviour:
@@ -507,7 +503,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   flag: 1
-  combatValue: 2
+  damageValue: 2
 --- !u!114 &6818239259262965119
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -535,7 +531,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   flag: 8
-  originalCastingTime: 0
+  originalCastingTime: 0.8
 --- !u!114 &8976578391784397922
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -723,8 +719,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9ce0917d535b91a4b86058ce06b520a2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isAlive: 1
-  hp: 50
   characterName: Sylvanas
   id: 11000027
   combatClass: Sniper
@@ -735,6 +729,8 @@ MonoBehaviour:
   enemyLayer:
     serializedVersion: 2
     m_Bits: 256
+  isAlive: 1
+  hp: 50
 --- !u!54 &3744010700067239343
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -1072,9 +1068,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   id: 13000004
-  actionName: 
+  actionName: AimShot
   priority: 5
-  combatValue: 0
 --- !u!114 &3744010700775776669
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1088,7 +1083,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   flag: 1
-  combatValue: 25
+  damageValue: 0
 --- !u!114 &3744010700775776666
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1146,8 +1141,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   flag: 32
-  projectileID: 0
-  projectile: {fileID: 5223207423503661573, guid: 9be681468222de24bad1b3d289d71f86, type: 3}
+  projectileName: AimShotProjectile
+  projectilePrefab: {fileID: 0}
 --- !u!1 &3744010700929808893
 GameObject:
   m_ObjectHideFlags: 0
@@ -1256,7 +1251,7 @@ MonoBehaviour:
   weapon:
     ItemName: Blood  Boil Lancet
     ID: 0
-    Hp: 0
+    MaxHp: 0
     Critical: 0.15
     Haste: 0.05
     Hit: 0.02
@@ -1264,7 +1259,7 @@ MonoBehaviour:
   subWeapon:
     ItemName: Shard of Azzinoth
     ID: 0
-    Hp: 0
+    MaxHp: 0
     Critical: 0.15
     Haste: 0.05
     Hit: 0.02
@@ -1272,7 +1267,7 @@ MonoBehaviour:
   head:
     ItemName: The Skull of Gul'dan
     ID: 0
-    Hp: 50
+    MaxHp: 0
     Critical: 0
     Haste: 0
     Hit: 0.01
@@ -1280,7 +1275,7 @@ MonoBehaviour:
   shoulder:
     ItemName: Heartshiver
     ID: 0
-    Hp: 100
+    MaxHp: 0
     Critical: 0
     Haste: 0.1
     Hit: 0
@@ -1288,7 +1283,7 @@ MonoBehaviour:
   chest:
     ItemName: Brace Guards of the  Starless Night
     ID: 0
-    Hp: 300
+    MaxHp: 0
     Critical: 0
     Haste: 0
     Hit: 0
@@ -1296,7 +1291,7 @@ MonoBehaviour:
   leg:
     ItemName: Legplates of Frozen Granite
     ID: 0
-    Hp: 100
+    MaxHp: 0
     Critical: 0
     Haste: 0
     Hit: 0
@@ -1304,7 +1299,7 @@ MonoBehaviour:
   ring:
     ItemName: Sollerets of Suffering
     ID: 0
-    Hp: 0
+    MaxHp: 0
     Critical: 0.04
     Haste: 0
     Hit: 0
@@ -1312,7 +1307,7 @@ MonoBehaviour:
   trinket:
     ItemName: 
     ID: 0
-    Hp: 0
+    MaxHp: 0
     Critical: 0
     Haste: 0
     Hit: 0
@@ -1487,7 +1482,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   id: 13000001
-  actionName: 
+  actionName: CommonAttack
   priority: 1
 --- !u!114 &3744010701327891162
 MonoBehaviour:
@@ -1502,7 +1497,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   flag: 1
-  combatValue: 5
+  damageValue: 5
 --- !u!114 &3744010701327891161
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1569,9 +1564,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   id: 13000011
-  actionName: 
+  actionName: Fireball
   priority: 2
-  combatValue: 0
 --- !u!114 &1341503458971635025
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1585,7 +1579,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   flag: 1
-  combatValue: 2
+  damageValue: 0
 --- !u!114 &7025747630867849109
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1629,8 +1623,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   flag: 32
-  projectileID: 15000002
-  projectile: {fileID: 5223207423503661573, guid: 9af98811cdcc08d45970ab3fea66e6fd, type: 3}
+  projectileName: FireballProjectile
+  projectilePrefab: {fileID: 0}
 --- !u!114 &2747193873913511430
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1644,7 +1638,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   flag: 512
-  id: 14000006
   statusEffectName: FireballDeBuff
 --- !u!1 &4579024629312635931
 GameObject:
@@ -1696,7 +1689,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   id: 13000018
-  actionName: 
+  actionName: HealOrb
   priority: 5
 --- !u!114 &7543160313366787145
 MonoBehaviour:
@@ -1711,7 +1704,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   flag: 1
-  combatValue: 20
+  damageValue: 0
 --- !u!114 &2303779788911340654
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1725,7 +1718,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   flag: 64
-  combatValue: 20
+  healValue: 0
 --- !u!114 &2672525273206534427
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1739,7 +1732,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   flag: 16
-  targetLayerType: enemy
+  targetLayerType: ally
   targetCount: 1
   range: 25
 --- !u!114 &8569279325747102475
@@ -1755,7 +1748,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   flag: 2
-  coolTime: 3
+  coolTime: 15
 --- !u!114 &6639948775891502924
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1769,8 +1762,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   flag: 32
-  projectileID: 15000004
-  projectile: {fileID: 5223207423503661573, guid: b37f63199f85ecd4cb34c001855c1c60, type: 3}
+  projectileName: HealOrbProjectile
+  projectilePrefab: {fileID: 0}
 --- !u!1 &5474161830410180337
 GameObject:
   m_ObjectHideFlags: 0
@@ -1819,11 +1812,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   id: 13000002
-  actionName: 
+  actionName: Charge
   priority: 5
   dashSpeed: 30
   offsetDistance: 3.5
-  combatValue: 0
 --- !u!114 &7681704895388235946
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1837,7 +1829,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   flag: 1
-  combatValue: 4
+  damageValue: 4
 --- !u!114 &8392186021241681492
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1960,7 +1952,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   id: 13000005
-  actionName: 
+  actionName: BloodDrain
   priority: 1
 --- !u!114 &6546515311254796486
 MonoBehaviour:
@@ -1975,7 +1967,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   flag: 512
-  id: 14001003
   statusEffectName: BloodDrainBuff
 --- !u!114 &5473161076300969417
 MonoBehaviour:
@@ -2253,7 +2244,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   id: 13000006
-  actionName: 
+  actionName: Roar
   priority: 5
 --- !u!114 &3520732832617858417
 MonoBehaviour:
@@ -2268,7 +2259,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   flag: 1
-  combatValue: 1.2
+  damageValue: 1.2
 --- !u!114 &5453660131098555466
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2312,5 +2303,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   flag: 512
-  id: 14000004
   statusEffectName: RoarDeBuff

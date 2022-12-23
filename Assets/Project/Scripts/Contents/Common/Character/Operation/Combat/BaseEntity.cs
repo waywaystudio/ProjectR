@@ -1,6 +1,5 @@
 using Core;
 using UnityEngine;
-using AssignedSkillData = MainGame.Data.ContentData.SkillData.Skill;
 
 namespace Common.Character.Operation.Combat
 {
@@ -8,25 +7,15 @@ namespace Common.Character.Operation.Combat
     {
         [SerializeField] protected EntityType flag;
 
-        public string ActionName { get; protected set; }
+        public string ActionName { get; set; }
         public ActionTable OnStarted { get; } = new();
         public ActionTable OnInterrupted { get; } = new();
         public ActionTable OnCompleted { get; } = new();
 
-        public int InstanceID { get; private set; }
-        public EntityType Flag => flag;
+        public EntityType Flag { get => flag; set => flag = value; }
         public ICombatProvider Sender { get; protected set; }
         public abstract bool IsReady { get; }
-        public abstract void SetEntity();
-
-        protected AssignedSkillData Data
-        {
-            get
-            {
-                var assignedSkillName = GetComponent<IActionSender>().ActionName;
-                return MainGame.MainData.GetSkillData(assignedSkillName);
-            }
-        }
+        protected int InstanceID { get; private set; }
 
         public void Initialize(IActionSender actionSender)
         {
@@ -37,7 +26,6 @@ namespace Common.Character.Operation.Combat
         protected virtual void Awake()
         {
             InstanceID = GetInstanceID();
-            SetEntity();
         }
     }
 }

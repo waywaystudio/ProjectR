@@ -8,6 +8,7 @@ namespace Common.Character.Operation.Combat.Entity
     public class CoolTimeEntity : BaseEntity
     {
         [SerializeField] private float coolTime;
+        
         private float remainTimer;
         private Coroutine resetCoroutine;
 
@@ -21,19 +22,10 @@ namespace Common.Character.Operation.Combat.Entity
             set => remainTimer = Mathf.Max(0, value);
         }
 
-        public override void SetEntity()
-        {
-            coolTime = Data.BaseCoolTime;
-            RemainTimer = 0f;
-            CoolTimeTick = Time.deltaTime;
-        }
-        
 
         private void ResetTimer() => resetCoroutine = StartCoroutine(ResetTimerRoutine());
         private IEnumerator ResetTimerRoutine()
         {
-            // if (IsReady) yield break;
-            
             RemainTimer = CoolTime;
 
             while (RemainTimer > 0)
@@ -41,6 +33,12 @@ namespace Common.Character.Operation.Combat.Entity
                 RemainTimer -= CoolTimeTick;
                 yield return null;
             }
+        }
+
+        protected override void Awake()
+        {
+            base.Awake();
+            CoolTimeTick = Time.deltaTime;
         }
 
         private void OnEnable()
@@ -51,13 +49,6 @@ namespace Common.Character.Operation.Combat.Entity
         private void OnDisable()
         { 
             OnCompleted.Unregister(InstanceID);
-        }
-
-        private void Reset()
-        {
-            flag = EntityType.CoolTime;
-
-            SetEntity();
         }
     }
 }

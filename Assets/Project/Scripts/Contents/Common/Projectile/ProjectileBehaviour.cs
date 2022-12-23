@@ -1,6 +1,8 @@
 using System;
 using System.Collections.Generic;
+using Common.Character;
 using Common.Character.Operation.Combat;
+using Common.Character.Operation.Combat.Entity;
 using Core;
 // using DG.Tweening;
 using MainGame;
@@ -9,23 +11,53 @@ using UnityEngine;
 
 namespace Common.Projectile
 {
-    public class ProjectileBehaviour : MonoBehaviour
+    public class ProjectileBehaviour : MonoBehaviour, ICombatProvider
     {
         [SerializeField] protected int id;
         [SerializeField] protected string projectileName;
-        [SerializeField] protected LayerMask targetLayer;
         [SerializeField] protected float speed = 20f;
-        [SerializeField] private GameObject particle;
+        [SerializeField] protected GameObject particle;
         
         public int ID { get => id; set => id = value; }
         public string Name { get => projectileName; set => projectileName = value; }
-        protected ICombatProvider Sender { get; set; }
+        public GameObject Object => Sender.Object;
+        public StatTable StatTable => Sender.StatTable;
+        public string ActionName => Sender.ActionName;
+        public ICombatProvider Sender { get; set; }
+        public void CombatReport(CombatLog log) => Sender.CombatReport(log);
+
         protected ICombatTaker Taker { get; set; }
         protected Dictionary<EntityType, BaseEntity> EntityTable { get; } = new();
+        
+        
+        public virtual void Initialize(ICombatProvider sender, ICombatTaker taker)
+        {
+            Sender = sender;
+            Taker = taker;
+            Destination = taker.Object.transform.position;
+            EntityTable.ForEach(x => x.Value.Initialize(Sender));
 
+            // Trajectory do first then onComplete +
+            // Trajectory();
+            // TrajectoryTweener.onComplete = null;
+            // TrajectoryTweener.onComplete += completeAction.Invoke;
+        }
+
+        public void Arrived()
+        {
+            
+        }
+
+        public void Collided()
+        {
+            
+        }
+        
+
+        //
         // protected Tweener TrajectoryTweener;
         protected Vector3 destination;
-
+        [SerializeField] protected LayerMask targetLayer;
         public LayerMask TargetLayer => targetLayer;
         [ShowInInspector] public ActionTable OnArrived { get; set; }
         [ShowInInspector] public ActionTable OnCollided { get; set; }
@@ -42,20 +74,6 @@ namespace Common.Projectile
                 return destination;
             }
             set => destination = value;
-        }
-
-        public virtual void Initialize(ICombatProvider sender, ICombatTaker taker)
-        {
-            Sender = sender;
-            Taker = taker;
-            Destination = taker.Object.transform.position;
-            EntityTable.ForEach(x => x.Value.Initialize(Sender));
-
-            // Trajectory do first then onComplete +
-            Trajectory();
-
-            // TrajectoryTweener.onComplete = null;
-            // TrajectoryTweener.onComplete += completeAction.Invoke;
         }
 
         public virtual void Trajectory()
@@ -86,12 +104,49 @@ namespace Common.Projectile
 
 #if UNITY_EDITOR
         [Button]
-        private void GetEditorProjectileFromDB()
+        private void GetProjectileFromDB()
         {
             var data = MainData.GetProjectileData(Name);
             ID = data.ID;
             speed = data.Speed;
-            // particle = data.Particle
+            
+            if (TryGetComponent(out DamageEntity damageEntity))
+            {
+                damageEntity.DamageValue = data.BaseValue;
+                damageEntity.Flag = EntityType.Damage;
+            }
+            if (TryGetComponent(out CastingEntity castingEntity))
+            {
+                // castingEntity.OriginalCastingTime = data.CastingTime;
+                castingEntity.Flag = EntityType.Casting;
+            }
+            if (TryGetComponent(out CoolTimeEntity coolTimeEntity))
+            {
+                // coolTimeEntity.CoolTime = data.BaseCoolTime;
+                coolTimeEntity.Flag = EntityType.CoolTime;
+            }
+            if (TryGetComponent(out HealEntity healEntity))
+            {
+                healEntity.HealValue = data.BaseValue;
+                healEntity.Flag = EntityType.Heal;
+            }
+            if (TryGetComponent(out ProjectileEntity projectileEntity))
+            {
+                // projectileEntity.ProjectileName = data.Projectile;
+                projectileEntity.Flag = EntityType.Projectile;
+            }
+            if (TryGetComponent(out StatusEffectEntity statusEffectEntity))
+            {
+                statusEffectEntity.ActionName = data.StatusEffect;
+                statusEffectEntity.Flag = EntityType.StatusEffect;
+            }
+            if (TryGetComponent(out TargetEntity targetEntity))
+            {
+                // targetEntity.TargetLayerType = data.TargetLayer;
+                // targetEntity.TargetCount = data.TargetCount;
+                // targetEntity.Range = data.Range;
+                targetEntity.Flag = EntityType.Target;
+            }
         }
 #endif
     }

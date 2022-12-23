@@ -5,6 +5,7 @@ namespace Common.Character.Operation.Combat.Entity
 {
     public class HealEntity : BaseEntity, ICombatProvider
     {
+        [SerializeField] private float healValue;
         [ShowInInspector]
         private StatTable healTable = new();
 
@@ -13,15 +14,18 @@ namespace Common.Character.Operation.Combat.Entity
         public StatTable StatTable => healTable;
 
         public override bool IsReady => true;
-        
-        public void CombatReport(CombatLog log) => Sender.CombatReport(log);
+        public float HealValue { get => healValue; set => healValue = value; }
 
-        public override void SetEntity()
+        public void CombatReport(CombatLog log) => Sender.CombatReport(log);
+        
+        
+
+        protected override void Awake()
         {
-            healTable.Register(StatCode.MultiPower, InstanceID, Data.BaseValue, true);
+            base.Awake();
+            healTable.Register(StatCode.MultiPower, InstanceID, HealValue, true);
         }
-        
-        
+
         private void Start()
         {
             healTable.UnionWith(Sender.StatTable);
@@ -30,7 +34,6 @@ namespace Common.Character.Operation.Combat.Entity
         private void Reset()
         {
             flag = EntityType.Heal;
-            SetEntity();
         }
     }
 }

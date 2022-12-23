@@ -5,8 +5,10 @@ namespace Common.Character.Operation.Combat.Entity
 {
     public class ProjectileEntity : BaseEntity
     {
+        [SerializeField] private string projectileName;
         [SerializeField] private GameObject projectilePrefab;
 
+        public string ProjectileName { get => projectileName; set => projectileName = value; }
         public override bool IsReady => true;
 
         public void Fire(ICombatProvider provider, ICombatTaker taker)
@@ -22,14 +24,6 @@ namespace Common.Character.Operation.Combat.Entity
             
             newProjectile.TryGetComponent(out ProjectileBehaviour pb);
             pb.Initialize(Sender, taker);
-        }
-
-        public override void SetEntity() {}
-        private void Reset()
-        {
-            flag = EntityType.Projectile;
-
-            SetEntity();
         }
     }
 }

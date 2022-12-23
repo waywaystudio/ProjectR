@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.Linq;
+using Common.Character.Operation.Combat.Entity;
 using Core;
 using UnityEngine;
 // ReSharper disable MemberCanBeProtected.Global
@@ -104,7 +105,44 @@ namespace Common.Character.Operation.Combat
             actionName.IsNullOrEmpty().OnTrue(() => actionName = GetType().Name);
             id = skillData.ID;
             priority = skillData.Priority;
-            GetComponents<BaseEntity>().ForEach(x => x.SetEntity());
+
+            if (TryGetComponent(out DamageEntity damageEntity))
+            {
+                damageEntity.DamageValue = skillData.BaseValue;
+                damageEntity.Flag = EntityType.Damage;
+            }
+            if (TryGetComponent(out CastingEntity castingEntity))
+            {
+                castingEntity.OriginalCastingTime = skillData.CastingTime;
+                castingEntity.Flag = EntityType.Casting;
+            }
+            if (TryGetComponent(out CoolTimeEntity coolTimeEntity))
+            {
+                coolTimeEntity.CoolTime = skillData.BaseCoolTime;
+                coolTimeEntity.Flag = EntityType.CoolTime;
+            }
+            if (TryGetComponent(out HealEntity healEntity))
+            {
+                healEntity.HealValue = skillData.BaseValue;
+                healEntity.Flag = EntityType.Heal;
+            }
+            if (TryGetComponent(out ProjectileEntity projectileEntity))
+            {
+                projectileEntity.ProjectileName = skillData.Projectile;
+                projectileEntity.Flag = EntityType.Projectile;
+            }
+            if (TryGetComponent(out StatusEffectEntity statusEffectEntity))
+            {
+                statusEffectEntity.ActionName = skillData.StatusEffect;
+                statusEffectEntity.Flag = EntityType.StatusEffect;
+            }
+            if (TryGetComponent(out TargetEntity targetEntity))
+            {
+                targetEntity.TargetLayerType = skillData.TargetLayer;
+                targetEntity.TargetCount = skillData.TargetCount;
+                targetEntity.Range = skillData.Range;
+                targetEntity.Flag = EntityType.Target;
+            }
             
             UnityEditor.EditorUtility.SetDirty(this);
         }

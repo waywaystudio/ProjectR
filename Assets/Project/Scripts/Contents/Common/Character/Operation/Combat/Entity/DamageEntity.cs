@@ -5,6 +5,7 @@ namespace Common.Character.Operation.Combat.Entity
 {
     public class DamageEntity : BaseEntity, ICombatProvider
     {
+        [SerializeField] private float damageValue;
         [ShowInInspector]
         private StatTable damageTable = new();
 
@@ -14,23 +15,18 @@ namespace Common.Character.Operation.Combat.Entity
         public void CombatReport(CombatLog log) => Sender.CombatReport(log);
 
         public override bool IsReady => true;
+        public float DamageValue { get => damageValue; set => damageValue = value; }
 
-        public override void SetEntity()
+
+        protected override void Awake()
         {
-            damageTable.Register(StatCode.MultiPower, InstanceID, Data.BaseValue, true);
+            base.Awake();
+            damageTable.Register(StatCode.MultiPower, InstanceID, DamageValue, true);
         }
-        
 
         private void Start()
         {
             damageTable.UnionWith(Sender.StatTable);
-        }
-
-        private void Reset()
-        {
-            flag = EntityType.Damage;
-            
-            SetEntity();
         }
     }
 }

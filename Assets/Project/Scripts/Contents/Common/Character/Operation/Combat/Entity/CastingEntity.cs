@@ -13,6 +13,7 @@ namespace Common.Character.Operation.Combat.Entity
         private bool onCasting;
         private float remainTimer;
 
+        public float OriginalCastingTime { get => originalCastingTime; set => originalCastingTime = value; }
         private float CastingTime => originalCastingTime * CharacterUtility.GetHasteValue(Sender.StatTable.Haste);
         private float CastingTick { get => castingTick; set => castingTick = value; }
         private float RemainTimer
@@ -22,13 +23,7 @@ namespace Common.Character.Operation.Combat.Entity
         }
         
         public override bool IsReady => !onCasting;
-
-        public override void SetEntity()
-        {
-            originalCastingTime = Data.CastingTime;
-            RemainTimer = 0;
-            CastingTick = Time.deltaTime;
-        }
+        
 
         private void StartCasting() => StartCoroutine(Casting());
         private void BreakCasting()
@@ -56,6 +51,12 @@ namespace Common.Character.Operation.Combat.Entity
         
         private void ResetRemainTimer() => RemainTimer = CastingTime;
 
+        protected override void Awake()
+        {
+            base.Awake();
+            CastingTick = Time.deltaTime;
+        }
+
         private void OnEnable()
         {
             OnStarted.Register(InstanceID, StartCasting);
@@ -66,13 +67,6 @@ namespace Common.Character.Operation.Combat.Entity
         {
             OnStarted.Unregister(InstanceID);
             OnInterrupted.Unregister(InstanceID);
-        }
-
-        
-        private void Reset()
-        {
-            flag = EntityType.Casting;
-            SetEntity();
         }
     }
 }

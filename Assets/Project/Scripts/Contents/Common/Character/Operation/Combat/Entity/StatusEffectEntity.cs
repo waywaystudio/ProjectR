@@ -4,26 +4,15 @@ namespace Common.Character.Operation.Combat.Entity
 {
     public class StatusEffectEntity : BaseEntity, ICombatProvider
     {
+        [SerializeField] private string statusEffectName;
+
+        public new string ActionName { get => statusEffectName; set => statusEffectName = value; }
         public string Name => Sender.Name;
         public GameObject Object => Sender.Object;
         public StatTable StatTable => Sender.StatTable;
         public void CombatReport(CombatLog log) => Sender.CombatReport(log);
         
         public override bool IsReady => true;
-        
-        public override void SetEntity()
-        {
-            var statusEffectID = Data.StatusEffect;
-            ActionName = MainGame.MainData.GetStatusEffectData(statusEffectID).Name;
-        }
-        
-
-        private void Reset()
-        {
-            flag = EntityType.StatusEffect;
-
-            SetEntity();
-        }
     }
 }
 

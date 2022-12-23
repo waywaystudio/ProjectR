@@ -19,7 +19,9 @@ namespace Common.Character.Operation.Combat.Entity
         private readonly List<ICombatTaker> combatTakerFilterCache = new();
 
         public override bool IsReady => CombatTaker != null;
-        public float Range => range;
+        public string TargetLayerType { get => targetLayerType; set => targetLayerType = value; }
+        public int TargetCount { get => targetCount; set => targetCount = value; }
+        public float Range { get => range; set => range = value; }
 
         public List<ICombatTaker> CombatTakerList
         {
@@ -29,6 +31,7 @@ namespace Common.Character.Operation.Combat.Entity
                 
                 return combatTakerList;
             }
+            
             private set => combatTakerList = value;
         }
 
@@ -58,8 +61,8 @@ namespace Common.Character.Operation.Combat.Entity
                 combatTakerFilterCache.Where(x => Vector3.Distance(x.Object.transform.position, transform.position) <= Range)
                                       .ToList();
 
-            CombatTakerList = inRangedTargetList.Count >= targetCount
-                ? inRangedTargetList.Take(targetCount).ToList()
+            CombatTakerList = inRangedTargetList.Count >= TargetCount
+                ? inRangedTargetList.Take(TargetCount).ToList()
                 : inRangedTargetList;
         }
 
@@ -79,11 +82,6 @@ namespace Common.Character.Operation.Combat.Entity
             searchEngine.MainTarget = combatTaker;
         }
 
-        public override void SetEntity()
-        {
-            
-        }
-
 
         protected override void Awake()
         {
@@ -91,21 +89,9 @@ namespace Common.Character.Operation.Combat.Entity
             
             base.Awake();
             
-            searchedList = targetLayerType is "ally" or "self"
-                ? searchEngine.AdventureList // ally or self
-                : searchEngine.MonsterList;  // enemy
+            searchedList = TargetLayerType is "ally" or "self"
+                         ? searchEngine.AdventureList // ally or self
+                         : searchEngine.MonsterList;  // enemy
         }
-
-        private void Reset()
-        {
-            flag = EntityType.Target;
-            
-            var skillData = MainGame.MainData.GetSkillData(GetComponent<BaseSkill>().ActionName);
-
-            targetCount = skillData.TargetCount;
-            range = skillData.Range;
-            targetLayerType = skillData.TargetLayer;
-        }
-
     }
 }
