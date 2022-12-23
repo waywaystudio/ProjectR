@@ -5,41 +5,22 @@ namespace Common.Character.Operation.Combat.Skills
 {
     public class ChainHealing : BaseSkill
     {
-        [SerializeField] private float combatValue;
-        
-        public override CombatValueEntity CombatValue
-        {
-            get
-            {
-                var healValue = Cb.CombatValue;
-                healValue.Power = Cb.CombatValue.Power * combatValue;
-                healValue.Hit = 1.0f;
-
-                return healValue;
-            }
-        }
-        
         public override void CompleteSkill()
         {
+            var hasHeal = TryGetComponent(out HealEntity healEntity);
             var hasTargetList = TryGetComponent(out TargetEntity targetEntity);
             var hasProjectile = TryGetComponent(out ProjectileEntity projectileEntity);
 
-            if (hasTargetList && hasProjectile)
+            if (hasHeal && hasTargetList && hasProjectile)
             {
                 targetEntity.CombatTakerList.ForEach(target =>
                 {
-                    projectileEntity.Initialize(target);
-                    projectileEntity.OnArrived.Register(InstanceID, () => target.TakeHeal(this));
+                    projectileEntity.Fire(healEntity, target);
+                    // projectileEntity.OnArrived.Register(InstanceID, () => target.TakeHeal(healEntity));
                 });
             }
 
             base.CompleteSkill();
-        }
-        
-        protected override void Reset()
-        {
-            var skillData = MainGame.MainData.GetSkillData(GetComponent<BaseSkill>().ActionName);
-            combatValue = skillData.BaseValue;
         }
     }
 }

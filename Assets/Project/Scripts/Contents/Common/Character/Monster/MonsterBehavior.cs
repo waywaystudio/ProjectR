@@ -8,8 +8,8 @@ namespace Common.Character
         protected override void Start()
         {
             base.Start();
-            
-            MoveSpeedTable.Register("MB", 20f);
+
+            StatTable.Register(StatCode.AddMoveSpeed, 11, 20f, true);
         }
 
         protected new void Update()
@@ -30,7 +30,7 @@ namespace Common.Character
 
         private void OnDisable()
         {
-            MoveSpeedTable.Unregister("MB");
+            StatTable.Unregister(StatCode.AddMoveSpeed, 11);
         }
 
         public override GameObject Object => gameObject;

@@ -1,3 +1,6 @@
+using System;
+using System.Collections.Generic;
+using Common.Character.Operation.Combat;
 using Core;
 // using DG.Tweening;
 using MainGame;
@@ -8,22 +11,24 @@ namespace Common.Projectile
 {
     public class ProjectileBehaviour : MonoBehaviour
     {
-        [SerializeField] protected LayerMask targetLayer;
+        [SerializeField] protected int id;
         [SerializeField] protected string projectileName;
+        [SerializeField] protected LayerMask targetLayer;
         [SerializeField] protected float speed = 20f;
         [SerializeField] private GameObject particle;
+        
+        public int ID { get => id; set => id = value; }
+        public string Name { get => projectileName; set => projectileName = value; }
+        protected ICombatProvider Sender { get; set; }
+        protected ICombatTaker Taker { get; set; }
+        protected Dictionary<EntityType, BaseEntity> EntityTable { get; } = new();
 
         // protected Tweener TrajectoryTweener;
         protected Vector3 destination;
 
-        public int ID { get; set; }
-        public string Name { get => projectileName; set => projectileName = value; }
-        public ICombatTaker Taker { get; set; }
         public LayerMask TargetLayer => targetLayer;
-        [ShowInInspector]
-        public ActionTable OnArrived { get; set; }
-        [ShowInInspector]
-        public ActionTable OnCollided { get; set; }
+        [ShowInInspector] public ActionTable OnArrived { get; set; }
+        [ShowInInspector] public ActionTable OnCollided { get; set; }
 
         public virtual Vector3 Destination
         {
@@ -39,12 +44,12 @@ namespace Common.Projectile
             set => destination = value;
         }
 
-        public virtual void Initialize(ICombatTaker taker, ActionTable completeAction, ActionTable collidedAction)
+        public virtual void Initialize(ICombatProvider sender, ICombatTaker taker)
         {
+            Sender = sender;
             Taker = taker;
             Destination = taker.Object.transform.position;
-            OnArrived = completeAction;
-            OnCollided = collidedAction;
+            EntityTable.ForEach(x => x.Value.Initialize(Sender));
 
             // Trajectory do first then onComplete +
             Trajectory();
@@ -71,6 +76,12 @@ namespace Common.Projectile
             //             .SetSpeedBased();
             //     }
             // });
+        }
+
+
+        protected void Awake()
+        {
+            GetComponentsInChildren<BaseEntity>().ForEach(x => EntityTable.Add(x.Flag, x));
         }
 
 #if UNITY_EDITOR

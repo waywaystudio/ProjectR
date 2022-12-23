@@ -1,28 +1,13 @@
-
 using Common.Character.Operation.Combat.Entity;
-using UnityEngine;
 
 namespace Common.Character.Operation.Combat.Skills
 {
     public class Fireball : BaseSkill
     {
-        [SerializeField] private float combatValue;
-        
-        public override CombatValueEntity CombatValue
-        {
-            get
-            {
-                var damageValue = Cb.CombatValue;
-                damageValue.Power = Cb.CombatValue.Power * combatValue;
-
-                return damageValue;
-            }
-        }
-        
         public override void CompleteSkill()
         {
-            var hasDamageProvider = TryGetComponent(out DamageEntity damageEntity);
-            var hasStatusEffectProvider = TryGetComponent(out StatusEffectEntity statusEffectEntity);
+            // var hasDamage = TryGetComponent(out DamageEntity damageEntity);
+            // var hasStatusEffectProvider = TryGetComponent(out StatusEffectEntity statusEffectEntity);
             var hasTargetList = TryGetComponent(out TargetEntity targetEntity);
             var hasProjectile = TryGetComponent(out ProjectileEntity projectileEntity);
 
@@ -30,19 +15,19 @@ namespace Common.Character.Operation.Combat.Skills
             {
                 targetEntity.CombatTakerList.ForEach(target =>
                 {
-                    projectileEntity.Initialize(target);
+                    projectileEntity.Fire(Sender, target);
 
-                    if (hasDamageProvider)
-                    {
-                        projectileEntity.OnArrived.Register
-                            (damageEntity.GetInstanceID(), () => target.TakeDamage(damageEntity));
-                    }
-
-                    if (hasStatusEffectProvider)
-                    {
-                        projectileEntity.OnArrived.Register
-                            (statusEffectEntity.GetInstanceID(), () => target.TakeStatusEffect(statusEffectEntity.Origin));
-                    }
+                    // if (hasDamage)
+                    // {
+                    //     projectileEntity.OnArrived.Register
+                    //         (damageEntity.InstanceID, () => target.TakeDamage(damageEntity));
+                    // }
+                    //
+                    // if (hasStatusEffectProvider)
+                    // {
+                    //     projectileEntity.OnArrived.Register
+                    //         (statusEffectEntity.InstanceID, () => target.TakeStatusEffect(statusEffectEntity.Sender));
+                    // }
                 });
             }
 

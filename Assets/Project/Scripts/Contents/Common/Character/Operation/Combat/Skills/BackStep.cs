@@ -10,25 +10,14 @@ namespace Common.Character.Operation.Combat.Skills
         /// 4.2f almost same as CommonAttack.
         /// </summary>
         [SerializeField] private float backMagnitude = 4.2f;
-        [SerializeField] private float combatValue;
 
-        public override CombatValueEntity CombatValue
-        {
-            get
-            {
-                var damageValue = Cb.CombatValue;
-                damageValue.Power = Cb.CombatValue.Power * combatValue;
-
-                return damageValue;
-            }
-        }
-        
         public override void InvokeEvent()
         {
+            var hasDamage = TryGetComponent(out DamageEntity damageEntity);
             var hasTargetList = TryGetComponent(out TargetEntity targetEntity);
             
-            if (hasTargetList)
-                targetEntity.CombatTakerList.ForEach(target => target.TakeDamage(this));
+            if (hasDamage && hasTargetList)
+                targetEntity.CombatTakerList.ForEach(target => target.TakeDamage(damageEntity));
         }
         
         public override void StartSkill()
@@ -40,12 +29,6 @@ namespace Common.Character.Operation.Combat.Skills
 
             Cb.Teleport(enemyBehindPosition);
             base.StartSkill();
-        }
-        
-        protected override void Reset()
-        {
-            var skillData = MainGame.MainData.GetSkillData(GetComponent<BaseSkill>().ActionName);
-            combatValue = skillData.BaseValue;
         }
     }
 }

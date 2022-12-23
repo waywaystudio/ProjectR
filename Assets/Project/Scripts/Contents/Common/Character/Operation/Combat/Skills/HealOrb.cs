@@ -8,7 +8,7 @@ namespace Common.Character.Operation.Combat.Skills
         {
             base.StartSkill();
             
-            var hasHealProvider = TryGetComponent(out HealEntity hasHealEntity);
+            // var hasHealProvider = TryGetComponent(out HealEntity healEntity);
             var hasTargetList = TryGetComponent(out TargetEntity targetEntity);
             var hasProjectile = TryGetComponent(out ProjectileEntity projectileEntity);
 
@@ -16,13 +16,13 @@ namespace Common.Character.Operation.Combat.Skills
             {
                 targetEntity.CombatTakerList.ForEach(target =>
                 {
-                    projectileEntity.Initialize(target);
+                    projectileEntity.Fire(Sender, target);
 
-                    if (hasHealProvider)
-                    {
+                    // if (hasHealProvider)
+                    // {
                         // TODO. 이렇게 짜면 충돌한 대상에게 힐이 들어가는게 아니라, 조준한 대상에게 힐이 들어간다.
-                        projectileEntity.OnCollided.Register(hasHealEntity.GetInstanceID(),() => target.TakeHeal(hasHealEntity));
-                    }
+                        // projectileEntity.OnCollided.Register(healEntity.GetInstanceID(),() => target.TakeHeal(healEntity));
+                    // }
                 });
             }
         }

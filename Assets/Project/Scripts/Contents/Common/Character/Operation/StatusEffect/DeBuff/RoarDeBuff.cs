@@ -5,7 +5,6 @@ namespace Common.Character.Operation.StatusEffect.DeBuff
 {
     public class RoarDeBuff : BaseStatusEffect
     {
-        private const string Roar = "Roar";
         private WaitForSeconds waitForSeconds;
         private CharacterBehaviour cb;
         
@@ -14,11 +13,11 @@ namespace Common.Character.Operation.StatusEffect.DeBuff
             waitForSeconds = new WaitForSeconds(Duration);
 
             cb ??= TakerInfo.Object.GetComponent<CharacterBehaviour>();
-            cb.ArmorMultiTable.Register(Roar, () => 0.85f);
+            cb.StatTable.Register(StatCode.MultiArmor, ID, () => 0.85f);
 
             yield return waitForSeconds;
             
-            cb.ArmorMultiTable.Unregister(Roar);
+            cb.StatTable.Unregister(StatCode.MultiArmor, ID);
             Callback?.Invoke();
         }
     }

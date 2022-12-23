@@ -20,7 +20,7 @@ namespace Common.Character.Operation.Combat
         public BaseSkill CurrentSkill { get; set; }
         public bool IsGlobalCooling { get; set; }
         public bool IsCurrentSkillFinished => CurrentSkill == null || CurrentSkill.IsSkillFinished;
-        public float GlobalCoolTime => 2.0f * CharacterUtility.GetHasteValue(Cb.CombatValue.Haste);
+        public float GlobalCoolTime => 2.0f * CharacterUtility.GetHasteValue(Cb.StatTable.Haste);
         
         // SharedBool :: CombatBehaviorDesigner
         public bool IsCoolOnAnySkill => SkillTable.Any(x => x.Value.IsCoolTimeReady);

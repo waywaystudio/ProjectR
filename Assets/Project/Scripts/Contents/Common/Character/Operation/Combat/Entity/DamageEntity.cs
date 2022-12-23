@@ -1,47 +1,35 @@
+using Sirenix.OdinInspector;
 using UnityEngine;
 
 namespace Common.Character.Operation.Combat.Entity
 {
     public class DamageEntity : BaseEntity, ICombatProvider
     {
-        [SerializeField] private float combatValue;
+        [ShowInInspector]
+        private StatTable damageTable = new();
 
-        public int ID => AssignedSkill.ID;
-        public string ActionName => AssignedSkill.ActionName;
-        public string Name => Cb.Name;
-        public GameObject Object => Cb.Object;
-        public ICombatProvider Predecessor => Cb;
-        
-        public CombatValueEntity CombatValue
-        {
-            get
-            {
-                var healValue = Cb.CombatValue;
-                healValue.Power = Cb.CombatValue.Power * combatValue;
-
-                return healValue;
-            }
-        }
+        public string Name => Sender.Name;
+        public GameObject Object => Sender.Object;
+        public StatTable StatTable => damageTable;
+        public void CombatReport(CombatLog log) => Sender.CombatReport(log);
 
         public override bool IsReady => true;
-        
-        public void CombatReport(CombatLog log) => Cb.CombatReport(log);
-
-        protected override void Awake()
-        {
-            base.Awake();
-            SetEntity();
-        }
 
         public override void SetEntity()
         {
-            var skillData = MainGame.MainData.GetSkillData(AssignedSkill.ActionName);
-            combatValue = skillData.BaseValue;
+            damageTable.Register(StatCode.MultiPower, InstanceID, Data.BaseValue, true);
+        }
+        
+
+        private void Start()
+        {
+            damageTable.UnionWith(Sender.StatTable);
         }
 
         private void Reset()
         {
             flag = EntityType.Damage;
+            
             SetEntity();
         }
     }

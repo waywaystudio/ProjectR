@@ -1,56 +1,43 @@
+#if UNITY_EDITOR
+using System.Reflection;
+using Sirenix.OdinInspector.Editor;
+#endif
+
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using Core;
+using Sirenix.OdinInspector;
+using UnityEngine;
 
 namespace Common
 {
-    public enum StatCode
-    {
-        /*00*/ None = 0,
-        /*01*/ AddPower, 
-        /*02*/ AddCritical,
-        /*03*/ AddHaste,
-        /*04*/ AddHit,
-        /*05*/ AddMaxHp,
-        /*06*/ AddMoveSpeed,
-        /*07*/ AddArmor,
-        /*08*/ AddEvade,
-        /*09*/ AddResist,
-        /*101*/ MultiPower = 101,
-        /*102*/ MultiCritical, 
-        /*103*/ MultiHaste,
-        /*104*/ MultiHit,
-        /*105*/ MultiMaxHp,
-        /*106*/ MultiMoveSpeed,
-        /*107*/ MultiArmor,
-        /*108*/ MultiEvade,
-        /*109*/ MultiResist,
-    }
-    
     [Serializable]
     public class StatTable : Dictionary<StatCode, FloatTable>
     {
-        public float Power => Get(StatCode.AddPower) * (1f + Get(StatCode.MultiPower));
-        public float Critical => Get(StatCode.AddCritical) * (1f + Get(StatCode.MultiCritical));
-        public float Haste => Get(StatCode.AddHaste) * (1f + Get(StatCode.MultiHaste));
-        public float Hit => Get(StatCode.AddHit) * (1f + Get(StatCode.MultiHit));
-        public float MaxHp => Get(StatCode.AddMaxHp) * (1f + Get(StatCode.MultiMaxHp));
-        public float MoveSpeed => Get(StatCode.AddMoveSpeed) * (1f + Get(StatCode.MultiMoveSpeed));
-        public float Armor => Get(StatCode.AddArmor) * (1f + Get(StatCode.MultiArmor));
-        public float Evade => Get(StatCode.AddEvade) * (1f + Get(StatCode.MultiEvade));
-        public float Resist => Get(StatCode.AddResist) * (1f + Get(StatCode.MultiResist));
+        // Preset
+        public float Power => Get(StatCode.Power);
+        public float Critical => Get(StatCode.Critical);
+        public float Haste => Get(StatCode.Haste);
+        public float Hit => Get(StatCode.Hit);
+        public float MaxHp => Get(StatCode.MaxHp);
+        public float MoveSpeed => Get(StatCode.MoveSpeed);
+        public float Armor => Get(StatCode.Armor);
+        public float Evade => Get(StatCode.Evade);
+        public float Resist => Get(StatCode.Resist);
 
-        public void Register(StatCode statCode, int partKey, Func<float> function, bool overwrite)
+        public void Register(StatCode statCode, int partKey, float value, bool overwrite = false)
         {
-            if (ContainsKey(statCode))
-            {
-                this[statCode].Register(partKey, function, overwrite);
-            }
+            if (ContainsKey(statCode)) this[statCode].Register(partKey, value, overwrite);
+            else Add(statCode, new FloatTable{{ partKey, value }});
         }
-        public void Register(StatCode statCode, FloatTable table, bool overwrite)
+        public void Register(StatCode statCode, int partKey, Func<float> function, bool overwrite = false)
         {
-            if (ContainsKey(statCode) && overwrite && this[statCode].Result < table.Result) this[statCode] = table;
+            if (ContainsKey(statCode)) this[statCode].Register(partKey, function.Invoke(), overwrite);
+            else Add(statCode, new FloatTable{{ partKey, function.Invoke() }});
+        }
+        public void Register(StatCode statCode, FloatTable table, bool overwrite = false)
+        {
+            if (ContainsKey(statCode) && overwrite) this[statCode] = table;
             else TryAdd(statCode, table);
         }
         
@@ -58,79 +45,136 @@ namespace Common
         {
             if (ContainsKey(statCode)) this[statCode].Unregister(partKey);
         }
-        
         public void Unregister(StatCode statCode) => this.TryRemove(statCode);
-        private float Get(StatCode statCode) => TryGetValue(statCode, out var floatTable) ? floatTable.Result : 0f;
+        
+        public void UnionWith(StatTable target)
+        {
+            target.ForEach(x =>
+            {
+                TryAdd(x.Key, x.Value);
+            });
+        }
+
+        public static StatTable operator +(StatTable left, StatTable right)
+        {
+            var mainTable = new StatTable();
+
+            if (left.IsNullOrEmpty())
+            {
+                if (right.IsNullOrEmpty()) return mainTable;
+
+                mainTable = right.MemberwiseClone() as StatTable;
+                return mainTable;
+            }
+
+            mainTable = left.MemberwiseClone() as StatTable;
+                
+            if (right.IsNullOrEmpty())
+                return mainTable;
+
+            mainTable.ForEach(floatTable =>
+            {
+                if (right.ContainsKey(floatTable.Key))
+                {
+                    right[floatTable.Key].ForEach(x => floatTable.Value.Register(x.Key, x.Value, true));
+                }
+            });
+
+            right.ForEach(x => mainTable?.TryAdd(x.Key, x.Value));
+
+            return mainTable;
+        }
+
+        public float Get(string statName)
+        {
+            var statCode = statName.ToEnum<StatCode>();
+
+            return Get(statCode);
+        }
+        public float Get(StatCode statCode)
+        {
+            var codeIndex = (int)statCode;
+            
+            switch (codeIndex)
+            {
+                case < 101:
+                {
+                    var add = GetValue((StatCode)(codeIndex + 100));
+                    var multi = GetValue((StatCode)(codeIndex + 1000));
+                    return add * (1f + multi);
+                }
+                case < 1001:
+                {
+                    var add = GetValue((StatCode)(codeIndex + 100));
+                    return add;
+                }
+                case < 10001:
+                {
+                    var multi = GetValue((StatCode)(codeIndex + 1000));
+                    return multi;
+                }
+                default:
+                {
+                    Debug.LogError("statCode Missing return -1.0f");
+                    return -1.0f;
+                }
+            }
+        }
+        private float GetValue(StatCode statCode) => TryGetValue(statCode, out var floatTable) ? floatTable.Result : 0f;
     }
+    
+    /*
+     * Annotation
+     * Register, Unregister 할 때 값을 계산해서 해당 스탯을 갱신하면 더 좋을 듯?
+     */
 
     [Serializable]
-    public class FloatTable : Dictionary<int, Func<float>>
+    public class FloatTable : Dictionary<int, float>
     {
         public float Result
         {
             get
             {
                 var result = 0f;
-                this.ForEach(x => result += x.Value.Invoke());
+                this.ForEach(x => result += x.Value);
                 return result;
             }
         }
 
-        public void Register(int key, Func<float> function, bool overwrite)
+        public void Register(int key, float function, bool overwrite)
         {
-            if (ContainsKey(key) && 
-                overwrite && 
-                Abs(this[key].Invoke()) < Abs(function.Invoke())) this[key] = function;
+            if (ContainsKey(key) && overwrite) this[key] = function;
             else 
                 TryAdd(key, function);
         }
 
         public void Unregister(int key) => this.TryRemove(key);
-        private static float Abs(float value) => value < 0 ? value * -1.0f : value;
+
+        /*
+         * Annotation
+         * Debugging 용 Dictionary<string, float> 을 만들어도 좋을 듯 하다.
+         */
     }
-    
-    
-    // public static class StatCode
-    // {
-    //     private const string AddPowerCode = "AddPower";
-    //     private const string AddCriticalCode = "AddCritical";
-    //     private const string AddHasteCode = "AddHaste";
-    //     private const string AddHitCode = "AddHit";
-    //     private const string AddMaxHpCode = "AddMaxHp";
-    //     private const string AddMoveSpeedCode = "AddMoveSpeed";
-    //     private const string AddArmorCode = "AddArmor";
-    //     private const string AddEvadeCode = "AddEvade";
-    //     private const string AddResistCode = "AddResist";
-    //
-    //     private const string MultiPowerAddCode = "MultiPower";
-    //     private const string MultiCriticalCode = "MultiCritical";
-    //     private const string MultiHasteCode = "MultiHaste";
-    //     private const string MultiHitCode = "MultiHit";
-    //     private const string MultiMaxHpCode = "MultiMaxHp";
-    //     private const string MultiMoveSpeedCode = "MultiMoveSpeed";
-    //     private const string MultiArmorCode = "MultiArmor";
-    //     private const string MultiEvadeCode = "MultiEvade";
-    //     private const string MultiResistCode = "MultiResist";
-    //
-    //     [ShowInInspector] public static readonly int AddPower = AddPowerCode.GetHashCode();
-    //     [ShowInInspector] public static readonly int AddCritical = AddCriticalCode.GetHashCode();
-    //     [ShowInInspector] public static readonly int AddHaste = AddHasteCode.GetHashCode();
-    //     [ShowInInspector] public static readonly int AddHit = AddHitCode.GetHashCode();
-    //     [ShowInInspector] public static readonly int AddMaxHp = AddMaxHpCode.GetHashCode();
-    //     [ShowInInspector] public static readonly int AddMoveSpeed = AddMoveSpeedCode.GetHashCode();
-    //     [ShowInInspector] public static readonly int AddArmor = AddArmorCode.GetHashCode();
-    //     [ShowInInspector] public static readonly int AddEvade = AddEvadeCode.GetHashCode();
-    //     [ShowInInspector] public static readonly int AddResist = AddResistCode.GetHashCode();
-    //
-    //     [ShowInInspector] public static readonly int MultiPower = MultiPowerAddCode.GetHashCode();
-    //     [ShowInInspector] public static readonly int MultiCritical = MultiCriticalCode.GetHashCode();
-    //     [ShowInInspector] public static readonly int MultiHaste = MultiHasteCode.GetHashCode();
-    //     [ShowInInspector] public static readonly int MultiHit = MultiHitCode.GetHashCode();
-    //     [ShowInInspector] public static readonly int MultiMaxHp = MultiMaxHpCode.GetHashCode();
-    //     [ShowInInspector] public static readonly int MultiMoveSpeed = MultiMoveSpeedCode.GetHashCode();
-    //     [ShowInInspector] public static readonly int MultiArmor = MultiArmorCode.GetHashCode();
-    //     [ShowInInspector] public static readonly int MultiEvade = MultiEvadeCode.GetHashCode();
-    //     [ShowInInspector] public static readonly int MultiResist = MultiResistCode.GetHashCode();
-    // }
-    
+
+#if UNITY_EDITOR
+    public class CastingEntityDrawer : OdinAttributeProcessor<FloatTable>
+    {
+        public override void ProcessSelfAttributes(InspectorProperty property, List<Attribute> attributes)
+        {
+            attributes.Add(new DictionaryDrawerSettings
+            {
+               DisplayMode = DictionaryDisplayOptions.OneLine,
+               IsReadOnly = true,
+            });
+        }
+
+        public override void ProcessChildMemberAttributes(InspectorProperty parentProperty, MemberInfo member, List<Attribute> attributes)
+        {
+            if (member.Name == "CastingTime")
+            {
+                // attributes.Add(new ShowInInspectorAttribute());
+            }
+        }
+    }
+#endif
 }

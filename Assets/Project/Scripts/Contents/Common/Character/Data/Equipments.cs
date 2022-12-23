@@ -28,7 +28,6 @@ namespace Common.Character.Data
         [SerializeField] private EquipmentItem ring;
         [SerializeField] private EquipmentItem trinket;
 
-        private const string EquipmentCode = "Equipment";
         private int instanceID;
         private CharacterBehaviour cb;
 
@@ -42,27 +41,9 @@ namespace Common.Character.Data
         public float Evade => EquipmentItemList.Sum(x => x.Evade);
 
 
-        private void Initialize()
-        {
-            OnEquipmentChanged();
-        }
-
-        private void OnEquipmentChanged()
-        {
-            AddValueTable();
-        }
-        
         private void AddValueTable()
         {
-            // TEMP
-            Cb.CombatPowerTable.Register(EquipmentCode, 1, true);
-            
-            Cb.MaxHpTable.Register(EquipmentCode, () => MaxHp, true);
-            Cb.CriticalTable.Register(EquipmentCode, () => Critical, true);
-            Cb.HasteTable.Register(EquipmentCode, () => Haste, true);
-            Cb.HitTable.Register(EquipmentCode, () => Hit, true);
-            Cb.EvadeTable.Register(EquipmentCode, () => Evade, true);
-            
+            Cb.StatTable.Register(StatCode.AddPower, instanceID, () => 1f, true);
             Cb.StatTable.Register(StatCode.AddMaxHp, instanceID, () => MaxHp, true);
             Cb.StatTable.Register(StatCode.AddCritical, instanceID, () => Critical, true);
             Cb.StatTable.Register(StatCode.AddHaste, instanceID, () => Haste, true);
@@ -72,15 +53,6 @@ namespace Common.Character.Data
 
         private void Awake()
         {
-            // weapon.SetStats(weaponID);
-            // subWeapon.SetStats(subWeaponID);
-            // head.SetStats(headID);
-            // shoulder.SetStats(shoulderID);
-            // chest.SetStats(chestID);
-            // leg.SetStats(legID);
-            // ring.SetStats(ringID);
-            // trinket.SetStats(trinketID);
-
             EquipmentItemList.Clear();
             EquipmentItemList.AddUniquely(weapon);
             EquipmentItemList.AddUniquely(subWeapon);
@@ -92,7 +64,7 @@ namespace Common.Character.Data
             EquipmentItemList.AddUniquely(trinket);
 
             instanceID = GetInstanceID();
-            Cb.OnStart.Register(instanceID, Initialize);
+            AddValueTable();
         }
     }
 }

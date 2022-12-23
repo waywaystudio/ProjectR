@@ -1,25 +1,12 @@
 using Common.Character.Operation.Combat.Entity;
-using UnityEngine;
 
 namespace Common.Character.Operation.Combat.Skills
 {
     public class AimShot : BaseSkill
     {
-        [SerializeField] private float combatValue;
-
-        public override CombatValueEntity CombatValue
-        {
-            get
-            {
-                var damageValue = Cb.CombatValue;
-                damageValue.Power = Cb.CombatValue.Power * combatValue;
-
-                return damageValue;
-            }
-        }
-        
         public override void CompleteSkill()
         {
+            // var hasDamage = TryGetComponent(out DamageEntity damageEntity);
             var hasTargetList = TryGetComponent(out TargetEntity targetEntity);
             var hasProjectile = TryGetComponent(out ProjectileEntity projectileEntity);
 
@@ -27,18 +14,14 @@ namespace Common.Character.Operation.Combat.Skills
             {
                 targetEntity.CombatTakerList.ForEach(target =>
                 {
-                    projectileEntity.Initialize(target);
-                    projectileEntity.OnArrived.Register(InstanceID, () => target.TakeDamage(this));
+                    // 만약 여러 타겟이면 여기서 다 쏴줘야하는거 아녀?
+                    // 마지막에 쏴주면 대상하나만 쏘는거 같은데;
+                    projectileEntity.Fire(Sender, target);
+                    // projectileEntity.OnArrived.Register(InstanceID, () => target.TakeDamage(damageEntity));
                 });
             }
 
             base.CompleteSkill();
-        }
-        
-        protected override void Reset()
-        {
-            var skillData = MainGame.MainData.GetSkillData(GetComponent<BaseSkill>().ActionName);
-            combatValue = skillData.BaseValue;
         }
     }
 }

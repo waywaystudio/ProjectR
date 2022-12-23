@@ -13,6 +13,8 @@ namespace Common.Character.Operation.Combat.Entity
         [SerializeField] private float range;
         [ShowInInspector] private List<GameObject> searchedList;
         [ShowInInspector] private ICombatTaker combatTaker;
+
+        private ISearchable searchEngine;
         private List<ICombatTaker> combatTakerList;
         private readonly List<ICombatTaker> combatTakerFilterCache = new();
 
@@ -23,7 +25,6 @@ namespace Common.Character.Operation.Combat.Entity
         {
             get
             {
-                SetEntity();
                 UpdateTargetList();
                 
                 return combatTakerList;
@@ -35,7 +36,6 @@ namespace Common.Character.Operation.Combat.Entity
         {
             get
             {
-                SetEntity();
                 UpdateMainTarget();
                 
                 return combatTaker;
@@ -56,7 +56,7 @@ namespace Common.Character.Operation.Combat.Entity
             
             var inRangedTargetList =
                 combatTakerFilterCache.Where(x => Vector3.Distance(x.Object.transform.position, transform.position) <= Range)
-                               .ToList();
+                                      .ToList();
 
             CombatTakerList = inRangedTargetList.Count >= targetCount
                 ? inRangedTargetList.Take(targetCount).ToList()
@@ -67,7 +67,7 @@ namespace Common.Character.Operation.Combat.Entity
         {
             if (targetLayerType is "self")
             {
-                combatTaker = Cb;
+                combatTaker = GetComponentInParent<ICombatTaker>();
             }
             else
             {
@@ -76,7 +76,7 @@ namespace Common.Character.Operation.Combat.Entity
                     : combatTakerList.First();
             }
 
-            Cb.MainTarget = combatTaker;
+            searchEngine.MainTarget = combatTaker;
         }
 
         public override void SetEntity()
@@ -84,15 +84,16 @@ namespace Common.Character.Operation.Combat.Entity
             
         }
 
+
         protected override void Awake()
         {
+            searchEngine = GetComponentInParent<ISearchable>();
+            
             base.Awake();
-
-            SetEntity();
-
+            
             searchedList = targetLayerType is "ally" or "self"
-                ? Cb.CharacterSearchedList // ally
-                : Cb.MonsterSearchedList;  // enemy
+                ? searchEngine.AdventureList // ally or self
+                : searchEngine.MonsterList;  // enemy
         }
 
         private void Reset()

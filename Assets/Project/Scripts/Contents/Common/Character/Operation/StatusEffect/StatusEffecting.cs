@@ -20,12 +20,6 @@ namespace Common.Character.Operation.StatusEffect
 
         public void TryAdd(ICombatProvider provider)
         {
-            if (BuffTable.ContainsKey(provider.ActionName))
-            {
-                // Implement Compare
-                return;
-            }
-
             BaseStatusEffect statusEffect;
             
             switch (provider.ActionName)
@@ -38,12 +32,18 @@ namespace Common.Character.Operation.StatusEffect
                 default: return;
             }
 
-            statusEffect.InvokeRoutine = StartCoroutine(statusEffect.MainAction());
+            var suitTable = statusEffect.IsBuff
+                ? BuffTable
+                : DeBuffTable;
+            
+            if (suitTable.ContainsKey(provider.ActionName))
+            {
+                // Implement Compare
+                return;
+            }
 
-            if (statusEffect.IsBuff) BuffTable.TryAdd(provider.ActionName, statusEffect);
-            else 
-                DeBuffTable.TryAdd(provider.ActionName, statusEffect);
-           
+            statusEffect.InvokeRoutine = StartCoroutine(statusEffect.MainAction());
+            suitTable.TryAdd(provider.ActionName, statusEffect);
         }
 
         public bool TryRemove(ICombatProvider provider) => TryRemove(provider.ActionName);

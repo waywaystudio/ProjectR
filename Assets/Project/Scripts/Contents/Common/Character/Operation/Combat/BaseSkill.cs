@@ -6,7 +6,7 @@ using UnityEngine;
 
 namespace Common.Character.Operation.Combat
 {
-    public abstract class BaseSkill : MonoBehaviour, ICombatProvider
+    public abstract class BaseSkill : MonoBehaviour, IActionSender
     {
         [SerializeField] protected int id;
         [SerializeField] protected string actionName;
@@ -16,18 +16,10 @@ namespace Common.Character.Operation.Combat
         protected CharacterBehaviour Cb;
         protected Combating Combat;
 
-        private int isFinishHash;
-
         public int ID => id;
-        public string ActionName => actionName;
-        public string Name => Predecessor.Name;
-        public GameObject Object => Predecessor.Object;
-        public ICombatProvider Predecessor => Cb;
-        public virtual CombatValueEntity CombatValue { get; }
-        
-        public void CombatReport(CombatLog log) => Predecessor.CombatReport(log);
-
         public int Priority => priority;
+        public string ActionName => actionName;
+        public ICombatProvider Sender => Cb;
 
         public Dictionary<EntityType, BaseEntity> EntityTable { get; } = new();
         
@@ -36,19 +28,23 @@ namespace Common.Character.Operation.Combat
         public bool IsCoolTimeReady =>!EntityTable.ContainsKey(EntityType.CoolTime) || 
                                        EntityTable[EntityType.CoolTime].IsReady;
 
-        public ActionTable OnStarted { get; } = new();
-        public ActionTable OnInterrupted { get; } = new();
-        public ActionTable OnCompleted { get; } = new();
+        public virtual void StartSkill()
+        {
+            IsSkillFinished = false;
+            EntityTable.ForEach(x => x.Value.OnStarted?.Invoke());
+        }
+        public virtual void CompleteSkill()
+        {
+            EntityTable.ForEach(x => x.Value.OnCompleted?.Invoke());
+            IsSkillFinished = true;
+        } 
+        public void InterruptedSkill() 
+            => EntityTable.ForEach(x => x.Value.OnInterrupted?.Invoke());
 
-        public virtual void StartSkill() => OnStarted?.Invoke();
-        public void InterruptedSkill() => OnInterrupted?.Invoke();
-        public virtual void CompleteSkill() => OnCompleted?.Invoke();
-        
         /// <summary>
         /// Register Animation Event.
         /// </summary>
         public virtual void InvokeEvent(){}
-
         public virtual void ActiveSkill()
         {
             Cb.OnSkill.Register(InstanceID, StartSkill);
@@ -80,26 +76,21 @@ namespace Common.Character.Operation.Combat
             InstanceID = GetInstanceID();
             Cb = GetComponentInParent<CharacterBehaviour>();
             Combat = GetComponentInParent<Combating>();
-            isFinishHash = IsSkillFinished.GetHashCode();
-            
             actionName ??= GetType().Name;
+            
+            GetComponents<BaseEntity>().ForEach(x => EntityTable.Add(x.Flag, x));
+            EntityTable.ForEach(x => x.Value.Initialize(this));
         }
 
         protected void OnEnable()
         {
             Combat.SkillTable.TryAdd(id, this);
-            
-            OnStarted.Register(isFinishHash, () => IsSkillFinished = false);
-            OnCompleted.Register(isFinishHash, () => IsSkillFinished = true);
         }
 
         protected void OnDisable()
         {
             Combat.SkillTable.TryRemove(id);
             DeActiveSkill();
-            
-            OnStarted.Unregister(isFinishHash);
-            OnCompleted.Unregister(isFinishHash);
         }
 
         protected virtual void Reset() => actionName = GetType().Name;

@@ -5,7 +5,7 @@ namespace Common.Character.Operation.StatusEffect.DeBuff
 {
     public class FireballDeBuff : BaseStatusEffect
     {
-        private const string Fireball = "Fireball";
+        // private const string Fireball = "Fireball";
         private WaitForSeconds waitForSeconds;
         private CharacterBehaviour cb;
         
@@ -14,11 +14,11 @@ namespace Common.Character.Operation.StatusEffect.DeBuff
             waitForSeconds = new WaitForSeconds(Duration);
 
             cb ??= TakerInfo.Object.GetComponent<CharacterBehaviour>();
-            cb.ArmorMultiTable.Register(Fireball, () => 0.95f);
+            cb.StatTable.Register(StatCode.MultiArmor, ID, () => 0.95f);
 
             yield return waitForSeconds;
             
-            cb.ArmorMultiTable.Unregister(Fireball);
+            cb.StatTable.Unregister(StatCode.MultiArmor, ID);
             Callback?.Invoke();
         }
     }

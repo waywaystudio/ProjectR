@@ -3,14 +3,21 @@ using UnityEngine;
 
 namespace Common
 {
-    public interface ICombatProvider
+    public interface ICombatStatContainer
     {
-        string ActionName { get; }
         string Name { get; }
         GameObject Object { get; }
-        CombatValueEntity CombatValue { get; }
-        ICombatProvider Predecessor { get; }
+        public StatTable StatTable { get; }
+    }
 
+    public interface IActionSender
+    {
+        string ActionName { get; }
+        ICombatProvider Sender { get; }
+    }
+    
+    public interface ICombatProvider : ICombatStatContainer, IActionSender
+    {
         void CombatReport(CombatLog log);
     }
 }

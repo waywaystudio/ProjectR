@@ -17,7 +17,7 @@ namespace Common.Character.Operation.Combat.Skills
                 targetEntity.CombatTakerList.ForEach(target =>
                 {
                     target.TakeDamage(damageEntity);
-                    target.TakeStatusEffect(statusEffectEntity.Origin);
+                    target.TakeStatusEffect(statusEffectEntity.Sender);
                 });
             }
         }

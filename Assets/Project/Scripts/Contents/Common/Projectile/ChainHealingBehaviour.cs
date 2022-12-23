@@ -13,9 +13,9 @@ namespace Common.Projectile
         private readonly Collider[] colliderBuffer = new Collider[MaxBufferCount];
         private readonly HashSet<ICombatTaker> bounceTargetList = new();
 
-        public override void Initialize(ICombatTaker taker, ActionTable completeAction, ActionTable collidedAction)
+        public override void Initialize(ICombatProvider sender, ICombatTaker taker)
         {
-            base.Initialize(taker, completeAction, collidedAction);
+            base.Initialize(sender, taker);
             
             bounceCount--;
 

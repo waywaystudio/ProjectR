@@ -26,7 +26,7 @@ namespace Common.Character.Operation.StatusEffect.Buff
         {
             var drainValue = log.Value * BaseData.CombatValue;
             
-            Cb.DefenseValue.Hp += drainValue;
+            Cb.Hp += drainValue;
         }
     }
 }

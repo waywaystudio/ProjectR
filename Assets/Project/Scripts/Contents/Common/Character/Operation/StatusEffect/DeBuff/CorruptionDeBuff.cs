@@ -7,23 +7,14 @@ namespace Common.Character.Operation.StatusEffect.DeBuff
     {
         private const int TickCount = 5;
 
-        public ICombatProvider Predecessor => ProviderInfo.Predecessor;
+        public ICombatProvider Sender => ProviderInfo.Sender;
         public string Name => ProviderInfo.Name;
         public GameObject Object => ProviderInfo.Object;
-        public CombatValueEntity CombatValue
-        {
-            get
-            {
-                var corruptionValue = ProviderInfo.CombatValue;
-                corruptionValue.Power = ProviderInfo.CombatValue.Power * BaseData.CombatValue;
-
-                return corruptionValue;
-            }
-        }
+        public StatTable StatTable => Sender.StatTable;
 
         public override IEnumerator MainAction()
         {
-            var corruptionDuration = Duration * CharacterUtility.GetHasteValue(CombatValue.Haste);
+            var corruptionDuration = Duration * CharacterUtility.GetHasteValue(StatTable.Haste);
             var tickInterval = corruptionDuration / TickCount;
             var currentTick = tickInterval;
 
@@ -42,6 +33,6 @@ namespace Common.Character.Operation.StatusEffect.DeBuff
             Callback?.Invoke();
         }
         
-        public void CombatReport(CombatLog log) => Predecessor.CombatReport(log);
+        public void CombatReport(CombatLog log) => Sender.CombatReport(log);
     }
 }

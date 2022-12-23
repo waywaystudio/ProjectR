@@ -14,7 +14,7 @@ namespace Common.Character.Data
 {
     public class ClassBaseStats : MonoBehaviour
     {
-        private const string BaseStatsCode = "BaseStats";
+        // private const string BaseStatsCode = "BaseStats";
 
         [SerializeField] private string combatClass;
         [SerializeField] private float maxHp;
@@ -47,20 +47,10 @@ namespace Common.Character.Data
             hit = ClassData.Hit;
             evade = ClassData.Evade;
             armor = ClassData.Armor;
-            
-            AddValueTable();
         }
 
         public void AddValueTable()
         {
-            Cb.MaxHpTable.Register(BaseStatsCode, maxHp);
-            Cb.MoveSpeedTable.Register(BaseStatsCode, moveSpeed);
-            Cb.CriticalTable.Register(BaseStatsCode, critical);
-            Cb.HasteTable.Register(BaseStatsCode, haste);
-            Cb.HitTable.Register(BaseStatsCode, hit);
-            Cb.EvadeTable.Register(BaseStatsCode, evade);
-            Cb.ArmorTable.Register(BaseStatsCode, armor);
-            
             Cb.StatTable.Register(StatCode.AddMaxHp, instanceID, () => maxHp, true);
             Cb.StatTable.Register(StatCode.AddMoveSpeed, instanceID, () => moveSpeed, true);
             Cb.StatTable.Register(StatCode.AddCritical, instanceID, () => critical, true);
@@ -73,6 +63,7 @@ namespace Common.Character.Data
         private void Awake()
         {
             Cb.OnStart.Register(GetInstanceID(), Initialize);
+            AddValueTable();
         }
     }
     

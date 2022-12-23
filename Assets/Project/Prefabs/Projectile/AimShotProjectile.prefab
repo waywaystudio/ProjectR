@@ -8,12 +8,16 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 4681278465978247463, guid: 72fdc730ed0948741adfb101f8302aec, type: 3}
+      propertyPath: id
+      value: 15000001
+      objectReference: {fileID: 0}
+    - target: {fileID: 4681278465978247463, guid: 72fdc730ed0948741adfb101f8302aec, type: 3}
       propertyPath: speed
       value: 30
       objectReference: {fileID: 0}
     - target: {fileID: 4681278465978247463, guid: 72fdc730ed0948741adfb101f8302aec, type: 3}
       propertyPath: projectileName
-      value: AimShotProjectile
+      value: AimShot
       objectReference: {fileID: 0}
     - target: {fileID: 4681643762210698673, guid: 72fdc730ed0948741adfb101f8302aec, type: 3}
       propertyPath: m_RootOrder

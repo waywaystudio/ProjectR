@@ -44,48 +44,102 @@ namespace Common.Character.Operation.Combat
 
         public static void TakeDamage(ICombatProvider provider, ICombatTaker taker)
         {
-            // var log = new CombatLog
-            // {
-            //     Provider = provider.Name,
-            //     Taker = CharacterName,
-            //     SkillName = provider.ActionName,
-            // };
-            //
-            // // Hit Chance
-            // if (IsHit(provider.CombatValue.Hit, Evade))
-            // {
-            //     log.IsHit = true;
-            // }
-            // else
-            // {
-            //     log.IsHit = false;
-            //     provider.CombatReport(log);
-            //     return;
-            // }
-            //
-            // var damageAmount = provider.CombatValue.Power;
-            //
-            // // Critical
-            // if (IsCritical(provider.CombatValue.Critical))
-            // {
-            //     log.IsCritical = true;
-            //     damageAmount *= 2f;
-            // }
-            //
-            // // Armor
-            // damageAmount = ArmorReduce(Armor, damageAmount);
-            //
-            // Hp -= damageAmount;
-            // log.Value = damageAmount;
-            //
-            // if (Hp <= 0.0d)
-            // {
-            //     Debug.Log("Dead!");
-            //     log.Value -= (float)Hp;
-            //     taker.IsAlive = false;
-            // }
+            var log = new CombatLog(provider.Name, taker.Name, provider.ActionName);
             
-            // provider.CombatReport(log);
+            // Hit Chance
+            if (IsHit(provider.StatTable.Hit, taker.StatTable.Evade)) log.IsHit = true;
+            else
+            {
+                log.IsHit = false;
+                provider.CombatReport(log);
+                return;
+            }
+            
+            var damageAmount = provider.StatTable.Power;
+            
+            // Critical
+            if (IsCritical(provider.StatTable.Critical))
+            {
+                log.IsCritical = true;
+                damageAmount *= 2f;
+            }
+            
+            // Armor
+            damageAmount = ArmorReduce(taker.StatTable.Armor, damageAmount);
+            
+            log.Value = damageAmount;
+
+            if (damageAmount >= taker.Hp || taker.Hp <= 0f)
+            {
+                Debug.Log("Dead!");
+                taker.Hp = 0;
+                log.Value -= taker.Hp;
+                taker.IsAlive = false;
+            }
+
+            taker.Hp -= damageAmount;
+            provider.CombatReport(log);
+        }
+        public static void TakeSpell(ICombatProvider provider, ICombatTaker taker)
+        {
+            var log = new CombatLog(provider.Name, taker.Name, provider.ActionName);
+            
+            // Hit Chance
+            if (IsHit(provider.StatTable.Hit, taker.StatTable.Evade)) log.IsHit = true;
+            else
+            {
+                log.IsHit = false;
+                provider.CombatReport(log);
+                return;
+            }
+            
+            var damageAmount = provider.StatTable.Power;
+            
+            // Critical
+            if (IsCritical(provider.StatTable.Critical))
+            {
+                log.IsCritical = true;
+                damageAmount *= 2f;
+            }
+            
+            // Armor :: TODO.현재는 주문과 물리공격에 대한 방어력을 계산에 같은 값을 사용하고 있다.
+            // 주문방어에 대한 컨셉이 잡히면 수정하자.
+            damageAmount = ArmorReduce(taker.StatTable.Armor, damageAmount);
+            
+            log.Value = damageAmount;
+
+            if (damageAmount >= taker.Hp || taker.Hp <= 0f)
+            {
+                Debug.Log("Dead!");
+                taker.Hp = 0;
+                log.Value -= taker.Hp;
+                taker.IsAlive = false;
+            }
+
+            taker.Hp -= damageAmount;
+            provider.CombatReport(log);
+        }
+        public static void TakeHeal(ICombatProvider provider, ICombatTaker taker)
+        {
+            var log = new CombatLog(provider.Name, taker.Name, provider.ActionName, true);
+
+            var healAmount = provider.StatTable.Power;
+            
+            // Critical
+            if (IsCritical(provider.StatTable.Critical))
+            {
+                log.IsCritical = true;
+                healAmount *= 2f;
+            }
+
+            if (healAmount + taker.Hp >= taker.StatTable.MaxHp)
+            {
+                healAmount = log.Value = taker.StatTable.MaxHp - taker.Hp;
+            }
+
+            taker.Hp += healAmount;
+            
+            provider.CombatReport(log);
         }
     }
 }

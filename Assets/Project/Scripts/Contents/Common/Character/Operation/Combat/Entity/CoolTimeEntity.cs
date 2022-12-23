@@ -1,6 +1,7 @@
-using Core;
+using System.Collections;
 using Sirenix.OdinInspector;
 using UnityEngine;
+// ReSharper disable NotAccessedField.Local
 
 namespace Common.Character.Operation.Combat.Entity
 {
@@ -8,6 +9,7 @@ namespace Common.Character.Operation.Combat.Entity
     {
         [SerializeField] private float coolTime;
         private float remainTimer;
+        private Coroutine resetCoroutine;
 
         public override bool IsReady => remainTimer <= 0.0f;
         public float CoolTime { get => coolTime; set => coolTime = value; }
@@ -19,44 +21,43 @@ namespace Common.Character.Operation.Combat.Entity
             set => remainTimer = Mathf.Max(0, value);
         }
 
-
         public override void SetEntity()
         {
-            CoolTime = coolTime;
-            RemainTimer = CoolTime;
-        }
-        
-        private void UpdateStatus() => IsReady.OnFalse(() => RemainTimer -= CoolTimeTick);
-        private void ResetRemainTime() => RemainTimer = CoolTime;
-
-        protected override void Awake()
-        {
-            base.Awake();
-            
-            CoolTime = coolTime;
+            coolTime = Data.BaseCoolTime;
             RemainTimer = 0f;
             CoolTimeTick = Time.deltaTime;
+        }
+        
+
+        private void ResetTimer() => resetCoroutine = StartCoroutine(ResetTimerRoutine());
+        private IEnumerator ResetTimerRoutine()
+        {
+            // if (IsReady) yield break;
+            
+            RemainTimer = CoolTime;
+
+            while (RemainTimer > 0)
+            {
+                RemainTimer -= CoolTimeTick;
+                yield return null;
+            }
         }
 
         private void OnEnable()
         {
-            Cb.OnUpdate.Register(InstanceID, UpdateStatus);
-            AssignedSkill.OnCompleted.Register(InstanceID, ResetRemainTime);
+            OnCompleted.Register(InstanceID, ResetTimer);
         }
         
         private void OnDisable()
         { 
-            Cb.OnUpdate.Unregister(InstanceID);
-            AssignedSkill.OnCompleted.Unregister(InstanceID);
+            OnCompleted.Unregister(InstanceID);
         }
 
         private void Reset()
         {
             flag = EntityType.CoolTime;
-            
-            var skillData = MainGame.MainData.GetSkillData(GetComponent<BaseSkill>().ActionName);
-            coolTime = skillData.BaseCoolTime;
-            RemainTimer = 0f;
+
+            SetEntity();
         }
     }
 }

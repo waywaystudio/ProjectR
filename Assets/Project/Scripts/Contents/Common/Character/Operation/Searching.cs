@@ -22,12 +22,12 @@ namespace Common.Character.Operation
 
         public void UpdateCharacterList()
         {
-            UpdateSearchingList(cb.AllyLayer, cb.CharacterSearchedList);
+            UpdateSearchingList(cb.AllyLayer, cb.AdventureList);
         }
 
         public void UpdateMonsterList()
         {
-            UpdateSearchingList(cb.EnemyLayer, cb.MonsterSearchedList);
+            UpdateSearchingList(cb.EnemyLayer, cb.MonsterList);
         }
 
         private void Awake()
@@ -59,11 +59,11 @@ namespace Common.Character.Operation
         {
             if (other.gameObject.IsInLayerMask(cb.AllyLayer))
             {
-                cb.CharacterSearchedList.AddUniquely(other.gameObject);
+                cb.AdventureList.AddUniquely(other.gameObject);
             } 
             else if (other.gameObject.IsInLayerMask(cb.EnemyLayer))
             {
-                cb.MonsterSearchedList.AddUniquely(other.gameObject);
+                cb.MonsterList.AddUniquely(other.gameObject);
             }
         }
 
@@ -71,11 +71,11 @@ namespace Common.Character.Operation
         {
             if (other.gameObject.IsInLayerMask(cb.AllyLayer))
             {
-                cb.CharacterSearchedList.RemoveSafely(other.gameObject);
+                cb.AdventureList.RemoveSafely(other.gameObject);
             } 
             else if (other.gameObject.IsInLayerMask(cb.EnemyLayer))
             {
-                cb.MonsterSearchedList.RemoveSafely(other.gameObject);
+                cb.MonsterList.RemoveSafely(other.gameObject);
             }
         }
     }

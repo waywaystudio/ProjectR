@@ -54,8 +54,7 @@ namespace Core
         /// <typeparam name="T">Type of enum</typeparam>
         /// <param name="original">string that want to convert</param>
         /// <returns>Returns enum object</returns>
-        public static T ToEnum<T>(this string original)
-            where T : struct
+        public static T ToEnum<T>(this string original) where T : struct
         {
             return (T) Enum.Parse(typeof (T), original, true);
         }
