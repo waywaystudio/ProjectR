@@ -58,7 +58,7 @@ namespace Common.Character.Operation.Combat
             Cb.OnSkill.Unregister(InstanceID);
             Cb.OnSkillHit.Unregister(InstanceID);
         }
-
+        
         public bool TryGetEntity<T>(EntityType entityType, out T result) where T : BaseEntity
         {
             if (!EntityTable.TryGetValue(entityType, out var entity))
@@ -70,7 +70,14 @@ namespace Common.Character.Operation.Combat
             result = entity as T;
             return true;
         }
-        
+
+        protected DamageEntity DamageEntity => EntityTable[EntityType.Damage] as DamageEntity;
+        protected CastingEntity CastingEntity => EntityTable[EntityType.Casting] as CastingEntity;
+        protected CoolTimeEntity CoolTimeEntity => EntityTable[EntityType.CoolTime] as CoolTimeEntity;
+        protected HealEntity HealEntity => EntityTable[EntityType.Heal] as HealEntity;
+        protected ProjectileEntity ProjectileEntity => EntityTable[EntityType.Projectile] as ProjectileEntity;
+        protected StatusEffectEntity StatusEffectEntity => EntityTable[EntityType.StatusEffect] as StatusEffectEntity;
+        protected TargetEntity TargetEntity => EntityTable[EntityType.Target] as TargetEntity;
 
         protected void Awake()
         {
@@ -146,7 +153,6 @@ namespace Common.Character.Operation.Combat
             
             UnityEditor.EditorUtility.SetDirty(this);
         }
-        
         protected void ShowDB()
         {
             UnityEditor.EditorUtility.OpenPropertyEditor

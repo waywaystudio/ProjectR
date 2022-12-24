@@ -24,7 +24,7 @@ MonoBehaviour:
     name: FireballProjectile
     speed: 24
     baseValue: 5
-    statusEffect: FireballParticleDeBuff
+    statusEffect: FireballDeBuff
     particleKey: FireballParticle
   - id: 15000003
     name: ChainHealingProjectile

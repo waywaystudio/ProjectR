@@ -2,7 +2,7 @@ using System.Collections.Generic;
 using Core;
 using UnityEngine;
 
-namespace Common.Character.Operation
+namespace Common.Character.Operation.Combat
 {
     [RequireComponent(typeof(SphereCollider))]
     public class Searching : MonoBehaviour
@@ -14,6 +14,8 @@ namespace Common.Character.Operation
         private readonly Collider[] colliderBuffer = new Collider[MaxBufferCount];
         private float SearchingRange => cb.SearchingRange;
 
+        // 현재 Searching 의 실제 기능은 OnTrigger 밖에 없다.
+        // 핵심은 UpdateTarget() 이며 필요할 때 호출해보도록 하자.
         public void UpdateTarget()
         {
             UpdateCharacterList();
@@ -29,14 +31,8 @@ namespace Common.Character.Operation
         {
             UpdateSearchingList(cb.EnemyLayer, cb.MonsterList);
         }
-
-        private void Awake()
-        {
-            cb ??= GetComponentInParent<CharacterBehaviour>();
-            searchingCollider ??= GetComponent<SphereCollider>();
-            searchingCollider.radius = SearchingRange;
-        }
         
+
         private void UpdateSearchingList(LayerMask targetLayer, ICollection<GameObject> output)
         {
             var hitCount = Physics.OverlapSphereNonAlloc(transform.position, 
@@ -53,6 +49,13 @@ namespace Common.Character.Operation
                 if (x.IsNullOrEmpty()) return;
                 output.Add(x.gameObject);
             });
+        }
+        
+        private void Awake()
+        {
+            cb ??= GetComponentInParent<CharacterBehaviour>();
+            searchingCollider ??= GetComponent<SphereCollider>();
+            searchingCollider.radius = SearchingRange;
         }
 
         private void OnTriggerEnter(Collider other)
@@ -80,21 +83,3 @@ namespace Common.Character.Operation
         }
     }
 }
-
-// private void UpdateFocusTarget(List<GameObject> searchedTargets, List<GameObject> rangeTargets)
-// {
-//     if (rangeTargets.IsNullOrEmpty())
-//     {
-//         FocusTarget = searchedTargets.IsNullOrEmpty() ? null 
-//                                                       : searchedTargets.First();
-//     }
-//     else
-//         FocusTarget = rangeTargets.First();
-// }
-// private void OnDrawGizmos()
-// {
-//     if (RangedTargets.IsNullOrEmpty()) return;
-//     
-//     Gizmos.color = new Color(129, 0, 0, 0.3f);
-//     Gizmos.DrawSphere(transform.position, cb.Range);
-// }

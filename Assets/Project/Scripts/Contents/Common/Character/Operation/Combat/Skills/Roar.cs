@@ -1,5 +1,3 @@
-using Common.Character.Operation.Combat.Entity;
-
 namespace Common.Character.Operation.Combat.Skills
 {
     public class Roar : BaseSkill
@@ -7,17 +5,13 @@ namespace Common.Character.Operation.Combat.Skills
         public override void StartSkill()
         {
             base.StartSkill();
-            
-            var hasDamage = TryGetComponent(out DamageEntity damageEntity);
-            var hasStatusEffect = TryGetComponent(out StatusEffectEntity statusEffectEntity);
-            var hasTargetList = TryGetComponent(out TargetEntity targetEntity);
 
-            if (hasDamage && hasStatusEffect && hasTargetList)
+            if (DamageEntity && StatusEffectEntity && TargetEntity)
             {
-                targetEntity.CombatTakerList.ForEach(target =>
+                TargetEntity.CombatTakerList.ForEach(target =>
                 {
-                    target.TakeDamage(damageEntity);
-                    target.TakeStatusEffect(statusEffectEntity.Sender);
+                    target.TakeDamage(DamageEntity);
+                    target.TakeStatusEffect(StatusEffectEntity);
                 });
             }
         }

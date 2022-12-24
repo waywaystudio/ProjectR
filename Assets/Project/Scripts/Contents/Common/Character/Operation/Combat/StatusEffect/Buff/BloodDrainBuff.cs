@@ -1,7 +1,7 @@
 using System.Collections;
 using UnityEngine;
 
-namespace Common.Character.Operation.StatusEffect.Buff
+namespace Common.Character.Operation.Combat.StatusEffect.Buff
 {
     public class BloodDrainBuff : BaseStatusEffect
     {

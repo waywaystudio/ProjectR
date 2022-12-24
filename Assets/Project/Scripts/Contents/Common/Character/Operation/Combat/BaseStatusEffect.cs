@@ -1,10 +1,9 @@
 using System;
 using System.Collections;
-using Core;
-using StatusEffectData = MainGame.Data.ContentData.StatusEffectData.StatusEffect;
 using UnityEngine;
+using StatusEffectData = MainGame.Data.ContentData.StatusEffectData.StatusEffect;
 
-namespace Common.Character.Operation.StatusEffect
+namespace Common.Character.Operation.Combat
 {
     public abstract class BaseStatusEffect
     {

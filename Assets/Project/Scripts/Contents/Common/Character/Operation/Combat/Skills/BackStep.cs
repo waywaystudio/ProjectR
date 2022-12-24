@@ -1,4 +1,3 @@
-using Common.Character.Operation.Combat.Entity;
 using UnityEngine;
 
 namespace Common.Character.Operation.Combat.Skills
@@ -13,18 +12,17 @@ namespace Common.Character.Operation.Combat.Skills
 
         public override void InvokeEvent()
         {
-            var hasDamage = TryGetComponent(out DamageEntity damageEntity);
-            var hasTargetList = TryGetComponent(out TargetEntity targetEntity);
-            
-            if (hasDamage && hasTargetList)
-                targetEntity.CombatTakerList.ForEach(target => target.TakeDamage(damageEntity));
+            if (DamageEntity && TargetEntity)
+            {
+                TargetEntity.CombatTakerList.ForEach(target => target.TakeDamage(DamageEntity));
+            }
         }
         
         public override void StartSkill()
         {
-            if (!TryGetComponent(out TargetEntity targetEntity)) return;
+            if (!TargetEntity) return;
             
-            var enemyTransform = targetEntity.CombatTaker.Object.transform;
+            var enemyTransform = TargetEntity.CombatTaker.Object.transform;
             var enemyBehindPosition = enemyTransform.position + enemyTransform.forward * -backMagnitude;
 
             Cb.Teleport(enemyBehindPosition);

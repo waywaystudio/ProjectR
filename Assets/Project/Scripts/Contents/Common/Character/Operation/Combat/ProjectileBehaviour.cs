@@ -1,113 +1,71 @@
-using System;
 using System.Collections.Generic;
-using Common.Character;
-using Common.Character.Operation.Combat;
-using Common.Character.Operation.Combat.Entity;
 using Core;
-// using DG.Tweening;
+using DG.Tweening;
 using MainGame;
 using Sirenix.OdinInspector;
 using UnityEngine;
 
-namespace Common.Projectile
+namespace Common.Character.Operation.Combat
 {
-    public class ProjectileBehaviour : MonoBehaviour, ICombatProvider
+    using Entity;
+    
+    public abstract class ProjectileBehaviour : MonoBehaviour, IActionSender
     {
         [SerializeField] protected int id;
         [SerializeField] protected string projectileName;
         [SerializeField] protected float speed = 20f;
         [SerializeField] protected GameObject particle;
-        
-        public int ID { get => id; set => id = value; }
-        public string Name { get => projectileName; set => projectileName = value; }
-        public GameObject Object => Sender.Object;
-        public StatTable StatTable => Sender.StatTable;
-        public string ActionName => Sender.ActionName;
-        public ICombatProvider Sender { get; set; }
-        public void CombatReport(CombatLog log) => Sender.CombatReport(log);
-
-        protected ICombatTaker Taker { get; set; }
-        protected Dictionary<EntityType, BaseEntity> EntityTable { get; } = new();
-        
-        
-        public virtual void Initialize(ICombatProvider sender, ICombatTaker taker)
-        {
-            Sender = sender;
-            Taker = taker;
-            Destination = taker.Object.transform.position;
-            EntityTable.ForEach(x => x.Value.Initialize(Sender));
-
-            // Trajectory do first then onComplete +
-            // Trajectory();
-            // TrajectoryTweener.onComplete = null;
-            // TrajectoryTweener.onComplete += completeAction.Invoke;
-        }
-
-        public void Arrived()
-        {
-            
-        }
-
-        public void Collided()
-        {
-            
-        }
-        
-
-        //
-        // protected Tweener TrajectoryTweener;
-        protected Vector3 destination;
         [SerializeField] protected LayerMask targetLayer;
-        public LayerMask TargetLayer => targetLayer;
-        [ShowInInspector] public ActionTable OnArrived { get; set; }
-        [ShowInInspector] public ActionTable OnCollided { get; set; }
 
-        public virtual Vector3 Destination
+        public string ActionName => projectileName;
+        public ICombatProvider Sender { get; set; }
+        protected ICombatTaker Taker { get; set; }
+        protected LayerMask TargetLayer => targetLayer;
+        protected Dictionary<EntityType, BaseEntity> EntityTable { get; } = new();
+        protected Tweener TrajectoryTweener;
+        protected bool ValidateTaker => Taker != null && !Taker.Object.IsNullOrEmpty() && Taker.IsAlive;
+        private Vector3 destination;
+
+        protected DamageEntity DamageEntity => EntityTable[EntityType.Damage] as DamageEntity;
+        protected HealEntity HealEntity => EntityTable[EntityType.Heal] as HealEntity;
+        protected StatusEffectEntity StatusEffectEntity => EntityTable[EntityType.StatusEffect] as StatusEffectEntity;
+        
+        protected Vector3 Destination
         {
             get
             {
-                if (Taker != null && !Taker.Object.IsNullOrEmpty() && Taker.IsAlive)
-                {
-                    destination = Taker.Object.transform.position;
-                }
-
+                if (ValidateTaker) destination = Taker.Object.transform.position;
                 return destination;
             }
             set => destination = value;
         }
+        
 
-        public virtual void Trajectory()
+        public void Initialize(ICombatProvider sender, ICombatTaker taker)
         {
-            // TrajectoryTweener = transform
-            //     .DOMove(Destination, speed)
-            //     .SetEase(Ease.Linear)
-            //     .SetSpeedBased();
-            //
-            // TrajectoryTweener.OnUpdate(() =>
-            // {
-            //     var takerPosition = Taker.Object.transform.position;
-            //     
-            //     if (Vector3.Distance(transform.position, takerPosition) > 1f)
-            //     {
-            //         TrajectoryTweener
-            //             .ChangeEndValue(takerPosition, speed, true)
-            //             .SetSpeedBased();
-            //     }
-            // });
+            Sender = sender;
+            Taker = taker;
+            Destination = taker.Object.transform.position;
+            EntityTable.ForEach(x => x.Value.Initialize(this));
+
+            Trajectory();
         }
+        
+        
+        protected abstract void Trajectory();
 
-
-        protected void Awake()
+        protected virtual void Awake()
         {
             GetComponentsInChildren<BaseEntity>().ForEach(x => EntityTable.Add(x.Flag, x));
         }
 
 #if UNITY_EDITOR
-        [Button]
+        [PropertySpace(15f, 0f)]
+        [Button(ButtonSizes.Large,  Icon = SdfIconType.ArrowRepeat, Stretch = false)]
         private void GetProjectileFromDB()
         {
-            var data = MainData.GetProjectileData(Name);
-            ID = data.ID;
+            var data = MainData.GetProjectileData(projectileName);
+            id = data.ID;
             speed = data.Speed;
             
             if (TryGetComponent(out DamageEntity damageEntity))

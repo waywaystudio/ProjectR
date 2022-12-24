@@ -1,5 +1,3 @@
-using Common.Character.Operation.Combat.Entity;
-
 namespace Common.Character.Operation.Combat.Skills
 {
     public class Corruption : BaseSkill
@@ -8,13 +6,10 @@ namespace Common.Character.Operation.Combat.Skills
         {
             base.StartSkill();
             
-            var hasStatusEffect = TryGetComponent(out StatusEffectEntity statusEffectEntity);
-            var hasTargetList = TryGetComponent(out TargetEntity targetEntity);
-            
-            if (hasStatusEffect && hasTargetList)
-                targetEntity.CombatTakerList.ForEach(target =>
+            if (StatusEffectEntity && TargetEntity)
+                TargetEntity.CombatTakerList.ForEach(target =>
                 {
-                    target.TakeStatusEffect(statusEffectEntity);
+                    target.TakeStatusEffect(StatusEffectEntity);
                 });
         }
     }

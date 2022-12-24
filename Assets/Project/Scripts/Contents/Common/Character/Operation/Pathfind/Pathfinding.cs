@@ -2,7 +2,7 @@ using System;
 using Pathfinding;
 using UnityEngine;
 
-namespace Common.Character.Operation
+namespace Common.Character.Operation.Pathfind
 {
     public class Pathfinding : MonoBehaviour
     {

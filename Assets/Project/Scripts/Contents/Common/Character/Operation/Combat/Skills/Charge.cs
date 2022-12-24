@@ -1,4 +1,3 @@
-using Common.Character.Operation.Combat.Entity;
 using UnityEngine;
 
 namespace Common.Character.Operation.Combat.Skills
@@ -10,19 +9,16 @@ namespace Common.Character.Operation.Combat.Skills
 
         public override void InvokeEvent()
         {
-            var hasDamage = TryGetComponent(out DamageEntity damageEntity);
-            var hasTargetList = TryGetComponent(out TargetEntity targetEntity);
-            
-            if (hasDamage && hasTargetList)
-                targetEntity.CombatTakerList.ForEach(target => target.TakeDamage(damageEntity));
+            if (DamageEntity && TargetEntity)
+                TargetEntity.CombatTakerList.ForEach(target => target.TakeDamage(DamageEntity));
         }
 
         // 위 처럼 구현하고 매 프레임에서 Target != null을 체크하면 안정성이 조금 올라간다.
         public override void ActiveSkill()
         {
-            if (!TryGetComponent(out TargetEntity targetEntity)) return;
+            if (!TargetEntity) return;
 
-            var takerTransform = targetEntity.CombatTaker.Object.transform;
+            var takerTransform = TargetEntity.CombatTaker.Object.transform;
             var offset = Cb.Direction.Invoke() * (offsetDistance * -1f);
             var targetFrontPosition = takerTransform.position + offset;
             

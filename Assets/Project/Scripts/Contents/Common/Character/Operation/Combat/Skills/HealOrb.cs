@@ -1,5 +1,3 @@
-using Common.Character.Operation.Combat.Entity;
-
 namespace Common.Character.Operation.Combat.Skills
 {
     public class HealOrb : BaseSkill
@@ -7,22 +5,12 @@ namespace Common.Character.Operation.Combat.Skills
         public override void StartSkill()
         {
             base.StartSkill();
-            
-            // var hasHealProvider = TryGetComponent(out HealEntity healEntity);
-            var hasTargetList = TryGetComponent(out TargetEntity targetEntity);
-            var hasProjectile = TryGetComponent(out ProjectileEntity projectileEntity);
 
-            if (hasTargetList && hasProjectile)
+            if (ProjectileEntity && TargetEntity)
             {
-                targetEntity.CombatTakerList.ForEach(target =>
+                TargetEntity.CombatTakerList.ForEach(target =>
                 {
-                    projectileEntity.Fire(Sender, target);
-
-                    // if (hasHealProvider)
-                    // {
-                        // TODO. 이렇게 짜면 충돌한 대상에게 힐이 들어가는게 아니라, 조준한 대상에게 힐이 들어간다.
-                        // projectileEntity.OnCollided.Register(healEntity.GetInstanceID(),() => target.TakeHeal(healEntity));
-                    // }
+                    ProjectileEntity.Fire(target);
                 });
             }
         }

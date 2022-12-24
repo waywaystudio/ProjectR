@@ -1,7 +1,7 @@
 using System.Collections;
 using UnityEngine;
 
-namespace Common.Character.Operation.StatusEffect.DeBuff
+namespace Common.Character.Operation.Combat.StatusEffect.DeBuff
 {
     public sealed class CorruptionDeBuff : BaseStatusEffect, ICombatProvider
     {

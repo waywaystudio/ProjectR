@@ -11,7 +11,6 @@ namespace Common.Character.Operation.Combat
         public ActionTable OnStarted { get; } = new();
         public ActionTable OnInterrupted { get; } = new();
         public ActionTable OnCompleted { get; } = new();
-
         public EntityType Flag { get => flag; set => flag = value; }
         public ICombatProvider Sender { get; protected set; }
         public abstract bool IsReady { get; }

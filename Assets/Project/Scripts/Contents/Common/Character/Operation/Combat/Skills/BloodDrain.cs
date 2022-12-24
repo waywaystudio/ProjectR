@@ -1,5 +1,3 @@
-using Common.Character.Operation.Combat.Entity;
-
 namespace Common.Character.Operation.Combat.Skills
 {
     public class BloodDrain : BaseSkill
@@ -8,12 +6,9 @@ namespace Common.Character.Operation.Combat.Skills
         {
             base.StartSkill();
 
-            var hasStatusEffect = TryGetComponent(out StatusEffectEntity statusEffectEntity); 
-            var hasTargetList = TryGetComponent(out TargetEntity targetEntity);
-
-            if (hasTargetList)
+            if (TargetEntity && StatusEffectEntity)
             {
-                targetEntity.CombatTaker.TakeStatusEffect(statusEffectEntity);
+                TargetEntity.CombatTaker.TakeStatusEffect(StatusEffectEntity);
             }
         }
     }

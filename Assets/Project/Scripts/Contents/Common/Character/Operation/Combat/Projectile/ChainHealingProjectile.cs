@@ -1,39 +1,55 @@
 using System.Collections.Generic;
 using Core;
+using DG.Tweening;
 using UnityEngine;
 
-namespace Common.Projectile
+namespace Common.Character.Operation.Combat.Projectile
 {
-    public class ChainHealingBehaviour : ProjectileBehaviour
+    public class ChainHealingProjectile : ProjectileBehaviour
     {
         [SerializeField] private int bounceCount = 3;
         [SerializeField] private float bounceRange = 25f;
-
+        
         private const int MaxBufferCount = 25;
         private readonly Collider[] colliderBuffer = new Collider[MaxBufferCount];
         private readonly HashSet<ICombatTaker> bounceTargetList = new();
-
-        public override void Initialize(ICombatProvider sender, ICombatTaker taker)
+        
+        protected override void Trajectory()
         {
-            base.Initialize(sender, taker);
+            TrajectoryTweener = transform
+                                .DOMove(Destination, speed)
+                                .SetEase(Ease.Linear)
+                                .OnComplete(Arrived)
+                                .SetSpeedBased();
             
-            bounceCount--;
+            TrajectoryTweener.OnUpdate(() =>
+            {
+                var takerPosition = Taker.Object.transform.position;
+                
+                if (Vector3.Distance(transform.position, takerPosition) > 1f)
+                {
+                    TrajectoryTweener.ChangeEndValue(takerPosition, speed, true)
+                                     .SetSpeedBased();
+                }
+            });
+        }
 
-            if (bounceCount <= 0)
+        private void Arrived()
+        {
+            if (ValidateTaker) Taker.TakeHeal(HealEntity);
+            
+            if (--bounceCount <= 0)
             {
                 bounceTargetList.Clear();
                 return;
             }
-
-            bounceTargetList.Add(taker);
-
-            if (TryAddHash(out var newTarget))
-            {
-                // TrajectoryTweener.onComplete += () => Initialize(newTarget, completeAction, collidedAction);
-            }
             
+            bounceTargetList.Add(Taker);
+            
+            if (TryAddHash(out var newTarget)) 
+                Initialize(Sender, newTarget);
         }
-        
+
         private bool TryAddHash(out ICombatTaker addedTarget)
         {
             var hitCount = Physics.OverlapSphereNonAlloc(transform.position, 

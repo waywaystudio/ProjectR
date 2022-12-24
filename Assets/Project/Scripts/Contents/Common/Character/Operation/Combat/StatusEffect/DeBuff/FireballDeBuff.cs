@@ -1,10 +1,11 @@
 using System.Collections;
 using UnityEngine;
 
-namespace Common.Character.Operation.StatusEffect.DeBuff
+namespace Common.Character.Operation.Combat.StatusEffect.DeBuff
 {
-    public class RoarDeBuff : BaseStatusEffect
+    public class FireballDeBuff : BaseStatusEffect
     {
+        // private const string Fireball = "Fireball";
         private WaitForSeconds waitForSeconds;
         private CharacterBehaviour cb;
         
@@ -13,7 +14,7 @@ namespace Common.Character.Operation.StatusEffect.DeBuff
             waitForSeconds = new WaitForSeconds(Duration);
 
             cb ??= TakerInfo.Object.GetComponent<CharacterBehaviour>();
-            cb.StatTable.Register(StatCode.MultiArmor, ID, () => 0.85f);
+            cb.StatTable.Register(StatCode.MultiArmor, ID, () => 0.95f);
 
             yield return waitForSeconds;
             

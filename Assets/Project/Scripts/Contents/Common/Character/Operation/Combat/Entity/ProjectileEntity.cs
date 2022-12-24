@@ -1,4 +1,3 @@
-using Common.Projectile;
 using UnityEngine;
 
 namespace Common.Character.Operation.Combat.Entity
@@ -11,10 +10,8 @@ namespace Common.Character.Operation.Combat.Entity
         public string ProjectileName { get => projectileName; set => projectileName = value; }
         public override bool IsReady => true;
 
-        public void Fire(ICombatProvider provider, ICombatTaker taker)
+        public void Fire(ICombatTaker taker)
         {
-            Sender = provider;
-
             // Pooling.Draw (or spawn whatever...)
             var cbPosition = Sender.Object.transform.position;
             var tkPosition = taker.Object.transform.position;

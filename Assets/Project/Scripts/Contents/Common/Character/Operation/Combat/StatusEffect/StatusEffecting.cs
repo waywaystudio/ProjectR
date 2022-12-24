@@ -5,7 +5,7 @@ using MainGame;
 using Sirenix.OdinInspector;
 using UnityEngine;
 
-namespace Common.Character.Operation.StatusEffect
+namespace Common.Character.Operation.Combat.StatusEffect
 {
     using Buff;
     using DeBuff;
