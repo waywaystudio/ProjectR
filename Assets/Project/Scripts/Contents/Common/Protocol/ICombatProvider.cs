@@ -1,4 +1,5 @@
 using Common.Character;
+using Core;
 using UnityEngine;
 
 namespace Common
@@ -18,6 +19,6 @@ namespace Common
     
     public interface ICombatProvider : ICombatStatContainer, IActionSender
     {
-        void CombatReport(CombatLog log);
+        void ReportActive(CombatLog log);
     }
 }

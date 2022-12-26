@@ -14,11 +14,11 @@ namespace Common.Character.Operation.Combat.StatusEffect.Buff
         {
             waitForSeconds = new WaitForSeconds(Duration);
 
-            Cb.OnCombatReporting.Register(BaseData.ID, BloodDrain);
+            Cb.OnCombatActive.Register(BaseData.ID, BloodDrain);
 
             yield return waitForSeconds;
             
-            Cb.OnCombatReporting.Unregister(BaseData.ID);
+            Cb.OnCombatActive.Unregister(BaseData.ID);
             Callback?.Invoke();
         }
         

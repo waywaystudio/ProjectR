@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using UnityEngine;
 
 namespace Core
 {
@@ -35,7 +36,7 @@ namespace Core
         /// </summary>
         public void Invoke() => this.ForEach(x => x.Value?.Invoke());
     }
-
+    
     public class ActionTable<T0> : DelegateTable<Action<T0>>
     {
         public ActionTable(){}
@@ -44,14 +45,20 @@ namespace Core
         /// <summary>
         /// Register None-Parameter Action. auto generate lambda expression.
         /// </summary>
-        public void Register(int key, Action action, bool overwrite = false) => TryAdd(key, _ => action(), overwrite);
+        public void Register(int key, Action action, bool overwrite = false) => TryAdd(key, _ => action());
         
         /// <summary>
         /// Register Delegate by custom Key. Recommend InstanceID or Data Unique ID.
         /// </summary>
         public void Register(int key, Action<T0> action, bool overwrite = false) => TryAdd(key, action, overwrite);
 
-        public void Invoke(T0 t) => this.ForEach(x => x.Value?.Invoke(t));
+        public void Invoke(T0 t)
+        {
+            this.ForEach(x =>
+            {
+                x.Value.Invoke(t);
+            });
+        }
     }
 
     public class ActionTable<T0, T1> : DelegateTable<Action<T0, T1>>

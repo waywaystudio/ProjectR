@@ -41,6 +41,7 @@ namespace Common.Character.Graphic
         {
             if (e.Data == EventTable["attackHit"])
             {
+                Debug.Log("attackHit In");
                 Cb.SkillHit();
             }
             if (e.Data == EventTable["skillHit"])
@@ -60,7 +61,7 @@ namespace Common.Character.Graphic
 
 #if UNITY_EDITOR
         [SpineEvent(dataField : "skAnimation", fallbackToTextField = true)]
-        [ShowInInspector] private string eventNameList;
+        [SerializeField] private string eventNameList;
 #endif
     }
 }

@@ -22,13 +22,21 @@ namespace Common.Character
         public string CharacterName => characterName ??= "Diablo";
         public int ID => id;
         public bool IsAlive { get => isAlive; set => isAlive = value; }
-        public float Hp { get => hp; set => hp = Mathf.Min(StatTable.MaxHp, value); }
+
+        public float Hp
+        {
+            get => hp;
+            set
+            {
+                hp = Mathf.Min(StatTable.MaxHp, value);
+                OnHpChanged?.Invoke(hp);
+            }
+        }
         [ShowInInspector]
         public StatTable StatTable { get; } = new();
         public string ActionName => string.Empty;
         public string Name => CharacterName;
         public ICombatProvider Sender => this;
-        
         public string CombatClass => combatClass ??= MainData.GetAdventurerData(CharacterName).CombatClass;
         public float SearchingRange => searchingRange;
         public LayerMask AllyLayer => allyLayer;
@@ -37,18 +45,21 @@ namespace Common.Character
 
         public ActionTable OnStart { get; } = new();
         public ActionTable OnUpdate { get; } = new();
-        
+        public ActionTable<float> OnHpChanged { get; } = new();
+
         public ActionTable OnIdle { get; } = new();
         public ActionTable<Vector3, Action> OnWalk { get; } = new();
         public ActionTable<Vector3, Action> OnRun { get; } = new();
         public ActionTable<Vector3> OnTeleport { get; } = new();
         public ActionTable<string, Action> OnSkill { get; } = new();
-        public ActionTable OnSkillHit { get; } = new(1);
+        public ActionTable OnSkillHit { get; } = new();
+        public ActionTable<ICombatProvider> OnTakeDamage { get; } = new();
         public ActionTable<ICombatProvider> OnTakeStatusEffect { get; } = new();
-        public ActionTable<CombatLog> OnCombatReporting { get; } = new();
+        [ShowInInspector]
+        public ActionTable<CombatLog> OnCombatActive { get; } = new();
+        public ActionTable<CombatLog> OnCombatPassive { get; } = new();
         public FunctionTable<bool> IsReached { get; } = new();
         public FunctionTable<Vector3> Direction { get; } = new();
-        
         public List<GameObject> AdventureList { get; } = new();
         public List<GameObject> MonsterList { get; } = new();
         public ICombatTaker MainTarget { get; set; }
@@ -59,7 +70,12 @@ namespace Common.Character
         public void Teleport(Vector3 destination) => OnTeleport?.Invoke(destination);
         public void Skill(string skillName, Action animationCallback) => OnSkill?.Invoke(skillName, animationCallback);
         public void SkillHit() => OnSkillHit?.Invoke();
-        public void CombatReport(CombatLog log) => OnCombatReporting?.Invoke(log);
+
+        public void ReportActive(CombatLog log) => OnCombatActive.Invoke(log);
+        public void ReportPassive(CombatLog log) => OnCombatPassive.Invoke(log);
+        
+        [Button]
+        private void ShowCount() => Debug.Log(OnCombatActive.Count);
 
         public void Initialize(string character)
         {
@@ -70,16 +86,15 @@ namespace Common.Character
             combatClass = profile.CombatClass;
         }
 
-        public virtual void TakeDamage(ICombatProvider provider) => CombatUtility.TakeDamage(provider, this);
+        public virtual void TakeDamage(ICombatProvider provider) => OnTakeDamage.Invoke(provider);
         public virtual void TakeSpell(ICombatProvider provider) => CombatUtility.TakeSpell(provider, this);
         public virtual void TakeHeal(ICombatProvider provider) => CombatUtility.TakeHeal(provider, this);
         public virtual void TakeStatusEffect(ICombatProvider statusEffect) => OnTakeStatusEffect?.Invoke(statusEffect);
 
         protected virtual void Start()
         {
-            Initialize(CharacterName);
-            
-            OnCombatReporting.Register(GetInstanceID(), ShowLog);
+            OnTakeDamage.Register(GetInstanceID(), (provider) => CombatUtility.TakeDamage(provider, this));
+            OnCombatActive.Register(GetInstanceID(), ShowLog);
             OnStart?.Invoke();
         }
 
@@ -92,8 +107,16 @@ namespace Common.Character
         }
 
 #if UNITY_EDITOR
+
+        public ActionTable EditorInitialize { get; } = new();
+
         [Button]
-        private void Initialize() => Initialize(characterName);
+        private void Initialize()
+        {
+            Initialize(characterName);
+            
+            EditorInitialize?.Invoke();
+        }
 #endif
     }
 }

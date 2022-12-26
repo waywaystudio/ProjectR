@@ -33,6 +33,6 @@ namespace Common.Character.Operation.Combat.StatusEffect.DeBuff
             Callback?.Invoke();
         }
         
-        public void CombatReport(CombatLog log) => Sender.CombatReport(log);
+        public void ReportActive(CombatLog log) => Sender.ReportActive(log);
     }
 }

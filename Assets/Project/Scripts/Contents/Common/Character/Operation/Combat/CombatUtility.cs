@@ -45,13 +45,14 @@ namespace Common.Character.Operation.Combat
         public static void TakeDamage(ICombatProvider provider, ICombatTaker taker)
         {
             var log = new CombatLog(provider.Name, taker.Name, provider.ActionName);
-            
+
             // Hit Chance
             if (IsHit(provider.StatTable.Hit, taker.StatTable.Evade)) log.IsHit = true;
             else
             {
                 log.IsHit = false;
-                provider.CombatReport(log);
+                provider.ReportActive(log);
+                taker.ReportPassive(log);
                 return;
             }
             
@@ -78,7 +79,9 @@ namespace Common.Character.Operation.Combat
             }
 
             taker.Hp -= damageAmount;
-            provider.CombatReport(log);
+            
+            provider.ReportActive(log);
+            taker.ReportPassive(log);
         }
         public static void TakeSpell(ICombatProvider provider, ICombatTaker taker)
         {
@@ -89,7 +92,8 @@ namespace Common.Character.Operation.Combat
             else
             {
                 log.IsHit = false;
-                provider.CombatReport(log);
+                provider.ReportActive(log);
+                taker.ReportPassive(log);
                 return;
             }
             
@@ -117,7 +121,9 @@ namespace Common.Character.Operation.Combat
             }
 
             taker.Hp -= damageAmount;
-            provider.CombatReport(log);
+            
+            provider.ReportActive(log);
+            taker.ReportPassive(log);
         }
         public static void TakeHeal(ICombatProvider provider, ICombatTaker taker)
         {
@@ -139,7 +145,8 @@ namespace Common.Character.Operation.Combat
 
             taker.Hp += healAmount;
             
-            provider.CombatReport(log);
+            provider.ReportActive(log);
+            taker.ReportPassive(log);
         }
     }
 }

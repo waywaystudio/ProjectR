@@ -12,7 +12,7 @@ namespace Common.Character.Operation.Combat.Entity
         public string Name => Sender.Name;
         public GameObject Object => Sender.Object;
         public StatTable StatTable => damageTable;
-        public void CombatReport(CombatLog log) => Sender.CombatReport(log);
+        public void ReportActive(CombatLog log) => Sender.ReportActive(log);
 
         public override bool IsReady => true;
         public float DamageValue { get => damageValue; set => damageValue = value; }

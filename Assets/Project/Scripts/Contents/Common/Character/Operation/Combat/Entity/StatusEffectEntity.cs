@@ -10,7 +10,7 @@ namespace Common.Character.Operation.Combat.Entity
         public string Name => Sender.Name;
         public GameObject Object => Sender.Object;
         public StatTable StatTable => Sender.StatTable;
-        public void CombatReport(CombatLog log) => Sender.CombatReport(log);
+        public void ReportActive(CombatLog log) => Sender.ReportActive(log);
         
         public override bool IsReady => true;
     }

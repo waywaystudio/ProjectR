@@ -15,10 +15,7 @@ namespace Common.Character.Operation.Combat.Entity
 
         public override bool IsReady => true;
         public float HealValue { get => healValue; set => healValue = value; }
-
-        public void CombatReport(CombatLog log) => Sender.CombatReport(log);
-        
-        
+        public void ReportActive(CombatLog log) => Sender.ReportActive(log);
 
         protected override void Awake()
         {
