@@ -25,6 +25,7 @@ MonoBehaviour:
     targetLayer: enemy
     skillType: damage
     castingTime: 0
+    resourceObtain: 1
     statusEffect: 
     projectile: 
   - id: 13000002
@@ -38,6 +39,7 @@ MonoBehaviour:
     targetLayer: enemy
     skillType: damage
     castingTime: 0
+    resourceObtain: 10
     statusEffect: 
     projectile: 
   - id: 13000003
@@ -51,6 +53,7 @@ MonoBehaviour:
     targetLayer: enemy
     skillType: damage
     castingTime: 0
+    resourceObtain: 0
     statusEffect: 
     projectile: 
   - id: 13000004
@@ -64,6 +67,7 @@ MonoBehaviour:
     targetLayer: enemy
     skillType: projectile
     castingTime: 3
+    resourceObtain: -20
     statusEffect: 
     projectile: AimShotProjectile
   - id: 13000005
@@ -77,6 +81,7 @@ MonoBehaviour:
     targetLayer: self
     skillType: transcendence
     castingTime: 0
+    resourceObtain: 0
     statusEffect: BloodDrainBuff
     projectile: 
   - id: 13000006
@@ -90,6 +95,7 @@ MonoBehaviour:
     targetLayer: enemy
     skillType: damage
     castingTime: 0
+    resourceObtain: 0
     statusEffect: RoarDeBuff
     projectile: 
   - id: 13000007
@@ -103,6 +109,7 @@ MonoBehaviour:
     targetLayer: enemy
     skillType: damage
     castingTime: 3
+    resourceObtain: 0
     statusEffect: 
     projectile: 
   - id: 13000008
@@ -116,6 +123,7 @@ MonoBehaviour:
     targetLayer: enemy
     skillType: damage
     castingTime: 0.8
+    resourceObtain: 4
     statusEffect: 
     projectile: 
   - id: 13000009
@@ -129,6 +137,7 @@ MonoBehaviour:
     targetLayer: self
     skillType: transcendence
     castingTime: 0
+    resourceObtain: 0
     statusEffect: FuryBuff
     projectile: 
   - id: 13000010
@@ -142,6 +151,7 @@ MonoBehaviour:
     targetLayer: enemy
     skillType: damage
     castingTime: 0
+    resourceObtain: 0
     statusEffect: 
     projectile: 
   - id: 13000011
@@ -155,6 +165,7 @@ MonoBehaviour:
     targetLayer: enemy
     skillType: projectile
     castingTime: 1.5
+    resourceObtain: 0
     statusEffect: FireballDeBuff
     projectile: FireballProjectile
   - id: 13000012
@@ -168,6 +179,7 @@ MonoBehaviour:
     targetLayer: enemy
     skillType: damage
     castingTime: 0
+    resourceObtain: 0
     statusEffect: CorruptionDeBuff
     projectile: 
   - id: 13000013
@@ -181,6 +193,7 @@ MonoBehaviour:
     targetLayer: ally
     skillType: heal
     castingTime: 1.5
+    resourceObtain: 0
     statusEffect: 
     projectile: 
   - id: 13000014
@@ -194,6 +207,7 @@ MonoBehaviour:
     targetLayer: ally
     skillType: heal
     castingTime: 0
+    resourceObtain: 0
     statusEffect: 
     projectile: 
   - id: 13000015
@@ -207,6 +221,7 @@ MonoBehaviour:
     targetLayer: ally
     skillType: heal
     castingTime: 0
+    resourceObtain: 0
     statusEffect: 
     projectile: 
   - id: 13000016
@@ -220,6 +235,7 @@ MonoBehaviour:
     targetLayer: ally
     skillType: heal
     castingTime: 6
+    resourceObtain: 0
     statusEffect: 
     projectile: 
   - id: 13000017
@@ -233,6 +249,7 @@ MonoBehaviour:
     targetLayer: ally
     skillType: projectile
     castingTime: 2
+    resourceObtain: 0
     statusEffect: 
     projectile: ChainHealingProjectile
   - id: 13000018
@@ -246,5 +263,20 @@ MonoBehaviour:
     targetLayer: ally
     skillType: projectile
     castingTime: 0
+    resourceObtain: 0
     statusEffect: 
     projectile: HealOrbProjectile
+  - id: 13000019
+    name: RangeAttack
+    baseValue: 0
+    baseCoolTime: 0
+    range: 25
+    priority: 1
+    animationKey: attack
+    targetCount: 1
+    targetLayer: enemy
+    skillType: projectile
+    castingTime: 1
+    resourceObtain: 10
+    statusEffect: 
+    projectile: RangeAttackProjectile

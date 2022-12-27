@@ -17,6 +17,7 @@ namespace MainGame.Data.ContentData
 			[SerializeField] private Int32 id;
 			[SerializeField] private String name;
 			[SerializeField] private Single maxHp;
+			[SerializeField] private Single maxResource;
 			[SerializeField] private Single moveSpeed;
 			[SerializeField] private Single critical;
 			[SerializeField] private Single haste;
@@ -27,6 +28,7 @@ namespace MainGame.Data.ContentData
 			public Int32 ID => id;
 			public String Name => name;
 			public Single MaxHp => maxHp;
+			public Single MaxResource => maxResource;
 			public Single MoveSpeed => moveSpeed;
 			public Single Critical => critical;
 			public Single Haste => haste;

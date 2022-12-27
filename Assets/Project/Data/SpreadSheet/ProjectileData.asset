@@ -38,3 +38,9 @@ MonoBehaviour:
     baseValue: 20
     statusEffect: 
     particleKey: HealOrbParticle
+  - id: 15000005
+    name: RangeAttackProjectile
+    speed: 30
+    baseValue: 5
+    statusEffect: 
+    particleKey: RangeAttackParticle

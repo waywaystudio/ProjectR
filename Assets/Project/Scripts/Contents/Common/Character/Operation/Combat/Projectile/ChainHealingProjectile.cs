@@ -34,13 +34,14 @@ namespace Common.Character.Operation.Combat.Projectile
             });
         }
 
-        private void Arrived()
+        protected void Arrived()
         {
             if (ValidateTaker) Taker.TakeHeal(HealEntity);
             
             if (--bounceCount <= 0)
             {
                 bounceTargetList.Clear();
+                Destroy(gameObject, 0.1f);
                 return;
             }
             

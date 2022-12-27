@@ -9,6 +9,7 @@ namespace Common.Character.Operation.Combat.Entity
         public new string ActionName { get => statusEffectName; set => statusEffectName = value; }
         public string Name => Sender.Name;
         public GameObject Object => Sender.Object;
+        public Status Status => Sender.Status;
         public StatTable StatTable => Sender.StatTable;
         public void ReportActive(CombatLog log) => Sender.ReportActive(log);
         

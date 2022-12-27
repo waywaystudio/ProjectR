@@ -25,6 +25,7 @@ namespace MainGame.Data.ContentData
 			[SerializeField] private String targetLayer;
 			[SerializeField] private String skillType;
 			[SerializeField] private Single castingTime;
+			[SerializeField] private Single resourceObtain;
 			[SerializeField] private String statusEffect;
 			[SerializeField] private String projectile;
 
@@ -39,6 +40,7 @@ namespace MainGame.Data.ContentData
 			public String TargetLayer => targetLayer;
 			public String SkillType => skillType;
 			public Single CastingTime => castingTime;
+			public Single ResourceObtain => resourceObtain;
 			public String StatusEffect => statusEffect;
 			public String Projectile => projectile;
 

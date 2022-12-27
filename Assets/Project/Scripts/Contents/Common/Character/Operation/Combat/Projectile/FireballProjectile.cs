@@ -25,13 +25,16 @@ namespace Common.Character.Operation.Combat.Projectile
             });
         }
         
-        private void Arrived()
+        protected void Arrived()
         {
             if (ValidateTaker)
             {
                 Taker.TakeDamage(DamageEntity);
                 Taker.TakeStatusEffect(StatusEffectEntity);
             }
+            
+            // TODO. Return To Pool
+            Destroy(gameObject);
         }
     }
 }

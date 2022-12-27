@@ -29,7 +29,7 @@ namespace Common.Character.Operation.Combat
 
         public bool TryGetMostPrioritySkill(out BaseSkill skill)
         {
-            var coolOnSkill = SkillTable.Where(x => x.Value.IsCoolTimeReady)
+            var coolOnSkill = SkillTable.Where(x => x.Value.IsSkillReady)
                 .ToList();
             
             if (!coolOnSkill.IsNullOrEmpty())
@@ -80,6 +80,11 @@ namespace Common.Character.Operation.Combat
             }
 
             IsGlobalCooling = false;
+        }
+
+        private void Awake()
+        {
+            GetComponentsInChildren<BaseSkill>().ForEach(x => SkillTable.TryAdd(x.ID, x));
         }
     }
 }

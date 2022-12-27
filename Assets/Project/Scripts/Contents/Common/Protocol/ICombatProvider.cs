@@ -1,5 +1,4 @@
 using Common.Character;
-using Core;
 using UnityEngine;
 
 namespace Common
@@ -8,6 +7,7 @@ namespace Common
     {
         string Name { get; }
         GameObject Object { get; }
+        public Status Status { get; }
         public StatTable StatTable { get; }
     }
 

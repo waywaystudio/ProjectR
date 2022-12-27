@@ -14,6 +14,7 @@ namespace Common.Character.Operation.Combat.StatusEffect
     public class StatusEffecting : MonoBehaviour
     {
         private CharacterBehaviour cb;
+        private int instanceID;
 
         [ShowInInspector] public Dictionary<string, BaseStatusEffect> BuffTable { get; set; } = new();
         [ShowInInspector] public Dictionary<string, BaseStatusEffect> DeBuffTable { get; set; } = new();
@@ -24,40 +25,42 @@ namespace Common.Character.Operation.Combat.StatusEffect
             
             switch (provider.ActionName)
             {
-                case "CorruptionDeBuff": statusEffect = GenerateStatusEffect<CorruptionDeBuff>(provider); break;
                 case "BloodDrainBuff" : statusEffect = GenerateStatusEffect<BloodDrainBuff>(provider); break;
-                case "RoarDeBuff" : statusEffect = GenerateStatusEffect<RoarDeBuff>(provider); break;
+                case "CorruptionDeBuff": statusEffect = GenerateStatusEffect<CorruptionDeBuff>(provider); break;
                 case "FireballDeBuff" : statusEffect = GenerateStatusEffect<FireballDeBuff>(provider); break;
+                case "FuryBuff" : statusEffect = GenerateStatusEffect<FuryBuff>(provider); break;
+                case "RoarDeBuff" : statusEffect = GenerateStatusEffect<RoarDeBuff>(provider); break;
                 
                 default: return;
             }
 
-            var suitTable = statusEffect.IsBuff
+            var targetTable = statusEffect.IsBuff
                 ? BuffTable
                 : DeBuffTable;
             
-            if (suitTable.ContainsKey(provider.ActionName))
+            if (targetTable.ContainsKey(provider.ActionName))
             {
                 // Implement Compare
                 return;
             }
 
             statusEffect.InvokeRoutine = StartCoroutine(statusEffect.MainAction());
-            suitTable.TryAdd(provider.ActionName, statusEffect);
+            targetTable.TryAdd(provider.ActionName, statusEffect);
         }
 
         public bool TryRemove(ICombatProvider provider) => TryRemove(provider.ActionName);
         public bool TryRemove(string key)
         {
-            if (!BuffTable.TryGetValue(key, out var statusEffect)) return false;
-
-            // TODO. 수정했다...근데 맞나? 테스트해봐야 한다.
-            if (statusEffect.InvokeRoutine != null)
-            {
+            var targetTable = key.EndsWith("DeBuff")
+                ? DeBuffTable
+                : BuffTable;
+            
+            if (!targetTable.TryGetValue(key, out var statusEffect)) return false;
+            
+            if (statusEffect.InvokeRoutine != null) 
                 StopCoroutine(statusEffect.InvokeRoutine);
-            }
 
-            BuffTable.TryRemove(key);
+            targetTable.TryRemove(key);
 
             return true;
         }
@@ -73,7 +76,8 @@ namespace Common.Character.Operation.Combat.StatusEffect
                 ID = statusEffectData.ID,
                 IsBuff = statusEffectData.IsBuff,
                 Duration = statusEffectData.Duration,
-                ProviderInfo = provider,
+                CombatValue = statusEffectData.CombatValue,
+                Sender = provider,
                 ActionName = provider.ActionName,
                 TakerInfo = cb,
                 Callback = () => TryRemove(provider),
@@ -83,7 +87,8 @@ namespace Common.Character.Operation.Combat.StatusEffect
         private void Awake()
         {
             cb = GetComponentInParent<CharacterBehaviour>();
-            cb.OnTakeStatusEffect.Register(GetInstanceID(), TryAdd);
+            instanceID = GetInstanceID();
+            cb.OnTakeStatusEffect.Register(instanceID, TryAdd);
         }
     }
 }

@@ -70,15 +70,15 @@ namespace Common.Character.Operation.Combat
             
             log.Value = damageAmount;
 
-            if (damageAmount >= taker.Hp || taker.Hp <= 0f)
+            if (damageAmount >= taker.Status.Hp || taker.Status.Hp <= 0f)
             {
                 Debug.Log("Dead!");
-                taker.Hp = 0;
-                log.Value -= taker.Hp;
-                taker.IsAlive = false;
+                taker.Status.Hp = 0;
+                log.Value -= taker.Status.Hp;
+                taker.Status.IsAlive = false;
             }
 
-            taker.Hp -= damageAmount;
+            taker.Status.Hp -= damageAmount;
             
             provider.ReportActive(log);
             taker.ReportPassive(log);
@@ -112,15 +112,15 @@ namespace Common.Character.Operation.Combat
             
             log.Value = damageAmount;
 
-            if (damageAmount >= taker.Hp || taker.Hp <= 0f)
+            if (damageAmount >= taker.Status.Hp || taker.Status.Hp <= 0f)
             {
                 Debug.Log("Dead!");
-                taker.Hp = 0;
-                log.Value -= taker.Hp;
-                taker.IsAlive = false;
+                taker.Status.Hp = 0;
+                log.Value -= taker.Status.Hp;
+                taker.Status.IsAlive = false;
             }
 
-            taker.Hp -= damageAmount;
+            taker.Status.Hp -= damageAmount;
             
             provider.ReportActive(log);
             taker.ReportPassive(log);
@@ -138,12 +138,12 @@ namespace Common.Character.Operation.Combat
                 healAmount *= 2f;
             }
 
-            if (healAmount + taker.Hp >= taker.StatTable.MaxHp)
+            if (healAmount + taker.Status.Hp >= taker.StatTable.MaxHp)
             {
-                healAmount = log.Value = taker.StatTable.MaxHp - taker.Hp;
+                healAmount = log.Value = taker.StatTable.MaxHp - taker.Status.Hp;
             }
 
-            taker.Hp += healAmount;
+            taker.Status.Hp += healAmount;
             
             provider.ReportActive(log);
             taker.ReportPassive(log);

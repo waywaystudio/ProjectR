@@ -7,9 +7,9 @@ namespace Common.Character.Operation.Combat.StatusEffect.DeBuff
     {
         private const int TickCount = 5;
 
-        public ICombatProvider Sender => ProviderInfo.Sender;
-        public string Name => ProviderInfo.Name;
-        public GameObject Object => ProviderInfo.Object;
+        public string Name => Sender.Name;
+        public GameObject Object => Sender.Object;
+        public Status Status => Sender.Status;
         public StatTable StatTable => Sender.StatTable;
 
         public override IEnumerator MainAction()

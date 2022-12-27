@@ -5,7 +5,6 @@ namespace Common.Character.Operation.Combat.StatusEffect.DeBuff
 {
     public class FireballDeBuff : BaseStatusEffect
     {
-        // private const string Fireball = "Fireball";
         private WaitForSeconds waitForSeconds;
         private CharacterBehaviour cb;
         

@@ -20,12 +20,12 @@ namespace Common.Character.Operation.Combat.Behavior
                 return TaskStatus.Failure;
             }
 
-            if (!skill.TryGetEntity<CoolTimeEntity>(EntityType.CoolTime, out var coolTimeEntity))
+            if (skill.CoolTimeEntity is null)
             {
                 return TaskStatus.Success;
             }
 
-            return coolTimeEntity.IsReady
+            return skill.CoolTimeEntity.IsReady
                 ? TaskStatus.Success
                 : TaskStatus.Failure;
         }

@@ -11,6 +11,7 @@ namespace Common.Character.Operation.Combat.Entity
 
         public string Name => Sender.Name;
         public GameObject Object => Sender.Object;
+        public Status Status => Sender.Status;
         public StatTable StatTable => healTable;
 
         public override bool IsReady => true;

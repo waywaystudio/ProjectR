@@ -23,7 +23,9 @@ namespace Common.Character.Operation.Combat.Behavior
                 return TaskStatus.Failure;
             }
 
-            if (!skill.TryGetEntity<TargetEntity>(EntityType.Target, out var targetEntity))
+            var targetEntity = skill.TargetEntity;
+
+            if (targetEntity is null)
             {
                 return TaskStatus.Success;
             }

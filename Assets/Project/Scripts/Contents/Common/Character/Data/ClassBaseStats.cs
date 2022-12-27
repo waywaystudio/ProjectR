@@ -18,6 +18,7 @@ namespace Common.Character.Data
 
         [SerializeField] private string combatClass;
         [SerializeField] private float maxHp;
+        [SerializeField] private float maxResource;
         [SerializeField] private float moveSpeed;
         [SerializeField] private float critical;
         [SerializeField] private float haste;
@@ -42,6 +43,7 @@ namespace Common.Character.Data
 
             maxHp = ClassData.MaxHp;
             moveSpeed = ClassData.MoveSpeed;
+            maxResource = ClassData.MaxResource;
             critical = ClassData.Critical;
             haste = ClassData.Haste;
             hit = ClassData.Hit;
@@ -53,6 +55,7 @@ namespace Common.Character.Data
         {
             Cb.StatTable.Register(StatCode.AddMaxHp, instanceID, () => maxHp, true);
             Cb.StatTable.Register(StatCode.AddMoveSpeed, instanceID, () => moveSpeed, true);
+            Cb.StatTable.Register(StatCode.AddMaxResource, instanceID, () => maxResource, true);
             Cb.StatTable.Register(StatCode.AddCritical, instanceID, () => critical, true);
             Cb.StatTable.Register(StatCode.AddHaste, instanceID, () => haste, true);
             Cb.StatTable.Register(StatCode.AddHit, instanceID, () => hit, true);

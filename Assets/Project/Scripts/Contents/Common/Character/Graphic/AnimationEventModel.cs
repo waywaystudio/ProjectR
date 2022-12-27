@@ -39,9 +39,10 @@ namespace Common.Character.Graphic
 
         private void EventHandler(TrackEntry trackEntry, Event e)
         {
+            Debug.Log("Animation Event In");
+            
             if (e.Data == EventTable["attackHit"])
             {
-                Debug.Log("attackHit In");
                 Cb.SkillHit();
             }
             if (e.Data == EventTable["skillHit"])

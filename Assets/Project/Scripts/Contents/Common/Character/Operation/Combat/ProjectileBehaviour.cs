@@ -23,7 +23,7 @@ namespace Common.Character.Operation.Combat
         protected LayerMask TargetLayer => targetLayer;
         protected Dictionary<EntityType, BaseEntity> EntityTable { get; } = new();
         protected Tweener TrajectoryTweener;
-        protected bool ValidateTaker => Taker != null && !Taker.Object.IsNullOrEmpty() && Taker.IsAlive;
+        protected bool ValidateTaker => Taker != null && !Taker.Object.IsNullOrEmpty() && Taker.Status.IsAlive;
         private Vector3 destination;
 
         protected DamageEntity DamageEntity => EntityTable[EntityType.Damage] as DamageEntity;
@@ -50,9 +50,9 @@ namespace Common.Character.Operation.Combat
 
             Trajectory();
         }
-        
-        
+
         protected abstract void Trajectory();
+        // protected abstract void Arrived();
 
         protected virtual void Awake()
         {

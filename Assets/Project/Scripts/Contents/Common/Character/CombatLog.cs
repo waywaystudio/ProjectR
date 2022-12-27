@@ -12,9 +12,9 @@ namespace Common.Character
             Value = value;
         }
         
-        public string Provider;
-        public string Taker;
-        public string ActionName;
+        public readonly string Provider;
+        public readonly string Taker;
+        public readonly string ActionName;
         public bool IsHit;
         public bool IsCritical;
         public float Value;

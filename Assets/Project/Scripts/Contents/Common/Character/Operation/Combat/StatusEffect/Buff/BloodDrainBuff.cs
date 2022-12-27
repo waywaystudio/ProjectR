@@ -7,7 +7,7 @@ namespace Common.Character.Operation.Combat.StatusEffect.Buff
     {
         private CharacterBehaviour cb;
         
-        private CharacterBehaviour Cb => cb ??= ProviderInfo.Object.GetComponent<CharacterBehaviour>();
+        private CharacterBehaviour Cb => cb ??= Sender.Object.GetComponent<CharacterBehaviour>();
         private WaitForSeconds waitForSeconds;
         
         public override IEnumerator MainAction()
@@ -26,7 +26,7 @@ namespace Common.Character.Operation.Combat.StatusEffect.Buff
         {
             var drainValue = log.Value * BaseData.CombatValue;
             
-            Cb.Hp += drainValue;
+            Cb.Status.Hp += drainValue;
         }
     }
 }

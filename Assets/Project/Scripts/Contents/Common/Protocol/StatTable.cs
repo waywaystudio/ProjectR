@@ -20,6 +20,7 @@ namespace Common
         public float Haste => Get(StatCode.Haste);
         public float Hit => Get(StatCode.Hit);
         public float MaxHp => Get(StatCode.MaxHp);
+        public float MaxResource => Get(StatCode.MaxResource);
         public float MoveSpeed => Get(StatCode.MoveSpeed);
         public float Armor => Get(StatCode.Armor);
         public float Evade => Get(StatCode.Evade);

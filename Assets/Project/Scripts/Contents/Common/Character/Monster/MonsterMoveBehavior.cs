@@ -6,11 +6,11 @@ namespace Common.Character.Monster
     [TaskCategory("Monster")]
     public class MonsterMoveBehavior : Action
     {
-        private MonsterBehavior mb;
+        private WillBeChangedMonsterBehavior mb;
 
         public override void OnAwake()
         {
-            mb = GetComponent<MonsterBehavior>();
+            mb = GetComponent<WillBeChangedMonsterBehavior>();
         }
 
         public override TaskStatus OnUpdate()

@@ -41,14 +41,7 @@ namespace Common.Character.Operation.Combat.Entity
             CoolTimeTick = Time.deltaTime;
         }
 
-        private void OnEnable()
-        {
-            OnCompleted.Register(InstanceID, ResetTimer);
-        }
-        
-        private void OnDisable()
-        { 
-            OnCompleted.Unregister(InstanceID);
-        }
+        private void OnEnable() => OnCompleted.Register(InstanceID, ResetTimer);
+        private void OnDisable() => OnCompleted.Unregister(InstanceID);
     }
 }

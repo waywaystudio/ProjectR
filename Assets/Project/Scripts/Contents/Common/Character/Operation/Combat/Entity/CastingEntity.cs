@@ -11,17 +11,12 @@ namespace Common.Character.Operation.Combat.Entity
         
         private float castingTick;
         private bool onCasting;
-        private float remainTimer;
 
         public float OriginalCastingTime { get => originalCastingTime; set => originalCastingTime = value; }
-        private float CastingTime => originalCastingTime * CharacterUtility.GetHasteValue(Sender.StatTable.Haste);
+        public float CastingTime => originalCastingTime * CharacterUtility.GetHasteValue(Sender.StatTable.Haste);
+        public float CastingProgress { get; private set; }
         private float CastingTick { get => castingTick; set => castingTick = value; }
-        private float RemainTimer
-        {
-            get => remainTimer; 
-            set => remainTimer = Mathf.Max(0, value);
-        }
-        
+
         public override bool IsReady => !onCasting;
         
 
@@ -30,7 +25,7 @@ namespace Common.Character.Operation.Combat.Entity
         {
             onCasting = false;
             
-            ResetRemainTimer();
+            ResetProgress();
             StopAllCoroutines();
         }
         
@@ -38,18 +33,18 @@ namespace Common.Character.Operation.Combat.Entity
         {
             onCasting = true;
 
-            while (RemainTimer > 0f)
+            while (CastingProgress < CastingTime)
             {
-                RemainTimer -= CastingTick;
+                CastingProgress += CastingTick;
                 yield return null;
             }
             
             onCasting = false;
             
-            ResetRemainTimer();
+            ResetProgress();
         }
         
-        private void ResetRemainTimer() => RemainTimer = CastingTime;
+        private void ResetProgress() => CastingProgress = 0f;
 
         protected override void Awake()
         {

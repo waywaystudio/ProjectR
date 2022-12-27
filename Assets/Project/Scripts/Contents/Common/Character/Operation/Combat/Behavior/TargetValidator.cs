@@ -1,6 +1,4 @@
 using BehaviorDesigner.Runtime.Tasks;
-using Common.Character.Operation.Combat.Entity;
-using Core;
 
 namespace Common.Character.Operation.Combat.Behavior
 {
@@ -22,7 +20,9 @@ namespace Common.Character.Operation.Combat.Behavior
                 return TaskStatus.Failure;
             }
 
-            if (!skill.TryGetEntity<TargetEntity>(EntityType.Target, out var targetEntity))
+            var targetEntity = skill.TargetEntity;
+
+            if (targetEntity is null)
             {
                 return TaskStatus.Success;
             }
@@ -31,7 +31,7 @@ namespace Common.Character.Operation.Combat.Behavior
 
             var isValid =
                 taker != null &&
-                taker.IsAlive;
+                taker.Status.IsAlive;
                 // Add more condition...
 
             return isValid

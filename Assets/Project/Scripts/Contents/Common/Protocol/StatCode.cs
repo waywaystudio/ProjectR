@@ -12,6 +12,7 @@ namespace Common
         /*07*/ Armor,
         /*08*/ Evade,
         /*09*/ Resist,
+        /*10*/ MaxResource,
         /*101*/ AddPower = 101, 
         /*102*/ AddCritical,
         /*103*/ AddHaste,
@@ -21,6 +22,7 @@ namespace Common
         /*107*/ AddArmor,
         /*108*/ AddEvade,
         /*109*/ AddResist,
+        /*110*/ AddMaxResource,
         /*1001*/ MultiPower = 1001,
         /*1002*/ MultiCritical, 
         /*1003*/ MultiHaste,
@@ -30,5 +32,6 @@ namespace Common
         /*1007*/ MultiArmor,
         /*1008*/ MultiEvade,
         /*1009*/ MultiResist,
+        /*1010*/ MultiMaxResource,
     }
 }

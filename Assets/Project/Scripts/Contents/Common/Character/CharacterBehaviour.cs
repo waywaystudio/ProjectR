@@ -1,6 +1,5 @@
 using System;
 using System.Collections.Generic;
-using Common.Character.Operation.Combat;
 using Core;
 using MainGame;
 using Sirenix.OdinInspector;
@@ -8,6 +7,8 @@ using UnityEngine;
 
 namespace Common.Character
 {
+    using Operation.Combat;
+    
     public class CharacterBehaviour : MonoBehaviour, ICombatTaker, ICombatProvider, ISearchable
     {
         [SerializeField] private string characterName = string.Empty;
@@ -16,22 +17,11 @@ namespace Common.Character
         [SerializeField] private float searchingRange = 50f;
         [SerializeField] private LayerMask allyLayer;
         [SerializeField] private LayerMask enemyLayer;
-        [SerializeField] private bool isAlive = true;
-        [SerializeField] private float hp = 1000f;
+        [SerializeField] private Status status;
         
         public string CharacterName => characterName ??= "Diablo";
         public int ID => id;
-        public bool IsAlive { get => isAlive; set => isAlive = value; }
-
-        public float Hp
-        {
-            get => hp;
-            set
-            {
-                hp = Mathf.Min(StatTable.MaxHp, value);
-                OnHpChanged?.Invoke(hp);
-            }
-        }
+        public Status Status => status;
         [ShowInInspector]
         public StatTable StatTable { get; } = new();
         public string ActionName => string.Empty;
@@ -45,8 +35,6 @@ namespace Common.Character
 
         public ActionTable OnStart { get; } = new();
         public ActionTable OnUpdate { get; } = new();
-        public ActionTable<float> OnHpChanged { get; } = new();
-
         public ActionTable OnIdle { get; } = new();
         public ActionTable<Vector3, Action> OnWalk { get; } = new();
         public ActionTable<Vector3, Action> OnRun { get; } = new();
@@ -55,11 +43,11 @@ namespace Common.Character
         public ActionTable OnSkillHit { get; } = new();
         public ActionTable<ICombatProvider> OnTakeDamage { get; } = new();
         public ActionTable<ICombatProvider> OnTakeStatusEffect { get; } = new();
-        [ShowInInspector]
         public ActionTable<CombatLog> OnCombatActive { get; } = new();
         public ActionTable<CombatLog> OnCombatPassive { get; } = new();
         public FunctionTable<bool> IsReached { get; } = new();
         public FunctionTable<Vector3> Direction { get; } = new();
+        public BaseSkill CurrentSkill { get; set; }
         public List<GameObject> AdventureList { get; } = new();
         public List<GameObject> MonsterList { get; } = new();
         public ICombatTaker MainTarget { get; set; }
@@ -70,12 +58,8 @@ namespace Common.Character
         public void Teleport(Vector3 destination) => OnTeleport?.Invoke(destination);
         public void Skill(string skillName, Action animationCallback) => OnSkill?.Invoke(skillName, animationCallback);
         public void SkillHit() => OnSkillHit?.Invoke();
-
         public void ReportActive(CombatLog log) => OnCombatActive.Invoke(log);
         public void ReportPassive(CombatLog log) => OnCombatPassive.Invoke(log);
-        
-        [Button]
-        private void ShowCount() => Debug.Log(OnCombatActive.Count);
 
         public void Initialize(string character)
         {
@@ -91,15 +75,24 @@ namespace Common.Character
         public virtual void TakeHeal(ICombatProvider provider) => CombatUtility.TakeHeal(provider, this);
         public virtual void TakeStatusEffect(ICombatProvider statusEffect) => OnTakeStatusEffect?.Invoke(statusEffect);
 
-        protected virtual void Start()
+        protected virtual void Awake()
         {
-            OnTakeDamage.Register(GetInstanceID(), (provider) => CombatUtility.TakeDamage(provider, this));
-            OnCombatActive.Register(GetInstanceID(), ShowLog);
-            OnStart?.Invoke();
+            status = new Status(StatTable)
+            {
+                Shield = 0f,
+                Resource = 0f
+            };
         }
 
+        protected virtual void Start()
+        {
+            // OnCombatActive.Register(GetInstanceID(), ShowLog);
+            OnTakeDamage.Register(GetInstanceID(), (provider) => CombatUtility.TakeDamage(provider, this));
+            OnStart?.Invoke();
+
+            status.Hp = StatTable.MaxHp;
+        }
         protected void Update() => OnUpdate?.Invoke();
-        
         private void ShowLog(CombatLog log)
         {
             Debug.Log($"Combat : IsHit:{log.IsHit} IsCritical:{log.IsCritical} Value:{log.Value} " +
@@ -114,7 +107,6 @@ namespace Common.Character
         private void Initialize()
         {
             Initialize(characterName);
-            
             EditorInitialize?.Invoke();
         }
 #endif

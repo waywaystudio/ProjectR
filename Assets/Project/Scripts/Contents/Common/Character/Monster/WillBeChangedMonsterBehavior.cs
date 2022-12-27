@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace Common.Character
 {
-    public class MonsterBehavior : CharacterBehaviour
+    public class WillBeChangedMonsterBehavior : CharacterBehaviour
     {
         protected override void Start()
         {
