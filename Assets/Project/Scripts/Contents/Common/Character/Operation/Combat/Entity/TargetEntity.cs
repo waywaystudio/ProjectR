@@ -70,7 +70,7 @@ namespace Common.Character.Operation.Combat.Entity
         {
             if (targetLayerType is "self")
             {
-                combatTaker = GetComponentInParent<ICombatTaker>();
+                combatTaker = searchEngine.Self;
             }
             else
             {
@@ -90,7 +90,7 @@ namespace Common.Character.Operation.Combat.Entity
             base.Awake();
             
             searchedList = TargetLayerType is "ally" or "self"
-                         ? searchEngine.AdventureList // ally or self
+                         ? searchEngine.AdventurerList // ally or self
                          : searchEngine.MonsterList;  // enemy
         }
     }

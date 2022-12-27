@@ -1,4 +1,3 @@
-using Core;
 using UnityEngine;
 
 namespace Common.Character
@@ -32,7 +31,5 @@ namespace Common.Character
         {
             StatTable.Unregister(StatCode.AddMoveSpeed, 11);
         }
-
-        public override GameObject Object => gameObject;
     }
 }

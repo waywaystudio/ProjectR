@@ -24,7 +24,7 @@ namespace Common.Character.Operation.Combat
 
         public void UpdateCharacterList()
         {
-            UpdateSearchingList(cb.AllyLayer, cb.AdventureList);
+            UpdateSearchingList(cb.AllyLayer, cb.AdventurerList);
         }
 
         public void UpdateMonsterList()
@@ -62,7 +62,7 @@ namespace Common.Character.Operation.Combat
         {
             if (other.gameObject.IsInLayerMask(cb.AllyLayer))
             {
-                cb.AdventureList.AddUniquely(other.gameObject);
+                cb.AdventurerList.AddUniquely(other.gameObject);
             } 
             else if (other.gameObject.IsInLayerMask(cb.EnemyLayer))
             {
@@ -74,7 +74,7 @@ namespace Common.Character.Operation.Combat
         {
             if (other.gameObject.IsInLayerMask(cb.AllyLayer))
             {
-                cb.AdventureList.RemoveSafely(other.gameObject);
+                cb.AdventurerList.RemoveSafely(other.gameObject);
             } 
             else if (other.gameObject.IsInLayerMask(cb.EnemyLayer))
             {

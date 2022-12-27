@@ -2,8 +2,8 @@ using System;
 using System.Collections.Generic;
 using Core;
 using MainGame;
-using Sirenix.OdinInspector;
 using UnityEngine;
+// ReSharper disable UnusedMember.Local
 
 namespace Common.Character
 {
@@ -18,20 +18,18 @@ namespace Common.Character
         [SerializeField] private LayerMask allyLayer;
         [SerializeField] private LayerMask enemyLayer;
         [SerializeField] private Status status;
-        
-        public string CharacterName => characterName ??= "Diablo";
+
         public int ID => id;
         public Status Status => status;
-        [ShowInInspector]
         public StatTable StatTable { get; } = new();
         public string ActionName => string.Empty;
-        public string Name => CharacterName;
+        public string Name => characterName ??= "Diablo";
         public ICombatProvider Sender => this;
-        public string CombatClass => combatClass ??= MainData.GetAdventurerData(CharacterName).CombatClass;
+        public string CombatClass => combatClass ??= MainData.GetAdventurerData(Name).CombatClass;
         public float SearchingRange => searchingRange;
         public LayerMask AllyLayer => allyLayer;
         public LayerMask EnemyLayer => enemyLayer;
-        public virtual GameObject Object => gameObject;
+        public GameObject Object => gameObject;
 
         public ActionTable OnStart { get; } = new();
         public ActionTable OnUpdate { get; } = new();
@@ -48,9 +46,10 @@ namespace Common.Character
         public FunctionTable<bool> IsReached { get; } = new();
         public FunctionTable<Vector3> Direction { get; } = new();
         public BaseSkill CurrentSkill { get; set; }
-        public List<GameObject> AdventureList { get; } = new();
+        public List<GameObject> AdventurerList { get; } = new();
         public List<GameObject> MonsterList { get; } = new();
         public ICombatTaker MainTarget { get; set; }
+        public ICombatTaker Self => this;
 
         public void Idle() => OnIdle?.Invoke();
         public void Walk(Vector3 destination, Action pathCallback = null) => OnWalk?.Invoke(destination, pathCallback);
@@ -61,28 +60,10 @@ namespace Common.Character
         public void ReportActive(CombatLog log) => OnCombatActive.Invoke(log);
         public void ReportPassive(CombatLog log) => OnCombatPassive.Invoke(log);
 
-        public void Initialize(string character)
-        {
-            var profile = MainData.GetAdventurerData(character);
-
-            characterName = profile.Name;
-            id = profile.ID;
-            combatClass = profile.CombatClass;
-        }
-
         public virtual void TakeDamage(ICombatProvider provider) => OnTakeDamage.Invoke(provider);
         public virtual void TakeSpell(ICombatProvider provider) => CombatUtility.TakeSpell(provider, this);
         public virtual void TakeHeal(ICombatProvider provider) => CombatUtility.TakeHeal(provider, this);
         public virtual void TakeStatusEffect(ICombatProvider statusEffect) => OnTakeStatusEffect?.Invoke(statusEffect);
-
-        protected virtual void Awake()
-        {
-            status = new Status(StatTable)
-            {
-                Shield = 0f,
-                Resource = 0f
-            };
-        }
 
         protected virtual void Start()
         {
@@ -90,7 +71,9 @@ namespace Common.Character
             OnTakeDamage.Register(GetInstanceID(), (provider) => CombatUtility.TakeDamage(provider, this));
             OnStart?.Invoke();
 
+            status.StatTable = StatTable;
             status.Hp = StatTable.MaxHp;
+            status.IsAlive = true;
         }
         protected void Update() => OnUpdate?.Invoke();
         private void ShowLog(CombatLog log)
@@ -102,11 +85,17 @@ namespace Common.Character
 #if UNITY_EDITOR
 
         public ActionTable EditorInitialize { get; } = new();
-
-        [Button]
         private void Initialize()
         {
-            Initialize(characterName);
+            if (characterName == string.Empty)
+            {
+                Debug.LogError("CharacterName Required");
+                return;
+            }
+            var profile = MainData.GetAdventurerData(characterName);
+
+            id = profile.ID;
+            combatClass = profile.CombatClass;
             EditorInitialize?.Invoke();
         }
 #endif

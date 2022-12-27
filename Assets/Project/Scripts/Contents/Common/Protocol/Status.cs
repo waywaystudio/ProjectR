@@ -7,6 +7,7 @@ namespace Common
     [Serializable]
     public class Status
     {
+        public Status() : this(null) {}
         public Status(StatTable statTable)
         {
             StatTable = statTable;
@@ -18,12 +19,11 @@ namespace Common
         [SerializeField] private float resource;
         [SerializeField] private float shield;
 
-        private StatTable StatTable { get; set; }
-
         public ActionTable<bool> OnAliveChanged { get; } = new();
         public ActionTable<float> OnHpChanged { get; } = new();
         public ActionTable<float> OnResourceChanged { get; } = new();
         public ActionTable<float> OnShieldChanged { get; } = new();
+        public StatTable StatTable { get; set; }
 
         public bool IsAlive
         {

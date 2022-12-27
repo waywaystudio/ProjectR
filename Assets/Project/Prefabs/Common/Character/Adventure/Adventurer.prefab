@@ -15,7 +15,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &9160038010263774325
 Transform:
   m_ObjectHideFlags: 0
@@ -834,7 +834,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8521f74cfcd742d4c92534369a03a505, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cb: {fileID: 0}
+  cb: {fileID: 3044725383043683279}
   fillImage: {fileID: 7005035760309952161}
   lerpDuration: 0.2
 --- !u!1 &3689684336045401268
@@ -1291,7 +1291,7 @@ MonoBehaviour:
     maximumPeriod: 2
     visualizeSensitivity: 0
   targetCompatibility: {fileID: 0}
-  maxAcceleration: 150
+  maxAcceleration: 200
   rotationSpeed: 540
   slowdownDistance: 0
   pickNextWaypointDist: 2
@@ -1459,7 +1459,7 @@ GameObject:
   - component: {fileID: 3744010700929808892}
   - component: {fileID: 3744010700929808894}
   - component: {fileID: 3744010700929808895}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Search
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2142,7 +2142,7 @@ MonoBehaviour:
   id: 13000002
   actionName: Charge
   priority: 5
-  dashSpeed: 30
+  dashSpeed: 25
   offsetDistance: 3.5
 --- !u!114 &7681704895388235946
 MonoBehaviour:
@@ -3035,7 +3035,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &8651108670824624026
 Transform:
   m_ObjectHideFlags: 0

@@ -86,8 +86,9 @@ namespace Common.Character.Operation.Combat.StatusEffect
 
         private void Awake()
         {
-            cb = GetComponentInParent<CharacterBehaviour>();
             instanceID = GetInstanceID();
+            
+            cb = GetComponentInParent<CharacterBehaviour>();
             cb.OnTakeStatusEffect.Register(instanceID, TryAdd);
         }
     }

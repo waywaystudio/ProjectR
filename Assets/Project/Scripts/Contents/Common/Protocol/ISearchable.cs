@@ -5,8 +5,9 @@ namespace Common
 {
     public interface ISearchable
     {
-        List<GameObject> AdventureList { get; }
+        List<GameObject> AdventurerList { get; }
         List<GameObject> MonsterList { get; }
         ICombatTaker MainTarget { get; set; }
+        ICombatTaker Self { get; }
     }
 }

@@ -22,6 +22,7 @@ namespace Common.Character.Graphic
 
         private SkeletonAnimation SkAnimation => skAnimation ??= GetComponent<SkeletonAnimation>();
         private CharacterBehaviour Cb => cb ??= GetComponentInParent<CharacterBehaviour>();
+        [ShowInInspector]
         private Dictionary<string, EventData> EventTable { get; } = new();
 
         private void OnEnable()

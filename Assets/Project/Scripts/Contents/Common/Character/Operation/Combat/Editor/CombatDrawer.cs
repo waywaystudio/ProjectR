@@ -8,7 +8,7 @@ using UnityEngine;
 
 namespace Common.Character.Operation.Combat.Editor
 {
-    public class CombatDrawer : OdinAttributeProcessor<Combat.Combating>
+    public class CombatDrawer : OdinAttributeProcessor<Combating>
     {
         public override void ProcessChildMemberAttributes(InspectorProperty parentProperty, MemberInfo member, List<Attribute> attributes)
         {
