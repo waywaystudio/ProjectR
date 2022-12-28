@@ -1,6 +1,7 @@
 # Scriptable Object Creator
 ### Description
-AddComponent like ScriptableObject creation tool.
+Tool for ScriptableObjects creation.
+
 #### Features
 - Project specific search assemblies
 - Attribute object marking
@@ -8,8 +9,7 @@ AddComponent like ScriptableObject creation tool.
 - Shortcuts
 
 #### Installation
-Install from Package Manager git url 
-`https://github.com/NullTale/ScriptableObjectCreator.git`
+Install from Package Manager git url `https://github.com/NullTale/SoCreator.git`
 
 ![image](https://user-images.githubusercontent.com/1497430/181345613-b81a77c6-c449-4b19-ab1e-88b1ef06f6fc.png)
 
@@ -25,6 +25,6 @@ Classes can be marked with `SoCreateAttribute` to manually define their visibili
 ### Other options
 For the project, you can set assemblies in which the search will be performed by default.
 
-Also specify the default folders for Scriptable Objects of a certain type created through a hotkey
+Also specify the default folders for Scriptable Objects of a certain type created through a hotkey.
 
 ![image](https://user-images.githubusercontent.com/1497430/191843759-2836cd67-f169-4f65-8fca-264e7e9e7a07.png)

@@ -16,6 +16,7 @@ MonoBehaviour:
   list:
   - id: 12000001
     name: Warrior
+    baseRole: Tank
     maxHp: 1000
     maxResource: 100
     moveSpeed: 7
@@ -26,6 +27,7 @@ MonoBehaviour:
     armor: 20
   - id: 12000002
     name: Paladin
+    baseRole: Tank
     maxHp: 1000
     maxResource: 100
     moveSpeed: 7
@@ -36,7 +38,8 @@ MonoBehaviour:
     armor: 20
   - id: 12000003
     name: Load
-    maxHp: 3000
+    baseRole: Tank
+    maxHp: 1000
     maxResource: 100
     moveSpeed: 7
     critical: 0.05
@@ -46,6 +49,7 @@ MonoBehaviour:
     armor: 20
   - id: 12000004
     name: DeathKnight
+    baseRole: Tank
     maxHp: 1000
     maxResource: 100
     moveSpeed: 7
@@ -56,6 +60,7 @@ MonoBehaviour:
     armor: 20
   - id: 12000005
     name: Druid
+    baseRole: Tank
     maxHp: 1000
     maxResource: 100
     moveSpeed: 7
@@ -66,6 +71,7 @@ MonoBehaviour:
     armor: 20
   - id: 12000006
     name: Rogue
+    baseRole: Melee
     maxHp: 700
     maxResource: 100
     moveSpeed: 7
@@ -76,6 +82,7 @@ MonoBehaviour:
     armor: 15
   - id: 12000007
     name: Lancer
+    baseRole: Melee
     maxHp: 700
     maxResource: 100
     moveSpeed: 7
@@ -86,6 +93,7 @@ MonoBehaviour:
     armor: 15
   - id: 12000008
     name: Monk
+    baseRole: Melee
     maxHp: 700
     maxResource: 100
     moveSpeed: 7
@@ -96,6 +104,7 @@ MonoBehaviour:
     armor: 15
   - id: 12000009
     name: Berserker
+    baseRole: Melee
     maxHp: 700
     maxResource: 100
     moveSpeed: 7
@@ -106,6 +115,7 @@ MonoBehaviour:
     armor: 15
   - id: 12000010
     name: Blade
+    baseRole: Melee
     maxHp: 700
     maxResource: 100
     moveSpeed: 7
@@ -116,6 +126,7 @@ MonoBehaviour:
     armor: 15
   - id: 12000011
     name: Hunter
+    baseRole: Range
     maxHp: 600
     maxResource: 100
     moveSpeed: 7
@@ -126,6 +137,7 @@ MonoBehaviour:
     armor: 12
   - id: 12000012
     name: Wizard
+    baseRole: Range
     maxHp: 600
     maxResource: 100
     moveSpeed: 7
@@ -136,6 +148,7 @@ MonoBehaviour:
     armor: 12
   - id: 12000013
     name: Warlock
+    baseRole: Range
     maxHp: 600
     maxResource: 100
     moveSpeed: 7
@@ -146,6 +159,7 @@ MonoBehaviour:
     armor: 12
   - id: 12000014
     name: Sniper
+    baseRole: Range
     maxHp: 600
     maxResource: 100
     moveSpeed: 7
@@ -156,6 +170,7 @@ MonoBehaviour:
     armor: 12
   - id: 12000015
     name: Summoner
+    baseRole: Range
     maxHp: 600
     maxResource: 100
     moveSpeed: 7
@@ -166,6 +181,7 @@ MonoBehaviour:
     armor: 12
   - id: 12000016
     name: Priest
+    baseRole: Heal
     maxHp: 500
     maxResource: 100
     moveSpeed: 7
@@ -176,6 +192,7 @@ MonoBehaviour:
     armor: 10
   - id: 12000017
     name: Angel
+    baseRole: Heal
     maxHp: 500
     maxResource: 100
     moveSpeed: 7
@@ -186,6 +203,7 @@ MonoBehaviour:
     armor: 10
   - id: 12000018
     name: Bard
+    baseRole: Heal
     maxHp: 500
     maxResource: 100
     moveSpeed: 7
@@ -196,6 +214,7 @@ MonoBehaviour:
     armor: 10
   - id: 12000019
     name: Shaman
+    baseRole: Heal
     maxHp: 500
     maxResource: 100
     moveSpeed: 7
@@ -206,6 +225,7 @@ MonoBehaviour:
     armor: 12
   - id: 12000020
     name: HolyKnight
+    baseRole: Heal
     maxHp: 500
     maxResource: 100
     moveSpeed: 7

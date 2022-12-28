@@ -21,6 +21,8 @@ namespace Raid
         {
             playerCamera.Follow = target;
             playerCamera.LookAt = target;
+
+            PlayerCamera();
         }
 
         public void ChangeCamera(ICinemachineCamera cameraName)

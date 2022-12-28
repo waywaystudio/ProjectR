@@ -19,6 +19,7 @@ namespace Common.Character.Operation.Combat
         public BaseSkill CurrentSkill { get; set; }
         public bool IsGlobalCooling { get; set; }
         public bool IsCurrentSkillFinished => CurrentSkill == null || CurrentSkill.IsSkillFinished;
+        public float GlobalCoolTimer { get; set; }
         public float GlobalCoolTime => 2.0f * CharacterUtility.GetHasteValue(Cb.StatTable.Haste);
         
         // SharedBool :: CombatBehaviorDesigner
@@ -69,13 +70,13 @@ namespace Common.Character.Operation.Combat
 
         private IEnumerator GlobalCoolDownRoutine()
         {
-            var coolTimer = GlobalCoolTime;
+            GlobalCoolTimer = GlobalCoolTime;
             
             IsGlobalCooling = true;
 
-            while (coolTimer > 0)
+            while (GlobalCoolTimer > 0)
             {
-                coolTimer -= Time.deltaTime;
+                GlobalCoolTimer -= Time.deltaTime;
                 yield return null;
             }
 

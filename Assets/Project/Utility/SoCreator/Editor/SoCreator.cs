@@ -3,14 +3,14 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Reflection;
-using SoCreator.Runtime;
 using UnityEditor;
 using UnityEditor.ProjectWindowCallback;
 using UnityEditor.ShortcutManagement;
 using UnityEngine;
 using Assembly = System.Reflection.Assembly;
+using Object = UnityEngine.Object;
 
-namespace SoCreator.Editor
+namespace SoCreator
 {
     public static class SoCreator
     {
@@ -36,7 +36,7 @@ namespace SoCreator.Editor
             private void _create(string pathName)
             {
                 var so = ScriptableObject.CreateInstance(ObjectType);
-
+                
                 AssetDatabase.CreateAsset(so, Path.ChangeExtension(pathName, ".asset"));
                 ProjectWindowUtil.ShowCreatedAsset(so);
             }
@@ -61,7 +61,7 @@ namespace SoCreator.Editor
             CreateScriptableObject(true, false);
         }
         
-        [MenuItem("Assets/Scriptable Object", false, -1000)]
+        [MenuItem("Assets/Create/Scriptable Object", false, -1000)]
         public static void CreateScriptableObject(MenuCommand menuCommand)
         {
             CreateScriptableObject(false, false);
@@ -75,7 +75,7 @@ namespace SoCreator.Editor
 
             if (types.Count == 0)
             {
-                Debug.Log("SoCreator: no visible Scriptable Object types was found");
+                Debug.Log("SoCreator: no visible ScriptableObject types was found");
                 return;
             }
             
@@ -88,11 +88,16 @@ namespace SoCreator.Editor
                                   var pickedType   = (Type)picked;
                                   var doCreateFile = ScriptableObject.CreateInstance<DoCreateFile>();
                                   var path = pickedType.Name;
+                                  
+                                  var formatName = EditorPrefs.GetBool(SettingsProvider.k_FormatDefaultName);
+                                  if (formatName)
+                                        path = ObjectNames.NicifyVariableName(path);
+                                  
                                   if (forcePath)
                                   {
                                       var typeFolder = GetTypeFolder(pickedType);
                                       if (string.IsNullOrEmpty(typeFolder) == false)
-                                        path = $"{typeFolder}\\{pickedType.Name}";
+                                        path = $"{typeFolder}\\{path}";
                                   }
                                   
                                   doCreateFile.ObjectType = pickedType;

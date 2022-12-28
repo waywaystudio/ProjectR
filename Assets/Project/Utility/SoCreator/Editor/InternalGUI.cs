@@ -1,7 +1,7 @@
 using UnityEditor;
 using UnityEngine;
 
-namespace SoCreator.Editor
+namespace SoCreator
 {
     public static class InternalGUI
     {
@@ -15,6 +15,7 @@ namespace SoCreator.Editor
 
 
         public static float SearchBarHeight => EditorStyles.toolbar.fixedHeight;
+        public static float ScrollBarHeight => 13;
 
         public static float LabelHeight => ButtonStyle.fixedHeight;
 

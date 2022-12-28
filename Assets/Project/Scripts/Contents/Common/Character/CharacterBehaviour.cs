@@ -14,12 +14,14 @@ namespace Common.Character
         [SerializeField] private string characterName = string.Empty;
         [SerializeField] private int id;
         [SerializeField] private string combatClass;
+        [SerializeField] private string role;
         [SerializeField] private float searchingRange = 50f;
         [SerializeField] private LayerMask allyLayer;
         [SerializeField] private LayerMask enemyLayer;
-        [SerializeField] private Status status;
+        [SerializeField] private Status status = new ();
 
         public int ID => id;
+        public string Role => role;
         public Status Status => status;
         public StatTable StatTable { get; } = new();
         public string ActionName => string.Empty;
@@ -65,6 +67,11 @@ namespace Common.Character
         public virtual void TakeHeal(ICombatProvider provider) => CombatUtility.TakeHeal(provider, this);
         public virtual void TakeStatusEffect(ICombatProvider statusEffect) => OnTakeStatusEffect?.Invoke(statusEffect);
 
+        private void Awake()
+        {
+            status = new Status();
+        }
+
         protected virtual void Start()
         {
             // OnCombatActive.Register(GetInstanceID(), ShowLog);
@@ -95,6 +102,7 @@ namespace Common.Character
             var profile = MainData.GetAdventurerData(characterName);
 
             id = profile.ID;
+            role = profile.Role;
             combatClass = profile.CombatClass;
             EditorInitialize?.Invoke();
         }
