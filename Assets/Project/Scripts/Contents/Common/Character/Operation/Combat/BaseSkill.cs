@@ -13,7 +13,8 @@ namespace Common.Character.Operation.Combat
         [SerializeField] protected int id;
         [SerializeField] protected string actionName;
         [SerializeField] protected int priority;
-        
+        [SerializeField] protected Sprite icon;
+
         protected int InstanceID;
         protected CharacterBehaviour Cb;
         protected Combating Combat;
@@ -22,6 +23,7 @@ namespace Common.Character.Operation.Combat
         public int Priority => priority;
         public string ActionName => actionName;
         public ICombatProvider Sender => Cb;
+        public Sprite Icon => icon;
 
         public ActionTable OnStart { get; } = new();
         public ActionTable OnComplete { get; } = new();

@@ -126,6 +126,7 @@ MonoBehaviour:
   id: 13000003
   actionName: BackStep
   priority: 5
+  icon: {fileID: 21300000, guid: f747f72b5703e8745a2a8b3faa6a0525, type: 3}
   backMagnitude: 4.2
 --- !u!114 &5386481532309463687
 MonoBehaviour:
@@ -221,6 +222,7 @@ MonoBehaviour:
   id: 13000013
   actionName: FaithfulPrey
   priority: 1
+  icon: {fileID: 21300000, guid: 16127a9c6bf6d734e94f7a0e865d187e, type: 3}
 --- !u!114 &8565042087880124505
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -315,6 +317,7 @@ MonoBehaviour:
   id: 13000012
   actionName: Corruption
   priority: 2
+  icon: {fileID: 21300000, guid: b40cb8ac08b1f28489262dbbcc06d720, type: 3}
 --- !u!114 &6291252832563897115
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -410,6 +413,7 @@ MonoBehaviour:
   id: 13000017
   actionName: ChainHealing
   priority: 5
+  icon: {fileID: 21300000, guid: 7ae1a46e061a47b4381c9d988bb5b37f, type: 3}
 --- !u!114 &9046075864732758135
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -672,6 +676,7 @@ MonoBehaviour:
   id: 13000008
   actionName: RapidBlow
   priority: 5
+  icon: {fileID: 21300000, guid: de31e9837c775474ca7528f9f9bc9e54, type: 3}
 --- !u!114 &4110535229481813574
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1024,6 +1029,7 @@ MonoBehaviour:
   characterName: Kungen
   id: 11000001
   combatClass: Warrior
+  role: 
   searchingRange: 50
   allyLayer:
     serializedVersion: 2
@@ -1375,6 +1381,7 @@ MonoBehaviour:
   id: 13000004
   actionName: AimShot
   priority: 5
+  icon: {fileID: 21300000, guid: b053304febb595645a21257daa4eceef, type: 3}
 --- !u!114 &3744010700775776666
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1781,6 +1788,7 @@ MonoBehaviour:
   id: 13000001
   actionName: CommonAttack
   priority: 1
+  icon: {fileID: 21300000, guid: a68e890a3c720c8458b62cd2825f019c, type: 3}
 --- !u!114 &3744010701327891162
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1875,6 +1883,7 @@ MonoBehaviour:
   id: 13000011
   actionName: Fireball
   priority: 2
+  icon: {fileID: 21300000, guid: 29cb2ea541dd92249bf98d7ce645c0a9, type: 3}
 --- !u!114 &7025747630867849109
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1970,6 +1979,7 @@ MonoBehaviour:
   id: 13000018
   actionName: HealOrb
   priority: 5
+  icon: {fileID: 21300000, guid: b3ad7cf5f88fa2c43ac1ec3fce54d974, type: 3}
 --- !u!114 &2672525273206534427
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2142,6 +2152,7 @@ MonoBehaviour:
   id: 13000002
   actionName: Charge
   priority: 5
+  icon: {fileID: 21300000, guid: 221db0e2ca746044593447bc96137b5d, type: 3}
   dashSpeed: 25
   offsetDistance: 3.5
 --- !u!114 &7681704895388235946
@@ -2488,6 +2499,7 @@ MonoBehaviour:
   id: 13000005
   actionName: BloodDrain
   priority: 1
+  icon: {fileID: 21300000, guid: 478eeec4b5b141d46baa4e42372a2302, type: 3}
 --- !u!114 &6546515311254796486
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2812,6 +2824,7 @@ MonoBehaviour:
   id: 13000009
   actionName: Fury
   priority: 1
+  icon: {fileID: 21300000, guid: fb658e2438132df478dbf49706bfd6e5, type: 3}
 --- !u!114 &7215604309735832979
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2961,6 +2974,7 @@ MonoBehaviour:
   id: 13000019
   actionName: RangeAttack
   priority: 1
+  icon: {fileID: 21300000, guid: 44390e08012c1a543bf14dd411f546e1, type: 3}
 --- !u!114 &8755835679923296255
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3178,6 +3192,7 @@ MonoBehaviour:
   id: 13000006
   actionName: Roar
   priority: 5
+  icon: {fileID: 21300000, guid: db4bc3238b41d534ba4084e5a3bb833a, type: 3}
 --- !u!114 &3520732832617858417
 MonoBehaviour:
   m_ObjectHideFlags: 0

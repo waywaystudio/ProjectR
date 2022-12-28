@@ -55,6 +55,10 @@ namespace Common.Character.Operation.Combat.Editor
             {
                 attributes.Add(new DisplayAsStringAttribute());
             }
+            if (member.Name == "icon")
+            {
+                attributes.Add(new PreviewFieldAttribute(ObjectFieldAlignment.Left));
+            }
             
             if (member.Name == "SkillData")
             {
