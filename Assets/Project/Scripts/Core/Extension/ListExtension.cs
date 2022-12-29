@@ -36,6 +36,16 @@ namespace Core
             return list.Count == 0 ? default : list[r.Next(0, list.Count)];
         }
 
+        // public static List<T> RefAtNullOrEmpty<T>(this List<T> list, List<T> target)
+        // {
+        //     if (!list.IsNullOrEmpty()) return list;
+        //     
+        //     list = new List<T>();
+        //     target.ForEach(x => list.Add(x));
+        //
+        //     return list;
+        // }
+
         public static TSource MinBy<TSource, TKey>(this List<TSource> list, Func<TSource, TKey> selector) => list.MinBy(selector, null);
         public static TSource MinBy<TSource, TKey>(this List<TSource> list, Func<TSource, TKey> selector, IComparer<TKey> comparer)
         {

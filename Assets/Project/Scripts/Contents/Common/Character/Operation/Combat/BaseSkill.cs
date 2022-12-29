@@ -10,7 +10,7 @@ namespace Common.Character.Operation.Combat
     
     public abstract class BaseSkill : MonoBehaviour, IActionSender
     {
-        [SerializeField] protected int id;
+        [SerializeField] protected IDCode id;
         [SerializeField] protected string actionName;
         [SerializeField] protected int priority;
         [SerializeField] protected Sprite icon;
@@ -19,7 +19,7 @@ namespace Common.Character.Operation.Combat
         protected CharacterBehaviour Cb;
         protected Combating Combat;
 
-        public int ID => id;
+        public IDCode ID => id;
         public int Priority => priority;
         public string ActionName => actionName;
         public ICombatProvider Sender => Cb;
@@ -113,12 +113,12 @@ namespace Common.Character.Operation.Combat
 
         protected void OnEnable()
         {
-            Combat.SkillTable.TryAdd(id, this);
+            Combat.SkillTable.TryAdd((int)id, this);
         }
 
         protected void OnDisable()
         {
-            Combat.SkillTable.TryRemove(id);
+            Combat.SkillTable.TryRemove((int)id);
             DeActiveSkill();
         }
 
@@ -128,10 +128,10 @@ namespace Common.Character.Operation.Combat
         #region EditorOnly
         protected void GetDataFromDB()
         {
-            var skillData = MainGame.MainData.GetSkillData(actionName);
+            var skillData = MainGame.MainData.GetSkill(actionName.ToEnum<IDCode>());
             
             actionName.IsNullOrEmpty().OnTrue(() => actionName = GetType().Name);
-            id = skillData.ID;
+            id = (IDCode)skillData.ID;
             priority = skillData.Priority;
 
             if (TryGetComponent(out DamageEntity damageEntity))
@@ -181,8 +181,8 @@ namespace Common.Character.Operation.Combat
         }
         protected void ShowDB()
         {
-            UnityEditor.EditorUtility.OpenPropertyEditor
-                (MainGame.MainData.DataObjectList.Find(x => x.Category == MainGame.Data.DataCategory.Skill));
+            // UnityEditor.EditorUtility.OpenPropertyEditor
+            //     (MainGame.MainData.DataObjectList.Find(x => x.CategoryIndex == 13));
         }
         #endregion
 #endif

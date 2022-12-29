@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -5,6 +6,16 @@ namespace Core
 {
     public static class DictionaryExtension
     {
+        public static Dictionary<TKey, TValue> Ref<TKey, TValue>(this Dictionary<TKey, TValue> table, List<TValue> list, Func<TValue, TKey> keySelector)
+        {
+            if (table.IsNullOrEmpty())
+            {
+                table = list.ToDictionary(keySelector);
+            }
+
+            return table;
+        } 
+        
         public static bool TryRemove<TKey, TValue>(this Dictionary<TKey, TValue> table, TKey key)
         {
             if (!table.ContainsKey(key)) return false;
@@ -26,16 +37,7 @@ namespace Core
 
             return true;
         }
-        
-        public static double Sum<TKey>(this Dictionary<TKey, double> table)
-        {
-            var result = 0d;
-            
-            table.ForEach(x => result += x.Value);
 
-            return result;
-        }
-        
         public static Dictionary<TKey, List<TValue>> Combine<TKey, TValue>(IEqualityComparer<TKey> comparer = null, params IDictionary<TKey, TValue>[] dictionaries)
         {
             comparer ??= EqualityComparer<TKey>.Default;

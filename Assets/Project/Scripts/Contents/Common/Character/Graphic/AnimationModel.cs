@@ -1,4 +1,5 @@
 using System;
+using Core;
 using MainGame;
 using Spine;
 using Spine.Unity;
@@ -26,7 +27,7 @@ namespace Common.Character.Graphic
         public void Idle() => Play("idle");
         public void Skill(string skillName, Action callback)
         {
-            var skillData = MainData.GetSkillData(skillName);
+            var skillData = MainData.GetSkill(skillName.ToEnum<IDCode>());
             var fixedTime = skillData.CastingTime;
             var animationKey = skillData.AnimationKey;
             

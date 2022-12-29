@@ -1,123 +1,100 @@
+#if UNITY_EDITOR
+using System.IO;
+using System.Reflection;
+#endif
+
 using System.Collections.Generic;
-using System.Linq;
 using Core;
-using UnityEditor;
 using UnityEngine;
 
 namespace MainGame
 {
     using Data;
-    using Adventurer = Data.ContentData.AdventurerData.Adventurer;
-    using Skill = Data.ContentData.SkillData.Skill;
-    using CombatClass = Data.ContentData.CombatClassData.CombatClass;
-    using Equipment = Data.ContentData.EquipmentData.Equipment;
-    using StatusEffect = Data.ContentData.StatusEffectData.StatusEffect;
-    using Projectile = Data.ContentData.ProjectileData.Projectile;
+    using AdventurerData = Data.ContentData.AdventurerData.Adventurer;
+    using CombatClassData = Data.ContentData.CombatClassData.CombatClass;
+    using SkillData = Data.ContentData.SkillData.Skill;
+    using StatusEffectData = Data.ContentData.StatusEffectData.StatusEffect;
+    using ProjectileData = Data.ContentData.ProjectileData.Projectile;
+    using RaidData = Data.ContentData.RaidData.Raid;
+    using BossData = Data.ContentData.BossData.Boss;
+    using EquipmentData = Data.ContentData.EquipmentData.Equipment;
 
     public class MainData : Core.Singleton.MonoSingleton<MainData>
     {
-        [SerializeField] private List<DataObject> dataObjectList;
+        [SerializeField] private List<DataObject> dataList = new();
+        private readonly Dictionary<int, DataObject> dataTable = new();
 
-        private readonly Dictionary<string, int> nameTable = new();
-        private Dictionary<DataCategory, DataObject> categoryTable = new();
-        
-        public static List<DataObject> DataObjectList => Instance.dataObjectList;
-        public static Dictionary<string, int> NameTable
+        public static List<DataObject> DataList => Instance.dataList;
+        public static Dictionary<int, DataObject> DataTable
         {
             get
             {
-                if (Instance.nameTable.IsNullOrEmpty()) DataObjectList.ForEach(x => x.RegisterNameTable(Instance.nameTable));
-                return Instance.nameTable;
+                if (Instance.dataTable.IsNullOrEmpty()) 
+                    Instance.dataList.ForEach(x => Instance.dataTable.TryAdd(x.Index, x));
+                return Instance.dataTable;
             }
         }
-        public static Dictionary<DataCategory, DataObject> CategoryTable
-        {
-            get
-            {
-                if (Instance.categoryTable.IsNullOrEmpty()) Instance.categoryTable = DataObjectList.ToDictionary(x => x.Category);
-                return Instance.categoryTable;
-            }
-        }
+
+        public static AdventurerData GetAdventurer(IDCode idCode) => DataTable[11].Get<AdventurerData>(idCode);
+        public static CombatClassData GetCombatClass(IDCode idCode) => DataTable[12].Get<CombatClassData>(idCode);
+        public static SkillData GetSkill(IDCode idCode) => DataTable[13].Get<SkillData>(idCode);
+        public static StatusEffectData GetStatusEffect(IDCode idCode) => DataTable[14].Get<StatusEffectData>(idCode);
+        public static ProjectileData GetProjectile(IDCode idCode) => DataTable[15].Get<ProjectileData>(idCode);
+        public static RaidData GetRaid(IDCode idCode) => DataTable[16].Get<RaidData>(idCode);
+        public static BossData GetBoss(IDCode idCode) => DataTable[17].Get<BossData>(idCode);
+        public static EquipmentData GetEquipment(IDCode idCode) => DataTable[21].Get<EquipmentData>(idCode);
         
 
-        public static T GetData<T>(DataCategory category, int id) where T : class 
-            => TryGetData(category, id, out T result) ? result : null;
-        public static T GetData<T>(DataCategory category, string nameKey) where T : class 
-            => TryGetData(category, nameKey, out T result) ? result : null;
-
-        public static Adventurer GetAdventurerData(string nameKey) => GetData<Adventurer>(DataCategory.Adventurer, nameKey);
-        public static Adventurer GetAdventurerData(int id) => GetData<Adventurer>(DataCategory.Adventurer, id);
-        public static Skill GetSkillData(string nameKey) => GetData<Skill>(DataCategory.Skill, nameKey);
-        public static Skill GetSkillData(int id) => GetData<Skill>(DataCategory.Skill, id);
-        public static CombatClass GetCombatClassData(string nameKey) => GetData<CombatClass>(DataCategory.CombatClass, nameKey);
-        public static CombatClass GetCombatClassData(int id) => GetData<CombatClass>(DataCategory.CombatClass, id);
-        public static Equipment GetEquipmentData(string nameKey) => GetData<Equipment>(DataCategory.Equipment, nameKey);
-        public static Equipment GetEquipmentData(int id) => GetData<Equipment>(DataCategory.Equipment, id);
-        public static StatusEffect GetStatusEffectData(string nameKey) => GetData<StatusEffect>(DataCategory.StatusEffect, nameKey);
-        public static StatusEffect GetStatusEffectData(int id) => GetData<StatusEffect>(DataCategory.StatusEffect, id);
-        public static Projectile GetProjectileData(string nameKey) => GetData<Projectile>(DataCategory.Projectile, nameKey);
-        public static Projectile GetProjectileData(int id) => GetData<Projectile>(DataCategory.Projectile, id);
-
-        // AddMoreDataSet...
-
-
-        private static bool TryGetData<T>(DataCategory category, string nameKey, out T result) where T : class
-        {
 #if UNITY_EDITOR
-            if (!Application.isPlaying)
-            {
-                var dataObj = DataObjectList.Find(x => x.Category == category);
-                result = dataObj.EditorGetData<T>(nameKey);
-
-                return result != null;
-            }
-#endif
-            
-            var hasCategory = CategoryTable.TryGetValue(category, out var dataObject);
-            var hasKey = NameTable.TryGetValue(nameKey, out var id);
-
-            if (!hasCategory || !hasKey)
-            {
-                Debug.LogError($"No Key in Database. Key : {nameKey}");
-                result = null;
-                return false;
-            }
-
-            return dataObject.TryGetData(id, out result);
-        }
         
-        private static bool TryGetData<T>(DataCategory category, int id, out T result) where T : class
-        {
-#if UNITY_EDITOR
-            if (!Application.isPlaying)
-            {
-                var dataObj = DataObjectList.Find(x => x.Category == category);
-                result = dataObj.EditorGetData<T>(id);
-            
-                return result != null;
-            }
-#endif
-            
-            if (!CategoryTable.TryGetValue(category, out var dataObject))
-            {
-                Debug.LogError($"No Category in Database. Key : {category}");
-                result = null;
-                return false;
-            }
+        [SerializeField] private string dataScriptPath;
+        [SerializeField] private string dataObjectPath;
 
-            return dataObject.TryGetData(id, out result);
+        private void SetUp()
+        {
+            CreateAndUpdateDataObjects();
+            GenerateIDCode();
         }
 
+        private void CreateAndUpdateDataObjects()
+        {
+            Finder.TryGetObjectList(dataScriptPath, $"t:MonoScript, Data", out List<UnityEditor.MonoScript> monoList);
+            
+            monoList.ForEach(x =>
+            {
+                if (!x.name.EndsWith("Data")) return;
+                if (!Finder.TryGetObject(dataObjectPath, x.name, out ScriptableObject dataObject))
+                {
+                    dataObject = Finder.CreateScriptableObject(dataObjectPath, x.name, x.name);
+                }
 
+                var dataObjectType = dataObject.GetType();
+                var info = dataObjectType.GetMethod("LoadFromJson", BindingFlags.NonPublic | BindingFlags.Instance);
 
-#if UNITY_EDITOR
-        #region MainDataDrawer.cs
+                if (info != null)
+                {
+                    info.Invoke(dataObject, null);
+                }
+
+                UnityEditor.EditorUtility.SetDirty(dataObject);
+            });
+            
+            Finder.TryGetObjectList(out dataList);
+            dataList.Sort((dataA, dataB) => dataA.Index.CompareTo(dataB.Index));
+            
+            UnityEditor.AssetDatabase.Refresh();
+        }
+
+        private void GenerateIDCode()
+        {
+            if (!Directory.Exists(dataScriptPath))
+                Directory.CreateDirectory(dataScriptPath);
+            
+            File.WriteAllText($"{dataScriptPath}/IDCode.cs", IDCodeGenerator.Generate());
+        }
         
-        private const string DataPath = "Assets/Project/Data/SpreadSheet/";
-        private void GetAllData() => Finder.TryGetObjectList(DataPath, "Data", out dataObjectList);
-        private void OpenSpreadSheetPanel() => EditorApplication.ExecuteMenuItem("Tools/UnityGoogleSheet");
-
-        #endregion
+        private void OpenSpreadSheetPanel() 
+            => UnityEditor.EditorApplication.ExecuteMenuItem("Tools/UnityGoogleSheet");
 #endif
     }
 }

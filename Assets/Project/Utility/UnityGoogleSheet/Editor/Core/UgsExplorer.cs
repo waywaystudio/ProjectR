@@ -2,6 +2,7 @@
 using Sirenix.OdinInspector;
 using Sirenix.OdinInspector.Editor;
 #endif
+
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -85,7 +86,7 @@ namespace UnityGoogleSheet.Editor.Core
                 }
 
                 DriveFileDataList = DriveFileDataList.OrderBy(fileData => fileData.fileName)
-                                                       .ToList();
+                                                     .ToList();
                 isWaitForCreate = false;
             });
         }

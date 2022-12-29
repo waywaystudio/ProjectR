@@ -14,9 +14,7 @@ namespace Common.Character.Data
 {
     public class ClassBaseStats : MonoBehaviour
     {
-        // private const string BaseStatsCode = "BaseStats";
-
-        [SerializeField] private string combatClass;
+        [SerializeField] private IDCode combatClass;
         [SerializeField] private float maxHp;
         [SerializeField] private float maxResource;
         [SerializeField] private float moveSpeed;
@@ -27,19 +25,17 @@ namespace Common.Character.Data
         [SerializeField] private float armor;
         
         private CharacterBehaviour cb;
-        private CombatClassData classData;
         private string characterName;
         private int instanceID;
 
         private CharacterBehaviour Cb => cb ??= GetComponentInParent<CharacterBehaviour>();
-        private CombatClassData ClassData => classData ??= MainData.GetCombatClassData(combatClass);
-        
+        private CombatClassData ClassData { get; set; }
+
 
         public void Initialize()
         {
-            instanceID = GetInstanceID();
-            combatClass.IsNullOrEmpty().OnTrue(() => combatClass = Cb.CombatClass);
-            classData = MainData.GetCombatClassData(combatClass);
+            (combatClass == IDCode.None).OnTrue(() => combatClass = Cb.CombatClassID);
+            ClassData = MainData.GetCombatClass(combatClass);
 
             maxHp = ClassData.MaxHp;
             moveSpeed = ClassData.MoveSpeed;
@@ -51,8 +47,11 @@ namespace Common.Character.Data
             armor = ClassData.Armor;
         }
 
-        public void AddValueTable()
+        private void Awake()
         {
+            cb = GetComponentInParent<CharacterBehaviour>();
+            
+            instanceID = GetInstanceID();
             Cb.StatTable.Register(StatCode.AddMaxHp, instanceID, () => maxHp, true);
             Cb.StatTable.Register(StatCode.AddMoveSpeed, instanceID, () => moveSpeed, true);
             Cb.StatTable.Register(StatCode.AddMaxResource, instanceID, () => maxResource, true);
@@ -61,12 +60,8 @@ namespace Common.Character.Data
             Cb.StatTable.Register(StatCode.AddHit, instanceID, () => hit, true);
             Cb.StatTable.Register(StatCode.AddEvade, instanceID, () => evade, true);
             Cb.StatTable.Register(StatCode.AddArmor, instanceID, () => armor, true);
-        }
-        
-        private void Awake()
-        {
-            Cb.OnStart.Register(GetInstanceID(), Initialize);
-            AddValueTable();
+            
+            Cb.OnStart.Register(instanceID, Initialize);
         }
     }
     

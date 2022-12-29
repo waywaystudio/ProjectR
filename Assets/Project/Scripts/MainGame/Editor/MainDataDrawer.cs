@@ -10,8 +10,9 @@ namespace MainGame.Editor
     {
         public override void ProcessChildMemberAttributes(InspectorProperty parentProperty, MemberInfo member, List<Attribute> attributes)
         {
-            if (member.Name == "dataObjectList")
+            if (member.Name == "dataList")
             {
+                attributes.Add(new PropertySpaceAttribute(0, 20f));
                 attributes.Add(new ListDrawerSettingsAttribute
                 {
                    Expanded = true,
@@ -21,14 +22,33 @@ namespace MainGame.Editor
                 });
             }
             
-            if (member.Name == "GetAllData")
+            if (member.Name == "dataScriptPath")
             {
-                attributes.Add(new ButtonAttribute(ButtonSizes.Medium));
+                attributes.Add(new FolderPathAttribute());
+            }
+            
+            if (member.Name == "dataObjectPath")
+            {
+                attributes.Add(new PropertySpaceAttribute(0, 20f));
+                attributes.Add(new FolderPathAttribute());
+            }
+
+            if (member.Name == "SetUp")
+            {
+                attributes.Add(new HorizontalGroupAttribute("Horizontal"));
+                attributes.Add(new ButtonAttribute(ButtonSizes.Large)
+                {
+                    Icon = SdfIconType.Save,
+                });
             }
             
             if (member.Name == "OpenSpreadSheetPanel")
             {
-                attributes.Add(new ButtonAttribute(ButtonSizes.Medium));
+                attributes.Add(new HorizontalGroupAttribute("Horizontal"));
+                attributes.Add(new ButtonAttribute(ButtonSizes.Large)
+                {
+                    Icon = SdfIconType.FileSpreadsheet,
+                });
             }
         }
     }

@@ -65,7 +65,7 @@ namespace Common.Character.Operation.Combat
                 .Where(x => x.Value.IsCoolTimeReady)
                 .MaxBy(x => x.Value.Priority).Value.ID;
 
-            return mostPrioritySkillID;
+            return (int)mostPrioritySkillID;
         }
 
         private IEnumerator GlobalCoolDownRoutine()
@@ -85,7 +85,7 @@ namespace Common.Character.Operation.Combat
 
         private void Awake()
         {
-            GetComponentsInChildren<BaseSkill>().ForEach(x => SkillTable.TryAdd(x.ID, x));
+            GetComponentsInChildren<BaseSkill>().ForEach(x => SkillTable.TryAdd((int)x.ID, x));
         }
     }
 }

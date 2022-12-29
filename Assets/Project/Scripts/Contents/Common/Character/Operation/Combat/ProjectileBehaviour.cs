@@ -64,7 +64,7 @@ namespace Common.Character.Operation.Combat
         [Button(ButtonSizes.Large,  Icon = SdfIconType.ArrowRepeat, Stretch = false)]
         private void GetProjectileFromDB()
         {
-            var data = MainData.GetProjectileData(projectileName);
+            var data = MainData.GetProjectile(projectileName.ToEnum<IDCode>());
             id = data.ID;
             speed = data.Speed;
             

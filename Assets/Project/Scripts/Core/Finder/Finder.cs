@@ -224,5 +224,37 @@ public static class Finder
 
         return result;
     }
+    
+    /// <summary>
+    /// Create ScriptableObject at path
+    /// </summary>
+    public static ScriptableObject CreateScriptableObject(string directory, string className, string defaultName, bool showDebug = false)
+    {
+        if (directory.IsNullOrEmpty())
+        {
+            if (showDebug)
+                Debug.LogError("at least one of a Parameter value is <b><color=red>NULL!</color></b>");
+            
+            return null;
+        }
+        
+        if (string.IsNullOrEmpty(defaultName))
+        {
+            defaultName = "ScriptableObject";
+            
+            if (showDebug)
+                Debug.Log($"name Created by automatically <b><color=green>{defaultName}</color></b>");
+        }
+
+        var result = ScriptableObject.CreateInstance(className);
+        var uniquePath = AssetDatabase.GenerateUniqueAssetPath($"{directory}/{defaultName}.asset");
+
+        AssetDatabase.CreateAsset(result, uniquePath);
+
+        if (showDebug)
+            Debug.Log($"Create <b><color=green>{uniquePath}</color></b> Scriptable Object");
+
+        return result;
+    }
 }
 #endif

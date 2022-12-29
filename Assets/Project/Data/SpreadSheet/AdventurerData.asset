@@ -12,165 +12,165 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5a750eabd4349a44fa6282e6cd0436ba, type: 3}
   m_Name: AdventurerData
   m_EditorClassIdentifier: 
-  category: 11
+  CategoryIndex: 11
   list:
   - id: 11000001
     name: Kungen
-    combatClass: Warrior
+    combatClassID: 12000001
     role: Tank
   - id: 11000002
     name: Muradin
-    combatClass: Warrior
+    combatClassID: 12000001
     role: Tank
   - id: 11000003
     name: Anduin
-    combatClass: Paladin
+    combatClassID: 12000002
     role: Tank
   - id: 11000004
     name: Leo
-    combatClass: Paladin
+    combatClassID: 12000002
     role: Tank
   - id: 11000005
     name: Diablo
-    combatClass: Load
+    combatClassID: 12000003
     role: Tank
   - id: 11000006
     name: Sauron
-    combatClass: Load
+    combatClassID: 12000003
     role: Tank
   - id: 11000007
     name: LichKing
-    combatClass: DeathKnight
+    combatClassID: 12000004
     role: Tank
   - id: 11000008
     name: Mogreign
-    combatClass: DeathKnight
+    combatClassID: 12000004
     role: Tank
   - id: 11000009
     name: Malfurion
-    combatClass: Druid
+    combatClassID: 12000005
     role: Tank
   - id: 11000010
     name: Noru
-    combatClass: Druid
+    combatClassID: 12000005
     role: Tank
   - id: 11000011
     name: Vanclief
-    combatClass: Rogue
+    combatClassID: 12000006
     role: Melee
   - id: 11000012
     name: Assassin
-    combatClass: Rogue
+    combatClassID: 12000006
     role: Melee
   - id: 11000013
     name: Siryu
-    combatClass: Lancer
+    combatClassID: 12000007
     role: Melee
   - id: 11000014
     name: Kwanu
-    combatClass: Lancer
+    combatClassID: 12000007
     role: Melee
   - id: 11000015
     name: Ypman
-    combatClass: Monk
+    combatClassID: 12000008
     role: Melee
   - id: 11000016
     name: Opman
-    combatClass: Monk
+    combatClassID: 12000008
     role: Melee
   - id: 11000017
     name: Gatz
-    combatClass: Berserker
+    combatClassID: 12000009
     role: Melee
   - id: 11000018
     name: Waterdog
-    combatClass: Berserker
+    combatClassID: 12000009
     role: Melee
   - id: 11000019
     name: Zoro
-    combatClass: Blade
+    combatClassID: 12000010
     role: Melee
   - id: 11000020
     name: Kenshin
-    combatClass: Blade
+    combatClassID: 12000010
     role: Melee
   - id: 11000021
     name: Yohee
-    combatClass: Hunter
+    combatClassID: 12000011
     role: Range
   - id: 11000022
     name: Robinhood
-    combatClass: Hunter
+    combatClassID: 12000011
     role: Range
   - id: 11000023
     name: Jeina
-    combatClass: Wizard
+    combatClassID: 12000012
     role: Range
   - id: 11000024
     name: HarryPotter
-    combatClass: Wizard
+    combatClassID: 12000012
     role: Range
   - id: 11000025
     name: KelThuzad
-    combatClass: Warlock
+    combatClassID: 12000013
     role: Range
   - id: 11000026
     name: Drakedog
-    combatClass: Warlock
+    combatClassID: 12000013
     role: Range
   - id: 11000027
     name: Sylvanas
-    combatClass: Sniper
+    combatClassID: 12000014
     role: Range
   - id: 11000028
     name: Hanzo
-    combatClass: Sniper
+    combatClassID: 12000014
     role: Range
   - id: 11000029
     name: Sirke
-    combatClass: Summoner
+    combatClassID: 12000015
     role: Range
   - id: 11000030
     name: Mephisto
-    combatClass: Summoner
+    combatClassID: 12000015
     role: Range
   - id: 11000031
     name: Whitemane
-    combatClass: Priest
+    combatClassID: 12000016
     role: Healer
   - id: 11000032
     name: Deckard
-    combatClass: Priest
+    combatClassID: 12000016
     role: Healer
   - id: 11000033
     name: Tyrael
-    combatClass: Angel
+    combatClassID: 12000017
     role: Healer
   - id: 11000034
     name: Mercy
-    combatClass: Angel
+    combatClassID: 12000017
     role: Healer
   - id: 11000035
     name: Lili
-    combatClass: Bard
+    combatClassID: 12000018
     role: Healer
   - id: 11000036
     name: Hammer
-    combatClass: Bard
+    combatClassID: 12000018
     role: Healer
   - id: 11000037
     name: Thrall
-    combatClass: Shaman
+    combatClassID: 12000019
     role: Healer
   - id: 11000038
     name: Brightwing
-    combatClass: Shaman
+    combatClassID: 12000019
     role: Healer
   - id: 11000039
     name: Johanna
-    combatClass: HolyKnight
+    combatClassID: 12000020
     role: Healer
   - id: 11000040
     name: Uther
-    combatClass: HolyKnight
+    combatClassID: 12000020
     role: Healer

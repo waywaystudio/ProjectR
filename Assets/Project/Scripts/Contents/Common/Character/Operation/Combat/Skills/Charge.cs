@@ -22,14 +22,14 @@ namespace Common.Character.Operation.Combat.Skills
             var offset = Cb.Direction.Invoke() * (offsetDistance * -1f);
             var targetFrontPosition = takerTransform.position + offset;
             
-            Cb.StatTable.Register(StatCode.AddMoveSpeed, ID, () => dashSpeed, true);
+            Cb.StatTable.Register(StatCode.AddMoveSpeed, InstanceID, () => dashSpeed, true);
             Cb.Run(targetFrontPosition, base.ActiveSkill);
         }
 
         public override void CompleteSkill()
         {
             base.CompleteSkill();
-            Cb.StatTable.Unregister(StatCode.AddMoveSpeed, ID);
+            Cb.StatTable.Unregister(StatCode.AddMoveSpeed, InstanceID);
         }
     }
 }

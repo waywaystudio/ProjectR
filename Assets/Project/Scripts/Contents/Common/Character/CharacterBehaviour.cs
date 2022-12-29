@@ -12,22 +12,22 @@ namespace Common.Character
     public class CharacterBehaviour : MonoBehaviour, ICombatTaker, ICombatProvider, ISearchable
     {
         [SerializeField] private string characterName = string.Empty;
-        [SerializeField] private int id;
-        [SerializeField] private string combatClass;
+        [SerializeField] private IDCode id;
+        [SerializeField] private IDCode combatClassID;
         [SerializeField] private string role;
         [SerializeField] private float searchingRange = 50f;
         [SerializeField] private LayerMask allyLayer;
         [SerializeField] private LayerMask enemyLayer;
         [SerializeField] private Status status = new ();
 
-        public int ID => id;
+        public IDCode ID => id;
         public string Role => role;
         public Status Status => status;
         public StatTable StatTable { get; } = new();
         public string ActionName => string.Empty;
         public string Name => characterName ??= "Diablo";
         public ICombatProvider Sender => this;
-        public string CombatClass => combatClass ??= MainData.GetAdventurerData(Name).CombatClass;
+        public IDCode CombatClassID => combatClassID;
         public float SearchingRange => searchingRange;
         public LayerMask AllyLayer => allyLayer;
         public LayerMask EnemyLayer => enemyLayer;
@@ -99,11 +99,11 @@ namespace Common.Character
                 Debug.LogError("CharacterName Required");
                 return;
             }
-            var profile = MainData.GetAdventurerData(characterName);
+            var profile = MainData.GetAdventurer(characterName.ToEnum<IDCode>());
 
-            id = profile.ID;
+            id = (IDCode)profile.ID;
             role = profile.Role;
-            combatClass = profile.CombatClass;
+            combatClassID = (IDCode)profile.CombatClassId;
             EditorInitialize?.Invoke();
         }
 #endif

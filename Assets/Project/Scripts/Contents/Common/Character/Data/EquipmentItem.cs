@@ -1,4 +1,5 @@
 using System;
+using Core;
 using MainGame;
 using Sirenix.OdinInspector;
 
@@ -20,7 +21,7 @@ namespace Common.Character.Data
         public void SetStats() => SetStats(ItemName);
         public void SetStats(string itemName)
         {
-            var equipmentData = MainData.GetEquipmentData(itemName);
+            var equipmentData = MainData.GetEquipment(itemName.ToEnum<IDCode>());
             
             MaxHp = equipmentData.HP;
             Critical = equipmentData.Critical;

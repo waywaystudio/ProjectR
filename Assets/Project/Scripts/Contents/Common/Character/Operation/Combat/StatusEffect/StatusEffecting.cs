@@ -68,7 +68,7 @@ namespace Common.Character.Operation.Combat.StatusEffect
 
         private T GenerateStatusEffect<T>(ICombatProvider provider) where T : BaseStatusEffect, new()
         {
-            var statusEffectData = MainData.GetStatusEffectData(provider.ActionName);
+            var statusEffectData = MainData.GetStatusEffect(provider.ActionName.ToEnum<IDCode>());
             
             return new T
             {
