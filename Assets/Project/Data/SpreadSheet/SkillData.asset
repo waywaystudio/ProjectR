@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f2b217ae31282844287132a48bebc8af, type: 3}
   m_Name: SkillData
   m_EditorClassIdentifier: 
-  category: 13
+  Index: 13
   list:
   - id: 13000001
     name: CommonAttack
@@ -26,8 +26,8 @@ MonoBehaviour:
     skillType: damage
     castingTime: 0
     resourceObtain: 1
-    statusEffect: 
-    projectile: 
+    statusEffectID: 0
+    projectileID: 0
   - id: 13000002
     name: Charge
     baseValue: 4
@@ -40,8 +40,8 @@ MonoBehaviour:
     skillType: damage
     castingTime: 0
     resourceObtain: 10
-    statusEffect: 
-    projectile: 
+    statusEffectID: 0
+    projectileID: 0
   - id: 13000003
     name: BackStep
     baseValue: 4
@@ -54,8 +54,8 @@ MonoBehaviour:
     skillType: damage
     castingTime: 0
     resourceObtain: 0
-    statusEffect: 
-    projectile: 
+    statusEffectID: 0
+    projectileID: 0
   - id: 13000004
     name: AimShot
     baseValue: 0
@@ -68,8 +68,8 @@ MonoBehaviour:
     skillType: projectile
     castingTime: 3
     resourceObtain: -20
-    statusEffect: 
-    projectile: AimShotProjectile
+    statusEffectID: 0
+    projectileID: 0
   - id: 13000005
     name: BloodDrain
     baseValue: 0
@@ -82,8 +82,8 @@ MonoBehaviour:
     skillType: transcendence
     castingTime: 0
     resourceObtain: 0
-    statusEffect: BloodDrainBuff
-    projectile: 
+    statusEffectID: 0
+    projectileID: 0
   - id: 13000006
     name: Roar
     baseValue: 1.2
@@ -96,8 +96,8 @@ MonoBehaviour:
     skillType: damage
     castingTime: 0
     resourceObtain: 0
-    statusEffect: RoarDeBuff
-    projectile: 
+    statusEffectID: 0
+    projectileID: 0
   - id: 13000007
     name: Penetrate
     baseValue: 21
@@ -110,8 +110,8 @@ MonoBehaviour:
     skillType: damage
     castingTime: 3
     resourceObtain: 0
-    statusEffect: 
-    projectile: 
+    statusEffectID: 0
+    projectileID: 0
   - id: 13000008
     name: RapidBlow
     baseValue: 2
@@ -124,8 +124,8 @@ MonoBehaviour:
     skillType: damage
     castingTime: 0.8
     resourceObtain: 4
-    statusEffect: 
-    projectile: 
+    statusEffectID: 0
+    projectileID: 0
   - id: 13000009
     name: Fury
     baseValue: 0
@@ -138,8 +138,8 @@ MonoBehaviour:
     skillType: transcendence
     castingTime: 0
     resourceObtain: 0
-    statusEffect: FuryBuff
-    projectile: 
+    statusEffectID: 0
+    projectileID: 0
   - id: 13000010
     name: LightningSlash
     baseValue: 8
@@ -152,8 +152,8 @@ MonoBehaviour:
     skillType: damage
     castingTime: 0
     resourceObtain: 0
-    statusEffect: 
-    projectile: 
+    statusEffectID: 0
+    projectileID: 0
   - id: 13000011
     name: Fireball
     baseValue: 0
@@ -166,8 +166,8 @@ MonoBehaviour:
     skillType: projectile
     castingTime: 1.5
     resourceObtain: 0
-    statusEffect: FireballDeBuff
-    projectile: FireballProjectile
+    statusEffectID: 0
+    projectileID: 0
   - id: 13000012
     name: Corruption
     baseValue: 3
@@ -180,8 +180,8 @@ MonoBehaviour:
     skillType: damage
     castingTime: 0
     resourceObtain: 0
-    statusEffect: CorruptionDeBuff
-    projectile: 
+    statusEffectID: 0
+    projectileID: 0
   - id: 13000013
     name: FaithfulPrey
     baseValue: 3
@@ -194,8 +194,8 @@ MonoBehaviour:
     skillType: heal
     castingTime: 1.5
     resourceObtain: 0
-    statusEffect: 
-    projectile: 
+    statusEffectID: 0
+    projectileID: 0
   - id: 13000014
     name: HolyProtection
     baseValue: 5
@@ -208,8 +208,8 @@ MonoBehaviour:
     skillType: heal
     castingTime: 0
     resourceObtain: 0
-    statusEffect: 
-    projectile: 
+    statusEffectID: 0
+    projectileID: 0
   - id: 13000015
     name: Revivification
     baseValue: 5
@@ -222,8 +222,8 @@ MonoBehaviour:
     skillType: heal
     castingTime: 0
     resourceObtain: 0
-    statusEffect: 
-    projectile: 
+    statusEffectID: 0
+    projectileID: 0
   - id: 13000016
     name: EncouragedSong
     baseValue: 10
@@ -236,8 +236,8 @@ MonoBehaviour:
     skillType: heal
     castingTime: 6
     resourceObtain: 0
-    statusEffect: 
-    projectile: 
+    statusEffectID: 0
+    projectileID: 0
   - id: 13000017
     name: ChainHealing
     baseValue: 0
@@ -250,8 +250,8 @@ MonoBehaviour:
     skillType: projectile
     castingTime: 2
     resourceObtain: 0
-    statusEffect: 
-    projectile: ChainHealingProjectile
+    statusEffectID: 0
+    projectileID: 0
   - id: 13000018
     name: HealOrb
     baseValue: 0
@@ -264,8 +264,8 @@ MonoBehaviour:
     skillType: projectile
     castingTime: 0
     resourceObtain: 0
-    statusEffect: 
-    projectile: HealOrbProjectile
+    statusEffectID: 0
+    projectileID: 0
   - id: 13000019
     name: RangeAttack
     baseValue: 0
@@ -278,5 +278,5 @@ MonoBehaviour:
     skillType: projectile
     castingTime: 1
     resourceObtain: 10
-    statusEffect: 
-    projectile: RangeAttackProjectile
+    statusEffectID: 0
+    projectileID: 0

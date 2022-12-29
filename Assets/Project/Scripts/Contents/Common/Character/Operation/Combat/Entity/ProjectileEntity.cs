@@ -4,15 +4,15 @@ namespace Common.Character.Operation.Combat.Entity
 {
     public class ProjectileEntity : BaseEntity
     {
-        [SerializeField] private string projectileName;
+        [SerializeField] private IDCode projectileID;
         [SerializeField] private GameObject projectilePrefab;
 
-        public string ProjectileName { get => projectileName; set => projectileName = value; }
+        public IDCode ProjectileID { get => projectileID; set => projectileID = value; }
         public override bool IsReady => true;
 
         public void Fire(ICombatTaker taker)
         {
-            // Pooling.Draw (or spawn whatever...)
+            // Pooling.Draw (or spawn whatever...) use projectileID
             var cbPosition = Sender.Object.transform.position;
             var tkPosition = taker.Object.transform.position;
             var lookAt = Quaternion.LookRotation(tkPosition - cbPosition);

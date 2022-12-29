@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using Common.Character;
+using Core;
 using Core.GameEvents;
 using Sirenix.OdinInspector;
 using UnityEngine;
@@ -33,6 +34,8 @@ namespace Raid
         private void Start()
         {
             var adventurerList = raidDirector.AdventurerList;
+
+            if (PartyFrameList.IsNullOrEmpty()) return;
             
             for (var i = 0; i < adventurerList.Count; ++i)
             {

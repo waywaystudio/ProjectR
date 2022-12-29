@@ -12,5 +12,149 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d290b498924148f43aa5ad68af4e05d6, type: 3}
   m_Name: EquipmentData
   m_EditorClassIdentifier: 
-  Index: 0
-  list: []
+  Index: 21
+  list:
+  - id: 21000001
+    name: Blood  Boil Lancet
+    part: weapon
+    hp: 0
+    critical: 0.15
+    haste: 0.05
+    hit: 0.02
+    evade: 0
+    armor: 0
+  - id: 21000002
+    name: Heartshiver
+    part: shoulder
+    hp: 100
+    critical: 0
+    haste: 0.1
+    hit: 0
+    evade: 0
+    armor: 20
+  - id: 21000003
+    name: Tower of the Mouldering Sorpse
+    part: leg
+    hp: 100
+    critical: 0
+    haste: 0
+    hit: 0
+    evade: 0.03
+    armor: 30
+  - id: 21000004
+    name: Coil of Missing Gems
+    part: ring
+    hp: 0
+    critical: 0.05
+    haste: 0
+    hit: 0
+    evade: 0
+    armor: 0
+  - id: 21000005
+    name: Brace Guards of the  Starless Night
+    part: chest
+    hp: 300
+    critical: 0
+    haste: 0
+    hit: 0
+    evade: 0.05
+    armor: 50
+  - id: 21000006
+    name: Sollerets of Suffering
+    part: ring
+    hp: 0
+    critical: 0.04
+    haste: 0
+    hit: 0
+    evade: 0
+    armor: 0
+  - id: 21000007
+    name: Soul Screaming Boots
+    part: leg
+    hp: 100
+    critical: 0
+    haste: 0
+    hit: 0
+    evade: 0.03
+    armor: 30
+  - id: 21000008
+    name: Spiteful Signet
+    part: head
+    hp: 50
+    critical: 0
+    haste: 0
+    hit: 0.01
+    evade: 0
+    armor: 25
+  - id: 21000009
+    name: Essence of Anger
+    part: ring
+    hp: 0
+    critical: 0.05
+    haste: 0
+    hit: 0
+    evade: 0.05
+    armor: 0
+  - id: 21000010
+    name: Lost Reliquary Chestguard
+    part: chest
+    hp: 300
+    critical: 0
+    haste: 0
+    hit: 0
+    evade: 0.05
+    armor: 55
+  - id: 21000011
+    name: Accursed Crawling Cape
+    part: head
+    hp: 50
+    critical: 0
+    haste: 0
+    hit: 0.01
+    evade: 0
+    armor: 27
+  - id: 21000012
+    name: Legplates of Frozen Granite
+    part: leg
+    hp: 100
+    critical: 0
+    haste: 0
+    hit: 0
+    evade: 0.03
+    armor: 35
+  - id: 21000013
+    name: Shard of Azzinoth
+    part: weapon
+    hp: 0
+    critical: 0.15
+    haste: 0.05
+    hit: 0.02
+    evade: 0
+    armor: 0
+  - id: 21000014
+    name: Bulwark of Azzinoth
+    part: weapon
+    hp: 0
+    critical: 0.2
+    haste: 0.05
+    hit: 0.02
+    evade: 0
+    armor: 0
+  - id: 21000015
+    name: Warglaive of Azzinoth
+    part: weapon
+    hp: 0
+    critical: 0.2
+    haste: 0.05
+    hit: 0.02
+    evade: 0
+    armor: 0
+  - id: 21000016
+    name: The Skull of Gul'dan
+    part: head
+    hp: 50
+    critical: 0
+    haste: 0
+    hit: 0.01
+    evade: 0
+    armor: 36

@@ -156,12 +156,12 @@ namespace Common.Character.Operation.Combat
             }
             if (TryGetComponent(out ProjectileEntity projectileEntity))
             {
-                projectileEntity.ProjectileName = skillData.Projectile;
+                projectileEntity.ProjectileID = (IDCode)skillData.ProjectileId;
                 projectileEntity.Flag = EntityType.Projectile;
             }
             if (TryGetComponent(out StatusEffectEntity statusEffectEntity))
             {
-                statusEffectEntity.ActionName = skillData.StatusEffect;
+                statusEffectEntity.ActionName = ((IDCode)skillData.StatusEffectId).ToString();
                 statusEffectEntity.Flag = EntityType.StatusEffect;
             }
             if (TryGetComponent(out TargetEntity targetEntity))

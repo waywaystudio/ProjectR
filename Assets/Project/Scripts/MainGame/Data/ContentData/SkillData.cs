@@ -26,8 +26,8 @@ namespace MainGame.Data.ContentData
 			[SerializeField] private String skillType;
 			[SerializeField] private Single castingTime;
 			[SerializeField] private Single resourceObtain;
-			[SerializeField] private String statusEffect;
-			[SerializeField] private String projectile;
+			[SerializeField] private Int32 statusEffectID;
+			[SerializeField] private Int32 projectileID;
 
 			public Int32 ID => id;
 			public String Name => name;
@@ -41,8 +41,8 @@ namespace MainGame.Data.ContentData
 			public String SkillType => skillType;
 			public Single CastingTime => castingTime;
 			public Single ResourceObtain => resourceObtain;
-			public String StatusEffect => statusEffect;
-			public String Projectile => projectile;
+			public Int32 StatusEffectId => statusEffectID;
+			public Int32 ProjectileId => projectileID;
 
         }
         
