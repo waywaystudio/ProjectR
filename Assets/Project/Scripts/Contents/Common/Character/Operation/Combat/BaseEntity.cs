@@ -7,7 +7,7 @@ namespace Common.Character.Operation.Combat
     {
         [SerializeField] protected EntityType flag;
 
-        public string ActionName { get; set; }
+        public IDCode ActionCode { get; private set; }
         public ActionTable OnStarted { get; } = new();
         public ActionTable OnCompleted { get; } = new();
         public ActionTable OnInterrupted { get; } = new();
@@ -19,7 +19,7 @@ namespace Common.Character.Operation.Combat
         public void Initialize(IActionSender actionSender)
         {
             Sender = actionSender.Sender;
-            ActionName = actionSender.ActionName;
+            ActionCode = actionSender.ActionCode;
         }
         
         protected virtual void Awake()

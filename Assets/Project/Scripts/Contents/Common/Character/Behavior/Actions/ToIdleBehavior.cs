@@ -1,5 +1,5 @@
 using BehaviorDesigner.Runtime.Tasks;
-using Common.Character.Operation.Combat;
+using Common.Character.Operation;
 
 namespace Common.Character.Behavior.Actions
 {
@@ -10,7 +10,7 @@ namespace Common.Character.Behavior.Actions
 
         public override void OnAwake()
         {
-            TryGetComponent<Combating>(out var combat);
+            TryGetComponent<CombatOperation>(out var combat);
 
             cb = combat.GetComponentInParent<CharacterBehaviour>();
         }

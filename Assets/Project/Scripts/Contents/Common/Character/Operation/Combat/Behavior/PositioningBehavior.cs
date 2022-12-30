@@ -6,14 +6,14 @@ namespace Common.Character.Operation.Combat.Behavior
     [TaskCategory("Character/Combat")]
     public class PositioningBehavior : Action
     {
-        private Combating combat;
+        private CombatOperation combat;
         private CharacterBehaviour cb;
         
 
         public override void OnAwake()
         {
-            combat = GetComponent<Combating>();
-            cb = combat.Cb;
+            combat = GetComponent<CombatOperation>();
+            cb = combat.GetComponentInParent<CharacterBehaviour>();
         }
 
         public override TaskStatus OnUpdate()
@@ -30,7 +30,7 @@ namespace Common.Character.Operation.Combat.Behavior
                 return TaskStatus.Success;
             }
 
-            var isMovable = combat.CombatPosition.TryGetCombatPosition(
+            var isMovable = combat.Positioning.TryGetCombatPosition(
                 targetEntity.CombatTaker, targetEntity.Range, out var destination);
 
             if (!isMovable && cb.IsReached.Invoke())

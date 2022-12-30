@@ -23,7 +23,6 @@ namespace Raid.UI
         }
 
 #if UNITY_EDITOR
-        [Sirenix.OdinInspector.Button]
         private void SetUp()
         {
             // hoverObject ??= transform;

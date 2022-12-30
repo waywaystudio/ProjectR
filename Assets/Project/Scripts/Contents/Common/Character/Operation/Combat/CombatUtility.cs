@@ -44,7 +44,7 @@ namespace Common.Character.Operation.Combat
 
         public static void TakeDamage(ICombatProvider provider, ICombatTaker taker)
         {
-            var log = new CombatLog(provider.Name, taker.Name, provider.ActionName);
+            var log = new CombatLog(provider.Name, taker.Name, provider.ActionCode.ToString());
 
             // Hit Chance
             if (IsHit(provider.StatTable.Hit, taker.StatTable.Evade)) log.IsHit = true;
@@ -85,7 +85,7 @@ namespace Common.Character.Operation.Combat
         }
         public static void TakeSpell(ICombatProvider provider, ICombatTaker taker)
         {
-            var log = new CombatLog(provider.Name, taker.Name, provider.ActionName);
+            var log = new CombatLog(provider.Name, taker.Name, provider.ActionCode.ToString());
             
             // Hit Chance
             if (IsHit(provider.StatTable.Hit, taker.StatTable.Evade)) log.IsHit = true;
@@ -127,7 +127,7 @@ namespace Common.Character.Operation.Combat
         }
         public static void TakeHeal(ICombatProvider provider, ICombatTaker taker)
         {
-            var log = new CombatLog(provider.Name, taker.Name, provider.ActionName, true);
+            var log = new CombatLog(provider.Name, taker.Name, provider.ActionCode.ToString(), true);
 
             var healAmount = provider.StatTable.Power;
             

@@ -69,20 +69,20 @@ MonoBehaviour:
     castingTime: 3
     resourceObtain: -20
     statusEffectID: 0
-    projectileID: 0
+    projectileID: 15000001
   - id: 13000005
     name: BloodDrain
     baseValue: 0
     baseCoolTime: 15
     range: 0
-    priority: 1
+    priority: 6
     animationKey: skill
     targetCount: 1
     targetLayer: self
     skillType: transcendence
     castingTime: 0
     resourceObtain: 0
-    statusEffectID: 0
+    statusEffectID: 14001003
     projectileID: 0
   - id: 13000006
     name: Roar
@@ -96,7 +96,7 @@ MonoBehaviour:
     skillType: damage
     castingTime: 0
     resourceObtain: 0
-    statusEffectID: 0
+    statusEffectID: 14000004
     projectileID: 0
   - id: 13000007
     name: Penetrate
@@ -131,14 +131,14 @@ MonoBehaviour:
     baseValue: 0
     baseCoolTime: 30
     range: 0
-    priority: 1
+    priority: 6
     animationKey: skill
     targetCount: 1
     targetLayer: self
     skillType: transcendence
     castingTime: 0
     resourceObtain: 0
-    statusEffectID: 0
+    statusEffectID: 14001005
     projectileID: 0
   - id: 13000010
     name: LightningSlash
@@ -166,8 +166,8 @@ MonoBehaviour:
     skillType: projectile
     castingTime: 1.5
     resourceObtain: 0
-    statusEffectID: 0
-    projectileID: 0
+    statusEffectID: 14000006
+    projectileID: 15000002
   - id: 13000012
     name: Corruption
     baseValue: 3
@@ -180,7 +180,7 @@ MonoBehaviour:
     skillType: damage
     castingTime: 0
     resourceObtain: 0
-    statusEffectID: 0
+    statusEffectID: 14000001
     projectileID: 0
   - id: 13000013
     name: FaithfulPrey
@@ -251,7 +251,7 @@ MonoBehaviour:
     castingTime: 2
     resourceObtain: 0
     statusEffectID: 0
-    projectileID: 0
+    projectileID: 15000003
   - id: 13000018
     name: HealOrb
     baseValue: 0
@@ -265,7 +265,7 @@ MonoBehaviour:
     castingTime: 0
     resourceObtain: 0
     statusEffectID: 0
-    projectileID: 0
+    projectileID: 15000004
   - id: 13000019
     name: RangeAttack
     baseValue: 0
@@ -279,4 +279,4 @@ MonoBehaviour:
     castingTime: 1
     resourceObtain: 10
     statusEffectID: 0
-    projectileID: 0
+    projectileID: 15000005

@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using Common.Character.Operation;
 using Core;
 using MainGame;
 using UnityEngine;
@@ -24,7 +25,7 @@ namespace Common.Character
         public string Role => role;
         public Status Status => status;
         public StatTable StatTable { get; } = new();
-        public string ActionName => string.Empty;
+        public IDCode ActionCode => IDCode.None;
         public string Name => characterName ??= "Diablo";
         public ICombatProvider Sender => this;
         public IDCode CombatClassID => combatClassID;
@@ -47,7 +48,9 @@ namespace Common.Character
         public ActionTable<CombatLog> OnCombatPassive { get; } = new();
         public FunctionTable<bool> IsReached { get; } = new();
         public FunctionTable<Vector3> Direction { get; } = new();
-        public BaseSkill CurrentSkill { get; set; }
+
+        public CombatOperation CombatOperation { get; set; }
+        
         public List<GameObject> AdventurerList { get; } = new();
         public List<GameObject> MonsterList { get; } = new();
         public ICombatTaker MainTarget { get; set; }
@@ -66,11 +69,6 @@ namespace Common.Character
         public virtual void TakeSpell(ICombatProvider provider) => CombatUtility.TakeSpell(provider, this);
         public virtual void TakeHeal(ICombatProvider provider) => CombatUtility.TakeHeal(provider, this);
         public virtual void TakeStatusEffect(ICombatProvider statusEffect) => OnTakeStatusEffect?.Invoke(statusEffect);
-
-        private void Awake()
-        {
-            status = new Status();
-        }
 
         protected virtual void Start()
         {

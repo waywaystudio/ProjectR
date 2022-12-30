@@ -11,10 +11,7 @@ namespace Core
         /// <summary>
         /// Unregister Delegate by custom Key (like as Remove())
         /// </summary>
-        public void Unregister(int key)
-        {
-            if (ContainsKey(key)) Remove(key);
-        }
+        public void Unregister(int key) => this.TryRemove(key);
         public void UnregisterAll() => Clear();
 
         protected void TryAdd(int key, T value, bool overwrite)

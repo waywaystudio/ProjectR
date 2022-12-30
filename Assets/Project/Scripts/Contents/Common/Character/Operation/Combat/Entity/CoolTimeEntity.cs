@@ -1,5 +1,5 @@
 using System.Collections;
-using Sirenix.OdinInspector;
+using Core;
 using UnityEngine;
 // ReSharper disable NotAccessedField.Local
 
@@ -12,14 +12,18 @@ namespace Common.Character.Operation.Combat.Entity
         private float remainTimer;
         private Coroutine resetCoroutine;
 
+        public ActionTable<float> OnRemainTimeChanged { get; } = new();
         public override bool IsReady => remainTimer <= 0.0f;
         public float CoolTime { get => coolTime; set => coolTime = value; }
         public float CoolTimeTick { get; set; }
-        [ShowInInspector]
         public float RemainTimer
         {
             get => remainTimer;
-            set => remainTimer = Mathf.Max(0, value);
+            set
+            {
+                remainTimer = Mathf.Max(0, value);
+                OnRemainTimeChanged?.Invoke(value);
+            }
         }
 
 
@@ -33,6 +37,8 @@ namespace Common.Character.Operation.Combat.Entity
                 RemainTimer -= CoolTimeTick;
                 yield return null;
             }
+
+            RemainTimer = 0f;
         }
 
         protected override void Awake()

@@ -11,13 +11,12 @@ namespace Common.Character.Operation.Combat
     
     public abstract class ProjectileBehaviour : MonoBehaviour, IActionSender
     {
-        [SerializeField] protected int id;
-        [SerializeField] protected string projectileName;
+        [SerializeField] protected IDCode actionCode;
         [SerializeField] protected float speed = 20f;
         [SerializeField] protected GameObject particle;
         [SerializeField] protected LayerMask targetLayer;
 
-        public string ActionName => projectileName;
+        public IDCode ActionCode => actionCode;
         public ICombatProvider Sender { get; set; }
         protected ICombatTaker Taker { get; set; }
         protected LayerMask TargetLayer => targetLayer;
@@ -64,47 +63,13 @@ namespace Common.Character.Operation.Combat
         [Button(ButtonSizes.Large,  Icon = SdfIconType.ArrowRepeat, Stretch = false)]
         private void GetProjectileFromDB()
         {
-            var data = MainData.GetProjectile(projectileName.ToEnum<IDCode>());
-            id = data.ID;
-            speed = data.Speed;
-            
-            if (TryGetComponent(out DamageEntity damageEntity))
-            {
-                damageEntity.DamageValue = data.BaseValue;
-                damageEntity.Flag = EntityType.Damage;
-            }
-            if (TryGetComponent(out CastingEntity castingEntity))
-            {
-                // castingEntity.OriginalCastingTime = data.CastingTime;
-                castingEntity.Flag = EntityType.Casting;
-            }
-            if (TryGetComponent(out CoolTimeEntity coolTimeEntity))
-            {
-                // coolTimeEntity.CoolTime = data.BaseCoolTime;
-                coolTimeEntity.Flag = EntityType.CoolTime;
-            }
-            if (TryGetComponent(out HealEntity healEntity))
-            {
-                healEntity.HealValue = data.BaseValue;
-                healEntity.Flag = EntityType.Heal;
-            }
-            if (TryGetComponent(out ProjectileEntity projectileEntity))
-            {
-                // projectileEntity.ProjectileName = data.Projectile;
-                projectileEntity.Flag = EntityType.Projectile;
-            }
-            if (TryGetComponent(out StatusEffectEntity statusEffectEntity))
-            {
-                statusEffectEntity.ActionName = data.StatusEffect;
-                statusEffectEntity.Flag = EntityType.StatusEffect;
-            }
-            if (TryGetComponent(out TargetEntity targetEntity))
-            {
-                // targetEntity.TargetLayerType = data.TargetLayer;
-                // targetEntity.TargetCount = data.TargetCount;
-                // targetEntity.Range = data.Range;
-                targetEntity.Flag = EntityType.Target;
-            }
+            if (actionCode == IDCode.None)
+                actionCode = name.ToEnum<IDCode>();
+
+            var projectileData = MainData.GetProjectile(actionCode);
+            speed = projectileData.Speed;
+
+            GetComponents<BaseEntity>().ForEach(x => EntityUtility.SetProjectileEntity(projectileData, x));
         }
 #endif
     }

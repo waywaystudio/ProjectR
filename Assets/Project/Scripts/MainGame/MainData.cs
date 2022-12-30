@@ -25,6 +25,7 @@ namespace MainGame
         private readonly Dictionary<int, DataObject> dataTable = new();
 
         public static List<DataObject> DataList => Instance.dataList;
+        [Sirenix.OdinInspector.ShowInInspector]
         public static Dictionary<int, DataObject> DataTable
         {
             get

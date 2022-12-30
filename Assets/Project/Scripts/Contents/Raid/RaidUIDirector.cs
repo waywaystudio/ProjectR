@@ -1,8 +1,6 @@
 using System.Collections.Generic;
 using Common.Character;
 using Core;
-using Core.GameEvents;
-using Sirenix.OdinInspector;
 using UnityEngine;
 
 namespace Raid
@@ -12,7 +10,6 @@ namespace Raid
     public class RaidUIDirector : MonoBehaviour
     {
         [SerializeField] private RaidDirector raidDirector;
-        [SerializeField] private GameEventTransform cameraFocusChanging;
 
         private AdventurerBehaviour focusAdventurer;
         
@@ -27,9 +24,12 @@ namespace Raid
                 if (value == focusAdventurer) return;
                 
                 focusAdventurer = value;
-                cameraFocusChanging.Invoke(focusAdventurer.transform);
+                raidDirector.OnCharacterFocusChanged.Invoke(value.transform);
+                SkillSlotFrameList.ForEach(x => x.Unregister());
+                SkillSlotFrameList.ForEach(x => x.Register(focusAdventurer));
             }
         }
+
 
         private void Start()
         {
@@ -44,7 +44,6 @@ namespace Raid
         }
 
 #if UNITY_EDITOR
-        [Button]
         private void SetUp()
         {
             raidDirector = GetComponentInParent<RaidDirector>();

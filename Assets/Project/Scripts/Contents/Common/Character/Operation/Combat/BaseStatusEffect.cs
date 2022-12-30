@@ -12,7 +12,7 @@ namespace Common.Character.Operation.Combat
         public ICombatTaker TakerInfo;
 
         public int ID { get; set; }
-        public string ActionName { get; set; }
+        public IDCode ActionCode { get; set; }
         public bool IsBuff { get; set; }
         public float Duration { get; set; }
         public float CombatValue { get; set; }

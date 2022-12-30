@@ -20,7 +20,7 @@ namespace Common.Character.UI
 
         private void UpdateCastingBar()
         {
-            castingEntity = cb.CurrentSkill.CastingEntity;
+            castingEntity = cb.CombatOperation.CurrentSkill.CastingEntity;
 
             if (castingEntity is null)
             {

@@ -10,18 +10,16 @@ namespace Common.Character.Operation.Combat
     
     public abstract class BaseSkill : MonoBehaviour, IActionSender
     {
-        [SerializeField] protected IDCode id;
-        [SerializeField] protected string actionName;
+        [SerializeField] protected IDCode actionCode;
         [SerializeField] protected int priority;
         [SerializeField] protected Sprite icon;
 
         protected int InstanceID;
         protected CharacterBehaviour Cb;
-        protected Combating Combat;
+        protected CombatOperation Combat;
 
-        public IDCode ID => id;
         public int Priority => priority;
-        public string ActionName => actionName;
+        public IDCode ActionCode => actionCode;
         public ICombatProvider Sender => Cb;
         public Sprite Icon => icon;
 
@@ -44,58 +42,38 @@ namespace Common.Character.Operation.Combat
         public virtual void InvokeEvent(){}
         public virtual void ActiveSkill()
         {
-            Cb.CurrentSkill = this;
             Cb.OnSkill.Register(InstanceID, StartSkill);
             Cb.OnSkillHit.Register(InstanceID, InvokeEvent);
-            Cb.Skill(ActionName, CompleteSkill);
+            Cb.Skill(actionCode.ToString(), CompleteSkill);
         }
 
         public void DeActiveSkill()
         {
-            Cb.CurrentSkill = null;
             Cb.OnSkill.Unregister(InstanceID);
             Cb.OnSkillHit.Unregister(InstanceID);
         }
 
-
-        protected DamageEntity DamageEntity 
-            => EntityTable.ContainsKey(EntityType.Damage) 
-                ? EntityTable[EntityType.Damage] as DamageEntity : null;
+        public DamageEntity DamageEntity => GetEntity<DamageEntity>(EntityType.Damage);
+        public CastingEntity CastingEntity => GetEntity<CastingEntity>(EntityType.Casting);
+        public CoolTimeEntity CoolTimeEntity => GetEntity<CoolTimeEntity>(EntityType.CoolTime);
+        public HealEntity HealEntity => GetEntity<HealEntity>(EntityType.Heal);
+        public ProjectileEntity ProjectileEntity => GetEntity<ProjectileEntity>(EntityType.Projectile);
+        public StatusEffectEntity StatusEffectEntity => GetEntity<StatusEffectEntity>(EntityType.StatusEffect);
+        public TargetEntity TargetEntity => GetEntity<TargetEntity>(EntityType.Target);
+        public ResourceEntity ResourceEntity => GetEntity<ResourceEntity>(EntityType.Resource);
         
-        public CastingEntity CastingEntity
-            => EntityTable.ContainsKey(EntityType.Casting) 
-                ? EntityTable[EntityType.Casting] as CastingEntity : null;
-
-        public CoolTimeEntity CoolTimeEntity
-            => EntityTable.ContainsKey(EntityType.CoolTime) 
-                ? EntityTable[EntityType.CoolTime] as CoolTimeEntity : null;
-
-        protected HealEntity HealEntity
-            => EntityTable.ContainsKey(EntityType.Heal) 
-                ? EntityTable[EntityType.Heal] as HealEntity : null;
-
-        protected ProjectileEntity ProjectileEntity
-            => EntityTable.ContainsKey(EntityType.Projectile)
-                ? EntityTable[EntityType.Projectile] as ProjectileEntity: null;
-        
-        protected StatusEffectEntity StatusEffectEntity 
-            => EntityTable.ContainsKey(EntityType.StatusEffect)
-                ? EntityTable[EntityType.StatusEffect] as StatusEffectEntity : null;
-
-        public TargetEntity TargetEntity
-            => EntityTable.ContainsKey(EntityType.Target)
-                ? EntityTable[EntityType.Target] as TargetEntity : null;
-        
-        public ResourceEntity ResourceEntity
-            => EntityTable.ContainsKey(EntityType.Resource)
-                ? EntityTable[EntityType.Resource] as ResourceEntity : null;
+        private T GetEntity<T>(EntityType type) where T : BaseEntity => EntityTable.ContainsKey(type) 
+                ? EntityTable[type] as T 
+                : null;
 
         protected void Awake()
         {
             InstanceID = GetInstanceID();
             Cb = GetComponentInParent<CharacterBehaviour>();
-            Combat = GetComponentInParent<Combating>();
-            actionName ??= GetType().Name;
+            Combat = GetComponentInParent<CombatOperation>();
+            
+            if (actionCode == IDCode.None) 
+                actionCode = GetType().Name.ToEnum<IDCode>();
             
             GetComponents<BaseEntity>().ForEach(x => EntityTable.Add(x.Flag, x));
             EntityTable.ForEach(x =>
@@ -113,76 +91,36 @@ namespace Common.Character.Operation.Combat
 
         protected void OnEnable()
         {
-            Combat.SkillTable.TryAdd((int)id, this);
+            Combat.SkillTable.TryAdd((int)actionCode, this);
         }
 
         protected void OnDisable()
         {
-            Combat.SkillTable.TryRemove((int)id);
+            Combat.SkillTable.TryRemove((int)actionCode);
             DeActiveSkill();
         }
 
-        protected virtual void Reset() => actionName = GetType().Name;
+        protected virtual void Reset() => actionCode = GetType().Name.ToEnum<IDCode>();
+        
 
 #if UNITY_EDITOR
         #region EditorOnly
-        protected void GetDataFromDB()
+        private void SetUp()
         {
-            var skillData = MainGame.MainData.GetSkill(actionName.ToEnum<IDCode>());
-            
-            actionName.IsNullOrEmpty().OnTrue(() => actionName = GetType().Name);
-            id = (IDCode)skillData.ID;
+            if (actionCode == IDCode.None) 
+                actionCode = GetType().Name.ToEnum<IDCode>();
+
+            var skillData = MainGame.MainData.GetSkill(actionCode);
             priority = skillData.Priority;
 
-            if (TryGetComponent(out DamageEntity damageEntity))
-            {
-                damageEntity.DamageValue = skillData.BaseValue;
-                damageEntity.Flag = EntityType.Damage;
-            }
-            if (TryGetComponent(out CastingEntity castingEntity))
-            {
-                castingEntity.OriginalCastingTime = skillData.CastingTime;
-                castingEntity.Flag = EntityType.Casting;
-            }
-            if (TryGetComponent(out CoolTimeEntity coolTimeEntity))
-            {
-                coolTimeEntity.CoolTime = skillData.BaseCoolTime;
-                coolTimeEntity.Flag = EntityType.CoolTime;
-            }
-            if (TryGetComponent(out HealEntity healEntity))
-            {
-                healEntity.HealValue = skillData.BaseValue;
-                healEntity.Flag = EntityType.Heal;
-            }
-            if (TryGetComponent(out ProjectileEntity projectileEntity))
-            {
-                projectileEntity.ProjectileID = (IDCode)skillData.ProjectileId;
-                projectileEntity.Flag = EntityType.Projectile;
-            }
-            if (TryGetComponent(out StatusEffectEntity statusEffectEntity))
-            {
-                statusEffectEntity.ActionName = ((IDCode)skillData.StatusEffectId).ToString();
-                statusEffectEntity.Flag = EntityType.StatusEffect;
-            }
-            if (TryGetComponent(out TargetEntity targetEntity))
-            {
-                targetEntity.TargetLayerType = skillData.TargetLayer;
-                targetEntity.TargetCount = skillData.TargetCount;
-                targetEntity.Range = skillData.Range;
-                targetEntity.Flag = EntityType.Target;
-            }
-            if (TryGetComponent(out ResourceEntity resourceEntity))
-            {
-                resourceEntity.Obtain = skillData.ResourceObtain;
-                resourceEntity.Flag = EntityType.Resource;
-            }
-            
+            GetComponents<BaseEntity>().ForEach(x => EntityUtility.SetSkillEntity(skillData, x));
             UnityEditor.EditorUtility.SetDirty(this);
         }
-        protected void ShowDB()
+        
+        private void ShowDB()
         {
-            // UnityEditor.EditorUtility.OpenPropertyEditor
-            //     (MainGame.MainData.DataObjectList.Find(x => x.CategoryIndex == 13));
+            UnityEditor.EditorUtility.OpenPropertyEditor
+                (MainGame.MainData.DataList.Find(x => x.Index == 13));
         }
         #endregion
 #endif

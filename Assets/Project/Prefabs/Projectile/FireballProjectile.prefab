@@ -144,8 +144,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f4ec04990c346b94385d3cf2e8519d47, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  id: 15000002
-  projectileName: FireballProjectile
+  actionCode: 15000002
   speed: 24
   particle: {fileID: 0}
   targetLayer:
@@ -178,4 +177,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   flag: 512
-  statusEffectName: FireballDeBuff
+  statusEffectCode: 14000006

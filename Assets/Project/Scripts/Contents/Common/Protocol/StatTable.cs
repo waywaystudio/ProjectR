@@ -1,5 +1,4 @@
 #if UNITY_EDITOR
-using System.Reflection;
 using Sirenix.OdinInspector.Editor;
 #endif
 
@@ -158,23 +157,15 @@ namespace Common
     }
 
 #if UNITY_EDITOR
-    public class CastingEntityDrawer : OdinAttributeProcessor<FloatTable>
+    public class FloatTableDrawer : OdinAttributeProcessor<FloatTable>
     {
         public override void ProcessSelfAttributes(InspectorProperty property, List<Attribute> attributes)
         {
             attributes.Add(new DictionaryDrawerSettings
             {
-               DisplayMode = DictionaryDisplayOptions.OneLine,
-               IsReadOnly = true,
+                DisplayMode = DictionaryDisplayOptions.OneLine,
+                IsReadOnly = true,
             });
-        }
-
-        public override void ProcessChildMemberAttributes(InspectorProperty parentProperty, MemberInfo member, List<Attribute> attributes)
-        {
-            if (member.Name == "CastingTime")
-            {
-                // attributes.Add(new ShowInInspectorAttribute());
-            }
         }
     }
 #endif

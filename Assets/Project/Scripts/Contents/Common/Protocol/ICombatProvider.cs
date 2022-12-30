@@ -13,7 +13,7 @@ namespace Common
 
     public interface IActionSender
     {
-        string ActionName { get; }
+        IDCode ActionCode { get; }
         ICombatProvider Sender { get; }
     }
     

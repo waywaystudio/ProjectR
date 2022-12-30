@@ -6,7 +6,7 @@ using Sirenix.OdinInspector.Editor;
 
 namespace MainGame.Editor
 {
-    public class MainDataDrawer : OdinAttributeProcessor
+    public class MainDataDrawer : OdinAttributeProcessor<MainData>
     {
         public override void ProcessChildMemberAttributes(InspectorProperty parentProperty, MemberInfo member, List<Attribute> attributes)
         {
@@ -33,18 +33,18 @@ namespace MainGame.Editor
                 attributes.Add(new FolderPathAttribute());
             }
 
-            if (member.Name == "SetUp")
-            {
-                attributes.Add(new HorizontalGroupAttribute("Horizontal"));
-                attributes.Add(new ButtonAttribute(ButtonSizes.Large)
-                {
-                    Icon = SdfIconType.Save,
-                });
-            }
+            // if (member.Name == "SetUp")
+            // {
+            //     attributes.Add(new HorizontalGroupAttribute("Horizontal"));
+            //     attributes.Add(new ButtonAttribute(ButtonSizes.Large)
+            //     {
+            //         Icon = SdfIconType.Save,
+            //     });
+            // }
             
             if (member.Name == "OpenSpreadSheetPanel")
             {
-                attributes.Add(new HorizontalGroupAttribute("Horizontal"));
+                attributes.Add(new HorizontalGroupAttribute("CommonHorizontal"));
                 attributes.Add(new ButtonAttribute(ButtonSizes.Large)
                 {
                     Icon = SdfIconType.FileSpreadsheet,

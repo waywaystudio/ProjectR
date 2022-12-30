@@ -7,7 +7,7 @@ namespace Common.Character.Operation.Combat
     // Character의 무빙 스타일 값은 어떤 방식으로 받을 것인가?
     // 1. CharacterBehaviour
     // 2. 어떤 인터페이스 내지는 클래스.
-    public class CombatPosition : MonoBehaviour
+    public class Positioning : MonoBehaviour
     {
         [SerializeField] private CharacterBehaviour cb;
         

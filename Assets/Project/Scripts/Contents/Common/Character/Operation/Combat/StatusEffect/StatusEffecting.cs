@@ -16,20 +16,20 @@ namespace Common.Character.Operation.Combat.StatusEffect
         private CharacterBehaviour cb;
         private int instanceID;
 
-        [ShowInInspector] public Dictionary<string, BaseStatusEffect> BuffTable { get; set; } = new();
-        [ShowInInspector] public Dictionary<string, BaseStatusEffect> DeBuffTable { get; set; } = new();
+        [ShowInInspector] public Dictionary<IDCode, BaseStatusEffect> BuffTable { get; set; } = new();
+        [ShowInInspector] public Dictionary<IDCode, BaseStatusEffect> DeBuffTable { get; set; } = new();
 
         public void TryAdd(ICombatProvider provider)
         {
             BaseStatusEffect statusEffect;
             
-            switch (provider.ActionName)
+            switch (provider.ActionCode)
             {
-                case "BloodDrainBuff" : statusEffect = GenerateStatusEffect<BloodDrainBuff>(provider); break;
-                case "CorruptionDeBuff": statusEffect = GenerateStatusEffect<CorruptionDeBuff>(provider); break;
-                case "FireballDeBuff" : statusEffect = GenerateStatusEffect<FireballDeBuff>(provider); break;
-                case "FuryBuff" : statusEffect = GenerateStatusEffect<FuryBuff>(provider); break;
-                case "RoarDeBuff" : statusEffect = GenerateStatusEffect<RoarDeBuff>(provider); break;
+                case IDCode.BloodDrainBuff : statusEffect = GenerateStatusEffect<BloodDrainBuff>(provider); break;
+                case IDCode.CorruptionDeBuff : statusEffect = GenerateStatusEffect<CorruptionDeBuff>(provider); break;
+                case IDCode.FireballDeBuff : statusEffect = GenerateStatusEffect<FireballDeBuff>(provider); break;
+                case IDCode.FuryBuff : statusEffect = GenerateStatusEffect<FuryBuff>(provider); break;
+                case IDCode.RoarDeBuff : statusEffect = GenerateStatusEffect<RoarDeBuff>(provider); break;
                 
                 default: return;
             }
@@ -38,20 +38,20 @@ namespace Common.Character.Operation.Combat.StatusEffect
                 ? BuffTable
                 : DeBuffTable;
             
-            if (targetTable.ContainsKey(provider.ActionName))
+            if (targetTable.ContainsKey(provider.ActionCode))
             {
                 // Implement Compare
                 return;
             }
 
             statusEffect.InvokeRoutine = StartCoroutine(statusEffect.MainAction());
-            targetTable.TryAdd(provider.ActionName, statusEffect);
+            targetTable.TryAdd(provider.ActionCode, statusEffect);
         }
 
-        public bool TryRemove(ICombatProvider provider) => TryRemove(provider.ActionName);
-        public bool TryRemove(string key)
+        public bool TryRemove(ICombatProvider provider) => TryRemove(provider.ActionCode);
+        public bool TryRemove(IDCode key)
         {
-            var targetTable = key.EndsWith("DeBuff")
+            var targetTable = key.ToString().EndsWith("DeBuff")
                 ? DeBuffTable
                 : BuffTable;
             
@@ -68,7 +68,7 @@ namespace Common.Character.Operation.Combat.StatusEffect
 
         private T GenerateStatusEffect<T>(ICombatProvider provider) where T : BaseStatusEffect, new()
         {
-            var statusEffectData = MainData.GetStatusEffect(provider.ActionName.ToEnum<IDCode>());
+            var statusEffectData = MainData.GetStatusEffect(provider.ActionCode);
             
             return new T
             {
@@ -78,7 +78,7 @@ namespace Common.Character.Operation.Combat.StatusEffect
                 Duration = statusEffectData.Duration,
                 CombatValue = statusEffectData.CombatValue,
                 Sender = provider,
-                ActionName = provider.ActionName,
+                ActionCode = provider.ActionCode,
                 TakerInfo = cb,
                 Callback = () => TryRemove(provider),
             };

@@ -4,9 +4,9 @@ namespace Common.Character.Operation.Combat.Entity
 {
     public class StatusEffectEntity : BaseEntity, ICombatProvider
     {
-        [SerializeField] private string statusEffectName;
+        [SerializeField] private IDCode statusEffectCode;
 
-        public new string ActionName { get => statusEffectName; set => statusEffectName = value; }
+        public new IDCode ActionCode { get => statusEffectCode; set => statusEffectCode = value; }
         public string Name => Sender.Name;
         public GameObject Object => Sender.Object;
         public Status Status => Sender.Status;

@@ -143,8 +143,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2ac99a89e48d11743ba10138211bcf53, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  id: 15000001
-  projectileName: AimShotProjectile
+  actionCode: 15000001
   speed: 30
   particle: {fileID: 0}
   targetLayer:

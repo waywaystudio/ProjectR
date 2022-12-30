@@ -9,12 +9,12 @@ namespace Common.Character.Operation.Combat.Behavior
     {
         public SharedInt TargetSkillID;
         
-        private Combating combat;
+        private CombatOperation combat;
         
 
         public override void OnAwake()
         {
-            combat = GetComponent<Combating>();
+            combat = GetComponent<CombatOperation>();
         }
 
         public override TaskStatus OnUpdate()
