@@ -77,7 +77,7 @@ namespace Common
             status.Hp = StatTable.MaxHp;
             status.IsAlive = true;
         }
-        protected void Update() => OnUpdate?.Invoke();
+        protected virtual void Update() => OnUpdate?.Invoke();
         
         private void ShowLog(CombatLog log)
         {

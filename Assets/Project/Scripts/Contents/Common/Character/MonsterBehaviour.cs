@@ -1,5 +1,6 @@
 using Core;
 using MainGame;
+using UnityEngine;
 
 namespace Common.Character
 {
@@ -13,6 +14,24 @@ namespace Common.Character
             StatTable.Register(StatCode.AddMaxHp, TestKey.GetHashCode(), 3000f, true);
             
             base.Start();
+        }
+
+        protected override void Update()
+        {
+            base.Update();
+            
+            // 좌클릭 이벤트가 들어왔다면
+            if (Input.GetMouseButtonUp(0))
+            {
+                var ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+    
+                // 레이저가 뭔가에 맞았다면
+                if (Physics.Raycast(ray, out var raycastHit))
+                {
+                    // 맞은 위치를 목적지로 저장
+                    Run(new Vector3(raycastHit.point.x, 0f, raycastHit.point.z));
+                }
+            }
         }
         
         private void OnDisable()
