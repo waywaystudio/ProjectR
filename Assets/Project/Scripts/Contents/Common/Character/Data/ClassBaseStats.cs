@@ -4,8 +4,6 @@ using Sirenix.OdinInspector.Editor;
 #endif
 using System;
 using System.Collections.Generic;
-using Core;
-using MainGame;
 using Sirenix.OdinInspector;
 using UnityEngine;
 using CombatClassData = MainGame.Data.ContentData.CombatClassData.CombatClass;
@@ -14,55 +12,39 @@ namespace Common.Character.Data
 {
     public class ClassBaseStats : MonoBehaviour
     {
-        [SerializeField] private IDCode combatClass;
-        [SerializeField] private float maxHp;
-        [SerializeField] private float maxResource;
-        [SerializeField] private float moveSpeed;
-        [SerializeField] private float critical;
-        [SerializeField] private float haste;
-        [SerializeField] private float hit;
-        [SerializeField] private float evade;
-        [SerializeField] private float armor;
-        
-        private CharacterBehaviour cb;
-        private string characterName;
-        private int instanceID;
+        [SerializeField] protected IDCode baseStatCode;
+        [SerializeField] protected float maxHp;
+        [SerializeField] protected float maxResource;
+        [SerializeField] protected float moveSpeed;
+        [SerializeField] protected float critical;
+        [SerializeField] protected float haste;
+        [SerializeField] protected float hit;
+        [SerializeField] protected float evade;
+        [SerializeField] protected float armor;
 
-        private CharacterBehaviour Cb => cb ??= GetComponentInParent<CharacterBehaviour>();
-        private CombatClassData ClassData { get; set; }
+        protected int InstanceID;
+        protected CharacterBehaviour Cb { get; set; }
 
 
-        public void Initialize()
+        protected virtual void Awake()
         {
-            (combatClass == IDCode.None).OnTrue(() => combatClass = Cb.CombatClassID);
-            ClassData = MainData.GetCombatClass(combatClass);
+            InstanceID = GetInstanceID();
+            
+            Cb = GetComponentInParent<CharacterBehaviour>();
 
-            maxHp = ClassData.MaxHp;
-            moveSpeed = ClassData.MoveSpeed;
-            maxResource = ClassData.MaxResource;
-            critical = ClassData.Critical;
-            haste = ClassData.Haste;
-            hit = ClassData.Hit;
-            evade = ClassData.Evade;
-            armor = ClassData.Armor;
+            Cb.StatTable.Register(StatCode.AddMaxHp, InstanceID, () => maxHp, true);
+            Cb.StatTable.Register(StatCode.AddMoveSpeed, InstanceID, () => moveSpeed, true);
+            Cb.StatTable.Register(StatCode.AddMaxResource, InstanceID, () => maxResource, true);
+            Cb.StatTable.Register(StatCode.AddCritical, InstanceID, () => critical, true);
+            Cb.StatTable.Register(StatCode.AddHaste, InstanceID, () => haste, true);
+            Cb.StatTable.Register(StatCode.AddHit, InstanceID, () => hit, true);
+            Cb.StatTable.Register(StatCode.AddEvade, InstanceID, () => evade, true);
+            Cb.StatTable.Register(StatCode.AddArmor, InstanceID, () => armor, true);
         }
 
-        private void Awake()
-        {
-            cb = GetComponentInParent<CharacterBehaviour>();
-            
-            instanceID = GetInstanceID();
-            Cb.StatTable.Register(StatCode.AddMaxHp, instanceID, () => maxHp, true);
-            Cb.StatTable.Register(StatCode.AddMoveSpeed, instanceID, () => moveSpeed, true);
-            Cb.StatTable.Register(StatCode.AddMaxResource, instanceID, () => maxResource, true);
-            Cb.StatTable.Register(StatCode.AddCritical, instanceID, () => critical, true);
-            Cb.StatTable.Register(StatCode.AddHaste, instanceID, () => haste, true);
-            Cb.StatTable.Register(StatCode.AddHit, instanceID, () => hit, true);
-            Cb.StatTable.Register(StatCode.AddEvade, instanceID, () => evade, true);
-            Cb.StatTable.Register(StatCode.AddArmor, instanceID, () => armor, true);
-            
-            Cb.OnStart.Register(instanceID, Initialize);
-        }
+#if UNITY_EDITOR
+        protected virtual void SetUp() {}
+#endif
     }
     
 #if UNITY_EDITOR

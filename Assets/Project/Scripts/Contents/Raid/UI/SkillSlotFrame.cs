@@ -1,7 +1,6 @@
 using Common.Character;
 using Common.Character.Operation;
 using Common.Character.Operation.Combat;
-using DG.Tweening;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -10,7 +9,7 @@ namespace Raid.UI
     public class SkillSlotFrame : MonoBehaviour
     {
         [SerializeField] private int skillIndex;
-        [SerializeField] private string hotkey;
+        // [SerializeField] private string hotkey;
         [SerializeField] private Image globalCooldownFilter;
         [SerializeField] private Image skillCooldownFilter;
         [SerializeField] private Image skillImage;
@@ -69,9 +68,14 @@ namespace Raid.UI
             if (!IsRegistered) return;
 
             combatOperation.GlobalCoolDown.OnTimerChanged.Unregister(instanceID);
-            if (HasCoolTimeEntity) inheritSkill.CoolTimeEntity.OnRemainTimeChanged.Unregister(instanceID);
+            
+            if (HasCoolTimeEntity) 
+                inheritSkill.CoolTimeEntity.OnRemainTimeChanged.Unregister(instanceID);
+            
             inheritSkill = null;
-            if (isActiveAndEnabled) gameObject.SetActive(false);
+            
+            if (isActiveAndEnabled) 
+                gameObject.SetActive(false);
         }
         
 
@@ -111,12 +115,5 @@ namespace Raid.UI
             uiDirector = GetComponentInParent<RaidUIDirector>();
             uiDirector.SkillSlotFrameList.Add(this);
         }
-
-#if UNITY_EDITOR
-        private void SetUp()
-        {
-
-        }
-#endif
     }
 }

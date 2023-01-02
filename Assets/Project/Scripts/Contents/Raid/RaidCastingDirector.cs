@@ -37,7 +37,6 @@ namespace Raid
         }
 
 #if UNITY_EDITOR
-        [Button]
         private void SetUp()
         {
             raidDirector = GetComponentInParent<RaidDirector>();

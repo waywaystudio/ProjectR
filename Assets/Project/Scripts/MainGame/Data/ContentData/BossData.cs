@@ -16,13 +16,27 @@ namespace MainGame.Data.ContentData
         {
 			[SerializeField] private Int32 id;
 			[SerializeField] private String name;
-			[SerializeField] private Single tempDifficulty;
+			[SerializeField] private Single maxHp;
+			[SerializeField] private Single maxResource;
+			[SerializeField] private Single moveSpeed;
+			[SerializeField] private Single critical;
+			[SerializeField] private Single haste;
+			[SerializeField] private Single hit;
+			[SerializeField] private Single evade;
+			[SerializeField] private Single armor;
 			[SerializeField] private List<Int32> dropItemIDList;
 			[SerializeField] private List<Int32> dropItemProbabilities;
 
 			public Int32 ID => id;
 			public String Name => name;
-			public Single TempDifficulty => tempDifficulty;
+			public Single MaxHp => maxHp;
+			public Single MaxResource => maxResource;
+			public Single MoveSpeed => moveSpeed;
+			public Single Critical => critical;
+			public Single Haste => haste;
+			public Single Hit => hit;
+			public Single Evade => evade;
+			public Single Armor => armor;
 			public List<Int32> DropItemIdList => dropItemIDList;
 			public List<Int32> DropItemProbabilities => dropItemProbabilities;
 

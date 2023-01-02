@@ -69,7 +69,8 @@ namespace SoCreator
         
         public static void CreateScriptableObject(bool ignoreShift, bool forcePath)
         {
-            var allAssemblies = (ignoreShift == false && GetGUIEvent()?.shift == true);
+            var allAssemblies = // ignoreShift == false && 
+                                GetGUIEvent()?.shift == true;
 
             var types = GetSoTypes(allAssemblies, type => type.IsAbstract == false && type.IsGenericTypeDefinition == false);
 

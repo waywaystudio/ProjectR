@@ -10,16 +10,6 @@ namespace Common.Character.Editor
     {
         public override void ProcessChildMemberAttributes(InspectorProperty parentProperty, MemberInfo member, List<Attribute> attributes)
         {
-            if (member.Name == "Initialize")
-            {
-                attributes.Add(new ButtonAttribute(ButtonSizes.Large)
-                {
-                        Icon = SdfIconType.ArrowRepeat,
-                        Stretch = false,
-                        ButtonHeight = 40,
-                });
-            }
-            
             if (member.Name == "id")
             {
                 attributes.Add(new DisplayAsStringAttribute());
