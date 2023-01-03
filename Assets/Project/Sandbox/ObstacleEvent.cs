@@ -3,13 +3,13 @@ using MainGame;
 using UnityEngine;
 using UnityEngine.Events;
 
-public class ObstacleEvent : MonoBehaviour, IEventModel
+public class ObstacleEvent : MonoBehaviour
 {
     [SerializeField] private UnityEvent mainEvent;
 
     public void Register()
     {
-        MainManager.InputManager.Register(this);
+        // MainManager.InputManager.Register(this);
     }
 
     public void Invoke()
@@ -31,7 +31,7 @@ public class ObstacleEvent : MonoBehaviour, IEventModel
     {
         if (MainManager.Instance is null) return;
         
-        MainManager.InputManager.Unregister(this);
+        // MainManager.InputManager.Unregister(this);
     }
 
     private void OnTriggerEnter(Collider other)

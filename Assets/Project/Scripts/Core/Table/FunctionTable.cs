@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace Core
 {
-    public class FunctionTable<TResult> : DelegateTable<Func<TResult>>
+    public class FunctionTable<TResult> : DelegateTable<int, Func<TResult>>
     {
         public FunctionTable(){}
         public FunctionTable(int capacity) : base(capacity) {}
@@ -21,7 +21,7 @@ namespace Core
         public TResult Invoke() => this.FirstOrDefault().Value.Invoke();
     }
    
-    public class FunctionTable<T0, TResult> : DelegateTable<Func<T0, TResult>>
+    public class FunctionTable<T0, TResult> : DelegateTable<int, Func<T0, TResult>>
     {
         public FunctionTable(){}
         public FunctionTable(int capacity) : base(capacity) {}
@@ -35,7 +35,7 @@ namespace Core
         public TResult Invoke(T0 t) => this.FirstOrDefault().Value.Invoke(t);
     }
         
-    public class FunctionTable<T1, T2, TResult> : DelegateTable<Func<T1, T2, TResult>>
+    public class FunctionTable<T1, T2, TResult> : DelegateTable<int, Func<T1, T2, TResult>>
     {
         public FunctionTable(){}
         public FunctionTable(int capacity) : base(capacity) {}

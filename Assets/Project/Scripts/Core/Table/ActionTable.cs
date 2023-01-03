@@ -1,26 +1,8 @@
 using System;
-using System.Collections.Generic;
 
 namespace Core
 {
-    public class DelegateTable<T> : Dictionary<int, T> where T : Delegate
-    {
-        protected DelegateTable(){}
-        protected DelegateTable(int capacity) : base(capacity) {}
-
-        /// <summary>
-        /// Unregister Delegate by custom Key (like as Remove())
-        /// </summary>
-        public void Unregister(int key) => this.TryRemove(key);
-        public void UnregisterAll() => Clear();
-
-        protected void TryAdd(int key, T value, bool overwrite)
-        {
-            if (!TryAdd(key, value) && overwrite) this[key] = value;
-        }
-    }
-
-    public class ActionTable : DelegateTable<Action>
+    public class ActionTable : DelegateTable<int, Action>
     {
         public ActionTable(){}
         public ActionTable(int capacity) : base(capacity) {}
@@ -30,13 +12,10 @@ namespace Core
         /// </summary>
         public void Register(int key, Action action, bool overwrite = false) => TryAdd(key, action, overwrite);
 
-        /// <summary>
-        /// Invoke All of Table Action
-        /// </summary>
         public void Invoke() => this.ForEach(x => x.Value?.Invoke());
     }
     
-    public class ActionTable<T0> : DelegateTable<Action<T0>>
+    public class ActionTable<T0> : DelegateTable<int, Action<T0>>
     {
         public ActionTable(){}
         public ActionTable(int capacity) : base(capacity) {}
@@ -51,16 +30,10 @@ namespace Core
         /// </summary>
         public void Register(int key, Action<T0> action, bool overwrite = false) => TryAdd(key, action, overwrite);
 
-        public void Invoke(T0 t)
-        {
-            this.ForEach(x =>
-            {
-                x.Value.Invoke(t);
-            });
-        }
+        public void Invoke(T0 t) => this.ForEach(x => x.Value.Invoke(t));
     }
 
-    public class ActionTable<T0, T1> : DelegateTable<Action<T0, T1>>
+    public class ActionTable<T0, T1> : DelegateTable<int, Action<T0, T1>>
     { 
         public ActionTable(){}
         public ActionTable(int capacity) : base(capacity) {}
