@@ -52,6 +52,7 @@ MonoBehaviour:
     - ES3.editor
     - SoCreator.Editor
     - PackageToolsEditor
+    - ConeMeshEditorAssembly
     - Common.Editor
     - ShortCuts.Editor
     - Character.Editor
@@ -59,7 +60,6 @@ MonoBehaviour:
     - Audio.Editor
     - Sirenix.OdinInspector.Modules.UnityMathematics
     - Save.Editor
-    - ConeMeshEditorAssembly
     showAdvancedSettings: 0
   addMgrToSceneAutomatically: 0
   autoUpdateReferences: 1
