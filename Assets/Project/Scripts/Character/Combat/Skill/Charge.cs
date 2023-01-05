@@ -1,3 +1,4 @@
+using Core;
 using UnityEngine;
 
 namespace Character.Combat.Skill
@@ -21,15 +22,15 @@ namespace Character.Combat.Skill
             var takerTransform = TargetEntity.CombatTaker.Object.transform;
             var offset = Cb.Direction.Invoke() * (offsetDistance * -1f);
             var targetFrontPosition = takerTransform.position + offset;
-            
-            Cb.StatTable.Register(StatCode.AddMoveSpeed, InstanceID, () => dashSpeed, true);
+
+            Cb.StatTable.Register(ActionCode, new MoveSpeedValue(dashSpeed));
             Cb.Run(targetFrontPosition, base.ActiveSkill);
         }
 
         protected override void CompleteSkill()
         {
             base.CompleteSkill();
-            Cb.StatTable.Unregister(StatCode.AddMoveSpeed, InstanceID);
+            Cb.StatTable.Unregister(ActionCode, StatCode.MoveSpeed);
         }
     }
 }

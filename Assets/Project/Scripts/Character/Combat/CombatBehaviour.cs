@@ -6,17 +6,22 @@ using UnityEngine;
 
 namespace Character.Combat
 {
-    public class CombatBehaviour : MonoBehaviour, IEditorSetUp
+    public class CombatBehaviour : MonoBehaviour, ICombatBehaviour, IEditorSetUp
     {
-        [SerializeField] private List<BaseSkill> skillList = new();
-        [SerializeField] private CharacterBehaviour cb;
+        [SerializeField] private List<BaseSkill> skillList = new(4);
         [SerializeField] private Positioning positioning;
         [SerializeField] private GlobalCoolDown globalCoolDown;
 
         public Positioning Positioning => positioning;
         public GlobalCoolDown GlobalCoolDown => globalCoolDown;
-        public List<BaseSkill> SkillList => skillList;
+        
+        // TODO. ISKillInfo쪽을 다듬으면, 아래 필드를 삭제할 수도 있다.
+        public IEnumerable<BaseSkill> SkillList => skillList;
         public BaseSkill CurrentSkill { get; private set; }
+
+        public float GlobalCoolTime => GlobalCoolDown.CoolTime;
+        public List<ISkillInfo> SkillInfoList { get; set; } = new(4);
+        public Observable<float> GlobalRemainTime => GlobalCoolDown.Timer;
         
         // SharedBool :: CombatBehaviorDesigner
         public bool IsCurrentSkillFinished => CurrentSkill == null || CurrentSkill.IsSkillFinished;
@@ -28,18 +33,20 @@ namespace Character.Combat
         public int MostPrioritySkillID => GetMostPrioritySkillID();
         
 
-        // TODO. 대량의 GC 발생중 (FindAll, 잦은 호출)
+        // TODO. 대량의 GC 발생중 (잦은 호출) -> 많이 수정 함
         public bool TryGetMostPrioritySkill(out BaseSkill skill)
         {
-            var coolOnSkillList = SkillList.FindAll(x => x.IsSkillReady);
+            skill = null;
             
-            if (!coolOnSkillList.IsNullOrEmpty())
+            // ReSharper disable once ForCanBeConvertedToForeach
+            for (var i = 0; i < skillList.Count; ++i)
             {
-                skill = coolOnSkillList.MaxBy(x => x.Priority);
-                return true;
+                if (!skillList[i].IsSkillReady) continue;
+                
+                skill ??= skillList[i];
+                if (skillList[i].Priority >= skill.Priority) skill = skillList[i];
             }
 
-            skill = null;
             return skill is not null;
         }
 
@@ -55,6 +62,7 @@ namespace Character.Combat
         }
 
 
+        // TODO. 대량의 GC 발생중 (FindAll, 잦은 호출)
         private int GetMostPrioritySkillID()
         {
             /*
@@ -69,15 +77,16 @@ namespace Character.Combat
 
         private void Awake()
         {
+            GetComponentInParent<CharacterBehaviour>().CombatBehaviour = this;
+            
             positioning ??= GetComponent<Positioning>();
             globalCoolDown ??= GetComponent<GlobalCoolDown>();
-            cb.CombatBehaviour = this;
+            SkillInfoList.AddRange(SkillList);
         }
 
 #if UNITY_EDITOR
         public void SetUp()
         {
-            cb ??= GetComponentInParent<CharacterBehaviour>();
             positioning ??= GetComponent<Positioning>();
             globalCoolDown ??= GetComponent<GlobalCoolDown>();
 

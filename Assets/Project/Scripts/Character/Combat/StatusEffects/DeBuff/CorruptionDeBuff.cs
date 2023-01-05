@@ -1,4 +1,5 @@
 using System.Collections;
+using Core;
 using UnityEngine;
 
 namespace Character.Combat.StatusEffects.DeBuff
@@ -7,7 +8,7 @@ namespace Character.Combat.StatusEffects.DeBuff
     {
         private const int TickCount = 5;
 
-        public Status Status => Provider.Status;
+        public IDynamicStatEntry DynamicStatEntry => Provider.DynamicStatEntry;
         public StatTable StatTable => Provider.StatTable;
 
         public override IEnumerator MainAction()

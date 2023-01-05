@@ -7,19 +7,21 @@ namespace Character.Data.BaseStats
 #if UNITY_EDITOR
         public override void SetUp()
         {
+            base.SetUp();
+            
             var adventurerBehaviour = GetComponentInParent<AdventurerBehaviour>();
             
             baseStatCode = adventurerBehaviour.CombatClassID;
             var classData = MainData.GetCombatClass(baseStatCode);
 
-            maxHp = classData.MaxHp;
-            moveSpeed = classData.MoveSpeed;
-            maxResource = classData.MaxResource;
-            critical = classData.Critical;
-            haste = classData.Haste;
-            hit = classData.Hit;
-            evade = classData.Evade;
-            armor = classData.Armor;
+            maxHp.Value       = classData.MaxHp;
+            moveSpeed.Value   = classData.MoveSpeed;
+            maxResource.Value = classData.MaxResource;
+            critical.Value    = classData.Critical;
+            haste.Value       = classData.Haste;
+            hit.Value         = classData.Hit;
+            evade.Value       = classData.Evade;
+            armor.Value      = classData.Armor;
         }
 #endif
     }

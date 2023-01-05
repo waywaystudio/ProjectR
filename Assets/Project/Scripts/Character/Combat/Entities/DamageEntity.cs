@@ -1,27 +1,25 @@
+using Core;
 using UnityEngine;
 
 namespace Character.Combat.Entities
 {
     public class DamageEntity : BaseEntity, ICombatEntity
     {
-        [SerializeField] private float damageValue;
+        [SerializeField] private PowerValue damageValue;
 
-        public Status Status => Provider.Status;
+        public IDynamicStatEntry DynamicStatEntry => Provider.DynamicStatEntry;
         public StatTable StatTable { get; } = new();
         public override bool IsReady => true;
         
-        public float DamageValue { get => damageValue; set => damageValue = value; }
-
-
-        private void Awake()
-        {
-            StatTable.Register(StatCode.MultiPower, InstanceID, DamageValue, true);
-        }
+        public PowerValue DamageValue { get => damageValue; set => damageValue = value; }
 
         private void Start()
         {
+            StatTable.Register(ActionCode, DamageValue);
             StatTable.UnionWith(Provider.StatTable);
         }
+
+        private void OnDisable() => StatTable.Unregister(ActionCode, DamageValue);
     }
 }
 

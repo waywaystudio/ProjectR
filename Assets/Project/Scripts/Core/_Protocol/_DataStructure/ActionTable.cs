@@ -68,7 +68,6 @@ namespace Core
         public void Invoke(T0 t0, T1 t1)
         {
             foreach (var item in this) this[item.Key]?.Invoke(t0, t1);
-        } 
-            //=> this.ForEach(x => x.Value?.Invoke(t0, t1));
+        }   
     }
 }

@@ -23,12 +23,12 @@ namespace Character.Graphic.UI
         private void Start()
         {
             maxResource.Register(instanceID, () => cb.StatTable.MaxResource);
-            cb.Status.OnResourceChanged.Register(instanceID, FillResource);
+            cb.DynamicStatEntry.Resource.Register(instanceID, FillResource);
 
-            FillResource(cb.Status.Hp);
+            FillResource(cb.DynamicStatEntry.Resource.Value);
         }
 
-        private void OnDisable() => cb.Status.OnResourceChanged.Unregister(instanceID);
+        private void OnDisable() => cb.DynamicStatEntry.Resource.Unregister(instanceID);
 
         private void FillResource(float value)
         {

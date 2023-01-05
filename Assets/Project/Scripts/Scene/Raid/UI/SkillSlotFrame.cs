@@ -1,6 +1,5 @@
 using Character;
-using Character.Combat;
-using Character.Combat.Skill;
+using Core;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -8,19 +7,19 @@ namespace Scene.Raid.UI
 {
     public class SkillSlotFrame : MonoBehaviour
     {
-        [SerializeField] private int skillIndex;
         // [SerializeField] private string hotkey;
+        [SerializeField] private int skillIndex;
         [SerializeField] private Image globalCooldownFilter;
         [SerializeField] private Image skillCooldownFilter;
         [SerializeField] private Image skillImage;
 
         private int instanceID;
         private RaidUIDirector uiDirector;
-        private BaseSkill inheritSkill;
-        private CombatBehaviour combatBehaviour;
+        private ISkillInfo inheritSkill;
+        private ICombatBehaviour combatBehaviour;
 
         private bool IsRegistered => inheritSkill != null;
-        private bool HasCoolTimeEntity => inheritSkill != null && inheritSkill.CoolTimeEntity != null;
+        private bool hasCoolTimeEntity;
         
         
         public void Register(AdventurerBehaviour ab)
@@ -29,24 +28,24 @@ namespace Scene.Raid.UI
             combatBehaviour = ab.CombatBehaviour;
             
             // Set Skill
-            inheritSkill = combatBehaviour.SkillList[skillIndex];
+            inheritSkill = combatBehaviour.SkillInfoList[skillIndex];
+            hasCoolTimeEntity = inheritSkill is { HasCoolTimeEntity: true };
 
             // Set SkillIcon
             skillImage.sprite = inheritSkill.Icon;
             
             // Set GlobalCooldown
-            combatBehaviour.GlobalCoolDown.Timer.Register(instanceID, UnFillGlobalCoolTime);
+            combatBehaviour.GlobalRemainTime.Register(instanceID, UnFillGlobalCoolTime);
 
             // Set SkillCoolTime
-            switch (HasCoolTimeEntity)
+            switch (hasCoolTimeEntity)
             {
                 case false:
                     skillCooldownFilter.fillAmount = 0.0f;
                     break;
                 case true:
                 {
-                    var coolTimeEntity = inheritSkill.CoolTimeEntity;
-                    coolTimeEntity.RemainTimer.Register(instanceID, UnFillSkillCoolTime);
+                    inheritSkill.RemainTime.Register(instanceID, UnFillSkillCoolTime);
                     break;
                 }
             }
@@ -56,10 +55,10 @@ namespace Scene.Raid.UI
         {
             if (!IsRegistered) return;
 
-            combatBehaviour.GlobalCoolDown.Timer.Unregister(instanceID);
+            combatBehaviour.GlobalRemainTime.Unregister(instanceID);
             
-            if (HasCoolTimeEntity) 
-                inheritSkill.CoolTimeEntity.RemainTimer.Unregister(instanceID);
+            if (hasCoolTimeEntity) 
+                inheritSkill.RemainTime.Unregister(instanceID);
             
             inheritSkill = null;
             
@@ -70,29 +69,29 @@ namespace Scene.Raid.UI
 
         private void UnFillGlobalCoolTime(float remainGlobalCoolTime)
         {
-            if (HasCoolTimeEntity)
+            if (hasCoolTimeEntity)
             {
-                if (inheritSkill.CoolTimeEntity.RemainTimer.Value > combatBehaviour.GlobalCoolDown.CoolTime)
+                if (inheritSkill.RemainTime.Value > combatBehaviour.GlobalCoolTime)
                 {
                     globalCooldownFilter.fillAmount = 0.0f;
                     return;
                 }
             }
             
-            var normalGlobalCoolTime = remainGlobalCoolTime / combatBehaviour.GlobalCoolDown.CoolTime;
+            var normalGlobalCoolTime = remainGlobalCoolTime / combatBehaviour.GlobalCoolTime;
             
             globalCooldownFilter.fillAmount = normalGlobalCoolTime;
         }
 
         private void UnFillSkillCoolTime(float remainCoolTime)
         {
-            if (inheritSkill.CoolTimeEntity.RemainTimer.Value < combatBehaviour.GlobalCoolDown.CoolTime)
+            if (inheritSkill.RemainTime.Value < combatBehaviour.GlobalCoolTime)
             {
                 skillCooldownFilter.fillAmount = 0.0f;
                 return;
             }
             
-            var normalCoolTime = remainCoolTime / inheritSkill.CoolTimeEntity.CoolTime;
+            var normalCoolTime = remainCoolTime / inheritSkill.CoolTime;
             
             skillCooldownFilter.fillAmount = normalCoolTime;
         }

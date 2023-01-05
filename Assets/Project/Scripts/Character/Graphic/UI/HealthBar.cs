@@ -1,3 +1,4 @@
+using Core;
 using DG.Tweening;
 using UnityEngine;
 using UnityEngine.UI;
@@ -20,12 +21,12 @@ namespace Character.Graphic.UI
 
         private void Start()
         {
-            taker.Status.OnHpChanged.Register(instanceID, FillHealth);
+            taker.DynamicStatEntry.Hp.Register(instanceID, FillHealth);
 
-            FillHealth(taker.Status.Hp);
+            FillHealth(taker.DynamicStatEntry.Hp.Value);
         }
 
-        private void OnDisable() => taker.Status.OnHpChanged.Unregister(instanceID);
+        private void OnDisable() => taker.DynamicStatEntry.Hp.Unregister(instanceID);
 
         private void FillHealth(float value)
         {

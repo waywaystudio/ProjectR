@@ -1,5 +1,6 @@
 using BehaviorDesigner.Runtime.Tasks;
 using Character.Combat;
+using Core;
 
 namespace Character.Behavior.Actions.Combat
 {
@@ -32,7 +33,7 @@ namespace Character.Behavior.Actions.Combat
 
             var isValid =
                 taker != null &&
-                taker.Status.IsAlive;
+                taker.DynamicStatEntry.IsAlive.Value;
                 // Add more condition...
 
             return isValid

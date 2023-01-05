@@ -8,13 +8,13 @@ namespace Character.Combat.Entities
 
         public override bool IsReady => obtain switch
         {
-            < 0 => Provider.Status.Resource >= obtain * -1f,
+            < 0 => Provider.DynamicStatEntry.Resource.Value >= obtain * -1f,
             _ => true,
         };
         
         public float Obtain { get => obtain; set => obtain = value; }
 
-        private void OnEnable() => OnCompleted.Register(InstanceID, () => Provider.Status.Resource += Obtain);
+        private void OnEnable() => OnCompleted.Register(InstanceID, () => Provider.DynamicStatEntry.Resource.Value += Obtain);
         private void OnDisable() => OnCompleted.Unregister(InstanceID);
     }
 }

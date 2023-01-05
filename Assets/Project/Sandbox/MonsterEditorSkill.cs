@@ -22,7 +22,7 @@ public class MonsterEditorSkill : MonoBehaviour
             if (x.IsNullOrEmpty()) return;
             x.TryGetComponent(out CharacterBehaviour taker);
 
-            taker.Status.Hp -= 200f;
+            taker.DynamicStatEntry.Hp.Value -= 200f;
         });
     }
 }

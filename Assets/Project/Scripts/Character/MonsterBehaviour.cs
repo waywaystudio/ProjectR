@@ -6,12 +6,9 @@ namespace Character
 {
     public class MonsterBehaviour : CharacterBehaviour
     {
-        private const string TestKey = "TestKey";
-        
         protected override void Start()
         {
-            StatTable.Register(StatCode.AddMoveSpeed, TestKey.GetHashCode(), 20f, true);
-            StatTable.Register(StatCode.AddMaxHp, TestKey.GetHashCode(), 3000f, true);
+            StatTable.Register(ID, new MoveSpeedValue(20f));
             
             base.Start();
         }
@@ -36,8 +33,7 @@ namespace Character
         
         private void OnDisable()
         {
-            StatTable.Unregister(StatCode.AddMoveSpeed, TestKey.GetHashCode());
-            StatTable.Unregister(StatCode.AddMaxHp, TestKey.GetHashCode());
+            StatTable.Unregister(ID, StatCode.MoveSpeed);
         }
         
 #if UNITY_EDITOR

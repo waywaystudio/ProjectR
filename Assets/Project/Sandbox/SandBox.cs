@@ -1,20 +1,18 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
-using Character;
-using Common;
 using Sirenix.OdinInspector;
 using UnityEngine;
 
 public class SandBox : MonoBehaviour, INotifyPropertyChanged
 {
-    public StatTable StatTable1 = new ();
-    public StatTable StatTable2 = new ();
-    
     [Button]
     private void Debugger()
     {
-
+        float thisIsFloat = 1f;
+        float thisIsFloat2 = 0f;
+        
+        Debug.Log($"{thisIsFloat.GetHashCode()}{thisIsFloat2.GetHashCode()}");
     }
 
     public event PropertyChangedEventHandler PropertyChanged;

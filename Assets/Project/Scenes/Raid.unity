@@ -551,6 +551,30 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8281854185582011221, guid: 1926ddad936b02d49941bb984de7108c, type: 3}
+      propertyPath: hit.value
+      value: 0.95
+      objectReference: {fileID: 0}
+    - target: {fileID: 8281854185582011221, guid: 1926ddad936b02d49941bb984de7108c, type: 3}
+      propertyPath: armor.value
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 8281854185582011221, guid: 1926ddad936b02d49941bb984de7108c, type: 3}
+      propertyPath: maxHp.value
+      value: 1000
+      objectReference: {fileID: 0}
+    - target: {fileID: 8281854185582011221, guid: 1926ddad936b02d49941bb984de7108c, type: 3}
+      propertyPath: critical.value
+      value: 0.05
+      objectReference: {fileID: 0}
+    - target: {fileID: 8281854185582011221, guid: 1926ddad936b02d49941bb984de7108c, type: 3}
+      propertyPath: moveSpeed.value
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 8281854185582011221, guid: 1926ddad936b02d49941bb984de7108c, type: 3}
+      propertyPath: maxResource.value
+      value: 100
+      objectReference: {fileID: 0}
     - target: {fileID: 9117587234178573487, guid: 1926ddad936b02d49941bb984de7108c, type: 3}
       propertyPath: m_IsActive
       value: 0
@@ -790,7 +814,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3744010700067239338, guid: 1926ddad936b02d49941bb984de7108c, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3744010700067239340, guid: 1926ddad936b02d49941bb984de7108c, type: 3}
       propertyPath: m_RootOrder
@@ -911,6 +935,10 @@ PrefabInstance:
     - target: {fileID: 8244212675298583691, guid: 1926ddad936b02d49941bb984de7108c, type: 3}
       propertyPath: m_IsActive
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8281854185582011221, guid: 1926ddad936b02d49941bb984de7108c, type: 3}
+      propertyPath: baseStatCode
+      value: 12000003
       objectReference: {fileID: 0}
     - target: {fileID: 9117587234178573487, guid: 1926ddad936b02d49941bb984de7108c, type: 3}
       propertyPath: m_IsActive
@@ -2781,6 +2809,22 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8281854185582011221, guid: 1926ddad936b02d49941bb984de7108c, type: 3}
+      propertyPath: armor.value
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 8281854185582011221, guid: 1926ddad936b02d49941bb984de7108c, type: 3}
+      propertyPath: evade.value
+      value: 0.05
+      objectReference: {fileID: 0}
+    - target: {fileID: 8281854185582011221, guid: 1926ddad936b02d49941bb984de7108c, type: 3}
+      propertyPath: maxHp.value
+      value: 500
+      objectReference: {fileID: 0}
+    - target: {fileID: 8281854185582011221, guid: 1926ddad936b02d49941bb984de7108c, type: 3}
+      propertyPath: baseStatCode
+      value: 12000017
+      objectReference: {fileID: 0}
     - target: {fileID: 9117587234178573487, guid: 1926ddad936b02d49941bb984de7108c, type: 3}
       propertyPath: m_IsActive
       value: 0
@@ -2853,7 +2897,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3744010700067239338, guid: 1926ddad936b02d49941bb984de7108c, type: 3}
       propertyPath: m_Name
-      value: Ranger
+      value: Hunter
       objectReference: {fileID: 0}
     - target: {fileID: 3744010700067239338, guid: 1926ddad936b02d49941bb984de7108c, type: 3}
       propertyPath: m_IsActive
@@ -2990,6 +3034,22 @@ PrefabInstance:
     - target: {fileID: 8244212675298583691, guid: 1926ddad936b02d49941bb984de7108c, type: 3}
       propertyPath: m_IsActive
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8281854185582011221, guid: 1926ddad936b02d49941bb984de7108c, type: 3}
+      propertyPath: armor.value
+      value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: 8281854185582011221, guid: 1926ddad936b02d49941bb984de7108c, type: 3}
+      propertyPath: haste.value
+      value: 0.05
+      objectReference: {fileID: 0}
+    - target: {fileID: 8281854185582011221, guid: 1926ddad936b02d49941bb984de7108c, type: 3}
+      propertyPath: maxHp.value
+      value: 600
+      objectReference: {fileID: 0}
+    - target: {fileID: 8281854185582011221, guid: 1926ddad936b02d49941bb984de7108c, type: 3}
+      propertyPath: baseStatCode
+      value: 12000011
       objectReference: {fileID: 0}
     - target: {fileID: 9117587234178573487, guid: 1926ddad936b02d49941bb984de7108c, type: 3}
       propertyPath: m_IsActive
@@ -4043,14 +4103,30 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   baseStatCode: 17000002
-  maxHp: 5000
-  maxResource: 100
-  moveSpeed: 12
-  critical: 0.05
-  haste: 0
-  hit: 0.98
-  evade: 0.03
-  armor: 500
+  maxHp:
+    value: 5000
+    statCode: 5
+  maxResource:
+    value: 100
+    statCode: 10
+  moveSpeed:
+    value: 12
+    statCode: 6
+  critical:
+    value: 0.05
+    statCode: 2
+  haste:
+    value: 0
+    statCode: 3
+  hit:
+    value: 0.98
+    statCode: 4
+  evade:
+    value: 0.03
+    statCode: 8
+  armor:
+    value: 500
+    statCode: 7
 --- !u!1 &1126821802
 GameObject:
   m_ObjectHideFlags: 0
@@ -4396,11 +4472,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   characterName: Moragg
   id: 17000002
-  status:
-    isAlive: 1
-    hp: 0
-    resource: 0
-    shield: 0
+  isAlive:
+    value: 0
+  hp:
+    value: 0
+  resource:
+    value: 0
+  shield:
+    value: 0
 --- !u!114 &1231162005 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 8566922589576899893, guid: 1926ddad936b02d49941bb984de7108c, type: 3}
@@ -5603,7 +5682,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3744010700067239338, guid: 1926ddad936b02d49941bb984de7108c, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3744010700067239340, guid: 1926ddad936b02d49941bb984de7108c, type: 3}
       propertyPath: m_RootOrder
@@ -5732,6 +5811,18 @@ PrefabInstance:
     - target: {fileID: 8244212675298583691, guid: 1926ddad936b02d49941bb984de7108c, type: 3}
       propertyPath: m_IsActive
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8281854185582011221, guid: 1926ddad936b02d49941bb984de7108c, type: 3}
+      propertyPath: armor.value
+      value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: 8281854185582011221, guid: 1926ddad936b02d49941bb984de7108c, type: 3}
+      propertyPath: maxHp.value
+      value: 600
+      objectReference: {fileID: 0}
+    - target: {fileID: 8281854185582011221, guid: 1926ddad936b02d49941bb984de7108c, type: 3}
+      propertyPath: baseStatCode
+      value: 12000014
       objectReference: {fileID: 0}
     - target: {fileID: 9117587234178573487, guid: 1926ddad936b02d49941bb984de7108c, type: 3}
       propertyPath: m_IsActive
@@ -5886,7 +5977,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3744010700067239338, guid: 1926ddad936b02d49941bb984de7108c, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3744010700067239340, guid: 1926ddad936b02d49941bb984de7108c, type: 3}
       propertyPath: m_RootOrder
@@ -6015,6 +6106,18 @@ PrefabInstance:
     - target: {fileID: 8244212675298583691, guid: 1926ddad936b02d49941bb984de7108c, type: 3}
       propertyPath: m_IsActive
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8281854185582011221, guid: 1926ddad936b02d49941bb984de7108c, type: 3}
+      propertyPath: armor.value
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 8281854185582011221, guid: 1926ddad936b02d49941bb984de7108c, type: 3}
+      propertyPath: maxHp.value
+      value: 500
+      objectReference: {fileID: 0}
+    - target: {fileID: 8281854185582011221, guid: 1926ddad936b02d49941bb984de7108c, type: 3}
+      propertyPath: baseStatCode
+      value: 12000018
       objectReference: {fileID: 0}
     - target: {fileID: 9117587234178573487, guid: 1926ddad936b02d49941bb984de7108c, type: 3}
       propertyPath: m_IsActive
@@ -6647,6 +6750,26 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8281854185582011221, guid: 1926ddad936b02d49941bb984de7108c, type: 3}
+      propertyPath: armor.value
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 8281854185582011221, guid: 1926ddad936b02d49941bb984de7108c, type: 3}
+      propertyPath: evade.value
+      value: 0.05
+      objectReference: {fileID: 0}
+    - target: {fileID: 8281854185582011221, guid: 1926ddad936b02d49941bb984de7108c, type: 3}
+      propertyPath: haste.value
+      value: 0.05
+      objectReference: {fileID: 0}
+    - target: {fileID: 8281854185582011221, guid: 1926ddad936b02d49941bb984de7108c, type: 3}
+      propertyPath: maxHp.value
+      value: 700
+      objectReference: {fileID: 0}
+    - target: {fileID: 8281854185582011221, guid: 1926ddad936b02d49941bb984de7108c, type: 3}
+      propertyPath: baseStatCode
+      value: 12000006
+      objectReference: {fileID: 0}
     - target: {fileID: 9117587234178573487, guid: 1926ddad936b02d49941bb984de7108c, type: 3}
       propertyPath: m_IsActive
       value: 0
@@ -7089,7 +7212,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4302a2f5fdc0d60409528c157bc764ce, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cb: {fileID: 1188007385}
   fillImage: {fileID: 1274055741}
   lerpDuration: 0.2
 --- !u!114 &1913933927 stripped
@@ -7451,7 +7573,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3744010700067239338, guid: 1926ddad936b02d49941bb984de7108c, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3744010700067239340, guid: 1926ddad936b02d49941bb984de7108c, type: 3}
       propertyPath: m_RootOrder
@@ -7588,6 +7710,26 @@ PrefabInstance:
     - target: {fileID: 8244212675298583691, guid: 1926ddad936b02d49941bb984de7108c, type: 3}
       propertyPath: m_IsActive
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8281854185582011221, guid: 1926ddad936b02d49941bb984de7108c, type: 3}
+      propertyPath: armor.value
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 8281854185582011221, guid: 1926ddad936b02d49941bb984de7108c, type: 3}
+      propertyPath: evade.value
+      value: 0.05
+      objectReference: {fileID: 0}
+    - target: {fileID: 8281854185582011221, guid: 1926ddad936b02d49941bb984de7108c, type: 3}
+      propertyPath: haste.value
+      value: 0.05
+      objectReference: {fileID: 0}
+    - target: {fileID: 8281854185582011221, guid: 1926ddad936b02d49941bb984de7108c, type: 3}
+      propertyPath: maxHp.value
+      value: 700
+      objectReference: {fileID: 0}
+    - target: {fileID: 8281854185582011221, guid: 1926ddad936b02d49941bb984de7108c, type: 3}
+      propertyPath: baseStatCode
+      value: 12000008
       objectReference: {fileID: 0}
     - target: {fileID: 9117587234178573487, guid: 1926ddad936b02d49941bb984de7108c, type: 3}
       propertyPath: m_IsActive

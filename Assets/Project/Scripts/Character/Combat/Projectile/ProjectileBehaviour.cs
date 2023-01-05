@@ -21,7 +21,7 @@ namespace Character.Combat.Projectile
         protected LayerMask TargetLayer => targetLayer;
         protected Dictionary<EntityType, BaseEntity> EntityTable { get; } = new();
         protected Tweener TrajectoryTweener;
-        protected bool ValidateTaker => Taker != null && !Taker.Object.IsNullOrEmpty() && Taker.Status.IsAlive;
+        protected bool ValidateTaker => Taker != null && !Taker.Object.IsNullOrEmpty() && Taker.DynamicStatEntry.IsAlive.Value;
         private Vector3 destination;
 
         protected DamageEntity DamageEntity => EntityTable[EntityType.Damage] as DamageEntity;

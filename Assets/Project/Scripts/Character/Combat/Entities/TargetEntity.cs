@@ -5,6 +5,11 @@ using UnityEngine;
 
 namespace Character.Combat.Entities
 {
+    /* Annotation :: 타겟팅 추후에 Sorting이 들어갈 필요가 있다.
+     Sorting을 Searching 이후에 별도의 클래스를 통해 할 수도 있고, 현 클래스에서 할 수도 있다.
+     현재 클래스에서 한다면, 스킬별로 우선순위가 다를 수 있기 때문일 것이고, 
+     별도의 클래스에서 한다면, 레이드 내에서 전략적인 이유에 따라 판단할 수 있다. 
+     시스템이 아닌, 플레이어의 강제적 인터렉션에 의해서 타겟이 잡힐 수도 있다. */
     public class TargetEntity : BaseEntity
     {
         [SerializeField] private string targetLayerType;
@@ -13,7 +18,7 @@ namespace Character.Combat.Entities
 
         private ICombatTaker combatTaker;
         private ISearchedListTaker searchedListTaker;
-        private readonly List<ICombatTaker> combatTakerList = new();
+        private readonly List<ICombatTaker> combatTakerList = new(16);
         private List<ICombatTaker> searchedList;
 
         public override bool IsReady => CombatTaker != null;
@@ -26,18 +31,21 @@ namespace Character.Combat.Entities
             get
             {
                 if (searchedList.IsNullOrEmpty())
-                {
                     return combatTakerList;
-                }
 
                 var selfPosition = transform.position;
 
                 combatTakerList.Clear();
-                combatTakerList.AddRange(searchedList.FindAll(x =>
-                    Vector3.Distance(x.Object.transform.position, selfPosition) <= Range));
+                
+                searchedList.ForEach(x =>
+                {
+                    if (Vector3.Distance(x.Object.transform.position, selfPosition) <= Range)
+                        combatTakerList.Add(x);
+                });
 
                 if (combatTakerList.Count > TargetCount)
                 {
+                    // TODO. 많은 GC 발생 중.
                     combatTakerList.RemoveRange(TargetCount, combatTakerList.Count - TargetCount);
                 }
 

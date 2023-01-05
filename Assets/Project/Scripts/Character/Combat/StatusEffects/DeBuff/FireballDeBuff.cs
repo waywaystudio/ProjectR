@@ -1,4 +1,5 @@
 using System.Collections;
+using Core;
 using UnityEngine;
 
 namespace Character.Combat.StatusEffects.DeBuff
@@ -11,11 +12,11 @@ namespace Character.Combat.StatusEffects.DeBuff
         {
             waitForSeconds = new WaitForSeconds(Duration);
 
-            TakerInfo.StatTable.Register(StatCode.MultiArmor, (int)ActionCode, () => 0.95f);
+            TakerInfo.StatTable.Register(ActionCode, new ArmorValue(-100));
 
             yield return waitForSeconds;
-            
-            TakerInfo.StatTable.Unregister(StatCode.MultiArmor, (int)ActionCode);
+
+            TakerInfo.StatTable.Unregister(ActionCode, StatCode.Armor);
             Callback?.Invoke();
         }
     }

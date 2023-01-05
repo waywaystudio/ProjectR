@@ -1,5 +1,6 @@
 using System;
 using System.Collections;
+using Core;
 using UnityEngine;
 using StatusEffectData = MainGame.Data.ContentData.StatusEffectData.StatusEffect;
 

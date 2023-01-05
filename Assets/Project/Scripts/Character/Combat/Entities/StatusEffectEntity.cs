@@ -1,3 +1,4 @@
+using Core;
 using UnityEngine;
 
 namespace Character.Combat.Entities
@@ -7,7 +8,7 @@ namespace Character.Combat.Entities
         [SerializeField] private IDCode statusEffectCode;
 
         public new IDCode ActionCode { get => statusEffectCode; set => statusEffectCode = value; }
-        public Status Status => Provider.Status;
+        public IDynamicStatEntry DynamicStatEntry => Provider.DynamicStatEntry;
         public StatTable StatTable => Provider.StatTable;
         
         public override bool IsReady => true;

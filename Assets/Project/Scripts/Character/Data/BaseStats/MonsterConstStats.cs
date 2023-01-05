@@ -7,19 +7,21 @@ namespace Character.Data.BaseStats
 #if UNITY_EDITOR
         public override void SetUp()
         {
+            base.SetUp();
+
             var monsterBehaviour = GetComponentInParent<MonsterBehaviour>();
             
             baseStatCode = monsterBehaviour.ID;
             var bossData = MainData.GetBoss(baseStatCode);
 
-            maxHp = bossData.MaxHp;
-            moveSpeed = bossData.MoveSpeed;
-            maxResource = bossData.MaxResource;
-            critical = bossData.Critical;
-            haste = bossData.Haste;
-            hit = bossData.Hit;
-            evade = bossData.Evade;
-            armor = bossData.Armor;
+            maxHp.Value       = bossData.MaxHp;
+            moveSpeed.Value   = bossData.MoveSpeed;
+            maxResource.Value = bossData.MaxResource;
+            critical.Value    = bossData.Critical;
+            haste.Value       = bossData.Haste;
+            hit.Value         = bossData.Hit;
+            evade.Value       = bossData.Evade;
+            armor.Value       = bossData.Armor;
         }
 #endif
     }

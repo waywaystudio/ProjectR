@@ -13,10 +13,10 @@ namespace Character.Combat
         // SharedBool :: CombatBehaviorDesigner
         public bool IsCooling { get; set; }
         public Observable<float> Timer { get; } = new();
-        public float CoolTime => baseCoolTime * CharacterUtility.GetHasteValue(ReferenceStatTable.Haste);
+        public float CoolTime => baseCoolTime * CharacterUtility.GetHasteValue(ReferenceStatEntry.Haste);
 
         private Coroutine RoutineBuffer { get; set; }
-        private StatTable ReferenceStatTable { get; set; }
+        private StatTable ReferenceStatEntry { get; set; }
         
 
         public void StartCooling()
@@ -43,7 +43,7 @@ namespace Character.Combat
 
         private void Awake()
         {
-            ReferenceStatTable = GetComponentInParent<CharacterBehaviour>().StatTable;
+            ReferenceStatEntry = GetComponentInParent<CharacterBehaviour>().StatTable;
         }
     }
 }

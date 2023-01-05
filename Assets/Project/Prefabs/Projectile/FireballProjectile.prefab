@@ -163,7 +163,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   flag: 1
-  damageValue: 5
+  damageValue:
+    value: 5
+    statCode: 1
 --- !u!114 &8211292594860788311
 MonoBehaviour:
   m_ObjectHideFlags: 0

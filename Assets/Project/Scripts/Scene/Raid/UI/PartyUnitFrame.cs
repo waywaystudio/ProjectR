@@ -18,6 +18,7 @@ namespace Scene.Raid.UI
         
         private int instanceID;
         private RaidUIDirector uiDirector;
+        private bool isInitialized;
 
         public ActionTable OnInitialize { get; } = new();
         public AdventurerBehaviour AdventurerBehaviour { get; private set; }
@@ -31,13 +32,14 @@ namespace Scene.Raid.UI
             nameText.text = ab.Name;
             // Set Avatar
             
-            ab.Status.OnHpChanged.Register(instanceID, FillHealthBar);
-            ab.Status.OnResourceChanged.Register(instanceID, FillResourceBar);
+            ab.DynamicStatEntry.Hp.Register(instanceID, FillHealthBar);
+            ab.DynamicStatEntry.Resource.Register(instanceID, FillResourceBar);
 
-            FillHealthBar(ab.Status.Hp);
-            FillResourceBar(ab.Status.Resource);
+            FillHealthBar(ab.DynamicStatEntry.Hp.Value);
+            FillResourceBar(ab.DynamicStatEntry.Resource.Value);
             
             OnInitialize.Invoke();
+            isInitialized = true;
         }
 
 
@@ -66,8 +68,11 @@ namespace Scene.Raid.UI
 
         private void OnDisable()
         {
-            AdventurerBehaviour.Status.OnHpChanged.Unregister(instanceID);
-            AdventurerBehaviour.Status.OnResourceChanged.Unregister(instanceID);
+            if (isInitialized)
+            {
+                AdventurerBehaviour.DynamicStatEntry.Hp.Unregister(instanceID);
+                AdventurerBehaviour.DynamicStatEntry.Resource.Unregister(instanceID);
+            }
         }
 
         public void OnPointerClick(PointerEventData eventData)

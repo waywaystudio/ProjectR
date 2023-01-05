@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 
-namespace Character
+namespace Core
 {
     public interface ISearchEngine
     {

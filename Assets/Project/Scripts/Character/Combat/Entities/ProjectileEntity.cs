@@ -1,4 +1,5 @@
 using Character.Combat.Projectile;
+using Core;
 using UnityEngine;
 
 namespace Character.Combat.Entities

@@ -1,4 +1,5 @@
 using System.Collections;
+using Core;
 using UnityEngine;
 
 namespace Character.Combat.StatusEffects.Buff
@@ -11,11 +12,11 @@ namespace Character.Combat.StatusEffects.Buff
         {
             waitForSeconds = new WaitForSeconds(Duration);
 
-            Provider.StatTable.Register(StatCode.AddHaste, (int)ActionCode, CombatValue);
+            Provider.StatTable.Register(ActionCode, new HasteValue(CombatValue));
 
             yield return waitForSeconds;
-            
-            Provider.StatTable.Unregister(StatCode.AddHaste, (int)ActionCode);
+
+            Provider.StatTable.Unregister(ActionCode, StatCode.Haste);
             Callback?.Invoke();
         }
     }

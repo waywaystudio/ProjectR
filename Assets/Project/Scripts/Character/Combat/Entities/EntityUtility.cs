@@ -11,7 +11,7 @@ namespace Character.Combat.Entities
             {
                 case DamageEntity damageEntity:
                 {
-                    damageEntity.DamageValue = baseSkill.BaseValue;
+                    damageEntity.DamageValue.Value = baseSkill.BaseValue;
                     damageEntity.Flag = EntityType.Damage;
                     break;
                 }
@@ -73,7 +73,7 @@ namespace Character.Combat.Entities
             {
                 case DamageEntity damageEntity:
                 {
-                    damageEntity.DamageValue = baseProjectile.BaseValue;
+                    damageEntity.DamageValue.Value = baseProjectile.BaseValue;
                     damageEntity.Flag = EntityType.Damage;
                     break;
                 }

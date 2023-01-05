@@ -1,3 +1,4 @@
+using Core;
 using UnityEngine;
 
 namespace Character.Combat
@@ -70,15 +71,15 @@ namespace Character.Combat
             
             log.Value = damageAmount;
 
-            if (damageAmount >= taker.Status.Hp || taker.Status.Hp <= 0f)
+            if (damageAmount >= taker.DynamicStatEntry.Hp.Value || taker.DynamicStatEntry.Hp.Value <= 0f)
             {
                 Debug.Log("Dead!");
-                taker.Status.Hp = 0;
-                log.Value -= taker.Status.Hp;
-                taker.Status.IsAlive = false;
+                taker.DynamicStatEntry.Hp.Value = 0;
+                log.Value -= taker.DynamicStatEntry.Hp.Value;
+                taker.DynamicStatEntry.IsAlive.Value = false;
             }
 
-            taker.Status.Hp -= damageAmount;
+            taker.DynamicStatEntry.Hp.Value -= damageAmount;
             
             entity.Provider.OnCombatActive?.Invoke(log);
             taker.OnCombatPassive?.Invoke(log);
@@ -113,15 +114,15 @@ namespace Character.Combat
             
             log.Value = damageAmount;
 
-            if (damageAmount >= taker.Status.Hp || taker.Status.Hp <= 0f)
+            if (damageAmount >= taker.DynamicStatEntry.Hp.Value || taker.DynamicStatEntry.Hp.Value <= 0f)
             {
                 Debug.Log("Dead!");
-                taker.Status.Hp = 0;
-                log.Value -= taker.Status.Hp;
-                taker.Status.IsAlive = false;
+                taker.DynamicStatEntry.Hp.Value = 0;
+                log.Value -= taker.DynamicStatEntry.Hp.Value;
+                taker.DynamicStatEntry.IsAlive.Value = false;
             }
 
-            taker.Status.Hp -= damageAmount;
+            taker.DynamicStatEntry.Hp.Value -= damageAmount;
             
             entity.Provider.OnCombatActive?.Invoke(log);
             taker.OnCombatPassive?.Invoke(log);
@@ -139,12 +140,12 @@ namespace Character.Combat
                 healAmount *= 2f;
             }
 
-            if (healAmount + taker.Status.Hp >= taker.StatTable.MaxHp)
+            if (healAmount + taker.DynamicStatEntry.Hp.Value >= taker.StatTable.MaxHp)
             {
-                healAmount = log.Value = taker.StatTable.MaxHp - taker.Status.Hp;
+                healAmount = log.Value = taker.StatTable.MaxHp - taker.DynamicStatEntry.Hp.Value;
             }
 
-            taker.Status.Hp += healAmount;
+            taker.DynamicStatEntry.Hp.Value += healAmount;
             
             entity.Provider.OnCombatActive?.Invoke(log);
             taker.OnCombatPassive?.Invoke(log);

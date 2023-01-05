@@ -1,4 +1,5 @@
 using System.Collections;
+using Core;
 using UnityEngine;
 
 namespace Character.Combat.StatusEffects.Buff
@@ -23,7 +24,7 @@ namespace Character.Combat.StatusEffects.Buff
         {
             var drainValue = log.Value * CombatValue;
             
-            Provider.Status.Hp += drainValue;
+            Provider.DynamicStatEntry.Hp.Value += drainValue;
         }
     }
 }

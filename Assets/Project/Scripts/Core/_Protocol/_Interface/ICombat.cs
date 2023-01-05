@@ -1,10 +1,7 @@
-using Core;
 using UnityEngine;
 
-namespace Character
+namespace Core
 {
-    using Combat;
-    
     public interface IOrigin
     {
         ICombatProvider Provider { get; }
@@ -12,20 +9,20 @@ namespace Character
     
     public interface ICombatTable
     {
-        Status Status { get; }
+        IDynamicStatEntry DynamicStatEntry { get; }
         StatTable StatTable { get; }
     }
 
     public interface ICombatEntity : IOrigin, ICombatTable
     {
-        // # ICombatProvider Provider { get; }
-        // # Status Status { get; }
-        // # StatTable StatTable { get; }
+        // + ICombatProvider Provider { get; }
+        // + IDynamicStatEntry DynamicStatEntry { get; }
+        // + IStatEntry StatEntry { get; }
     }
     
     public interface IActionSender : IOrigin
     {
-        // # ICombatProvider Provider { get; }
+        // + ICombatProvider Provider { get; }
 
         IDCode ActionCode { get; }
     }
@@ -38,22 +35,22 @@ namespace Character
 
     public interface ICombatProvider : ICombatEntity, IActionSender, IObjectName
     {
-        // # ICombatProvider Provider { get; }
-        // # Status Status { get; }
-        // # StatTable StatTable { get; }
-        // # IDCode ActionCode { get; }
-        // # string Name { get; }
-        // # GameObject Object { get; }
+        // + ICombatProvider Provider { get; }
+        // + Status Status { get; }
+        // + StatTable StatTable { get; }
+        // + IDCode ActionCode { get; }
+        // + string Name { get; }
+        // + GameObject Object { get; }
         
         ActionTable<CombatLog> OnCombatActive { get; }
     }
     
     public interface ICombatTaker : ICombatTable, IObjectName
     {
-        // # Status Status { get; }
-        // # StatTable StatTable { get; }
-        // # string Name { get; }
-        // # GameObject Object { get; }
+        // + Status Status { get; }
+        // + StatTable StatTable { get; }
+        // + string Name { get; }
+        // + GameObject Object { get; }
         
         ActionTable<ICombatEntity> OnTakeStatusEffect { get; }
         ActionTable<IDCode> OnDispelStatusEffect { get; }

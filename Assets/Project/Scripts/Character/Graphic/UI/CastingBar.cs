@@ -1,8 +1,6 @@
 using System.Collections;
-using Character.Combat.Entities;
 using UnityEngine;
 using UnityEngine.UI;
-
 // ReSharper disable NotAccessedField.Local
 
 namespace Character.Graphic.UI
@@ -15,15 +13,13 @@ namespace Character.Graphic.UI
         private int instanceID;
         private float castingTime;
         private float castingProgress;
-        private CastingEntity castingEntity;
         private Coroutine fillRoutine;
-
 
         private void UpdateCastingBar()
         {
-            castingEntity = cb.CombatBehaviour.CurrentSkill.CastingEntity;
+            var hasCastingEntity = cb.SkillInfo is { HasCastingEntity: true }; 
 
-            if (castingEntity is null)
+            if (!hasCastingEntity)
             {
                 fillImage.fillAmount = 0f;
                 return;
@@ -37,15 +33,15 @@ namespace Character.Graphic.UI
         // 수정할 수 있으면 해보자.
         private IEnumerator FillProgress()
         {
-            castingTime = castingEntity.CastingTime;
+            castingTime = cb.SkillInfo.CastingTime;
             castingProgress = 0f;
             fillImage.gameObject.SetActive(true);
 
             while (castingProgress < 1.0f)
             {
-                if (castingEntity is null) break;
+                if (cb.SkillInfo is null) break;
                 
-                castingProgress = castingEntity.CastingProgress / castingTime;
+                castingProgress = cb.SkillInfo.CastingProgress / castingTime;
                 fillImage.fillAmount = castingProgress;
                 
                 yield return null;

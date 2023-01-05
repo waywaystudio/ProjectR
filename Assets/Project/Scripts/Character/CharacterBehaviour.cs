@@ -4,35 +4,36 @@ using Character.Combat;
 using Core;
 using UnityEngine;
 
-// ReSharper disable UnusedMember.Local
-
 namespace Character
 {
-    public class CharacterBehaviour : MonoBehaviour, ICombatTaker, ICombatProvider, ISearchedListTaker, IEditorSetUp
+    public class CharacterBehaviour : MonoBehaviour, ICombatTaker, ICombatProvider, ISearchedListTaker, IDynamicStatEntry, IEditorSetUp
     {
         [SerializeField] protected string characterName = string.Empty;
         [SerializeField] protected IDCode id;
-        [SerializeField] protected Status status = new ();
+        [SerializeField] private AliveValue isAlive;
+        [SerializeField] private HpValue hp;
+        [SerializeField] private ResourceValue resource;
+        [SerializeField] private ShieldValue shield;
 
-        public IDCode ID => id;
-        public Status Status => status;
-        public StatTable StatTable { get; } = new();
         public string Name => characterName ??= "Diablo";
+        public IDCode ID => id;
         public IDCode ActionCode => IDCode.None;
+        public IDynamicStatEntry DynamicStatEntry => this; 
         public ICombatProvider Provider => this;
         public GameObject Object => gameObject;
+        public StatTable StatTable { get; } = new();
+        public AliveValue IsAlive => isAlive;
+        public HpValue Hp => hp;
+        public ResourceValue Resource => resource;
+        public ShieldValue Shield => shield;
 
-        public ActionTable OnStart { get; } = new();
         public ActionTable OnUpdate { get; } = new();
-        
         public ActionTable OnIdle { get; } = new();
         public ActionTable<Vector3, Action> OnWalk { get; } = new();
         public ActionTable<Vector3, Action> OnRun { get; } = new();
         public ActionTable<Vector3> OnTeleport { get; } = new();
         public ActionTable<string, Action> OnSkill { get; } = new(8);
         public ActionTable OnSkillHit { get; } = new(4);
-        
-        public ActionTable<ICombatEntity> OnTakeDamage { get; } = new();
         public ActionTable<ICombatEntity> OnTakeStatusEffect { get; } = new();
         public ActionTable<IDCode> OnDispelStatusEffect { get; } = new();
         public ActionTable<CombatLog> OnCombatActive { get; } = new();
@@ -41,8 +42,8 @@ namespace Character
         public FunctionTable<bool> IsReached { get; } = new();
         public FunctionTable<Vector3> Direction { get; } = new();
 
-        public CombatBehaviour CombatBehaviour { get; set; }
-        
+        public ISkillInfo SkillInfo { get; set; }
+        public ICombatBehaviour CombatBehaviour { get; set; }
         public List<ICombatTaker> AdventurerList { get; set; }
         public List<ICombatTaker> MonsterList { get; set; }
         public ICombatTaker MainTarget { get; set; }
@@ -55,30 +56,33 @@ namespace Character
         public void Skill(string skillName, Action animationCallback) => OnSkill?.Invoke(skillName, animationCallback);
         public void SkillHit() => OnSkillHit?.Invoke();
 
-        public void TakeDamage(ICombatEntity provider) => OnTakeDamage.Invoke(provider);
+        public void TakeDamage(ICombatEntity provider) => CombatUtility.TakeDamage(provider, this);
         public void TakeSpell(ICombatEntity provider) => CombatUtility.TakeSpell(provider, this);
         public void TakeHeal(ICombatEntity provider) => CombatUtility.TakeHeal(provider, this);
         public void TakeStatusEffect(ICombatEntity statusEffect) => OnTakeStatusEffect?.Invoke(statusEffect);
         public void DispelStatusEffect(IDCode code) => OnDispelStatusEffect?.Invoke(code);
+        
+
+        protected void Awake()
+        {
+            // TODO. 추후에 클래스가 커지면, IDynamicStatEntity를 묶어서 빼도 된다.
+            hp.StatTable       = StatTable;
+            resource.StatTable = StatTable;
+            shield.StatTable   = StatTable;
+        }
 
         protected virtual void Start()
         {
-            // OnCombatActive.Register(GetInstanceID(), ShowLog);
-            OnTakeDamage.Register(GetInstanceID(), (provider) => CombatUtility.TakeDamage(provider, this));
-            OnStart?.Invoke();
-
-            status.StatTable = StatTable;
-            status.Hp = StatTable.MaxHp;
-            status.IsAlive = true;
+            IsAlive.Value  = true;
+            Hp.Value       = StatTable.MaxHp;
+            Resource.Value = StatTable.MaxResource;
+            Shield.Value   = 0;
         }
-        protected virtual void Update() => OnUpdate?.Invoke();
-        
-        private void ShowLog(CombatLog log)
+
+        protected virtual void Update()
         {
-            Debug.Log($"Combat : IsHit:{log.IsHit} IsCritical:{log.IsCritical} Value:{log.Value} " +
-                      $"Provider:{log.Provider} Taker:{log.Taker} Skill:{log.ActionName}");
+            OnUpdate?.Invoke();
         }
-
 #if UNITY_EDITOR
         public virtual void SetUp()
         {
@@ -87,6 +91,11 @@ namespace Character
                 Debug.LogError("CharacterName Required");
             }
         }
+        // private void ShowLog(CombatLog log)
+        // {
+        //     Debug.Log($"Combat : IsHit:{log.IsHit} IsCritical:{log.IsCritical} Value:{log.Value} " +
+        //               $"Provider:{log.Provider} Taker:{log.Taker} Skill:{log.ActionName}");
+        // }
 #endif
     }
 }

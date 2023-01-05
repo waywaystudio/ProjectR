@@ -1,4 +1,4 @@
-namespace Character.Combat
+namespace Core
 {
     public class CombatLog
     {

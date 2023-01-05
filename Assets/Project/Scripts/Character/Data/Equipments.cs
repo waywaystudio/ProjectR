@@ -43,12 +43,13 @@ namespace Character.Data
 
         private void AddValueTable()
         {
-            Cb.StatTable.Register(StatCode.AddPower, instanceID, () => 1f, true);
-            Cb.StatTable.Register(StatCode.AddMaxHp, instanceID, () => MaxHp, true);
-            Cb.StatTable.Register(StatCode.AddCritical, instanceID, () => Critical, true);
-            Cb.StatTable.Register(StatCode.AddHaste, instanceID, () => Haste, true);
-            Cb.StatTable.Register(StatCode.AddHit, instanceID, () => Hit, true);
-            Cb.StatTable.Register(StatCode.AddEvade, instanceID, () => Evade, true);
+            // TODO. Equipment 필드 변경 필요
+            // Cb.StatTable.Register(StatCode.AddPower, IDCode.None, 1f, true);
+            // Cb.StatTable.Register(StatCode.AddMaxHp, IDCode.None, MaxHp, true);
+            // Cb.StatTable.Register(StatCode.AddCritical, IDCode.None, Critical, true);
+            // Cb.StatTable.Register(StatCode.AddHaste, IDCode.None, Haste, true);
+            // Cb.StatTable.Register(StatCode.AddHit, IDCode.None, Hit, true);
+            // Cb.StatTable.Register(StatCode.AddEvade, IDCode.None, Evade, true);
         }
 
         private void Awake()

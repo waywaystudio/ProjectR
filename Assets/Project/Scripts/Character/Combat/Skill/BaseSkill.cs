@@ -1,5 +1,4 @@
 using System.Collections.Generic;
-using System.Linq;
 using Character.Combat.Entities;
 using Core;
 using UnityEngine;
@@ -7,7 +6,7 @@ using UnityEngine;
 
 namespace Character.Combat.Skill
 {
-    public abstract class BaseSkill : MonoBehaviour, IActionSender, IEditorSetUp
+    public abstract class BaseSkill : MonoBehaviour, ISkillInfo, IEditorSetUp
     {
         [SerializeField] protected IDCode actionCode;
         [SerializeField] protected int priority;
@@ -16,14 +15,35 @@ namespace Character.Combat.Skill
         protected int InstanceID;
         protected CharacterBehaviour Cb;
 
+        /* ISkillInfo Implements */
         public IDCode ActionCode => actionCode;
         public ICombatProvider Provider => Cb;
-        public int Priority => priority;
         public Sprite Icon => icon;
-        
+        public bool HasCastingEntity => EntityTable.ContainsKey(EntityType.Casting);
+        public float CastingTime => CastingEntity.CastingTime;
+        public float CastingProgress => CastingEntity.CastingProgress;
+        public bool HasCoolTimeEntity => EntityTable.ContainsKey(EntityType.CoolTime);
+        public float CoolTime => CoolTimeEntity.CoolTime;
+        public Observable<float> RemainTime => CoolTimeEntity.RemainTime;
+
+        public int Priority => priority;
         public bool IsSkillFinished { get; set; }
-        public bool IsSkillReady => EntityTable.All(x => x.Value.IsReady);
         public bool IsCoolTimeReady => CoolTimeEntity is null || CoolTimeEntity.IsReady;
+
+        public bool IsSkillReady 
+        {
+            get
+            {
+                // ReSharper disable once ForeachCanBeConvertedToQueryUsingAnotherGetEnumerator
+                foreach (var item in EntityTable)
+                {
+                    if (!item.Value.IsReady) 
+                        return false;
+                }
+
+                return true;
+            }
+        } 
         
         public DamageEntity DamageEntity => GetEntity<DamageEntity>(EntityType.Damage);
         public CastingEntity CastingEntity => GetEntity<CastingEntity>(EntityType.Casting);
@@ -46,6 +66,7 @@ namespace Character.Combat.Skill
         public virtual void InvokeEvent(){}
         public virtual void ActiveSkill()
         {
+            Cb.SkillInfo = this;
             Cb.OnSkill.Register(InstanceID, StartSkill);
             Cb.OnSkillHit.Register(InstanceID, InvokeEvent);
             Cb.Skill(actionCode.ToString(), CompleteSkill);
@@ -53,6 +74,7 @@ namespace Character.Combat.Skill
 
         public void DeActiveSkill()
         {
+            Cb.SkillInfo = null;
             Cb.OnSkill.Unregister(InstanceID);
             Cb.OnSkillHit.Unregister(InstanceID);
         }
@@ -90,7 +112,7 @@ namespace Character.Combat.Skill
         }
 
         protected void OnDisable() => DeActiveSkill();
-        protected virtual void Reset() => actionCode = GetType().Name.ToEnum<IDCode>();
+        protected void Reset() => actionCode = GetType().Name.ToEnum<IDCode>();
         
 
 #if UNITY_EDITOR
