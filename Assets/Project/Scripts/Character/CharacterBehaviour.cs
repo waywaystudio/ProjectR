@@ -1,23 +1,17 @@
 using System;
 using System.Collections.Generic;
+using Character.Combat;
 using Core;
 using UnityEngine;
 
 // ReSharper disable UnusedMember.Local
 
-namespace Common
+namespace Character
 {
-    using Character;
-    using Character.Operation;
-    using Character.Operation.Combat;
-    
-    public class CharacterBehaviour : MonoBehaviour, ICombatTaker, ICombatProvider, ISearchable
+    public class CharacterBehaviour : MonoBehaviour, ICombatTaker, ICombatProvider, ISearchedListTaker, IEditorSetUp
     {
         [SerializeField] protected string characterName = string.Empty;
         [SerializeField] protected IDCode id;
-        [SerializeField] protected float searchingRange = 50f;
-        [SerializeField] protected LayerMask allyLayer;
-        [SerializeField] protected LayerMask enemyLayer;
         [SerializeField] protected Status status = new ();
 
         public IDCode ID => id;
@@ -25,31 +19,32 @@ namespace Common
         public StatTable StatTable { get; } = new();
         public string Name => characterName ??= "Diablo";
         public IDCode ActionCode => IDCode.None;
-        public ICombatProvider Sender => this;
-        public float SearchingRange => searchingRange;
-        public LayerMask AllyLayer => allyLayer;
-        public LayerMask EnemyLayer => enemyLayer;
+        public ICombatProvider Provider => this;
         public GameObject Object => gameObject;
 
         public ActionTable OnStart { get; } = new();
         public ActionTable OnUpdate { get; } = new();
+        
         public ActionTable OnIdle { get; } = new();
         public ActionTable<Vector3, Action> OnWalk { get; } = new();
         public ActionTable<Vector3, Action> OnRun { get; } = new();
         public ActionTable<Vector3> OnTeleport { get; } = new();
-        public ActionTable<string, Action> OnSkill { get; } = new();
-        public ActionTable OnSkillHit { get; } = new();
-        public ActionTable<ICombatProvider> OnTakeDamage { get; } = new();
-        public ActionTable<ICombatProvider> OnTakeStatusEffect { get; } = new();
+        public ActionTable<string, Action> OnSkill { get; } = new(8);
+        public ActionTable OnSkillHit { get; } = new(4);
+        
+        public ActionTable<ICombatEntity> OnTakeDamage { get; } = new();
+        public ActionTable<ICombatEntity> OnTakeStatusEffect { get; } = new();
+        public ActionTable<IDCode> OnDispelStatusEffect { get; } = new();
         public ActionTable<CombatLog> OnCombatActive { get; } = new();
         public ActionTable<CombatLog> OnCombatPassive { get; } = new();
+        
         public FunctionTable<bool> IsReached { get; } = new();
         public FunctionTable<Vector3> Direction { get; } = new();
 
-        public CombatOperation CombatOperation { get; set; }
+        public CombatBehaviour CombatBehaviour { get; set; }
         
-        public List<GameObject> AdventurerList { get; } = new();
-        public List<GameObject> MonsterList { get; } = new();
+        public List<ICombatTaker> AdventurerList { get; set; }
+        public List<ICombatTaker> MonsterList { get; set; }
         public ICombatTaker MainTarget { get; set; }
         public ICombatTaker Self => this;
 
@@ -59,13 +54,12 @@ namespace Common
         public void Teleport(Vector3 destination) => OnTeleport?.Invoke(destination);
         public void Skill(string skillName, Action animationCallback) => OnSkill?.Invoke(skillName, animationCallback);
         public void SkillHit() => OnSkillHit?.Invoke();
-        public void ReportActive(CombatLog log) => OnCombatActive.Invoke(log);
-        public void ReportPassive(CombatLog log) => OnCombatPassive.Invoke(log);
 
-        public virtual void TakeDamage(ICombatProvider provider) => OnTakeDamage.Invoke(provider);
-        public virtual void TakeSpell(ICombatProvider provider) => CombatUtility.TakeSpell(provider, this);
-        public virtual void TakeHeal(ICombatProvider provider) => CombatUtility.TakeHeal(provider, this);
-        public virtual void TakeStatusEffect(ICombatProvider statusEffect) => OnTakeStatusEffect?.Invoke(statusEffect);
+        public void TakeDamage(ICombatEntity provider) => OnTakeDamage.Invoke(provider);
+        public void TakeSpell(ICombatEntity provider) => CombatUtility.TakeSpell(provider, this);
+        public void TakeHeal(ICombatEntity provider) => CombatUtility.TakeHeal(provider, this);
+        public void TakeStatusEffect(ICombatEntity statusEffect) => OnTakeStatusEffect?.Invoke(statusEffect);
+        public void DispelStatusEffect(IDCode code) => OnDispelStatusEffect?.Invoke(code);
 
         protected virtual void Start()
         {
@@ -86,11 +80,12 @@ namespace Common
         }
 
 #if UNITY_EDITOR
-        protected virtual void SetUp()
+        public virtual void SetUp()
         {
-            if (characterName != string.Empty) return;
-            
-            Debug.LogError("CharacterName Required");
+            if (characterName == string.Empty)
+            {
+                Debug.LogError("CharacterName Required");
+            }
         }
 #endif
     }

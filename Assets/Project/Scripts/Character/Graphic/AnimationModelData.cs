@@ -6,7 +6,7 @@ using UnityEngine;
 using Animation = Spine.Animation;
 using AnimationAsset = Spine.Unity.AnimationReferenceAsset;
 
-namespace Common.Character.Graphic
+namespace Character.Graphic
 {
     public class AnimationModelData : ScriptableObject
     {

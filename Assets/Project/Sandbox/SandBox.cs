@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
+using Character;
 using Common;
 using Sirenix.OdinInspector;
 using UnityEngine;

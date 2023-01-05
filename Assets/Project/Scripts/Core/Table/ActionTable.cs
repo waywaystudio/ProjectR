@@ -12,7 +12,11 @@ namespace Core
         /// </summary>
         public void Register(int key, Action action, bool overwrite = false) => TryAdd(key, action, overwrite);
 
-        public void Invoke() => this.ForEach(x => x.Value?.Invoke());
+        // For Performance.
+        public void Invoke()
+        {
+            foreach (var item in this) this[item.Key]?.Invoke();
+        }
     }
     
     public class ActionTable<T0> : DelegateTable<int, Action<T0>>
@@ -30,7 +34,10 @@ namespace Core
         /// </summary>
         public void Register(int key, Action<T0> action, bool overwrite = false) => TryAdd(key, action, overwrite);
 
-        public void Invoke(T0 t) => this.ForEach(x => x.Value.Invoke(t));
+        public void Invoke(T0 t)
+        {
+            foreach (var item in this) this[item.Key]?.Invoke(t);
+        }
     }
 
     public class ActionTable<T0, T1> : DelegateTable<int, Action<T0, T1>>
@@ -58,6 +65,10 @@ namespace Core
         /// </summary>
         public void Register(int key, Action<T0, T1> action, bool overwrite = false) => TryAdd(key, action, overwrite);
 
-        public void Invoke(T0 t0, T1 t1) => this.ForEach(x => x.Value?.Invoke(t0, t1));
+        public void Invoke(T0 t0, T1 t1)
+        {
+            foreach (var item in this) this[item.Key]?.Invoke(t0, t1);
+        } 
+            //=> this.ForEach(x => x.Value?.Invoke(t0, t1));
     }
 }

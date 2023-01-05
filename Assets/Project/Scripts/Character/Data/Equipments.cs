@@ -3,7 +3,7 @@ using System.Linq;
 using Core;
 using UnityEngine;
 
-namespace Common.Character.Data
+namespace Character.Data
 {
     public class Equipments : MonoBehaviour
     {

@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Reflection;
+using Character;
 using Sirenix.OdinInspector;
 using Sirenix.OdinInspector.Editor;
 

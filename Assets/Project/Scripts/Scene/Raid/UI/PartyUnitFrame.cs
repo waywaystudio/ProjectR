@@ -1,4 +1,4 @@
-using Common.Character;
+using Character;
 using Core;
 using DG.Tweening;
 using TMPro;

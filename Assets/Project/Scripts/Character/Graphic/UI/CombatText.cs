@@ -1,13 +1,14 @@
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
+using Character.Combat;
 using Core;
 using DG.Tweening;
 using Sirenix.OdinInspector;
 using TMPro;
 using UnityEngine;
 
-namespace Common.Character.Graphic.UI
+namespace Character.Graphic.UI
 {
     public class CombatText : MonoBehaviour
     {

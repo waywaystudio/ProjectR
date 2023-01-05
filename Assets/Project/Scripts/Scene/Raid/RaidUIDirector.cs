@@ -1,5 +1,5 @@
 using System.Collections.Generic;
-using Common.Character;
+using Character;
 using Core;
 using Scene.Raid.UI;
 using UnityEngine;

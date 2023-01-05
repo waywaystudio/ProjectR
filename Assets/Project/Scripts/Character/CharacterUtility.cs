@@ -1,4 +1,4 @@
-namespace Common.Character
+namespace Character
 {
     public static class CharacterUtility
     {

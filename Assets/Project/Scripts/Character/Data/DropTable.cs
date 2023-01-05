@@ -6,9 +6,9 @@ using MainGame;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
-namespace Common.Character.Data
+namespace Character.Data
 {
-    public class DropTable : MonoBehaviour
+    public class DropTable : MonoBehaviour, IEditorSetUp
     {
         [Serializable]
         public struct ItemDrop
@@ -73,7 +73,7 @@ namespace Common.Character.Data
         }
 
 
-        private bool DropAssertion(int count)
+        private static bool DropAssertion(int count)
         {
             if (count <= 0)
             {
@@ -85,7 +85,7 @@ namespace Common.Character.Data
         }
         
 #if UNITY_EDITOR
-        private void SetUp()
+        public void SetUp()
         {
             var mb = GetComponentInParent<MonsterBehaviour>();
             var monsterID = mb.ID;

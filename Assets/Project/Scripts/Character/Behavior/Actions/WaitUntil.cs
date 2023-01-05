@@ -3,7 +3,7 @@ using BehaviorDesigner.Runtime.Tasks;
 using UnityEngine;
 using Tooltip = BehaviorDesigner.Runtime.Tasks.TooltipAttribute;
 
-namespace Common.Character.Behavior.Actions
+namespace Character.Behavior.Actions
 {
     [System.Serializable]
     [TaskIcon("{SkinColor}WaitIcon.png"), TaskCategory("Character")]

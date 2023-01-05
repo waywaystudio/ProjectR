@@ -2,7 +2,7 @@ using Core;
 using MainGame;
 using UnityEngine;
 
-namespace Common.Character
+namespace Character
 {
     public class MonsterBehaviour : CharacterBehaviour
     {
@@ -20,7 +20,7 @@ namespace Common.Character
         {
             base.Update();
             
-            // 좌클릭 이벤트가 들어왔다면
+            // TEMP. 좌클릭 이벤트가 들어왔다면
             if (Input.GetMouseButtonUp(0))
             {
                 var ray = Camera.main.ScreenPointToRay(Input.mousePosition);
@@ -41,7 +41,7 @@ namespace Common.Character
         }
         
 #if UNITY_EDITOR
-        protected override void SetUp()
+        public override void SetUp()
         {
             var profile = MainData.GetBoss(characterName.ToEnum<IDCode>());
 

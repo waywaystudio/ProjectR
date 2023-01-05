@@ -1,7 +1,7 @@
 using BehaviorDesigner.Runtime.Tasks;
-using Common.Character.Operation;
+using Character.Combat;
 
-namespace Common.Character.Behavior.Actions
+namespace Character.Behavior.Actions
 {
     [TaskCategory("Character")]
     public class ToIdleBehavior : Action
@@ -10,7 +10,7 @@ namespace Common.Character.Behavior.Actions
 
         public override void OnAwake()
         {
-            TryGetComponent<CombatOperation>(out var combat);
+            TryGetComponent<CombatBehaviour>(out var combat);
 
             cb = combat.GetComponentInParent<CharacterBehaviour>();
         }

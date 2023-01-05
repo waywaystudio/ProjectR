@@ -1,11 +1,11 @@
 using System.Collections;
-using Common.Character.Operation.Combat.Entity;
+using Character.Combat.Entities;
 using UnityEngine;
 using UnityEngine.UI;
 
 // ReSharper disable NotAccessedField.Local
 
-namespace Common.Character.Graphic.UI
+namespace Character.Graphic.UI
 {
     public class CastingBar : MonoBehaviour
     {
@@ -21,17 +21,20 @@ namespace Common.Character.Graphic.UI
 
         private void UpdateCastingBar()
         {
-            castingEntity = cb.CombatOperation.CurrentSkill.CastingEntity;
+            castingEntity = cb.CombatBehaviour.CurrentSkill.CastingEntity;
 
             if (castingEntity is null)
             {
                 fillImage.fillAmount = 0f;
                 return;
             }
-            
+
             fillRoutine = StartCoroutine(FillProgress());
         }
 
+        // NOTE. 캐스팅바에 OnValueChanged 구조로 가고 싶지만, 항상 캐스팅바가 존재하는게 아니다 보니까 약간 애매하다.
+        // 값 자체를 복잡하게 받고 있다보니, if (castingEntity is null) break; 같은 구절이 필요하게 되었다.
+        // 수정할 수 있으면 해보자.
         private IEnumerator FillProgress()
         {
             castingTime = castingEntity.CastingTime;
@@ -40,12 +43,14 @@ namespace Common.Character.Graphic.UI
 
             while (castingProgress < 1.0f)
             {
+                if (castingEntity is null) break;
+                
                 castingProgress = castingEntity.CastingProgress / castingTime;
                 fillImage.fillAmount = castingProgress;
-            
+                
                 yield return null;
             }
-        
+
             fillImage.gameObject.SetActive(false);
         }
     

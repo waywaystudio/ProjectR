@@ -2,7 +2,7 @@ using Core;
 using MainGame;
 using UnityEngine;
 
-namespace Common.Character
+namespace Character
 {
     public class AdventurerBehaviour : CharacterBehaviour
     {
@@ -14,8 +14,10 @@ namespace Common.Character
 
 
 #if UNITY_EDITOR
-        protected override void SetUp()
+        public override void SetUp()
         {
+            base.SetUp();
+            
             var profile = MainData.GetAdventurer(characterName.ToEnum<IDCode>());
 
             id = (IDCode)profile.ID;

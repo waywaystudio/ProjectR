@@ -1,9 +1,8 @@
 using System;
 using Core;
 using MainGame;
-using Sirenix.OdinInspector;
 
-namespace Common.Character.Data
+namespace Character.Data
 {
     [Serializable]
     public class EquipmentItem
@@ -17,7 +16,6 @@ namespace Common.Character.Data
         public float Hit;
         public float Evade;
 
-        [Button]
         public void SetStats() => SetStats(ItemName);
         public void SetStats(string itemName)
         {

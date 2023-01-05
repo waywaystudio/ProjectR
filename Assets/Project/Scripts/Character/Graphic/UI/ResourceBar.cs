@@ -3,7 +3,7 @@ using DG.Tweening;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace Common.Character.Graphic.UI
+namespace Character.Graphic.UI
 {
     public class ResourceBar : MonoBehaviour
     {

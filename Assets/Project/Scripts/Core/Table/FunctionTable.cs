@@ -17,8 +17,8 @@ namespace Core
             if (Count < 1) TryAdd(key, function);
             else Debug.LogError("FunctionTable able to storage just 1 function.");
         }
-        
-        public TResult Invoke() => this.FirstOrDefault().Value.Invoke();
+
+        public TResult Invoke() => this.First().Value.Invoke();
     }
    
     public class FunctionTable<T0, TResult> : DelegateTable<int, Func<T0, TResult>>
@@ -32,7 +32,7 @@ namespace Core
             else Debug.LogError("FunctionTable able to storage just 1 function.");
         }
         
-        public TResult Invoke(T0 t) => this.FirstOrDefault().Value.Invoke(t);
+        public TResult Invoke(T0 t) => this.First().Value.Invoke(t);
     }
         
     public class FunctionTable<T1, T2, TResult> : DelegateTable<int, Func<T1, T2, TResult>>
@@ -46,6 +46,6 @@ namespace Core
             else Debug.LogError("FunctionTable able to storage just 1 function.");
         }
         
-        public TResult Invoke(T1 t1, T2 t2) => this.FirstOrDefault().Value.Invoke(t1, t2);
+        public TResult Invoke(T1 t1, T2 t2) => this.First().Value.Invoke(t1, t2);
     }
 }

@@ -2,7 +2,7 @@ using BehaviorDesigner.Runtime;
 using BehaviorDesigner.Runtime.Tasks;
 using UnityEngine;
 
-namespace Common.Character.Behavior.Decorators
+namespace Character.Behavior.Decorators
 {
     [TaskIcon("{SkinColor}CooldownIcon.png"), TaskCategory("Character")]
     public class CoolDown : Decorator

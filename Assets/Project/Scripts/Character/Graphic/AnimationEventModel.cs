@@ -3,7 +3,7 @@ using Spine.Unity;
 using UnityEngine;
 using Event = Spine.Event;
 
-namespace Common.Character.Graphic
+namespace Character.Graphic
 {
     public class AnimationEventModel : MonoBehaviour
     {

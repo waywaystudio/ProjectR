@@ -7,7 +7,7 @@ using UnityEngine;
 using Animation = Spine.Animation;
 using AnimationState = Spine.AnimationState;
 
-namespace Common.Character.Graphic
+namespace Character.Graphic
 {
     public class AnimationModel : MonoBehaviour
     {

@@ -1,3 +1,4 @@
+using Character;
 using Common;
 using Common.Character;
 using Core;

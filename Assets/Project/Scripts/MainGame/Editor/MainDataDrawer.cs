@@ -32,15 +32,6 @@ namespace MainGame.Editor
                 attributes.Add(new PropertySpaceAttribute(0, 20f));
                 attributes.Add(new FolderPathAttribute());
             }
-
-            // if (member.Name == "SetUp")
-            // {
-            //     attributes.Add(new HorizontalGroupAttribute("Horizontal"));
-            //     attributes.Add(new ButtonAttribute(ButtonSizes.Large)
-            //     {
-            //         Icon = SdfIconType.Save,
-            //     });
-            // }
             
             if (member.Name == "OpenSpreadSheetPanel")
             {

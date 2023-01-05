@@ -1,6 +1,6 @@
-using Common.Character;
-using Common.Character.Operation;
-using Common.Character.Operation.Combat;
+using Character;
+using Character.Combat;
+using Character.Combat.Skill;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -17,7 +17,7 @@ namespace Scene.Raid.UI
         private int instanceID;
         private RaidUIDirector uiDirector;
         private BaseSkill inheritSkill;
-        private CombatOperation combatOperation;
+        private CombatBehaviour combatBehaviour;
 
         private bool IsRegistered => inheritSkill != null;
         private bool HasCoolTimeEntity => inheritSkill != null && inheritSkill.CoolTimeEntity != null;
@@ -26,27 +26,16 @@ namespace Scene.Raid.UI
         public void Register(AdventurerBehaviour ab)
         {
             gameObject.SetActive(true);
-            combatOperation = ab.CombatOperation;
+            combatBehaviour = ab.CombatBehaviour;
             
             // Set Skill
-            switch (skillIndex)
-            {
-                case 1 : inheritSkill = combatOperation.FirstSkill; break;
-                case 2 : inheritSkill = combatOperation.SecondSkill; break;
-                case 3 : inheritSkill = combatOperation.ThirdSkill; break;
-                case 4 : inheritSkill = combatOperation.FourthSkill; break;
-                default:
-                {
-                    Debug.LogError($"Slot Index must in ranged 1 ~ 4. current:{skillIndex}");
-                    break;
-                }
-            }
-            
+            inheritSkill = combatBehaviour.SkillList[skillIndex];
+
             // Set SkillIcon
             skillImage.sprite = inheritSkill.Icon;
             
             // Set GlobalCooldown
-            combatOperation.GlobalCoolDown.OnTimerChanged.Register(instanceID, UnFillGlobalCoolTime);
+            combatBehaviour.GlobalCoolDown.Timer.Register(instanceID, UnFillGlobalCoolTime);
 
             // Set SkillCoolTime
             switch (HasCoolTimeEntity)
@@ -57,7 +46,7 @@ namespace Scene.Raid.UI
                 case true:
                 {
                     var coolTimeEntity = inheritSkill.CoolTimeEntity;
-                    coolTimeEntity.OnRemainTimeChanged.Register(instanceID, UnFillSkillCoolTime);
+                    coolTimeEntity.RemainTimer.Register(instanceID, UnFillSkillCoolTime);
                     break;
                 }
             }
@@ -67,10 +56,10 @@ namespace Scene.Raid.UI
         {
             if (!IsRegistered) return;
 
-            combatOperation.GlobalCoolDown.OnTimerChanged.Unregister(instanceID);
+            combatBehaviour.GlobalCoolDown.Timer.Unregister(instanceID);
             
             if (HasCoolTimeEntity) 
-                inheritSkill.CoolTimeEntity.OnRemainTimeChanged.Unregister(instanceID);
+                inheritSkill.CoolTimeEntity.RemainTimer.Unregister(instanceID);
             
             inheritSkill = null;
             
@@ -83,21 +72,21 @@ namespace Scene.Raid.UI
         {
             if (HasCoolTimeEntity)
             {
-                if (inheritSkill.CoolTimeEntity.RemainTimer > combatOperation.GlobalCoolDown.CoolTime)
+                if (inheritSkill.CoolTimeEntity.RemainTimer.Value > combatBehaviour.GlobalCoolDown.CoolTime)
                 {
                     globalCooldownFilter.fillAmount = 0.0f;
                     return;
                 }
             }
             
-            var normalGlobalCoolTime = remainGlobalCoolTime / combatOperation.GlobalCoolDown.CoolTime;
+            var normalGlobalCoolTime = remainGlobalCoolTime / combatBehaviour.GlobalCoolDown.CoolTime;
             
             globalCooldownFilter.fillAmount = normalGlobalCoolTime;
         }
 
         private void UnFillSkillCoolTime(float remainCoolTime)
         {
-            if (inheritSkill.CoolTimeEntity.RemainTimer < combatOperation.GlobalCoolDown.CoolTime)
+            if (inheritSkill.CoolTimeEntity.RemainTimer.Value < combatBehaviour.GlobalCoolDown.CoolTime)
             {
                 skillCooldownFilter.fillAmount = 0.0f;
                 return;
