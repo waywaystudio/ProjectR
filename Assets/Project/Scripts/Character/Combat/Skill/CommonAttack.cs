@@ -5,10 +5,11 @@ namespace Character.Combat.Skill
         public override void InvokeEvent()
         {
             if (DamageEntity && TargetEntity)
-                TargetEntity.CombatTakerList.ForEach(target =>
-                {
-                    target.TakeDamage(DamageEntity);
-                });
+                TargetEntity.Target.TakeDamage(DamageEntity);
+                // TargetEntity.TakerList.ForEach(target =>
+                // {
+                //     target.TakeDamage(DamageEntity);
+                // });
         }
     }
 }

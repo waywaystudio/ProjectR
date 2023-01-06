@@ -31,7 +31,7 @@ namespace Character.Behavior.Actions.Combat
             }
 
             var isMovable = combat.Positioning.TryGetCombatPosition(
-                targetEntity.CombatTaker, targetEntity.Range, out var destination);
+                targetEntity.Target, targetEntity.Range, out var destination);
 
             if (!isMovable && cb.IsReached.Invoke())
             {

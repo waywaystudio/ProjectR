@@ -8,11 +8,14 @@ namespace Character.Combat.Skill
 
             if (DamageEntity && StatusEffectEntity && TargetEntity)
             {
-                TargetEntity.CombatTakerList.ForEach(target =>
-                {
-                    target.TakeDamage(DamageEntity);
-                    target.TakeStatusEffect(StatusEffectEntity);
-                });
+                TargetEntity.Target.TakeDamage(DamageEntity);
+                TargetEntity.Target.TakeStatusEffect(StatusEffectEntity);
+                
+                // TargetEntity.TakerList.ForEach(target =>
+                // {
+                //     target.TakeDamage(DamageEntity);
+                //     target.TakeStatusEffect(StatusEffectEntity);
+                // });
             }
         }
         

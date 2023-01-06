@@ -6,6 +6,7 @@ namespace Core
     public static class ListExtension
     {
         public static bool IsNullOrEmpty<T>(this List<T> list) => list == null || list.Count == 0;
+        public static bool HasElement<T>(this List<T> list) => !list.IsNullOrEmpty();
         public static void AddUniquely<T>(this List<T> list, T item)
         {
             if (list.Contains(item)) return;
@@ -131,6 +132,11 @@ namespace Core
             }
 
             (list[firstIndex], list[secondIndex]) = (list[secondIndex], list[firstIndex]);
+        }
+
+        public static void Trim<T>(this List<T> list, int count)
+        {
+            if (list.Count > count) list.RemoveRange(count, list.Count - count);
         }
     }
 }

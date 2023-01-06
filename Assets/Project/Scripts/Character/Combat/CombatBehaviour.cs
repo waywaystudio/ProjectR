@@ -37,7 +37,7 @@ namespace Character.Combat
         public bool TryGetMostPrioritySkill(out BaseSkill skill)
         {
             skill = null;
-            
+
             // ReSharper disable once ForCanBeConvertedToForeach
             for (var i = 0; i < skillList.Count; ++i)
             {
@@ -46,7 +46,7 @@ namespace Character.Combat
                 skill ??= skillList[i];
                 if (skillList[i].Priority >= skill.Priority) skill = skillList[i];
             }
-
+            
             return skill is not null;
         }
 

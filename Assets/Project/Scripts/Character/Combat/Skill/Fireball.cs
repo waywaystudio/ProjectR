@@ -5,12 +5,14 @@ namespace Character.Combat.Skill
         protected override void CompleteSkill()
         {
             if (TargetEntity && ProjectileEntity)
-            {
-                TargetEntity.CombatTakerList.ForEach(target =>
-                {
-                    ProjectileEntity.Fire(target);
-                });
-            }
+                ProjectileEntity.Fire(TargetEntity.Target);
+                
+            // {
+            //     TargetEntity.TakerList.ForEach(target =>
+            //     {
+            //         ProjectileEntity.Fire(target);
+            //     });
+            // }
 
             base.CompleteSkill();
         }

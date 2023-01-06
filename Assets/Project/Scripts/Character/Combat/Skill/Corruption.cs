@@ -7,10 +7,11 @@ namespace Character.Combat.Skill
             base.StartSkill();
             
             if (StatusEffectEntity && TargetEntity)
-                TargetEntity.CombatTakerList.ForEach(target =>
-                {
-                    target.TakeStatusEffect(StatusEffectEntity);
-                });
+                TargetEntity.Target.TakeStatusEffect(StatusEffectEntity);
+                // TargetEntity.TakerList.ForEach(target =>
+                // {
+                //     target.TakeStatusEffect(StatusEffectEntity);
+                // });
         }
     }
 }

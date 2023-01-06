@@ -170,7 +170,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   flag: 64
-  healValue: 20
+  healValue:
+    value: 20
+    statCode: 1
 --- !u!135 &4929770875764372954
 SphereCollider:
   m_ObjectHideFlags: 0

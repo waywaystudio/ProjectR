@@ -5,9 +5,10 @@ namespace Character.Combat.Skill
         protected override void CompleteSkill()
         {
             if (HealEntity && TargetEntity)
-            {
-                TargetEntity.CombatTakerList.ForEach(target => target.TakeHeal(HealEntity));
-            }
+                TargetEntity.Target.TakeHeal(HealEntity);
+            // {
+            //     TargetEntity.TakerList.ForEach(target => target.TakeHeal(HealEntity));
+            // }
 
             base.CompleteSkill();
         }

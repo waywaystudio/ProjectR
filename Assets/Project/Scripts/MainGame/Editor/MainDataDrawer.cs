@@ -22,6 +22,11 @@ namespace MainGame.Editor
                 });
             }
             
+            if (member.Name == "idCodePath")
+            {
+                attributes.Add(new FolderPathAttribute());
+            }
+            
             if (member.Name == "dataScriptPath")
             {
                 attributes.Add(new FolderPathAttribute());

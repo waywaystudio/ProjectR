@@ -48,6 +48,7 @@ namespace MainGame
 
 #if UNITY_EDITOR
         
+        [SerializeField] private string idCodePath;
         [SerializeField] private string dataScriptPath;
         [SerializeField] private string dataObjectPath;
 
@@ -88,10 +89,10 @@ namespace MainGame
 
         private void GenerateIDCode()
         {
-            if (!Directory.Exists(dataScriptPath))
-                Directory.CreateDirectory(dataScriptPath);
+            if (!Directory.Exists(idCodePath))
+                Directory.CreateDirectory(idCodePath);
             
-            File.WriteAllText($"{dataScriptPath}/IDCode.cs", IDCodeGenerator.Generate());
+            File.WriteAllText($"{idCodePath}/IDCode.cs", IDCodeGenerator.Generate());
         }
         
         private void OpenSpreadSheetPanel() 

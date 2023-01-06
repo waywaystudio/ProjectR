@@ -22,7 +22,9 @@ MonoBehaviour:
     priority: 1
     animationKey: attack
     targetCount: 1
+    sortingType: None
     targetLayer: enemy
+    isSelf: 0
     skillType: damage
     castingTime: 0
     resourceObtain: 1
@@ -36,7 +38,9 @@ MonoBehaviour:
     priority: 5
     animationKey: skill
     targetCount: 1
+    sortingType: None
     targetLayer: enemy
+    isSelf: 0
     skillType: damage
     castingTime: 0
     resourceObtain: 10
@@ -50,7 +54,9 @@ MonoBehaviour:
     priority: 5
     animationKey: skill
     targetCount: 1
+    sortingType: None
     targetLayer: enemy
+    isSelf: 0
     skillType: damage
     castingTime: 0
     resourceObtain: 0
@@ -64,7 +70,9 @@ MonoBehaviour:
     priority: 5
     animationKey: skill
     targetCount: 1
+    sortingType: None
     targetLayer: enemy
+    isSelf: 0
     skillType: projectile
     castingTime: 3
     resourceObtain: -20
@@ -78,7 +86,9 @@ MonoBehaviour:
     priority: 6
     animationKey: skill
     targetCount: 1
-    targetLayer: self
+    sortingType: None
+    targetLayer: ally
+    isSelf: 1
     skillType: transcendence
     castingTime: 0
     resourceObtain: 0
@@ -92,7 +102,9 @@ MonoBehaviour:
     priority: 5
     animationKey: skill
     targetCount: 5
+    sortingType: None
     targetLayer: enemy
+    isSelf: 0
     skillType: damage
     castingTime: 0
     resourceObtain: 0
@@ -106,7 +118,9 @@ MonoBehaviour:
     priority: 5
     animationKey: skill
     targetCount: 16
+    sortingType: None
     targetLayer: enemy
+    isSelf: 0
     skillType: damage
     castingTime: 3
     resourceObtain: 0
@@ -120,7 +134,9 @@ MonoBehaviour:
     priority: 5
     animationKey: channeling
     targetCount: 1
+    sortingType: None
     targetLayer: enemy
+    isSelf: 0
     skillType: damage
     castingTime: 0.8
     resourceObtain: 4
@@ -134,7 +150,9 @@ MonoBehaviour:
     priority: 6
     animationKey: skill
     targetCount: 1
-    targetLayer: self
+    sortingType: None
+    targetLayer: ally
+    isSelf: 1
     skillType: transcendence
     castingTime: 0
     resourceObtain: 0
@@ -148,7 +166,9 @@ MonoBehaviour:
     priority: 5
     animationKey: skill
     targetCount: 16
+    sortingType: None
     targetLayer: enemy
+    isSelf: 0
     skillType: damage
     castingTime: 0
     resourceObtain: 0
@@ -162,7 +182,9 @@ MonoBehaviour:
     priority: 2
     animationKey: skill
     targetCount: 1
+    sortingType: None
     targetLayer: enemy
+    isSelf: 0
     skillType: projectile
     castingTime: 1.5
     resourceObtain: 0
@@ -176,7 +198,9 @@ MonoBehaviour:
     priority: 2
     animationKey: skill
     targetCount: 1
+    sortingType: None
     targetLayer: enemy
+    isSelf: 0
     skillType: damage
     castingTime: 0
     resourceObtain: 0
@@ -190,7 +214,9 @@ MonoBehaviour:
     priority: 1
     animationKey: skill
     targetCount: 1
+    sortingType: HpAscending
     targetLayer: ally
+    isSelf: 0
     skillType: heal
     castingTime: 1.5
     resourceObtain: 0
@@ -204,7 +230,9 @@ MonoBehaviour:
     priority: 4
     animationKey: skill
     targetCount: 1
+    sortingType: HpAscending
     targetLayer: ally
+    isSelf: 0
     skillType: heal
     castingTime: 0
     resourceObtain: 0
@@ -218,7 +246,9 @@ MonoBehaviour:
     priority: 3
     animationKey: skill
     targetCount: 1
+    sortingType: HpAscending
     targetLayer: ally
+    isSelf: 0
     skillType: heal
     castingTime: 0
     resourceObtain: 0
@@ -232,7 +262,9 @@ MonoBehaviour:
     priority: 5
     animationKey: channeling
     targetCount: 8
+    sortingType: None
     targetLayer: ally
+    isSelf: 0
     skillType: heal
     castingTime: 6
     resourceObtain: 0
@@ -246,7 +278,9 @@ MonoBehaviour:
     priority: 5
     animationKey: skill
     targetCount: 1
+    sortingType: HpAscending
     targetLayer: ally
+    isSelf: 0
     skillType: projectile
     castingTime: 2
     resourceObtain: 0
@@ -260,7 +294,9 @@ MonoBehaviour:
     priority: 5
     animationKey: skill
     targetCount: 1
+    sortingType: None
     targetLayer: ally
+    isSelf: 0
     skillType: projectile
     castingTime: 0
     resourceObtain: 0
@@ -274,7 +310,9 @@ MonoBehaviour:
     priority: 1
     animationKey: attack
     targetCount: 1
+    sortingType: None
     targetLayer: enemy
+    isSelf: 0
     skillType: projectile
     castingTime: 1
     resourceObtain: 10

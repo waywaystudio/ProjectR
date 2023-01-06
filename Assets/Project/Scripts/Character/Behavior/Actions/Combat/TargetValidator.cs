@@ -29,16 +29,13 @@ namespace Character.Behavior.Actions.Combat
                 return TaskStatus.Success;
             }
 
-            taker = targetEntity.CombatTaker;
+            taker = targetEntity.Target;
 
-            var isValid =
-                taker != null &&
-                taker.DynamicStatEntry.IsAlive.Value;
-                // Add more condition...
+            var isValid = taker != null && taker.DynamicStatEntry.IsAlive.Value; // Add more condition...
 
             return isValid
-                ? TaskStatus.Success
-                : TaskStatus.Failure;
+            ? TaskStatus.Success
+            : TaskStatus.Failure;
         }
     }
 }

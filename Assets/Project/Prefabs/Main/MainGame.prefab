@@ -99,7 +99,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   audioManager: {fileID: 6957410591883614601}
-  inputManager: {fileID: 0}
   saveManager: {fileID: 7364561384061389512}
   sceneManager: {fileID: 7490997727852929123}
 --- !u!114 &5898489475029978976
@@ -136,6 +135,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 5a46d34d812abe740839bfed1ce08573, type: 2}
   - {fileID: 11400000, guid: afdb984896de2944a8a2ecf72158de10, type: 2}
   - {fileID: 11400000, guid: a1c1bb93fb25c6344bfbcaeb5b44cf60, type: 2}
+  idCodePath: Assets/Project/Scripts/Core/_Protocol/_Enum
   dataScriptPath: Assets/Project/Scripts/MainGame/Data
   dataObjectPath: Assets/Project/Data/SpreadSheet
 --- !u!1 &9039682236266940767

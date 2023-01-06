@@ -1,12 +1,10 @@
 using System;
-using System.Collections.Generic;
-using Character.Combat;
 using Core;
 using UnityEngine;
 
 namespace Character
 {
-    public class CharacterBehaviour : MonoBehaviour, ICombatTaker, ICombatProvider, ISearchedListTaker, IDynamicStatEntry, IEditorSetUp
+    public class CharacterBehaviour : MonoBehaviour, ICombatExecutor, IDynamicStatEntry, IEditorSetUp
     {
         [SerializeField] protected string characterName = string.Empty;
         [SerializeField] protected IDCode id;
@@ -42,12 +40,12 @@ namespace Character
         public FunctionTable<bool> IsReached { get; } = new();
         public FunctionTable<Vector3> Direction { get; } = new();
 
-        public ISkillInfo SkillInfo { get; set; }
         public ICombatBehaviour CombatBehaviour { get; set; }
-        public List<ICombatTaker> AdventurerList { get; set; }
-        public List<ICombatTaker> MonsterList { get; set; }
-        public ICombatTaker MainTarget { get; set; }
-        public ICombatTaker Self => this;
+        public ISkillInfo SkillInfo { get; set; }
+        public ISearching SearchingEngine { get; set; }
+        public ITargeting TargetingEngine { get; set; }
+        // public IPathfinding PathfindingEngine { get;set; }
+        
 
         public void Idle() => OnIdle?.Invoke();
         public void Walk(Vector3 destination, Action pathCallback = null) => OnWalk?.Invoke(destination, pathCallback);

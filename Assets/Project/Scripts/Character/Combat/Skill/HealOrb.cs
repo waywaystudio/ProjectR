@@ -7,12 +7,14 @@ namespace Character.Combat.Skill
             base.StartSkill();
 
             if (ProjectileEntity && TargetEntity)
-            {
-                TargetEntity.CombatTakerList.ForEach(target =>
-                {
-                    ProjectileEntity.Fire(target);
-                });
-            }
+                ProjectileEntity.Fire(TargetEntity.Target);
+                
+            // {
+            //     TargetEntity.TakerList.ForEach(target =>
+            //     {
+            //         ProjectileEntity.Fire(target);
+            //     });
+            // }
         }
     }
 }

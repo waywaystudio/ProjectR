@@ -14,7 +14,9 @@ namespace Character.Combat.Skill
         {
             if (DamageEntity && TargetEntity)
             {
-                TargetEntity.CombatTakerList.ForEach(target => target.TakeDamage(DamageEntity));
+                TargetEntity.Target.TakeDamage(DamageEntity);
+                
+                // TargetEntity.TakerList.ForEach(target => target.TakeDamage(DamageEntity));
             }
         }
         
@@ -22,7 +24,7 @@ namespace Character.Combat.Skill
         {
             if (!TargetEntity) return;
             
-            var enemyTransform = TargetEntity.CombatTaker.Object.transform;
+            var enemyTransform = TargetEntity.Target.Object.transform;
             var enemyBehindPosition = enemyTransform.position + enemyTransform.forward * -backMagnitude;
 
             Cb.Teleport(enemyBehindPosition);

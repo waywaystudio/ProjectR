@@ -1,14 +1,16 @@
 using System;
+using Core;
 using Pathfinding;
 using UnityEngine;
 
 namespace Character.Pathfinding
 {
-    public class Pathfinding : MonoBehaviour
+    public class Pathfinding : MonoBehaviour, IEditorSetUp
     {
+        [SerializeField] private AIMove aiMove;
+        [SerializeField] private Seeker agent;
+        
         private CharacterBehaviour cb;
-        private AIMove aiMove;
-        private Seeker agent;
         private ABPath pathBuffer;
         private int instanceID;
 
@@ -19,21 +21,12 @@ namespace Character.Pathfinding
         {
             get
             {
-                // TODO. Direction 이 제대로 작동되는 것을 확인하기 전까지는 Debug를 띄우자.
-                // return !IsReached 
-                //         ? (aiMove.steeringTarget - cb.transform.position).normalized
-                //         : cb.MainTarget != default
-                //             ? (cb.MainTarget.Taker.transform.position - cb.transform.position).normalized
-                //             : Vector3.zero;
-                if (!IsReached)
-                {
-                    return (aiMove.steeringTarget - cb.transform.position).normalized;
-                }
+                if (!IsReached) return (aiMove.steeringTarget - cb.transform.position).normalized;
+                if (cb.TargetingEngine.MainTarget != null)
+                    return (cb.TargetingEngine.MainTarget.Object.transform.position - cb.transform.position).normalized;
 
-                if (cb.MainTarget != default)
-                {
-                    return (cb.MainTarget.Object.transform.position - cb.transform.position).normalized;
-                }
+                if (cb.SearchingEngine.LookTarget != null)
+                    return (cb.SearchingEngine.LookTarget.Object.transform.position - cb.transform.position).normalized;
 
                 Debug.LogWarning("Hmm...Where is Target?");
                 return Vector3.zero;
@@ -47,9 +40,7 @@ namespace Character.Pathfinding
             aiMove.maxSpeed = cb.StatTable.MoveSpeed;
 
             if (aiMove.Callback != null || callback != null)
-            {
                 aiMove.Callback = callback;
-            }
 
             agent.StartPath(pathBuffer);
         }
@@ -69,11 +60,10 @@ namespace Character.Pathfinding
 
         private void Awake()
         {
-            cb ??= GetComponentInParent<CharacterBehaviour>();
-            
-            agent = GetComponent<Seeker>();
-            aiMove = GetComponent<AIMove>();
-            instanceID = GetInstanceID();
+            cb         ??= GetComponentInParent<CharacterBehaviour>();
+            agent      ??= GetComponent<Seeker>();
+            aiMove     ??= GetComponent<AIMove>();
+            instanceID =   GetInstanceID();
         }
 
         private void OnEnable()
@@ -93,5 +83,14 @@ namespace Character.Pathfinding
             cb.OnWalk.Unregister(instanceID);
             cb.OnRun.Unregister(instanceID);
         }
+
+#if UNITY_EDITOR
+        public void SetUp()
+        {
+            cb         ??= GetComponentInParent<CharacterBehaviour>();
+            agent      ??= GetComponent<Seeker>();
+            aiMove     ??= GetComponent<AIMove>();
+        }
+#endif
     }
 }

@@ -170,9 +170,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   flag: 16
+  sortingType: 0
   targetLayerType: enemy
-  targetCount: 1
   range: 18
+  isSelf: 0
 --- !u!1 &1262598914036150766
 GameObject:
   m_ObjectHideFlags: 0
@@ -236,7 +237,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   flag: 64
-  healValue: 3
+  healValue:
+    value: 3
+    statCode: 1
 --- !u!114 &8851566931181336460
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -250,9 +253,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   flag: 16
+  sortingType: 3
   targetLayerType: ally
-  targetCount: 1
   range: 15
+  isSelf: 0
 --- !u!114 &7186045105482579143
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -358,9 +362,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   flag: 16
+  sortingType: 0
   targetLayerType: enemy
-  targetCount: 1
   range: 20
+  isSelf: 0
 --- !u!1 &1447973257328576627
 GameObject:
   m_ObjectHideFlags: 0
@@ -453,9 +458,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   flag: 16
+  sortingType: 3
   targetLayerType: ally
-  targetCount: 1
   range: 25
+  isSelf: 0
 --- !u!114 &3538037034823304809
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -731,9 +737,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   flag: 16
+  sortingType: 0
   targetLayerType: enemy
-  targetCount: 1
   range: 5
+  isSelf: 0
 --- !u!1 &2626340819208508592
 GameObject:
   m_ObjectHideFlags: 0
@@ -1492,9 +1499,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   flag: 16
+  sortingType: 0
   targetLayerType: enemy
-  targetCount: 1
   range: 25
+  isSelf: 0
 --- !u!114 &3744010700775776664
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1519,10 +1527,11 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3744010700929808892}
+  - component: {fileID: 687779392489372417}
   - component: {fileID: 3744010700929808894}
   - component: {fileID: 3744010700929808895}
   m_Layer: 2
-  m_Name: Search
+  m_Name: Targeting
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1543,6 +1552,18 @@ Transform:
   m_Father: {fileID: 3744010701179384131}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &687779392489372417
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3744010700929808893}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 16a6ffaf29721c24a8abaa89b3e1d920, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &3744010700929808894
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1555,14 +1576,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 079054a3d925aa34e9db343c1497c49b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  searchingRange: 50
   searchingCollider: {fileID: 3744010700929808895}
-  adventurerLayer:
-    serializedVersion: 2
-    m_Bits: 128
-  monsterLayer:
-    serializedVersion: 2
-    m_Bits: 256
 --- !u!135 &3744010700929808895
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -1574,7 +1588,7 @@ SphereCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 20
+  m_Radius: 100
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &3744010701179384128
 GameObject:
@@ -1799,9 +1813,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   flag: 16
+  sortingType: 0
   targetLayerType: enemy
-  targetCount: 1
   range: 5
+  isSelf: 0
 --- !u!1 &4469171862292128997
 GameObject:
   m_ObjectHideFlags: 0
@@ -1865,9 +1880,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   flag: 16
+  sortingType: 0
   targetLayerType: enemy
-  targetCount: 1
   range: 20
+  isSelf: 0
 --- !u!114 &4517806761421872203
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1960,9 +1976,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   flag: 16
+  sortingType: 0
   targetLayerType: ally
-  targetCount: 1
   range: 25
+  isSelf: 0
 --- !u!114 &8569279325747102475
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2178,9 +2195,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   flag: 16
+  sortingType: 0
   targetLayerType: enemy
-  targetCount: 1
   range: 18
+  isSelf: 0
 --- !u!1 &5837243643219010926
 GameObject:
   m_ObjectHideFlags: 0
@@ -2508,9 +2526,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   flag: 16
-  targetLayerType: self
-  targetCount: 1
+  sortingType: 0
+  targetLayerType: ally
   range: 0
+  isSelf: 1
 --- !u!1 &7656701811667595336
 GameObject:
   m_ObjectHideFlags: 0
@@ -2832,9 +2851,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   flag: 16
-  targetLayerType: self
-  targetCount: 1
+  sortingType: 0
+  targetLayerType: ally
   range: 0
+  isSelf: 1
 --- !u!1 &8137338756176437766
 GameObject:
   m_ObjectHideFlags: 0
@@ -2980,9 +3000,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   flag: 16
+  sortingType: 0
   targetLayerType: enemy
-  targetCount: 1
   range: 25
+  isSelf: 0
 --- !u!114 &4405252986337865575
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3199,9 +3220,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   flag: 16
+  sortingType: 0
   targetLayerType: enemy
-  targetCount: 5
   range: 16
+  isSelf: 0
 --- !u!114 &4681170025766940016
 MonoBehaviour:
   m_ObjectHideFlags: 0

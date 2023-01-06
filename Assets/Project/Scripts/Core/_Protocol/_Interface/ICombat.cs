@@ -63,4 +63,25 @@ namespace Core
 
         void DispelStatusEffect(IDCode code);
     }
+
+    public interface ICombatExecutor : ICombatProvider, ICombatTaker
+    {
+        // + ICombatProvider Provider { get; }
+        // + Status Status { get; }
+        // + StatTable StatTable { get; }
+        // + IDCode ActionCode { get; }
+        // + string Name { get; }
+        // + GameObject Object { get; }
+        
+        // + ActionTable<CombatLog> OnCombatActive { get; }
+        // + ActionTable<ICombatEntity> OnTakeStatusEffect { get; }
+        // + ActionTable<IDCode> OnDispelStatusEffect { get; }
+        // + ActionTable<CombatLog> OnCombatPassive { get; }
+        
+        // + void TakeDamage(ICombatEntity provider);
+        // + void TakeSpell(ICombatEntity provider);
+        // + void TakeHeal(ICombatEntity provider);
+        // + void TakeStatusEffect(ICombatEntity provider);
+        // + void DispelStatusEffect(IDCode code);
+    }
 }

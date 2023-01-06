@@ -1,7 +1,7 @@
 using Core;
 using UnityEngine;
 
-namespace Character.Combat
+namespace Character
 {
     public static class CombatUtility
     {

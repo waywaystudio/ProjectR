@@ -22,7 +22,9 @@ namespace MainGame.Data.ContentData
 			[SerializeField] private Int32 priority;
 			[SerializeField] private String animationKey;
 			[SerializeField] private Int32 targetCount;
+			[SerializeField] private String sortingType;
 			[SerializeField] private String targetLayer;
+			[SerializeField] private Boolean isSelf;
 			[SerializeField] private String skillType;
 			[SerializeField] private Single castingTime;
 			[SerializeField] private Single resourceObtain;
@@ -37,7 +39,9 @@ namespace MainGame.Data.ContentData
 			public Int32 Priority => priority;
 			public String AnimationKey => animationKey;
 			public Int32 TargetCount => targetCount;
+			public String SortingType => sortingType;
 			public String TargetLayer => targetLayer;
+			public Boolean IsSelf => isSelf;
 			public String SkillType => skillType;
 			public Single CastingTime => castingTime;
 			public Single ResourceObtain => resourceObtain;
