@@ -1,44 +1,38 @@
 using System;
 using System.Collections.Generic;
 using System.Reflection;
-using Character.Combat.Entities;
+using Character.TargetSystem;
 using Sirenix.OdinInspector;
 using Sirenix.OdinInspector.Editor;
 
 namespace Character.Editor
 {
-    public class DamageEntityDrawer : OdinAttributeProcessor<DamageEntity>
+    public class TargetingDrawer : OdinAttributeProcessor<Targeting>
     {
         public override void ProcessChildMemberAttributes(InspectorProperty parentProperty, MemberInfo member, List<Attribute> attributes)
         {
-            if (member.Name == "StatTable")
+            if (member.Name == "MainTarget")
             {
                 attributes.Add(new ShowInInspectorAttribute());
             }
         }
     }
-    
-    public class HealEntityDrawer : OdinAttributeProcessor<HealEntity>
+
+    public class SearchingDrawer : OdinAttributeProcessor<Searching>
     {
         public override void ProcessChildMemberAttributes(InspectorProperty parentProperty, MemberInfo member, List<Attribute> attributes)
         {
-            if (member.Name == "StatTable")
-            {
-                attributes.Add(new ShowInInspectorAttribute());
-            }
-        }
-    }
-    
-    public class TargetEntityDrawer : OdinAttributeProcessor<TargetEntity>
-    {
-        public override void ProcessChildMemberAttributes(InspectorProperty parentProperty, MemberInfo member, List<Attribute> attributes)
-        {
-            if (member.Name == "searchedList")
+            if (member.Name == "AdventurerList")
             {
                 attributes.Add(new ShowInInspectorAttribute());
             }
             
-            if (member.Name == "combatTaker")
+            if (member.Name == "MonsterList")
+            {
+                attributes.Add(new ShowInInspectorAttribute());
+            }
+
+            if (member.Name == "LookTarget")
             {
                 attributes.Add(new ShowInInspectorAttribute());
             }

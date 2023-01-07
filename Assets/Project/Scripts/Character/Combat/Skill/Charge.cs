@@ -12,7 +12,6 @@ namespace Character.Combat.Skill
         {
             if (DamageEntity && TargetEntity)
                 TargetEntity.Target.TakeDamage(DamageEntity);
-                // TargetEntity.TakerList.ForEach(target => target.TakeDamage(DamageEntity));
         }
 
         // 위 처럼 구현하고 매 프레임에서 Target != null을 체크하면 안정성이 조금 올라간다.

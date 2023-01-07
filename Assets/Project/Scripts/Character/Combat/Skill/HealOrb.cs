@@ -8,13 +8,6 @@ namespace Character.Combat.Skill
 
             if (ProjectileEntity && TargetEntity)
                 ProjectileEntity.Fire(TargetEntity.Target);
-                
-            // {
-            //     TargetEntity.TakerList.ForEach(target =>
-            //     {
-            //         ProjectileEntity.Fire(target);
-            //     });
-            // }
         }
     }
 }

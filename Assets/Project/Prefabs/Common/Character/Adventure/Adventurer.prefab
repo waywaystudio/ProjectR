@@ -29,7 +29,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 3744010699582125759}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &265844163968477880
 GameObject:
@@ -878,6 +878,7 @@ Transform:
   m_Children:
   - {fileID: 3744010701179384131}
   - {fileID: 3744010700621091311}
+  - {fileID: 3744010700929808892}
   - {fileID: 9160038010263774325}
   - {fileID: 8651108670824624026}
   m_Father: {fileID: 3744010700067239340}
@@ -1266,7 +1267,7 @@ GameObject:
   - component: {fileID: 3744010700621091313}
   - component: {fileID: 3744010700621091310}
   m_Layer: 0
-  m_Name: Pathfind
+  m_Name: PathfindingSystem
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1299,6 +1300,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c592a9ccff7b6e74c99fb45e651510a7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  aiMove: {fileID: 3744010700621091313}
+  agent: {fileID: 3744010700621091312}
 --- !u!114 &3744010700621091312
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1531,7 +1534,7 @@ GameObject:
   - component: {fileID: 3744010700929808894}
   - component: {fileID: 3744010700929808895}
   m_Layer: 2
-  m_Name: Targeting
+  m_Name: TargetSystem
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1549,7 +1552,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 3744010701179384131}
+  m_Father: {fileID: 3744010699582125759}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &687779392489372417
@@ -1624,7 +1627,6 @@ Transform:
   m_Children:
   - {fileID: 3136610500463366648}
   - {fileID: 8673068189234025519}
-  - {fileID: 3744010700929808892}
   m_Father: {fileID: 3744010699582125759}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -3048,7 +3050,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 3744010699582125759}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &9057776007194695083
 GameObject:

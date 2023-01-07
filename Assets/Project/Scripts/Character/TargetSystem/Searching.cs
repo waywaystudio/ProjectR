@@ -1,9 +1,8 @@
 using System.Collections.Generic;
 using Core;
-using Sirenix.OdinInspector;
 using UnityEngine;
 
-namespace Character.Targeting
+namespace Character.TargetSystem
 {
     [RequireComponent(typeof(SphereCollider))]
     public class Searching : MonoBehaviour, ISearching, IEditorSetUp
@@ -16,43 +15,15 @@ namespace Character.Targeting
         private LayerMask adventurerLayer;
         private LayerMask monsterLayer;
 
-        private readonly Collider[] colliderBuffer = new Collider[MaxBufferCount];
-
-        [ShowInInspector] public List<ICombatTaker> AdventurerList { get; } = new(MaxBufferCount);
-        [ShowInInspector] public List<ICombatTaker> MonsterList { get; } = new(MaxBufferCount);
-
-        [ShowInInspector] 
+        public List<ICombatTaker> AdventurerList { get; } = new(MaxBufferCount);
+        public List<ICombatTaker> MonsterList { get; } = new(MaxBufferCount);
         public ICombatTaker LookTarget => !MonsterList.IsNullOrEmpty() 
                 ? MonsterList[0] 
                 : !AdventurerList.IsNullOrEmpty() 
                     ? AdventurerList[0] 
                     : null;
 
-        private List<ICombatTaker> OverlapListCache { get; } = new(MaxBufferCount);
 
-        public List<ICombatTaker> OverlapList(LayerMask targetLayer, Vector3 center, float radius)
-        {
-            var hitCount = Physics.OverlapSphereNonAlloc(center, 
-                radius, colliderBuffer, targetLayer);
-
-#if UNITY_EDITOR
-            if (hitCount >= MaxBufferCount)
-                Debug.LogWarning($"Overflow Collider Max Buffer size : {MaxBufferCount}");          
-#endif
-
-            OverlapListCache.Clear();
-            colliderBuffer.ForEach(x =>
-            {
-                if (x.IsNullOrEmpty()) return;
-                if (!x.TryGetComponent(out ICombatTaker taker)) return;
-                    
-                OverlapListCache.Add(taker);
-            });
-
-            return OverlapListCache;
-        }
-        
-        
         private void Awake()
         {
             var cb = GetComponentInParent<CharacterBehaviour>();

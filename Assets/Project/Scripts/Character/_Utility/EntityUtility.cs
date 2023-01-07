@@ -50,7 +50,8 @@ namespace Character
                 }
                 case TargetEntity targetEntity:
                 {
-                    targetEntity.SetUpValue(baseSkill.TargetLayer, baseSkill.Range, baseSkill.SortingType.ToEnum<SortingType>(), baseSkill.IsSelf);
+                    targetEntity.SetUpValue(baseSkill.TargetLayer, baseSkill.Range, 
+                                            baseSkill.SortingType.ToEnum<SortingType>(), baseSkill.IsSelf);
                     targetEntity.Flag = EntityType.Target;
                     break;
                 }

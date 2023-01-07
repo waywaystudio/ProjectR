@@ -10,12 +10,6 @@ namespace Character.Combat.Skill
             {
                 TargetEntity.Target.TakeDamage(DamageEntity);
                 TargetEntity.Target.TakeStatusEffect(StatusEffectEntity);
-                
-                // TargetEntity.TakerList.ForEach(target =>
-                // {
-                //     target.TakeDamage(DamageEntity);
-                //     target.TakeStatusEffect(StatusEffectEntity);
-                // });
             }
         }
         

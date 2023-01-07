@@ -6,7 +6,6 @@ namespace Character.Combat.Skill
         {
             if (DamageEntity && TargetEntity)
                 TargetEntity.Target.TakeDamage(DamageEntity);
-                // TargetEntity.TakerList.ForEach(target => target.TakeDamage(DamageEntity));
         }
     }
 }

@@ -16,5 +16,8 @@ namespace Core
         ICombatTaker GetSelf();
         ICombatTaker GetTaker(List<ICombatTaker> targetList, ICombatProvider provider, float range,
             SortingType sortingType);
+        
+        List<ICombatTaker> GetTakerList(List<ICombatTaker> targetList, ICombatProvider provider, float range,
+                                        SortingType sortingType, int count);
     }
 }

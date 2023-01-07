@@ -56,11 +56,11 @@ namespace Core
         ActionTable<IDCode> OnDispelStatusEffect { get; }
         ActionTable<CombatLog> OnCombatPassive { get; }
 
-        void TakeDamage(ICombatEntity provider);
-        void TakeSpell(ICombatEntity provider);
-        void TakeHeal(ICombatEntity provider);
-        void TakeStatusEffect(ICombatEntity provider);
-
+        void TakeDamage(ICombatEntity entity);
+        void TakeSpell(ICombatEntity entity);
+        void TakeHeal(ICombatEntity entity);
+        
+        void TakeStatusEffect(ICombatEntity entity);
         void DispelStatusEffect(IDCode code);
     }
 

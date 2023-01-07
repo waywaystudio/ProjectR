@@ -13,9 +13,9 @@ namespace Character.Combat.Entities
 
         private ISearching searchingEngine;
         private ITargeting targetingEngine;
-        private LayerMask targetLayer;
         private List<ICombatTaker> targetList;
-        
+        private LayerMask targetLayer;
+
         public override bool IsReady => Target != null;
         public float Range => range;
         public ICombatTaker Target
@@ -31,7 +31,6 @@ namespace Character.Combat.Entities
                 return target;
             }
         }
-
 
         public override void Initialize(IActionSender actionSender)
         {

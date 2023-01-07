@@ -6,9 +6,6 @@ namespace Character.Combat.Skill
         {
             if (HealEntity && TargetEntity)
                 TargetEntity.Target.TakeHeal(HealEntity);
-            // {
-            //     TargetEntity.TakerList.ForEach(target => target.TakeHeal(HealEntity));
-            // }
 
             base.CompleteSkill();
         }

@@ -58,6 +58,25 @@ namespace Character
         {
             list.Trim(count);
         }
+        
+        public static List<ICombatTaker> OverlapList(Vector3 center, float radius, LayerMask targetLayer)
+        {
+            // ReSharper disable once Unity.PreferNonAllocApi
+            var colliderBuffer = Physics.OverlapSphere(center, radius, targetLayer);
+
+            if (colliderBuffer.IsNullOrEmpty()) return null;
+
+            var result = new List<ICombatTaker>(colliderBuffer.Length);
+            
+            colliderBuffer.ForEach(x =>
+            {
+                if (!x.TryGetComponent(out ICombatTaker taker)) return;
+                
+                result.Add(taker);
+            });
+
+            return result;
+        }
 
         public static LayerMask GetEnemyLayerMask(this LayerMask mask)
         {

@@ -3,7 +3,7 @@ using Core;
 using Pathfinding;
 using UnityEngine;
 
-namespace Character.Pathfinding
+namespace Character.PathfindingSystem
 {
     public class Pathfinding : MonoBehaviour, IEditorSetUp
     {
@@ -14,9 +14,7 @@ namespace Character.Pathfinding
         private ABPath pathBuffer;
         private int instanceID;
 
-        public bool HasPath => aiMove.hasPath;
         public bool IsReached => aiMove.reachedEndOfPath;
-
         public Vector3 Direction
         {
             get
@@ -57,7 +55,6 @@ namespace Character.Pathfinding
             aiMove.destination = cb.transform.position;
         }
 
-
         private void Awake()
         {
             cb         ??= GetComponentInParent<CharacterBehaviour>();
@@ -88,6 +85,7 @@ namespace Character.Pathfinding
         public void SetUp()
         {
             cb         ??= GetComponentInParent<CharacterBehaviour>();
+            
             agent      ??= GetComponent<Seeker>();
             aiMove     ??= GetComponent<AIMove>();
         }
