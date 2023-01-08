@@ -8,6 +8,8 @@ namespace Character.Combat.Skill
         [SerializeField] private float dashSpeed = 30.0f;
         [SerializeField] private float offsetDistance = 3.5f;
 
+        private IPathfinding pathfindingEngine;
+
         public override void InvokeEvent()
         {
             if (DamageEntity && TargetEntity)
@@ -20,7 +22,7 @@ namespace Character.Combat.Skill
             if (!TargetEntity) return;
 
             var takerTransform = TargetEntity.Target.Object.transform;
-            var offset = Cb.Direction.Invoke() * (offsetDistance * -1f);
+            var offset = pathfindingEngine.Direction * (offsetDistance * -1f);
             var targetFrontPosition = takerTransform.position + offset;
 
             Cb.StatTable.Register(ActionCode, new MoveSpeedValue(dashSpeed));
@@ -31,6 +33,14 @@ namespace Character.Combat.Skill
         {
             base.CompleteSkill();
             Cb.StatTable.Unregister(ActionCode, StatCode.MoveSpeed);
+        }
+
+
+        protected override void Awake()
+        {
+            base.Awake();
+
+            pathfindingEngine = Cb.PathfindingEngine;
         }
     }
 }

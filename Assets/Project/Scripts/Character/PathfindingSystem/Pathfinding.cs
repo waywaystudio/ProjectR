@@ -5,7 +5,7 @@ using UnityEngine;
 
 namespace Character.PathfindingSystem
 {
-    public class Pathfinding : MonoBehaviour, IEditorSetUp
+    public class Pathfinding : MonoBehaviour, IPathfinding, IEditorSetUp
     {
         [SerializeField] private AIMove aiMove;
         [SerializeField] private Seeker agent;
@@ -50,20 +50,20 @@ namespace Character.PathfindingSystem
             // aiMove.destination = aiMove.steeringTarget;
             aiMove.destination = cb.transform.position;
         }
+        
 
         private void Awake()
         {
-            cb         ??= GetComponentInParent<CharacterBehaviour>();
-            agent      ??= GetComponent<Seeker>();
-            aiMove     ??= GetComponent<AIMove>();
-            instanceID =   GetInstanceID();
+            TryGetComponent(out agent);
+            TryGetComponent(out aiMove);
+            
+            cb                   ??= GetComponentInParent<CharacterBehaviour>();
+            instanceID           =   GetInstanceID();
+            cb.PathfindingEngine =   this;
         }
 
         private void OnEnable()
         {
-            cb.Direction.Register(instanceID, () => Direction);
-            cb.IsReached.Register(instanceID, () => IsReached);
-            
             cb.OnTeleport.Register(instanceID, TeleportTo);
             cb.OnWalk.Register(instanceID, Move);
             cb.OnRun.Register(instanceID, Move);
@@ -71,9 +71,6 @@ namespace Character.PathfindingSystem
 
         private void OnDisable()
         {
-            cb.Direction.UnregisterAll();
-            cb.IsReached.Unregister(instanceID);
-            
             cb.OnTeleport.Unregister(instanceID);
             cb.OnWalk.Unregister(instanceID);
             cb.OnRun.Unregister(instanceID);
@@ -82,9 +79,8 @@ namespace Character.PathfindingSystem
 #if UNITY_EDITOR
         public void SetUp()
         {
-            cb     ??= GetComponentInParent<CharacterBehaviour>();
-            agent  ??= GetComponent<Seeker>();
-            aiMove ??= GetComponent<AIMove>();
+            TryGetComponent(out agent);
+            TryGetComponent(out aiMove);
         }
 #endif
     }

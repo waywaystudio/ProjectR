@@ -89,7 +89,7 @@ namespace Character.Combat.Skill
                 ? EntityTable[type] as T 
                 : null;
 
-        protected void Awake()
+        protected virtual void Awake()
         {
             InstanceID = GetInstanceID();
             Cb = GetComponentInParent<CharacterBehaviour>();

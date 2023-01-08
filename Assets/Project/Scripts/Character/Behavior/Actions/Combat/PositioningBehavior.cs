@@ -1,5 +1,6 @@
 using BehaviorDesigner.Runtime.Tasks;
 using Character.Combat;
+using Core;
 
 namespace Character.Behavior.Actions.Combat
 {
@@ -8,12 +9,14 @@ namespace Character.Behavior.Actions.Combat
     {
         private CombatBehaviour combat;
         private CharacterBehaviour cb;
+        private IPathfinding pathfindingEngine;
         
 
         public override void OnAwake()
         {
-            combat = GetComponent<CombatBehaviour>();
-            cb = combat.GetComponentInParent<CharacterBehaviour>();
+            combat            = GetComponent<CombatBehaviour>();
+            cb                = combat.GetComponentInParent<CharacterBehaviour>();
+            pathfindingEngine = cb.PathfindingEngine;
         }
 
         public override TaskStatus OnUpdate()
@@ -30,10 +33,10 @@ namespace Character.Behavior.Actions.Combat
                 return TaskStatus.Success;
             }
 
-            var isMovable = combat.Positioning.TryGetCombatPosition(
-                targetEntity.Target, targetEntity.Range, out var destination);
+            var isMovable = combat.Positioning
+                                  .TryGetCombatPosition(targetEntity.Target, targetEntity.Range, out var destination);
 
-            if (!isMovable && cb.IsReached.Invoke())
+            if (!isMovable && pathfindingEngine.IsReached)
             {
                 return TaskStatus.Success;
             }

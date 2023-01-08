@@ -36,16 +36,12 @@ namespace Character
         public ActionTable<IDCode> OnDispelStatusEffect { get; } = new();
         public ActionTable<CombatLog> OnCombatActive { get; } = new();
         public ActionTable<CombatLog> OnCombatPassive { get; } = new();
-        
-        public FunctionTable<bool> IsReached { get; } = new();
-        public FunctionTable<Vector3> Direction { get; } = new();
 
         public ICombatBehaviour CombatBehaviour { get; set; }
         public ISkill SkillInfo { get; set; }
         public ISearching SearchingEngine { get; set; }
         public ITargeting TargetingEngine { get; set; }
-        // public IPathfinding PathfindingEngine { get;set; }
-        
+        public IPathfinding PathfindingEngine { get; set; }
 
         public void Idle() => OnIdle?.Invoke();
         public void Walk(Vector3 destination, Action pathCallback = null) => OnWalk?.Invoke(destination, pathCallback);

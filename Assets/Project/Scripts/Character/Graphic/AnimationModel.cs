@@ -17,11 +17,12 @@ namespace Character.Graphic
         private SkeletonAnimation skeletonAnimation;
         private AnimationState state;
         private int instanceID;
+        
         private Action callbackBuffer;
         private TrackEntry entryBuffer;
+        private IPathfinding pathfindingEngine;
 
-        public Animation TargetAnimation { get; private set; }
-        private CharacterBehaviour Cb => cb ??= GetComponentInParent<CharacterBehaviour>();
+        private Animation TargetAnimation { get; set; }
         
         
         public void Idle() => Play("idle");
@@ -32,8 +33,8 @@ namespace Character.Graphic
             var animationKey = skillData.AnimationKey;
             
             // Assign Haste 
-            var animationHasteValue = CharacterUtility.GetInverseHasteValue(Cb.StatTable.Haste);
-            var inverse = CharacterUtility.GetHasteValue(Cb.StatTable.Haste);
+            var animationHasteValue = CharacterUtility.GetInverseHasteValue(cb.StatTable.Haste);
+            var inverse = CharacterUtility.GetHasteValue(cb.StatTable.Haste);
             state.TimeScale *= animationHasteValue;
             
             callbackBuffer = null;
@@ -119,7 +120,7 @@ namespace Character.Graphic
             TargetAnimation = target;
         }
         
-        private void Flip() => Flip(Cb.Direction.Invoke());
+        private void Flip() => Flip(pathfindingEngine.Direction);
         private void Flip(Vector3 direction)
         {
             // 추후에는 x, z를 비교하여 캐릭터 방향의 상하좌우를 결정한다.
@@ -142,27 +143,33 @@ namespace Character.Graphic
         private void Awake()
         {
             TryGetComponent(out skeletonAnimation);
-            
-            state = skeletonAnimation.AnimationState;
+
+            cb         = GetComponentInParent<CharacterBehaviour>();
             instanceID = GetInstanceID();
+            state      = skeletonAnimation.AnimationState;
+        }
+
+        private void Start()
+        {
+            pathfindingEngine = cb.PathfindingEngine;
         }
 
         private void OnEnable()
         {
-            Cb.OnIdle.Register(instanceID, Idle);
-            Cb.OnWalk.Register(instanceID, Walk);
-            Cb.OnRun.Register(instanceID, Run);
-            Cb.OnSkill.Register(instanceID, Skill);
-            Cb.OnUpdate.Register(instanceID, Flip);
+            cb.OnIdle.Register(instanceID, Idle);
+            cb.OnWalk.Register(instanceID, Walk);
+            cb.OnRun.Register(instanceID, Run);
+            cb.OnSkill.Register(instanceID, Skill);
+            cb.OnUpdate.Register(instanceID, Flip);
         }
 
         private void OnDisable()
         {
-            Cb.OnIdle.Unregister(instanceID);
-            Cb.OnWalk.Unregister(instanceID);
-            Cb.OnRun.Unregister(instanceID);
-            Cb.OnSkill.Unregister(instanceID);
-            Cb.OnUpdate.Unregister(instanceID);
+            cb.OnIdle.Unregister(instanceID);
+            cb.OnWalk.Unregister(instanceID);
+            cb.OnRun.Unregister(instanceID);
+            cb.OnSkill.Unregister(instanceID);
+            cb.OnUpdate.Unregister(instanceID);
         }
     }
 }

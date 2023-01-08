@@ -12,7 +12,14 @@ namespace Character.Graphic.UI
         [SerializeField] private float lerpDuration = 0.1f;
 
         private int instanceID;
-        private readonly FunctionTable<float> maxResource = new();
+        
+        private void FillResource(float value)
+        {
+            var maxResource = cb.StatTable.MaxResource;
+            var valueNormalize = value / maxResource;
+        
+            fillImage.DOFillAmount(valueNormalize, lerpDuration);
+        }
         
         private void Awake()
         {
@@ -22,19 +29,11 @@ namespace Character.Graphic.UI
 
         private void Start()
         {
-            maxResource.Register(instanceID, () => cb.StatTable.MaxResource);
             cb.DynamicStatEntry.Resource.Register(instanceID, FillResource);
 
             FillResource(cb.DynamicStatEntry.Resource.Value);
         }
 
         private void OnDisable() => cb.DynamicStatEntry.Resource.Unregister(instanceID);
-
-        private void FillResource(float value)
-        {
-            var valueNormalize = value / maxResource.Invoke();
-        
-            fillImage.DOFillAmount(valueNormalize, lerpDuration);
-        }
     }
 }
