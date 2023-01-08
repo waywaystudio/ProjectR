@@ -41,7 +41,7 @@ namespace Character
         public FunctionTable<Vector3> Direction { get; } = new();
 
         public ICombatBehaviour CombatBehaviour { get; set; }
-        public ISkillInfo SkillInfo { get; set; }
+        public ISkill SkillInfo { get; set; }
         public ISearching SearchingEngine { get; set; }
         public ITargeting TargetingEngine { get; set; }
         // public IPathfinding PathfindingEngine { get;set; }
@@ -77,17 +77,12 @@ namespace Character
             Shield.Value   = 0;
         }
 
-        protected virtual void Update()
-        {
-            OnUpdate?.Invoke();
-        }
+        protected virtual void Update() { OnUpdate?.Invoke(); }
+        
 #if UNITY_EDITOR
         public virtual void SetUp()
         {
-            if (characterName == string.Empty)
-            {
-                Debug.LogError("CharacterName Required");
-            }
+            if (characterName == string.Empty) Debug.LogError("CharacterName Required");
         }
         // private void ShowLog(CombatLog log)
         // {

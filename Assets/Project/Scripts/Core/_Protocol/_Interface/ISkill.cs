@@ -2,7 +2,7 @@ using UnityEngine;
 
 namespace Core
 {
-    public interface ISkillInfo : IActionSender
+    public interface ISkill : IActionSender
     {
         // + ICombatProvider Provider { get; }
         // + IDCode ActionCode { get; }

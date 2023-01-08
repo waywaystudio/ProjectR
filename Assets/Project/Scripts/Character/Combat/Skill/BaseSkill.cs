@@ -6,7 +6,7 @@ using UnityEngine;
 
 namespace Character.Combat.Skill
 {
-    public abstract class BaseSkill : MonoBehaviour, ISkillInfo, IEditorSetUp
+    public abstract class BaseSkill : MonoBehaviour, ISkill, IEditorSetUp
     {
         [SerializeField] protected IDCode actionCode;
         [SerializeField] protected int priority;

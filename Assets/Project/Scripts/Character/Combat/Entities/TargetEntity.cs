@@ -18,6 +18,7 @@ namespace Character.Combat.Entities
 
         public override bool IsReady => Target != null;
         public float Range => range;
+
         public ICombatTaker Target
         {
             get
@@ -25,8 +26,8 @@ namespace Character.Combat.Entities
                 if (isSelf) return targetingEngine.GetSelf();
 
                 var target
-                    = targetingEngine.GetTaker(targetList, Provider, Range, sortingType) 
-                    ?? searchingEngine.LookTarget;
+                        = targetingEngine.GetTaker(targetList, Provider, Range, sortingType)
+                       ?? searchingEngine.LookTarget;
 
                 return target;
             }
@@ -36,19 +37,19 @@ namespace Character.Combat.Entities
         {
             base.Initialize(actionSender);
 
-            var selfLayer = (LayerMask)(1 << Provider.Object.layer);
+            var selfLayer = (LayerMask) (1 << Provider.Object.layer);
             var cb = GetComponentInParent<CharacterBehaviour>();
-            
+
             searchingEngine = cb.SearchingEngine;
             targetingEngine = cb.TargetingEngine;
 
-            targetLayer = targetLayerType is "ally" 
-                ? selfLayer 
-                : selfLayer.GetEnemyLayerMask();
+            targetLayer = targetLayerType is "ally"
+                    ? selfLayer
+                    : selfLayer.GetEnemyLayerMask();
 
             targetList = targetLayer == LayerMask.NameToLayer("Adventurer")
-                ? searchingEngine.AdventurerList
-                : searchingEngine.MonsterList;
+                    ? searchingEngine.AdventurerList
+                    : searchingEngine.MonsterList;
         }
 
         public void SetUpValue(string targetLayerType, float range, SortingType sortingType, bool isSelf)

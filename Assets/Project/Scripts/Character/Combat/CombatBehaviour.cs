@@ -20,7 +20,7 @@ namespace Character.Combat
         public BaseSkill CurrentSkill { get; private set; }
 
         public float GlobalCoolTime => GlobalCoolDown.CoolTime;
-        public List<ISkillInfo> SkillInfoList { get; set; } = new(4);
+        public List<ISkill> SkillInfoList { get; set; } = new(4);
         public Observable<float> GlobalRemainTime => GlobalCoolDown.Timer;
         
         // SharedBool :: CombatBehaviorDesigner

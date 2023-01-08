@@ -9,12 +9,13 @@ namespace Character.PathfindingSystem
     {
         [SerializeField] private AIMove aiMove;
         [SerializeField] private Seeker agent;
-        
+
         private CharacterBehaviour cb;
         private ABPath pathBuffer;
         private int instanceID;
 
         public bool IsReached => aiMove.reachedEndOfPath;
+
         public Vector3 Direction
         {
             get
@@ -30,23 +31,18 @@ namespace Character.PathfindingSystem
                 return Vector3.zero;
             }
         }
-            
 
         public void Move(Vector3 destination, Action callback)
         {
-            pathBuffer = ABPath.Construct(cb.transform.position, destination);
+            pathBuffer      = ABPath.Construct(cb.transform.position, destination);
             aiMove.maxSpeed = cb.StatTable.MoveSpeed;
 
-            if (aiMove.Callback != null || callback != null)
-                aiMove.Callback = callback;
+            if (aiMove.Callback != null || callback != null) aiMove.Callback = callback;
 
             agent.StartPath(pathBuffer);
         }
 
-        public void TeleportTo(Vector3 destination)
-        {
-            aiMove.Teleport(destination);
-        }
+        public void TeleportTo(Vector3 destination) { aiMove.Teleport(destination); }
 
         public void Stop()
         {
@@ -67,6 +63,7 @@ namespace Character.PathfindingSystem
         {
             cb.Direction.Register(instanceID, () => Direction);
             cb.IsReached.Register(instanceID, () => IsReached);
+            
             cb.OnTeleport.Register(instanceID, TeleportTo);
             cb.OnWalk.Register(instanceID, Move);
             cb.OnRun.Register(instanceID, Move);
@@ -76,6 +73,7 @@ namespace Character.PathfindingSystem
         {
             cb.Direction.UnregisterAll();
             cb.IsReached.Unregister(instanceID);
+            
             cb.OnTeleport.Unregister(instanceID);
             cb.OnWalk.Unregister(instanceID);
             cb.OnRun.Unregister(instanceID);
@@ -84,10 +82,9 @@ namespace Character.PathfindingSystem
 #if UNITY_EDITOR
         public void SetUp()
         {
-            cb         ??= GetComponentInParent<CharacterBehaviour>();
-            
-            agent      ??= GetComponent<Seeker>();
-            aiMove     ??= GetComponent<AIMove>();
+            cb     ??= GetComponentInParent<CharacterBehaviour>();
+            agent  ??= GetComponent<Seeker>();
+            aiMove ??= GetComponent<AIMove>();
         }
 #endif
     }
