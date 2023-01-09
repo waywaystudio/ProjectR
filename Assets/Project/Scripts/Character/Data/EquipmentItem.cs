@@ -19,7 +19,7 @@ namespace Character.Data
         public void SetStats() => SetStats(ItemName);
         public void SetStats(string itemName)
         {
-            var equipmentData = MainData.GetEquipment(itemName.ToEnum<IDCode>());
+            var equipmentData = MainData.GetEquipment(itemName.ToEnum<DataIndex>());
             
             MaxHp = equipmentData.HP;
             Critical = equipmentData.Critical;

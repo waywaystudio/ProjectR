@@ -7,7 +7,10 @@ namespace Character.Combat.Skill
             base.StartSkill();
 
             if (TargetEntity && StatusEffectEntity)
-                TargetEntity.Target.TakeStatusEffect(StatusEffectEntity);
+            {
+                // TargetEntity.Target.TakeStatusEffect(StatusEffectEntity);
+            }
+                
         }
     }
 }

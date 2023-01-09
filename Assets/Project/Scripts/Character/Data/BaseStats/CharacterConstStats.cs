@@ -5,7 +5,7 @@ namespace Character.Data.BaseStats
 {
     public class CharacterConstStats : MonoBehaviour, IEditorSetUp
     {
-        [SerializeField] protected IDCode baseStatCode;
+        [SerializeField] protected DataIndex baseStatCode;
         [SerializeField] protected MaxHpValue maxHp;
         [SerializeField] protected MaxResourceValue maxResource;
         [SerializeField] protected MoveSpeedValue moveSpeed;

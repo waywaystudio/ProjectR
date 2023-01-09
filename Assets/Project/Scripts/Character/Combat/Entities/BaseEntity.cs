@@ -9,9 +9,9 @@ namespace Character.Combat.Entities
 
         private int instanceID;
 
-        public IDCode ActionCode { get; private set; }
+        public DataIndex ActionCode { get; protected set; }
+        public EntityType Flag { get => flag; protected set => flag = value; }
         public ICombatProvider Provider { get; protected set; }
-        public EntityType Flag { get => flag; set => flag = value; }
         
         public ActionTable OnStarted { get; } = new();
         public ActionTable OnCompleted { get; } = new();

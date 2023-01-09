@@ -6,11 +6,9 @@ namespace Character
 {
     public class MonsterBehaviour : CharacterBehaviour
     {
-        protected override void Start()
+        protected void Start()
         {
-            StatTable.Register(ID, new MoveSpeedValue(20f));
-            
-            base.Start();
+            StatTable.Register(DataIndex, new MoveSpeedValue(20f));
         }
 
         protected override void Update()
@@ -33,15 +31,15 @@ namespace Character
         
         private void OnDisable()
         {
-            StatTable.Unregister(ID, StatCode.MoveSpeed);
+            StatTable.Unregister(DataIndex, StatCode.MoveSpeed);
         }
         
 #if UNITY_EDITOR
         public override void SetUp()
         {
-            var profile = MainData.GetBoss(characterName.ToEnum<IDCode>());
+            var profile = MainData.GetBoss(characterName.ToEnum<DataIndex>());
 
-            id = (IDCode)profile.ID;
+            dataIndex = (DataIndex)profile.ID;
         }
 #endif
     }

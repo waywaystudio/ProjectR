@@ -3,7 +3,7 @@
 // ReSharper disable IdentifierTypo
 // ReSharper disable CheckNamespace
 
-public enum IDCode
+public enum DataIndex
 {        
 	None = 0,
 

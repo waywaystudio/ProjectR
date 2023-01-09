@@ -11,7 +11,7 @@ namespace Character.Data.BaseStats
 
             var monsterBehaviour = GetComponentInParent<MonsterBehaviour>();
             
-            baseStatCode = monsterBehaviour.ID;
+            baseStatCode = monsterBehaviour.DataIndex;
             var bossData = MainData.GetBoss(baseStatCode);
 
             maxHp.Value       = bossData.MaxHp;

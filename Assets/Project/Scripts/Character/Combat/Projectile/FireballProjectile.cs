@@ -30,7 +30,7 @@ namespace Character.Combat.Projectile
             if (ValidateTaker)
             {
                 Taker.TakeDamage(DamageEntity);
-                Taker.TakeStatusEffect(StatusEffectEntity);
+                StatusEffectEntity.Effecting(Taker);
             }
             
             // TODO. Return To Pool

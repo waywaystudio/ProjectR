@@ -6,10 +6,10 @@ namespace Character
 {
     public class AdventurerBehaviour : CharacterBehaviour
     {
-        [SerializeField] private IDCode combatClassID;
+        [SerializeField] private DataIndex combatClassID;
         [SerializeField] private string role;
 
-        public IDCode CombatClassID => combatClassID;
+        public DataIndex CombatClassID => combatClassID;
         public string Role => role;
 
 
@@ -18,11 +18,11 @@ namespace Character
         {
             base.SetUp();
             
-            var profile = MainData.GetAdventurer(characterName.ToEnum<IDCode>());
+            var profile = MainData.GetAdventurer(characterName.ToEnum<DataIndex>());
 
-            id = (IDCode)profile.ID;
+            dataIndex = (DataIndex)profile.ID;
             role = profile.Role;
-            combatClassID = (IDCode)profile.CombatClassId;
+            combatClassID = (DataIndex)profile.CombatClassId;
         }
 #endif
     }

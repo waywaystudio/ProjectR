@@ -10,7 +10,7 @@ namespace MainGame.Data
     {
         public int Index;
         public abstract List<IIdentifier> KeyList { get; }
-        public abstract T Get<T>(IDCode idCode) where T : class, IIdentifier;
+        public abstract T Get<T>(DataIndex dataIndex) where T : class, IIdentifier;
         public abstract T Get<T>(int idCode) where T : class, IIdentifier;
     }
 
@@ -43,10 +43,10 @@ namespace MainGame.Data
             }
         }
 
-        public override T0 Get<T0>(IDCode idCode)
+        public override T0 Get<T0>(DataIndex dataIndex)
         {
-            return Enum.IsDefined(typeof(IDCode), idCode) 
-                ? Get<T0>(Convert.ToInt32(idCode))
+            return Enum.IsDefined(typeof(DataIndex), dataIndex) 
+                ? Get<T0>(Convert.ToInt32(dataIndex))
                 : null;
         }
         public override T0 Get<T0>(int idCode)

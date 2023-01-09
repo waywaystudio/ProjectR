@@ -4,20 +4,32 @@ using UnityEngine;
 
 namespace Character.Combat.StatusEffects.DeBuff
 {
-    public class FireballDeBuff : BaseStatusEffect
+    public class FireballDeBuff : StatusEffectBehaviour
     {
+        [SerializeField] private ArmorValue armorValue;
+        
         private WaitForSeconds waitForSeconds;
         
-        public override IEnumerator MainAction()
+        protected override IEnumerator Initiate()
         {
             waitForSeconds = new WaitForSeconds(Duration);
 
-            TakerInfo.StatTable.Register(ActionCode, new ArmorValue(-100));
+            Taker.StatTable.Register(ActionCode, armorValue);
 
             yield return waitForSeconds;
 
-            TakerInfo.StatTable.Unregister(ActionCode, StatCode.Armor);
+            Taker.StatTable.Unregister(ActionCode, StatCode.Armor);
             Callback?.Invoke();
         }
+        
+        
+#if UNITY_EDITOR
+        public override void SetUp()
+        {
+            base.SetUp();
+
+            armorValue.Value = CombatValue;
+        }
+#endif
     }
 }

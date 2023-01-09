@@ -25,7 +25,6 @@ namespace MainGame
         private readonly Dictionary<int, DataObject> dataTable = new();
 
         public static List<DataObject> DataList => Instance.dataList;
-        [Sirenix.OdinInspector.ShowInInspector]
         public static Dictionary<int, DataObject> DataTable
         {
             get
@@ -36,14 +35,14 @@ namespace MainGame
             }
         }
 
-        public static AdventurerData GetAdventurer(IDCode idCode) => DataTable[11].Get<AdventurerData>(idCode);
-        public static CombatClassData GetCombatClass(IDCode idCode) => DataTable[12].Get<CombatClassData>(idCode);
-        public static SkillData GetSkill(IDCode idCode) => DataTable[13].Get<SkillData>(idCode);
-        public static StatusEffectData GetStatusEffect(IDCode idCode) => DataTable[14].Get<StatusEffectData>(idCode);
-        public static ProjectileData GetProjectile(IDCode idCode) => DataTable[15].Get<ProjectileData>(idCode);
-        public static RaidData GetRaid(IDCode idCode) => DataTable[16].Get<RaidData>(idCode);
-        public static BossData GetBoss(IDCode idCode) => DataTable[17].Get<BossData>(idCode);
-        public static EquipmentData GetEquipment(IDCode idCode) => DataTable[21].Get<EquipmentData>(idCode);
+        public static AdventurerData GetAdventurer(DataIndex dataIndex) => DataTable[11].Get<AdventurerData>(dataIndex);
+        public static CombatClassData GetCombatClass(DataIndex dataIndex) => DataTable[12].Get<CombatClassData>(dataIndex);
+        public static SkillData GetSkill(DataIndex dataIndex) => DataTable[13].Get<SkillData>(dataIndex);
+        public static StatusEffectData GetStatusEffect(DataIndex dataIndex) => DataTable[14].Get<StatusEffectData>(dataIndex);
+        public static ProjectileData GetProjectile(DataIndex dataIndex) => DataTable[15].Get<ProjectileData>(dataIndex);
+        public static RaidData GetRaid(DataIndex dataIndex) => DataTable[16].Get<RaidData>(dataIndex);
+        public static BossData GetBoss(DataIndex dataIndex) => DataTable[17].Get<BossData>(dataIndex);
+        public static EquipmentData GetEquipment(DataIndex dataIndex) => DataTable[21].Get<EquipmentData>(dataIndex);
         
 
 #if UNITY_EDITOR
@@ -86,13 +85,12 @@ namespace MainGame
             
             UnityEditor.AssetDatabase.Refresh();
         }
-
         private void GenerateIDCode()
         {
             if (!Directory.Exists(idCodePath))
                 Directory.CreateDirectory(idCodePath);
             
-            File.WriteAllText($"{idCodePath}/IDCode.cs", IDCodeGenerator.Generate());
+            File.WriteAllText($"{idCodePath}/DataIndex.cs", DataIndexGenerator.Generate());
         }
         
         private void OpenSpreadSheetPanel() 

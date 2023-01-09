@@ -4,7 +4,9 @@ using UnityEngine;
 namespace Core
 {
     [Serializable] public class DynamicStatValue : Observable<float> { public StatTable StatTable { get; set; }}
+    
     [Serializable] public class AliveValue : Observable<bool> { }
+    
     [Serializable]
     public class HpValue : DynamicStatValue
     {

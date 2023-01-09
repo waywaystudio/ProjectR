@@ -1,3 +1,4 @@
+using Core;
 using UnityEngine;
 
 namespace Character.Combat.Entities
@@ -16,5 +17,14 @@ namespace Character.Combat.Entities
 
         private void OnEnable() => OnCompleted.Register(InstanceID, () => Provider.DynamicStatEntry.Resource.Value += Obtain);
         private void OnDisable() => OnCompleted.Unregister(InstanceID);
+        
+        
+#if UNITY_EDITOR
+        public void SetUpValue(float obtain)
+        {
+            Obtain = obtain;
+            Flag   = EntityType.Resource;
+        }
+#endif
     }
 }

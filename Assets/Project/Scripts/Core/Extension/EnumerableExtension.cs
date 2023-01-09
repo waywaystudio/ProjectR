@@ -7,6 +7,7 @@ namespace Core
     public static class EnumerableExtension
     {
         public static bool IsNullOrEmpty<T>(this IEnumerable<T> list) => list == null || !list.Any();
+        public static bool HasElement<T>(this IEnumerable<T> list) => !list.IsNullOrEmpty();
         
         public static void ForEach<T>(this IEnumerable<T> list, Action<T> action)
         {

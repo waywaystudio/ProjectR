@@ -22,6 +22,11 @@ namespace MainGame.Editor
                 });
             }
             
+            if (member.Name == "DataTable")
+            {
+                attributes.Add(new ShowInInspectorAttribute());
+            }
+            
             if (member.Name == "idCodePath")
             {
                 attributes.Add(new FolderPathAttribute());

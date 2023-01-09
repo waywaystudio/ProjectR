@@ -52,12 +52,15 @@ namespace Character.Combat.Entities
                     : searchingEngine.MonsterList;
         }
 
+#if UNITY_EDITOR
         public void SetUpValue(string targetLayerType, float range, SortingType sortingType, bool isSelf)
         {
             this.targetLayerType = targetLayerType;
             this.range           = range;
             this.sortingType     = sortingType;
             this.isSelf          = isSelf;
+            Flag                 = EntityType.Target;
         }
+#endif
     }
 }

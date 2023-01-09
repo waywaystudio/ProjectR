@@ -4,12 +4,12 @@ using System.Collections.Generic;
 
 namespace Core
 {
-    public class StatValueTable : Dictionary<IDCode, StatValue>
+    public class StatValueTable : Dictionary<DataIndex, StatValue>
     {
         public float Result;
         public Action OnResultChanged { get; set; }
 
-        public void Register(IDCode key, StatValue value, bool overwrite)
+        public void Register(DataIndex key, StatValue value, bool overwrite)
         {
             if (!ContainsKey(key)) Add(key, value);
             else
@@ -18,16 +18,13 @@ namespace Core
                 this[key] = value;
             }
             
-            value.Register((int)key, ReCalculation);
+            value.RegisterUniquely(ReCalculation);
             ReCalculation();
         }
 
-        public void Register(IDCode key, StatValue value)
+        public void Register(DataIndex key, StatValue value)
         {
-            if (!ContainsKey(key))
-            {
-                Add(key, value);
-            }
+            if (!ContainsKey(key)) Add(key, value);
             else
             {
                 if (Abs(value.Value) > Abs(this[key].Value))
@@ -35,17 +32,14 @@ namespace Core
                     this[key].Unregister((int)key);
                     this[key] = value;
                 }
-                else
-                {
-                    return;
-                }
+                else return;
             }
             
-            value.Register((int)key, ReCalculation);
+            value.RegisterUniquely(ReCalculation);
             ReCalculation();
         }
         
-        public void Unregister(IDCode key)
+        public void Unregister(DataIndex key)
         {
             this.TryRemove(key);
             ReCalculation();

@@ -3,7 +3,7 @@ using Core;
 
 namespace MainGame.Data
 {
-    public static class IDCodeGenerator
+    public static class DataIndexGenerator
     {
 #if UNITY_EDITOR
         public static string GenerateForm { get; private set; } = 
@@ -12,7 +12,7 @@ $@"/*     ===== Do not touch this. Auto Generated Code. =====    */
 // ReSharper disable IdentifierTypo
 // ReSharper disable CheckNamespace
 
-public enum IDCode
+public enum DataIndex
 {{        
 @IDCode        
 }}
@@ -38,7 +38,7 @@ public enum IDCode
                 
                 x.KeyList.ForEach(y =>
                 {
-                    builder.AppendLine($"\t{IDCodify(y.Name)} = {y.ID},");
+                    builder.AppendLine($"\t{DataIndexConvention(y.Name)} = {y.ID},");
                 });
                 
                 builder.AppendLine("");
@@ -48,7 +48,7 @@ public enum IDCode
             GenerateForm = GenerateForm.Replace("@IDCode", builder.ToString());
         }
 
-        private static string IDCodify(string original)
+        private static string DataIndexConvention(string original)
         {
             return original.Replace(" ", "").ToPascalCase();
         }

@@ -20,6 +20,15 @@ namespace Character.Combat.Entities
         }
 
         private void OnDisable() => StatTable.Unregister(ActionCode, DamageValue);
+
+
+#if UNITY_EDITOR
+        public void SetUpValue(float damageValue)
+        {
+            DamageValue.Value = damageValue;
+            Flag              = EntityType.Damage;
+        }
+#endif
     }
 }
 

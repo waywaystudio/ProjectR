@@ -1,4 +1,4 @@
-namespace Character.Combat.Entities
+namespace Core
 {
     [System.Flags]
     public enum EntityType
@@ -11,9 +11,10 @@ namespace Character.Combat.Entities
         Target = 1  << 4,
         Projectile = 1 << 5,
         Heal = 1 << 6,
-        Buff = 1 << 7,
-        DeBuff = 1 << 8,
+        Area = 1 << 7,
+        // DeBuff = 1 << 8,
         StatusEffect = 1 << 9,
+        Dispel = 1 << 10,
     
         All = int.MaxValue
     }

@@ -3,21 +3,21 @@ using Character.Combat.Entities;
 using Core;
 using DG.Tweening;
 using MainGame;
-using Sirenix.OdinInspector;
 using UnityEngine;
 
 namespace Character.Combat.Projectile
 {
-    public abstract class ProjectileBehaviour : MonoBehaviour, IActionSender
+    public abstract class ProjectileBehaviour : MonoBehaviour, IActionSender, IEditorSetUp
     {
-        [SerializeField] protected IDCode actionCode;
+        [SerializeField] protected DataIndex actionCode;
         [SerializeField] protected float speed = 20f;
         [SerializeField] protected GameObject particle;
         [SerializeField] protected LayerMask targetLayer;
 
-        public IDCode ActionCode => actionCode;
+        public DataIndex ActionCode => actionCode;
         public ICombatProvider Provider { get; set; }
-        protected ICombatTaker Taker { get; set; }
+
+        protected ICombatTaker Taker;
         protected LayerMask TargetLayer => targetLayer;
         protected Dictionary<EntityType, BaseEntity> EntityTable { get; } = new();
         protected Tweener TrajectoryTweener;
@@ -50,20 +50,16 @@ namespace Character.Combat.Projectile
         }
 
         protected abstract void Trajectory();
-        // protected abstract void Arrived();
-
         protected virtual void Awake()
         {
             GetComponentsInChildren<BaseEntity>().ForEach(x => EntityTable.Add(x.Flag, x));
         }
 
 #if UNITY_EDITOR
-        [PropertySpace(15f, 0f)]
-        [Button(ButtonSizes.Large,  Icon = SdfIconType.ArrowRepeat, Stretch = false)]
-        private void GetProjectileFromDB()
+        public void SetUp()
         {
-            if (actionCode == IDCode.None)
-                actionCode = name.ToEnum<IDCode>();
+            if (actionCode == DataIndex.None)
+                actionCode = name.ToEnum<DataIndex>();
 
             var projectileData = MainData.GetProjectile(actionCode);
             speed = projectileData.Speed;

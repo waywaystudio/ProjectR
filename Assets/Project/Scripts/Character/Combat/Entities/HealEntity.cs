@@ -19,5 +19,14 @@ namespace Character.Combat.Entities
             StatTable.Register(ActionCode, HealValue);
             StatTable.UnionWith(Provider.StatTable);
         }
+        
+        
+#if UNITY_EDITOR
+        public void SetUpValue(float healValue)
+        {
+            HealValue.Value = healValue;
+            Flag            = EntityType.Heal;
+        }
+#endif
     }
 }

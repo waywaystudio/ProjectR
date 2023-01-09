@@ -30,6 +30,9 @@ namespace Core
             OnValueChanged ??= new ActionTable<T>();
             OnValueChanged.Register(key, _ => action());
         }
+
+        public void RegisterUniquely(Action<T> action) => Register(0, action);
+        public void RegisterUniquely(Action action) => Register(0, action);
         
         public void Unregister(int key) => OnValueChanged?.Unregister(key);
     }

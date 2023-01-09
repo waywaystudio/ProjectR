@@ -1,4 +1,5 @@
 using System.Collections;
+using Core;
 using UnityEngine;
 
 namespace Character.Combat.Entities
@@ -66,5 +67,14 @@ namespace Character.Combat.Entities
             OnStarted.Unregister(InstanceID);
             OnInterrupted.Unregister(InstanceID);
         }
+        
+        
+#if UNITY_EDITOR
+        public void SetUpValue(float castingTime)
+        {
+            OriginalCastingTime = castingTime;
+            Flag                = EntityType.Casting;
+        }
+#endif
     }
 }

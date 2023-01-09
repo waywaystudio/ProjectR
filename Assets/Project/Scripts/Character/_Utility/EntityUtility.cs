@@ -12,55 +12,19 @@ namespace Character
         {
             switch (entity)
             {
-                case DamageEntity damageEntity:
-                {
-                    damageEntity.DamageValue.Value = baseSkill.BaseValue;
-                    damageEntity.Flag = EntityType.Damage;
-                    break;
-                }
-                case CastingEntity castingEntity:
-                {
-                    castingEntity.OriginalCastingTime = baseSkill.CastingTime;
-                    castingEntity.Flag = EntityType.Casting;
-                    break;
-                }
-                case CoolTimeEntity coolTimeEntity:
-                {
-                    coolTimeEntity.CoolTime = baseSkill.BaseCoolTime;
-                    coolTimeEntity.Flag = EntityType.CoolTime;
-                    break;
-                }
-                case HealEntity healEntity:
-                {
-                    healEntity.HealValue.Value = baseSkill.BaseValue;
-                    healEntity.Flag = EntityType.Heal;
-                    break;
-                }
-                case ProjectileEntity projectileEntity:
-                {
-                    projectileEntity.ProjectileID = (IDCode)baseSkill.ProjectileId;
-                    projectileEntity.Flag = EntityType.Projectile;
-                    break;
-                }
-                case StatusEffectEntity statusEffectEntity:
-                {
-                    statusEffectEntity.ActionCode = (IDCode)baseSkill.StatusEffectId;
-                    statusEffectEntity.Flag = EntityType.StatusEffect;
-                    break;
-                }
+                case DamageEntity damageEntity: damageEntity.SetUpValue(baseSkill.BaseValue); break;
+                case CastingEntity castingEntity: castingEntity.SetUpValue(baseSkill.CastingTime); break;
+                case CoolTimeEntity coolTimeEntity: coolTimeEntity.SetUpValue(baseSkill.BaseCoolTime); break;
+                case HealEntity healEntity: healEntity.SetUpValue(baseSkill.BaseValue); break;
+                case ProjectileEntity projectileEntity: projectileEntity.SetUpValue(baseSkill.ProjectileId); break;
+                case StatusEffectEntity statusEffectEntity: statusEffectEntity.SetUpValue((DataIndex)baseSkill.StatusEffectId); break;
                 case TargetEntity targetEntity:
                 {
                     targetEntity.SetUpValue(baseSkill.TargetLayer, baseSkill.Range, 
                                             baseSkill.SortingType.ToEnum<SortingType>(), baseSkill.IsSelf);
-                    targetEntity.Flag = EntityType.Target;
                     break;
                 }
-                case ResourceEntity resourceEntity:
-                {
-                    resourceEntity.Obtain = baseSkill.ResourceObtain;
-                    resourceEntity.Flag = EntityType.Resource;
-                    break;
-                }
+                case ResourceEntity resourceEntity: resourceEntity.SetUpValue(baseSkill.ResourceObtain); break;
                 default:
                 {
                     Debug.LogError($"Unknown Entity. input : {entity.GetType()}");
@@ -72,24 +36,11 @@ namespace Character
         {
             switch (entity)
             {
-                case DamageEntity damageEntity:
-                {
-                    damageEntity.DamageValue.Value = baseProjectile.BaseValue;
-                    damageEntity.Flag = EntityType.Damage;
+                case DamageEntity damageEntity: damageEntity.SetUpValue(baseProjectile.BaseValue);
                     break;
-                }
-                case HealEntity healEntity:
-                {
-                    healEntity.HealValue.Value = baseProjectile.BaseValue;
-                    healEntity.Flag = EntityType.Heal;
+                case HealEntity healEntity: healEntity.SetUpValue(baseProjectile.BaseValue);
                     break;
-                }
-                case StatusEffectEntity statusEffectEntity:
-                {
-                    statusEffectEntity.ActionCode = (IDCode)baseProjectile.StatusEffectId;
-                    statusEffectEntity.Flag = EntityType.StatusEffect;
-                    break;
-                }
+                case StatusEffectEntity statusEffectEntity: statusEffectEntity.SetUpValue((DataIndex)baseProjectile.StatusEffectId); break;
                 default:
                 {
                     Debug.LogError($"Unknown Entity. input : {entity.GetType()}");

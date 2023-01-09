@@ -26,7 +26,10 @@ namespace Character.Graphic.UI
             FillHealth(taker.DynamicStatEntry.Hp.Value);
         }
 
-        private void OnDisable() => taker.DynamicStatEntry.Hp.Unregister(instanceID);
+        private void OnDisable()
+        {
+            taker.DynamicStatEntry.Hp.Unregister(instanceID);
+        }
 
         private void FillHealth(float value)
         {

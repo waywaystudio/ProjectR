@@ -8,7 +8,7 @@ namespace Character.Combat.Skill
 
             if (TargetEntity && StatusEffectEntity)
             {
-                TargetEntity.Target.TakeStatusEffect(StatusEffectEntity);
+                // TargetEntity.Target.TakeStatusEffect(StatusEffectEntity);
             }
         }
     }

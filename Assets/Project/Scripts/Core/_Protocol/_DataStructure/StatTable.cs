@@ -8,6 +8,9 @@ namespace Core
     [ShowInInspector]
     public class StatTable : Dictionary<StatCode, StatValueTable>
     {
+        public StatTable() : this(1) { }
+        public StatTable(int capacity) : base(capacity) { }
+
         public float Power { get; set; }
         public float Critical { get; set; }
         public float Haste { get; set; }
@@ -19,7 +22,7 @@ namespace Core
         public float Evade { get; set; }
         public float Resist { get; set; }
 
-        public void Register(IDCode key, StatValue statEntity, bool overwrite)
+        public void Register(DataIndex key, StatValue statEntity, bool overwrite)
         {
             if (!ContainsKey(statEntity.StatCode))
             {
@@ -36,7 +39,7 @@ namespace Core
                 this[statEntity.StatCode].Register(key, statEntity, overwrite);
         }
         
-        public void Register(IDCode key, StatValue statEntity)
+        public void Register(DataIndex key, StatValue statEntity)
         {
             if (!ContainsKey(statEntity.StatCode))
             {
@@ -49,12 +52,12 @@ namespace Core
                 this[statEntity.StatCode].Register(key, statEntity);
         }
         
-        public void Unregister(IDCode key, StatCode statCode)
+        public void Unregister(DataIndex key, StatCode statCode)
         {
             if (ContainsKey(statCode)) this[statCode].Unregister(key);
         }
         
-        public void Unregister(IDCode key, StatValue statValue)
+        public void Unregister(DataIndex key, StatValue statValue)
         {
             if (ContainsKey(statValue.StatCode)) this[statValue.StatCode].Unregister(key);
         }

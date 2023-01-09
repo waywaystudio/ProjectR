@@ -28,7 +28,7 @@ namespace Character.Graphic
         public void Idle() => Play("idle");
         public void Skill(string skillName, Action callback)
         {
-            var skillData = MainData.GetSkill(skillName.ToEnum<IDCode>());
+            var skillData = MainData.GetSkill(skillName.ToEnum<DataIndex>());
             var fixedTime = skillData.CastingTime;
             var animationKey = skillData.AnimationKey;
             

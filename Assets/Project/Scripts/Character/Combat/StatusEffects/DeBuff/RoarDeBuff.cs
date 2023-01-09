@@ -4,20 +4,32 @@ using UnityEngine;
 
 namespace Character.Combat.StatusEffects.DeBuff
 {
-    public class RoarDeBuff : BaseStatusEffect
+    public class RoarDeBuff : StatusEffectBehaviour
     {
-        private WaitForSeconds waitForSeconds;
+        [SerializeField] private ArmorValue armorValue;
         
-        public override IEnumerator MainAction()
+        private WaitForSeconds waitForSeconds;
+
+        protected override IEnumerator Initiate()
         {
             waitForSeconds = new WaitForSeconds(Duration);
 
-            TakerInfo.StatTable.Register(ActionCode, new ArmorValue(-50f));
+            Taker.StatTable.Register(ActionCode, armorValue);
 
             yield return waitForSeconds;
             
-            TakerInfo.StatTable.Unregister(ActionCode, StatCode.Armor);
+            Taker.StatTable.Unregister(ActionCode, StatCode.Armor);
             Callback?.Invoke();
         }
+        
+        
+#if UNITY_EDITOR
+        public override void SetUp()
+        {
+            base.SetUp();
+
+            armorValue.Value = CombatValue;
+        }
+#endif
     }
 }

@@ -43,5 +43,14 @@ namespace Character.Combat.Entities
 
         private void OnEnable() => OnCompleted.Register(InstanceID, ResetTimer);
         private void OnDisable() => OnCompleted.Unregister(InstanceID);
+        
+        
+#if UNITY_EDITOR
+        public void SetUpValue(float coolTime)
+        {
+            CoolTime = coolTime;
+            Flag     = EntityType.CoolTime;
+        }
+#endif
     }
 }

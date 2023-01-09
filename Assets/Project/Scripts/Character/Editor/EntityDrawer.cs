@@ -44,4 +44,26 @@ namespace Character.Editor
             }
         }
     }
+    
+    public class StatusEffectEntityDrawer : OdinAttributeProcessor<StatusEffectEntity>
+    {
+        public override void ProcessChildMemberAttributes(InspectorProperty parentProperty, MemberInfo member, List<Attribute> attributes)
+        {
+            if (member.Name == "statusEffectPool")
+            {
+                attributes.Add(new ListDrawerSettingsAttribute
+                {
+                    Expanded = true,
+                    HideRemoveButton = true,
+                    IsReadOnly = true,
+                    HideAddButton = true,
+                });
+            }
+            
+            if (member.Name == "combatTaker")
+            {
+                attributes.Add(new ShowInInspectorAttribute());
+            }
+        }
+    }
 }

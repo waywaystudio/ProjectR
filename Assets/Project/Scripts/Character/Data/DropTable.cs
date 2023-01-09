@@ -13,20 +13,20 @@ namespace Character.Data
         [Serializable]
         public struct ItemDrop
         {
-            public ItemDrop(IDCode itemCode, int probability)
+            public ItemDrop(DataIndex itemCode, int probability)
             {
                 ItemCode = itemCode;
                 Probability = probability;
             }
             
-            public IDCode ItemCode;
+            public DataIndex ItemCode;
             public int Probability;
         }
         
         [SerializeField] private List<ItemDrop> dropTable = new();
 
         private readonly List<int> probabilityList = new();
-        private IDCode DropCodeIndex
+        private DataIndex DropCodeIndex
         {
             get
             {
@@ -51,12 +51,12 @@ namespace Character.Data
         }
 
 
-        public List<IDCode> GetRewards(int count)
+        public List<DataIndex> GetRewards(int count)
         {
             if (!DropAssertion(count)) return null;
             
             dropTable.ForEach(x => probabilityList.Add(x.Probability));
-            var result = new List<IDCode>(count);
+            var result = new List<DataIndex>(count);
 
             for (var i = 0; i < count; ++i)
             {
@@ -88,10 +88,10 @@ namespace Character.Data
         public void SetUp()
         {
             var mb = GetComponentInParent<MonsterBehaviour>();
-            var monsterID = mb.ID;
+            var monsterID = mb.DataIndex;
             var monsterData = MainData.GetBoss(monsterID);
             
-            var itemCodeList = monsterData.DropItemIdList.ConvertAll(itemID => (IDCode)itemID);
+            var itemCodeList = monsterData.DropItemIdList.ConvertAll(itemID => (DataIndex)itemID);
             var itemProbabilityList = monsterData.DropItemProbabilities;
 
             if (itemCodeList.Count != itemProbabilityList.Count)

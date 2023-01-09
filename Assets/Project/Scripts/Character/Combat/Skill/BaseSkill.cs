@@ -8,15 +8,14 @@ namespace Character.Combat.Skill
 {
     public abstract class BaseSkill : MonoBehaviour, ISkill, IEditorSetUp
     {
-        [SerializeField] protected IDCode actionCode;
+        [SerializeField] protected DataIndex actionCode;
         [SerializeField] protected int priority;
         [SerializeField] protected Sprite icon;
 
         protected int InstanceID;
         protected CharacterBehaviour Cb;
-
-        /* ISkillInfo Implements */
-        public IDCode ActionCode => actionCode;
+        
+        public DataIndex ActionCode => actionCode;
         public ICombatProvider Provider => Cb;
         public Sprite Icon => icon;
         public bool HasCastingEntity => EntityTable.ContainsKey(EntityType.Casting);
@@ -43,8 +42,8 @@ namespace Character.Combat.Skill
 
                 return true;
             }
-        } 
-        
+        }
+
         public DamageEntity DamageEntity => GetEntity<DamageEntity>(EntityType.Damage);
         public CastingEntity CastingEntity => GetEntity<CastingEntity>(EntityType.Casting);
         public CoolTimeEntity CoolTimeEntity => GetEntity<CoolTimeEntity>(EntityType.CoolTime);
@@ -84,9 +83,9 @@ namespace Character.Combat.Skill
         protected virtual void CompleteSkill() => OnComplete.Invoke();
         protected void InterruptedSkill() => OnInterrupted.Invoke();
 
-        private T GetEntity<T>(EntityType type) where T : BaseEntity 
-                => EntityTable.ContainsKey(type) 
-                ? EntityTable[type] as T 
+        private T GetEntity<T>(EntityType type) where T : BaseEntity =>
+            EntityTable.ContainsKey(type)
+                ? EntityTable[type] as T
                 : null;
 
         protected virtual void Awake()
@@ -94,8 +93,8 @@ namespace Character.Combat.Skill
             InstanceID = GetInstanceID();
             Cb = GetComponentInParent<CharacterBehaviour>();
             
-            if (actionCode == IDCode.None) 
-                actionCode = GetType().Name.ToEnum<IDCode>();
+            if (actionCode == DataIndex.None) 
+                actionCode = GetType().Name.ToEnum<DataIndex>();
             
             GetComponents<BaseEntity>().ForEach(x => EntityTable.Add(x.Flag, x));
             EntityTable.ForEach(x =>
@@ -112,14 +111,13 @@ namespace Character.Combat.Skill
         }
 
         protected void OnDisable() => DeActiveSkill();
-        protected void Reset() => actionCode = GetType().Name.ToEnum<IDCode>();
-        
+
 
 #if UNITY_EDITOR
         public void SetUp()
         {
-            if (actionCode == IDCode.None) 
-                actionCode = GetType().Name.ToEnum<IDCode>();
+            if (actionCode == DataIndex.None) 
+                actionCode = GetType().Name.ToEnum<DataIndex>();
 
             var skillData = MainGame.MainData.GetSkill(actionCode);
             priority = skillData.Priority;
@@ -127,6 +125,8 @@ namespace Character.Combat.Skill
             GetComponents<BaseEntity>().ForEach(x => EntityUtility.SetSkillEntity(skillData, x));
             UnityEditor.EditorUtility.SetDirty(this);
         }
+        
+        protected void Reset() => actionCode = GetType().Name.ToEnum<DataIndex>();
         
         private void ShowDB()
         {

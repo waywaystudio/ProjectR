@@ -6,12 +6,12 @@ namespace Character.Combat.Entities
 {
     public class ProjectileEntity : BaseEntity
     {
-        [SerializeField] private IDCode projectileID;
+        [SerializeField] private DataIndex projectileID;
         
         // TODO. 이후에는, IDCode 혹은 ProjectileName을 통해서 풀링하고, GameObject Field를 삭제하자.
         [SerializeField] private GameObject projectilePrefab;
 
-        public IDCode ProjectileID { get => projectileID; set => projectileID = value; }
+        public DataIndex ProjectileID { get => projectileID; set => projectileID = value; }
         public override bool IsReady => true;
 
         public void Fire(ICombatTaker taker)
@@ -26,5 +26,14 @@ namespace Character.Combat.Entities
             newProjectile.TryGetComponent(out ProjectileBehaviour pb);
             pb.Initialize(Provider, taker);
         }
+        
+        
+#if UNITY_EDITOR
+        public void SetUpValue(int projectileID)
+        {
+            ProjectileID = (DataIndex)projectileID;
+            Flag         = EntityType.Projectile;
+        }
+#endif
     }
 }

@@ -17,14 +17,14 @@ namespace Core
     {
         // + ICombatProvider Provider { get; }
         // + IDynamicStatEntry DynamicStatEntry { get; }
-        // + IStatEntry StatEntry { get; }
+        // + IStatEntry StatTable { get; }
     }
     
     public interface IActionSender : IOrigin
     {
         // + ICombatProvider Provider { get; }
 
-        IDCode ActionCode { get; }
+        DataIndex ActionCode { get; }
     }
 
     public interface IObjectName
@@ -36,7 +36,7 @@ namespace Core
     public interface ICombatProvider : ICombatEntity, IActionSender, IObjectName
     {
         // + ICombatProvider Provider { get; }
-        // + Status Status { get; }
+        // + IDynamicStatEntry DynamicStatEntry { get; }
         // + StatTable StatTable { get; }
         // + IDCode ActionCode { get; }
         // + string Name { get; }
@@ -47,27 +47,27 @@ namespace Core
     
     public interface ICombatTaker : ICombatTable, IObjectName
     {
-        // + Status Status { get; }
+        // + IDynamicStatEntry DynamicStatEntry { get; }
         // + StatTable StatTable { get; }
         // + string Name { get; }
         // + GameObject Object { get; }
         
-        ActionTable<ICombatEntity> OnTakeStatusEffect { get; }
-        ActionTable<IDCode> OnDispelStatusEffect { get; }
+        ActionTable<IStatusEffect> OnTakeStatusEffect { get; }
+        ActionTable<DataIndex> OnDispelStatusEffect { get; }
         ActionTable<CombatLog> OnCombatPassive { get; }
 
         void TakeDamage(ICombatEntity entity);
         void TakeSpell(ICombatEntity entity);
         void TakeHeal(ICombatEntity entity);
         
-        void TakeStatusEffect(ICombatEntity entity);
-        void DispelStatusEffect(IDCode code);
+        void TakeStatusEffect(IStatusEffect entity);
+        void DispelStatusEffect(DataIndex code);
     }
 
     public interface ICombatExecutor : ICombatProvider, ICombatTaker
     {
         // + ICombatProvider Provider { get; }
-        // + Status Status { get; }
+        // + IDynamicStatEntry DynamicStatEntry { get; }
         // + StatTable StatTable { get; }
         // + IDCode ActionCode { get; }
         // + string Name { get; }
