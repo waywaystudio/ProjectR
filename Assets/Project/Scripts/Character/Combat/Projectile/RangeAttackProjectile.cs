@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace Character.Combat.Projectile
 {
-    public class RangeAttackProjectile : ProjectileBehaviour
+    public class RangeAttackProjectile : ProjectileObject
     {
         protected override void Trajectory()
         {

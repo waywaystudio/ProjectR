@@ -11,7 +11,7 @@ namespace Core
         Target = 1  << 4,
         Projectile = 1 << 5,
         Heal = 1 << 6,
-        Area = 1 << 7,
+        Projector = 1 << 7,
         // DeBuff = 1 << 8,
         StatusEffect = 1 << 9,
         Dispel = 1 << 10,

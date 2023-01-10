@@ -7,7 +7,7 @@ using Sirenix.OdinInspector.Editor;
 
 namespace Character.Editor
 {
-    public class StatusEffectDrawer : OdinAttributeProcessor<StatusEffectBehaviour>
+    public class StatusEffectDrawer : OdinAttributeProcessor<StatusEffectObject>
     {
         public override void ProcessChildMemberAttributes(InspectorProperty parentProperty, MemberInfo member, List<Attribute> attributes)
         {

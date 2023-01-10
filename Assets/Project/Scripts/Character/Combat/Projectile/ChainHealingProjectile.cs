@@ -5,7 +5,7 @@ using UnityEngine;
 
 namespace Character.Combat.Projectile
 {
-    public class ChainHealingProjectile : ProjectileBehaviour
+    public class ChainHealingProjectile : ProjectileObject
     {
         [SerializeField] private int bounceCount = 3;
         [SerializeField] private float bounceRange = 25f;

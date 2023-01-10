@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace Character.Combat.StatusEffects.DeBuff
 {
-    public class RoarDeBuff : StatusEffectBehaviour
+    public class RoarDeBuff : StatusEffectObject
     {
         [SerializeField] private ArmorValue armorValue;
         

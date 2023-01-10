@@ -4,17 +4,17 @@ using UnityEngine;
 
 namespace Character.Combat.StatusEffects.Buff
 {
-    public class BloodDrainBuff : StatusEffectBehaviour
+    public class BloodDrainBuff : StatusEffectObject
     {
-        private WaitForSeconds waitForSeconds;
+        private WaitForSeconds waitCache;
         
         protected override IEnumerator Initiate()
         {
-            waitForSeconds = new WaitForSeconds(Duration);
+            waitCache = new WaitForSeconds(Duration);
 
             Provider.OnCombatActive.Register(InstanceID, BloodDrain);
 
-            yield return waitForSeconds;
+            yield return waitCache;
             
             Provider.OnCombatActive.Unregister(InstanceID);
             Callback?.Invoke();

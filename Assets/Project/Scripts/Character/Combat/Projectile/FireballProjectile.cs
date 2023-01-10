@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace Character.Combat.Projectile
 {
-    public class FireballProjectile : ProjectileBehaviour
+    public class FireballProjectile : ProjectileObject
     {
         protected override void Trajectory()
         {

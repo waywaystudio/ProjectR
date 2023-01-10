@@ -23,7 +23,7 @@ namespace Character.Combat.Entities
             var newProjectile = Instantiate(projectilePrefab, cbPosition, lookAt);
             //
             
-            newProjectile.TryGetComponent(out ProjectileBehaviour pb);
+            newProjectile.TryGetComponent(out ProjectileObject pb);
             pb.Initialize(Provider, taker);
         }
         

@@ -9,7 +9,7 @@ namespace Character.Combat.Entities
     public class StatusEffectEntity : BaseEntity, ICombatEntity
     {
         [SerializeField] private DataIndex statusEffectCode;
-        [SerializeField] private List<StatusEffectBehaviour> statusEffectPool; 
+        [SerializeField] private List<StatusEffectObject> statusEffectPool; 
         
         public DataIndex StatusEffectCode { get => statusEffectCode; set => statusEffectCode = value; }
         public IDynamicStatEntry DynamicStatEntry => Provider.DynamicStatEntry;
@@ -29,11 +29,11 @@ namespace Character.Combat.Entities
             ActionCode = actionSender.ActionCode;
             Provider   = actionSender.Provider;
 
-            statusEffectPool ??= GetComponentsInChildren<StatusEffectBehaviour>().ToList();
+            statusEffectPool ??= GetComponentsInChildren<StatusEffectObject>().ToList();
         }
 
 
-        private StatusEffectBehaviour GetEffect()
+        private StatusEffectObject GetEffect()
         {
             if (statusEffectPool.HasElement()) return statusEffectPool[0];
             
@@ -49,7 +49,7 @@ namespace Character.Combat.Entities
             Flag             =   EntityType.StatusEffect;
             
             if (statusEffectPool.IsNullOrEmpty())
-                statusEffectPool = GetComponentsInChildren<StatusEffectBehaviour>().ToList();
+                statusEffectPool = GetComponentsInChildren<StatusEffectObject>().ToList();
         }
 #endif
     }

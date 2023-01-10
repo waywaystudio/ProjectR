@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace Character.Combat.StatusEffects.DeBuff
 {
-    public class CorruptionDeBuff : StatusEffectBehaviour, ICombatEntity
+    public class CorruptionDeBuff : StatusEffectObject, ICombatEntity
     {
         [SerializeField] private PowerValue tickValue;
         [SerializeField] private int tickCount = 5;

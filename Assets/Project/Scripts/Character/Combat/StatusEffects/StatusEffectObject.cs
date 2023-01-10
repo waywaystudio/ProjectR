@@ -6,7 +6,7 @@ using UnityEngine;
 
 namespace Character.Combat.StatusEffects
 {
-    public abstract class StatusEffectBehaviour : MonoBehaviour, IStatusEffect, IEditorSetUp
+    public abstract class StatusEffectObject : MonoBehaviour, IStatusEffect, IEditorSetUp
     {
         [SerializeField] protected DataIndex statusEffectID;
         [SerializeField] protected Sprite icon;
@@ -16,7 +16,7 @@ namespace Character.Combat.StatusEffects
         
         protected int InstanceID;
         protected Action Callback;
-        protected Coroutine InvokeRoutine;
+        protected Coroutine RoutineBuffer;
         protected ICombatTaker Taker;
 
         public Sprite Icon => icon;
@@ -33,7 +33,7 @@ namespace Character.Combat.StatusEffects
             Taker = taker;
             Taker.TakeStatusEffect(this);
             
-            InvokeRoutine = StartCoroutine(Initiate());
+            RoutineBuffer = StartCoroutine(Initiate());
         }
         
 
@@ -59,7 +59,7 @@ namespace Character.Combat.StatusEffects
         private void OnDestroy()
         {
             Callback      = null;
-            InvokeRoutine = null;
+            RoutineBuffer = null;
             Taker         = null;
         }
 

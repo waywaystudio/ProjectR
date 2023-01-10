@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace Character.Combat.Projectile
 {
-    public class HealOrbProjectile : ProjectileBehaviour
+    public class HealOrbProjectile : ProjectileObject
     {
         [SerializeField] private float orbOffset = 3.5f;
         [SerializeField] private LayerMask allyLayer;

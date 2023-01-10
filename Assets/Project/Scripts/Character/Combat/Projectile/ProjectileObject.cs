@@ -7,7 +7,7 @@ using UnityEngine;
 
 namespace Character.Combat.Projectile
 {
-    public abstract class ProjectileBehaviour : MonoBehaviour, IActionSender, IEditorSetUp
+    public abstract class ProjectileObject : MonoBehaviour, IActionSender, IEditorSetUp
     {
         [SerializeField] protected DataIndex actionCode;
         [SerializeField] protected float speed = 20f;

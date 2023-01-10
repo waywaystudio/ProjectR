@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace Character.Combat.StatusEffects.Buff
 {
-    public class FuryBuff : StatusEffectBehaviour
+    public class FuryBuff : StatusEffectObject
     {
         [SerializeField] private HasteValue hasteValue;
         

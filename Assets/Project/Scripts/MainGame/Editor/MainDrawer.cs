@@ -27,6 +27,16 @@ namespace MainGame.Editor
                     Icon = SdfIconType.Save,
                 });
             }
+            
+            if (member.Name == "Test")
+            {
+                attributes.Add(new PropertySpaceAttribute(15f, 5f));
+                attributes.Add(new ButtonAttribute(ButtonSizes.Large)
+                {
+                    Icon = SdfIconType.QuestionCircle,
+                    Stretch = false,
+                });
+            }
         }
         
     }
