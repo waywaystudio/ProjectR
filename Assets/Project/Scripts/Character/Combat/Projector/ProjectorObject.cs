@@ -1,3 +1,4 @@
+using Core;
 using UnityEngine;
 using UnityEngine.Rendering.Universal;
 
@@ -5,45 +6,70 @@ namespace Character.Combat.Projector
 {
     public abstract class ProjectorObject : MonoBehaviour
     {
-        [SerializeField] protected ProjectorCollider projectorCollider;
-        [SerializeField] protected DecalProjector decal;
+        [SerializeField] protected ProjectorShapeType shapeType;
+        [SerializeField] protected DecalProjector projectorDecal;
         [SerializeField] protected Material decalMaterial;
+        [SerializeField] protected ProjectorEvent projectorEvent; 
         [SerializeField] protected LayerMask targetLayer;
-        [SerializeField] protected float modifier;
-        // 1. Radius at SphereArea;
-        // 2. Width at RectangleArea;
-        // 3. Angle at ConeArea;
-        
+        [SerializeField] protected float sizeValue;
+        // 1. SphereType : Radius
+        // 2. RectangleType : Width
+        // 3. ExpandedRectangleType : Width
+        // 4. ConeType : Angle
 
-        public abstract void Generate(Vector3 pointA, Vector3 pointB);
+        protected static readonly int FillAmount = Shader.PropertyToID("_FillAmount");
+        protected static readonly int CommonFinishAction = "OnCommonFinishAction".GetHashCode();
 
-        protected abstract void Play();
-        // protected abstract void Stop();
-        
-        protected virtual void Awake()
+        protected ICombatProvider Provider;
+        protected ICombatTaker Taker;
+
+        protected abstract Collider ProjectorCollider { get; set; }
+        protected ActionTable OnFinished { get; } = new();
+        protected float CastingTime { get; private set; }
+
+        public void Generate(ICombatProvider provider, ICombatTaker taker, float castingTime)
         {
-            var length = modifier * 2f;
+            Provider    = provider;
+            Taker       = taker;
+            CastingTime = castingTime;
             
-            projectorCollider ??= GetComponentInChildren<ProjectorCollider>(); 
-            decal             ??= GetComponentInChildren<DecalProjector>();
-            decalMaterial     ??= decal.material;
-            decal.size        =   new Vector3(length, length, 50f);
-            targetLayer       =   LayerMask.GetMask("Adventurer");
-
-            projectorCollider.Initialize(targetLayer, modifier);
+            projectorEvent.Initialize(Provider, Taker, sizeValue, targetLayer);
+            
+            // Set PrefabTransform
+            SetTransform();
+            
+            // Set Decal & Collider Size
+            OnGenerated();
         }
 
+        protected abstract void SetTransform();
+        protected abstract void OnGenerated();
+
+        private void OnCommonFinishAction()
+        {
+            decalMaterial.SetFloat(FillAmount, 0f);
+            ProjectorCollider.enabled = false;
+            // return to pool;
+        }
+
+        protected virtual void Awake()
+        {
+            projectorDecal ??= GetComponentInChildren<DecalProjector>();
+            projectorEvent ??= GetComponent<ProjectorEvent>();
+            decalMaterial  =   projectorDecal.material;
+
+            OnFinished.Register(CommonFinishAction, OnCommonFinishAction);
+        }
 
 #if UNITY_EDITOR
-        public virtual void SetUp()
+        public void SetUp()
         {
-            var length = modifier * 2f;
+            projectorDecal    ??= GetComponentInChildren<DecalProjector>();
+            projectorEvent    ??= GetComponent<ProjectorEvent>();
+            ProjectorCollider ??= GetComponent<Collider>();
+            decalMaterial     =   projectorDecal.material;
             
-            projectorCollider ??= GetComponentInChildren<ProjectorCollider>(); 
-            decal             ??= GetComponentInChildren<DecalProjector>();
-            decalMaterial     ??= decal.material;
-            decal.size        =   new Vector3(length, length, 50f);
-            targetLayer       =   LayerMask.GetMask("Adventurer");
+            targetLayer   =   LayerMask.GetMask("Adventurer");
         }
 #endif
     }

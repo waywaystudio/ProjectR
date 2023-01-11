@@ -136,3 +136,6 @@ namespace Character.Combat.Skill
 #endif
     }
 }
+
+/* Annotation
+ * 스킬은 Entity의 집합이며, 최소 한개의 ICombatEntity를 가진다. */
