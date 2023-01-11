@@ -1,14 +1,14 @@
 namespace Character.Combat.Skill
 {
-    public class Corruption : BaseSkill
+    public class Corruption : SkillObject
     {
         protected override void StartSkill()
         {
             base.StartSkill();
 
-            if (StatusEffectEntity && TargetEntity)
+            if (StatusEffectModule && TargetModule)
             {
-                StatusEffectEntity.Effecting(TargetEntity.Target);
+                StatusEffectModule.Effecting(TargetModule.Target);
             }
                
         }

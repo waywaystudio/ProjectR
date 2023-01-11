@@ -1,7 +1,7 @@
 namespace Core
 {
     [System.Flags]
-    public enum EntityType
+    public enum ModuleType
     {
         None = 0,
         Damage = 1 << 0,

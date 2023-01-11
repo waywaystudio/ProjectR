@@ -2,9 +2,9 @@ using Character.Combat.Projectile;
 using Core;
 using UnityEngine;
 
-namespace Character.Combat.Entities
+namespace Character.Combat.Skill.Modules
 {
-    public class ProjectileEntity : BaseEntity
+    public class ProjectileSkill : SkillModule, IProjectileModule
     {
         [SerializeField] private DataIndex projectileID;
         
@@ -12,7 +12,6 @@ namespace Character.Combat.Entities
         [SerializeField] private GameObject projectilePrefab;
 
         public DataIndex ProjectileID { get => projectileID; set => projectileID = value; }
-        public override bool IsReady => true;
 
         public void Fire(ICombatTaker taker)
         {
@@ -29,10 +28,10 @@ namespace Character.Combat.Entities
         
         
 #if UNITY_EDITOR
-        public void SetUpValue(int projectileID)
+        public void SetUpValue(int id)
         {
-            ProjectileID = (DataIndex)projectileID;
-            Flag         = EntityType.Projectile;
+            Flag         = ModuleType.Projectile;
+            projectileID = (DataIndex)id;
         }
 #endif
     }

@@ -2,7 +2,7 @@ using UnityEngine;
 
 namespace Character.Combat.Skill
 {
-    public class BackStep : BaseSkill
+    public class BackStep : SkillObject
     {
         /// <summary>
         /// How far from target behind.
@@ -12,17 +12,17 @@ namespace Character.Combat.Skill
 
         public override void InvokeEvent()
         {
-            if (DamageEntity && TargetEntity)
+            if (DamageModule && TargetModule)
             {
-                TargetEntity.Target.TakeDamage(DamageEntity);
+                TargetModule.Target.TakeDamage(DamageModule);
             }
         }
         
         protected override void StartSkill()
         {
-            if (!TargetEntity) return;
+            if (!TargetModule) return;
             
-            var enemyTransform = TargetEntity.Target.Object.transform;
+            var enemyTransform = TargetModule.Target.Object.transform;
             var enemyBehindPosition = enemyTransform.position + enemyTransform.forward * -backMagnitude;
 
             Cb.Teleport(enemyBehindPosition);

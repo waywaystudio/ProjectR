@@ -57,6 +57,22 @@ namespace Character.TargetSystem
             return inRangedList;
         }
         
+        public void SetTakerList(List<ICombatTaker> targetList, ICombatProvider provider, float range, SortingType sortingType, int count)
+        {
+            // var inRangedList = new List<ICombatTaker>();
+            var pivot = provider.Object.transform.position;
+            
+            targetList.ForReverse(x =>
+            {
+                if (Vector3.Distance(x.Object.transform.position, pivot) > range) 
+                    targetList.Remove(x);
+            });
+
+            targetList.RemoveNull();
+            targetList.SortingFilter(pivot, sortingType);
+            targetList.CountFilter(count);
+        }
+        
 
         private void Awake()
         {

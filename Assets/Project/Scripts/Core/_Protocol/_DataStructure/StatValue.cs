@@ -11,7 +11,24 @@ namespace Core
         
         [SerializeField] protected StatCode statCode;
 
+        public override float Value
+        {
+            get => value;
+            set
+            {
+                if (Abs(value - this.value) < 0.0001f) return;
+                
+                this.value = value;
+                OnValueChanged?.Invoke(value);
+            }
+        }
+        
         public StatCode StatCode { get => statCode; set => statCode = value; }
+
+        private static float Abs(float number) =>
+            number >= 0
+                ? number
+                : number * -1.0f;
     }
 
     [Serializable] public class PowerValue : StatValue

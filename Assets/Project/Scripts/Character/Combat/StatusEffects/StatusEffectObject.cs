@@ -6,15 +6,13 @@ using UnityEngine;
 
 namespace Character.Combat.StatusEffects
 {
-    public abstract class StatusEffectObject : MonoBehaviour, IStatusEffect, IEditorSetUp
+    public abstract class StatusEffectObject : CombatObject, IStatusEffect, IEditorSetUp
     {
-        [SerializeField] protected DataIndex statusEffectID;
         [SerializeField] protected Sprite icon;
         [SerializeField] protected bool isBuff;
         [SerializeField] protected float duration;
         [SerializeField] protected float combatValue;
-        
-        protected int InstanceID;
+
         protected Action Callback;
         protected Coroutine RoutineBuffer;
         protected ICombatTaker Taker;
@@ -24,18 +22,19 @@ namespace Character.Combat.StatusEffects
         public virtual float Duration => duration;
         public float CombatValue => combatValue;
         public StatusEffectTable TargetTable { get; set; }
-        public DataIndex ActionCode { get => statusEffectID; set => statusEffectID = value; }
-        public ICombatProvider Provider { get; set; }
 
 
-        public void Register(ICombatTaker taker)
+        public override void Initialize(ICombatProvider provider, ICombatTaker taker)
         {
-            Taker = taker;
+            Provider = provider;
+            Taker    = taker;
+            
             Taker.TakeStatusEffect(this);
+            Callback.AddUniquely(UnregisterTable);
             
             RoutineBuffer = StartCoroutine(Initiate());
         }
-        
+
 
         protected abstract IEnumerator Initiate();
         
@@ -46,14 +45,6 @@ namespace Character.Combat.StatusEffects
                 TargetTable.Unregister(this);
                 TargetTable = null;
             }
-        }
-        
-        
-        protected virtual void Awake()
-        {
-            Provider   =  GetComponentInParent<ICombatProvider>();
-            Callback   += UnregisterTable;
-            InstanceID =  GetInstanceID();
         }
 
         private void OnDestroy()
@@ -66,9 +57,9 @@ namespace Character.Combat.StatusEffects
 #if UNITY_EDITOR
         public virtual void SetUp()
         {
-            if (statusEffectID == DataIndex.None) statusEffectID = name.ToEnum<DataIndex>();
+            if (actionCode == DataIndex.None) actionCode = name.ToEnum<DataIndex>();
             
-            var data = MainData.GetStatusEffect(statusEffectID);
+            var data = MainData.GetStatusEffect(actionCode);
             
             // icon     = data.~~~
             isBuff      = data.IsBuff;

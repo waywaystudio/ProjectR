@@ -8,7 +8,7 @@ namespace Character.Combat
 {
     public class CombatBehaviour : MonoBehaviour, ICombatBehaviour, IEditorSetUp
     {
-        [SerializeField] private List<BaseSkill> skillList = new(4);
+        [SerializeField] private List<SkillObject> skillList = new(4);
         [SerializeField] private Positioning positioning;
         [SerializeField] private GlobalCoolDown globalCoolDown;
 
@@ -16,8 +16,8 @@ namespace Character.Combat
         public GlobalCoolDown GlobalCoolDown => globalCoolDown;
         
         // TODO. ISKillInfo쪽을 다듬으면, 아래 필드를 삭제할 수도 있다.
-        public IEnumerable<BaseSkill> SkillList => skillList;
-        public BaseSkill CurrentSkill { get; private set; }
+        public IEnumerable<SkillObject> SkillList => skillList;
+        public SkillObject CurrentSkill { get; private set; }
 
         public float GlobalCoolTime => GlobalCoolDown.CoolTime;
         public List<ISkill> SkillInfoList { get; set; } = new(4);
@@ -34,7 +34,7 @@ namespace Character.Combat
         
 
         // TODO. 대량의 GC 발생중 (잦은 호출) -> 많이 수정 함
-        public bool TryGetMostPrioritySkill(out BaseSkill skill)
+        public bool TryGetMostPrioritySkill(out SkillObject skill)
         {
             skill = null;
 
@@ -50,7 +50,7 @@ namespace Character.Combat
             return skill is not null;
         }
 
-        public void UseSkill(BaseSkill skill)
+        public void UseSkill(SkillObject skill)
         {
             if (CurrentSkill != null) 
                 CurrentSkill.DeActiveSkill();
@@ -91,7 +91,7 @@ namespace Character.Combat
             globalCoolDown ??= GetComponent<GlobalCoolDown>();
 
             // TODO. 나중에는 인게임에서 캐릭터의 스킬을 변경할 수 있게 될 것이다.
-            skillList = GetComponentsInChildren<BaseSkill>().Where(x => x.enabled).ToList();
+            skillList = GetComponentsInChildren<SkillObject>().Where(x => x.enabled).ToList();
         }
 #endif
     }

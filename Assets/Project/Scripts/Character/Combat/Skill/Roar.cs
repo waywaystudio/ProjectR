@@ -1,15 +1,15 @@
 namespace Character.Combat.Skill
 {
-    public class Roar : BaseSkill
+    public class Roar : SkillObject
     {
         protected override void StartSkill()
         {
             base.StartSkill();
 
-            if (DamageEntity)
+            if (DamageModule)
             {
-                if (DamageEntity) TargetEntity.Target.TakeDamage(DamageEntity);
-                if (StatusEffectEntity) StatusEffectEntity.Effecting(TargetEntity.Target);
+                if (DamageModule) TargetModule.Target.TakeDamage(DamageModule);
+                if (StatusEffectModule) StatusEffectModule.Effecting(TargetModule.Target);
             }
         }
         

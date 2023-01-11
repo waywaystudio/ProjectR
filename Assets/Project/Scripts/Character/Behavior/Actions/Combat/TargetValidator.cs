@@ -22,7 +22,7 @@ namespace Character.Behavior.Actions.Combat
                 return TaskStatus.Failure;
             }
 
-            var targetEntity = skill.TargetEntity;
+            var targetEntity = skill.TargetModule;
 
             if (targetEntity is null)
             {

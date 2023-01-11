@@ -42,9 +42,9 @@ namespace Character
         public void Skill(string skillName, Action animationCallback) => OnSkill?.Invoke(skillName, animationCallback);
         public void SkillHit() => OnSkillHit?.Invoke();
 
-        public void TakeDamage(ICombatEntity provider) => CombatUtility.TakeDamage(provider, this);
-        public void TakeSpell(ICombatEntity provider) => CombatUtility.TakeSpell(provider, this);
-        public void TakeHeal(ICombatEntity provider) => CombatUtility.TakeHeal(provider, this);
+        public void TakeDamage(ICombatTable provider) => CombatUtility.TakeDamage(provider, this);
+        public void TakeSpell(ICombatTable provider) => CombatUtility.TakeSpell(provider, this);
+        public void TakeHeal(ICombatTable provider) => CombatUtility.TakeHeal(provider, this);
         public void TakeStatusEffect(IStatusEffect statusEffect) => OnTakeStatusEffect?.Invoke(statusEffect);
         public void DispelStatusEffect(DataIndex code) => OnDispelStatusEffect?.Invoke(code);
 

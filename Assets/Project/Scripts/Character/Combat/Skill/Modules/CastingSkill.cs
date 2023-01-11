@@ -2,41 +2,43 @@ using System.Collections;
 using Core;
 using UnityEngine;
 
-namespace Character.Combat.Entities
+namespace Character.Combat.Skill.Modules
 {
-    public class CastingEntity : BaseEntity
+    public class CastingSkill : SkillModule, ICastingModule, IOnStarted, IOnInterrupted, IReady
     {
         [SerializeField] private float originalCastingTime;
 
         private bool onCasting;
         private float castingTick;
+        private Coroutine routineBuffer;
 
+        public ActionTable OnStarted { get; } = new();
+        public ActionTable OnInterrupted { get; } = new();
+        public bool IsReady => !onCasting;
+        
         public float OriginalCastingTime { get => originalCastingTime; set => originalCastingTime = value; }
         public float CastingTime => OriginalCastingTime * CharacterUtility.GetHasteValue(Provider.StatTable.Haste);
         public float CastingProgress { get; private set; }
-        public override bool IsReady => !onCasting;
 
-        private Coroutine RoutineBuffer { get; set; }
 
-        private float CastingTick
+        public override void Initialize(IActionSender actionSender)
         {
-            get
-            {
-                if (castingTick == 0.0f)
-                    castingTick = Time.deltaTime;
-                
-                return castingTick;
-            }
+            base.Initialize(actionSender);
+
+            castingTick = Time.deltaTime;
+            OnStarted.Register(InstanceID, StartCasting);
+            OnInterrupted.Register(InstanceID, BreakCasting);
         }
 
-        private void StartCasting() => RoutineBuffer = StartCoroutine(Casting());
+
+        private void StartCasting() => routineBuffer = StartCoroutine(Casting());
         private void BreakCasting()
         {
             onCasting = false;
             
             ResetProgress();
             
-            if (RoutineBuffer != null) StopCoroutine(RoutineBuffer);
+            if (routineBuffer != null) StopCoroutine(routineBuffer);
         }
         
         private IEnumerator Casting()
@@ -45,7 +47,7 @@ namespace Character.Combat.Entities
 
             while (CastingProgress < CastingTime)
             {
-                CastingProgress += CastingTick;
+                CastingProgress += castingTick;
                 yield return null;
             }
             
@@ -56,24 +58,13 @@ namespace Character.Combat.Entities
         
         private void ResetProgress() => CastingProgress = 0f;
 
-        private void OnEnable()
-        {
-            OnStarted.Register(InstanceID, StartCasting);
-            OnInterrupted.Register(InstanceID, BreakCasting);
-        }
 
-        private void OnDisable()
-        {
-            OnStarted.Unregister(InstanceID);
-            OnInterrupted.Unregister(InstanceID);
-        }
-        
-        
+
 #if UNITY_EDITOR
         public void SetUpValue(float castingTime)
         {
+            Flag                = ModuleType.Casting;
             OriginalCastingTime = castingTime;
-            Flag                = EntityType.Casting;
         }
 #endif
     }

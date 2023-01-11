@@ -2,8 +2,8 @@ using System;
 using System.Collections.Generic;
 using System.Reflection;
 using Character.Combat;
-using Character.Combat.Entities;
 using Character.Combat.Skill;
+using Character.Combat.Skill.Modules;
 using Sirenix.OdinInspector;
 using Sirenix.OdinInspector.Editor;
 
@@ -20,7 +20,7 @@ namespace Character.Editor
         }
     }
     
-    public class BaseEntityDrawer : OdinAttributeProcessor<BaseEntity>
+    public class BaseEntityDrawer : OdinAttributeProcessor<SkillModule>
     {
         // public override void ProcessChildMemberAttributes(InspectorProperty parentProperty, MemberInfo member, List<Attribute> attributes)
         // {
@@ -31,7 +31,7 @@ namespace Character.Editor
         // }
     }
     
-    public class CastingEntityDrawer : OdinAttributeProcessor<CastingEntity>
+    public class CastingEntityDrawer : OdinAttributeProcessor<CastingSkill>
     {
         public override void ProcessChildMemberAttributes(InspectorProperty parentProperty, MemberInfo member, List<Attribute> attributes)
         {
@@ -46,7 +46,7 @@ namespace Character.Editor
         }
     }
 
-    public class CoolTimeEntityDrawer : OdinAttributeProcessor<CoolTimeEntity>
+    public class CoolTimeEntityDrawer : OdinAttributeProcessor<CoolTimeSkill>
     {
         public override void ProcessChildMemberAttributes(InspectorProperty parentProperty, MemberInfo member, List<Attribute> attributes)
         {
@@ -61,7 +61,7 @@ namespace Character.Editor
         }
     }
 
-    public class BaseSkillDrawer : OdinAttributeProcessor<BaseSkill>
+    public class BaseSkillDrawer : OdinAttributeProcessor<SkillObject>
     {
         public override void ProcessChildMemberAttributes(InspectorProperty parentProperty, MemberInfo member, List<Attribute> attributes)
         {

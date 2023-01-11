@@ -1,11 +1,11 @@
 namespace Character.Combat.Skill
 {
-    public class RapidBlow : BaseSkill
+    public class RapidBlow : SkillObject
     {
         public override void InvokeEvent()
         {
-            if (DamageEntity && TargetEntity)
-                TargetEntity.Target.TakeDamage(DamageEntity);
+            if (DamageModule && TargetModule)
+                TargetModule.Target.TakeDamage(DamageModule);
         }
     }
 }

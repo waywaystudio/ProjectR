@@ -1,13 +1,13 @@
 namespace Character.Combat.Skill
 {
-    public class AimShot : BaseSkill
+    public class AimShot : SkillObject
     {
         protected override void CompleteSkill()
         {
             base.CompleteSkill();
 
-            if (TargetEntity && ProjectileEntity)
-                ProjectileEntity.Fire(TargetEntity.Target);
+            if (TargetModule && ProjectileModule)
+                ProjectileModule.Fire(TargetModule.Target);
         }
     }
 }

@@ -1,11 +1,11 @@
 namespace Character.Combat.Skill
 {
-    public class FaithfulPrey : BaseSkill
+    public class FaithfulPrey : SkillObject
     {
         protected override void CompleteSkill()
         {
-            if (HealEntity && TargetEntity)
-                TargetEntity.Target.TakeHeal(HealEntity);
+            if (HealModule && TargetModule)
+                TargetModule.Target.TakeHeal(HealModule);
 
             base.CompleteSkill();
         }

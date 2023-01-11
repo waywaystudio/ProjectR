@@ -1,12 +1,12 @@
 namespace Character.Combat.Skill
 {
-    public class BloodDrain : BaseSkill
+    public class BloodDrain : SkillObject
     {
         protected override void StartSkill()
         {
             base.StartSkill();
 
-            if (TargetEntity && StatusEffectEntity)
+            if (TargetModule && StatusEffectModule)
             {
                 // TargetEntity.Target.TakeStatusEffect(StatusEffectEntity);
             }

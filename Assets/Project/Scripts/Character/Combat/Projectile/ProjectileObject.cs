@@ -1,5 +1,4 @@
-using System.Collections.Generic;
-using Character.Combat.Entities;
+using Character.Combat.Skill.Modules;
 using Core;
 using DG.Tweening;
 using MainGame;
@@ -7,26 +6,20 @@ using UnityEngine;
 
 namespace Character.Combat.Projectile
 {
-    public abstract class ProjectileObject : MonoBehaviour, IActionSender, IEditorSetUp
+    public abstract class ProjectileObject : CombatObject, IEditorSetUp
     {
-        [SerializeField] protected DataIndex actionCode;
         [SerializeField] protected float speed = 20f;
-        [SerializeField] protected GameObject particle;
         [SerializeField] protected LayerMask targetLayer;
-
-        public DataIndex ActionCode => actionCode;
-        public ICombatProvider Provider { get; set; }
 
         protected ICombatTaker Taker;
         protected LayerMask TargetLayer => targetLayer;
-        protected Dictionary<EntityType, BaseEntity> EntityTable { get; } = new();
         protected Tweener TrajectoryTweener;
         protected bool ValidateTaker => Taker != null && !Taker.Object.IsNullOrEmpty() && Taker.DynamicStatEntry.IsAlive.Value;
         private Vector3 destination;
 
-        protected DamageEntity DamageEntity => EntityTable[EntityType.Damage] as DamageEntity;
-        protected HealEntity HealEntity => EntityTable[EntityType.Heal] as HealEntity;
-        protected StatusEffectEntity StatusEffectEntity => EntityTable[EntityType.StatusEffect] as StatusEffectEntity;
+        protected DamageSkill DamageEntity => GetModule<DamageSkill>(ModuleType.Damage);
+        protected HealSkill HealEntity => GetModule<HealSkill>(ModuleType.Heal);
+        protected StatusEffectSkill StatusEffectEntity => GetModule<StatusEffectSkill>(ModuleType.StatusEffect);
         
         protected Vector3 Destination
         {
@@ -39,21 +32,17 @@ namespace Character.Combat.Projectile
         }
         
 
-        public void Initialize(ICombatProvider sender, ICombatTaker taker)
+        public override void Initialize(ICombatProvider provider, ICombatTaker taker)
         {
-            Provider = sender;
+            Provider = provider;
             Taker = taker;
             Destination = taker.Object.transform.position;
-            EntityTable.ForEach(x => x.Value.Initialize(this));
 
             Trajectory();
         }
 
         protected abstract void Trajectory();
-        protected virtual void Awake()
-        {
-            GetComponentsInChildren<BaseEntity>().ForEach(x => EntityTable.Add(x.Flag, x));
-        }
+ 
 
 #if UNITY_EDITOR
         public void SetUp()
@@ -64,7 +53,7 @@ namespace Character.Combat.Projectile
             var projectileData = MainData.GetProjectile(actionCode);
             speed = projectileData.Speed;
 
-            GetComponents<BaseEntity>().ForEach(x => EntityUtility.SetProjectileEntity(projectileData, x));
+            GetComponents<SkillModule>().ForEach(x => EntityUtility.SetProjectileEntity(projectileData, x));
         }
 #endif
     }

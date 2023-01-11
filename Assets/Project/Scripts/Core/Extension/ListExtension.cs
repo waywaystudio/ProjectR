@@ -24,6 +24,14 @@ namespace Core
             list.RemoveAll(x => x is null);
         }
 
+        public static void ForReverse<T>(this List<T> list, Action<T> action)
+        {
+            for (var i = list.Count - 1; i >= 0; --i)
+            {
+                action(list[i]);
+            }
+        }
+
         public static T Random<T>(this List<T> list)
         {
             if (list == null)

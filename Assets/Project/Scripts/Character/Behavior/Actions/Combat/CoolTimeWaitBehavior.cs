@@ -20,12 +20,12 @@ namespace Character.Behavior.Actions.Combat
                 return TaskStatus.Failure;
             }
 
-            if (skill.CoolTimeEntity is null)
+            if (skill.CoolTimeModule is null)
             {
                 return TaskStatus.Success;
             }
 
-            return skill.CoolTimeEntity.IsReady
+            return skill.CoolTimeModule.IsReady
                 ? TaskStatus.Success
                 : TaskStatus.Failure;
         }

@@ -2,25 +2,26 @@ using UnityEngine;
 
 namespace Core
 {
-    public interface IOrigin
+    public interface IOriginalProvider
     {
         ICombatProvider Provider { get; }
     }
     
-    public interface ICombatTable
+    public interface ICombatTable : IOriginalProvider
     {
-        IDynamicStatEntry DynamicStatEntry { get; }
+        // + ICombatProvider Provider { get; }
         StatTable StatTable { get; }
     }
 
-    public interface ICombatEntity : IOrigin, ICombatTable
+    public interface ICombatEntity : ICombatTable
     {
         // + ICombatProvider Provider { get; }
-        // + IDynamicStatEntry DynamicStatEntry { get; }
         // + IStatEntry StatTable { get; }
+        
+        IDynamicStatEntry DynamicStatEntry { get; }
     }
     
-    public interface IActionSender : IOrigin
+    public interface IActionSender : IOriginalProvider
     {
         // + ICombatProvider Provider { get; }
 
@@ -45,7 +46,7 @@ namespace Core
         ActionTable<CombatLog> OnCombatActive { get; }
     }
     
-    public interface ICombatTaker : ICombatTable, IObjectName
+    public interface ICombatTaker : ICombatEntity, IObjectName
     {
         // + IDynamicStatEntry DynamicStatEntry { get; }
         // + StatTable StatTable { get; }
@@ -56,9 +57,9 @@ namespace Core
         ActionTable<DataIndex> OnDispelStatusEffect { get; }
         ActionTable<CombatLog> OnCombatPassive { get; }
 
-        void TakeDamage(ICombatEntity entity);
-        void TakeSpell(ICombatEntity entity);
-        void TakeHeal(ICombatEntity entity);
+        void TakeDamage(ICombatTable entity);
+        void TakeSpell(ICombatTable entity);
+        void TakeHeal(ICombatTable entity);
         
         void TakeStatusEffect(IStatusEffect entity);
         void DispelStatusEffect(DataIndex code);

@@ -43,7 +43,7 @@ namespace Character
             return mustCritical || Random.Range(0f, 1f) < criticalChance;
         }
 
-        public static void TakeDamage(ICombatEntity entity, ICombatTaker taker)
+        public static void TakeDamage(ICombatTable entity, ICombatTaker taker)
         {
             var log = new CombatLog(entity.Provider.Name, taker.Name, entity.Provider.ActionCode.ToString());
 
@@ -85,7 +85,7 @@ namespace Character
             taker.OnCombatPassive?.Invoke(log);
         }
         
-        public static void TakeSpell(ICombatEntity entity, ICombatTaker taker)
+        public static void TakeSpell(ICombatTable entity, ICombatTaker taker)
         {
             var log = new CombatLog(entity.Provider.Name, taker.Name, entity.Provider.ActionCode.ToString());
             
@@ -127,7 +127,7 @@ namespace Character
             entity.Provider.OnCombatActive?.Invoke(log);
             taker.OnCombatPassive?.Invoke(log);
         }
-        public static void TakeHeal(ICombatEntity entity, ICombatTaker taker)
+        public static void TakeHeal(ICombatTable entity, ICombatTaker taker)
         {
             var log = new CombatLog(entity.Provider.Name, taker.Name, entity.Provider.ActionCode.ToString(), true);
 

@@ -1,11 +1,11 @@
 namespace Character.Combat.Skill
 {
-    public class Fireball : BaseSkill
+    public class Fireball : SkillObject
     {
         protected override void CompleteSkill()
         {
-            if (TargetEntity && ProjectileEntity)
-                ProjectileEntity.Fire(TargetEntity.Target);
+            if (TargetModule && ProjectileModule)
+                ProjectileModule.Fire(TargetModule.Target);
 
             base.CompleteSkill();
         }
