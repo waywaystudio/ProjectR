@@ -1,75 +1,93 @@
 using Core;
 using UnityEngine;
-using UnityEngine.Rendering.Universal;
 
 namespace Character.Combat.Projector
 {
-    public abstract class ProjectorObject : MonoBehaviour
+    public abstract class ProjectorObject : CombatObject
     {
+        // for Test
+        public CharacterBehaviour TempProvider;
+        public CharacterBehaviour TempTarget;
+
         [SerializeField] protected ProjectorShapeType shapeType;
-        [SerializeField] protected DecalProjector projectorDecal;
-        [SerializeField] protected Material decalMaterial;
-        [SerializeField] protected ProjectorEvent projectorEvent; 
-        [SerializeField] protected LayerMask targetLayer;
-        [SerializeField] protected float sizeValue;
-        // 1. SphereType : Radius
-        // 2. RectangleType : Width
-        // 3. ExpandedRectangleType : Width
-        // 4. ConeType : Angle
+        [SerializeField] protected Vector2 sizeValue = Vector2.zero;
+        [SerializeField] protected string targetLayerType;
 
-        protected static readonly int FillAmount = Shader.PropertyToID("_FillAmount");
-        protected static readonly int CommonFinishAction = "OnCommonFinishAction".GetHashCode();
+        public ICombatTaker Taker { get; private set; }
+        public ProjectorShapeType ShapeType => shapeType;
+        public Vector2 SizeValue => sizeValue;
+        public float CastingTime => CastingModule.OriginalCastingTime;
+        public LayerMask TargetLayer { get; set; }
+        
+        /// <summary>
+        /// Call From ProjectorModule.Projection
+        /// </summary>
+        public ActionTable OnProjectionStart { get; } = new();
+        
+        /// <summary>
+        /// Call By ProjectorDecal Shader Progression.
+        /// </summary>
+        public ActionTable OnProjectionEnd { get; } = new();
+        
+        /// <summary>
+        /// 프로젝터 안에 들어와 있는 ICombatTaker 에게 Action
+        /// </summary>
+        public ActionTable<ICombatTaker> OnProjectorEnter { get; } = new();
+        
+        /// <summary>
+        /// 프로젝터가 끝날 때, 안에 있는 ICombatTaker 에게 Action
+        /// </summary>
+        public ActionTable<ICombatTaker> OnProjectorEnd { get; } = new();
+        
 
-        protected ICombatProvider Provider;
-        protected ICombatTaker Taker;
-
-        protected abstract Collider ProjectorCollider { get; set; }
-        protected ActionTable OnFinished { get; } = new();
-        protected float CastingTime { get; private set; }
-
-        public void Generate(ICombatProvider provider, ICombatTaker taker, float castingTime)
+        public virtual void Projection(ICombatProvider provider, ICombatTaker taker)
         {
             Provider    = provider;
             Taker       = taker;
-            CastingTime = castingTime;
+            TargetLayer = CharacterUtility.SetLayer(provider, targetLayerType);
             
-            projectorEvent.Initialize(Provider, Taker, sizeValue, targetLayer);
+            ModuleTable.ForEach(x => x.Value.Initialize(this));
             
-            // Set PrefabTransform
-            SetTransform();
-            
-            // Set Decal & Collider Size
-            OnGenerated();
+            if (!gameObject.activeSelf) 
+                gameObject.SetActive(true);
+
+            OnProjectionStart.Invoke();
         }
 
-        protected abstract void SetTransform();
-        protected abstract void OnGenerated();
 
-        private void OnCommonFinishAction()
+        protected abstract void EnterProjector(ICombatTaker taker);
+        protected abstract void EndProjector(ICombatTaker taker);
+
+        protected void End()
         {
-            decalMaterial.SetFloat(FillAmount, 0f);
-            ProjectorCollider.enabled = false;
-            // return to pool;
+            // Return to Pool
+            gameObject.SetActive(false);
         }
 
-        protected virtual void Awake()
+        protected override void Awake()
         {
-            projectorDecal ??= GetComponentInChildren<DecalProjector>();
-            projectorEvent ??= GetComponent<ProjectorEvent>();
-            decalMaterial  =   projectorDecal.material;
+            base.Awake();
 
-            OnFinished.Register(CommonFinishAction, OnCommonFinishAction);
+            /* ActionTable Register */
+            OnProjectionEnd.Register(InstanceID, End);
+            OnProjectorEnter.Register(InstanceID, EnterProjector);
+            OnProjectorEnd.Register(InstanceID, EndProjector);
         }
+
 
 #if UNITY_EDITOR
-        public void SetUp()
+        public override void SetUp()
         {
-            projectorDecal    ??= GetComponentInChildren<DecalProjector>();
-            projectorEvent    ??= GetComponent<ProjectorEvent>();
-            ProjectorCollider ??= GetComponent<Collider>();
-            decalMaterial     =   projectorDecal.material;
+            if (actionCode == DataIndex.None) 
+                actionCode = GetType().Name.ToEnum<DataIndex>();
+
+            var data = MainGame.MainData.GetProjector(actionCode);
             
-            targetLayer   =   LayerMask.GetMask("Adventurer");
+            shapeType       =   data.ShapeType.ToEnum<ProjectorShapeType>();
+            targetLayerType =   data.TargetLayerType;
+            sizeValue       =   data.Size;
+
+            GetComponents<Module>().ForEach(x => ModuleUtility.SetProjectorModule(data, x));
         }
 #endif
     }

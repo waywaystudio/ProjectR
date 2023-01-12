@@ -1,9 +1,9 @@
 using Core;
 using UnityEngine;
 
-namespace Character.Combat.Skill.Modules
+namespace Character.Combat
 {
-    public class HealSkill : SkillModule, IHealModule, ICombatTable
+    public class HealModule : Module, IHealModule, ICombatTable
     {
         [SerializeField] private PowerValue healValue;
 

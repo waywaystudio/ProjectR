@@ -22,7 +22,7 @@ namespace Character.Combat.Projectile
                     return takerPosition + offset;
                 }
 
-                return Vector3.zero;
+                return Vector3.forward;
             }
         }
 
@@ -52,7 +52,7 @@ namespace Character.Combat.Projectile
         {
             if (ValidateTaker && other.TryGetComponent(out ICombatTaker ally))
             {
-                ally.TakeHeal(HealEntity);
+                ally.TakeHeal(HealModule);
             }
         }
 
@@ -60,7 +60,7 @@ namespace Character.Combat.Projectile
         {
             if (ValidateTaker && other.TryGetComponent(out ICombatTaker enemy))
             {
-                enemy.TakeDamage(DamageEntity);
+                enemy.TakeDamage(DamageModule);
             }
         }
     }

@@ -49,7 +49,7 @@ namespace Character.Combat
     public interface IStatusEffectModule : ISKillModule
     {
         DataIndex StatusEffectID { get; }
-        void Effecting(ICombatTaker taker);
+        void Effectuate(ICombatTaker taker);
     }
     
     /* Currently, Only TargetSkill has Targeting TargetModule */

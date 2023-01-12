@@ -27,7 +27,7 @@ namespace Character.Combat.Projectile
         
         protected void Arrived()
         {
-            if (ValidateTaker) Taker.TakeDamage(DamageEntity);
+            if (ValidateTaker) Taker.TakeDamage(DamageModule);
             
             // TODO. Return To Pool
             Destroy(gameObject);

@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Reflection;
 using Character.Combat;
 using Character.Combat.Skill;
-using Character.Combat.Skill.Modules;
 using Sirenix.OdinInspector;
 using Sirenix.OdinInspector.Editor;
 
@@ -20,7 +19,7 @@ namespace Character.Editor
         }
     }
     
-    public class BaseEntityDrawer : OdinAttributeProcessor<SkillModule>
+    public class ModuleDrawer : OdinAttributeProcessor<Combat.Module>
     {
         // public override void ProcessChildMemberAttributes(InspectorProperty parentProperty, MemberInfo member, List<Attribute> attributes)
         // {
@@ -31,7 +30,7 @@ namespace Character.Editor
         // }
     }
     
-    public class CastingEntityDrawer : OdinAttributeProcessor<CastingSkill>
+    public class CastingSkillDrawer : OdinAttributeProcessor<CastingModule>
     {
         public override void ProcessChildMemberAttributes(InspectorProperty parentProperty, MemberInfo member, List<Attribute> attributes)
         {
@@ -46,7 +45,7 @@ namespace Character.Editor
         }
     }
 
-    public class CoolTimeEntityDrawer : OdinAttributeProcessor<CoolTimeSkill>
+    public class CoolTimeSkillDrawer : OdinAttributeProcessor<CoolTimeModule>
     {
         public override void ProcessChildMemberAttributes(InspectorProperty parentProperty, MemberInfo member, List<Attribute> attributes)
         {
@@ -61,7 +60,7 @@ namespace Character.Editor
         }
     }
 
-    public class BaseSkillDrawer : OdinAttributeProcessor<SkillObject>
+    public class SkillObjectDrawer : OdinAttributeProcessor<SkillObject>
     {
         public override void ProcessChildMemberAttributes(InspectorProperty parentProperty, MemberInfo member, List<Attribute> attributes)
         {
@@ -99,20 +98,9 @@ namespace Character.Editor
                 attributes.Add(new ShowIfAttribute("@UnityEngine.Application.isPlaying"));
             }
             
-            // if (member.Name == "SetUp")
-            // {
-            //     attributes.Add(new HorizontalGroupAttribute("Editor Functions"));
-            //     attributes.Add(new PropertySpaceAttribute(15, 0));
-            //     attributes.Add(new ButtonAttribute(ButtonSizes.Large)
-            //                    {
-            //                            Icon = SdfIconType.ArrowRepeat,
-            //                    });
-            // }
-            
             if (member.Name == "ShowDB")
             {
                 attributes.Add(new HorizontalGroupAttribute("CommonHorizontal"));
-                // attributes.Add(new PropertySpaceAttribute(15, 0));
                 attributes.Add(new ButtonAttribute(ButtonSizes.Large)
                                {
                                        Icon = SdfIconType.ListColumnsReverse,

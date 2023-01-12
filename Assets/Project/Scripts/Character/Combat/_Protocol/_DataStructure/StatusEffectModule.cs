@@ -1,18 +1,19 @@
 using System.Collections.Generic;
 using System.Linq;
-using Character.Combat.StatusEffects;
 using Core;
 using UnityEngine;
 
-namespace Character.Combat.Skill.Modules
+namespace Character.Combat
 {
-    public class StatusEffectSkill : SkillModule, IStatusEffectModule, ICombatTable
+    using StatusEffects;
+    
+    public class StatusEffectModule : Module, IStatusEffectModule
     {
         [SerializeField] private DataIndex statusEffectID;
         [SerializeField] private List<StatusEffectObject> statusEffectPool; 
         
         public DataIndex StatusEffectID => statusEffectID;
-        public StatTable StatTable => Provider.StatTable;
+        
         
         public override void Initialize(IActionSender actionSender)
         {
@@ -21,11 +22,11 @@ namespace Character.Combat.Skill.Modules
             statusEffectPool ??= GetComponentsInChildren<StatusEffectObject>().ToList();
         }
 
-        public void Effecting(ICombatTaker taker)
+        public void Effectuate(ICombatTaker taker)
         {
             // Pooling.Get use statusEffectCode
             var effect = GetEffect();
-            effect.Initialize(Provider, taker);
+            effect.Effectuate(Provider, taker);
         }
 
 

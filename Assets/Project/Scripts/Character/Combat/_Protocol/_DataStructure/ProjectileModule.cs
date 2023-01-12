@@ -1,10 +1,11 @@
-using Character.Combat.Projectile;
 using Core;
 using UnityEngine;
 
-namespace Character.Combat.Skill.Modules
+namespace Character.Combat
 {
-    public class ProjectileSkill : SkillModule, IProjectileModule
+    using Projectile;
+    
+    public class ProjectileModule : Module, IProjectileModule
     {
         [SerializeField] private DataIndex projectileID;
         

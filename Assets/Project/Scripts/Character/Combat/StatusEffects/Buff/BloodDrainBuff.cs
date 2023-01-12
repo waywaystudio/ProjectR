@@ -6,15 +6,13 @@ namespace Character.Combat.StatusEffects.Buff
 {
     public class BloodDrainBuff : StatusEffectObject
     {
-        private WaitForSeconds waitCache;
-        
         protected override IEnumerator Initiate()
         {
-            waitCache = new WaitForSeconds(Duration);
+            WaitBuffer = new WaitForSeconds(Duration);
 
             Provider.OnCombatActive.Register(InstanceID, BloodDrain);
 
-            yield return waitCache;
+            yield return WaitBuffer;
             
             Provider.OnCombatActive.Unregister(InstanceID);
             Callback?.Invoke();

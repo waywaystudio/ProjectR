@@ -7,44 +7,35 @@ namespace Character.Combat.Projector.Colliders
     {
         [SerializeField] private SphereCollider sphereCollider;
 
-        private const int MaxBuffer = 50;
-        private readonly Collider[] buffer = new Collider[MaxBuffer];
+        private float radius;
 
-        protected override void Generate(Vector3 providerPosition, Vector3 targetPosition)
+        protected override void StartProjection()
         {
-            sphereCollider.enabled = true;
-        }
-        
-        protected override void OnFinish()
-        {
-            sphereCollider.enabled = false;
+            po.transform.position = po.Taker.Object.transform.position;
         }
 
-        // public override void OnProjectorFinished()
-        // {
-        //     // Variant
-        //     Physics.OverlapSphereNonAlloc(transform.position, sizeValue, buffer, targetLayer);
-        //     //
-        //
-        //     if (buffer.IsNullOrEmpty()) return;
-        //     
-        //     buffer.ForEach(x =>
-        //     {
-        //         if (x.IsNullOrEmpty()) return;
-        //         
-        //         Debug.Log($"Colliding on {x.name} object");
-        //         // Do FinishAction
-        //     });   
-        //     
-        //     sphereCollider.enabled = false;
-        // }
+        protected override void EndProjection()
+        {
+            Physics.OverlapSphereNonAlloc(transform.position, radius, ColliderBuffer, TargetLayer);
+
+            if (ColliderBuffer.IsNullOrEmpty()) return;
+            
+            ColliderBuffer.ForEach(x =>
+            {
+                if (x.IsNullOrEmpty()) return;
+                if (!x.TryGetComponent(out ICombatTaker taker)) return;
+                
+                po.OnProjectorEnd.Invoke(taker);
+            });
+       }
 
         protected override void Awake()
         {
             base.Awake();
-            
-            sphereCollider.radius  = sizeValue;
-            sphereCollider.enabled = false;
+
+            radius                =   SizeValue.x;
+            sphereCollider        ??= GetComponent<SphereCollider>();
+            sphereCollider.radius =   radius;
         }
 
 #if UNITY_EDITOR
@@ -52,8 +43,7 @@ namespace Character.Combat.Projector.Colliders
         {
             base.SetUp();
             
-            sphereCollider.radius  = sizeValue;
-            sphereCollider.enabled = false;
+            sphereCollider ??= GetComponent<SphereCollider>();
         }
 #endif
     }

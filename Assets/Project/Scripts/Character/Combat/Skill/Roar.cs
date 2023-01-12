@@ -9,7 +9,7 @@ namespace Character.Combat.Skill
             if (DamageModule)
             {
                 if (DamageModule) TargetModule.Target.TakeDamage(DamageModule);
-                if (StatusEffectModule) StatusEffectModule.Effecting(TargetModule.Target);
+                if (StatusEffectModule) StatusEffectModule.Effectuate(TargetModule.Target);
             }
         }
         

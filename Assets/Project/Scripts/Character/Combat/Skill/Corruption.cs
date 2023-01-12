@@ -8,7 +8,7 @@ namespace Character.Combat.Skill
 
             if (StatusEffectModule && TargetModule)
             {
-                StatusEffectModule.Effecting(TargetModule.Target);
+                StatusEffectModule.Effectuate(TargetModule.Target);
             }
                
         }

@@ -9,9 +9,15 @@ public class SandBox : MonoBehaviour
     [Button]
     private void Debugger()
     {
-        var sandboxLayer = gameObject.layer;
+        Debug.Log($"just Layer : {layer}");
+        Debug.Log($"Layer.Value : {layer.value}");
+        Debug.Log($"LayerMask.LayerToName : {LayerMask.LayerToName(layer.value)}");
+        Debug.Log($"LayerMask.NameToLayer(Adventurer) : {LayerMask.NameToLayer("Adventurer")}");
+
+        var objectLayer = gameObject.layer;
         
-        Debug.Log(sandboxLayer);
+        Debug.Log($"just objectLayer : {objectLayer}");
+        Debug.Log($"objectLayer LayerMask.LayerToName : {LayerMask.LayerToName(objectLayer)}");
     }
 
 }

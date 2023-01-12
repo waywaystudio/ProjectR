@@ -1,12 +1,10 @@
-using Character.Combat.Skill.Modules;
 using Core;
 using DG.Tweening;
-using MainGame;
 using UnityEngine;
 
 namespace Character.Combat.Projectile
 {
-    public abstract class ProjectileObject : CombatObject, IEditorSetUp
+    public abstract class ProjectileObject : CombatObject
     {
         [SerializeField] protected float speed = 20f;
         [SerializeField] protected LayerMask targetLayer;
@@ -17,10 +15,6 @@ namespace Character.Combat.Projectile
         protected bool ValidateTaker => Taker != null && !Taker.Object.IsNullOrEmpty() && Taker.DynamicStatEntry.IsAlive.Value;
         private Vector3 destination;
 
-        protected DamageSkill DamageEntity => GetModule<DamageSkill>(ModuleType.Damage);
-        protected HealSkill HealEntity => GetModule<HealSkill>(ModuleType.Heal);
-        protected StatusEffectSkill StatusEffectEntity => GetModule<StatusEffectSkill>(ModuleType.StatusEffect);
-        
         protected Vector3 Destination
         {
             get
@@ -32,11 +26,12 @@ namespace Character.Combat.Projectile
         }
         
 
-        public override void Initialize(ICombatProvider provider, ICombatTaker taker)
+        public void Initialize(ICombatProvider provider, ICombatTaker taker)
         {
-            Provider = provider;
-            Taker = taker;
+            Provider    = provider;
+            Taker       = taker;
             Destination = taker.Object.transform.position;
+            ModuleTable.ForEach(x => x.Value.Initialize(this));
 
             Trajectory();
         }
@@ -45,15 +40,15 @@ namespace Character.Combat.Projectile
  
 
 #if UNITY_EDITOR
-        public void SetUp()
+        public override void SetUp()
         {
             if (actionCode == DataIndex.None)
                 actionCode = name.ToEnum<DataIndex>();
 
-            var projectileData = MainData.GetProjectile(actionCode);
+            var projectileData = MainGame.MainData.GetProjectile(actionCode);
             speed = projectileData.Speed;
 
-            GetComponents<SkillModule>().ForEach(x => EntityUtility.SetProjectileEntity(projectileData, x));
+            GetComponents<Module>().ForEach(x => ModuleUtility.SetProjectileModule(projectileData, x));
         }
 #endif
     }

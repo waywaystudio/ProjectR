@@ -52,16 +52,31 @@ namespace Core
                 this[statEntity.StatCode].Register(key, statEntity);
         }
         
+        public void Register(StatCode statCode, DataIndex dataIndex, float value, bool overwrite)
+        {
+            var statValue = new StatValue(value) { StatCode = statCode };
+            
+            if (!ContainsKey(statCode))
+            {
+                /* 순서 엄청 중요하다. 
+                 1. assign callback, 
+                 2. table add, 
+                 3. valueTable Register */
+                var statValueTable = new StatValueTable { OnResultChanged = () => Recalculation(statCode) };
+
+                Add(statCode, statValueTable);
+                statValueTable.Register(dataIndex, statValue, overwrite);
+            }
+            else
+                this[statCode].Register(dataIndex, statValue, overwrite);
+        }
+        
+        public void Unregister(DataIndex key, StatValue statValue) => Unregister(key, statValue.StatCode);
         public void Unregister(DataIndex key, StatCode statCode)
         {
             if (ContainsKey(statCode)) this[statCode].Unregister(key);
         }
-        
-        public void Unregister(DataIndex key, StatValue statValue)
-        {
-            if (ContainsKey(statValue.StatCode)) this[statValue.StatCode].Unregister(key);
-        }
-        
+
         public void UnionWith(StatTable target, bool overwrite = true)
         {
             target.ForEach(statEntry =>

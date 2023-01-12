@@ -17,6 +17,7 @@ namespace MainGame
     using ProjectileData = Data.ContentData.ProjectileData.Projectile;
     using RaidData = Data.ContentData.RaidData.Raid;
     using BossData = Data.ContentData.BossData.Boss;
+    using ProjectorData = Data.ContentData.ProjectorData.Projector;
     using EquipmentData = Data.ContentData.EquipmentData.Equipment;
 
     public class MainData : Core.Singleton.MonoSingleton<MainData>
@@ -42,6 +43,7 @@ namespace MainGame
         public static ProjectileData GetProjectile(DataIndex dataIndex) => DataTable[15].Get<ProjectileData>(dataIndex);
         public static RaidData GetRaid(DataIndex dataIndex) => DataTable[16].Get<RaidData>(dataIndex);
         public static BossData GetBoss(DataIndex dataIndex) => DataTable[17].Get<BossData>(dataIndex);
+        public static ProjectorData GetProjector(DataIndex dataIndex) => DataTable[18].Get<ProjectorData>(dataIndex);
         public static EquipmentData GetEquipment(DataIndex dataIndex) => DataTable[21].Get<EquipmentData>(dataIndex);
         
 

@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2402494755454563105}
   - component: {fileID: 2105927751028795071}
+  - component: {fileID: 1880411565650641694}
   m_Layer: 0
   m_Name: CorruptionDeBuff
   m_TagString: Untagged
@@ -53,3 +54,19 @@ MonoBehaviour:
     value: 1.5
     statCode: 1
   tickCount: 5
+--- !u!114 &1880411565650641694
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8333227002716821657}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bd2d098c14bb73641bcc6faff29af210, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  flag: 1
+  damageValue:
+    value: 1.5
+    statCode: 1

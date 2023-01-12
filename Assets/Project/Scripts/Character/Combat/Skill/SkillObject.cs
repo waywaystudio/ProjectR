@@ -6,9 +6,7 @@ using UnityEngine;
 
 namespace Character.Combat.Skill
 {
-    using Modules;
-    
-    public abstract class SkillObject : CombatObject, ISkill, IEditorSetUp
+    public abstract class SkillObject : CombatObject, ISkill
     {
         [SerializeField] protected int priority;
         [SerializeField] protected Sprite icon;
@@ -39,22 +37,12 @@ namespace Character.Combat.Skill
         }
 
         public List<IReady> ReadyCheckList { get; set; } = new();
-
-        public DamageSkill DamageModule => GetModule<DamageSkill>(ModuleType.Damage);
-        public CastingSkill CastingModule => GetModule<CastingSkill>(ModuleType.Casting);
-        public CoolTimeSkill CoolTimeModule => GetModule<CoolTimeSkill>(ModuleType.CoolTime);
-        public HealSkill HealModule => GetModule<HealSkill>(ModuleType.Heal);
-        public ProjectileSkill ProjectileModule => GetModule<ProjectileSkill>(ModuleType.Projectile);
-        public StatusEffectSkill StatusEffectModule => GetModule<StatusEffectSkill>(ModuleType.StatusEffect);
-        public TargetSkill TargetModule => GetModule<TargetSkill>(ModuleType.Target);
-        public ResourceSkill ResourceModule => GetModule<ResourceSkill>(ModuleType.Resource);
-        
         private ActionTable OnStart { get; } = new();
         private ActionTable OnComplete { get; } = new();
         private ActionTable OnInterrupted { get; } = new();
         
         
-        public override void Initialize(ICombatProvider provider, ICombatTaker taker)
+        public void Initialize(ICombatProvider provider, ICombatTaker taker)
         {
             Provider       = provider;
             ReadyCheckList = GetComponents<IReady>().ToList();
@@ -115,7 +103,7 @@ namespace Character.Combat.Skill
 
 
 #if UNITY_EDITOR
-        public void SetUp()
+        public override void SetUp()
         {
             if (actionCode == DataIndex.None) 
                 actionCode = GetType().Name.ToEnum<DataIndex>();
@@ -123,7 +111,7 @@ namespace Character.Combat.Skill
             var skillData = MainGame.MainData.GetSkill(actionCode);
             priority = skillData.Priority;
 
-            GetComponents<SkillModule>().ForEach(x => EntityUtility.SetSkillEntity(skillData, x));
+            GetComponents<Module>().ForEach(x => ModuleUtility.SetSkillModule(skillData, x));
             UnityEditor.EditorUtility.SetDirty(this);
         }
 
@@ -136,6 +124,3 @@ namespace Character.Combat.Skill
 #endif
     }
 }
-
-/* Annotation
- * 스킬은 Entity의 집합이며, 최소 한개의 ICombatEntity를 가진다. */

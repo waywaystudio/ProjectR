@@ -30,19 +30,16 @@ namespace Character.Data
 
         private void Awake()
         {
-            cb                 = GetComponentInParent<CharacterBehaviour>();
-            Hp.StatTable       = cb.StatTable;
-            Resource.StatTable = cb.StatTable;
-            Shield.StatTable   = cb.StatTable;
-            instanceID         = GetInstanceID();
-        }
-
-        private void OnEnable()
-        {
+            cb                  = GetComponentInParent<CharacterBehaviour>();
             cb.DynamicStatEntry = this;
+            Hp.StatTable        = cb.StatTable;
+            Resource.StatTable  = cb.StatTable;
+            Shield.StatTable    = cb.StatTable;
+            instanceID          = GetInstanceID();
+            
             cb.OnTakeStatusEffect.Register(instanceID, Register);
         }
-        
+
         private void Start()
         {
             IsAlive.Value  = true;

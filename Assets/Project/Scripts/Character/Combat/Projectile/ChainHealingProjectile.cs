@@ -36,7 +36,7 @@ namespace Character.Combat.Projectile
 
         protected void Arrived()
         {
-            if (ValidateTaker) Taker.TakeHeal(HealEntity);
+            if (ValidateTaker) Taker.TakeHeal(HealModule);
             
             if (--bounceCount <= 0)
             {

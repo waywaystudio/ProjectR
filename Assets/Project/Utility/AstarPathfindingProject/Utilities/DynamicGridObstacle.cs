@@ -1,7 +1,9 @@
+using System;
 using UnityEngine;
 using System.Collections.Generic;
 
-namespace Pathfinding {
+namespace Pathfinding 
+{
 	/// <summary>
 	/// Attach this script to any obstacle with a collider to enable dynamic updates of the graphs around it.
 	/// When the object has moved or rotated at least <see cref="updateError"/> world units
@@ -24,71 +26,78 @@ namespace Pathfinding {
 	/// See: navmeshcutting (view in online documentation for working links)
 	/// </summary>
 	[HelpURL("http://arongranberg.com/astar/documentation/stable/class_pathfinding_1_1_dynamic_grid_obstacle.php")]
-	public class DynamicGridObstacle : GraphModifier {
+	public class DynamicGridObstacle : GraphModifier 
+	{
 		/// <summary>Collider to get bounds information from</summary>
-		Collider coll;
+		private Collider coll;
 
 		/// <summary>2D Collider to get bounds information from</summary>
-		Collider2D coll2D;
+		private Collider2D coll2D;
 
 		/// <summary>Cached transform component</summary>
-		Transform tr;
+		private Transform tr;
 
-		/// <summary>The minimum change in world units along one of the axis of the bounding box of the collider to trigger a graph update</summary>
+		/// <summary>
+		///     The minimum change in world units along one of the axis of the bounding box of the collider to trigger a graph
+		///     update
+		/// </summary>
 		public float updateError = 1;
 
 		/// <summary>
-		/// Time in seconds between bounding box checks.
-		/// If AstarPath.batchGraphUpdates is enabled, it is not beneficial to have a checkTime much lower
-		/// than AstarPath.graphUpdateBatchingInterval because that will just add extra unnecessary graph updates.
-		///
-		/// In real time seconds (based on Time.realtimeSinceStartup).
+		///     Time in seconds between bounding box checks.
+		///     If AstarPath.batchGraphUpdates is enabled, it is not beneficial to have a checkTime much lower
+		///     than AstarPath.graphUpdateBatchingInterval because that will just add extra unnecessary graph updates.
+		///     In real time seconds (based on Time.realtimeSinceStartup).
 		/// </summary>
 		public float checkTime = 0.2F;
 
 		/// <summary>Bounds of the collider the last time the graphs were updated</summary>
-		Bounds prevBounds;
+		private Bounds prevBounds;
 
 		/// <summary>Rotation of the collider the last time the graphs were updated</summary>
-		Quaternion prevRotation;
+		private Quaternion prevRotation;
 
 		/// <summary>True if the collider was enabled last time the graphs were updated</summary>
-		bool prevEnabled;
+		private bool prevEnabled;
 
-		float lastCheckTime = -9999;
-		Queue<GraphUpdateObject> pendingGraphUpdates = new Queue<GraphUpdateObject>();
+		private float lastCheckTime = -9999;
+		private readonly Queue<GraphUpdateObject> pendingGraphUpdates = new();
 
-		Bounds bounds {
-			get {
-				if (coll != null) {
+		private Bounds bounds
+		{
+			get
+			{
+				if (coll != null)
+				{
 					return coll.bounds;
-				} else {
-					var b = coll2D.bounds;
-					// Make sure the bounding box stretches close to infinitely along the Z axis (which is the axis perpendicular to the 2D plane).
-					// We don't want any change along the Z axis to make a difference.
-					b.extents += new Vector3(0, 0, 10000);
-					return b;
 				}
+
+				var b = coll2D.bounds;
+				// Make sure the bounding box stretches close to infinitely along the Z axis (which is the axis perpendicular to the 2D plane).
+				// We don't want any change along the Z axis to make a difference.
+				b.extents += new Vector3(0, 0, 10000);
+				return b;
 			}
 		}
 
-		bool colliderEnabled {
-			get {
-				return coll != null ? coll.enabled : coll2D.enabled;
-			}
-		}
+		private bool colliderEnabled =>
+			coll != null
+				? coll.enabled
+				: coll2D.enabled;
 
-		protected override void Awake () {
+		protected override void Awake()
+		{
 			base.Awake();
 
-			coll = GetComponent<Collider>();
+			coll   = GetComponent<Collider>();
 			coll2D = GetComponent<Collider2D>();
-			tr = transform;
-			if (coll == null && coll2D == null && Application.isPlaying) {
-				throw new System.Exception("A collider or 2D collider must be attached to the GameObject(" + gameObject.name + ") for the DynamicGridObstacle to work");
-			}
+			tr     = transform;
+			if (coll == null && coll2D == null && Application.isPlaying)
+				throw new Exception("A collider or 2D collider must be attached to the GameObject("
+									+ gameObject.name
+									+ ") for the DynamicGridObstacle to work");
 
-			prevBounds = bounds;
+			prevBounds   = bounds;
 			prevRotation = tr.rotation;
 			// Make sure we update the graph as soon as we find that the collider is enabled
 			prevEnabled = false;

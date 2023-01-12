@@ -29,8 +29,8 @@ namespace Character.Combat.Projectile
         {
             if (ValidateTaker)
             {
-                Taker.TakeDamage(DamageEntity);
-                StatusEffectEntity.Effecting(Taker);
+                Taker.TakeDamage(DamageModule);
+                StatusEffectModule.Effectuate(Taker);
             }
             
             // TODO. Return To Pool

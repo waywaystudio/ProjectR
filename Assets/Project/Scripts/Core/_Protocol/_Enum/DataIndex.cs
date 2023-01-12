@@ -91,6 +91,7 @@ public enum DataIndex
 	ChainHealing = 13000017,
 	HealOrb = 13000018,
 	RangeAttack = 13000019,
+	MeteorStrike = 13000020,
 
 	/* StatusEffectData */
 	CorruptionDeBuff = 14000001,
@@ -134,6 +135,9 @@ public enum DataIndex
 	VaelastrasztheCorrupt = 17000014,
 	Chromaggus = 17000015,
 	Nefarian = 17000016,
+
+	/* ProjectorData */
+	MeteorStrikeProjector = 18000001,
 
 	/* EquipmentData */
 	BloodBoilLancet = 21000001,

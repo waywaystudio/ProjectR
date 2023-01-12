@@ -1,3 +1,6 @@
+using Core;
+using UnityEngine;
+
 namespace Character
 {
     public static class CharacterUtility
@@ -13,5 +16,14 @@ namespace Character
         /// </summary>
         /// <returns>usually more than 1.0f value</returns>
         public static float GetInverseHasteValue(float haste) => 1f + haste;
+
+        public static LayerMask SetLayer(IObjectName provider, string allyOrEnemy)
+        {
+            var selfLayer = (LayerMask)(1 << provider.Object.layer);
+            
+            return allyOrEnemy is "ally"
+                ? selfLayer
+                : selfLayer.GetEnemyLayerMask();
+        } 
     }
 }

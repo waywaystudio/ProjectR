@@ -1,13 +1,13 @@
 using System;
 using System.Collections.Generic;
 using System.Reflection;
-using Character.Combat.Skill.Modules;
+using Character.Combat;
 using Sirenix.OdinInspector;
 using Sirenix.OdinInspector.Editor;
 
 namespace Character.Editor
 {
-    public class DamageEntityDrawer : OdinAttributeProcessor<DamageSkill>
+    public class DamageEntityDrawer : OdinAttributeProcessor<DamageModule>
     {
         public override void ProcessChildMemberAttributes(InspectorProperty parentProperty, MemberInfo member, List<Attribute> attributes)
         {
@@ -18,7 +18,7 @@ namespace Character.Editor
         }
     }
     
-    public class HealEntityDrawer : OdinAttributeProcessor<HealSkill>
+    public class HealEntityDrawer : OdinAttributeProcessor<HealModule>
     {
         public override void ProcessChildMemberAttributes(InspectorProperty parentProperty, MemberInfo member, List<Attribute> attributes)
         {
@@ -29,7 +29,7 @@ namespace Character.Editor
         }
     }
     
-    public class TargetEntityDrawer : OdinAttributeProcessor<TargetSkill>
+    public class TargetEntityDrawer : OdinAttributeProcessor<TargetModule>
     {
         public override void ProcessChildMemberAttributes(InspectorProperty parentProperty, MemberInfo member, List<Attribute> attributes)
         {
@@ -45,7 +45,7 @@ namespace Character.Editor
         }
     }
     
-    public class StatusEffectEntityDrawer : OdinAttributeProcessor<StatusEffectSkill>
+    public class StatusEffectEntityDrawer : OdinAttributeProcessor<StatusEffectModule>
     {
         public override void ProcessChildMemberAttributes(InspectorProperty parentProperty, MemberInfo member, List<Attribute> attributes)
         {

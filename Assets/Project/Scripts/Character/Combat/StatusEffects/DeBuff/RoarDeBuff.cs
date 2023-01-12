@@ -7,16 +7,14 @@ namespace Character.Combat.StatusEffects.DeBuff
     public class RoarDeBuff : StatusEffectObject
     {
         [SerializeField] private ArmorValue armorValue;
-        
-        private WaitForSeconds waitForSeconds;
 
         protected override IEnumerator Initiate()
         {
-            waitForSeconds = new WaitForSeconds(Duration);
+            WaitBuffer = new WaitForSeconds(Duration);
 
             Taker.StatTable.Register(ActionCode, armorValue);
 
-            yield return waitForSeconds;
+            yield return WaitBuffer;
             
             Taker.StatTable.Unregister(ActionCode, StatCode.Armor);
             Callback?.Invoke();

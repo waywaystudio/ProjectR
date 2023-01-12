@@ -1,11 +1,12 @@
 using System.Collections;
 using Core;
 using UnityEngine;
+
 // ReSharper disable NotAccessedField.Local
 
-namespace Character.Combat.Skill.Modules
+namespace Character.Combat
 {
-    public class CoolTimeSkill : SkillModule, ICoolModule, IOnCompleted, IReady
+    public class CoolTimeModule : Module, ICoolModule, IOnCompleted, IReady
     {
         [SerializeField] private float coolTime;
 

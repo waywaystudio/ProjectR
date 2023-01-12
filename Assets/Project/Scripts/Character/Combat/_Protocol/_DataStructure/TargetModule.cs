@@ -2,9 +2,9 @@ using System.Collections.Generic;
 using Core;
 using UnityEngine;
 
-namespace Character.Combat.Skill.Modules
+namespace Character.Combat
 {
-    public class TargetSkill : SkillModule, ITargetModule, IReady
+    public class TargetModule : Module, ITargetModule, IReady
     {
         [SerializeField] private SortingType sortingType;
         [SerializeField] private string targetLayerType;
@@ -52,24 +52,19 @@ namespace Character.Combat.Skill.Modules
         }
         public void TakeStatusEffect(IStatusEffectModule statusEffect)
         {
-            if (targetCount == 1) statusEffect.Effecting(Target);
-            else TargetList.ForEach(statusEffect.Effecting);
+            if (targetCount == 1) statusEffect.Effectuate(Target);
+            else TargetList.ForEach(statusEffect.Effectuate);
         }
 
         public override void Initialize(IActionSender actionSender)
         {
             base.Initialize(actionSender);
 
-            var selfLayer = (LayerMask) (1 << Provider.Object.layer);
             var cb = GetComponentInParent<CharacterBehaviour>();
-
+            
             searchingEngine = cb.SearchingEngine;
             targetingEngine = cb.TargetingEngine;
-
-            targetLayer = targetLayerType is "ally"
-                    ? selfLayer
-                    : selfLayer.GetEnemyLayerMask();
-
+            targetLayer     = CharacterUtility.SetLayer(Provider, targetLayerType);
             targetList = targetLayer == LayerMask.NameToLayer("Adventurer")
                     ? searchingEngine.AdventurerList
                     : searchingEngine.MonsterList;

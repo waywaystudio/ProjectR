@@ -1,4 +1,5 @@
 using System.Collections;
+using Character.Combat;
 using Core;
 using UnityEngine;
 
@@ -7,18 +8,16 @@ namespace Character.Combat.StatusEffects.Buff
     public class FuryBuff : StatusEffectObject
     {
         [SerializeField] private HasteValue hasteValue;
-        
-        private WaitForSeconds waitForSeconds;
-        
+
         protected override IEnumerator Initiate()
         {
-            waitForSeconds = new WaitForSeconds(Duration);
+            WaitBuffer = new WaitForSeconds(Duration);
 
             Provider.StatTable.Register(ActionCode, hasteValue);
 
-            yield return waitForSeconds;
+            yield return WaitBuffer;
 
-            Provider.StatTable.Unregister(ActionCode, StatCode.Haste);
+            Provider.StatTable.Unregister(ActionCode, hasteValue);
             Callback?.Invoke();
         }
         

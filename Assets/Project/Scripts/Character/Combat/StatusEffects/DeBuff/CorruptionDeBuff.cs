@@ -4,14 +4,25 @@ using UnityEngine;
 
 namespace Character.Combat.StatusEffects.DeBuff
 {
-    public class CorruptionDeBuff : StatusEffectObject, ICombatEntity
+    public class CorruptionDeBuff : StatusEffectObject, ICombatTable
     {
         [SerializeField] private PowerValue tickValue;
         [SerializeField] private int tickCount = 5;
 
-        public IDynamicStatEntry DynamicStatEntry => Provider.DynamicStatEntry;
+        private float tick;
+
         public StatTable StatTable { get; } = new();
         public override float Duration => duration * CharacterUtility.GetHasteValue(StatTable.Haste);
+
+        public override void Initialize(ICombatProvider provider, ICombatTaker taker)
+        {
+            base.Initialize(provider, taker);
+            
+            StatTable.Register(ActionCode, tickValue);
+            StatTable.UnionWith(Provider.StatTable);
+
+            tick = Time.deltaTime;
+        }
         
 
         protected override IEnumerator Initiate()
@@ -23,22 +34,16 @@ namespace Character.Combat.StatusEffects.DeBuff
             {
                 while (currentTick > 0)
                 {
-                    currentTick -= Time.deltaTime;
+                    currentTick -= tick;
                     yield return null;
                 }
 
-                Taker.TakeDamage(this);
+                if (DamageModule) Taker.TakeDamage(DamageModule);
+                
                 currentTick = tickInterval;
             }
             
             Callback?.Invoke();
-        }
-
-
-        private void Start()
-        {
-            StatTable.Register(ActionCode, tickValue);
-            StatTable.UnionWith(Provider.StatTable);
         }
 
 

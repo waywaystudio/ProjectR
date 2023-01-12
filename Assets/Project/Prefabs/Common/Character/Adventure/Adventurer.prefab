@@ -73,6 +73,7 @@ Transform:
   - {fileID: 7971895454057834558}
   - {fileID: 7465841416723213854}
   - {fileID: 7864773309251796700}
+  - {fileID: 87764703586654645}
   m_Father: {fileID: 3744010701179384131}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -169,7 +170,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4c5f541185aa92b488eeff9b9e07cdfc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  flag: 16
+  flag: 5
   sortingType: 0
   targetLayerType: enemy
   targetCount: 1
@@ -237,7 +238,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3866fc5b909cf064b9fd1dce2842c40b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  flag: 64
+  flag: 7
   healValue:
     value: 3
     statCode: 1
@@ -253,7 +254,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4c5f541185aa92b488eeff9b9e07cdfc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  flag: 16
+  flag: 5
   sortingType: 3
   targetLayerType: ally
   targetCount: 1
@@ -271,7 +272,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cc73b176d16ea8448a48d598b41a08b5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  flag: 8
+  flag: 4
   originalCastingTime: 1.5
 --- !u!1 &1395558016746253724
 GameObject:
@@ -339,7 +340,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 220707aa24bd15e4d9a9240e827cb4a3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  flag: 512
+  flag: 9
   statusEffectID: 14000001
   statusEffectPool:
   - {fileID: 208746149383104753}
@@ -372,7 +373,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4c5f541185aa92b488eeff9b9e07cdfc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  flag: 16
+  flag: 5
   sortingType: 0
   targetLayerType: enemy
   targetCount: 1
@@ -455,7 +456,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cc73b176d16ea8448a48d598b41a08b5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  flag: 8
+  flag: 4
   originalCastingTime: 2
 --- !u!114 &3303418638668170366
 MonoBehaviour:
@@ -469,7 +470,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4c5f541185aa92b488eeff9b9e07cdfc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  flag: 16
+  flag: 5
   sortingType: 3
   targetLayerType: ally
   targetCount: 1
@@ -487,7 +488,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7142e0a43af74e747a185ee0b65f9c41, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  flag: 32
+  flag: 6
   projectileID: 15000003
   projectilePrefab: {fileID: 5223207423503661573, guid: 778d5e81bde95a045ac93cc2673ae572, type: 3}
 --- !u!1 &1797137588133403415
@@ -735,7 +736,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cc73b176d16ea8448a48d598b41a08b5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  flag: 8
+  flag: 4
   originalCastingTime: 0.8
 --- !u!114 &8976578391784397922
 MonoBehaviour:
@@ -749,7 +750,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4c5f541185aa92b488eeff9b9e07cdfc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  flag: 16
+  flag: 5
   sortingType: 0
   targetLayerType: enemy
   targetCount: 1
@@ -1478,7 +1479,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cc73b176d16ea8448a48d598b41a08b5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  flag: 8
+  flag: 4
   originalCastingTime: 3
 --- !u!114 &3896654370298883867
 MonoBehaviour:
@@ -1492,7 +1493,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4c3f42a73ddd63e47af0241ed7024ba6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  flag: 4
+  flag: 3
   obtain: -20
 --- !u!114 &3744010700775776671
 MonoBehaviour:
@@ -1520,7 +1521,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4c5f541185aa92b488eeff9b9e07cdfc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  flag: 16
+  flag: 5
   sortingType: 0
   targetLayerType: enemy
   targetCount: 1
@@ -1538,7 +1539,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7142e0a43af74e747a185ee0b65f9c41, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  flag: 32
+  flag: 6
   projectileID: 15000001
   projectilePrefab: {fileID: 5223207423503661573, guid: 9be681468222de24bad1b3d289d71f86, type: 3}
 --- !u!1 &3744010700929808893
@@ -1819,7 +1820,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4c3f42a73ddd63e47af0241ed7024ba6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  flag: 4
+  flag: 3
   obtain: 1
 --- !u!114 &3744010701327891161
 MonoBehaviour:
@@ -1833,12 +1834,74 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4c5f541185aa92b488eeff9b9e07cdfc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  flag: 16
+  flag: 5
   sortingType: 0
   targetLayerType: enemy
   targetCount: 1
   range: 5
   isSelf: 0
+--- !u!1 &3986781955451876584
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 87764703586654645}
+  - component: {fileID: 1300029322222589421}
+  - component: {fileID: 581835472612897285}
+  m_Layer: 0
+  m_Name: MeteorStrike
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &87764703586654645
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3986781955451876584}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 3136610500463366648}
+  m_RootOrder: 14
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1300029322222589421
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3986781955451876584}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7d5bba96b75bdad4d90fad6cf9c9a40e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  actionCode: 13000020
+  priority: 1
+  icon: {fileID: 0}
+--- !u!114 &581835472612897285
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3986781955451876584}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 75c84d6c3729d8148916010fbc1d8737, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  flag: 8
+  projectorPool: []
 --- !u!1 &4469171862292128997
 GameObject:
   m_ObjectHideFlags: 0
@@ -1901,7 +1964,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4c5f541185aa92b488eeff9b9e07cdfc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  flag: 16
+  flag: 5
   sortingType: 0
   targetLayerType: enemy
   targetCount: 1
@@ -1919,7 +1982,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cc73b176d16ea8448a48d598b41a08b5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  flag: 8
+  flag: 4
   originalCastingTime: 1.5
 --- !u!114 &2510908845857993706
 MonoBehaviour:
@@ -1933,7 +1996,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7142e0a43af74e747a185ee0b65f9c41, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  flag: 32
+  flag: 6
   projectileID: 15000002
   projectilePrefab: {fileID: 5223207423503661573, guid: 9af98811cdcc08d45970ab3fea66e6fd, type: 3}
 --- !u!1 &4579024629312635931
@@ -1998,7 +2061,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4c5f541185aa92b488eeff9b9e07cdfc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  flag: 16
+  flag: 5
   sortingType: 0
   targetLayerType: ally
   targetCount: 1
@@ -2030,7 +2093,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7142e0a43af74e747a185ee0b65f9c41, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  flag: 32
+  flag: 6
   projectileID: 15000004
   projectilePrefab: {fileID: 5223207423503661573, guid: b37f63199f85ecd4cb34c001855c1c60, type: 3}
 --- !u!1 &5155661571617905555
@@ -2190,7 +2253,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4c3f42a73ddd63e47af0241ed7024ba6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  flag: 4
+  flag: 3
   obtain: 10
 --- !u!114 &8392186021241681492
 MonoBehaviour:
@@ -2218,7 +2281,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4c5f541185aa92b488eeff9b9e07cdfc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  flag: 16
+  flag: 5
   sortingType: 0
   targetLayerType: enemy
   targetCount: 1
@@ -2479,7 +2542,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 220707aa24bd15e4d9a9240e827cb4a3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  flag: 512
+  flag: 9
   statusEffectID: 14001003
   statusEffectPool:
   - {fileID: 8629192081159891517}
@@ -2509,7 +2572,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4c5f541185aa92b488eeff9b9e07cdfc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  flag: 16
+  flag: 5
   sortingType: 0
   targetLayerType: ally
   targetCount: 1
@@ -2808,7 +2871,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 220707aa24bd15e4d9a9240e827cb4a3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  flag: 512
+  flag: 9
   statusEffectID: 14001005
   statusEffectPool:
   - {fileID: 8044712502089276943}
@@ -2838,7 +2901,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4c5f541185aa92b488eeff9b9e07cdfc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  flag: 16
+  flag: 5
   sortingType: 0
   targetLayerType: ally
   targetCount: 1
@@ -2960,7 +3023,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cc73b176d16ea8448a48d598b41a08b5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  flag: 8
+  flag: 4
   originalCastingTime: 1
 --- !u!114 &7639959192885922004
 MonoBehaviour:
@@ -2974,7 +3037,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4c3f42a73ddd63e47af0241ed7024ba6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  flag: 4
+  flag: 3
   obtain: 10
 --- !u!114 &7215757090540457091
 MonoBehaviour:
@@ -2988,7 +3051,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4c5f541185aa92b488eeff9b9e07cdfc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  flag: 16
+  flag: 5
   sortingType: 0
   targetLayerType: enemy
   targetCount: 1
@@ -3006,7 +3069,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7142e0a43af74e747a185ee0b65f9c41, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  flag: 32
+  flag: 6
   projectileID: 15000005
   projectilePrefab: {fileID: 5223207423503661573, guid: 61a3aa90bb4ae06458de7d6ad6be6e4d, type: 3}
 --- !u!1 &8964806259326648301
@@ -3214,7 +3277,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4c5f541185aa92b488eeff9b9e07cdfc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  flag: 16
+  flag: 5
   sortingType: 0
   targetLayerType: enemy
   targetCount: 5
@@ -3232,7 +3295,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 220707aa24bd15e4d9a9240e827cb4a3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  flag: 512
+  flag: 9
   statusEffectID: 14000004
   statusEffectPool:
   - {fileID: 5696589602693704731}

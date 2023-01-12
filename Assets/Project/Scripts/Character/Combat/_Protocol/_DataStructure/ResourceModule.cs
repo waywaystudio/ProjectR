@@ -1,9 +1,9 @@
 using Core;
 using UnityEngine;
 
-namespace Character.Combat.Skill.Modules
+namespace Character.Combat
 {
-    public class ResourceSkill : SkillModule, IResourceModule, IOnCompleted, IReady
+    public class ResourceModule : Module, IResourceModule, IOnCompleted, IReady
     {
         [SerializeField] private float obtain;
 

@@ -2,9 +2,9 @@ using System.Collections;
 using Core;
 using UnityEngine;
 
-namespace Character.Combat.Skill.Modules
+namespace Character.Combat
 {
-    public class CastingSkill : SkillModule, ICastingModule, IOnStarted, IOnInterrupted, IReady
+    public class CastingModule : Module, ICastingModule, IOnStarted, IOnInterrupted, IReady
     {
         [SerializeField] private float originalCastingTime;
 

@@ -318,3 +318,19 @@ MonoBehaviour:
     resourceObtain: 10
     statusEffectID: 0
     projectileID: 15000005
+  - id: 13000020
+    name: MeteorStrike
+    baseValue: 50
+    baseCoolTime: 5
+    range: 30
+    priority: 1
+    animationKey: skill
+    targetCount: 1
+    sortingType: None
+    targetLayer: enemy
+    isSelf: 0
+    skillType: projector
+    castingTime: 5
+    resourceObtain: 0
+    statusEffectID: 0
+    projectileID: 15000005
