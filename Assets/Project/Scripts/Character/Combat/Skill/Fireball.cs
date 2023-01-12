@@ -5,7 +5,9 @@ namespace Character.Combat.Skill
         protected override void CompleteSkill()
         {
             if (TargetModule && ProjectileModule)
-                ProjectileModule.Fire(TargetModule.Target);
+            {
+                TargetModule.TakeProjectile(ProjectileModule);
+            }
 
             base.CompleteSkill();
         }

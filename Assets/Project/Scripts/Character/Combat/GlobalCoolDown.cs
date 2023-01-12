@@ -7,22 +7,22 @@ namespace Character.Combat
 {
     public class GlobalCoolDown : MonoBehaviour
     {
-        // TODO. 캐릭터마다 다를 수 있다. 그렇지 않다면 Config를 만들어보자.
+        [SerializeField] private CharacterBehaviour cb;
         [SerializeField] private float baseCoolTime = 2.0f;
+
+        private Coroutine routineBuffer;
+        private float tick;
 
         // SharedBool :: CombatBehaviorDesigner
         public bool IsCooling { get; set; }
         public Observable<float> Timer { get; } = new();
-        public float CoolTime => baseCoolTime * CharacterUtility.GetHasteValue(ReferenceStatEntry.Haste);
-
-        private Coroutine RoutineBuffer { get; set; }
-        private StatTable ReferenceStatEntry { get; set; }
+        public float CoolTime => baseCoolTime * CharacterUtility.GetHasteValue(cb.StatTable.Haste);
         
 
         public void StartCooling()
         {
-            if (RoutineBuffer != null) StopCoroutine(RoutineBuffer);
-            RoutineBuffer = StartCoroutine(Cooling());
+            if (routineBuffer != null) StopCoroutine(routineBuffer);
+            routineBuffer = StartCoroutine(Cooling());
         }
         
 
@@ -34,7 +34,7 @@ namespace Character.Combat
 
             while (Timer.Value > 0)
             {
-                Timer.Value -= Time.deltaTime;
+                Timer.Value -= tick;
                 yield return null;
             }
 
@@ -43,7 +43,8 @@ namespace Character.Combat
 
         private void Awake()
         {
-            ReferenceStatEntry = GetComponentInParent<CharacterBehaviour>().StatTable;
+            cb ??= GetComponentInParent<CharacterBehaviour>(); 
+            tick = Time.deltaTime;
         }
     }
 }

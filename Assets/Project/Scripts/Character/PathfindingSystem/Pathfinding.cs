@@ -60,21 +60,11 @@ namespace Character.PathfindingSystem
             cb                   ??= GetComponentInParent<CharacterBehaviour>();
             instanceID           =   GetInstanceID();
             cb.PathfindingEngine =   this;
-        }
-
-        private void OnEnable()
-        {
             cb.OnTeleport.Register(instanceID, TeleportTo);
             cb.OnWalk.Register(instanceID, Move);
             cb.OnRun.Register(instanceID, Move);
         }
 
-        private void OnDisable()
-        {
-            cb.OnTeleport.Unregister(instanceID);
-            cb.OnWalk.Unregister(instanceID);
-            cb.OnRun.Unregister(instanceID);
-        }
 
 #if UNITY_EDITOR
         public void SetUp()

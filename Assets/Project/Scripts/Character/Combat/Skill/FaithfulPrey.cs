@@ -5,7 +5,9 @@ namespace Character.Combat.Skill
         protected override void CompleteSkill()
         {
             if (HealModule && TargetModule)
-                TargetModule.Target.TakeHeal(HealModule);
+            {
+                TargetModule.TakeHeal(HealModule);
+            }
 
             base.CompleteSkill();
         }

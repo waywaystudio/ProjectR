@@ -6,10 +6,10 @@ namespace Character.Combat.Skill
         {
             base.StartSkill();
 
-            if (DamageModule)
+            if (TargetModule)
             {
-                if (DamageModule) TargetModule.Target.TakeDamage(DamageModule);
-                if (StatusEffectModule) StatusEffectModule.Effectuate(TargetModule.Target);
+                if (DamageModule) TargetModule.TakeDamage(DamageModule);
+                if (StatusEffectModule) TargetModule.TakeStatusEffect(StatusEffectModule);
             }
         }
         

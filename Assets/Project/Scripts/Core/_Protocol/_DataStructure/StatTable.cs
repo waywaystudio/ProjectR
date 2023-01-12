@@ -58,10 +58,6 @@ namespace Core
             
             if (!ContainsKey(statCode))
             {
-                /* 순서 엄청 중요하다. 
-                 1. assign callback, 
-                 2. table add, 
-                 3. valueTable Register */
                 var statValueTable = new StatValueTable { OnResultChanged = () => Recalculation(statCode) };
 
                 Add(statCode, statValueTable);

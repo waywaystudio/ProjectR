@@ -1,5 +1,4 @@
 using Core;
-using Sirenix.OdinInspector;
 using UnityEngine;
 
 namespace Character.Data
@@ -9,12 +8,13 @@ namespace Character.Data
         private CharacterBehaviour cb;
         private int instanceID;
 
-        [ShowInInspector] public AliveValue IsAlive { get; } = new();
-        [ShowInInspector] public HpValue Hp { get; } = new();
-        [ShowInInspector] public ResourceValue Resource { get; } = new();
-        [ShowInInspector] public ShieldValue Shield { get; } = new();
-        [ShowInInspector] public StatusEffectTable BuffTable { get; } = new();
-        [ShowInInspector] public StatusEffectTable DeBuffTable { get; } = new();
+        public AliveValue IsAlive { get; } = new();
+        public HpValue Hp { get; } = new();
+        public ResourceValue Resource { get; } = new();
+        public ShieldValue Shield { get; } = new();
+        public StatusEffectTable BuffTable { get; } = new();
+        public StatusEffectTable DeBuffTable { get; } = new();
+        
 
         private void Register(IStatusEffect statusEffect)
         {
@@ -26,7 +26,6 @@ namespace Character.Data
 
             statusEffect.TargetTable = targetTable;
         }
-
 
         private void Awake()
         {
@@ -47,12 +46,5 @@ namespace Character.Data
             Resource.Value = cb.StatTable.MaxResource;
             Shield.Value   = 0;
         }
-
-        // TODO. 유니티 Disable Destroy 순서미보장 문제로 인한 종료에러...
-        // private void OnDisable()
-        // {
-        //     cb.DynamicStatEntry = null;
-        //     cb.OnTakeStatusEffect.Unregister(instanceID);
-        // }
     }
 }

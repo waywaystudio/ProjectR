@@ -13,8 +13,9 @@ namespace Character.Combat.StatusEffects.DeBuff
 
         public StatTable StatTable { get; } = new();
         public override float Duration => duration * CharacterUtility.GetHasteValue(StatTable.Haste);
+        
 
-        public override void Initialize(ICombatProvider provider, ICombatTaker taker)
+        protected override void Initialize(ICombatProvider provider, ICombatTaker taker)
         {
             base.Initialize(provider, taker);
             
@@ -23,7 +24,6 @@ namespace Character.Combat.StatusEffects.DeBuff
 
             tick = Time.deltaTime;
         }
-        
 
         protected override IEnumerator Initiate()
         {

@@ -14,7 +14,7 @@ namespace Character.Combat.Skill
         {
             if (DamageModule && TargetModule)
             {
-                TargetModule.Target.TakeDamage(DamageModule);
+                TargetModule.TakeDamage(DamageModule);
             }
         }
         

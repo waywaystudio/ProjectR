@@ -33,14 +33,14 @@ namespace Character.Combat.StatusEffects
             RoutineBuffer = StartCoroutine(Initiate());
         }
         
-        public virtual void Initialize(ICombatProvider provider, ICombatTaker taker)
+        
+        protected virtual void Initialize(ICombatProvider provider, ICombatTaker taker)
         {
             Provider = provider;
             Taker    = taker;
             Taker.TakeStatusEffect(this);
             RoutineBuffer = StartCoroutine(Initiate());
         }
-
 
         protected abstract IEnumerator Initiate();
         

@@ -7,7 +7,9 @@ namespace Character.Combat.Skill
             base.CompleteSkill();
 
             if (TargetModule && ProjectileModule)
-                ProjectileModule.Fire(TargetModule.Target);
+            {
+                TargetModule.TakeProjectile(ProjectileModule);
+            }
         }
     }
 }

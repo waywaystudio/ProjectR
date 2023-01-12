@@ -13,7 +13,9 @@ namespace Character.Combat.Skill
         public override void InvokeEvent()
         {
             if (DamageModule && TargetModule)
-                TargetModule.Target.TakeDamage(DamageModule);
+            {
+                TargetModule.TakeDamage(DamageModule);
+            }
         }
 
         // 위 처럼 구현하고 매 프레임에서 Target != null을 체크하면 안정성이 조금 올라간다.

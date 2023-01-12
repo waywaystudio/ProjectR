@@ -5,7 +5,10 @@ namespace Character.Combat.Skill
         public override void InvokeEvent()
         {
             if (DamageModule && TargetModule)
-                TargetModule.Target.TakeDamage(DamageModule);
+            {
+                TargetModule.TakeDamage(DamageModule);
+            }
+                
         }
     }
 }
