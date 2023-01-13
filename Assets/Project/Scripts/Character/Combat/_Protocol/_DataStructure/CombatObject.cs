@@ -32,6 +32,7 @@ namespace Character.Combat
         public StatusEffectModule StatusEffectModule => GetModule<StatusEffectModule>(ModuleType.StatusEffect);
         public TargetModule TargetModule => GetModule<TargetModule>(ModuleType.Target);
         public ResourceModule ResourceModule => GetModule<ResourceModule>(ModuleType.Resource);
+        public ProjectorModule ProjectorModule => GetModule<ProjectorModule>(ModuleType.Projector);
 
 
         protected virtual void Awake()

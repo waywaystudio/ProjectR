@@ -2,13 +2,17 @@ using Core;
 
 namespace Character.Combat.Projector
 {
-    public class MeteorStrikeProjector : ProjectorObject
+    public class EqualizerProjector : ProjectorObject
     {
+        public void Test()
+        {
+            Projection(TempProvider, TempTarget);
+        }
+
+
         protected override void EnterProjector(ICombatTaker taker)
         {
-            /* OnCollisionEntered :: Avoid */
-            // Try use Method 4: The ConstantPath type
-            // https://arongranberg.com/astar/documentation/dev_4_3_61_b7b7a3f3/wander.html
+            // throw new System.NotImplementedException();
         }
 
         protected override void EndProjector(ICombatTaker taker)
@@ -17,4 +21,3 @@ namespace Character.Combat.Projector
         }
     }
 }
-

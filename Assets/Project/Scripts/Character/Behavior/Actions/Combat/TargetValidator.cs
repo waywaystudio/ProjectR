@@ -1,7 +1,6 @@
 using BehaviorDesigner.Runtime.Tasks;
 using Character.Combat;
 using Core;
-using UnityEngine;
 
 namespace Character.Behavior.Actions.Combat
 {
@@ -23,14 +22,14 @@ namespace Character.Behavior.Actions.Combat
                 return TaskStatus.Failure;
             }
 
-            var targetEntity = skill.TargetModule;
+            var targetModule = skill.TargetModule;
 
-            if (targetEntity is null)
+            if (targetModule is null)
             {
                 return TaskStatus.Success;
             }
 
-            taker = targetEntity.Target;
+            taker = targetModule.Target;
 
             var isValid = taker != null && taker.DynamicStatEntry.IsAlive.Value; // Add more condition...
 

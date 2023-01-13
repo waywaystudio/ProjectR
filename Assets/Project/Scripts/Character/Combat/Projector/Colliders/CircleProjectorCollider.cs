@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace Character.Combat.Projector.Colliders
 {
-    public class SphereProjectorCollider : ProjectorCollider
+    public class CircleProjectorCollider : ProjectorCollider
     {
         [SerializeField] private SphereCollider sphereCollider;
 
@@ -11,7 +11,10 @@ namespace Character.Combat.Projector.Colliders
 
         protected override void StartProjection()
         {
-            po.transform.position = po.Taker.Object.transform.position;
+            TargetLayer           = po.TargetLayer;
+            po.transform.position = po.Taker != null
+                ? po.Taker.Object.transform.position
+                : po.Destination;
         }
 
         protected override void EndProjection()

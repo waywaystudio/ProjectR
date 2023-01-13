@@ -29,14 +29,14 @@ namespace Core
             return gameobject.GetComponentsInChildren<T>().First(x => x.gameObject != gameobject);
         }
 
-        public static List<T> GetComponentsInOnlyChildren<T>(this GameObject gameobject) where T : MonoBehaviour
+        public static List<T> GetComponentsInOnlyChildren<T>(this GameObject gameObject)
         {
-            var selfBehaviour = gameobject.GetComponent<T>();
+            var selfBehaviour = gameObject.GetComponent<T>();
             var result = new List<T>();
 
-            gameobject.GetComponentsInChildren(result);
+            gameObject.GetComponentsInChildren(result);
 
-            if (selfBehaviour) result.Remove(selfBehaviour);
+            result.Remove(selfBehaviour);
 
             return result;
         }

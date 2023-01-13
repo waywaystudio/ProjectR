@@ -30,6 +30,7 @@ MonoBehaviour:
     resourceObtain: 1
     statusEffectID: 0
     projectileID: 0
+    projectorID: 0
   - id: 13000002
     name: Charge
     baseValue: 4
@@ -46,6 +47,7 @@ MonoBehaviour:
     resourceObtain: 10
     statusEffectID: 0
     projectileID: 0
+    projectorID: 0
   - id: 13000003
     name: BackStep
     baseValue: 4
@@ -62,6 +64,7 @@ MonoBehaviour:
     resourceObtain: 0
     statusEffectID: 0
     projectileID: 0
+    projectorID: 0
   - id: 13000004
     name: AimShot
     baseValue: 0
@@ -78,6 +81,7 @@ MonoBehaviour:
     resourceObtain: -20
     statusEffectID: 0
     projectileID: 15000001
+    projectorID: 0
   - id: 13000005
     name: BloodDrain
     baseValue: 0
@@ -94,6 +98,7 @@ MonoBehaviour:
     resourceObtain: 0
     statusEffectID: 14001003
     projectileID: 0
+    projectorID: 0
   - id: 13000006
     name: Roar
     baseValue: 1.2
@@ -110,6 +115,7 @@ MonoBehaviour:
     resourceObtain: 0
     statusEffectID: 14000004
     projectileID: 0
+    projectorID: 0
   - id: 13000007
     name: Penetrate
     baseValue: 21
@@ -126,6 +132,7 @@ MonoBehaviour:
     resourceObtain: 0
     statusEffectID: 0
     projectileID: 0
+    projectorID: 0
   - id: 13000008
     name: RapidBlow
     baseValue: 2
@@ -142,6 +149,7 @@ MonoBehaviour:
     resourceObtain: 4
     statusEffectID: 0
     projectileID: 0
+    projectorID: 0
   - id: 13000009
     name: Fury
     baseValue: 0
@@ -158,6 +166,7 @@ MonoBehaviour:
     resourceObtain: 0
     statusEffectID: 14001005
     projectileID: 0
+    projectorID: 0
   - id: 13000010
     name: LightningSlash
     baseValue: 8
@@ -174,6 +183,7 @@ MonoBehaviour:
     resourceObtain: 0
     statusEffectID: 0
     projectileID: 0
+    projectorID: 0
   - id: 13000011
     name: Fireball
     baseValue: 0
@@ -190,6 +200,7 @@ MonoBehaviour:
     resourceObtain: 0
     statusEffectID: 14000006
     projectileID: 15000002
+    projectorID: 0
   - id: 13000012
     name: Corruption
     baseValue: 3
@@ -206,6 +217,7 @@ MonoBehaviour:
     resourceObtain: 0
     statusEffectID: 14000001
     projectileID: 0
+    projectorID: 0
   - id: 13000013
     name: FaithfulPrey
     baseValue: 3
@@ -222,6 +234,7 @@ MonoBehaviour:
     resourceObtain: 0
     statusEffectID: 0
     projectileID: 0
+    projectorID: 0
   - id: 13000014
     name: HolyProtection
     baseValue: 5
@@ -238,6 +251,7 @@ MonoBehaviour:
     resourceObtain: 0
     statusEffectID: 0
     projectileID: 0
+    projectorID: 0
   - id: 13000015
     name: Revivification
     baseValue: 5
@@ -254,6 +268,7 @@ MonoBehaviour:
     resourceObtain: 0
     statusEffectID: 0
     projectileID: 0
+    projectorID: 0
   - id: 13000016
     name: EncouragedSong
     baseValue: 10
@@ -270,6 +285,7 @@ MonoBehaviour:
     resourceObtain: 0
     statusEffectID: 0
     projectileID: 0
+    projectorID: 0
   - id: 13000017
     name: ChainHealing
     baseValue: 0
@@ -286,6 +302,7 @@ MonoBehaviour:
     resourceObtain: 0
     statusEffectID: 0
     projectileID: 15000003
+    projectorID: 0
   - id: 13000018
     name: HealOrb
     baseValue: 0
@@ -302,6 +319,7 @@ MonoBehaviour:
     resourceObtain: 0
     statusEffectID: 0
     projectileID: 15000004
+    projectorID: 0
   - id: 13000019
     name: RangeAttack
     baseValue: 0
@@ -318,8 +336,26 @@ MonoBehaviour:
     resourceObtain: 10
     statusEffectID: 0
     projectileID: 15000005
+    projectorID: 0
   - id: 13000020
     name: MeteorStrike
+    baseValue: 50
+    baseCoolTime: 10
+    range: 30
+    priority: 1
+    animationKey: skill
+    targetCount: 1
+    sortingType: None
+    targetLayer: enemy
+    isSelf: 0
+    skillType: projector
+    castingTime: 2
+    resourceObtain: 0
+    statusEffectID: 0
+    projectileID: 0
+    projectorID: 18000001
+  - id: 13000021
+    name: PowerBash
     baseValue: 50
     baseCoolTime: 5
     range: 30
@@ -333,4 +369,39 @@ MonoBehaviour:
     castingTime: 5
     resourceObtain: 0
     statusEffectID: 0
-    projectileID: 15000005
+    projectileID: 0
+    projectorID: 18000002
+  - id: 13000022
+    name: Equalizer
+    baseValue: 50
+    baseCoolTime: 5
+    range: 30
+    priority: 1
+    animationKey: skill
+    targetCount: 1
+    sortingType: None
+    targetLayer: enemy
+    isSelf: 0
+    skillType: projector
+    castingTime: 6
+    resourceObtain: 0
+    statusEffectID: 0
+    projectileID: 0
+    projectorID: 18000003
+  - id: 13000023
+    name: DragonBreath
+    baseValue: 50
+    baseCoolTime: 5
+    range: 30
+    priority: 1
+    animationKey: skill
+    targetCount: 1
+    sortingType: None
+    targetLayer: enemy
+    isSelf: 0
+    skillType: projector
+    castingTime: 2
+    resourceObtain: 0
+    statusEffectID: 0
+    projectileID: 0
+    projectorID: 18000004

@@ -1,174 +1,237 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-namespace KevinCastejon.ConeMesh
+
+[RequireComponent(typeof(MeshFilter), typeof(MeshRenderer), typeof(MeshCollider))]
+public class Cone : MonoBehaviour
 {
-    public enum ConeOrientation
+    public enum ConeOrientation { X, Y, Z }
+
+    [SerializeField] private bool _pivotAtTop = true;
+    [SerializeField] private ConeOrientation _orientation = ConeOrientation.Z;
+    [SerializeField] private bool _invertDirection;
+    [SerializeField] private bool _isTrigger;
+    [SerializeField] private Material _material;
+
+    [Min(3)]
+    [SerializeField] private int _coneSides = 25;
+    [SerializeField] private bool _proportionalRadius;
+
+    [Min(float.Epsilon)]
+    [SerializeField] private float _coneRadius = 0.5f;
+    [SerializeField] private float _coneHeight = 1f;
+
+    private Mesh coneMesh;
+    private MeshFilter meshFilter;
+    private MeshRenderer meshRenderer;
+    private MeshCollider meshCollider;
+
+    public bool PivotAtTop
     {
-        X,
-        Y,
-        Z
+        get => _pivotAtTop;
+        set
+        {
+            _pivotAtTop = value;
+            GenerateCone();
+        }
     }
 
-    /// <summary>
-    /// Generate a cone mesh, renderer and collider, on the fly.
-    /// </summary>
-    [RequireComponent(typeof(MeshFilter), typeof(MeshRenderer), typeof(MeshCollider))]
-    public class Cone : MonoBehaviour
+    public Material Material
     {
-        [SerializeField]
-        private bool _pivotAtTop = true;
-        [SerializeField]
-        private ConeOrientation _orientation = ConeOrientation.Z;
-        [SerializeField]
-        private bool _invertDirection;
-        [SerializeField]
-        private bool _isTrigger;
-        [SerializeField]
-        private Material _material;
-        [Min(3)]
-        [SerializeField]
-        private int _coneSides = 25;
-        [SerializeField]
-        private bool _proportionalRadius;
-        [Min(float.Epsilon)]
-        [SerializeField]
-        private float _coneRadius = 0.5f;
-        [SerializeField]
-        private float _coneHeight = 1f;
-
-        private Mesh _coneMesh;
-        private MeshFilter _meshFilter;
-        private MeshRenderer _meshRenderer;
-        private MeshCollider _meshCollider;
-
-        public bool PivotAtTop { get => _pivotAtTop; set { _pivotAtTop = value; GenerateCone(); } }
-        public Material Material { get => _material; set { _material = value; _meshRenderer = _meshRenderer ? _meshRenderer : gameObject.GetComponent<MeshRenderer>(); _meshRenderer.material = _material; } }
-        public int ConeSubdivisions { get => _coneSides; set { _coneSides = value; GenerateCone(); } }
-        public float ConeRadius { get => _coneRadius; set { _coneRadius = value; GenerateCone(); } }
-        public float ConeHeight { get => _coneHeight; set { _coneHeight = value; GenerateCone(); } }
-        public ConeOrientation Orientation { get => _orientation; set { _orientation = value; GenerateCone(); } }
-        public bool IsConeGenerated { get => _coneMesh != null; }
-        public bool IsTrigger
+        get => _material;
+        set
         {
-            get => _isTrigger; set
-            {
-                _isTrigger = value; _meshCollider = _meshCollider ? _meshCollider : gameObject.GetComponent<MeshCollider>();
-                if (_isTrigger)
-                {
-                    _meshCollider.convex = true;
-                }
-                _meshCollider.isTrigger = value;
-            }
+            _material = value;
+            meshRenderer = meshRenderer
+                ? meshRenderer
+                : gameObject.GetComponent<MeshRenderer>();
+            meshRenderer.material = _material;
         }
-        public bool ProportionalRadius { get => _proportionalRadius; set { _proportionalRadius = value; GenerateCone(); } }
+    }
 
-        internal void GenerateCone()
+    public int ConeSubdivisions
+    {
+        get => _coneSides;
+        set
         {
-            _coneMesh = CreateConeMesh(_coneSides + 1, _coneRadius, _coneHeight, _pivotAtTop, _orientation, _invertDirection, _proportionalRadius);
-            _meshFilter = _meshFilter ? _meshFilter : gameObject.GetComponent<MeshFilter>();
-            _meshRenderer = _meshRenderer ? _meshRenderer : gameObject.GetComponent<MeshRenderer>();
-            _meshCollider = _meshCollider ? _meshCollider : gameObject.GetComponent<MeshCollider>();
-
-            _meshFilter.sharedMesh = _coneMesh;
-
-            _meshRenderer.additionalVertexStreams = _coneMesh;
-            _meshRenderer.material = _material;
-            _meshCollider.sharedMesh = _coneMesh;
-            _meshCollider.convex = true;
-            _meshCollider.isTrigger = _isTrigger;
+            _coneSides = value;
+            GenerateCone();
         }
+    }
 
-        private static Mesh CreateConeMesh(int subdivisions, float radius, float height, bool pivotAtTop, ConeOrientation orientation, bool invertDirection, bool proportionalRadius)
+    public float ConeRadius
+    {
+        get => _coneRadius;
+        set
         {
-            if (proportionalRadius)
-            {
-                radius *= height;
-            }
-            if (invertDirection)
-            {
-                height = -height;
-            }
-            Mesh mesh = new Mesh();
-            Vector3[] vertices = new Vector3[subdivisions + 2];
-            Vector2[] uv = new Vector2[vertices.Length];
-            int[] triangles = new int[(subdivisions * 2) * 3];
+            _coneRadius = value;
+            GenerateCone();
+        }
+    }
+
+    public float ConeHeight
+    {
+        get => _coneHeight;
+        set
+        {
+            _coneHeight = value;
+            GenerateCone();
+        }
+    }
+
+    public ConeOrientation Orientation
+    {
+        get => _orientation;
+        set
+        {
+            _orientation = value;
+            GenerateCone();
+        }
+    }
+
+    public bool IsConeGenerated => coneMesh != null;
+
+    public bool IsTrigger
+    {
+        get => _isTrigger;
+        set
+        {
+            _isTrigger = value;
+            meshCollider = meshCollider
+                ? meshCollider
+                : gameObject.GetComponent<MeshCollider>();
+            if (_isTrigger) meshCollider.convex = true;
+            meshCollider.isTrigger = value;
+        }
+    }
+
+    public bool ProportionalRadius
+    {
+        get => _proportionalRadius;
+        set
+        {
+            _proportionalRadius = value;
+            GenerateCone();
+        }
+    }
+
+    internal void GenerateCone()
+    {
+        coneMesh = CreateConeMesh(_coneSides + 1,
+            _coneRadius,
+            _coneHeight,
+            _pivotAtTop,
+            _orientation,
+            _invertDirection,
+            _proportionalRadius);
+        meshFilter = meshFilter
+            ? meshFilter
+            : gameObject.GetComponent<MeshFilter>();
+        meshRenderer = meshRenderer
+            ? meshRenderer
+            : gameObject.GetComponent<MeshRenderer>();
+        meshCollider = meshCollider
+            ? meshCollider
+            : gameObject.GetComponent<MeshCollider>();
+
+        meshFilter.sharedMesh = coneMesh;
+
+        meshRenderer.additionalVertexStreams = coneMesh;
+        meshRenderer.material                = _material;
+        meshCollider.sharedMesh              = coneMesh;
+        meshCollider.convex                  = true;
+        meshCollider.isTrigger               = _isTrigger;
+    }
+
+    private static Mesh CreateConeMesh(int subdivisions, float radius, float height, bool pivotAtTop,
+        ConeOrientation orientation, bool invertDirection, bool proportionalRadius)
+    {
+        if (proportionalRadius) radius *= height;
+        if (invertDirection) height    =  -height;
+        var mesh = new Mesh();
+        var vertices = new Vector3[subdivisions + 2];
+        var uv = new Vector2[vertices.Length];
+        var triangles = new int[subdivisions * 2 * 3];
+        if (orientation == ConeOrientation.X)
+            vertices[0] = pivotAtTop
+                ? Vector3.right * height
+                : Vector3.zero;
+        else if (orientation == ConeOrientation.Y)
+            vertices[0] = pivotAtTop
+                ? Vector3.up * height
+                : Vector3.zero;
+        else
+            vertices[0] = pivotAtTop
+                ? Vector3.forward * height
+                : Vector3.zero;
+        uv[0] = new Vector2(0.5f, 0f);
+        for (int i = 0, n = subdivisions - 1; i < subdivisions; i++)
+        {
+            var ratio = (float)i / n;
+            var r = ratio * (Mathf.PI * 2f);
+            var x = Mathf.Cos(r) * radius;
+            var z = Mathf.Sin(r) * radius;
             if (orientation == ConeOrientation.X)
-            {
-                vertices[0] = pivotAtTop ? Vector3.right * height : Vector3.zero;
-            }
+                vertices[i + 1] = new Vector3(pivotAtTop
+                        ? height
+                        : 0f,
+                    x,
+                    z);
             else if (orientation == ConeOrientation.Y)
-            {
-                vertices[0] = pivotAtTop ? Vector3.up * height : Vector3.zero;
-            }
+                vertices[i + 1] = new Vector3(x,
+                    pivotAtTop
+                        ? height
+                        : 0f,
+                    z);
             else
-            {
-                vertices[0] = pivotAtTop ? Vector3.forward * height : Vector3.zero;
-            }
-            uv[0] = new Vector2(0.5f, 0f);
-            for (int i = 0, n = subdivisions - 1; i < subdivisions; i++)
-            {
-                float ratio = (float)i / n;
-                float r = ratio * (Mathf.PI * 2f);
-                float x = Mathf.Cos(r) * radius;
-                float z = Mathf.Sin(r) * radius;
-                if (orientation == ConeOrientation.X)
-                {
-                    vertices[i + 1] = new Vector3(pivotAtTop ? height : 0f, x, z);
-                }
-                else if (orientation == ConeOrientation.Y)
-                {
-                    vertices[i + 1] = new Vector3(x, pivotAtTop ? height : 0f, z);
-                }
-                else
-                {
-                    vertices[i + 1] = new Vector3(x, z, pivotAtTop ? height : 0f);
-                }
-                uv[i + 1] = new Vector2(ratio, 0f);
-            }
-            if (orientation == ConeOrientation.X)
-            {
-                vertices[subdivisions + 1] = !pivotAtTop ? Vector3.right * height : Vector3.zero;
-            }
-            else if (orientation == ConeOrientation.Y)
-            {
-                vertices[subdivisions + 1] = !pivotAtTop ? Vector3.up * height : Vector3.zero;
-            }
-            else
-            {
-                vertices[subdivisions + 1] = !pivotAtTop ? Vector3.forward * height : Vector3.zero;
-            }
-            uv[subdivisions + 1] = new Vector2(0.5f, 1f);
-
-            // base
-
-            for (int i = 0, n = subdivisions - 1; i < n; i++)
-            {
-                int offset = i * 3;
-                triangles[offset] = 0;
-                triangles[offset + 1] = i + 1;
-                triangles[offset + 2] = i + 2;
-            }
-
-            // sides
-
-            int bottomOffset = subdivisions * 3;
-            for (int i = 0, n = subdivisions - 1; i < n; i++)
-            {
-                int offset = i * 3 + bottomOffset;
-                triangles[offset] = i + 1;
-                triangles[offset + 1] = subdivisions + 1;
-                triangles[offset + 2] = i + 2;
-            }
-
-            mesh.vertices = vertices;
-            mesh.uv = uv;
-            mesh.triangles = triangles;
-            mesh.RecalculateBounds();
-            mesh.RecalculateNormals();
-
-            return mesh;
+                vertices[i + 1] = new Vector3(x,
+                    z,
+                    pivotAtTop
+                        ? height
+                        : 0f);
+            uv[i + 1] = new Vector2(ratio, 0f);
         }
+
+        if (orientation == ConeOrientation.X)
+            vertices[subdivisions + 1] = !pivotAtTop
+                ? Vector3.right * height
+                : Vector3.zero;
+        else if (orientation == ConeOrientation.Y)
+            vertices[subdivisions + 1] = !pivotAtTop
+                ? Vector3.up * height
+                : Vector3.zero;
+        else
+            vertices[subdivisions + 1] = !pivotAtTop
+                ? Vector3.forward * height
+                : Vector3.zero;
+        uv[subdivisions + 1] = new Vector2(0.5f, 1f);
+
+        // base
+
+        for (int i = 0, n = subdivisions - 1; i < n; i++)
+        {
+            var offset = i * 3;
+            triangles[offset]     = 0;
+            triangles[offset + 1] = i + 1;
+            triangles[offset + 2] = i + 2;
+        }
+
+        // sides
+
+        var bottomOffset = subdivisions * 3;
+        for (int i = 0, n = subdivisions - 1; i < n; i++)
+        {
+            var offset = i * 3 + bottomOffset;
+            triangles[offset]     = i + 1;
+            triangles[offset + 1] = subdivisions + 1;
+            triangles[offset + 2] = i + 2;
+        }
+
+        mesh.vertices  = vertices;
+        mesh.uv        = uv;
+        mesh.triangles = triangles;
+        mesh.RecalculateBounds();
+        mesh.RecalculateNormals();
+
+        return mesh;
     }
 }

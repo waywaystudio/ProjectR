@@ -10,7 +10,6 @@ namespace Character.Combat.Projector.Decal
     {
         [SerializeField] private ProjectorObject po; 
         [SerializeField] private DecalProjector decal;
-        [SerializeField] private Material decalMaterial;
 
         private ProjectorShapeType shapeType;
         private float castingTime;
@@ -24,24 +23,35 @@ namespace Character.Combat.Projector.Decal
         
         private static readonly int FillAmount = Shader.PropertyToID("_FillAmount");
         private const float Depth = 50f;
-
+        
 
         private void StartProjection()
         {
+            castingTime = po.CastingTime;
+            
             switch (shapeType)
             {
                 case ProjectorShapeType.Sphere:
                 {
                     var length = size.x * 2f;
                     decal.size = new Vector3(length, length, Depth);
+                    
                     break;
                 }
                 case ProjectorShapeType.Rectangle:
                 {
+                    var providerPosition = po.Provider.Object.transform.position;
+                    var takerPosition = po.Taker != null
+                        ? po.Taker.Object.transform.position
+                        : po.Destination;
+                    var length = Vector3.Distance(providerPosition, takerPosition);
+                    decal.size = new Vector3(length, size.x, Depth);
+
                     break;
                 }
-                case ProjectorShapeType.ExtendedRectangle:
+                case ProjectorShapeType.ExRectangle:
                 {
+                    decal.size = new Vector3(size.x, 100f, Depth);
                     break;
                 }
                 case ProjectorShapeType.Cone:
@@ -52,8 +62,8 @@ namespace Character.Combat.Projector.Decal
                 default: throw new ArgumentOutOfRangeException();
             }
             
-            decalMaterial.SetFloat(FillAmount, 0f);
-            decalMaterial
+            decal.material.SetFloat(FillAmount, 0f);
+            decal.material
                 .DOFloat(1.5f, FillAmount, castingTime)
                 .SetEase(Ease.InQuad)
                 .OnComplete(po.OnProjectionEnd.Invoke);
@@ -61,17 +71,18 @@ namespace Character.Combat.Projector.Decal
 
         private void EndProjection()
         {
-            decalMaterial.SetFloat(FillAmount, 0f);
+            decal.material.SetFloat(FillAmount, 0f);
         }
 
         private void Awake()
         {
             po            ??= GetComponentInParent<ProjectorObject>();
             decal         ??= GetComponent<DecalProjector>();
-            decalMaterial =   decal.material;
             shapeType     =   po.ShapeType;
-            castingTime   =   po.CastingTime;
             size          =   po.SizeValue;
+            
+            var mat = new Material(decal.material);
+            decal.material = mat;
 
             po.OnProjectionStart.Register(InstanceID, StartProjection);
             po.OnProjectionEnd.Register(InstanceID, EndProjection);
@@ -82,7 +93,7 @@ namespace Character.Combat.Projector.Decal
         {
             po            ??= GetComponentInParent<ProjectorObject>();
             decal         ??= GetComponent<DecalProjector>();
-            decalMaterial =   decal.material;
+            // decalMaterial =   decal.material;
         }
 #endif
     }

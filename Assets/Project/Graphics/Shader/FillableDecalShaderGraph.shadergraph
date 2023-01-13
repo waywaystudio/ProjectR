@@ -80,6 +80,9 @@
         },
         {
             "m_Id": "35b57a2f56454205a94e80961d6cc51a"
+        },
+        {
+            "m_Id": "c855ccaf1ba542c0b586baf77cfb562e"
         }
     ],
     "m_GroupDatas": [],
@@ -945,10 +948,10 @@
         "m_Expanded": true,
         "m_Position": {
             "serializedVersion": "2",
-            "x": -1361.0,
-            "y": 254.00001525878907,
+            "x": -1385.0,
+            "y": 251.0,
             "width": 130.0,
-            "height": 33.99995422363281
+            "height": 34.0
         }
     },
     "m_Slots": [
@@ -1876,6 +1879,43 @@
 
 {
     "m_SGVersion": 0,
+    "m_Type": "UnityEditor.ShaderGraph.SliderNode",
+    "m_ObjectId": "c855ccaf1ba542c0b586baf77cfb562e",
+    "m_Group": {
+        "m_Id": ""
+    },
+    "m_Name": "Slider",
+    "m_DrawState": {
+        "m_Expanded": false,
+        "m_Position": {
+            "serializedVersion": "2",
+            "x": -1487.0,
+            "y": 109.0000228881836,
+            "width": 232.0001220703125,
+            "height": 112.9999771118164
+        }
+    },
+    "m_Slots": [
+        {
+            "m_Id": "f3ac5f961ff54e6584fadd3a8aaeb3bb"
+        }
+    ],
+    "synonyms": [],
+    "m_Precision": 0,
+    "m_PreviewExpanded": true,
+    "m_PreviewMode": 0,
+    "m_CustomColors": {
+        "m_SerializableColors": []
+    },
+    "m_Value": {
+        "x": 0.9919999837875366,
+        "y": 0.0,
+        "z": 1.0
+    }
+}
+
+{
+    "m_SGVersion": 0,
     "m_Type": "UnityEditor.ShaderGraph.BlockNode",
     "m_ObjectId": "caed03bda513410a8c2cc582890d53b5",
     "m_Group": {
@@ -2250,6 +2290,21 @@
     "m_StageCapability": 2,
     "m_Value": 1.0,
     "m_DefaultValue": 1.0,
+    "m_Labels": []
+}
+
+{
+    "m_SGVersion": 0,
+    "m_Type": "UnityEditor.ShaderGraph.Vector1MaterialSlot",
+    "m_ObjectId": "f3ac5f961ff54e6584fadd3a8aaeb3bb",
+    "m_Id": 0,
+    "m_DisplayName": "Out",
+    "m_SlotType": 1,
+    "m_Hidden": false,
+    "m_ShaderOutputName": "Out",
+    "m_StageCapability": 3,
+    "m_Value": 0.0,
+    "m_DefaultValue": 0.0,
     "m_Labels": []
 }
 

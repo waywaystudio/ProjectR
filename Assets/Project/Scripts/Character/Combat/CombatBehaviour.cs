@@ -20,7 +20,7 @@ namespace Character.Combat
         public SkillObject CurrentSkill { get; private set; }
 
         public float GlobalCoolTime => GlobalCoolDown.CoolTime;
-        public List<ISkill> SkillInfoList { get; set; } = new(4);
+        public List<ISkill> SkillInfoList { get; } = new(4);
         public Observable<float> GlobalRemainTime => GlobalCoolDown.Timer;
         
         // SharedBool :: CombatBehaviorDesigner
@@ -83,6 +83,7 @@ namespace Character.Combat
             globalCoolDown ??= GetComponent<GlobalCoolDown>();
             SkillInfoList.AddRange(SkillList);
         }
+        
 
 #if UNITY_EDITOR
         public void SetUp()

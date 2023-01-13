@@ -45,7 +45,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7b52274cf98ee73428c3320a76454e1c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  po: {fileID: 707085272717492972}
+  po: {fileID: 0}
   decal: {fileID: 4574020470058909844}
 --- !u!114 &4574020470058909844
 MonoBehaviour:
@@ -59,7 +59,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0777d029ed3dffa4692f417d4aba19ca, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Material: {fileID: 2100000, guid: 4ac08c9fa98a0ec4b85d160acee8b9b9, type: 2}
+  m_Material: {fileID: 2100000, guid: a1ba353144d0f52428b86912ee5bc66a, type: 2}
   m_DrawDistance: 1000
   m_FadeScale: 0.5
   m_StartAngleFade: 180
@@ -68,7 +68,7 @@ MonoBehaviour:
   m_UVBias: {x: 0, y: 0}
   m_ScaleMode: 0
   m_Offset: {x: 0, y: 0, z: 0}
-  m_Size: {x: 5, y: 5, z: 50}
+  m_Size: {x: 8, y: 20, z: 50}
   m_FadeFactor: 0.5
 --- !u!1 &6638007462843243134
 GameObject:
@@ -79,11 +79,11 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7413237042699465680}
-  - component: {fileID: 707085272717492972}
+  - component: {fileID: 8002390059316823616}
   - component: {fileID: 9197252578731974646}
   - component: {fileID: 8634294554979498020}
   m_Layer: 0
-  m_Name: MeteorStrikeProjector
+  m_Name: EqualizerProjector
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -106,7 +106,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &707085272717492972
+--- !u!114 &8002390059316823616
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -115,14 +115,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 6638007462843243134}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 33636e90f1b3acc47bdb667d3ae6102d, type: 3}
+  m_Script: {fileID: 11500000, guid: 53dc1fd53f3138b449531811ca66ecb4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  actionCode: 18000001
+  actionCode: 18000003
   TempProvider: {fileID: 0}
   TempTarget: {fileID: 0}
-  shapeType: 1
-  sizeValue: {x: 2.5, y: 2.5}
+  shapeType: 3
+  sizeValue: {x: 4, y: 50}
   targetLayerType: enemy
 --- !u!114 &9197252578731974646
 MonoBehaviour:
@@ -138,7 +138,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   flag: 1
   damageValue:
-    value: 50
+    value: 15
     statCode: 1
 --- !u!114 &8634294554979498020
 MonoBehaviour:
@@ -163,11 +163,11 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5811024302451340787}
-  - component: {fileID: 5957204914169100550}
-  - component: {fileID: 4763609432850230831}
+  - component: {fileID: 4054616970882731878}
+  - component: {fileID: 6802689332662842231}
   - component: {fileID: 3158006483270073032}
   m_Layer: 10
-  m_Name: SphereCollider
+  m_Name: BoxCollider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -188,7 +188,7 @@ Transform:
   m_Father: {fileID: 7413237042699465680}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &5957204914169100550
+--- !u!114 &4054616970882731878
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -197,13 +197,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 8983042717434659513}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9f7201e9ced18854c9cd6999dca5f3e0, type: 3}
+  m_Script: {fileID: 11500000, guid: 5d94d1fabca69694aa8de7b1cd12b4a4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  po: {fileID: 707085272717492972}
-  sphereCollider: {fileID: 4763609432850230831}
---- !u!135 &4763609432850230831
-SphereCollider:
+  po: {fileID: 8002390059316823616}
+  boxCollider: {fileID: 6802689332662842231}
+--- !u!65 &6802689332662842231
+BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -213,7 +213,7 @@ SphereCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0
+  m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &3158006483270073032
 MonoBehaviour:
@@ -228,6 +228,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   version: 1
-  uniqueID: 8643582169733062395
+  uniqueID: 6041434664272154433
   updateError: 1
   checkTime: 0.2

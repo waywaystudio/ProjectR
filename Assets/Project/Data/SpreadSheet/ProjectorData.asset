@@ -17,9 +17,36 @@ MonoBehaviour:
   - id: 18000001
     name: MeteorStrikeProjector
     size: {x: 30, y: 30}
-    castingTime: 5
+    castingTime: 2
     targetLayerType: enemy
     shapeType: Sphere
     combatValue: 50
     statusEffectID: 0
     particleKey: MeteorStrikeParticle
+  - id: 18000002
+    name: PowerBashProjector
+    size: {x: 8, y: 20}
+    castingTime: 5
+    targetLayerType: enemy
+    shapeType: Rectangle
+    combatValue: 30
+    statusEffectID: 0
+    particleKey: 
+  - id: 18000003
+    name: EqualizerProjector
+    size: {x: 4, y: 100}
+    castingTime: 2
+    targetLayerType: enemy
+    shapeType: ExRectangle
+    combatValue: 15
+    statusEffectID: 0
+    particleKey: 
+  - id: 18000004
+    name: DragonBreathProjector
+    size: {x: 45, y: 50}
+    castingTime: 3
+    targetLayerType: enemy
+    shapeType: Cone
+    combatValue: 200
+    statusEffectID: 0
+    particleKey: 

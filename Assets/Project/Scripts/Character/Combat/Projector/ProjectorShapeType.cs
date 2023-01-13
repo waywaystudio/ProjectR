@@ -5,7 +5,7 @@ namespace Character.Combat.Projector
         None = 0,
         Sphere,
         Rectangle,
-        ExtendedRectangle,
+        ExRectangle,
         Cone,
     }
 }

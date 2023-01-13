@@ -1,4 +1,3 @@
-using System.Collections.Generic;
 using Core;
 using UnityEngine;
 
@@ -8,18 +7,39 @@ namespace Character.Combat
     
     public class ProjectorModule : Module
     {
-        [SerializeField] private List<ProjectorObject> projectorPool;
+        [SerializeField] private DataIndex projectorID;
+        [SerializeField] private GameObject projectorPrefab;
 
-        public void Projection(ICombatTaker target)
+        public void Projection(ICombatTaker taker)
         {
-            if (projectorPool.HasElement())
-                projectorPool[0].Projection(Provider, target);
+            // Pooling by projectorID
+            var cbPosition = Provider.Object.transform.position;
+            var tkPosition = taker.Object.transform.position;
+            var lookAt = Quaternion.LookRotation(tkPosition - cbPosition);
+            var newProjection = Instantiate(projectorPrefab, tkPosition, lookAt);
+            //
+            
+            newProjection.TryGetComponent(out ProjectorObject po);
+            po.Projection(Provider, taker);
+        }
+
+        public void Projection(Vector3 position)
+        {
+            // Pooling by projectorID
+            var cbPosition = Provider.Object.transform.position;
+            var lookAt = Quaternion.LookRotation(position - cbPosition);
+            var newProjection = Instantiate(projectorPrefab, position, lookAt);
+            //
+            
+            newProjection.TryGetComponent(out ProjectorObject po);
+            po.Projection(Provider, position);
         }
 
 #if UNITY_EDITOR
-        public void SetUpValue(float temp)
+        public void SetUpValue(int projectorID)
         {
-            
+            Flag             = ModuleType.Projector;
+            this.projectorID = (DataIndex)projectorID;
         }
 #endif
     }

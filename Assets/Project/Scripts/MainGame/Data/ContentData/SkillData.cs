@@ -30,6 +30,7 @@ namespace MainGame.Data.ContentData
 			[SerializeField] private Single resourceObtain;
 			[SerializeField] private Int32 statusEffectID;
 			[SerializeField] private Int32 projectileID;
+			[SerializeField] private Int32 projectorID;
 
 			public Int32 ID => id;
 			public String Name => name;
@@ -47,6 +48,7 @@ namespace MainGame.Data.ContentData
 			public Single ResourceObtain => resourceObtain;
 			public Int32 StatusEffectId => statusEffectID;
 			public Int32 ProjectileId => projectileID;
+			public Int32 ProjectorId => projectorID;
 
         }
         

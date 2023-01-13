@@ -1,5 +1,4 @@
 using Core;
-using Sirenix.OdinInspector;
 using UnityEngine;
 
 namespace Character.Combat.Projector.Colliders
@@ -11,8 +10,8 @@ namespace Character.Combat.Projector.Colliders
     {
         [SerializeField] protected ProjectorObject po;
         
-        [ShowInInspector] protected LayerMask TargetLayer;
-        [ShowInInspector] protected Vector2 SizeValue;
+        protected LayerMask TargetLayer;
+        protected Vector2 SizeValue;
         
         private int instanceID;
         protected const int MaxBuffer = 50;
@@ -32,17 +31,13 @@ namespace Character.Combat.Projector.Colliders
                  other.gameObject.TryGetComponent(out ICombatTaker taker))
              {
                  po.OnProjectorEnter.Invoke(taker);
-                 /* OnCollisionEntered :: Avoid */
-                 // Try use Method 4: The ConstantPath type
-                 // https://arongranberg.com/astar/documentation/dev_4_3_61_b7b7a3f3/wander.html
              }
         }
 
         protected virtual void Awake()
         {
-            po          ??= GetComponentInParent<ProjectorObject>();
-            TargetLayer =   po.TargetLayer;
-            SizeValue   =   po.SizeValue;
+            po        ??= GetComponentInParent<ProjectorObject>();
+            SizeValue =   po.SizeValue;
 
             po.OnProjectionStart.Register(InstanceID, StartProjection);
             po.OnProjectionEnd.Register(InstanceID, EndProjection);

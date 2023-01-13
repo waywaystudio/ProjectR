@@ -92,6 +92,9 @@ public enum DataIndex
 	HealOrb = 13000018,
 	RangeAttack = 13000019,
 	MeteorStrike = 13000020,
+	PowerBash = 13000021,
+	Equalizer = 13000022,
+	DragonBreath = 13000023,
 
 	/* StatusEffectData */
 	CorruptionDeBuff = 14000001,
@@ -138,6 +141,9 @@ public enum DataIndex
 
 	/* ProjectorData */
 	MeteorStrikeProjector = 18000001,
+	PowerBashProjector = 18000002,
+	EqualizerProjector = 18000003,
+	DragonBreathProjector = 18000004,
 
 	/* EquipmentData */
 	BloodBoilLancet = 21000001,

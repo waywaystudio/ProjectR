@@ -14,6 +14,7 @@ namespace Character.Combat.Projector
         [SerializeField] protected string targetLayerType;
 
         public ICombatTaker Taker { get; private set; }
+        public Vector3 Destination { get; set; }
         public ProjectorShapeType ShapeType => shapeType;
         public Vector2 SizeValue => sizeValue;
         public float CastingTime => CastingModule.OriginalCastingTime;
@@ -40,17 +41,22 @@ namespace Character.Combat.Projector
         public ActionTable<ICombatTaker> OnProjectorEnd { get; } = new();
         
 
-        public virtual void Projection(ICombatProvider provider, ICombatTaker taker)
+        public void Projection(ICombatProvider provider, ICombatTaker taker)
         {
-            Provider    = provider;
+            CoreProjection(provider);
+            
             Taker       = taker;
-            TargetLayer = CharacterUtility.SetLayer(provider, targetLayerType);
-            
-            ModuleTable.ForEach(x => x.Value.Initialize(this));
-            
-            if (!gameObject.activeSelf) 
-                gameObject.SetActive(true);
+            Destination = Taker.Object.transform.position;
 
+            OnProjectionStart.Invoke();
+        }
+        
+        public void Projection(ICombatProvider provider, Vector3 destination)
+        {
+            CoreProjection(provider);
+          
+            Destination = destination;
+            
             OnProjectionStart.Invoke();
         }
 
@@ -61,7 +67,18 @@ namespace Character.Combat.Projector
         protected void End()
         {
             // Return to Pool
-            gameObject.SetActive(false);
+            Destroy(gameObject);
+        }
+
+        private void CoreProjection(ICombatProvider provider)
+        {
+            Provider    = provider;
+            TargetLayer = CharacterUtility.SetLayer(provider, targetLayerType);
+            
+            ModuleTable.ForEach(x => x.Value.Initialize(this));
+            
+            if (!gameObject.activeSelf) 
+                gameObject.SetActive(true);
         }
 
         protected override void Awake()
@@ -88,6 +105,7 @@ namespace Character.Combat.Projector
             sizeValue       =   data.Size;
 
             GetComponents<Module>().ForEach(x => ModuleUtility.SetProjectorModule(data, x));
+            gameObject.GetComponentsInOnlyChildren<IEditorSetUp>().ForEach(x => x.SetUp());
         }
 #endif
     }

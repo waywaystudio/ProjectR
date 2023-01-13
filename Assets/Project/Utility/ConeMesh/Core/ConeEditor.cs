@@ -1,3 +1,4 @@
+#if UNITY_EDITOR
 using System.Collections;
 using System.Collections.Generic;
 using UnityEditor;
@@ -22,15 +23,15 @@ namespace KevinCastejon.ConeMesh
 
         private void OnEnable()
         {
-            _pivotAtTop = serializedObject.FindProperty("_pivotAtTop");
-            _orientation = serializedObject.FindProperty("_orientation");
-            _invertDirection = serializedObject.FindProperty("_invertDirection");
-            _isTrigger = serializedObject.FindProperty("_isTrigger");
-            _material = serializedObject.FindProperty("_material");
-            _coneSides = serializedObject.FindProperty("_coneSides");
+            _pivotAtTop         = serializedObject.FindProperty("_pivotAtTop");
+            _orientation        = serializedObject.FindProperty("_orientation");
+            _invertDirection    = serializedObject.FindProperty("_invertDirection");
+            _isTrigger          = serializedObject.FindProperty("_isTrigger");
+            _material           = serializedObject.FindProperty("_material");
+            _coneSides          = serializedObject.FindProperty("_coneSides");
             _proportionalRadius = serializedObject.FindProperty("_proportionalRadius");
-            _coneRadius = serializedObject.FindProperty("_coneRadius");
-            _coneHeight = serializedObject.FindProperty("_coneHeight");
+            _coneRadius         = serializedObject.FindProperty("_coneRadius");
+            _coneHeight         = serializedObject.FindProperty("_coneHeight");
 
             _script = (Cone)target;
             if (!_script.IsConeGenerated)
@@ -80,3 +81,5 @@ namespace KevinCastejon.ConeMesh
         }
     }
 }
+
+#endif
