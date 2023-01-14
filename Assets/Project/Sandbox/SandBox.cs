@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class SandBox : MonoBehaviour
 {
+    public bool Toggle;
     public LayerMask layer;
     
     [Button]

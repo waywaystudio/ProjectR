@@ -2,7 +2,8 @@ using Pathfinding.Util;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Pathfinding {
+namespace Pathfinding 
+{
 	/// <summary>
 	/// Contains useful functions for working with paths and nodes.
 	/// This class works a lot with the <see cref="Pathfinding.GraphNode"/> class, a useful function to get nodes is AstarPath.GetNearest.
@@ -10,7 +11,8 @@ namespace Pathfinding {
 	/// See: <see cref="Pathfinding.GraphUpdateUtilities"/>
 	/// See: <see cref="Pathfinding.GraphUtilities"/>
 	/// </summary>
-	public static class PathUtilities {
+	public static class PathUtilities 
+	{
 		/// <summary>
 		/// Returns if there is a walkable path from node1 to node2.
 		/// This method is extremely fast because it only uses precalculated information.
@@ -29,7 +31,8 @@ namespace Pathfinding {
 		/// See: graph-updates (view in online documentation for working links)
 		/// See: <see cref="AstarPath.GetNearest"/>
 		/// </summary>
-		public static bool IsPathPossible (GraphNode node1, GraphNode node2) {
+		public static bool IsPathPossible (GraphNode node1, GraphNode node2) 
+		{
 			return node1.Walkable && node2.Walkable && node1.Area == node2.Area;
 		}
 
@@ -42,7 +45,8 @@ namespace Pathfinding {
 		///
 		/// See: <see cref="AstarPath.GetNearest"/>
 		/// </summary>
-		public static bool IsPathPossible (List<GraphNode> nodes) {
+		public static bool IsPathPossible (List<GraphNode> nodes) 
+		{
 			if (nodes.Count == 0) return true;
 
 			uint area = nodes[0].Area;
@@ -65,7 +69,8 @@ namespace Pathfinding {
 		///
 		/// See: <see cref="AstarPath.GetNearest"/>
 		/// </summary>
-		public static bool IsPathPossible (List<GraphNode> nodes, int tagMask) {
+		public static bool IsPathPossible (List<GraphNode> nodes, int tagMask) 
+		{
 			if (nodes.Count == 0) return true;
 
 			// Make sure that the first node has a valid tag
@@ -79,8 +84,10 @@ namespace Pathfinding {
 			bool result = true;
 
 			// Make sure that the first node can reach all other nodes
-			for (int i = 1; i < nodes.Count; i++) {
-				if (!reachable.Contains(nodes[i])) {
+			for (int i = 1; i < nodes.Count; i++) 
+			{
+				if (!reachable.Contains(nodes[i])) 
+				{
 					result = false;
 					break;
 				}
@@ -213,9 +220,12 @@ namespace Pathfinding {
 
 			int currentDist = -1;
 			System.Action<GraphNode> callback;
-			if (tagMask == -1) {
-				callback = node => {
-					if (node.Walkable && !map.ContainsKey(node)) {
+			if (tagMask == -1) 
+			{
+				callback = node => 
+				{
+					if (node.Walkable && !map.ContainsKey(node)) 
+					{
 						if (filter != null && !filter(node)) return;
 
 						map.Add(node, currentDist+1);
@@ -223,9 +233,13 @@ namespace Pathfinding {
 						que.Enqueue(node);
 					}
 				};
-			} else {
-				callback = node => {
-					if (node.Walkable && ((tagMask >> (int)node.Tag) & 0x1) != 0 && !map.ContainsKey(node)) {
+			} 
+			else 
+			{
+				callback = node => 
+				{
+					if (node.Walkable && ((tagMask >> (int)node.Tag) & 0x1) != 0 && !map.ContainsKey(node)) 
+					{
 						if (filter != null && !filter(node)) return;
 
 						map.Add(node, currentDist+1);
@@ -237,7 +251,8 @@ namespace Pathfinding {
 
 			callback(seed);
 
-			while (que.Count > 0) {
+			while (que.Count > 0) 
+			{
 				GraphNode n = que.Dequeue();
 				currentDist = map[n];
 
@@ -310,7 +325,8 @@ namespace Pathfinding {
 		/// Returns the XZ coordinate of the involute of circle.
 		/// See: http://en.wikipedia.org/wiki/Involute
 		/// </summary>
-		private static Vector3 InvoluteOfCircle (float a, float t) {
+		private static Vector3 InvoluteOfCircle (float a, float t) 
+		{
 			return new Vector3(a*(Mathf.Cos(t) + t*Mathf.Sin(t)), 0, a*(Mathf.Sin(t) - t*Mathf.Cos(t)));
 		}
 
@@ -453,7 +469,8 @@ namespace Pathfinding {
 		/// which assumes that all nodes in the list have the same surface area (which usually is a surface area of zero and the
 		/// nodes are all PointNodes).
 		/// </summary>
-		public static List<Vector3> GetPointsOnNodes (List<GraphNode> nodes, int count, float clearanceRadius = 0) {
+		public static List<Vector3> GetPointsOnNodes (List<GraphNode> nodes, int count, float clearanceRadius = 0) 
+		{
 			if (nodes == null) throw new System.ArgumentNullException("nodes");
 			if (nodes.Count == 0) throw new System.ArgumentException("no nodes passed");
 

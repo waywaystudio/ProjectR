@@ -9,6 +9,7 @@ namespace Character
         [SerializeField] protected string characterName = string.Empty;
         [SerializeField] protected DataIndex dataIndex;
 
+        
         public string Name => characterName ??= "Diablo";
         public DataIndex DataIndex => dataIndex;
         public DataIndex ActionCode => DataIndex.None;
@@ -16,6 +17,7 @@ namespace Character
         public ICombatProvider Provider => this;
         public GameObject Object => gameObject;
         public StatTable StatTable { get; } = new(1);
+        public BehaviourStatus BehaviourStatus { get; set; } = BehaviourStatus.Combat;
 
         public ActionTable OnUpdate { get; } = new();
         public ActionTable OnIdle { get; } = new();

@@ -21,7 +21,8 @@ using Thread = System.Threading.Thread;
 /// It might be a bit hard to use directly, usually interfacing with the pathfinding system is done through the <see cref="Pathfinding.Seeker"/> class.
 /// </summary>
 [HelpURL("http://arongranberg.com/astar/documentation/stable/class_astar_path.php")]
-public class AstarPath : VersionedMonoBehaviour {
+public class AstarPath : VersionedMonoBehaviour 
+{
 	/// <summary>The version number for the A* Pathfinding Project</summary>
 	public static readonly System.Version Version = new System.Version(4, 2, 18);
 
@@ -44,7 +45,8 @@ public class AstarPath : VersionedMonoBehaviour {
 	/// Deprecated:
 	/// </summary>
 	[System.Obsolete]
-	public System.Type[] graphTypes {
+	public System.Type[] graphTypes 
+	{
 		get {
 			return data.graphTypes;
 		}
@@ -613,7 +615,8 @@ public class AstarPath : VersionedMonoBehaviour {
 	/// </summary>
 	private ushort nextFreePathID = 1;
 
-	private AstarPath () {
+	private AstarPath () 
+	{
 		pathReturnQueue = new PathReturnQueue(this);
 
 		// Make sure that the pathProcessor is never null
@@ -636,7 +639,8 @@ public class AstarPath : VersionedMonoBehaviour {
 	/// If it is null or not of length 32, it creates a new array and fills it with 0,1,2,3,4 etc...
 	/// See: AstarPath.FindTagNames
 	/// </summary>
-	public string[] GetTagNames () {
+	public string[] GetTagNames () 
+	{
 		if (tagNames == null || tagNames.Length != 32) {
 			tagNames = new string[32];
 			for (int i = 0; i < tagNames.Length; i++) {
