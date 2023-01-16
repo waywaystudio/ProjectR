@@ -7,20 +7,13 @@ namespace Character.Combat
 {
     using StatusEffects;
     
-    public class StatusEffectModule : Module, IStatusEffectModule
+    public class StatusEffectModule : CombatModule
     {
         [SerializeField] private DataIndex statusEffectID;
-        [SerializeField] private List<StatusEffectObject> statusEffectPool; 
+        [SerializeField] private List<StatusEffectObject> statusEffectPool;
         
         public DataIndex StatusEffectID => statusEffectID;
-        
-        
-        public override void Initialize(IActionSender actionSender)
-        {
-            base.Initialize(actionSender);
 
-            statusEffectPool ??= GetComponentsInChildren<StatusEffectObject>().ToList();
-        }
 
         public void Effectuate(ICombatTaker taker)
         {
@@ -36,6 +29,13 @@ namespace Character.Combat
             
             Debug.LogWarning("Pool Empty!");
             return null;
+        }
+        
+        protected override void Awake()
+        {
+            base.Awake();
+            
+            statusEffectPool ??= GetComponentsInChildren<StatusEffectObject>().ToList();
         }
 
 

@@ -2,13 +2,19 @@ namespace Character.Combat.Skill
 {
     public class RapidBlow : SkillObject
     {
-        public override void InvokeEvent()
+        private void OnRapidBlowHit()
         {
             if (DamageModule && TargetModule)
             {
                 TargetModule.TakeDamage(DamageModule);
             }
-                
+        }
+        
+        protected override void Awake()
+        {
+            base.Awake();
+            
+            OnHit.Register(InstanceID, OnRapidBlowHit);
         }
     }
 }

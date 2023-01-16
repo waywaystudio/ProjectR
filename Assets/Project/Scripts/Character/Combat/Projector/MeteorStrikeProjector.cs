@@ -6,9 +6,14 @@ namespace Character.Combat.Projector
     {
         protected override void EnterProjector(ICombatTaker taker)
         {
-            /* OnCollisionEntered :: Avoid */
-            // Try use Method 4: The ConstantPath type
-            // https://arongranberg.com/astar/documentation/dev_4_3_61_b7b7a3f3/wander.html
+            // taker.Survival();
+            /* --------------------- */
+            
+            // cb.BehaviourStatus = BehaviourStatus.Survival;
+            // if (cb.casting) cancel skill;
+            
+            // +callback cb.BehaviourStatus = BehaviourStatus.Combat;
+
         }
 
         protected override void EndProjector(ICombatTaker taker)

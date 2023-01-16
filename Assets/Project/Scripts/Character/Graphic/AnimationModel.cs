@@ -26,9 +26,9 @@ namespace Character.Graphic
         
         
         public void Idle() => Play("idle");
-        public void Skill(string skillName, Action callback)
+        public void Skill(DataIndex actionCode, Action callback)
         {
-            var skillData = MainData.GetSkill(skillName.ToEnum<DataIndex>());
+            var skillData = MainData.GetSkill(actionCode);
             var fixedTime = skillData.CastingTime;
             var animationKey = skillData.AnimationKey;
             
@@ -39,12 +39,14 @@ namespace Character.Graphic
             
             callbackBuffer = null;
             callbackBuffer += callback;
+            // callbackBuffer += cb.OnCompleteSkill(actionCode); 
             callbackBuffer += Idle;
             callbackBuffer += () => state.TimeScale *= inverse;
 
             Flip();
             Play(animationKey, 0, false, fixedTime, callbackBuffer);
         }
+
         public void Walk() => Play("walk");
         public void Run()=> Play("run");
         // Attack Variants...
@@ -147,15 +149,7 @@ namespace Character.Graphic
             cb         = GetComponentInParent<CharacterBehaviour>();
             instanceID = GetInstanceID();
             state      = skeletonAnimation.AnimationState;
-        }
-
-        private void Start()
-        {
-            pathfindingEngine = cb.PathfindingEngine;
-        }
-
-        private void OnEnable()
-        {
+            
             cb.OnIdle.Register(instanceID, Idle);
             cb.OnWalk.Register(instanceID, Walk);
             cb.OnRun.Register(instanceID, Run);
@@ -163,13 +157,9 @@ namespace Character.Graphic
             cb.OnUpdate.Register(instanceID, Flip);
         }
 
-        private void OnDisable()
+        private void Start()
         {
-            cb.OnIdle.Unregister(instanceID);
-            cb.OnWalk.Unregister(instanceID);
-            cb.OnRun.Unregister(instanceID);
-            cb.OnSkill.Unregister(instanceID);
-            cb.OnUpdate.Unregister(instanceID);
+            pathfindingEngine = cb.PathfindingEngine;
         }
     }
 }

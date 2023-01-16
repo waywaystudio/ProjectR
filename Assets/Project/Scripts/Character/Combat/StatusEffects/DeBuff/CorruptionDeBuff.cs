@@ -15,9 +15,9 @@ namespace Character.Combat.StatusEffects.DeBuff
         public override float Duration => duration * CharacterUtility.GetHasteValue(StatTable.Haste);
         
 
-        protected override void Initialize(ICombatProvider provider, ICombatTaker taker)
+        public override void Effectuate(ICombatProvider provider, ICombatTaker taker)
         {
-            base.Initialize(provider, taker);
+            base.Effectuate(provider, taker);
             
             StatTable.Register(ActionCode, tickValue);
             StatTable.UnionWith(Provider.StatTable);

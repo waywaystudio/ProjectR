@@ -25,22 +25,15 @@ namespace Character.Combat.StatusEffects
         public StatusEffectTable TargetTable { get; set; }
 
 
-        public void Effectuate(ICombatProvider provider, ICombatTaker taker)
+        public virtual void Effectuate(ICombatProvider provider, ICombatTaker taker)
         {
-            Initialize(provider, taker);
+            Provider = provider;
+            Taker    = taker;
             
             Taker.TakeStatusEffect(this);
             RoutineBuffer = StartCoroutine(Initiate());
         }
-        
-        
-        protected virtual void Initialize(ICombatProvider provider, ICombatTaker taker)
-        {
-            Provider = provider;
-            Taker    = taker;
-            Taker.TakeStatusEffect(this);
-            RoutineBuffer = StartCoroutine(Initiate());
-        }
+
 
         protected abstract IEnumerator Initiate();
         
@@ -53,10 +46,8 @@ namespace Character.Combat.StatusEffects
             }
         }
 
-        protected override void Awake()
+        protected void Awake()
         {
-            base.Awake();
-            
             Callback.AddUniquely(UnregisterTable);
         }
 
@@ -70,12 +61,11 @@ namespace Character.Combat.StatusEffects
 #if UNITY_EDITOR
         public override void SetUp()
         {
-            if (actionCode == DataIndex.None) 
-                actionCode = name.ToEnum<DataIndex>();
+            base.SetUp();
             
             var data = MainData.GetStatusEffect(actionCode);
             
-            GetComponents<Module>().ForEach(x => ModuleUtility.SetStatusEffectModule(data, x));
+            GetComponents<CombatModule>().ForEach(x => ModuleUtility.SetStatusEffectModule(data, x));
 
             // icon     = data.~~~
             isBuff      = data.IsBuff;

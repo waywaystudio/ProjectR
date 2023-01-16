@@ -2,14 +2,19 @@ namespace Character.Combat.Skill
 {
     public class BloodDrain : SkillObject
     {
-        protected override void StartSkill()
+        private void OnBloodDrainActive()
         {
-            base.StartSkill();
-
             if (TargetModule && StatusEffectModule)
             {
                 TargetModule.TakeStatusEffect(StatusEffectModule);
             }
+        }
+        
+        protected override void Awake()
+        {
+            base.Awake();
+            
+            OnActivated.Register(InstanceID, OnBloodDrainActive);
         }
     }
 }

@@ -59,7 +59,6 @@ namespace Character.TargetSystem
         
         public void SetTakerList(List<ICombatTaker> targetList, ICombatProvider provider, float range, SortingType sortingType, int count)
         {
-            // var inRangedList = new List<ICombatTaker>();
             var pivot = provider.Object.transform.position;
             
             targetList.ForReverse(x =>

@@ -10,23 +10,31 @@ namespace Character.Combat.Skill
         /// </summary>
         [SerializeField] private float backMagnitude = 4.2f;
 
-        public override void InvokeEvent()
+        private void OnBackStepHit()
         {
             if (DamageModule && TargetModule)
             {
                 TargetModule.TakeDamage(DamageModule);
             }
         }
-        
-        protected override void StartSkill()
+
+        private void OnBackStepActive()
         {
             if (!TargetModule) return;
             
             var enemyTransform = TargetModule.Target.Object.transform;
             var enemyBehindPosition = enemyTransform.position + enemyTransform.forward * -backMagnitude;
 
+            Debug.Log($"Teleport! to:{enemyBehindPosition}");
             Cb.Teleport(enemyBehindPosition);
-            base.StartSkill();
+        }
+
+        protected override void Awake()
+        {
+            base.Awake();
+            
+            OnHit.Register(InstanceID, OnBackStepHit);
+            OnActivated.Register(InstanceID, OnBackStepActive);
         }
     }
 }

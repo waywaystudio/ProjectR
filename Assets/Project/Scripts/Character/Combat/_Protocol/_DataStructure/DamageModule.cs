@@ -1,29 +1,38 @@
+using System;
 using Core;
 using UnityEngine;
 
 namespace Character.Combat
 {
-    public class DamageModule : Module, IDamageModule, ICombatTable
+    public class DamageModule : CombatModule, ICombatTable
     {
         [SerializeField] private PowerValue damageValue;
 
-        public PowerValue DamageValue => damageValue;
         public StatTable StatTable { get; } = new();
 
-        public override void Initialize(IActionSender actionSender)
+        // TODO. UnionWith가 Provider.StatTable 값 변동에 어떻게 대응하는지 확인이 필요하다.
+        // TODO. 만약 유동적으로 대응한다면, Awake에서 한 번만 넣어주어도 된다.
+        private void OnEnable()
         {
-            base.Initialize(actionSender);
-            
-            StatTable.Register(ActionCode, DamageValue);
+            StatTable.Register(ActionCode, damageValue);
+        }
+
+        private void Start()
+        {
             StatTable.UnionWith(Provider.StatTable);
+        }
+
+        private void OnDisable()
+        {
+            StatTable.Unregister(ActionCode, damageValue);
         }
 
 
 #if UNITY_EDITOR
-        public void SetUpValue(float damageValue)
+        public void SetUpValue(float value)
         {
             Flag              = ModuleType.Damage;
-            DamageValue.Value = damageValue;
+            damageValue.Value = value;
         }
 #endif
     }

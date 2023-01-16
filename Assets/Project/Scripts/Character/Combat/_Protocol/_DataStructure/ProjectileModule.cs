@@ -1,3 +1,4 @@
+using System;
 using Core;
 using UnityEngine;
 
@@ -5,10 +6,10 @@ namespace Character.Combat
 {
     using Projectile;
     
-    public class ProjectileModule : Module, IProjectileModule
+    public class ProjectileModule : CombatModule
     {
         [SerializeField] private DataIndex projectileID;
-        
+
         // TODO. 이후에는, IDCode 혹은 ProjectileName을 통해서 풀링하고, GameObject Field를 삭제하자.
         [SerializeField] private GameObject projectilePrefab;
 
@@ -26,8 +27,8 @@ namespace Character.Combat
             newProjectile.TryGetComponent(out ProjectileObject pb);
             pb.Initialize(Provider, taker);
         }
-        
-        
+
+
 #if UNITY_EDITOR
         public void SetUpValue(int id)
         {

@@ -29,7 +29,7 @@ namespace Scene.Raid.UI
             
             // Set Skill
             inheritSkill = combatBehaviour.SkillInfoList[skillIndex];
-            hasCoolTimeEntity = inheritSkill is { HasCoolTimeEntity: true };
+            hasCoolTimeEntity = inheritSkill is { HasCoolTimeModule: true };
 
             // Set SkillIcon
             skillImage.sprite = inheritSkill.Icon;

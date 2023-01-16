@@ -15,7 +15,7 @@ namespace Character.PathfindingSystem
         private int instanceID;
 
         public bool IsReached => aiMove.reachedEndOfPath;
-
+        public bool IsSafe => AstarPath.active.GetNearest(cb.transform.position, NNConstraint.None).node.Walkable;
         public Vector3 Direction
         {
             get
@@ -50,17 +50,7 @@ namespace Character.PathfindingSystem
             // aiMove.destination = aiMove.steeringTarget;
             aiMove.destination = cb.transform.position;
         }
-
-
-        private Vector3 GetNearestSafePosition(Vector3 point, float offsetDistance)
-        {
-            var startNode = AstarPath.active.GetNearest(point, NNConstraint.Default).node;
-            var nodes = PathUtilities.BFS(startNode, 0);
-            var singleRandomPoint = PathUtilities.GetPointsOnNodes(nodes, 1)[0];
-            var offset = (singleRandomPoint - point).normalized * offsetDistance;
-            
-            return singleRandomPoint + offset;
-        }
+        
 
         private void Awake()
         {
@@ -70,6 +60,7 @@ namespace Character.PathfindingSystem
             cb                   ??= GetComponentInParent<CharacterBehaviour>();
             instanceID           =   GetInstanceID();
             cb.PathfindingEngine =   this;
+            
             cb.OnTeleport.Register(instanceID, TeleportTo);
             cb.OnWalk.Register(instanceID, Move);
             cb.OnRun.Register(instanceID, Move);

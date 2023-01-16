@@ -32,12 +32,12 @@ namespace Character.Combat.Projectile
                 .DOMove(Offset, speed)
                 .SetEase(Ease.OutCubic)
                 .SetLoops(2, LoopType.Yoyo)
-                .OnComplete(Arrived)
+                .OnComplete(Complete)
                 .SetSpeedBased();
         }
 
 
-        protected void Arrived()
+        protected override void Arrived()
         {
             Destroy(gameObject);
         }

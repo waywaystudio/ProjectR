@@ -2,14 +2,19 @@ namespace Character.Combat.Skill
 {
     public class HealOrb : SkillObject
     {
-        protected override void StartSkill()
+        private void OnHealOrbActivated()
         {
-            base.StartSkill();
-
             if (ProjectileModule && TargetModule)
             {
                 TargetModule.TakeProjectile(ProjectileModule);
             }
+        }
+        
+        protected override void Awake()
+        {
+            base.Awake();
+            
+            OnActivated.Register(InstanceID, OnHealOrbActivated);
         }
     }
 }

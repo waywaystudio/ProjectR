@@ -5,10 +5,11 @@ namespace Character.Combat
 {
     using Projector;
     
-    public class ProjectorModule : Module
+    public class ProjectorModule : CombatModule
     {
         [SerializeField] private DataIndex projectorID;
         [SerializeField] private GameObject projectorPrefab;
+        
 
         public void Projection(ICombatTaker taker)
         {
@@ -34,6 +35,7 @@ namespace Character.Combat
             newProjection.TryGetComponent(out ProjectorObject po);
             po.Projection(Provider, position);
         }
+
 
 #if UNITY_EDITOR
         public void SetUpValue(int projectorID)

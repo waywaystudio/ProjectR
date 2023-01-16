@@ -2,7 +2,7 @@ using BehaviorDesigner.Runtime.Tasks;
 using Character.Combat;
 using Core;
 
-namespace Character.Behavior.Actions.Combat
+namespace Character.Behavior.Combat
 {
     [TaskCategory("Character/Combat")]
     public class PositioningBehavior : Action
@@ -10,7 +10,7 @@ namespace Character.Behavior.Actions.Combat
         private CombatBehaviour combat;
         private CharacterBehaviour cb;
         private IPathfinding pathfindingEngine;
-        
+        private ICombatTaker taker;
 
         public override void OnAwake()
         {
@@ -26,15 +26,20 @@ namespace Character.Behavior.Actions.Combat
                 return TaskStatus.Failure;
             }
 
-            var targetEntity = skill.TargetModule;
+            var targetModule = skill.TargetModule;
 
-            if (targetEntity is null)
+            if (targetModule is null)
             {
                 return TaskStatus.Success;
             }
 
-            var isMovable = combat.Positioning
-                                  .TryGetCombatPosition(targetEntity.Target, targetEntity.Range, out var destination);
+            taker = targetModule.Target;
+            
+            var isValid = taker != null && taker.DynamicStatEntry.IsAlive.Value;
+
+            if (!isValid) return TaskStatus.Failure;
+
+            var isMovable = PathfindingUtility.TryGetCombatPosition(cb, taker, targetModule.Range, out var destination);
 
             if (!isMovable && pathfindingEngine.IsReached)
             {

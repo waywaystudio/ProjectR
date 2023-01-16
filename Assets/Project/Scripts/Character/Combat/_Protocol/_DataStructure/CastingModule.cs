@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace Character.Combat
 {
-    public class CastingModule : Module, ICastingModule, IOnStarted, IOnInterrupted, IReady
+    public class CastingModule : CombatModule, IReady
     {
         [SerializeField] private float originalCastingTime;
 
@@ -12,28 +12,17 @@ namespace Character.Combat
         private float castingTick;
         private Coroutine routineBuffer;
 
-        public ActionTable OnStarted { get; } = new();
-        public ActionTable OnInterrupted { get; } = new();
         public bool IsReady => !onCasting;
-        
         public float OriginalCastingTime { get => originalCastingTime; set => originalCastingTime = value; }
         public float CastingTime => OriginalCastingTime * CharacterUtility.GetHasteValue(Provider.StatTable.Haste);
         public float CastingProgress { get; private set; }
 
 
-        public override void Initialize(IActionSender actionSender)
-        {
-            base.Initialize(actionSender);
-
-            castingTick = Time.deltaTime;
-            OnStarted.Register(InstanceID, StartCasting);
-            OnInterrupted.Register(InstanceID, BreakCasting);
-        }
-
-
         private void StartCasting() => routineBuffer = StartCoroutine(Casting());
         private void BreakCasting()
         {
+            if (!onCasting) return;
+            
             onCasting = false;
             
             ResetProgress();
@@ -58,6 +47,16 @@ namespace Character.Combat
         
         private void ResetProgress() => CastingProgress = 0f;
 
+        protected override void Awake()
+        {
+            base.Awake();
+            
+            castingTick = Time.deltaTime;
+            
+            CombatObject.OnActivated.Register(InstanceID, StartCasting);
+            CombatObject.OnCanceled.Register(InstanceID, BreakCasting);
+            CombatObject.ReadyCheckList.Add(this);
+        }
 
 
 #if UNITY_EDITOR

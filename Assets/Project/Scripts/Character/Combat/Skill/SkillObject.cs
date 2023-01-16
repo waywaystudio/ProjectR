@@ -1,5 +1,3 @@
-using System.Collections.Generic;
-using System.Linq;
 using Core;
 using UnityEngine;
 // ReSharper disable MemberCanBeProtected.Global
@@ -13,12 +11,12 @@ namespace Character.Combat.Skill
 
         protected CharacterBehaviour Cb;
 
-        public override ICombatProvider Provider => Cb;
+        public override ICombatProvider Provider => Cb ??= GetComponentInParent<CharacterBehaviour>();
         public Sprite Icon => icon;
-        public bool HasCastingEntity => ModuleTable.ContainsKey(ModuleType.Casting);
+        public bool HasCastingModule => ModuleTable.ContainsKey(ModuleType.Casting);
         public float CastingTime => CastingModule.CastingTime;
         public float CastingProgress => CastingModule.CastingProgress;
-        public bool HasCoolTimeEntity => ModuleTable.ContainsKey(ModuleType.CoolTime);
+        public bool HasCoolTimeModule => ModuleTable.ContainsKey(ModuleType.CoolTime);
         public float CoolTime => CoolTimeModule.OriginalCoolTime;
         public Observable<float> RemainTime => CoolTimeModule.RemainTime;
 
@@ -36,45 +34,13 @@ namespace Character.Combat.Skill
             }
         }
 
-        public List<IReady> ReadyCheckList { get; set; } = new();
-        private ActionTable OnStart { get; } = new();
-        private ActionTable OnComplete { get; } = new();
-        private ActionTable OnInterrupted { get; } = new();
-        
-        
-        public void Initialize(ICombatProvider provider, ICombatTaker taker)
-        {
-            Provider       = provider;
-            ReadyCheckList = GetComponents<IReady>().ToList();
-
-            ModuleTable.ForEach(x =>
-            {
-                x.Value.Initialize(this);
-                
-                if (x.Value.TryGetComponent(out IOnStarted iOnStarted)) 
-                    OnStart.Register(x.Value.InstanceID, iOnStarted.OnStarted.Invoke);
-                
-                if (x.Value.TryGetComponent(out IOnCompleted iOnCompleted)) 
-                    OnComplete.Register(x.Value.InstanceID, iOnCompleted.OnCompleted.Invoke);
-                
-                if (x.Value.TryGetComponent(out IOnInterrupted iOnInterrupted)) 
-                    OnInterrupted.Register(x.Value.InstanceID, iOnInterrupted.OnInterrupted.Invoke);
-            });
-            
-            OnStart.Register(InstanceID, () => IsSkillFinished    = false);
-            OnComplete.Register(InstanceID, () => IsSkillFinished = true);
-        }
-
-        /// <summary>
-        /// Register Animation Event.
-        /// </summary>
-        public virtual void InvokeEvent(){}
         public virtual void ActiveSkill()
         {
             Cb.SkillInfo = this;
-            Cb.OnSkill.Register(InstanceID, StartSkill);
-            Cb.OnSkillHit.Register(InstanceID, InvokeEvent);
-            Cb.Skill(actionCode.ToString(), CompleteSkill);
+            Cb.OnSkill.Register(InstanceID, Active);
+            Cb.OnSkillHit.Register(InstanceID, Hit);
+            
+            Cb.Skill(ActionCode, Complete);
         }
 
         public void DeActiveSkill()
@@ -83,20 +49,14 @@ namespace Character.Combat.Skill
             Cb.OnSkill.Unregister(InstanceID);
             Cb.OnSkillHit.Unregister(InstanceID);
         }
-        
 
-        protected virtual void StartSkill() => OnStart.Invoke();
-        protected virtual void CompleteSkill() => OnComplete.Invoke();
-        protected void InterruptedSkill() => OnInterrupted.Invoke();
 
-        protected override void Awake()
+        protected virtual void Awake()
         {
-            base.Awake();
-            
-            Cb = GetComponentInParent<CharacterBehaviour>();
-            
-            // SkillObject 특수상황. Self Initialize.
-            Initialize(Cb, null);
+            Cb       = GetComponentInParent<CharacterBehaviour>();
+            Provider = Cb;
+            OnActivated.Register(InstanceID, () => IsSkillFinished = false);
+            OnCompleted.Register(InstanceID, () => IsSkillFinished = true);
         }
 
         protected void OnDisable() => DeActiveSkill();
@@ -105,16 +65,14 @@ namespace Character.Combat.Skill
 #if UNITY_EDITOR
         public override void SetUp()
         {
-            if (actionCode == DataIndex.None) 
-                actionCode = GetType().Name.ToEnum<DataIndex>();
+            base.SetUp();
 
             var skillData = MainGame.MainData.GetSkill(actionCode);
             priority = skillData.Priority;
 
-            GetComponents<Module>().ForEach(x => ModuleUtility.SetSkillModule(skillData, x));
+            GetComponents<CombatModule>().ForEach(x => ModuleUtility.SetSkillModule(skillData, x));
             UnityEditor.EditorUtility.SetDirty(this);
         }
-
         private void ShowDB()
         {
             UnityEditor.EditorUtility.OpenPropertyEditor

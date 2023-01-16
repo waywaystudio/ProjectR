@@ -148,7 +148,8 @@ namespace Pathfinding {
 	}
 
 	/// <summary>Nearest node constraint. Constrains which nodes will be returned by the <see cref="AstarPath.GetNearest"/> function</summary>
-	public class NNConstraint {
+	public class NNConstraint 
+	{
 		/// <summary>
 		/// Graphs treated as valid to search on.
 		/// This is a bitmask meaning that bit 0 specifies whether or not the first graph in the graphs list should be able to be included in the search,

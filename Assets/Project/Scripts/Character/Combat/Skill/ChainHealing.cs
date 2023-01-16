@@ -2,14 +2,19 @@ namespace Character.Combat.Skill
 {
     public class ChainHealing : SkillObject
     {
-        protected override void CompleteSkill()
+        private void OnChainHealingCompleted()
         {
-            base.CompleteSkill();
-
             if (TargetModule && ProjectileModule)
             {
                 TargetModule.TakeProjectile(ProjectileModule);
             }
+        }
+        
+        protected override void Awake()
+        {
+            base.Awake();
+            
+            OnCompleted.Register(InstanceID, OnChainHealingCompleted);
         }
     }
 }

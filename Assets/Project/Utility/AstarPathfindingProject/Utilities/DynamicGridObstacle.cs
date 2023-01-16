@@ -103,7 +103,8 @@ namespace Pathfinding
 			prevEnabled = false;
 		}
 
-		public override void OnPostScan () {
+		public override void OnPostScan () 
+		{
 			// Make sure we find the collider
 			// AstarPath.Awake may run before Awake on this component
 			if (coll == null) Awake();
@@ -113,10 +114,12 @@ namespace Pathfinding
 			if (coll != null) prevEnabled = colliderEnabled;
 		}
 
-		void Update () {
+		void Update () 
+		{
 			if (!Application.isPlaying) return;
 
-			if (coll == null && coll2D == null) {
+			if (coll == null && coll2D == null) 
+			{
 				Debug.LogError("Removed collider from DynamicGridObstacle", this);
 				enabled = false;
 				return;
@@ -125,11 +128,13 @@ namespace Pathfinding
 			// Check if the previous graph updates have been completed yet.
 			// We don't want to update the graph again until the last graph updates are done.
 			// This is particularly important for recast graphs for which graph updates can take a long time.
-			while (pendingGraphUpdates.Count > 0 && pendingGraphUpdates.Peek().stage != GraphUpdateStage.Pending) {
+			while (pendingGraphUpdates.Count > 0 && pendingGraphUpdates.Peek().stage != GraphUpdateStage.Pending) 
+			{
 				pendingGraphUpdates.Dequeue();
 			}
 
-			if (AstarPath.active == null || AstarPath.active.isScanning || Time.realtimeSinceStartup - lastCheckTime < checkTime || !Application.isPlaying || pendingGraphUpdates.Count > 0) {
+			if (AstarPath.active == null || AstarPath.active.isScanning || Time.realtimeSinceStartup - lastCheckTime < checkTime || !Application.isPlaying || pendingGraphUpdates.Count > 0) 
+			{
 				return;
 			}
 
@@ -149,13 +154,15 @@ namespace Pathfinding
 
 				// If the difference between the previous bounds and the new bounds is greater than some value, update the graphs
 				if (minDiff.sqrMagnitude > updateError*updateError || maxDiff.sqrMagnitude > updateError*updateError ||
-					errorFromRotation > updateError || !prevEnabled) {
+					errorFromRotation > updateError || !prevEnabled) 
+				{
 					// Update the graphs as soon as possible
 					DoUpdateGraphs();
 				}
 			} else {
 				// Collider has just been disabled
-				if (prevEnabled) {
+				if (prevEnabled) 
+				{
 					DoUpdateGraphs();
 				}
 			}
@@ -186,20 +193,24 @@ namespace Pathfinding
 		/// If you want to guarantee that the graphs have been updated then call AstarPath.active.FlushGraphUpdates()
 		/// after the call to this method.
 		/// </summary>
-		public void DoUpdateGraphs () {
+		public void DoUpdateGraphs () 
+		{
 			if (coll == null && coll2D == null) return;
 
 			// Required to ensure we get the most up to date bounding box from the physics engine
 			UnityEngine.Physics.SyncTransforms();
 			UnityEngine.Physics2D.SyncTransforms();
 
-			if (!colliderEnabled) {
+			if (!colliderEnabled) 
+			{
 				// If the collider is not enabled, then col.bounds will empty
 				// so just update prevBounds
 				var guo = new GraphUpdateObject(prevBounds);
 				pendingGraphUpdates.Enqueue(guo);
 				AstarPath.active.UpdateGraphs(guo);
-			} else {
+			} 
+			else 
+			{
 				Bounds newBounds = bounds;
 
 				Bounds merged = newBounds;
@@ -207,12 +218,15 @@ namespace Pathfinding
 
 				// Check what seems to be fastest, to update the union of prevBounds and newBounds in a single request
 				// or to update them separately, the smallest volume is usually the fastest
-				if (BoundsVolume(merged) < BoundsVolume(newBounds) + BoundsVolume(prevBounds)) {
+				if (BoundsVolume(merged) < BoundsVolume(newBounds) + BoundsVolume(prevBounds)) 
+				{
 					// Send an update request to update the nodes inside the 'merged' volume
 					var guo = new GraphUpdateObject(merged);
 					pendingGraphUpdates.Enqueue(guo);
 					AstarPath.active.UpdateGraphs(guo);
-				} else {
+				} 
+				else 
+				{
 					// Send two update request to update the nodes inside the 'prevBounds' and 'newBounds' volumes
 					var guo1 = new GraphUpdateObject(prevBounds);
 					var guo2 = new GraphUpdateObject(newBounds);

@@ -1,7 +1,7 @@
 using BehaviorDesigner.Runtime.Tasks;
 using Character.Combat;
 
-namespace Character.Behavior.Actions
+namespace Character.Behavior
 {
     [TaskCategory("Character")]
     public class ToIdleBehavior : Action

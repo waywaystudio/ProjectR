@@ -17,7 +17,7 @@ namespace Character.Graphic.UI
 
         private void UpdateCastingBar()
         {
-            var hasCastingEntity = cb.SkillInfo is { HasCastingEntity: true }; 
+            var hasCastingEntity = cb.SkillInfo is { HasCastingModule: true }; 
 
             if (!hasCastingEntity)
             {

@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace Character.Combat
 {
-    public class TargetModule : Module, ITargetModule, IReady
+    public class TargetModule : CombatModule, IReady
     {
         [SerializeField] private SortingType sortingType;
         [SerializeField] private string targetLayerType;
@@ -45,30 +45,32 @@ namespace Character.Combat
             else 
                 TargetList.ForEach(target => target.TakeSpell(damage));
         }
-        public void TakeProjectile(IProjectileModule projectile)
+        public void TakeProjectile(ProjectileModule projectile)
         {
             if (targetCount == 1) projectile.Fire(Target);
             else TargetList.ForEach(projectile.Fire);
         }
-        public void TakeStatusEffect(IStatusEffectModule statusEffect)
+        public void TakeStatusEffect(StatusEffectModule statusEffect)
         {
             if (targetCount == 1) statusEffect.Effectuate(Target);
             else TargetList.ForEach(statusEffect.Effectuate);
         }
 
-        public override void Initialize(IActionSender actionSender)
-        {
-            base.Initialize(actionSender);
 
-            var cb = GetComponentInParent<CharacterBehaviour>();
+        protected override void Awake()
+        {
+            base.Awake();
             
+            var cb = GetComponentInParent<CharacterBehaviour>();
+
             searchingEngine = cb.SearchingEngine;
             targetingEngine = cb.TargetingEngine;
             targetLayer     = CharacterUtility.SetLayer(Provider, targetLayerType);
             targetList = targetLayer == LayerMask.NameToLayer("Adventurer")
-                    ? searchingEngine.AdventurerList
-                    : searchingEngine.MonsterList;
+                ? searchingEngine.AdventurerList
+                : searchingEngine.MonsterList;
         }
+        
 
 #if UNITY_EDITOR
         public void SetUpValue(string targetLayerType, int targetCount, float range, SortingType sortingType, bool isSelf)

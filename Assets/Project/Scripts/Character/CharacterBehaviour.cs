@@ -9,7 +9,6 @@ namespace Character
         [SerializeField] protected string characterName = string.Empty;
         [SerializeField] protected DataIndex dataIndex;
 
-        
         public string Name => characterName ??= "Diablo";
         public DataIndex DataIndex => dataIndex;
         public DataIndex ActionCode => DataIndex.None;
@@ -17,14 +16,13 @@ namespace Character
         public ICombatProvider Provider => this;
         public GameObject Object => gameObject;
         public StatTable StatTable { get; } = new(1);
-        public BehaviourStatus BehaviourStatus { get; set; } = BehaviourStatus.Combat;
 
         public ActionTable OnUpdate { get; } = new();
         public ActionTable OnIdle { get; } = new();
         public ActionTable<Vector3, Action> OnWalk { get; } = new();
         public ActionTable<Vector3, Action> OnRun { get; } = new();
         public ActionTable<Vector3> OnTeleport { get; } = new();
-        public ActionTable<string, Action> OnSkill { get; } = new(8);
+        public ActionTable<DataIndex, Action> OnSkill { get; } = new(8);
         public ActionTable OnSkillHit { get; } = new(4);
         public ActionTable<IStatusEffect> OnTakeStatusEffect { get; } = new(2);
         public ActionTable<DataIndex> OnDispelStatusEffect { get; } = new(2);
@@ -41,7 +39,7 @@ namespace Character
         public void Walk(Vector3 destination, Action pathCallback = null) => OnWalk?.Invoke(destination, pathCallback);
         public void Run(Vector3 destination, Action pathCallback = null) => OnRun?.Invoke(destination, pathCallback);
         public void Teleport(Vector3 destination) => OnTeleport?.Invoke(destination);
-        public void Skill(string skillName, Action animationCallback) => OnSkill?.Invoke(skillName, animationCallback);
+        public void Skill(DataIndex skill, Action animationCallback) => OnSkill?.Invoke(skill, animationCallback);
         public void SkillHit() => OnSkillHit?.Invoke();
 
         public void TakeDamage(ICombatTable provider) => CombatUtility.TakeDamage(provider, this);

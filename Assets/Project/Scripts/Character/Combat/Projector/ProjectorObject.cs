@@ -14,22 +14,13 @@ namespace Character.Combat.Projector
         [SerializeField] protected string targetLayerType;
 
         public ICombatTaker Taker { get; private set; }
-        public Vector3 Destination { get; set; }
+        public Vector3 Destination { get; private set; }
+        public LayerMask TargetLayer { get; private set; }
+        
         public ProjectorShapeType ShapeType => shapeType;
         public Vector2 SizeValue => sizeValue;
         public float CastingTime => CastingModule.OriginalCastingTime;
-        public LayerMask TargetLayer { get; set; }
-        
-        /// <summary>
-        /// Call From ProjectorModule.Projection
-        /// </summary>
-        public ActionTable OnProjectionStart { get; } = new();
-        
-        /// <summary>
-        /// Call By ProjectorDecal Shader Progression.
-        /// </summary>
-        public ActionTable OnProjectionEnd { get; } = new();
-        
+
         /// <summary>
         /// 프로젝터 안에 들어와 있는 ICombatTaker 에게 Action
         /// </summary>
@@ -48,7 +39,7 @@ namespace Character.Combat.Projector
             Taker       = taker;
             Destination = Taker.Object.transform.position;
 
-            OnProjectionStart.Invoke();
+            OnActivated.Invoke();
         }
         
         public void Projection(ICombatProvider provider, Vector3 destination)
@@ -57,13 +48,12 @@ namespace Character.Combat.Projector
           
             Destination = destination;
             
-            OnProjectionStart.Invoke();
+            OnActivated.Invoke();
         }
 
 
         protected abstract void EnterProjector(ICombatTaker taker);
         protected abstract void EndProjector(ICombatTaker taker);
-
         protected void End()
         {
             // Return to Pool
@@ -81,12 +71,10 @@ namespace Character.Combat.Projector
                 gameObject.SetActive(true);
         }
 
-        protected override void Awake()
+        protected void Awake()
         {
-            base.Awake();
-
             /* ActionTable Register */
-            OnProjectionEnd.Register(InstanceID, End);
+            OnCompleted.Register(InstanceID, End);
             OnProjectorEnter.Register(InstanceID, EnterProjector);
             OnProjectorEnd.Register(InstanceID, EndProjector);
         }
@@ -95,8 +83,7 @@ namespace Character.Combat.Projector
 #if UNITY_EDITOR
         public override void SetUp()
         {
-            if (actionCode == DataIndex.None) 
-                actionCode = GetType().Name.ToEnum<DataIndex>();
+            base.SetUp();
 
             var data = MainGame.MainData.GetProjector(actionCode);
             
@@ -104,7 +91,7 @@ namespace Character.Combat.Projector
             targetLayerType =   data.TargetLayerType;
             sizeValue       =   data.Size;
 
-            GetComponents<Module>().ForEach(x => ModuleUtility.SetProjectorModule(data, x));
+            GetComponents<CombatModule>().ForEach(x => ModuleUtility.SetProjectorModule(data, x));
             gameObject.GetComponentsInOnlyChildren<IEditorSetUp>().ForEach(x => x.SetUp());
         }
 #endif

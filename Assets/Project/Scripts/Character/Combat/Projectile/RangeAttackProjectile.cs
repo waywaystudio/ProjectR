@@ -10,7 +10,7 @@ namespace Character.Combat.Projectile
             TrajectoryTweener = transform
                 .DOMove(Destination, speed)
                 .SetEase(Ease.Linear)
-                .OnComplete(Arrived)
+                .OnComplete(Complete)
                 .SetSpeedBased();
             
             TrajectoryTweener.OnUpdate(() =>
@@ -25,7 +25,7 @@ namespace Character.Combat.Projectile
             });
         }
         
-        protected void Arrived()
+        protected override void Arrived()
         {
             if (ValidateTaker) Taker.TakeDamage(DamageModule);
             

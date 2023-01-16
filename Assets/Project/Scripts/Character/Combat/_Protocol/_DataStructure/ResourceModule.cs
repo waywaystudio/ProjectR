@@ -3,34 +3,31 @@ using UnityEngine;
 
 namespace Character.Combat
 {
-    public class ResourceModule : Module, IResourceModule, IOnCompleted, IReady
+    public class ResourceModule : CombatModule, IReady
     {
         [SerializeField] private float obtain;
 
-        public float Obtain => obtain;
-        public ActionTable OnCompleted { get; } = new();
         public bool IsReady => obtain switch
         {
             < 0 => Provider.DynamicStatEntry.Resource.Value >= obtain * -1f,
             _ => true,
         };
+        
 
-
-        public override void Initialize(IActionSender actionSender)
+        protected override void Awake()
         {
-            base.Initialize(actionSender);
+            base.Awake();
             
-            OnCompleted.Register(InstanceID, () => Provider.DynamicStatEntry.Resource.Value += Obtain);
+            CombatObject.ReadyCheckList.Add(this);
+            CombatObject.OnCompleted.Register(InstanceID, () => Provider.DynamicStatEntry.Resource.Value += obtain);
         }
-        
-        
+
 #if UNITY_EDITOR
-        public void SetUpValue(float obtain)
+        public void SetUpValue(float value)
         {
-            Flag        = ModuleType.Resource;
-            this.obtain = obtain;
+            Flag   = ModuleType.Resource;
+            obtain = value;
         }
 #endif
-        
     }
 }

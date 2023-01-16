@@ -8,19 +8,21 @@ namespace Character.Combat
 {
     public class CombatBehaviour : MonoBehaviour, ICombatBehaviour, IEditorSetUp
     {
+        [SerializeField] private CharacterBehaviour cb;
         [SerializeField] private List<SkillObject> skillList = new(4);
-        [SerializeField] private Positioning positioning;
         [SerializeField] private GlobalCoolDown globalCoolDown;
+        [SerializeField] private SkillTable skillTable;
 
-        public Positioning Positioning => positioning;
+        // ISkillTable skillTable;
         public GlobalCoolDown GlobalCoolDown => globalCoolDown;
+        // Priority Algorithm.
         
         // TODO. ISKillInfo쪽을 다듬으면, 아래 필드를 삭제할 수도 있다.
         public IEnumerable<SkillObject> SkillList => skillList;
         public SkillObject CurrentSkill { get; private set; }
-
-        public float GlobalCoolTime => GlobalCoolDown.CoolTime;
         public List<ISkill> SkillInfoList { get; } = new(4);
+        
+        public float GlobalCoolTime => GlobalCoolDown.CoolTime;
         public Observable<float> GlobalRemainTime => GlobalCoolDown.Timer;
         
         // SharedBool :: CombatBehaviorDesigner
@@ -29,9 +31,35 @@ namespace Character.Combat
         // SharedBool :: CombatBehaviorDesigner
         public bool IsCoolOnAnySkill => SkillList.Any(x => x.IsCoolTimeReady);
 
-        // ShardInt :: CombatBehaviorDesigner
-        public int MostPrioritySkillID => GetMostPrioritySkillID();
+        public ActionTable<ISkill> OnStartSkill { get; } = new();
+        public ActionTable<ISkill> OnCompleteSkill { get; } = new();
+        public ActionTable OnHitSkill { get; } = new();
+
+        public void StartSkill(ISkill skill)
+        {
+            DeActiveSkill();
+            
+            cb.SkillInfo = skill;
+            skillTable.StartSkill(skill);
+
+            // globalCoolTime.ActiveSkill();
+        }
+
+        public void CompleteSkill(ISkill skill)
+        {
+            skillTable.CompleteSkill(skill);
+        }
         
+        public void HitSkill(ISkill skill)
+        {
+            skill.Hit();
+        }
+
+        private void DeActiveSkill()
+        {
+            cb.SkillInfo = null;
+        }
+
 
         // TODO. 대량의 GC 발생중 (잦은 호출) -> 많이 수정 함
         public bool TryGetMostPrioritySkill(out SkillObject skill)
@@ -46,6 +74,15 @@ namespace Character.Combat
                 skill ??= skillList[i];
                 if (skillList[i].Priority >= skill.Priority) skill = skillList[i];
             }
+            
+#if UNITY_EDITOR
+            if (skill == null)
+            {
+                // TODO. RayCastModule 이 기초스킬일 경우, 로그가 띄워질 수 있다.
+                Debug.LogWarning("캐릭터 스킬 구성에는 항상 준비되어 있는 기초스킬을 가지고 있다."
+                                 + "이 로그가 띄워지면, 기초스킬 구성이 잘못 되어 있거나, 빠져있을 수 있다.");
+            }
+#endif
             
             return skill is not null;
         }
@@ -62,24 +99,11 @@ namespace Character.Combat
         }
 
 
-        // TODO. 대량의 GC 발생중 (FindAll, 잦은 호출)
-        private int GetMostPrioritySkillID()
-        {
-            /*
-             * Require Priority Algorithm
-             */
-            var mostPrioritySkillID = SkillList
-                .Where(x => x.IsCoolTimeReady)
-                .MaxBy(x => x.Priority).ActionCode;
-
-            return (int)mostPrioritySkillID;
-        }
-
         private void Awake()
         {
-            GetComponentInParent<CharacterBehaviour>().CombatBehaviour = this;
+            cb                 ??= GetComponentInParent<CharacterBehaviour>();
+            cb.CombatBehaviour =   this;
             
-            positioning ??= GetComponent<Positioning>();
             globalCoolDown ??= GetComponent<GlobalCoolDown>();
             SkillInfoList.AddRange(SkillList);
         }
@@ -88,7 +112,6 @@ namespace Character.Combat
 #if UNITY_EDITOR
         public void SetUp()
         {
-            positioning ??= GetComponent<Positioning>();
             globalCoolDown ??= GetComponent<GlobalCoolDown>();
 
             // TODO. 나중에는 인게임에서 캐릭터의 스킬을 변경할 수 있게 될 것이다.

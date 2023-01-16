@@ -31,24 +31,28 @@ namespace Character.Combat.Projectile
             Provider    = provider;
             Taker       = taker;
             Destination = taker.Object.transform.position;
-            ModuleTable.ForEach(x => x.Value.Initialize(this));
 
-            Trajectory();
+            Active();
         }
 
         protected abstract void Trajectory();
+        protected abstract void Arrived();
+        protected void Awake()
+        {
+            OnCompleted.Register(InstanceID, Arrived);
+            OnActivated.Register(InstanceID, Trajectory);
+        }
  
 
 #if UNITY_EDITOR
         public override void SetUp()
         {
-            if (actionCode == DataIndex.None)
-                actionCode = name.ToEnum<DataIndex>();
+            base.SetUp();
 
             var projectileData = MainGame.MainData.GetProjectile(actionCode);
             speed = projectileData.Speed;
 
-            GetComponents<Module>().ForEach(x => ModuleUtility.SetProjectileModule(projectileData, x));
+            GetComponents<CombatModule>().ForEach(x => ModuleUtility.SetProjectileModule(projectileData, x));
         }
 #endif
     }

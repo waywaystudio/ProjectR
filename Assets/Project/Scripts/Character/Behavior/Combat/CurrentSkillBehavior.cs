@@ -1,7 +1,7 @@
 using BehaviorDesigner.Runtime.Tasks;
 using Character.Combat;
 
-namespace Character.Behavior.Actions.Combat
+namespace Character.Behavior.Combat
 {
     [TaskCategory("Character/Combat")]
     public class CurrentSkillBehavior : Action

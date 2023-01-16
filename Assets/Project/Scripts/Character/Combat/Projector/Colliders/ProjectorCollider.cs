@@ -39,8 +39,8 @@ namespace Character.Combat.Projector.Colliders
             po        ??= GetComponentInParent<ProjectorObject>();
             SizeValue =   po.SizeValue;
 
-            po.OnProjectionStart.Register(InstanceID, StartProjection);
-            po.OnProjectionEnd.Register(InstanceID, EndProjection);
+            po.OnActivated.Register(InstanceID, StartProjection);
+            po.OnCompleted.Register(InstanceID, EndProjection);
         }
 
 #if UNITY_EDITOR

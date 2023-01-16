@@ -3,28 +3,34 @@ using UnityEngine;
 
 namespace Character.Combat
 {
-    public class HealModule : Module, IHealModule, ICombatTable
+    public class HealModule : CombatModule, ICombatTable
     {
         [SerializeField] private PowerValue healValue;
 
-        public PowerValue HealValue => healValue;
         public StatTable StatTable { get; } = new();
         
-        public override void Initialize(IActionSender actionSender)
+        // TODO. UnionWith가 Provider.StatTable 값 변동에 어떻게 대응하는지 확인이 필요하다.
+        // TODO. 만약 유동적으로 대응한다면, Awake에서 한 번만 넣어주어도 된다.
+        private void OnEnable()
         {
-            base.Initialize(actionSender);
-            
-            // TODO. 현재 HealValue는 1.4, 2, 이런식이다. 값 알맞게 고쳐주거나, StatTable 함수에 곱 기능 추가해야 한다.
-            StatTable.Register(ActionCode, HealValue);
+            StatTable.Register(ActionCode, healValue);
+        }
+        
+        private void Start()
+        {
             StatTable.UnionWith(Provider.StatTable);
         }
-
+        
+        private void OnDisable()
+        {
+            StatTable.Unregister(ActionCode, healValue);
+        }
 
 #if UNITY_EDITOR
-        public void SetUpValue(float healValue)
+        public void SetUpValue(float value)
         {
             Flag            = ModuleType.Heal;
-            HealValue.Value = healValue;
+            healValue.Value = value;
         }
 #endif
     }

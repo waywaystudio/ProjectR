@@ -1,16 +1,12 @@
-using BehaviorDesigner.Runtime;
 using BehaviorDesigner.Runtime.Tasks;
 using Character.Combat;
 
-namespace Character.Behavior.Actions.Combat
+namespace Character.Behavior.Combat
 {
     [TaskCategory("Character/Combat")]
     public class UseSkillBehavior : Action
     {
-        public SharedInt TargetSkillID;
-        
         private CombatBehaviour combat;
-        
 
         public override void OnAwake()
         {

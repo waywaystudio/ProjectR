@@ -1,16 +1,25 @@
+using UnityEngine;
+
 namespace Character.Combat.Skill
 {
     public class Fury : SkillObject
     {
-        protected override void StartSkill()
+        private void OnFuryActivated()
         {
-            base.StartSkill();
-
+            Debug.Log("FuryActivated");
+            
             if (TargetModule && StatusEffectModule)
             {
+                
                 TargetModule.TakeStatusEffect(StatusEffectModule);
             }
-                
+        }
+        
+        protected override void Awake()
+        {
+            base.Awake();
+            
+            OnActivated.Register(InstanceID, OnFuryActivated);
         }
     }
 }

@@ -2,15 +2,19 @@ namespace Character.Combat.Skill
 {
     public class Corruption : SkillObject
     {
-        protected override void StartSkill()
+        private void OnCorruptionActivated()
         {
-            base.StartSkill();
-
             if (StatusEffectModule && TargetModule)
             {
                 TargetModule.TakeStatusEffect(StatusEffectModule);
             }
-               
+        }
+        
+        protected override void Awake()
+        {
+            base.Awake();
+            
+            OnActivated.Register(InstanceID, OnCorruptionActivated);
         }
     }
 }

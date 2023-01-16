@@ -10,7 +10,7 @@ namespace Character.Combat.Skill
 
         private IPathfinding pathfindingEngine;
 
-        public override void InvokeEvent()
+        public override void Hit()
         {
             if (DamageModule && TargetModule)
             {
@@ -31,9 +31,9 @@ namespace Character.Combat.Skill
             Cb.Run(targetFrontPosition, base.ActiveSkill);
         }
 
-        protected override void CompleteSkill()
+        public override void Complete()
         {
-            base.CompleteSkill();
+            base.Complete();
             Cb.StatTable.Unregister(ActionCode, StatCode.MoveSpeed);
         }
 

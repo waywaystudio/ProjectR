@@ -19,7 +19,7 @@ namespace Character.Editor
         }
     }
     
-    public class ModuleDrawer : OdinAttributeProcessor<Combat.Module>
+    public class ModuleDrawer : OdinAttributeProcessor<Combat.CombatModule>
     {
         // public override void ProcessChildMemberAttributes(InspectorProperty parentProperty, MemberInfo member, List<Attribute> attributes)
         // {

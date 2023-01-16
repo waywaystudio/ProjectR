@@ -2,14 +2,19 @@ namespace Character.Combat.Skill
 {
     public class FaithfulPrey : SkillObject
     {
-        protected override void CompleteSkill()
+        private void OnFaithfulPreyCompleted()
         {
             if (HealModule && TargetModule)
             {
                 TargetModule.TakeHeal(HealModule);
             }
+        }
 
-            base.CompleteSkill();
+        protected override void Awake()
+        {
+            base.Awake();
+            
+            OnCompleted.Register(InstanceID, OnFaithfulPreyCompleted);
         }
     }
 }

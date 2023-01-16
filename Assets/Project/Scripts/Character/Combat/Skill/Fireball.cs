@@ -2,14 +2,19 @@ namespace Character.Combat.Skill
 {
     public class Fireball : SkillObject
     {
-        protected override void CompleteSkill()
+        private void OnFireballCompleted()
         {
             if (TargetModule && ProjectileModule)
             {
                 TargetModule.TakeProjectile(ProjectileModule);
             }
-
-            base.CompleteSkill();
+        }
+        
+        protected override void Awake()
+        {
+            base.Awake();
+            
+            OnCompleted.Register(InstanceID, OnFireballCompleted);
         }
     }
 }

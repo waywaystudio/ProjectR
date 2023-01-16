@@ -7,7 +7,7 @@ namespace Character
 {
     public static class ModuleUtility
     {
-        public static void SetSkillModule<T>(SkillData.Skill baseSkill, T entity) where T : Module
+        public static void SetSkillModule<T>(SkillData.Skill baseSkill, T entity) where T : CombatModule
         {
             switch (entity)
             {
@@ -32,7 +32,7 @@ namespace Character
                 }
             }
         }
-        public static void SetProjectileModule<T>(ProjectileData.Projectile baseProjectile, T entity) where T : Module
+        public static void SetProjectileModule<T>(ProjectileData.Projectile baseProjectile, T entity) where T : CombatModule
         {
             switch (entity)
             {
@@ -49,7 +49,7 @@ namespace Character
             }
         }
         
-        public static void SetStatusEffectModule<T>(StatusEffectData.StatusEffect baseStatusEffect, T entity) where T : Module
+        public static void SetStatusEffectModule<T>(StatusEffectData.StatusEffect baseStatusEffect, T entity) where T : CombatModule
         {
             switch (entity)
             {
@@ -66,7 +66,7 @@ namespace Character
             }
         }
         
-        public static void SetProjectorModule<T>(ProjectorData.Projector baseProjector, T module) where T : Module
+        public static void SetProjectorModule<T>(ProjectorData.Projector baseProjector, T module) where T : CombatModule
         {
             switch (module)
             {

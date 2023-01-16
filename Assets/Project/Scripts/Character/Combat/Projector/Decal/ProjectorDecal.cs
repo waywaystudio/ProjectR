@@ -66,7 +66,7 @@ namespace Character.Combat.Projector.Decal
             decal.material
                 .DOFloat(1.5f, FillAmount, castingTime)
                 .SetEase(Ease.InQuad)
-                .OnComplete(po.OnProjectionEnd.Invoke);
+                .OnComplete(po.OnCompleted.Invoke);
         }
 
         private void EndProjection()
@@ -84,8 +84,8 @@ namespace Character.Combat.Projector.Decal
             var mat = new Material(decal.material);
             decal.material = mat;
 
-            po.OnProjectionStart.Register(InstanceID, StartProjection);
-            po.OnProjectionEnd.Register(InstanceID, EndProjection);
+            po.OnActivated.Register(InstanceID, StartProjection);
+            po.OnCompleted.Register(InstanceID, EndProjection);
         }
 
 #if UNITY_EDITOR

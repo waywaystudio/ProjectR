@@ -2,10 +2,8 @@ namespace Character.Combat.Skill
 {
     public class Roar : SkillObject
     {
-        protected override void StartSkill()
+        private void OnRoarActivated()
         {
-            base.StartSkill();
-
             if (TargetModule)
             {
                 if (DamageModule) TargetModule.TakeDamage(DamageModule);
@@ -13,5 +11,11 @@ namespace Character.Combat.Skill
             }
         }
         
+        protected override void Awake()
+        {
+            base.Awake();
+            
+            OnActivated.Register(InstanceID, OnRoarActivated);
+        }
     }
 }

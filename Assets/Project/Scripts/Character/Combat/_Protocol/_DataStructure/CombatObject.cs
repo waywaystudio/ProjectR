@@ -1,25 +1,33 @@
 using System.Collections.Generic;
 using Core;
+using Sirenix.OdinInspector;
 using UnityEngine;
 
 namespace Character.Combat
 {
-    public abstract class CombatObject : MonoBehaviour, IActionSender, IEditorSetUp
+    public abstract class CombatObject : MonoBehaviour, ICombatObject, IEditorSetUp
     {
         [SerializeField] protected DataIndex actionCode;
         
         private int instanceID;
+
+        public DataIndex ActionCode => actionCode;
+        public virtual ICombatProvider Provider { get; protected set; }
+        
+        [ShowInInspector]
+        public ActionTable OnActivated { get; } = new();
+        public ActionTable OnCompleted { get; } = new();
+        public ActionTable OnCanceled { get; } = new();
+        public ActionTable OnHit { get; } = new();
+        public List<IReady> ReadyCheckList { get; set; } = new();
+        public Dictionary<ModuleType, CombatModule> ModuleTable { get; } = new();
+        
         protected int InstanceID =>
             instanceID == 0
                 ? instanceID = GetInstanceID()
                 : instanceID;
 
-        public DataIndex ActionCode => actionCode;
-        public virtual ICombatProvider Provider { get; set; }
-        
-        protected Dictionary<ModuleType, Module> ModuleTable { get; } = new();
-
-        protected T GetModule<T>(ModuleType type) where T : Module =>
+        protected T GetModule<T>(ModuleType type) where T : CombatModule =>
             ModuleTable.ContainsKey(type)
                 ? ModuleTable[type] as T
                 : null;
@@ -33,15 +41,19 @@ namespace Character.Combat
         public TargetModule TargetModule => GetModule<TargetModule>(ModuleType.Target);
         public ResourceModule ResourceModule => GetModule<ResourceModule>(ModuleType.Resource);
         public ProjectorModule ProjectorModule => GetModule<ProjectorModule>(ModuleType.Projector);
-
-
-        protected virtual void Awake()
-        {
-            GetComponents<Module>().ForEach(x => ModuleTable.Add(x.Flag, x));
-        }
+        
+        public virtual void Active() => OnActivated.Invoke();
+        public virtual void Complete() => OnCompleted.Invoke();
+        public virtual void Cancel() => OnCanceled.Invoke();
+        public virtual void Hit() => OnHit.Invoke();
+        
 
 #if UNITY_EDITOR
-        public virtual void SetUp() { }
+        public virtual void SetUp()
+        {
+            if (actionCode == DataIndex.None)
+                actionCode = name.ToEnum<DataIndex>();
+        }
 #endif
     }
 }

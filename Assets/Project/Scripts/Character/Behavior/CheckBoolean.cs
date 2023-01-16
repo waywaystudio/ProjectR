@@ -1,7 +1,7 @@
 using BehaviorDesigner.Runtime;
 using BehaviorDesigner.Runtime.Tasks;
 
-namespace Character.Behavior.Actions
+namespace Character.Behavior
 {
     [TaskIcon("{SkinColor}SelectorIcon.png"), TaskCategory("Character")]
     public class CheckBoolean : Action
