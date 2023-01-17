@@ -35,9 +35,9 @@ namespace Character.Graphic
         {
             switch (e.Data.Name)
             {
-                case "attackHit" : Cb.SkillHit(); break;
-                case "skillHit" : Cb.SkillHit(); break;
-                case "channelingHit" : Cb.SkillHit(); break;
+                case "attackHit" : Cb.HitSkill(); break;
+                case "skillHit" : Cb.HitSkill(); break;
+                case "channelingHit" : Cb.HitSkill(); break;
             }
         }
 

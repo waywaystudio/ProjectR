@@ -8,6 +8,8 @@ namespace Character.Combat
         [SerializeField] private PowerValue healValue;
 
         public StatTable StatTable { get; } = new();
+        public ICombatProvider Provider => CombatObject.Provider;
+        public DataIndex ActionCode => CombatObject.ActionCode;
         
         // TODO. UnionWith가 Provider.StatTable 값 변동에 어떻게 대응하는지 확인이 필요하다.
         // TODO. 만약 유동적으로 대응한다면, Awake에서 한 번만 넣어주어도 된다.

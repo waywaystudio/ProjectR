@@ -10,6 +10,8 @@ namespace Character.Combat
         [SerializeField] private DataIndex projectorID;
         [SerializeField] private GameObject projectorPrefab;
         
+        public ICombatProvider Provider => CombatObject.Provider;
+
 
         public void Projection(ICombatTaker taker)
         {

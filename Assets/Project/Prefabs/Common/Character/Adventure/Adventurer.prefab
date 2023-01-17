@@ -90,8 +90,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 39ceaab75c21de048b3669cf5708e30a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cb: {fileID: 3044725383043683279}
-  skillList: []
+  combatBehaviour: {fileID: 3744010701179384130}
+  selectSkillList: []
 --- !u!1 &286356721480540612
 GameObject:
   m_ObjectHideFlags: 0
@@ -140,6 +140,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   actionCode: 13000003
+  skillTable: {fileID: 2719205626943282457}
+  fixedCastingTime: 0
+  animationKey: skill
   priority: 5
   icon: {fileID: 21300000, guid: f747f72b5703e8745a2a8b3faa6a0525, type: 3}
   backMagnitude: 4.2
@@ -155,7 +158,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bd2d098c14bb73641bcc6faff29af210, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  flag: 1
+  CombatObject: {fileID: 2330787471297126836}
+  Flag: 1
   damageValue:
     value: 4
     statCode: 1
@@ -171,7 +175,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9b71247a0c6287f44b49f848d90d357e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  flag: 2
+  CombatObject: {fileID: 2330787471297126836}
+  Flag: 2
   coolTime: 15
 --- !u!114 &2448565528259500646
 MonoBehaviour:
@@ -185,7 +190,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4c5f541185aa92b488eeff9b9e07cdfc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  flag: 5
+  CombatObject: {fileID: 2330787471297126836}
+  Flag: 5
   sortingType: 0
   targetLayerType: enemy
   targetCount: 1
@@ -239,6 +245,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   actionCode: 13000013
+  skillTable: {fileID: 2719205626943282457}
+  fixedCastingTime: 1.5
+  animationKey: skill
   priority: 1
   icon: {fileID: 21300000, guid: 16127a9c6bf6d734e94f7a0e865d187e, type: 3}
 --- !u!114 &8565042087880124505
@@ -253,7 +262,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3866fc5b909cf064b9fd1dce2842c40b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  flag: 7
+  CombatObject: {fileID: 3073268482839418820}
+  Flag: 7
   healValue:
     value: 3
     statCode: 1
@@ -269,7 +279,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4c5f541185aa92b488eeff9b9e07cdfc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  flag: 5
+  CombatObject: {fileID: 3073268482839418820}
+  Flag: 5
   sortingType: 3
   targetLayerType: ally
   targetCount: 1
@@ -287,7 +298,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cc73b176d16ea8448a48d598b41a08b5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  flag: 4
+  CombatObject: {fileID: 3073268482839418820}
+  Flag: 4
   originalCastingTime: 1.5
 --- !u!1 &1395558016746253724
 GameObject:
@@ -308,7 +320,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &6683087271973930562
 Transform:
   m_ObjectHideFlags: 0
@@ -341,6 +353,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   actionCode: 13000012
+  skillTable: {fileID: 2719205626943282457}
+  fixedCastingTime: 0
+  animationKey: skill
   priority: 2
   icon: {fileID: 21300000, guid: b40cb8ac08b1f28489262dbbcc06d720, type: 3}
 --- !u!114 &6291252832563897115
@@ -355,7 +370,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 220707aa24bd15e4d9a9240e827cb4a3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  flag: 9
+  CombatObject: {fileID: 6479502405617291387}
+  Flag: 9
   statusEffectID: 14000001
   statusEffectPool:
   - {fileID: 208746149383104753}
@@ -374,7 +390,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9b71247a0c6287f44b49f848d90d357e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  flag: 2
+  CombatObject: {fileID: 6479502405617291387}
+  Flag: 2
   coolTime: 15
 --- !u!114 &3209702092269156988
 MonoBehaviour:
@@ -388,7 +405,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4c5f541185aa92b488eeff9b9e07cdfc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  flag: 5
+  CombatObject: {fileID: 6479502405617291387}
+  Flag: 5
   sortingType: 0
   targetLayerType: enemy
   targetCount: 1
@@ -443,6 +461,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   actionCode: 13000017
+  skillTable: {fileID: 2719205626943282457}
+  fixedCastingTime: 2
+  animationKey: skill
   priority: 5
   icon: {fileID: 21300000, guid: 7ae1a46e061a47b4381c9d988bb5b37f, type: 3}
 --- !u!114 &9046075864732758135
@@ -457,7 +478,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9b71247a0c6287f44b49f848d90d357e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  flag: 2
+  CombatObject: {fileID: 1427536151393672886}
+  Flag: 2
   coolTime: 5
 --- !u!114 &4152075476344098872
 MonoBehaviour:
@@ -471,7 +493,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cc73b176d16ea8448a48d598b41a08b5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  flag: 4
+  CombatObject: {fileID: 1427536151393672886}
+  Flag: 4
   originalCastingTime: 2
 --- !u!114 &3303418638668170366
 MonoBehaviour:
@@ -485,7 +508,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4c5f541185aa92b488eeff9b9e07cdfc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  flag: 5
+  CombatObject: {fileID: 1427536151393672886}
+  Flag: 5
   sortingType: 3
   targetLayerType: ally
   targetCount: 1
@@ -503,7 +527,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7142e0a43af74e747a185ee0b65f9c41, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  flag: 6
+  CombatObject: {fileID: 1427536151393672886}
+  Flag: 6
   projectileID: 15000003
   projectilePrefab: {fileID: 5223207423503661573, guid: 778d5e81bde95a045ac93cc2673ae572, type: 3}
 --- !u!1 &1797137588133403415
@@ -707,6 +732,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   actionCode: 13000008
+  skillTable: {fileID: 2719205626943282457}
+  fixedCastingTime: 0.8
+  animationKey: channeling
   priority: 5
   icon: {fileID: 21300000, guid: de31e9837c775474ca7528f9f9bc9e54, type: 3}
 --- !u!114 &4110535229481813574
@@ -721,7 +749,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bd2d098c14bb73641bcc6faff29af210, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  flag: 1
+  CombatObject: {fileID: 5218544908929011682}
+  Flag: 1
   damageValue:
     value: 2
     statCode: 1
@@ -737,7 +766,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9b71247a0c6287f44b49f848d90d357e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  flag: 2
+  CombatObject: {fileID: 5218544908929011682}
+  Flag: 2
   coolTime: 6
 --- !u!114 &8212931962931820880
 MonoBehaviour:
@@ -751,7 +781,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cc73b176d16ea8448a48d598b41a08b5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  flag: 4
+  CombatObject: {fileID: 5218544908929011682}
+  Flag: 4
   originalCastingTime: 0.8
 --- !u!114 &8976578391784397922
 MonoBehaviour:
@@ -765,7 +796,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4c5f541185aa92b488eeff9b9e07cdfc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  flag: 5
+  CombatObject: {fileID: 5218544908929011682}
+  Flag: 5
   sortingType: 0
   targetLayerType: enemy
   targetCount: 1
@@ -1480,6 +1512,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   actionCode: 13000004
+  skillTable: {fileID: 2719205626943282457}
+  fixedCastingTime: 3
+  animationKey: skill
   priority: 5
   icon: {fileID: 21300000, guid: b053304febb595645a21257daa4eceef, type: 3}
 --- !u!114 &3744010700775776666
@@ -1494,7 +1529,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cc73b176d16ea8448a48d598b41a08b5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  flag: 4
+  CombatObject: {fileID: 3744010700775776668}
+  Flag: 4
   originalCastingTime: 3
 --- !u!114 &3896654370298883867
 MonoBehaviour:
@@ -1508,7 +1544,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4c3f42a73ddd63e47af0241ed7024ba6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  flag: 3
+  CombatObject: {fileID: 3744010700775776668}
+  Flag: 3
   obtain: -20
 --- !u!114 &3744010700775776671
 MonoBehaviour:
@@ -1522,7 +1559,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9b71247a0c6287f44b49f848d90d357e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  flag: 2
+  CombatObject: {fileID: 3744010700775776668}
+  Flag: 2
   coolTime: 8
 --- !u!114 &3744010700775776667
 MonoBehaviour:
@@ -1536,7 +1574,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4c5f541185aa92b488eeff9b9e07cdfc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  flag: 5
+  CombatObject: {fileID: 3744010700775776668}
+  Flag: 5
   sortingType: 0
   targetLayerType: enemy
   targetCount: 1
@@ -1554,7 +1593,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7142e0a43af74e747a185ee0b65f9c41, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  flag: 6
+  CombatObject: {fileID: 3744010700775776668}
+  Flag: 6
   projectileID: 15000001
   projectilePrefab: {fileID: 5223207423503661573, guid: 9be681468222de24bad1b3d289d71f86, type: 3}
 --- !u!1 &3744010700929808893
@@ -1677,12 +1717,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cb: {fileID: 3044725383043683279}
-  skillList:
-  - {fileID: 6479502405617291387}
-  - {fileID: 8749851631722230459}
-  - {fileID: 1300029322222589421}
   globalCoolDown: {fileID: 3660581652117012968}
-  skillTable: {fileID: 0}
+  skillTable: {fileID: 2719205626943282457}
 --- !u!114 &3660581652117012968
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1767,7 +1803,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &3744010701327891158
 Transform:
   m_ObjectHideFlags: 0
@@ -1796,6 +1832,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   actionCode: 13000001
+  skillTable: {fileID: 2719205626943282457}
+  fixedCastingTime: 0
+  animationKey: attack
   priority: 1
   icon: {fileID: 21300000, guid: a68e890a3c720c8458b62cd2825f019c, type: 3}
 --- !u!114 &3744010701327891162
@@ -1810,7 +1849,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bd2d098c14bb73641bcc6faff29af210, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  flag: 1
+  CombatObject: {fileID: 3744010701327891165}
+  Flag: 1
   damageValue:
     value: 5
     statCode: 1
@@ -1826,7 +1866,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4c3f42a73ddd63e47af0241ed7024ba6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  flag: 3
+  CombatObject: {fileID: 3744010701327891165}
+  Flag: 3
   obtain: 1
 --- !u!114 &3744010701327891161
 MonoBehaviour:
@@ -1840,7 +1881,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4c5f541185aa92b488eeff9b9e07cdfc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  flag: 5
+  CombatObject: {fileID: 3744010701327891165}
+  Flag: 5
   sortingType: 0
   targetLayerType: enemy
   targetCount: 1
@@ -1895,6 +1937,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   actionCode: 13000020
+  skillTable: {fileID: 2719205626943282457}
+  fixedCastingTime: 2
+  animationKey: skill
   priority: 1
   icon: {fileID: 0}
   randomRadius: 20
@@ -1912,7 +1957,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 75c84d6c3729d8148916010fbc1d8737, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  flag: 8
+  CombatObject: {fileID: 1300029322222589421}
+  Flag: 8
   projectorID: 18000001
   projectorPrefab: {fileID: 6638007462843243134, guid: 98dfe706a9e1ee14f955c00f8baef2b6, type: 3}
 --- !u!114 &8781103286392816298
@@ -1927,7 +1973,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cc73b176d16ea8448a48d598b41a08b5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  flag: 4
+  CombatObject: {fileID: 1300029322222589421}
+  Flag: 4
   originalCastingTime: 2
 --- !u!114 &5746207426035837763
 MonoBehaviour:
@@ -1941,7 +1988,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9b71247a0c6287f44b49f848d90d357e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  flag: 2
+  CombatObject: {fileID: 1300029322222589421}
+  Flag: 2
   coolTime: 10
 --- !u!114 &8518769765471881136
 MonoBehaviour:
@@ -1955,7 +2003,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4c5f541185aa92b488eeff9b9e07cdfc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  flag: 5
+  CombatObject: {fileID: 1300029322222589421}
+  Flag: 5
   sortingType: 0
   targetLayerType: enemy
   targetCount: 1
@@ -2009,6 +2058,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   actionCode: 13000011
+  skillTable: {fileID: 2719205626943282457}
+  fixedCastingTime: 1.5
+  animationKey: skill
   priority: 2
   icon: {fileID: 21300000, guid: 29cb2ea541dd92249bf98d7ce645c0a9, type: 3}
 --- !u!114 &7025747630867849109
@@ -2023,7 +2075,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4c5f541185aa92b488eeff9b9e07cdfc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  flag: 5
+  CombatObject: {fileID: 3108828579097521249}
+  Flag: 5
   sortingType: 0
   targetLayerType: enemy
   targetCount: 1
@@ -2041,7 +2094,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cc73b176d16ea8448a48d598b41a08b5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  flag: 4
+  CombatObject: {fileID: 3108828579097521249}
+  Flag: 4
   originalCastingTime: 1.5
 --- !u!114 &2510908845857993706
 MonoBehaviour:
@@ -2055,7 +2109,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7142e0a43af74e747a185ee0b65f9c41, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  flag: 6
+  CombatObject: {fileID: 3108828579097521249}
+  Flag: 6
   projectileID: 15000002
   projectilePrefab: {fileID: 5223207423503661573, guid: 9af98811cdcc08d45970ab3fea66e6fd, type: 3}
 --- !u!1 &4579024629312635931
@@ -2106,6 +2161,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   actionCode: 13000018
+  skillTable: {fileID: 2719205626943282457}
+  fixedCastingTime: 0
+  animationKey: skill
   priority: 5
   icon: {fileID: 21300000, guid: b3ad7cf5f88fa2c43ac1ec3fce54d974, type: 3}
 --- !u!114 &2672525273206534427
@@ -2120,7 +2178,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4c5f541185aa92b488eeff9b9e07cdfc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  flag: 5
+  CombatObject: {fileID: 8566922589576899893}
+  Flag: 5
   sortingType: 0
   targetLayerType: ally
   targetCount: 1
@@ -2138,7 +2197,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9b71247a0c6287f44b49f848d90d357e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  flag: 2
+  CombatObject: {fileID: 8566922589576899893}
+  Flag: 2
   coolTime: 15
 --- !u!114 &6639948775891502924
 MonoBehaviour:
@@ -2152,7 +2212,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7142e0a43af74e747a185ee0b65f9c41, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  flag: 6
+  CombatObject: {fileID: 8566922589576899893}
+  Flag: 6
   projectileID: 15000004
   projectilePrefab: {fileID: 5223207423503661573, guid: b37f63199f85ecd4cb34c001855c1c60, type: 3}
 --- !u!1 &5155661571617905555
@@ -2280,6 +2341,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   actionCode: 13000002
+  skillTable: {fileID: 2719205626943282457}
+  fixedCastingTime: 0
+  animationKey: skill
   priority: 5
   icon: {fileID: 21300000, guid: 221db0e2ca746044593447bc96137b5d, type: 3}
   dashSpeed: 25
@@ -2296,7 +2360,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bd2d098c14bb73641bcc6faff29af210, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  flag: 1
+  CombatObject: {fileID: 3779498063899901923}
+  Flag: 1
   damageValue:
     value: 4
     statCode: 1
@@ -2312,7 +2377,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4c3f42a73ddd63e47af0241ed7024ba6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  flag: 3
+  CombatObject: {fileID: 3779498063899901923}
+  Flag: 3
   obtain: 10
 --- !u!114 &8392186021241681492
 MonoBehaviour:
@@ -2326,7 +2392,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9b71247a0c6287f44b49f848d90d357e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  flag: 2
+  CombatObject: {fileID: 3779498063899901923}
+  Flag: 2
   coolTime: 8
 --- !u!114 &850913637087685088
 MonoBehaviour:
@@ -2340,7 +2407,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4c5f541185aa92b488eeff9b9e07cdfc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  flag: 5
+  CombatObject: {fileID: 3779498063899901923}
+  Flag: 5
   sortingType: 0
   targetLayerType: enemy
   targetCount: 1
@@ -2587,6 +2655,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   actionCode: 13000005
+  skillTable: {fileID: 2719205626943282457}
+  fixedCastingTime: 0
+  animationKey: skill
   priority: 6
   icon: {fileID: 21300000, guid: 478eeec4b5b141d46baa4e42372a2302, type: 3}
 --- !u!114 &6546515311254796486
@@ -2601,7 +2672,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 220707aa24bd15e4d9a9240e827cb4a3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  flag: 9
+  CombatObject: {fileID: 4824280575348527026}
+  Flag: 9
   statusEffectID: 14001003
   statusEffectPool:
   - {fileID: 8629192081159891517}
@@ -2617,7 +2689,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9b71247a0c6287f44b49f848d90d357e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  flag: 2
+  CombatObject: {fileID: 4824280575348527026}
+  Flag: 2
   coolTime: 15
 --- !u!114 &4128766686330263056
 MonoBehaviour:
@@ -2631,7 +2704,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4c5f541185aa92b488eeff9b9e07cdfc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  flag: 5
+  CombatObject: {fileID: 4824280575348527026}
+  Flag: 5
   sortingType: 0
   targetLayerType: ally
   targetCount: 1
@@ -2886,7 +2960,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &8301702251106544615
 Transform:
   m_ObjectHideFlags: 0
@@ -2916,6 +2990,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   actionCode: 13000009
+  skillTable: {fileID: 2719205626943282457}
+  fixedCastingTime: 0
+  animationKey: skill
   priority: 6
   icon: {fileID: 21300000, guid: fb658e2438132df478dbf49706bfd6e5, type: 3}
 --- !u!114 &7215604309735832979
@@ -2930,7 +3007,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 220707aa24bd15e4d9a9240e827cb4a3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  flag: 9
+  CombatObject: {fileID: 7078665412676475418}
+  Flag: 9
   statusEffectID: 14001005
   statusEffectPool:
   - {fileID: 8044712502089276943}
@@ -2946,7 +3024,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9b71247a0c6287f44b49f848d90d357e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  flag: 2
+  CombatObject: {fileID: 7078665412676475418}
+  Flag: 2
   coolTime: 30
 --- !u!114 &4041927611276973387
 MonoBehaviour:
@@ -2960,7 +3039,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4c5f541185aa92b488eeff9b9e07cdfc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  flag: 5
+  CombatObject: {fileID: 7078665412676475418}
+  Flag: 5
   sortingType: 0
   targetLayerType: ally
   targetCount: 1
@@ -3068,6 +3148,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   actionCode: 13000019
+  skillTable: {fileID: 2719205626943282457}
+  fixedCastingTime: 1
+  animationKey: attack
   priority: 1
   icon: {fileID: 21300000, guid: 44390e08012c1a543bf14dd411f546e1, type: 3}
 --- !u!114 &8755835679923296255
@@ -3082,7 +3165,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cc73b176d16ea8448a48d598b41a08b5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  flag: 4
+  CombatObject: {fileID: 2647102923077242541}
+  Flag: 4
   originalCastingTime: 1
 --- !u!114 &7639959192885922004
 MonoBehaviour:
@@ -3096,7 +3180,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4c3f42a73ddd63e47af0241ed7024ba6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  flag: 3
+  CombatObject: {fileID: 2647102923077242541}
+  Flag: 3
   obtain: 10
 --- !u!114 &7215757090540457091
 MonoBehaviour:
@@ -3110,7 +3195,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4c5f541185aa92b488eeff9b9e07cdfc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  flag: 5
+  CombatObject: {fileID: 2647102923077242541}
+  Flag: 5
   sortingType: 0
   targetLayerType: enemy
   targetCount: 1
@@ -3128,7 +3214,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7142e0a43af74e747a185ee0b65f9c41, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  flag: 6
+  CombatObject: {fileID: 2647102923077242541}
+  Flag: 6
   projectileID: 15000005
   projectilePrefab: {fileID: 5223207423503661573, guid: 61a3aa90bb4ae06458de7d6ad6be6e4d, type: 3}
 --- !u!1 &8964806259326648301
@@ -3258,7 +3345,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &7864773309251796700
 Transform:
   m_ObjectHideFlags: 0
@@ -3292,6 +3379,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   actionCode: 13000006
+  skillTable: {fileID: 2719205626943282457}
+  fixedCastingTime: 0
+  animationKey: skill
   priority: 5
   icon: {fileID: 21300000, guid: db4bc3238b41d534ba4084e5a3bb833a, type: 3}
 --- !u!114 &3520732832617858417
@@ -3306,7 +3396,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bd2d098c14bb73641bcc6faff29af210, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  flag: 1
+  CombatObject: {fileID: 8749851631722230459}
+  Flag: 1
   damageValue:
     value: 1.2
     statCode: 1
@@ -3322,7 +3413,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9b71247a0c6287f44b49f848d90d357e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  flag: 2
+  CombatObject: {fileID: 8749851631722230459}
+  Flag: 2
   coolTime: 12
 --- !u!114 &1562587358509214084
 MonoBehaviour:
@@ -3336,7 +3428,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4c5f541185aa92b488eeff9b9e07cdfc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  flag: 5
+  CombatObject: {fileID: 8749851631722230459}
+  Flag: 5
   sortingType: 0
   targetLayerType: enemy
   targetCount: 5
@@ -3354,7 +3447,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 220707aa24bd15e4d9a9240e827cb4a3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  flag: 9
+  CombatObject: {fileID: 8749851631722230459}
+  Flag: 9
   statusEffectID: 14000004
   statusEffectPool:
   - {fileID: 5696589602693704731}

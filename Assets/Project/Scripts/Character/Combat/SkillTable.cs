@@ -7,46 +7,40 @@ namespace Character.Combat
 {
     using Skill;
     
-    // ISkillTable
-    public class SkillTable : MonoBehaviour, IEditorSetUp
+    // 클래스 별로 나누어질 수 있다.
+    // 1. 클래스별로 사용가능한 모든 스킬이 저장됨.
+    // 2. 해당 모험가가 등록한 스킬이 저장됨.
+    public class SkillTable : MonoBehaviour, IInspectorSetUp
     {
-        [SerializeField] private CharacterBehaviour cb;
-        [SerializeField] private List<SkillObject> skillList = new(4);
+        [SerializeField] private SkillBehaviour combatBehaviour;
+        [SerializeField] private List<SkillObject> selectSkillList = new(4);
+        // [SerializeField] private List<SkillObject> entireSkillList = new();
 
-        public SkillObject CurrentSkill { get; set; }
+        public ICombatProvider Provider => combatBehaviour.Provider;
+        public List<SkillObject> SelectSkillList => selectSkillList;
+        public List<ISkillInfo> SelectSkillInfo { get; } = new(4);
+        // public List<ISkillInfo> EntireSkillInfo { get; } = new();
 
-        public void SwitchSkill(DataIndex existSkill, DataIndex newSkill) { }
-        public void RemoveSkill(DataIndex existSkill) { }
-        public void AddSkill(DataIndex newSkill) { }
+        // public void SwitchSkill(DataIndex existSkill, DataIndex newSkill) { }
+        // public void RemoveSkill(DataIndex existSkill) { }
+        // public void AddSkill(DataIndex newSkill) { }
 
-        public void StartSkill(ISkill skill)
+        private void Awake()
         {
-            // skill.Active();
+            SelectSkillInfo.AddRange(selectSkillList);
+            // EntireSkillInfo.AddRange(entireSkillList);
         }
-
-        public void CompleteSkill(ISkill skill)
-        {
-            // skill.Complete();
-        }
-
-        public void HitSkill(ISkill skill)
-        {
-            // skill.Hit();
-        }
-
-        public void CancelSkill(ISkill skill)
-        {
-            // skill.Cancel();
-        }
-
 
 #if UNITY_EDITOR
         public void SetUp()
         {
-            cb ??= GetComponentInParent<CharacterBehaviour>();
+            combatBehaviour ??= GetComponentInParent<SkillBehaviour>();
+            
             // TODO. 나중에는 인게임에서 캐릭터의 스킬을 변경할 수 있게 될 것이다.
-            skillList = GetComponentsInChildren<SkillObject>().Where(x => x.enabled).ToList();
+            // entireSkillList = GetComponentsInChildren<SkillObject>().ToList();
+            selectSkillList = GetComponentsInChildren<SkillObject>().Where(x => x.enabled).ToList();
         }
 #endif
+        
     }
 }

@@ -12,7 +12,7 @@ namespace Character.Combat
         [SerializeField] private DataIndex statusEffectID;
         [SerializeField] private List<StatusEffectObject> statusEffectPool;
         
-        public DataIndex StatusEffectID => statusEffectID;
+        public ICombatProvider Provider => CombatObject.Provider;
 
 
         public void Effectuate(ICombatTaker taker)

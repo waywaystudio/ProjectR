@@ -6,11 +6,13 @@ namespace Character.Behavior.Combat
     [TaskCategory("Character/Combat")]
     public class UseSkillBehavior : Action
     {
-        private CombatBehaviour combat;
+        private CharacterBehaviour cb;
+        private SkillBehaviour combat;
 
         public override void OnAwake()
         {
-            combat = GetComponent<CombatBehaviour>();
+            cb     = gameObject.GetComponentInParent<CharacterBehaviour>();
+            combat = GetComponent<SkillBehaviour>();
         }
 
         public override TaskStatus OnUpdate()
@@ -19,15 +21,20 @@ namespace Character.Behavior.Combat
             {
                 return TaskStatus.Failure;
             }
+            
+            cb.UseSkill(skill);
+                
+            return TaskStatus.Success;
 
             // Remove When All Condition Check Function Implemented
-            if (skill.IsSkillReady)
-            {
-                combat.UseSkill(skill);
-                return TaskStatus.Success;
-            }
-
-            return TaskStatus.Failure;
+            // if (skill.IsSkillReady)
+            // {
+            //     cb.UseSkill(skill);
+            //     
+            //     return TaskStatus.Success;
+            // }
+            //
+            // return TaskStatus.Failure;
         }
     }
 }

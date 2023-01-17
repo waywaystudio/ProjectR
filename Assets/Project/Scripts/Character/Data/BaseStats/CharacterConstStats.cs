@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace Character.Data.BaseStats
 {
-    public class CharacterConstStats : MonoBehaviour, IEditorSetUp
+    public class CharacterConstStats : MonoBehaviour, IInspectorSetUp
     {
         [SerializeField] protected DataIndex baseStatCode;
         [SerializeField] protected MaxHpValue maxHp;

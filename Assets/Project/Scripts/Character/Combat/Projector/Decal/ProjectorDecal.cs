@@ -6,7 +6,7 @@ using UnityEngine.Rendering.Universal;
 
 namespace Character.Combat.Projector.Decal
 {
-    public class ProjectorDecal : MonoBehaviour, IEditorSetUp
+    public class ProjectorDecal : MonoBehaviour, IInspectorSetUp
     {
         [SerializeField] private ProjectorObject po; 
         [SerializeField] private DecalProjector decal;

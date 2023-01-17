@@ -15,7 +15,7 @@ namespace Scene.Raid.UI
 
         private int instanceID;
         private RaidUIDirector uiDirector;
-        private ISkill inheritSkill;
+        private ISkillInfo inheritSkill;
         private ICombatBehaviour combatBehaviour;
 
         private bool IsRegistered => inheritSkill != null;

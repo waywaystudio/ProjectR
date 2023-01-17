@@ -2,15 +2,25 @@ namespace Core
 {
     public interface IAssociated<T>
     {
-        T Host { get; set; }
+        T Assignor { get; set; }
 
-        void AssignHost();
+        void GetAssignor(T assignor);
     }
 
-    // public interface IHost
-    // {
-    //     void SetAssociation();
-    // }
+    public interface IIntermediary<T> : IAssociated<T>, IAssignor where T : IAssignor
+    {
+        // T Assignor { get; set; }
+
+        // void GetAssignor(T assignor);
+        // void SetAssociation();
+    } 
+
+    public interface IAssignor
+    {
+        void SetAssociation();
+    }
+    
+    
     // public class HostBehaviour : MonoBehaviour, IHost
     // {
     //     public void SetAssociation()

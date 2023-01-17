@@ -12,6 +12,7 @@ namespace Character.Combat
         private float castingTick;
         private Coroutine routineBuffer;
 
+        public ICombatProvider Provider => CombatObject.Provider;
         public bool IsReady => !onCasting;
         public float OriginalCastingTime { get => originalCastingTime; set => originalCastingTime = value; }
         public float CastingTime => OriginalCastingTime * CharacterUtility.GetHasteValue(Provider.StatTable.Haste);

@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using Core;
+using Sirenix.OdinInspector;
 using UnityEngine;
 
 namespace Character.Combat
@@ -15,8 +16,10 @@ namespace Character.Combat
         private ISearching searchingEngine;
         private ITargeting targetingEngine;
         private List<ICombatTaker> targetList;
+        [ShowInInspector]
         private LayerMask targetLayer;
 
+        public ICombatProvider Provider => CombatObject.Provider;
         public bool IsReady => Target != null;
         public float Range => range;
 

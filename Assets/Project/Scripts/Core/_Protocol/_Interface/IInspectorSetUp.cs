@@ -1,6 +1,6 @@
 namespace Core
 {
-    public interface IEditorSetUp
+    public interface IInspectorSetUp
     {
 #if UNITY_EDITOR
         void SetUp();

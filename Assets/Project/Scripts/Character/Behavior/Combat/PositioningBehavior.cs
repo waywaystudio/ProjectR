@@ -7,14 +7,14 @@ namespace Character.Behavior.Combat
     [TaskCategory("Character/Combat")]
     public class PositioningBehavior : Action
     {
-        private CombatBehaviour combat;
+        private SkillBehaviour combat;
         private CharacterBehaviour cb;
         private IPathfinding pathfindingEngine;
         private ICombatTaker taker;
 
         public override void OnAwake()
         {
-            combat            = GetComponent<CombatBehaviour>();
+            combat            = GetComponent<SkillBehaviour>();
             cb                = combat.GetComponentInParent<CharacterBehaviour>();
             pathfindingEngine = cb.PathfindingEngine;
         }

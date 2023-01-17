@@ -10,7 +10,7 @@ namespace Character.Behavior
 
         public override void OnAwake()
         {
-            TryGetComponent<CombatBehaviour>(out var combat);
+            TryGetComponent<SkillBehaviour>(out var combat);
 
             cb = combat.GetComponentInParent<CharacterBehaviour>();
         }

@@ -65,8 +65,6 @@ namespace Character.Combat.Projector
             Provider    = provider;
             TargetLayer = CharacterUtility.SetLayer(provider, targetLayerType);
             
-            ModuleTable.ForEach(x => x.Value.Initialize(this));
-            
             if (!gameObject.activeSelf) 
                 gameObject.SetActive(true);
         }
@@ -92,7 +90,7 @@ namespace Character.Combat.Projector
             sizeValue       =   data.Size;
 
             GetComponents<CombatModule>().ForEach(x => ModuleUtility.SetProjectorModule(data, x));
-            gameObject.GetComponentsInOnlyChildren<IEditorSetUp>().ForEach(x => x.SetUp());
+            gameObject.GetComponentsInOnlyChildren<IInspectorSetUp>().ForEach(x => x.SetUp());
         }
 #endif
     }

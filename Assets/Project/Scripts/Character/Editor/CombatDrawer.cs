@@ -8,7 +8,7 @@ using Sirenix.OdinInspector.Editor;
 
 namespace Character.Editor
 {
-    public class CombatDrawer : OdinAttributeProcessor<CombatBehaviour>
+    public class CombatDrawer : OdinAttributeProcessor<SkillBehaviour>
     {
         public override void ProcessChildMemberAttributes(InspectorProperty parentProperty, MemberInfo member, List<Attribute> attributes)
         {

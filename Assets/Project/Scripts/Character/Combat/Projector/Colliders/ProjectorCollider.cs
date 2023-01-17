@@ -6,7 +6,7 @@ namespace Character.Combat.Projector.Colliders
     /* Collider Type 마다 셋팅 값이 다르다...
      Abstraction 할 수 밖에 없나; 
      이 친구는 Projector Object에 의해 기능이 결정된다. */
-    public abstract class ProjectorCollider : MonoBehaviour, IEditorSetUp
+    public abstract class ProjectorCollider : MonoBehaviour, IInspectorSetUp
     {
         [SerializeField] protected ProjectorObject po;
         

@@ -5,7 +5,7 @@ using UnityEngine;
 
 namespace Character.PathfindingSystem
 {
-    public class Pathfinding : MonoBehaviour, IPathfinding, IEditorSetUp
+    public class Pathfinding : MonoBehaviour, IPathfinding, IInspectorSetUp
     {
         [SerializeField] private AIMove aiMove;
         [SerializeField] private Seeker agent;

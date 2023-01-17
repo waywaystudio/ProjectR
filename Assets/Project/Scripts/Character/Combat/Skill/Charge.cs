@@ -8,7 +8,8 @@ namespace Character.Combat.Skill
         [SerializeField] private float dashSpeed = 30.0f;
         [SerializeField] private float offsetDistance = 3.5f;
 
-        private IPathfinding pathfindingEngine;
+        private CharacterBehaviour cb;
+        private IPathfinding pathEngine;
 
         public override void Hit()
         {
@@ -19,22 +20,22 @@ namespace Character.Combat.Skill
         }
 
         // 위 처럼 구현하고 매 프레임에서 Target != null을 체크하면 안정성이 조금 올라간다.
-        public override void ActiveSkill()
+        public override void Active()
         {
             if (!TargetModule) return;
 
             var takerTransform = TargetModule.Target.Object.transform;
-            var offset = pathfindingEngine.Direction * (offsetDistance * -1f);
+            var offset = pathEngine.Direction * (offsetDistance * -1f);
             var targetFrontPosition = takerTransform.position + offset;
 
-            Cb.StatTable.Register(ActionCode, new MoveSpeedValue(dashSpeed));
-            Cb.Run(targetFrontPosition, base.ActiveSkill);
+            cb.StatTable.Register(ActionCode, new MoveSpeedValue(dashSpeed));
+            cb.Run(targetFrontPosition, base.Active);
         }
 
         public override void Complete()
         {
             base.Complete();
-            Cb.StatTable.Unregister(ActionCode, StatCode.MoveSpeed);
+            cb.StatTable.Unregister(ActionCode, StatCode.MoveSpeed);
         }
 
 
@@ -42,7 +43,8 @@ namespace Character.Combat.Skill
         {
             base.Awake();
 
-            pathfindingEngine = Cb.PathfindingEngine;
+            cb         = GetComponentInParent<CharacterBehaviour>();
+            pathEngine = cb.PathfindingEngine;
         }
     }
 }

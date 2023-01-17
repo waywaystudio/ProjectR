@@ -9,6 +9,8 @@ namespace Character.Combat
         [SerializeField] private PowerValue damageValue;
 
         public StatTable StatTable { get; } = new();
+        public ICombatProvider Provider => CombatObject.Provider;
+        public DataIndex ActionCode => CombatObject.ActionCode;
 
         private void OnActivated()
         {

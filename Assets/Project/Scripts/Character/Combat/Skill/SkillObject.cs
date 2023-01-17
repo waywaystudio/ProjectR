@@ -4,14 +4,16 @@ using UnityEngine;
 
 namespace Character.Combat.Skill
 {
-    public abstract class SkillObject : CombatObject, ISkill
+    public abstract class SkillObject : CombatObject, ISkillInfo
     {
+        [SerializeField] protected SkillTable skillTable;
+        [SerializeField] protected float fixedCastingTime;
+        [SerializeField] protected string animationKey;
         [SerializeField] protected int priority;
         [SerializeField] protected Sprite icon;
 
-        protected CharacterBehaviour Cb;
+        public override ICombatProvider Provider => skillTable.Provider;
 
-        public override ICombatProvider Provider => Cb ??= GetComponentInParent<CharacterBehaviour>();
         public Sprite Icon => icon;
         public bool HasCastingModule => ModuleTable.ContainsKey(ModuleType.Casting);
         public float CastingTime => CastingModule.CastingTime;
@@ -20,9 +22,10 @@ namespace Character.Combat.Skill
         public float CoolTime => CoolTimeModule.OriginalCoolTime;
         public Observable<float> RemainTime => CoolTimeModule.RemainTime;
 
+        public float FixedCastingTime => fixedCastingTime;
+        public string AnimationKey => animationKey;
         public int Priority => priority;
         public bool IsSkillFinished { get; set; }
-        public bool IsCoolTimeReady => CoolTimeModule is null || CoolTimeModule.IsReady;
         public bool IsSkillReady 
         {
             get
@@ -34,45 +37,48 @@ namespace Character.Combat.Skill
             }
         }
 
-        public virtual void ActiveSkill()
+        protected virtual void OnAssigned()
         {
-            Cb.SkillInfo = this;
-            Cb.OnSkill.Register(InstanceID, Active);
-            Cb.OnSkillHit.Register(InstanceID, Hit);
             
-            Cb.Skill(ActionCode, Complete);
         }
 
-        public void DeActiveSkill()
+        public override void Active()
         {
-            Cb.SkillInfo = null;
-            Cb.OnSkill.Unregister(InstanceID);
-            Cb.OnSkillHit.Unregister(InstanceID);
+            IsSkillFinished = false;
+            
+            base.Active();
+        }
+
+        public override void Complete()
+        {
+            IsSkillFinished = true;
+            
+            base.Complete();
         }
 
 
         protected virtual void Awake()
         {
-            Cb       = GetComponentInParent<CharacterBehaviour>();
-            Provider = Cb;
-            OnActivated.Register(InstanceID, () => IsSkillFinished = false);
-            OnCompleted.Register(InstanceID, () => IsSkillFinished = true);
+            OnAssigned();
         }
+        
 
-        protected void OnDisable() => DeActiveSkill();
-
-
-#if UNITY_EDITOR
         public override void SetUp()
         {
             base.SetUp();
 
             var skillData = MainGame.MainData.GetSkill(actionCode);
-            priority = skillData.Priority;
+
+            skillTable       ??= GetComponentInParent<SkillTable>();
+            fixedCastingTime =   skillData.CastingTime;
+            animationKey     =   skillData.AnimationKey;
+            priority         =   skillData.Priority;
 
             GetComponents<CombatModule>().ForEach(x => ModuleUtility.SetSkillModule(skillData, x));
             UnityEditor.EditorUtility.SetDirty(this);
         }
+        
+#if UNITY_EDITOR
         private void ShowDB()
         {
             UnityEditor.EditorUtility.OpenPropertyEditor
@@ -80,5 +86,6 @@ namespace Character.Combat.Skill
         }
         private void Reset() => actionCode = GetType().Name.ToEnum<DataIndex>();
 #endif
+        
     }
 }

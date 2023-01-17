@@ -7,9 +7,9 @@ namespace Character
 {
     public static class ModuleUtility
     {
-        public static void SetSkillModule<T>(SkillData.Skill baseSkill, T entity) where T : CombatModule
+        public static void SetSkillModule<T>(SkillData.Skill baseSkill, T module) where T : CombatModule
         {
-            switch (entity)
+            switch (module)
             {
                 case DamageModule damageEntity: damageEntity.SetUpValue(baseSkill.BaseValue); break;
                 case CastingModule castingEntity: castingEntity.SetUpValue(baseSkill.CastingTime); break;
@@ -27,14 +27,16 @@ namespace Character
                 case ProjectorModule projectorModule: projectorModule.SetUpValue(baseSkill.ProjectorId); break;
                 default:
                 {
-                    Debug.LogError($"Unknown Entity. input : {entity.GetType()}");
+                    Debug.LogError($"Unknown Entity. input : {module.GetType()}");
                     break;
                 }
             }
+            
+            module.SetUp();
         }
-        public static void SetProjectileModule<T>(ProjectileData.Projectile baseProjectile, T entity) where T : CombatModule
+        public static void SetProjectileModule<T>(ProjectileData.Projectile baseProjectile, T module) where T : CombatModule
         {
-            switch (entity)
+            switch (module)
             {
                 case DamageModule damageEntity: damageEntity.SetUpValue(baseProjectile.BaseValue);
                     break;
@@ -43,15 +45,17 @@ namespace Character
                 case StatusEffectModule statusEffectEntity: statusEffectEntity.SetUpValue((DataIndex)baseProjectile.StatusEffectId); break;
                 default:
                 {
-                    Debug.LogError($"Unknown Entity. input : {entity.GetType()}");
+                    Debug.LogError($"Unknown Entity. input : {module.GetType()}");
                     break;
                 }
             }
+            
+            module.SetUp();
         }
         
-        public static void SetStatusEffectModule<T>(StatusEffectData.StatusEffect baseStatusEffect, T entity) where T : CombatModule
+        public static void SetStatusEffectModule<T>(StatusEffectData.StatusEffect baseStatusEffect, T module) where T : CombatModule
         {
-            switch (entity)
+            switch (module)
             {
                 case DamageModule damageEntity: damageEntity.SetUpValue(baseStatusEffect.CombatValue);
                     break;
@@ -60,10 +64,12 @@ namespace Character
                 // case StatusEffectModule statusEffectEntity: statusEffectEntity.SetUpValue((DataIndex)baseStatusEffect.StatusEffectId); break;
                 default:
                 {
-                    Debug.LogError($"Unknown Entity. input : {entity.GetType()}");
+                    Debug.LogError($"Unknown Entity. input : {module.GetType()}");
                     break;
                 }
             }
+            
+            module.SetUp();
         }
         
         public static void SetProjectorModule<T>(ProjectorData.Projector baseProjector, T module) where T : CombatModule
@@ -79,6 +85,8 @@ namespace Character
                     break;
                 }
             }
+            
+            module.SetUp();
         }
     }
 }

@@ -1,10 +1,13 @@
 using System;
 using Core;
+using Sirenix.OdinInspector;
 using UnityEngine;
 
 namespace Character
 {
-    public class CharacterBehaviour : MonoBehaviour, ICombatExecutor, IEditorSetUp
+    using Combat.Skill;
+    
+    public class CharacterBehaviour : MonoBehaviour, ICombatExecutor, IInspectorSetUp
     {
         [SerializeField] protected string characterName = string.Empty;
         [SerializeField] protected DataIndex dataIndex;
@@ -22,15 +25,20 @@ namespace Character
         public ActionTable<Vector3, Action> OnWalk { get; } = new();
         public ActionTable<Vector3, Action> OnRun { get; } = new();
         public ActionTable<Vector3> OnTeleport { get; } = new();
-        public ActionTable<DataIndex, Action> OnSkill { get; } = new(8);
-        public ActionTable OnSkillHit { get; } = new(4);
+
+        public ActionTable<SkillObject> OnUseSkill { get; } = new(4);
+        public ActionTable OnActiveSkill { get; } = new(8);
+        public ActionTable OnCompleteSkill { get; } = new(4);
+        public ActionTable OnHitSkill { get; } = new(4);
+        public ActionTable OnCancelSkill { get; } = new(4);
+
         public ActionTable<IStatusEffect> OnTakeStatusEffect { get; } = new(2);
         public ActionTable<DataIndex> OnDispelStatusEffect { get; } = new(2);
         public ActionTable<CombatLog> OnCombatActive { get; } = new(4);
         public ActionTable<CombatLog> OnCombatPassive { get; } = new(4);
 
         public ICombatBehaviour CombatBehaviour { get; set; }
-        public ISkill SkillInfo { get; set; }
+        public ISkillInfo SkillInfo { get; set; }
         public ISearching SearchingEngine { get; set; }
         public ITargeting TargetingEngine { get; set; }
         public IPathfinding PathfindingEngine { get; set; }
@@ -39,8 +47,12 @@ namespace Character
         public void Walk(Vector3 destination, Action pathCallback = null) => OnWalk?.Invoke(destination, pathCallback);
         public void Run(Vector3 destination, Action pathCallback = null) => OnRun?.Invoke(destination, pathCallback);
         public void Teleport(Vector3 destination) => OnTeleport?.Invoke(destination);
-        public void Skill(DataIndex skill, Action animationCallback) => OnSkill?.Invoke(skill, animationCallback);
-        public void SkillHit() => OnSkillHit?.Invoke();
+
+        public void UseSkill(SkillObject skill) => OnUseSkill.Invoke(skill);
+        public void ActiveSkill() => OnActiveSkill.Invoke();
+        public void CompleteSkill() => OnCompleteSkill?.Invoke();
+        public void HitSkill() => OnHitSkill?.Invoke();
+        public void CancelSkill() => OnCancelSkill?.Invoke();
 
         public void TakeDamage(ICombatTable provider) => CombatUtility.TakeDamage(provider, this);
         public void TakeSpell(ICombatTable provider) => CombatUtility.TakeSpell(provider, this);
@@ -50,16 +62,12 @@ namespace Character
 
         protected virtual void Update() { OnUpdate?.Invoke(); }
         
+        
 #if UNITY_EDITOR
         public virtual void SetUp()
         {
             if (characterName == string.Empty) Debug.LogError("CharacterName Required");
         }
-        // private void ShowLog(CombatLog log)
-        // {
-        //     Debug.Log($"Combat : IsHit:{log.IsHit} IsCritical:{log.IsCritical} Value:{log.Value} " +
-        //               $"Provider:{log.Provider} Taker:{log.Taker} Skill:{log.ActionName}");
-        // }
 #endif
     }
 }

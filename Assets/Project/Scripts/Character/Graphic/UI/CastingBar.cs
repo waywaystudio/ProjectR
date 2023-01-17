@@ -56,7 +56,7 @@ namespace Character.Graphic.UI
             instanceID = GetInstanceID();
         }
     
-        private void OnEnable() => cb.OnSkill.Register(instanceID, UpdateCastingBar);
-        private void OnDisable() => cb.OnSkill.Unregister(instanceID);
+        // private void OnEnable() => cb.OnSkill.Register(instanceID, UpdateCastingBar);
+        // private void OnDisable() => cb.OnSkill.Unregister(instanceID);
     }
 }

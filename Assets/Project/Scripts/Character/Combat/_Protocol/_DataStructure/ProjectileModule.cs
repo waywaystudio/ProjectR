@@ -14,6 +14,8 @@ namespace Character.Combat
         [SerializeField] private GameObject projectilePrefab;
 
         public DataIndex ProjectileID { get => projectileID; set => projectileID = value; }
+        public ICombatProvider Provider => CombatObject.Provider;
+        
 
         public void Fire(ICombatTaker taker)
         {

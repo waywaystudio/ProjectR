@@ -3,9 +3,9 @@ using Core;
 
 namespace Character.Combat
 {
-    public interface ISKillModule : ICombatModule
-    {
-    }
+    // public interface ISKillModule : ICombatModule
+    // {
+    // }
 
     // public interface IDamageModule : ISKillModule
     // {
@@ -48,10 +48,10 @@ namespace Character.Combat
     // }
     
     /* Currently, Only TargetSkill has Targeting TargetModule */
-    public interface ITargetModule : ISKillModule
-    {
-        float Range { get; }
-        ICombatTaker Target { get; }
-        List<ICombatTaker> TargetList { get; }
-    }
+    // public interface ITargetModule : ISKillModule
+    // {
+    //     float Range { get; }
+    //     ICombatTaker Target { get; }
+    //     List<ICombatTaker> TargetList { get; }
+    // }
 }

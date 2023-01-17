@@ -1,6 +1,6 @@
 using System;
+using Character.Combat.Skill;
 using Core;
-using MainGame;
 using Spine;
 using Spine.Unity;
 using UnityEngine;
@@ -26,20 +26,18 @@ namespace Character.Graphic
         
         
         public void Idle() => Play("idle");
-        public void Skill(DataIndex actionCode, Action callback)
+        public void Skill(SkillObject skill)
         {
-            var skillData = MainData.GetSkill(actionCode);
-            var fixedTime = skillData.CastingTime;
-            var animationKey = skillData.AnimationKey;
+            var fixedTime = skill.FixedCastingTime;
+            var animationKey = skill.AnimationKey;
             
             // Assign Haste 
             var animationHasteValue = CharacterUtility.GetInverseHasteValue(cb.StatTable.Haste);
             var inverse = CharacterUtility.GetHasteValue(cb.StatTable.Haste);
             state.TimeScale *= animationHasteValue;
             
-            callbackBuffer = null;
-            callbackBuffer += callback;
-            // callbackBuffer += cb.OnCompleteSkill(actionCode); 
+            callbackBuffer =  null;
+            callbackBuffer += cb.CompleteSkill;
             callbackBuffer += Idle;
             callbackBuffer += () => state.TimeScale *= inverse;
 
@@ -153,7 +151,7 @@ namespace Character.Graphic
             cb.OnIdle.Register(instanceID, Idle);
             cb.OnWalk.Register(instanceID, Walk);
             cb.OnRun.Register(instanceID, Run);
-            cb.OnSkill.Register(instanceID, Skill);
+            cb.OnUseSkill.Register(instanceID, Skill);
             cb.OnUpdate.Register(instanceID, Flip);
         }
 

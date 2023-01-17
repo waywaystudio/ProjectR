@@ -10,6 +10,8 @@ namespace Character.Combat.Skill
         /// </summary>
         [SerializeField] private float backMagnitude = 4.2f;
 
+        private CharacterBehaviour cb;
+
         private void OnBackStepHit()
         {
             if (DamageModule && TargetModule)
@@ -24,15 +26,15 @@ namespace Character.Combat.Skill
             
             var enemyTransform = TargetModule.Target.Object.transform;
             var enemyBehindPosition = enemyTransform.position + enemyTransform.forward * -backMagnitude;
-
-            Debug.Log($"Teleport! to:{enemyBehindPosition}");
-            Cb.Teleport(enemyBehindPosition);
-        }
-
-        protected override void Awake()
-        {
-            base.Awake();
             
+            // TODO. enemyBehindPosition 에 PathfindingUtility.BFS 알고리즘을 이용하여 안전한 장소로 순간이동 시켜보자.
+
+            cb.Teleport(enemyBehindPosition);
+        }
+        
+        protected override void OnAssigned()
+        {
+            cb = GetComponentInParent<CharacterBehaviour>();
             OnHit.Register(InstanceID, OnBackStepHit);
             OnActivated.Register(InstanceID, OnBackStepActive);
         }

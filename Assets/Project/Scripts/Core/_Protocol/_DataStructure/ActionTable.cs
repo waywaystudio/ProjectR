@@ -1,4 +1,5 @@
 using System;
+using UnityEngine;
 
 namespace Core
 {
@@ -10,7 +11,12 @@ namespace Core
         /// <summary>
         /// Register Delegate by custom Key. Recommend InstanceID or Data Unique ID.
         /// </summary>
-        public void Register(int key, Action action, bool overwrite = false) => TryAdd(key, action, overwrite);
+        public void Register(int key, Action action, bool overwrite = false)
+        {
+            if (ContainsKey(key)) Debug.LogWarning($"Key is already Exist. key:{key}");
+            
+            TryAdd(key, action, overwrite);
+        }
 
         // For Performance.
         public void Invoke()

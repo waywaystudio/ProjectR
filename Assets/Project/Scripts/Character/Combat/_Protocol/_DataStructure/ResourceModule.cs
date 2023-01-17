@@ -6,6 +6,8 @@ namespace Character.Combat
     public class ResourceModule : CombatModule, IReady
     {
         [SerializeField] private float obtain;
+        
+        public ICombatProvider Provider => CombatObject.Provider;
 
         public bool IsReady => obtain switch
         {

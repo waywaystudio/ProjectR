@@ -3,27 +3,28 @@ using UnityEngine;
 
 namespace Character.Combat
 {
-    public class CombatModule : MonoBehaviour /*, ICombatModule */
+    public class CombatModule : MonoBehaviour
     {
-        [SerializeField] private ModuleType flag;
+        public CombatObject CombatObject;
+        public ModuleType Flag;
 
         private int instanceID;
 
-        public ICombatObject CombatObject { get; protected set; }
-        public DataIndex ActionCode => CombatObject.ActionCode;
-        public ICombatProvider Provider => CombatObject.Provider;
-        public ModuleType Flag { get => flag; protected set => flag = value; }
-        
         protected int InstanceID =>
             instanceID == 0
                 ? instanceID = GetInstanceID()
                 : instanceID;
+        
 
-        public virtual void Initialize(ICombatObject combatObject) { }
         protected virtual void Awake()
         {
-            CombatObject = GetComponent<ICombatObject>();
+            CombatObject = GetComponent<CombatObject>();
             CombatObject.ModuleTable.TryAdd(Flag, this);
+        }
+
+        public void SetUp()
+        {
+            CombatObject ??= GetComponent<CombatObject>();
         }
     }
 }

@@ -1,5 +1,3 @@
-using UnityEngine;
-
 namespace Character.Combat.Skill
 {
     public class CommonAttack : SkillObject
@@ -12,10 +10,8 @@ namespace Character.Combat.Skill
             }
         }
         
-        protected override void Awake()
+        protected override void OnAssigned()
         {
-            base.Awake();
-            
             OnHit.Register(InstanceID, OnCommonAttackHit);
         }
     }

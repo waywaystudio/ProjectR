@@ -7,7 +7,7 @@ namespace Core
         // + Observable<float> GlobalCoolTimer { get; }
         // + float GlobalCoolTime { get; }
         
-        List<ISkill> SkillInfoList { get; }
+        List<ISkillInfo> SkillInfoList { get; }
     }
 
     public interface IGlobalCoolTimer
