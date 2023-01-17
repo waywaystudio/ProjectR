@@ -21,8 +21,6 @@ namespace Core
         /* Projector */
         Shape,
         
-        
-    
         All = int.MaxValue
     }
 }

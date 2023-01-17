@@ -11,19 +11,18 @@ namespace Character.Combat
         
         // TODO. UnionWith가 Provider.StatTable 값 변동에 어떻게 대응하는지 확인이 필요하다.
         // TODO. 만약 유동적으로 대응한다면, Awake에서 한 번만 넣어주어도 된다.
-        private void OnEnable()
+        private void OnActivated()
         {
+            StatTable.Clear();
             StatTable.Register(ActionCode, healValue);
-        }
-        
-        private void Start()
-        {
             StatTable.UnionWith(Provider.StatTable);
         }
-        
-        private void OnDisable()
+
+        protected override void Awake()
         {
-            StatTable.Unregister(ActionCode, healValue);
+            base.Awake();
+            
+            CombatObject.OnActivated.Register(InstanceID, OnActivated);
         }
 
 #if UNITY_EDITOR

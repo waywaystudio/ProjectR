@@ -11,7 +11,7 @@ namespace Character.Combat
         [SerializeField] private CharacterBehaviour cb;
         [SerializeField] private List<SkillObject> skillList = new(4);
         [SerializeField] private GlobalCoolDown globalCoolDown;
-        [SerializeField] private SkillTable skillTable;
+        // [SerializeField] private SkillTable skillTable;
 
         // ISkillTable skillTable;
         public GlobalCoolDown GlobalCoolDown => globalCoolDown;
@@ -31,7 +31,7 @@ namespace Character.Combat
         // SharedBool :: CombatBehaviorDesigner
         public bool IsCoolOnAnySkill => SkillList.Any(x => x.IsCoolTimeReady);
 
-        public ActionTable<ISkill> OnStartSkill { get; } = new();
+        public ActionTable<ISkill> OnActiveSkill { get; } = new();
         public ActionTable<ISkill> OnCompleteSkill { get; } = new();
         public ActionTable OnHitSkill { get; } = new();
 
@@ -40,20 +40,36 @@ namespace Character.Combat
             DeActiveSkill();
             
             cb.SkillInfo = skill;
-            skillTable.StartSkill(skill);
-
+            // skillTable.StartSkill(skill);
             // globalCoolTime.ActiveSkill();
         }
 
         public void CompleteSkill(ISkill skill)
         {
-            skillTable.CompleteSkill(skill);
+            // skillTable.CompleteSkill(skill);
         }
         
         public void HitSkill(ISkill skill)
         {
-            skill.Hit();
+            // skill.Hit();
         }
+
+        public void CancelSkill(ISkill skill)
+        {
+            // skill.Cancel();
+        }
+        
+        public void UseSkill(SkillObject skill)
+        {
+            if (CurrentSkill != null) 
+                CurrentSkill.DeActiveSkill();
+
+            CurrentSkill = skill;
+            CurrentSkill.ActiveSkill();
+
+            GlobalCoolDown.StartCooling();
+        }
+        
 
         private void DeActiveSkill()
         {
@@ -83,21 +99,9 @@ namespace Character.Combat
                                  + "이 로그가 띄워지면, 기초스킬 구성이 잘못 되어 있거나, 빠져있을 수 있다.");
             }
 #endif
-            
             return skill is not null;
         }
-
-        public void UseSkill(SkillObject skill)
-        {
-            if (CurrentSkill != null) 
-                CurrentSkill.DeActiveSkill();
-
-            CurrentSkill = skill;
-            CurrentSkill.ActiveSkill();
-
-            GlobalCoolDown.StartCooling();
-        }
-
+        
 
         private void Awake()
         {

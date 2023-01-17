@@ -21,17 +21,22 @@ namespace Character.Combat
 
         public void StartSkill(ISkill skill)
         {
-            skill.Active();
+            // skill.Active();
         }
 
         public void CompleteSkill(ISkill skill)
         {
-            skill.Complete();
+            // skill.Complete();
         }
 
         public void HitSkill(ISkill skill)
         {
-            skill.Hit();
+            // skill.Hit();
+        }
+
+        public void CancelSkill(ISkill skill)
+        {
+            // skill.Cancel();
         }
 
 
