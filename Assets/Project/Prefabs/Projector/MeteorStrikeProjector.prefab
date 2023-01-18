@@ -122,7 +122,7 @@ MonoBehaviour:
   TempProvider: {fileID: 0}
   TempTarget: {fileID: 0}
   shapeType: 1
-  sizeValue: {x: 2.5, y: 2.5}
+  sizeValue: {x: 6, y: 6}
   targetLayerType: enemy
 --- !u!114 &9197252578731974646
 MonoBehaviour:
@@ -136,7 +136,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bd2d098c14bb73641bcc6faff29af210, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  flag: 1
+  CombatObject: {fileID: 707085272717492972}
+  Flag: 1
   damageValue:
     value: 50
     statCode: 1
@@ -152,7 +153,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cc73b176d16ea8448a48d598b41a08b5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  flag: 4
+  CombatObject: {fileID: 707085272717492972}
+  Flag: 4
   originalCastingTime: 2
 --- !u!1 &8983042717434659513
 GameObject:

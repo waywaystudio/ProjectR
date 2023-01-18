@@ -41,7 +41,6 @@ namespace Character.Combat.Projectile
             if (--bounceCount <= 0)
             {
                 bounceTargetList.Clear();
-                Destroy(gameObject, 0.1f);
                 return;
             }
             

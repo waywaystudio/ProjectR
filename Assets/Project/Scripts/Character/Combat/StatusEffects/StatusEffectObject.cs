@@ -1,8 +1,7 @@
-using System;
 using System.Collections;
 using Core;
-using MainGame;
 using UnityEngine;
+using UnityEngine.Pool;
 
 namespace Character.Combat.StatusEffects
 {
@@ -14,9 +13,9 @@ namespace Character.Combat.StatusEffects
         [SerializeField] protected float combatValue;
 
         protected ICombatTaker Taker;
-        protected Action Callback;
         protected Coroutine RoutineBuffer;
         protected WaitForSeconds WaitBuffer;
+        private IObjectPool<StatusEffectObject> pool;
 
         public Sprite Icon => icon;
         public bool IsBuff => isBuff;
@@ -25,18 +24,37 @@ namespace Character.Combat.StatusEffects
         public StatusEffectTable TargetTable { get; set; }
 
 
-        public virtual void Effectuate(ICombatProvider provider, ICombatTaker taker)
+        public virtual void Initialize(ICombatProvider provider, ICombatTaker taker)
         {
             Provider = provider;
             Taker    = taker;
-            
-            Taker.TakeStatusEffect(this);
-            RoutineBuffer = StartCoroutine(Initiate());
+
+            Active();
         }
 
+        public void SetPool(IObjectPool<StatusEffectObject> pool) => this.pool = pool;
 
-        protected abstract IEnumerator Initiate();
+        public override void Active()
+        {
+            base.Active();
+            
+            Taker.TakeStatusEffect(this);
+            RoutineBuffer = StartCoroutine(Effectuate());
+        }
+
+        public override void Complete()
+        {
+            base.Complete();
+            
+            UnregisterTable();
+
+            RoutineBuffer = null;
+            pool.Release(this);
+        }
+
         
+        protected abstract IEnumerator Effectuate();
+
         private void UnregisterTable()
         {
             if (TargetTable.HasElement())
@@ -45,25 +63,15 @@ namespace Character.Combat.StatusEffects
                 TargetTable = null;
             }
         }
+        
 
-        protected void Awake()
-        {
-            Callback.AddUniquely(UnregisterTable);
-        }
-
-        private void OnDestroy()
-        {
-            Callback      = null;
-            RoutineBuffer = null;
-            Taker         = null;
-        }
 
 #if UNITY_EDITOR
         public override void SetUp()
         {
             base.SetUp();
             
-            var data = MainData.GetStatusEffect(actionCode);
+            var data = MainGame.MainData.GetStatusEffect(actionCode);
             
             GetComponents<CombatModule>().ForEach(x => ModuleUtility.SetStatusEffectModule(data, x));
 

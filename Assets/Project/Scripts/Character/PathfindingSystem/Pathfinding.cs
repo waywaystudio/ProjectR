@@ -54,12 +54,10 @@ namespace Character.PathfindingSystem
 
         private void Awake()
         {
-            TryGetComponent(out agent);
-            TryGetComponent(out aiMove);
-            
-            cb                   ??= GetComponentInParent<CharacterBehaviour>();
-            instanceID           =   GetInstanceID();
-            cb.PathfindingEngine =   this;
+            aiMove     ??= GetComponent<AIMove>();
+            agent      ??= GetComponent<Seeker>();
+            cb         ??= GetComponentInParent<CharacterBehaviour>();
+            instanceID =   GetInstanceID();
             
             cb.OnTeleport.Register(instanceID, TeleportTo);
             cb.OnWalk.Register(instanceID, Move);

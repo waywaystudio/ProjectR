@@ -66,7 +66,7 @@ namespace Character.Combat.Projector.Decal
             decal.material
                 .DOFloat(1.5f, FillAmount, castingTime)
                 .SetEase(Ease.InQuad)
-                .OnComplete(po.OnCompleted.Invoke);
+                .OnComplete(po.Complete);
         }
 
         private void EndProjection()

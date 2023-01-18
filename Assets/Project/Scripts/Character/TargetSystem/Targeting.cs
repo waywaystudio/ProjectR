@@ -76,9 +76,8 @@ namespace Character.TargetSystem
         private void Awake()
         {
             var cb = GetComponentInParent<CharacterBehaviour>();
-            
-            cb.TargetingEngine = this;
-            self               = cb;
+
+            self = cb;
         }
     }
 }

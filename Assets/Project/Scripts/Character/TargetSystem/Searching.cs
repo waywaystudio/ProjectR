@@ -7,32 +7,28 @@ namespace Character.TargetSystem
     [RequireComponent(typeof(SphereCollider))]
     public class Searching : MonoBehaviour, ISearching, IInspectorSetUp
     {
-        private const float SearchingRange = 60f;
+        private const float SearchingRange = 100f;
         private const int MaxBufferCount = 32;
         
         [SerializeField] private SphereCollider searchingCollider;
+        [SerializeField] private SortingType sortingType;
         
         private LayerMask adventurerLayer;
         private LayerMask monsterLayer;
+        private LayerMask selfLayer;
 
         public List<ICombatTaker> AdventurerList { get; } = new(MaxBufferCount);
         public List<ICombatTaker> MonsterList { get; } = new(MaxBufferCount);
-        public ICombatTaker LookTarget => !MonsterList.IsNullOrEmpty() 
-                ? MonsterList[0] 
-                : !AdventurerList.IsNullOrEmpty() 
-                    ? AdventurerList[0] 
-                    : null;
+        public ICombatTaker LookTarget => SetLookTarget(selfLayer);
 
 
         private void Awake()
         {
-            var cb = GetComponentInParent<CharacterBehaviour>();
-
-            cb.SearchingEngine       =   this;
             searchingCollider        ??= GetComponent<SphereCollider>();
             searchingCollider.radius =   SearchingRange;
             adventurerLayer          =   LayerMask.GetMask("Adventurer");
             monsterLayer             =   LayerMask.GetMask("Monster");
+            selfLayer                =   CharacterUtility.IndexToLayerValue(GetComponentInParent<ICombatProvider>().Object);
         }
 
         private void OnTriggerEnter(Collider other)
@@ -40,18 +36,12 @@ namespace Character.TargetSystem
             if (IsAbleToCombatTake(other, adventurerLayer, out var adventurer))
             {
                 AdventurerList.AddUniquely(adventurer);
-#if UNITY_EDITOR
-                if (AdventurerList.Count > MaxBufferCount)
-                    Debug.LogWarning($"Oversize Adventurer added. current BufferSize : {MaxBufferCount}");
-#endif
+                AdventurerList.SortingFilter(transform.position, sortingType);
             }
             else if (IsAbleToCombatTake(other, monsterLayer, out var monster))
             {
                 MonsterList.AddUniquely(monster);
-#if UNITY_EDITOR
-                if (MonsterList.Count > MaxBufferCount)
-                    Debug.LogWarning($"Oversize Monster added. current BufferSize : {MaxBufferCount}");
-#endif
+                MonsterList.SortingFilter(transform.position, sortingType);
             }
         }
         private void OnTriggerExit(Collider other)
@@ -64,6 +54,29 @@ namespace Character.TargetSystem
             {
                 MonsterList.Remove(monster);
             }
+        }
+
+        private ICombatTaker SetLookTarget(LayerMask self)
+        {
+            List<ICombatTaker> allyList;
+            List<ICombatTaker> enemyList;
+
+            if (self == adventurerLayer)
+            {
+                allyList  = AdventurerList;
+                enemyList = MonsterList;
+            }
+            else /* if (self == monsterLayer) */
+            {
+                allyList  = MonsterList;
+                enemyList = AdventurerList;
+            }
+            
+            return !enemyList.IsNullOrEmpty() 
+                ? enemyList[0] 
+                : !allyList.IsNullOrEmpty() 
+                    ? allyList[0] 
+                    : null;
         }
 
         private static bool IsAbleToCombatTake(Component other, LayerMask layer, out ICombatTaker taker)

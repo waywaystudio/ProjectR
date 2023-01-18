@@ -28,5 +28,16 @@ namespace Core
         {
             return 1 << LayerMask.NameToLayer(layerName);
         }
+
+        public static LayerMask IndexToLayerValue(this int index)
+        {
+            if (index > 20)
+            {
+                Debug.LogError($"value must less then 20. input:{index}");
+                return 0;
+            }
+
+            return 1 << index;
+        }
     }
 }

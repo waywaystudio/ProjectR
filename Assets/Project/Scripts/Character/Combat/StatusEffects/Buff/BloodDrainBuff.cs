@@ -6,7 +6,7 @@ namespace Character.Combat.StatusEffects.Buff
 {
     public class BloodDrainBuff : StatusEffectObject
     {
-        protected override IEnumerator Initiate()
+        protected override IEnumerator Effectuate()
         {
             WaitBuffer = new WaitForSeconds(Duration);
 
@@ -15,7 +15,7 @@ namespace Character.Combat.StatusEffects.Buff
             yield return WaitBuffer;
             
             Provider.OnCombatActive.Unregister(InstanceID);
-            Callback?.Invoke();
+            Complete();
         }
         
         public void BloodDrain(CombatLog log)

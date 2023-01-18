@@ -10,10 +10,8 @@ namespace Character.Combat.Skill
             }
         }
         
-        protected override void Awake()
+        protected override void OnAssigned()
         {
-            base.Awake();
-            
             OnCompleted.Register(InstanceID, OnFireballCompleted);
         }
     }

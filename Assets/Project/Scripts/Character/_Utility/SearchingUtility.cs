@@ -32,6 +32,20 @@ namespace Character
                     : yHp.CompareTo(xHp);
             });
         }
+
+        public static void SortByRole(List<ICombatTaker> original, bool isReverse = false)
+        {
+            original.Sort((x, y) =>
+            {
+                var xRoleIndex = (int)x.Role;
+                var yRoleIndex = (int)y.Role;
+
+                return !isReverse 
+                    ? xRoleIndex.CompareTo(yRoleIndex) 
+                    : yRoleIndex.CompareTo(xRoleIndex);
+            });
+        }
+            
         
         public static void RangeFilter(this List<ICombatTaker> list, ICombatProvider provider, float range)
         {
@@ -49,6 +63,7 @@ namespace Character
                 case SortingType.DistanceDescending:SortByDistance(pivot, list,true); break;
                 case SortingType.HpAscending: SortByHp(list); break;
                 case SortingType.HpDescending: SortByHp(list, true); break;
+                case SortingType.Role: SortByRole(list); break;
                 default:
                     throw new ArgumentOutOfRangeException(nameof(sortingType), sortingType, null);
             }

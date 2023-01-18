@@ -5,6 +5,7 @@ using Character.Combat;
 using Character.Combat.Skill;
 using Sirenix.OdinInspector;
 using Sirenix.OdinInspector.Editor;
+using UnityEngine;
 
 namespace Character.Editor
 {
@@ -19,18 +20,18 @@ namespace Character.Editor
         }
     }
     
-    public class ModuleDrawer : OdinAttributeProcessor<Combat.CombatModule>
+    public class ModuleDrawer : OdinAttributeProcessor<CombatModule>
     {
-        // public override void ProcessChildMemberAttributes(InspectorProperty parentProperty, MemberInfo member, List<Attribute> attributes)
-        // {
-        //     if (member.Name == "skill")
-        //     {
-        //         attributes.Add(new HideInInspector());
-        //     }
-        // }
+        public override void ProcessChildMemberAttributes(InspectorProperty parentProperty, MemberInfo member, List<Attribute> attributes)
+        {
+            if (member.Name == "CombatObject")
+            {
+                // attributes.Add(new HideInInspector());
+            }
+        }
     }
     
-    public class CastingSkillDrawer : OdinAttributeProcessor<CastingModule>
+    public class CastingModuleDrawer : OdinAttributeProcessor<CastingModule>
     {
         public override void ProcessChildMemberAttributes(InspectorProperty parentProperty, MemberInfo member, List<Attribute> attributes)
         {
@@ -45,7 +46,7 @@ namespace Character.Editor
         }
     }
 
-    public class CoolTimeSkillDrawer : OdinAttributeProcessor<CoolTimeModule>
+    public class CoolTimeModuleDrawer : OdinAttributeProcessor<CoolTimeModule>
     {
         public override void ProcessChildMemberAttributes(InspectorProperty parentProperty, MemberInfo member, List<Attribute> attributes)
         {
@@ -56,6 +57,28 @@ namespace Character.Editor
             if (member.Name == "RemainTimer")
             {
                 attributes.Add(new ShowInInspectorAttribute());
+            }
+        }
+    }
+    
+    public class TargetModuleDrawer : OdinAttributeProcessor<TargetModule>
+    {
+        public override void ProcessChildMemberAttributes(InspectorProperty parentProperty, MemberInfo member, List<Attribute> attributes)
+        {
+            if (member.Name == "targetLayer")
+            {
+                attributes.Add(new ShowInInspectorAttribute());
+            }
+        }
+    }
+    
+    public class CombatObjectDrawer : OdinAttributeProcessor<CombatObject>
+    {
+        public override void ProcessChildMemberAttributes(InspectorProperty parentProperty, MemberInfo member, List<Attribute> attributes)
+        {
+            if (member.Name == "actionCode")
+            {
+                attributes.Add(new DisplayAsStringAttribute());
             }
         }
     }
@@ -64,11 +87,6 @@ namespace Character.Editor
     {
         public override void ProcessChildMemberAttributes(InspectorProperty parentProperty, MemberInfo member, List<Attribute> attributes)
         {
-            if (member.Name == "id")
-            {
-                attributes.Add(new DisplayAsStringAttribute());
-            }
-            
             if (member.Name == "skillName")
             {
                 attributes.Add(new DisplayAsStringAttribute());

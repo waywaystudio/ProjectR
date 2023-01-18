@@ -15,9 +15,9 @@ namespace Character.Combat.StatusEffects.DeBuff
         public override float Duration => duration * CharacterUtility.GetHasteValue(StatTable.Haste);
         
 
-        public override void Effectuate(ICombatProvider provider, ICombatTaker taker)
+        public override void Initialize(ICombatProvider provider, ICombatTaker taker)
         {
-            base.Effectuate(provider, taker);
+            base.Initialize(provider, taker);
             
             StatTable.Register(ActionCode, tickValue);
             StatTable.UnionWith(Provider.StatTable);
@@ -25,7 +25,7 @@ namespace Character.Combat.StatusEffects.DeBuff
             tick = Time.deltaTime;
         }
 
-        protected override IEnumerator Initiate()
+        protected override IEnumerator Effectuate()
         {
             var tickInterval = Duration / tickCount;
             var currentTick = tickInterval;
@@ -43,7 +43,7 @@ namespace Character.Combat.StatusEffects.DeBuff
                 currentTick = tickInterval;
             }
             
-            Callback?.Invoke();
+            Complete();
         }
 
 

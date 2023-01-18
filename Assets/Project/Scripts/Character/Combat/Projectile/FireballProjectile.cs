@@ -32,9 +32,6 @@ namespace Character.Combat.Projectile
                 Taker.TakeDamage(DamageModule);
                 StatusEffectModule.Effectuate(Taker);
             }
-            
-            // TODO. Return To Pool
-            Destroy(gameObject);
         }
     }
 }

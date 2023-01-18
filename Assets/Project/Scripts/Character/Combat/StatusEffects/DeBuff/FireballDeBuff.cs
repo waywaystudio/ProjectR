@@ -8,7 +8,7 @@ namespace Character.Combat.StatusEffects.DeBuff
     {
         [SerializeField] private ArmorValue armorValue;
 
-        protected override IEnumerator Initiate()
+        protected override IEnumerator Effectuate()
         {
             WaitBuffer = new WaitForSeconds(Duration);
 
@@ -17,7 +17,7 @@ namespace Character.Combat.StatusEffects.DeBuff
             yield return WaitBuffer;
 
             Taker.StatTable.Unregister(ActionCode, StatCode.Armor);
-            Callback?.Invoke();
+            Complete();
         }
         
         

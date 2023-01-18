@@ -1,11 +1,10 @@
 using System;
 using System.Collections.Generic;
 using System.Reflection;
-using Character;
 using Sirenix.OdinInspector;
 using Sirenix.OdinInspector.Editor;
 
-namespace Common.Character.Editor
+namespace Character.Editor
 {
     public class CharacterBehaviourDrawer : OdinAttributeProcessor<CharacterBehaviour>
     {

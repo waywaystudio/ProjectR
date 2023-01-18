@@ -1,5 +1,6 @@
 using Core;
 using UnityEngine;
+using UnityEngine.Pool;
 
 namespace Character.Combat.Projector
 {
@@ -12,6 +13,8 @@ namespace Character.Combat.Projector
         [SerializeField] protected ProjectorShapeType shapeType;
         [SerializeField] protected Vector2 sizeValue = Vector2.zero;
         [SerializeField] protected string targetLayerType;
+        
+        private IObjectPool<ProjectorObject> pool; 
 
         public ICombatTaker Taker { get; private set; }
         public Vector3 Destination { get; private set; }
@@ -39,7 +42,7 @@ namespace Character.Combat.Projector
             Taker       = taker;
             Destination = Taker.Object.transform.position;
 
-            OnActivated.Invoke();
+            Active();
         }
         
         public void Projection(ICombatProvider provider, Vector3 destination)
@@ -47,17 +50,17 @@ namespace Character.Combat.Projector
             CoreProjection(provider);
           
             Destination = destination;
-            
-            OnActivated.Invoke();
+            Active();
         }
+
+        public void SetPool(IObjectPool<ProjectorObject> pool) => this.pool = pool;
 
 
         protected abstract void EnterProjector(ICombatTaker taker);
         protected abstract void EndProjector(ICombatTaker taker);
         protected void End()
         {
-            // Return to Pool
-            Destroy(gameObject);
+            pool.Release(this);
         }
 
         private void CoreProjection(ICombatProvider provider)

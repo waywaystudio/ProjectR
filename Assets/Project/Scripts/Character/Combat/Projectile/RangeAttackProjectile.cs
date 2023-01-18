@@ -28,10 +28,6 @@ namespace Character.Combat.Projectile
         protected override void Arrived()
         {
             if (ValidateTaker) Taker.TakeDamage(DamageModule);
-            
-            // TODO. Return To Pool
-            TrajectoryTweener = null;
-            Destroy(gameObject);
         }
     }
 }

@@ -17,6 +17,12 @@ namespace Character
         /// <returns>usually more than 1.0f value</returns>
         public static float GetInverseHasteValue(float haste) => 1f + haste;
 
+        /// <summary>
+        /// Set FlagNumber (ex.128, 256 etc. not index)
+        /// </summary>
+        /// <param name="provider"></param>
+        /// <param name="allyOrEnemy"></param>
+        /// <returns></returns>
         public static LayerMask SetLayer(IObjectName provider, string allyOrEnemy)
         {
             var selfLayer = (LayerMask)(1 << provider.Object.layer);
@@ -25,5 +31,17 @@ namespace Character
                 ? selfLayer
                 : selfLayer.GetEnemyLayerMask();
         } 
+        
+        public static LayerMask IndexToLayerValue(GameObject go) => IndexToLayerValue(go.layer);
+        public static LayerMask IndexToLayerValue(int index)
+        {
+            if (index > 20)
+            {
+                Debug.LogError($"value must less then 20. input:{index}");
+                return 0;
+            }
+
+            return 1 << index;
+        }
     }
 }

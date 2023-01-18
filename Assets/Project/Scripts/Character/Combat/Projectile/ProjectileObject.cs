@@ -1,6 +1,7 @@
 using Core;
 using DG.Tweening;
 using UnityEngine;
+using UnityEngine.Pool;
 
 namespace Character.Combat.Projectile
 {
@@ -14,6 +15,7 @@ namespace Character.Combat.Projectile
         protected Tweener TrajectoryTweener;
         protected bool ValidateTaker => Taker != null && !Taker.Object.IsNullOrEmpty() && Taker.DynamicStatEntry.IsAlive.Value;
         private Vector3 destination;
+        private IObjectPool<ProjectileObject> projectilePool;
 
         protected Vector3 Destination
         {
@@ -34,15 +36,26 @@ namespace Character.Combat.Projectile
 
             Active();
         }
+        
+        public override void Complete()
+        {
+            base.Complete();
+            
+            TrajectoryTweener = null;
+            projectilePool.Release(this);
+        }
+
+        public void SetPool(IObjectPool<ProjectileObject> pool) => projectilePool = pool;
+        
 
         protected abstract void Trajectory();
         protected abstract void Arrived();
-        protected void Awake()
+        protected virtual void Awake()
         {
-            OnCompleted.Register(InstanceID, Arrived);
             OnActivated.Register(InstanceID, Trajectory);
+            OnCompleted.Register(InstanceID, Arrived);
         }
- 
+
 
 #if UNITY_EDITOR
         public override void SetUp()

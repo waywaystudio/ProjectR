@@ -162,7 +162,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3866fc5b909cf064b9fd1dce2842c40b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  flag: 64
+  CombatObject: {fileID: 1609205549411255206}
+  Flag: 7
   healValue:
     value: 12
     statCode: 1

@@ -12,7 +12,7 @@ namespace Character.Combat
         [SerializeField] private SkillTable skillTable;
 
         private int instanceID;
-        
+
         public ICombatProvider Provider => cb;
         public SkillObject CurrentSkill { get; private set; }
         public List<ISkillInfo> SkillInfoList => skillTable.SelectSkillInfo;
@@ -21,7 +21,7 @@ namespace Character.Combat
         public Observable<float> GlobalRemainTime => globalCoolDown.Timer;
         public bool IsCurrentSkillFinished => CurrentSkill == null || CurrentSkill.IsSkillFinished;
 
-        public ActionTable<SkillObject> OnUseSkill { get; } = new(8);
+        public ActionTable<SkillObject> OnUseSkill { get; } = new(4);
 
         public void UseSkill(SkillObject skill)
         {
@@ -90,7 +90,6 @@ namespace Character.Combat
         {
             cb                 ??= GetComponentInParent<CharacterBehaviour>();
             globalCoolDown     ??= GetComponent<GlobalCoolDown>();
-            cb.CombatBehaviour =   this;
             instanceID         =   GetInstanceID();
 
             OnUseSkill.Register(instanceID, UseSkill);
@@ -102,6 +101,7 @@ namespace Character.Combat
 #if UNITY_EDITOR
         public void SetUp()
         {
+            cb             ??= GetComponentInParent<CharacterBehaviour>();
             globalCoolDown ??= GetComponent<GlobalCoolDown>();
             skillTable     ??= GetComponentInChildren<SkillTable>();
         }

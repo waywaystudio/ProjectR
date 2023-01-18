@@ -52,6 +52,8 @@ namespace Core
         // + StatTable StatTable { get; }
         // + string Name { get; }
         // + GameObject Object { get; }
+
+        RoleType Role { get; }
         
         ActionTable<IStatusEffect> OnTakeStatusEffect { get; }
         ActionTable<DataIndex> OnDispelStatusEffect { get; }

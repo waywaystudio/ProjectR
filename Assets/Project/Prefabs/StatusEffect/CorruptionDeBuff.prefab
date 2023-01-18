@@ -66,7 +66,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bd2d098c14bb73641bcc6faff29af210, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  flag: 1
+  CombatObject: {fileID: 2105927751028795071}
+  Flag: 1
   damageValue:
     value: 1.5
     statCode: 1

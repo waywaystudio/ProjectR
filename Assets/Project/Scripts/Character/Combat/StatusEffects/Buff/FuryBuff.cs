@@ -9,7 +9,7 @@ namespace Character.Combat.StatusEffects.Buff
     {
         [SerializeField] private HasteValue hasteValue;
 
-        protected override IEnumerator Initiate()
+        protected override IEnumerator Effectuate()
         {
             WaitBuffer = new WaitForSeconds(Duration);
 
@@ -18,7 +18,7 @@ namespace Character.Combat.StatusEffects.Buff
             yield return WaitBuffer;
 
             Provider.StatTable.Unregister(ActionCode, hasteValue);
-            Callback?.Invoke();
+            Complete();
         }
         
         

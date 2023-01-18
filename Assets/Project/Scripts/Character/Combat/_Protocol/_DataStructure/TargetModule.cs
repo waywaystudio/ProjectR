@@ -15,17 +15,18 @@ namespace Character.Combat
 
         private ISearching searchingEngine;
         private ITargeting targetingEngine;
-        private List<ICombatTaker> targetList;
+        
         [ShowInInspector]
+        private List<ICombatTaker> targetList;
         private LayerMask targetLayer;
 
         public ICombatProvider Provider => CombatObject.Provider;
         public bool IsReady => Target != null;
         public float Range => range;
-
+        
         public ICombatTaker Target => isSelf
-            ? targetingEngine.GetSelf() 
-            : targetingEngine.GetTaker(targetList, Provider, Range, sortingType) ?? searchingEngine.LookTarget;
+                ? targetingEngine.GetSelf()
+                : targetingEngine.GetTaker(targetList, Provider, Range, sortingType) ?? searchingEngine.LookTarget;
 
         public List<ICombatTaker> TargetList 
             => targetingEngine.GetTakerList(targetList, Provider, Range, sortingType, targetCount);
@@ -69,7 +70,7 @@ namespace Character.Combat
             searchingEngine = cb.SearchingEngine;
             targetingEngine = cb.TargetingEngine;
             targetLayer     = CharacterUtility.SetLayer(Provider, targetLayerType);
-            targetList = targetLayer == LayerMask.NameToLayer("Adventurer")
+            targetList = targetLayer == LayerMask.GetMask("Adventurer")
                 ? searchingEngine.AdventurerList
                 : searchingEngine.MonsterList;
         }

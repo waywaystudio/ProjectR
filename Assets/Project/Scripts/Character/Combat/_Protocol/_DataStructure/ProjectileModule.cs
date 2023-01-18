@@ -1,6 +1,6 @@
-using System;
 using Core;
 using UnityEngine;
+using UnityEngine.Pool;
 
 namespace Character.Combat
 {
@@ -8,28 +8,67 @@ namespace Character.Combat
     
     public class ProjectileModule : CombatModule
     {
-        [SerializeField] private DataIndex projectileID;
-
         // TODO. 이후에는, IDCode 혹은 ProjectileName을 통해서 풀링하고, GameObject Field를 삭제하자.
         [SerializeField] private GameObject projectilePrefab;
+        [SerializeField] private DataIndex projectileID;
+        [SerializeField] private int maxPool = 8;
 
-        public DataIndex ProjectileID { get => projectileID; set => projectileID = value; }
+        private ICombatTaker taker;
+        private IObjectPool<ProjectileObject> pool;
+        
         public ICombatProvider Provider => CombatObject.Provider;
         
 
         public void Fire(ICombatTaker taker)
         {
-            // Pooling.Draw (or spawn whatever...) use projectileID
+            this.taker = taker;
+
+            pool.Get();
+        }
+        
+
+        protected ProjectileObject CreateProjectile()
+        {
+            var projectile = Instantiate(projectilePrefab).GetComponent<ProjectileObject>();
+            
+            projectile.SetPool(pool);
+
+            return projectile;
+        }
+
+        protected void OnProjectileGet(ProjectileObject projectile)
+        {
             var cbPosition = Provider.Object.transform.position;
             var tkPosition = taker.Object.transform.position;
             var lookAt = Quaternion.LookRotation(tkPosition - cbPosition);
-            var newProjectile = Instantiate(projectilePrefab, cbPosition, lookAt);
-            //
             
-            newProjectile.TryGetComponent(out ProjectileObject pb);
-            pb.Initialize(Provider, taker);
+            projectile.transform.SetPositionAndRotation(cbPosition, lookAt);
+            projectile.gameObject.SetActive(true);
+            
+            projectile.Initialize(Provider, taker);
         }
 
+        protected static void OnProjectileRelease(ProjectileObject projectile)
+        {
+            projectile.gameObject.SetActive(false);
+        }
+
+        protected static void OnProjectileDestroy(ProjectileObject projectile)
+        {
+            Destroy(projectile.gameObject);
+        }
+
+        protected override void Awake()
+        {
+            base.Awake();
+
+            pool = new ObjectPool<ProjectileObject>(
+                CreateProjectile,
+                OnProjectileGet,
+                OnProjectileRelease,
+                OnProjectileDestroy,
+                maxSize: maxPool);
+        }
 
 #if UNITY_EDITOR
         public void SetUpValue(int id)

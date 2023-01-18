@@ -133,7 +133,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   actionCode: 15000004
   speed: 15
-  particle: {fileID: 0}
   targetLayer:
     serializedVersion: 2
     m_Bits: 256
@@ -153,7 +152,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bd2d098c14bb73641bcc6faff29af210, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  flag: 1
+  CombatObject: {fileID: 6157442219491799146}
+  Flag: 1
   damageValue:
     value: 20
     statCode: 1
@@ -169,7 +169,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3866fc5b909cf064b9fd1dce2842c40b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  flag: 64
+  CombatObject: {fileID: 6157442219491799146}
+  Flag: 7
   healValue:
     value: 20
     statCode: 1

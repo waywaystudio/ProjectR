@@ -1,7 +1,7 @@
 using System;
 using Core;
-using Sirenix.OdinInspector;
 using UnityEngine;
+// ReSharper disable UnusedMember.Global
 
 namespace Character
 {
@@ -11,9 +11,16 @@ namespace Character
     {
         [SerializeField] protected string characterName = string.Empty;
         [SerializeField] protected DataIndex dataIndex;
+        [SerializeField] protected RoleType role;
+
+        private ICombatBehaviour combatBehaviour;
+        private ISearching searchingEngine;
+        private ITargeting targetingEngine;
+        private IPathfinding pathfindingEngine;
 
         public string Name => characterName ??= "Diablo";
         public DataIndex DataIndex => dataIndex;
+        public RoleType Role => role;
         public DataIndex ActionCode => DataIndex.None;
         public IDynamicStatEntry DynamicStatEntry { get; set; }
         public ICombatProvider Provider => this;
@@ -37,17 +44,16 @@ namespace Character
         public ActionTable<CombatLog> OnCombatActive { get; } = new(4);
         public ActionTable<CombatLog> OnCombatPassive { get; } = new(4);
 
-        public ICombatBehaviour CombatBehaviour { get; set; }
+        public ICombatBehaviour CombatBehaviour => combatBehaviour ??= GetComponentInChildren<ICombatBehaviour>();
+        public ISearching SearchingEngine => searchingEngine ??= GetComponentInChildren<ISearching>();
+        public ITargeting TargetingEngine => targetingEngine ??= GetComponentInChildren<ITargeting>();
+        public IPathfinding PathfindingEngine => pathfindingEngine ??= GetComponentInChildren<IPathfinding>();
         public ISkillInfo SkillInfo { get; set; }
-        public ISearching SearchingEngine { get; set; }
-        public ITargeting TargetingEngine { get; set; }
-        public IPathfinding PathfindingEngine { get; set; }
 
         public void Idle() => OnIdle?.Invoke();
         public void Walk(Vector3 destination, Action pathCallback = null) => OnWalk?.Invoke(destination, pathCallback);
         public void Run(Vector3 destination, Action pathCallback = null) => OnRun?.Invoke(destination, pathCallback);
         public void Teleport(Vector3 destination) => OnTeleport?.Invoke(destination);
-
         public void UseSkill(SkillObject skill) => OnUseSkill.Invoke(skill);
         public void ActiveSkill() => OnActiveSkill.Invoke();
         public void CompleteSkill() => OnCompleteSkill?.Invoke();

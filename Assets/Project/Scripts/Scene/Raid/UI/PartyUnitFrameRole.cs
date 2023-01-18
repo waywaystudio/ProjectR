@@ -34,8 +34,9 @@ namespace Scene.Raid.UI
         {
             instanceID = GetInstanceID();
             unitFrame ??= GetComponentInParent<PartyUnitFrame>();
-            unitFrame.OnInitialize.Register(instanceID, 
-                () => SetRoleIcon(unitFrame.AdventurerBehaviour.Role));
+            
+            // unitFrame.OnInitialize.Register(instanceID, 
+            //     () => SetRoleIcon(unitFrame.AdventurerBehaviour.Role));
             
             if (tank.enabled) tank.enabled = false;
             if (dps.enabled) dps.enabled = false;

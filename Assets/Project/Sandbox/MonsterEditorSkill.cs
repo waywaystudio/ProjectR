@@ -1,6 +1,4 @@
 using Character;
-using Common;
-using Common.Character;
 using Core;
 using Sirenix.OdinInspector;
 using UnityEngine;
