@@ -2984,7 +2984,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a1b39afc3fc8a9746883b0b3210f0283, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  OnCharacterFocusChanged: {fileID: 11400000, guid: fb9df031e6ce30a4896914e817421b8f, type: 2}
+  OnFocusCharacterChanged: {fileID: 0}
+  castingDirector: {fileID: 0}
+  uiDirector: {fileID: 0}
 --- !u!114 &1117971732 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 2647102923077242541, guid: 1926ddad936b02d49941bb984de7108c, type: 3}
@@ -4449,7 +4451,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: de83f7f3d0251884ea97f9ef0bd137ca, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  raidDirector: {fileID: 1109810030}
   adventurerList:
   - {fileID: 2059956391}
   - {fileID: 166769511}
@@ -4459,7 +4460,8 @@ MonoBehaviour:
   - {fileID: 2071864923}
   - {fileID: 471385021}
   - {fileID: 1734044595}
-  monsterList: []
+  monsterList:
+  - {fileID: 2098917121}
 --- !u!1 &1771157841
 GameObject:
   m_ObjectHideFlags: 0
@@ -5276,6 +5278,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   raidDirector: {fileID: 1109810030}
+  partyFrameList: []
+  skillSlotFrameList: []
 --- !u!1001 &1895418765
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5967,6 +5971,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bd85932ebd5c96c4ab6a3f2130e5b30a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &2098917121 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 66192726736024922, guid: cd5335a1ac6b3fd4f9a2b9997f36f7fa, type: 3}
+  m_PrefabInstance: {fileID: 2047688601}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ca3c430809a33734f9860d911f4508d0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2102226862
 GameObject:
   m_ObjectHideFlags: 0
@@ -6197,6 +6212,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 155460318}
     m_Modifications:
+    - target: {fileID: 143335036685359774, guid: 7b4889d7cd37f2543952c152d58d3efb, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 362118497099387431, guid: 7b4889d7cd37f2543952c152d58d3efb, type: 3}
       propertyPath: m_Pivot.x
       value: 0
@@ -6286,6 +6305,10 @@ PrefabInstance:
       value: Party 1
       objectReference: {fileID: 0}
     - target: {fileID: 840845967944464578, guid: 7b4889d7cd37f2543952c152d58d3efb, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9093372283192975552, guid: 7b4889d7cd37f2543952c152d58d3efb, type: 3}
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}

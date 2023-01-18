@@ -9,11 +9,13 @@ namespace Scene.Raid
     public class RaidUIDirector : MonoBehaviour
     {
         [SerializeField] private RaidDirector raidDirector;
+        [SerializeField] private List<PartyUnitFrame> partyFrameList;
+        [SerializeField] private List<SkillSlotFrame> skillSlotFrameList;
 
         private AdventurerBehaviour focusAdventurer;
-        
-        public List<PartyUnitFrame> PartyFrameList { get; } = new();
-        public List<SkillSlotFrame> SkillSlotFrameList { get; } = new();
+
+        public List<PartyUnitFrame> PartyFrameList => partyFrameList;
+        public List<SkillSlotFrame> SkillSlotFrameList => skillSlotFrameList;
 
         public AdventurerBehaviour FocusAdventurer
         {
@@ -23,29 +25,25 @@ namespace Scene.Raid
                 if (value == focusAdventurer) return;
                 
                 focusAdventurer = value;
-                raidDirector.OnCharacterFocusChanged.Invoke(value.transform);
+                raidDirector.OnFocusCharacterChanged.Invoke(value.transform);
                 SkillSlotFrameList.ForEach(x => x.Unregister());
                 SkillSlotFrameList.ForEach(x => x.Register(focusAdventurer));
             }
         }
 
-
-        private void Start()
+        public void Initialize(List<AdventurerBehaviour> adventurerList)
         {
-            var adventurerList = raidDirector.AdventurerList;
-
-            if (PartyFrameList.IsNullOrEmpty()) return;
+            if (PartyFrameList.IsNullOrEmpty() || adventurerList.IsNullOrEmpty()) return;
             
-            for (var i = 0; i < adventurerList.Count; ++i)
-            {
-                PartyFrameList[i].Initialize(adventurerList[i]);
-            }
+            adventurerList.ForEach((x, i) => PartyFrameList[i].Initialize(x));
         }
 
+
 #if UNITY_EDITOR
-        private void SetUp()
+        public void SetUp()
         {
-            raidDirector = GetComponentInParent<RaidDirector>();
+            GetComponentsInChildren(partyFrameList);
+            GetComponentsInChildren(skillSlotFrameList);
         }
 #endif
     }
