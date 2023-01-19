@@ -16,10 +16,10 @@ MonoBehaviour:
   list:
   - id: 13000001
     name: CommonAttack
-    baseValue: 5
+    baseValue: 10
     baseCoolTime: 0
     range: 5
-    priority: 1
+    priority: 2
     animationKey: attack
     targetCount: 1
     sortingType: None
@@ -27,13 +27,13 @@ MonoBehaviour:
     isSelf: 0
     skillType: damage
     castingTime: 0
-    resourceObtain: 1
+    resourceObtain: 4
     statusEffectID: 0
     projectileID: 0
     projectorID: 0
   - id: 13000002
     name: Charge
-    baseValue: 4
+    baseValue: 8
     baseCoolTime: 8
     range: 18
     priority: 5
@@ -50,7 +50,7 @@ MonoBehaviour:
     projectorID: 0
   - id: 13000003
     name: BackStep
-    baseValue: 4
+    baseValue: 8
     baseCoolTime: 15
     range: 18
     priority: 5
@@ -61,13 +61,13 @@ MonoBehaviour:
     isSelf: 0
     skillType: damage
     castingTime: 0
-    resourceObtain: 0
+    resourceObtain: -20
     statusEffectID: 0
     projectileID: 0
     projectorID: 0
   - id: 13000004
     name: AimShot
-    baseValue: 0
+    baseValue: 42
     baseCoolTime: 8
     range: 25
     priority: 5
@@ -95,13 +95,13 @@ MonoBehaviour:
     isSelf: 1
     skillType: transcendence
     castingTime: 0
-    resourceObtain: 0
+    resourceObtain: -50
     statusEffectID: 14001003
     projectileID: 0
     projectorID: 0
   - id: 13000006
     name: Roar
-    baseValue: 1.2
+    baseValue: 8
     baseCoolTime: 12
     range: 16
     priority: 5
@@ -112,7 +112,7 @@ MonoBehaviour:
     isSelf: 0
     skillType: damage
     castingTime: 0
-    resourceObtain: 0
+    resourceObtain: -20
     statusEffectID: 14000004
     projectileID: 0
     projectorID: 0
@@ -135,7 +135,7 @@ MonoBehaviour:
     projectorID: 0
   - id: 13000008
     name: RapidBlow
-    baseValue: 2
+    baseValue: 6
     baseCoolTime: 6
     range: 5
     priority: 5
@@ -163,7 +163,7 @@ MonoBehaviour:
     isSelf: 1
     skillType: transcendence
     castingTime: 0
-    resourceObtain: 0
+    resourceObtain: -50
     statusEffectID: 14001005
     projectileID: 0
     projectorID: 0
@@ -186,7 +186,7 @@ MonoBehaviour:
     projectorID: 0
   - id: 13000011
     name: Fireball
-    baseValue: 0
+    baseValue: 16
     baseCoolTime: 0
     range: 20
     priority: 2
@@ -197,13 +197,13 @@ MonoBehaviour:
     isSelf: 0
     skillType: projectile
     castingTime: 1.5
-    resourceObtain: 0
+    resourceObtain: 4
     statusEffectID: 14000006
     projectileID: 15000002
     projectorID: 0
   - id: 13000012
     name: Corruption
-    baseValue: 3
+    baseValue: 6
     baseCoolTime: 15
     range: 20
     priority: 2
@@ -214,36 +214,36 @@ MonoBehaviour:
     isSelf: 0
     skillType: damage
     castingTime: 0
-    resourceObtain: 0
+    resourceObtain: 4
     statusEffectID: 14000001
     projectileID: 0
     projectorID: 0
   - id: 13000013
     name: FaithfulPrey
-    baseValue: 3
+    baseValue: 20
     baseCoolTime: 0
     range: 15
-    priority: 1
+    priority: 3
     animationKey: skill
     targetCount: 1
-    sortingType: HpAscending
+    sortingType: HpRatioAscending
     targetLayer: ally
     isSelf: 0
     skillType: heal
     castingTime: 1.5
-    resourceObtain: 0
+    resourceObtain: 4
     statusEffectID: 0
     projectileID: 0
     projectorID: 0
   - id: 13000014
     name: HolyProtection
-    baseValue: 5
+    baseValue: 20
     baseCoolTime: 30
     range: 15
     priority: 4
     animationKey: skill
     targetCount: 1
-    sortingType: HpAscending
+    sortingType: HpRatioAscending
     targetLayer: ally
     isSelf: 0
     skillType: heal
@@ -254,13 +254,13 @@ MonoBehaviour:
     projectorID: 0
   - id: 13000015
     name: Revivification
-    baseValue: 5
+    baseValue: 8
     baseCoolTime: 8
     range: 15
     priority: 3
     animationKey: skill
     targetCount: 1
-    sortingType: HpAscending
+    sortingType: HpRatioAscending
     targetLayer: ally
     isSelf: 0
     skillType: heal
@@ -288,13 +288,13 @@ MonoBehaviour:
     projectorID: 0
   - id: 13000017
     name: ChainHealing
-    baseValue: 0
+    baseValue: 15
     baseCoolTime: 5
     range: 25
     priority: 5
     animationKey: skill
     targetCount: 1
-    sortingType: HpAscending
+    sortingType: HpRatioAscending
     targetLayer: ally
     isSelf: 0
     skillType: projectile
@@ -305,7 +305,7 @@ MonoBehaviour:
     projectorID: 0
   - id: 13000018
     name: HealOrb
-    baseValue: 0
+    baseValue: 30
     baseCoolTime: 15
     range: 25
     priority: 5
@@ -322,7 +322,7 @@ MonoBehaviour:
     projectorID: 0
   - id: 13000019
     name: RangeAttack
-    baseValue: 0
+    baseValue: 15
     baseCoolTime: 0
     range: 25
     priority: 1
@@ -333,7 +333,7 @@ MonoBehaviour:
     isSelf: 0
     skillType: projectile
     castingTime: 1
-    resourceObtain: 10
+    resourceObtain: 4
     statusEffectID: 0
     projectileID: 15000005
     projectorID: 0
@@ -342,7 +342,7 @@ MonoBehaviour:
     baseValue: 50
     baseCoolTime: 10
     range: 30
-    priority: 1
+    priority: 20
     animationKey: skill
     targetCount: 1
     sortingType: None

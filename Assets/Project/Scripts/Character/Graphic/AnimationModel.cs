@@ -23,9 +23,14 @@ namespace Character.Graphic
         private IPathfinding pathfindingEngine;
 
         private Animation TargetAnimation { get; set; }
-        
-        
-        public void Idle() => Play("idle");
+
+
+        public void Idle()
+        {
+            if (!cb.DynamicStatEntry.IsAlive.Value) return;
+            
+            Play("idle");
+        }
         public void Skill(SkillObject skill)
         {
             var fixedTime = skill.FixedCastingTime;
@@ -46,13 +51,13 @@ namespace Character.Graphic
         }
 
         public void Walk() => Play("walk");
-        public void Run()=> Play("run");
+        public void Run() => Play("run");
+        public void Dead() => Play("dead");
         // Attack Variants...
         // PowerAttack
         // Ultimate
         // Groggy
         // Stun
-        // Dead
         // InstantSpell
         // CastingSpell
         
@@ -133,6 +138,7 @@ namespace Character.Graphic
             };
         }
 
+
         private bool TryGetCurrentAnimation(int layer, out Animation result)
         {
             result = state.GetCurrent(layer)?.Animation;
@@ -151,6 +157,7 @@ namespace Character.Graphic
             cb.OnIdle.Register(instanceID, Idle);
             cb.OnWalk.Register(instanceID, Walk);
             cb.OnRun.Register(instanceID, Run);
+            cb.OnDead.Register(instanceID, Dead);
             cb.OnUseSkill.Register(instanceID, Skill);
             cb.OnUpdate.Register(instanceID, Flip);
         }

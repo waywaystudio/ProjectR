@@ -26,7 +26,7 @@ namespace Character.Combat
         
         public ICombatTaker Target => isSelf
                 ? targetingEngine.GetSelf()
-                : targetingEngine.GetTaker(targetList, Provider, Range, sortingType) ?? searchingEngine.LookTarget;
+                : targetingEngine.GetTaker(targetList, Provider, Range, sortingType) ?? searchingEngine.GetLookTarget(targetLayer);
 
         public List<ICombatTaker> TargetList 
             => targetingEngine.GetTakerList(targetList, Provider, Range, sortingType, targetCount);

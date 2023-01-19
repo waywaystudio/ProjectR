@@ -1,0 +1,46 @@
+hero-ess.png
+	size: 512, 256
+	filter: Linear, Linear
+	pma: true
+body
+	bounds: 176, 149, 97, 95
+	rotate: 90
+eyes
+	bounds: 273, 156, 82, 31
+fingers
+	bounds: 385, 71, 31, 33
+foot1
+	bounds: 341, 48, 50, 42
+	rotate: 90
+foot2
+	bounds: 341, 8, 53, 38
+forearm1
+	bounds: 367, 106, 41, 49
+forearm2
+	bounds: 410, 123, 31, 32
+hand1
+	bounds: 396, 157, 37, 48
+hand2
+	bounds: 357, 157, 31, 37
+	rotate: 90
+head
+	bounds: 2, 73, 172, 173
+mantles
+	bounds: 176, 92, 136, 55
+mouth
+	bounds: 176, 77, 61, 13
+shin1
+	bounds: 273, 189, 53, 57
+shin2
+	bounds: 314, 100, 51, 54
+sword
+	bounds: 2, 2, 216, 69
+thigh1
+	bounds: 220, 12, 60, 63
+thigh2
+	bounds: 282, 26, 57, 64
+upper-arm1
+	bounds: 328, 190, 50, 56
+upper-arm2
+	bounds: 380, 207, 39, 59
+	rotate: 90

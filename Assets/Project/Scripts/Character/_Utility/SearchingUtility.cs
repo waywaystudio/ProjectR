@@ -33,6 +33,19 @@ namespace Character
             });
         }
 
+        public static void SortByHpRatio(List<ICombatTaker> original, bool isReverse = false)
+        {
+            original.Sort((x, y) =>
+            {
+                var xHpRatio = x.DynamicStatEntry.Hp.Value / x.StatTable.MaxHp;
+                var yHpRatio = y.DynamicStatEntry.Hp.Value / y.StatTable.MaxHp;
+
+                return !isReverse 
+                    ? xHpRatio.CompareTo(yHpRatio) 
+                    : yHpRatio.CompareTo(xHpRatio);
+            });
+        }
+
         public static void SortByRole(List<ICombatTaker> original, bool isReverse = false)
         {
             original.Sort((x, y) =>
@@ -45,8 +58,19 @@ namespace Character
                     : yRoleIndex.CompareTo(xRoleIndex);
             });
         }
-            
         
+        public static void SortByRandom(List<ICombatTaker> original, bool isReverse = false)
+        {
+            var rnd = new System.Random();
+
+            for (var i = original.Count - 1; i > 0; i--)
+            {
+                var randomIndex = rnd.Next(i);
+                (original[i], original[randomIndex]) = (original[randomIndex], original[i]);
+            }
+        }
+
+
         public static void RangeFilter(this List<ICombatTaker> list, ICombatProvider provider, float range)
         {
             var pivot = provider.Object.transform.position;
@@ -63,10 +87,15 @@ namespace Character
                 case SortingType.DistanceDescending:SortByDistance(pivot, list,true); break;
                 case SortingType.HpAscending: SortByHp(list); break;
                 case SortingType.HpDescending: SortByHp(list, true); break;
+                case SortingType.HpRatioAscending: SortByHpRatio(list); break;
+                case SortingType.HpRatioDescending: SortByHpRatio(list, true); break;
                 case SortingType.Role: SortByRole(list); break;
+                case SortingType.Random: SortByRandom(list); break;
                 default:
                     throw new ArgumentOutOfRangeException(nameof(sortingType), sortingType, null);
             }
+
+            // SortByAlive(list);
         }
 
         public static void CountFilter(this List<ICombatTaker> list, int count)

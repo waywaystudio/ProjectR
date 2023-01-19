@@ -1,20 +1,27 @@
 using System.Collections.Generic;
 using Character;
 using Core;
-using Scene.Raid.UI;
 using UnityEngine;
 
-namespace Scene.Raid
+namespace Raid
 {
+    using UI;
+    using UI.MonsterFrames;
+    using UI.Nameplates;
+    
     public class RaidUIDirector : MonoBehaviour
     {
         [SerializeField] private RaidDirector raidDirector;
         [SerializeField] private List<PartyUnitFrame> partyFrameList;
+        [SerializeField] private List<BossFrame> bossFrameList;
+        [SerializeField] private List<Nameplate> nameplateList;
         [SerializeField] private List<SkillSlotFrame> skillSlotFrameList;
 
         private AdventurerBehaviour focusAdventurer;
 
         public List<PartyUnitFrame> PartyFrameList => partyFrameList;
+        public List<BossFrame> BossFrameList => bossFrameList;
+        public List<Nameplate> NameplateList => nameplateList;
         public List<SkillSlotFrame> SkillSlotFrameList => skillSlotFrameList;
 
         public AdventurerBehaviour FocusAdventurer
@@ -31,19 +38,48 @@ namespace Scene.Raid
             }
         }
 
-        public void Initialize(List<AdventurerBehaviour> adventurerList)
+        public void Initialize(List<AdventurerBehaviour> adventurerList, List<MonsterBehaviour> monsterList)
         {
-            if (PartyFrameList.IsNullOrEmpty() || adventurerList.IsNullOrEmpty()) return;
+            Initialize(adventurerList);
+            Initialize(monsterList);
+        }
+        
+
+        private void Initialize(List<AdventurerBehaviour> adventurerList)
+        {
+            if (PartyFrameList.IsNullOrEmpty() ||
+                NameplateList.IsNullOrEmpty() ||
+                adventurerList.IsNullOrEmpty()) return;
             
-            adventurerList.ForEach((x, i) => PartyFrameList[i].Initialize(x));
+            adventurerList.ForEach((x, i) =>
+            {
+                if (PartyFrameList.Count > i) PartyFrameList[i].Initialize(x);
+                if (NameplateList.Count > i) NameplateList[i].Initialize(x);
+            });
+        }
+        
+        private void Initialize(List<MonsterBehaviour> monsterList)
+        {
+            if (BossFrameList.IsNullOrEmpty() || monsterList.IsNullOrEmpty()) return;
+            
+            monsterList.ForEach((x, i) =>
+            {
+                if (BossFrameList.Count > i) BossFrameList[i].Initialize(x);
+            });
         }
 
+        private void Update()
+        {
+            nameplateList.ForEach(x => x.UpdatePlate());
+        }
 
 #if UNITY_EDITOR
         public void SetUp()
         {
-            GetComponentsInChildren(partyFrameList);
-            GetComponentsInChildren(skillSlotFrameList);
+            GetComponentsInChildren(PartyFrameList);
+            GetComponentsInChildren(BossFrameList);
+            GetComponentsInChildren(NameplateList);
+            GetComponentsInChildren(SkillSlotFrameList);
         }
 #endif
     }

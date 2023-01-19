@@ -5,6 +5,7 @@ namespace Core
     public interface ISearching
     {
         ICombatTaker LookTarget { get; }
+        ICombatTaker GetLookTarget(UnityEngine.LayerMask layer);
         List<ICombatTaker> AdventurerList { get; }
         List<ICombatTaker> MonsterList { get; }
     }

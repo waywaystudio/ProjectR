@@ -3,9 +3,10 @@ using Character;
 using Core.GameEvents;
 using MainGame;
 using UnityEngine;
+
 // ReSharper disable UnusedAutoPropertyAccessor.Global
 
-namespace Scene.Raid
+namespace Raid
 {
     public class RaidDirector : MonoBehaviour
     {
@@ -37,7 +38,7 @@ namespace Scene.Raid
             castingDirector ??= GetComponentInChildren<RaidCastingDirector>();
             uiDirector      ??= GetComponentInChildren<RaidUIDirector>();
             
-            uiDirector.Initialize(AdventurerList);
+            uiDirector.Initialize(AdventurerList, MonsterList);
             
             MainUI.FadePanel.PlayFadeIn();
         }

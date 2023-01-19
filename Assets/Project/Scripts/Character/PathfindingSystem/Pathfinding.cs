@@ -50,6 +50,11 @@ namespace Character.PathfindingSystem
             // aiMove.destination = aiMove.steeringTarget;
             aiMove.destination = cb.transform.position;
         }
+
+        public void DisableMove()
+        {
+            aiMove.canMove = false;
+        }
         
 
         private void Awake()
@@ -62,6 +67,7 @@ namespace Character.PathfindingSystem
             cb.OnTeleport.Register(instanceID, TeleportTo);
             cb.OnWalk.Register(instanceID, Move);
             cb.OnRun.Register(instanceID, Move);
+            cb.OnDead.Register(instanceID, DisableMove);
         }
 
 

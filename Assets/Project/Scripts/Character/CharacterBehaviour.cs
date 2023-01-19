@@ -32,6 +32,7 @@ namespace Character
         public ActionTable<Vector3, Action> OnWalk { get; } = new();
         public ActionTable<Vector3, Action> OnRun { get; } = new();
         public ActionTable<Vector3> OnTeleport { get; } = new();
+        public ActionTable OnDead { get; } = new();
 
         public ActionTable<SkillObject> OnUseSkill { get; } = new(4);
         public ActionTable OnActiveSkill { get; } = new(8);
@@ -54,6 +55,7 @@ namespace Character
         public void Walk(Vector3 destination, Action pathCallback = null) => OnWalk?.Invoke(destination, pathCallback);
         public void Run(Vector3 destination, Action pathCallback = null) => OnRun?.Invoke(destination, pathCallback);
         public void Teleport(Vector3 destination) => OnTeleport?.Invoke(destination);
+        public void Dead() => OnDead.Invoke();
         public void UseSkill(SkillObject skill) => OnUseSkill.Invoke(skill);
         public void ActiveSkill() => OnActiveSkill.Invoke();
         public void CompleteSkill() => OnCompleteSkill?.Invoke();

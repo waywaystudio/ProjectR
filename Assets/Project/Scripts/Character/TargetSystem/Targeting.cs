@@ -28,10 +28,8 @@ namespace Character.TargetSystem
             });
 
             inRangedList.SortingFilter(pivot, sortingType);
-            
-            MainTarget = inRangedList.HasElement() 
-                ? inRangedList[0] 
-                : null;
+
+            MainTarget = MainTargeting(inRangedList);
 
             return MainTarget;
         }
@@ -50,9 +48,7 @@ namespace Character.TargetSystem
             inRangedList.SortingFilter(pivot, sortingType);
             inRangedList.CountFilter(count);
             
-            MainTarget = inRangedList.HasElement() 
-                                 ? inRangedList[0] 
-                                 : null;
+            MainTarget = MainTargeting(inRangedList);
 
             return inRangedList;
         }
@@ -71,7 +67,17 @@ namespace Character.TargetSystem
             targetList.SortingFilter(pivot, sortingType);
             targetList.CountFilter(count);
         }
-        
+
+
+        private static ICombatTaker MainTargeting(List<ICombatTaker> preSortedList)
+        {
+            foreach (var t in preSortedList)
+            {
+                if (t.DynamicStatEntry.IsAlive.Value) return t;
+            }
+
+            return null;
+        }
 
         private void Awake()
         {

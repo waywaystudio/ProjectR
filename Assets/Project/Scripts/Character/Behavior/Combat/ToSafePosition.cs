@@ -17,7 +17,7 @@ namespace Character.Behavior.Combat
             var selfPosition = cb.transform.position;
             var safePosition = PathfindingUtility.GetNearestSafePosition(selfPosition, 3f);
 
-            cb.Run(safePosition);
+            cb.Run(safePosition, cb.Idle);
 
             return TaskStatus.Success;
         }

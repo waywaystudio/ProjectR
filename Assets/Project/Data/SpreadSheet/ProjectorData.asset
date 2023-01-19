@@ -16,7 +16,7 @@ MonoBehaviour:
   list:
   - id: 18000001
     name: MeteorStrikeProjector
-    size: {x: 30, y: 30}
+    size: {x: 5, y: 5}
     castingTime: 2
     targetLayerType: enemy
     shapeType: Sphere
@@ -29,24 +29,24 @@ MonoBehaviour:
     castingTime: 5
     targetLayerType: enemy
     shapeType: Rectangle
-    combatValue: 30
+    combatValue: 50
     statusEffectID: 0
     particleKey: 
   - id: 18000003
     name: EqualizerProjector
     size: {x: 4, y: 100}
-    castingTime: 2
+    castingTime: 6
     targetLayerType: enemy
     shapeType: ExRectangle
-    combatValue: 15
+    combatValue: 50
     statusEffectID: 0
     particleKey: 
   - id: 18000004
     name: DragonBreathProjector
     size: {x: 45, y: 50}
-    castingTime: 3
+    castingTime: 2
     targetLayerType: enemy
     shapeType: Cone
-    combatValue: 200
+    combatValue: 50
     statusEffectID: 0
     particleKey: 

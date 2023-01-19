@@ -161,7 +161,7 @@ MonoBehaviour:
   CombatObject: {fileID: 2330787471297126836}
   Flag: 1
   damageValue:
-    value: 4
+    value: 8
     statCode: 1
 --- !u!114 &3765643770630641843
 MonoBehaviour:
@@ -248,7 +248,7 @@ MonoBehaviour:
   skillTable: {fileID: 2719205626943282457}
   fixedCastingTime: 1.5
   animationKey: skill
-  priority: 1
+  priority: 3
   icon: {fileID: 21300000, guid: 16127a9c6bf6d734e94f7a0e865d187e, type: 3}
 --- !u!114 &8565042087880124505
 MonoBehaviour:
@@ -265,7 +265,7 @@ MonoBehaviour:
   CombatObject: {fileID: 3073268482839418820}
   Flag: 7
   healValue:
-    value: 3
+    value: 20
     statCode: 1
 --- !u!114 &8851566931181336460
 MonoBehaviour:
@@ -281,7 +281,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   CombatObject: {fileID: 3073268482839418820}
   Flag: 5
-  sortingType: 3
+  sortingType: 5
   targetLayerType: ally
   targetCount: 1
   range: 15
@@ -1757,13 +1757,14 @@ MonoBehaviour:
       parentIndex: 
       startIndex: 
       variableStartIndex: 
-      JSONSerialization: '{"EntryTask":{"Type":"BehaviorDesigner.Runtime.Tasks.EntryTask","NodeData":{"Offset":"(467,30)"},"ID":0,"Name":"Entry","Instant":true},"RootTask":{"Type":"BehaviorDesigner.Runtime.Tasks.Repeater","NodeData":{"Offset":"(-1.12313652,97.03823)"},"ID":1,"Name":"Repeater","Instant":true,"SharedIntcount":{"Type":"BehaviorDesigner.Runtime.SharedInt","Name":null,"Int32mValue":0},"SharedBoolrepeatForever":{"Type":"BehaviorDesigner.Runtime.SharedBool","Name":null,"BooleanmValue":true},"SharedBoolendOnFailure":{"Type":"BehaviorDesigner.Runtime.SharedBool","Name":null,"BooleanmValue":true},"Children":[{"Type":"BehaviorDesigner.Runtime.Tasks.Sequence","NodeData":{"Offset":"(0.000165939331,105.615875)"},"ID":2,"Name":"Combat","Instant":true,"AbortTypeabortType":"None","Children":[{"Type":"Character.Behavior.CheckBoolean","NodeData":{"Offset":"(-125.454514,114.242477)","ColorIndex":3},"ID":3,"Name":"IsSkillFinished","Instant":true,"SharedBoolCondition":{"Type":"BehaviorDesigner.Runtime.SharedBool","Name":"IsCurrentSkillFinished","IsShared":true,"PropertyMapping":"Character.Combat.SkillBehaviour/IsCurrentSkillFinished","PropertyMappingOwner":0,"BooleanmValue":false}},{"Type":"BehaviorDesigner.Runtime.Tasks.Selector","NodeData":{"Offset":"(113.288414,113.068893)"},"ID":4,"Name":"Selector","Instant":true,"AbortTypeabortType":"None","Children":[{"Type":"BehaviorDesigner.Runtime.Tasks.Sequence","NodeData":{"Offset":"(-138.29187,110.324112)"},"ID":5,"Name":"Survival","Instant":true,"AbortTypeabortType":"None","Children":[{"Type":"Character.Behavior.Combat.IsInDangerPosition","NodeData":{"Offset":"(-260,110)"},"ID":6,"Name":"Is
-        In Danger Position","Instant":true},{"Type":"Character.Behavior.Combat.ToSafePosition","NodeData":{"Offset":"(-100,110)"},"ID":7,"Name":"To
-        Safe Position","Instant":true},{"Type":"BehaviorDesigner.Runtime.Tasks.UntilSuccess","NodeData":{"Offset":"(35.69565,114.248993)"},"ID":8,"Name":"Until
-        Success","Instant":true,"Children":[{"Type":"Character.Behavior.Combat.WaitUntilReached","NodeData":{"Offset":"(0,100)"},"ID":9,"Name":"Wait
-        Until Reached","Instant":true}]}]},{"Type":"BehaviorDesigner.Runtime.Tasks.Sequence","NodeData":{"Offset":"(191.490662,116.66243)"},"ID":10,"Name":"Skill","Instant":true,"AbortTypeabortType":"None","Children":[{"Type":"Character.Behavior.Combat.PositioningBehavior","NodeData":{"Offset":"(-100,110)"},"ID":11,"Name":"Positioning
-        Behavior","Instant":true},{"Type":"BehaviorDesigner.Runtime.Tasks.Inverter","NodeData":{"Offset":"(42.6610641,106.492638)"},"ID":12,"Name":"Inverter","Instant":true,"Children":[{"Type":"Character.Behavior.CheckBoolean","NodeData":{"Offset":"(0,100)","ColorIndex":3},"ID":13,"Name":"Check
-        Boolean","Instant":true,"SharedBoolCondition":{"Type":"BehaviorDesigner.Runtime.SharedBool","Name":"IsGlobalCooling","IsShared":true,"PropertyMapping":"Character.Combat.GlobalCoolDown/IsCooling","PropertyMappingOwner":1,"BooleanmValue":false}}]},{"Type":"Character.Behavior.Combat.UseSkillBehavior","NodeData":{"Offset":"(170,110)"},"ID":14,"Name":"Use
+      JSONSerialization: '{"EntryTask":{"Type":"BehaviorDesigner.Runtime.Tasks.EntryTask","NodeData":{"Offset":"(467,30)"},"ID":0,"Name":"Entry","Instant":true},"RootTask":{"Type":"BehaviorDesigner.Runtime.Tasks.Repeater","NodeData":{"Offset":"(-1.12313652,97.03823)"},"ID":1,"Name":"Repeater","Instant":true,"SharedIntcount":{"Type":"BehaviorDesigner.Runtime.SharedInt","Name":null,"Int32mValue":0},"SharedBoolrepeatForever":{"Type":"BehaviorDesigner.Runtime.SharedBool","Name":null,"BooleanmValue":true},"SharedBoolendOnFailure":{"Type":"BehaviorDesigner.Runtime.SharedBool","Name":null,"BooleanmValue":true},"Children":[{"Type":"BehaviorDesigner.Runtime.Tasks.Sequence","NodeData":{"Offset":"(0.000165939331,105.615875)"},"ID":2,"Name":"Combat","Instant":true,"AbortTypeabortType":"None","Children":[{"Type":"Character.Behavior.Combat.IsAlive","NodeData":{"Offset":"(-310.0332,109.942688)"},"ID":3,"Name":"Is
+        Alive","Instant":true},{"Type":"Character.Behavior.CheckBoolean","NodeData":{"Offset":"(-125.454514,114.242477)","ColorIndex":3},"ID":4,"Name":"IsSkillFinished","Instant":true,"SharedBoolCondition":{"Type":"BehaviorDesigner.Runtime.SharedBool","Name":"IsCurrentSkillFinished","IsShared":true,"PropertyMapping":"Character.Combat.SkillBehaviour/IsCurrentSkillFinished","PropertyMappingOwner":0,"BooleanmValue":false}},{"Type":"BehaviorDesigner.Runtime.Tasks.Selector","NodeData":{"Offset":"(113.288414,113.068893)"},"ID":5,"Name":"Selector","Instant":true,"AbortTypeabortType":"None","Children":[{"Type":"BehaviorDesigner.Runtime.Tasks.Sequence","NodeData":{"Offset":"(-138.29187,110.324112)"},"ID":6,"Name":"Survival","Instant":true,"AbortTypeabortType":"None","Children":[{"Type":"Character.Behavior.Combat.IsInDangerPosition","NodeData":{"Offset":"(-260,110)"},"ID":7,"Name":"Is
+        In Danger Position","Instant":true},{"Type":"Character.Behavior.Combat.ToSafePosition","NodeData":{"Offset":"(-100,110)"},"ID":8,"Name":"To
+        Safe Position","Instant":true},{"Type":"BehaviorDesigner.Runtime.Tasks.UntilSuccess","NodeData":{"Offset":"(35.69565,114.248993)"},"ID":9,"Name":"Until
+        Success","Instant":true,"Children":[{"Type":"Character.Behavior.Combat.WaitUntilReached","NodeData":{"Offset":"(0,100)"},"ID":10,"Name":"Wait
+        Until Reached","Instant":true}]}]},{"Type":"BehaviorDesigner.Runtime.Tasks.Sequence","NodeData":{"Offset":"(191.490662,116.66243)"},"ID":11,"Name":"Skill","Instant":true,"AbortTypeabortType":"None","Children":[{"Type":"Character.Behavior.Combat.PositioningBehavior","NodeData":{"Offset":"(-100,110)"},"ID":12,"Name":"Positioning
+        Behavior","Instant":true},{"Type":"BehaviorDesigner.Runtime.Tasks.Inverter","NodeData":{"Offset":"(42.6610641,106.492638)"},"ID":13,"Name":"Inverter","Instant":true,"Children":[{"Type":"Character.Behavior.CheckBoolean","NodeData":{"Offset":"(0,100)","ColorIndex":3},"ID":14,"Name":"Check
+        Boolean","Instant":true,"SharedBoolCondition":{"Type":"BehaviorDesigner.Runtime.SharedBool","Name":"IsGlobalCooling","IsShared":true,"PropertyMapping":"Character.Combat.GlobalCoolDown/IsCooling","PropertyMappingOwner":1,"BooleanmValue":false}}]},{"Type":"Character.Behavior.Combat.UseSkillBehavior","NodeData":{"Offset":"(170,110)"},"ID":15,"Name":"Use
         Skill Behavior","Instant":true}]}]}]}]},"Variables":[{"Type":"BehaviorDesigner.Runtime.SharedBool","Name":"IsGlobalCooling","IsShared":true,"PropertyMapping":"Character.Combat.GlobalCoolDown/IsCooling","PropertyMappingOwner":2,"BooleanmValue":false},{"Type":"BehaviorDesigner.Runtime.SharedBool","Name":"IsCurrentSkillFinished","IsShared":true,"PropertyMapping":"Character.Combat.SkillBehaviour/IsCurrentSkillFinished","PropertyMappingOwner":3,"BooleanmValue":false}]}'
       fieldSerializationData:
         typeName: []
@@ -2178,7 +2179,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   CombatObject: {fileID: 8566922589576899893}
   Flag: 5
-  sortingType: 3
+  sortingType: 0
   targetLayerType: ally
   targetCount: 1
   range: 25
@@ -2773,7 +2774,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 6554815fb29b6bf4cbd4e916a05362cd, type: 2}
+  - {fileID: 2100000, guid: 0d29e5ee60fe111448ef17a5eaf48848, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -2807,7 +2808,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d247ba06193faa74d9335f5481b2b56c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  skeletonDataAsset: {fileID: 11400000, guid: 276129eef6aa148468488073e2c01d64, type: 2}
+  skeletonDataAsset: {fileID: 11400000, guid: 915b97c6a048e31479e4e271c27b0559, type: 2}
   initialSkinName: 
   fixPrefabOverrideViaMeshFilter: 2
   initialFlipX: 0

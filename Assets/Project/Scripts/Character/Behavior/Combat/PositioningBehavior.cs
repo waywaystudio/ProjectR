@@ -1,6 +1,7 @@
 using BehaviorDesigner.Runtime.Tasks;
 using Character.Combat;
 using Core;
+using UnityEngine;
 
 namespace Character.Behavior.Combat
 {
@@ -37,7 +38,10 @@ namespace Character.Behavior.Combat
             
             var isValid = taker != null && taker.DynamicStatEntry.IsAlive.Value;
 
-            if (!isValid) return TaskStatus.Failure;
+            if (!isValid)
+            {
+                return TaskStatus.Failure;
+            }
 
             var isMovable = PathfindingUtility.TryGetCombatPosition(cb, taker, targetModule.Range, out var destination);
 
@@ -46,7 +50,7 @@ namespace Character.Behavior.Combat
                 return TaskStatus.Success;
             }
             
-            cb.Run(destination); // destination
+            cb.Run(destination, cb.Idle); // destination
             return TaskStatus.Failure;
         }
     }

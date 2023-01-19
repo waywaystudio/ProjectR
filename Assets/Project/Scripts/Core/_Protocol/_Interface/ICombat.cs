@@ -59,6 +59,7 @@ namespace Core
         ActionTable<DataIndex> OnDispelStatusEffect { get; }
         ActionTable<CombatLog> OnCombatPassive { get; }
 
+        void Dead();
         void TakeDamage(ICombatTable entity);
         void TakeSpell(ICombatTable entity);
         void TakeHeal(ICombatTable entity);

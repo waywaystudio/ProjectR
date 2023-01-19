@@ -25,30 +25,30 @@ namespace Character.Graphic.UI
                 return;
             }
 
-            fillRoutine = StartCoroutine(FillProgress());
+            // fillRoutine = StartCoroutine(FillProgress());
         }
 
         // NOTE. 캐스팅바에 OnValueChanged 구조로 가고 싶지만, 항상 캐스팅바가 존재하는게 아니다 보니까 약간 애매하다.
         // 값 자체를 복잡하게 받고 있다보니, if (castingEntity is null) break; 같은 구절이 필요하게 되었다.
         // 수정할 수 있으면 해보자.
-        private IEnumerator FillProgress()
-        {
-            castingTime = cb.SkillInfo.CastingTime;
-            castingProgress = 0f;
-            fillImage.gameObject.SetActive(true);
-
-            while (castingProgress < 1.0f)
-            {
-                if (cb.SkillInfo is null) break;
-                
-                castingProgress = cb.SkillInfo.CastingProgress / castingTime;
-                fillImage.fillAmount = castingProgress;
-                
-                yield return null;
-            }
-
-            fillImage.gameObject.SetActive(false);
-        }
+        // private IEnumerator FillProgress()
+        // {
+        //     castingTime = cb.SkillInfo.CastingTime;
+        //     castingProgress = 0f;
+        //     fillImage.gameObject.SetActive(true);
+        //
+        //     while (castingProgress < 1.0f)
+        //     {
+        //         if (cb.SkillInfo is null) break;
+        //         
+        //         castingProgress = cb.SkillInfo.CastingProgress / castingTime;
+        //         fillImage.fillAmount = castingProgress;
+        //         
+        //         yield return null;
+        //     }
+        //
+        //     fillImage.gameObject.SetActive(false);
+        // }
     
         private void Awake()
         {

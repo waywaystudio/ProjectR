@@ -45,6 +45,8 @@ namespace Character
 
         public static void TakeDamage(ICombatTable entity, ICombatTaker taker)
         {
+            if (!taker.DynamicStatEntry.IsAlive.Value) return;
+            
             var log = new CombatLog(entity.Provider.Name, taker.Name, entity.Provider.ActionCode.ToString());
 
             // Hit Chance
@@ -76,7 +78,8 @@ namespace Character
                 Debug.Log("Dead!");
                 taker.DynamicStatEntry.Hp.Value = 0;
                 log.Value -= taker.DynamicStatEntry.Hp.Value;
-                taker.DynamicStatEntry.IsAlive.Value = false;
+                
+                taker.Dead();
             }
 
             taker.DynamicStatEntry.Hp.Value -= damageAmount;
@@ -87,6 +90,8 @@ namespace Character
         
         public static void TakeSpell(ICombatTable entity, ICombatTaker taker)
         {
+            if (!taker.DynamicStatEntry.IsAlive.Value) return;
+            
             var log = new CombatLog(entity.Provider.Name, taker.Name, entity.Provider.ActionCode.ToString());
             
             // Hit Chance
@@ -129,6 +134,8 @@ namespace Character
         }
         public static void TakeHeal(ICombatTable entity, ICombatTaker taker)
         {
+            if (!taker.DynamicStatEntry.IsAlive.Value) return;
+            
             var log = new CombatLog(entity.Provider.Name, taker.Name, entity.Provider.ActionCode.ToString(), true);
 
             var healAmount = entity.StatTable.Power;

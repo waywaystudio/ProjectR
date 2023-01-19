@@ -3,8 +3,7 @@ using UnityEngine;
 namespace Core
 {
     public interface IReady { bool IsReady { get; } }
-
-    // TODO. Graphic과 관련된 인터페이스로 이름 변경 및, 프로퍼티 변경 필요.
+    
     public interface ISkillInfo : IActionSender
     {
         // + ICombatProvider Provider { get; }
@@ -15,7 +14,7 @@ namespace Core
         /* Casting Entity */
         bool HasCastingModule { get; }
         float CastingTime { get; }
-        float CastingProgress { get; }
+        Observable<float> CastingProgress { get; }
         
         /* CoolTime Entity */
         bool HasCoolTimeModule { get; }

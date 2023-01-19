@@ -21,6 +21,24 @@ namespace Character.TargetSystem
         public List<ICombatTaker> MonsterList { get; } = new(MaxBufferCount);
         public ICombatTaker LookTarget => SetLookTarget(selfLayer);
 
+        public ICombatTaker GetLookTarget(LayerMask layer)
+        {
+            if (layer == adventurerLayer)
+            {
+                return AdventurerList.HasElement()
+                    ? AdventurerList[0]
+                    : null;
+            }
+            if (layer == monsterLayer)
+            {
+                return MonsterList.HasElement()
+                    ? MonsterList[0]
+                    : null;
+            }
+
+            return null;
+        }
+
 
         private void Awake()
         {
@@ -72,11 +90,10 @@ namespace Character.TargetSystem
                 enemyList = AdventurerList;
             }
             
-            return !enemyList.IsNullOrEmpty() 
-                ? enemyList[0] 
-                : !allyList.IsNullOrEmpty() 
-                    ? allyList[0] 
-                    : null;
+            foreach (var t in enemyList) if (t.DynamicStatEntry.IsAlive.Value) return t;
+            foreach (var t in allyList) if (t.DynamicStatEntry.IsAlive.Value) return t;
+
+            return null;
         }
 
         private static bool IsAbleToCombatTake(Component other, LayerMask layer, out ICombatTaker taker)

@@ -16,7 +16,7 @@ namespace Character.Combat
         public bool IsReady => !onCasting;
         public float OriginalCastingTime { get => originalCastingTime; set => originalCastingTime = value; }
         public float CastingTime => OriginalCastingTime * CharacterUtility.GetHasteValue(Provider.StatTable.Haste);
-        public float CastingProgress { get; private set; }
+        public Observable<float> CastingProgress { get; private set; } = new();
 
 
         private void StartCasting() => routineBuffer = StartCoroutine(Casting());
@@ -35,9 +35,9 @@ namespace Character.Combat
         {
             onCasting = true;
 
-            while (CastingProgress < CastingTime)
+            while (CastingProgress.Value < CastingTime)
             {
-                CastingProgress += castingTick;
+                CastingProgress.Value += castingTick;
                 yield return null;
             }
             
@@ -46,7 +46,7 @@ namespace Character.Combat
             onCasting = false;
         }
         
-        private void ResetProgress() => CastingProgress = 0f;
+        private void ResetProgress() => CastingProgress.Value = 0f;
 
         protected override void Awake()
         {

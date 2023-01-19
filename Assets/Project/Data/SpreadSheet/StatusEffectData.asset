@@ -18,12 +18,12 @@ MonoBehaviour:
     name: CorruptionDeBuff
     isBuff: 0
     duration: 15
-    combatValue: 1.5
+    combatValue: 6
   - id: 14001002
-    name: RevivicationBuff
+    name: RevivificationBuff
     isBuff: 1
     duration: 15
-    combatValue: 1.2
+    combatValue: 8
   - id: 14001003
     name: BloodDrainBuff
     isBuff: 1

@@ -7,6 +7,9 @@ namespace Core
         DistanceDescending,
         HpAscending,
         HpDescending,
+        HpRatioAscending,
+        HpRatioDescending,
         Role,
+        Random,
     }
 }

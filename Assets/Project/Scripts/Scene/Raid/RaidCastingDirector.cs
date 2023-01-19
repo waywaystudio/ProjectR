@@ -2,7 +2,7 @@ using System.Collections.Generic;
 using Character;
 using UnityEngine;
 
-namespace Scene.Raid
+namespace Raid
 {
     public class RaidCastingDirector : MonoBehaviour
     {
@@ -12,11 +12,15 @@ namespace Scene.Raid
         public List<AdventurerBehaviour> AdventurerList => adventurerList;
         public List<MonsterBehaviour> MonsterList => monsterList;
 
-
-        private void GetList()
+        private void Awake()
         {
-            AdventurerList.AddRange(GetComponentsInChildren<AdventurerBehaviour>());
-            MonsterList.AddRange(GetComponentsInChildren<MonsterBehaviour>());
+            SetUp();
+        }
+
+        public void SetUp()
+        {
+            GetComponentsInChildren(AdventurerList);
+            GetComponentsInChildren(MonsterList);
         }
     }
 }

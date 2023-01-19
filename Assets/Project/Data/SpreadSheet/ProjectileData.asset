@@ -17,30 +17,30 @@ MonoBehaviour:
   - id: 15000001
     name: AimShotProjectile
     speed: 30
-    baseValue: 25
+    baseValue: 42
     statusEffectID: 0
     particleKey: AimShotParticle
   - id: 15000002
     name: FireballProjectile
     speed: 24
-    baseValue: 5
+    baseValue: 16
     statusEffectID: 14000006
     particleKey: FireballParticle
   - id: 15000003
     name: ChainHealingProjectile
     speed: 100
-    baseValue: 12
+    baseValue: 15
     statusEffectID: 0
     particleKey: ChainHealingParticle
   - id: 15000004
     name: HealOrbProjectile
     speed: 15
-    baseValue: 20
+    baseValue: 30
     statusEffectID: 0
     particleKey: HealOrbParticle
   - id: 15000005
     name: RangeAttackProjectile
     speed: 30
-    baseValue: 5
+    baseValue: 15
     statusEffectID: 0
     particleKey: RangeAttackParticle

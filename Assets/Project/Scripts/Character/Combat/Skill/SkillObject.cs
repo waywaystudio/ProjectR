@@ -17,7 +17,7 @@ namespace Character.Combat.Skill
         public Sprite Icon => icon;
         public bool HasCastingModule => ModuleTable.ContainsKey(ModuleType.Casting);
         public float CastingTime => CastingModule.CastingTime;
-        public float CastingProgress => CastingModule.CastingProgress;
+        public Observable<float> CastingProgress => CastingModule.CastingProgress;
         public bool HasCoolTimeModule => ModuleTable.ContainsKey(ModuleType.CoolTime);
         public float CoolTime => CoolTimeModule.OriginalCoolTime;
         public Observable<float> RemainTime => CoolTimeModule.RemainTime;

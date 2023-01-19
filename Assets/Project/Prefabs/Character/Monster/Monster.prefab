@@ -62,6 +62,7 @@ Transform:
   m_Children:
   - {fileID: 3744010701327891158}
   - {fileID: 8301702251106544615}
+  - {fileID: 8948846567555773932}
   - {fileID: 87764703586654645}
   m_Father: {fileID: 3744010701179384131}
   m_RootOrder: 0
@@ -82,6 +83,7 @@ MonoBehaviour:
   selectSkillList:
   - {fileID: 3744010701327891165}
   - {fileID: 7078665412676475418}
+  - {fileID: 615778425374483725}
   - {fileID: 1300029322222589421}
 --- !u!1 &1797137588133403415
 GameObject:
@@ -288,6 +290,126 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cb: {fileID: 0}
   fillImage: {fileID: 2112184463245283925}
+--- !u!1 &2809351945514525512
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8948846567555773932}
+  - component: {fileID: 615778425374483725}
+  - component: {fileID: 6451113439998129783}
+  - component: {fileID: 5868687077577586467}
+  - component: {fileID: 4768409054940506489}
+  - component: {fileID: 2903946483903061813}
+  m_Layer: 0
+  m_Name: RangeAttack
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8948846567555773932
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2809351945514525512}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -13.84, y: 0, z: 4.36}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 3136610500463366648}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &615778425374483725
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2809351945514525512}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fc7e4caa127e3f549a2e9ee050a20d34, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  actionCode: 13000019
+  skillTable: {fileID: 0}
+  fixedCastingTime: 1
+  animationKey: attack
+  priority: 1
+  icon: {fileID: 21300000, guid: 44390e08012c1a543bf14dd411f546e1, type: 3}
+--- !u!114 &6451113439998129783
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2809351945514525512}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cc73b176d16ea8448a48d598b41a08b5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CombatObject: {fileID: 615778425374483725}
+  Flag: 4
+  originalCastingTime: 1
+--- !u!114 &5868687077577586467
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2809351945514525512}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4c3f42a73ddd63e47af0241ed7024ba6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CombatObject: {fileID: 615778425374483725}
+  Flag: 3
+  obtain: 10
+--- !u!114 &4768409054940506489
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2809351945514525512}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4c5f541185aa92b488eeff9b9e07cdfc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CombatObject: {fileID: 615778425374483725}
+  Flag: 5
+  sortingType: 0
+  targetLayerType: enemy
+  targetCount: 1
+  range: 25
+  isSelf: 0
+--- !u!114 &2903946483903061813
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2809351945514525512}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7142e0a43af74e747a185ee0b65f9c41, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CombatObject: {fileID: 615778425374483725}
+  Flag: 6
+  projectilePrefab: {fileID: 5223207423503661573, guid: 61a3aa90bb4ae06458de7d6ad6be6e4d, type: 3}
+  projectileID: 15000005
+  maxPool: 8
 --- !u!1 &2996164321908751025
 GameObject:
   m_ObjectHideFlags: 0
@@ -952,6 +1074,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   searchingCollider: {fileID: 3744010700929808895}
+  sortingType: 0
 --- !u!135 &3744010700929808895
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -1050,20 +1173,21 @@ MonoBehaviour:
   resetValuesOnRestart: 0
   externalBehavior: {fileID: 0}
   mBehaviorSource:
-    behaviorName: CombatSkill
+    behaviorName: MonsterCombatSkill
     behaviorDescription: 
     mTaskData:
       types: []
       parentIndex: 
       startIndex: 
       variableStartIndex: 
-      JSONSerialization: '{"EntryTask":{"Type":"BehaviorDesigner.Runtime.Tasks.EntryTask","NodeData":{"Offset":"(467,30)"},"ID":0,"Name":"Entry","Instant":true},"RootTask":{"Type":"BehaviorDesigner.Runtime.Tasks.Repeater","NodeData":{"Offset":"(-1.12313652,97.03823)"},"ID":1,"Name":"Repeater","Instant":true,"SharedIntcount":{"Type":"BehaviorDesigner.Runtime.SharedInt","Name":null,"Int32mValue":0},"SharedBoolrepeatForever":{"Type":"BehaviorDesigner.Runtime.SharedBool","Name":null,"BooleanmValue":true},"SharedBoolendOnFailure":{"Type":"BehaviorDesigner.Runtime.SharedBool","Name":null,"BooleanmValue":true},"Children":[{"Type":"BehaviorDesigner.Runtime.Tasks.Sequence","NodeData":{"Offset":"(0.000165939331,105.615875)"},"ID":2,"Name":"Combat","Instant":true,"AbortTypeabortType":"None","Children":[{"Type":"Character.Behavior.CheckBoolean","NodeData":{"Offset":"(-125.454514,114.242477)","ColorIndex":3},"ID":3,"Name":"IsSkillFinished","Instant":true,"SharedBoolCondition":{"Type":"BehaviorDesigner.Runtime.SharedBool","Name":"IsCurrentSkillFinished","IsShared":true,"PropertyMapping":"Character.Combat.SkillBehaviour/IsCurrentSkillFinished","PropertyMappingOwner":0,"BooleanmValue":false}},{"Type":"BehaviorDesigner.Runtime.Tasks.Selector","NodeData":{"Offset":"(113.288414,113.068893)"},"ID":4,"Name":"Selector","Instant":true,"AbortTypeabortType":"None","Children":[{"Type":"BehaviorDesigner.Runtime.Tasks.Sequence","NodeData":{"Offset":"(-138.29187,110.324112)"},"ID":5,"Name":"Survival","Instant":true,"Disabled":true,"AbortTypeabortType":"None","Children":[{"Type":"Character.Behavior.Combat.IsInDangerPosition","NodeData":{"Offset":"(-260,110)"},"ID":6,"Name":"Is
-        In Danger Position","Instant":true},{"Type":"Character.Behavior.Combat.ToSafePosition","NodeData":{"Offset":"(-100,110)"},"ID":7,"Name":"To
-        Safe Position","Instant":true},{"Type":"BehaviorDesigner.Runtime.Tasks.UntilSuccess","NodeData":{"Offset":"(35.69565,114.248993)"},"ID":8,"Name":"Until
-        Success","Instant":true,"Children":[{"Type":"Character.Behavior.Combat.WaitUntilReached","NodeData":{"Offset":"(0,100)"},"ID":9,"Name":"Wait
-        Until Reached","Instant":true}]}]},{"Type":"BehaviorDesigner.Runtime.Tasks.Sequence","NodeData":{"Offset":"(191.490662,116.66243)"},"ID":10,"Name":"Skill","Instant":true,"AbortTypeabortType":"None","Children":[{"Type":"Character.Behavior.Combat.PositioningBehavior","NodeData":{"Offset":"(-100,110)"},"ID":11,"Name":"Positioning
-        Behavior","Instant":true},{"Type":"BehaviorDesigner.Runtime.Tasks.Inverter","NodeData":{"Offset":"(42.6610641,106.492638)"},"ID":12,"Name":"Inverter","Instant":true,"Children":[{"Type":"Character.Behavior.CheckBoolean","NodeData":{"Offset":"(0,100)","ColorIndex":3},"ID":13,"Name":"Check
-        Boolean","Instant":true,"SharedBoolCondition":{"Type":"BehaviorDesigner.Runtime.SharedBool","Name":"IsGlobalCooling","IsShared":true,"PropertyMapping":"Character.Combat.GlobalCoolDown/IsCooling","PropertyMappingOwner":1,"BooleanmValue":false}}]},{"Type":"Character.Behavior.Combat.UseSkillBehavior","NodeData":{"Offset":"(170,110)"},"ID":14,"Name":"Use
+      JSONSerialization: '{"EntryTask":{"Type":"BehaviorDesigner.Runtime.Tasks.EntryTask","NodeData":{"Offset":"(467,30)"},"ID":0,"Name":"Entry","Instant":true},"RootTask":{"Type":"BehaviorDesigner.Runtime.Tasks.Repeater","NodeData":{"Offset":"(-1.12313652,97.03823)"},"ID":1,"Name":"Repeater","Instant":true,"SharedIntcount":{"Type":"BehaviorDesigner.Runtime.SharedInt","Name":null,"Int32mValue":0},"SharedBoolrepeatForever":{"Type":"BehaviorDesigner.Runtime.SharedBool","Name":null,"BooleanmValue":true},"SharedBoolendOnFailure":{"Type":"BehaviorDesigner.Runtime.SharedBool","Name":null,"BooleanmValue":true},"Children":[{"Type":"BehaviorDesigner.Runtime.Tasks.Sequence","NodeData":{"Offset":"(0.000165939331,105.615875)"},"ID":2,"Name":"Combat","Instant":true,"AbortTypeabortType":"None","Children":[{"Type":"Character.Behavior.Combat.IsAlive","NodeData":{"Offset":"(-302.009216,114.882172)"},"ID":3,"Name":"Is
+        Alive","Instant":true},{"Type":"Character.Behavior.CheckBoolean","NodeData":{"Offset":"(-125.454514,114.242477)","ColorIndex":3},"ID":4,"Name":"IsSkillFinished","Instant":true,"SharedBoolCondition":{"Type":"BehaviorDesigner.Runtime.SharedBool","Name":"IsCurrentSkillFinished","IsShared":true,"PropertyMapping":"Character.Combat.SkillBehaviour/IsCurrentSkillFinished","PropertyMappingOwner":0,"BooleanmValue":false}},{"Type":"BehaviorDesigner.Runtime.Tasks.Selector","NodeData":{"Offset":"(113.288414,113.068893)"},"ID":5,"Name":"Selector","Instant":true,"AbortTypeabortType":"None","Children":[{"Type":"BehaviorDesigner.Runtime.Tasks.Sequence","NodeData":{"Offset":"(-138.29187,110.324112)"},"ID":6,"Name":"Survival","Instant":true,"Disabled":true,"AbortTypeabortType":"None","Children":[{"Type":"Character.Behavior.Combat.IsInDangerPosition","NodeData":{"Offset":"(-260,110)"},"ID":7,"Name":"Is
+        In Danger Position","Instant":true},{"Type":"Character.Behavior.Combat.ToSafePosition","NodeData":{"Offset":"(-100,110)"},"ID":8,"Name":"To
+        Safe Position","Instant":true},{"Type":"BehaviorDesigner.Runtime.Tasks.UntilSuccess","NodeData":{"Offset":"(35.69565,114.248993)"},"ID":9,"Name":"Until
+        Success","Instant":true,"Children":[{"Type":"Character.Behavior.Combat.WaitUntilReached","NodeData":{"Offset":"(0,100)"},"ID":10,"Name":"Wait
+        Until Reached","Instant":true}]}]},{"Type":"BehaviorDesigner.Runtime.Tasks.Sequence","NodeData":{"Offset":"(191.490662,116.66243)"},"ID":11,"Name":"Skill","Instant":true,"AbortTypeabortType":"None","Children":[{"Type":"Character.Behavior.Combat.PositioningBehavior","NodeData":{"Offset":"(-100,110)"},"ID":12,"Name":"Positioning
+        Behavior","Instant":true},{"Type":"BehaviorDesigner.Runtime.Tasks.Inverter","NodeData":{"Offset":"(42.6610641,106.492638)"},"ID":13,"Name":"Inverter","Instant":true,"Children":[{"Type":"Character.Behavior.CheckBoolean","NodeData":{"Offset":"(0,100)","ColorIndex":3},"ID":14,"Name":"Check
+        Boolean","Instant":true,"SharedBoolCondition":{"Type":"BehaviorDesigner.Runtime.SharedBool","Name":"IsGlobalCooling","IsShared":true,"PropertyMapping":"Character.Combat.GlobalCoolDown/IsCooling","PropertyMappingOwner":1,"BooleanmValue":false}}]},{"Type":"Character.Behavior.Combat.UseSkillBehavior","NodeData":{"Offset":"(170,110)"},"ID":15,"Name":"Use
         Skill Behavior","Instant":true}]}]}]}]},"Variables":[{"Type":"BehaviorDesigner.Runtime.SharedBool","Name":"IsGlobalCooling","IsShared":true,"PropertyMapping":"Character.Combat.GlobalCoolDown/IsCooling","PropertyMappingOwner":2,"BooleanmValue":false},{"Type":"BehaviorDesigner.Runtime.SharedBool","Name":"IsCurrentSkillFinished","IsShared":true,"PropertyMapping":"Character.Combat.SkillBehaviour/IsCurrentSkillFinished","PropertyMappingOwner":3,"BooleanmValue":false}]}'
       fieldSerializationData:
         typeName: []
@@ -1131,7 +1255,7 @@ MonoBehaviour:
   skillTable: {fileID: 2719205626943282457}
   fixedCastingTime: 0
   animationKey: attack
-  priority: 1
+  priority: 2
   icon: {fileID: 21300000, guid: a68e890a3c720c8458b62cd2825f019c, type: 3}
 --- !u!114 &3744010701327891162
 MonoBehaviour:
@@ -1148,7 +1272,7 @@ MonoBehaviour:
   CombatObject: {fileID: 3744010701327891165}
   Flag: 1
   damageValue:
-    value: 5
+    value: 50
     statCode: 1
 --- !u!114 &5720177583797952594
 MonoBehaviour:
@@ -1218,7 +1342,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 3136610500463366648}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1300029322222589421
 MonoBehaviour:

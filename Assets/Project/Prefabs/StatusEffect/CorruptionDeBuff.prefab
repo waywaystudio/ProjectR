@@ -49,9 +49,9 @@ MonoBehaviour:
   icon: {fileID: 21300000, guid: b40cb8ac08b1f28489262dbbcc06d720, type: 3}
   isBuff: 0
   duration: 15
-  combatValue: 1.5
+  combatValue: 6
   tickValue:
-    value: 1.5
+    value: 6
     statCode: 1
   tickCount: 5
 --- !u!114 &1880411565650641694
@@ -69,5 +69,5 @@ MonoBehaviour:
   CombatObject: {fileID: 2105927751028795071}
   Flag: 1
   damageValue:
-    value: 1.5
+    value: 6
     statCode: 1

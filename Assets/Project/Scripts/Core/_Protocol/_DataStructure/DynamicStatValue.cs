@@ -15,7 +15,11 @@ namespace Core
             get => value;
             set
             {
-                this.value = Mathf.Min(StatTable.MaxHp, value);
+                if (Math.Abs(this.value - value) < 0.0001f) return;
+
+                value      = Math.Clamp(value, 0, StatTable.MaxHp);
+                this.value = value;
+
                 OnValueChanged?.Invoke(value);
             }
         }
@@ -29,7 +33,11 @@ namespace Core
             get => value;
             set
             {
-                this.value = Mathf.Min(StatTable.MaxResource, value);
+                if (Math.Abs(this.value - value) < 0.0001f) return;
+
+                value      = Math.Clamp(value, 0, StatTable.MaxResource);
+                this.value = value;
+
                 OnValueChanged?.Invoke(value);
             }
         }

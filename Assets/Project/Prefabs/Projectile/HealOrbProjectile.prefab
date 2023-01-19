@@ -155,7 +155,7 @@ MonoBehaviour:
   CombatObject: {fileID: 6157442219491799146}
   Flag: 1
   damageValue:
-    value: 20
+    value: 30
     statCode: 1
 --- !u!114 &8241015065912620220
 MonoBehaviour:
@@ -172,7 +172,7 @@ MonoBehaviour:
   CombatObject: {fileID: 6157442219491799146}
   Flag: 7
   healValue:
-    value: 20
+    value: 30
     statCode: 1
 --- !u!135 &4929770875764372954
 SphereCollider:

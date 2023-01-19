@@ -3,7 +3,7 @@ using Core;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace Scene.Raid.UI
+namespace Raid.UI
 {
     public class SkillSlotFrame : MonoBehaviour
     {

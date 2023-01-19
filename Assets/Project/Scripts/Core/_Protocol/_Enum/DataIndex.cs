@@ -98,7 +98,7 @@ public enum DataIndex
 
 	/* StatusEffectData */
 	CorruptionDeBuff = 14000001,
-	RevivicationBuff = 14001002,
+	RevivificationBuff = 14001002,
 	BloodDrainBuff = 14001003,
 	RoarDeBuff = 14000004,
 	FuryBuff = 14001005,

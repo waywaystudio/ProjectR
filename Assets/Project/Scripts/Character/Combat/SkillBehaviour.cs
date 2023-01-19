@@ -28,8 +28,8 @@ namespace Character.Combat
             UnregisterSkill();
             SetCurrentSkill(skill);
             RegisterSkill();
-            cb.ActiveSkill();
             
+            cb.ActiveSkill();
             globalCoolDown.StartCooling();
         }
         

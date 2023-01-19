@@ -1,4 +1,6 @@
 using System.Collections.Generic;
+using Raid;
+using Raid.UI;
 using UnityEngine;
 
 namespace Scene.Raid.UI

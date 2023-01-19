@@ -6,7 +6,7 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-namespace Scene.Raid.UI
+namespace Raid.UI
 {
     public class PartyUnitFrame : MonoBehaviour, IPointerClickHandler
     {
@@ -17,7 +17,7 @@ namespace Scene.Raid.UI
         [SerializeField] private TextMeshProUGUI nameText;
         
         private int instanceID;
-        private RaidUIDirector uiDirector;
+        // private RaidUIDirector uiDirector;
         private bool isInitialized;
 
         public ActionTable OnInitialize { get; } = new();
@@ -62,8 +62,8 @@ namespace Scene.Raid.UI
         private void Awake()
         {
             instanceID = GetInstanceID();
-            uiDirector = GetComponentInParent<RaidUIDirector>();
-            uiDirector.PartyFrameList.Add(this);
+            // uiDirector = GetComponentInParent<RaidUIDirector>();
+            // uiDirector.PartyFrameList.Add(this);
         }
 
         private void OnDisable()
@@ -77,7 +77,7 @@ namespace Scene.Raid.UI
 
         public void OnPointerClick(PointerEventData eventData)
         {
-            uiDirector.FocusAdventurer = AdventurerBehaviour;
+            // uiDirector.FocusAdventurer = AdventurerBehaviour;
         }
     }
 }

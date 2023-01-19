@@ -37,6 +37,7 @@ namespace Character.Data
             instanceID          = GetInstanceID();
             
             cb.OnTakeStatusEffect.Register(instanceID, Register);
+            cb.OnDead.Register(instanceID, () => IsAlive.Value = false);
         }
 
         private void Start()
