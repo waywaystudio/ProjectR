@@ -4,11 +4,6 @@ namespace Character.Combat.Projector
 {
     public class PowerBashProjector : ProjectorObject
     {
-        public void Test()
-        {
-            Projection(TempProvider, TempTarget);
-        }
-
         protected override void EnterProjector(ICombatTaker taker)
         {
             // throw new System.NotImplementedException();

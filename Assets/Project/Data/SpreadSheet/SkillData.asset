@@ -405,3 +405,20 @@ MonoBehaviour:
     statusEffectID: 0
     projectileID: 0
     projectorID: 18000004
+  - id: 13000024
+    name: Smash
+    baseValue: 30
+    baseCoolTime: 12
+    range: 0
+    priority: 6
+    animationKey: skill
+    targetCount: 1
+    sortingType: None
+    targetLayer: enemy
+    isSelf: 1
+    skillType: projector
+    castingTime: 1
+    resourceObtain: 0
+    statusEffectID: 0
+    projectileID: 0
+    projectorID: 18000005

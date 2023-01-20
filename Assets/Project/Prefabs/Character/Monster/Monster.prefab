@@ -64,6 +64,7 @@ Transform:
   - {fileID: 8301702251106544615}
   - {fileID: 8948846567555773932}
   - {fileID: 87764703586654645}
+  - {fileID: 3465302312124505517}
   m_Father: {fileID: 3744010701179384131}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -85,6 +86,126 @@ MonoBehaviour:
   - {fileID: 7078665412676475418}
   - {fileID: 615778425374483725}
   - {fileID: 1300029322222589421}
+--- !u!1 &1598561677428872489
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3465302312124505517}
+  - component: {fileID: 8075077653494770500}
+  - component: {fileID: 8329076553797177621}
+  - component: {fileID: 4760138144163588363}
+  - component: {fileID: 4173813532535940698}
+  - component: {fileID: 9002856947303533589}
+  m_Layer: 0
+  m_Name: Smash
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3465302312124505517
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1598561677428872489}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 3136610500463366648}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &8075077653494770500
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1598561677428872489}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f8aa12500bbf88442a9dd5e39dc42a7e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  actionCode: 13000024
+  skillTable: {fileID: 2719205626943282457}
+  fixedCastingTime: 1
+  animationKey: skill
+  priority: 6
+  icon: {fileID: 0}
+--- !u!114 &8329076553797177621
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1598561677428872489}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 75c84d6c3729d8148916010fbc1d8737, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CombatObject: {fileID: 8075077653494770500}
+  Flag: 8
+  projectorPrefab: {fileID: 6638007462843243134, guid: 5e721216549b76b4d993fdcf93269885, type: 3}
+  projectorID: 18000005
+  maxPool: 8
+--- !u!114 &4760138144163588363
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1598561677428872489}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cc73b176d16ea8448a48d598b41a08b5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CombatObject: {fileID: 8075077653494770500}
+  Flag: 4
+  originalCastingTime: 1
+--- !u!114 &4173813532535940698
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1598561677428872489}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9b71247a0c6287f44b49f848d90d357e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CombatObject: {fileID: 8075077653494770500}
+  Flag: 2
+  coolTime: 12
+--- !u!114 &9002856947303533589
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1598561677428872489}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4c5f541185aa92b488eeff9b9e07cdfc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CombatObject: {fileID: 8075077653494770500}
+  Flag: 5
+  sortingType: 0
+  targetLayerType: enemy
+  targetCount: 1
+  range: 0
+  isSelf: 1
 --- !u!1 &1797137588133403415
 GameObject:
   m_ObjectHideFlags: 0

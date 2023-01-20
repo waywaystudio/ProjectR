@@ -609,7 +609,8 @@ namespace Pathfinding
 		}
 
 		/// <summary>\copydoc Pathfinding::IAstarAI::Move</summary>
-		public virtual void Move (Vector3 deltaPosition) {
+		public virtual void Move (Vector3 deltaPosition) 
+		{
 			accumulatedMovementDelta += deltaPosition;
 		}
 

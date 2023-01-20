@@ -13,6 +13,7 @@ namespace Character.PathfindingSystem
         private CharacterBehaviour cb;
         private ABPath pathBuffer;
         private int instanceID;
+        // private Tweener monsterMoveTweener;
 
         public bool IsReached => aiMove.reachedEndOfPath;
         public bool IsSafe => AstarPath.active.GetNearest(cb.transform.position, NNConstraint.None).node.Walkable;

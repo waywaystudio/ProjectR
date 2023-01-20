@@ -1,7 +1,6 @@
 using BehaviorDesigner.Runtime.Tasks;
 using Character.Combat;
 using Core;
-using UnityEngine;
 
 namespace Character.Behavior.Combat
 {

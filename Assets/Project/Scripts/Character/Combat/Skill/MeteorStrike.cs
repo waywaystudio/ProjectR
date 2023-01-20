@@ -11,6 +11,11 @@ namespace Character.Combat.Skill
 
         private List<Vector2> sampler;
 
+        protected override void OnAssigned()
+        {
+            OnCompleted.Register(InstanceID, OnMeteorStrikeCompleted);
+        }
+
         private void OnMeteorStrikeCompleted()
         {
             if (ProjectorModule)
@@ -18,13 +23,6 @@ namespace Character.Combat.Skill
                 sampler = ProjectorUtility.GetPointsInCircle((int)randomRadius, farRadius, count, ProjectorUtility.SamplingCount);
                 sampler.ForEach(x => ProjectorModule.Projection(new Vector3(x.x, 0f, x.y)));
             }
-        }
-
-        protected override void Awake()
-        {
-            base.Awake();
-            
-            OnCompleted.Register(InstanceID, OnMeteorStrikeCompleted);
         }
     }
 }

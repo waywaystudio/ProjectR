@@ -2,11 +2,14 @@ using Core;
 
 namespace Character.Combat.Projector
 {
-    public class EqualizerProjector : ProjectorObject
+    public class SmashProjector : ProjectorObject
     {
         protected override void EnterProjector(ICombatTaker taker)
         {
-            // throw new System.NotImplementedException();
+            /* --------------------- */
+            if (!taker.Object.TryGetComponent(out CharacterBehaviour cb)) return;
+            
+            cb.CancelSkill();
         }
 
         protected override void EndProjector(ICombatTaker taker)

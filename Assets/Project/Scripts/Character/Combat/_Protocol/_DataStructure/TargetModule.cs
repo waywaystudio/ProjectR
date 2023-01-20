@@ -59,6 +59,12 @@ namespace Character.Combat
             if (targetCount == 1) statusEffect.Effectuate(Target);
             else TargetList.ForEach(statusEffect.Effectuate);
         }
+        public void TakeProjector(ProjectorModule projector)
+        {
+            if (targetCount == 1) projector.Projection(Target);
+            else TargetList.ForEach(projector.Projection);
+        }
+
 
 
         protected override void Awake()

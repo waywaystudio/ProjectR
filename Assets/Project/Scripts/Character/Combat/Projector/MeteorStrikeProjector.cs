@@ -6,14 +6,10 @@ namespace Character.Combat.Projector
     {
         protected override void EnterProjector(ICombatTaker taker)
         {
-            // taker.Survival();
             /* --------------------- */
+            if (!taker.Object.TryGetComponent(out CharacterBehaviour cb)) return;
             
-            // cb.BehaviourStatus = BehaviourStatus.Survival;
-            // if (cb.casting) cancel skill;
-            
-            // +callback cb.BehaviourStatus = BehaviourStatus.Combat;
-
+            cb.CancelSkill();
         }
 
         protected override void EndProjector(ICombatTaker taker)

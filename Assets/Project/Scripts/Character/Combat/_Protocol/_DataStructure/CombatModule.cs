@@ -24,7 +24,7 @@ namespace Character.Combat
 
         public void SetUp()
         {
-            CombatObject ??= GetComponent<CombatObject>();
+            CombatObject = GetComponent<CombatObject>();
         }
     }
 }

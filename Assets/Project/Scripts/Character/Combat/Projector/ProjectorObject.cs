@@ -6,10 +6,6 @@ namespace Character.Combat.Projector
 {
     public abstract class ProjectorObject : CombatObject
     {
-        // for Test
-        public CharacterBehaviour TempProvider;
-        public CharacterBehaviour TempTarget;
-
         [SerializeField] protected ProjectorShapeType shapeType;
         [SerializeField] protected Vector2 sizeValue = Vector2.zero;
         [SerializeField] protected string targetLayerType;

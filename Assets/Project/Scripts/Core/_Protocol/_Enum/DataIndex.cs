@@ -95,6 +95,7 @@ public enum DataIndex
 	PowerBash = 13000021,
 	Equalizer = 13000022,
 	DragonBreath = 13000023,
+	Smash = 13000024,
 
 	/* StatusEffectData */
 	CorruptionDeBuff = 14000001,
@@ -144,6 +145,7 @@ public enum DataIndex
 	PowerBashProjector = 18000002,
 	EqualizerProjector = 18000003,
 	DragonBreathProjector = 18000004,
+	SmashProjector = 18000005,
 
 	/* EquipmentData */
 	BloodBoilLancet = 21000001,
