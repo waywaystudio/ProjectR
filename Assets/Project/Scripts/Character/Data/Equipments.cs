@@ -20,13 +20,11 @@ namespace Character.Data
         // [SerializeField] private int trinketID;
         
         [SerializeField] private EquipmentItem weapon;
-        [SerializeField] private EquipmentItem subWeapon;
         [SerializeField] private EquipmentItem head;
-        [SerializeField] private EquipmentItem shoulder;
         [SerializeField] private EquipmentItem chest;
         [SerializeField] private EquipmentItem leg;
-        [SerializeField] private EquipmentItem ring;
-        [SerializeField] private EquipmentItem trinket;
+        [SerializeField] private EquipmentItem ring1;
+        [SerializeField] private EquipmentItem ring2;
 
         private int instanceID;
         private CharacterBehaviour cb;
@@ -56,13 +54,11 @@ namespace Character.Data
         {
             EquipmentItemList.Clear();
             EquipmentItemList.AddUniquely(weapon);
-            EquipmentItemList.AddUniquely(subWeapon);
             EquipmentItemList.AddUniquely(head);
-            EquipmentItemList.AddUniquely(shoulder);
             EquipmentItemList.AddUniquely(chest);
             EquipmentItemList.AddUniquely(leg);
-            EquipmentItemList.AddUniquely(ring);
-            EquipmentItemList.AddUniquely(trinket);
+            EquipmentItemList.AddUniquely(ring1);
+            EquipmentItemList.AddUniquely(ring2);
 
             instanceID = GetInstanceID();
             AddValueTable();

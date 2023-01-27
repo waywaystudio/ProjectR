@@ -1,18 +1,13 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using Core;
 using UnityEngine;
 
 namespace Character
 {
     public static class ProjectorUtility
     {
-        [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.SubsystemRegistration)]
-        public static void RuntimeInitialize()
-        {
-            // SamplingCount = 8;
-        }
-        
         public const int SamplingCount = 8;
         
         /// <summary>
@@ -25,10 +20,6 @@ namespace Character
         /// <returns>Vector2 list, count of maxPoints</returns>
         public static List<Vector2> GetPointsInCircle(int radius, int minDistance, int maxPoints, int sampleSize)
         {
-            // const int radius = 100;
-            // const int minDistance = 20;
-            // const int maxPoints = 10;
-            // const int sampleSize = 30;
             var points = new List<Vector2>();
             var random = new System.Random();
 
@@ -37,6 +28,8 @@ namespace Character
 
             while (points.Count < maxPoints)
             {
+                if (points.IsNullOrEmpty()) points.Add(new Vector2(random.Next(radius), random.Next(radius)));
+                
                 var point = points[random.Next(points.Count)];
                 var added = false;
 

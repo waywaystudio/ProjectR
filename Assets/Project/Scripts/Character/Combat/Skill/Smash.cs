@@ -4,10 +4,19 @@ namespace Character.Combat.Skill
     {
         protected override void OnAssigned()
         {
-            OnCompleted.Register(InstanceID, OnSmashCompleted);
+            OnActivated.Register(InstanceID, OnSmashActivated);
+            // OnCompleted.Register(InstanceID, OnSmashCompleted);
         }
         
         private void OnSmashCompleted()
+        {
+            if (TargetModule && ProjectorModule)
+            {
+                TargetModule.TakeProjector(ProjectorModule);
+            }
+        }
+        
+        private void OnSmashActivated()
         {
             if (TargetModule && ProjectorModule)
             {
