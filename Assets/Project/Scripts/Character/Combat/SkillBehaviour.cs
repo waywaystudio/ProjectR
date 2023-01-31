@@ -5,7 +5,7 @@ using UnityEngine;
 
 namespace Character.Combat
 {
-    public class SkillBehaviour : MonoBehaviour, ICombatBehaviour, IInspectorSetUp
+    public class SkillBehaviour : MonoBehaviour, ISkillBehaviour, IInspectorSetUp
     {
         [SerializeField] private CharacterBehaviour cb;
         [SerializeField] private GlobalCoolDown globalCoolDown;
@@ -33,7 +33,7 @@ namespace Character.Combat
             globalCoolDown.StartCooling();
         }
         
-        // TODO. 대량의 GC 발생중 (잦은 호출) -> 많이 수정 함
+        // TODO. GC 발생중 (잦은 호출) -> 많이 수정 함
         public bool TryGetMostPrioritySkill(out SkillObject skill)
         {
             skill = null;

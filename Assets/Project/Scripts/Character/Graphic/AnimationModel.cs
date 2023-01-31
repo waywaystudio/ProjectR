@@ -1,6 +1,7 @@
 using System;
 using Character.Combat.Skill;
 using Core;
+using MainGame;
 using Spine;
 using Spine.Unity;
 using UnityEngine;
@@ -33,6 +34,11 @@ namespace Character.Graphic
         }
         public void Skill(SkillObject skill)
         {
+            // var di = DataIndex.Corruption;
+            // var skillData = MainData.GetSkill(di);
+            // var _fixedTime = skillData.CastingTime;
+            // var _animationKey = skillData.AnimationKey;
+            
             var fixedTime = skill.FixedCastingTime;
             var animationKey = skill.AnimationKey;
             
@@ -128,8 +134,6 @@ namespace Character.Graphic
         private void Flip() => Flip(pathfindingEngine.Direction);
         private void Flip(Vector3 direction)
         {
-            // 추후에는 x, z를 비교하여 캐릭터 방향의 상하좌우를 결정한다.
-            // 지금 좌우 뿐이니, direction 의 x값만 알면된다.
             skeletonAnimation.Skeleton.ScaleX = direction.x switch
             {
                 < 0 => -1.0f,

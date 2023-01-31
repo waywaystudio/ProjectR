@@ -121,7 +121,8 @@ namespace Pathfinding
 		/// <param name="tagMask">Optional mask for tags. This is a bitmask.</param>
 		/// <param name="filter">Optional filter for which nodes to search. You can combine this with tagMask = -1 to make the filter determine everything.
 		///      Only walkable nodes are searched regardless of the filter. If the filter function returns false the node will be treated as unwalkable.</param>
-		public static List<GraphNode> GetReachableNodes (GraphNode seed, int tagMask = -1, System.Func<GraphNode, bool> filter = null) {
+		public static List<GraphNode> GetReachableNodes (GraphNode seed, int tagMask = -1, System.Func<GraphNode, bool> filter = null) 
+		{
 			Stack<GraphNode> dfsStack = StackPool<GraphNode>.Claim();
 			List<GraphNode> reachable = ListPool<GraphNode>.Claim();
 

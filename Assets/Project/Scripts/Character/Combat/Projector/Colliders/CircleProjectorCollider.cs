@@ -30,7 +30,9 @@ namespace Character.Combat.Projector.Colliders
                 
                 po.OnProjectorEnd.Invoke(taker);
             });
-       }
+
+            System.Array.Clear(ColliderBuffer, 0, MaxBuffer);
+        }
 
         protected override void Awake()
         {

@@ -1174,14 +1174,6 @@ MonoBehaviour:
     Haste: 0.05
     Hit: 0.02
     Evade: 0
-  subWeapon:
-    ItemName: Shard of Azzinoth
-    ID: 0
-    MaxHp: 0
-    Critical: 0.15
-    Haste: 0.05
-    Hit: 0.02
-    Evade: 0
   head:
     ItemName: The Skull of Gul'dan
     ID: 0
@@ -1189,14 +1181,6 @@ MonoBehaviour:
     Critical: 0
     Haste: 0
     Hit: 0.01
-    Evade: 0
-  shoulder:
-    ItemName: Heartshiver
-    ID: 0
-    MaxHp: 0
-    Critical: 0
-    Haste: 0.1
-    Hit: 0
     Evade: 0
   chest:
     ItemName: Brace Guards of the  Starless Night
@@ -1214,15 +1198,15 @@ MonoBehaviour:
     Haste: 0
     Hit: 0
     Evade: 0.03
-  ring:
-    ItemName: Sollerets of Suffering
+  ring1:
+    ItemName: 
     ID: 0
     MaxHp: 0
-    Critical: 0.04
+    Critical: 0
     Haste: 0
     Hit: 0
     Evade: 0
-  trinket:
+  ring2:
     ItemName: 
     ID: 0
     MaxHp: 0
@@ -1381,7 +1365,7 @@ MonoBehaviour:
   detailedGizmos: 0
   startEndModifier:
     addPoints: 0
-    exactStartPoint: 3
+    exactStartPoint: 1
     exactEndPoint: 3
     useRaycasting: 0
     mask:
@@ -1425,13 +1409,13 @@ MonoBehaviour:
     maximumPeriod: 2
     visualizeSensitivity: 0
   targetCompatibility: {fileID: 0}
-  maxAcceleration: 200
+  maxAcceleration: 2000
   rotationSpeed: 540
   slowdownDistance: 0
   pickNextWaypointDist: 2
   endReachedDistance: 1
   alwaysDrawGizmos: 0
-  slowWhenNotFacingTarget: 1
+  slowWhenNotFacingTarget: 0
   whenCloseToDestination: 0
   constrainInsideGraph: 0
   rootObject: {fileID: 3744010700067239340}

@@ -985,8 +985,10 @@ public class AstarPath : VersionedMonoBehaviour
 	///
 	/// See: <see cref="FlushGraphUpdates"/>
 	/// </summary>
-	public void QueueGraphUpdates () {
-		if (!graphUpdatesWorkItemAdded) {
+	public void QueueGraphUpdates () 
+	{
+		if (!graphUpdatesWorkItemAdded) 
+		{
 			graphUpdatesWorkItemAdded = true;
 			var workItem = graphUpdates.GetWorkItem();
 
@@ -1070,7 +1072,8 @@ public class AstarPath : VersionedMonoBehaviour
 	/// See: batchGraphUpdates
 	/// See: graph-updates (view in online documentation for working links)
 	/// </summary>
-	public void UpdateGraphs (GraphUpdateObject ob) {
+	public void UpdateGraphs (GraphUpdateObject ob) 
+	{
 		if (ob.internalStage != GraphUpdateObject.STAGE_CREATED) {
 			throw new System.Exception("You are trying to update graphs using the same graph update object twice. Please create a new GraphUpdateObject instead.");
 		}

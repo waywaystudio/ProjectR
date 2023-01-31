@@ -114,7 +114,7 @@ namespace Pathfinding
 			if (coll != null) prevEnabled = colliderEnabled;
 		}
 
-		void Update () 
+		private void Update () 
 		{
 			if (!Application.isPlaying) return;
 
@@ -139,7 +139,8 @@ namespace Pathfinding
 			}
 
 			lastCheckTime = Time.realtimeSinceStartup;
-			if (colliderEnabled) {
+			if (colliderEnabled) 
+			{
 				// The current bounds of the collider
 				Bounds newBounds = bounds;
 				var newRotation = tr.rotation;
@@ -198,8 +199,8 @@ namespace Pathfinding
 			if (coll == null && coll2D == null) return;
 
 			// Required to ensure we get the most up to date bounding box from the physics engine
-			UnityEngine.Physics.SyncTransforms();
-			UnityEngine.Physics2D.SyncTransforms();
+			Physics.SyncTransforms();
+			Physics2D.SyncTransforms();
 
 			if (!colliderEnabled) 
 			{
@@ -212,7 +213,6 @@ namespace Pathfinding
 			else 
 			{
 				Bounds newBounds = bounds;
-
 				Bounds merged = newBounds;
 				merged.Encapsulate(prevBounds);
 
@@ -251,8 +251,9 @@ namespace Pathfinding
 		}
 
 		/// <summary>Volume of a Bounds object. X*Y*Z</summary>
-		static float BoundsVolume (Bounds b) {
-			return System.Math.Abs(b.size.x * b.size.y * b.size.z);
+		static float BoundsVolume (Bounds b) 
+		{
+			return Math.Abs(b.size.x * b.size.y * b.size.z);
 		}
 	}
 }

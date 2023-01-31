@@ -1,6 +1,7 @@
 using Character;
 using Core;
 using UnityEngine;
+using UnityEngine.InputSystem;
 using UnityEngine.UI;
 
 namespace Raid.UI
@@ -12,20 +13,34 @@ namespace Raid.UI
         [SerializeField] private Image globalCooldownFilter;
         [SerializeField] private Image skillCooldownFilter;
         [SerializeField] private Image skillImage;
+        [SerializeField] private InputAction hotKeyAction;
 
         private int instanceID;
         private RaidUIDirector uiDirector;
         private ISkillInfo inheritSkill;
-        private ICombatBehaviour combatBehaviour;
+        private ISkillBehaviour combatBehaviour;
 
         private bool IsRegistered => inheritSkill != null;
         private bool hasCoolTimeEntity;
-        
-        
+
+
+        public void UseSkill(InputAction.CallbackContext context)
+        {
+            // TODO. Use Skill of skillIndex;
+            Debug.Log("UseSkill In");
+        }
+
         public void Register(AdventurerBehaviour ab)
         {
             gameObject.SetActive(true);
-            combatBehaviour = ab.CombatBehaviour;
+            combatBehaviour = ab.SkillBehaviour;
+
+            if (skillIndex >= combatBehaviour.SkillInfoList.Count)
+            {
+                Debug.LogWarning($"{ab.Name} has not enough skill count. "
+                                 + $"required:{skillIndex + 1}, {ab.Name} has {combatBehaviour.SkillInfoList.Count} skills");
+                return;
+            }
             
             // Set Skill
             inheritSkill = combatBehaviour.SkillInfoList[skillIndex];
@@ -49,6 +64,10 @@ namespace Raid.UI
                     break;
                 }
             }
+            
+            // Set Hotkey Action
+            hotKeyAction.Enable();
+            hotKeyAction.performed += UseSkill;
         }
 
         public void Unregister()
@@ -64,7 +83,13 @@ namespace Raid.UI
             
             if (isActiveAndEnabled) 
                 gameObject.SetActive(false);
+            
+            // Release Hotkey Action
+            hotKeyAction.performed -= UseSkill;
+            hotKeyAction.Disable();
         }
+        
+        
         
 
         private void UnFillGlobalCoolTime(float remainGlobalCoolTime)
@@ -101,7 +126,7 @@ namespace Raid.UI
         {
             instanceID = GetInstanceID();
             uiDirector = GetComponentInParent<RaidUIDirector>();
-            uiDirector.SkillSlotFrameList.Add(this);
+            uiDirector.SkillSlotFrameList.AddUniquely(this);
         }
     }
 }

@@ -13,7 +13,7 @@ namespace Character
         [SerializeField] protected DataIndex dataIndex;
         [SerializeField] protected RoleType role;
 
-        private ICombatBehaviour combatBehaviour;
+        private ISkillBehaviour skillBehaviour;
         private ISearching searchingEngine;
         private ITargeting targetingEngine;
         private IPathfinding pathfindingEngine;
@@ -45,7 +45,7 @@ namespace Character
         public ActionTable<CombatLog> OnCombatActive { get; } = new(4);
         public ActionTable<CombatLog> OnCombatPassive { get; } = new(4);
 
-        public ICombatBehaviour CombatBehaviour => combatBehaviour ??= GetComponentInChildren<ICombatBehaviour>();
+        public ISkillBehaviour SkillBehaviour => skillBehaviour ??= GetComponentInChildren<ISkillBehaviour>();
         public ISearching SearchingEngine => searchingEngine ??= GetComponentInChildren<ISearching>();
         public ITargeting TargetingEngine => targetingEngine ??= GetComponentInChildren<ITargeting>();
         public IPathfinding PathfindingEngine => pathfindingEngine ??= GetComponentInChildren<IPathfinding>();

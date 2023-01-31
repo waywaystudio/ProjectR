@@ -2,7 +2,7 @@ using System.Collections.Generic;
 
 namespace Core
 {
-    public interface ICombatBehaviour : IGlobalCoolTimer
+    public interface ISkillBehaviour : IGlobalCoolTimer
     {
         // + Observable<float> GlobalCoolTimer { get; }
         // + float GlobalCoolTime { get; }

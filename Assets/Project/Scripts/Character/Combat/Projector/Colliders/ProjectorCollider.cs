@@ -1,4 +1,5 @@
 using Core;
+using Sirenix.OdinInspector;
 using UnityEngine;
 
 namespace Character.Combat.Projector.Colliders
@@ -14,8 +15,9 @@ namespace Character.Combat.Projector.Colliders
         protected Vector2 SizeValue;
         
         private int instanceID;
-        protected const int MaxBuffer = 50;
-        protected readonly Collider[] ColliderBuffer = new Collider[MaxBuffer];
+        protected const int MaxBuffer = 16;
+        [ShowInInspector]
+        protected Collider[] ColliderBuffer = new Collider[MaxBuffer];
 
         protected int InstanceID =>
             instanceID == 0

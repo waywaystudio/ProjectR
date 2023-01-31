@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using Character;
+using Core;
 using Core.GameEvents;
 using MainGame;
 using UnityEngine;
@@ -14,6 +15,9 @@ namespace Raid
 
         [SerializeField] private RaidCastingDirector castingDirector;
         [SerializeField] private RaidUIDirector uiDirector;
+        
+        // TODO. TEMP;
+        [SerializeField] private AdventurerBehaviour player;
 
         private Transform focusCharacter;
         
@@ -27,7 +31,8 @@ namespace Raid
             {
                 if (value == focusCharacter) return;
                 
-                focusCharacter = value;
+                focusCharacter             = value;
+                uiDirector.FocusAdventurer = FocusCharacter.GetComponent<AdventurerBehaviour>();
                 OnFocusCharacterChanged.Invoke(value);
             }
         }
@@ -41,6 +46,14 @@ namespace Raid
             uiDirector.Initialize(AdventurerList, MonsterList);
             
             MainUI.FadePanel.PlayFadeIn();
+
+            if (player.IsNullOrEmpty())
+            {
+                Debug.LogWarning("Required Player");
+                return;
+            }
+
+            FocusCharacter = player.transform;
         }
     }
 }

@@ -1,7 +1,8 @@
 using System.Collections.Generic;
 using Pathfinding.Util;
 
-namespace Pathfinding {
+namespace Pathfinding 
+{
 	/// <summary>
 	/// Contains useful functions for updating graphs.
 	/// This class works a lot with the GraphNode class, a useful function to get nodes is <see cref="AstarPath.GetNearest"/>.
@@ -11,7 +12,8 @@ namespace Pathfinding {
 	///
 	/// Since: Added in 3.1
 	/// </summary>
-	public static class GraphUpdateUtilities {
+	public static class GraphUpdateUtilities 
+	{
 		/// <summary>
 		/// Updates graphs and checks if all nodes are still reachable from each other.
 		/// Graphs are updated, then a check is made to see if the nodes are still reachable from each other.
@@ -41,7 +43,8 @@ namespace Pathfinding {
 		/// <param name="node1">Node which should have a valid path to node2. All nodes should be walkable or false will be returned.</param>
 		/// <param name="node2">Node which should have a valid path to node1. All nodes should be walkable or false will be returned.</param>
 		/// <param name="alwaysRevert">If true, reverts the graphs to the old state even if no blocking occurred</param>
-		public static bool UpdateGraphsNoBlock (GraphUpdateObject guo, GraphNode node1, GraphNode node2, bool alwaysRevert = false) {
+		public static bool UpdateGraphsNoBlock (GraphUpdateObject guo, GraphNode node1, GraphNode node2, bool alwaysRevert = false) 
+		{
 			List<GraphNode> buffer = ListPool<GraphNode>.Claim();
 
 			buffer.Add(node1);

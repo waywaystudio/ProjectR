@@ -11,7 +11,6 @@ namespace Raid
     
     public class RaidUIDirector : MonoBehaviour
     {
-        [SerializeField] private RaidDirector raidDirector;
         [SerializeField] private List<PartyUnitFrame> partyFrameList;
         [SerializeField] private List<BossFrame> bossFrameList;
         [SerializeField] private List<Nameplate> nameplateList;
@@ -32,7 +31,6 @@ namespace Raid
                 if (value == focusAdventurer) return;
                 
                 focusAdventurer = value;
-                raidDirector.OnFocusCharacterChanged.Invoke(value.transform);
                 SkillSlotFrameList.ForEach(x => x.Unregister());
                 SkillSlotFrameList.ForEach(x => x.Register(focusAdventurer));
             }
