@@ -1479,7 +1479,6 @@ GameObject:
   - component: {fileID: 3744010700775776665}
   - component: {fileID: 3744010700775776668}
   - component: {fileID: 3744010700775776666}
-  - component: {fileID: 3896654370298883867}
   - component: {fileID: 3744010700775776671}
   - component: {fileID: 3744010700775776667}
   - component: {fileID: 3744010700775776664}
@@ -1538,21 +1537,6 @@ MonoBehaviour:
   CombatObject: {fileID: 3744010700775776668}
   Flag: 4
   originalCastingTime: 3
---- !u!114 &3896654370298883867
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3744010700775776662}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4c3f42a73ddd63e47af0241ed7024ba6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  CombatObject: {fileID: 3744010700775776668}
-  Flag: 3
-  obtain: -20
 --- !u!114 &3744010700775776671
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1804,7 +1788,6 @@ GameObject:
   - component: {fileID: 3744010701327891158}
   - component: {fileID: 3744010701327891165}
   - component: {fileID: 3744010701327891162}
-  - component: {fileID: 5720177583797952594}
   - component: {fileID: 3744010701327891161}
   m_Layer: 0
   m_Name: CommonAttack
@@ -1863,21 +1846,6 @@ MonoBehaviour:
   damageValue:
     value: 5
     statCode: 1
---- !u!114 &5720177583797952594
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3744010701327891159}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4c3f42a73ddd63e47af0241ed7024ba6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  CombatObject: {fileID: 3744010701327891165}
-  Flag: 3
-  obtain: 1
 --- !u!114 &3744010701327891161
 MonoBehaviour:
   m_ObjectHideFlags: 0
