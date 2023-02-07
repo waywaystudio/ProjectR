@@ -1,3 +1,4 @@
+using Character.Combat.Skill;
 using Core;
 using UnityEngine;
 
@@ -8,6 +9,7 @@ namespace Character.Combat
         [SerializeField] private PowerValue damageValue;
 
         public StatTable StatTable { get; } = new();
+
         public ICombatProvider Provider => CombatObject.Provider;
         public DataIndex ActionCode => CombatObject.ActionCode;
 
@@ -23,6 +25,12 @@ namespace Character.Combat
             base.Awake();
             
             CombatObject.OnActivated.Register(InstanceID, OnActivated);
+        }
+
+        public override void Initialize(ICombatProvider provider, IActionSequence actionSequence)
+        {
+            // Provider = provider;
+            actionSequence.OnActivated.Register("DamageModule", OnActivated);
         }
 
 

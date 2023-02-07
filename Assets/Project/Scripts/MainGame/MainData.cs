@@ -87,6 +87,7 @@ namespace MainGame
             
             UnityEditor.AssetDatabase.Refresh();
         }
+        
         private void GenerateIDCode()
         {
             if (!Directory.Exists(idCodePath))

@@ -13,24 +13,19 @@ namespace Character.Combat
         [SerializeField] private DataIndex projectorID;
         [SerializeField] private int maxPool = 8;
         
-        private ICombatTaker taker;
         private IObjectPool<ProjectorObject> pool;
         
-        public ICombatProvider Provider => CombatObject.Provider;
-
 
         public void Projection(ICombatTaker taker)
         {
-            this.taker = taker;
-
             pool.Get(out var po);
-            po.Projection(Provider, taker);
+            po.Projection(CombatObject.Provider, taker);
         }
 
         public void Projection(Vector3 position)
         {
             pool.Get(out var po);
-            po.Projection(Provider, position);
+            po.Projection(CombatObject.Provider, position);
         }
         
         

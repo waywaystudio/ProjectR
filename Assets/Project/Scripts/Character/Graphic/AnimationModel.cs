@@ -1,37 +1,47 @@
 using System;
 using Character.Combat.Skill;
 using Core;
-using MainGame;
 using Spine;
 using Spine.Unity;
 using UnityEngine;
-using Animation = Spine.Animation;
-using AnimationState = Spine.AnimationState;
+using SpineAnimation = Spine.Animation;
+using SpineState = Spine.AnimationState;
+using Event = Spine.Event;
 
 namespace Character.Graphic
 {
     public class AnimationModel : MonoBehaviour
     {
+        // TODO. delete target
+        [SerializeField] private CharacterBehaviour cb;
         [SerializeField] private AnimationModelData modelData;
-
-        private CharacterBehaviour cb;
-        private SkeletonAnimation skeletonAnimation;
-        private AnimationState state;
-        private int instanceID;
+        [SerializeField] private SkeletonAnimation skeletonAnimation;
         
+        private SpineState state;
+        private int instanceID;
         private Action callbackBuffer;
         private TrackEntry entryBuffer;
         private IPathfinding pathfindingEngine;
-
-        private Animation TargetAnimation { get; set; }
-
-
+        
+        // public ActionTable OnAttackHit { get; set; } = new();
+        // public ActionTable OnSkillHit { get; set; } = new();
+        private SpineAnimation TargetAnimation { get; set; }
+        
+        /* Animation Preset */
         public void Idle()
         {
             if (!cb.DynamicStatEntry.IsAlive.Value) return;
             
             Play("idle");
         }
+        public void Walk() => Play("walk");
+        public void Run() => Play("run");
+        public void Dead() => Play("Dead");
+        public void Skill(string animationKey, float timeScale, Action callback) =>
+            Play(animationKey, 0, false, timeScale, callback);
+        
+        
+        // TODO. delete this function.
         public void Skill(SkillObject skill)
         {
             // var di = DataIndex.Corruption;
@@ -56,19 +66,7 @@ namespace Character.Graphic
             Play(animationKey, 0, false, fixedTime, callbackBuffer);
         }
 
-        public void Walk() => Play("walk");
-        public void Run() => Play("run");
-        public void Dead() => Play("dead");
-        // Attack Variants...
-        // PowerAttack
-        // Ultimate
-        // Groggy
-        // Stun
-        // InstantSpell
-        // CastingSpell
-        
-
-        private void Play(string animationKey, int layer = 0, bool loop = true, float fixedTime = 0f, Action callback = null)
+        public void Play(string animationKey, int layer = 0, bool loop = true, float timeScale = 0f, Action callback = null)
         {
             if (!modelData.TryGetAnimation(animationKey, out var target))
             {
@@ -76,62 +74,32 @@ namespace Character.Graphic
                 return;
             }
             
-            Play(target, layer, loop, fixedTime, callback);
-        }
-
-        private void Play(Animation target, int layer, bool loop, float customTime, Action callback)
-        {
             entryBuffer = null;
-            
-            // if Target Animation is same with Current, and it is loopTime, 
-            // but include callback.
-            if (target.Equals(TargetAnimation) && loop)
-            {
-                entryBuffer = state.GetCurrent(layer);
-                
-                if (callback != null) 
-                    entryBuffer.Complete += _ => callback.Invoke();
-                
-                return;
-            }
-            
-            // TODO. 현재 Animation A에서 B로 넘어갈때 트랜지션 Animation이 따로 있는 경우가 없다.
-            var hasCurrent = TryGetCurrentAnimation(layer, out var current);
-            var hasTransition = modelData.TryGetTransition(current, target, out var transition);
 
-            if (hasCurrent && hasTransition)
-            {
-                entryBuffer = state.SetAnimation(layer, transition, false);
-
-                if (callback != null) 
-                    entryBuffer.Complete += _ => callback.Invoke();
-                
-                state.AddAnimation(layer, target, loop, 0f);
-                return;
-            }
+            if (IsSameAnimation(target, layer, loop)) return;
+            if (HasTransition(target, layer, loop, callback)) return;
 
             entryBuffer = state.SetAnimation(layer, target, loop);
 
-            // Assign Custom Fixed Animation Speed
-            if (customTime != 0f)
+            // Assign Custom timeScale Animation Speed
+            if (timeScale != 0f)
             {
                 var originalDuration = target.Duration;
-                var toStaticValue = originalDuration / customTime;
+                var toStaticValue = originalDuration / timeScale;
 
-                state.TimeScale *= toStaticValue;
+                state.TimeScale      *= toStaticValue;
                 entryBuffer.Complete += _ => state.TimeScale /= toStaticValue;
             }
 
             // Handle Callback
-            if (callback != null)
-            {
+            if (callback != null) 
                 entryBuffer.Complete += _ => callback.Invoke();
-            }
 
             TargetAnimation = target;
         }
         
-        private void Flip() => Flip(pathfindingEngine.Direction);
+        public void Flip() => Flip(pathfindingEngine.Direction);
+        
         private void Flip(Vector3 direction)
         {
             skeletonAnimation.Skeleton.ScaleX = direction.x switch
@@ -142,21 +110,69 @@ namespace Character.Graphic
             };
         }
 
+        private bool IsSameAnimation(SpineAnimation target, int layer, bool loop)
+        {
+            if (!target.Equals(TargetAnimation) || !loop) return false;
+            
+            entryBuffer = state.GetCurrent(layer);
 
-        private bool TryGetCurrentAnimation(int layer, out Animation result)
+            return true;
+        }
+
+        private bool HasTransition(SpineAnimation target, int layer, bool loop, Action callback)
+        {
+            // TODO. 현재 Animation A에서 B로 넘어갈때 트랜지션 Animation이 따로 있는 경우가 없다.
+            var hasCurrent = TryGetCurrentAnimation(layer, out var current);
+            var hasTransition = modelData.TryGetTransition(current, target, out var transition);
+
+            if (!hasCurrent || !hasTransition) return false;
+            
+            entryBuffer = state.SetAnimation(layer, transition, false);
+
+            if (callback != null) entryBuffer.Complete += _ => callback.Invoke();
+                
+            state.AddAnimation(layer, target, loop, 0f);
+            
+            return true;
+        }
+
+        private bool TryGetCurrentAnimation(int layer, out SpineAnimation result)
         {
             result = state.GetCurrent(layer)?.Animation;
     
             return result is not null;
         }
+        
+        private void EventHandler(TrackEntry trackEntry, Event e)
+        {
+            switch (e.Data.Name)
+            {
+                case "attackHit" : cb.HitSkill(); break;
+                case "skillHit" : cb.HitSkill(); break;
+                case "channelingHit" : cb.HitSkill(); break;
+            }
+            
+            // TODO. 애니매이션 호출 구조가 변경되면 위 스위치문을 아래로 변경.
+            // switch (e.Data.Name)
+            // {
+            //     case "attackHit" : OnAttackHit.Invoke(); break;
+            //     case "skillHit" : OnSkillHit.Invoke(); break;
+            //     // case "channelingHit" : Cb.HitSkill(); break;
+            // }
+        }
 
         private void Awake()
         {
-            TryGetComponent(out skeletonAnimation);
-
-            cb         = GetComponentInParent<CharacterBehaviour>();
+            cb = GetComponentInParent<CharacterBehaviour>();
             instanceID = GetInstanceID();
-            state      = skeletonAnimation.AnimationState;
+            
+            TryGetComponent(out skeletonAnimation);
+            state = skeletonAnimation.AnimationState;
+        }
+
+        private void OnEnable()
+        {
+            skeletonAnimation.AnimationState.Event += EventHandler;
             
             cb.OnIdle.Register(instanceID, Idle);
             cb.OnWalk.Register(instanceID, Walk);
@@ -170,5 +186,15 @@ namespace Character.Graphic
         {
             pathfindingEngine = cb.PathfindingEngine;
         }
+
+        private void OnDisable()
+        {
+            skeletonAnimation.AnimationState.Event -= EventHandler;
+        }
+        
+#if UNITY_EDITOR
+        [SpineEvent(dataField : "skAnimation", fallbackToTextField = true)]
+        [SerializeField] private string eventNameList;
+#endif
     }
 }

@@ -23,12 +23,12 @@ namespace Character.Combat.Projector
         /// <summary>
         /// 프로젝터 안에 들어와 있는 ICombatTaker 에게 Action
         /// </summary>
-        public ActionTable<ICombatTaker> OnProjectorEnter { get; } = new();
+        public OldActionTable<ICombatTaker> OnProjectorEnter { get; } = new();
         
         /// <summary>
         /// 프로젝터가 끝날 때, 안에 있는 ICombatTaker 에게 Action
         /// </summary>
-        public ActionTable<ICombatTaker> OnProjectorEnd { get; } = new();
+        public OldActionTable<ICombatTaker> OnProjectorEnd { get; } = new();
         
 
         public void Projection(ICombatProvider provider, ICombatTaker taker)

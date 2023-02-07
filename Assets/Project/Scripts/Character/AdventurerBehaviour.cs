@@ -9,6 +9,7 @@ namespace Character
         [SerializeField] private DataIndex combatClassID;
 
         public DataIndex CombatClassID => combatClassID;
+     
         
 
 

@@ -26,24 +26,24 @@ namespace Character
         public ICombatProvider Provider => this;
         public GameObject Object => gameObject;
         public StatTable StatTable { get; } = new(1);
+        
+        public OldActionTable OnUpdate { get; } = new();
+        public OldActionTable OnIdle { get; } = new();
+        public OldActionTable<Vector3, Action> OnWalk { get; } = new();
+        public OldActionTable<Vector3, Action> OnRun { get; } = new();
+        public OldActionTable<Vector3> OnTeleport { get; } = new();
+        public OldActionTable OnDead { get; } = new();
 
-        public ActionTable OnUpdate { get; } = new();
-        public ActionTable OnIdle { get; } = new();
-        public ActionTable<Vector3, Action> OnWalk { get; } = new();
-        public ActionTable<Vector3, Action> OnRun { get; } = new();
-        public ActionTable<Vector3> OnTeleport { get; } = new();
-        public ActionTable OnDead { get; } = new();
+        public OldActionTable<SkillObject> OnUseSkill { get; } = new(4);
+        public OldActionTable OnActiveSkill { get; } = new(8);
+        public OldActionTable OnCompleteSkill { get; } = new(4);
+        public OldActionTable OnHitSkill { get; } = new(4);
+        public OldActionTable OnCancelSkill { get; } = new(4);
 
-        public ActionTable<SkillObject> OnUseSkill { get; } = new(4);
-        public ActionTable OnActiveSkill { get; } = new(8);
-        public ActionTable OnCompleteSkill { get; } = new(4);
-        public ActionTable OnHitSkill { get; } = new(4);
-        public ActionTable OnCancelSkill { get; } = new(4);
-
-        public ActionTable<IStatusEffect> OnTakeStatusEffect { get; } = new(2);
-        public ActionTable<DataIndex> OnDispelStatusEffect { get; } = new(2);
-        public ActionTable<CombatLog> OnCombatActive { get; } = new(4);
-        public ActionTable<CombatLog> OnCombatPassive { get; } = new(4);
+        public OldActionTable<IStatusEffect> OnTakeStatusEffect { get; } = new(2);
+        public OldActionTable<DataIndex> OnDispelStatusEffect { get; } = new(2);
+        public OldActionTable<CombatLog> OnCombatActive { get; } = new(4);
+        public OldActionTable<CombatLog> OnCombatPassive { get; } = new(4);
 
         public ISkillBehaviour SkillBehaviour => skillBehaviour ??= GetComponentInChildren<ISkillBehaviour>();
         public ISearching SearchingEngine => searchingEngine ??= GetComponentInChildren<ISearching>();

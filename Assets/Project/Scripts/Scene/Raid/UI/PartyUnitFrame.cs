@@ -20,7 +20,7 @@ namespace Raid.UI
         // private RaidUIDirector uiDirector;
         private bool isInitialized;
 
-        public ActionTable OnInitialize { get; } = new();
+        public OldActionTable OnInitialize { get; } = new();
         public AdventurerBehaviour AdventurerBehaviour { get; private set; }
 
         public void Initialize(AdventurerBehaviour ab)

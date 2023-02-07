@@ -1,6 +1,5 @@
 using Core;
 using UnityEngine;
-// ReSharper disable MemberCanBeProtected.Global
 
 namespace Character.Combat.Skill
 {
@@ -16,10 +15,10 @@ namespace Character.Combat.Skill
 
         public Sprite Icon => icon;
         public bool HasCastingModule => ModuleTable.ContainsKey(ModuleType.Casting);
-        public float CastingTime => CastingModule.CastingTime;
-        public Observable<float> CastingProgress => CastingModule.CastingProgress;
         public bool HasCoolTimeModule => ModuleTable.ContainsKey(ModuleType.CoolTime);
+        public float CastingTime => CastingModule.CastingTime;
         public float CoolTime => CoolTimeModule.OriginalCoolTime;
+        public Observable<float> CastingProgress => CastingModule.CastingProgress;
         public Observable<float> RemainTime => CoolTimeModule.RemainTime;
 
         public float FixedCastingTime => fixedCastingTime;
@@ -30,7 +29,6 @@ namespace Character.Combat.Skill
         {
             get
             {
-                // ReSharper disable once ForeachCanBeConvertedToQueryUsingAnotherGetEnumerator
                 foreach (var item in ReadyCheckList) if (!item.IsReady) return false;
                 
                 return true;

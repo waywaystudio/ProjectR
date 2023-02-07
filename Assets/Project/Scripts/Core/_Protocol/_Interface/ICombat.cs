@@ -43,7 +43,7 @@ namespace Core
         // + string Name { get; }
         // + GameObject Object { get; }
         
-        ActionTable<CombatLog> OnCombatActive { get; }
+        OldActionTable<CombatLog> OnCombatActive { get; }
     }
     
     public interface ICombatTaker : ICombatEntity, IObjectName
@@ -55,9 +55,9 @@ namespace Core
 
         RoleType Role { get; }
         
-        ActionTable<IStatusEffect> OnTakeStatusEffect { get; }
-        ActionTable<DataIndex> OnDispelStatusEffect { get; }
-        ActionTable<CombatLog> OnCombatPassive { get; }
+        OldActionTable<IStatusEffect> OnTakeStatusEffect { get; }
+        OldActionTable<DataIndex> OnDispelStatusEffect { get; }
+        OldActionTable<CombatLog> OnCombatPassive { get; }
 
         void Dead();
         void TakeDamage(ICombatTable entity);

@@ -8,7 +8,7 @@ namespace Core
     {
         [SerializeField] protected T value;
 
-        protected ActionTable<T> OnValueChanged { get; set; } = new();
+        protected OldActionTable<T> OnValueChanged { get; set; } = new();
 
         public virtual T Value
         {
@@ -22,12 +22,12 @@ namespace Core
 
         public void Register(int key, Action<T> action)
         {
-            OnValueChanged ??= new ActionTable<T>();
+            OnValueChanged ??= new OldActionTable<T>();
             OnValueChanged.Register(key, action);
         }
         public void Register(int key, Action action)
         {
-            OnValueChanged ??= new ActionTable<T>();
+            OnValueChanged ??= new OldActionTable<T>();
             OnValueChanged.Register(key, _ => action());
         }
 

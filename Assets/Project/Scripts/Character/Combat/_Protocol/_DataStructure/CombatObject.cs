@@ -13,10 +13,10 @@ namespace Character.Combat
         public DataIndex ActionCode => actionCode;
         public virtual ICombatProvider Provider { get; protected set; }
         
-        public ActionTable OnActivated { get; } = new();
-        public ActionTable OnCompleted { get; } = new();
-        public ActionTable OnCanceled { get; } = new();
-        public ActionTable OnHit { get; } = new();
+        public OldActionTable OnActivated { get; } = new();
+        public OldActionTable OnCompleted { get; } = new();
+        public OldActionTable OnCanceled { get; } = new();
+        public OldActionTable OnHit { get; } = new();
         
         public List<IReady> ReadyCheckList { get; } = new();
         public Dictionary<ModuleType, CombatModule> ModuleTable { get; } = new();

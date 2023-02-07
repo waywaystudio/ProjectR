@@ -8,7 +8,6 @@ namespace Character.Combat
     
     public class StatusEffectModule : CombatModule
     {
-        // TODO. 이후에는, IDCode 통해서 풀링하고, GameObject Field를 삭제하자.
         [SerializeField] private GameObject statusEffectPrefab;
         [SerializeField] private DataIndex statusEffectID;
         [SerializeField] private int maxPool = 2;
@@ -16,7 +15,6 @@ namespace Character.Combat
         private ICombatTaker taker;
         private IObjectPool<StatusEffectObject> pool;
         
-        public ICombatProvider Provider => CombatObject.Provider;
 
         public void Effectuate(ICombatTaker taker)
         {
@@ -38,7 +36,7 @@ namespace Character.Combat
         protected void OnStatusEffectGet(StatusEffectObject statusEffect)
         {
             statusEffect.gameObject.SetActive(true);
-            statusEffect.Initialize(Provider, taker);
+            statusEffect.Initialize(CombatObject.Provider, taker);
         }
 
         protected static void OnStatusEffectRelease(StatusEffectObject projectile)

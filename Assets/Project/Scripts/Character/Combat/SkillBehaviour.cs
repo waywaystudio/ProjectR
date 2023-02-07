@@ -21,7 +21,7 @@ namespace Character.Combat
         public Observable<float> GlobalRemainTime => globalCoolDown.Timer;
         public bool IsCurrentSkillFinished => CurrentSkill == null || CurrentSkill.IsSkillFinished;
 
-        public ActionTable<SkillObject> OnUseSkill { get; } = new(4);
+        public OldActionTable<SkillObject> OnUseSkill { get; } = new(4);
 
         public void UseSkill(SkillObject skill)
         {

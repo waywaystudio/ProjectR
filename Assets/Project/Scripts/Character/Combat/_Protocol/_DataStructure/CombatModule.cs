@@ -1,3 +1,4 @@
+using Character.Combat.Skill;
 using Core;
 using UnityEngine;
 
@@ -14,7 +15,9 @@ namespace Character.Combat
             instanceID == 0
                 ? instanceID = GetInstanceID()
                 : instanceID;
-        
+
+
+        public virtual void Initialize(ICombatProvider provider, IActionSequence actionSequence) { }
 
         protected virtual void Awake()
         {

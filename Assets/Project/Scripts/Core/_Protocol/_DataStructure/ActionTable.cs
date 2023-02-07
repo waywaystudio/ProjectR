@@ -1,79 +1,58 @@
 using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace Core
 {
-    public class ActionTable : DelegateTable<int, Action>
+    public abstract class ActionTableCore<T> : Dictionary<string, T>
     {
-        public ActionTable(){}
-        public ActionTable(int capacity) : base(capacity) {}
+        protected ActionTableCore() { }
+        protected ActionTableCore(int capacity) : base(capacity) { }
+        
+        
+        public void Unregister(string key) => this.TryRemove(key);
 
-        /// <summary>
-        /// Register Delegate by custom Key. Recommend InstanceID or Data Unique ID.
-        /// </summary>
-        public void Register(int key, Action action, bool overwrite = false)
+        protected void TryRegister(string key, T value)
         {
-            if (ContainsKey(key)) Debug.LogWarning($"Key is already Exist. key:{key}");
-            
-            TryAdd(key, action, overwrite);
+            if (!TryAdd(key, value)) ShowWarning(key);
         }
+        
+        protected static void ShowWarning(string key)
+        {
+            Debug.LogWarning($"Key is already Exist. key:{key}");
+        }
+    }
 
-        // For Performance.
-        public void Invoke()
-        {
-            foreach (var item in this) this[item.Key]?.Invoke();
-        }
+    public class ActionTable : ActionTableCore<Action>
+    {
+        public ActionTable() { }
+        public ActionTable(int capacity) : base(capacity) { }
+
+        public void Register(string key, Action action) => TryRegister(key, action);
+        
+        public void Invoke() => this.ForEach(x => x.Value?.Invoke());
     }
     
-    public class ActionTable<T0> : DelegateTable<int, Action<T0>>
+    public class ActionTable<T> : ActionTableCore<Action<T>>
     {
         public ActionTable(){}
         public ActionTable(int capacity) : base(capacity) {}
 
-        /// <summary>
-        /// Register None-Parameter Action. auto generate lambda expression.
-        /// </summary>
-        public void Register(int key, Action action, bool overwrite = false) => TryAdd(key, _ => action());
+        public void Register(string key, Action action) => TryRegister(key, _ => action());
+        public void Register(string key, Action<T> action) => TryRegister(key, action);
         
-        /// <summary>
-        /// Register Delegate by custom Key. Recommend InstanceID or Data Unique ID.
-        /// </summary>
-        public void Register(int key, Action<T0> action, bool overwrite = false) => TryAdd(key, action, overwrite);
-
-        public void Invoke(T0 t)
-        {
-            foreach (var item in this) this[item.Key]?.Invoke(t);
-        }
+        public void Invoke(T value) => this.ForEach(x => x.Value?.Invoke(value));
     }
-
-    public class ActionTable<T0, T1> : DelegateTable<int, Action<T0, T1>>
-    { 
+    
+    public class ActionTable<T0, T1> : ActionTableCore<Action<T0, T1>>
+    {
         public ActionTable(){}
         public ActionTable(int capacity) : base(capacity) {}
 
-        /// <summary>
-        /// Register None-Parameter Action. auto generate lambda expression.
-        /// </summary>
-        public void Register(int key, Action action, bool overwrite = false) => TryAdd(key, (_, _) => action(), overwrite);
-        
-        /// <summary>
-        /// Register Former Parameter Action. auto generate lambda expression.
-        /// </summary>
-        public void Register(int key, Action<T0> action, bool overwrite = false) => TryAdd(key, (t0, _) => action(t0), overwrite);
-        
-        /// <summary>
-        /// Register later Parameter Action. auto generate lambda expression.
-        /// </summary>
-        public void Register(int key, Action<T1> action, bool overwrite = false) => TryAdd(key, (_, t1) => action(t1), overwrite);
+        public void Register(string key, Action action) => TryRegister(key, (_, _) => action());
+        public void Register(string key, Action<T0> action) => TryRegister(key, (x, _) => action(x));
+        public void Register(string key, Action<T0, T1> action) => TryRegister(key, action);
 
-        /// <summary>
-        /// Register Delegate by custom Key. Recommend InstanceID or Data Unique ID.
-        /// </summary>
-        public void Register(int key, Action<T0, T1> action, bool overwrite = false) => TryAdd(key, action, overwrite);
-
-        public void Invoke(T0 t0, T1 t1)
-        {
-            foreach (var item in this) this[item.Key]?.Invoke(t0, t1);
-        }   
+        public void Invoke(T0 value0, T1 value1) => this.ForEach(x => x.Value?.Invoke(value0, value1));
     }
 }

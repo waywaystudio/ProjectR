@@ -64,11 +64,5 @@ namespace MainGame.Manager.Audio.Utility
             var r = new System.Random();            
             return list.Count == 0 ? default : list[r.Next(0, list.Count)];
         }
-        
-        public static void ForEach<T>(this IEnumerable<T> list, Action<T> action)
-        {
-            foreach (var item in list)
-                action(item);
-        }
     }
 }
