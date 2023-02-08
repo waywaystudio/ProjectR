@@ -19,12 +19,12 @@ MonoBehaviour:
     isBuff: 0
     duration: 15
     combatValue: 6
-  - id: 14001002
+  - id: 14000002
     name: RevivificationBuff
     isBuff: 1
     duration: 15
     combatValue: 8
-  - id: 14001003
+  - id: 14000003
     name: BloodDrainBuff
     isBuff: 1
     duration: 8
@@ -34,7 +34,7 @@ MonoBehaviour:
     isBuff: 0
     duration: 15
     combatValue: 0.15
-  - id: 14001005
+  - id: 14000005
     name: FuryBuff
     isBuff: 1
     duration: 15

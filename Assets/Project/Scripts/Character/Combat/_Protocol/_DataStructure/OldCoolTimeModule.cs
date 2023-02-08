@@ -5,7 +5,7 @@ using UnityEngine;
 
 namespace Character.Combat
 {
-    public class CoolTimeModule : CombatModule, IReady
+    public class OldCoolTimeModule : OldCombatModule, IReady
     {
         [SerializeField] private float coolTime;
 
@@ -47,7 +47,7 @@ namespace Character.Combat
 #if UNITY_EDITOR
         public void SetUpValue(float coolTime)
         {
-            Flag     = ModuleType.CoolTime;
+            Flag     = CombatModuleType.CoolTime;
             OriginalCoolTime = coolTime;
         }
 #endif

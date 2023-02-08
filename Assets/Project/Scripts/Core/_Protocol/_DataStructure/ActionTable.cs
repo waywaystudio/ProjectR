@@ -8,8 +8,7 @@ namespace Core
     {
         protected ActionTableCore() { }
         protected ActionTableCore(int capacity) : base(capacity) { }
-        
-        
+
         public void Unregister(string key) => this.TryRemove(key);
 
         protected void TryRegister(string key, T value)

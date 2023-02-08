@@ -12,7 +12,7 @@ namespace Character.Combat
     // 2. 해당 모험가가 등록한 스킬이 저장됨.
     public class SkillTable : MonoBehaviour, IInspectorSetUp
     {
-        [SerializeField] private SkillBehaviour combatBehaviour;
+        [SerializeField] private OldSkillBehaviour combatBehaviour;
         [SerializeField] private List<SkillObject> selectSkillList = new(4);
         // [SerializeField] private List<SkillObject> entireSkillList = new();
 
@@ -34,7 +34,7 @@ namespace Character.Combat
 #if UNITY_EDITOR
         public void SetUp()
         {
-            combatBehaviour ??= GetComponentInParent<SkillBehaviour>();
+            combatBehaviour ??= GetComponentInParent<OldSkillBehaviour>();
             
             // TODO. 나중에는 인게임에서 캐릭터의 스킬을 변경할 수 있게 될 것이다.
             // entireSkillList = GetComponentsInChildren<SkillObject>().ToList();

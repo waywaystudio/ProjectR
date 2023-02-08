@@ -7,12 +7,12 @@ namespace Character.Behavior.Combat
     public class UseSkillBehavior : Action
     {
         private CharacterBehaviour cb;
-        private SkillBehaviour combat;
+        private OldSkillBehaviour combat;
 
         public override void OnAwake()
         {
             cb     = gameObject.GetComponentInParent<CharacterBehaviour>();
-            combat = GetComponent<SkillBehaviour>();
+            combat = GetComponent<OldSkillBehaviour>();
         }
 
         public override TaskStatus OnUpdate()

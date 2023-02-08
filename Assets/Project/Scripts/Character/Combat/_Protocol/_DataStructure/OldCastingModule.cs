@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace Character.Combat
 {
-    public class CastingModule : CombatModule, IReady
+    public class OldCastingModule : OldCombatModule, IReady
     {
         [SerializeField] private float originalCastingTime;
 
@@ -62,7 +62,7 @@ namespace Character.Combat
 #if UNITY_EDITOR
         public void SetUpValue(float castingTime)
         {
-            Flag                = ModuleType.Casting;
+            Flag                = CombatModuleType.Casting;
             OriginalCastingTime = castingTime;
         }
 #endif

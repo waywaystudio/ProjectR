@@ -7,7 +7,7 @@ using Sirenix.OdinInspector.Editor;
 
 namespace Character.Editor
 {
-    public class DamageEntityDrawer : OdinAttributeProcessor<DamageModule>
+    public class DamageEntityDrawer : OdinAttributeProcessor<OldDamageModule>
     {
         public override void ProcessChildMemberAttributes(InspectorProperty parentProperty, MemberInfo member, List<Attribute> attributes)
         {

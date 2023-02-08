@@ -6,7 +6,7 @@ namespace Character.Combat
 {
     using StatusEffects;
     
-    public class StatusEffectModule : CombatModule
+    public class StatusEffectModule : OldCombatModule
     {
         [SerializeField] private GameObject statusEffectPrefab;
         [SerializeField] private DataIndex statusEffectID;
@@ -65,7 +65,7 @@ namespace Character.Combat
 #if UNITY_EDITOR
         public void SetUpValue(DataIndex effectCode)
         {
-            Flag             = ModuleType.StatusEffect;
+            Flag             = CombatModuleType.StatusEffect;
             statusEffectID = effectCode;
         }
 #endif

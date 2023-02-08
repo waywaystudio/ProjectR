@@ -73,7 +73,7 @@ namespace Character.Combat.StatusEffects
             
             var data = MainGame.MainData.GetStatusEffect(actionCode);
             
-            GetComponents<CombatModule>().ForEach(x => ModuleUtility.SetStatusEffectModule(data, x));
+            GetComponents<OldCombatModule>().ForEach(x => ModuleUtility.SetStatusEffectModule(data, x));
 
             // icon     = data.~~~
             isBuff      = data.IsBuff;

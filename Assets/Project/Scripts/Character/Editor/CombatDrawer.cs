@@ -9,7 +9,7 @@ using UnityEngine;
 
 namespace Character.Editor
 {
-    public class CombatDrawer : OdinAttributeProcessor<SkillBehaviour>
+    public class CombatDrawer : OdinAttributeProcessor<OldSkillBehaviour>
     {
         public override void ProcessChildMemberAttributes(InspectorProperty parentProperty, MemberInfo member, List<Attribute> attributes)
         {
@@ -20,7 +20,7 @@ namespace Character.Editor
         }
     }
     
-    public class ModuleDrawer : OdinAttributeProcessor<CombatModule>
+    public class ModuleDrawer : OdinAttributeProcessor<OldCombatModule>
     {
         public override void ProcessChildMemberAttributes(InspectorProperty parentProperty, MemberInfo member, List<Attribute> attributes)
         {
@@ -31,7 +31,7 @@ namespace Character.Editor
         }
     }
     
-    public class CastingModuleDrawer : OdinAttributeProcessor<CastingModule>
+    public class CastingModuleDrawer : OdinAttributeProcessor<OldCastingModule>
     {
         public override void ProcessChildMemberAttributes(InspectorProperty parentProperty, MemberInfo member, List<Attribute> attributes)
         {

@@ -1,6 +1,6 @@
-namespace Core
+namespace Character.Combat
 {
-    public enum ModuleType
+    public enum CombatModuleType
     {
         None = 0,
         Damage,
@@ -13,6 +13,8 @@ namespace Core
         Projector,
         StatusEffect,
         Dispel,
+        GlobalCoolTime,
+        Colliding,
         
         /* StatusEffect */
         Dot,

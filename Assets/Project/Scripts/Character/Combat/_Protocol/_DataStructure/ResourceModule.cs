@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace Character.Combat
 {
-    public class ResourceModule : CombatModule, IReady
+    public class ResourceModule : OldCombatModule, IReady
     {
         [SerializeField] private float obtain;
         
@@ -27,7 +27,7 @@ namespace Character.Combat
 #if UNITY_EDITOR
         public void SetUpValue(float value)
         {
-            Flag   = ModuleType.Resource;
+            Flag   = CombatModuleType.Resource;
             obtain = value;
         }
 #endif

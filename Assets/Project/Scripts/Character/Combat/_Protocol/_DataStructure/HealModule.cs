@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace Character.Combat
 {
-    public class HealModule : CombatModule, ICombatTable
+    public class HealModule : OldCombatModule, ICombatTable
     {
         [SerializeField] private PowerValue healValue;
 
@@ -30,7 +30,7 @@ namespace Character.Combat
 #if UNITY_EDITOR
         public void SetUpValue(float value)
         {
-            Flag            = ModuleType.Heal;
+            Flag            = CombatModuleType.Heal;
             healValue.Value = value;
         }
 #endif

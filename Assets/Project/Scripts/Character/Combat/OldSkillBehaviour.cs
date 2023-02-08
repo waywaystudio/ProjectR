@@ -5,7 +5,7 @@ using UnityEngine;
 
 namespace Character.Combat
 {
-    public class SkillBehaviour : MonoBehaviour, ISkillBehaviour, IInspectorSetUp
+    public class OldSkillBehaviour : MonoBehaviour, ISkillBehaviour, IInspectorSetUp
     {
         [SerializeField] private CharacterBehaviour cb;
         [SerializeField] private GlobalCoolDown globalCoolDown;

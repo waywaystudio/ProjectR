@@ -14,8 +14,8 @@ namespace Character.Combat.Skill
         public override ICombatProvider Provider => skillTable.Provider;
 
         public Sprite Icon => icon;
-        public bool HasCastingModule => ModuleTable.ContainsKey(ModuleType.Casting);
-        public bool HasCoolTimeModule => ModuleTable.ContainsKey(ModuleType.CoolTime);
+        public bool HasCastingModule => ModuleTable.ContainsKey(CombatModuleType.Casting);
+        public bool HasCoolTimeModule => ModuleTable.ContainsKey(CombatModuleType.CoolTime);
         public float CastingTime => CastingModule.CastingTime;
         public float CoolTime => CoolTimeModule.OriginalCoolTime;
         public Observable<float> CastingProgress => CastingModule.CastingProgress;
@@ -72,7 +72,7 @@ namespace Character.Combat.Skill
             animationKey     =   skillData.AnimationKey;
             priority         =   skillData.Priority;
 
-            GetComponents<CombatModule>().ForEach(x => ModuleUtility.SetSkillModule(skillData, x));
+            GetComponents<OldCombatModule>().ForEach(x => ModuleUtility.SetSkillModule(skillData, x));
             UnityEditor.EditorUtility.SetDirty(this);
         }
         

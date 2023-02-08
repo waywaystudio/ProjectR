@@ -19,17 +19,17 @@ namespace Character.Combat
         public OldActionTable OnHit { get; } = new();
         
         public List<IReady> ReadyCheckList { get; } = new();
-        public Dictionary<ModuleType, CombatModule> ModuleTable { get; } = new();
+        public Dictionary<CombatModuleType, OldCombatModule> ModuleTable { get; } = new();
         
-        public DamageModule DamageModule => GetModule<DamageModule>(ModuleType.Damage);
-        public CastingModule CastingModule => GetModule<CastingModule>(ModuleType.Casting);
-        public CoolTimeModule CoolTimeModule => GetModule<CoolTimeModule>(ModuleType.CoolTime);
-        public HealModule HealModule => GetModule<HealModule>(ModuleType.Heal);
-        public ProjectileModule ProjectileModule => GetModule<ProjectileModule>(ModuleType.Projectile);
-        public StatusEffectModule StatusEffectModule => GetModule<StatusEffectModule>(ModuleType.StatusEffect);
-        public TargetModule TargetModule => GetModule<TargetModule>(ModuleType.Target);
-        public ResourceModule ResourceModule => GetModule<ResourceModule>(ModuleType.Resource);
-        public ProjectorModule ProjectorModule => GetModule<ProjectorModule>(ModuleType.Projector);
+        public OldDamageModule DamageModule => GetModule<OldDamageModule>(CombatModuleType.Damage);
+        public OldCastingModule CastingModule => GetModule<OldCastingModule>(CombatModuleType.Casting);
+        public OldCoolTimeModule CoolTimeModule => GetModule<OldCoolTimeModule>(CombatModuleType.CoolTime);
+        public HealModule HealModule => GetModule<HealModule>(CombatModuleType.Heal);
+        public ProjectileModule ProjectileModule => GetModule<ProjectileModule>(CombatModuleType.Projectile);
+        public StatusEffectModule StatusEffectModule => GetModule<StatusEffectModule>(CombatModuleType.StatusEffect);
+        public TargetModule TargetModule => GetModule<TargetModule>(CombatModuleType.Target);
+        public ResourceModule ResourceModule => GetModule<ResourceModule>(CombatModuleType.Resource);
+        public ProjectorModule ProjectorModule => GetModule<ProjectorModule>(CombatModuleType.Projector);
         
         public int InstanceID =>
             instanceID == 0
@@ -43,7 +43,7 @@ namespace Character.Combat
         public virtual void Hit() => OnHit.Invoke();
         
         
-        private T GetModule<T>(ModuleType type) where T : CombatModule =>
+        private T GetModule<T>(CombatModuleType type) where T : OldCombatModule =>
             ModuleTable.ContainsKey(type)
                 ? ModuleTable[type] as T
                 : null;

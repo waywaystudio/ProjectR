@@ -88,7 +88,7 @@ namespace Character.Combat.Projector
             targetLayerType =   data.TargetLayerType;
             sizeValue       =   data.Size;
 
-            GetComponents<CombatModule>().ForEach(x => ModuleUtility.SetProjectorModule(data, x));
+            GetComponents<OldCombatModule>().ForEach(x => ModuleUtility.SetProjectorModule(data, x));
             gameObject.GetComponentsInOnlyChildren<IInspectorSetUp>().ForEach(x => x.SetUp());
         }
 #endif

@@ -65,7 +65,7 @@ namespace Character.Combat.Projectile
             var projectileData = MainGame.MainData.GetProjectile(actionCode);
             speed = projectileData.Speed;
 
-            GetComponents<CombatModule>().ForEach(x => ModuleUtility.SetProjectileModule(projectileData, x));
+            GetComponents<OldCombatModule>().ForEach(x => ModuleUtility.SetProjectileModule(projectileData, x));
         }
 #endif
     }

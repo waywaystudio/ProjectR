@@ -2,7 +2,7 @@ using UnityEngine;
 
 namespace Character.Combat
 {
-    public class PositionModule : CombatModule
+    public class PositionModule : OldCombatModule
     {
         
     }

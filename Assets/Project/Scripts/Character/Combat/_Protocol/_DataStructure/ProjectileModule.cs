@@ -6,7 +6,7 @@ namespace Character.Combat
 {
     using Projectile;
     
-    public class ProjectileModule : CombatModule
+    public class ProjectileModule : OldCombatModule
     {
         // TODO. 이후에는, IDCode 혹은 ProjectileName을 통해서 풀링하고, GameObject Field를 삭제하자.
         [SerializeField] private GameObject projectilePrefab;
@@ -73,7 +73,7 @@ namespace Character.Combat
 #if UNITY_EDITOR
         public void SetUpValue(int id)
         {
-            Flag         = ModuleType.Projectile;
+            Flag         = CombatModuleType.Projectile;
             projectileID = (DataIndex)id;
         }
 #endif

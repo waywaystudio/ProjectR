@@ -5,7 +5,7 @@ using UnityEngine;
 
 namespace Character.Combat
 {
-    public class TargetModule : CombatModule, IReady
+    public class TargetModule : OldCombatModule, IReady
     {
         [SerializeField] private SortingType sortingType;
         [SerializeField] private string targetLayerType;
@@ -85,7 +85,7 @@ namespace Character.Combat
 #if UNITY_EDITOR
         public void SetUpValue(string targetLayerType, int targetCount, float range, SortingType sortingType, bool isSelf)
         {
-            Flag                 = ModuleType.Target;
+            Flag                 = CombatModuleType.Target;
             this.targetLayerType = targetLayerType;
             this.targetCount     = targetCount;
             this.range           = range;

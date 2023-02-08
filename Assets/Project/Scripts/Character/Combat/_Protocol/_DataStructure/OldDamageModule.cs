@@ -1,10 +1,9 @@
-using Character.Combat.Skill;
 using Core;
 using UnityEngine;
 
 namespace Character.Combat
 {
-    public class DamageModule : CombatModule, ICombatTable
+    public class OldDamageModule : OldCombatModule, ICombatTable
     {
         [SerializeField] private PowerValue damageValue;
 
@@ -27,17 +26,11 @@ namespace Character.Combat
             CombatObject.OnActivated.Register(InstanceID, OnActivated);
         }
 
-        public override void Initialize(ICombatProvider provider, IActionSequence actionSequence)
-        {
-            // Provider = provider;
-            actionSequence.OnActivated.Register("DamageModule", OnActivated);
-        }
-
 
 #if UNITY_EDITOR
         public void SetUpValue(float value)
         {
-            Flag              = ModuleType.Damage;
+            Flag              = CombatModuleType.Damage;
             damageValue.Value = value;
         }
 #endif

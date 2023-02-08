@@ -23,8 +23,7 @@ namespace Character.Graphic
         private TrackEntry entryBuffer;
         private IPathfinding pathfindingEngine;
         
-        // public ActionTable OnAttackHit { get; set; } = new();
-        // public ActionTable OnSkillHit { get; set; } = new();
+        public ActionTable OnHit { get; } = new();
         private SpineAnimation TargetAnimation { get; set; }
         
         /* Animation Preset */
@@ -147,18 +146,9 @@ namespace Character.Graphic
         {
             switch (e.Data.Name)
             {
-                case "attackHit" : cb.HitSkill(); break;
-                case "skillHit" : cb.HitSkill(); break;
-                case "channelingHit" : cb.HitSkill(); break;
+                case "attackHit" : OnHit.Invoke(); break;
+                case "skillHit" : OnHit.Invoke(); break;
             }
-            
-            // TODO. 애니매이션 호출 구조가 변경되면 위 스위치문을 아래로 변경.
-            // switch (e.Data.Name)
-            // {
-            //     case "attackHit" : OnAttackHit.Invoke(); break;
-            //     case "skillHit" : OnSkillHit.Invoke(); break;
-            //     // case "channelingHit" : Cb.HitSkill(); break;
-            // }
         }
 
         private void Awake()

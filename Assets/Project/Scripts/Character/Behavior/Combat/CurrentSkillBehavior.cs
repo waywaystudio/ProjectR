@@ -6,11 +6,11 @@ namespace Character.Behavior.Combat
     [TaskCategory("Character/Combat")]
     public class CurrentSkillBehavior : Action
     {
-        private SkillBehaviour combat;
+        private OldSkillBehaviour combat;
                 
         public override void OnAwake()
         {
-            combat = GetComponent<SkillBehaviour>();
+            combat = GetComponent<OldSkillBehaviour>();
         }
         
         public override TaskStatus OnUpdate() => combat.IsCurrentSkillFinished

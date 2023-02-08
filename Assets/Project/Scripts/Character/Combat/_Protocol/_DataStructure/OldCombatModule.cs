@@ -4,10 +4,10 @@ using UnityEngine;
 
 namespace Character.Combat
 {
-    public class CombatModule : MonoBehaviour
+    public class OldCombatModule : MonoBehaviour
     {
         public CombatObject CombatObject;
-        public ModuleType Flag;
+        public CombatModuleType Flag;
 
         private int instanceID;
 
@@ -15,9 +15,6 @@ namespace Character.Combat
             instanceID == 0
                 ? instanceID = GetInstanceID()
                 : instanceID;
-
-
-        public virtual void Initialize(ICombatProvider provider, IActionSequence actionSequence) { }
 
         protected virtual void Awake()
         {

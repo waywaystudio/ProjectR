@@ -2,18 +2,19 @@ using Character.Combat;
 using Core;
 using MainGame.Data.ContentData;
 using UnityEngine;
+using SkillData = MainGame.Data.ContentData.SkillData.Skill;
 
 namespace Character
 {
     public static class ModuleUtility
     {
-        public static void SetSkillModule<T>(SkillData.Skill baseSkill, T module) where T : CombatModule
+        public static void SetSkillModule<T>(SkillData baseSkill, T module) where T : OldCombatModule
         {
             switch (module)
             {
-                case DamageModule damageEntity: damageEntity.SetUpValue(baseSkill.BaseValue); break;
-                case CastingModule castingEntity: castingEntity.SetUpValue(baseSkill.CastingTime); break;
-                case CoolTimeModule coolTimeEntity: coolTimeEntity.SetUpValue(baseSkill.BaseCoolTime); break;
+                case OldDamageModule damageEntity: damageEntity.SetUpValue(baseSkill.BaseValue); break;
+                case OldCastingModule castingEntity: castingEntity.SetUpValue(baseSkill.CastingTime); break;
+                case OldCoolTimeModule coolTimeEntity: coolTimeEntity.SetUpValue(baseSkill.BaseCoolTime); break;
                 case HealModule healEntity: healEntity.SetUpValue(baseSkill.BaseValue); break;
                 case ProjectileModule projectileEntity: projectileEntity.SetUpValue(baseSkill.ProjectileId); break;
                 case StatusEffectModule statusEffectEntity: statusEffectEntity.SetUpValue((DataIndex)baseSkill.StatusEffectId); break;
@@ -34,11 +35,12 @@ namespace Character
             
             module.SetUp();
         }
-        public static void SetProjectileModule<T>(ProjectileData.Projectile baseProjectile, T module) where T : CombatModule
+        
+        public static void SetProjectileModule<T>(ProjectileData.Projectile baseProjectile, T module) where T : OldCombatModule
         {
             switch (module)
             {
-                case DamageModule damageEntity: damageEntity.SetUpValue(baseProjectile.BaseValue);
+                case OldDamageModule damageEntity: damageEntity.SetUpValue(baseProjectile.BaseValue);
                     break;
                 case HealModule healEntity: healEntity.SetUpValue(baseProjectile.BaseValue);
                     break;
@@ -53,11 +55,11 @@ namespace Character
             module.SetUp();
         }
         
-        public static void SetStatusEffectModule<T>(StatusEffectData.StatusEffect baseStatusEffect, T module) where T : CombatModule
+        public static void SetStatusEffectModule<T>(StatusEffectData.StatusEffect baseStatusEffect, T module) where T : OldCombatModule
         {
             switch (module)
             {
-                case DamageModule damageEntity: damageEntity.SetUpValue(baseStatusEffect.CombatValue);
+                case OldDamageModule damageEntity: damageEntity.SetUpValue(baseStatusEffect.CombatValue);
                     break;
                 case HealModule healEntity: healEntity.SetUpValue(baseStatusEffect.CombatValue);
                     break;
@@ -72,12 +74,12 @@ namespace Character
             module.SetUp();
         }
         
-        public static void SetProjectorModule<T>(ProjectorData.Projector baseProjector, T module) where T : CombatModule
+        public static void SetProjectorModule<T>(ProjectorData.Projector baseProjector, T module) where T : OldCombatModule
         {
             switch (module)
             {
-                case DamageModule damageEntity: damageEntity.SetUpValue(baseProjector.CombatValue); break;
-                case CastingModule damageEntity: damageEntity.SetUpValue(baseProjector.CastingTime); break;
+                case OldDamageModule damageEntity: damageEntity.SetUpValue(baseProjector.CombatValue); break;
+                case OldCastingModule damageEntity: damageEntity.SetUpValue(baseProjector.CastingTime); break;
                 // case StatusEffectModule statusEffectEntity: statusEffectEntity.SetUpValue((DataIndex)baseStatusEffect.StatusEffectId); break;
                 default:
                 {
