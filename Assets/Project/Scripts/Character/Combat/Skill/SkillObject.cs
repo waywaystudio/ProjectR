@@ -18,8 +18,8 @@ namespace Character.Combat.Skill
         public bool HasCoolTimeModule => ModuleTable.ContainsKey(CombatModuleType.CoolTime);
         public float CastingTime => CastingModule.CastingTime;
         public float CoolTime => CoolTimeModule.OriginalCoolTime;
-        public Observable<float> CastingProgress => CastingModule.CastingProgress;
-        public Observable<float> RemainTime => CoolTimeModule.RemainTime;
+        public OldObservable<float> CastingProgress => CastingModule.CastingProgress;
+        public OldObservable<float> RemainTime => CoolTimeModule.RemainTime;
 
         public float FixedCastingTime => fixedCastingTime;
         public string AnimationKey => animationKey;

@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace Character.TargetSystem
 {
-    public class Targeting : MonoBehaviour, ITargeting
+    public class OldTargeting : MonoBehaviour, ITargeting
     {
         private ICombatTaker self;
 

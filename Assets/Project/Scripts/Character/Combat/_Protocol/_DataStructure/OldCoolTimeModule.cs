@@ -14,7 +14,7 @@ namespace Character.Combat
 
         public bool IsReady => RemainTime.Value <= 0.0f;
         public float OriginalCoolTime { get => coolTime; set => coolTime = value; }
-        public Observable<float> RemainTime { get; } = new();
+        public OldObservable<float> RemainTime { get; } = new();
 
 
         private void Cooling()

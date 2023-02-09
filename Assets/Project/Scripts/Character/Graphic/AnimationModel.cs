@@ -29,6 +29,8 @@ namespace Character.Graphic
         /* Animation Preset */
         public void Idle()
         {
+            state.TimeScale = 1f;
+            
             if (!cb.DynamicStatEntry.IsAlive.Value) return;
             
             Play("idle");
@@ -87,7 +89,8 @@ namespace Character.Graphic
                 var toStaticValue = originalDuration / timeScale;
 
                 state.TimeScale      *= toStaticValue;
-                entryBuffer.Complete += _ => state.TimeScale /= toStaticValue;
+                entryBuffer.Complete += _ => state.TimeScale = 1f;
+                // state.TimeScale /= toStaticValue;
             }
 
             // Handle Callback

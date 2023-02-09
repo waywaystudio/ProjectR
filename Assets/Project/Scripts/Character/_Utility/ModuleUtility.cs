@@ -25,7 +25,7 @@ namespace Character
                     break;
                 }
                 case ResourceModule resourceEntity: resourceEntity.SetUpValue(baseSkill.ResourceObtain); break;
-                case ProjectorModule projectorModule: projectorModule.SetUpValue(baseSkill.ProjectorId); break;
+                case OldProjectorModule projectorModule: projectorModule.SetUpValue(baseSkill.ProjectorId); break;
                 default:
                 {
                     Debug.LogError($"Unknown Entity. input : {module.GetType()}");

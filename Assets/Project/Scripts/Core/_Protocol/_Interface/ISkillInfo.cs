@@ -14,12 +14,12 @@ namespace Core
         /* Casting Entity */
         bool HasCastingModule { get; }
         float CastingTime { get; }
-        Observable<float> CastingProgress { get; }
+        OldObservable<float> CastingProgress { get; }
         
         /* CoolTime Entity */
         bool HasCoolTimeModule { get; }
         float CoolTime { get; }
-        Observable<float> RemainTime { get; }
+        OldObservable<float> RemainTime { get; }
     }
 
     public interface IStatusEffect : IActionSender

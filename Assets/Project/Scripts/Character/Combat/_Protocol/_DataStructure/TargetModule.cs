@@ -59,7 +59,7 @@ namespace Character.Combat
             if (targetCount == 1) statusEffect.Effectuate(Target);
             else TargetList.ForEach(statusEffect.Effectuate);
         }
-        public void TakeProjector(ProjectorModule projector)
+        public void TakeProjector(OldProjectorModule projector)
         {
             if (targetCount == 1) projector.Projection(Target);
             else TargetList.ForEach(projector.Projection);

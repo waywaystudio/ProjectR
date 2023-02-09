@@ -15,9 +15,13 @@ namespace Character.Combat
         Dispel,
         GlobalCoolTime,
         Colliding,
+        Charging,
+        Area,
         
         /* StatusEffect */
         Dot,
+        Hot,
+        StatModifier,
         Feedback,
 
         /* Projector */

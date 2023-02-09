@@ -1735,6 +1735,10 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2550627699454726660, guid: a3acb303f8f3ed24c8afb44fa3d18ccf, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3021437193249819373, guid: a3acb303f8f3ed24c8afb44fa3d18ccf, type: 3}
       propertyPath: m_Camera
       value: 
@@ -1798,6 +1802,10 @@ PrefabInstance:
     - target: {fileID: 3744010701327891159, guid: a3acb303f8f3ed24c8afb44fa3d18ccf, type: 3}
       propertyPath: m_IsActive
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5363938912383741399, guid: a3acb303f8f3ed24c8afb44fa3d18ccf, type: 3}
+      propertyPath: shortCut.m_SingletonActionBindings.Array.data[0].m_Interactions
+      value: Hold
       objectReference: {fileID: 0}
     - target: {fileID: 6963563523162028877, guid: a3acb303f8f3ed24c8afb44fa3d18ccf, type: 3}
       propertyPath: m_Mesh

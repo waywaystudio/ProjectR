@@ -12,7 +12,7 @@ namespace Core
 
     public interface IGlobalCoolTimer
     {
-        Observable<float> GlobalRemainTime { get; }
+        OldObservable<float> GlobalRemainTime { get; }
         float GlobalCoolTime { get; }
     }
 }

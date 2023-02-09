@@ -46,7 +46,7 @@ namespace Character.Editor
         }
     }
 
-    public class CoolTimeModuleDrawer : OdinAttributeProcessor<CoolTimeModule>
+    public class CoolTimeModuleDrawer : OdinAttributeProcessor<OldCoolTimeModule>
     {
         public override void ProcessChildMemberAttributes(InspectorProperty parentProperty, MemberInfo member, List<Attribute> attributes)
         {

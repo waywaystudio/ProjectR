@@ -6,7 +6,7 @@ namespace Character.Combat
 {
     using Projector;
     
-    public class ProjectorModule : OldCombatModule
+    public class OldProjectorModule : OldCombatModule
     {
         // TODO. 이후에는, IDCode 혹은 ProjectileName을 통해서 풀링하고, GameObject Field를 삭제하자.
         [SerializeField] private GameObject projectorPrefab;

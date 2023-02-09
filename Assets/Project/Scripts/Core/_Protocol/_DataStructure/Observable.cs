@@ -8,7 +8,7 @@ namespace Core
     {
         [SerializeField] protected T value;
 
-        protected OldActionTable<T> OnValueChanged { get; set; } = new();
+        protected ActionTable<T> OnValueChanged { get; } = new();
 
         public virtual T Value
         {
@@ -16,24 +16,44 @@ namespace Core
             set
             {
                 this.value = value;
-                OnValueChanged?.Invoke(value);
+                OnValueChanged.Invoke(value);
             }
         }
 
-        public void Register(int key, Action<T> action)
+        public virtual void Register(string key, Action action) => Register(key, _ => action());
+        public virtual void Register(string key, Action<T> action)
         {
-            OnValueChanged ??= new OldActionTable<T>();
             OnValueChanged.Register(key, action);
         }
-        public void Register(int key, Action action)
+
+        public void Unregister(string key) => OnValueChanged.Unregister(key);
+    }
+
+    public class FloatEvent : Observable<float>
+    {
+        private float min, max;
+
+        public override float Value
         {
-            OnValueChanged ??= new OldActionTable<T>();
-            OnValueChanged.Register(key, _ => action());
+            get => value;
+            set
+            {
+                var clampedValue = Mathf.Clamp(value, min, max);
+                
+                if (Math.Abs(this.value - clampedValue) < 0.0001f) return;
+                
+                this.value = clampedValue;
+                OnValueChanged.Invoke(clampedValue);
+            }
         }
 
-        public void RegisterUniquely(Action<T> action) => Register(0, action);
-        public void RegisterUniquely(Action action) => Register(0, action);
-        
-        public void Unregister(int key) => OnValueChanged?.Unregister(key);
+        public FloatEvent() { }
+        public FloatEvent(float min, float max) { SetClamp(min, max);}
+
+        public void SetClamp(float min, float max)
+        {
+            this.min = min;
+            this.max = max;
+        }
     }
 }

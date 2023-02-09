@@ -482,3 +482,57 @@ MonoBehaviour:
     statusEffectID: 0
     projectileID: 0
     projectorID: 0
+  - id: 13000027
+    name: KnightCastingAttack
+    description: Starts combat by attacking a target with a melee weapon.
+    baseValue: 2
+    range: 10
+    castingTime: 3
+    baseCoolTime: 5
+    priority: 2
+    animationKey: skill
+    targetCount: 1
+    sortingType: None
+    targetLayer: enemy
+    isSelf: 0
+    skillType: damage
+    resourceObtain: 0
+    statusEffectID: 0
+    projectileID: 0
+    projectorID: 0
+  - id: 13000028
+    name: KnightChargingAttack
+    description: Starts combat by attacking a target with a melee weapon.
+    baseValue: 3
+    range: 15
+    castingTime: 3
+    baseCoolTime: 6
+    priority: 3
+    animationKey: skill
+    targetCount: 1
+    sortingType: None
+    targetLayer: enemy
+    isSelf: 0
+    skillType: damage
+    resourceObtain: 10
+    statusEffectID: 0
+    projectileID: 0
+    projectorID: 0
+  - id: 13000029
+    name: KnightProjectorAttack
+    description: Starts combat by attacking a target with a melee weapon.
+    baseValue: 4
+    range: 20
+    castingTime: 2
+    baseCoolTime: 8
+    priority: 4
+    animationKey: skill
+    targetCount: 1
+    sortingType: None
+    targetLayer: enemy
+    isSelf: 0
+    skillType: damage
+    resourceObtain: -10
+    statusEffectID: 0
+    projectileID: 0
+    projectorID: 0

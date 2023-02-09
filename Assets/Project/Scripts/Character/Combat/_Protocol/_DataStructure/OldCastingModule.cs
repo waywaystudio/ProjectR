@@ -15,7 +15,7 @@ namespace Character.Combat
         public bool IsReady => !onCasting;
         public float OriginalCastingTime { get => originalCastingTime; set => originalCastingTime = value; }
         public float CastingTime => OriginalCastingTime * CharacterUtility.GetHasteValue(CombatObject.Provider.StatTable.Haste);
-        public Observable<float> CastingProgress { get; private set; } = new();
+        public OldObservable<float> CastingProgress { get; private set; } = new();
 
 
         private void StartCasting() => routineBuffer = StartCoroutine(Casting());

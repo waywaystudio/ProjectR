@@ -4,7 +4,7 @@ using UnityEngine;
 namespace Core
 {
     [Serializable]
-    public class StatValue : Observable<float>
+    public class StatValue : OldObservable<float>
     {
         public StatValue() : this(0f) { }
         public StatValue(float value) => this.value = value;

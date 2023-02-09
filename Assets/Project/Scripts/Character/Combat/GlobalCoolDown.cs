@@ -15,7 +15,7 @@ namespace Character.Combat
 
         // SharedBool :: CombatBehaviorDesigner
         public bool IsCooling { get; set; }
-        public Observable<float> Timer { get; } = new();
+        public OldObservable<float> Timer { get; } = new();
         public float CoolTime => baseCoolTime * CharacterUtility.GetHasteValue(cb.StatTable.Haste);
         
 

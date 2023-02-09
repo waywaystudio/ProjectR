@@ -29,7 +29,7 @@ namespace Character.Combat
         public StatusEffectModule StatusEffectModule => GetModule<StatusEffectModule>(CombatModuleType.StatusEffect);
         public TargetModule TargetModule => GetModule<TargetModule>(CombatModuleType.Target);
         public ResourceModule ResourceModule => GetModule<ResourceModule>(CombatModuleType.Resource);
-        public ProjectorModule ProjectorModule => GetModule<ProjectorModule>(CombatModuleType.Projector);
+        public OldProjectorModule ProjectorModule => GetModule<OldProjectorModule>(CombatModuleType.Projector);
         
         public int InstanceID =>
             instanceID == 0

@@ -18,7 +18,7 @@ namespace Character.Combat
         public List<ISkillInfo> SkillInfoList => skillTable.SelectSkillInfo;
         public List<SkillObject> SkillList => skillTable.SelectSkillList;
         public float GlobalCoolTime => globalCoolDown.CoolTime;
-        public Observable<float> GlobalRemainTime => globalCoolDown.Timer;
+        public OldObservable<float> GlobalRemainTime => globalCoolDown.Timer;
         public bool IsCurrentSkillFinished => CurrentSkill == null || CurrentSkill.IsSkillFinished;
 
         public OldActionTable<SkillObject> OnUseSkill { get; } = new(4);
@@ -38,7 +38,6 @@ namespace Character.Combat
         {
             skill = null;
 
-            // ReSharper disable once ForCanBeConvertedToForeach
             for (var i = 0; i < SkillList.Count; ++i)
             {
                 if (!SkillList[i].IsSkillReady) continue;

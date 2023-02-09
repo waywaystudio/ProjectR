@@ -98,6 +98,9 @@ public enum DataIndex
 	DragonBreath = 13000024,
 	Smash = 13000025,
 	KnightCommonAttack = 13000026,
+	KnightCastingAttack = 13000027,
+	KnightChargingAttack = 13000028,
+	KnightProjectorAttack = 13000029,
 
 	/* StatusEffectData */
 	CorruptionDeBuff = 14000001,
