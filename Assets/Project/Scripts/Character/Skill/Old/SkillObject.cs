@@ -68,7 +68,7 @@ namespace Character.Combat.Skill
             var skillData = MainGame.MainData.GetSkill(actionCode);
 
             skillTable       ??= GetComponentInParent<SkillTable>();
-            fixedCastingTime =   skillData.CastingTime;
+            fixedCastingTime =   skillData.ProcessTime;
             animationKey     =   skillData.AnimationKey;
             priority         =   skillData.Priority;
 

@@ -6,10 +6,10 @@ namespace Core
     [Serializable]
     public class StatValue : OldObservable<float>
     {
+        [SerializeField] protected StatCode statCode;
+        
         public StatValue() : this(0f) { }
         public StatValue(float value) => this.value = value;
-        
-        [SerializeField] protected StatCode statCode;
 
         public override float Value
         {

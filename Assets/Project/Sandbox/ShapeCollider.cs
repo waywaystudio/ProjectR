@@ -13,7 +13,7 @@ public class ShapeCollider : MonoBehaviour
     private void TestButton()
     {
         //SpriteShapeController.
-        // SpriteShapeRenderer.mat
+        // SpriteShapeRenderer.mat.odine{false=0;}
     }
 
     private void OnTriggerEnter2D(Collider2D col)

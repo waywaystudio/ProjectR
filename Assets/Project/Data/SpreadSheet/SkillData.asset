@@ -19,7 +19,7 @@ MonoBehaviour:
     description: Starts combat by attacking a target with a melee weapon.
     baseValue: 1
     range: 5
-    castingTime: 0
+    processTime: 0
     baseCoolTime: 0
     priority: 1
     animationKey: attack
@@ -28,7 +28,7 @@ MonoBehaviour:
     targetLayer: enemy
     isSelf: 0
     skillType: damage
-    resourceObtain: 4
+    cost: 4
     statusEffectID: 0
     projectileID: 0
     projectorID: 0
@@ -37,7 +37,7 @@ MonoBehaviour:
     description: Starts combat by attacking a target with a melee weapon.
     baseValue: 1.4
     range: 5
-    castingTime: 6
+    processTime: 6
     baseCoolTime: 6
     priority: 2
     animationKey: skill
@@ -46,7 +46,7 @@ MonoBehaviour:
     targetLayer: enemy
     isSelf: 0
     skillType: 
-    resourceObtain: 0
+    cost: 0
     statusEffectID: 0
     projectileID: 0
     projectorID: 0
@@ -55,7 +55,7 @@ MonoBehaviour:
     description: Starts combat by attacking a target with a melee weapon.
     baseValue: 8
     range: 18
-    castingTime: 0
+    processTime: 0
     baseCoolTime: 8
     priority: 5
     animationKey: skill
@@ -64,7 +64,7 @@ MonoBehaviour:
     targetLayer: enemy
     isSelf: 0
     skillType: damage
-    resourceObtain: 10
+    cost: 10
     statusEffectID: 0
     projectileID: 0
     projectorID: 0
@@ -73,7 +73,7 @@ MonoBehaviour:
     description: Starts combat by attacking a target with a melee weapon.
     baseValue: 2
     range: 4
-    castingTime: 0
+    processTime: 0
     baseCoolTime: 15
     priority: 5
     animationKey: skill
@@ -82,7 +82,7 @@ MonoBehaviour:
     targetLayer: enemy
     isSelf: 0
     skillType: damage
-    resourceObtain: -20
+    cost: -20
     statusEffectID: 0
     projectileID: 0
     projectorID: 0
@@ -91,7 +91,7 @@ MonoBehaviour:
     description: Starts combat by attacking a target with a melee weapon.
     baseValue: 42
     range: 25
-    castingTime: 3
+    processTime: 3
     baseCoolTime: 8
     priority: 5
     animationKey: skill
@@ -100,7 +100,7 @@ MonoBehaviour:
     targetLayer: enemy
     isSelf: 0
     skillType: projectile
-    resourceObtain: -20
+    cost: -20
     statusEffectID: 0
     projectileID: 15000001
     projectorID: 0
@@ -109,7 +109,7 @@ MonoBehaviour:
     description: Starts combat by attacking a target with a melee weapon.
     baseValue: 0
     range: 0
-    castingTime: 0
+    processTime: 0
     baseCoolTime: 15
     priority: 6
     animationKey: skill
@@ -118,7 +118,7 @@ MonoBehaviour:
     targetLayer: ally
     isSelf: 1
     skillType: transcendence
-    resourceObtain: -50
+    cost: -50
     statusEffectID: 14000003
     projectileID: 0
     projectorID: 0
@@ -127,7 +127,7 @@ MonoBehaviour:
     description: Starts combat by attacking a target with a melee weapon.
     baseValue: 8
     range: 16
-    castingTime: 0
+    processTime: 0
     baseCoolTime: 12
     priority: 5
     animationKey: skill
@@ -136,7 +136,7 @@ MonoBehaviour:
     targetLayer: enemy
     isSelf: 0
     skillType: damage
-    resourceObtain: -20
+    cost: -20
     statusEffectID: 14000004
     projectileID: 0
     projectorID: 0
@@ -145,7 +145,7 @@ MonoBehaviour:
     description: Starts combat by attacking a target with a melee weapon.
     baseValue: 21
     range: 20
-    castingTime: 3
+    processTime: 3
     baseCoolTime: 12
     priority: 5
     animationKey: skill
@@ -154,7 +154,7 @@ MonoBehaviour:
     targetLayer: enemy
     isSelf: 0
     skillType: damage
-    resourceObtain: 0
+    cost: 0
     statusEffectID: 0
     projectileID: 0
     projectorID: 0
@@ -163,7 +163,7 @@ MonoBehaviour:
     description: Starts combat by attacking a target with a melee weapon.
     baseValue: 6
     range: 5
-    castingTime: 0.8
+    processTime: 0.8
     baseCoolTime: 6
     priority: 5
     animationKey: channeling
@@ -172,7 +172,7 @@ MonoBehaviour:
     targetLayer: enemy
     isSelf: 0
     skillType: damage
-    resourceObtain: 4
+    cost: 4
     statusEffectID: 0
     projectileID: 0
     projectorID: 0
@@ -181,7 +181,7 @@ MonoBehaviour:
     description: Starts combat by attacking a target with a melee weapon.
     baseValue: 0
     range: 0
-    castingTime: 0
+    processTime: 0
     baseCoolTime: 30
     priority: 6
     animationKey: skill
@@ -190,7 +190,7 @@ MonoBehaviour:
     targetLayer: ally
     isSelf: 1
     skillType: transcendence
-    resourceObtain: -50
+    cost: -50
     statusEffectID: 14000005
     projectileID: 0
     projectorID: 0
@@ -199,7 +199,7 @@ MonoBehaviour:
     description: Starts combat by attacking a target with a melee weapon.
     baseValue: 8
     range: 18
-    castingTime: 0
+    processTime: 0
     baseCoolTime: 15
     priority: 5
     animationKey: skill
@@ -208,7 +208,7 @@ MonoBehaviour:
     targetLayer: enemy
     isSelf: 0
     skillType: damage
-    resourceObtain: 0
+    cost: 0
     statusEffectID: 0
     projectileID: 0
     projectorID: 0
@@ -217,7 +217,7 @@ MonoBehaviour:
     description: Starts combat by attacking a target with a melee weapon.
     baseValue: 16
     range: 20
-    castingTime: 1.5
+    processTime: 1.5
     baseCoolTime: 0
     priority: 2
     animationKey: skill
@@ -226,7 +226,7 @@ MonoBehaviour:
     targetLayer: enemy
     isSelf: 0
     skillType: projectile
-    resourceObtain: 4
+    cost: 4
     statusEffectID: 14000006
     projectileID: 15000002
     projectorID: 0
@@ -235,7 +235,7 @@ MonoBehaviour:
     description: Starts combat by attacking a target with a melee weapon.
     baseValue: 6
     range: 20
-    castingTime: 0
+    processTime: 0
     baseCoolTime: 15
     priority: 2
     animationKey: skill
@@ -244,7 +244,7 @@ MonoBehaviour:
     targetLayer: enemy
     isSelf: 0
     skillType: damage
-    resourceObtain: 4
+    cost: 4
     statusEffectID: 14000001
     projectileID: 0
     projectorID: 0
@@ -253,7 +253,7 @@ MonoBehaviour:
     description: Starts combat by attacking a target with a melee weapon.
     baseValue: 20
     range: 15
-    castingTime: 1.5
+    processTime: 1.5
     baseCoolTime: 0
     priority: 3
     animationKey: skill
@@ -262,7 +262,7 @@ MonoBehaviour:
     targetLayer: ally
     isSelf: 0
     skillType: heal
-    resourceObtain: 4
+    cost: 4
     statusEffectID: 0
     projectileID: 0
     projectorID: 0
@@ -271,7 +271,7 @@ MonoBehaviour:
     description: Starts combat by attacking a target with a melee weapon.
     baseValue: 20
     range: 15
-    castingTime: 0
+    processTime: 0
     baseCoolTime: 30
     priority: 4
     animationKey: skill
@@ -280,7 +280,7 @@ MonoBehaviour:
     targetLayer: ally
     isSelf: 0
     skillType: heal
-    resourceObtain: 0
+    cost: 0
     statusEffectID: 0
     projectileID: 0
     projectorID: 0
@@ -289,7 +289,7 @@ MonoBehaviour:
     description: Starts combat by attacking a target with a melee weapon.
     baseValue: 8
     range: 15
-    castingTime: 0
+    processTime: 0
     baseCoolTime: 8
     priority: 3
     animationKey: skill
@@ -298,7 +298,7 @@ MonoBehaviour:
     targetLayer: ally
     isSelf: 0
     skillType: heal
-    resourceObtain: 0
+    cost: 0
     statusEffectID: 0
     projectileID: 0
     projectorID: 0
@@ -307,7 +307,7 @@ MonoBehaviour:
     description: Starts combat by attacking a target with a melee weapon.
     baseValue: 10
     range: 40
-    castingTime: 6
+    processTime: 6
     baseCoolTime: 16
     priority: 5
     animationKey: channeling
@@ -316,7 +316,7 @@ MonoBehaviour:
     targetLayer: ally
     isSelf: 0
     skillType: heal
-    resourceObtain: 0
+    cost: 0
     statusEffectID: 0
     projectileID: 0
     projectorID: 0
@@ -325,7 +325,7 @@ MonoBehaviour:
     description: Starts combat by attacking a target with a melee weapon.
     baseValue: 15
     range: 25
-    castingTime: 2
+    processTime: 2
     baseCoolTime: 5
     priority: 5
     animationKey: skill
@@ -334,7 +334,7 @@ MonoBehaviour:
     targetLayer: ally
     isSelf: 0
     skillType: projectile
-    resourceObtain: 0
+    cost: 0
     statusEffectID: 0
     projectileID: 15000003
     projectorID: 0
@@ -343,7 +343,7 @@ MonoBehaviour:
     description: Starts combat by attacking a target with a melee weapon.
     baseValue: 30
     range: 25
-    castingTime: 0
+    processTime: 0
     baseCoolTime: 15
     priority: 5
     animationKey: skill
@@ -352,7 +352,7 @@ MonoBehaviour:
     targetLayer: ally
     isSelf: 0
     skillType: projectile
-    resourceObtain: 0
+    cost: 0
     statusEffectID: 0
     projectileID: 15000004
     projectorID: 0
@@ -361,7 +361,7 @@ MonoBehaviour:
     description: Starts combat by attacking a target with a melee weapon.
     baseValue: 15
     range: 25
-    castingTime: 1
+    processTime: 1
     baseCoolTime: 0
     priority: 1
     animationKey: attack
@@ -370,7 +370,7 @@ MonoBehaviour:
     targetLayer: enemy
     isSelf: 0
     skillType: projectile
-    resourceObtain: 4
+    cost: 4
     statusEffectID: 0
     projectileID: 15000005
     projectorID: 0
@@ -379,7 +379,7 @@ MonoBehaviour:
     description: Starts combat by attacking a target with a melee weapon.
     baseValue: 50
     range: 30
-    castingTime: 2
+    processTime: 2
     baseCoolTime: 10
     priority: 20
     animationKey: skill
@@ -388,7 +388,7 @@ MonoBehaviour:
     targetLayer: enemy
     isSelf: 0
     skillType: projector
-    resourceObtain: 0
+    cost: 0
     statusEffectID: 0
     projectileID: 0
     projectorID: 18000001
@@ -397,7 +397,7 @@ MonoBehaviour:
     description: Starts combat by attacking a target with a melee weapon.
     baseValue: 50
     range: 30
-    castingTime: 5
+    processTime: 5
     baseCoolTime: 5
     priority: 1
     animationKey: skill
@@ -406,7 +406,7 @@ MonoBehaviour:
     targetLayer: enemy
     isSelf: 0
     skillType: projector
-    resourceObtain: 0
+    cost: 0
     statusEffectID: 0
     projectileID: 0
     projectorID: 18000002
@@ -415,7 +415,7 @@ MonoBehaviour:
     description: Starts combat by attacking a target with a melee weapon.
     baseValue: 50
     range: 30
-    castingTime: 6
+    processTime: 6
     baseCoolTime: 5
     priority: 1
     animationKey: skill
@@ -424,7 +424,7 @@ MonoBehaviour:
     targetLayer: enemy
     isSelf: 0
     skillType: projector
-    resourceObtain: 0
+    cost: 0
     statusEffectID: 0
     projectileID: 0
     projectorID: 18000003
@@ -433,7 +433,7 @@ MonoBehaviour:
     description: Starts combat by attacking a target with a melee weapon.
     baseValue: 50
     range: 30
-    castingTime: 2
+    processTime: 2
     baseCoolTime: 5
     priority: 1
     animationKey: skill
@@ -442,7 +442,7 @@ MonoBehaviour:
     targetLayer: enemy
     isSelf: 0
     skillType: projector
-    resourceObtain: 0
+    cost: 0
     statusEffectID: 0
     projectileID: 0
     projectorID: 18000004
@@ -451,7 +451,7 @@ MonoBehaviour:
     description: Starts combat by attacking a target with a melee weapon.
     baseValue: 30
     range: 0
-    castingTime: 1
+    processTime: 1
     baseCoolTime: 12
     priority: 6
     animationKey: skill
@@ -460,16 +460,16 @@ MonoBehaviour:
     targetLayer: enemy
     isSelf: 1
     skillType: projector
-    resourceObtain: 0
+    cost: 0
     statusEffectID: 0
     projectileID: 0
     projectorID: 18000005
   - id: 13000026
-    name: KnightCommonAttack
+    name: GeneralAttack
     description: Starts combat by attacking a target with a melee weapon.
     baseValue: 1
     range: 5
-    castingTime: 0
+    processTime: 0
     baseCoolTime: 0
     priority: 1
     animationKey: attack
@@ -478,61 +478,79 @@ MonoBehaviour:
     targetLayer: enemy
     isSelf: 0
     skillType: damage
-    resourceObtain: 4
+    cost: 0
     statusEffectID: 0
     projectileID: 0
     projectorID: 0
   - id: 13000027
-    name: KnightCastingAttack
+    name: CastingAttack
     description: Starts combat by attacking a target with a melee weapon.
     baseValue: 2
     range: 10
-    castingTime: 3
+    processTime: 3
     baseCoolTime: 5
     priority: 2
-    animationKey: skill
+    animationKey: casting
     targetCount: 1
     sortingType: None
     targetLayer: enemy
     isSelf: 0
     skillType: damage
-    resourceObtain: 0
+    cost: 0
     statusEffectID: 0
     projectileID: 0
     projectorID: 0
   - id: 13000028
-    name: KnightChargingAttack
+    name: ChargingAttack
     description: Starts combat by attacking a target with a melee weapon.
     baseValue: 3
     range: 15
-    castingTime: 3
+    processTime: 3
     baseCoolTime: 6
     priority: 3
-    animationKey: skill
+    animationKey: casting
     targetCount: 1
     sortingType: None
     targetLayer: enemy
     isSelf: 0
     skillType: damage
-    resourceObtain: 10
+    cost: 0
     statusEffectID: 0
     projectileID: 0
     projectorID: 0
   - id: 13000029
-    name: KnightProjectorAttack
+    name: ChannelingAttack
     description: Starts combat by attacking a target with a melee weapon.
     baseValue: 4
-    range: 20
-    castingTime: 2
+    range: 15
+    processTime: 2
     baseCoolTime: 8
     priority: 4
-    animationKey: skill
+    animationKey: channeling
     targetCount: 1
     sortingType: None
     targetLayer: enemy
     isSelf: 0
     skillType: damage
-    resourceObtain: -10
+    cost: 0
+    statusEffectID: 0
+    projectileID: 0
+    projectorID: 0
+  - id: 13000030
+    name: HoldingAttack
+    description: Starts combat by attacking a target with a melee weapon.
+    baseValue: 5
+    range: 15
+    processTime: 2
+    baseCoolTime: 8
+    priority: 4
+    animationKey: channeling
+    targetCount: 1
+    sortingType: None
+    targetLayer: enemy
+    isSelf: 0
+    skillType: damage
+    cost: 0
     statusEffectID: 0
     projectileID: 0
     projectorID: 0

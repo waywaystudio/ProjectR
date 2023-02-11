@@ -97,10 +97,11 @@ public enum DataIndex
 	Equalizer = 13000023,
 	DragonBreath = 13000024,
 	Smash = 13000025,
-	KnightCommonAttack = 13000026,
-	KnightCastingAttack = 13000027,
-	KnightChargingAttack = 13000028,
-	KnightProjectorAttack = 13000029,
+	GeneralAttack = 13000026,
+	CastingAttack = 13000027,
+	ChargingAttack = 13000028,
+	ChannelingAttack = 13000029,
+	HoldingAttack = 13000030,
 
 	/* StatusEffectData */
 	CorruptionDeBuff = 14000001,

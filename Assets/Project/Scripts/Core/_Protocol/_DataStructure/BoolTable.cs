@@ -11,89 +11,74 @@ namespace Core
 
             TryAdd(key, predicate);
         }
-
-        public bool IsAllTrue()
-        {
-            foreach (var item in this) 
-                if (!item.Value.Invoke()) return false;
-
-            return true;
-        }
-
-        public bool IsAllFalse()
-        {
-            foreach (var item in this) 
-                if (item.Value.Invoke()) return false;
-
-            return true;
-        }
-
-        public bool HasTrue(out Func<bool> source)
-        {
-            foreach (var item in this)
+        
+        public bool IsAllTrue
+        { 
+            get
             {
-                if (!item.Value.Invoke()) continue;
-                
-                source = item.Value;
+                foreach (var item in this) 
+                    if (!item.Value.Invoke()) return false;
+
                 return true;
             }
-
-            source = null;
-            return false;
         }
-
-        public bool HasTrue()
+        public bool IsAllFalse
         {
-            foreach (var item in this) 
-                if (item.Value.Invoke()) return true;
-
-            return false;
-        }
-
-        public bool HasFalse(out Func<bool> source)
-        {
-            foreach (var item in this)
+            get
             {
-                if (item.Value.Invoke()) continue;
-                
-                source = item.Value;
+                foreach (var item in this) 
+                    if (item.Value.Invoke()) return false;
+
                 return true;
             }
-
-            source = null;
-            return false;
         }
-
-        public bool HasFalse()
+        public bool HasTrue
         {
-            foreach (var item in this) 
-                if (!item.Value.Invoke()) return true;
-
-            return false;
-        }
-
-        public int TrueCount()
-        {
-            var result = 0;
-
-            foreach (var item in this)
+            get
             {
-                if (item.Value.Invoke()) result++;
-            }
+                foreach (var item in this) 
+                    if (item.Value.Invoke()) return true;
 
-            return result;
+                return false;
+            }
         }
-
-        public int FalseCount()
+        public bool HasFalse
         {
-            var result = 0;
-
-            foreach (var item in this)
+            get
             {
-                if (!item.Value.Invoke()) result++;
-            }
+                foreach (var item in this) 
+                    if (!item.Value.Invoke()) return true;
 
-            return result;
+                return false;
+            }
+        }
+        public int TrueCount
+        {
+            get
+            {
+                var result = 0;
+
+                foreach (var item in this)
+                {
+                    if (item.Value.Invoke()) result++;
+                }
+
+                return result;
+            }
+        }
+        public int FalseCount
+        {
+            get
+            {
+                var result = 0;
+
+                foreach (var item in this)
+                {
+                    if (!item.Value.Invoke()) result++;
+                }
+
+                return result;
+            }
         }
     }
 }

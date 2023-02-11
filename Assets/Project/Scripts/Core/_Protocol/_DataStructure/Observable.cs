@@ -38,10 +38,9 @@ namespace Core
             get => value;
             set
             {
+                if (Math.Abs(this.value - value) < 0.000001f) return;
+                
                 var clampedValue = Mathf.Clamp(value, min, max);
-                
-                if (Math.Abs(this.value - clampedValue) < 0.0001f) return;
-                
                 this.value = clampedValue;
                 OnValueChanged.Invoke(clampedValue);
             }

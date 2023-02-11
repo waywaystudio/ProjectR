@@ -92,7 +92,7 @@ namespace Character.Graphic
                 entryBuffer.Complete += _ => state.TimeScale = 1f;
                 // state.TimeScale /= toStaticValue;
             }
-
+            
             // Handle Callback
             if (callback != null) 
                 entryBuffer.Complete += _ => callback.Invoke();
@@ -151,7 +151,14 @@ namespace Character.Graphic
             {
                 case "attackHit" : OnHit.Invoke(); break;
                 case "skillHit" : OnHit.Invoke(); break;
+                case "channelingHit":
+                {
+                    Debug.Log("channelingHit Event In");
+                    OnHit.Invoke(); break; 
+                }
             }
+            
+            
         }
 
         private void Awake()

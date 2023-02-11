@@ -5,7 +5,7 @@ using UnityEngine;
 
 namespace Character.Combat
 {
-    public class GlobalCoolDown : MonoBehaviour
+    public class OldGlobalCoolDown : MonoBehaviour
     {
         [SerializeField] private CharacterBehaviour cb;
         [SerializeField] private float baseCoolTime = 2.0f;

@@ -8,7 +8,7 @@ namespace Character.Combat
     public class OldSkillBehaviour : MonoBehaviour, ISkillBehaviour, IInspectorSetUp
     {
         [SerializeField] private CharacterBehaviour cb;
-        [SerializeField] private GlobalCoolDown globalCoolDown;
+        [SerializeField] private OldGlobalCoolDown globalCoolDown;
         [SerializeField] private SkillTable skillTable;
 
         private int instanceID;
@@ -88,7 +88,7 @@ namespace Character.Combat
         private void Awake()
         {
             cb                 ??= GetComponentInParent<CharacterBehaviour>();
-            globalCoolDown     ??= GetComponent<GlobalCoolDown>();
+            globalCoolDown     ??= GetComponent<OldGlobalCoolDown>();
             instanceID         =   GetInstanceID();
 
             OnUseSkill.Register(instanceID, UseSkill);
@@ -101,7 +101,7 @@ namespace Character.Combat
         public void SetUp()
         {
             cb             ??= GetComponentInParent<CharacterBehaviour>();
-            globalCoolDown ??= GetComponent<GlobalCoolDown>();
+            globalCoolDown ??= GetComponent<OldGlobalCoolDown>();
             skillTable     ??= GetComponentInChildren<SkillTable>();
         }
 #endif

@@ -61,7 +61,6 @@ namespace Character
         public void CompleteSkill() => OnCompleteSkill?.Invoke();
         public void HitSkill() => OnHitSkill?.Invoke();
         public void CancelSkill() => OnCancelSkill?.Invoke();
-
         public void TakeDamage(ICombatTable provider) => CombatUtility.TakeDamage(provider, this);
         public void TakeSpell(ICombatTable provider) => CombatUtility.TakeSpell(provider, this);
         public void TakeHeal(ICombatTable provider) => CombatUtility.TakeHeal(provider, this);

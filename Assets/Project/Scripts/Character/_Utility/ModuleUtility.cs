@@ -13,7 +13,7 @@ namespace Character
             switch (module)
             {
                 case OldDamageModule damageEntity: damageEntity.SetUpValue(baseSkill.BaseValue); break;
-                case OldCastingModule castingEntity: castingEntity.SetUpValue(baseSkill.CastingTime); break;
+                case OldCastingModule castingEntity: castingEntity.SetUpValue(baseSkill.ProcessTime); break;
                 case OldCoolTimeModule coolTimeEntity: coolTimeEntity.SetUpValue(baseSkill.BaseCoolTime); break;
                 case HealModule healEntity: healEntity.SetUpValue(baseSkill.BaseValue); break;
                 case ProjectileModule projectileEntity: projectileEntity.SetUpValue(baseSkill.ProjectileId); break;
@@ -24,7 +24,7 @@ namespace Character
                                             baseSkill.SortingType.ToEnum<SortingType>(), baseSkill.IsSelf);
                     break;
                 }
-                case ResourceModule resourceEntity: resourceEntity.SetUpValue(baseSkill.ResourceObtain); break;
+                case ResourceModule resourceEntity: resourceEntity.SetUpValue(baseSkill.Cost); break;
                 case OldProjectorModule projectorModule: projectorModule.SetUpValue(baseSkill.ProjectorId); break;
                 default:
                 {

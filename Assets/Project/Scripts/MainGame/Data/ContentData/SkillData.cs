@@ -19,7 +19,7 @@ namespace MainGame.Data.ContentData
 			[SerializeField] private String description;
 			[SerializeField] private Single baseValue;
 			[SerializeField] private Single range;
-			[SerializeField] private Single castingTime;
+			[SerializeField] private Single processTime;
 			[SerializeField] private Single baseCoolTime;
 			[SerializeField] private Int32 priority;
 			[SerializeField] private String animationKey;
@@ -28,7 +28,7 @@ namespace MainGame.Data.ContentData
 			[SerializeField] private String targetLayer;
 			[SerializeField] private Boolean isSelf;
 			[SerializeField] private String skillType;
-			[SerializeField] private Single resourceObtain;
+			[SerializeField] private Single cost;
 			[SerializeField] private Int32 statusEffectID;
 			[SerializeField] private Int32 projectileID;
 			[SerializeField] private Int32 projectorID;
@@ -38,7 +38,7 @@ namespace MainGame.Data.ContentData
 			public String Description => description;
 			public Single BaseValue => baseValue;
 			public Single Range => range;
-			public Single CastingTime => castingTime;
+			public Single ProcessTime => processTime;
 			public Single BaseCoolTime => baseCoolTime;
 			public Int32 Priority => priority;
 			public String AnimationKey => animationKey;
@@ -47,7 +47,7 @@ namespace MainGame.Data.ContentData
 			public String TargetLayer => targetLayer;
 			public Boolean IsSelf => isSelf;
 			public String SkillType => skillType;
-			public Single ResourceObtain => resourceObtain;
+			public Single Cost => cost;
 			public Int32 StatusEffectId => statusEffectID;
 			public Int32 ProjectileId => projectileID;
 			public Int32 ProjectorId => projectorID;

@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Reflection;
 using Sirenix.OdinInspector;
 using Sirenix.OdinInspector.Editor;
+using UnityEngine;
 
 namespace Core
 {
@@ -20,7 +21,7 @@ namespace Core
             if (member.Name == "statCode")
             {
                 attributes.Add(new PropertyOrderAttribute(1f));
-                attributes.Add(new HorizontalGroupAttribute("StatValue", width: 0.3f));
+                attributes.Add(new HorizontalGroupAttribute("StatValue", 0.3f));
                 attributes.Add(new HideLabelAttribute());
             }
             
