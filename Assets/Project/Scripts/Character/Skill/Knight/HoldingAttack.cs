@@ -41,7 +41,9 @@ namespace Character.Skill.Knight
             
             OnEnded.Register("ReleaseHit", () => model.OnHit.Unregister("SkillHit"));
             OnEnded.Register("StopProgress", StopProcess);
-            OnEnded.Register("IdleAnimation", model.Idle);
+            OnEnded.Register("Idle", model.Idle);
+            
+            OnInterrupted.Register("Log", () => Debug.Log("Interrupted!"));
         }
     }
 }

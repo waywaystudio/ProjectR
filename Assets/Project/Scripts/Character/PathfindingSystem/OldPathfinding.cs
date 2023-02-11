@@ -1,6 +1,7 @@
 using System;
 using Core;
 using Pathfinding;
+using Sirenix.OdinInspector;
 using UnityEngine;
 
 namespace Character.PathfindingSystem
@@ -11,7 +12,7 @@ namespace Character.PathfindingSystem
         [SerializeField] private Seeker agent;
 
         private CharacterBehaviour cb;
-        private ABPath pathBuffer;
+        // private ABPath pathBuffer;
         private int instanceID;
 
         public bool IsReached => aiMove.reachedEndOfPath;
@@ -34,21 +35,25 @@ namespace Character.PathfindingSystem
 
         public void Move(Vector3 destination, Action callback)
         {
-            pathBuffer      = ABPath.Construct(cb.transform.position, destination);
-            aiMove.maxSpeed = cb.StatTable.MoveSpeed;
+            // aiMove.isStopped = false;
+            aiMove.maxSpeed  = cb.StatTable.MoveSpeed;
+            agent.StartPath(cb.transform.position, destination);
 
-            if (aiMove.Callback != null || callback != null) aiMove.Callback = callback;
-
-            agent.StartPath(pathBuffer);
+            if (callback != null)
+            {
+                aiMove.Callback -= callback;
+                aiMove.Callback += callback;
+            }
         }
 
         public void TeleportTo(Vector3 destination) { aiMove.Teleport(destination); }
 
+        [Button]
         public void Stop()
         {
-            // Destination = rootObject.position; 경우에 Flip 덜덜이 발생함.
-            // aiMove.destination = aiMove.steeringTarget;
-            aiMove.destination = cb.transform.position;
+            aiMove.SetPath(null);
+            
+            cb.Idle();
         }
 
         public void DisableMove()
@@ -66,6 +71,7 @@ namespace Character.PathfindingSystem
             
             cb.OnTeleport.Register(instanceID, TeleportTo);
             cb.OnWalk.Register(instanceID, Move);
+            // cb.OnRun.Register(instanceID, (x) => Move(x, () => Debug.Log("Movement Callback")));
             cb.OnRun.Register(instanceID, Move);
             cb.OnDead.Register(instanceID, DisableMove);
         }

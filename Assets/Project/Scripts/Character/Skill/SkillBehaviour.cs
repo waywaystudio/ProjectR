@@ -24,13 +24,11 @@ namespace Character.Skill
             skill.Active();
         }
 
-        public void CancelCurrentSkill()
+        public void InterruptCurrentSkill()
         {
             if (Current.IsNullOrEmpty()) return;
-            if (Current.OnInterrupted.HasElement())
-            {
-                Current.OnInterrupted.Invoke();
-            }
+            
+            Current.Interrupt();
         }
 
 
@@ -43,7 +41,7 @@ namespace Character.Skill
         {
             get
             {
-                if (Current.IsNullOrEmpty() || Current.IsCompleted) return true;
+                if (Current.IsNullOrEmpty() || Current.IsEnded) return true;
                 
                 Debug.LogWarning($"Current Skill is not ended. Skill:{Current.ActionCode.ToString()}");
                 return false;
@@ -77,6 +75,8 @@ namespace Character.Skill
         public InputAction shortCutE;
         public InputAction shortCutR;
         
+        public InputAction shortCutZ;
+        
         public SkillComponent GeneralSkill;
         public SkillComponent CastingSkill;
         public SkillComponent ChargingSkill;
@@ -86,6 +86,7 @@ namespace Character.Skill
         public void DoCastingSkill(InputAction.CallbackContext context) => Active(CastingSkill);
         public void DoChargingSkill(InputAction.CallbackContext context) => Active(ChargingSkill);
         public void DoHoldingSkill(InputAction.CallbackContext context) => Active(HoldingSkill);
+        public void InterruptSkill(InputAction.CallbackContext context) => InterruptCurrentSkill();
         
         public void ReleaseCharging(InputAction.CallbackContext context)
         {
@@ -107,9 +108,11 @@ namespace Character.Skill
             shortCutW.Enable();
             shortCutE.Enable();
             shortCutR.Enable();
+            shortCutZ.Enable();
             
             shortCutQ.performed += DoGeneralSkill;
             shortCutW.performed += DoCastingSkill;
+            shortCutZ.performed += InterruptSkill;
             shortCutE.started   += DoChargingSkill;
             shortCutR.started   += DoHoldingSkill;
             shortCutE.canceled  += ReleaseCharging;
@@ -120,6 +123,7 @@ namespace Character.Skill
         {
             shortCutQ.performed -= DoGeneralSkill;
             shortCutW.performed -= DoCastingSkill;
+            shortCutZ.performed -= InterruptSkill;
             shortCutE.started   -= DoChargingSkill;
             shortCutR.started   -= DoHoldingSkill;
             shortCutE.canceled  -= ReleaseCharging;
@@ -129,6 +133,7 @@ namespace Character.Skill
             shortCutW.Disable();
             shortCutE.Disable();
             shortCutR.Disable();
+            shortCutZ.Disable();
         }
 
         #endregion

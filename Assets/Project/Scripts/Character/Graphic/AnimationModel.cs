@@ -38,10 +38,7 @@ namespace Character.Graphic
         public void Walk() => Play("walk");
         public void Run() => Play("run");
         public void Dead() => Play("Dead");
-        public void Skill(string animationKey, float timeScale, Action callback) =>
-            Play(animationKey, 0, false, timeScale, callback);
-        
-        
+
         // TODO. delete this function.
         public void Skill(SkillObject skill)
         {
@@ -157,8 +154,6 @@ namespace Character.Graphic
                     OnHit.Invoke(); break; 
                 }
             }
-            
-            
         }
 
         private void Awake()

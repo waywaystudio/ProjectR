@@ -6,6 +6,12 @@ namespace Character
 {
     public static class PathfindingUtility
     {      
+        public static bool IsSafePosition(Vector3 position) => AstarPath.active.GetNearest(position, NNConstraint.None).node.Walkable;
+        
+        /// <summary>
+        /// Get just Nearest Walkable Node of point. wherever you are; 
+        /// </summary>
+        /// <returns>Nearest Walkable Node.Position</returns>
         public static Vector3 GetNearestSafePosition(Vector3 point, float offsetDistance)
         {
             var startNode = AstarPath.active.GetNearest(point, NNConstraint.Default).node;
@@ -14,6 +20,20 @@ namespace Character
             var offset = (singleRandomPoint - point).normalized * offsetDistance;
             
             return singleRandomPoint + offset;
+        }
+        
+        /// <summary>
+        /// Get Nearest Walkable Node from destination via Path to pivot.  
+        /// </summary>
+        /// <returns>Nearest Walkable Node.Position</returns>
+        public static Vector3 GetNearestSafePathNode(Vector3 pivot, Vector3 destination)
+        {
+            var targetPath = ABPath.Construct(pivot, destination);
+            var nNode = pivot;
+
+            targetPath.path.ForEach(node => node.Walkable.OnTrue(() => nNode = (Vector3)node.position));
+
+            return nNode;
         }
 
         public static bool TryGetCombatPosition(ICombatProvider provider, ICombatTaker taker, float range, out Vector3 combatPosition)

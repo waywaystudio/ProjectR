@@ -22,7 +22,7 @@ namespace Character.Skill.Knight
 
         private void PlayEndCastingAnimation()
         {
-            model.Play("attack", 0, false, 0f, model.Idle);
+            model.Play("attack", 0, false);
         }
         
         protected void OnEnable()
@@ -33,7 +33,11 @@ namespace Character.Skill.Knight
             OnActivated.Register("StartCooling", StartCooling);
             OnCompleted.Register("CastingAttack", OnCastingAttack);
             OnCompleted.Register("PlayEndCastingAnimation", PlayEndCastingAnimation);
+            
             OnEnded.Register("StopProgress", StopProcess);
+            OnEnded.Register("Idle", model.Idle);
+            
+            OnInterrupted.Register("Log", () => Debug.Log("Interrupted!"));
         }
     }
 }

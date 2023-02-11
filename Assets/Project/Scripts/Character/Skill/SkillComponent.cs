@@ -41,7 +41,6 @@ namespace Character.Skill
         private Coroutine coolTimeRoutine;
         
         /* Sequence */
-        // [ShowInInspector] public ActionTable OnActivated { get; } = new();
         [ShowInInspector] public BoolTable ConditionTable { get; } = new();
         [ShowInInspector] public ActionTable OnActivated { get; } = new();
         [ShowInInspector] public ActionTable OnInterrupted { get; } = new();
@@ -55,15 +54,14 @@ namespace Character.Skill
         public ICombatProvider Provider { get; set; }
         public FloatEvent RemainTime { get; } = new(0f, float.MaxValue);
         public StatTable StatTable { get; } = new();
-        public bool IsCompleted { get; private set; }
         public bool IsEnded { get; private set; }
 
 
         public void Active()
         {
             if (ConditionTable.HasFalse) return;
-            
-            OnActivated.Invoke();
+
+            TryActiveSkill();
         }
 
         public void Interrupt()
@@ -78,13 +76,7 @@ namespace Character.Skill
             OnEnded.Invoke();
         }
 
-        protected virtual void TryActiveSkill()
-        {
-            if (ConditionTable.HasFalse) return;
-
-            OnActivated.Invoke();
-        }
-
+        protected virtual void TryActiveSkill() => OnActivated.Invoke();
         protected void ConsumeResource() => Provider.DynamicStatEntry.Resource.Value -= cost;
         protected void StartCooling() => coolTimeRoutine = StartCoroutine(CoolingRoutine());
         protected void StopCooling() => (coolTimeRoutine != null).OnTrue(() => StopCoroutine(coolTimeRoutine));
@@ -171,10 +163,8 @@ namespace Character.Skill
             
             ConditionTable.Register("CoolTime", IsCoolTimeReady);
             ConditionTable.Register("Cost", IsCostReady);
-            OnActivated.Register("Complete", () => IsCompleted   = false);
-            OnActivated.Register("End", () => IsEnded            = false);
-            OnCompleted.Register("Complete", () => IsCompleted = true);
-            OnCompleted.Register("End", () => IsEnded          = true);
+            OnActivated.Register("End", () => IsEnded = false);
+            OnEnded.Register("End", () => IsEnded = true);
         }
 
 
