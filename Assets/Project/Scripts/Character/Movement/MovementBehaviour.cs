@@ -1,6 +1,7 @@
 using System;
 using Character.Graphic;
 using Core;
+using DG.Tweening;
 using Pathfinding;
 using Sirenix.OdinInspector;
 using UnityEngine;
@@ -8,13 +9,6 @@ using UnityEngine.InputSystem;
 
 namespace Character.Movement
 {
-    /*
-     * 아주 기초적인 움직임을 다룰수는 있겠다.
-     * 이동, 달리기, 멈추기, 쓰러지기, 텔레포트 등.
-     * Pathfinding 기능을 사용해서 이곳에서 다 처리 할지, 클래스를 나눌지 결정해야 하는데
-     * 현재 기조상, 이곳에서 처리해보고자 한다.
-     */
-    
     public class MovementBehaviour : MonoBehaviour, IPathfinding
     {
         [SerializeField] private Transform rootTransform; 
@@ -22,83 +16,178 @@ namespace Character.Movement
         [SerializeField] private AIMove aiMove;
         [SerializeField] private AnimationModel model;
         [SerializeField] private float moveSpeed;
-        
-        private ABPath pathBuffer;
-        
+        [SerializeField] private LayerMask environmentLayer;
+        [SerializeField] private LayerMask groundLayer;
+
         public bool IsReached => aiMove.reachedEndOfPath;
         public bool IsSafe => PathfindingUtility.IsSafePosition(rootTransform.position);
-        public Vector3 Direction { get; }
-        
-        // aiMove Sequence
-        // Can move, or whatever
-        [ShowInInspector] public BoolTable ConditionTable { get; } = new();
+        public Vector3 Direction => rootTransform.forward;
 
-        [ShowInInspector] public ActionTable OnActivated { get; } = new();
-        [ShowInInspector] public ActionTable OnInterrupted { get; } = new();
-        [ShowInInspector] public ActionTable OnHit { get; } = new();
-        [ShowInInspector] public ActionTable OnCompleted { get; } = new();
-        [ShowInInspector] public ActionTable OnEnded { get; } = new();
+        private Vector3 rootPosition => rootTransform.position;
+        private readonly RaycastHit[] rayBuffers = new RaycastHit[32];
 
-        
-        public void Move(Vector3 destination, Action callback = null)
+        public void Move(Vector3 destination, Action callback)
         {
-            pathBuffer      = ABPath.Construct(rootTransform.position, destination);
             aiMove.maxSpeed = moveSpeed;
 
-            if (callback != null) aiMove.Callback += callback;
-            
-            agent.StartPath(pathBuffer);
+            if (callback != null)
+            {
+                aiMove.Callback -= callback;
+                aiMove.Callback += callback;
+            }
+
+            agent.StartPath(rootPosition, destination);
             
             // + RunAnimation
-            model.Play("run");
+            model.Run();
         }
+        
+        public void Rotate(Vector3 lookTarget) => rootTransform.LookAt(lookTarget);
 
-        public void Stop()
+        public void MoveStop()
         {
-            pathBuffer = null;
             aiMove.SetPath(null);
             
             // + IdleAnimation
             model.Idle();
         }
-        
-        public void Teleport(Vector3 destination)
-        {
-            var safeDestination = destination;
 
-            if (!PathfindingUtility.IsSafePosition(destination))
+        public void Dash()
+        {
+            if (!TryGetMousePosition(out var mousePosition)) return;
+
+            Dash(mousePosition - rootPosition);
+        }
+        
+        public void Dash(Vector3 direction)
+        {
+            MoveStop();
+
+            var normalDirection = direction.normalized;
+            var dashDestination = rootPosition + normalDirection * 8f;
+            var distance = Vector3.Distance(dashDestination, rootPosition);
+            
+            if (Physics.Raycast(rootPosition, normalDirection, out var hitInfo, distance, environmentLayer))
             {
-                safeDestination = PathfindingUtility.GetNearestSafePathNode(rootTransform.position, destination);
+                // TODO. 0.25f to ThreshHold
+                distance = hitInfo.distance - 1f;
+                
+                Debug.Log($"Hit Something. {hitInfo.transform.name}");
+            }
+
+            rootTransform.DOMove(rootPosition + normalDirection * distance, 0.15f).OnComplete(model.Idle);
+            
+            // + DashAnimation
+            model.PlayOnce("jump");
+        }
+
+        public void Teleport()
+        {
+            if (!TryGetMousePosition(out var mousePosition)) return;
+            
+            Teleport(mousePosition - rootPosition);
+        }
+        
+        public void Teleport(Vector3 direction)
+        {
+            MoveStop();
+
+            var normalDirection = direction.normalized;
+            var teleportDestination = rootPosition + normalDirection * 8f;
+            var distance = Vector3.Distance(teleportDestination, rootPosition);
+
+            if (!PathfindingUtility.IsSafePosition(teleportDestination))
+            {
+                if (Physics.Raycast(rootPosition, normalDirection, out var hitInfo, distance, environmentLayer))
+                {
+                    // TODO. 0.25f to ThreshHold
+                    distance            = hitInfo.distance - 1f;
+                    teleportDestination = rootPosition + normalDirection * distance;
+                }
+                else
+                {
+                    teleportDestination = PathfindingUtility.GetNearestSafePathNode(rootTransform.position, teleportDestination);
+                }
             }
             
-            aiMove.Teleport(safeDestination);
+            aiMove.Teleport(teleportDestination);
             
             // + IdleAnimation
             model.Idle();
         }
 
-        // Dash
+        [Button]
+        public void KnockBack() => KnockBack(Vector3.zero);
+        
         // KnockBack
-        // Pushing
+        public void KnockBack(Vector3 from)
+        {
+            MoveStop();
+            Rotate(from);
+            
+            var knockBackDirection = (rootPosition - from).normalized;
+            var knockBackDestination = rootPosition + knockBackDirection * 5f;
+            var distance = Vector3.Distance(knockBackDestination, rootPosition);
+            
+            if (Physics.Raycast(rootPosition, knockBackDestination, out var hitInfo, distance, environmentLayer))
+            {
+                // TODO. 0.25f to ThreshHold
+                distance = hitInfo.distance - 1f;
+            }
+
+            rootTransform.DOMove(rootPosition + knockBackDirection * distance, 0.15f).OnComplete(model.Idle);
+            
+            model.PlayOnce("fall");
+        }
+
+        private bool TryGetMousePosition(out Vector3 mousePosition)
+        {
+            mousePosition = Vector3.negativeInfinity;
+                
+            var plane = new Plane(Vector3.up, 0f);
+            var ray = mainCamera.ScreenPointToRay(Mouse.current.position.ReadValue());
+
+            if (!plane.Raycast(ray, out var distance)) return false;
+            
+            mousePosition = ray.GetPoint(distance);
+            return true;
+        }
+
+        private void Update()
+        {
+            model.Flip(Direction);
+        }
 
         #region TESTFIELD
 
         [SerializeField] private InputAction mouseClick;
+        [SerializeField] private InputAction dashInput;
+        [SerializeField] private InputAction teleportInput;
         
         private Camera mainCamera;
-        private Vector3 destination = Vector3.zero;
+        private Vector3 mousedDestination = Vector3.zero;
         
         private void OnEnable()
         {
             mouseClick.Enable();
-            mouseClick.performed += OnMove;
-            mainCamera           =  Camera.main;
+            dashInput.Enable();
+            teleportInput.Enable();
+            
+            mainCamera              =  Camera.main;
+            mouseClick.performed    += OnMove;
+            dashInput.performed     += OnDash;
+            teleportInput.performed += OnTeleport;
         }
 
         private void OnDisable()
         {
-            mouseClick.performed -= OnMove;
+            mouseClick.performed    -= OnMove;
+            dashInput.performed     -= OnDash;
+            teleportInput.performed -= OnTeleport;
+            
             mouseClick.Disable();
+            dashInput.Disable();
+            teleportInput.Disable();
         }
 
         public void OnMove(InputAction.CallbackContext context)
@@ -110,12 +199,15 @@ namespace Character.Movement
                 // && hit.collider.gameObject.IsInLayerMask(groundLayer)
                )
             {
-                destination.x = hit.point.x;
-                destination.z = hit.point.z;
+                mousedDestination.x = hit.point.x;
+                mousedDestination.z = hit.point.z;
 
-                Move(destination, () => Debug.Log("Movement Callback"));
+                Move(mousedDestination, model.Idle);
             }
         }
+
+        public void OnDash(InputAction.CallbackContext context) => Dash();
+        public void OnTeleport(InputAction.CallbackContext context) => Teleport();
 
         #endregion
     }

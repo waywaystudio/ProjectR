@@ -6,7 +6,7 @@ namespace Character.Skill.Knight
     {
         protected override void PlayAnimation()
         {
-            model.Play(animationKey);
+            model.PlayLoop(animationKey);
         }
         
         protected override void TryActiveSkill()
@@ -34,7 +34,7 @@ namespace Character.Skill.Knight
         {
             OnActivated.Register("PlayAnimation", PlayAnimation);
             OnActivated.Register("UpdatePowerValue", UpdatePowerValue);
-            OnActivated.Register("StartProgress", () => StartProgress(Complete));
+            OnActivated.Register("StartProgress", () => StartProgress(OnEnded.Invoke));
             OnActivated.Register("StartCooling", StartCooling);
 
             OnHit.Register("OnChannelingAttack", OnHoldingAttack);
@@ -43,7 +43,7 @@ namespace Character.Skill.Knight
             OnEnded.Register("StopProgress", StopProcess);
             OnEnded.Register("Idle", model.Idle);
             
-            OnInterrupted.Register("Log", () => Debug.Log("Interrupted!"));
+            OnInterrupted.Register("Log", () => Debug.Log("Interrupted"));
         }
     }
 }

@@ -1,4 +1,5 @@
 using System;
+using Character.Combat.Skill;
 using Core;
 using Spine;
 using Spine.Unity;
@@ -9,34 +10,56 @@ using Event = Spine.Event;
 
 namespace Character.Graphic
 {
-    public class AnimationModel : MonoBehaviour
+    public class OldAnimationModel : MonoBehaviour
     {
+        // TODO. delete target
+        [SerializeField] private CharacterBehaviour cb;
         [SerializeField] private AnimationModelData modelData;
         [SerializeField] private SkeletonAnimation skeletonAnimation;
         
         private SpineState state;
+        private int instanceID;
+        private Action callbackBuffer;
         private TrackEntry entryBuffer;
+        private IPathfinding pathfindingEngine;
         
         public ActionTable OnHit { get; } = new();
         private SpineAnimation TargetAnimation { get; set; }
         
-        
+        /* Animation Preset */
         public void Idle()
         {
             state.TimeScale = 1f;
             
-            PlayLoop("idle");
+            if (!cb.DynamicStatEntry.IsAlive.Value) return;
+            
+            Play("idle");
         }
-        public void Walk() => PlayLoop("walk");
-        public void Run() => PlayLoop("run");
-        public void Dead() => PlayOnce("Dead");
+        public void Walk() => Play("walk");
+        public void Run() => Play("run");
+        public void Dead() => Play("Dead");
 
-        public void PlayOnce(string animationKey, float timeScale = 0f, Action callback = null) 
-            => Play(animationKey, 0, false, timeScale, callback);
-        public void PlayLoop(string animationKey, float timeScale = 0f, Action callback = null) 
-            => Play(animationKey, 0, true, timeScale, callback);
+        // TODO. delete this function.
+        public void Skill(SkillObject skill)
+        {
+            var fixedTime = skill.FixedCastingTime;
+            var animationKey = skill.AnimationKey;
+            
+            // Assign Haste 
+            var animationHasteValue = CharacterUtility.GetInverseHasteValue(cb.StatTable.Haste);
+            var inverse = CharacterUtility.GetHasteValue(cb.StatTable.Haste);
+            state.TimeScale *= animationHasteValue;
+            
+            callbackBuffer =  null;
+            callbackBuffer += cb.CompleteSkill;
+            callbackBuffer += Idle;
+            callbackBuffer += () => state.TimeScale *= inverse;
 
-        public void Play(string animationKey, int layer, bool loop, float timeScale, Action callback)
+            // Flip();
+            Play(animationKey, 0, false, fixedTime, callbackBuffer);
+        }
+
+        public void Play(string animationKey, int layer = 0, bool loop = true, float timeScale = 0f, Action callback = null)
         {
             if (!modelData.TryGetAnimation(animationKey, out var target))
             {
@@ -68,7 +91,9 @@ namespace Character.Graphic
 
             TargetAnimation = target;
         }
-
+        
+        // public void Flip() => Flip(pathfindingEngine.Direction);
+        //
         public void Flip(Vector3 direction)
         {
             skeletonAnimation.Skeleton.ScaleX = direction.x switch
@@ -78,7 +103,6 @@ namespace Character.Graphic
                 _ => skeletonAnimation.Skeleton.ScaleX
             };
         }
-        
 
         private bool IsSameAnimation(SpineAnimation target, int layer, bool loop)
         {
@@ -129,12 +153,34 @@ namespace Character.Graphic
 
         private void Awake()
         {
-            skeletonAnimation ??= GetComponent<SkeletonAnimation>();
-            state             =   skeletonAnimation.AnimationState;
+            cb = GetComponentInParent<CharacterBehaviour>();
+            instanceID = GetInstanceID();
+            
+            TryGetComponent(out skeletonAnimation);
+            state = skeletonAnimation.AnimationState;
         }
 
-        private void OnEnable() => skeletonAnimation.AnimationState.Event += EventHandler;
-        private void OnDisable() => skeletonAnimation.AnimationState.Event -= EventHandler;
+        private void OnEnable()
+        {
+            skeletonAnimation.AnimationState.Event += EventHandler;
+            
+            cb.OnIdle.Register(instanceID, Idle);
+            cb.OnWalk.Register(instanceID, Walk);
+            cb.OnRun.Register(instanceID, Run);
+            cb.OnDead.Register(instanceID, Dead);
+            cb.OnUseSkill.Register(instanceID, Skill);
+            // cb.OnUpdate.Register(instanceID, Flip);
+        }
+
+        private void Start()
+        {
+            // pathfindingEngine = cb.PathfindingEngine;
+        }
+
+        private void OnDisable()
+        {
+            skeletonAnimation.AnimationState.Event -= EventHandler;
+        }
         
 #if UNITY_EDITOR
         [SpineEvent(dataField : "skAnimation", fallbackToTextField = true)]

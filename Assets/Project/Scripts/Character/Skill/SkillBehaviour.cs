@@ -92,14 +92,14 @@ namespace Character.Skill
         {
             if (!ChargingSkill.OnProgress) return;
             
-            ChargingSkill.Complete();
+            ChargingSkill.OnCompleted.Invoke();
         }
         
         public void ReleaseHolding(InputAction.CallbackContext context)
         {
             if (!HoldingSkill.OnProgress) return;
             
-            HoldingSkill.Complete();
+            HoldingSkill.OnEnded.Invoke();
         }
 
         private void OnEnable()

@@ -6,7 +6,7 @@ namespace Character.Skill.Knight
     {
         protected override void PlayAnimation()
         {
-            model.Play(animationKey);
+            model.PlayLoop(animationKey);
         }
         
         private void OnCastingAttack()
@@ -22,7 +22,7 @@ namespace Character.Skill.Knight
 
         private void PlayEndCastingAnimation()
         {
-            model.Play("attack", 0, false);
+            model.PlayOnce("attack", 0f, OnEnded.Invoke);
         }
         
         protected void OnEnable()

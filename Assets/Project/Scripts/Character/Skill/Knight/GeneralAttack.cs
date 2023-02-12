@@ -16,7 +16,12 @@ namespace Character.Skill.Knight
         
         protected override void PlayAnimation()
         {
-            model.Play(animationKey, 0, false, progressTime, Complete);
+            model.PlayOnce(animationKey, progressTime,
+                () =>
+                {
+                    OnCompleted.Invoke();
+                    OnEnded.Invoke();
+                });
         }
 
         private void OnGeneralAttack()

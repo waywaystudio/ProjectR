@@ -37,7 +37,7 @@ namespace Character
                 destination.x = hit.point.x;
                 destination.z = hit.point.z;
 
-                cb.Run(destination, cb.Idle);
+                cb.Run(destination, () => Debug.Log("Movement Callback"));
             }
         }
     }

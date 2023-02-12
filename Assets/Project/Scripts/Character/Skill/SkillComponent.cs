@@ -70,12 +70,6 @@ namespace Character.Skill
             OnEnded.Invoke();
         }
 
-        public void Complete()
-        {
-            OnCompleted.Invoke();
-            OnEnded.Invoke();
-        }
-
         protected virtual void TryActiveSkill() => OnActivated.Invoke();
         protected void ConsumeResource() => Provider.DynamicStatEntry.Resource.Value -= cost;
         protected void StartCooling() => coolTimeRoutine = StartCoroutine(CoolingRoutine());
@@ -103,7 +97,7 @@ namespace Character.Skill
         
         protected virtual void PlayAnimation()
         {
-            model.Play(animationKey, 0, false, progressTime);
+            model.PlayOnce(animationKey, progressTime);
         }
 
         private IEnumerator CoolingRoutine()
