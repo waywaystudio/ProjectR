@@ -47,6 +47,7 @@ namespace Character.Movement
         public void MoveStop()
         {
             aiMove.SetPath(null);
+            aiMove.destination = Vector3.positiveInfinity;
             
             // + IdleAnimation
             model.Idle();
@@ -62,15 +63,16 @@ namespace Character.Movement
         public void Dash(Vector3 direction)
         {
             MoveStop();
+            Rotate(direction);
 
             var normalDirection = direction.normalized;
             var dashDestination = rootPosition + normalDirection * 8f;
             var distance = Vector3.Distance(dashDestination, rootPosition);
             
-            if (Physics.Raycast(rootPosition, normalDirection, out var hitInfo, distance, environmentLayer))
+            if (Physics.Raycast(rootPosition, normalDirection, out var hitInfo, distance + 1f, environmentLayer))
             {
-                // TODO. 0.25f to ThreshHold
-                distance = hitInfo.distance - 1f;
+                // TODO. 1f to ThreshHold
+                distance = hitInfo.distance - 2f;
                 
                 Debug.Log($"Hit Something. {hitInfo.transform.name}");
             }
@@ -91,17 +93,18 @@ namespace Character.Movement
         public void Teleport(Vector3 direction)
         {
             MoveStop();
+            Rotate(direction);
 
             var normalDirection = direction.normalized;
             var teleportDestination = rootPosition + normalDirection * 8f;
             var distance = Vector3.Distance(teleportDestination, rootPosition);
 
-            if (!PathfindingUtility.IsSafePosition(teleportDestination))
+            if (!PathfindingUtility.IsPathPossible(rootPosition, teleportDestination))
             {
-                if (Physics.Raycast(rootPosition, normalDirection, out var hitInfo, distance, environmentLayer))
+                if (Physics.Raycast(rootPosition, normalDirection, out var hitInfo, distance + 1f, environmentLayer))
                 {
-                    // TODO. 0.25f to ThreshHold
-                    distance            = hitInfo.distance - 1f;
+                    // TODO. 0.5f to ThreshHold
+                    distance            = hitInfo.distance - 2f;
                     teleportDestination = rootPosition + normalDirection * distance;
                 }
                 else
@@ -109,7 +112,7 @@ namespace Character.Movement
                     teleportDestination = PathfindingUtility.GetNearestSafePathNode(rootTransform.position, teleportDestination);
                 }
             }
-            
+
             aiMove.Teleport(teleportDestination);
             
             // + IdleAnimation
@@ -194,10 +197,7 @@ namespace Character.Movement
         {
             var ray = mainCamera.ScreenPointToRay(Mouse.current.position.ReadValue());
 
-            if (Physics.Raycast(ray: ray, hitInfo: out var hit) 
-                && hit.collider 
-                // && hit.collider.gameObject.IsInLayerMask(groundLayer)
-               )
+            if (Physics.Raycast(ray: ray, hitInfo: out var hit) && hit.collider)
             {
                 mousedDestination.x = hit.point.x;
                 mousedDestination.z = hit.point.z;

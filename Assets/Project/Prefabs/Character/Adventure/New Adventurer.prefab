@@ -668,38 +668,6 @@ MonoBehaviour:
   cb: {fileID: 3044725383043683279}
   fillImage: {fileID: 7005035760309952161}
   lerpDuration: 0.2
---- !u!1 &3744010699582125756
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 3744010699582125759}
-  m_Layer: 0
-  m_Name: Systems
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &3744010699582125759
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3744010699582125756}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 3744010700929808892}
-  m_Father: {fileID: 3744010700067239340}
-  m_RootOrder: 3
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &3744010699814045012
 GameObject:
   m_ObjectHideFlags: 0
@@ -782,7 +750,7 @@ Transform:
   - {fileID: 3744010700364922028}
   - {fileID: 3744010699814045015}
   - {fileID: 8472940378912289388}
-  - {fileID: 3744010699582125759}
+  - {fileID: 3744010700929808892}
   - {fileID: 3136610500463366648}
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -802,6 +770,8 @@ MonoBehaviour:
   characterName: Kungen
   dataIndex: 11000001
   role: 0
+  dynamicStatEntry: {fileID: 6714285254672120863}
+  constStats: {fileID: 8281854185582011221}
   combatClassID: 12000001
 --- !u!54 &3744010700067239343
 Rigidbody:
@@ -882,7 +852,6 @@ GameObject:
   - component: {fileID: 3744010700364922028}
   - component: {fileID: 6714285254672120863}
   - component: {fileID: 8281854185582011221}
-  - component: {fileID: 4297757312863755608}
   m_Layer: 0
   m_Name: Data
   m_TagString: Untagged
@@ -954,67 +923,6 @@ MonoBehaviour:
   armor:
     value: 20
     statCode: 7
---- !u!114 &4297757312863755608
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3744010700364922029}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3497b3986bd2d0f4982018dadb1996f8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  equipmentItemList: []
-  weapon:
-    ItemName: Blood  Boil Lancet
-    ID: 0
-    MaxHp: 0
-    Critical: 0.15
-    Haste: 0.05
-    Hit: 0.02
-    Evade: 0
-  head:
-    ItemName: The Skull of Gul'dan
-    ID: 0
-    MaxHp: 0
-    Critical: 0
-    Haste: 0
-    Hit: 0.01
-    Evade: 0
-  chest:
-    ItemName: Brace Guards of the  Starless Night
-    ID: 0
-    MaxHp: 0
-    Critical: 0
-    Haste: 0
-    Hit: 0
-    Evade: 0.05
-  leg:
-    ItemName: Legplates of Frozen Granite
-    ID: 0
-    MaxHp: 0
-    Critical: 0
-    Haste: 0
-    Hit: 0
-    Evade: 0.03
-  ring1:
-    ItemName: 
-    ID: 0
-    MaxHp: 0
-    Critical: 0
-    Haste: 0
-    Hit: 0
-    Evade: 0
-  ring2:
-    ItemName: 
-    ID: 0
-    MaxHp: 0
-    Critical: 0
-    Haste: 0
-    Hit: 0
-    Evade: 0
 --- !u!1 &3744010700442847975
 GameObject:
   m_ObjectHideFlags: 0
@@ -1108,11 +1016,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3744010700929808892}
-  - component: {fileID: 3069312649008124564}
   - component: {fileID: 3744010700929808894}
   - component: {fileID: 3744010700929808895}
   m_Layer: 2
-  m_Name: SearchingSystem
+  m_Name: Searching
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1130,21 +1037,9 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 3744010699582125759}
-  m_RootOrder: 0
+  m_Father: {fileID: 3744010700067239340}
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &3069312649008124564
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3744010700929808893}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 16a6ffaf29721c24a8abaa89b3e1d920, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &3744010700929808894
 MonoBehaviour:
   m_ObjectHideFlags: 0

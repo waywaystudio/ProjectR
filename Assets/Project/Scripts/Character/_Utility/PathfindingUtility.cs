@@ -5,8 +5,21 @@ using UnityEngine;
 namespace Character
 {
     public static class PathfindingUtility
-    {      
-        public static bool IsSafePosition(Vector3 position) => AstarPath.active.GetNearest(position, NNConstraint.None).node.Walkable;
+    {
+        public static bool IsSafePosition(Vector3 position)
+        {
+            var node = AstarPath.active.GetNearest(position, NNConstraint.None).node;
+
+            return node.Walkable;
+        }
+
+        public static bool IsPathPossible(Vector3 from, Vector3 dest)
+        {
+            var fromNode = AstarPath.active.GetNearest(from, NNConstraint.None).node;
+            var destNode = AstarPath.active.GetNearest(dest, NNConstraint.None).node;
+
+            return PathUtilities.IsPathPossible(fromNode, destNode);
+        }
         
         /// <summary>
         /// Get just Nearest Walkable Node of point. wherever you are; 

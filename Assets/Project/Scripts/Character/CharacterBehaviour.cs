@@ -6,12 +6,16 @@ using UnityEngine;
 namespace Character
 {
     using Combat.Skill;
+    using Data;
+    using Data.BaseStats;
     
     public class CharacterBehaviour : MonoBehaviour, ICombatExecutor, IInspectorSetUp
     {
         [SerializeField] protected string characterName = string.Empty;
         [SerializeField] protected DataIndex dataIndex;
         [SerializeField] protected RoleType role;
+        [SerializeField] protected DynamicStatEntry dynamicStatEntry;
+        [SerializeField] protected CharacterConstStats constStats;
 
         private ISkillBehaviour skillBehaviour;
         private ISearching searchingEngine;
@@ -22,7 +26,7 @@ namespace Character
         public DataIndex DataIndex => dataIndex;
         public RoleType Role => role;
         public DataIndex ActionCode => DataIndex.None;
-        public IDynamicStatEntry DynamicStatEntry { get; set; }
+        public IDynamicStatEntry DynamicStatEntry => dynamicStatEntry;
         public ICombatProvider Provider => this;
         public GameObject Object => gameObject;
         public StatTable StatTable { get; } = new(1);
@@ -32,7 +36,7 @@ namespace Character
         public OldActionTable<Vector3, Action> OnWalk { get; } = new();
         public OldActionTable<Vector3, Action> OnRun { get; } = new();
         public OldActionTable<Vector3> OnTeleport { get; } = new();
-        public OldActionTable OnDead { get; } = new();
+        public ActionTable OnDead { get; } = new();
 
         public OldActionTable<SkillObject> OnUseSkill { get; } = new(4);
         public OldActionTable OnActiveSkill { get; } = new(8);
@@ -40,7 +44,7 @@ namespace Character
         public OldActionTable OnHitSkill { get; } = new(4);
         public OldActionTable OnCancelSkill { get; } = new(4);
 
-        public OldActionTable<IStatusEffect> OnTakeStatusEffect { get; } = new(2);
+        public ActionTable<IStatusEffect> OnTakeStatusEffect { get; } = new(2);
         public OldActionTable<DataIndex> OnDispelStatusEffect { get; } = new(2);
         public OldActionTable<CombatLog> OnCombatActive { get; } = new(4);
         public OldActionTable<CombatLog> OnCombatPassive { get; } = new(4);
@@ -67,7 +71,20 @@ namespace Character
         public void TakeStatusEffect(IStatusEffect statusEffect) => OnTakeStatusEffect?.Invoke(statusEffect);
         public void DispelStatusEffect(DataIndex code) => OnDispelStatusEffect?.Invoke(code);
 
+        protected void Awake()
+        {
+            constStats       ??= GetComponentInChildren<CharacterConstStats>();
+            dynamicStatEntry ??= GetComponentInChildren<DynamicStatEntry>();
+            
+            constStats.Initialize(StatTable);
+            dynamicStatEntry.Initialize(StatTable);
+            
+            OnTakeStatusEffect.Register("DynamicStatTableRegister", dynamicStatEntry.Register);
+            OnDead.Register("DynamicAliveValue", () => dynamicStatEntry.IsAlive.Value = false);
+        }
+
         protected virtual void Update() { OnUpdate?.Invoke(); }
+        
         
         
 #if UNITY_EDITOR

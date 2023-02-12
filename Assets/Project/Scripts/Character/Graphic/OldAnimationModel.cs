@@ -37,7 +37,7 @@ namespace Character.Graphic
         }
         public void Walk() => Play("walk");
         public void Run() => Play("run");
-        public void Dead() => Play("Dead");
+        public void Dead() => Play("dead");
 
         // TODO. delete this function.
         public void Skill(SkillObject skill)
@@ -167,7 +167,7 @@ namespace Character.Graphic
             cb.OnIdle.Register(instanceID, Idle);
             cb.OnWalk.Register(instanceID, Walk);
             cb.OnRun.Register(instanceID, Run);
-            cb.OnDead.Register(instanceID, Dead);
+            cb.OnDead.Register("DeadAnimation", Dead);
             cb.OnUseSkill.Register(instanceID, Skill);
             // cb.OnUpdate.Register(instanceID, Flip);
         }

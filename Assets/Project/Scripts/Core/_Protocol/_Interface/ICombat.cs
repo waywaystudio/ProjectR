@@ -55,7 +55,7 @@ namespace Core
 
         RoleType Role { get; }
         
-        OldActionTable<IStatusEffect> OnTakeStatusEffect { get; }
+        ActionTable<IStatusEffect> OnTakeStatusEffect { get; }
         OldActionTable<DataIndex> OnDispelStatusEffect { get; }
         OldActionTable<CombatLog> OnCombatPassive { get; }
 

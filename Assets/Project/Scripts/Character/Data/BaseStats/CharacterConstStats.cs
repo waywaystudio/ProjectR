@@ -14,22 +14,18 @@ namespace Character.Data.BaseStats
         [SerializeField] protected HitValue hit;
         [SerializeField] protected EvadeValue evade;
         [SerializeField] protected ArmorValue armor;
+        
 
-        protected CharacterBehaviour Cb { get; set; }
-
-
-        protected virtual void Awake()
+        public void Initialize(StatTable statTable)
         {
-            Cb = GetComponentInParent<CharacterBehaviour>();
-
-            Cb.StatTable.Register(baseStatCode, maxHp, true);
-            Cb.StatTable.Register(baseStatCode, moveSpeed, true);
-            Cb.StatTable.Register(baseStatCode, maxResource, true);
-            Cb.StatTable.Register(baseStatCode, critical, true);
-            Cb.StatTable.Register(baseStatCode, haste, true);
-            Cb.StatTable.Register(baseStatCode, hit, true);
-            Cb.StatTable.Register(baseStatCode, evade, true);
-            Cb.StatTable.Register(baseStatCode, armor, true);
+            statTable.Register(baseStatCode, maxHp, true);
+            statTable.Register(baseStatCode, moveSpeed, true);
+            statTable.Register(baseStatCode, maxResource, true);
+            statTable.Register(baseStatCode, critical, true);
+            statTable.Register(baseStatCode, haste, true);
+            statTable.Register(baseStatCode, hit, true);
+            statTable.Register(baseStatCode, evade, true);
+            statTable.Register(baseStatCode, armor, true);
         }
 
 #if UNITY_EDITOR

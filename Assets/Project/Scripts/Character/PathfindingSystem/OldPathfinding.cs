@@ -73,7 +73,7 @@ namespace Character.PathfindingSystem
             cb.OnWalk.Register(instanceID, Move);
             // cb.OnRun.Register(instanceID, (x) => Move(x, () => Debug.Log("Movement Callback")));
             cb.OnRun.Register(instanceID, Move);
-            cb.OnDead.Register(instanceID, DisableMove);
+            cb.OnDead.Register("DisableMove", DisableMove);
         }
 
 

@@ -98,6 +98,7 @@ namespace Character.TargetSystem
 
         private static bool IsAbleToCombatTake(Component other, LayerMask layer, out ICombatTaker taker)
             => other.TryGetComponent(out taker) && other.gameObject.IsInLayerMask(layer);
+        
 
 #if UNITY_EDITOR
         public void SetUp()
