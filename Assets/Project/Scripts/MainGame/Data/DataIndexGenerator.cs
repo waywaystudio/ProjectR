@@ -6,6 +6,18 @@ namespace MainGame.Data
     public static class DataIndexGenerator
     {
 #if UNITY_EDITOR
+        public static string ProtocolForm { get; private set; } = 
+            $@"/*     ===== Do not touch this. Auto Generated Code. =====    */
+/*     If you want custom code generation modify this => 'DataProtocol.cs'  */
+// ReSharper disable IdentifierTypo
+// ReSharper disable CheckNamespace
+
+public enum DataIndex
+{{        
+@IDCode        
+}}
+";
+        
         public static string GenerateForm { get; private set; } = 
 $@"/*     ===== Do not touch this. Auto Generated Code. =====    */
 /*     If you want custom code generation modify this => 'IDCodeGenerator.cs'  */
@@ -26,7 +38,7 @@ public enum DataIndex
 
         private static void WriteIDCode()
         {
-            var dataList = MainData.DataList;
+            var dataList = MainData.SheetDataList;
             var builder = new StringBuilder();
             
             builder.AppendLine("\tNone = 0,");

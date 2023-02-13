@@ -1,5 +1,4 @@
 using System.Collections.Generic;
-using Character.Combat.Skill;
 using Character.Skill;
 using Core;
 using UnityEngine;

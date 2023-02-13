@@ -32,42 +32,42 @@ namespace Raid.UI
 
         public void Register(AdventurerBehaviour ab)
         {
-            gameObject.SetActive(true);
-            combatBehaviour = ab.SkillBehaviour;
-
-            if (skillIndex >= combatBehaviour.SkillInfoList.Count)
-            {
-                Debug.LogWarning($"{ab.Name} has not enough skill count. "
-                                 + $"required:{skillIndex + 1}, {ab.Name} has {combatBehaviour.SkillInfoList.Count} skills");
-                return;
-            }
-            
-            // Set Skill
-            inheritSkill = combatBehaviour.SkillInfoList[skillIndex];
-            hasCoolTimeEntity = inheritSkill is { HasCoolTimeModule: true };
-
-            // Set SkillIcon
-            skillImage.sprite = inheritSkill.Icon;
-            
-            // Set GlobalCooldown
-            combatBehaviour.GlobalRemainTime.Register(instanceID, UnFillGlobalCoolTime);
-
-            // Set SkillCoolTime
-            switch (hasCoolTimeEntity)
-            {
-                case false:
-                    skillCooldownFilter.fillAmount = 0.0f;
-                    break;
-                case true:
-                {
-                    inheritSkill.RemainTime.Register(instanceID, UnFillSkillCoolTime);
-                    break;
-                }
-            }
-            
-            // Set Hotkey Action
-            hotKeyAction.Enable();
-            hotKeyAction.performed += UseSkill;
+            // gameObject.SetActive(true);
+            // combatBehaviour = ab.SkillBehaviour;
+            //
+            // if (skillIndex >= combatBehaviour.SkillInfoList.Count)
+            // {
+            //     Debug.LogWarning($"{ab.Name} has not enough skill count. "
+            //                      + $"required:{skillIndex + 1}, {ab.Name} has {combatBehaviour.SkillInfoList.Count} skills");
+            //     return;
+            // }
+            //
+            // // Set Skill
+            // inheritSkill = combatBehaviour.SkillInfoList[skillIndex];
+            // hasCoolTimeEntity = inheritSkill is { HasCoolTimeModule: true };
+            //
+            // // Set SkillIcon
+            // skillImage.sprite = inheritSkill.Icon;
+            //
+            // // Set GlobalCooldown
+            // combatBehaviour.GlobalRemainTime.Register(instanceID, UnFillGlobalCoolTime);
+            //
+            // // Set SkillCoolTime
+            // switch (hasCoolTimeEntity)
+            // {
+            //     case false:
+            //         skillCooldownFilter.fillAmount = 0.0f;
+            //         break;
+            //     case true:
+            //     {
+            //         inheritSkill.RemainTime.Register(instanceID, UnFillSkillCoolTime);
+            //         break;
+            //     }
+            // }
+            //
+            // // Set Hotkey Action
+            // hotKeyAction.Enable();
+            // hotKeyAction.performed += UseSkill;
         }
 
         public void Unregister()

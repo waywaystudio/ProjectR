@@ -9,548 +9,64 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f2b217ae31282844287132a48bebc8af, type: 3}
+  m_Script: {fileID: 11500000, guid: c78071e977ca3a24880bb8f40ed9001b, type: 3}
   m_Name: SkillData
   m_EditorClassIdentifier: 
   Index: 13
   list:
   - id: 13000001
-    name: CommonAttack
-    description: Starts combat by attacking a target with a melee weapon.
-    baseValue: 1
-    range: 5
-    processTime: 0
-    baseCoolTime: 0
-    priority: 1
-    animationKey: attack
-    targetCount: 1
-    sortingType: None
-    targetLayer: enemy
-    isSelf: 0
-    skillType: damage
-    cost: 4
-    statusEffectID: 0
-    projectileID: 0
-    projectorID: 0
-  - id: 13000002
-    name: Bash
-    description: Starts combat by attacking a target with a melee weapon.
-    baseValue: 1.4
-    range: 5
-    processTime: 6
-    baseCoolTime: 6
-    priority: 2
-    animationKey: skill
-    targetCount: 6
-    sortingType: None
-    targetLayer: enemy
-    isSelf: 0
-    skillType: 
-    cost: 0
-    statusEffectID: 0
-    projectileID: 0
-    projectorID: 0
-  - id: 13000003
-    name: Charge
-    description: Starts combat by attacking a target with a melee weapon.
-    baseValue: 8
-    range: 18
-    processTime: 0
-    baseCoolTime: 8
-    priority: 5
-    animationKey: skill
-    targetCount: 1
-    sortingType: None
-    targetLayer: enemy
-    isSelf: 0
-    skillType: damage
-    cost: 10
-    statusEffectID: 0
-    projectileID: 0
-    projectorID: 0
-  - id: 13000004
-    name: BackStep
-    description: Starts combat by attacking a target with a melee weapon.
-    baseValue: 2
-    range: 4
-    processTime: 0
-    baseCoolTime: 15
-    priority: 5
-    animationKey: skill
-    targetCount: 1
-    sortingType: None
-    targetLayer: enemy
-    isSelf: 0
-    skillType: damage
-    cost: -20
-    statusEffectID: 0
-    projectileID: 0
-    projectorID: 0
-  - id: 13000005
-    name: AimShot
-    description: Starts combat by attacking a target with a melee weapon.
-    baseValue: 42
-    range: 25
-    processTime: 3
-    baseCoolTime: 8
-    priority: 5
-    animationKey: skill
-    targetCount: 1
-    sortingType: None
-    targetLayer: enemy
-    isSelf: 0
-    skillType: projectile
-    cost: -20
-    statusEffectID: 0
-    projectileID: 15000001
-    projectorID: 0
-  - id: 13000006
-    name: BloodDrain
-    description: Starts combat by attacking a target with a melee weapon.
-    baseValue: 0
-    range: 0
-    processTime: 0
-    baseCoolTime: 15
-    priority: 6
-    animationKey: skill
-    targetCount: 1
-    sortingType: None
-    targetLayer: ally
-    isSelf: 1
-    skillType: transcendence
-    cost: -50
-    statusEffectID: 14000003
-    projectileID: 0
-    projectorID: 0
-  - id: 13000007
-    name: Roar
-    description: Starts combat by attacking a target with a melee weapon.
-    baseValue: 8
-    range: 16
-    processTime: 0
-    baseCoolTime: 12
-    priority: 5
-    animationKey: skill
-    targetCount: 5
-    sortingType: None
-    targetLayer: enemy
-    isSelf: 0
-    skillType: damage
-    cost: -20
-    statusEffectID: 14000004
-    projectileID: 0
-    projectorID: 0
-  - id: 13000008
-    name: Penetrate
-    description: Starts combat by attacking a target with a melee weapon.
-    baseValue: 21
-    range: 20
-    processTime: 3
-    baseCoolTime: 12
-    priority: 5
-    animationKey: skill
-    targetCount: 16
-    sortingType: None
-    targetLayer: enemy
-    isSelf: 0
-    skillType: damage
-    cost: 0
-    statusEffectID: 0
-    projectileID: 0
-    projectorID: 0
-  - id: 13000009
-    name: RapidBlow
-    description: Starts combat by attacking a target with a melee weapon.
-    baseValue: 6
-    range: 5
-    processTime: 0.8
-    baseCoolTime: 6
-    priority: 5
-    animationKey: channeling
-    targetCount: 1
-    sortingType: None
-    targetLayer: enemy
-    isSelf: 0
-    skillType: damage
-    cost: 4
-    statusEffectID: 0
-    projectileID: 0
-    projectorID: 0
-  - id: 13000010
-    name: Fury
-    description: Starts combat by attacking a target with a melee weapon.
-    baseValue: 0
-    range: 0
-    processTime: 0
-    baseCoolTime: 30
-    priority: 6
-    animationKey: skill
-    targetCount: 1
-    sortingType: None
-    targetLayer: ally
-    isSelf: 1
-    skillType: transcendence
-    cost: -50
-    statusEffectID: 14000005
-    projectileID: 0
-    projectorID: 0
-  - id: 13000011
-    name: LightningSlash
-    description: Starts combat by attacking a target with a melee weapon.
-    baseValue: 8
-    range: 18
-    processTime: 0
-    baseCoolTime: 15
-    priority: 5
-    animationKey: skill
-    targetCount: 16
-    sortingType: None
-    targetLayer: enemy
-    isSelf: 0
-    skillType: damage
-    cost: 0
-    statusEffectID: 0
-    projectileID: 0
-    projectorID: 0
-  - id: 13000012
-    name: Fireball
-    description: Starts combat by attacking a target with a melee weapon.
-    baseValue: 16
-    range: 20
-    processTime: 1.5
-    baseCoolTime: 0
-    priority: 2
-    animationKey: skill
-    targetCount: 1
-    sortingType: None
-    targetLayer: enemy
-    isSelf: 0
-    skillType: projectile
-    cost: 4
-    statusEffectID: 14000006
-    projectileID: 15000002
-    projectorID: 0
-  - id: 13000013
-    name: Corruption
-    description: Starts combat by attacking a target with a melee weapon.
-    baseValue: 6
-    range: 20
-    processTime: 0
-    baseCoolTime: 15
-    priority: 2
-    animationKey: skill
-    targetCount: 1
-    sortingType: None
-    targetLayer: enemy
-    isSelf: 0
-    skillType: damage
-    cost: 4
-    statusEffectID: 14000001
-    projectileID: 0
-    projectorID: 0
-  - id: 13000014
-    name: FaithfulPrey
-    description: Starts combat by attacking a target with a melee weapon.
-    baseValue: 20
-    range: 15
-    processTime: 1.5
-    baseCoolTime: 0
-    priority: 3
-    animationKey: skill
-    targetCount: 1
-    sortingType: HpRatioAscending
-    targetLayer: ally
-    isSelf: 0
-    skillType: heal
-    cost: 4
-    statusEffectID: 0
-    projectileID: 0
-    projectorID: 0
-  - id: 13000015
-    name: HolyProtection
-    description: Starts combat by attacking a target with a melee weapon.
-    baseValue: 20
-    range: 15
-    processTime: 0
-    baseCoolTime: 30
-    priority: 4
-    animationKey: skill
-    targetCount: 1
-    sortingType: HpRatioAscending
-    targetLayer: ally
-    isSelf: 0
-    skillType: heal
-    cost: 0
-    statusEffectID: 0
-    projectileID: 0
-    projectorID: 0
-  - id: 13000016
-    name: Revivification
-    description: Starts combat by attacking a target with a melee weapon.
-    baseValue: 8
-    range: 15
-    processTime: 0
-    baseCoolTime: 8
-    priority: 3
-    animationKey: skill
-    targetCount: 1
-    sortingType: HpRatioAscending
-    targetLayer: ally
-    isSelf: 0
-    skillType: heal
-    cost: 0
-    statusEffectID: 0
-    projectileID: 0
-    projectorID: 0
-  - id: 13000017
-    name: EncouragedSong
-    description: Starts combat by attacking a target with a melee weapon.
-    baseValue: 10
-    range: 40
-    processTime: 6
-    baseCoolTime: 16
-    priority: 5
-    animationKey: channeling
-    targetCount: 8
-    sortingType: None
-    targetLayer: ally
-    isSelf: 0
-    skillType: heal
-    cost: 0
-    statusEffectID: 0
-    projectileID: 0
-    projectorID: 0
-  - id: 13000018
-    name: ChainHealing
-    description: Starts combat by attacking a target with a melee weapon.
-    baseValue: 15
-    range: 25
-    processTime: 2
-    baseCoolTime: 5
-    priority: 5
-    animationKey: skill
-    targetCount: 1
-    sortingType: HpRatioAscending
-    targetLayer: ally
-    isSelf: 0
-    skillType: projectile
-    cost: 0
-    statusEffectID: 0
-    projectileID: 15000003
-    projectorID: 0
-  - id: 13000019
-    name: HealOrb
-    description: Starts combat by attacking a target with a melee weapon.
-    baseValue: 30
-    range: 25
-    processTime: 0
-    baseCoolTime: 15
-    priority: 5
-    animationKey: skill
-    targetCount: 1
-    sortingType: None
-    targetLayer: ally
-    isSelf: 0
-    skillType: projectile
-    cost: 0
-    statusEffectID: 0
-    projectileID: 15000004
-    projectorID: 0
-  - id: 13000020
-    name: RangeAttack
-    description: Starts combat by attacking a target with a melee weapon.
-    baseValue: 15
-    range: 25
-    processTime: 1
-    baseCoolTime: 0
-    priority: 1
-    animationKey: attack
-    targetCount: 1
-    sortingType: None
-    targetLayer: enemy
-    isSelf: 0
-    skillType: projectile
-    cost: 4
-    statusEffectID: 0
-    projectileID: 15000005
-    projectorID: 0
-  - id: 13000021
-    name: MeteorStrike
-    description: Starts combat by attacking a target with a melee weapon.
-    baseValue: 50
-    range: 30
-    processTime: 2
-    baseCoolTime: 10
-    priority: 20
-    animationKey: skill
-    targetCount: 1
-    sortingType: None
-    targetLayer: enemy
-    isSelf: 0
-    skillType: projector
-    cost: 0
-    statusEffectID: 0
-    projectileID: 0
-    projectorID: 18000001
-  - id: 13000022
-    name: PowerBash
-    description: Starts combat by attacking a target with a melee weapon.
-    baseValue: 50
-    range: 30
-    processTime: 5
-    baseCoolTime: 5
-    priority: 1
-    animationKey: skill
-    targetCount: 1
-    sortingType: None
-    targetLayer: enemy
-    isSelf: 0
-    skillType: projector
-    cost: 0
-    statusEffectID: 0
-    projectileID: 0
-    projectorID: 18000002
-  - id: 13000023
-    name: Equalizer
-    description: Starts combat by attacking a target with a melee weapon.
-    baseValue: 50
-    range: 30
-    processTime: 6
-    baseCoolTime: 5
-    priority: 1
-    animationKey: skill
-    targetCount: 1
-    sortingType: None
-    targetLayer: enemy
-    isSelf: 0
-    skillType: projector
-    cost: 0
-    statusEffectID: 0
-    projectileID: 0
-    projectorID: 18000003
-  - id: 13000024
-    name: DragonBreath
-    description: Starts combat by attacking a target with a melee weapon.
-    baseValue: 50
-    range: 30
-    processTime: 2
-    baseCoolTime: 5
-    priority: 1
-    animationKey: skill
-    targetCount: 1
-    sortingType: None
-    targetLayer: enemy
-    isSelf: 0
-    skillType: projector
-    cost: 0
-    statusEffectID: 0
-    projectileID: 0
-    projectorID: 18000004
-  - id: 13000025
-    name: Smash
-    description: Starts combat by attacking a target with a melee weapon.
-    baseValue: 30
-    range: 0
-    processTime: 1
-    baseCoolTime: 12
-    priority: 6
-    animationKey: skill
-    targetCount: 1
-    sortingType: None
-    targetLayer: enemy
-    isSelf: 1
-    skillType: projector
-    cost: 0
-    statusEffectID: 0
-    projectileID: 0
-    projectorID: 18000005
-  - id: 13000026
     name: GeneralAttack
     description: Starts combat by attacking a target with a melee weapon.
-    baseValue: 1
-    range: 5
     processTime: 0
-    baseCoolTime: 0
-    priority: 1
-    animationKey: attack
-    targetCount: 1
-    sortingType: None
-    targetLayer: enemy
-    isSelf: 0
-    skillType: damage
+    coolTime: 0
     cost: 0
-    statusEffectID: 0
-    projectileID: 0
-    projectorID: 0
-  - id: 13000027
+    basePriority: 1
+    animationKey: attack
+    sortingType: None
+    completionList:
+    - damage
+    targetSystem: sphere
+    targetParam1: 5
+    targetParam2: 90
+  - id: 13000002
     name: CastingAttack
     description: Starts combat by attacking a target with a melee weapon.
-    baseValue: 2
-    range: 10
     processTime: 3
-    baseCoolTime: 5
-    priority: 2
-    animationKey: casting
-    targetCount: 1
-    sortingType: None
-    targetLayer: enemy
-    isSelf: 0
-    skillType: damage
+    coolTime: 5
     cost: 0
-    statusEffectID: 0
-    projectileID: 0
-    projectorID: 0
-  - id: 13000028
+    basePriority: 2
+    animationKey: casting
+    sortingType: None
+    completionList:
+    - damage
+    targetSystem: sphere
+    targetParam1: 10
+    targetParam2: 45
+  - id: 13000003
     name: ChargingAttack
     description: Starts combat by attacking a target with a melee weapon.
-    baseValue: 3
-    range: 15
     processTime: 3
-    baseCoolTime: 6
-    priority: 3
-    animationKey: casting
-    targetCount: 1
-    sortingType: None
-    targetLayer: enemy
-    isSelf: 0
-    skillType: damage
+    coolTime: 6
     cost: 0
-    statusEffectID: 0
-    projectileID: 0
-    projectorID: 0
-  - id: 13000029
-    name: ChannelingAttack
-    description: Starts combat by attacking a target with a melee weapon.
-    baseValue: 4
-    range: 15
-    processTime: 2
-    baseCoolTime: 8
-    priority: 4
-    animationKey: channeling
-    targetCount: 1
+    basePriority: 3
+    animationKey: charging
     sortingType: None
-    targetLayer: enemy
-    isSelf: 0
-    skillType: damage
-    cost: 0
-    statusEffectID: 0
-    projectileID: 0
-    projectorID: 0
-  - id: 13000030
+    completionList:
+    - damage
+    targetSystem: sphere
+    targetParam1: 15
+    targetParam2: 90
+  - id: 13000004
     name: HoldingAttack
     description: Starts combat by attacking a target with a melee weapon.
-    baseValue: 5
-    range: 15
     processTime: 2
-    baseCoolTime: 8
-    priority: 4
-    animationKey: channeling
-    targetCount: 1
-    sortingType: None
-    targetLayer: enemy
-    isSelf: 0
-    skillType: damage
+    coolTime: 8
     cost: 0
-    statusEffectID: 0
-    projectileID: 0
-    projectorID: 0
+    basePriority: 4
+    animationKey: holding
+    sortingType: None
+    completionList:
+    - damage
+    targetSystem: sphere
+    targetParam1: 15
+    targetParam2: 360

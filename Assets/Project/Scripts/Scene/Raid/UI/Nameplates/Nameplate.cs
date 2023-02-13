@@ -51,16 +51,16 @@ namespace Raid.UI.Nameplates
 
         private void FillCastingBar()
         {
-            var skillInfo = ab.SkillInfo;
-
-            if (skillInfo is not { HasCastingModule: true })
-            {
-                if (castingBar.enabled) castingBar.enabled = false;
-                return;
-            }
-            
-            if (!castingBar.enabled) castingBar.enabled = true;
-            castingBar.fillAmount = skillInfo.CastingProgress.Value / skillInfo.CastingTime;
+            // var skillInfo = ab.SkillInfo;
+            //
+            // if (skillInfo is not { HasCastingModule: true })
+            // {
+            //     if (castingBar.enabled) castingBar.enabled = false;
+            //     return;
+            // }
+            //
+            // if (!castingBar.enabled) castingBar.enabled = true;
+            // castingBar.fillAmount = skillInfo.CastingProgress.Value / skillInfo.CastingTime;
         }
 
         private void Awake()

@@ -126,16 +126,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8d1304eb36b0d4a47b7bec06855bc80e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dataList:
-  - {fileID: 11400000, guid: 294332ae82d2c7046b37095f9025b510, type: 2}
+  sheetDataList:
+  - {fileID: 11400000, guid: 3b2cf1517fb45e64b8d1481c13d20404, type: 2}
   - {fileID: 11400000, guid: acb0dcb95a86bf84281319c5bee286fc, type: 2}
   - {fileID: 11400000, guid: d5fa5f323244127428ad66d0bf80b6ed, type: 2}
-  - {fileID: 11400000, guid: ce53f117c95942640ac5d0f45e88839d, type: 2}
-  - {fileID: 11400000, guid: ce59acf443f84c041b5b57d6986fffa1, type: 2}
-  - {fileID: 11400000, guid: 5a46d34d812abe740839bfed1ce08573, type: 2}
   - {fileID: 11400000, guid: afdb984896de2944a8a2ecf72158de10, type: 2}
-  - {fileID: 11400000, guid: b6adfc72725705f47bacb2b4ea4e14e0, type: 2}
-  - {fileID: 11400000, guid: a1c1bb93fb25c6344bfbcaeb5b44cf60, type: 2}
   idCodePath: Assets/Project/Scripts/Core/_Protocol/_Enum
   dataScriptPath: Assets/Project/Scripts/MainGame/Data
   dataObjectPath: Assets/Project/Data/SpreadSheet

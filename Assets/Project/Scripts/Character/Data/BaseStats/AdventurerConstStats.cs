@@ -1,4 +1,5 @@
 using MainGame;
+using UnityEngine;
 
 namespace Character.Data.BaseStats
 {
@@ -9,11 +10,11 @@ namespace Character.Data.BaseStats
         {
             base.SetUp();
             
-            var adventurerBehaviour = GetComponentInParent<AdventurerBehaviour>();
+            var ab = GetComponentInParent<AdventurerBehaviour>();
             
-            baseStatCode = adventurerBehaviour.CombatClassID;
+            baseStatCode = ab.ActionCode;
             var classData = MainData.GetCombatClass(baseStatCode);
-
+            
             maxHp.Value       = classData.MaxHp;
             moveSpeed.Value   = classData.MoveSpeed;
             maxResource.Value = classData.MaxResource;
@@ -22,6 +23,8 @@ namespace Character.Data.BaseStats
             hit.Value         = classData.Hit;
             evade.Value       = classData.Evade;
             armor.Value      = classData.Armor;
+            
+            Debug.Log($"Adventurer Const Stat:{ab.ActionCode} Load Complete");
         }
 #endif
     }

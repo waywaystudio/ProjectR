@@ -1,4 +1,4 @@
-using UnityEngine;
+ using UnityEngine;
 
 namespace Character.Skill.Knight
 {
@@ -34,7 +34,7 @@ namespace Character.Skill.Knight
         {
             OnActivated.Register("PlayAnimation", PlayAnimation);
             OnActivated.Register("UpdatePowerValue", UpdatePowerValue);
-            OnActivated.Register("StartProgress", () => StartProgress(OnEnded.Invoke));
+            OnActivated.Register("StartProgress", () => StartProcess(OnEnded.Invoke));
             OnActivated.Register("StartCooling", StartCooling);
 
             OnHit.Register("OnChannelingAttack", OnHoldingAttack);

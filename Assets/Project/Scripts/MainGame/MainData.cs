@@ -6,46 +6,35 @@ using System.Reflection;
 using System.Collections.Generic;
 using Core;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace MainGame
 {
     using Data;
-    using AdventurerData = Data.ContentData.AdventurerData.Adventurer;
+    using ProtocolData = Data.GlobalData.ProtocolData.Protocol;
     using CombatClassData = Data.ContentData.CombatClassData.CombatClass;
-    using SkillData = Data.ContentData.SkillData.Skill;
-    using StatusEffectData = Data.ContentData.StatusEffectData.StatusEffect;
-    using ProjectileData = Data.ContentData.ProjectileData.Projectile;
-    using RaidData = Data.ContentData.RaidData.Raid;
+    using SkillData = Data.CombatData.SkillData.Skill;
     using BossData = Data.ContentData.BossData.Boss;
-    using ProjectorData = Data.ContentData.ProjectorData.Projector;
-    using EquipmentData = Data.ContentData.EquipmentData.Equipment;
 
     public class MainData : Core.Singleton.MonoSingleton<MainData>
     {
-        [SerializeField] private List<DataObject> dataList = new();
-        private readonly Dictionary<int, DataObject> dataTable = new();
+        [SerializeField] private List<DataObject> sheetDataList = new();
+        private readonly Dictionary<DataIndex, DataObject> sheetDataTable = new();
 
-        public static List<DataObject> DataList => Instance.dataList;
-        public static Dictionary<int, DataObject> DataTable
+        public static List<DataObject> SheetDataList => Instance.sheetDataList;
+        public static Dictionary<DataIndex, DataObject> SheetDataTable
         {
             get
             {
-                if (Instance.dataTable.IsNullOrEmpty()) 
-                    Instance.dataList.ForEach(x => Instance.dataTable.TryAdd(x.Index, x));
-                return Instance.dataTable;
+                if (Instance.sheetDataTable.IsNullOrEmpty()) 
+                    Instance.sheetDataList.ForEach(x => Instance.sheetDataTable.TryAdd(x.Index, x));
+                return Instance.sheetDataTable;
             }
         }
-
-        public static AdventurerData GetAdventurer(DataIndex dataIndex) => DataTable[11].Get<AdventurerData>(dataIndex);
-        public static CombatClassData GetCombatClass(DataIndex dataIndex) => DataTable[12].Get<CombatClassData>(dataIndex);
-        public static SkillData GetSkill(DataIndex dataIndex) => DataTable[13].Get<SkillData>(dataIndex);
-        public static StatusEffectData GetStatusEffect(DataIndex dataIndex) => DataTable[14].Get<StatusEffectData>(dataIndex);
-        public static ProjectileData GetProjectile(DataIndex dataIndex) => DataTable[15].Get<ProjectileData>(dataIndex);
-        public static RaidData GetRaid(DataIndex dataIndex) => DataTable[16].Get<RaidData>(dataIndex);
-        public static BossData GetBoss(DataIndex dataIndex) => DataTable[17].Get<BossData>(dataIndex);
-        public static ProjectorData GetProjector(DataIndex dataIndex) => DataTable[18].Get<ProjectorData>(dataIndex);
-        public static EquipmentData GetEquipment(DataIndex dataIndex) => DataTable[21].Get<EquipmentData>(dataIndex);
         
+        public static CombatClassData GetCombatClass(DataIndex dataIndex) => SheetDataTable[DataIndex.CombatClass].Get<CombatClassData>(dataIndex);
+        public static SkillData GetSkill(DataIndex dataIndex) => SheetDataTable[DataIndex.Skill].Get<SkillData>(dataIndex);
+        public static BossData GetBoss(DataIndex dataIndex) => SheetDataTable[DataIndex.Boss].Get<BossData>(dataIndex);
 
 #if UNITY_EDITOR
         
@@ -55,14 +44,22 @@ namespace MainGame
 
         private void SetUp()
         {
+            // UpdateDataList();
             CreateAndUpdateDataObjects();
             GenerateIDCode();
+        }
+
+        private void UpdateDataList()
+        {
+            sheetDataList.Clear();
+            
+            Finder.TryGetObjectList(out sheetDataList);
         }
 
         private void CreateAndUpdateDataObjects()
         {
             Finder.TryGetObjectList(dataScriptPath, $"t:MonoScript, Data", out List<UnityEditor.MonoScript> monoList);
-            
+      
             monoList.ForEach(x =>
             {
                 if (!x.name.EndsWith("Data")) return;
@@ -82,8 +79,10 @@ namespace MainGame
                 UnityEditor.EditorUtility.SetDirty(dataObject);
             });
             
-            Finder.TryGetObjectList(out dataList);
-            dataList.Sort((dataA, dataB) => dataA.Index.CompareTo(dataB.Index));
+            Finder.TryGetObjectList(out sheetDataList);
+
+            sheetDataList.ForEach(x => x.Index = x.name.Replace("Data", "").ToEnum<DataIndex>());
+            sheetDataList.Sort((dataA, dataB) => dataA.Index.CompareTo(dataB.Index));
             
             UnityEditor.AssetDatabase.Refresh();
         }

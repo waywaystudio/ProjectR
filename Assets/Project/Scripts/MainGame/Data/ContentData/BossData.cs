@@ -24,8 +24,6 @@ namespace MainGame.Data.ContentData
 			[SerializeField] private Single hit;
 			[SerializeField] private Single evade;
 			[SerializeField] private Single armor;
-			[SerializeField] private List<Int32> dropItemIDList;
-			[SerializeField] private List<Int32> dropItemProbabilities;
 
 			public Int32 ID => id;
 			public String Name => name;
@@ -37,8 +35,6 @@ namespace MainGame.Data.ContentData
 			public Single Hit => hit;
 			public Single Evade => evade;
 			public Single Armor => armor;
-			public List<Int32> DropItemIdList => dropItemIDList;
-			public List<Int32> DropItemProbabilities => dropItemProbabilities;
 
         }
         

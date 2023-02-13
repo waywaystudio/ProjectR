@@ -8,7 +8,7 @@ namespace MainGame.Data
 {
     public abstract class DataObject : ScriptableObject
     {
-        public int Index;
+        public DataIndex Index;
         public abstract List<IIdentifier> KeyList { get; }
         public abstract T Get<T>(DataIndex dataIndex) where T : class, IIdentifier;
         public abstract T Get<T>(int idCode) where T : class, IIdentifier;
@@ -45,10 +45,13 @@ namespace MainGame.Data
 
         public override T0 Get<T0>(DataIndex dataIndex)
         {
-            return Enum.IsDefined(typeof(DataIndex), dataIndex) 
-                ? Get<T0>(Convert.ToInt32(dataIndex))
-                : null;
+            if (Table.TryGetValue((int)dataIndex, out var value))
+                return value as T0;
+
+            Debug.LogError($"Can't Find {dataIndex} from {name} object.");
+            return null;
         }
+        
         public override T0 Get<T0>(int idCode)
         {
             if (Table.TryGetValue(idCode, out var value)) 
@@ -56,13 +59,6 @@ namespace MainGame.Data
             
             Debug.LogError($"Can't Find {idCode} from {name} object.");
             return null;
-        }
-
-        private void Reset()
-        {
-            Index = list.IsNullOrEmpty()
-                ? 0
-                : IDCodeUtility.GetCategoryIndexByID(list[0].ID);
         }
     }
 }

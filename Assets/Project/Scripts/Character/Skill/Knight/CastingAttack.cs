@@ -29,7 +29,7 @@ namespace Character.Skill.Knight
         {
             OnActivated.Register("PlayCastingAnimation", PlayAnimation);
             OnActivated.Register("UpdatePowerValue", UpdatePowerValue);
-            OnActivated.Register("StartProgress", () => StartProgress(OnCompleted.Invoke));
+            OnActivated.Register("StartProgress", () => StartProcess(OnCompleted.Invoke));
             OnActivated.Register("StartCooling", StartCooling);
             OnCompleted.Register("CastingAttack", OnCastingAttack);
             OnCompleted.Register("PlayEndCastingAnimation", PlayEndCastingAnimation);

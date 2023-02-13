@@ -1,0 +1,60 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b02f8f4bab149c941a387de460372186, type: 3}
+  m_Name: ProtocolData
+  m_EditorClassIdentifier: 
+  Index: 10
+  list:
+  - id: 10
+    index: 1
+    name: Protocol
+    description: Category ID Information
+  - id: 11
+    index: 2
+    name: Adventurer
+    description: "\uBAA8\uD5D8\uAC00"
+  - id: 12
+    index: 3
+    name: CombatClass
+    description: "\uC9C1\uC5C5"
+  - id: 13
+    index: 4
+    name: Skill
+    description: "\uAE30\uC220"
+  - id: 14
+    index: 5
+    name: StatusEffect
+    description: "\uC0C1\uD0DC\uC774\uC0C1"
+  - id: 15
+    index: 6
+    name: Projectile
+    description: "\uD22C\uC0AC\uCCB4"
+  - id: 16
+    index: 7
+    name: Raid
+    description: "\uB808\uC774\uB4DC & \uB358\uC804"
+  - id: 17
+    index: 8
+    name: Boss
+    description: "\uBCF4\uC2A4"
+  - id: 18
+    index: 9
+    name: Projector
+    description: "\uD22C\uC601\uCCB4"
+  - id: 19
+    index: 10
+    name: Damage
+    description: "\uB370\uBBF8\uC9C0"
+  - id: 20
+    index: 11
+    name: Heal
+    description: "\uD790"

@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using Character.Graphic;
+using Character.Search;
 using Character.TargetingSystem;
 using Core;
 using Sirenix.OdinInspector;
@@ -14,10 +15,13 @@ namespace Character.Skill
         /* Common Attribution */
         [SerializeField] protected DataIndex actionCode;
         [SerializeField] protected AnimationModel model;
+        [SerializeField] protected Searching searching;
         [SerializeField] protected Targeting targeting;
+        [SerializeField] protected int priority;
         [SerializeField] private float range;
         [SerializeField] private Sprite icon;
         [SerializeField] private string description;
+        [SerializeField] private LayerMask targetLayer;
 
         /* Condition Entity */
         [SerializeField] private float coolTime;
@@ -41,7 +45,7 @@ namespace Character.Skill
         private Coroutine coolTimeRoutine;
         
         /* Sequence */
-        [ShowInInspector] public BoolTable ConditionTable { get; } = new();
+        [ShowInInspector] public ConditionTable ConditionTable { get; } = new();
         [ShowInInspector] public ActionTable OnActivated { get; } = new();
         [ShowInInspector] public ActionTable OnInterrupted { get; } = new();
         [ShowInInspector] public ActionTable OnHit { get; } = new();
@@ -49,12 +53,15 @@ namespace Character.Skill
         [ShowInInspector] public ActionTable OnEnded { get; } = new();
 
         public bool OnProgress { get; private set; }
+        public bool IsEnded { get; private set; }
+        public int Priority => priority;
+        public float Range => range;
         public FloatEvent CastingProgress { get; } = new(0, float.MaxValue);
-        public DataIndex ActionCode => actionCode;
-        public ICombatProvider Provider { get; set; }
         public FloatEvent RemainTime { get; } = new(0f, float.MaxValue);
         public StatTable StatTable { get; } = new();
-        public bool IsEnded { get; private set; }
+        public DataIndex ActionCode => actionCode;
+        public ICombatProvider Provider { get; set; }
+        public ICombatTaker MainTarget => searching.GetMainTarget(targetLayer, Provider.Object.transform.position);
 
 
         public void Active()
@@ -74,7 +81,7 @@ namespace Character.Skill
         protected void ConsumeResource() => Provider.DynamicStatEntry.Resource.Value -= cost;
         protected void StartCooling() => coolTimeRoutine = StartCoroutine(CoolingRoutine());
         protected void StopCooling() => (coolTimeRoutine != null).OnTrue(() => StopCoroutine(coolTimeRoutine));
-        protected void StartProgress(Action callback = null)
+        protected void StartProcess(Action callback = null)
         {
             OnProgress      = true;
             progressRoutine = StartCoroutine(Processing(callback));
@@ -85,7 +92,7 @@ namespace Character.Skill
             if (!OnProgress) return;
             if (progressRoutine != null) StopCoroutine(progressRoutine);
             
-            ResetProgress();
+            ResetProcess();
         }
         
         protected void UpdatePowerValue()
@@ -136,10 +143,10 @@ namespace Character.Skill
             }
 
             callback?.Invoke();
-            ResetProgress();
+            ResetProcess();
         }
 
-        private void ResetProgress()
+        private void ResetProcess()
         {
             OnProgress            = false;
             progressRoutine       = null;
@@ -165,16 +172,17 @@ namespace Character.Skill
         public void SetUp()
         {
             var skillData = MainGame.MainData.GetSkill(actionCode);
-
-            range            = skillData.Range;
+            
+            priority         = skillData.BasePriority;
+            // range            = skillData.;
             description      = skillData.Description;
-            coolTime         = skillData.BaseCoolTime;
+            coolTime         = skillData.CoolTime;
             cost             = skillData.Cost;
             animationKey     = skillData.AnimationKey;
             progressTime     = skillData.ProcessTime;
-            powerValue.Value = skillData.BaseValue;
-            statusEffectID   = (DataIndex) skillData.StatusEffectId;
-            projectileID     = (DataIndex) skillData.ProjectileId;
+            // powerValue.Value = skillData.value;
+            // statusEffectID   = (DataIndex) skillData.StatusEffectId;
+            // projectileID     = (DataIndex) skillData.ProjectileId;
         }
         // private void ShowDB();
     }

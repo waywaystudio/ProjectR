@@ -7,7 +7,7 @@ namespace Character
     {
         [SerializeField] private InputAction mouseClick;
         [SerializeField] private LayerMask groundLayer;
-        [SerializeField] private CharacterBehaviour cb;
+        // [SerializeField] private CharacterBehaviour cb;
 
         private Camera mainCamera;
         private Vector3 destination = Vector3.zero;
@@ -37,7 +37,7 @@ namespace Character
                 destination.x = hit.point.x;
                 destination.z = hit.point.z;
 
-                cb.Run(destination, () => Debug.Log("Movement Callback"));
+                // cb.Run(destination, () => Debug.Log("Movement Callback"));
             }
         }
     }

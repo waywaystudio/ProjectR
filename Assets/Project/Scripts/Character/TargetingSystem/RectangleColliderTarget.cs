@@ -1,18 +1,9 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-public class RectangleColliderTarget : MonoBehaviour
+namespace Character.TargetingSystem
 {
-    // Start is called before the first frame update
-    void Start()
+    public class RectangleColliderTarget : MonoBehaviour
     {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+    
     }
 }

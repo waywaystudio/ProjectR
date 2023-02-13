@@ -1,8 +1,9 @@
 using System.Collections.Generic;
+using System.Linq;
 using Core;
 using UnityEngine;
 
-namespace Character.TargetSystem
+namespace Character.Search
 {
     [RequireComponent(typeof(SphereCollider))]
     public class Searching : MonoBehaviour, ISearching, IInspectorSetUp
@@ -11,7 +12,6 @@ namespace Character.TargetSystem
         private const int MaxBufferCount = 32;
         
         [SerializeField] private SphereCollider searchingCollider;
-        [SerializeField] private SortingType sortingType;
         
         private LayerMask adventurerLayer;
         private LayerMask monsterLayer;
@@ -39,6 +39,25 @@ namespace Character.TargetSystem
             return null;
         }
 
+        
+        public ICombatTaker GetMainTarget(LayerMask targetLayer, Vector3 rootPosition, SortingType sortingType = SortingType.None)
+        {
+            if (targetLayer == LayerMask.GetMask("Adventurer") && AdventurerList.HasElement())
+            {
+                AdventurerList.SortingFilter(rootPosition, sortingType);
+                return AdventurerList.First(x => x.DynamicStatEntry.IsAlive.Value);
+            }
+
+            if (targetLayer == LayerMask.GetMask("Monster")&& MonsterList.HasElement())
+            {
+                MonsterList.SortingFilter(rootPosition, sortingType);
+                return MonsterList.First(x => x.DynamicStatEntry.IsAlive.Value);
+            }
+
+            Debug.LogWarning($"Layer must be Adventurer or Monster. Input:{LayerMask.LayerToName(targetLayer)}");
+            return null;
+        }
+        
 
         private void Awake()
         {
@@ -51,24 +70,22 @@ namespace Character.TargetSystem
 
         private void OnTriggerEnter(Collider other)
         {
-            if (IsAbleToCombatTake(other, adventurerLayer, out var adventurer))
+            if (IsAbleToCombat(other, adventurerLayer, out var adventurer))
             {
                 AdventurerList.AddUniquely(adventurer);
-                AdventurerList.SortingFilter(transform.position, sortingType);
             }
-            else if (IsAbleToCombatTake(other, monsterLayer, out var monster))
+            else if (IsAbleToCombat(other, monsterLayer, out var monster))
             {
                 MonsterList.AddUniquely(monster);
-                MonsterList.SortingFilter(transform.position, sortingType);
             }
         }
         private void OnTriggerExit(Collider other)
         {
-            if (IsAbleToCombatTake(other, adventurerLayer, out var adventurer))
+            if (IsAbleToCombat(other, adventurerLayer, out var adventurer))
             {
                 AdventurerList.Remove(adventurer);
             }
-            else if (IsAbleToCombatTake(other, monsterLayer, out var monster))
+            else if (IsAbleToCombat(other, monsterLayer, out var monster))
             {
                 MonsterList.Remove(monster);
             }
@@ -96,7 +113,7 @@ namespace Character.TargetSystem
             return null;
         }
 
-        private static bool IsAbleToCombatTake(Component other, LayerMask layer, out ICombatTaker taker)
+        private static bool IsAbleToCombat(Component other, LayerMask layer, out ICombatTaker taker)
             => other.TryGetComponent(out taker) && other.gameObject.IsInLayerMask(layer);
         
 

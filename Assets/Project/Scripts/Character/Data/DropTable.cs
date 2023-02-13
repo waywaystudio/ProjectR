@@ -87,25 +87,25 @@ namespace Character.Data
 #if UNITY_EDITOR
         public void SetUp()
         {
-            var mb = GetComponentInParent<MonsterBehaviour>();
-            var monsterID = mb.DataIndex;
-            var monsterData = MainData.GetBoss(monsterID);
-            
-            var itemCodeList = monsterData.DropItemIdList.ConvertAll(itemID => (DataIndex)itemID);
-            var itemProbabilityList = monsterData.DropItemProbabilities;
-
-            if (itemCodeList.Count != itemProbabilityList.Count)
-            {
-                Debug.LogError($"Miss Matching Item Code & Probability Count. CodeCount:{itemCodeList.Count}, ProbabilityCount:{itemProbabilityList.Count}");
-                return;
-            }
-            
-            dropTable.Clear();
-            itemCodeList.ForEach((code, index) =>
-            {
-                var itemDrop = new ItemDrop(code, itemProbabilityList[index]);
-                dropTable.Add(itemDrop);
-            });
+            // var mb = GetComponentInParent<OldMonsterBehaviour>();
+            // var monsterID = mb.DataIndex;
+            // var monsterData = MainData.GetBoss(monsterID);
+            //
+            // var itemCodeList = monsterData.DropItemIdList.ConvertAll(itemID => (DataIndex)itemID);
+            // var itemProbabilityList = monsterData.DropItemProbabilities;
+            //
+            // if (itemCodeList.Count != itemProbabilityList.Count)
+            // {
+            //     Debug.LogError($"Miss Matching Item Code & Probability Count. CodeCount:{itemCodeList.Count}, ProbabilityCount:{itemProbabilityList.Count}");
+            //     return;
+            // }
+            //
+            // dropTable.Clear();
+            // itemCodeList.ForEach((code, index) =>
+            // {
+            //     var itemDrop = new ItemDrop(code, itemProbabilityList[index]);
+            //     dropTable.Add(itemDrop);
+            // });
         }
 #endif
     }

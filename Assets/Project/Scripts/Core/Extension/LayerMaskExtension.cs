@@ -4,40 +4,27 @@ namespace Core
 {
     public static class LayerMaskExtension
     {
+        /*
+         * LayerMask layer;
+         * layer, layer.value, LayerMask.GetMask("name") 모두 return flag.
+         * LayerMask.NameToLayer("name"), LayerMask.LayerToName(index) 모두 return index;
+         * gameObject.layer -> index 값.
+         */
         public static bool IsInLayerMask(this GameObject obj, LayerMask mask)
         {
             return (mask.value & (1 << obj.layer)) > 0;
         }
         
-        public static bool Includes(this LayerMask mask, int layer)
+        /* In Project R */
+        public static bool IsMonster(this GameObject obj) => obj.layer == LayerMask.NameToLayer("Monster");
+        public static bool IsAdventurer(this GameObject obj) => obj.layer == LayerMask.NameToLayer("Adventurer");
+        public static int GetEnemyLayerIndex(this LayerMask layer)
         {
-            return (mask.value & 1 << layer) > 0;
-        }
-        
-        public static LayerMask Inverse(this LayerMask original)
-        {
-            return ~original;
-        }
-
-        public static int NameToLayerIndex(this LayerMask original, string layerName)
-        {
-            return LayerMask.NameToLayer(layerName);
-        }
-        
-        public static int NameToLayerFlag(this LayerMask original, string layerName)
-        {
-            return 1 << LayerMask.NameToLayer(layerName);
-        }
-
-        public static LayerMask IndexToLayerValue(this int index)
-        {
-            if (index > 20)
-            {
-                Debug.LogError($"value must less then 20. input:{index}");
-                return 0;
-            }
-
-            return 1 << index;
+            if (layer.value == LayerMask.NameToLayer("Adventurer")) return LayerMask.NameToLayer("Monster");
+            if (layer.value == LayerMask.NameToLayer("Monster")) return LayerMask.NameToLayer("Adventurer");
+            
+            Debug.LogWarning($"layer must be Adventurer or Monster. Input:{LayerMask.LayerToName(layer)}");
+            return 0;
         }
     }
 }

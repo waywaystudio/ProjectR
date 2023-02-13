@@ -10,7 +10,7 @@ namespace MainGame.Editor
     {
         public override void ProcessChildMemberAttributes(InspectorProperty parentProperty, MemberInfo member, List<Attribute> attributes)
         {
-            if (member.Name == "dataList")
+            if (member.Name == "sheetDataList")
             {
                 attributes.Add(new PropertySpaceAttribute(0, 20f));
                 attributes.Add(new ListDrawerSettingsAttribute
@@ -22,7 +22,7 @@ namespace MainGame.Editor
                 });
             }
             
-            if (member.Name == "DataTable")
+            if (member.Name == "SheetDataTable")
             {
                 attributes.Add(new ShowInInspectorAttribute());
             }

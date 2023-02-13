@@ -9,19 +9,19 @@ namespace Character.Data.BaseStats
         {
             base.SetUp();
 
-            var monsterBehaviour = GetComponentInParent<MonsterBehaviour>();
+            var mb = GetComponentInParent<MonsterBehaviour>();
             
-            baseStatCode = monsterBehaviour.DataIndex;
-            var bossData = MainData.GetBoss(baseStatCode);
-
-            maxHp.Value       = bossData.MaxHp;
-            moveSpeed.Value   = bossData.MoveSpeed;
-            maxResource.Value = bossData.MaxResource;
-            critical.Value    = bossData.Critical;
-            haste.Value       = bossData.Haste;
-            hit.Value         = bossData.Hit;
-            evade.Value       = bossData.Evade;
-            armor.Value       = bossData.Armor;
+            baseStatCode = mb.ActionCode;
+            // var bossData = MainData.GetBoss(baseStatCode);
+            //
+            // maxHp.Value       = bossData.MaxHp;
+            // moveSpeed.Value   = bossData.MoveSpeed;
+            // maxResource.Value = bossData.MaxResource;
+            // critical.Value    = bossData.Critical;
+            // haste.Value       = bossData.Haste;
+            // hit.Value         = bossData.Hit;
+            // evade.Value       = bossData.Evade;
+            // armor.Value       = bossData.Armor;
         }
 #endif
     }
