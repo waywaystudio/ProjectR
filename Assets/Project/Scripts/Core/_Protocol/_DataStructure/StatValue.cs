@@ -4,7 +4,7 @@ using UnityEngine;
 namespace Core
 {
     [Serializable]
-    public class StatValue : OldObservable<float>
+    public class StatValue : Observable<float>
     {
         [SerializeField] protected StatCode statCode;
         

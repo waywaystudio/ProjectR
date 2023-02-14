@@ -3,9 +3,8 @@ using UnityEngine;
 
 namespace Core
 {
-    [Serializable] public class DynamicStatValue : OldObservable<float> { public StatTable StatTable { get; set; }}
-    
-    [Serializable] public class AliveValue : OldObservable<bool> { }
+    [Serializable] public class DynamicStatValue : Observable<float> { public StatTable StatTable { get; set; }}
+    [Serializable] public class AliveValue : Observable<bool> { }
     
     [Serializable]
     public class HpValue : DynamicStatValue
@@ -15,7 +14,7 @@ namespace Core
             get => value;
             set
             {
-                if (Math.Abs(this.value - value) < 0.0001f) return;
+                if (Math.Abs(this.value - value) < 0.000001f) return;
 
                 value      = Math.Clamp(value, 0, StatTable.MaxHp);
                 this.value = value;
@@ -33,7 +32,7 @@ namespace Core
             get => value;
             set
             {
-                if (Math.Abs(this.value - value) < 0.0001f) return;
+                if (Math.Abs(this.value - value) < 0.000001f) return;
 
                 value      = Math.Clamp(value, 0, StatTable.MaxResource);
                 this.value = value;

@@ -54,18 +54,15 @@ namespace Core
         // + GameObject Object { get; }
 
         RoleType Role { get; }
-        
-        ActionTable<IStatusEffect> OnTakeStatusEffect { get; }
-        OldActionTable<DataIndex> OnDispelStatusEffect { get; }
+
         OldActionTable<CombatLog> OnCombatPassive { get; }
 
         void Dead();
         void TakeDamage(ICombatTable entity);
         void TakeSpell(ICombatTable entity);
         void TakeHeal(ICombatTable entity);
-        
         void TakeStatusEffect(IStatusEffect entity);
-        void DispelStatusEffect(DataIndex code);
+        void TakeDispel(IStatusEffect entity);
     }
 
     public interface ICombatExecutor : ICombatProvider, ICombatTaker
@@ -78,14 +75,12 @@ namespace Core
         // + GameObject Object { get; }
         
         // + ActionTable<CombatLog> OnCombatActive { get; }
-        // + ActionTable<ICombatEntity> OnTakeStatusEffect { get; }
-        // + ActionTable<IDCode> OnDispelStatusEffect { get; }
         // + ActionTable<CombatLog> OnCombatPassive { get; }
         
         // + void TakeDamage(ICombatEntity provider);
         // + void TakeSpell(ICombatEntity provider);
         // + void TakeHeal(ICombatEntity provider);
-        // + void TakeStatusEffect(ICombatEntity provider);
-        // + void DispelStatusEffect(IDCode code);
+        // + void TakeStatusEffect(IStatusEffect entity);
+        // + void TakeDispel(IStatusEffect entity);
     }
 }

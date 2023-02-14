@@ -1,5 +1,6 @@
 using System;
 using Core;
+using Sirenix.OdinInspector;
 using Spine;
 using Spine.Unity;
 using UnityEngine;
@@ -17,7 +18,8 @@ namespace Character.Graphic
         private SpineState state;
         private TrackEntry entryBuffer;
         
-        public ActionTable OnHit { get; } = new();
+        [ShowInInspector]
+        public ActionTable OnHit { get; set; } = new();
         private SpineAnimation TargetAnimation { get; set; }
         
         
@@ -119,10 +121,15 @@ namespace Character.Graphic
             {
                 case "attackHit" : OnHit.Invoke(); break;
                 case "skillHit" : OnHit.Invoke(); break;
-                case "channelingHit":
+                case "holdingHit":
                 {
-                    Debug.Log("channelingHit Event In");
                     OnHit.Invoke(); break; 
+                }
+                case "footstep" : break;
+                default:
+                {
+                    Debug.LogWarning($"Unknown animation event key in. input:{e.Data.Name}");
+                    break;
                 }
             }
         }

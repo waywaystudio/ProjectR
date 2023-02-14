@@ -17,30 +17,32 @@ namespace MainGame.Data.CombatData
 			[SerializeField] private Int32 id;
 			[SerializeField] private String name;
 			[SerializeField] private String description;
+			[SerializeField] private List<Single> completionValueList;
 			[SerializeField] private Single processTime;
 			[SerializeField] private Single coolTime;
 			[SerializeField] private Single cost;
 			[SerializeField] private Int32 basePriority;
 			[SerializeField] private String animationKey;
 			[SerializeField] private String sortingType;
-			[SerializeField] private List<String> completionList;
-			[SerializeField] private String targetSystem;
+			[SerializeField] private String targetLayer;
 			[SerializeField] private Single targetParam1;
 			[SerializeField] private Single targetParam2;
+			[SerializeField] private Int32 statusEffect;
 
 			public Int32 ID => id;
 			public String Name => name;
 			public String Description => description;
+			public List<Single> CompletionValueList => completionValueList;
 			public Single ProcessTime => processTime;
 			public Single CoolTime => coolTime;
 			public Single Cost => cost;
 			public Int32 BasePriority => basePriority;
 			public String AnimationKey => animationKey;
 			public String SortingType => sortingType;
-			public List<String> CompletionList => completionList;
-			public String TargetSystem => targetSystem;
+			public String TargetLayer => targetLayer;
 			public Single TargetParam1 => targetParam1;
 			public Single TargetParam2 => targetParam2;
+			public Int32 StatusEffect => statusEffect;
 
         }
         

@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using Character;
 using Core;
@@ -13,14 +14,14 @@ namespace Raid
     {
         [SerializeField] private List<PartyUnitFrame> partyFrameList;
         [SerializeField] private List<BossFrame> bossFrameList;
-        [SerializeField] private List<Nameplate> nameplateList;
+        // [SerializeField] private List<Nameplate> nameplateList;
         [SerializeField] private List<SkillSlotFrame> skillSlotFrameList;
 
         private AdventurerBehaviour focusAdventurer;
 
         public List<PartyUnitFrame> PartyFrameList => partyFrameList;
         public List<BossFrame> BossFrameList => bossFrameList;
-        public List<Nameplate> NameplateList => nameplateList;
+        // public List<Nameplate> NameplateList => nameplateList;
         public List<SkillSlotFrame> SkillSlotFrameList => skillSlotFrameList;
 
         public AdventurerBehaviour FocusAdventurer
@@ -31,8 +32,8 @@ namespace Raid
                 if (value == focusAdventurer) return;
                 
                 focusAdventurer = value;
-                SkillSlotFrameList.ForEach(x => x.Unregister());
-                SkillSlotFrameList.ForEach(x => x.Register(focusAdventurer));
+                skillSlotFrameList.ForEach(x => x.Unregister());
+                skillSlotFrameList.ForEach(x => x.Register(focusAdventurer));
             }
         }
 
@@ -46,13 +47,13 @@ namespace Raid
         private void Initialize(List<AdventurerBehaviour> adventurerList)
         {
             if (PartyFrameList.IsNullOrEmpty() ||
-                NameplateList.IsNullOrEmpty() ||
+                // NameplateList.IsNullOrEmpty() ||
                 adventurerList.IsNullOrEmpty()) return;
             
             adventurerList.ForEach((x, i) =>
             {
                 if (PartyFrameList.Count > i) PartyFrameList[i].Initialize(x);
-                if (NameplateList.Count > i) NameplateList[i].Initialize(x);
+                // if (NameplateList.Count > i) NameplateList[i].Initialize(x);
             });
         }
         
@@ -66,18 +67,23 @@ namespace Raid
             });
         }
 
+        private void Awake()
+        {
+            SetUp();
+        }
+
         private void Update()
         {
-            nameplateList.ForEach(x => x.UpdatePlate());
+            // nameplateList.ForEach(x => x.UpdatePlate());
         }
 
 #if UNITY_EDITOR
         public void SetUp()
         {
-            GetComponentsInChildren(PartyFrameList);
-            GetComponentsInChildren(BossFrameList);
-            GetComponentsInChildren(NameplateList);
-            GetComponentsInChildren(SkillSlotFrameList);
+            GetComponentsInChildren(true, PartyFrameList);
+            GetComponentsInChildren(true, BossFrameList);
+            // GetComponentsInChildren(NameplateList);
+            GetComponentsInChildren(true, SkillSlotFrameList);
         }
 #endif
     }

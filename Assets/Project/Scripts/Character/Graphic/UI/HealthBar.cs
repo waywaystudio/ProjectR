@@ -10,25 +10,23 @@ namespace Character.Graphic.UI
         [SerializeField] private Image fillImage;
         [SerializeField] private float lerpDuration = 0.2f;
 
-        private int instanceID;
         private ICombatTaker taker;
 
         private void Awake()
         {
             taker = GetComponentInParent<ICombatTaker>();
-            instanceID = GetInstanceID();
         }
 
         private void Start()
         {
-            taker.DynamicStatEntry.Hp.Register(instanceID, FillHealth);
+            taker.DynamicStatEntry.Hp.Register("FillHealth", FillHealth);
 
             FillHealth(taker.DynamicStatEntry.Hp.Value);
         }
 
         private void OnDisable()
         {
-            taker.DynamicStatEntry.Hp.Unregister(instanceID);
+            taker.DynamicStatEntry.Hp.Unregister("FillHealth");
         }
 
         private void FillHealth(float value)

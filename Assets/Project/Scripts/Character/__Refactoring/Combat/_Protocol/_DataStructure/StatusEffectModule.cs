@@ -13,7 +13,7 @@
 //         [SerializeField] private int maxPool = 2;
 //         
 //         private ICombatTaker taker;
-//         private IObjectPool<StatusEffectObject> pool;
+//         private IObjectPool<StatusEffectObject> pool.
 //         
 //
 //         public void Effectuate(ICombatTaker taker)
@@ -24,36 +24,36 @@
 //         }
 //         
 //         
-//         protected StatusEffectObject CreateStatusEffect()
-//         {
-//             var statusEffect = Instantiate(statusEffectPrefab).GetComponent<StatusEffectObject>();
-//             
-//             statusEffect.SetPool(pool);
-//
-//             return statusEffect;
-//         }
-//
-//         protected void OnStatusEffectGet(StatusEffectObject statusEffect)
-//         {
-//             statusEffect.gameObject.SetActive(true);
-//             statusEffect.Initialize(CombatObject.Provider, taker);
-//         }
-//
-//         protected static void OnStatusEffectRelease(StatusEffectObject projectile)
-//         {
-//             projectile.gameObject.SetActive(false);
-//         }
-//
-//         protected static void OnStatusEffectDestroy(StatusEffectObject projectile)
-//         {
-//             Destroy(projectile.gameObject);
-//         }
+         // protected StatusEffectObject CreateStatusEffect()
+         // {
+         //     var statusEffect = Instantiate(statusEffectPrefab).GetComponent<StatusEffectObject>();
+         //     
+         //     statusEffect.SetPool(pool);
+         //
+         //     return statusEffect;
+         // }
+         //
+         // protected void OnStatusEffectGet(StatusEffectObject statusEffect)
+         // {
+         //     statusEffect.gameObject.SetActive(true);
+         //     statusEffect.Initialize(CombatObject.Provider, taker);
+         // }
+         //
+         // protected static void OnStatusEffectRelease(StatusEffectObject projectile)
+         // {
+         //     projectile.gameObject.SetActive(false);
+         // }
+         //
+         // protected static void OnStatusEffectDestroy(StatusEffectObject projectile)
+         // {
+         //     Destroy(projectile.gameObject);
+         // }
 //
 //         protected override void Awake()
 //         {
 //             base.Awake();
 //
-//             pool = new ObjectPool<StatusEffectObject>(
+//             pool = new ObjectPool<StatusEffectObject>
 //                 CreateStatusEffect,
 //                 OnStatusEffectGet,
 //                 OnStatusEffectRelease,

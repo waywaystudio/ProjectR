@@ -1,4 +1,3 @@
-using System;
 using Character;
 using Core;
 using DG.Tweening;
@@ -14,7 +13,6 @@ namespace Raid.UI.MonsterFrames
         [SerializeField] private TextMeshProUGUI healthText;
         [SerializeField] private TextMeshProUGUI bossNameText;
 
-        private int instanceID;
         private MonsterBehaviour mb;
 
         public void Initialize(MonsterBehaviour mb)
@@ -22,7 +20,7 @@ namespace Raid.UI.MonsterFrames
             this.mb           = mb;
             bossNameText.text = mb.Name;
             
-            mb.DynamicStatEntry.Hp.Register(instanceID, FillHealthBar);
+            mb.DynamicStatEntry.Hp.Register("FillHealthBar", FillHealthBar);
 
             FillHealthBar(mb.DynamicStatEntry.Hp.Value);
         }
@@ -36,16 +34,11 @@ namespace Raid.UI.MonsterFrames
             healthText.text = hp.ToString("N0");
         }
 
-        private void Awake()
-        {
-            instanceID = GetInstanceID();
-        }
-        
         private void OnDisable()
         {
             if (mb.IsNullOrEmpty()) return;
             
-            mb.DynamicStatEntry.Hp.Unregister(instanceID);
+            mb.DynamicStatEntry.Hp.Unregister("FillHealthBar");
         }
     }
 }

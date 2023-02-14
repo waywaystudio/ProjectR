@@ -1,11 +1,11 @@
 using System.Linq;
-using Raid.UI;
+using Core;
 using Sirenix.OdinInspector;
 using Unity.Linq;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace Scene.Raid.UI
+namespace Raid.UI
 {
     public class PartyUnitFrameRole : MonoBehaviour
     {
@@ -14,17 +14,17 @@ namespace Scene.Raid.UI
         [SerializeField] private Image dps;
         [SerializeField] private Image heal;
 
-        private int instanceID;
-        
-        private void SetRoleIcon(string role)
+        private void SetRoleIcon(RoleType role)
         {
             switch (role)
             {
-                case "Tank" : tank.enabled = true;
+                case RoleType.Tank : tank.enabled = true;
                     return;
-                case "Melee" or "Range" : dps.enabled = true;
+                case RoleType.Melee : dps.enabled = true;
                     return;
-                case "Healer" : heal.enabled = true;
+                case RoleType.Range : dps.enabled = true;
+                    return;
+                case RoleType.Healer : heal.enabled = true;
                     return;
                 default: Debug.LogError($"role is not exist. input : {role}");
                     return;
@@ -33,11 +33,10 @@ namespace Scene.Raid.UI
 
         private void Awake()
         {
-            instanceID = GetInstanceID();
             unitFrame ??= GetComponentInParent<PartyUnitFrame>();
             
-            // unitFrame.OnInitialize.Register(instanceID, 
-            //     () => SetRoleIcon(unitFrame.AdventurerBehaviour.Role));
+            unitFrame.OnInitialize.Register("SetRoleIcon", 
+                () => SetRoleIcon(unitFrame.AdventurerBehaviour.Role));
             
             if (tank.enabled) tank.enabled = false;
             if (dps.enabled) dps.enabled = false;
@@ -46,7 +45,7 @@ namespace Scene.Raid.UI
 
         private void OnDestroy()
         {
-            unitFrame.OnInitialize.Unregister(instanceID);
+            unitFrame.OnInitialize.Unregister("SetRoleIcon");
         }
 
 #if UNITY_EDITOR

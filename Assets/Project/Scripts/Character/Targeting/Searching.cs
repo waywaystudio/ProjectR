@@ -3,7 +3,7 @@ using System.Linq;
 using Core;
 using UnityEngine;
 
-namespace Character.Search
+namespace Character.Targeting
 {
     [RequireComponent(typeof(SphereCollider))]
     public class Searching : MonoBehaviour, ISearching, IInspectorSetUp

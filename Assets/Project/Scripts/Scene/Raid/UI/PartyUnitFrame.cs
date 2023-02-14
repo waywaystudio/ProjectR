@@ -15,12 +15,10 @@ namespace Raid.UI
         [SerializeField] private Image resourceBar;
         [SerializeField] private TextMeshProUGUI resourceText;
         [SerializeField] private TextMeshProUGUI nameText;
-        
-        private int instanceID;
-        // private RaidUIDirector uiDirector;
+
         private bool isInitialized;
 
-        public OldActionTable OnInitialize { get; } = new();
+        public ActionTable OnInitialize { get; } = new();
         public AdventurerBehaviour AdventurerBehaviour { get; private set; }
 
         public void Initialize(AdventurerBehaviour ab)
@@ -32,14 +30,16 @@ namespace Raid.UI
             nameText.text = ab.Name;
             // Set Avatar
             
-            ab.DynamicStatEntry.Hp.Register(instanceID, FillHealthBar);
-            ab.DynamicStatEntry.Resource.Register(instanceID, FillResourceBar);
+            ab.DynamicStatEntry.Hp.Register("FillPartyFrameHealthBar", FillHealthBar);
+            ab.DynamicStatEntry.Resource.Register("FillPartyFrameResourceBar", FillResourceBar);
 
             FillHealthBar(ab.DynamicStatEntry.Hp.Value);
             FillResourceBar(ab.DynamicStatEntry.Resource.Value);
             
             OnInitialize.Invoke();
             isInitialized = true;
+            
+            if (!gameObject.activeSelf) gameObject.SetActive(true);
         }
 
 
@@ -59,19 +59,12 @@ namespace Raid.UI
             resourceText.text = resource.ToString("N0");
         }
 
-        private void Awake()
-        {
-            instanceID = GetInstanceID();
-            // uiDirector = GetComponentInParent<RaidUIDirector>();
-            // uiDirector.PartyFrameList.Add(this);
-        }
-
         private void OnDisable()
         {
             if (isInitialized)
             {
-                AdventurerBehaviour.DynamicStatEntry.Hp.Unregister(instanceID);
-                AdventurerBehaviour.DynamicStatEntry.Resource.Unregister(instanceID);
+                AdventurerBehaviour.DynamicStatEntry.Hp.Unregister("FillPartyFrameHealthBar");
+                AdventurerBehaviour.DynamicStatEntry.Resource.Unregister("FillPartyFrameResourceBar");
             }
         }
 

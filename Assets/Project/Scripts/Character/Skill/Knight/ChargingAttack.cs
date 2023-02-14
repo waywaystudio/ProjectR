@@ -1,9 +1,21 @@
+using Core;
 using UnityEngine;
 
 namespace Character.Skill.Knight
 {
-    public class ChargingAttack : SkillComponent
+    public class ChargingAttack : SkillComponent, ICombatTable
     {
+        [SerializeField] private PowerValue powerValue;
+        
+        public StatTable StatTable { get; } = new();
+
+        protected override void UpdateCompletion()
+        {
+            StatTable.Clear();
+            StatTable.Register(ActionCode, powerValue);
+            StatTable.UnionWith(Provider.StatTable);
+        }
+
         protected override void PlayAnimation()
         {
             model.PlayLoop(animationKey);
@@ -11,7 +23,7 @@ namespace Character.Skill.Knight
         
         private void OnChargingAttack()
         {
-            if (!targeting.TryGetTargetList(transform.position, out var takerList)) return;
+            if (!colliding.TryGetTakersInSphere(transform.position, range, angle, targetLayer, out var takerList)) return;
             
             takerList.ForEach(taker =>
             {
@@ -28,7 +40,7 @@ namespace Character.Skill.Knight
         protected void OnEnable()
         {
             OnActivated.Register("PlayAnimation", PlayAnimation);
-            OnActivated.Register("UpdatePowerValue", UpdatePowerValue);
+            OnActivated.Register("UpdatePowerValue", UpdateCompletion);
             OnActivated.Register("StartProgress", () => StartProcess(OnCompleted.Invoke));
             OnActivated.Register("StartCooling", StartCooling);
             
@@ -39,6 +51,16 @@ namespace Character.Skill.Knight
             OnEnded.Register("Idle", model.Idle);
             
             OnInterrupted.Register("Log", () => Debug.Log("Interrupted!"));
+        }
+
+        
+        public override void SetUp()
+        {
+            base.SetUp();
+            
+            var skillData = MainGame.MainData.GetSkill(actionCode);
+
+            powerValue.Value = skillData.CompletionValueList[0];
         }
     }
 }

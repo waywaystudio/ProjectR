@@ -36,6 +36,10 @@ public enum DataIndex
 	ChargingAttack = 13000003,
 	HoldingAttack = 13000004,
 
+	/* StatusEffectData */
+	ArmorCrach = 14000001,
+	Bleed = 14000002,
+
 	/* BossData */
 	DevourerofSouls = 17000001,
 	Moragg = 17000002,

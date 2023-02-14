@@ -13,8 +13,6 @@ namespace Raid.UI.Nameplates
         [SerializeField] private Image healthBar;
         [SerializeField] private Image castingBar;
 
-        private int instanceID;
-        
         [ShowInInspector]
         private AdventurerBehaviour ab;
         private Transform abTransform;
@@ -25,7 +23,7 @@ namespace Raid.UI.Nameplates
             this.ab     = ab;
             abTransform = ab.transform;
             
-            ab.DynamicStatEntry.Hp.Register(instanceID, FillHealthBar);
+            ab.DynamicStatEntry.Hp.Register("FillHealthBar", FillHealthBar);
             FillHealthBar(ab.DynamicStatEntry.Hp.Value);
         }
 
@@ -65,7 +63,6 @@ namespace Raid.UI.Nameplates
 
         private void Awake()
         {
-            instanceID = GetInstanceID();
             mainCamera = Camera.main;
         }
 
@@ -73,7 +70,7 @@ namespace Raid.UI.Nameplates
         {
             if (!ab.IsNullOrEmpty())
             {
-                ab.DynamicStatEntry.Hp.Unregister(instanceID);
+                ab.DynamicStatEntry.Hp.Unregister("FillHealthBar");
             }
         }
     }

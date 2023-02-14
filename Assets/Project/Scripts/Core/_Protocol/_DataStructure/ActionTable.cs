@@ -11,15 +11,7 @@ namespace Core
 
         public void Unregister(string key) => this.TryRemove(key);
 
-        protected void TryRegister(string key, T value)
-        {
-            if (!TryAdd(key, value)) ShowWarning(key);
-        }
-        
-        protected static void ShowWarning(string key)
-        {
-            Debug.LogWarning($"Key is already Exist. key:{key}");
-        }
+        protected void TryRegister(string key, T value) => TryAdd(key, value);
     }
 
     public class ActionTable : ActionTableCore<Action>

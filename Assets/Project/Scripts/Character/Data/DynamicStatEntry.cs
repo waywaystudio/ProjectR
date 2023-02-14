@@ -24,16 +24,5 @@ namespace Character.Data
             Resource.Value = statTable.MaxResource;
             Shield.Value   = 0;
         }
-
-        public void Register(IStatusEffect statusEffect)
-        {
-            var targetTable = statusEffect.IsBuff
-                ? BuffTable
-                : DeBuffTable;
-            
-            targetTable.Register(statusEffect);
-
-            statusEffect.TargetTable = targetTable;
-        }
     }
 }

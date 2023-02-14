@@ -17,56 +17,60 @@ MonoBehaviour:
   - id: 13000001
     name: GeneralAttack
     description: Starts combat by attacking a target with a melee weapon.
+    completionValueList:
+    - 10
     processTime: 0
     coolTime: 0
     cost: 0
     basePriority: 1
     animationKey: attack
     sortingType: None
-    completionList:
-    - damage
-    targetSystem: sphere
+    targetLayer: enemy
     targetParam1: 5
     targetParam2: 90
+    statusEffect: 14000001
   - id: 13000002
     name: CastingAttack
     description: Starts combat by attacking a target with a melee weapon.
+    completionValueList:
+    - 20
     processTime: 3
     coolTime: 5
     cost: 0
     basePriority: 2
     animationKey: casting
     sortingType: None
-    completionList:
-    - damage
-    targetSystem: sphere
+    targetLayer: enemy
     targetParam1: 10
     targetParam2: 45
+    statusEffect: 14000002
   - id: 13000003
     name: ChargingAttack
     description: Starts combat by attacking a target with a melee weapon.
+    completionValueList:
+    - 30
     processTime: 3
     coolTime: 6
     cost: 0
     basePriority: 3
-    animationKey: charging
+    animationKey: casting
     sortingType: None
-    completionList:
-    - damage
-    targetSystem: sphere
+    targetLayer: enemy
     targetParam1: 15
     targetParam2: 90
+    statusEffect: 0
   - id: 13000004
     name: HoldingAttack
     description: Starts combat by attacking a target with a melee weapon.
+    completionValueList:
+    - 5
     processTime: 2
     coolTime: 8
     cost: 0
     basePriority: 4
     animationKey: holding
     sortingType: None
-    completionList:
-    - damage
-    targetSystem: sphere
+    targetLayer: enemy
     targetParam1: 15
     targetParam2: 360
+    statusEffect: 0

@@ -1,5 +1,7 @@
+using System;
 using Core;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 namespace Character
 {
@@ -156,6 +158,28 @@ namespace Character
             
             entity.Provider.OnCombatActive?.Invoke(log);
             taker.OnCombatPassive?.Invoke(log);
+        }
+
+        public static void TakeStatusEffect(IStatusEffect statusEffect, ICombatTaker taker)
+        {
+            if (!taker.DynamicStatEntry.IsAlive.Value) return;
+            
+            statusEffect.Active(taker);
+        }
+
+        public static void TakeDispel(IStatusEffect statusEffect, ICombatTaker taker)
+        {
+            if (!taker.DynamicStatEntry.IsAlive.Value) return;
+
+            var targetEffectTable = statusEffect.StatusEffectType switch
+            {
+                StatusEffectType.Buff => taker.DynamicStatEntry.BuffTable,
+                StatusEffectType.DeBuff => taker.DynamicStatEntry.DeBuffTable,
+                StatusEffectType.None => throw new ArgumentOutOfRangeException(),
+                _ => throw new ArgumentOutOfRangeException()
+            };
+            
+            targetEffectTable.Unregister(statusEffect);
         }
     }
 }

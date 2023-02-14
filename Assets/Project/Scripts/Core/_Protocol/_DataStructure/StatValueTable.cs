@@ -1,6 +1,6 @@
 using System;
 using System.Collections.Generic;
-// ReSharper disable once ForeachCanBeConvertedToQueryUsingAnotherGetEnumerator
+
 
 namespace Core
 {
@@ -18,7 +18,7 @@ namespace Core
                 this[key] = value;
             }
             
-            value.RegisterUniquely(ReCalculation);
+            value.Register("ReCalculation", ReCalculation);
             ReCalculation();
         }
 
@@ -29,13 +29,13 @@ namespace Core
             {
                 if (Abs(value.Value) > Abs(this[key].Value))
                 {
-                    this[key].Unregister((int)key);
+                    this[key].Unregister(key.ToString());
                     this[key] = value;
                 }
                 else return;
             }
             
-            value.RegisterUniquely(ReCalculation);
+            value.Register("ReCalculation", ReCalculation);
             ReCalculation();
         }
         

@@ -20,9 +20,7 @@ namespace Character.Skill
         
         public ConditionTable Conditions { get; } = new();
         public Vector3 RootPosition => rootTransform.position;
-        private SkillComponent Current { get; set; }
-        private Dictionary<DataIndex, SkillComponent> SkillTable { get; } = new();
-        private bool IsSkillEnded
+        public bool IsSkillEnded
         {
             get
             {
@@ -32,6 +30,9 @@ namespace Character.Skill
                 return false;
             }
         }
+        
+        private SkillComponent Current { get; set; }
+        private Dictionary<DataIndex, SkillComponent> SkillTable { get; } = new();
 
         public void Run(Vector3 destination)
         {

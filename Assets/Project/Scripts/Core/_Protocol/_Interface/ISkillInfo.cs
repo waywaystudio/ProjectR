@@ -7,7 +7,7 @@ namespace Core
     public interface ISkillInfo : IActionSender
     {
         // + ICombatProvider Provider { get; }
-        // + IDCode ActionCode { get; }
+        // + DataIndex ActionCode { get; }
 
         Sprite Icon { get; }
 
@@ -22,10 +22,10 @@ namespace Core
         OldObservable<float> RemainTime { get; }
     }
 
-    public interface IStatusEffect : IActionSender
+    public interface IOldStatusEffect : IActionSender
     {
         // + ICombatProvider Provider { get; }
-        // + IDCode ActionCode { get; }
+        // + DataIndex ActionCode { get; }
 
         Sprite Icon { get; }
         bool IsBuff { get; }

@@ -14,7 +14,7 @@ namespace Core
 
         public void Unregister(TKey key) => this.TryRemove(key);
 
-        /// <returns>1 == True, 0 == Same, -1 == False</returns>
+        /// <returns>1 == y is larger, 0 == Same, -1 == x is lager</returns>
         public abstract int Compare(TValue x, TValue y);
     }
 }

@@ -1,27 +1,28 @@
 using System;
 using System.Collections;
 using Character.Graphic;
-using Character.Search;
-using Character.TargetingSystem;
+using Character.Targeting;
 using Core;
 using Sirenix.OdinInspector;
 using UnityEngine;
 
-
 namespace Character.Skill
 {
-    public class SkillComponent : MonoBehaviour, ICombatTable
+    public abstract class SkillComponent : MonoBehaviour, IInspectorSetUp
     {
-        /* Common Attribution */
-        [SerializeField] protected DataIndex actionCode;
+        /* Component Reference */
         [SerializeField] protected AnimationModel model;
         [SerializeField] protected Searching searching;
-        [SerializeField] protected Targeting targeting;
+        [SerializeField] protected Colliding colliding;
+        
+        /* Common Attribution */
+        [SerializeField] protected DataIndex actionCode;
         [SerializeField] protected int priority;
-        [SerializeField] private float range;
+        [SerializeField] protected float range;
+        [SerializeField] protected float angle;
+        [SerializeField] protected LayerMask targetLayer;
         [SerializeField] private Sprite icon;
         [SerializeField] private string description;
-        [SerializeField] private LayerMask targetLayer;
 
         /* Condition Entity */
         [SerializeField] private float coolTime;
@@ -33,17 +34,12 @@ namespace Character.Skill
         /* Progress Entity */
         [SerializeField] protected ProcessType processType;
         [SerializeField] protected float progressTime;
-        
-        /* Completion Entity */
-        [SerializeField] protected PowerValue powerValue;
-        [SerializeField] protected DataIndex statusEffectID;
-        [SerializeField] protected DataIndex projectileID;
-        
+
         private float progressTick;
         private float coolDownTick;
         private Coroutine progressRoutine;
         private Coroutine coolTimeRoutine;
-        
+
         /* Sequence */
         [ShowInInspector] public ConditionTable ConditionTable { get; } = new();
         [ShowInInspector] public ActionTable OnActivated { get; } = new();
@@ -53,12 +49,11 @@ namespace Character.Skill
         [ShowInInspector] public ActionTable OnEnded { get; } = new();
 
         public bool OnProgress { get; private set; }
-        public bool IsEnded { get; private set; }
+        public bool IsEnded { get; private set; } = true;
         public int Priority => priority;
         public float Range => range;
         public FloatEvent CastingProgress { get; } = new(0, float.MaxValue);
         public FloatEvent RemainTime { get; } = new(0f, float.MaxValue);
-        public StatTable StatTable { get; } = new();
         public DataIndex ActionCode => actionCode;
         public ICombatProvider Provider { get; set; }
         public ICombatTaker MainTarget => searching.GetMainTarget(targetLayer, Provider.Object.transform.position);
@@ -94,14 +89,8 @@ namespace Character.Skill
             
             ResetProcess();
         }
-        
-        protected void UpdatePowerValue()
-        {
-            StatTable.Clear();
-            StatTable.Register(ActionCode, powerValue);
-            StatTable.UnionWith(Provider.StatTable);
-        }
-        
+
+        protected abstract void UpdateCompletion();
         protected virtual void PlayAnimation()
         {
             model.PlayOnce(animationKey, progressTime);
@@ -159,9 +148,7 @@ namespace Character.Skill
             Provider     = GetComponentInParent<ICombatProvider>();
             coolDownTick = Time.deltaTime;
             progressTick = Time.deltaTime;
-            
-            targeting.Initialize(this);
-            
+
             ConditionTable.Register("CoolTime", IsCoolTimeReady);
             ConditionTable.Register("Cost", IsCostReady);
             OnActivated.Register("End", () => IsEnded = false);
@@ -169,20 +156,18 @@ namespace Character.Skill
         }
 
 
-        public void SetUp()
+        public virtual void SetUp()
         {
             var skillData = MainGame.MainData.GetSkill(actionCode);
             
-            priority         = skillData.BasePriority;
-            // range            = skillData.;
-            description      = skillData.Description;
-            coolTime         = skillData.CoolTime;
-            cost             = skillData.Cost;
-            animationKey     = skillData.AnimationKey;
-            progressTime     = skillData.ProcessTime;
-            // powerValue.Value = skillData.value;
-            // statusEffectID   = (DataIndex) skillData.StatusEffectId;
-            // projectileID     = (DataIndex) skillData.ProjectileId;
+            priority     = skillData.BasePriority;
+            range        = skillData.TargetParam1;
+            angle        = skillData.TargetParam2;
+            description  = skillData.Description;
+            coolTime     = skillData.CoolTime;
+            cost         = skillData.Cost;
+            animationKey = skillData.AnimationKey;
+            progressTime = skillData.ProcessTime;
         }
         // private void ShowDB();
     }

@@ -1,9 +1,19 @@
+using Character.StatusEffect;
+using Core;
 using UnityEngine;
+using UnityEngine.Pool;
 
 namespace Character.Skill.Knight
 {
-    public class GeneralAttack : SkillComponent
+    public class GeneralAttack : SkillComponent, ICombatTable
     {
+        [SerializeField] private PowerValue powerValue;
+        [SerializeField] private GameObject armorCrashPrefab;
+        [SerializeField] private int maxPool = 8;
+        
+        private IObjectPool<StatusEffectComponent> pool;
+        public StatTable StatTable { get; } = new();
+        
         protected override void TryActiveSkill()
         {
             if (!ConditionTable.IsAllTrue) return;
@@ -24,26 +34,81 @@ namespace Character.Skill.Knight
                 });
         }
 
+        protected override void UpdateCompletion()
+        {
+            StatTable.Clear();
+            StatTable.Register(ActionCode, powerValue);
+            StatTable.UnionWith(Provider.StatTable);
+        }
+        
+        private StatusEffectComponent CreateStatusEffect()
+        {
+            var statusEffect = Instantiate(armorCrashPrefab).GetComponent<StatusEffectComponent>();
+             
+            statusEffect.SetPool(pool);
+
+            return statusEffect;
+        }
+
+        private void OnStatusEffectGet(StatusEffectComponent statusEffect)
+        {
+            statusEffect.gameObject.SetActive(true);
+            statusEffect.Initialize(Provider);
+        }
+
+        private static void OnStatusEffectRelease(StatusEffectComponent statusEffect)
+        {
+            statusEffect.gameObject.SetActive(false);
+        }
+
+        private static void OnStatusEffectDestroy(StatusEffectComponent statusEffect)
+        {
+            Destroy(statusEffect.gameObject);
+        }
+
         private void OnGeneralAttack()
         {
-            if (!targeting.TryGetTargetList(transform.position, out var takerList)) return;
+            if (!colliding.TryGetTakersInSphere(transform.position, range, angle, targetLayer, out var takerList)) return;
             
             takerList.ForEach(taker =>
             {
                 taker.TakeDamage(this);
+                taker.TakeStatusEffect(pool.Get());
                 Debug.Log($"{taker.Name} Hit by {ActionCode.ToString()}");
             });
         }
         
+        protected override void Awake()
+        {
+            base.Awake();
+                
+            pool = new ObjectPool<StatusEffectComponent>(
+                CreateStatusEffect,
+                OnStatusEffectGet,
+                OnStatusEffectRelease,
+                OnStatusEffectDestroy,
+                maxSize: maxPool);
+        }
+
         protected void OnEnable()
         {
             OnActivated.Register("PlayAnimation", PlayAnimation);
-            OnActivated.Register("UpdatePowerValue", UpdatePowerValue);
+            OnActivated.Register("UpdatePowerValue", UpdateCompletion);
             
             OnHit.Register("GeneralAttack", OnGeneralAttack);
 
             OnEnded.Register("ReleaseHit", () => model.OnHit.Unregister("SkillHit"));
-            OnEnded.Register("IdleAnimation", model.Idle);
+            OnEnded.Register("Idle", model.Idle);
+        }
+
+
+        public override void SetUp()
+        {
+            base.SetUp();
+            
+            var skillData = MainGame.MainData.GetSkill(actionCode);
+
+            powerValue.Value = skillData.CompletionValueList[0];
         }
     }
 }

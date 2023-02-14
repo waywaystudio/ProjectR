@@ -5,7 +5,7 @@ using UnityGoogleSheet.Core.Type.Attribute;
 
 namespace UnityGoogleSheet.Core.Type
 {
-    [Type(Type: typeof(List<float>), TypeName: new string[] { "list<float>", "List<Float>" })]
+    [Type(Type: typeof(List<float>), TypeName: new [] { "list<float>", "List<Float>", "List<float>" })]
     public class FloatListType : IType
     {
         public object DefaultValue => null;
@@ -17,10 +17,10 @@ namespace UnityGoogleSheet.Core.Type
             var list = new System.Collections.Generic.List<float>();
             if (value == "[]") return list;
 
-            var datas = ReadUtil.GetBracketValueToArray(value);
-            if (datas != null)
+            var data = ReadUtil.GetBracketValueToArray(value);
+            if (data != null)
             {
-                list.AddRange(datas.Select(float.Parse));
+                list.AddRange(data.Select(float.Parse));
             }
             else
             { 

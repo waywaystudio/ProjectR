@@ -9,9 +9,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2402494755454563105}
-  - component: {fileID: 9037380276270637799}
+  - component: {fileID: -8862790993114922387}
   m_Layer: 0
-  m_Name: FuryBuff
+  m_Name: Bleed
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -32,7 +32,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &9037380276270637799
+--- !u!114 &-8862790993114922387
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -41,14 +41,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 8333227002716821657}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 102e0362708a75049b1d1b38653e0aa2, type: 3}
+  m_Script: {fileID: 11500000, guid: 0a027a224e152ab4fae81e6dbfbdb778, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  actionCode: 14001005
-  icon: {fileID: 21300000, guid: fb658e2438132df478dbf49706bfd6e5, type: 3}
-  isBuff: 1
-  duration: 15
-  combatValue: 0.3
-  hasteValue:
-    value: 0.3
-    statCode: 3
+  statusCode: 14000002
+  type: 2
+  icon: {fileID: 21300000, guid: db4bc3238b41d534ba4084e5a3bb833a, type: 3}
+  duration: 12
+  interval: 3
+  tickPowerValue:
+    value: 4
+    statCode: 1
