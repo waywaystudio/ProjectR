@@ -1,10 +1,9 @@
-using System;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Raid.UI.ActionBars.CharacterSkillBar
+namespace Raid.UI.ActionBars.CharacterSkills
 {
-    public class CharacterSkillActionBar : MonoBehaviour
+    public class CharacterSkillBar : MonoBehaviour
     {
         [SerializeField] private List<CharacterSkillActionSlot> slotList = new();
         

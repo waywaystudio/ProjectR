@@ -42,7 +42,7 @@ namespace Character.StatusEffect
             OnActivated.Invoke(taker);
         }
         
-        public void Dispel()
+        public void DeActive()
         {
             OnDispel.Invoke();
             End();

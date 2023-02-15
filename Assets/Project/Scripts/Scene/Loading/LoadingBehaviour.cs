@@ -24,7 +24,7 @@ namespace Loading
 
         private void Start()
         {
-            MainManager.SceneManager.LoadNextScene();
+            MainManager.Scene.LoadNextScene();
         }
 
         private void OnDisable()

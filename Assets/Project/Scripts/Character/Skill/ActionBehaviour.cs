@@ -17,7 +17,8 @@ namespace Character.Skill
         [SerializeField] private List<SkillComponent> skillList = new();
 
         private Camera mainCamera;
-        
+
+        public List<SkillComponent> SkillList => skillList;
         public ConditionTable Conditions { get; } = new();
         public Vector3 RootPosition => rootTransform.position;
         public bool IsSkillEnded
@@ -141,6 +142,7 @@ namespace Character.Skill
         public void ActiveSkill(SkillComponent skill)
         {
             if (!TryGetMousePosition(out var mousePosition)) return;
+            
             ActiveSkill(skill, mousePosition);
         }
         

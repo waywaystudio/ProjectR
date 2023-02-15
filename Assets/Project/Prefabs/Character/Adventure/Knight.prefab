@@ -619,6 +619,7 @@ MonoBehaviour:
   combatClassID: 12000001
   dynamicStatEntry: {fileID: 6714285254672120863}
   constStats: {fileID: 8281854185582011221}
+  actionBehaviour: {fileID: 4044075457161744673}
   onManualControl:
     m_PersistentCalls:
       m_Calls:
@@ -730,15 +731,71 @@ MonoBehaviour:
   m_ActionEvents:
   - m_PersistentCalls:
       m_Calls: []
-    m_ActionId: 83903cbb-7dfb-4123-993a-b2793be136e4
-    m_ActionName: Player/Move[/Keyboard/w,/Keyboard/s,/Keyboard/a,/Keyboard/d,/Keyboard/upArrow,/Keyboard/downArrow,/Keyboard/leftArrow,/Keyboard/rightArrow]
-  - m_PersistentCalls:
-      m_Calls: []
     m_ActionId: e12c27fb-6985-4994-92ba-59b4b78c69fa
     m_ActionName: Player/Interaction[/Keyboard/e]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: ed3f01f8-f9e3-4517-b9d0-6adbc55ddb3b
+    m_ActionName: Raid/Keyboard1[/Keyboard/1]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 14d55dce-4530-4c2b-80f2-0ab0a6e08031
+    m_ActionName: Raid/Keyboard2[/Keyboard/2]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: c78e6d28-70e3-4580-996f-55f8fcd9801e
+    m_ActionName: Raid/Keyboard3[/Keyboard/3]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 07a49b5c-9dcd-434e-875d-382c01b08aba
+    m_ActionName: Raid/Keyboard4[/Keyboard/4]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 2762390e-adf7-4855-bdeb-e18db7bded43
+    m_ActionName: Raid/W[/Keyboard/w]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 350f3ed7-915e-4bbb-b274-1bb43130b155
+    m_ActionName: Raid/E[/Keyboard/e]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 27fac9d3-d67d-4e63-a79a-5407ca69496b
+    m_ActionName: Raid/R[/Keyboard/r]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 76871703-bbad-4679-a791-575277a06e95
+    m_ActionName: Raid/A[/Keyboard/a]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: d574df1d-1482-4291-ab43-7e79cb926d63
+    m_ActionName: Raid/S[/Keyboard/s]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 56e63df0-f233-4e0d-b2f7-7cdfea372a8f
+    m_ActionName: Raid/D[/Keyboard/d]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 248bce65-e161-4102-ac96-b0d0b54605c1
+    m_ActionName: Raid/F[/Keyboard/f]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 853538c5-eb7a-4337-9108-ce970b702399
+    m_ActionName: Raid/LeftMouse[/Mouse/leftButton]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: ea610a97-d8d0-44d7-a312-ac158f5cb1c3
+    m_ActionName: Raid/RightMouse[/Mouse/rightButton]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: ca2ad597-d5e4-4874-89ff-95d24ceae7f9
+    m_ActionName: Raid/LeftShift[/Keyboard/leftShift]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 0740fb93-83ef-4518-bbe2-f89cffe229bd
+    m_ActionName: Raid/Space[/Keyboard/space]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
-  m_DefaultActionMap: Player
+  m_DefaultActionMap: Raid
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
 --- !u!1 &3744010700364922029

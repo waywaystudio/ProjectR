@@ -18,6 +18,8 @@ namespace Character
         [SerializeField] protected ActionBehaviour actionBehaviour;
         [SerializeField] protected UnityEvent onManualControl;
         [SerializeField] protected UnityEvent onAutoControl;
+        
+        public ActionBehaviour ActionBehaviour => actionBehaviour;
 
         private bool IsAutoMode { get; set; }
 

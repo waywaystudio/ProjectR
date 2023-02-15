@@ -54,6 +54,7 @@ namespace Character.Skill
         public float Range => range;
         public FloatEvent CastingProgress { get; } = new(0, float.MaxValue);
         public FloatEvent RemainTime { get; } = new(0f, float.MaxValue);
+        public Sprite Icon => icon;
         public DataIndex ActionCode => actionCode;
         public ICombatProvider Provider { get; set; }
         public ICombatTaker MainTarget => searching.GetMainTarget(targetLayer, Provider.Object.transform.position);

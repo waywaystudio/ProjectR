@@ -19,12 +19,12 @@ public class ObstacleEvent : MonoBehaviour
 
     public void ToTownScene()
     {
-        MainManager.SceneManager.LoadScene("Town");
+        MainManager.Scene.LoadScene("Town");
     }
 
     public void ToRaidScene()
     {
-        MainManager.SceneManager.LoadScene("Raid");
+        MainManager.Scene.LoadScene("Raid");
     }
 
     public void Unregister()

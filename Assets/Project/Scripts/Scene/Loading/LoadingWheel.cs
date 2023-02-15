@@ -24,7 +24,7 @@ namespace Loading
 
         private void Update()
         {
-            var progress = MainManager.SceneManager.Progress
+            var progress = MainManager.Scene.Progress
                            * barMaxLength;
 
             barTransform.sizeDelta = new Vector2(progress, barHeight);

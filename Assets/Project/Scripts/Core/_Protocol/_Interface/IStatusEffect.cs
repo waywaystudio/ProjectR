@@ -14,6 +14,6 @@ namespace Core
         StatusEffectTable TargetTable { get; set; }
 
         void Active(ICombatTaker taker);
-        void Dispel();
+        void DeActive();
     }
 }

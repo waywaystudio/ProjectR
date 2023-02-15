@@ -2,8 +2,6 @@ using UnityEngine;
 
 namespace Core
 {
-    public interface IReady { bool IsReady { get; } }
-    
     public interface ISkillInfo : IActionSender
     {
         // + ICombatProvider Provider { get; }

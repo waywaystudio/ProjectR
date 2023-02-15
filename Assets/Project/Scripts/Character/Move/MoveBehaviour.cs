@@ -6,7 +6,7 @@ using UnityEngine;
 
 namespace Character.Move
 {
-    public class MoveBehaviour : MonoBehaviour, IPathfinding
+    public class MoveBehaviour : MonoBehaviour
     {
         [SerializeField] private Transform rootTransform;
         [SerializeField] private Seeker agent;
