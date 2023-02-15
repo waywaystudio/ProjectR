@@ -45,13 +45,25 @@ namespace Character.Targeting
             if (targetLayer == LayerMask.GetMask("Adventurer") && AdventurerList.HasElement())
             {
                 AdventurerList.SortingFilter(rootPosition, sortingType);
-                return AdventurerList.First(x => x.DynamicStatEntry.IsAlive.Value);
+                
+                foreach (var adventurer in AdventurerList)
+                {
+                    if (adventurer.DynamicStatEntry.IsAlive.Value) return adventurer;
+                }
+                
+                return null;
             }
 
-            if (targetLayer == LayerMask.GetMask("Monster")&& MonsterList.HasElement())
+            if (targetLayer == LayerMask.GetMask("Monster") && MonsterList.HasElement())
             {
                 MonsterList.SortingFilter(rootPosition, sortingType);
-                return MonsterList.First(x => x.DynamicStatEntry.IsAlive.Value);
+
+                foreach (var monster in MonsterList)
+                {
+                    if (monster.DynamicStatEntry.IsAlive.Value) return monster;
+                }
+                
+                return null;
             }
 
             Debug.LogWarning($"Layer must be Adventurer or Monster. Input:{LayerMask.LayerToName(targetLayer)}");

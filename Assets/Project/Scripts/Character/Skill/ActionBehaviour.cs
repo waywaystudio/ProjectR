@@ -109,6 +109,8 @@ namespace Character.Skill
             {
                 ActiveSkill(skill, mousePosition);
             }
+            
+            Debug.LogWarning($"Not Exist Skill!. Input:{actionCode}");
         }
 
         public void InterruptCurrentSkill()

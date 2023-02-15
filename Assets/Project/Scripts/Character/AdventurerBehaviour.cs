@@ -1,5 +1,6 @@
 using Character.Data;
 using Character.Data.BaseStats;
+using Character.Skill;
 using Core;
 using Sirenix.OdinInspector;
 using UnityEngine;
@@ -14,6 +15,7 @@ namespace Character
         [SerializeField] protected DataIndex combatClassID;
         [SerializeField] protected DynamicStatEntry dynamicStatEntry;
         [SerializeField] protected CharacterConstStats constStats;
+        [SerializeField] protected ActionBehaviour actionBehaviour;
         [SerializeField] protected UnityEvent onManualControl;
         [SerializeField] protected UnityEvent onAutoControl;
 
@@ -29,6 +31,7 @@ namespace Character
         public ActionTable OnDead { get; } = new();
 
         public void Dead() => OnDead.Invoke();
+        public void ActiveSkill(DataIndex actionCode) => actionBehaviour.ActiveSkill(actionCode);
         public void TakeDamage(ICombatTable provider) => CombatUtility.TakeDamage(provider, this);
         public void TakeSpell(ICombatTable provider) => CombatUtility.TakeSpell(provider, this);
         public void TakeHeal(ICombatTable provider) => CombatUtility.TakeHeal(provider, this);
@@ -58,6 +61,7 @@ namespace Character
         {
             constStats       ??= GetComponentInChildren<CharacterConstStats>();
             dynamicStatEntry ??= GetComponentInChildren<DynamicStatEntry>();
+            actionBehaviour  ??= GetComponentInChildren<ActionBehaviour>();
 
             constStats.Initialize(StatTable);
             dynamicStatEntry.Initialize(StatTable);
