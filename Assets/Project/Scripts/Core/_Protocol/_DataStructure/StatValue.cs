@@ -70,26 +70,6 @@ namespace Core
             }
         }
     }
-    
-    [Serializable] public class HitValue : StatValue
-    {
-        public HitValue() : this(0f) { }
-        public HitValue(float value)
-        {
-            this.value = value;
-            statCode   = StatCode.Hit;
-        }
-        
-        public override float Value
-        {
-            get => value;
-            set
-            {
-                this.value = Mathf.Max(0f, value);
-                OnValueChanged?.Invoke(value);
-            }
-        }
-    }
 
     [Serializable] public class MaxHpValue : StatValue
     {
@@ -131,23 +111,42 @@ namespace Core
         }
     }
 
-    [Serializable] public class EvadeValue : StatValue
-    {
-        public EvadeValue() : this(0f) { }
-        public EvadeValue(float value)
-        {
-            this.value = value;
-            statCode   = StatCode.Evade;
-        }
-    }
-
-    [Serializable] public class ResistValue : StatValue
-    {
-        public ResistValue() : this(0f) { }
-        public ResistValue(float value)
-        {
-            this.value = value;
-            statCode   = StatCode.Resist;
-        }
-    }
+    // [Serializable] public class HitValue : StatValue
+    // {
+    //     public HitValue() : this(0f) { }
+    //     public HitValue(float value)
+    //     {
+    //         this.value = value;
+    //         statCode   = StatCode.Hit;
+    //     }
+    //     
+    //     public override float Value
+    //     {
+    //         get => value;
+    //         set
+    //         {
+    //             this.value = Mathf.Max(0f, value);
+    //             OnValueChanged?.Invoke(value);
+    //         }
+    //     }
+    // }
+    // [Serializable] public class EvadeValue : StatValue
+    // {
+    //     public EvadeValue() : this(0f) { }
+    //     public EvadeValue(float value)
+    //     {
+    //         this.value = value;
+    //         statCode   = StatCode.Evade;
+    //     }
+    // }
+    //
+    // [Serializable] public class ResistValue : StatValue
+    // {
+    //     public ResistValue() : this(0f) { }
+    //     public ResistValue(float value)
+    //     {
+    //         this.value = value;
+    //         statCode   = StatCode.Resist;
+    //     }
+    // }
 }

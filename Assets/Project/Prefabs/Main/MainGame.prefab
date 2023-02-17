@@ -132,9 +132,13 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 3b2cf1517fb45e64b8d1481c13d20404, type: 2}
   - {fileID: 11400000, guid: acb0dcb95a86bf84281319c5bee286fc, type: 2}
   - {fileID: 11400000, guid: d5fa5f323244127428ad66d0bf80b6ed, type: 2}
+  - {fileID: 11400000, guid: af9f4e66045c68d43862b98964e61904, type: 2}
   - {fileID: 11400000, guid: afdb984896de2944a8a2ecf72158de10, type: 2}
+  skillMaster: {fileID: 11400000, guid: 743e24344e1679a46807160ebd4ef948, type: 2}
+  statusEffectMaster: {fileID: 11400000, guid: 505adfbfe37de0349bc3edecc360a977, type: 2}
+  iconPath: Assets/Project/Graphics/Icon
   idCodePath: Assets/Project/Scripts/Core/_Protocol/_Enum
-  dataScriptPath: Assets/Project/Scripts/MainGame/Data
+  dataScriptPath: Assets/Project/Scripts/MainGame/Data/SheetData
   dataObjectPath: Assets/Project/Data/SpreadSheet
 --- !u!1 &9039682236266940767
 GameObject:

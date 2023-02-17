@@ -6,7 +6,7 @@ using UnityEngine;
 namespace Character.Targeting
 {
     [RequireComponent(typeof(SphereCollider))]
-    public class Searching : MonoBehaviour, IInspectorSetUp
+    public class Searching : MonoBehaviour, IDataSetUp
     {
         private const float SearchingRange = 100f;
         private const int MaxBufferCount = 32;

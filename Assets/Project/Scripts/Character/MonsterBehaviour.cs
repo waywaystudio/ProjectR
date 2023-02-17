@@ -22,30 +22,29 @@ namespace Character
         public StatTable StatTable { get; } = new(1);
 
         public ActionTable OnDead { get; } = new();
-        public ActionTable<IOldStatusEffect> OnTakeStatusEffect { get; } = new(2);
-        public OldActionTable<DataIndex> OnDispelStatusEffect { get; } = new(2);
-        public OldActionTable<CombatLog> OnCombatActive { get; } = new(4);
-        public OldActionTable<CombatLog> OnCombatPassive { get; } = new(4);
+        public ActionTable<CombatEntity> OnTakeCombat { get; } = new();
+        public ActionTable<CombatEntity> OnProvideCombat { get; } = new();
+        public ActionTable<StatusEffectEntity> OnTakeStatusEffect { get; } = new();
+        public ActionTable<StatusEffectEntity> OnProvideStatusEffect { get; } = new();
+       
 
         public void Dead() => OnDead.Invoke();
-        public void TakeDamage(ICombatTable provider) => CombatUtility.TakeDamage(provider, this);
-        public void TakeSpell(ICombatTable provider) => CombatUtility.TakeSpell(provider, this);
-        public void TakeHeal(ICombatTable provider) => CombatUtility.TakeHeal(provider, this);
-        public void TakeStatusEffect(IStatusEffect entity) => CombatUtility.TakeStatusEffect(entity, this);
-        public void TakeDispel(IStatusEffect entity) { throw new System.NotImplementedException(); }
+        public CombatEntity TakeDamage(ICombatTable combatTable) => CombatUtility.TakeDamage(combatTable, this);
+        public CombatEntity TakeHeal(ICombatTable combatTable) => CombatUtility.TakeHeal(combatTable, this);
+        public StatusEffectEntity TakeBuff(IStatusEffect statusEffect) => CombatUtility.TakeBuff(statusEffect, this);
+        public StatusEffectEntity TakeDeBuff(IStatusEffect statusEffect) => CombatUtility.TakeDeBuff(statusEffect, this);
 
-        public void OldTakeStatusEffect(IOldStatusEffect statusEffect) => OnTakeStatusEffect?.Invoke(statusEffect);
-        public void OldDispelStatusEffect(DataIndex code) => OnDispelStatusEffect?.Invoke(code);
-        
         protected void Awake()
         {
             constStats       ??= GetComponentInChildren<CharacterConstStats>();
             dynamicStatEntry ??= GetComponentInChildren<DynamicStatEntry>();
 
             constStats.Initialize(StatTable);
-            dynamicStatEntry.Initialize(StatTable);
+            dynamicStatEntry.Initialize();
             
             OnDead.Register("DynamicAliveValue", () => dynamicStatEntry.IsAlive.Value = false);
         }
+
+        
     }
 }

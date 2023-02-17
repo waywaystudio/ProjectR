@@ -2,85 +2,105 @@ using UnityEngine;
 
 namespace Core
 {
-    public interface IOriginalProvider
-    {
-        ICombatProvider Provider { get; }
-    }
-    
-    public interface ICombatTable : IOriginalProvider
-    {
-        // + ICombatProvider Provider { get; }
-        StatTable StatTable { get; }
-    }
-
-    public interface ICombatEntity : ICombatTable
-    {
-        // + ICombatProvider Provider { get; }
-        // + IStatEntry StatTable { get; }
-        
-        IDynamicStatEntry DynamicStatEntry { get; }
-    }
-    
-    public interface IActionSender : IOriginalProvider
-    {
-        // + ICombatProvider Provider { get; }
-
-        DataIndex ActionCode { get; }
-    }
-
     public interface IObjectName
     {
         string Name { get; }
         GameObject Object { get; }
     }
-
-    public interface ICombatProvider : ICombatEntity, IActionSender, IObjectName
+    
+    public interface IOriginalProvider
     {
-        // + ICombatProvider Provider { get; }
-        // + IDynamicStatEntry DynamicStatEntry { get; }
-        // + StatTable StatTable { get; }
-        // + IDCode ActionCode { get; }
-        // + string Name { get; }
-        // + GameObject Object { get; }
+        ICombatProvider Provider { get; }
+    }
+    
+    public interface IActionSender : IOriginalProvider, IDataIndexer
+    {
+        // # ICombatProvider Provider { get; }
+        // # DataIndex ActionCode { get; }
+    }
+
+    public interface ICombatTable : IActionSender
+    {
+        // # ICombatProvider Provider { get; }
+        // # DataIndex ActionCode { get; }
         
-        OldActionTable<CombatLog> OnCombatActive { get; }
+        StatTable StatTable { get; }
+    }
+    
+    public interface IStatusEffect : IActionSender
+    {
+        // # ICombatProvider Provider { get; }
+        // # DataIndex ActionCode { get; }
+
+        float Duration { get; }
+        FloatEvent ProcessTime { get; }
+        ActionTable OnEnded { get; }
+
+        void Active(ICombatTaker taker);
+        void OnOverride();
+    }
+
+    public interface ICombatEntity : ICombatTable
+    {
+        // # ICombatProvider Provider { get; }
+        // # DataIndex ActionCode { get; }
+        // # IStatEntry StatTable { get; }
+        
+        IDynamicStatEntry DynamicStatEntry { get; }
+    }
+
+    public interface ICombatProvider : ICombatEntity, IObjectName
+    {
+        // # ICombatProvider Provider { get; }
+        // # DataIndex ActionCode { get; }
+        // # StatTable StatTable { get; }
+        // # IDynamicStatEntry DynamicStatEntry { get; }
+        // # string Name { get; }
+        // # GameObject Object { get; }
+
+        ActionTable<CombatEntity> OnProvideCombat { get; }
+        ActionTable<StatusEffectEntity> OnProvideStatusEffect { get; }
     }
     
     public interface ICombatTaker : ICombatEntity, IObjectName
     {
-        // + IDynamicStatEntry DynamicStatEntry { get; }
-        // + StatTable StatTable { get; }
-        // + string Name { get; }
-        // + GameObject Object { get; }
+        // # ICombatProvider Provider { get; }
+        // # DataIndex ActionCode { get; }
+        // # StatTable StatTable { get; }
+        // # IDynamicStatEntry DynamicStatEntry { get; }
+        // # string Name { get; }
+        // # GameObject Object { get; }
 
         RoleType Role { get; }
 
-        OldActionTable<CombatLog> OnCombatPassive { get; }
+        ActionTable<CombatEntity> OnTakeCombat { get; }
+        ActionTable<StatusEffectEntity> OnTakeStatusEffect { get; }
 
         void Dead();
-        void TakeDamage(ICombatTable entity);
-        void TakeSpell(ICombatTable entity);
-        void TakeHeal(ICombatTable entity);
-        void TakeStatusEffect(IStatusEffect entity);
-        void TakeDispel(IStatusEffect entity);
+        CombatEntity TakeDamage(ICombatTable combatTable);
+        CombatEntity TakeHeal(ICombatTable combatTable);
+        StatusEffectEntity TakeBuff(IStatusEffect statusEffect);
+        StatusEffectEntity TakeDeBuff(IStatusEffect statusEffect);
     }
 
     public interface ICombatExecutor : ICombatProvider, ICombatTaker
     {
-        // + ICombatProvider Provider { get; }
-        // + IDynamicStatEntry DynamicStatEntry { get; }
-        // + StatTable StatTable { get; }
-        // + IDCode ActionCode { get; }
-        // + string Name { get; }
-        // + GameObject Object { get; }
+        // # ICombatProvider Provider { get; }
+        // # DataIndex ActionCode { get; }
+        // # StatTable StatTable { get; }
+        // # IDynamicStatEntry DynamicStatEntry { get; }
+        // # string Name { get; }
+        // # GameObject Object { get; }
         
-        // + ActionTable<CombatLog> OnCombatActive { get; }
-        // + ActionTable<CombatLog> OnCombatPassive { get; }
-        
-        // + void TakeDamage(ICombatEntity provider);
-        // + void TakeSpell(ICombatEntity provider);
-        // + void TakeHeal(ICombatEntity provider);
-        // + void TakeStatusEffect(IStatusEffect entity);
-        // + void TakeDispel(IStatusEffect entity);
+        // # ActionTable<CombatEntity> OnProvideCombat { get; }
+        // # ActionTable<CombatEntity> OnTakeCombat { get; }
+        // # ActionTable<StatusEffectEntity> OnProvideStatusEffect { get; }
+        // # ActionTable<CombatEntity> OnTakeStatusEffect { get; }
+
+        // # void Dead();
+        // # CombatEntity TakeDamage(ICombatTable entity);
+        // # CombatEntity TakeHeal(ICombatTable entity);
+        // # StatusEffectEntity TakeBuff(INewStatusEffect entity);
+        // # StatusEffectEntity TakeDeBuff(INewStatusEffect entity);
     }
 }

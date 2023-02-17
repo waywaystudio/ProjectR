@@ -1,16 +1,19 @@
-using System;
-using Raid.UI.ActionBars.CharacterSkills;
+using Character;
 using UnityEngine;
 
 namespace Raid.UI.ActionBars
 {
+    using CharacterSkills;
+    
     public class ActionBarFrame : MonoBehaviour
     {
+        [SerializeField] private AdventurerBehaviour ab;
         [SerializeField] private CharacterSkillBar CharacterSkillBar;
 
         private void Awake()
         {
             CharacterSkillBar ??= GetComponentInChildren<CharacterSkillBar>();
+            CharacterSkillBar.Initialize(ab);
         }
 
         

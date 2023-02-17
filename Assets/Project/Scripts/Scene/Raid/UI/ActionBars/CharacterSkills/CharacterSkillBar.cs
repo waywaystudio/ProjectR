@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using Character;
 using UnityEngine;
 
 namespace Raid.UI.ActionBars.CharacterSkills
@@ -9,11 +10,14 @@ namespace Raid.UI.ActionBars.CharacterSkills
         
         public List<CharacterSkillActionSlot> SlotList => slotList;
 
-        protected void Awake()
+
+        public void Initialize(AdventurerBehaviour ab)
         {
             GetComponentsInChildren(true, slotList);
+            
+            SlotList.ForEach(slot => slot.Initialize(ab));
         }
-        
+
 
         public void SetUp()
         {

@@ -1,10 +1,19 @@
 using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace Core
 {
-    public class ConditionTable : DelegateTable<string, Func<bool>>
+    public class ConditionTable : Dictionary<string, Func<bool>>
     {
+        public void Unregister(string key) => this.TryRemove(key);
+        public void UnregisterAll() => Clear();
+
+        protected void TryAdd(string key, Func<bool> value, bool overwrite)
+        {
+            if (!TryAdd(key, value) && overwrite) this[key] = value;
+        }
+        
         public void Register(string key, Func<bool> predicate)
         {
             if (ContainsKey(key)) Debug.LogWarning($"Key is already Exist. key:{key}");

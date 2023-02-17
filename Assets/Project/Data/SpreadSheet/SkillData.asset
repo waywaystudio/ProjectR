@@ -26,8 +26,7 @@ MonoBehaviour:
     animationKey: attack
     sortingType: None
     targetLayer: enemy
-    targetParam1: 5
-    targetParam2: 90
+    targetParam: {x: 5, y: 90}
     statusEffect: 14000001
   - id: 13000002
     name: CastingAttack
@@ -41,8 +40,7 @@ MonoBehaviour:
     animationKey: casting
     sortingType: None
     targetLayer: enemy
-    targetParam1: 10
-    targetParam2: 45
+    targetParam: {x: 10, y: 45}
     statusEffect: 14000002
   - id: 13000003
     name: ChargingAttack
@@ -56,8 +54,7 @@ MonoBehaviour:
     animationKey: casting
     sortingType: None
     targetLayer: enemy
-    targetParam1: 15
-    targetParam2: 90
+    targetParam: {x: 15, y: 90}
     statusEffect: 0
   - id: 13000004
     name: HoldingAttack
@@ -71,6 +68,5 @@ MonoBehaviour:
     animationKey: holding
     sortingType: None
     targetLayer: enemy
-    targetParam1: 15
-    targetParam2: 360
+    targetParam: {x: 15, y: 360}
     statusEffect: 0

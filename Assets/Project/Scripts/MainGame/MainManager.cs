@@ -15,10 +15,10 @@ namespace MainGame
         [SerializeField] private SceneManager sceneManager;
         [SerializeField] private InputManager inputManager;
 
-        public static AudioManager Audio => Instance.audioManager;
-        public static SaveManager Save => Instance.saveManager;
-        public static SceneManager Scene => Instance.sceneManager;
-        public static InputManager Input => Instance.inputManager;
+        public static AudioManager Audio => Instance ? Instance.audioManager : null;
+        public static SaveManager Save => Instance ? Instance.saveManager : null;
+        public static SceneManager Scene => Instance ? Instance.sceneManager : null;
+        public static InputManager Input => Instance ? Instance.inputManager : null;
 
         protected override void Awake()
         {

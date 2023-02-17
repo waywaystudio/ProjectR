@@ -8,6 +8,14 @@ namespace Character.Skill.Knight
         [SerializeField] private PowerValue powerValue;
         
         public StatTable StatTable { get; } = new();
+        
+        
+        public override void Release()
+        {
+            if (!OnProgress) return;
+            
+            OnCompleted.Invoke();
+        }
 
         protected override void UpdateCompletion()
         {
@@ -58,7 +66,7 @@ namespace Character.Skill.Knight
         {
             base.SetUp();
             
-            var skillData = MainGame.MainData.GetSkill(actionCode);
+            var skillData = MainGame.MainData.SkillSheetData(actionCode);
 
             powerValue.Value = skillData.CompletionValueList[0];
         }

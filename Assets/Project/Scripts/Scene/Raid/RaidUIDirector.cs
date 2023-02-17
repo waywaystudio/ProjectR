@@ -15,25 +15,21 @@ namespace Raid
         [SerializeField] private List<PartyUnitFrame> partyFrameList;
         [SerializeField] private List<BossFrame> bossFrameList;
         // [SerializeField] private List<Nameplate> nameplateList;
-        [SerializeField] private List<SkillSlotFrame> skillSlotFrameList;
 
         private AdventurerBehaviour focusAdventurer;
 
         public List<PartyUnitFrame> PartyFrameList => partyFrameList;
         public List<BossFrame> BossFrameList => bossFrameList;
         // public List<Nameplate> NameplateList => nameplateList;
-        public List<SkillSlotFrame> SkillSlotFrameList => skillSlotFrameList;
 
         public AdventurerBehaviour FocusAdventurer
         {
             get => focusAdventurer;
             set
             {
-                if (value == focusAdventurer) return;
+                if (focusAdventurer != null && value == focusAdventurer) return;
                 
                 focusAdventurer = value;
-                skillSlotFrameList.ForEach(x => x.Unregister());
-                skillSlotFrameList.ForEach(x => x.Register(focusAdventurer));
             }
         }
 
@@ -83,7 +79,6 @@ namespace Raid
             GetComponentsInChildren(true, PartyFrameList);
             GetComponentsInChildren(true, BossFrameList);
             // GetComponentsInChildren(NameplateList);
-            GetComponentsInChildren(true, SkillSlotFrameList);
         }
 #endif
     }

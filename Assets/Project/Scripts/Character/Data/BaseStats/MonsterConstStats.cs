@@ -12,15 +12,13 @@ namespace Character.Data.BaseStats
             var mb = GetComponentInParent<MonsterBehaviour>();
             
             baseStatCode = mb.ActionCode;
-            var bossData = MainData.GetBoss(baseStatCode);
+            var bossData = MainData.BossSheetData(baseStatCode);
             
             maxHp.Value       = bossData.MaxHp;
             moveSpeed.Value   = bossData.MoveSpeed;
             maxResource.Value = bossData.MaxResource;
             critical.Value    = bossData.Critical;
             haste.Value       = bossData.Haste;
-            hit.Value         = bossData.Hit;
-            evade.Value       = bossData.Evade;
             armor.Value       = bossData.Armor;
         }
 #endif

@@ -18,7 +18,7 @@ namespace Character
         [SerializeField] protected ActionBehaviour actionBehaviour;
         [SerializeField] protected UnityEvent onManualControl;
         [SerializeField] protected UnityEvent onAutoControl;
-        
+
         public ActionBehaviour ActionBehaviour => actionBehaviour;
 
         private bool IsAutoMode { get; set; }
@@ -26,22 +26,22 @@ namespace Character
         public string Name => characterName ??= "Diablo";
         public RoleType Role => role;
         public DataIndex ActionCode => combatClassID;
-        public IDynamicStatEntry DynamicStatEntry => dynamicStatEntry;
+        public IDynamicStatEntry DynamicStatEntry => dynamicStatEntry ??= GetComponentInChildren<DynamicStatEntry>();
         public ICombatProvider Provider => this;
         public GameObject Object => gameObject;
-        public StatTable StatTable { get; } = new(1);
+        public StatTable StatTable => DynamicStatEntry.StatTable;
         public ActionTable OnDead { get; } = new();
+        
+        public ActionTable<CombatEntity> OnProvideCombat { get; } = new();
+        public ActionTable<CombatEntity> OnTakeCombat { get; } = new();
+        [ShowInInspector] public ActionTable<StatusEffectEntity> OnProvideStatusEffect { get; } = new();
+        [ShowInInspector] public ActionTable<StatusEffectEntity> OnTakeStatusEffect { get; } = new();
 
         public void Dead() => OnDead.Invoke();
-        public void ActiveSkill(DataIndex actionCode) => actionBehaviour.ActiveSkill(actionCode);
-        public void TakeDamage(ICombatTable provider) => CombatUtility.TakeDamage(provider, this);
-        public void TakeSpell(ICombatTable provider) => CombatUtility.TakeSpell(provider, this);
-        public void TakeHeal(ICombatTable provider) => CombatUtility.TakeHeal(provider, this);
-        public void TakeStatusEffect(IStatusEffect statusEffect) => CombatUtility.TakeStatusEffect(statusEffect, this);
-        public void TakeDispel(IStatusEffect entity) => CombatUtility.TakeDispel(entity, this);
-
-        public OldActionTable<CombatLog> OnCombatActive { get; } = new(4);
-        public OldActionTable<CombatLog> OnCombatPassive { get; } = new(4);
+        public CombatEntity TakeDamage(ICombatTable combatTable) => CombatUtility.TakeDamage(combatTable, this);
+        public CombatEntity TakeHeal(ICombatTable combatTable) => CombatUtility.TakeHeal(combatTable, this);
+        public StatusEffectEntity TakeBuff(IStatusEffect statusEffect) => CombatUtility.TakeBuff(statusEffect, this);
+        public StatusEffectEntity TakeDeBuff(IStatusEffect statusEffect) => CombatUtility.TakeDeBuff(statusEffect, this);
 
         [Button]
         public void ToggleAutoControl()
@@ -51,7 +51,6 @@ namespace Character
                 IsAutoMode = false;
                 onManualControl.Invoke();
             }
-
             else
             {
                 IsAutoMode = true;
@@ -66,8 +65,11 @@ namespace Character
             actionBehaviour  ??= GetComponentInChildren<ActionBehaviour>();
 
             constStats.Initialize(StatTable);
-            dynamicStatEntry.Initialize(StatTable);
+            dynamicStatEntry.Initialize();
             OnDead.Register("DynamicAliveValue", () => dynamicStatEntry.IsAlive.Value = false);
+
+            IsAutoMode = false;
+            onManualControl.Invoke();
         }
     }
 }

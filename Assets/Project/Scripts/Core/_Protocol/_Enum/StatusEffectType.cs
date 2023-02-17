@@ -1,4 +1,4 @@
-namespace Character
+namespace Core
 {
     public enum StatusEffectType
     {

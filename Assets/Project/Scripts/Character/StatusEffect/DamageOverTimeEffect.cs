@@ -10,37 +10,46 @@ namespace Character.StatusEffect
         [SerializeField] private PowerValue tickPowerValue;
         
         public StatTable StatTable { get; } = new();
-        public FloatEvent ProcessTime { get; } = new(0f, float.MaxValue);
+        
+        
+        public override void OnOverride()
+        {
+            ProcessTime.Value += duration;
+        }
         
 
-        protected override void Init()
+        protected override void Init() { }
+        protected override void End()
         {
-            OnEnded.Register("ResetProcess", () => ProcessTime.Value = 0f);
+            ProcessTime.Value = 0f;
+            
+            base.End();
         }
 
         protected override IEnumerator Effectuating(ICombatTaker taker)
         {
             var hastedTick = interval * CharacterUtility.GetHasteValue(Provider.StatTable.Haste);
-            var repeatCount = (int)(duration / hastedTick);
 
-            for (var i = 0; i < repeatCount; ++i)
+            ProcessTime.Value = duration;
+
+            while (ProcessTime.Value > 0)
             {
                 var tickBuffer = hastedTick;
-                
-                while (tickBuffer > 0)
+
+                while (tickBuffer > 0f)
                 {
-                    ProcessTime.Value += StatusEffectTick;
+                    ProcessTime.Value -= StatusEffectTick;
                     tickBuffer        -= StatusEffectTick;
-                    
                     yield return null;
                 }
-
+                
                 UpdateDoT();
                 taker.TakeDamage(this);
             }
-            
+
             Complete();
         }
+        
 
         private void UpdateDoT()
         {

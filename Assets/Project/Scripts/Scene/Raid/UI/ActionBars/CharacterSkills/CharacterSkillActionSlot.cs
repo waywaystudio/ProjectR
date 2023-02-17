@@ -1,58 +1,81 @@
 using Character;
 using Core;
 using MainGame;
+using Sirenix.OdinInspector;
+using TMPro;
 using UnityEngine;
-using UnityEngine.UI;
 
 namespace Raid.UI.ActionBars.CharacterSkills
 {
     public class CharacterSkillActionSlot : MonoBehaviour
     {
         [SerializeField] private CharacterSkillActionIcon skillAction;
+        [SerializeField] private ImageFiller coolDownFiller;
+        [SerializeField] private TextMeshProUGUI hotKey;
         [SerializeField] private BindingCode bindingCode;
-        [SerializeField] private int tempSkillIndex;
+        [PropertyRange(1, 4)]
+        [SerializeField] private int skillIndex;
 
-        private Image image;
         private AdventurerBehaviour focusedAdventurer;
         private DataIndex actionCode;
+
+        private string HotKey =>
+            bindingCode switch
+            {
+                BindingCode.Q => "Q",
+                BindingCode.W => "W",
+                BindingCode.E => "E",
+                BindingCode.R => "R",
+                _ => "-",
+            };
+
         
-
-        public void ChangeSkill()
+        public void Initialize(AdventurerBehaviour adventurer)
         {
-            if (!MainManager.Input.TryGet(bindingCode, out var inputAction)) return;
-
-            var skillList = focusedAdventurer.ActionBehaviour.SkillList;
-            if (skillList.Count < tempSkillIndex || skillList[tempSkillIndex].IsNullOrEmpty()) return;
-
-            var skillComponent = skillList[tempSkillIndex];
+            focusedAdventurer = adventurer;
             
-            actionCode   = skillComponent.ActionCode;
-            image.sprite = skillComponent.Icon;
-            
-            
-        }
+            var actionBehaviour = focusedAdventurer.ActionBehaviour;
+            var skill = skillIndex switch
+            {
+                1 => actionBehaviour.FirstSkill,
+                2 => actionBehaviour.SecondSkill,
+                3 => actionBehaviour.ThirdSkill,
+                4 => actionBehaviour.FourthSkill,
+                _ => null,
+            };
 
-        // public CharacterSkillActionIcon SkillAction => skillAction;
+            if (skill is null)
+            {
+                Debug.LogWarning($"Out of Range Skill or Character Skill Index Missing. UIIndexInput:{skillIndex}");
+                return;
+            }
 
-        public void Register(CharacterSkillActionIcon skillAction)
-        {
-            // this.skillAction = skillAction;
+            skillAction.Initialize(adventurer, skill);
+
+            if (skill.CoolTime == 0f)
+            {
+                coolDownFiller.enabled = false;
+            }
+            else
+                coolDownFiller.Register(skill.RemainCoolTime, skill.CoolTime);
+
+            MainManager.Input.TryGet(bindingCode, out var inputAction);
+
+            inputAction.started  += skillAction.StartAction;
+            inputAction.canceled += skillAction.CompleteAction;
         }
 
         private void Awake()
         {
-            TryGetComponent(out image);
-
             skillAction ??= GetComponentInChildren<CharacterSkillActionIcon>();
+            hotKey.text =   HotKey;
         }
 
-        // public void Unregister() => skillAction = null;
 
-        // OnClick
-        // PressShortCut
-        
-        /// OnBeginDrag
-        /// OnDrag
-        /// OnEndDrag
+        public void SetUp()
+        {
+            skillAction ??= GetComponentInChildren<CharacterSkillActionIcon>();
+            hotKey.text =   HotKey;
+        }
     }
 }

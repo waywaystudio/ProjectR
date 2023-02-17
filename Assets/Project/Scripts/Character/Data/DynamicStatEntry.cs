@@ -9,19 +9,20 @@ namespace Character.Data
         public HpValue Hp { get; } = new();
         public ResourceValue Resource { get; } = new();
         public ShieldValue Shield { get; } = new();
+        public StatTable StatTable { get; } = new(); 
         public StatusEffectTable BuffTable { get; } = new();
         public StatusEffectTable DeBuffTable { get; } = new();
 
 
-        public void Initialize(StatTable statTable)
+        public void Initialize()
         {
-            Hp.StatTable       = statTable;
-            Resource.StatTable = statTable;
-            Shield.StatTable   = statTable;
+            Hp.StatTable       = StatTable;
+            Resource.StatTable = StatTable;
+            Shield.StatTable   = StatTable;
             
             IsAlive.Value  = true;
-            Hp.Value       = statTable.MaxHp;
-            Resource.Value = statTable.MaxResource;
+            Hp.Value       = StatTable.MaxHp;
+            Resource.Value = StatTable.MaxResource;
             Shield.Value   = 0;
         }
     }

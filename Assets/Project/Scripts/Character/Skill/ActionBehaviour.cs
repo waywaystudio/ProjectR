@@ -3,8 +3,8 @@ using System.Collections.Generic;
 using Character.Graphic;
 using Character.Move;
 using Core;
+using MainGame;
 using UnityEngine;
-using UnityEngine.InputSystem;
 
 namespace Character.Skill
 {
@@ -14,11 +14,21 @@ namespace Character.Skill
         [SerializeField] private GlobalCoolDown gcd;
         [SerializeField] private MoveBehaviour move;
         [SerializeField] private AnimationModel model;
+        
         [SerializeField] private List<SkillComponent> skillList = new();
+        [SerializeField] private SkillComponent firstSkill;
+        [SerializeField] private SkillComponent secondSkill;
+        [SerializeField] private SkillComponent thirdSkill;
+        [SerializeField] private SkillComponent fourthSkill;
 
         private Camera mainCamera;
 
         public List<SkillComponent> SkillList => skillList;
+        public SkillComponent FirstSkill => firstSkill;
+        public SkillComponent SecondSkill => secondSkill;
+        public SkillComponent ThirdSkill => thirdSkill;
+        public SkillComponent FourthSkill => fourthSkill;
+        
         public ConditionTable Conditions { get; } = new();
         public Vector3 RootPosition => rootTransform.position;
         public bool IsSkillEnded
@@ -59,7 +69,7 @@ namespace Character.Skill
         
         public void Dash()
         {
-            if (!TryGetMousePosition(out var mousePosition)) return;
+            if (!MainManager.Input.TryGetMousePosition(out var mousePosition)) return;
 
             Dash(mousePosition - RootPosition);
         }
@@ -81,7 +91,7 @@ namespace Character.Skill
         
         public void Teleport()
         {
-            if (!TryGetMousePosition(out var mousePosition)) return;
+            if (!MainManager.Input.TryGetMousePosition(out var mousePosition)) return;
             
             Teleport(mousePosition - RootPosition);
         }
@@ -105,7 +115,7 @@ namespace Character.Skill
 
         public void ActiveSkill(DataIndex actionCode)
         {
-            if (!TryGetMousePosition(out var mousePosition)) return;
+            if (!MainManager.Input.TryGetMousePosition(out var mousePosition)) return;
             if (SkillTable.TryGetValue(actionCode, out var skill))
             {
                 ActiveSkill(skill, mousePosition);
@@ -113,6 +123,27 @@ namespace Character.Skill
             
             Debug.LogWarning($"Not Exist Skill!. Input:{actionCode}");
         }
+        
+        public void ActiveSkill(SkillComponent skill)
+        {
+            if (!MainManager.Input.TryGetMousePosition(out var mousePosition)) return;
+            
+            ActiveSkill(skill, mousePosition);
+        }
+        
+        public void ActiveSkill(SkillComponent skill, Vector3 targetPosition)
+        {
+            if (Conditions.HasFalse) return;
+            
+            Rotate(targetPosition);
+            Stop();
+            Current = skill;
+            gcd.StartCooling();
+                
+            skill.Active();
+        }
+
+        public void ReleaseSkill(SkillComponent skill) => skill.Release();
 
         public void InterruptCurrentSkill()
         {
@@ -138,38 +169,6 @@ namespace Character.Skill
             return skill is not null;
         }
 
-
-        public void ActiveSkill(SkillComponent skill)
-        {
-            if (!TryGetMousePosition(out var mousePosition)) return;
-            
-            ActiveSkill(skill, mousePosition);
-        }
-        
-        public void ActiveSkill(SkillComponent skill, Vector3 targetPosition)
-        {
-            if (Conditions.HasFalse) return;
-            
-            Rotate(targetPosition);
-            Stop();
-            Current = skill;
-            gcd.StartCooling();
-                
-            skill.Active();
-        }
-        
-        public bool TryGetMousePosition(out Vector3 mousePosition)
-        {
-            mousePosition = Vector3.negativeInfinity;
-                
-            var plane = new Plane(Vector3.up, 0f);
-            var ray = mainCamera.ScreenPointToRay(Mouse.current.position.ReadValue());
-
-            if (!plane.Raycast(ray, out var distance)) return false;
-            
-            mousePosition = ray.GetPoint(distance);
-            return true;
-        }
 
         private void Awake()
         {
@@ -202,112 +201,111 @@ namespace Character.Skill
 
 
         // TODO. 개별 테스트에서 넘어 옴. 완료 되면 UI로 넘김
-        #region TESTFIELD
-
-        [SerializeField] private InputAction mouseClick;
-        [SerializeField] private InputAction dashInput;
-        [SerializeField] private InputAction teleportInput;
-        
-        private Vector3 mousedDestination = Vector3.zero;
-        
-        public InputAction shortCutQ;
-        public InputAction shortCutW;
-        public InputAction shortCutE;
-        public InputAction shortCutR;
-        
-        public InputAction shortCutZ;
-        
-        public SkillComponent GeneralSkill;
-        public SkillComponent CastingSkill;
-        public SkillComponent ChargingSkill;
-        public SkillComponent HoldingSkill;
-
-        public void DoGeneralSkill(InputAction.CallbackContext context) => ActiveSkill(GeneralSkill);
-        public void DoCastingSkill(InputAction.CallbackContext context) => ActiveSkill(CastingSkill);
-        public void DoChargingSkill(InputAction.CallbackContext context) => ActiveSkill(ChargingSkill);
-        public void DoHoldingSkill(InputAction.CallbackContext context) => ActiveSkill(HoldingSkill);
-        public void InterruptSkill(InputAction.CallbackContext context) => InterruptCurrentSkill();
-        
-        public void ReleaseCharging(InputAction.CallbackContext context)
-        {
-            if (!ChargingSkill.OnProgress) return;
-            
-            ChargingSkill.OnCompleted.Invoke();
-        }
-        
-        public void ReleaseHolding(InputAction.CallbackContext context)
-        {
-            if (!HoldingSkill.OnProgress) return;
-            
-            HoldingSkill.OnEnded.Invoke();
-        }
-
-        public void RegisterInputAction()
-        {
-            mouseClick.Enable();
-            dashInput.Enable();
-            teleportInput.Enable();
-            
-            shortCutQ.Enable();
-            shortCutW.Enable();
-            shortCutE.Enable();
-            shortCutR.Enable();
-            shortCutZ.Enable();
-            
-            mainCamera              =  Camera.main;
-            mouseClick.performed    += OnMove;
-            dashInput.performed     += OnDash;
-            teleportInput.performed += OnTeleport;
-            shortCutQ.performed     += DoGeneralSkill;
-            shortCutW.performed     += DoCastingSkill;
-            shortCutZ.performed     += InterruptSkill;
-            shortCutE.started       += DoChargingSkill;
-            shortCutR.started       += DoHoldingSkill;
-            shortCutE.canceled      += ReleaseCharging;
-            shortCutR.canceled      += ReleaseHolding;
-        }
-
-        public void UnregisterInputAction()
-        {
-            mouseClick.performed    -= OnMove;
-            dashInput.performed     -= OnDash;
-            teleportInput.performed -= OnTeleport;
-            shortCutQ.performed     -= DoGeneralSkill;
-            shortCutW.performed     -= DoCastingSkill;
-            shortCutZ.performed     -= InterruptSkill;
-            shortCutE.started       -= DoChargingSkill;
-            shortCutR.started       -= DoHoldingSkill;
-            shortCutE.canceled      -= ReleaseCharging;
-            shortCutR.canceled      -= ReleaseHolding;
-            
-            mouseClick.Disable();
-            dashInput.Disable();
-            teleportInput.Disable();
-            shortCutQ.Disable();
-            shortCutW.Disable();
-            shortCutE.Disable();
-            shortCutR.Disable();
-            shortCutZ.Disable();
-        }
-
-        private void OnDisable() => UnregisterInputAction();
-        
-        public void OnMove(InputAction.CallbackContext context)
-        {
-            var ray = mainCamera.ScreenPointToRay(Mouse.current.position.ReadValue());
-
-            if (Physics.Raycast(ray: ray, hitInfo: out var hit) && hit.collider)
-            {
-                mousedDestination.x = hit.point.x;
-                mousedDestination.z = hit.point.z;
-
-                Run(mousedDestination);
-            }
-        }
-
-        public void OnDash(InputAction.CallbackContext context) => Dash();
-        public void OnTeleport(InputAction.CallbackContext context) => Teleport();
-
-        #endregion
+        // #region TESTFIELD
+        //
+        // [SerializeField] private InputAction mouseClick;
+        // [SerializeField] private InputAction dashInput;
+        // [SerializeField] private InputAction teleportInput;
+        //
+        // private Vector3 mousedDestination = Vector3.zero;
+        //
+        // public InputAction shortCutQ;
+        // public InputAction shortCutW;
+        // public InputAction shortCutE;
+        // public InputAction shortCutR;
+        //
+        // public InputAction shortCutZ;
+        //
+        // public SkillComponent GeneralSkill;
+        // public SkillComponent CastingSkill;
+        // public SkillComponent ChargingSkill;
+        // public SkillComponent HoldingSkill;
+        //
+        // public void DoGeneralSkill(InputAction.CallbackContext context) => ActiveSkill(GeneralSkill);
+        // public void DoCastingSkill(InputAction.CallbackContext context) => ActiveSkill(CastingSkill);
+        // public void DoChargingSkill(InputAction.CallbackContext context) => ActiveSkill(ChargingSkill);
+        // public void DoHoldingSkill(InputAction.CallbackContext context) => ActiveSkill(HoldingSkill);
+        // public void InterruptSkill(InputAction.CallbackContext context) => InterruptCurrentSkill();
+        //
+        // public void ReleaseCharging(InputAction.CallbackContext context)
+        // {
+        //     if (!ChargingSkill.OnProgress) return;
+        //     
+        //     ChargingSkill.OnCompleted.Invoke();
+        // }
+        //
+        // public void ReleaseHolding(InputAction.CallbackContext context)
+        // {
+        //     if (!HoldingSkill.OnProgress) return;
+        //     
+        //     HoldingSkill.OnEnded.Invoke();
+        // }
+        //
+        // public void RegisterInputAction()
+        // {
+        //     mouseClick.Enable();
+        //     dashInput.Enable();
+        //     teleportInput.Enable();
+        //     
+        //     shortCutQ.Enable();
+        //     shortCutW.Enable();
+        //     shortCutE.Enable();
+        //     shortCutR.Enable();
+        //     shortCutZ.Enable();
+        //     
+        //     mainCamera              =  Camera.main;
+        //     mouseClick.performed    += OnMove;
+        //     dashInput.performed     += OnDash;
+        //     teleportInput.performed += OnTeleport;
+        //     shortCutQ.performed     += DoGeneralSkill;
+        //     shortCutW.performed     += DoCastingSkill;
+        //     shortCutZ.performed     += InterruptSkill;
+        //     shortCutE.started       += DoChargingSkill;
+        //     shortCutR.started       += DoHoldingSkill;
+        //     shortCutE.canceled      += ReleaseCharging;
+        //     shortCutR.canceled      += ReleaseHolding;
+        // }
+        //
+        // public void UnregisterInputAction()
+        // {
+        //     mouseClick.performed    -= OnMove;
+        //     dashInput.performed     -= OnDash;
+        //     teleportInput.performed -= OnTeleport;
+        //     shortCutQ.performed     -= DoGeneralSkill;
+        //     shortCutW.performed     -= DoCastingSkill;
+        //     shortCutZ.performed     -= InterruptSkill;
+        //     shortCutE.started       -= DoChargingSkill;
+        //     shortCutR.started       -= DoHoldingSkill;
+        //     shortCutE.canceled      -= ReleaseCharging;
+        //     shortCutR.canceled      -= ReleaseHolding;
+        //     
+        //     mouseClick.Disable();
+        //     dashInput.Disable();
+        //     teleportInput.Disable();
+        //     shortCutQ.Disable();
+        //     shortCutW.Disable();
+        //     shortCutE.Disable();
+        //     shortCutR.Disable();
+        //     shortCutZ.Disable();
+        // }
+        //
+        // private void OnDisable() => UnregisterInputAction();
+        //
+        // public void OnMove(InputAction.CallbackContext context)
+        // {
+        //     var ray = mainCamera.ScreenPointToRay(Mouse.current.position.ReadValue());
+        //
+        //     if (Physics.Raycast(ray: ray, hitInfo: out var hit) && hit.collider)
+        //     {
+        //         mousedDestination.x = hit.point.x;
+        //         mousedDestination.z = hit.point.z;
+        //
+        //         Run(mousedDestination);
+        //     }
+        // }
+        //
+        // public void OnDash(InputAction.CallbackContext context) => Dash();
+        // public void OnTeleport(InputAction.CallbackContext context) => Teleport();
+        // #endregion
     }
 }

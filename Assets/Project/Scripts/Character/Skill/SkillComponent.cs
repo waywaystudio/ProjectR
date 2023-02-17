@@ -3,12 +3,13 @@ using System.Collections;
 using Character.Graphic;
 using Character.Targeting;
 using Core;
+using MainGame;
 using Sirenix.OdinInspector;
 using UnityEngine;
 
 namespace Character.Skill
 {
-    public abstract class SkillComponent : MonoBehaviour, IInspectorSetUp
+    public abstract class SkillComponent : MonoBehaviour, IDataSetUp, IDataIndexer
     {
         /* Component Reference */
         [SerializeField] protected AnimationModel model;
@@ -51,14 +52,20 @@ namespace Character.Skill
         public bool OnProgress { get; private set; }
         public bool IsEnded { get; private set; } = true;
         public int Priority => priority;
+        public float CoolTime => coolTime;
         public float Range => range;
+        public string Description => description;
         public FloatEvent CastingProgress { get; } = new(0, float.MaxValue);
-        public FloatEvent RemainTime { get; } = new(0f, float.MaxValue);
+        public FloatEvent RemainCoolTime { get; } = new(0f, float.MaxValue);
         public Sprite Icon => icon;
         public DataIndex ActionCode => actionCode;
         public ICombatProvider Provider { get; set; }
         public ICombatTaker MainTarget => searching.GetMainTarget(targetLayer, Provider.Object.transform.position);
 
+        public void Active(Vector3 mousePosition)
+        {
+            
+        }
 
         public void Active()
         {
@@ -72,6 +79,8 @@ namespace Character.Skill
             OnInterrupted.Invoke();
             OnEnded.Invoke();
         }
+
+        public abstract void Release();
 
         protected virtual void TryActiveSkill() => OnActivated.Invoke();
         protected void ConsumeResource() => Provider.DynamicStatEntry.Resource.Value -= cost;
@@ -99,20 +108,20 @@ namespace Character.Skill
 
         private IEnumerator CoolingRoutine()
         {
-            RemainTime.Value = coolTime;
+            RemainCoolTime.Value = coolTime;
             
-            while (RemainTime.Value > 0f)
+            while (RemainCoolTime.Value > 0f)
             {
-                RemainTime.Value -= coolDownTick;
+                RemainCoolTime.Value -= coolDownTick;
                 yield return null;
             }
         }
         
         private bool IsCoolTimeReady()
         {
-            if (RemainTime.Value > 0.0f) Debug.LogWarning("CoolTime is not ready");
+            if (RemainCoolTime.Value > 0.0f) Debug.LogWarning("CoolTime is not ready");
             
-            return RemainTime.Value <= 0.0f;
+            return RemainCoolTime.Value <= 0.0f;
         }
 
         private bool IsCostReady()
@@ -157,20 +166,31 @@ namespace Character.Skill
         }
 
 
+#if UNITY_EDITOR
         public virtual void SetUp()
         {
-            var skillData = MainGame.MainData.GetSkill(actionCode);
+            var skillData = MainData.SkillSheetData(actionCode);
             
             priority     = skillData.BasePriority;
-            range        = skillData.TargetParam1;
-            angle        = skillData.TargetParam2;
+            range        = skillData.TargetParam.x;
+            angle        = skillData.TargetParam.y;
             description  = skillData.Description;
             coolTime     = skillData.CoolTime;
             cost         = skillData.Cost;
             animationKey = skillData.AnimationKey;
             progressTime = skillData.ProcessTime;
+
+            icon = GetSkillIcon();
         }
-        // private void ShowDB();
+        // private void ShowDB(); 
+        
+        private Sprite GetSkillIcon()
+        {
+            return !(MainData.TryGetIcon(actionCode.ToString(), out var result))
+                ? null
+                : result;
+        }
+#endif
     }
 }
 

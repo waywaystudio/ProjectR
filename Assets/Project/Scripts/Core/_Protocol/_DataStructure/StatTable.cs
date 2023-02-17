@@ -13,12 +13,12 @@ namespace Core
         public float Power { get; set; }
         public float Critical { get; set; }
         public float Haste { get; set; }
-        public float Hit { get; set; }
+       //  public float Hit { get; set; }
         public float MaxHp { get; set; }
         public float MaxResource { get; set; }
         public float MoveSpeed { get; set; }
         public float Armor { get; set; }
-        public float Evade { get; set; }
+        // public float Evade { get; set; }
         public float Resist { get; set; }
 
         public void Register(DataIndex key, StatValue statEntity, bool overwrite)
@@ -93,13 +93,13 @@ namespace Core
                 case StatCode.Power : Power             = result; break;
                 case StatCode.Critical : Critical       = result; break;
                 case StatCode.Haste : Haste             = result; break;
-                case StatCode.Hit : Hit                 = result; break;
                 case StatCode.MaxHp: MaxHp              = result; break;
                 case StatCode.MaxResource : MaxResource = result; break;
                 case StatCode.MoveSpeed : MoveSpeed     = result; break;
                 case StatCode.Armor : Armor             = result; break;
-                case StatCode.Evade : Evade             = result; break;
-                case StatCode.Resist : Resist           = result; break;
+                // case StatCode.Hit : Hit                 = result; break;
+                // case StatCode.Evade : Evade             = result; break;
+                // case StatCode.Resist : Resist           = result; break;
                 case StatCode.None:
                 {
                     Debug.LogError($"statCode Missing. Input:{StatCode.None}");

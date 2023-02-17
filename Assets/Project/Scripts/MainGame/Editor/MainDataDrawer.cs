@@ -24,7 +24,12 @@ namespace MainGame.Editor
             
             if (member.Name == "SheetDataTable")
             {
-                attributes.Add(new ShowInInspectorAttribute());
+                // attributes.Add(new ShowInInspectorAttribute());
+            }
+            
+            if (member.Name == "iconPath")
+            {
+                attributes.Add(new FolderPathAttribute());
             }
             
             if (member.Name == "idCodePath")
@@ -42,6 +47,8 @@ namespace MainGame.Editor
                 attributes.Add(new PropertySpaceAttribute(0, 20f));
                 attributes.Add(new FolderPathAttribute());
             }
+            
+            
             
             if (member.Name == "OpenSpreadSheetPanel")
             {

@@ -8,7 +8,7 @@ using Random = UnityEngine.Random;
 
 namespace Character.Data
 {
-    public class DropTable : MonoBehaviour, IInspectorSetUp
+    public class DropTable : MonoBehaviour, IDataSetUp
     {
         [Serializable]
         public struct ItemDrop

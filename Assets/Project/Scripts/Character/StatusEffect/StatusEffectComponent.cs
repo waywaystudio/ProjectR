@@ -1,13 +1,13 @@
-using System;
 using System.Collections;
 using Core;
+using MainGame;
 using Sirenix.OdinInspector;
 using UnityEngine;
 using UnityEngine.Pool;
 
 namespace Character.StatusEffect
 {
-    public abstract class StatusEffectComponent : MonoBehaviour, IStatusEffect
+    public abstract class StatusEffectComponent : MonoBehaviour, IStatusEffect, IDataSetUp
     {
         [SerializeField] protected DataIndex statusCode;
         [SerializeField] protected StatusEffectType type;
@@ -22,29 +22,41 @@ namespace Character.StatusEffect
         public DataIndex ActionCode => statusCode;
         public Sprite Icon => icon;
         public float Duration => duration;
-        public StatusEffectType StatusEffectType => type;
-        public StatusEffectTable TargetTable { get; set; }
+        
+        [ShowInInspector]
+        public FloatEvent ProcessTime { get; } = new(0f, float.MaxValue);
 
         [ShowInInspector] public ActionTable<ICombatTaker> OnActivated { get; } = new();
         [ShowInInspector] public ActionTable OnDispel { get; } = new();
         [ShowInInspector] public ActionTable OnCompleted { get; } = new();
         [ShowInInspector] public ActionTable OnEnded { get; } = new();
-        
+
+
         public void SetPool(IObjectPool<StatusEffectComponent> pool) => this.pool = pool;
 
         public void Initialize(ICombatProvider provider)
         {
             Provider = provider;
+            
+            OnActivated.Clear();
+            OnDispel.Clear();
+            OnCompleted.Clear();
+            OnEnded.Clear();
         }
 
         public void Active(ICombatTaker taker)
         {
+            StartEffectuate(taker);
+            
             OnActivated.Invoke(taker);
         }
-        
-        public void DeActive()
+
+        public abstract void OnOverride();
+
+        public void Dispel()
         {
             OnDispel.Invoke();
+            
             End();
         }
 
@@ -56,36 +68,19 @@ namespace Character.StatusEffect
         {
             OnCompleted.Invoke();
             End();
+            
         }
 
-        protected void End()
+        protected virtual void End()
         {
+            StopEffectuate();
             OnEnded.Invoke();
-        }
-       
-        private void RegisterTable(ICombatEntity taker)
-        {
-            TargetTable = type switch
-            {
-                StatusEffectType.Buff => taker.DynamicStatEntry.BuffTable,
-                StatusEffectType.DeBuff => taker.DynamicStatEntry.DeBuffTable,
-                StatusEffectType.None => throw new ArgumentOutOfRangeException(),
-                _ => throw new ArgumentOutOfRangeException()
-            };
             
-            TargetTable.Register(this);
+            pool.Release(this);
         }
         
-        private void UnregisterTable()
-        {
-            if (TargetTable.HasElement())
-            {
-                TargetTable.Unregister(this);
-                TargetTable = null;
-            }
-        }
-        
-        private void Effectuate(ICombatTaker taker)
+
+        private void StartEffectuate(ICombatTaker taker)
         {
             StopEffectuate();
             StatusEffectRoutine = StartCoroutine(Effectuating(taker));
@@ -100,17 +95,21 @@ namespace Character.StatusEffect
         protected virtual void Awake()
         {
             StatusEffectTick = Time.deltaTime;
-            
-            OnActivated.Register("EffectRoutine", Effectuate);
-            OnActivated.Register("RegisterTable", RegisterTable);
-            
-            OnEnded.Register("StopEffectRoutine", StopEffectuate);
-            OnEnded.Register("UnregisterTable", UnregisterTable);
-            OnEnded.Register("ReleasePool", () => pool.Release(this));
-            
+            ProcessTime.SetClamp(0f, Mathf.Min(duration * 1.5f, 3600));
+
             Init();
         }
 
-        public void SetUp() { }
+        public virtual void SetUp()
+        {
+            var statusEffectData = MainData.StatusEffectSheetData(ActionCode);
+
+            duration = statusEffectData.Duration;
+            type = statusEffectData.IsBuff
+                ? StatusEffectType.Buff
+                : StatusEffectType.DeBuff;
+
+            MainData.TryGetIcon(ActionCode.ToString(), out icon);
+        }
     }
 }

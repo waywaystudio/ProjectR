@@ -1,35 +1,28 @@
-using Core;
 using Sirenix.OdinInspector;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class SandBox : MonoBehaviour
 {
-    public bool Toggle;
-    public LayerMask layer;
-    
-    [Button]
-    private void Debugger()
-    {
-        // Debug.Log($"byNameToLayer {layer == LayerMask.NameToLayer("Adventurer")}");
-        // Debug.Log($"byGetMask {layer == LayerMask.GetMask("Adventurer")}");
-        // Debug.Log($"byNameToLayer {layer.value == LayerMask.NameToLayer("Adventurer")}");
-        // Debug.Log($"byGetMask {layer.value == LayerMask.GetMask("Adventurer")}");
-        // Debug.Log($"layerToName just layer {LayerMask.LayerToName(layer)}");
-        // Debug.Log($"layerToName layer.value {LayerMask.LayerToName(layer.value)}");
-        // Debug.Log($"just layer, layer.Value {layer.value == layer}");
-        
-        
-        // Debug.Log($"just Layer : {layer}");
-        // Debug.Log($"Layer.Value : {layer.value}");
-        // Debug.Log($"LayerMask.LayerToName : {LayerMask.LayerToName(gameObject.layer)}");
-        Debug.Log($"LayerMask.NameToLayer(Adventurer) : {LayerMask.NameToLayer("Adventurer")}");
+    public UnityEvent TestEvent;
 
-        var objectLayer = gameObject.layer;
-        
-        Debug.Log($"just objectLayer : {objectLayer}");
-        Debug.Log($"just objectLayer : {objectLayer}");
-        // Debug.Log($"objectLayer LayerMask.LayerToName : {LayerMask.LayerToName(objectLayer)}");
-        // Debug.Log($"objectLayer GetMask : {LayerMask.GetMask(LayerMask.LayerToName(objectLayer))}");
+    [Button]
+    public void Debugger()
+    {
+        TestEvent.Invoke();
     }
 
+    [Button] public void AddAFunction() => TestEvent.AddListener(A);
+    [Button] public void AddBFunction() => TestEvent.AddListener(B);
+    [Button] public void AddCFunction() => TestEvent.AddListener(C);
+    [Button] public void AddDFunction() => TestEvent.AddListener(D);
+    [Button] public void RemoveAFunction() => TestEvent.RemoveListener(A);
+    [Button] public void RemoveBFunction() => TestEvent.RemoveListener(B);
+    [Button] public void RemoveCFunction() => TestEvent.RemoveListener(C);
+    [Button] public void RemoveDFunction() => TestEvent.RemoveListener(D); 
+
+    public void A() { Debug.Log("A");}
+    public void B() { Debug.Log("B");}
+    public void C() { Debug.Log("C");}
+    public void D() { Debug.Log("D");}
 }

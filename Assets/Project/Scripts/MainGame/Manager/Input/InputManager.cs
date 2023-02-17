@@ -1,5 +1,7 @@
+using System;
 using Core;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
 
 namespace MainGame.Manager.Input
@@ -7,11 +9,12 @@ namespace MainGame.Manager.Input
     public class InputManager : MonoBehaviour
     {
         private ProjectInput projectInput;
-
-
-        public bool TryGet(BindingCode keyCode, out InputAction inputAction)
+        private Camera mainCamera;
+       
+        
+        public bool TryGet(BindingCode bindingCode, out InputAction inputAction)
         {
-            inputAction = keyCode switch
+            inputAction = bindingCode switch
             {
                 BindingCode.Keyboard1 => projectInput.Raid.Keyboard1,
                 BindingCode.Keyboard2 => projectInput.Raid.Keyboard2,
@@ -33,15 +36,138 @@ namespace MainGame.Manager.Input
             };
 
             if (inputAction is null)
-                Debug.LogError($"Not Assignable Keycode. Input:{keyCode.ToString()}. "
+                Debug.LogError($"Not Assignable Keycode. Input:{bindingCode.ToString()}. "
                                + $"Check InputManager.Get(BindingCode keyCode) function.");
 
             return inputAction != null;
         }
 
+        public bool TryGetMousePosition(out Vector3 mousePosition)
+        {
+            mousePosition = Vector3.negativeInfinity;
+                
+            var plane = new Plane(Vector3.up, 0f);
+            var ray = mainCamera.ScreenPointToRay(Mouse.current.position.ReadValue());
+
+            // Check Zero Plane
+            if (!plane.Raycast(ray, out var distance)) return false;
+
+            mousePosition = ray.GetPoint(distance);
+            return true;
+        }
+
+
         private void Awake()
         {
             projectInput = new ProjectInput();
+            mainCamera = Camera.main;
         }
+
+        private void OnEnable()
+        {
+            foreach (var value in Enum.GetValues(typeof(BindingCode)))
+            {
+                var bindingCode = (BindingCode)value;
+                        
+                if (bindingCode == BindingCode.None) continue;
+                if (!TryGet(bindingCode, out var inputAction)) continue;
+                        
+                // InputTable.Add(bindingCode, new InputActionTable());
+                        
+                inputAction.Enable();
+                // inputAction.started  += InputTable[bindingCode].OnStarted.Invoke;
+                // inputAction.canceled += InputTable[bindingCode].OnCanceled.Invoke;
+            }
+        }
+        
+        private void OnDisable()
+        {
+            foreach (var value in Enum.GetValues(typeof(BindingCode)))
+            {
+                var bindingCode = (BindingCode)value;
+                        
+                if (bindingCode == BindingCode.None) continue;
+                if (!TryGet(bindingCode, out var inputAction)) continue;
+                        
+                // InputTable.Add(bindingCode, new InputActionTable());
+                        
+                inputAction.Enable();
+                // inputAction.started  += InputTable[bindingCode].OnStarted.Invoke;
+                // inputAction.canceled += InputTable[bindingCode].OnCanceled.Invoke;
+            }
+        }
+        
     }
 }
+
+// private Dictionary<BindingCode, InputActionTable> InputTable { get; } = new();
+
+// private void OnEnable()
+// {
+//     foreach (var value in Enum.GetValues(typeof(BindingCode)))
+//     {
+//         var bindingCode = (BindingCode)value;
+//                 
+//         if (bindingCode == BindingCode.None) continue;
+//         if (!TryGet(bindingCode, out var inputAction)) continue;
+//                 
+//         InputTable.Add(bindingCode, new InputActionTable());
+//                 
+//         inputAction.Enable();
+//         inputAction.started  += InputTable[bindingCode].OnStarted.Invoke;
+//         inputAction.canceled += InputTable[bindingCode].OnCanceled.Invoke;
+//     }
+// }
+//
+// private void OnDisable()
+// {
+//     foreach (var value in Enum.GetValues(typeof(BindingCode)))
+//     {
+//         var bindingCode = (BindingCode)value;
+//                 
+//         if (bindingCode == BindingCode.None) continue;
+//         if (!TryGet(bindingCode, out var inputAction)) continue;
+//
+//                 
+//         inputAction.started  -= InputTable[bindingCode].OnStarted.Invoke;
+//         inputAction.canceled -= InputTable[bindingCode].OnCanceled.Invoke;
+//         inputAction.Disable();
+//     }
+//             
+//     InputTable.Clear();
+// }
+
+// public void Register(BindingCode bindingCode, string actionKey, Action startedAction, Action canceledAction)
+// {
+//     if (!TryGet(bindingCode, out _)) return;
+//     if (!InputTable.ContainsKey(bindingCode)) 
+//         InputTable.Add(bindingCode, new InputActionTable());
+//             
+//     InputTable[bindingCode].Register(actionKey, startedAction, canceledAction);
+// }
+//
+// public void Unregister(BindingCode bindingCode, string actionKey)
+// {
+//     if (!TryGet(bindingCode, out _)) return;
+//     if (!InputTable.ContainsKey(bindingCode)) return;
+//             
+//     InputTable[bindingCode].Unregister(actionKey);
+// }
+
+// private class InputActionTable
+// {
+//     public ActionTable<InputAction.CallbackContext> OnStarted { get; } = new();
+//     public ActionTable<InputAction.CallbackContext> OnCanceled { get; } = new();
+//
+//     public void Register(string key, Action startedAction, Action canceledAction)
+//     {
+//         OnStarted.Register(key, startedAction);
+//         OnCanceled.Register(key, canceledAction);
+//     }
+//
+//     public void Unregister(string key)
+//     {
+//         OnStarted.Unregister(key);
+//         OnCanceled.Unregister(key);
+//     }
+// }

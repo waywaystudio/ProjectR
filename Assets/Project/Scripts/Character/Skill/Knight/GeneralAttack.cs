@@ -13,7 +13,9 @@ namespace Character.Skill.Knight
         
         private IObjectPool<StatusEffectComponent> pool;
         public StatTable StatTable { get; } = new();
-        
+
+        public override void Release() { }
+
         protected override void TryActiveSkill()
         {
             if (!ConditionTable.IsAllTrue) return;
@@ -73,8 +75,19 @@ namespace Character.Skill.Knight
             takerList.ForEach(taker =>
             {
                 taker.TakeDamage(this);
-                taker.TakeStatusEffect(pool.Get());
                 Debug.Log($"{taker.Name} Hit by {ActionCode.ToString()}");
+
+                var effectInfo = armorCrashPrefab.GetComponent<IStatusEffect>();
+                var table = taker.DynamicStatEntry.DeBuffTable;
+
+                if (table.ContainsKey((Provider, effectInfo.ActionCode)))
+                {
+                    table[(Provider, effectInfo.ActionCode)].OnOverride();
+                }
+                else
+                {
+                    taker.TakeDeBuff(pool.Get());
+                }
             });
         }
         
@@ -106,7 +119,7 @@ namespace Character.Skill.Knight
         {
             base.SetUp();
             
-            var skillData = MainGame.MainData.GetSkill(actionCode);
+            var skillData = MainGame.MainData.SkillSheetData(actionCode);
 
             powerValue.Value = skillData.CompletionValueList[0];
         }

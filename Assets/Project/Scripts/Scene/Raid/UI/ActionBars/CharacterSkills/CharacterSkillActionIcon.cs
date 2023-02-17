@@ -1,25 +1,45 @@
+using Character;
 using Character.Skill;
-using TMPro;
+using Core;
+using MainGame;
 using UnityEngine;
+using UnityEngine.InputSystem;
 using UnityEngine.UI;
 
 namespace Raid.UI.ActionBars.CharacterSkills
 {
-    // Required SkillInfoPrefab;
     public class CharacterSkillActionIcon : MonoBehaviour
     {
-        [SerializeField] private SkillComponent skillComponent;
-        [SerializeField] private Image actionIcon;
-        [SerializeField] private TextMeshProUGUI description;
+        [SerializeField] private Image actionImage;
 
+        private SkillComponent skillComponent;
+        private AdventurerBehaviour focusedAdventurer;
         private Transform preTransform;
-
-        public void Set(Sprite icon, string description)
-        {
-            actionIcon.sprite     = icon;
-            this.description.text = description;
-        }
+        private ActionBehaviour ActionBehaviour => focusedAdventurer.ActionBehaviour;
         
-        // OnMouseOver
+
+        public void Initialize(AdventurerBehaviour adventurer, SkillComponent skillComponent)
+        {
+            focusedAdventurer = adventurer;
+
+            this.skillComponent = skillComponent;
+            actionImage.sprite  = skillComponent.Icon;
+        }
+
+        public void StartAction(InputAction.CallbackContext context)
+        {
+            if (skillComponent.IsNullOrEmpty() || focusedAdventurer.IsNullOrEmpty()) return;
+            if (!MainManager.Input.TryGetMousePosition(out var mousePosition)) return;
+
+            ActionBehaviour.ActiveSkill(skillComponent, mousePosition);
+        }
+
+        public void CompleteAction(InputAction.CallbackContext context)
+        {
+            if (skillComponent.IsNullOrEmpty() || focusedAdventurer.IsNullOrEmpty()) return;
+            
+            ActionBehaviour.ReleaseSkill(skillComponent);
+        }
+
     }
 }

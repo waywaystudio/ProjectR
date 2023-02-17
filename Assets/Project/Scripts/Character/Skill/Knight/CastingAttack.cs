@@ -2,18 +2,22 @@ using Character.StatusEffect;
 using Core;
 using UnityEngine;
 using UnityEngine.Pool;
+using UnityEngine.Serialization;
 
 namespace Character.Skill.Knight
 {
     public class CastingAttack : SkillComponent, ICombatTable
     {
         [SerializeField] private PowerValue powerValue;
-        [SerializeField] private GameObject armorCrashPrefab;
+        [SerializeField] private GameObject bleedPrefab;
         [SerializeField] private int maxPool = 8;
         
         private IObjectPool<StatusEffectComponent> pool;
         public StatTable StatTable { get; } = new();
-        
+
+
+        public override void Release() { }
+
         protected override void UpdateCompletion()
         {
             StatTable.Clear();
@@ -33,8 +37,19 @@ namespace Character.Skill.Knight
             takerList.ForEach(taker =>
             {
                 taker.TakeDamage(this);
-                taker.TakeStatusEffect(pool.Get());
                 Debug.Log($"{taker.Name} Hit by {ActionCode.ToString()}");
+                
+                var effectInfo = bleedPrefab.GetComponent<IStatusEffect>();
+                var table = taker.DynamicStatEntry.DeBuffTable;
+
+                if (table.ContainsKey((Provider, effectInfo.ActionCode)))
+                {
+                    table[(Provider, effectInfo.ActionCode)].OnOverride();
+                }
+                else
+                {
+                    taker.TakeDeBuff(pool.Get());
+                }
             });
         }
 
@@ -45,7 +60,7 @@ namespace Character.Skill.Knight
         
         private StatusEffectComponent CreateStatusEffect()
         {
-            var statusEffect = Instantiate(armorCrashPrefab).GetComponent<StatusEffectComponent>();
+            var statusEffect = Instantiate(bleedPrefab).GetComponent<StatusEffectComponent>();
              
             statusEffect.SetPool(pool);
 
@@ -85,7 +100,7 @@ namespace Character.Skill.Knight
             OnActivated.Register("PlayCastingAnimation", PlayAnimation);
             OnActivated.Register("UpdatePowerValue", UpdateCompletion);
             OnActivated.Register("StartProgress", () => StartProcess(OnCompleted.Invoke));
-            OnActivated.Register("StartCooling", StartCooling);
+            OnCompleted.Register("StartCooling", StartCooling);
             OnCompleted.Register("CastingAttack", OnCastingAttack);
             OnCompleted.Register("PlayEndCastingAnimation", PlayEndCastingAnimation);
             
@@ -100,7 +115,7 @@ namespace Character.Skill.Knight
         {
             base.SetUp();
             
-            var skillData = MainGame.MainData.GetSkill(actionCode);
+            var skillData = MainGame.MainData.SkillSheetData(actionCode);
 
             powerValue.Value = skillData.CompletionValueList[0];
         }

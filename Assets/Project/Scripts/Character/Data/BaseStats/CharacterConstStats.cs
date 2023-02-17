@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace Character.Data.BaseStats
 {
-    public class CharacterConstStats : MonoBehaviour, IInspectorSetUp
+    public class CharacterConstStats : MonoBehaviour, IDataSetUp
     {
         [SerializeField] protected DataIndex baseStatCode;
         [SerializeField] protected MaxHpValue maxHp;
@@ -11,8 +11,6 @@ namespace Character.Data.BaseStats
         [SerializeField] protected MoveSpeedValue moveSpeed;
         [SerializeField] protected CriticalValue critical;
         [SerializeField] protected HasteValue haste;
-        [SerializeField] protected HitValue hit;
-        [SerializeField] protected EvadeValue evade;
         [SerializeField] protected ArmorValue armor;
         
 
@@ -23,8 +21,6 @@ namespace Character.Data.BaseStats
             statTable.Register(baseStatCode, maxResource, true);
             statTable.Register(baseStatCode, critical, true);
             statTable.Register(baseStatCode, haste, true);
-            statTable.Register(baseStatCode, hit, true);
-            statTable.Register(baseStatCode, evade, true);
             statTable.Register(baseStatCode, armor, true);
         }
 
@@ -36,8 +32,6 @@ namespace Character.Data.BaseStats
             maxResource.StatCode = StatCode.MaxResource;
             critical.StatCode    = StatCode.Critical;
             haste.StatCode       = StatCode.Haste;
-            hit.StatCode         = StatCode.Hit;
-            evade.StatCode       = StatCode.Evade;
             armor.StatCode       = StatCode.Armor;
         }
 #endif

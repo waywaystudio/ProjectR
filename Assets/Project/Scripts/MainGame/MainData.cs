@@ -5,20 +5,25 @@ using System.Reflection;
 
 using System.Collections.Generic;
 using Core;
+using Core.Singleton;
 using UnityEngine;
-using UnityEngine.Serialization;
 
 namespace MainGame
 {
     using Data;
-    using ProtocolData = Data.GlobalData.ProtocolData.Protocol;
-    using CombatClassData = Data.ContentData.CombatClassData.CombatClass;
-    using SkillData = Data.CombatData.SkillData.Skill;
-    using BossData = Data.ContentData.BossData.Boss;
+    using Data.PrefabData;
+    using ProtocolData = Data.SheetData.GlobalData.ProtocolData.Protocol;
+    using CombatClassData = Data.SheetData.ContentData.CombatClassData.CombatClass;
+    using SkillData = Data.SheetData.CombatData.SkillData.Skill;
+    using StatusEffectData = Data.SheetData.CombatData.StatusEffectData.StatusEffect;
+    using BossData = Data.SheetData.ContentData.BossData.Boss;
 
-    public class MainData : Core.Singleton.MonoSingleton<MainData>
+    public class MainData : MonoSingleton<MainData>
     {
         [SerializeField] private List<DataObject> sheetDataList = new();
+        [SerializeField] private SkillMaster skillMaster;
+        [SerializeField] private StatusEffectMaster statusEffectMaster;
+        
         private readonly Dictionary<DataIndex, DataObject> sheetDataTable = new();
 
         public static List<DataObject> SheetDataList => Instance.sheetDataList;
@@ -31,31 +36,45 @@ namespace MainGame
                 return Instance.sheetDataTable;
             }
         }
+
+        public static CombatClassData CombatClassSheetData(DataIndex dataIndex) => SheetDataTable[DataIndex.CombatClass].Get<CombatClassData>(dataIndex);
+        public static SkillData SkillSheetData(DataIndex dataIndex) => SheetDataTable[DataIndex.Skill].Get<SkillData>(dataIndex);
+        public static StatusEffectData StatusEffectSheetData(DataIndex dataIndex) => SheetDataTable[DataIndex.StatusEffect].Get<StatusEffectData>(dataIndex);
+        public static BossData BossSheetData(DataIndex dataIndex) => SheetDataTable[DataIndex.Boss].Get<BossData>(dataIndex);
         
-        public static CombatClassData GetCombatClass(DataIndex dataIndex) => SheetDataTable[DataIndex.CombatClass].Get<CombatClassData>(dataIndex);
-        public static SkillData GetSkill(DataIndex dataIndex) => SheetDataTable[DataIndex.Skill].Get<SkillData>(dataIndex);
-        public static BossData GetBoss(DataIndex dataIndex) => SheetDataTable[DataIndex.Boss].Get<BossData>(dataIndex);
+        public static SkillMaster SkillMaster => Instance.skillMaster;
+        public static StatusEffectMaster StatusEffectMaster => Instance.statusEffectMaster;
+        
+        
 
 #if UNITY_EDITOR
         
+        [SerializeField] private string iconPath;
         [SerializeField] private string idCodePath;
         [SerializeField] private string dataScriptPath;
         [SerializeField] private string dataObjectPath;
+        // [SerializeField] private string dataMasterPath;
+        
+        /// <summary>
+        /// Editor Function
+        /// </summary>
+        public static bool TryGetIcon(string iconName, out Sprite icon)
+        {
+            icon = !Finder.TryGetObject($"{Instance.iconPath}", $"{iconName}", out Sprite result, true)
+                ? null
+                : result;
+
+            return icon is not null;
+        }
 
         private void SetUp()
         {
-            // UpdateDataList();
             CreateAndUpdateDataObjects();
             GenerateIDCode();
         }
 
-        private void UpdateDataList()
-        {
-            sheetDataList.Clear();
-            
-            Finder.TryGetObjectList(out sheetDataList);
-        }
 
+        // SheetData Generator
         private void CreateAndUpdateDataObjects()
         {
             Finder.TryGetObjectList(dataScriptPath, $"t:MonoScript, Data", out List<UnityEditor.MonoScript> monoList);

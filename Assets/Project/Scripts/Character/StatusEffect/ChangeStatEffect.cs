@@ -1,6 +1,5 @@
 using System.Collections;
 using Core;
-using Sirenix.OdinInspector;
 using UnityEngine;
 
 namespace Character.StatusEffect
@@ -8,22 +7,23 @@ namespace Character.StatusEffect
     public class ChangeStatEffect : StatusEffectComponent
     {
         [SerializeField] private ArmorValue armorValue;
+        
 
-        [ShowInInspector] private FloatEvent Progress { get; } = new(0f, float.MaxValue);
+        public override void OnOverride()
+        {
+            ProcessTime.Value += duration;
+        }
 
         protected override void Init() { }
         protected override IEnumerator Effectuating(ICombatTaker taker)
         {
-            var durationBuffer = duration;
-            Progress.Value = 0f;
+            ProcessTime.Value = duration;
             
             taker.StatTable.Register(ActionCode, armorValue);
 
-            while (durationBuffer > 0f)
+            while (ProcessTime.Value > 0f)
             {
-                Progress.Value += StatusEffectTick;
-                durationBuffer -= StatusEffectTick;
-                
+                ProcessTime.Value -= StatusEffectTick;
                 yield return null;
             }
 

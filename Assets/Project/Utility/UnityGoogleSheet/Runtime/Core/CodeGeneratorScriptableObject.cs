@@ -49,7 +49,7 @@ namespace @namespace
 ";
         public string Generate()
         {
-            var soScriptPath = UgsConfig.Instance.ScriptableObjectScriptPath; // = Assets/Project/Scripts/MainGame/Data
+            var soScriptPath = UgsConfig.Instance.ScriptableObjectScriptPath; // = Assets/Project/Scripts/MainGame/Data/SheetData
             var trimmedPath = soScriptPath.Replace("Assets/Project/Scripts/", "").Replace("/", ".");
             var @namespace = $"{trimmedPath}.{sheetInfo.sheetFileName}";
             var className = sheetInfo.sheetName;

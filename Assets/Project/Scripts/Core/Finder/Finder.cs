@@ -62,7 +62,7 @@ public static class Finder
             
                 if (showDebug)
                     Debug.Log($"{filter} Objects in Project List : " +
-                              $"{stringBuilder}" +
+                              $"{stringBuilder}." +
                               "return First Searched Object");
             
                 value = AssetDatabase.LoadAssetAtPath(assetPath, typeof(T)) as T;
@@ -116,6 +116,7 @@ public static class Finder
                     
                     value.Add(AssetDatabase.LoadAssetAtPath(assetPath, typeof(T)) as T);
                     stringBuilder.Append(assetPath);
+                    stringBuilder.AppendLine();
                 }
             
                 if (showDebug)
