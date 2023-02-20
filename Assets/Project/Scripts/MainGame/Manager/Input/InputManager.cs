@@ -8,11 +8,13 @@ namespace MainGame.Manager.Input
 {
     public class InputManager : MonoBehaviour
     {
+        private bool isMouseOnUI;
         private ProjectInput projectInput;
         private Camera mainCamera;
-       
-        
-        public bool TryGet(BindingCode bindingCode, out InputAction inputAction)
+
+        public bool IsMouseOnUI => isMouseOnUI;
+
+        public bool TryGetAction(BindingCode bindingCode, out InputAction inputAction)
         {
             inputAction = bindingCode switch
             {
@@ -70,7 +72,7 @@ namespace MainGame.Manager.Input
                 var bindingCode = (BindingCode)value;
                         
                 if (bindingCode == BindingCode.None) continue;
-                if (!TryGet(bindingCode, out var inputAction)) continue;
+                if (!TryGetAction(bindingCode, out var inputAction)) continue;
                         
                 // InputTable.Add(bindingCode, new InputActionTable());
                         
@@ -79,7 +81,16 @@ namespace MainGame.Manager.Input
                 // inputAction.canceled += InputTable[bindingCode].OnCanceled.Invoke;
             }
         }
+
         
+        /// TODO. 황당한 케이스; InputSystem에서 UI 클릭 or not 구분하기 위한 방법;
+        private void Update()
+        {
+            // if (!Mouse.current.leftButton.wasPressedThisFrame) return;
+
+            isMouseOnUI = EventSystem.current.IsPointerOverGameObject(PointerInputModule.kMouseLeftId);
+        }
+
         private void OnDisable()
         {
             foreach (var value in Enum.GetValues(typeof(BindingCode)))
@@ -87,7 +98,7 @@ namespace MainGame.Manager.Input
                 var bindingCode = (BindingCode)value;
                         
                 if (bindingCode == BindingCode.None) continue;
-                if (!TryGet(bindingCode, out var inputAction)) continue;
+                if (!TryGetAction(bindingCode, out var inputAction)) continue;
                         
                 // InputTable.Add(bindingCode, new InputActionTable());
                         

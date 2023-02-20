@@ -42,22 +42,21 @@ namespace Character.Move
             aiMove.destination = Vector3.positiveInfinity;
         }
 
-        public void Dash(Vector3 direction, Action callback)
+        public void Dash(Vector3 direction, float distance, Action callback)
         {
             Stop();
             Rotate(direction);
 
             var normalDirection = direction.normalized;
-            var dashDestination = rootPosition + normalDirection * 8f;
-            var distance = Vector3.Distance(dashDestination, rootPosition);
+            var actualDistance = distance;
             
             if (Physics.Raycast(rootPosition, normalDirection, out var hitInfo, distance + 2f, environmentLayer))
             {
                 // TODO. 2f to ThreshHold
-                distance = hitInfo.distance - 2f;
+                actualDistance = hitInfo.distance - 2f;
             }
 
-            rootTransform.DOMove(rootPosition + normalDirection * distance, 0.15f).OnComplete(callback.Invoke);
+            rootTransform.DOMove(rootPosition + normalDirection * actualDistance, 0.15f).OnComplete(callback.Invoke);
         }
 
         public void Teleport(Vector3 direction)

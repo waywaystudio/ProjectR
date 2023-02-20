@@ -18,8 +18,7 @@ namespace Character.Skill
         { 
             get
             {
-                if (GlobalCoolTimeProgress.Value != 0f) Debug.LogWarning("GlobalCoolDown On");
-
+                // if (GlobalCoolTimeProgress.Value <= 0f) Debug.LogWarning("GlobalCoolDown On");
                 return GlobalCoolTimeProgress.Value != 0f;
             }
         }

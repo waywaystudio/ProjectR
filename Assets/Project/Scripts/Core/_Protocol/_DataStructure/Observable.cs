@@ -47,7 +47,7 @@ namespace Core
                 var clampedValue = Mathf.Clamp(value, Min, Max);
                 this.value = clampedValue;
                 
-                OnValueChanged.Invoke(clampedValue);
+                OnValueChanged.Invoke(this.value);
             }
         }
 
@@ -56,8 +56,8 @@ namespace Core
 
         public void SetClamp(float min, float max)
         {
-            this.Min = min;
-            this.Max = max;
+            Min = min;
+            Max = max;
         }
     }
 }

@@ -15,19 +15,18 @@ namespace Character.Skill.Knight
         private IObjectPool<StatusEffectComponent> pool;
         public StatTable StatTable { get; } = new();
 
-
         public override void Release() { }
-
-        protected override void UpdateCompletion()
-        {
-            StatTable.Clear();
-            StatTable.Register(ActionCode, powerValue);
-            StatTable.UnionWith(Provider.StatTable);
-        }
 
         protected override void PlayAnimation()
         {
             model.PlayLoop(animationKey);
+        }
+        
+        private void UpdateCompletion()
+        {
+            StatTable.Clear();
+            StatTable.Register(ActionCode, powerValue);
+            StatTable.UnionWith(Provider.StatTable);
         }
         
         private void OnCastingAttack()
@@ -66,48 +65,43 @@ namespace Character.Skill.Knight
 
             return statusEffect;
         }
-
         private void OnStatusEffectGet(StatusEffectComponent statusEffect)
         {
             statusEffect.gameObject.SetActive(true);
             statusEffect.Initialize(Provider);
         }
-
         private static void OnStatusEffectRelease(StatusEffectComponent statusEffect)
         {
             statusEffect.gameObject.SetActive(false);
         }
-
         private static void OnStatusEffectDestroy(StatusEffectComponent statusEffect)
         {
             Destroy(statusEffect.gameObject);
         }
-        
-        protected override void Awake()
+
+
+        protected void OnEnable()
         {
-            base.Awake();
-                
             pool = new ObjectPool<StatusEffectComponent>(
                 CreateStatusEffect,
                 OnStatusEffectGet,
                 OnStatusEffectRelease,
                 OnStatusEffectDestroy,
                 maxSize: maxPool);
-        }
-        
-        protected void OnEnable()
-        {
+            
             OnActivated.Register("PlayCastingAnimation", PlayAnimation);
             OnActivated.Register("UpdatePowerValue", UpdateCompletion);
             OnActivated.Register("StartProgress", () => StartProcess(OnCompleted.Invoke));
-            OnCompleted.Register("StartCooling", StartCooling);
-            OnCompleted.Register("CastingAttack", OnCastingAttack);
-            OnCompleted.Register("PlayEndCastingAnimation", PlayEndCastingAnimation);
-            
-            OnEnded.Register("StopProgress", StopProcess);
-            OnEnded.Register("Idle", model.Idle);
             
             OnInterrupted.Register("Log", () => Debug.Log("Interrupted!"));
+            OnInterrupted.Register("EndCallback", OnEnded.Invoke);
+
+            OnCompleted.Register("CastingAttack", OnCastingAttack);
+            OnCompleted.Register("PlayEndCastingAnimation", PlayEndCastingAnimation);
+            OnCompleted.Register("StartCooling", StartCooling);
+
+            OnEnded.Register("StopProgress", StopProcess);
+            OnEnded.Register("Idle", model.Idle);
         }
         
 

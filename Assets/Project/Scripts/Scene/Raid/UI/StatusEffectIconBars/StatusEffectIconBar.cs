@@ -1,6 +1,6 @@
+using System;
 using System.Collections.Generic;
 using Character;
-using Character.StatusEffect;
 using Core;
 using UnityEngine;
 
@@ -8,64 +8,127 @@ namespace Raid.UI.StatusEffectIconBars
 {
     public class StatusEffectIconBar : MonoBehaviour
     {
-        // TODO.TEMP
-        [SerializeField] private AdventurerBehaviour ab;
-        
-        [SerializeField] private Transform DeBuffHierarchy;
-        [SerializeField] private Transform BuffHierarchy;
         [SerializeField] private List<DeBuffActionSlot> deBuffActionSlotList;
-        // [SerializeField] private List<BuffActionSlot> buffActionSlotList;
+        [SerializeField] private List<BuffActionSlot> buffActionSlotList;
 
-        // private AdventurerBehaviour ab;
+        private AdventurerBehaviour ab;
 
-
-        public void Initialize(AdventurerBehaviour ab)
+        public void Initialize(AdventurerBehaviour ab) => OnFocusChanged(ab);
+        public void OnFocusChanged(AdventurerBehaviour ab)
         {
-            // 현재 ab의 디버프 & 버프가 있는 체크 해서 아이콘 등록.
+            if (this.ab != null) 
+                this.ab.OnTakeStatusEffect.Unregister("RegisterUI");
             
-            
-            // ab가 버프 & 디버프를 받을 때 마다, 아이콘을 등록하는 액션 추가.
-            ab.OnTakeStatusEffect.Register("DeBuffUI", OnRegisterDeBuff);
+            this.ab = ab;
+
+            ab.OnTakeStatusEffect.Unregister("RegisterUI");
+            ab.OnTakeStatusEffect.Register("RegisterUI", OnRegisterStatusEffect);
+
+            UpdateStatusEffect(ab);
         }
 
-        public void OnRegisterDeBuff(StatusEffectEntity seEntity)
+
+        private void OnRegisterStatusEffect(StatusEffectEntity seEntity)
         {
             if (seEntity.IsOverride) return;
+
+            switch (seEntity.Effect.Type)
+            {
+                case StatusEffectType.Buff:
+                {
+                    foreach (var buff in buffActionSlotList)
+                    {
+                        if (buff.isActiveAndEnabled) continue;
+            
+                        buff.Register(seEntity.Effect);
+                        break;
+                    }
+
+                    break;
+                }
+                case StatusEffectType.DeBuff:
+                {
+                    foreach (var deBuff in deBuffActionSlotList)
+                    {
+                        if (deBuff.isActiveAndEnabled) continue;
+            
+                        deBuff.Register(seEntity.Effect);
+                        break;
+                    }
+
+                    break;
+                }
+                
+                case StatusEffectType.None: break;
+                default: throw new ArgumentOutOfRangeException();
+            }
+        }
+
+        private void UpdateStatusEffect(AdventurerBehaviour ab)
+        {
+            // Clear Previous StatusEffect.
+            buffActionSlotList.ForEach(buff => buff.Unregister());
+            deBuffActionSlotList.ForEach(deBuff => deBuff.Unregister());
+
+            // Add ab.StatusEffects
+            ab.DynamicStatEntry.BuffTable.Values.ForEach(effect =>
+            {
+                if (!TryGetEmptyBuff(out var buffSlot)) return;
+                
+                buffSlot.Register(effect);
+            });
+            
+            // Add ab.StatusEffects
+            ab.DynamicStatEntry.DeBuffTable.Values.ForEach(effect =>
+            {
+                if (!TryGetEmptyDeBuff(out var deBuffSlot)) return;
+                
+                deBuffSlot.Register(effect);
+            });
+        }
+
+        private bool TryGetEmptyBuff(out BuffActionSlot buffSlot)
+        {
+            buffSlot = null;
+            
+            foreach (var buff in buffActionSlotList)
+            {
+                if (buff.isActiveAndEnabled) continue;
+
+                buffSlot = buff;
+                break;
+            }
+
+            return buffSlot is not null;
+        }
+        
+        private bool TryGetEmptyDeBuff(out DeBuffActionSlot deBuffSlot)
+        {
+            deBuffSlot = null;
             
             foreach (var deBuff in deBuffActionSlotList)
             {
                 if (deBuff.isActiveAndEnabled) continue;
-            
-                deBuff.Register(seEntity);
+
+                deBuffSlot = deBuff;
                 break;
             }
+
+            return deBuffSlot is not null;
         }
 
-        public void RegisterBuff() { }
-
-        public void UnregisterDeBuff(StatusEffectComponent statusEffect)
-        {
-            foreach (var deBuff in deBuffActionSlotList)
-            {
-                // if (deBuff.StatusEffect != statusEffect) continue;
-                //
-                // deBuff.Unregister();
-                // return;
-            }
-        }
 
         private void Awake()
         {
             GetComponentsInChildren(true, deBuffActionSlotList);
-            
-            // TODO.TEMP
-            Initialize(ab);
+            GetComponentsInChildren(true, buffActionSlotList);
         }
         
 
         public void SetUp()
         {
             GetComponentsInChildren(true, deBuffActionSlotList);
+            GetComponentsInChildren(true, buffActionSlotList);
         }
     }
 }

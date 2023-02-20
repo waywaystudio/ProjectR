@@ -4,22 +4,6 @@ namespace Core
 {
     public class StatusEffectTable : Dictionary<(ICombatProvider, DataIndex), IStatusEffect>
     {
-        public void Register(IStatusEffect statusEffect, out bool isOverride)
-        {
-            var key = (statusEffect.Provider, statusEffect.ActionCode);
-            
-            if (!ContainsKey(key))
-            {
-                Add(key, statusEffect);
-                isOverride = false;
-            }
-            else
-            {
-                this[key] = statusEffect;
-                isOverride = true;
-            }
-        }
-        
         public void Register(IStatusEffect statusEffect)
         {
             var key = (statusEffect.Provider, statusEffect.ActionCode);

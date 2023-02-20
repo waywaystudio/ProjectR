@@ -43,17 +43,17 @@ namespace Character.Skill
 
         /* Sequence */
         [ShowInInspector] public ConditionTable ConditionTable { get; } = new();
-        [ShowInInspector] public ActionTable OnActivated { get; } = new();
+        [ShowInInspector] public ActionTable<Vector3> OnActivated { get; } = new();
         [ShowInInspector] public ActionTable OnInterrupted { get; } = new();
         [ShowInInspector] public ActionTable OnHit { get; } = new();
         [ShowInInspector] public ActionTable OnCompleted { get; } = new();
         [ShowInInspector] public ActionTable OnEnded { get; } = new();
 
-        public bool OnProgress { get; private set; }
-        public bool IsEnded { get; private set; } = true;
+        public bool OnProgress { get; protected set; }
         public int Priority => priority;
         public float CoolTime => coolTime;
         public float Range => range;
+        public float ProgressTime => progressTime;
         public string Description => description;
         public FloatEvent CastingProgress { get; } = new(0, float.MaxValue);
         public FloatEvent RemainCoolTime { get; } = new(0f, float.MaxValue);
@@ -62,73 +62,69 @@ namespace Character.Skill
         public ICombatProvider Provider { get; set; }
         public ICombatTaker MainTarget => searching.GetMainTarget(targetLayer, Provider.Object.transform.position);
 
-        public void Active(Vector3 mousePosition)
-        {
-            
-        }
-
-        public void Active()
+        public void Activate(Vector3 targetPosition)
         {
             if (ConditionTable.HasFalse) return;
 
-            TryActiveSkill();
+            OnProgress = true;
+            OnActivated.Invoke(targetPosition);
         }
 
-        public void Interrupt()
+        public void Interrupted()
         {
+            if (!OnProgress) return;
+
             OnInterrupted.Invoke();
-            OnEnded.Invoke();
         }
 
-        public abstract void Release();
+        public virtual void Release()
+        {
+            if (!OnProgress) return;
+            
+            OnCompleted.Invoke();
+        }
 
-        protected virtual void TryActiveSkill() => OnActivated.Invoke();
+
         protected void ConsumeResource() => Provider.DynamicStatEntry.Resource.Value -= cost;
         protected void StartCooling() => coolTimeRoutine = StartCoroutine(CoolingRoutine());
-        protected void StopCooling() => (coolTimeRoutine != null).OnTrue(() => StopCoroutine(coolTimeRoutine));
         protected void StartProcess(Action callback = null)
         {
-            OnProgress      = true;
             progressRoutine = StartCoroutine(Processing(callback));
         }
         
         protected void StopProcess()
         {
-            if (!OnProgress) return;
             if (progressRoutine != null) StopCoroutine(progressRoutine);
             
             ResetProcess();
         }
 
-        protected abstract void UpdateCompletion();
         protected virtual void PlayAnimation()
         {
             model.PlayOnce(animationKey, progressTime);
+        }
+        
+        protected bool IsCoolTimeReady()
+        {
+            // if (RemainCoolTime.Value > 0.0f) Debug.LogWarning("CoolTime is not ready");
+            return RemainCoolTime.Value <= 0.0f;
+        }
+
+        protected bool IsCostReady()
+        {
+            // if (Provider.DynamicStatEntry.Resource.Value < cost) Debug.LogWarning("Not Enough Cost");
+            return Provider.DynamicStatEntry.Resource.Value >= cost;
         }
 
         private IEnumerator CoolingRoutine()
         {
             RemainCoolTime.Value = coolTime;
-            
+
             while (RemainCoolTime.Value > 0f)
             {
                 RemainCoolTime.Value -= coolDownTick;
                 yield return null;
             }
-        }
-        
-        private bool IsCoolTimeReady()
-        {
-            if (RemainCoolTime.Value > 0.0f) Debug.LogWarning("CoolTime is not ready");
-            
-            return RemainCoolTime.Value <= 0.0f;
-        }
-
-        private bool IsCostReady()
-        {
-            if (Provider.DynamicStatEntry.Resource.Value < cost) Debug.LogWarning("Cost is not Enough");
-            
-            return Provider.DynamicStatEntry.Resource.Value >= cost;
         }
 
         private IEnumerator Processing(Action callback)
@@ -147,11 +143,9 @@ namespace Character.Skill
 
         private void ResetProcess()
         {
-            OnProgress            = false;
             progressRoutine       = null;
             CastingProgress.Value = 0f;
         }
-        
 
         protected virtual void Awake()
         {
@@ -161,8 +155,7 @@ namespace Character.Skill
 
             ConditionTable.Register("CoolTime", IsCoolTimeReady);
             ConditionTable.Register("Cost", IsCostReady);
-            OnActivated.Register("End", () => IsEnded = false);
-            OnEnded.Register("End", () => IsEnded = true);
+            OnEnded.Register("EndProgress", () => OnProgress = false);
         }
 
 
@@ -193,4 +186,3 @@ namespace Character.Skill
 #endif
     }
 }
-

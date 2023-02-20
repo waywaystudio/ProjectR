@@ -35,10 +35,12 @@ public enum DataIndex
 	CastingAttack = 13000002,
 	ChargingAttack = 13000003,
 	HoldingAttack = 13000004,
+	KnightDash = 13000005,
 
 	/* StatusEffectData */
-	ArmorCrach = 14000001,
+	ArmorCrash = 14000001,
 	Bleed = 14000002,
+	Drain = 14000003,
 
 	/* BossData */
 	DevourerofSouls = 17000001,

@@ -7,16 +7,19 @@ namespace Raid.UI.ActionBars
     
     public class ActionBarFrame : MonoBehaviour
     {
-        [SerializeField] private AdventurerBehaviour ab;
         [SerializeField] private CharacterSkillBar CharacterSkillBar;
 
-        private void Awake()
+        private AdventurerBehaviour ab;
+
+        public void Initialize(AdventurerBehaviour ab)
         {
+            this.ab = ab;
+            
             CharacterSkillBar ??= GetComponentInChildren<CharacterSkillBar>();
             CharacterSkillBar.Initialize(ab);
         }
 
-        
+
         public void SetUp()
         {
             CharacterSkillBar ??= GetComponentInChildren<CharacterSkillBar>();

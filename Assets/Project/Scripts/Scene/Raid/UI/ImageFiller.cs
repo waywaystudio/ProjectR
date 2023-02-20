@@ -12,6 +12,7 @@ namespace Raid.UI
         [SerializeField] private float fillTick;
         [SerializeField] private Ease easeType;
 
+        public Image ProgressImage => progressImage;
         public FloatEvent Progress { get; set; }
         public FloatEvent Max { get; set; }
 
@@ -38,6 +39,7 @@ namespace Raid.UI
 
             Progress.Register(fillProgressionKey, SetFill);
             Max.Register(fillProgressionKey, SetFill);
+            
             SetFill();
         }
         

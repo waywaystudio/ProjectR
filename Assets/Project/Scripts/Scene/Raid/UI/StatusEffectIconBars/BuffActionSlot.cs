@@ -1,18 +1,55 @@
-using System.Collections;
-using System.Collections.Generic;
+using Character.StatusEffect;
+using Core;
+using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
-public class BuffActionSlot : MonoBehaviour
+namespace Raid.UI.StatusEffectIconBars
 {
-    // Start is called before the first frame update
-    void Start()
+    public class BuffActionSlot : MonoBehaviour
     {
-        
-    }
+        [SerializeField] private Image icon;
+        [SerializeField] private TextMeshProUGUI remainDuration;
 
-    // Update is called once per frame
-    void Update()
-    {
+        public IStatusEffect StatusEffect { get; private set; }
         
+
+        public void Register(IStatusEffect statusEffect)
+        {
+            Unregister();
+
+            gameObject.SetActive(true);
+
+            if (!MainGame.MainData.StatusEffectMaster.Get(statusEffect.ActionCode, out var seComponent))
+            {
+                Debug.LogError($"Cant not find StatusEffectComponent. Input:{statusEffect.ActionCode}");
+                return;
+            }
+
+            StatusEffect        = statusEffect;
+            icon.sprite         = seComponent.GetComponent<StatusEffectComponent>().Icon;
+            remainDuration.text = statusEffect.Duration.ToString("F1");
+
+            statusEffect.ProcessTime.Register("SetRemainDurationText", SetRemainDurationText);
+            statusEffect.OnEnded.Register("RemoveUI", Unregister);
+        }
+
+        public void Unregister()
+        {
+            if (StatusEffect is null) return;
+
+            icon.sprite         = null;
+            remainDuration.text = string.Empty;
+            StatusEffect.ProcessTime.Unregister("SetRemainDurationText");
+            StatusEffect = null;
+            
+            gameObject.SetActive(false);
+        }
+
+
+        private void SetRemainDurationText(float value)
+        {
+            remainDuration.text = value.ToString("F1");
+        }
     }
 }

@@ -15,7 +15,7 @@ MonoBehaviour:
   Index: 14
   list:
   - id: 14000001
-    name: ArmorCrach
+    name: ArmorCrash
     isBuff: 0
     targetLayer: enemy
     duration: 8
@@ -29,3 +29,10 @@ MonoBehaviour:
     valueList:
     - 2
     - 4
+  - id: 14000003
+    name: Drain
+    isBuff: 1
+    targetLayer: ally
+    duration: 10
+    valueList:
+    - 0.25

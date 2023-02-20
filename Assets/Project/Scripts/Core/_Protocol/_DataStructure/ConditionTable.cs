@@ -25,6 +25,12 @@ namespace Core
         { 
             get
             {
+                if (Count == 0)
+                {
+                    Debug.LogWarning("Table is Null or Empty. return true");
+                    return true;
+                }
+                
                 foreach (var item in this) 
                     if (!item.Value.Invoke()) return false;
 
@@ -35,6 +41,12 @@ namespace Core
         {
             get
             {
+                if (Count == 0)
+                {
+                    Debug.LogWarning("Table is Null or Empty. return true");
+                    return true;
+                }
+                
                 foreach (var item in this) 
                     if (item.Value.Invoke()) return false;
 
@@ -45,9 +57,15 @@ namespace Core
         {
             get
             {
+                if (Count == 0)
+                {
+                    Debug.LogWarning("Table is Null or Empty. return false");
+                    return false;
+                }
+                
                 foreach (var item in this) 
                     if (item.Value.Invoke()) return true;
-
+                
                 return false;
             }
         }
@@ -55,6 +73,12 @@ namespace Core
         {
             get
             {
+                if (Count == 0)
+                {
+                    Debug.LogWarning("Table is Null or Empty. return false");
+                    return false;
+                }
+                
                 foreach (var item in this) 
                     if (!item.Value.Invoke()) return true;
 

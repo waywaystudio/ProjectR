@@ -14,29 +14,15 @@ namespace Character.Skill.Knight
         private IObjectPool<StatusEffectComponent> pool;
         public StatTable StatTable { get; } = new();
 
+
         public override void Release() { }
 
-        protected override void TryActiveSkill()
-        {
-            if (!ConditionTable.IsAllTrue) return;
-
-            model.OnHit.Unregister("SkillHit");
-            model.OnHit.Register("SkillHit", OnHit.Invoke);
-            
-            OnActivated.Invoke();
-        }
-        
         protected override void PlayAnimation()
         {
-            model.PlayOnce(animationKey, progressTime,
-                () =>
-                {
-                    OnCompleted.Invoke();
-                    OnEnded.Invoke();
-                });
+            model.PlayOnce(animationKey, progressTime, OnCompleted.Invoke);
         }
 
-        protected override void UpdateCompletion()
+        private void UpdateCompletion()
         {
             StatTable.Clear();
             StatTable.Register(ActionCode, powerValue);
@@ -67,6 +53,12 @@ namespace Character.Skill.Knight
         {
             Destroy(statusEffect.gameObject);
         }
+        
+        private void RegisterHitEvent()
+        {
+            model.OnHit.Unregister("SkillHit");
+            model.OnHit.Register("SkillHit", OnHit.Invoke);
+        }
 
         private void OnGeneralAttack()
         {
@@ -90,25 +82,24 @@ namespace Character.Skill.Knight
                 }
             });
         }
-        
-        protected override void Awake()
+
+
+        protected void OnEnable()
         {
-            base.Awake();
-                
             pool = new ObjectPool<StatusEffectComponent>(
                 CreateStatusEffect,
                 OnStatusEffectGet,
                 OnStatusEffectRelease,
                 OnStatusEffectDestroy,
                 maxSize: maxPool);
-        }
-
-        protected void OnEnable()
-        {
+            
             OnActivated.Register("PlayAnimation", PlayAnimation);
             OnActivated.Register("UpdatePowerValue", UpdateCompletion);
+            OnActivated.Register("RegisterHitEvent", RegisterHitEvent);
             
             OnHit.Register("GeneralAttack", OnGeneralAttack);
+            OnInterrupted.Register("EndCallback", OnEnded.Invoke);
+            OnCompleted.Register("EndCallback", OnEnded.Invoke);
 
             OnEnded.Register("ReleaseHit", () => model.OnHit.Unregister("SkillHit"));
             OnEnded.Register("Idle", model.Idle);

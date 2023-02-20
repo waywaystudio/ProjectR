@@ -28,7 +28,7 @@ namespace Raid.UI.ActionBars.CharacterSkills
 
         public void StartAction(InputAction.CallbackContext context)
         {
-            if (skillComponent.IsNullOrEmpty() || focusedAdventurer.IsNullOrEmpty()) return;
+            if (skillComponent.IsNullOrEmpty()) return;
             if (!MainManager.Input.TryGetMousePosition(out var mousePosition)) return;
 
             ActionBehaviour.ActiveSkill(skillComponent, mousePosition);

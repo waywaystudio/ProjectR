@@ -29,10 +29,16 @@ namespace Raid.UI.ActionBars.CharacterSkills
                 _ => "-",
             };
 
-        
-        public void Initialize(AdventurerBehaviour adventurer)
+
+        public void Initialize(AdventurerBehaviour adventurer) => OnFocusChanged(adventurer);
+        public void OnFocusChanged(AdventurerBehaviour ab)
         {
-            focusedAdventurer = adventurer;
+            MainManager.Input.TryGetAction(bindingCode, out var inputAction);
+            
+            inputAction.started  -= skillAction.StartAction;
+            inputAction.canceled -= skillAction.CompleteAction;
+            
+            focusedAdventurer = ab;
             
             var actionBehaviour = focusedAdventurer.ActionBehaviour;
             var skill = skillIndex switch
@@ -49,18 +55,20 @@ namespace Raid.UI.ActionBars.CharacterSkills
                 Debug.LogWarning($"Out of Range Skill or Character Skill Index Missing. UIIndexInput:{skillIndex}");
                 return;
             }
+            
+            skillAction.Initialize(ab, skill);
 
-            skillAction.Initialize(adventurer, skill);
-
-            if (skill.CoolTime == 0f)
+            if (skill.CoolTime == 0.0f)
             {
-                coolDownFiller.enabled = false;
+                coolDownFiller.ProgressImage.enabled = false;
             }
             else
+            {
+                coolDownFiller.ProgressImage.enabled = true;
                 coolDownFiller.Register(skill.RemainCoolTime, skill.CoolTime);
-
-            MainManager.Input.TryGet(bindingCode, out var inputAction);
-
+            }
+                
+            
             inputAction.started  += skillAction.StartAction;
             inputAction.canceled += skillAction.CompleteAction;
         }

@@ -10,6 +10,8 @@ namespace Character
 {
     public class AdventurerBehaviour : MonoBehaviour, ICombatExecutor
     {
+        public bool IsAutoStart;
+        
         [SerializeField] protected string characterName = string.Empty;
         [SerializeField] protected RoleType role;
         [SerializeField] protected DataIndex combatClassID;
@@ -34,8 +36,8 @@ namespace Character
         
         public ActionTable<CombatEntity> OnProvideCombat { get; } = new();
         public ActionTable<CombatEntity> OnTakeCombat { get; } = new();
-        [ShowInInspector] public ActionTable<StatusEffectEntity> OnProvideStatusEffect { get; } = new();
-        [ShowInInspector] public ActionTable<StatusEffectEntity> OnTakeStatusEffect { get; } = new();
+        public ActionTable<StatusEffectEntity> OnProvideStatusEffect { get; } = new();
+        public ActionTable<StatusEffectEntity> OnTakeStatusEffect { get; } = new();
 
         public void Dead() => OnDead.Invoke();
         public CombatEntity TakeDamage(ICombatTable combatTable) => CombatUtility.TakeDamage(combatTable, this);
@@ -43,17 +45,16 @@ namespace Character
         public StatusEffectEntity TakeBuff(IStatusEffect statusEffect) => CombatUtility.TakeBuff(statusEffect, this);
         public StatusEffectEntity TakeDeBuff(IStatusEffect statusEffect) => CombatUtility.TakeDeBuff(statusEffect, this);
 
-        [Button]
-        public void ToggleAutoControl()
+
+        public void OnFocused(AdventurerBehaviour focus)
         {
-            if (IsAutoMode)
+            if (focus == this)
             {
                 IsAutoMode = false;
                 onManualControl.Invoke();
             }
             else
             {
-                IsAutoMode = true;
                 onAutoControl.Invoke();
             }
         }
@@ -68,8 +69,13 @@ namespace Character
             dynamicStatEntry.Initialize();
             OnDead.Register("DynamicAliveValue", () => dynamicStatEntry.IsAlive.Value = false);
 
-            IsAutoMode = false;
-            onManualControl.Invoke();
+            IsAutoMode = IsAutoStart;
+            
+            if (IsAutoMode) onAutoControl.Invoke();
+            else
+            {
+                onManualControl.Invoke();
+            }
         }
     }
 }

@@ -16,10 +16,10 @@ namespace Character
         public string Name => characterName ??= "Diablo";
         public RoleType Role => role;
         public DataIndex ActionCode => dataIndex;
-        public IDynamicStatEntry DynamicStatEntry => dynamicStatEntry;
+        public IDynamicStatEntry DynamicStatEntry => dynamicStatEntry ??= GetComponentInChildren<DynamicStatEntry>();
         public ICombatProvider Provider => this;
         public GameObject Object => gameObject;
-        public StatTable StatTable { get; } = new(1);
+        public StatTable StatTable => DynamicStatEntry.StatTable;
 
         public ActionTable OnDead { get; } = new();
         public ActionTable<CombatEntity> OnTakeCombat { get; } = new();
@@ -41,10 +41,7 @@ namespace Character
 
             constStats.Initialize(StatTable);
             dynamicStatEntry.Initialize();
-            
             OnDead.Register("DynamicAliveValue", () => dynamicStatEntry.IsAlive.Value = false);
         }
-
-        
     }
 }

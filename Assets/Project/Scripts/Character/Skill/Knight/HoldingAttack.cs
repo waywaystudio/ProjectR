@@ -10,33 +10,22 @@ namespace Character.Skill.Knight
         public StatTable StatTable { get; } = new();
 
 
-        public override void Release()
+        protected override void PlayAnimation()
         {
-            if (!OnProgress) return;
-            
-            OnCompleted.Invoke();
+            model.PlayLoop(animationKey);
         }
         
-        protected override void UpdateCompletion()
+        private void UpdateCompletion()
         {
             StatTable.Clear();
             StatTable.Register(ActionCode, powerValue);
             StatTable.UnionWith(Provider.StatTable);
         }
 
-        protected override void PlayAnimation()
+        private void RegisterHitEvent()
         {
-            model.PlayLoop(animationKey);
-        }
-        
-        protected override void TryActiveSkill()
-        {
-            if (!ConditionTable.IsAllTrue) return;
-
             model.OnHit.Unregister("HoldingHit");
             model.OnHit.Register("HoldingHit", OnHit.Invoke);
-            
-            OnActivated.Invoke();
         }
 
         private void OnHoldingAttack()
@@ -54,16 +43,20 @@ namespace Character.Skill.Knight
         {
             OnActivated.Register("PlayAnimation", PlayAnimation);
             OnActivated.Register("UpdatePowerValue", UpdateCompletion);
-            OnActivated.Register("StartProgress", () => StartProcess(OnEnded.Invoke));
-            OnActivated.Register("StartCooling", StartCooling);
+            OnActivated.Register("RegisterHitEvent", RegisterHitEvent);
+            OnActivated.Register("StartProgress", () => StartProcess(OnCompleted.Invoke));
 
+            OnInterrupted.Register("Log", () => Debug.Log("Interrupted"));
+            OnInterrupted.Register("EndCallback", OnEnded.Invoke);
+            
             OnHit.Register("OnHoldingAttack", OnHoldingAttack);
             
+            OnCompleted.Register("EndCallback", OnEnded.Invoke);
+
+            OnEnded.Register("StartCooling", StartCooling);
             OnEnded.Register("ReleaseHit", () => model.OnHit.Unregister("HoldingHit"));
             OnEnded.Register("StopProgress", StopProcess);
             OnEnded.Register("Idle", model.Idle);
-            
-            OnInterrupted.Register("Log", () => Debug.Log("Interrupted"));
         }
 
         

@@ -32,6 +32,7 @@ namespace Core
         // # ICombatProvider Provider { get; }
         // # DataIndex ActionCode { get; }
 
+        StatusEffectType Type { get; }
         float Duration { get; }
         FloatEvent ProcessTime { get; }
         ActionTable OnEnded { get; }

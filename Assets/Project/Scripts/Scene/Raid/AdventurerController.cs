@@ -2,7 +2,6 @@ using Character;
 using Core;
 using MainGame;
 using UnityEngine;
-using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
 
 namespace Raid
@@ -16,29 +15,18 @@ namespace Raid
         private Vector3 mouseDestination;
         
         public AdventurerBehaviour FocusedAdventurer => focusedAdventurer;
+
+        public void OnFocusChanged(AdventurerBehaviour ab) => focusedAdventurer = ab;
         
         public void Move(InputAction.CallbackContext context)
         {
             if (!focusedAdventurer.isActiveAndEnabled) return;
             if (!MainManager.Input.TryGetMousePosition(out var mouse)) return;
-            
-            // https://docs.unity3d.com/Packages/com.unity.inputsystem@1.2/manual/UISupport.html#ui-and-game-input
-            if (EventSystem.current.IsPointerOverGameObject())
-            {
-                Debug.Log("It's UI Object");
-                return;
-            }
-            
+            if (MainManager.Input.IsMouseOnUI) return;
+
             focusedAdventurer.ActionBehaviour.Run(mouse);
         }
 
-        public void Dash(InputAction.CallbackContext context)
-        {
-            if (!focusedAdventurer.isActiveAndEnabled) return;
-            
-            focusedAdventurer.ActionBehaviour.Dash();
-        }
-        
         public void Teleport(InputAction.CallbackContext context)
         {
             if (!focusedAdventurer.isActiveAndEnabled) return;
@@ -53,15 +41,11 @@ namespace Raid
 
         private void Start()
         {
-            if (!MainManager.Input.TryGet(BindingCode.LeftMouse, out var moveAction)) return;
-
+            if (!MainManager.Input.TryGetAction(BindingCode.LeftMouse, out var moveAction)) return;
+            
             moveAction.started += Move;
-            
-            if (!MainManager.Input.TryGet(BindingCode.LeftShift, out var dashAction)) return;
 
-            dashAction.started += Dash;
-            
-            if (!MainManager.Input.TryGet(BindingCode.Space, out var teleportAction)) return;
+            if (!MainManager.Input.TryGetAction(BindingCode.Space, out var teleportAction)) return;
 
             teleportAction.started += Teleport;
         }
@@ -70,15 +54,11 @@ namespace Raid
         {
             if (MainManager.Input is null) return;
             
-            if (!MainManager.Input.TryGet(BindingCode.LeftMouse, out var moveAction)) return;
+            if (!MainManager.Input.TryGetAction(BindingCode.LeftMouse, out var moveAction)) return;
 
             moveAction.started -= Move;
-            
-            if (!MainManager.Input.TryGet(BindingCode.LeftShift, out var dashAction)) return;
 
-            dashAction.started -= Dash;
-            
-            if (!MainManager.Input.TryGet(BindingCode.Space, out var teleportAction)) return;
+            if (!MainManager.Input.TryGetAction(BindingCode.Space, out var teleportAction)) return;
 
             teleportAction.started -= Teleport;
         }

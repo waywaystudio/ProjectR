@@ -7,7 +7,7 @@ namespace Core
     {
         protected ActionTableCore() { }
         protected ActionTableCore(int capacity) : base(capacity) { }
-
+        
         public void Unregister(string key) => this.TryRemove(key);
 
         protected void TryRegister(string key, T value) => TryAdd(key, value);
@@ -17,7 +17,7 @@ namespace Core
     {
         public ActionTable() { }
         public ActionTable(int capacity) : base(capacity) { }
-
+        
         public void Register(string key, Action action) => TryRegister(key, action);
         
         public void Invoke() => this.ForEach(x => x.Value?.Invoke());
@@ -30,7 +30,7 @@ namespace Core
 
         public void Register(string key, Action action) => TryRegister(key, _ => action());
         public void Register(string key, Action<T> action) => TryRegister(key, action);
-        
+
         public void Invoke(T value) => this.ForEach(x => x.Value?.Invoke(value));
     }
     

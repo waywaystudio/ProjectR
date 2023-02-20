@@ -20,6 +20,7 @@ namespace Character.StatusEffect
 
         public ICombatProvider Provider { get; private set; }
         public DataIndex ActionCode => statusCode;
+        public StatusEffectType Type => type;
         public Sprite Icon => icon;
         public float Duration => duration;
         

@@ -1,8 +1,9 @@
+using Character;
 using Cinemachine;
 using Sirenix.OdinInspector;
 using UnityEngine;
 
-namespace Scene.Raid
+namespace Raid
 {
     public class RaidCameraDirector : MonoBehaviour
     {
@@ -17,13 +18,7 @@ namespace Scene.Raid
             cameraBrain = mainCamera.GetComponent<CinemachineBrain>();
         }
 
-        public void SetPlayerCameraFocus(Transform target)
-        {
-            playerCamera.Follow = target;
-            playerCamera.LookAt = target;
-
-            PlayerCamera();
-        }
+        public void SetPlayerCameraFocus(AdventurerBehaviour target) => SetPlayerCameraFocus(target.transform);
 
         public void ChangeCamera(ICinemachineCamera cameraName)
         {
@@ -31,6 +26,15 @@ namespace Scene.Raid
             if (currentCamera.Equals(cameraName)) return;
 
             (currentCamera.Priority, cameraName.Priority) = (cameraName.Priority, currentCamera.Priority);
+        }
+        
+        
+        private void SetPlayerCameraFocus(Transform target)
+        {
+            playerCamera.Follow = target;
+            playerCamera.LookAt = target;
+
+            PlayerCamera();
         }
 
         [Button] private void PlayerCamera() => ChangeCamera(playerCamera);

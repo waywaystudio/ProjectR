@@ -277,6 +277,7 @@ GameObject:
   - component: {fileID: 4958629526732543830}
   - component: {fileID: 4958629526732543849}
   - component: {fileID: 4958629526732543848}
+  - component: {fileID: 4816945270066625292}
   m_Layer: 0
   m_Name: SkillSlot
   m_TagString: Untagged
@@ -319,7 +320,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 681291cf6223b764cac29dbe8acc4831, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tempPlayer: {fileID: 0}
   skillAction: {fileID: 4958629526219775823}
   coolDownFiller: {fileID: 4958629526267319746}
   hotKey: {fileID: 4958629525864671210}
@@ -363,6 +363,36 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &4816945270066625292
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4958629526732543850}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 180370f9798368d46aa0bb571fe46191, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  targetEvent: {fileID: 11400000, guid: 099e8625e19023f43800c970888cfa82, type: 2}
+  priority: 5
+  response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 4958629526732543830}
+        m_TargetAssemblyTypeName: Raid.UI.ActionBars.CharacterSkills.CharacterSkillActionSlot,
+          Raid
+        m_MethodName: OnFocusChanged
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1001 &6357930726496739767
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -458,7 +488,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 2083898922248896249, guid: 7a96e44d8a304ed49b1a8e7df5e9ebc9, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 7a96e44d8a304ed49b1a8e7df5e9ebc9, type: 3}
 --- !u!224 &4958629526219775808 stripped
 RectTransform:

@@ -1,7 +1,6 @@
 using System.Collections.Generic;
 using Character;
 using Core;
-using Core.GameEvents;
 using MainGame;
 using UnityEngine;
 
@@ -11,7 +10,7 @@ namespace Raid
 {
     public class RaidDirector : MonoBehaviour
     {
-        public GameEventTransform OnFocusCharacterChanged;
+        public GameEventAdventurer OnFocusCharacterChanged;
 
         [SerializeField] private RaidCastingDirector castingDirector;
         [SerializeField] private RaidUIDirector uiDirector;
@@ -19,32 +18,30 @@ namespace Raid
         // TODO. TEMP;
         [SerializeField] private AdventurerBehaviour player;
 
-        private Transform focusCharacter;
+        private AdventurerBehaviour focusCharacter;
         
         public List<AdventurerBehaviour> AdventurerList => castingDirector.AdventurerList;
         public List<MonsterBehaviour> MonsterList => castingDirector.MonsterList;
 
-        public Transform FocusCharacter
-        {
-            get => focusCharacter;
-            set
-            {
-                if (value == focusCharacter) return;
-                
-                focusCharacter             = value;
-                uiDirector.FocusAdventurer = FocusCharacter.GetComponent<AdventurerBehaviour>();
-                OnFocusCharacterChanged.Invoke(value);
-            }
-        }
-        
+        // public AdventurerBehaviour FocusCharacter
+        // {
+        //     get => focusCharacter;
+        //     set
+        //     {
+        //         if (value == focusCharacter) return;
+        //         
+        //         focusCharacter             = value;
+        //         uiDirector.FocusAdventurer = FocusCharacter.GetComponent<AdventurerBehaviour>();
+        //         OnFocusCharacterChanged.Invoke(value);
+        //     }
+        // }
+
 
         private void Awake()
         {
             castingDirector ??= GetComponentInChildren<RaidCastingDirector>();
             uiDirector      ??= GetComponentInChildren<RaidUIDirector>();
-            
-            uiDirector.Initialize(AdventurerList, MonsterList);
-            
+
             MainUI.FadePanel.PlayFadeIn();
 
             if (player.IsNullOrEmpty())
@@ -53,7 +50,12 @@ namespace Raid
                 return;
             }
 
-            FocusCharacter = player.transform;
+            // FocusCharacter = player;
+        }
+
+        private void Start()
+        {
+            uiDirector.Initialize(AdventurerList, MonsterList);
         }
     }
 }

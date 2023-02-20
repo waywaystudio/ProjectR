@@ -112,8 +112,10 @@ namespace Character
             if (!taker.DynamicStatEntry.IsAlive.Value) return null;
             
             var statusEffectEntity = new StatusEffectEntity(statusEffect, taker);
+            var table = taker.DynamicStatEntry.BuffTable;
 
-            taker.DynamicStatEntry.BuffTable.Register(statusEffect, out statusEffectEntity.IsOverride);
+            table.Register(statusEffect);
+            statusEffect.OnEnded.Register("UnregisterTable", () => table.Unregister(statusEffect));
             statusEffect.Active(taker);
 
             statusEffect.Provider.OnProvideStatusEffect.Invoke(statusEffectEntity);

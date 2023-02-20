@@ -55,7 +55,7 @@ MonoBehaviour:
     sortingType: None
     targetLayer: enemy
     targetParam: {x: 15, y: 90}
-    statusEffect: 0
+    statusEffect: 14000003
   - id: 13000004
     name: HoldingAttack
     description: Starts combat by attacking a target with a melee weapon.
@@ -69,4 +69,18 @@ MonoBehaviour:
     sortingType: None
     targetLayer: enemy
     targetParam: {x: 15, y: 360}
+    statusEffect: 0
+  - id: 13000005
+    name: KnightDash
+    description: Starts combat by attacking a target with a melee weapon.
+    completionValueList:
+    - 8
+    processTime: 0
+    coolTime: 5
+    cost: 0
+    basePriority: 0
+    animationKey: jump
+    sortingType: None
+    targetLayer: ally
+    targetParam: {x: 0, y: 0}
     statusEffect: 0
