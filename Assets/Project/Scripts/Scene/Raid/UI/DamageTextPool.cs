@@ -3,33 +3,24 @@ using Core;
 
 namespace Raid.UI
 {
-    public class DamageTextPool : Pool<DamageText>
+    public class DamageTextPool : Pool<DamageTextUI>
     {
         // TODO.TEMP
         public AdventurerBehaviour FirstAdventurer;
-        public AdventurerBehaviour SecondAdventurer;
-        public AdventurerBehaviour ThirdAdventurer;
-        public AdventurerBehaviour FourthAdventurer;
-
-        public bool ShowFirstAdventurerDamage;
-        public bool ShowSecondAdventurerDamage;
-        public bool ShowThirdAdventurerDamage;
-        public bool ShowFourthAdventurerDamage;
         //
 
-        public void OnStatusEffectGet(DamageText damageText)
+        protected override void OnGetPool(DamageTextUI damageText)
         {
             damageText.gameObject.SetActive(true);
-            damageText.transform.SetParent(parent);
         }
         
-        public void OnStatusEffectRelease(DamageText damageText)
+        protected override void OnReleasePool(DamageTextUI damageText)
         {
             damageText.gameObject.SetActive(false);
             damageText.transform.SetParent(Origin);
         }
         
-        public void OnStatusEffectDestroy(DamageText damageText)
+        protected override void OnDestroyPool(DamageTextUI damageText)
         {
             Destroy(damageText.gameObject);
         }
@@ -38,6 +29,7 @@ namespace Raid.UI
         {
             var damageText = Get();
             
+            damageText.transform.SetParent(combatEntity.Taker.DamageSpawn, false);
             damageText.ShowValue(combatEntity);
         }
 

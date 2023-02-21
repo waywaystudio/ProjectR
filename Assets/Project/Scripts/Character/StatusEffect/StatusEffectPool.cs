@@ -16,20 +16,20 @@ namespace Character.StatusEffect
             prefab.TryGetComponent(out effect);
         }
         
-        public void OnStatusEffectGet(StatusEffectComponent statusEffect)
+        protected override void OnGetPool(StatusEffectComponent statusEffect)
         {
             statusEffect.gameObject.SetActive(true);
-            statusEffect.transform.SetParent(parent);
+            statusEffect.transform.SetParent(spawnHierarchy);
             statusEffect.Initialize(provider);
         }
 
-        public void OnStatusEffectRelease(StatusEffectComponent statusEffect)
+        protected override void OnReleasePool(StatusEffectComponent statusEffect)
         {
             statusEffect.gameObject.SetActive(false);
             statusEffect.transform.SetParent(Origin);
         }
         
-        public void OnStatusEffectDestroy(StatusEffectComponent statusEffect)
+        protected override void OnDestroyPool(StatusEffectComponent statusEffect)
         {
             Destroy(statusEffect.gameObject);
         }
