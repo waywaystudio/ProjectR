@@ -2,7 +2,7 @@ using DG.Tweening;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-namespace Scene.Raid.UI
+namespace Raid.UI
 {
     public class PartyUnitFrameHover : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
     {

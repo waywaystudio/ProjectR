@@ -1,5 +1,6 @@
 using Character;
 using Core;
+using Core.GameEvents;
 using MainGame;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -10,16 +11,26 @@ namespace Raid
     {
         // TODO. TEMP
         [SerializeField] private AdventurerBehaviour focusedAdventurer;
+        //
 
-        private Camera mainCamera;
+        [SerializeField] private GameEventAdventurer onFocusChanged;
+        [SerializeField] private GameEvent onCommandMode; 
+
         private Vector3 mouseDestination;
-        
-        public AdventurerBehaviour FocusedAdventurer => focusedAdventurer;
+
 
         public void OnFocusChanged(AdventurerBehaviour ab) => focusedAdventurer = ab;
+
+        /* GameEvent */
+        public void CommandMode(InputAction.CallbackContext context)
+        {
+            // onFocusChanged.Invoke(null);
+            onCommandMode.Invoke();
+        }
         
         public void Move(InputAction.CallbackContext context)
         {
+            if (focusedAdventurer.IsNullOrEmpty()) return;
             if (!focusedAdventurer.isActiveAndEnabled) return;
             if (!MainManager.Input.TryGetMousePosition(out var mouse)) return;
             if (MainManager.Input.IsMouseOnUI) return;
@@ -29,38 +40,40 @@ namespace Raid
 
         public void Teleport(InputAction.CallbackContext context)
         {
+            if (focusedAdventurer.IsNullOrEmpty()) return;
             if (!focusedAdventurer.isActiveAndEnabled) return;
             
             focusedAdventurer.ActionBehaviour.Teleport();
         }
 
-        private void Awake()
-        {
-            mainCamera = Camera.main;
-        }
 
-        private void Start()
+        private void Register()
         {
-            if (!MainManager.Input.TryGetAction(BindingCode.LeftMouse, out var moveAction)) return;
+            if (MainManager.Input.TryGetAction(BindingCode.LeftMouse, out var moveAction))
+                moveAction.started += Move;
+
+            if (MainManager.Input.TryGetAction(BindingCode.Space, out var teleportAction))
+                teleportAction.started += Teleport;
             
-            moveAction.started += Move;
-
-            if (!MainManager.Input.TryGetAction(BindingCode.Space, out var teleportAction)) return;
-
-            teleportAction.started += Teleport;
+            if (MainManager.Input.TryGetAction(BindingCode.G, out var commandAction))
+                commandAction.started += CommandMode;
         }
 
-        private void OnDisable()
+        private void Unregister()
         {
             if (MainManager.Input is null) return;
             
-            if (!MainManager.Input.TryGetAction(BindingCode.LeftMouse, out var moveAction)) return;
+            if (MainManager.Input.TryGetAction(BindingCode.LeftMouse, out var moveAction))
+                moveAction.started -= Move;
 
-            moveAction.started -= Move;
-
-            if (!MainManager.Input.TryGetAction(BindingCode.Space, out var teleportAction)) return;
-
-            teleportAction.started -= Teleport;
+            if (MainManager.Input.TryGetAction(BindingCode.Space, out var teleportAction))
+                teleportAction.started -= Teleport;
+            
+            if (MainManager.Input.TryGetAction(BindingCode.G, out var commandAction))
+                commandAction.started -= CommandMode;
         }
+
+        private void Start() => Register();
+        private void OnDisable() => Unregister();
     }
 }

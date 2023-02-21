@@ -23,7 +23,7 @@ namespace Character.StatusEffect
 
             while (ProcessTime.Value > 0f)
             {
-                ProcessTime.Value -= StatusEffectTick;
+                ProcessTime.Value -= Time.deltaTime;
                 yield return null;
             }
 

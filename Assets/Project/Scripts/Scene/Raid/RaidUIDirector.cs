@@ -1,19 +1,19 @@
 using System.Collections.Generic;
 using Character;
 using Core;
-using Raid.UI.ActionBars.AdventurerBars;
-using Raid.UI.BossFrames;
+using Raid.UI.ActionFrames;
+using Raid.UI.ActionFrames.ActionBars.CharacterSkillBars;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace Raid
 {
     using UI;
-    using UI.ActionBars;
-    using UI.DynamicValueProcesses;
-    using UI.StatusEffectIconBars;
-    using UI.CastingProgress;
-    using UI.ActionBars.CharacterSkills;
-    
+    using UI.BossFrames;
+    using UI.ActionFrames.ActionBars;
+    using UI.ActionFrames.ActionBars.AdventurerBars;
+    using UI.ActionFrames.StatusEffectIconBars;
+
     public class RaidUIDirector : MonoBehaviour
     {
         // TODO.TEMP
@@ -23,13 +23,13 @@ namespace Raid
         // Boss Frames
         [SerializeField] private BossHpProcess bossHpProcess;
         
-        // Player Frames
+        // Action Frames
         [SerializeField] private CastingProgress castingProgress;
-        [SerializeField] private StatusEffectIconBar statusEffectIconBar;
+        [SerializeField] private StatusEffectBar statusEffectBar;
         [SerializeField] private DynamicValueProcess dynamicValueProcess;
         [SerializeField] private CharacterDashActionSlot dashAction;
         [SerializeField] private AdventurerBar adventurerBar;
-        [SerializeField] private ActionBarFrame actionBarFrame;
+        [SerializeField] private ActionBar actionBar;
         
         [SerializeField] private List<PartyUnitFrame> partyFrameList;
 
@@ -52,9 +52,9 @@ namespace Raid
         public void Initialize(AdventurerBehaviour player)
         {
             castingProgress.Initialize(player);
-            statusEffectIconBar.Initialize(player);
+            statusEffectBar.Initialize(player);
             dynamicValueProcess.Initialize(player);
-            actionBarFrame.Initialize(player);
+            actionBar.Initialize(player);
             dashAction.Initialize(player);
         }
 
@@ -71,13 +71,11 @@ namespace Raid
         private void Initialize(List<AdventurerBehaviour> adventurerList)
         {
             if (PartyFrameList.IsNullOrEmpty() ||
-                // NameplateList.IsNullOrEmpty() ||
                 adventurerList.IsNullOrEmpty()) return;
             
             adventurerList.ForEach((x, i) =>
             {
                 if (PartyFrameList.Count > i) PartyFrameList[i].Initialize(x);
-                // if (NameplateList.Count > i) NameplateList[i].Initialize(x);
             });
         }
 
@@ -90,12 +88,11 @@ namespace Raid
 #if UNITY_EDITOR
         public void SetUp()
         {
-            statusEffectIconBar ??= GetComponentInChildren<StatusEffectIconBar>();
+            statusEffectBar ??= GetComponentInChildren<StatusEffectBar>();
             dynamicValueProcess ??= GetComponentInChildren<DynamicValueProcess>();
-            actionBarFrame      ??= GetComponentInChildren<ActionBarFrame>();
+            actionBar      ??= GetComponentInChildren<ActionBar>();
 
             GetComponentsInChildren(true, PartyFrameList);
-            // GetComponentsInChildren(NameplateList);
         }
 #endif
     }

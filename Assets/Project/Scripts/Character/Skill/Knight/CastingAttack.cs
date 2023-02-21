@@ -9,10 +9,8 @@ namespace Character.Skill.Knight
     public class CastingAttack : SkillComponent, ICombatTable
     {
         [SerializeField] private PowerValue powerValue;
-        [SerializeField] private GameObject bleedPrefab;
-        [SerializeField] private int maxPool = 8;
-        
-        private IObjectPool<StatusEffectComponent> pool;
+        [SerializeField] private StatusEffectPool statusEffectPool;
+
         public StatTable StatTable { get; } = new();
 
         public override void Release() { }
@@ -38,7 +36,7 @@ namespace Character.Skill.Knight
                 taker.TakeDamage(this);
                 Debug.Log($"{taker.Name} Hit by {ActionCode.ToString()}");
                 
-                var effectInfo = bleedPrefab.GetComponent<IStatusEffect>();
+                var effectInfo = statusEffectPool.Effect;
                 var table = taker.DynamicStatEntry.DeBuffTable;
 
                 if (table.ContainsKey((Provider, effectInfo.ActionCode)))
@@ -47,7 +45,7 @@ namespace Character.Skill.Knight
                 }
                 else
                 {
-                    taker.TakeDeBuff(pool.Get());
+                    taker.TakeDeBuff(statusEffectPool.Get());
                 }
             });
         }
@@ -56,38 +54,11 @@ namespace Character.Skill.Knight
         {
             model.PlayOnce("attack", 0f, OnEnded.Invoke);
         }
-        
-        private StatusEffectComponent CreateStatusEffect()
-        {
-            var statusEffect = Instantiate(bleedPrefab).GetComponent<StatusEffectComponent>();
-             
-            statusEffect.SetPool(pool);
-
-            return statusEffect;
-        }
-        private void OnStatusEffectGet(StatusEffectComponent statusEffect)
-        {
-            statusEffect.gameObject.SetActive(true);
-            statusEffect.Initialize(Provider);
-        }
-        private static void OnStatusEffectRelease(StatusEffectComponent statusEffect)
-        {
-            statusEffect.gameObject.SetActive(false);
-        }
-        private static void OnStatusEffectDestroy(StatusEffectComponent statusEffect)
-        {
-            Destroy(statusEffect.gameObject);
-        }
 
 
         protected void OnEnable()
         {
-            pool = new ObjectPool<StatusEffectComponent>(
-                CreateStatusEffect,
-                OnStatusEffectGet,
-                OnStatusEffectRelease,
-                OnStatusEffectDestroy,
-                maxSize: maxPool);
+            statusEffectPool.Initialize(Provider);
             
             OnActivated.Register("PlayCastingAnimation", PlayAnimation);
             OnActivated.Register("UpdatePowerValue", UpdateCompletion);

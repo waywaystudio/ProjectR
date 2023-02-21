@@ -13,6 +13,8 @@ namespace Character
         [SerializeField] protected DynamicStatEntry dynamicStatEntry;
         [SerializeField] protected CharacterConstStats constStats;
 
+        [SerializeField] protected Transform damageSpawn;
+
         public string Name => characterName ??= "Diablo";
         public RoleType Role => role;
         public DataIndex ActionCode => dataIndex;
@@ -20,6 +22,8 @@ namespace Character
         public ICombatProvider Provider => this;
         public GameObject Object => gameObject;
         public StatTable StatTable => DynamicStatEntry.StatTable;
+        
+        public Transform DamageSpawn => damageSpawn;
 
         public ActionTable OnDead { get; } = new();
         public ActionTable<CombatEntity> OnTakeCombat { get; } = new();

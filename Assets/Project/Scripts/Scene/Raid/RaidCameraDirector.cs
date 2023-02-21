@@ -1,6 +1,6 @@
 using Character;
 using Cinemachine;
-using Sirenix.OdinInspector;
+using Core;
 using UnityEngine;
 
 namespace Raid
@@ -18,7 +18,10 @@ namespace Raid
             cameraBrain = mainCamera.GetComponent<CinemachineBrain>();
         }
 
-        public void SetPlayerCameraFocus(AdventurerBehaviour target) => SetPlayerCameraFocus(target.transform);
+        /* GameEvent */
+        public void FocusPlayer(AdventurerBehaviour target) => Focusing(target.transform);
+        public void FocusMonster(MonsterBehaviour target) => Focusing(target.transform);
+        public void StageCamera() => ChangeCamera(stageCamera);
 
         public void ChangeCamera(ICinemachineCamera cameraName)
         {
@@ -29,15 +32,18 @@ namespace Raid
         }
         
         
-        private void SetPlayerCameraFocus(Transform target)
+        private void Focusing(Transform target)
         {
-            playerCamera.Follow = target;
-            playerCamera.LookAt = target;
+            if (!target.IsNullOrEmpty())
+            {
+                playerCamera.Follow = target;
+                playerCamera.LookAt = target;
+            }
 
             PlayerCamera();
         }
 
-        [Button] private void PlayerCamera() => ChangeCamera(playerCamera);
-        [Button] private void StageCamera() => ChangeCamera(stageCamera);
+        private void PlayerCamera() => ChangeCamera(playerCamera);
+        
     }
 }

@@ -36,8 +36,6 @@ namespace Character.Skill
         [SerializeField] protected ProcessType processType;
         [SerializeField] protected float progressTime;
 
-        private float progressTick;
-        private float coolDownTick;
         private Coroutine progressRoutine;
         private Coroutine coolTimeRoutine;
 
@@ -122,7 +120,7 @@ namespace Character.Skill
 
             while (RemainCoolTime.Value > 0f)
             {
-                RemainCoolTime.Value -= coolDownTick;
+                RemainCoolTime.Value -= Time.deltaTime;
                 yield return null;
             }
         }
@@ -133,7 +131,7 @@ namespace Character.Skill
 
             while (CastingProgress.Value < endTime)
             {
-                CastingProgress.Value += progressTick;
+                CastingProgress.Value += Time.deltaTime;
                 yield return null;
             }
 
@@ -150,9 +148,7 @@ namespace Character.Skill
         protected virtual void Awake()
         {
             Provider     = GetComponentInParent<ICombatProvider>();
-            coolDownTick = Time.deltaTime;
-            progressTick = Time.deltaTime;
-
+            
             ConditionTable.Register("CoolTime", IsCoolTimeReady);
             ConditionTable.Register("Cost", IsCostReady);
             OnEnded.Register("EndProgress", () => OnProgress = false);

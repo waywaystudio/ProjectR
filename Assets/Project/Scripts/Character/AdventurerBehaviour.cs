@@ -20,8 +20,11 @@ namespace Character
         [SerializeField] protected ActionBehaviour actionBehaviour;
         [SerializeField] protected UnityEvent onManualControl;
         [SerializeField] protected UnityEvent onAutoControl;
+        
+        [SerializeField] protected Transform damageSpawn;
 
         public ActionBehaviour ActionBehaviour => actionBehaviour;
+        public Transform DamageSpawn => damageSpawn;
 
         private bool IsAutoMode { get; set; }
 

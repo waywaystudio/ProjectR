@@ -10,8 +10,6 @@ namespace Raid
 {
     public class RaidDirector : MonoBehaviour
     {
-        public GameEventAdventurer OnFocusCharacterChanged;
-
         [SerializeField] private RaidCastingDirector castingDirector;
         [SerializeField] private RaidUIDirector uiDirector;
         
@@ -22,19 +20,6 @@ namespace Raid
         
         public List<AdventurerBehaviour> AdventurerList => castingDirector.AdventurerList;
         public List<MonsterBehaviour> MonsterList => castingDirector.MonsterList;
-
-        // public AdventurerBehaviour FocusCharacter
-        // {
-        //     get => focusCharacter;
-        //     set
-        //     {
-        //         if (value == focusCharacter) return;
-        //         
-        //         focusCharacter             = value;
-        //         uiDirector.FocusAdventurer = FocusCharacter.GetComponent<AdventurerBehaviour>();
-        //         OnFocusCharacterChanged.Invoke(value);
-        //     }
-        // }
 
 
         private void Awake()
@@ -49,8 +34,6 @@ namespace Raid
                 Debug.LogWarning("Required Player");
                 return;
             }
-
-            // FocusCharacter = player;
         }
 
         private void Start()

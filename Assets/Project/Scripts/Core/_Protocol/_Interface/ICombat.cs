@@ -73,6 +73,7 @@ namespace Core
         // # GameObject Object { get; }
 
         RoleType Role { get; }
+        Transform DamageSpawn { get; }
 
         ActionTable<CombatEntity> OnTakeCombat { get; }
         ActionTable<StatusEffectEntity> OnTakeStatusEffect { get; }

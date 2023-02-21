@@ -3,11 +3,10 @@ using Core;
 using MainGame;
 using Sirenix.OdinInspector;
 using UnityEngine;
-using UnityEngine.Pool;
 
 namespace Character.StatusEffect
 {
-    public abstract class StatusEffectComponent : MonoBehaviour, IStatusEffect, IDataSetUp
+    public abstract class StatusEffectComponent : MonoBehaviour, IPoolable<StatusEffectComponent>, IStatusEffect, IDataSetUp
     {
         [SerializeField] protected DataIndex statusCode;
         [SerializeField] protected StatusEffectType type;
@@ -15,25 +14,19 @@ namespace Character.StatusEffect
         [SerializeField] protected float duration;
         
         protected Coroutine StatusEffectRoutine;
-        protected float StatusEffectTick;
-        private IObjectPool<StatusEffectComponent> pool;
-
+        
+        public Pool<StatusEffectComponent> Pool { get; set; }
         public ICombatProvider Provider { get; private set; }
         public DataIndex ActionCode => statusCode;
         public StatusEffectType Type => type;
         public Sprite Icon => icon;
         public float Duration => duration;
-        
-        [ShowInInspector]
         public FloatEvent ProcessTime { get; } = new(0f, float.MaxValue);
 
         [ShowInInspector] public ActionTable<ICombatTaker> OnActivated { get; } = new();
         [ShowInInspector] public ActionTable OnDispel { get; } = new();
         [ShowInInspector] public ActionTable OnCompleted { get; } = new();
         [ShowInInspector] public ActionTable OnEnded { get; } = new();
-
-
-        public void SetPool(IObjectPool<StatusEffectComponent> pool) => this.pool = pool;
 
         public void Initialize(ICombatProvider provider)
         {
@@ -77,7 +70,7 @@ namespace Character.StatusEffect
             StopEffectuate();
             OnEnded.Invoke();
             
-            pool.Release(this);
+            Pool.Release(this);
         }
         
 
@@ -95,7 +88,6 @@ namespace Character.StatusEffect
 
         protected virtual void Awake()
         {
-            StatusEffectTick = Time.deltaTime;
             ProcessTime.SetClamp(0f, Mathf.Min(duration * 1.5f, 3600));
 
             Init();

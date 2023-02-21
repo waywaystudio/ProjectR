@@ -10,7 +10,6 @@ namespace Character.Skill
         [ShowInInspector] private const float GlobalCoolTime = 1.5f;
 
         private Coroutine gcdRoutine;
-        private float gcdTick;
         
         private ICombatProvider Provider { get; set; }
         public FloatEvent GlobalCoolTimeProgress { get; } = new(0, float.MaxValue);
@@ -39,7 +38,7 @@ namespace Character.Skill
 
             while (GlobalCoolTimeProgress.Value > 0)
             {
-                GlobalCoolTimeProgress.Value -= gcdTick;
+                GlobalCoolTimeProgress.Value -= Time.deltaTime;
                 yield return null;
             }
         }
@@ -47,7 +46,6 @@ namespace Character.Skill
         private void Awake()
         {
             Provider = GetComponentInParent<ICombatProvider>();
-            gcdTick  = Time.deltaTime;
         }
     }
 }

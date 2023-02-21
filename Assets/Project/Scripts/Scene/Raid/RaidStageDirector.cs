@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace Scene.Raid
+namespace Raid
 {
     public class RaidStageDirector : MonoBehaviour
     {

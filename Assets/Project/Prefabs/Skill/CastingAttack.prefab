@@ -41,6 +41,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1681182223584940545}
   - component: {fileID: 7680350760759447991}
+  - component: {fileID: 9109970235017606743}
   m_Layer: 0
   m_Name: CastingAttack
   m_TagString: Untagged
@@ -97,8 +98,67 @@ MonoBehaviour:
   powerValue:
     value: 20
     statCode: 1
-  armorCrashPrefab: {fileID: 8333227002716821657, guid: 5d2fb8c7eb66cd742b1e14925d73c808, type: 3}
-  maxPool: 8
+  statusEffectPool: {fileID: 9109970235017606743}
+--- !u!114 &9109970235017606743
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5136033056681404773}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 75e87109fe881904d8926813d4540676, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  prefab: {fileID: 8333227002716821657, guid: 5d2fb8c7eb66cd742b1e14925d73c808, type: 3}
+  count: 4
+  parent: {fileID: 1681182223584940545}
+  onGet:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 9109970235017606743}
+        m_TargetAssemblyTypeName: Character.StatusEffect.StatusEffectPool, Common
+        m_MethodName: OnStatusEffectGet
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  onReleased:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 9109970235017606743}
+        m_TargetAssemblyTypeName: Character.StatusEffect.StatusEffectPool, Common
+        m_MethodName: OnStatusEffectRelease
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  onDestroyed:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 9109970235017606743}
+        m_TargetAssemblyTypeName: Character.StatusEffect.StatusEffectPool, Common
+        m_MethodName: OnStatusEffectDestroy
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &7185754568562106441
 GameObject:
   m_ObjectHideFlags: 0

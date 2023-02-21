@@ -38,8 +38,8 @@ namespace Character.StatusEffect
 
                 while (tickBuffer > 0f)
                 {
-                    ProcessTime.Value -= StatusEffectTick;
-                    tickBuffer        -= StatusEffectTick;
+                    ProcessTime.Value -= Time.deltaTime;
+                    tickBuffer        -= Time.deltaTime;
                     yield return null;
                 }
                 

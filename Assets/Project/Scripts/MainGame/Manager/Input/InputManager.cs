@@ -34,6 +34,7 @@ namespace MainGame.Manager.Input
                 BindingCode.S => projectInput.Raid.S,
                 BindingCode.D => projectInput.Raid.D,
                 BindingCode.F => projectInput.Raid.F,
+                BindingCode.G => projectInput.Raid.G,
                 _ => null,
             };
 
@@ -73,12 +74,8 @@ namespace MainGame.Manager.Input
                         
                 if (bindingCode == BindingCode.None) continue;
                 if (!TryGetAction(bindingCode, out var inputAction)) continue;
-                        
-                // InputTable.Add(bindingCode, new InputActionTable());
-                        
+
                 inputAction.Enable();
-                // inputAction.started  += InputTable[bindingCode].OnStarted.Invoke;
-                // inputAction.canceled += InputTable[bindingCode].OnCanceled.Invoke;
             }
         }
 
@@ -86,8 +83,6 @@ namespace MainGame.Manager.Input
         /// TODO. 황당한 케이스; InputSystem에서 UI 클릭 or not 구분하기 위한 방법;
         private void Update()
         {
-            // if (!Mouse.current.leftButton.wasPressedThisFrame) return;
-
             isMouseOnUI = EventSystem.current.IsPointerOverGameObject(PointerInputModule.kMouseLeftId);
         }
 
@@ -99,86 +94,10 @@ namespace MainGame.Manager.Input
                         
                 if (bindingCode == BindingCode.None) continue;
                 if (!TryGetAction(bindingCode, out var inputAction)) continue;
-                        
-                // InputTable.Add(bindingCode, new InputActionTable());
-                        
-                inputAction.Enable();
-                // inputAction.started  += InputTable[bindingCode].OnStarted.Invoke;
-                // inputAction.canceled += InputTable[bindingCode].OnCanceled.Invoke;
+
+                inputAction.Disable();
             }
         }
         
     }
 }
-
-// private Dictionary<BindingCode, InputActionTable> InputTable { get; } = new();
-
-// private void OnEnable()
-// {
-//     foreach (var value in Enum.GetValues(typeof(BindingCode)))
-//     {
-//         var bindingCode = (BindingCode)value;
-//                 
-//         if (bindingCode == BindingCode.None) continue;
-//         if (!TryGet(bindingCode, out var inputAction)) continue;
-//                 
-//         InputTable.Add(bindingCode, new InputActionTable());
-//                 
-//         inputAction.Enable();
-//         inputAction.started  += InputTable[bindingCode].OnStarted.Invoke;
-//         inputAction.canceled += InputTable[bindingCode].OnCanceled.Invoke;
-//     }
-// }
-//
-// private void OnDisable()
-// {
-//     foreach (var value in Enum.GetValues(typeof(BindingCode)))
-//     {
-//         var bindingCode = (BindingCode)value;
-//                 
-//         if (bindingCode == BindingCode.None) continue;
-//         if (!TryGet(bindingCode, out var inputAction)) continue;
-//
-//                 
-//         inputAction.started  -= InputTable[bindingCode].OnStarted.Invoke;
-//         inputAction.canceled -= InputTable[bindingCode].OnCanceled.Invoke;
-//         inputAction.Disable();
-//     }
-//             
-//     InputTable.Clear();
-// }
-
-// public void Register(BindingCode bindingCode, string actionKey, Action startedAction, Action canceledAction)
-// {
-//     if (!TryGet(bindingCode, out _)) return;
-//     if (!InputTable.ContainsKey(bindingCode)) 
-//         InputTable.Add(bindingCode, new InputActionTable());
-//             
-//     InputTable[bindingCode].Register(actionKey, startedAction, canceledAction);
-// }
-//
-// public void Unregister(BindingCode bindingCode, string actionKey)
-// {
-//     if (!TryGet(bindingCode, out _)) return;
-//     if (!InputTable.ContainsKey(bindingCode)) return;
-//             
-//     InputTable[bindingCode].Unregister(actionKey);
-// }
-
-// private class InputActionTable
-// {
-//     public ActionTable<InputAction.CallbackContext> OnStarted { get; } = new();
-//     public ActionTable<InputAction.CallbackContext> OnCanceled { get; } = new();
-//
-//     public void Register(string key, Action startedAction, Action canceledAction)
-//     {
-//         OnStarted.Register(key, startedAction);
-//         OnCanceled.Register(key, canceledAction);
-//     }
-//
-//     public void Unregister(string key)
-//     {
-//         OnStarted.Unregister(key);
-//         OnCanceled.Unregister(key);
-//     }
-// }

@@ -19,5 +19,6 @@ namespace Core
         S,
         D,
         F,
+        G,
     }
 }

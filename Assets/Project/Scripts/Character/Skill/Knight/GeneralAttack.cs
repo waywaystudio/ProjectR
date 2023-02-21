@@ -1,17 +1,14 @@
 using Character.StatusEffect;
 using Core;
 using UnityEngine;
-using UnityEngine.Pool;
 
 namespace Character.Skill.Knight
 {
     public class GeneralAttack : SkillComponent, ICombatTable
     {
+        [SerializeField] private StatusEffectPool statusEffectPool;
         [SerializeField] private PowerValue powerValue;
-        [SerializeField] private GameObject armorCrashPrefab;
-        [SerializeField] private int maxPool = 8;
-        
-        private IObjectPool<StatusEffectComponent> pool;
+
         public StatTable StatTable { get; } = new();
 
 
@@ -28,32 +25,7 @@ namespace Character.Skill.Knight
             StatTable.Register(ActionCode, powerValue);
             StatTable.UnionWith(Provider.StatTable);
         }
-        
-        private StatusEffectComponent CreateStatusEffect()
-        {
-            var statusEffect = Instantiate(armorCrashPrefab).GetComponent<StatusEffectComponent>();
-             
-            statusEffect.SetPool(pool);
 
-            return statusEffect;
-        }
-
-        private void OnStatusEffectGet(StatusEffectComponent statusEffect)
-        {
-            statusEffect.gameObject.SetActive(true);
-            statusEffect.Initialize(Provider);
-        }
-
-        private static void OnStatusEffectRelease(StatusEffectComponent statusEffect)
-        {
-            statusEffect.gameObject.SetActive(false);
-        }
-
-        private static void OnStatusEffectDestroy(StatusEffectComponent statusEffect)
-        {
-            Destroy(statusEffect.gameObject);
-        }
-        
         private void RegisterHitEvent()
         {
             model.OnHit.Unregister("SkillHit");
@@ -69,7 +41,7 @@ namespace Character.Skill.Knight
                 taker.TakeDamage(this);
                 Debug.Log($"{taker.Name} Hit by {ActionCode.ToString()}");
 
-                var effectInfo = armorCrashPrefab.GetComponent<IStatusEffect>();
+                var effectInfo = statusEffectPool.Effect;
                 var table = taker.DynamicStatEntry.DeBuffTable;
 
                 if (table.ContainsKey((Provider, effectInfo.ActionCode)))
@@ -78,21 +50,15 @@ namespace Character.Skill.Knight
                 }
                 else
                 {
-                    taker.TakeDeBuff(pool.Get());
+                    taker.TakeDeBuff(statusEffectPool.Get());
                 }
             });
         }
 
-
         protected void OnEnable()
         {
-            pool = new ObjectPool<StatusEffectComponent>(
-                CreateStatusEffect,
-                OnStatusEffectGet,
-                OnStatusEffectRelease,
-                OnStatusEffectDestroy,
-                maxSize: maxPool);
-            
+            statusEffectPool.Initialize(Provider);
+
             OnActivated.Register("PlayAnimation", PlayAnimation);
             OnActivated.Register("UpdatePowerValue", UpdateCompletion);
             OnActivated.Register("RegisterHitEvent", RegisterHitEvent);
