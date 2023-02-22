@@ -5,9 +5,10 @@ namespace Core
     public static class LayerMaskExtension
     {
         /*
-         * LayerMask layer;
-         * layer, layer.value, LayerMask.GetMask("name") 모두 return flag.
+         * LayerMask layer; 
+         * (int)layer, layer.value, LayerMask.GetMask("name") 모두 return flag.
          * LayerMask.NameToLayer("name"), LayerMask.LayerToName(index) 모두 return index;
+         * 보통 기저함수에서 LayerMask를 Param으로 받는 경우, Index를 요구 함.
          * gameObject.layer -> index 값.
          */
         public static bool IsInLayerMask(this GameObject obj, LayerMask mask)
@@ -23,7 +24,7 @@ namespace Core
             if (layer.value == LayerMask.NameToLayer("Adventurer")) return LayerMask.NameToLayer("Monster");
             if (layer.value == LayerMask.NameToLayer("Monster")) return LayerMask.NameToLayer("Adventurer");
             
-            Debug.LogWarning($"layer must be Adventurer or Monster. Input:{LayerMask.LayerToName(layer)}");
+            Debug.LogWarning($"Layer must be Adventurer or Monster. Input:{LayerMask.LayerToName(layer)}");
             return 0;
         }
     }

@@ -36,3 +36,17 @@ MonoBehaviour:
     duration: 10
     valueList:
     - 0.25
+  - id: 14000004
+    name: LivingBomb
+    isBuff: 0
+    targetLayer: enemy
+    duration: 5
+    valueList:
+    - 10
+    - 50
+  - id: 14000005
+    name: Horror
+    isBuff: 0
+    targetLayer: enemy
+    duration: 3
+    valueList: []

@@ -2,6 +2,7 @@ using Character;
 using Core;
 using Core.GameEvents;
 using MainGame;
+using Raid.Art;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -11,6 +12,7 @@ namespace Raid
     {
         // TODO. TEMP
         [SerializeField] private AdventurerBehaviour focusedAdventurer;
+        [SerializeField] private ToMoveProjector moveProjector;
         //
 
         [SerializeField] private GameEventAdventurer onFocusChanged;
@@ -32,10 +34,11 @@ namespace Raid
         {
             if (focusedAdventurer.IsNullOrEmpty()) return;
             if (!focusedAdventurer.isActiveAndEnabled) return;
-            if (!MainManager.Input.TryGetMousePosition(out var mouse)) return;
+            if (!MainManager.Input.TryGetMousePosition(out var mousePosition)) return;
             if (MainManager.Input.IsMouseOnUI) return;
 
-            focusedAdventurer.ActionBehaviour.Run(mouse);
+            moveProjector.Projecting();
+            focusedAdventurer.ActionBehaviour.Run(mousePosition);
         }
 
         public void Teleport(InputAction.CallbackContext context)

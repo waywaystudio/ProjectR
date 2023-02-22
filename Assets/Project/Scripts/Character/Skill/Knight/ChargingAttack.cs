@@ -44,11 +44,7 @@ namespace Character.Skill.Knight
 
             if (!colliding.TryGetTakersInSphere(transform.position, range, angle, targetLayer, out var takerList)) return;
             
-            takerList.ForEach(taker =>
-            {
-                taker.TakeDamage(this);
-                Debug.Log($"{taker.Name} Hit by {ActionCode.ToString()}");
-            });
+            takerList.ForEach(taker => taker.TakeDamage(this));
         }
 
         private void PlayEndChargingAnimation()

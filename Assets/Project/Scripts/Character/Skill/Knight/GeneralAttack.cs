@@ -34,12 +34,16 @@ namespace Character.Skill.Knight
 
         private void OnGeneralAttack()
         {
-            if (!colliding.TryGetTakersInSphere(transform.position, range, angle, targetLayer, out var takerList)) return;
+            if (!colliding.TryGetTakersInSphere(transform.position, range, angle, targetLayer, out var takerList))
+            {
+                Debug.Log($"{Provider.Name} has TakerList?:{takerList.HasElement()}");
+                return;
+            }
             
             takerList.ForEach(taker =>
             {
                 taker.TakeDamage(this);
-                Debug.Log($"{taker.Name} Hit by {ActionCode.ToString()}");
+                Debug.Log($"{Provider.Name} provider GeneralAttack to {taker.Name}");
 
                 var effectInfo = statusEffectPool.Effect;
                 var table = taker.DynamicStatEntry.DeBuffTable;

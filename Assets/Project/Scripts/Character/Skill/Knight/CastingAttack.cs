@@ -34,8 +34,7 @@ namespace Character.Skill.Knight
             takerList.ForEach(taker =>
             {
                 taker.TakeDamage(this);
-                Debug.Log($"{taker.Name} Hit by {ActionCode.ToString()}");
-                
+
                 var effectInfo = statusEffectPool.Effect;
                 var table = taker.DynamicStatEntry.DeBuffTable;
 

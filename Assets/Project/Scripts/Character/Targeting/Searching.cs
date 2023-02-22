@@ -12,24 +12,24 @@ namespace Character.Targeting
         private const int MaxBufferCount = 32;
         
         [SerializeField] private SphereCollider searchingCollider;
+        [SerializeField] private LayerMask adventurerLayer;
+        [SerializeField] private LayerMask monsterLayer;
         
-        private LayerMask adventurerLayer;
-        private LayerMask monsterLayer;
         private LayerMask selfLayer;
 
         public List<ICombatTaker> AdventurerList { get; } = new(MaxBufferCount);
         public List<ICombatTaker> MonsterList { get; } = new(MaxBufferCount);
         public ICombatTaker LookTarget => SetLookTarget(selfLayer);
 
-        public ICombatTaker GetLookTarget(LayerMask layer)
+        public ICombatTaker GetLookTarget(LayerMask layerIndex)
         {
-            if (layer == adventurerLayer)
+            if (layerIndex == adventurerLayer)
             {
                 return AdventurerList.HasElement()
                     ? AdventurerList[0]
                     : null;
             }
-            if (layer == monsterLayer)
+            if (layerIndex == monsterLayer)
             {
                 return MonsterList.HasElement()
                     ? MonsterList[0]
@@ -40,9 +40,12 @@ namespace Character.Targeting
         }
 
         
-        public ICombatTaker GetMainTarget(LayerMask targetLayer, Vector3 rootPosition, SortingType sortingType = SortingType.None)
+        public ICombatTaker GetMainTarget(LayerMask targetLayerIndex, Vector3 rootPosition, SortingType sortingType = SortingType.None)
         {
-            if (targetLayer == LayerMask.GetMask("Adventurer") && AdventurerList.HasElement())
+            (targetLayerIndex == adventurerLayer || targetLayerIndex == monsterLayer).OnFalse(() 
+                => Debug.LogWarning($"Layer must be Adventurer or Monster. Input:{(int)targetLayerIndex}"));
+            
+            if (targetLayerIndex == adventurerLayer && AdventurerList.HasElement())
             {
                 AdventurerList.SortingFilter(rootPosition, sortingType);
                 
@@ -54,7 +57,7 @@ namespace Character.Targeting
                 return null;
             }
 
-            if (targetLayer == LayerMask.GetMask("Monster") && MonsterList.HasElement())
+            if (targetLayerIndex == monsterLayer && MonsterList.HasElement())
             {
                 MonsterList.SortingFilter(rootPosition, sortingType);
 
@@ -66,7 +69,6 @@ namespace Character.Targeting
                 return null;
             }
 
-            Debug.LogWarning($"Layer must be Adventurer or Monster. Input:{LayerMask.LayerToName(targetLayer)}");
             return null;
         }
         
@@ -75,8 +77,6 @@ namespace Character.Targeting
         {
             searchingCollider        ??= GetComponent<SphereCollider>();
             searchingCollider.radius =   SearchingRange;
-            adventurerLayer          =   LayerMask.GetMask("Adventurer");
-            monsterLayer             =   LayerMask.GetMask("Monster");
             selfLayer                =   CharacterUtility.IndexToLayerValue(GetComponentInParent<ICombatProvider>().Object);
         }
 
@@ -134,8 +134,6 @@ namespace Character.Targeting
         {
             searchingCollider        ??= GetComponent<SphereCollider>();
             searchingCollider.radius =   SearchingRange;
-            adventurerLayer          =   LayerMask.GetMask("Adventurer");
-            monsterLayer             =   LayerMask.GetMask("Monster");
         }
 #endif
     }

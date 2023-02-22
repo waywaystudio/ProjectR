@@ -3,6 +3,7 @@ using DG.Tweening;
 using Sirenix.OdinInspector;
 using TMPro;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 namespace Raid.UI
 {
@@ -10,47 +11,95 @@ namespace Raid.UI
     {
         [ColorPalette("Fall"), SerializeField] private Color normalColor;
         [ColorPalette("Fall"), SerializeField] private Color criticalColor;
-        [SerializeField] private RectTransform rectTransform;
+        [SerializeField] private RectTransform textTransform;
         [SerializeField] private TextMeshProUGUI damageText;
 
+        private bool isCriticalTweenInitialized;
+        private bool isNormalTweenInitialized;
+        private float normalDamageScale = 1.6f;
+        private float criticalDamageScale = 2.0f;
+        
+        private Vector3 randomPivot;
+        private Camera mainCamera;
         private CombatEntity currentEntity;
-        private Sequence textEffect;
-        private ICombatTaker taker;
+        private Sequence normalDamageEffect;
+        private Sequence criticalDamageEffect;
 
         public Pool<DamageTextUI> Pool { get; set; }
         
         public void ShowValue(CombatEntity entity)
         {
             currentEntity = entity;
-            taker         = entity.Taker;
+            randomPivot   = Random.insideUnitSphere * 0.5f;
+            
+            damageText.text = entity.Value.ToString("0");
 
-            SetTextProperty(entity.Value, entity.IsCritical);
+            if (entity.IsCritical)
+            {
+                damageText.color = criticalColor;
+                
+                if (isCriticalTweenInitialized)
+                {
+                    criticalDamageEffect.Restart();
+                }
+                else
+                {
+                    criticalDamageEffect = DOTween.Sequence()
+                        .SetAutoKill(false)
+                        .Append(textTransform.DOScale(criticalDamageScale, 0.45f).From())
+                        .Append(textTransform.DOLocalMoveY(-25.0f, 0.35f).SetRelative().SetEase(Ease.InCubic))
+                        .Join(damageText.DOFade(0.0f, 0.35f))
+                        .OnComplete(() => Pool.Release(this));
+                    
+                    isCriticalTweenInitialized = true;
+                }
+            }
+            else
+            {
+                damageText.color = normalColor;
+
+                if (isNormalTweenInitialized)
+                {
+                    normalDamageEffect.Restart();
+                }
+                else
+                {
+                    normalDamageEffect = DOTween.Sequence()
+                        .SetAutoKill(false)
+                        .Append(textTransform.DOScale(normalDamageScale, 0.35f).From())
+                        .Append(textTransform.DOLocalMoveY(-15.0f, 0.35f).SetRelative().SetEase(Ease.InCubic))
+                        .Join(damageText.DOFade(0.0f, 0.35f))
+                        .OnComplete(() => Pool.Release(this));
+
+                    isNormalTweenInitialized = true;
+                }
+            }
+
+            SetTextPosition();
+            textTransform.position = transform.position;
         }
+
         
-        private void SetTextProperty(float value, bool isEmphasis)
+        private void SetTextPosition()
         {
-            damageText.text = value.ToString("0");
-            damageText.color = isEmphasis
-                ? criticalColor
-                : normalColor;
+            if (currentEntity == null) return;
+
+            var targetPosition = currentEntity.Taker.DamageSpawn.position + randomPivot;
+            var screenPosition = mainCamera.WorldToScreenPoint(targetPosition);
+
+            transform.position = screenPosition;
+        }
+
+        private void Update()
+        {
+            SetTextPosition();
         }
 
         private void Awake()
         {
+            mainCamera    =   Camera.main;
             damageText    ??= GetComponent<TextMeshProUGUI>();
-            rectTransform ??= GetComponent<RectTransform>();
-            
-            // textEffect = DOTween.Sequence()
-            //     .SetAutoKill(false)
-            //     .Append(rectTransform.DOScale(2.0f, 0.8f).SetEase(Ease.OutCubic))
-            //     .Join(rectTransform.DOLocalMoveY(50.0f, 0.8f).SetRelative().SetEase(Ease.OutCubic))
-            //     .OnComplete(() =>
-            //     {
-            //         Pool.Release(this);
-            //         textEffect.Rewind();
-            //     });
-            // .Join(rectTransform.DOLocalMove(offset, 0.8f).SetRelative().SetEase(Ease.InCubic))
-            // .Append(rectTransform.DOLocalMove(offset, 0.8f).SetRelative().SetEase(Ease.OutCirc))
+            textTransform ??= GetComponent<RectTransform>();
         }
     }
 }

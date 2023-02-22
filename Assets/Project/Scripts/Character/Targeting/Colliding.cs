@@ -1,11 +1,13 @@
 using System.Collections.Generic;
 using Core;
+using Sirenix.OdinInspector;
 using UnityEngine;
 
 namespace Character.Targeting
 {
     public class Colliding : MonoBehaviour
     {
+        [ShowInInspector]
         protected readonly Collider[] Buffers = new Collider[32];
 
         public bool TryGetTakersInSphere(Vector3 center, float radius, float angle, LayerMask layer,

@@ -36,11 +36,17 @@ public enum DataIndex
 	ChargingAttack = 13000003,
 	HoldingAttack = 13000004,
 	KnightDash = 13000005,
+	MoraggSpin = 13000006,
+	MoraggLivingBomb = 13000007,
+	MoraggHowling = 13000008,
+	MoraggCommonAttack = 13000009,
 
 	/* StatusEffectData */
 	ArmorCrash = 14000001,
 	Bleed = 14000002,
 	Drain = 14000003,
+	LivingBomb = 14000004,
+	Horror = 14000005,
 
 	/* BossData */
 	DevourerofSouls = 17000001,

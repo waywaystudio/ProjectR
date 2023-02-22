@@ -4,7 +4,6 @@ using Core;
 using Raid.UI.ActionFrames;
 using Raid.UI.ActionFrames.ActionBars.CharacterSkillBars;
 using UnityEngine;
-using UnityEngine.Serialization;
 
 namespace Raid
 {
@@ -30,6 +29,9 @@ namespace Raid
         [SerializeField] private CharacterDashActionSlot dashAction;
         [SerializeField] private AdventurerBar adventurerBar;
         [SerializeField] private ActionBar actionBar;
+        
+        // Pool
+        [SerializeField] private DamageTextPool damageTextPool;
         
         [SerializeField] private List<PartyUnitFrame> partyFrameList;
 
@@ -65,6 +67,7 @@ namespace Raid
             
             bossHpProcess.Initialize(monsterList[0]);
             adventurerBar.Initialize(adventurerList);
+            damageTextPool.Initialize(adventurerList);
         }
         
 

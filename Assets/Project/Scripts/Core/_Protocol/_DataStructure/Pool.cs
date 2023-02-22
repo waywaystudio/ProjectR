@@ -7,7 +7,6 @@ namespace Core
     {
         [SerializeField] protected GameObject prefab;
         [SerializeField] protected int maxCount;
-        [SerializeField] protected Transform spawnHierarchy;
 
         protected IObjectPool<T> ObjectPool { get; private set; }
         protected Transform Origin => transform;
@@ -18,7 +17,7 @@ namespace Core
 
         protected virtual T OnCreatePool()
         {
-            if (!prefab.IsNullOrEmpty() && Instantiate(prefab, spawnHierarchy).TryGetComponent(out T component))
+            if (!prefab.IsNullOrEmpty() && Instantiate(prefab).TryGetComponent(out T component))
             {
                 component.Pool = this;
                 return component;
@@ -33,7 +32,6 @@ namespace Core
 
         private void Awake()
         {
-            spawnHierarchy ??= transform;
             ObjectPool = new ObjectPool<T>(OnCreatePool,
                 OnGetPool,
                 OnReleasePool,

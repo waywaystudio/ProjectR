@@ -84,3 +84,59 @@ MonoBehaviour:
     targetLayer: ally
     targetParam: {x: 0, y: 0}
     statusEffect: 0
+  - id: 13000006
+    name: MoraggSpin
+    description: Starts combat by attacking a target with a melee weapon.
+    completionValueList:
+    - 36
+    processTime: 3
+    coolTime: 12
+    cost: 0
+    basePriority: 2
+    animationKey: casting
+    sortingType: None
+    targetLayer: enemy
+    targetParam: {x: 4, y: 360}
+    statusEffect: 0
+  - id: 13000007
+    name: MoraggLivingBomb
+    description: Starts combat by attacking a target with a melee weapon.
+    completionValueList:
+    - 0
+    processTime: 3
+    coolTime: 20
+    cost: 0
+    basePriority: 4
+    animationKey: casting
+    sortingType: Random
+    targetLayer: enemy
+    targetParam: {x: 0, y: 0}
+    statusEffect: 14000004
+  - id: 13000008
+    name: MoraggHowling
+    description: Starts combat by attacking a target with a melee weapon.
+    completionValueList:
+    - 0
+    processTime: 0
+    coolTime: 30
+    cost: 0
+    basePriority: 3
+    animationKey: attack
+    sortingType: None
+    targetLayer: enemy
+    targetParam: {x: 50, y: 360}
+    statusEffect: 14000005
+  - id: 13000009
+    name: MoraggCommonAttack
+    description: Starts combat by attacking a target with a melee weapon.
+    completionValueList:
+    - 20
+    processTime: 0
+    coolTime: 0
+    cost: 0
+    basePriority: 1
+    animationKey: attack
+    sortingType: Role
+    targetLayer: enemy
+    targetParam: {x: 6, y: 360}
+    statusEffect: 0

@@ -11,6 +11,7 @@ namespace MainGame.Manager.Input
         private bool isMouseOnUI;
         private ProjectInput projectInput;
         private Camera mainCamera;
+        private readonly RaycastHit[] buffers = new RaycastHit[8];
 
         public bool IsMouseOnUI => isMouseOnUI;
 
@@ -40,7 +41,7 @@ namespace MainGame.Manager.Input
 
             if (inputAction is null)
                 Debug.LogError($"Not Assignable Keycode. Input:{bindingCode.ToString()}. "
-                               + $"Check InputManager.Get(BindingCode keyCode) function.");
+                               + "Check InputManager.TryGetAction(BindingCode bindingCode) function.");
 
             return inputAction != null;
         }
@@ -57,6 +58,29 @@ namespace MainGame.Manager.Input
 
             mousePosition = ray.GetPoint(distance);
             return true;
+        }
+        
+        public bool TryGetGroundPosition(out Vector3 groundPosition)
+        {
+            groundPosition = Vector3.negativeInfinity;
+            var ray = mainCamera.ScreenPointToRay(Mouse.current.position.ReadValue());
+
+            if (Physics.RaycastNonAlloc(ray, buffers, 1000f, LayerMask.GetMask("Ground")) == 0)
+            {
+                groundPosition = Vector3.negativeInfinity;
+                return false;
+            }
+
+            foreach (var hit in buffers)
+            {
+                if (hit.collider.IsNullOrEmpty()) break;
+                
+                groundPosition = hit.point;
+                break;
+            }
+
+            Array.Clear(buffers, 0, buffers.Length);
+            return groundPosition != Vector3.negativeInfinity;
         }
 
 
