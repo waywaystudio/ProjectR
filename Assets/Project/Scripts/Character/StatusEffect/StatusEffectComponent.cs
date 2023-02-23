@@ -31,14 +31,9 @@ namespace Character.StatusEffect
         public void Initialize(ICombatProvider provider)
         {
             Provider = provider;
-            
-            OnActivated.Clear();
-            OnDispel.Clear();
-            OnCompleted.Clear();
-            OnEnded.Clear();
         }
 
-        public void Active(ICombatTaker taker)
+        public virtual void Active(ICombatTaker taker)
         {
             StartEffectuate(taker);
             
@@ -47,7 +42,7 @@ namespace Character.StatusEffect
 
         public abstract void OnOverride();
 
-        public void Dispel()
+        public virtual void Dispel()
         {
             OnDispel.Invoke();
             
@@ -58,7 +53,7 @@ namespace Character.StatusEffect
         protected abstract void Init();
         protected abstract IEnumerator Effectuating(ICombatTaker taker);
 
-        protected void Complete()
+        protected virtual void Complete()
         {
             OnCompleted.Invoke();
             End();
@@ -69,6 +64,11 @@ namespace Character.StatusEffect
         {
             StopEffectuate();
             OnEnded.Invoke();
+            
+            OnActivated.Clear();
+            OnDispel.Clear();
+            OnCompleted.Clear();
+            OnEnded.Clear();
             
             Pool.Release(this);
         }
@@ -92,6 +92,7 @@ namespace Character.StatusEffect
 
             Init();
         }
+        
 
         public virtual void SetUp()
         {

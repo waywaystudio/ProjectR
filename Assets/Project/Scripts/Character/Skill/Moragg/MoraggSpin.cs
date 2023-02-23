@@ -1,18 +1,26 @@
-using System.Collections;
-using System.Collections.Generic;
+using Character.Projector;
+using Core;
 using UnityEngine;
 
-public class MoraggSpin : MonoBehaviour
+namespace Character.Skill.Moragg
 {
-    // Start is called before the first frame update
-    void Start()
+    public class MoraggSpin : CastingAttack
     {
+        [SerializeField] private SphereProjector projector;
         
-    }
+        protected override void OnEnable()
+        {
+            base.OnEnable();
 
-    // Update is called once per frame
-    void Update()
-    {
-        
+            var self = GetComponentInParent<ICombatTaker>();
+            
+            projector.Initialize(progressTime, range);
+            projector.SetTaker(self);
+            
+            OnActivated.Register("ProjectorActivate", projector.OnActivated.Invoke);
+            OnInterrupted.Register("ProjectorInterrupt", projector.OnInterrupted.Invoke);
+            OnCompleted.Register("ProjectorComplete", projector.OnCompleted.Invoke);
+            OnEnded.Register("ProjectorEnd", projector.OnEnded.Invoke);
+        }
     }
 }

@@ -30,8 +30,8 @@ namespace Character
             return allyOrEnemy is "ally"
                 ? selfLayer
                 : selfLayer.GetEnemyLayerMask();
-        } 
-        
+        }
+
         public static LayerMask IndexToLayerValue(GameObject go) => IndexToLayerValue(go.layer);
         public static LayerMask IndexToLayerValue(int index)
         {

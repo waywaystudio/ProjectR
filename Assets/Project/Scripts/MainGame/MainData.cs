@@ -116,6 +116,22 @@ namespace MainGame
         
         private void OpenSpreadSheetPanel() 
             => UnityEditor.EditorApplication.ExecuteMenuItem("Tools/UnityGoogleSheet");
+        
+        [UnityEditor.MenuItem("Quick Menu/Data")]
+        private static void ToTown()
+        {
+            var mainData = GameObject.Find("MainGame");
+            if (mainData != null)
+            {
+                UnityEditor.Selection.activeGameObject = mainData;
+                UnityEditor.EditorGUIUtility.PingObject(mainData);
+            }
+            else
+            {
+                Debug.LogWarning("MainData GameObject not found in scene hierarchy.");
+            }
+            
+        }
 #endif
     }
 }

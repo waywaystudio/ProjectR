@@ -1,12 +1,10 @@
-using Character.StatusEffect;
 using Core;
 using UnityEngine;
 
-namespace Character.Skill.Knight
+namespace Character.Skill
 {
     public class GeneralAttack : SkillComponent, ICombatTable
     {
-        [SerializeField] private StatusEffectPool statusEffectPool;
         [SerializeField] private PowerValue powerValue;
 
         public StatTable StatTable { get; } = new();
@@ -17,6 +15,16 @@ namespace Character.Skill.Knight
         protected override void PlayAnimation()
         {
             model.PlayOnce(animationKey, progressTime, OnCompleted.Invoke);
+        }
+        
+        protected virtual void OnAttack()
+        {
+            if (!colliding.TryGetTakersInSphere(transform.position, range, angle, targetLayer, out var takerList)) return;
+            
+            takerList.ForEach(taker =>
+            {
+                taker.TakeDamage(this);
+            });
         }
 
         private void UpdateCompletion()
@@ -32,42 +40,15 @@ namespace Character.Skill.Knight
             model.OnHit.Register("SkillHit", OnHit.Invoke);
         }
 
-        private void OnGeneralAttack()
+        
+
+        protected virtual void OnEnable()
         {
-            if (!colliding.TryGetTakersInSphere(transform.position, range, angle, targetLayer, out var takerList))
-            {
-                Debug.Log($"{Provider.Name} has TakerList?:{takerList.HasElement()}");
-                return;
-            }
-            
-            takerList.ForEach(taker =>
-            {
-                taker.TakeDamage(this);
-                Debug.Log($"{Provider.Name} provider GeneralAttack to {taker.Name}");
-
-                var effectInfo = statusEffectPool.Effect;
-                var table = taker.DynamicStatEntry.DeBuffTable;
-
-                if (table.ContainsKey((Provider, effectInfo.ActionCode)))
-                {
-                    table[(Provider, effectInfo.ActionCode)].OnOverride();
-                }
-                else
-                {
-                    taker.TakeDeBuff(statusEffectPool.Get());
-                }
-            });
-        }
-
-        protected void OnEnable()
-        {
-            statusEffectPool.Initialize(Provider);
-
             OnActivated.Register("PlayAnimation", PlayAnimation);
             OnActivated.Register("UpdatePowerValue", UpdateCompletion);
             OnActivated.Register("RegisterHitEvent", RegisterHitEvent);
             
-            OnHit.Register("GeneralAttack", OnGeneralAttack);
+            OnHit.Register("GeneralAttack", OnAttack);
             OnInterrupted.Register("EndCallback", OnEnded.Invoke);
             OnCompleted.Register("EndCallback", OnEnded.Invoke);
 

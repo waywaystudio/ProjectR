@@ -15,7 +15,7 @@ MonoBehaviour:
   Index: 13
   list:
   - id: 13000001
-    name: GeneralAttack
+    name: KnightCommonAttack
     description: Starts combat by attacking a target with a melee weapon.
     completionValueList:
     - 10
@@ -29,7 +29,7 @@ MonoBehaviour:
     targetParam: {x: 5, y: 90}
     statusEffect: 14000001
   - id: 13000002
-    name: CastingAttack
+    name: KnightCastingAttack
     description: Starts combat by attacking a target with a melee weapon.
     completionValueList:
     - 20
@@ -103,11 +103,11 @@ MonoBehaviour:
     description: Starts combat by attacking a target with a melee weapon.
     completionValueList:
     - 0
-    processTime: 3
+    processTime: 0
     coolTime: 20
     cost: 0
     basePriority: 4
-    animationKey: casting
+    animationKey: attack
     sortingType: Random
     targetLayer: enemy
     targetParam: {x: 0, y: 0}

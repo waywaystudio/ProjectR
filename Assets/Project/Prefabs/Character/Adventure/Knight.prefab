@@ -292,6 +292,7 @@ MonoBehaviour:
   priority: 0
   range: 0
   angle: 0
+  sortingType: 0
   targetLayer:
     serializedVersion: 2
     m_Bits: 0
@@ -765,13 +766,13 @@ MonoBehaviour:
   model: {fileID: 4723975105097867993}
   skillList:
   - {fileID: 8681282514418373773}
-  - {fileID: 5363938912383741399}
-  - {fileID: 757495124019453237}
+  - {fileID: 6045600269045666497}
+  - {fileID: 2509625037424202679}
   - {fileID: 5346964778573744158}
   - {fileID: 4161003739136907872}
   dashSkill: {fileID: 8681282514418373773}
-  firstSkill: {fileID: 5363938912383741399}
-  secondSkill: {fileID: 757495124019453237}
+  firstSkill: {fileID: 6045600269045666497}
+  secondSkill: {fileID: 2509625037424202679}
   thirdSkill: {fileID: 5346964778573744158}
   fourthSkill: {fileID: 4161003739136907872}
 --- !u!114 &5308419119323892236
@@ -1993,9 +1994,25 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1803748964515202775, guid: bf620779f97e3d545a0c462a457c4889, type: 3}
+      propertyPath: model
+      value: 
+      objectReference: {fileID: 4723975105097867993}
+    - target: {fileID: 1803748964515202775, guid: bf620779f97e3d545a0c462a457c4889, type: 3}
+      propertyPath: colliding
+      value: 
+      objectReference: {fileID: 6423970710694104538}
+    - target: {fileID: 1803748964515202775, guid: bf620779f97e3d545a0c462a457c4889, type: 3}
+      propertyPath: searching
+      value: 
+      objectReference: {fileID: 7423755043712803558}
     - target: {fileID: 8380361914805468174, guid: bf620779f97e3d545a0c462a457c4889, type: 3}
       propertyPath: m_Name
-      value: GeneralAttack
+      value: KnightCommonAttack
+      objectReference: {fileID: 0}
+    - target: {fileID: 9185767956584163987, guid: bf620779f97e3d545a0c462a457c4889, type: 3}
+      propertyPath: maxCount
+      value: 8
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bf620779f97e3d545a0c462a457c4889, type: 3}
@@ -2004,15 +2021,15 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 234500611213636336, guid: bf620779f97e3d545a0c462a457c4889, type: 3}
   m_PrefabInstance: {fileID: 5399390758158554134}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &5363938912383741399 stripped
+--- !u!114 &6045600269045666497 stripped
 MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 44744956171418049, guid: bf620779f97e3d545a0c462a457c4889, type: 3}
+  m_CorrespondingSourceObject: {fileID: 1803748964515202775, guid: bf620779f97e3d545a0c462a457c4889, type: 3}
   m_PrefabInstance: {fileID: 5399390758158554134}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9d8005347fdcb0544a7c8940569c2219, type: 3}
+  m_Script: {fileID: 11500000, guid: 04071d85dc2d0434893b18f6c2854ad6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1001 &6652176578050809015
@@ -2159,9 +2176,29 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4811750073051012917, guid: c0adef9857c22f7408da59199f259bfb, type: 3}
+      propertyPath: model
+      value: 
+      objectReference: {fileID: 4723975105097867993}
+    - target: {fileID: 4811750073051012917, guid: c0adef9857c22f7408da59199f259bfb, type: 3}
+      propertyPath: colliding
+      value: 
+      objectReference: {fileID: 6423970710694104538}
+    - target: {fileID: 4811750073051012917, guid: c0adef9857c22f7408da59199f259bfb, type: 3}
+      propertyPath: searching
+      value: 
+      objectReference: {fileID: 7423755043712803558}
+    - target: {fileID: 4811750073051012917, guid: c0adef9857c22f7408da59199f259bfb, type: 3}
+      propertyPath: powerValue.value
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 4811750073051012917, guid: c0adef9857c22f7408da59199f259bfb, type: 3}
+      propertyPath: targetLayer.m_Bits
+      value: 256
+      objectReference: {fileID: 0}
     - target: {fileID: 5136033056681404773, guid: c0adef9857c22f7408da59199f259bfb, type: 3}
       propertyPath: m_Name
-      value: CastingAttack
+      value: KnightCastingAttack
       objectReference: {fileID: 0}
     - target: {fileID: 7680350760759447991, guid: c0adef9857c22f7408da59199f259bfb, type: 3}
       propertyPath: angle
@@ -2187,17 +2224,21 @@ PrefabInstance:
       propertyPath: bleedPrefab
       value: 
       objectReference: {fileID: 8333227002716821657, guid: 5d2fb8c7eb66cd742b1e14925d73c808, type: 3}
+    - target: {fileID: 9109970235017606743, guid: c0adef9857c22f7408da59199f259bfb, type: 3}
+      propertyPath: maxCount
+      value: 8
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c0adef9857c22f7408da59199f259bfb, type: 3}
---- !u!114 &757495124019453237 stripped
+--- !u!114 &2509625037424202679 stripped
 MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 7680350760759447991, guid: c0adef9857c22f7408da59199f259bfb, type: 3}
+  m_CorrespondingSourceObject: {fileID: 4811750073051012917, guid: c0adef9857c22f7408da59199f259bfb, type: 3}
   m_PrefabInstance: {fileID: 6923509951452335234}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d8f4de9a9bdee0948a00952aac4fa90b, type: 3}
+  m_Script: {fileID: 11500000, guid: 010718c185b39ca43a7ae9ab307627e7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!4 &8593428622525177475 stripped

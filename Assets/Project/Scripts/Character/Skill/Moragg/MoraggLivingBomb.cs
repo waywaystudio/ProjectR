@@ -1,18 +1,37 @@
-using System.Collections;
-using System.Collections.Generic;
+using Character.StatusEffect;
 using UnityEngine;
 
-public class MoraggLivingBomb : MonoBehaviour
+namespace Character.Skill.Moragg
 {
-    // Start is called before the first frame update
-    void Start()
+    public class MoraggLivingBomb : GeneralAttack
     {
-        
-    }
+        [SerializeField] private StatusEffectPool statusEffectPool;
 
-    // Update is called once per frame
-    void Update()
-    {
-        
+
+        protected override void OnAttack()
+        {
+            if (MainTarget is null) return;
+            
+            var effectInfo = statusEffectPool.Effect;
+            var table = MainTarget.DynamicStatEntry.DeBuffTable;
+            
+            if (table.ContainsKey((Provider, effectInfo.ActionCode)))
+            {
+                table[(Provider, effectInfo.ActionCode)].OnOverride();
+            }
+            else
+            {
+                MainTarget.TakeDeBuff(statusEffectPool.Get());
+            }
+        }
+
+        protected override void OnEnable()
+        {
+            statusEffectPool.Initialize(Provider);
+            
+            base.OnEnable();
+            
+            OnCompleted.Register("StartCooling", StartCooling);
+        }
     }
 }

@@ -1,15 +1,11 @@
-using Character.StatusEffect;
 using Core;
 using UnityEngine;
-using UnityEngine.Pool;
-using UnityEngine.Serialization;
 
-namespace Character.Skill.Knight
+namespace Character.Skill
 {
     public class CastingAttack : SkillComponent, ICombatTable
     {
         [SerializeField] private PowerValue powerValue;
-        [SerializeField] private StatusEffectPool statusEffectPool;
 
         public StatTable StatTable { get; } = new();
 
@@ -20,33 +16,21 @@ namespace Character.Skill.Knight
             model.PlayLoop(animationKey);
         }
         
-        private void UpdateCompletion()
-        {
-            StatTable.Clear();
-            StatTable.Register(ActionCode, powerValue);
-            StatTable.UnionWith(Provider.StatTable);
-        }
-        
-        private void OnCastingAttack()
+        protected virtual void OnCastingAttack()
         {
             if (!colliding.TryGetTakersInSphere(transform.position, range, angle, targetLayer, out var takerList)) return;
             
             takerList.ForEach(taker =>
             {
                 taker.TakeDamage(this);
-
-                var effectInfo = statusEffectPool.Effect;
-                var table = taker.DynamicStatEntry.DeBuffTable;
-
-                if (table.ContainsKey((Provider, effectInfo.ActionCode)))
-                {
-                    table[(Provider, effectInfo.ActionCode)].OnOverride();
-                }
-                else
-                {
-                    taker.TakeDeBuff(statusEffectPool.Get());
-                }
             });
+        }
+        
+        private void UpdateCompletion()
+        {
+            StatTable.Clear();
+            StatTable.Register(ActionCode, powerValue);
+            StatTable.UnionWith(Provider.StatTable);
         }
 
         private void PlayEndCastingAnimation()
@@ -55,10 +39,8 @@ namespace Character.Skill.Knight
         }
 
 
-        protected void OnEnable()
+        protected virtual void OnEnable()
         {
-            statusEffectPool.Initialize(Provider);
-            
             OnActivated.Register("PlayCastingAnimation", PlayAnimation);
             OnActivated.Register("UpdatePowerValue", UpdateCompletion);
             OnActivated.Register("StartProgress", () => StartProcess(OnCompleted.Invoke));

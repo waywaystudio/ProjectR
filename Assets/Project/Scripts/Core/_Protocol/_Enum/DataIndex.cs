@@ -31,8 +31,8 @@ public enum DataIndex
 	Bard = 12000008,
 
 	/* SkillData */
-	GeneralAttack = 13000001,
-	CastingAttack = 13000002,
+	KnightCommonAttack = 13000001,
+	KnightCastingAttack = 13000002,
 	ChargingAttack = 13000003,
 	HoldingAttack = 13000004,
 	KnightDash = 13000005,

@@ -11,7 +11,7 @@ namespace MainGame.Data.PrefabData
         [SerializeField] private string prefabPath;
         [SerializeField] private List<GameObject> statusEffectPrefabList;
         
-        private Dictionary<DataIndex, GameObject> statusEffectTable;
+        private Dictionary<DataIndex, GameObject> statusEffectTable = new();
 
         [ShowInInspector]
         private Dictionary<DataIndex, GameObject> StatusEffectTable

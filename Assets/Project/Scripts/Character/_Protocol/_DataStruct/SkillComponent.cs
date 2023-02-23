@@ -7,7 +7,7 @@ using MainGame;
 using Sirenix.OdinInspector;
 using UnityEngine;
 
-namespace Character.Skill
+namespace Character
 {
     public abstract class SkillComponent : MonoBehaviour, IDataSetUp, IDataIndexer
     {
@@ -21,6 +21,7 @@ namespace Character.Skill
         [SerializeField] protected int priority;
         [SerializeField] protected float range;
         [SerializeField] protected float angle;
+        [SerializeField] protected SortingType sortingType;
         [SerializeField] protected LayerMask targetLayer;
         [SerializeField] private Sprite icon;
         [SerializeField] private string description;
@@ -58,7 +59,7 @@ namespace Character.Skill
         public Sprite Icon => icon;
         public DataIndex ActionCode => actionCode;
         public ICombatProvider Provider { get; set; }
-        public ICombatTaker MainTarget => searching.GetMainTarget(targetLayer, Provider.Object.transform.position);
+        public ICombatTaker MainTarget => searching.GetMainTarget(targetLayer, Provider.Object.transform.position, sortingType);
 
         public void Activate(Vector3 targetPosition)
         {
@@ -159,6 +160,7 @@ namespace Character.Skill
         public virtual void SetUp()
         {
             var skillData = MainData.SkillSheetData(actionCode);
+            var provider = GetComponentInParent<ICombatProvider>();
             
             priority     = skillData.BasePriority;
             range        = skillData.TargetParam.x;
@@ -168,8 +170,11 @@ namespace Character.Skill
             cost         = skillData.Cost;
             animationKey = skillData.AnimationKey;
             progressTime = skillData.ProcessTime;
-
-            icon = GetSkillIcon();
+            sortingType  = skillData.SortingType.ToEnum<SortingType>();
+            
+            // TODO. 프리팹 상태에서 Provider를 가지고 올 수 없기 때문에 문제가 될 수 있다. 
+            targetLayer  = CharacterUtility.SetLayer(provider, skillData.TargetLayer);
+            icon         = GetSkillIcon();
         }
         // private void ShowDB(); 
         

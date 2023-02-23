@@ -85,6 +85,7 @@ MonoBehaviour:
   priority: 3
   range: 15
   angle: 90
+  sortingType: 0
   targetLayer:
     serializedVersion: 2
     m_Bits: 256
@@ -112,53 +113,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   prefab: {fileID: 8333227002716821657, guid: 8fc553f91fd8269428ac00700eee662d, type: 3}
-  count: 2
-  parent: {fileID: 7208956720378957178}
-  onGet:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 3981307262664957601}
-        m_TargetAssemblyTypeName: Character.StatusEffect.StatusEffectPool, Common
-        m_MethodName: OnStatusEffectGet
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-  onReleased:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 3981307262664957601}
-        m_TargetAssemblyTypeName: Character.StatusEffect.StatusEffectPool, Common
-        m_MethodName: OnStatusEffectRelease
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-  onDestroyed:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 3981307262664957601}
-        m_TargetAssemblyTypeName: Character.StatusEffect.StatusEffectPool, Common
-        m_MethodName: OnStatusEffectDestroy
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+  maxCount: 4
 --- !u!1 &3868508645306600228
 GameObject:
   m_ObjectHideFlags: 0

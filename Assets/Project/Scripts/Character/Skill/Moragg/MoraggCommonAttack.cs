@@ -1,18 +1,12 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
-public class MoraggCommonAttack : MonoBehaviour
+namespace Character.Skill.Moragg
 {
-    // Start is called before the first frame update
-    void Start()
+    public class MoraggCommonAttack : GeneralAttack
     {
-        
-    }
+        protected override void OnAttack()
+        {
+            var combatEntity = MainTarget?.TakeDamage(this);
 
-    // Update is called once per frame
-    void Update()
-    {
-        
+            if (combatEntity == null || MainTarget == null) return;
+        }
     }
 }

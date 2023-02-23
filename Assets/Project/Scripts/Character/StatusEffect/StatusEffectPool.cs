@@ -25,7 +25,7 @@ namespace Character.StatusEffect
         protected override void OnReleasePool(StatusEffectComponent statusEffect)
         {
             statusEffect.gameObject.SetActive(false);
-            statusEffect.transform.SetParent(Origin, false);
+            // statusEffect.transform.SetParent(Origin, false);
         }
         
         protected override void OnDestroyPool(StatusEffectComponent statusEffect)

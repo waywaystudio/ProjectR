@@ -4,6 +4,7 @@ using UnityEngine;
 
 namespace Character.StatusEffect
 {
+    // TODO. 현재 구조에서 틱 데미지가 끝나고 큰 데미지를 주기 힘들다.
     public class DamageOverTimeEffect : StatusEffectComponent, ICombatTable
     {
         [SerializeField] private float interval;
@@ -51,7 +52,7 @@ namespace Character.StatusEffect
         }
         
 
-        private void UpdateDoT()
+        protected void UpdateDoT()
         {
             StatTable.Clear();
             StatTable.Register(ActionCode, tickPowerValue);

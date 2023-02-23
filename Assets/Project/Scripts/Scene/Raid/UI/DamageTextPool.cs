@@ -20,18 +20,27 @@ namespace Raid.UI
 
         public void Initialize(List<AdventurerBehaviour> adventurers)
         {
-            if (adventurers.IsNullOrEmpty() || adventurers.Count < 4)
+            if (adventurers.IsNullOrEmpty())
             {
-                Debug.LogWarning($"Require 4 more Adventurer. DamageTextUI Off. Input:adventurer Count {adventurers.Count}");
+                Debug.LogWarning("AtLeast 1 Adventurer Required. DamageTextUI Off.");
                 return;
+            }
+            
+            if (adventurers.Count < 4)
+            {
+                Debug.LogWarning($"Recommend 4 more Adventurer. Input:adventurer Count {adventurers.Count}");
             }
 
             adventurerList = adventurers;
-            
-            if (showAdventurer1) adventurerList[0].OnProvideCombat.Register("DamageTextUI", ShowDamage);
-            if (showAdventurer2) adventurerList[1].OnProvideCombat.Register("DamageTextUI", ShowDamage);
-            if (showAdventurer3) adventurerList[2].OnProvideCombat.Register("DamageTextUI", ShowDamage);
-            if (showAdventurer4) adventurerList[3].OnProvideCombat.Register("DamageTextUI", ShowDamage);
+
+            if (showAdventurer1 && adventurerList.Count > 0)
+            {
+                adventurerList[0].OnProvideCombat.Register("DamageTextUI", ShowDamage);
+                adventurerList[0].OnTakeCombat.Register("TakenDamageTextUI", ShowDamage);
+            }
+            if (showAdventurer2 && adventurerList.Count > 1) adventurerList[1].OnProvideCombat.Register("DamageTextUI", ShowDamage);
+            if (showAdventurer3 && adventurerList.Count > 2) adventurerList[2].OnProvideCombat.Register("DamageTextUI", ShowDamage);
+            if (showAdventurer4 && adventurerList.Count > 3) adventurerList[3].OnProvideCombat.Register("DamageTextUI", ShowDamage);
         }
         
 
