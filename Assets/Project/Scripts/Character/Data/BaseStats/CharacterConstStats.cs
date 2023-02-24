@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace Character.Data.BaseStats
 {
-    public class CharacterConstStats : MonoBehaviour, IDataSetUp
+    public class CharacterConstStats : MonoBehaviour, IEditable
     {
         [SerializeField] protected DataIndex baseStatCode;
         [SerializeField] protected MaxHpValue maxHp;
@@ -25,7 +25,7 @@ namespace Character.Data.BaseStats
         }
 
 #if UNITY_EDITOR
-        public virtual void SetUp()
+        public virtual void EditorSetUp()
         {
             maxHp.StatCode       = StatCode.MaxHp;
             moveSpeed.StatCode   = StatCode.MoveSpeed;

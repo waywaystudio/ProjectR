@@ -22,9 +22,11 @@ namespace Character
         [SerializeField] protected UnityEvent onAutoControl;
         
         [SerializeField] protected Transform damageSpawn;
+        [SerializeField] protected Transform statusEffectHierarchy;
 
         public ActionBehaviour ActionBehaviour => actionBehaviour;
         public Transform DamageSpawn => damageSpawn;
+        public Transform StatusEffectHierarchy => statusEffectHierarchy;
 
         private bool IsAutoMode { get; set; }
 
@@ -43,10 +45,10 @@ namespace Character
         public ActionTable<StatusEffectEntity> OnTakeStatusEffect { get; } = new();
 
         public void Dead() => OnDead.Invoke();
+        public void UpdateStatTable() { }
         public CombatEntity TakeDamage(ICombatTable combatTable) => CombatUtility.TakeDamage(combatTable, this);
         public CombatEntity TakeHeal(ICombatTable combatTable) => CombatUtility.TakeHeal(combatTable, this);
-        public StatusEffectEntity TakeBuff(IStatusEffect statusEffect) => CombatUtility.TakeBuff(statusEffect, this);
-        public StatusEffectEntity TakeDeBuff(IStatusEffect statusEffect) => CombatUtility.TakeDeBuff(statusEffect, this);
+        public StatusEffectEntity TakeStatusEffect(IStatusEffect statusEffect) => CombatUtility.TakeStatusEffect(statusEffect, this);
 
 
         public void OnFocused(AdventurerBehaviour focus)

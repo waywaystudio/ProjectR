@@ -60,9 +60,9 @@ namespace MainGame.Data.PrefabData
             
             SkillTable.Values.ForEach(skillPrefab =>
             {
-                if (!skillPrefab.TryGetComponent(out IDataSetUp setter)) return;
+                if (!skillPrefab.TryGetComponent(out IEditable setter)) return;
                 
-                setter.SetUp();
+                setter.EditorSetUp();
                 UnityEditor.EditorUtility.SetDirty(skillPrefab);
                 // UnityEditor.PrefabUtility.ApplyPrefabInstance(skillPrefab, UnityEditor.InteractionMode.AutomatedAction);
             });

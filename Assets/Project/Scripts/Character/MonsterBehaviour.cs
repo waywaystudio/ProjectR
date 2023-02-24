@@ -14,6 +14,7 @@ namespace Character
         [SerializeField] protected CharacterConstStats constStats;
 
         [SerializeField] protected Transform damageSpawn;
+        [SerializeField] protected Transform statusEffectHierarchy;
 
         public string Name => characterName ??= "Diablo";
         public RoleType Role => role;
@@ -24,6 +25,7 @@ namespace Character
         public StatTable StatTable => DynamicStatEntry.StatTable;
         
         public Transform DamageSpawn => damageSpawn;
+        public Transform StatusEffectHierarchy => statusEffectHierarchy;
 
         public ActionTable OnDead { get; } = new();
         public ActionTable<CombatEntity> OnTakeCombat { get; } = new();
@@ -33,10 +35,10 @@ namespace Character
        
 
         public void Dead() => OnDead.Invoke();
+        public void UpdateStatTable() { }
         public CombatEntity TakeDamage(ICombatTable combatTable) => CombatUtility.TakeDamage(combatTable, this);
         public CombatEntity TakeHeal(ICombatTable combatTable) => CombatUtility.TakeHeal(combatTable, this);
-        public StatusEffectEntity TakeBuff(IStatusEffect statusEffect) => CombatUtility.TakeBuff(statusEffect, this);
-        public StatusEffectEntity TakeDeBuff(IStatusEffect statusEffect) => CombatUtility.TakeDeBuff(statusEffect, this);
+        public StatusEffectEntity TakeStatusEffect(IStatusEffect statusEffect) => CombatUtility.TakeStatusEffect(statusEffect, this);
 
         protected void Awake()
         {

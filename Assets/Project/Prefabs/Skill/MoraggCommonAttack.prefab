@@ -72,6 +72,7 @@ GameObject:
   m_Component:
   - component: {fileID: 234500611213636336}
   - component: {fileID: -6645754418306525249}
+  - component: {fileID: 159349165042510227}
   m_Layer: 0
   m_Name: MoraggCommonAttack
   m_TagString: Untagged
@@ -126,6 +127,19 @@ MonoBehaviour:
   animationKey: attack
   processType: 0
   progressTime: 0
-  powerValue:
-    value: 20
+  power: {fileID: 0}
+--- !u!114 &159349165042510227
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8380361914805468174}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8e628f5df72c2e949ab8a5b0ef9dc17a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  power:
+    value: 0
     statCode: 1

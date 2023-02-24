@@ -15,7 +15,7 @@ namespace Core
         public void Release(T element) => ObjectPool.Release(element);
         
 
-        protected virtual T OnCreatePool()
+        protected T OnCreatePool()
         {
             if (!prefab.IsNullOrEmpty() && Instantiate(prefab).TryGetComponent(out T component))
             {
@@ -30,7 +30,7 @@ namespace Core
         protected abstract void OnReleasePool(T element);
         protected abstract void OnDestroyPool(T element);
 
-        private void Awake()
+        protected virtual void Awake()
         {
             ObjectPool = new ObjectPool<T>(OnCreatePool,
                 OnGetPool,

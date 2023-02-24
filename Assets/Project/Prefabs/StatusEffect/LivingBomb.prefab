@@ -10,6 +10,9 @@ GameObject:
   m_Component:
   - component: {fileID: 2402494755454563105}
   - component: {fileID: 469541481524983097}
+  - component: {fileID: 7285561056451222464}
+  - component: {fileID: 5088373513344577356}
+  - component: {fileID: 4459061243654905774}
   m_Layer: 0
   m_Name: LivingBomb
   m_TagString: Untagged
@@ -48,13 +51,58 @@ MonoBehaviour:
   statusCode: 14000004
   type: 2
   icon: {fileID: 21300000, guid: 66dd4d17749630548bd562332cf77491, type: 3}
-  duration: 5
-  interval: 0
-  tickPowerValue:
+  duration: 6
+  tickPower: {fileID: 7285561056451222464}
+  interval: 2
+  radius: 12
+  colliding: {fileID: 4459061243654905774}
+  adventurerLayer:
+    serializedVersion: 2
+    m_Bits: 128
+  projector: {fileID: 4184584522280325313}
+  bombPower: {fileID: 5088373513344577356}
+--- !u!114 &7285561056451222464
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8333227002716821657}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8e628f5df72c2e949ab8a5b0ef9dc17a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  power:
+    value: 10
+    statCode: 1
+--- !u!114 &5088373513344577356
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8333227002716821657}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8e628f5df72c2e949ab8a5b0ef9dc17a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  power:
     value: 50
     statCode: 1
-  radius: 12
-  projector: {fileID: 4184584522280325313}
+--- !u!114 &4459061243654905774
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8333227002716821657}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 895c99e003cd3f54d96609fa1ca8c94b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &4027095999448770542
 PrefabInstance:
   m_ObjectHideFlags: 0

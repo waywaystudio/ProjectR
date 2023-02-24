@@ -9,7 +9,7 @@ using UnityEngine;
 
 namespace Character
 {
-    public abstract class SkillComponent : MonoBehaviour, IDataSetUp, IDataIndexer
+    public abstract class SkillComponent : MonoBehaviour, ISequence, IEditable, IDataIndexer
     {
         /* Component Reference */
         [SerializeField] protected AnimationModel model;
@@ -34,7 +34,6 @@ namespace Character
         [SerializeField] protected string animationKey;
         
         /* Progress Entity */
-        [SerializeField] protected ProcessType processType;
         [SerializeField] protected float progressTime;
 
         private Coroutine progressRoutine;
@@ -42,60 +41,66 @@ namespace Character
 
         /* Sequence */
         [ShowInInspector] public ConditionTable ConditionTable { get; } = new();
-        [ShowInInspector] public ActionTable<Vector3> OnActivated { get; } = new();
-        [ShowInInspector] public ActionTable OnInterrupted { get; } = new();
+        [ShowInInspector] public ActionTable OnActivated { get; } = new();
+        [ShowInInspector] public ActionTable OnCanceled { get; } = new();
         [ShowInInspector] public ActionTable OnHit { get; } = new();
         [ShowInInspector] public ActionTable OnCompleted { get; } = new();
         [ShowInInspector] public ActionTable OnEnded { get; } = new();
 
-        public bool OnProgress { get; protected set; }
+        public bool IsProgress { get; protected set; }
+        public bool IsEnded { get; protected set; } = true;
         public int Priority => priority;
         public float CoolTime => coolTime;
         public float Range => range;
+        public float Angle => angle;
         public float ProgressTime => progressTime;
         public string Description => description;
         public FloatEvent CastingProgress { get; } = new(0, float.MaxValue);
         public FloatEvent RemainCoolTime { get; } = new(0f, float.MaxValue);
+        public LayerMask TargetLayer => targetLayer;
         public Sprite Icon => icon;
         public DataIndex ActionCode => actionCode;
         public ICombatProvider Provider { get; set; }
         public ICombatTaker MainTarget => searching.GetMainTarget(targetLayer, Provider.Object.transform.position, sortingType);
 
-        public void Activate(Vector3 targetPosition)
+
+        public void Activate()
         {
             if (ConditionTable.HasFalse) return;
 
-            OnProgress = true;
-            OnActivated.Invoke(targetPosition);
+            IsProgress = true;
+
+            OnActivated.Invoke();
         }
 
-        public void Interrupted()
+        public void Cancel()
         {
-            if (!OnProgress) return;
+            if (!IsProgress) return;
 
-            OnInterrupted.Invoke();
+            OnCanceled.Invoke();
         }
 
         public virtual void Release()
         {
-            if (!OnProgress) return;
-            
+            if (!IsProgress) return;
+
             OnCompleted.Invoke();
         }
 
 
-        protected void ConsumeResource() => Provider.DynamicStatEntry.Resource.Value -= cost;
+
+        // protected void ConsumeResource() => Provider.DynamicStatEntry.Resource.Value -= cost;
         protected void StartCooling() => coolTimeRoutine = StartCoroutine(CoolingRoutine());
-        protected void StartProcess(Action callback = null)
+        protected void StartProgression(Action callback = null)
         {
-            progressRoutine = StartCoroutine(Processing(callback));
+            progressRoutine = StartCoroutine(Progressing(callback));
         }
         
-        protected void StopProcess()
+        protected void StopProgression()
         {
             if (progressRoutine != null) StopCoroutine(progressRoutine);
             
-            ResetProcess();
+            ResetProgress();
         }
 
         protected virtual void PlayAnimation()
@@ -126,7 +131,7 @@ namespace Character
             }
         }
 
-        private IEnumerator Processing(Action callback)
+        private IEnumerator Progressing(Action callback)
         {
             var endTime = progressTime * CharacterUtility.GetHasteValue(Provider.StatTable.Haste);
 
@@ -137,10 +142,10 @@ namespace Character
             }
 
             callback?.Invoke();
-            ResetProcess();
+            ResetProgress();
         }
 
-        private void ResetProcess()
+        private void ResetProgress()
         {
             progressRoutine       = null;
             CastingProgress.Value = 0f;
@@ -149,15 +154,29 @@ namespace Character
         protected virtual void Awake()
         {
             Provider     = GetComponentInParent<ICombatProvider>();
+
+            OnActivated.Register("IsEndedToFalse", () => IsEnded = false);
+            OnActivated.Register("PlayAnimation", PlayAnimation);
             
-            ConditionTable.Register("CoolTime", IsCoolTimeReady);
-            ConditionTable.Register("Cost", IsCostReady);
-            OnEnded.Register("EndProgress", () => OnProgress = false);
+            OnCanceled.Register("EndCallback", OnEnded.Invoke);
+
+            OnEnded.Register("Idle", model.Idle);
+            OnEnded.Register("IsProgressionToFalse", () => IsProgress = false);
+            OnEnded.Register("IsEndedToTrue", () => IsEnded           = true);
+
+            if (coolTime != 0f) ConditionTable.Register("IsCoolTimeReady", IsCoolTimeReady);
+            if (cost != 0f ) ConditionTable.Register("IsCostReady", IsCostReady);
+            
+            if (progressTime != 0f)
+            {
+                OnActivated.Register("StartProgress", () => StartProgression(OnCompleted.Invoke));
+                OnEnded.Register("StopProgress", StopProgression);
+            }
         }
 
 
 #if UNITY_EDITOR
-        public virtual void SetUp()
+        public virtual void EditorSetUp()
         {
             var skillData = MainData.SkillSheetData(actionCode);
             var provider = GetComponentInParent<ICombatProvider>();

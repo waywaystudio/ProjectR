@@ -5,7 +5,7 @@ using UnityEngine;
 namespace Character.Targeting
 {
     [RequireComponent(typeof(SphereCollider))]
-    public class Searching : MonoBehaviour, IDataSetUp
+    public class Searching : MonoBehaviour, IEditable
     {
         private const float SearchingRange = 100f;
         private const int MaxBufferCount = 32;
@@ -129,7 +129,7 @@ namespace Character.Targeting
         
 
 #if UNITY_EDITOR
-        public void SetUp()
+        public void EditorSetUp()
         {
             searchingCollider        ??= GetComponent<SphereCollider>();
             searchingCollider.radius =   SearchingRange;

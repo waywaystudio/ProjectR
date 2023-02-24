@@ -8,6 +8,8 @@ namespace Character.Skill
         [SerializeField] private PowerValue powerValue;
 
         public StatTable StatTable { get; } = new();
+        
+        public void UpdateStatTable() { }
 
         public override void Release() { }
 
@@ -43,23 +45,23 @@ namespace Character.Skill
         {
             OnActivated.Register("PlayCastingAnimation", PlayAnimation);
             OnActivated.Register("UpdatePowerValue", UpdateCompletion);
-            OnActivated.Register("StartProgress", () => StartProcess(OnCompleted.Invoke));
+            OnActivated.Register("StartProgress", () => StartProgression(OnCompleted.Invoke));
             
-            OnInterrupted.Register("Log", () => Debug.Log("Interrupted!"));
-            OnInterrupted.Register("EndCallback", OnEnded.Invoke);
+            OnCanceled.Register("Log", () => Debug.Log("Interrupted!"));
+            OnCanceled.Register("EndCallback", OnEnded.Invoke);
 
             OnCompleted.Register("CastingAttack", OnCastingAttack);
             OnCompleted.Register("PlayEndCastingAnimation", PlayEndCastingAnimation);
             OnCompleted.Register("StartCooling", StartCooling);
 
-            OnEnded.Register("StopProgress", StopProcess);
+            OnEnded.Register("StopProgress", StopProgression);
             OnEnded.Register("Idle", model.Idle);
         }
         
 
-        public override void SetUp()
+        public override void EditorSetUp()
         {
-            base.SetUp();
+            base.EditorSetUp();
             
             var skillData = MainGame.MainData.SkillSheetData(actionCode);
 

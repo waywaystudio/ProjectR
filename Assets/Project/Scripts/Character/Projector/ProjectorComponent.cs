@@ -16,12 +16,21 @@ namespace Character.Projector
         protected bool IsFirst = true;
 
         [ShowInInspector] public ActionTable OnActivated { get; } = new();
+        [ShowInInspector] public ActionTable OnCanceled { get; } = new();
         [ShowInInspector] public ActionTable OnCompleted { get; } = new();
-        [ShowInInspector] public ActionTable OnInterrupted { get; } = new();
         [ShowInInspector] public ActionTable OnEnded { get; } = new();
 
         protected Material Material => projector.material;
         protected static readonly int FillAmount = Shader.PropertyToID("_FillAmount");
+
+
+        public void AssignTo(ISequence sequence)
+        {
+            sequence.OnActivated.Register(OnActivated);
+            sequence.OnCanceled.Register(OnCanceled);
+            sequence.OnCompleted.Register(OnCompleted);
+            sequence.OnEnded.Register(OnEnded);
+        }
 
 
         protected void InitialSetUp()

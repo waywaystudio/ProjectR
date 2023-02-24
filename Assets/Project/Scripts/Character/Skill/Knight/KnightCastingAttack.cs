@@ -3,38 +3,52 @@ using UnityEngine;
 
 namespace Character.Skill.Knight
 {
-    public class KnightCastingAttack : CastingAttack
+    public class KnightCastingAttack : SkillComponent
     {
-        [SerializeField] private StatusEffectPool statusEffectPool;
+        [SerializeField] private ValueCompletion power;
+        [SerializeField] private StatusEffectCompletion bleed;
 
-
-        protected override void OnCastingAttack()
+        public override void Release() { }
+        
+        
+        protected override void PlayAnimation()
         {
-            if (!colliding.TryGetTakersInSphere(transform.position, range, angle, targetLayer, out var takerList)) return;
+            model.PlayLoop(animationKey);
+        }
+
+        private void OnCastingAttack()
+        {
+            if (!colliding.TryGetTakersInSphere(this, out var takerList)) return;
             
             takerList.ForEach(taker =>
             {
-                taker.TakeDamage(this);
-
-                var effectInfo = statusEffectPool.Effect;
-                var table = taker.DynamicStatEntry.DeBuffTable;
-
-                if (table.ContainsKey((Provider, effectInfo.ActionCode)))
-                {
-                    table[(Provider, effectInfo.ActionCode)].OnOverride();
-                }
-                else
-                {
-                    taker.TakeDeBuff(statusEffectPool.Get());
-                }
+                power.Damage(taker);
+                bleed.Effect(taker);
             });
         }
         
-        protected override void OnEnable()
+        private void PlayEndCastingAnimation()
         {
-            statusEffectPool.Initialize(Provider);
+            model.PlayOnce("attack", 0f, OnEnded.Invoke);
+        }
+        
+        protected void OnEnable()
+        {
+            power.Initialize(Provider, ActionCode);
+
+            OnCompleted.Register("CastingAttack", OnCastingAttack);
+            OnCompleted.Register("PlayEndCastingAnimation", PlayEndCastingAnimation);
+            OnCompleted.Register("StartCooling", StartCooling);
+        }
+        
+        
+        public override void EditorSetUp()
+        {
+            base.EditorSetUp();
             
-            base.OnEnable();
+            var skillData = MainGame.MainData.SkillSheetData(actionCode);
+
+            power.SetPower(skillData.CompletionValueList[0]);
         }
     }
 }

@@ -72,6 +72,7 @@ GameObject:
   m_Component:
   - component: {fileID: 234500611213636336}
   - component: {fileID: 1803748964515202775}
+  - component: {fileID: 407071297869250723}
   - component: {fileID: 9185767956584163987}
   m_Layer: 0
   m_Name: KnightCommonAttack
@@ -116,6 +117,7 @@ MonoBehaviour:
   priority: 1
   range: 5
   angle: 90
+  sortingType: 0
   targetLayer:
     serializedVersion: 2
     m_Bits: 256
@@ -130,6 +132,21 @@ MonoBehaviour:
     value: 10
     statCode: 1
   statusEffectPool: {fileID: 9185767956584163987}
+--- !u!114 &407071297869250723
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8380361914805468174}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8e628f5df72c2e949ab8a5b0ef9dc17a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  power:
+    value: 10
+    statCode: 1
 --- !u!114 &9185767956584163987
 MonoBehaviour:
   m_ObjectHideFlags: 0

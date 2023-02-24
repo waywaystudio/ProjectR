@@ -6,9 +6,9 @@ namespace Character.Data.BaseStats
     public class AdventurerConstStats : CharacterConstStats
     {
 #if UNITY_EDITOR
-        public override void SetUp()
+        public override void EditorSetUp()
         {
-            base.SetUp();
+            base.EditorSetUp();
             
             var ab = GetComponentInParent<AdventurerBehaviour>();
             

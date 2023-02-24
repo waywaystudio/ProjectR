@@ -1,10 +1,11 @@
 using System.Collections.Generic;
 using Character;
+using Core;
 using UnityEngine;
 
 namespace Raid
 {
-    public class RaidCastingDirector : MonoBehaviour
+    public class RaidCastingDirector : MonoBehaviour, IEditable
     {
         [SerializeField] private List<AdventurerBehaviour> adventurerList = new();
         [SerializeField] private List<MonsterBehaviour> monsterList = new();
@@ -14,13 +15,17 @@ namespace Raid
 
         private void Awake()
         {
-            SetUp();
+            GetComponentsInChildren(AdventurerList);
+            GetComponentsInChildren(MonsterList);
         }
 
-        public void SetUp()
+
+#if UNITY_EDITOR
+        public void EditorSetUp()
         {
             GetComponentsInChildren(AdventurerList);
             GetComponentsInChildren(MonsterList);
         }
+#endif
     }
 }

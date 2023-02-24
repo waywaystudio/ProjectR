@@ -11,19 +11,26 @@ namespace Character.StatusEffect
 
         public override void OnOverride()
         {
-            ProcessTime.Value += duration;
+            ProgressTime.Value += duration;
+        }
+        
+        protected override void Complete()
+        {
+            Taker.StatTable.Unregister(ActionCode, armorValue);
+            
+            base.Complete();
         }
 
-        protected override void Init() { }
-        protected override IEnumerator Effectuating(ICombatTaker taker)
+        
+        protected override IEnumerator Effectuating()
         {
-            ProcessTime.Value = duration;
-            
-            taker.StatTable.Register(ActionCode, armorValue);
+            ProgressTime.Value = duration;
 
-            while (ProcessTime.Value > 0f)
+            Taker.StatTable.Register(ActionCode, armorValue);
+
+            while (ProgressTime.Value > 0f)
             {
-                ProcessTime.Value -= Time.deltaTime;
+                ProgressTime.Value -= Time.deltaTime;
                 yield return null;
             }
 

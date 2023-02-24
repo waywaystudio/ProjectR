@@ -28,9 +28,9 @@ namespace Character.Skill.Knight
         }
         
         
-        public override void SetUp()
+        public override void EditorSetUp()
         {
-            base.SetUp();
+            base.EditorSetUp();
             
             var skillData = MainGame.MainData.SkillSheetData(actionCode);
         

@@ -18,9 +18,8 @@ namespace MainGame.Editor
         
         public override void ProcessChildMemberAttributes(InspectorProperty parentProperty, MemberInfo member, List<Attribute> attributes)
         {
-            if (member.Name == "SetUp")
+            if (member.Name == "EditorSetUp")
             {
-                // attributes.Add(CommonHorizontalGroup);
                 attributes.Add(CommonHorizontalGroup);
                 attributes.Add(new ButtonAttribute(ButtonSizes.Large)
                 {

@@ -38,9 +38,24 @@ namespace Raid.UI
                 adventurerList[0].OnProvideCombat.Register("DamageTextUI", ShowDamage);
                 adventurerList[0].OnTakeCombat.Register("TakenDamageTextUI", ShowDamage);
             }
-            if (showAdventurer2 && adventurerList.Count > 1) adventurerList[1].OnProvideCombat.Register("DamageTextUI", ShowDamage);
-            if (showAdventurer3 && adventurerList.Count > 2) adventurerList[2].OnProvideCombat.Register("DamageTextUI", ShowDamage);
-            if (showAdventurer4 && adventurerList.Count > 3) adventurerList[3].OnProvideCombat.Register("DamageTextUI", ShowDamage);
+
+            if (showAdventurer2 && adventurerList.Count > 1)
+            {
+                adventurerList[1].OnProvideCombat.Register("DamageTextUI", ShowDamage);
+                adventurerList[1].OnTakeCombat.Register("TakenDamageTextUI", ShowDamage);
+            }
+
+            if (showAdventurer3 && adventurerList.Count > 2)
+            {
+                adventurerList[2].OnProvideCombat.Register("DamageTextUI", ShowDamage);
+                adventurerList[2].OnTakeCombat.Register("TakenDamageTextUI", ShowDamage);
+            }
+
+            if (showAdventurer4 && adventurerList.Count > 3)
+            {
+                adventurerList[3].OnProvideCombat.Register("DamageTextUI", ShowDamage);
+                adventurerList[3].OnTakeCombat.Register("TakenDamageTextUI", ShowDamage);
+            }
         }
         
 

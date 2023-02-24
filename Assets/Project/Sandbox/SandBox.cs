@@ -4,14 +4,17 @@ using UnityEngine;
 
 public class SandBox : MonoBehaviour
 {
+    public SandSphere sandSphere;
     public ActionTable ActionTable = new();
+
+    private CombatEntity combatEntity => sandSphere.Entity;
 
     public void ShowDebugMessage() => Debug.Log("Is In!");
 
     [Button]
     public void Debugger()
     {
-        ActionTable.Invoke();
+        Debug.Log($"combatEntity? : {combatEntity != null}");
     }
     public void A() { Debug.Log("A");}
     public void B() { Debug.Log("B");}
@@ -20,6 +23,10 @@ public class SandBox : MonoBehaviour
 
     private void Awake()
     {
+        TryGetComponent(out sandSphere);
+
+        // combatEntity = sandSphere.Entity;
+        
         ActionTable.Register("A", A);
         ActionTable.Register("B", B);
         ActionTable.Register("C", C);

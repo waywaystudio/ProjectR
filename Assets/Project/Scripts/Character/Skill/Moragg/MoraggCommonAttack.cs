@@ -1,12 +1,21 @@
+using UnityEngine;
+
 namespace Character.Skill.Moragg
 {
     public class MoraggCommonAttack : GeneralAttack
     {
+        [SerializeField] protected ValueCompletion power;
+        
         protected override void OnAttack()
         {
-            var combatEntity = MainTarget?.TakeDamage(this);
+            power.Damage(MainTarget);
+        }
+        
+        protected override void OnEnable()
+        {
+            power.Initialize(Provider, ActionCode);
 
-            if (combatEntity == null || MainTarget == null) return;
+            base.OnEnable();
         }
     }
 }

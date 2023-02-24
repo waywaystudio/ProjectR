@@ -1,62 +1,50 @@
 using System.Collections;
+using Character.Skill;
 using Core;
 using UnityEngine;
 
 namespace Character.StatusEffect
 {
     // TODO. 현재 구조에서 틱 데미지가 끝나고 큰 데미지를 주기 힘들다.
-    public class DamageOverTimeEffect : StatusEffectComponent, ICombatTable
+    public class DamageOverTimeEffect : StatusEffectComponent
     {
-        [SerializeField] private float interval;
-        [SerializeField] private PowerValue tickPowerValue;
+        [SerializeField] protected ValueCompletion tickPower;
+        [SerializeField] protected float interval;
         
-        public StatTable StatTable { get; } = new();
-        
+        public override void Active(ICombatProvider provider, ICombatTaker taker)
+        {
+            base.Active(provider, taker);
+            
+            tickPower.Initialize(provider, ActionCode);
+        }
         
         public override void OnOverride()
         {
-            ProcessTime.Value += duration;
-        }
-        
-
-        protected override void Init() { }
-        protected override void End()
-        {
-            ProcessTime.Value = 0f;
-            
-            base.End();
+            ProgressTime.Value += duration;
         }
 
-        protected override IEnumerator Effectuating(ICombatTaker taker)
+        protected override IEnumerator Effectuating()
         {
             var hastedTick = interval * CharacterUtility.GetHasteValue(Provider.StatTable.Haste);
 
-            ProcessTime.Value = duration;
+            ProgressTime.Value = duration;
 
-            while (ProcessTime.Value > 0)
+            while (ProgressTime.Value > 0)
             {
                 var tickBuffer = hastedTick;
 
                 while (tickBuffer > 0f)
                 {
-                    ProcessTime.Value -= Time.deltaTime;
-                    tickBuffer        -= Time.deltaTime;
+                    ProgressTime.Value -= Time.deltaTime;
+                    tickBuffer         -= Time.deltaTime;
+                    
                     yield return null;
                 }
                 
-                UpdateDoT();
-                taker.TakeDamage(this);
+                tickPower.Damage(Taker);
             }
 
             Complete();
-        }
-        
-
-        protected void UpdateDoT()
-        {
-            StatTable.Clear();
-            StatTable.Register(ActionCode, tickPowerValue);
-            StatTable.UnionWith(Provider.StatTable);
         }
     }
 }

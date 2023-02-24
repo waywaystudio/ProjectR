@@ -25,6 +25,8 @@ namespace Core
         // # DataIndex ActionCode { get; }
         
         StatTable StatTable { get; }
+
+        void UpdateStatTable();
     }
     
     public interface IStatusEffect : IActionSender
@@ -33,11 +35,12 @@ namespace Core
         // # DataIndex ActionCode { get; }
 
         StatusEffectType Type { get; }
+        ICombatTaker Taker { get; }
+
         float Duration { get; }
-        FloatEvent ProcessTime { get; }
+        FloatEvent ProgressTime { get; }
         ActionTable OnEnded { get; }
 
-        void Active(ICombatTaker taker);
         void OnOverride();
     }
 
@@ -74,6 +77,7 @@ namespace Core
 
         RoleType Role { get; }
         Transform DamageSpawn { get; }
+        Transform StatusEffectHierarchy { get; }
 
         ActionTable<CombatEntity> OnTakeCombat { get; }
         ActionTable<StatusEffectEntity> OnTakeStatusEffect { get; }
@@ -81,8 +85,7 @@ namespace Core
         void Dead();
         CombatEntity TakeDamage(ICombatTable combatTable);
         CombatEntity TakeHeal(ICombatTable combatTable);
-        StatusEffectEntity TakeBuff(IStatusEffect statusEffect);
-        StatusEffectEntity TakeDeBuff(IStatusEffect statusEffect);
+        StatusEffectEntity TakeStatusEffect(IStatusEffect statusEffect);
     }
 
     public interface ICombatExecutor : ICombatProvider, ICombatTaker
@@ -102,7 +105,6 @@ namespace Core
         // # void Dead();
         // # CombatEntity TakeDamage(ICombatTable entity);
         // # CombatEntity TakeHeal(ICombatTable entity);
-        // # StatusEffectEntity TakeBuff(INewStatusEffect entity);
-        // # StatusEffectEntity TakeDeBuff(INewStatusEffect entity);
+        // # StatusEffectEntity TakeStatusEffect(IStatusEffect statusEffect);
     }
 }

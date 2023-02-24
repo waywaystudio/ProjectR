@@ -6,7 +6,7 @@ using UnityEngine;
 
 namespace Character.StatusEffect
 {
-    public abstract class StatusEffectComponent : MonoBehaviour, IPoolable<StatusEffectComponent>, IStatusEffect, IDataSetUp
+    public abstract class StatusEffectComponent : MonoBehaviour, ISequence ,IPoolable<StatusEffectComponent>, IStatusEffect, IEditable
     {
         [SerializeField] protected DataIndex statusCode;
         [SerializeField] protected StatusEffectType type;
@@ -16,68 +16,64 @@ namespace Character.StatusEffect
         protected Coroutine StatusEffectRoutine;
         
         public Pool<StatusEffectComponent> Pool { get; set; }
+        
         public ICombatProvider Provider { get; private set; }
+        public ICombatTaker Taker { get; private set; }
         public DataIndex ActionCode => statusCode;
         public StatusEffectType Type => type;
         public Sprite Icon => icon;
         public float Duration => duration;
-        public FloatEvent ProcessTime { get; } = new(0f, float.MaxValue);
+        public FloatEvent ProgressTime { get; } = new();
 
-        [ShowInInspector] public ActionTable<ICombatTaker> OnActivated { get; } = new();
-        [ShowInInspector] public ActionTable OnDispel { get; } = new();
+        [ShowInInspector] public ActionTable OnActivated { get; } = new();
+        [ShowInInspector] public ActionTable OnCanceled { get; } = new();
         [ShowInInspector] public ActionTable OnCompleted { get; } = new();
         [ShowInInspector] public ActionTable OnEnded { get; } = new();
 
-        public void Initialize(ICombatProvider provider)
+
+        public virtual void Active(ICombatProvider provider, ICombatTaker taker)
         {
             Provider = provider;
-        }
-
-        public virtual void Active(ICombatTaker taker)
-        {
-            StartEffectuate(taker);
+            Taker    = taker;
             
-            OnActivated.Invoke(taker);
+            StartEffectuate();
+            
+            OnActivated.Invoke();
         }
 
         public abstract void OnOverride();
 
-        public virtual void Dispel()
+        public virtual void Cancel()
         {
-            OnDispel.Invoke();
+            OnCanceled.Invoke();
             
             End();
         }
+        
 
-
-        protected abstract void Init();
-        protected abstract IEnumerator Effectuating(ICombatTaker taker);
+        protected abstract IEnumerator Effectuating();
 
         protected virtual void Complete()
         {
             OnCompleted.Invoke();
-            End();
-            
+            End(); 
         }
 
         protected virtual void End()
         {
             StopEffectuate();
+            UnregisterTable();
+
             OnEnded.Invoke();
-            
-            OnActivated.Clear();
-            OnDispel.Clear();
-            OnCompleted.Clear();
-            OnEnded.Clear();
-            
+
             Pool.Release(this);
         }
         
 
-        private void StartEffectuate(ICombatTaker taker)
+        private void StartEffectuate()
         {
             StopEffectuate();
-            StatusEffectRoutine = StartCoroutine(Effectuating(taker));
+            StatusEffectRoutine = StartCoroutine(Effectuating());
         }
 
         private void StopEffectuate()
@@ -86,15 +82,22 @@ namespace Character.StatusEffect
                 StopCoroutine(StatusEffectRoutine);
         }
 
-        protected virtual void Awake()
+        private void UnregisterTable()
         {
-            ProcessTime.SetClamp(0f, Mathf.Min(duration * 1.5f, 3600));
+            var targetTable = Type == StatusEffectType.Buff
+                ? Taker.DynamicStatEntry.BuffTable
+                : Taker.DynamicStatEntry.DeBuffTable;
+            
+            targetTable.Unregister(this);
+        }
 
-            Init();
+        private void Awake()
+        {
+            ProgressTime.SetClamp(0f, Mathf.Min(duration * 1.5f, 3600));
         }
         
 
-        public virtual void SetUp()
+        public virtual void EditorSetUp()
         {
             var statusEffectData = MainData.StatusEffectSheetData(ActionCode);
 

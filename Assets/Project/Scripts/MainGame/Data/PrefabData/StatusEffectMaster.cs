@@ -55,9 +55,9 @@ namespace MainGame.Data.PrefabData
             
             StatusEffectTable.Values.ForEach(statusEffectPrefab =>
             {
-                if (!statusEffectPrefab.TryGetComponent(out IDataSetUp setter)) return;
+                if (!statusEffectPrefab.TryGetComponent(out IEditable setter)) return;
                 
-                setter.SetUp();
+                setter.EditorSetUp();
                 UnityEditor.EditorUtility.SetDirty(statusEffectPrefab);
             });
             

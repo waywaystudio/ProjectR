@@ -10,24 +10,27 @@ namespace Character.StatusEffect
 
         public override void OnOverride()
         {
-            ProcessTime.Value += duration;
+            ProgressTime.Value += duration;
         }
 
-        protected override void Init() { }
-
-        protected override IEnumerator Effectuating(ICombatTaker taker)
+        protected override void Complete()
         {
-            ProcessTime.Value = duration;
-            Provider.OnProvideCombat.Register("DrainBuff", Drain);
-            
-            while (ProcessTime.Value > 0f)
-            {
-                ProcessTime.Value -= Time.deltaTime;
-                yield return null;
-            }
-            
             Provider.OnProvideCombat.Unregister("DrainBuff");
             
+            base.Complete();
+        }
+
+        protected override IEnumerator Effectuating()
+        {
+            ProgressTime.Value = duration;
+            Provider.OnProvideCombat.Register("DrainBuff", Drain);
+            
+            while (ProgressTime.Value > 0f)
+            {
+                ProgressTime.Value -= Time.deltaTime;
+                yield return null;
+            }
+
             Complete();
         }
 
@@ -35,10 +38,11 @@ namespace Character.StatusEffect
         {
             Provider.DynamicStatEntry.Hp.Value += entity.Value * drainPercentage;
         }  
+        
 
-        public override void SetUp()
+        public override void EditorSetUp()
         {
-            base.SetUp();
+            base.EditorSetUp();
             
             var statusEffectData = MainGame.MainData.StatusEffectSheetData(ActionCode);
 

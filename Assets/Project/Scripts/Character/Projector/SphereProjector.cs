@@ -36,7 +36,7 @@ namespace Character.Projector
         public void UnionTo(StatusEffectComponent statusEffect)
         {
             statusEffect.OnActivated.Register(OnActivated);
-            statusEffect.OnDispel.Register(OnInterrupted);
+            statusEffect.OnCanceled.Register(OnCanceled);
             statusEffect.OnCompleted.Register(OnCompleted);
             statusEffect.OnEnded.Register(OnEnded);
         }

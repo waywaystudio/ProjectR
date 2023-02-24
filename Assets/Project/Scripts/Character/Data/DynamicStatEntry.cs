@@ -1,4 +1,5 @@
 using Core;
+using Sirenix.OdinInspector;
 using UnityEngine;
 
 namespace Character.Data
@@ -9,7 +10,8 @@ namespace Character.Data
         public HpValue Hp { get; } = new();
         public ResourceValue Resource { get; } = new();
         public ShieldValue Shield { get; } = new();
-        public StatTable StatTable { get; } = new(); 
+        [ShowInInspector]
+        public StatTable StatTable { get; } = new();
         public StatusEffectTable BuffTable { get; } = new();
         public StatusEffectTable DeBuffTable { get; } = new();
 

@@ -18,7 +18,7 @@ namespace Character.Skill.Moragg
             projector.SetTaker(self);
             
             OnActivated.Register("ProjectorActivate", projector.OnActivated.Invoke);
-            OnInterrupted.Register("ProjectorInterrupt", projector.OnInterrupted.Invoke);
+            OnCanceled.Register("ProjectorInterrupt", projector.OnCanceled.Invoke);
             OnCompleted.Register("ProjectorComplete", projector.OnCompleted.Invoke);
             OnEnded.Register("ProjectorEnd", projector.OnEnded.Invoke);
         }

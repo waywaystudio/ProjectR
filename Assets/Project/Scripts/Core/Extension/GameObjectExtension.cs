@@ -24,9 +24,9 @@ namespace Core
             }
         }
 
-        public static T GetComponentOnlyChildren<T>(this GameObject gameobject) where T : MonoBehaviour
+        public static T GetComponentOnlyChildren<T>(this GameObject gameObject) where T : MonoBehaviour
         {
-            return gameobject.GetComponentsInChildren<T>().First(x => x.gameObject != gameobject);
+            return gameObject.GetComponentsInChildren<T>().First(x => x.gameObject != gameObject);
         }
 
         public static List<T> GetComponentsInOnlyChildren<T>(this GameObject gameObject)
@@ -66,7 +66,7 @@ namespace Core
 
         public static bool IsNullOrEmpty(this Component component)
         {
-            return component == null || component.gameObject.activeSelf == false;
+            return Equals(component, null) || component.gameObject.activeSelf == false;
         }
         
         

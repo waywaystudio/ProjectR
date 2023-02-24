@@ -41,6 +41,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1681182223584940545}
   - component: {fileID: 4811750073051012917}
+  - component: {fileID: 1076902434716895414}
   - component: {fileID: 9109970235017606743}
   m_Layer: 0
   m_Name: KnightCastingAttack
@@ -96,10 +97,23 @@ MonoBehaviour:
   animationKey: casting
   processType: 1
   progressTime: 3
-  powerValue:
-    value: 0
-    statCode: 1
+  power: {fileID: 1076902434716895414}
   statusEffectPool: {fileID: 9109970235017606743}
+--- !u!114 &1076902434716895414
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5136033056681404773}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8e628f5df72c2e949ab8a5b0ef9dc17a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  power:
+    value: 50
+    statCode: 1
 --- !u!114 &9109970235017606743
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -113,7 +127,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   prefab: {fileID: 8333227002716821657, guid: 5d2fb8c7eb66cd742b1e14925d73c808, type: 3}
-  maxCount: 0
+  maxCount: 8
 --- !u!1 &7185754568562106441
 GameObject:
   m_ObjectHideFlags: 0

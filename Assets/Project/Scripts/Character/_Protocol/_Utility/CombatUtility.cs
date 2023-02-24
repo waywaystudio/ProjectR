@@ -30,6 +30,8 @@ namespace Character
         {
             if (!taker.DynamicStatEntry.IsAlive.Value) return null;
             
+            combatTable.UpdateStatTable();
+            
             var combatEntity = new CombatEntity(combatTable, taker);
 
             var damageAmount = combatTable.StatTable.Power;
@@ -66,6 +68,8 @@ namespace Character
         {
             if (!taker.DynamicStatEntry.IsAlive.Value) return null;
             
+            combatTable.UpdateStatTable();
+            
             var combatEntity = new CombatEntity(combatTable, taker);
 
             var healAmount = combatTable.StatTable.Power;
@@ -90,56 +94,21 @@ namespace Character
             return combatEntity;
         }
 
-        public static StatusEffectEntity TakeDeBuff(IStatusEffect statusEffect, ICombatTaker taker)
+        public static StatusEffectEntity TakeStatusEffect(IStatusEffect statusEffect, ICombatTaker taker)
         {
             if (!taker.DynamicStatEntry.IsAlive.Value) return null;
             
             var statusEffectEntity = new StatusEffectEntity(statusEffect, taker);
-            var table = taker.DynamicStatEntry.DeBuffTable;
+            var table = statusEffect.Type == StatusEffectType.Buff
+                ? taker.DynamicStatEntry.BuffTable
+                : taker.DynamicStatEntry.DeBuffTable;
             
             table.Register(statusEffect);
-            statusEffect.OnEnded.Register("UnregisterTable", () => table.Unregister(statusEffect));
-            statusEffect.Active(taker);
-
-            statusEffect.Provider.OnProvideStatusEffect.Invoke(statusEffectEntity);
-            taker.OnTakeStatusEffect.Invoke(statusEffectEntity);
-
-            return statusEffectEntity;
-        }
-        
-        public static StatusEffectEntity TakeBuff(IStatusEffect statusEffect, ICombatTaker taker)
-        {
-            if (!taker.DynamicStatEntry.IsAlive.Value) return null;
-            
-            var statusEffectEntity = new StatusEffectEntity(statusEffect, taker);
-            var table = taker.DynamicStatEntry.BuffTable;
-
-            table.Register(statusEffect);
-            statusEffect.OnEnded.Register("UnregisterTable", () => table.Unregister(statusEffect));
-            statusEffect.Active(taker);
 
             statusEffect.Provider.OnProvideStatusEffect.Invoke(statusEffectEntity);
             taker.OnTakeStatusEffect?.Invoke(statusEffectEntity);
 
             return statusEffectEntity;
-        }
-
-        public static void _TakeBuff(ICombatTable combatTable, ICombatTaker taker)
-        {
-            if (!taker.DynamicStatEntry.IsAlive.Value) return;
-            
-            if (taker.DynamicStatEntry.DeBuffTable.ContainsKey((combatTable.Provider, combatTable.ActionCode)))
-            {
-                taker.DynamicStatEntry.DeBuffTable[(combatTable.Provider, combatTable.ActionCode)].OnOverride();
-            }
-                
-            // var statusEffectPool = PoolManager.GetStatusEffectComponent(combatTable.ActionCode) as IObjectPool<StatusEffectComponent>;
-            // var component = statusEffectPool.Get();
-            // component.Initialize(combatTable.Provider);
-            // taker.DynamicStatEntry.DeBuffTable.Register(statusEffectPool.Get());
-            
-            // combatTable.Provider.OnProvideStatusEffect.Invoke();
-            // taker.OnTakeStatusEffect.Invoke();
         }
     }
 }

@@ -7,15 +7,18 @@ namespace Character.Targeting
     public class Colliding : MonoBehaviour
     {
         protected readonly Collider[] Buffers = new Collider[32];
+        
+        public bool TryGetTakersInSphere(SkillComponent skill, out List<ICombatTaker> takerList) => (takerList = 
+            GetTakersInSphereType(
+                skill.Provider.Object.transform.position, 
+                skill.Range, 
+                skill.Angle, 
+                skill.TargetLayer)
+            ).HasElement();
 
         public bool TryGetTakersInSphere(Vector3 center, float radius, float angle, LayerMask layer,
-            out List<ICombatTaker> takerList)
-        {
-            return (takerList = GetTakersInSphereType(center, radius, angle, layer)).HasElement();
-        }
+            out List<ICombatTaker> takerList) => (takerList = GetTakersInSphereType(center, radius, angle, layer)).HasElement();
         
-
-        private void ShowProjector(float radius /*Texture or Shader? decal*/) { }
 
         private List<ICombatTaker> GetTakersInSphereType(Vector3 center, float radius, float angle, LayerMask layer)
         {

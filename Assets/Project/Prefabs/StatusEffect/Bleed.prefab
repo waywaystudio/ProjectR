@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2402494755454563105}
   - component: {fileID: -8862790993114922387}
+  - component: {fileID: 5905625701709508286}
   m_Layer: 0
   m_Name: Bleed
   m_TagString: Untagged
@@ -48,7 +49,20 @@ MonoBehaviour:
   type: 2
   icon: {fileID: 21300000, guid: a45b2bd5098294147a97c8fa8f2127e0, type: 3}
   duration: 12
+  tickPower: {fileID: 5905625701709508286}
   interval: 3
-  tickPowerValue:
-    value: 4
+--- !u!114 &5905625701709508286
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8333227002716821657}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8e628f5df72c2e949ab8a5b0ef9dc17a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  power:
+    value: 8
     statCode: 1

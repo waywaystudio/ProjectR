@@ -8,7 +8,7 @@ using Random = UnityEngine.Random;
 
 namespace Character.Data
 {
-    public class DropTable : MonoBehaviour, IDataSetUp
+    public class DropTable : MonoBehaviour, IEditable
     {
         [Serializable]
         public struct ItemDrop
@@ -85,7 +85,7 @@ namespace Character.Data
         }
         
 #if UNITY_EDITOR
-        public void SetUp()
+        public void EditorSetUp()
         {
             // var mb = GetComponentInParent<OldMonsterBehaviour>();
             // var monsterID = mb.DataIndex;

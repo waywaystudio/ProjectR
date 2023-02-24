@@ -3,38 +3,55 @@ using UnityEngine;
 
 namespace Character.Skill.Knight
 {
-    public class KnightCommonAttack : GeneralAttack
+    public class KnightCommonAttack : SkillComponent
     {
-        [SerializeField] private StatusEffectPool statusEffectPool;
+        [SerializeField] protected ValueCompletion power;
+        [SerializeField] private StatusEffectCompletion armorCrash;
 
-        protected override void OnAttack()
+        public override void Release() { }
+        
+        protected override void PlayAnimation()
         {
-            if (!colliding.TryGetTakersInSphere(transform.position, range, angle, targetLayer, out var takerList)) return;
-            
+            model.PlayOnce(animationKey, progressTime, OnCompleted.Invoke);
+        }
+        
+        protected void OnAttack()
+        {
+            if (!colliding.TryGetTakersInSphere(this, out var takerList)) return;
+
             takerList.ForEach(taker =>
             {
-                var combatEntity = taker.TakeDamage(this);
-                Debug.Log($"{Provider.Name} provider {ActionCode.ToString()}.{combatEntity.Value} to {taker.Name}");
-
-                var effectInfo = statusEffectPool.Effect;
-                var table = taker.DynamicStatEntry.DeBuffTable;
-
-                if (table.ContainsKey((Provider, effectInfo.ActionCode)))
-                {
-                    table[(Provider, effectInfo.ActionCode)].OnOverride();
-                }
-                else
-                {
-                    taker.TakeDeBuff(statusEffectPool.Get());
-                }
+                power.Damage(taker);
+                armorCrash.Effect(taker);
             });
         }
         
-        protected override void OnEnable()
+        private void RegisterHitEvent()
         {
-            statusEffectPool.Initialize(Provider);
+            model.OnHit.Register("SkillHit", OnHit.Invoke);
+        }
+        
+        protected void OnEnable()
+        {
+            power.Initialize(Provider, ActionCode);
 
-            base.OnEnable();
+            OnActivated.Register("RegisterHitEvent", RegisterHitEvent);
+            
+            OnHit.Register("GeneralAttack", OnAttack);
+
+            OnCompleted.Register("EndCallback", OnEnded.Invoke);
+
+            OnEnded.Register("ReleaseHit", () => model.OnHit.Unregister("SkillHit"));
+        }
+        
+        
+        public override void EditorSetUp()
+        {
+            base.EditorSetUp();
+            
+            var skillData = MainGame.MainData.SkillSheetData(actionCode);
+
+            power.SetPower(skillData.CompletionValueList[0]);
         }
     }
 }

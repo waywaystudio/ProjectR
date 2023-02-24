@@ -32,37 +32,26 @@ namespace Character.Skill
         public SkillComponent FourthSkill => fourthSkill;
         
         public ConditionTable Conditions { get; } = new();
-        public ActionTable<SkillComponent> OnActivatedSkill { get; } = new();
-        public ActionTable<SkillComponent> OnInterruptedSkill { get; } = new();
-        public ActionTable<SkillComponent> OnReleasedSkill { get; } = new();
+        public ActionTable<SkillComponent> OnCommonActivated { get; } = new();
+        public ActionTable<SkillComponent> OnCommonCanceled { get; } = new();
+        public ActionTable<SkillComponent> OnCommonReleased { get; } = new();
         public SkillComponent Current { get; set; }
         public Vector3 RootPosition => rootTransform.position;
-        public bool IsSkillEnded
-        {
-            get
-            {
-                if (Current.IsNullOrEmpty() || !Current.OnProgress) return true;
-                
-                // Debug.LogWarning($"Current Skill is not ended. Skill:{Current.ActionCode.ToString()}");
-                return false;
-            }
-        }
-        
-        private Dictionary<DataIndex, SkillComponent> SkillTable { get; } = new();
+        public bool IsSkillEnded => Current.IsNullOrEmpty() || !Current.IsEnded;
 
         public void Run(Vector3 destination)
         {
             if (!move.IsMovable) return;
             
-            InterruptCurrentSkill();
+            CancelSkill();
             
             move.Move(destination, model.Idle);
             model.Run();
         }
 
-        public void Rotate(Vector3 direction)
+        public void Rotate(Vector3 position)
         {
-            move.Rotate(direction);
+            move.RotateTo(position);
             model.Flip(move.Direction);
         }
 
@@ -71,27 +60,18 @@ namespace Character.Skill
             move.Stop();
             model.Idle();
         }
-        
-        public void Dash()
+
+        public void Dash(Vector3 position)
         {
-            if (!MainManager.Input.TryGetMousePosition(out var mousePosition)) return;
+            CancelSkill();
 
-            Dash(mousePosition - RootPosition);
-        }
-
-        public void Dash(Vector3 direction)
-        {
-            InterruptCurrentSkill();
-            
-            if (!MainManager.Input.TryGetMousePosition(out var mousePosition)) return;
-
-            move.Rotate(mousePosition - RootPosition);
+            move.RotateTo(position);
             Stop();
             Current = DashSkill;
             gcd.StartCooling();
             
-            DashSkill.Activate(mousePosition);
-            OnActivatedSkill.Invoke(DashSkill);
+            DashSkill.Activate();
+            OnCommonActivated.Invoke(DashSkill);
         }
         
         public void Teleport()
@@ -101,49 +81,51 @@ namespace Character.Skill
             Teleport(mousePosition - RootPosition);
         }
 
-        public void Teleport(Vector3 direction)
+        public void Teleport(Vector3 position)
         {
-            InterruptCurrentSkill();
+            CancelSkill();
             
-            move.Rotate(direction);
+            move.RotateTo(position);
             model.Idle();
-            move.Teleport(direction);
+            move.Teleport(position);
         }
 
+        // + Stun, Fear, etc.
         public void KnockBack(Vector3 from, Action callback)
         {
-            InterruptCurrentSkill();
+            CancelSkill();
             move.KnockBack(from, callback);
             model.PlayOnce("fall");
         }
         
-        // + Stun, KnockDown, Fear, etc.
         
         public void ActiveSkill(SkillComponent skill, Vector3 targetPosition)
         {
             if (Conditions.HasFalse) return;
 
-            Rotate(targetPosition);
             Stop();
+            Rotate(targetPosition);
             Current = skill;
             gcd.StartCooling();
                 
-            skill.Activate(targetPosition);
-            OnActivatedSkill.Invoke(skill);
+            skill.Activate();
+            
+            OnCommonActivated.Invoke(skill);
         }
 
         public void ReleaseSkill(SkillComponent skill)
         {
             skill.Release();
-            OnReleasedSkill.Invoke(skill);
+            
+            OnCommonReleased.Invoke(skill);
         }
 
-        public void InterruptCurrentSkill()
+        public void CancelSkill()
         {
             if (Current.IsNullOrEmpty()) return;
             
-            Current.Interrupted();
-            OnInterruptedSkill.Invoke(Current);
+            Current.Cancel();
+            OnCommonCanceled.Invoke(Current);
         }
 
         public bool TryGetMostPrioritySkill(out SkillComponent skill)
@@ -170,11 +152,8 @@ namespace Character.Skill
             
             skillList.Clear();
             GetComponentsInChildren(false, skillList);
-            skillList.ForEach(x =>
-            {
-                x.OnEnded.Register("BehaviourUnregister", () => Current = null);
-                SkillTable.Add(x.ActionCode, x);
-            });
+            
+            skillList.ForEach(x => x.OnEnded.Register("BehaviourUnregister", () => Current = null));
 
             Conditions.Register("GlobalCoolTime", () => !gcd.IsCooling);
             Conditions.Register("CurrentSkillCompleted", () => IsSkillEnded);
@@ -184,6 +163,7 @@ namespace Character.Skill
         {
             model.Flip(rootTransform.forward);
         }
+        
 
         public void SetUp()
         {

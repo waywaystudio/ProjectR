@@ -30,7 +30,7 @@ namespace Raid.UI.ActionFrames.StatusEffectIconBars
             icon.sprite         = seComponent.GetComponent<StatusEffectComponent>().Icon;
             remainDuration.text = statusEffect.Duration.ToString("F1");
 
-            statusEffect.ProcessTime.Register("SetRemainDurationText", SetRemainDurationText);
+            statusEffect.ProgressTime.Register("SetRemainDurationText", SetRemainDurationText);
             statusEffect.OnEnded.Register("RemoveUI", Unregister);
         }
 
@@ -40,7 +40,7 @@ namespace Raid.UI.ActionFrames.StatusEffectIconBars
 
             icon.sprite         = null;
             remainDuration.text = string.Empty;
-            StatusEffect.ProcessTime.Unregister("SetRemainDurationText");
+            StatusEffect.ProgressTime.Unregister("SetRemainDurationText");
             StatusEffect = null;
             
             gameObject.SetActive(false);

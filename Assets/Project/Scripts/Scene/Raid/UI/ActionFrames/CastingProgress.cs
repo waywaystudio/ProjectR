@@ -12,11 +12,11 @@ namespace Raid.UI.ActionFrames
         private ActionBehaviour actionBehaviour;
         private SkillComponent currentSkill;
 
-        public void Initialize(AdventurerBehaviour ab)
+        public void Initialize()
         {
-            actionBehaviour = ab.ActionBehaviour;
-            actionBehaviour.OnActivatedSkill.Unregister("ShowCastingUI");
-            actionBehaviour.OnActivatedSkill.Register("ShowCastingUI", Register);
+            actionBehaviour = RaidDirector.FocusCharacter.ActionBehaviour;
+            actionBehaviour.OnCommonActivated.Unregister("ShowCastingUI");
+            actionBehaviour.OnCommonActivated.Register("ShowCastingUI", Register);
         }
 
         public void OnAdventurerChanged(AdventurerBehaviour ab)
@@ -26,14 +26,14 @@ namespace Raid.UI.ActionFrames
             if (ab.IsNullOrEmpty()) return;
             
             actionBehaviour = ab.ActionBehaviour;
-            actionBehaviour.OnActivatedSkill.Register("ShowCastingUI", Register);
+            actionBehaviour.OnCommonActivated.Register("ShowCastingUI", Register);
 
             Register();
         }
 
         private void Unregister()
         {
-            actionBehaviour.OnActivatedSkill.Unregister("ShowCastingUI");
+            actionBehaviour.OnCommonActivated.Unregister("ShowCastingUI");
             actionBehaviour.SkillList.ForEach(x => x.OnEnded.Unregister("OffCastingUI"));
         }
 

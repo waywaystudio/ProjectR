@@ -1,5 +1,7 @@
 using System.Collections;
 using Character.Projector;
+using Character.Skill;
+using Character.Targeting;
 using Core;
 using UnityEngine;
 
@@ -8,27 +10,43 @@ namespace Character.StatusEffect
     public class LivingBomb : DamageOverTimeEffect
     {
         [SerializeField] private float radius = 12f;
+        [SerializeField] private Colliding colliding;
+        [SerializeField] private LayerMask adventurerLayer;
         [SerializeField] private SphereProjector projector;
+        [SerializeField] private ValueCompletion bombPower;
 
         public override void OnOverride() { }
         
-        public override void Active(ICombatTaker taker)
+        public override void Active(ICombatProvider provider, ICombatTaker taker)
         {
-            base.Active(taker);
+            base.Active(provider, taker);
             
+            bombPower.Initialize(provider, ActionCode);
+            
+            projector.Initialize(0.25f, radius);
             projector.OnActivated.Invoke();
             projector.SetTaker(taker);
         }
         
-        public override void Dispel()
+        public override void Cancel()
         {
-            projector.OnInterrupted.Invoke();
+            projector.OnCanceled.Invoke();
             
-            base.Dispel();
+            base.Cancel();
         }
         
         protected override void Complete()
         {
+            colliding.TryGetTakersInSphere
+            (
+                Taker.Object.transform.position,
+                radius,
+                360f,
+                adventurerLayer,
+                out var takerList
+            );
+            
+            bombPower.Damage(takerList);
             projector.OnCompleted.Invoke();
             
             base.Complete();
@@ -41,26 +59,26 @@ namespace Character.StatusEffect
             base.End();
         }
 
-        protected override void Init()
+        protected override IEnumerator Effectuating()
         {
-            projector.Initialize(0.25f, radius);
-        }
+            var hastedTick = interval * CharacterUtility.GetHasteValue(Provider.StatTable.Haste);
 
-        protected override IEnumerator Effectuating(ICombatTaker taker)
-        {
-            ProcessTime.Value = duration;
+            ProgressTime.Value = duration;
 
-            while (ProcessTime.Value > 0)
+            while (ProgressTime.Value > 0)
             {
-                ProcessTime.Value -= Time.deltaTime;
+                var tickBuffer = hastedTick;
+
+                while (tickBuffer > 0f)
+                {
+                    ProgressTime.Value -= Time.deltaTime;
+                    tickBuffer         -= Time.deltaTime;
+                    
+                    yield return null;
+                }
                 
-                yield return null;
+                tickPower.Damage(Taker);
             }
-            
-            UpdateDoT();
-            
-            // 범위안에 있는 Character를 모두 구한 후,
-            taker.TakeDamage(this);
 
             Complete();
         }

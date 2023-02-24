@@ -34,7 +34,7 @@ namespace Character.Move
             agent.StartPath(rootPosition, destination);
         }
         
-        public void Rotate(Vector3 lookTarget) => rootTransform.LookAt(lookTarget);
+        public void RotateTo(Vector3 lookTarget) => rootTransform.LookAt(lookTarget);
 
         public void Stop()
         {
@@ -45,7 +45,7 @@ namespace Character.Move
         public void Dash(Vector3 direction, float distance, Action callback)
         {
             Stop();
-            Rotate(direction);
+            RotateTo(direction);
 
             var normalDirection = direction.normalized;
             var actualDistance = distance;
@@ -62,7 +62,7 @@ namespace Character.Move
         public void Teleport(Vector3 direction)
         {
             Stop();
-            Rotate(direction);
+            RotateTo(direction);
 
             var normalDirection = direction.normalized;
             var teleportDestination = rootPosition + normalDirection * 8f;
@@ -88,7 +88,7 @@ namespace Character.Move
         public void KnockBack(Vector3 from, Action callback)
         {
             Stop();
-            Rotate(from);
+            RotateTo(from);
             
             var knockBackDirection = (rootPosition - from).normalized;
             var knockBackDestination = rootPosition + knockBackDirection * 5f;

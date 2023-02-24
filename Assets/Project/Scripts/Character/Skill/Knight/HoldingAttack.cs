@@ -8,6 +8,8 @@ namespace Character.Skill.Knight
         [SerializeField] private PowerValue powerValue;
         
         public StatTable StatTable { get; } = new();
+        
+        public void UpdateStatTable() { }
 
 
         protected override void PlayAnimation()
@@ -40,28 +42,21 @@ namespace Character.Skill.Knight
 
         protected void OnEnable()
         {
-            OnActivated.Register("PlayAnimation", PlayAnimation);
             OnActivated.Register("UpdatePowerValue", UpdateCompletion);
             OnActivated.Register("RegisterHitEvent", RegisterHitEvent);
-            OnActivated.Register("StartProgress", () => StartProcess(OnCompleted.Invoke));
 
-            OnInterrupted.Register("Log", () => Debug.Log("Interrupted"));
-            OnInterrupted.Register("EndCallback", OnEnded.Invoke);
-            
             OnHit.Register("OnHoldingAttack", OnHoldingAttack);
             
             OnCompleted.Register("EndCallback", OnEnded.Invoke);
 
             OnEnded.Register("StartCooling", StartCooling);
             OnEnded.Register("ReleaseHit", () => model.OnHit.Unregister("HoldingHit"));
-            OnEnded.Register("StopProgress", StopProcess);
-            OnEnded.Register("Idle", model.Idle);
         }
 
         
-        public override void SetUp()
+        public override void EditorSetUp()
         {
-            base.SetUp();
+            base.EditorSetUp();
             
             var skillData = MainGame.MainData.SkillSheetData(actionCode);
 
