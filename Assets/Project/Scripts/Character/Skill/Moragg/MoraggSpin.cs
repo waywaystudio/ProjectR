@@ -15,12 +15,8 @@ namespace Character.Skill.Moragg
             var self = GetComponentInParent<ICombatTaker>();
             
             projector.Initialize(progressTime, range);
+            projector.AssignTo(this);
             projector.SetTaker(self);
-            
-            OnActivated.Register("ProjectorActivate", projector.OnActivated.Invoke);
-            OnCanceled.Register("ProjectorInterrupt", projector.OnCanceled.Invoke);
-            OnCompleted.Register("ProjectorComplete", projector.OnCompleted.Invoke);
-            OnEnded.Register("ProjectorEnd", projector.OnEnded.Invoke);
         }
     }
 }

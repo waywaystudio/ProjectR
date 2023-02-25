@@ -1,29 +1,27 @@
-using Character;
-using Raid.UI.ActionFrames.ActionBars;
-using Raid.UI.ActionFrames.ActionBars.AdventurerBars;
+using Core;
 using UnityEngine;
 
 namespace Raid.UI.ActionFrames
 {
-    public class ActionBar : MonoBehaviour
+    using ActionBars;
+    
+    public class ActionBar : MonoBehaviour, IEditable
     {
-        [SerializeField] private CharacterSkillBar characterSkillBar;
         [SerializeField] private AdventurerBar adventurerBars;
+        [SerializeField] private CharacterSkillBar characterSkillBar;
 
-        private AdventurerBehaviour ab;
 
-        public void Initialize(AdventurerBehaviour ab)
+        public void Initialize()
         {
-            this.ab = ab;
-            
-            characterSkillBar ??= GetComponentInChildren<CharacterSkillBar>();
-            characterSkillBar.Initialize(ab);
+            characterSkillBar.Initialize();
         }
 
 
-        public void SetUp()
+#if UNITY_EDITOR
+        public void EditorSetUp()
         {
             characterSkillBar ??= GetComponentInChildren<CharacterSkillBar>();
         }
+#endif
     }
 }

@@ -9,8 +9,6 @@ namespace Raid
     {
         [SerializeField] private BossFrame bossFrame;
         [SerializeField] private ActionFrame actionFrame;
-
-        // Pool
         [SerializeField] private DamageTextPool damageTextPool;
 
         // [SerializeField] private List<PartyUnitFrame> partyFrameList;
@@ -19,7 +17,7 @@ namespace Raid
         {
             bossFrame.Initialize();
             actionFrame.Initialize();
-            damageTextPool.Initialize(RaidDirector.AdventurerList);
+            damageTextPool.Initialize();
         }
 
 

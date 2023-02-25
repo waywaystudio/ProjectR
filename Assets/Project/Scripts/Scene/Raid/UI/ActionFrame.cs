@@ -15,15 +15,16 @@ namespace Raid.UI
         [SerializeField] private ActionBar actionBar;
         [SerializeField] private CharacterDashActionSlot dashAction;
         [SerializeField] private AdventurerBar adventurerBar;
+        
 
         public void Initialize()
         {
             castingProgress.Initialize();
-            statusEffectBar.Initialize(RaidDirector.Player);
-            dynamicValueProcess.Initialize(RaidDirector.Player);
-            actionBar.Initialize(RaidDirector.Player);
-            dashAction.Initialize(RaidDirector.Player);
-            adventurerBar.Initialize(RaidDirector.AdventurerList);
+            statusEffectBar.Initialize();
+            dynamicValueProcess.Initialize();
+            actionBar.Initialize();
+            dashAction.Initialize();
+            adventurerBar.Initialize();
         }
         
 

@@ -7,7 +7,7 @@ using UnityEngine;
 
 namespace Raid.UI.ActionFrames.ActionBars.CharacterSkillBars
 {
-    public class CharacterSkillActionSlot : MonoBehaviour
+    public class CharacterSkillActionSlot : MonoBehaviour, IEditable
     {
         [SerializeField] private CharacterSkillActionIcon skillAction;
         [SerializeField] private ImageFiller coolDownFiller;
@@ -30,7 +30,7 @@ namespace Raid.UI.ActionFrames.ActionBars.CharacterSkillBars
             };
 
 
-        public void Initialize(AdventurerBehaviour adventurer) => OnFocusChanged(adventurer);
+        public void Initialize() => OnFocusChanged(RaidDirector.Player);
         public void OnFocusChanged(AdventurerBehaviour ab)
         {
             MainManager.Input.TryGetAction(bindingCode, out var inputAction);
@@ -67,8 +67,7 @@ namespace Raid.UI.ActionFrames.ActionBars.CharacterSkillBars
                 coolDownFiller.ProgressImage.enabled = true;
                 coolDownFiller.Register(skill.RemainCoolTime, skill.CoolTime);
             }
-                
-            
+
             inputAction.started  += skillAction.StartAction;
             inputAction.canceled += skillAction.CompleteAction;
         }
@@ -80,10 +79,12 @@ namespace Raid.UI.ActionFrames.ActionBars.CharacterSkillBars
         }
 
 
-        public void SetUp()
+#if UNITY_EDITOR
+        public void EditorSetUp()
         {
             skillAction ??= GetComponentInChildren<CharacterSkillActionIcon>();
             hotKey.text =   HotKey;
         }
+#endif
     }
 }

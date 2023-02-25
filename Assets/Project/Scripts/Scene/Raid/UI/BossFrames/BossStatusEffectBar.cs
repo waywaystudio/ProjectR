@@ -2,42 +2,29 @@ using System;
 using System.Collections.Generic;
 using Character;
 using Core;
+using Raid.UI.ActionFrames.StatusEffectIconBars;
 using UnityEngine;
 
-namespace Raid.UI.ActionFrames
+namespace Raid.UI.BossFrames
 {
-    using StatusEffectIconBars;
-    
-    public class StatusEffectBar : MonoBehaviour, IEditable
+    public class BossStatusEffectBar : MonoBehaviour, IEditable
     {
         [SerializeField] private List<DeBuffActionSlot> deBuffActionSlotList;
         [SerializeField] private List<BuffActionSlot> buffActionSlotList;
+        
+        private MonsterBehaviour mb;
 
-        private AdventurerBehaviour ab;
-
-        public void Initialize() => OnFocusChanged(RaidDirector.Player);
-        public void OnFocusChanged(AdventurerBehaviour ab)
+        public void Initialize()
         {
-            if (this.ab != null)
-            {
-                this.ab.OnTakeStatusEffect.Unregister("RegisterUI");
-                
-                // Clear Previous StatusEffect.
-                buffActionSlotList.ForEach(buff => buff.Unregister());
-                deBuffActionSlotList.ForEach(deBuff => deBuff.Unregister());
-            }
+            mb = RaidDirector.Boss;
 
-            if (ab.IsNullOrEmpty()) return;
+            mb.OnTakeStatusEffect.Unregister("RegisterUI");
+            mb.OnTakeStatusEffect.Register("RegisterUI", OnRegisterStatusEffect);
 
-            this.ab = ab;
-
-            ab.OnTakeStatusEffect.Unregister("RegisterUI");
-            ab.OnTakeStatusEffect.Register("RegisterUI", OnRegisterStatusEffect);
-
-            UpdateStatusEffect(ab);
+            UpdateStatusEffect(mb);
         }
-
-
+        
+        
         private void OnRegisterStatusEffect(StatusEffectEntity seEntity)
         {
             if (seEntity.IsOverride) return;
@@ -73,8 +60,8 @@ namespace Raid.UI.ActionFrames
                 default: throw new ArgumentOutOfRangeException();
             }
         }
-
-        private void UpdateStatusEffect(AdventurerBehaviour ab)
+        
+        private void UpdateStatusEffect(MonsterBehaviour ab)
         {
             // Add ab.StatusEffects
             ab.DynamicStatEntry.BuffTable.Values.ForEach(effect =>
@@ -92,7 +79,7 @@ namespace Raid.UI.ActionFrames
                 deBuffSlot.Register(effect);
             });
         }
-
+        
         private bool TryGetEmptyBuff(out BuffActionSlot buffSlot)
         {
             buffSlot = null;
@@ -107,6 +94,7 @@ namespace Raid.UI.ActionFrames
 
             return buffSlot is not null;
         }
+        
         private bool TryGetEmptyDeBuff(out DeBuffActionSlot deBuffSlot)
         {
             deBuffSlot = null;
@@ -121,13 +109,13 @@ namespace Raid.UI.ActionFrames
 
             return deBuffSlot is not null;
         }
-
+        
         private void Awake()
         {
             GetComponentsInChildren(true, deBuffActionSlotList);
             GetComponentsInChildren(true, buffActionSlotList);
         }
-
+        
 
 #if UNITY_EDITOR
         public void EditorSetUp()

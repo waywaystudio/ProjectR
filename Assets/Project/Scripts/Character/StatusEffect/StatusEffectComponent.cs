@@ -14,6 +14,7 @@ namespace Character.StatusEffect
         [SerializeField] protected float duration;
         
         protected Coroutine StatusEffectRoutine;
+        protected bool IsInitialized;
         
         public Pool<StatusEffectComponent> Pool { get; set; }
         
@@ -33,40 +34,36 @@ namespace Character.StatusEffect
 
         public virtual void Active(ICombatProvider provider, ICombatTaker taker)
         {
-            Provider = provider;
+            Initialize(provider);
+
             Taker    = taker;
-            
-            StartEffectuate();
-            
             OnActivated.Invoke();
         }
 
         public abstract void OnOverride();
-
-        public virtual void Cancel()
-        {
-            OnCanceled.Invoke();
-            
-            End();
-        }
-        
+        public virtual void Cancel() => OnCanceled.Invoke();
 
         protected abstract IEnumerator Effectuating();
-
-        protected virtual void Complete()
+        protected virtual void Complete() => OnCompleted.Invoke();
+        protected virtual void End() => OnEnded.Invoke();
+        protected virtual void Initialize(ICombatProvider provider)
         {
-            OnCompleted.Invoke();
-            End(); 
-        }
-
-        protected virtual void End()
-        {
-            StopEffectuate();
-            UnregisterTable();
-
-            OnEnded.Invoke();
-
-            Pool.Release(this);
+            if (IsInitialized) return;
+            
+            IsInitialized = true;
+            
+            Provider = provider;
+            ProgressTime.SetClamp(0f, Mathf.Min(duration * 1.5f, 3600));
+            
+            OnActivated.Register("StartEffectuate", StartEffectuate);
+            
+            OnCanceled.Register("End", End);
+            
+            OnCompleted.Register("End", End);
+            
+            OnEnded.Register("StopEffectuate", StopEffectuate);
+            OnEnded.Register("UnregisterTable", UnregisterTable);
+            OnEnded.Register("ReleasePool", () => Pool.Release(this));
         }
         
 
@@ -91,11 +88,6 @@ namespace Character.StatusEffect
             targetTable.Unregister(this);
         }
 
-        private void Awake()
-        {
-            ProgressTime.SetClamp(0f, Mathf.Min(duration * 1.5f, 3600));
-        }
-        
 
         public virtual void EditorSetUp()
         {

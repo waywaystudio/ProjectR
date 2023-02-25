@@ -1,5 +1,6 @@
 using Character.Data;
 using Character.Data.BaseStats;
+using Character.Skill;
 using Core;
 using UnityEngine;
 
@@ -12,6 +13,7 @@ namespace Character
         [SerializeField] protected RoleType role;
         [SerializeField] protected DynamicStatEntry dynamicStatEntry;
         [SerializeField] protected CharacterConstStats constStats;
+        [SerializeField] protected ActionBehaviour actionBehaviour;
 
         [SerializeField] protected Transform damageSpawn;
         [SerializeField] protected Transform statusEffectHierarchy;
@@ -24,6 +26,7 @@ namespace Character
         public GameObject Object => gameObject;
         public StatTable StatTable => DynamicStatEntry.StatTable;
         
+        public ActionBehaviour ActionBehaviour => actionBehaviour;
         public Transform DamageSpawn => damageSpawn;
         public Transform StatusEffectHierarchy => statusEffectHierarchy;
 

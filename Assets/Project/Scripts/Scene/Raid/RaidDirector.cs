@@ -3,7 +3,6 @@ using Character;
 using Core;
 using Core.Singleton;
 using MainGame;
-using Sirenix.OdinInspector;
 using UnityEngine;
 
 // ReSharper disable UnusedAutoPropertyAccessor.Global
@@ -22,7 +21,9 @@ namespace Raid
         [SerializeField] private RaidCameraDirector cameraDirector;
         [SerializeField] private RaidCastingDirector castingDirector;
         [SerializeField] private RaidUIDirector uiDirector;
-        
+
+        [SerializeField] private GameEventAdventurer OnFocusedAdventurerChanged;
+
         // TODO. TEMP;
         [SerializeField] private AdventurerBehaviour player;
         [SerializeField] private MonsterBehaviour boss;
@@ -35,10 +36,19 @@ namespace Raid
             Instance.uiDirector ??= Instance.GetComponentInChildren<RaidUIDirector>();
 
         public static AdventurerBehaviour Player => Instance.player;
-        public static AdventurerBehaviour FocusCharacter => Instance.focusCharacter;
         public static MonsterBehaviour Boss => Instance.boss;
         public static List<AdventurerBehaviour> AdventurerList => CastingDirector.AdventurerList;
         public static List<MonsterBehaviour> MonsterList => CastingDirector.MonsterList;
+
+        public static AdventurerBehaviour FocusCharacter
+        {
+            get => Instance.focusCharacter;
+            set
+            {
+                Instance.focusCharacter = value;
+                Instance.OnFocusedAdventurerChanged.Invoke(value);
+            }
+        }
 
 
         /* TODO. FUTURE...
@@ -71,6 +81,7 @@ namespace Raid
         private void Start()
         {
             uiDirector.Initialize();
+            OnFocusedAdventurerChanged.Invoke(Player);
         }
 
 #if UNITY_EDITOR

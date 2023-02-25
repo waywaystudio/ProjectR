@@ -11,7 +11,6 @@ namespace Raid.UI.ActionFrames.ActionBars.AdventurerBars
         [SerializeField] private TextMeshProUGUI hotKey;
         [SerializeField] private BindingCode bindingCode;
 
-        private AdventurerBehaviour focusedAdventurer;
         private string HotKey =>
             bindingCode switch
             {
@@ -25,7 +24,6 @@ namespace Raid.UI.ActionFrames.ActionBars.AdventurerBars
 
         public void Initialize(AdventurerBehaviour adventurer)
         {
-            focusedAdventurer = adventurer;
             adventurerAction.Initialize(adventurer);
 
             hotKey.text = HotKey;

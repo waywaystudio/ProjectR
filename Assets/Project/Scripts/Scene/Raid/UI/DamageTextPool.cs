@@ -1,7 +1,6 @@
 using System.Collections.Generic;
 using Character;
 using Core;
-using Sirenix.OdinInspector;
 using UnityEngine;
 
 namespace Raid.UI
@@ -18,8 +17,10 @@ namespace Raid.UI
         //
         
 
-        public void Initialize(List<AdventurerBehaviour> adventurers)
+        public void Initialize()
         {
+            var adventurers = RaidDirector.AdventurerList;
+            
             if (adventurers.IsNullOrEmpty())
             {
                 Debug.LogWarning("AtLeast 1 Adventurer Required. DamageTextUI Off.");
@@ -82,49 +83,5 @@ namespace Raid.UI
             damageText.ShowValue(combatEntity);
             damageText.gameObject.SetActive(true);
         }
-
-        #region TEMP
-
-        [Button] private void TogglePlayer1()
-        {
-            showAdventurer1 = !showAdventurer1;
-
-            if (showAdventurer1) 
-                adventurerList[0].OnProvideCombat.Register("DamageTextUI", ShowDamage);
-            else
-                adventurerList[0].OnProvideCombat.Unregister("DamageTextUI");
-        }
-        
-        [Button] private void TogglePlayer2()
-        {
-            showAdventurer2 = !showAdventurer2;
-
-            if (showAdventurer2) 
-                adventurerList[1].OnProvideCombat.Register("DamageTextUI", ShowDamage);
-            else
-                adventurerList[1].OnProvideCombat.Unregister("DamageTextUI");
-        }
-        
-        [Button] private void TogglePlayer3()
-        {
-            showAdventurer3 = !showAdventurer3;
-
-            if (showAdventurer3) 
-                adventurerList[2].OnProvideCombat.Register("DamageTextUI", ShowDamage);
-            else
-                adventurerList[2].OnProvideCombat.Unregister("DamageTextUI");
-        }
-        
-        [Button] private void TogglePlayer4()
-        {
-            showAdventurer4 = !showAdventurer4;
-
-            if (showAdventurer4) 
-                adventurerList[3].OnProvideCombat.Register("DamageTextUI", ShowDamage);
-            else
-                adventurerList[3].OnProvideCombat.Unregister("DamageTextUI");
-        }
-
-        #endregion
     }
 }

@@ -2222,6 +2222,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4811750073051012917, guid: c0adef9857c22f7408da59199f259bfb, type: 3}
+      propertyPath: angle
+      value: 60
+      objectReference: {fileID: 0}
+    - target: {fileID: 4811750073051012917, guid: c0adef9857c22f7408da59199f259bfb, type: 3}
       propertyPath: bleed
       value: 
       objectReference: {fileID: 2195542438694222549}

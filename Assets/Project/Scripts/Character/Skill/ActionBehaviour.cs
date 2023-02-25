@@ -37,7 +37,7 @@ namespace Character.Skill
         public ActionTable<SkillComponent> OnCommonReleased { get; } = new();
         public SkillComponent Current { get; set; }
         public Vector3 RootPosition => rootTransform.position;
-        public bool IsSkillEnded => Current.IsNullOrEmpty() || !Current.IsEnded;
+        public bool IsSkillEnded => Current.IsNullOrEmpty() || Current.IsEnded;
 
         public void Run(Vector3 destination)
         {

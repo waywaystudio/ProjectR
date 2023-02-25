@@ -5,6 +5,7 @@ using Character.Targeting;
 using Core;
 using MainGame;
 using Sirenix.OdinInspector;
+using UnityEditorInternal;
 using UnityEngine;
 
 namespace Character
@@ -98,7 +99,8 @@ namespace Character
         
         protected void StopProgression()
         {
-            if (progressRoutine != null) StopCoroutine(progressRoutine);
+            if (progressRoutine != null) 
+                StopCoroutine(progressRoutine);
             
             ResetProgress();
         }

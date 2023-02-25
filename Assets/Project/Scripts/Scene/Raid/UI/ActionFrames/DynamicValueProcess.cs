@@ -13,7 +13,8 @@ namespace Raid.UI.ActionFrames
         private AdventurerBehaviour focusedAdventurer;
 
 
-        public void Initialize(AdventurerBehaviour ab) => OnFocusChanged(ab);
+        public void Initialize() => OnFocusChanged(RaidDirector.FocusCharacter);
+        
         public void OnFocusChanged(AdventurerBehaviour ab)
         {
             focusedAdventurer = ab;
