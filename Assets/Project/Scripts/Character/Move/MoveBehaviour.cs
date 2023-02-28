@@ -1,4 +1,5 @@
 using System;
+using Core;
 using DG.Tweening;
 using Pathfinding;
 using UnityEngine;
@@ -19,11 +20,6 @@ namespace Character.Move
         public Vector3 Direction => rootTransform.forward;
         private Vector3 rootPosition => rootTransform.position;
 
-        [Sirenix.OdinInspector.Button]
-        public void GetTraversableGraph()
-        {
-            Debug.Log(agent.graphMask.value);
-        }
 
         public void Move(Vector3 destination, Action callback)
         {

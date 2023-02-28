@@ -8,23 +8,17 @@ namespace Raid.UI
     public class BossFrame : MonoBehaviour, IEditable
     {
         [SerializeField] private BossHpProgress hpProgress;
-        [SerializeField] private BossStatusEffectBar statusEffectBar;
-        [SerializeField] private BossCastingProgress castingProgress;
 
         public void Initialize()
         {
             hpProgress.Initialize();
-            statusEffectBar.Initialize();
-            castingProgress.Initialize();
         }
         
 
 #if UNITY_EDITOR
         public void EditorSetUp()
         {
-            hpProgress      ??= GetComponentInChildren<BossHpProgress>();
-            statusEffectBar ??= GetComponentInChildren<BossStatusEffectBar>();
-            castingProgress ??= GetComponentInChildren<BossCastingProgress>();
+            hpProgress ??= GetComponentInChildren<BossHpProgress>();
         }
 #endif
     }

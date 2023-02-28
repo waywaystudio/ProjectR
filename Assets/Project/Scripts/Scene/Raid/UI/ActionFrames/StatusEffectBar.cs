@@ -2,20 +2,19 @@ using System;
 using System.Collections.Generic;
 using Character;
 using Core;
+using Raid.UI.ActionFrames.StatusEffectIconBars;
 using UnityEngine;
 
 namespace Raid.UI.ActionFrames
 {
-    using StatusEffectIconBars;
-    
-    public class StatusEffectBar : MonoBehaviour, IEditable
+    public class StatusEffectBar : MonoBehaviour
     {
         [SerializeField] private List<DeBuffActionSlot> deBuffActionSlotList;
         [SerializeField] private List<BuffActionSlot> buffActionSlotList;
 
         private AdventurerBehaviour ab;
 
-        public void Initialize() => OnFocusChanged(RaidDirector.Player);
+        public void Initialize(AdventurerBehaviour ab) => OnFocusChanged(ab);
         public void OnFocusChanged(AdventurerBehaviour ab)
         {
             if (this.ab != null)
@@ -127,14 +126,12 @@ namespace Raid.UI.ActionFrames
             GetComponentsInChildren(true, deBuffActionSlotList);
             GetComponentsInChildren(true, buffActionSlotList);
         }
+        
 
-
-#if UNITY_EDITOR
-        public void EditorSetUp()
+        public void SetUp()
         {
             GetComponentsInChildren(true, deBuffActionSlotList);
             GetComponentsInChildren(true, buffActionSlotList);
         }
-#endif
     }
 }

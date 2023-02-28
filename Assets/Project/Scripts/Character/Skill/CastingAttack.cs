@@ -43,11 +43,19 @@ namespace Character.Skill
 
         protected virtual void OnEnable()
         {
+            OnActivated.Register("PlayCastingAnimation", PlayAnimation);
             OnActivated.Register("UpdatePowerValue", UpdateCompletion);
+            OnActivated.Register("StartProgress", () => StartProgression(OnCompleted.Invoke));
+            
+            OnCanceled.Register("Log", () => Debug.Log("Interrupted!"));
+            OnCanceled.Register("EndCallback", OnEnded.Invoke);
 
             OnCompleted.Register("CastingAttack", OnCastingAttack);
             OnCompleted.Register("PlayEndCastingAnimation", PlayEndCastingAnimation);
             OnCompleted.Register("StartCooling", StartCooling);
+
+            OnEnded.Register("StopProgress", StopProgression);
+            OnEnded.Register("Idle", model.Idle);
         }
         
 

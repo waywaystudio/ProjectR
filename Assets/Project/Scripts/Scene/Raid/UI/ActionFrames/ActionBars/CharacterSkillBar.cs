@@ -1,29 +1,28 @@
 using System.Collections.Generic;
-using Core;
+using Character;
+using Raid.UI.ActionFrames.ActionBars.CharacterSkillBars;
 using UnityEngine;
 
 namespace Raid.UI.ActionFrames.ActionBars
 {
-    using CharacterSkillBars;
-    
-    public class CharacterSkillBar : MonoBehaviour, IEditable
+    public class CharacterSkillBar : MonoBehaviour
     {
         [SerializeField] private List<CharacterSkillActionSlot> slotList = new();
         
         public List<CharacterSkillActionSlot> SlotList => slotList;
 
 
-        public void Initialize()
+        public void Initialize(AdventurerBehaviour ab)
         {
-            SlotList.ForEach(slot => slot.Initialize());
+            GetComponentsInChildren(true, slotList);
+            
+            SlotList.ForEach(slot => slot.Initialize(ab));
         }
 
 
-#if UNITY_EDITOR
-        public void EditorSetUp()
+        public void SetUp()
         {
             GetComponentsInChildren(true, slotList);
         }
-#endif
     }
 }

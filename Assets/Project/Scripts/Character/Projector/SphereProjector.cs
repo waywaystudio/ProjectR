@@ -33,6 +33,14 @@ namespace Character.Projector
         public void SetTaker(ICombatTaker taker) => this.taker = taker;
         public void SetPosition(Vector3 position) => transform.position = position;
 
+        public void UnionTo(StatusEffectComponent statusEffect)
+        {
+            statusEffect.OnActivated.Register(OnActivated);
+            statusEffect.OnCanceled.Register(OnCanceled);
+            statusEffect.OnCompleted.Register(OnCompleted);
+            statusEffect.OnEnded.Register(OnEnded);
+        }
+
 
         private void Update()
         {

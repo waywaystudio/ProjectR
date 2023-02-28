@@ -14,7 +14,8 @@ namespace Raid
         [SerializeField] private AdventurerBehaviour focusedAdventurer;
         [SerializeField] private ToMoveProjector moveProjector;
         //
-        
+
+        [SerializeField] private GameEventAdventurer onFocusChanged;
         [SerializeField] private GameEvent onCommandMode; 
 
         private Vector3 mouseDestination;

@@ -52,6 +52,7 @@ MonoBehaviour:
   type: 2
   icon: {fileID: 21300000, guid: 66dd4d17749630548bd562332cf77491, type: 3}
   duration: 6
+  tickPower: {fileID: 7285561056451222464}
   interval: 2
   radius: 12
   colliding: {fileID: 4459061243654905774}
@@ -59,7 +60,6 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 128
   projector: {fileID: 4184584522280325313}
-  tickPower: {fileID: 7285561056451222464}
   bombPower: {fileID: 5088373513344577356}
 --- !u!114 &7285561056451222464
 MonoBehaviour:
@@ -157,6 +157,10 @@ PrefabInstance:
     - target: {fileID: 1004794242164832042, guid: 6c7879df1587b5348be5aaff9ac6a2a5, type: 3}
       propertyPath: m_Name
       value: SphereProjector
+      objectReference: {fileID: 0}
+    - target: {fileID: 4712787672199175238, guid: 6c7879df1587b5348be5aaff9ac6a2a5, type: 3}
+      propertyPath: m_Enabled
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6c7879df1587b5348be5aaff9ac6a2a5, type: 3}

@@ -12,7 +12,7 @@ namespace Raid.UI.ActionFrames.ActionBars.CharacterSkillBars
         
         private AdventurerBehaviour focusedAdventurer;
 
-        public void Initialize() => OnFocusChanged(RaidDirector.Player);
+        public void Initialize(AdventurerBehaviour adventurer) => OnFocusChanged(adventurer);
         public void OnFocusChanged(AdventurerBehaviour ab)
         {
             MainGame.MainManager.Input.TryGetAction(bindingCode, out var inputAction);

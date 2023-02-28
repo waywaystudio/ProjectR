@@ -7,35 +7,34 @@ using UnityEngine;
 
 namespace Character.StatusEffect
 {
-    public class LivingBomb : StatusEffectComponent
+    public class LivingBomb : DamageOverTimeEffect
     {
-        [SerializeField] private float interval;
         [SerializeField] private float radius = 12f;
         [SerializeField] private Colliding colliding;
         [SerializeField] private LayerMask adventurerLayer;
         [SerializeField] private SphereProjector projector;
-        [SerializeField] private ValueCompletion tickPower;
         [SerializeField] private ValueCompletion bombPower;
 
         public override void OnOverride() { }
         
         public override void Active(ICombatProvider provider, ICombatTaker taker)
         {
-            projector.SetTaker(taker);
-            
             base.Active(provider, taker);
-        }
-
-        protected override void Initialize(ICombatProvider provider)
-        {
-            base.Initialize(provider);
             
-            tickPower.Initialize(provider, ActionCode);
             bombPower.Initialize(provider, ActionCode);
+            
             projector.Initialize(0.25f, radius);
-            projector.AssignTo(this);
+            projector.OnActivated.Invoke();
+            projector.SetTaker(taker);
         }
-
+        
+        public override void Cancel()
+        {
+            projector.OnCanceled.Invoke();
+            
+            base.Cancel();
+        }
+        
         protected override void Complete()
         {
             colliding.TryGetTakersInSphere
@@ -48,8 +47,16 @@ namespace Character.StatusEffect
             );
             
             bombPower.Damage(takerList);
+            projector.OnCompleted.Invoke();
             
             base.Complete();
+        }
+        
+        protected override void End()
+        {
+            projector.OnEnded.Invoke();
+            
+            base.End();
         }
 
         protected override IEnumerator Effectuating()

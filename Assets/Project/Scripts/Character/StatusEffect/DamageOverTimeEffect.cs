@@ -5,6 +5,7 @@ using UnityEngine;
 
 namespace Character.StatusEffect
 {
+    // TODO. 현재 구조에서 틱 데미지가 끝나고 큰 데미지를 주기 힘들다.
     public class DamageOverTimeEffect : StatusEffectComponent
     {
         [SerializeField] protected ValueCompletion tickPower;
