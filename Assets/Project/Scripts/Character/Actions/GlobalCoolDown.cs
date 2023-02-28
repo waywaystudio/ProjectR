@@ -3,11 +3,11 @@ using Core;
 using Sirenix.OdinInspector;
 using UnityEngine;
 
-namespace Character.Skill
+namespace Character.Actions
 {
     public class GlobalCoolDown : MonoBehaviour
     {
-        [ShowInInspector] private const float GlobalCoolTime = 1.5f;
+        [ShowInInspector] private const float GlobalCoolTime = 1.2f;
 
         private Coroutine gcdRoutine;
         

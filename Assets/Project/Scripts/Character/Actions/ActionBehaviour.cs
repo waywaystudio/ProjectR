@@ -28,21 +28,22 @@ namespace Character.Actions
         public SkillComponent SecondSkill => secondSkill;
         public SkillComponent ThirdSkill => thirdSkill;
         public SkillComponent FourthSkill => fourthSkill;
-        
+
         public ConditionTable Conditions { get; } = new();
         public ActionTable<SkillComponent> OnCommonActivated { get; } = new();
         public ActionTable<SkillComponent> OnCommonCanceled { get; } = new();
         public ActionTable<SkillComponent> OnCommonReleased { get; } = new();
         public SkillComponent Current { get; set; }
         public Vector3 RootPosition => rootTransform.position;
-        public bool IsSkillEnded => Current.IsNullOrEmpty() || !Current.IsEnded;
+        public bool IsSkillEnded => Current.IsNullOrEmpty() || Current.IsEnded;
 
         private AnimationModel Animating { get; set; }
-        private PathfindingSystem pathfinding { get; set; }
+        private PathfindingSystem Pathfinding { get; set; }
 
         public void Run(Vector3 destination)
         {
             commonMove.Run(destination);
+            
             CancelSkill();
         }
 
@@ -59,8 +60,8 @@ namespace Character.Actions
         public void Dash(Vector3 position)
         {
             CancelSkill();
-
-            pathfinding.RotateTo(position);
+        
+            Pathfinding.RotateTo(position);
             Stop();
             Current = DashSkill;
             gcd.StartCooling();
@@ -75,14 +76,14 @@ namespace Character.Actions
             
             Teleport(mousePosition - RootPosition);
         }
-
+        
         public void Teleport(Vector3 position)
         {
             CancelSkill();
             
-            pathfinding.RotateTo(position);
+            Pathfinding.RotateTo(position);
+            Pathfinding.Teleport(position);
             Animating.Idle();
-            pathfinding.Teleport(position);
         }
         
 
@@ -135,11 +136,10 @@ namespace Character.Actions
 
         private void Awake()
         {
-            // characterSystem = GetComponentInParent<ICharacterSystem>();
             var characterSystem =   GetComponentInParent<ICharacterSystem>();
 
             Animating   =   characterSystem.Animating;
-            pathfinding =   characterSystem.Pathfinding;
+            Pathfinding =   characterSystem.Pathfinding;
             gcd         ??= GetComponent<GlobalCoolDown>();
             commonMove  ??= GetComponent<CommonMove>();
             

@@ -25,7 +25,7 @@ namespace Raid
         
         // TODO. TEMP;
         [SerializeField] private Adventurer player;
-        [SerializeField] private MonsterBehaviour boss;
+        [SerializeField] private Boss boss;
         
         private Adventurer focusCharacter;
 
@@ -36,9 +36,9 @@ namespace Raid
 
         public static Adventurer Player => Instance.player;
         public static Adventurer FocusCharacter => Instance.focusCharacter;
-        public static MonsterBehaviour Boss => Instance.boss;
+        public static Boss Boss => Instance.boss;
         public static List<Adventurer> AdventurerList => CastingDirector.AdventurerList;
-        public static List<MonsterBehaviour> MonsterList => CastingDirector.MonsterList;
+        public static List<Boss> MonsterList => CastingDirector.MonsterList;
 
 
         /* TODO. FUTURE...

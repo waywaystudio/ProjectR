@@ -1,8 +1,9 @@
+using Character;
 using Character.StatusEffect;
 using Core;
 using UnityEngine;
 
-namespace Character.Actions.Knight
+namespace __Refactoring
 {
     public class ChargingAttack : SkillComponent, ICombatTable
     {
@@ -30,7 +31,7 @@ namespace Character.Actions.Knight
         {
             Provider.Object.TryGetComponent(out ICombatTaker self);
             
-            drain.Effect(self);
+            drain.Buff(self);
 
             if (!CharacterSystem.Colliding.TryGetTakersInSphere(this, out var takerList)) return;
             

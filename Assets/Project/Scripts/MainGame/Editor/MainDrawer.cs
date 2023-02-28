@@ -21,9 +21,20 @@ namespace MainGame.Editor
             if (member.Name == "EditorSetUp")
             {
                 attributes.Add(CommonHorizontalGroup);
+                attributes.Add(new PropertyOrderAttribute(0f));
                 attributes.Add(new ButtonAttribute(ButtonSizes.Large)
                 {
                     Icon = SdfIconType.Save,
+                });
+            }
+            
+            if (member.Name == "ShowDataBase")
+            {
+                attributes.Add(CommonHorizontalGroup);
+                attributes.Add(new PropertyOrderAttribute(1f));
+                attributes.Add(new ButtonAttribute(ButtonSizes.Large)
+                {
+                    Icon = SdfIconType.ClipboardData,
                 });
             }
             

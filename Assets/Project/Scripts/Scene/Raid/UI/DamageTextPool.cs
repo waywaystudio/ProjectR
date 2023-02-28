@@ -28,7 +28,7 @@ namespace Raid.UI
             
             if (adventurers.Count < 4)
             {
-                Debug.LogWarning($"Recommend 4 more Adventurer. Input:adventurer Count {adventurers.Count}");
+                Debug.LogWarning($"Recommend 4 Adventurer. Input: Current Adventurer {adventurers.Count}");
             }
 
             adventurerList = adventurers;

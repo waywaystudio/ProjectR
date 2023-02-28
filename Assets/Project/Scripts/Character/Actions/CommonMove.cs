@@ -11,7 +11,7 @@ namespace Character.Actions
         
         public void Run(Vector3 destination)
         {
-            if (!pathfinding.IsMovable) return;
+            if (!pathfinding.CanMove) return;
             
             pathfinding.Move(destination, animating.Idle);
             animating.Run();

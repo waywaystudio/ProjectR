@@ -46,7 +46,7 @@ namespace MainGame.Data.PrefabData
         }
         
 #if UNITY_EDITOR
-        public void SetUp()
+        public void EditorSetUp()
         {
             if (!Finder.TryGetObjectList(prefabPath, "", out List<GameObject> statusEffectPrefabs, true)) return;
             

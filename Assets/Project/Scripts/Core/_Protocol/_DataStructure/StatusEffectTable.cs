@@ -15,7 +15,8 @@ namespace Core
             }
             else
             {
-                Debug.LogWarning("Duplicate Key inserted in Table Level. Check Duplicate logic. (this message should not be called)");
+                Debug.LogWarning("Duplicate Key inserted in Table Level. " +
+                                 "Check Duplicate logic. (this message should not be called)");
                 this[key] = statusEffect;
             }
         }

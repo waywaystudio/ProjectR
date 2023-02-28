@@ -9,7 +9,7 @@ namespace Character.Data.BaseStats
         {
             base.EditorSetUp();
 
-            var mb = GetComponentInParent<MonsterBehaviour>();
+            var mb = GetComponentInParent<Boss>();
             
             baseStatCode = mb.ClassCode;
             var bossData = MainData.BossSheetData(baseStatCode);

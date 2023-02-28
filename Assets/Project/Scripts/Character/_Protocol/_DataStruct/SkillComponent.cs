@@ -1,12 +1,9 @@
 using System;
 using System.Collections;
-using Character.Graphic;
-using Character.Systems;
 using Core;
 using MainGame;
 using Sirenix.OdinInspector;
 using UnityEngine;
-using UnityEngine.Serialization;
 
 namespace Character
 {
@@ -190,7 +187,13 @@ namespace Character
             targetLayer  = LayerMask.GetMask(skillData.TargetLayer);
             icon         = GetSkillIcon();
         }
-        // private void ShowDB(); 
+
+        private void ShowDataBase()
+        {
+            var skillData = MainData.SheetDataTable[DataIndex.Skill];
+
+            UnityEditor.EditorUtility.OpenPropertyEditor(skillData);
+        } 
         
         private Sprite GetSkillIcon()
         {

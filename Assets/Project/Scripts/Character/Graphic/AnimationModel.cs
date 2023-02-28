@@ -86,6 +86,7 @@ namespace Character.Graphic
         {
             switch (e.Data.Name)
             {
+                case "attack" : OnHit.Invoke(); return;
                 case "footstep" : return;
                 default:
                 {
@@ -93,8 +94,6 @@ namespace Character.Graphic
                     break;
                 }
             }
-            
-            OnHit.Invoke();
         }
 
         private bool IsSameAnimation(SpineAnimation target, int layer, bool loop)

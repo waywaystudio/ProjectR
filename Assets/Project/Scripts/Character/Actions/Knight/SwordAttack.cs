@@ -1,4 +1,3 @@
-using Character.Skill;
 using MainGame;
 using UnityEngine;
 
@@ -6,7 +5,7 @@ namespace Character.Actions.Knight
 {
     public class SwordAttack : SkillComponent
     {
-        [SerializeField] protected ValueCompletion power;
+        [SerializeField] private ValueCompletion power;
         
         public override void Release() { }
         
@@ -38,7 +37,7 @@ namespace Character.Actions.Knight
 
             OnActivated.Register("RegisterHitEvent", RegisterHitEvent);
             
-            OnHit.Register("GeneralAttack", OnAttack);
+            OnHit.Register("SwordAttack", OnAttack);
 
             OnCompleted.Register("EndCallback", OnEnded.Invoke);
 

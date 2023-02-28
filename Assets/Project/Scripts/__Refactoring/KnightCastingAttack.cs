@@ -1,8 +1,9 @@
-using Character.Skill;
+using Character;
+using Character.Actions;
 using Character.StatusEffect;
 using UnityEngine;
 
-namespace Character.Actions.Knight
+namespace __Refactoring
 {
     public class KnightCastingAttack : SkillComponent
     {
@@ -24,7 +25,7 @@ namespace Character.Actions.Knight
             takerList.ForEach(taker =>
             {
                 power.Damage(taker);
-                bleed.Effect(taker);
+                bleed.DeBuff(taker);
             });
         }
         

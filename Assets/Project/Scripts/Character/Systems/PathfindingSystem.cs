@@ -13,10 +13,12 @@ namespace Character.Systems
         [SerializeField] private float moveSpeed;
         [SerializeField] private LayerMask environmentLayer;
 
-        public bool IsMovable => aiMove.canMove;
+        // public bool IsMovable => aiMove.canMove;
         public bool IsReached => aiMove.reachedEndOfPath;
         public bool IsSafe => PathfindingUtility.IsSafePosition(rootTransform.position);
+        public bool CanMove { get => aiMove.canMove; set => aiMove.canMove = value; }
         public Vector3 Direction => rootTransform.forward;
+
         private Vector3 rootPosition => rootTransform.position;
 
 
@@ -39,6 +41,26 @@ namespace Character.Systems
         {
             aiMove.SetPath(null);
             aiMove.destination = Vector3.positiveInfinity;
+        }
+
+        public void Jump(Vector3 destination, float availableDistance, Action callback = null)
+        {
+            Stop();
+            RotateTo(destination);
+
+            var normalDirection = (destination - rootPosition).normalized;
+            var actualDistance  = availableDistance;
+            
+            if (Physics.Raycast(rootPosition, normalDirection, out var hitInfo, availableDistance + 2f, environmentLayer))
+            {
+                // TODO. 2f to ThreshHold
+                actualDistance = hitInfo.distance - 2f;
+            }
+            
+            // Value Designed for Knight ThunderClap
+            rootTransform.DOLocalJump(rootPosition + normalDirection * actualDistance, 2.4f, 1, 0.77f)
+                         .SetEase(Ease.InSine)
+                         .OnComplete(() => callback?.Invoke());
         }
         
 

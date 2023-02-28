@@ -39,5 +39,12 @@ namespace Core
                 true,
                 maxCount);
         }
+
+
+        public void SetProperties(GameObject prefab, int maxCount)
+        {
+            this.prefab   = prefab;
+            this.maxCount = maxCount;
+        }
     }
 }

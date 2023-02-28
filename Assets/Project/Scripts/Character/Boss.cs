@@ -1,17 +1,23 @@
 using Character.Data;
 using Character.Data.BaseStats;
+using Character.Graphic;
+using Character.Systems;
 using Core;
 using UnityEngine;
 
 namespace Character
 {
-    public class MonsterBehaviour : MonoBehaviour, ICombatExecutor
+    public class Boss : MonoBehaviour, ICombatExecutor, ICharacterSystem
     {
         [SerializeField] protected string characterName = string.Empty;
         [SerializeField] protected DataIndex dataIndex;
         [SerializeField] protected RoleType role;
         [SerializeField] protected DynamicStatEntry dynamicStatEntry;
         [SerializeField] protected CharacterConstStats constStats;
+        [SerializeField] protected SearchingSystem searching;
+        [SerializeField] protected CollidingSystem colliding;
+        [SerializeField] protected PathfindingSystem pathfinding;
+        [SerializeField] protected AnimationModel animating;
 
         [SerializeField] protected Transform damageSpawn;
         [SerializeField] protected Transform statusEffectHierarchy;
@@ -36,7 +42,11 @@ namespace Character
         public ActionTable<CombatEntity> OnTakeHeal { get; } = new();
         public ActionTable<StatusEffectEntity> OnTakeDeBuff { get; } = new();
         public ActionTable<StatusEffectEntity> OnTakeBuff { get; } = new();
-       
+        
+        public SearchingSystem Searching => searching;
+        public CollidingSystem Colliding => colliding;
+        public PathfindingSystem Pathfinding => pathfinding;
+        public AnimationModel Animating => animating;
 
         public void Dead() => OnDead.Invoke();
         public CombatEntity TakeDamage(ICombatTable combatTable) => CombatUtility.TakeDamage(combatTable, this);
@@ -48,10 +58,16 @@ namespace Character
         {
             constStats       ??= GetComponentInChildren<CharacterConstStats>();
             dynamicStatEntry ??= GetComponentInChildren<DynamicStatEntry>();
+            searching        ??= GetComponentInChildren<SearchingSystem>();
+            colliding        ??= GetComponentInChildren<CollidingSystem>();
+            pathfinding      ??= GetComponentInChildren<PathfindingSystem>();
+            animating        ??= GetComponentInChildren<AnimationModel>();
 
             constStats.Initialize(StatTable);
             dynamicStatEntry.Initialize();
             OnDead.Register("DynamicAliveValue", () => dynamicStatEntry.IsAlive.Value = false);
         }
+
+  
     }
 }

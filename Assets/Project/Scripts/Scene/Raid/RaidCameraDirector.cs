@@ -20,7 +20,7 @@ namespace Raid
 
         /* GameEvent */
         public void FocusPlayer(Adventurer target) => Focusing(target.transform);
-        public void FocusMonster(MonsterBehaviour target) => Focusing(target.transform);
+        public void FocusMonster(Boss target) => Focusing(target.transform);
         public void StageCamera() => ChangeCamera(stageCamera);
 
         public void ChangeCamera(ICinemachineCamera cameraName)

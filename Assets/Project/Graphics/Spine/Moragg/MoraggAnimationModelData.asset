@@ -1,0 +1,28 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 84f978e06becd664396e8641cc7d3033, type: 3}
+  m_Name: MoraggAnimationModelData
+  m_EditorClassIdentifier: 
+  animationList:
+  - Asset: {fileID: 11400000, guid: 0fe644333491e9241b7e9eb5b4bb986b, type: 2}
+  - Asset: {fileID: 11400000, guid: 5410cccc97bff364d86b688cb4c461fe, type: 2}
+  - Asset: {fileID: 11400000, guid: f4a84b8ab88246e408b7ef00458a462d, type: 2}
+  - Asset: {fileID: 11400000, guid: e7162361f8ce2574a97c3cf9098451ea, type: 2}
+  - Asset: {fileID: 11400000, guid: 4b9e9a99577d89e489c480dce2aa785d, type: 2}
+  - Asset: {fileID: 11400000, guid: cc28469b3b30a1f45a5bd2309a1c3376, type: 2}
+  - Asset: {fileID: 11400000, guid: e2c427492f192e44bbcd9166566060f4, type: 2}
+  - Asset: {fileID: 11400000, guid: b7e7a81785a657c49a345e52201883c2, type: 2}
+  - Asset: {fileID: 11400000, guid: 95c935674b299164281ea1d870dc34be, type: 2}
+  - Asset: {fileID: 11400000, guid: b93937080512e1343a67b19edef1355d, type: 2}
+  - Asset: {fileID: 11400000, guid: 5a7439395ad22474b81c0a83ca2954b9, type: 2}
+  transitionIndexList: []
+  referenceDirectory: Assets/Project/Graphics/Spine/Moragg/ReferenceAssets

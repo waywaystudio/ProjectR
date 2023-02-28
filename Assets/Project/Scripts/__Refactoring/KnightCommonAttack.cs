@@ -1,9 +1,10 @@
-using Character.Skill;
+using Character;
+using Character.Actions;
 using Character.StatusEffect;
 using MainGame;
 using UnityEngine;
 
-namespace Character.Actions.Knight
+namespace __Refactoring
 {
     public class KnightCommonAttack : SkillComponent
     {
@@ -24,7 +25,7 @@ namespace Character.Actions.Knight
             takerList.ForEach(taker =>
             {
                 power.Damage(taker);
-                armorCrash.Effect(taker);
+                armorCrash.DeBuff(taker);
             });
         }
         

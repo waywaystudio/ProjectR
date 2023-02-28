@@ -1,9 +1,7 @@
-using Character.Actions;
 using Character.StatusEffect;
 using UnityEngine;
-using UnityEngine.Serialization;
 
-namespace Character.Skill.Moragg
+namespace Character.Actions.Moragg
 {
     public class MoraggLivingBomb : GeneralAttack
     {
@@ -14,7 +12,7 @@ namespace Character.Skill.Moragg
         {
             if (MainTarget is null) return;
             
-            livingBomb.Effect(MainTarget);
+            livingBomb.DeBuff(MainTarget);
         }
 
         protected override void OnEnable()
