@@ -14,11 +14,11 @@ namespace Raid.UI.Nameplates
         [SerializeField] private Image castingBar;
 
         [ShowInInspector]
-        private AdventurerBehaviour ab;
+        private Adventurer ab;
         private Transform abTransform;
         private Camera mainCamera;
 
-        public void Initialize(AdventurerBehaviour ab)
+        public void Initialize(Adventurer ab)
         {
             this.ab     = ab;
             abTransform = ab.transform;

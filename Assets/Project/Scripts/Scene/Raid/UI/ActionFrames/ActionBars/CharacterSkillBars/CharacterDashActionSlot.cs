@@ -10,10 +10,10 @@ namespace Raid.UI.ActionFrames.ActionBars.CharacterSkillBars
         [SerializeField] private ImageFiller coolDownFiller;
         [SerializeField] private BindingCode bindingCode;
         
-        private AdventurerBehaviour focusedAdventurer;
+        private Adventurer focusedAdventurer;
 
-        public void Initialize(AdventurerBehaviour adventurer) => OnFocusChanged(adventurer);
-        public void OnFocusChanged(AdventurerBehaviour ab)
+        public void Initialize(Adventurer adventurer) => OnFocusChanged(adventurer);
+        public void OnFocusChanged(Adventurer ab)
         {
             MainGame.MainManager.Input.TryGetAction(bindingCode, out var inputAction);
             //

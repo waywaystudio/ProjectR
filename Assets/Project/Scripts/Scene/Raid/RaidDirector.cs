@@ -24,20 +24,20 @@ namespace Raid
         [SerializeField] private RaidUIDirector uiDirector;
         
         // TODO. TEMP;
-        [SerializeField] private AdventurerBehaviour player;
+        [SerializeField] private Adventurer player;
         [SerializeField] private MonsterBehaviour boss;
         
-        private AdventurerBehaviour focusCharacter;
+        private Adventurer focusCharacter;
 
         public static RaidCastingDirector CastingDirector =>
             Instance.castingDirector ??= Instance.GetComponentInChildren<RaidCastingDirector>();
         public static RaidUIDirector UIDirector => 
             Instance.uiDirector ??= Instance.GetComponentInChildren<RaidUIDirector>();
 
-        public static AdventurerBehaviour Player => Instance.player;
-        public static AdventurerBehaviour FocusCharacter => Instance.focusCharacter;
+        public static Adventurer Player => Instance.player;
+        public static Adventurer FocusCharacter => Instance.focusCharacter;
         public static MonsterBehaviour Boss => Instance.boss;
-        public static List<AdventurerBehaviour> AdventurerList => CastingDirector.AdventurerList;
+        public static List<Adventurer> AdventurerList => CastingDirector.AdventurerList;
         public static List<MonsterBehaviour> MonsterList => CastingDirector.MonsterList;
 
 

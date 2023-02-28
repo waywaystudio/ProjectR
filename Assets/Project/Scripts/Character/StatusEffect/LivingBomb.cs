@@ -1,16 +1,18 @@
 using System.Collections;
+using Character.Actions;
 using Character.Projector;
 using Character.Skill;
-using Character.Targeting;
+using Character.Systems;
 using Core;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace Character.StatusEffect
 {
     public class LivingBomb : DamageOverTimeEffect
     {
         [SerializeField] private float radius = 12f;
-        [SerializeField] private Colliding colliding;
+        [SerializeField] private CollidingSystem collidingSystem;
         [SerializeField] private LayerMask adventurerLayer;
         [SerializeField] private SphereProjector projector;
         [SerializeField] private ValueCompletion bombPower;
@@ -37,7 +39,7 @@ namespace Character.StatusEffect
         
         protected override void Complete()
         {
-            colliding.TryGetTakersInSphere
+            collidingSystem.TryGetTakersInSphere
             (
                 Taker.Object.transform.position,
                 radius,
@@ -46,7 +48,7 @@ namespace Character.StatusEffect
                 out var takerList
             );
             
-            bombPower.Damage(takerList);
+            takerList.ForEach(bombPower.Damage);
             projector.OnCompleted.Invoke();
             
             base.Complete();

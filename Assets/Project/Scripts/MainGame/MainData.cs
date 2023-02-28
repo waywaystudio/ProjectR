@@ -67,7 +67,7 @@ namespace MainGame
             return icon is not null;
         }
 
-        private void SetUp()
+        private void EditorSetUp()
         {
             CreateAndUpdateDataObjects();
             GenerateIDCode();
@@ -118,13 +118,14 @@ namespace MainGame
             => UnityEditor.EditorApplication.ExecuteMenuItem("Tools/UnityGoogleSheet");
         
         [UnityEditor.MenuItem("Quick Menu/Data")]
-        private static void ToTown()
+        private static void QuickMenu()
         {
-            var mainData = GameObject.Find("MainGame");
-            if (mainData != null)
+            var mainGameObject = GameObject.Find("MainGame");
+            if (mainGameObject != null)
             {
-                UnityEditor.Selection.activeGameObject = mainData;
-                UnityEditor.EditorGUIUtility.PingObject(mainData);
+                mainGameObject.TryGetComponent(out MainData mainData);
+                
+                UnityEditor.EditorUtility.OpenPropertyEditor(mainData);
             }
             else
             {

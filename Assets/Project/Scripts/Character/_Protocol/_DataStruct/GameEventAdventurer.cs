@@ -2,5 +2,5 @@ using Core.GameEvents;
 
 namespace Character
 {
-    public class GameEventAdventurer : GameEvent<AdventurerBehaviour> { }
+    public class GameEventAdventurer : GameEvent<Adventurer> { }
 }

@@ -5,7 +5,6 @@ using Tooltip = BehaviorDesigner.Runtime.Tasks.TooltipAttribute;
 
 namespace Character.Behavior
 {
-    [System.Serializable]
     [TaskIcon("{SkinColor}WaitIcon.png"), TaskCategory("Character")]
     public class WaitUntil : Action
     {

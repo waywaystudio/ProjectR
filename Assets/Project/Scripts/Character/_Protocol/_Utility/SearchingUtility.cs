@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using Core;
 using UnityEngine;
+using Random = System.Random;
 
 namespace Character
 {
@@ -61,7 +62,7 @@ namespace Character
         
         public static void SortByRandom(List<ICombatTaker> original, bool isReverse = false)
         {
-            var rnd = new System.Random();
+            var rnd = new Random();
 
             for (var i = original.Count - 1; i > 0; i--)
             {

@@ -11,7 +11,7 @@ namespace Raid.UI.ActionFrames.ActionBars
         [SerializeField] private List<AdventurerActionSlot> slotList = new();
         
 
-        public void Initialize(IEnumerable<AdventurerBehaviour> adventurerList)
+        public void Initialize(IEnumerable<Adventurer> adventurerList)
         {
             GetComponentsInChildren(true, slotList);
             

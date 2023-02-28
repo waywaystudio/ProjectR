@@ -10,11 +10,11 @@ namespace Raid.UI.ActionFrames
         [SerializeField] private ImageFiller hpImage;
         [SerializeField] private ImageFiller resourceImage;
         
-        private AdventurerBehaviour focusedAdventurer;
+        private Adventurer focusedAdventurer;
 
 
-        public void Initialize(AdventurerBehaviour ab) => OnFocusChanged(ab);
-        public void OnFocusChanged(AdventurerBehaviour ab)
+        public void Initialize(Adventurer ab) => OnFocusChanged(ab);
+        public void OnFocusChanged(Adventurer ab)
         {
             focusedAdventurer = ab;
 

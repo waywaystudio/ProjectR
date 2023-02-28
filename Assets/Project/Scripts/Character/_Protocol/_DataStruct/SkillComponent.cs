@@ -1,21 +1,17 @@
 using System;
 using System.Collections;
 using Character.Graphic;
-using Character.Targeting;
+using Character.Systems;
 using Core;
 using MainGame;
 using Sirenix.OdinInspector;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace Character
 {
     public abstract class SkillComponent : MonoBehaviour, ISequence, IEditable, IDataIndexer
     {
-        /* Component Reference */
-        [SerializeField] protected AnimationModel model;
-        [SerializeField] protected Searching searching;
-        [SerializeField] protected Colliding colliding;
-        
         /* Common Attribution */
         [SerializeField] protected DataIndex actionCode;
         [SerializeField] protected int priority;
@@ -36,6 +32,7 @@ namespace Character
         /* Progress Entity */
         [SerializeField] protected float progressTime;
 
+        protected ICharacterSystem CharacterSystem;
         private Coroutine progressRoutine;
         private Coroutine coolTimeRoutine;
 
@@ -61,7 +58,7 @@ namespace Character
         public Sprite Icon => icon;
         public DataIndex ActionCode => actionCode;
         public ICombatProvider Provider { get; set; }
-        public ICombatTaker MainTarget => searching.GetMainTarget(targetLayer, Provider.Object.transform.position, sortingType);
+        public ICombatTaker MainTarget => CharacterSystem.Searching.GetMainTarget(targetLayer, Provider.Object.transform.position, sortingType);
 
 
         public void Activate()
@@ -105,7 +102,7 @@ namespace Character
 
         protected virtual void PlayAnimation()
         {
-            model.PlayOnce(animationKey, progressTime);
+            CharacterSystem.Animating.PlayOnce(animationKey, progressTime);
         }
         
         protected bool IsCoolTimeReady()
@@ -153,14 +150,15 @@ namespace Character
 
         protected virtual void Awake()
         {
-            Provider     = GetComponentInParent<ICombatProvider>();
+            Provider        = GetComponentInParent<ICombatProvider>();
+            CharacterSystem = GetComponentInParent<ICharacterSystem>();
 
             OnActivated.Register("IsEndedToFalse", () => IsEnded = false);
             OnActivated.Register("PlayAnimation", PlayAnimation);
             
             OnCanceled.Register("EndCallback", OnEnded.Invoke);
 
-            OnEnded.Register("Idle", model.Idle);
+            OnEnded.Register("Idle", CharacterSystem.Animating.Idle);
             OnEnded.Register("IsProgressionToFalse", () => IsProgress = false);
             OnEnded.Register("IsEndedToTrue", () => IsEnded           = true);
 
@@ -179,8 +177,7 @@ namespace Character
         public virtual void EditorSetUp()
         {
             var skillData = MainData.SkillSheetData(actionCode);
-            var provider = GetComponentInParent<ICombatProvider>();
-            
+
             priority     = skillData.BasePriority;
             range        = skillData.TargetParam.x;
             angle        = skillData.TargetParam.y;
@@ -190,9 +187,7 @@ namespace Character
             animationKey = skillData.AnimationKey;
             progressTime = skillData.ProcessTime;
             sortingType  = skillData.SortingType.ToEnum<SortingType>();
-            
-            // TODO. 프리팹 상태에서 Provider를 가지고 올 수 없기 때문에 문제가 될 수 있다. 
-            targetLayer  = CharacterUtility.SetLayer(provider, skillData.TargetLayer);
+            targetLayer  = LayerMask.GetMask(skillData.TargetLayer);
             icon         = GetSkillIcon();
         }
         // private void ShowDB(); 

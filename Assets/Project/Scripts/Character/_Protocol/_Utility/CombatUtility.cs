@@ -33,19 +33,17 @@ namespace Character
             combatTable.UpdateStatTable();
             
             var combatEntity = new CombatEntity(combatTable, taker);
-
             var damageAmount = combatTable.StatTable.Power;
             
-            // Critical
+            // Critical Calculation
             if (IsCritical(combatTable.StatTable.Critical))
             {
                 combatEntity.IsCritical = true;
                 damageAmount *= 2f;
             }
             
-            // Armor
-            damageAmount = ArmorReduce(taker.StatTable.Armor, damageAmount);
-            
+            // Armor Calculation
+            damageAmount       = ArmorReduce(taker.StatTable.Armor, damageAmount);
             combatEntity.Value = damageAmount;
 
             if (damageAmount >= taker.DynamicStatEntry.Hp.Value)
@@ -59,11 +57,12 @@ namespace Character
 
             taker.DynamicStatEntry.Hp.Value -= damageAmount;
             
-            combatTable.Provider.OnProvideCombat.Invoke(combatEntity);
-            taker.OnTakeCombat.Invoke(combatEntity);
+            combatTable.Provider.OnProvideDamage.Invoke(combatEntity);
+            taker.OnTakeDamage.Invoke(combatEntity);
 
             return combatEntity;
         }
+        
         public static CombatEntity TakeHeal(ICombatTable combatTable, ICombatTaker taker)
         {
             if (!taker.DynamicStatEntry.IsAlive.Value) return null;
@@ -71,16 +70,16 @@ namespace Character
             combatTable.UpdateStatTable();
             
             var combatEntity = new CombatEntity(combatTable, taker);
+            var healAmount   = combatTable.StatTable.Power;
 
-            var healAmount = combatTable.StatTable.Power;
-            
-            // Critical
+            // Critical Calculation
             if (IsCritical(combatTable.StatTable.Critical))
             {
                 combatEntity.IsCritical = true;
                 healAmount *= 2f;
             }
 
+            // OverHeal Calculation
             if (healAmount + taker.DynamicStatEntry.Hp.Value >= taker.StatTable.MaxHp)
             {
                 healAmount = combatEntity.Value = taker.StatTable.MaxHp - taker.DynamicStatEntry.Hp.Value;
@@ -88,25 +87,38 @@ namespace Character
 
             taker.DynamicStatEntry.Hp.Value += healAmount;
             
-            combatTable.Provider.OnProvideCombat.Invoke(combatEntity);
-            taker.OnTakeCombat.Invoke(combatEntity);
+            combatTable.Provider.OnProvideHeal.Invoke(combatEntity);
+            taker.OnTakeHeal.Invoke(combatEntity);
             
             return combatEntity;
         }
 
-        public static StatusEffectEntity TakeStatusEffect(IStatusEffect statusEffect, ICombatTaker taker)
+        public static StatusEffectEntity TakeDeBuff(IStatusEffect statusEffect, ICombatTaker taker)
         {
             if (!taker.DynamicStatEntry.IsAlive.Value) return null;
             
             var statusEffectEntity = new StatusEffectEntity(statusEffect, taker);
-            var table = statusEffect.Type == StatusEffectType.Buff
-                ? taker.DynamicStatEntry.BuffTable
-                : taker.DynamicStatEntry.DeBuffTable;
+            var table = taker.DynamicStatEntry.DeBuffTable;
             
             table.Register(statusEffect);
 
-            statusEffect.Provider.OnProvideStatusEffect.Invoke(statusEffectEntity);
-            taker.OnTakeStatusEffect?.Invoke(statusEffectEntity);
+            statusEffect.Provider.OnProvideDeBuff.Invoke(statusEffectEntity);
+            taker.OnTakeDeBuff.Invoke(statusEffectEntity);
+
+            return statusEffectEntity;
+        }
+        
+        public static StatusEffectEntity TakeBuff(IStatusEffect statusEffect, ICombatTaker taker)
+        {
+            if (!taker.DynamicStatEntry.IsAlive.Value) return null;
+            
+            var statusEffectEntity = new StatusEffectEntity(statusEffect, taker);
+            var table = taker.DynamicStatEntry.BuffTable;
+            
+            table.Register(statusEffect);
+
+            statusEffect.Provider.OnProvideBuff.Invoke(statusEffectEntity);
+            taker.OnTakeBuff?.Invoke(statusEffectEntity);
 
             return statusEffectEntity;
         }

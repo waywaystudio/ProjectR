@@ -11,7 +11,7 @@ namespace Raid
     public class AdventurerController : MonoBehaviour
     {
         // TODO. TEMP
-        [SerializeField] private AdventurerBehaviour focusedAdventurer;
+        [SerializeField] private Adventurer focusedAdventurer;
         [SerializeField] private ToMoveProjector moveProjector;
         //
 
@@ -21,7 +21,7 @@ namespace Raid
         private Vector3 mouseDestination;
 
 
-        public void OnFocusChanged(AdventurerBehaviour ab) => focusedAdventurer = ab;
+        public void OnFocusChanged(Adventurer ab) => focusedAdventurer = ab;
 
         /* GameEvent */
         public void CommandMode(InputAction.CallbackContext context)

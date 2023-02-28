@@ -22,8 +22,8 @@ namespace Raid.UI
             statusEffectBar.Initialize(RaidDirector.Player);
             dynamicValueProcess.Initialize(RaidDirector.Player);
             actionBar.Initialize(RaidDirector.Player);
-            dashAction.Initialize(RaidDirector.Player);
-            adventurerBar.Initialize(RaidDirector.AdventurerList);
+            // dashAction.Initialize(RaidDirector.Player);
+            // adventurerBar.Initialize(RaidDirector.AdventurerList);
         }
         
 

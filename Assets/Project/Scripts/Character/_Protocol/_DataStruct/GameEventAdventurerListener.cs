@@ -2,5 +2,5 @@ using Core.GameEvents.Listener;
 
 namespace Character
 {
-    public class GameEventAdventurerListener : GameEventListener<AdventurerBehaviour> { }
+    public class GameEventAdventurerListener : GameEventListener<Adventurer> { }
 }

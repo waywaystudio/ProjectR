@@ -1,31 +1,31 @@
 using System;
 using Core;
 using Sirenix.OdinInspector;
-// using Spine;
-// using Spine.Unity;
+using Spine;
+using Spine.Unity;
 using UnityEngine;
-// using SpineAnimation = Spine.Animation;
-// using SpineState = Spine.AnimationState;
-// using Event = Spine.Event;
+using SpineAnimation = Spine.Animation;
+using SpineState = Spine.AnimationState;
+using Event = Spine.Event;
 
 namespace Character.Graphic
 {
     public class AnimationModel : MonoBehaviour
     {
-        [SerializeField] private AnimationModelData modelData;
-        // [SerializeField] private SkeletonAnimation skeletonAnimation;
+        [SerializeField] protected AnimationModelData modelData;
+        [SerializeField] private SkeletonAnimation skeletonAnimation;
         
-        // private SpineState state;
-        // private TrackEntry entryBuffer;
+        protected SpineState State;
+        private TrackEntry entryBuffer;
         
         [ShowInInspector]
         public ActionTable OnHit { get; set; } = new();
-        // private SpineAnimation TargetAnimation { get; set; }
+        private SpineAnimation TargetAnimation { get; set; }
         
         
         public void Idle()
         {
-            // state.TimeScale = 1f;
+            State.TimeScale = 1f;
             
             PlayLoop("idle");
         }
@@ -40,112 +40,112 @@ namespace Character.Graphic
 
         public void Play(string animationKey, int layer, bool loop, float timeScale, Action callback)
         {
-            // if (!modelData.TryGetAnimation(animationKey, out var target))
-            // {
-            //     Debug.LogError($"Not Exist Animation Key {animationKey}");
-            //     return;
-            // }
-            //
-            // entryBuffer = null;
-            //
-            // if (IsSameAnimation(target, layer, loop)) return;
-            // if (HasTransition(target, layer, loop, callback)) return;
-            //
-            // entryBuffer = state.SetAnimation(layer, target, loop);
-            //
-            // // Assign Custom timeScale Animation Speed
-            // if (timeScale != 0f)
-            // {
-            //     var originalDuration = target.Duration;
-            //     var toStaticValue = originalDuration / timeScale;
-            //
-            //     state.TimeScale      *= toStaticValue;
-            //     entryBuffer.Complete += _ => state.TimeScale = 1f;
-            //     // state.TimeScale /= toStaticValue;
-            // }
-            //
-            // // Handle Callback
-            // if (callback != null) 
-            //     entryBuffer.Complete += _ => callback.Invoke();
-            //
-            // TargetAnimation = target;
+            if (!modelData.TryGetAnimation(animationKey, out var target))
+            {
+                Debug.LogError($"Not Exist Animation Key {animationKey}");
+                return;
+            }
+            
+            entryBuffer = null;
+            
+            if (IsSameAnimation(target, layer, loop)) return;
+            if (HasTransition(target, layer, loop, callback)) return;
+            
+            entryBuffer = State.SetAnimation(layer, target, loop);
+            
+            // Assign Custom timeScale Animation Speed
+            if (timeScale != 0f)
+            {
+                var originalDuration = target.Duration;
+                var toStaticValue = originalDuration / timeScale;
+            
+                State.TimeScale      *= toStaticValue;
+                entryBuffer.Complete += _ => State.TimeScale = 1f;
+                // state.TimeScale /= toStaticValue;
+            }
+            
+            // Handle Callback
+            if (callback != null) 
+                entryBuffer.Complete += _ => callback.Invoke();
+            
+            TargetAnimation = target;
         }
 
         public void Flip(Vector3 direction)
         {
-            // skeletonAnimation.Skeleton.ScaleX = direction.x switch
-            // {
-            //     < 0 => -1.0f,
-            //     > 0 => 1.0f,
-            //     _ => skeletonAnimation.Skeleton.ScaleX
-            // };
+            skeletonAnimation.Skeleton.ScaleX = direction.x switch
+            {
+                < 0 => -1.0f,
+                > 0 => 1.0f,
+                _ => skeletonAnimation.Skeleton.ScaleX
+            };
         }
         
+        
+        protected void EventHandler(TrackEntry trackEntry, Event e)
+        {
+            switch (e.Data.Name)
+            {
+                case "footstep" : return;
+                default:
+                {
+                    Debug.LogWarning($"Unknown animation event key in. input:{e.Data.Name}");
+                    break;
+                }
+            }
+            
+            OnHit.Invoke();
+        }
 
-        // private bool IsSameAnimation(SpineAnimation target, int layer, bool loop)
-        // {
-        //     // if (!target.Equals(TargetAnimation) || !loop) return false;
-        //     //
-        //     // entryBuffer = state.GetCurrent(layer);
-        //
-        //     return true;
-        // }
+        private bool IsSameAnimation(SpineAnimation target, int layer, bool loop)
+        {
+            if (!target.Equals(TargetAnimation) || !loop) return false;
+            
+            entryBuffer = State.GetCurrent(layer);
+        
+            return true;
+        }
 
-        // private bool HasTransition(SpineAnimation target, int layer, bool loop, Action callback)
-        // {
-        //     // TODO. 현재 Animation A에서 B로 넘어갈때 트랜지션 Animation이 따로 있는 경우가 없다.
-        //     var hasCurrent = TryGetCurrentAnimation(layer, out var current);
-        //     var hasTransition = modelData.TryGetTransition(current, target, out var transition);
-        //
-        //     if (!hasCurrent || !hasTransition) return false;
-        //     
-        //     entryBuffer = state.SetAnimation(layer, transition, false);
-        //
-        //     if (callback != null) entryBuffer.Complete += _ => callback.Invoke();
-        //         
-        //     state.AddAnimation(layer, target, loop, 0f);
-        //     
-        //     return true;
-        // }
-        //
-        // private bool TryGetCurrentAnimation(int layer, out SpineAnimation result)
-        // {
-        //     result = state.GetCurrent(layer)?.Animation;
-        //
-        //     return result is not null;
-        // }
-        //
-        // private void EventHandler(TrackEntry trackEntry, Event e)
-        // {
-        //     switch (e.Data.Name)
-        //     {
-        //         case "attackHit" : OnHit.Invoke(); break;
-        //         case "skillHit" : OnHit.Invoke(); break;
-        //         case "holdingHit":
-        //         {
-        //             OnHit.Invoke(); break; 
-        //         }
-        //         case "footstep" : break;
-        //         default:
-        //         {
-        //             Debug.LogWarning($"Unknown animation event key in. input:{e.Data.Name}");
-        //             break;
-        //         }
-        //     }
-        // }
+        private bool HasTransition(SpineAnimation target, int layer, bool loop, Action callback)
+        {
+            var hasCurrent = TryGetCurrentAnimation(layer, out var current);
+            var hasTransition = modelData.TryGetTransition(current, target, out var transition);
+        
+            if (!hasCurrent || !hasTransition) return false;
+            
+            entryBuffer = State.SetAnimation(layer, transition, false);
+        
+            if (callback != null) entryBuffer.Complete += _ => callback.Invoke();
+                
+            State.AddAnimation(layer, target, loop, 0f);
+            
+            return true;
+        }
+        
+        private bool TryGetCurrentAnimation(int layer, out SpineAnimation result)
+        {
+            result = State.GetCurrent(layer)?.Animation;
+        
+            return result is not null;
+        }
 
         private void Awake()
         {
-            // skeletonAnimation ??= GetComponent<SkeletonAnimation>();
-            // state             =   skeletonAnimation.AnimationState;
+            skeletonAnimation ??= GetComponent<SkeletonAnimation>();
+            State             =   skeletonAnimation.AnimationState;
         }
 
-        // private void OnEnable() => skeletonAnimation.AnimationState.Event += EventHandler;
-        // private void OnDisable() => skeletonAnimation.AnimationState.Event -= EventHandler;
+        private void OnEnable() => skeletonAnimation.AnimationState.Event += EventHandler;
+        private void OnDisable() => skeletonAnimation.AnimationState.Event -= EventHandler;
         
 #if UNITY_EDITOR
-        // [SpineEvent(dataField : "skAnimation", fallbackToTextField = true)]
-        // [SerializeField] private string eventNameList;
+        [SpineEvent(dataField : "skAnimation", fallbackToTextField = true)]
+        [SerializeField] private string eventNameList;
+
+        public virtual void EditorSetUp()
+        {
+            TryGetComponent(out skeletonAnimation);
+        }
 #endif
     }
 }

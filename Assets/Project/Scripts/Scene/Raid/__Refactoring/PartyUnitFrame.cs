@@ -19,11 +19,11 @@ namespace Raid.UI
         private bool isInitialized;
 
         public ActionTable OnInitialize { get; } = new();
-        public AdventurerBehaviour AdventurerBehaviour { get; private set; }
+        public Adventurer adventurer { get; private set; }
 
-        public void Initialize(AdventurerBehaviour ab)
+        public void Initialize(Adventurer ab)
         {
-            AdventurerBehaviour = ab;
+            adventurer = ab;
             
             // Set ResourceColor
             // Set RoleIcon
@@ -45,7 +45,7 @@ namespace Raid.UI
 
         private void FillHealthBar(float hp)
         {
-            var normalHp = hp / AdventurerBehaviour.StatTable.MaxHp;
+            var normalHp = hp / adventurer.StatTable.MaxHp;
 
             healthBar.DOFillAmount(normalHp, 0.1f);
             healthText.text = hp.ToString("N0");
@@ -53,7 +53,7 @@ namespace Raid.UI
 
         private void FillResourceBar(float resource)
         {
-            var normalResource = resource / AdventurerBehaviour.StatTable.MaxResource;
+            var normalResource = resource / adventurer.StatTable.MaxResource;
 
             resourceBar.DOFillAmount(normalResource, 0.1f);
             resourceText.text = resource.ToString("N0");
@@ -63,8 +63,8 @@ namespace Raid.UI
         {
             if (isInitialized)
             {
-                AdventurerBehaviour.DynamicStatEntry.Hp.Unregister("FillPartyFrameHealthBar");
-                AdventurerBehaviour.DynamicStatEntry.Resource.Unregister("FillPartyFrameResourceBar");
+                adventurer.DynamicStatEntry.Hp.Unregister("FillPartyFrameHealthBar");
+                adventurer.DynamicStatEntry.Resource.Unregister("FillPartyFrameResourceBar");
             }
         }
 

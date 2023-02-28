@@ -5,17 +5,14 @@ namespace Character.StatusEffect
     // => ProjectileCompletion
     public class StatusEffectCompletion : Pool<StatusEffectComponent>
     {
-        private ICombatProvider Provider { get; set; }
+        private ICombatProvider provider;
         private IStatusEffect effectInfo;
 
 
-        public void Effect(ICombatTaker taker)
+        public void DeBuff(ICombatTaker taker)
         {
-            var targetTable = effectInfo.Type == StatusEffectType.Buff
-                ? taker.DynamicStatEntry.BuffTable
-                : taker.DynamicStatEntry.DeBuffTable;
-
-            var key = (Provider, effectInfo.ActionCode);
+            var targetTable = taker.DynamicStatEntry.DeBuffTable;
+            var key         = (Provider: provider, effectInfo.ActionCode);
 
             if (targetTable.ContainsKey(key))
             {
@@ -25,10 +22,54 @@ namespace Character.StatusEffect
             {
                 var effect = Get();
                 
-                effect.Active(Provider, taker);
+                effect.Active(provider, taker);
                 effect.transform.SetParent(taker.StatusEffectHierarchy);
 
-                taker.TakeStatusEffect(effect);
+                taker.TakeDeBuff(effect);
+            }
+        }
+
+        public void Buff(ICombatTaker taker)
+        {
+            var targetTable = taker.DynamicStatEntry.BuffTable;
+
+            var key = (Provider: provider, effectInfo.ActionCode);
+
+            if (targetTable.ContainsKey(key))
+            {
+                targetTable[key].OnOverride();
+            }
+            else
+            {
+                var effect = Get();
+                
+                effect.Active(provider, taker);
+                effect.transform.SetParent(taker.StatusEffectHierarchy);
+
+                taker.TakeDeBuff(effect);
+            }
+        }
+        
+        public void Effect(ICombatTaker taker)
+        {
+            var targetTable = effectInfo.Type == StatusEffectType.Buff
+                ? taker.DynamicStatEntry.BuffTable
+                : taker.DynamicStatEntry.DeBuffTable;
+
+            var key = (Provider: provider, effectInfo.ActionCode);
+
+            if (targetTable.ContainsKey(key))
+            {
+                targetTable[key].OnOverride();
+            }
+            else
+            {
+                var effect = Get();
+                
+                effect.Active(provider, taker);
+                effect.transform.SetParent(taker.StatusEffectHierarchy);
+
+                taker.TakeDeBuff(effect);
             }
         }
 
@@ -53,7 +94,7 @@ namespace Character.StatusEffect
         {
             base.Awake();
             
-            Provider = GetComponentInParent<ICombatProvider>();
+            provider = GetComponentInParent<ICombatProvider>();
             prefab.TryGetComponent(out effectInfo);
         }
     }

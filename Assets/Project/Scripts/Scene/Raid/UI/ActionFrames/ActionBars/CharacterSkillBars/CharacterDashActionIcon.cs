@@ -1,4 +1,5 @@
 using Character;
+using Character.Actions;
 using Character.Skill;
 using Core;
 using MainGame;
@@ -13,12 +14,12 @@ namespace Raid.UI.ActionFrames.ActionBars.CharacterSkillBars
         [SerializeField] private Image actionImage;
 
         private SkillComponent skillComponent;
-        private AdventurerBehaviour focusedAdventurer;
+        private Adventurer focusedAdventurer;
         private Transform preTransform;
         private ActionBehaviour ActionBehaviour => focusedAdventurer.ActionBehaviour;
         
 
-        public void Initialize(AdventurerBehaviour adventurer, SkillComponent skillComponent)
+        public void Initialize(Adventurer adventurer, SkillComponent skillComponent)
         {
             focusedAdventurer = adventurer;
 

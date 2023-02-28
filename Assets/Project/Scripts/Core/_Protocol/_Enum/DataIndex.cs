@@ -31,15 +31,16 @@ public enum DataIndex
 	Bard = 12000008,
 
 	/* SkillData */
-	KnightCommonAttack = 13000001,
-	KnightCastingAttack = 13000002,
-	ChargingAttack = 13000003,
-	HoldingAttack = 13000004,
-	KnightDash = 13000005,
+	SwordAttack = 13000001,
+	Bash = 13000002,
+	UpperSlash = 13000003,
+	ThunderClap = 13000004,
+	MightyGuard = 13000005,
 	MoraggSpin = 13000006,
 	MoraggLivingBomb = 13000007,
 	MoraggHowling = 13000008,
 	MoraggCommonAttack = 13000009,
+	PriestCommonHeal = 13000010,
 
 	/* StatusEffectData */
 	ArmorCrash = 14000001,

@@ -10,9 +10,9 @@ namespace Raid.UI.ActionFrames
         [SerializeField] private CharacterSkillBar characterSkillBar;
         [SerializeField] private AdventurerBar adventurerBars;
 
-        private AdventurerBehaviour ab;
+        private Adventurer ab;
 
-        public void Initialize(AdventurerBehaviour ab)
+        public void Initialize(Adventurer ab)
         {
             this.ab = ab;
             

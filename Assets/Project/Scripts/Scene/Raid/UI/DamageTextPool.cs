@@ -14,11 +14,11 @@ namespace Raid.UI
         [SerializeField] private bool showAdventurer3;
         [SerializeField] private bool showAdventurer4;
 
-        private List<AdventurerBehaviour> adventurerList = new();
+        private List<Adventurer> adventurerList = new();
         //
         
 
-        public void Initialize(List<AdventurerBehaviour> adventurers)
+        public void Initialize(List<Adventurer> adventurers)
         {
             if (adventurers.IsNullOrEmpty())
             {
@@ -35,26 +35,26 @@ namespace Raid.UI
 
             if (showAdventurer1 && adventurerList.Count > 0)
             {
-                adventurerList[0].OnProvideCombat.Register("DamageTextUI", ShowDamage);
-                adventurerList[0].OnTakeCombat.Register("TakenDamageTextUI", ShowDamage);
+                adventurerList[0].OnProvideDamage.Register("DamageTextUI", ShowDamage);
+                adventurerList[0].OnTakeDamage.Register("TakenDamageTextUI", ShowDamage);
             }
 
             if (showAdventurer2 && adventurerList.Count > 1)
             {
-                adventurerList[1].OnProvideCombat.Register("DamageTextUI", ShowDamage);
-                adventurerList[1].OnTakeCombat.Register("TakenDamageTextUI", ShowDamage);
+                adventurerList[1].OnProvideDamage.Register("DamageTextUI", ShowDamage);
+                adventurerList[1].OnTakeDamage.Register("TakenDamageTextUI", ShowDamage);
             }
 
             if (showAdventurer3 && adventurerList.Count > 2)
             {
-                adventurerList[2].OnProvideCombat.Register("DamageTextUI", ShowDamage);
-                adventurerList[2].OnTakeCombat.Register("TakenDamageTextUI", ShowDamage);
+                adventurerList[2].OnProvideDamage.Register("DamageTextUI", ShowDamage);
+                adventurerList[2].OnTakeDamage.Register("TakenDamageTextUI", ShowDamage);
             }
 
             if (showAdventurer4 && adventurerList.Count > 3)
             {
-                adventurerList[3].OnProvideCombat.Register("DamageTextUI", ShowDamage);
-                adventurerList[3].OnTakeCombat.Register("TakenDamageTextUI", ShowDamage);
+                adventurerList[3].OnProvideDamage.Register("DamageTextUI", ShowDamage);
+                adventurerList[3].OnTakeDamage.Register("TakenDamageTextUI", ShowDamage);
             }
         }
         
@@ -90,9 +90,9 @@ namespace Raid.UI
             showAdventurer1 = !showAdventurer1;
 
             if (showAdventurer1) 
-                adventurerList[0].OnProvideCombat.Register("DamageTextUI", ShowDamage);
+                adventurerList[0].OnProvideDamage.Register("DamageTextUI", ShowDamage);
             else
-                adventurerList[0].OnProvideCombat.Unregister("DamageTextUI");
+                adventurerList[0].OnProvideDamage.Unregister("DamageTextUI");
         }
         
         [Button] private void TogglePlayer2()
@@ -100,9 +100,9 @@ namespace Raid.UI
             showAdventurer2 = !showAdventurer2;
 
             if (showAdventurer2) 
-                adventurerList[1].OnProvideCombat.Register("DamageTextUI", ShowDamage);
+                adventurerList[1].OnProvideDamage.Register("DamageTextUI", ShowDamage);
             else
-                adventurerList[1].OnProvideCombat.Unregister("DamageTextUI");
+                adventurerList[1].OnProvideDamage.Unregister("DamageTextUI");
         }
         
         [Button] private void TogglePlayer3()
@@ -110,9 +110,9 @@ namespace Raid.UI
             showAdventurer3 = !showAdventurer3;
 
             if (showAdventurer3) 
-                adventurerList[2].OnProvideCombat.Register("DamageTextUI", ShowDamage);
+                adventurerList[2].OnProvideDamage.Register("DamageTextUI", ShowDamage);
             else
-                adventurerList[2].OnProvideCombat.Unregister("DamageTextUI");
+                adventurerList[2].OnProvideDamage.Unregister("DamageTextUI");
         }
         
         [Button] private void TogglePlayer4()
@@ -120,9 +120,9 @@ namespace Raid.UI
             showAdventurer4 = !showAdventurer4;
 
             if (showAdventurer4) 
-                adventurerList[3].OnProvideCombat.Register("DamageTextUI", ShowDamage);
+                adventurerList[3].OnProvideDamage.Register("DamageTextUI", ShowDamage);
             else
-                adventurerList[3].OnProvideCombat.Unregister("DamageTextUI");
+                adventurerList[3].OnProvideDamage.Unregister("DamageTextUI");
         }
 
         #endregion

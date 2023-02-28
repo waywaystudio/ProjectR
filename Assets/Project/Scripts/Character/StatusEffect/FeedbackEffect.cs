@@ -15,7 +15,7 @@ namespace Character.StatusEffect
 
         protected override void Complete()
         {
-            Provider.OnProvideCombat.Unregister("DrainBuff");
+            Provider.OnProvideDamage.Unregister("DrainBuff");
             
             base.Complete();
         }
@@ -23,7 +23,7 @@ namespace Character.StatusEffect
         protected override IEnumerator Effectuating()
         {
             ProgressTime.Value = duration;
-            Provider.OnProvideCombat.Register("DrainBuff", Drain);
+            Provider.OnProvideDamage.Register("DrainBuff", Drain);
             
             while (ProgressTime.Value > 0f)
             {

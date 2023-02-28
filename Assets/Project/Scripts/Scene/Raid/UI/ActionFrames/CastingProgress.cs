@@ -1,4 +1,5 @@
 using Character;
+using Character.Actions;
 using Character.Skill;
 using Core;
 using UnityEngine;
@@ -19,7 +20,7 @@ namespace Raid.UI.ActionFrames
             actionBehaviour.OnCommonActivated.Register("ShowCastingUI", Register);
         }
 
-        public void OnAdventurerChanged(AdventurerBehaviour ab)
+        public void OnAdventurerChanged(Adventurer ab)
         {
             Unregister();
 

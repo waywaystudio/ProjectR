@@ -12,7 +12,7 @@ namespace Raid.UI.ActionFrames.ActionBars
         public List<CharacterSkillActionSlot> SlotList => slotList;
 
 
-        public void Initialize(AdventurerBehaviour ab)
+        public void Initialize(Adventurer ab)
         {
             GetComponentsInChildren(true, slotList);
             

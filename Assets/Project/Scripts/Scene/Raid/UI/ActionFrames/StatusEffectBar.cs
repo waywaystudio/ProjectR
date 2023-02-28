@@ -12,14 +12,14 @@ namespace Raid.UI.ActionFrames
         [SerializeField] private List<DeBuffActionSlot> deBuffActionSlotList;
         [SerializeField] private List<BuffActionSlot> buffActionSlotList;
 
-        private AdventurerBehaviour ab;
+        private Adventurer ab;
 
-        public void Initialize(AdventurerBehaviour ab) => OnFocusChanged(ab);
-        public void OnFocusChanged(AdventurerBehaviour ab)
+        public void Initialize(Adventurer ab) => OnFocusChanged(ab);
+        public void OnFocusChanged(Adventurer ab)
         {
             if (this.ab != null)
             {
-                this.ab.OnTakeStatusEffect.Unregister("RegisterUI");
+                this.ab.OnTakeDeBuff.Unregister("RegisterUI");
                 
                 // Clear Previous StatusEffect.
                 buffActionSlotList.ForEach(buff => buff.Unregister());
@@ -30,8 +30,8 @@ namespace Raid.UI.ActionFrames
 
             this.ab = ab;
 
-            ab.OnTakeStatusEffect.Unregister("RegisterUI");
-            ab.OnTakeStatusEffect.Register("RegisterUI", OnRegisterStatusEffect);
+            ab.OnTakeDeBuff.Unregister("RegisterUI");
+            ab.OnTakeDeBuff.Register("RegisterUI", OnRegisterStatusEffect);
 
             UpdateStatusEffect(ab);
         }
@@ -73,7 +73,7 @@ namespace Raid.UI.ActionFrames
             }
         }
 
-        private void UpdateStatusEffect(AdventurerBehaviour ab)
+        private void UpdateStatusEffect(Adventurer ab)
         {
             // Add ab.StatusEffects
             ab.DynamicStatEntry.BuffTable.Values.ForEach(effect =>

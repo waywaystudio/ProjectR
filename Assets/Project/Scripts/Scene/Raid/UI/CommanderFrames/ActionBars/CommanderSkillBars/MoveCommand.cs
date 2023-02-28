@@ -14,7 +14,7 @@ namespace Raid.UI.CommanderFrames.ActionBars.CommanderSkillBars
         [SerializeField] private TextMeshProUGUI hoyKey;
         [SerializeField] private BindingCode bindingCode;
 
-        private List<AdventurerBehaviour> adventurersList;
+        private List<Adventurer> adventurersList;
         
         private string HotKey =>
             bindingCode switch
@@ -26,7 +26,7 @@ namespace Raid.UI.CommanderFrames.ActionBars.CommanderSkillBars
                 _ => "-",
             };
 
-        public void Initialize(List<AdventurerBehaviour> adventurersList)
+        public void Initialize(List<Adventurer> adventurersList)
         {
             this.adventurersList = adventurersList;
             

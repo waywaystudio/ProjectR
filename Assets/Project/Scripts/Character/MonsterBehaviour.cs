@@ -16,29 +16,33 @@ namespace Character
         [SerializeField] protected Transform damageSpawn;
         [SerializeField] protected Transform statusEffectHierarchy;
 
-        public string Name => characterName ??= "Diablo";
+        public string Name => characterName;
         public RoleType Role => role;
-        public DataIndex ActionCode => dataIndex;
+        public DataIndex ClassCode => dataIndex;
         public IDynamicStatEntry DynamicStatEntry => dynamicStatEntry ??= GetComponentInChildren<DynamicStatEntry>();
-        public ICombatProvider Provider => this;
         public GameObject Object => gameObject;
         public StatTable StatTable => DynamicStatEntry.StatTable;
         
         public Transform DamageSpawn => damageSpawn;
         public Transform StatusEffectHierarchy => statusEffectHierarchy;
-
         public ActionTable OnDead { get; } = new();
-        public ActionTable<CombatEntity> OnTakeCombat { get; } = new();
-        public ActionTable<CombatEntity> OnProvideCombat { get; } = new();
-        public ActionTable<StatusEffectEntity> OnTakeStatusEffect { get; } = new();
-        public ActionTable<StatusEffectEntity> OnProvideStatusEffect { get; } = new();
+        
+        public ActionTable<CombatEntity> OnProvideDamage { get; } = new();
+        public ActionTable<CombatEntity> OnProvideHeal { get; } = new();
+        public ActionTable<StatusEffectEntity> OnProvideDeBuff { get; } = new();
+        public ActionTable<StatusEffectEntity> OnProvideBuff { get; } = new();
+        
+        public ActionTable<CombatEntity> OnTakeDamage { get; } = new();
+        public ActionTable<CombatEntity> OnTakeHeal { get; } = new();
+        public ActionTable<StatusEffectEntity> OnTakeDeBuff { get; } = new();
+        public ActionTable<StatusEffectEntity> OnTakeBuff { get; } = new();
        
 
         public void Dead() => OnDead.Invoke();
-        public void UpdateStatTable() { }
         public CombatEntity TakeDamage(ICombatTable combatTable) => CombatUtility.TakeDamage(combatTable, this);
         public CombatEntity TakeHeal(ICombatTable combatTable) => CombatUtility.TakeHeal(combatTable, this);
-        public StatusEffectEntity TakeStatusEffect(IStatusEffect statusEffect) => CombatUtility.TakeStatusEffect(statusEffect, this);
+        public StatusEffectEntity TakeDeBuff(IStatusEffect statusEffect) => CombatUtility.TakeDeBuff(statusEffect, this);
+        public StatusEffectEntity TakeBuff(IStatusEffect statusEffect) => CombatUtility.TakeBuff(statusEffect, this);
 
         protected void Awake()
         {

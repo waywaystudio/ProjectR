@@ -16,6 +16,8 @@ namespace Character
         /// </summary>
         /// <returns>usually more than 1.0f value</returns>
         public static float GetInverseHasteValue(float haste) => 1f + haste;
+        
+        
 
         /// <summary>
         /// Set FlagNumber (ex.128, 256 etc. not index)

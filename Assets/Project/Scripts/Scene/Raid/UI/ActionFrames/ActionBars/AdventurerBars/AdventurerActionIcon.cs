@@ -9,11 +9,11 @@ namespace Raid.UI.ActionFrames.ActionBars.AdventurerBars
     public class AdventurerActionIcon : MonoBehaviour
     {
         [SerializeField] private Image adventurerImage;
-        [SerializeField] private GameEvent<AdventurerBehaviour> onFocusChanged;
+        [SerializeField] private GameEvent<Adventurer> onFocusChanged;
 
-        private AdventurerBehaviour ab;
+        private Adventurer ab;
 
-        public void Initialize(AdventurerBehaviour adventurer)
+        public void Initialize(Adventurer adventurer)
         {
             ab = adventurer;
             // SetAdventurerImage;

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Core;
 using UnityEngine;
+using Random = System.Random;
 
 namespace Character
 {
@@ -21,7 +22,7 @@ namespace Character
         public static List<Vector2> GetPointsInCircle(int radius, int minDistance, int maxPoints, int sampleSize)
         {
             var points = new List<Vector2>();
-            var random = new System.Random();
+            var random = new Random();
 
             // Pick a random starting point
             points.Add(new Vector2(random.Next(radius), random.Next(radius)));

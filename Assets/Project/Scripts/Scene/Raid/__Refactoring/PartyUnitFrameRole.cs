@@ -36,7 +36,7 @@ namespace Raid.UI
             unitFrame ??= GetComponentInParent<PartyUnitFrame>();
             
             unitFrame.OnInitialize.Register("SetRoleIcon", 
-                () => SetRoleIcon(unitFrame.AdventurerBehaviour.Role));
+                () => SetRoleIcon(unitFrame.adventurer.Role));
             
             if (tank.enabled) tank.enabled = false;
             if (dps.enabled) dps.enabled = false;

@@ -32,22 +32,21 @@ MonoBehaviour:
     - BehaviorDesigner.Runtime
     - AstarPathfindingProject
     - ES3
-    - Assembly-CSharp
     - Common
-    - spine-unity
     - Town
     - Raid
     - Loading
     - Cinemachine
-    - spine-csharp
+    - Assembly-CSharp
     - Core
     - Main
     - CommonUI
     - DOTween.Modules
     - SoCreator
     - Assembly-CSharp-firstpass
+    - spine-unity
+    - spine-csharp
     - AstarPathfindingProjectEditor
-    - spine-unity-editor
     - PPv2URPConverters
     - ES3.editor
     - SoCreator.Editor
@@ -58,6 +57,7 @@ MonoBehaviour:
     - Character.Editor
     - Sirenix.OdinInspector.Modules.UnityMathematics
     - Save.Editor
+    - spine-unity-editor
     showAdvancedSettings: 0
   addMgrToSceneAutomatically: 0
   autoUpdateReferences: 1

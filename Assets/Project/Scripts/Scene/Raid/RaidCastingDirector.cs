@@ -7,10 +7,10 @@ namespace Raid
 {
     public class RaidCastingDirector : MonoBehaviour, IEditable
     {
-        [SerializeField] private List<AdventurerBehaviour> adventurerList = new();
+        [SerializeField] private List<Adventurer> adventurerList = new();
         [SerializeField] private List<MonsterBehaviour> monsterList = new();
 
-        public List<AdventurerBehaviour> AdventurerList => adventurerList;
+        public List<Adventurer> AdventurerList => adventurerList;
         public List<MonsterBehaviour> MonsterList => monsterList;
 
         private void Awake()

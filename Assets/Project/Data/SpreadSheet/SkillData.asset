@@ -15,7 +15,7 @@ MonoBehaviour:
   Index: 13
   list:
   - id: 13000001
-    name: KnightCommonAttack
+    name: SwordAttack
     description: Starts combat by attacking a target with a melee weapon.
     completionValueList:
     - 10
@@ -23,55 +23,55 @@ MonoBehaviour:
     coolTime: 0
     cost: 0
     basePriority: 1
-    animationKey: attack
+    animationKey: swordAttack
     sortingType: None
-    targetLayer: enemy
-    targetParam: {x: 5, y: 90}
-    statusEffect: 14000001
+    targetLayer: Monster
+    targetParam: {x: 6, y: 135}
+    statusEffect: 0
   - id: 13000002
-    name: KnightCastingAttack
+    name: Bash
     description: Starts combat by attacking a target with a melee weapon.
     completionValueList:
     - 20
-    processTime: 3
+    processTime: 0
     coolTime: 5
     cost: 0
     basePriority: 2
-    animationKey: casting
+    animationKey: bash
     sortingType: None
-    targetLayer: enemy
-    targetParam: {x: 10, y: 45}
-    statusEffect: 14000002
+    targetLayer: Monster
+    targetParam: {x: 6, y: 90}
+    statusEffect: 14000001
   - id: 13000003
-    name: ChargingAttack
+    name: UpperSlash
     description: Starts combat by attacking a target with a melee weapon.
     completionValueList:
     - 30
-    processTime: 3
-    coolTime: 6
+    processTime: 0
+    coolTime: 7
     cost: 0
     basePriority: 3
-    animationKey: casting
+    animationKey: upperSlash
     sortingType: None
-    targetLayer: enemy
-    targetParam: {x: 15, y: 90}
-    statusEffect: 14000003
+    targetLayer: Monster
+    targetParam: {x: 8, y: 90}
+    statusEffect: 14000002
   - id: 13000004
-    name: HoldingAttack
+    name: ThunderClap
     description: Starts combat by attacking a target with a melee weapon.
     completionValueList:
-    - 5
-    processTime: 2
+    - 8
+    processTime: 0
     coolTime: 8
     cost: 0
     basePriority: 4
-    animationKey: holding
+    animationKey: thunderClap
     sortingType: None
-    targetLayer: enemy
+    targetLayer: Monster
     targetParam: {x: 15, y: 360}
     statusEffect: 0
   - id: 13000005
-    name: KnightDash
+    name: MightyGuard
     description: Starts combat by attacking a target with a melee weapon.
     completionValueList:
     - 8
@@ -79,9 +79,9 @@ MonoBehaviour:
     coolTime: 5
     cost: 0
     basePriority: 0
-    animationKey: jump
+    animationKey: mightyGuard
     sortingType: None
-    targetLayer: ally
+    targetLayer: Monster
     targetParam: {x: 0, y: 0}
     statusEffect: 0
   - id: 13000006
@@ -95,7 +95,7 @@ MonoBehaviour:
     basePriority: 2
     animationKey: casting
     sortingType: None
-    targetLayer: enemy
+    targetLayer: Adventurer
     targetParam: {x: 4, y: 360}
     statusEffect: 0
   - id: 13000007
@@ -109,7 +109,7 @@ MonoBehaviour:
     basePriority: 4
     animationKey: attack
     sortingType: Random
-    targetLayer: enemy
+    targetLayer: Adventurer
     targetParam: {x: 0, y: 0}
     statusEffect: 14000004
   - id: 13000008
@@ -123,7 +123,7 @@ MonoBehaviour:
     basePriority: 3
     animationKey: attack
     sortingType: None
-    targetLayer: enemy
+    targetLayer: Adventurer
     targetParam: {x: 50, y: 360}
     statusEffect: 14000005
   - id: 13000009
@@ -137,6 +137,20 @@ MonoBehaviour:
     basePriority: 1
     animationKey: attack
     sortingType: Role
-    targetLayer: enemy
+    targetLayer: Adventurer
     targetParam: {x: 6, y: 360}
+    statusEffect: 0
+  - id: 13000010
+    name: PriestCommonHeal
+    description: Starts combat by attacking a target with a melee weapon.
+    completionValueList:
+    - 15
+    processTime: 1.5
+    coolTime: 0
+    cost: 0
+    basePriority: 1
+    animationKey: casting
+    sortingType: HpRatioAscending
+    targetLayer: Adventurer
+    targetParam: {x: 5, y: 25}
     statusEffect: 0

@@ -16,7 +16,7 @@ namespace Raid.UI.ActionFrames.ActionBars.CharacterSkillBars
         [PropertyRange(1, 4)]
         [SerializeField] private int skillIndex;
 
-        private AdventurerBehaviour focusedAdventurer;
+        private Adventurer focusedAdventurer;
         private DataIndex actionCode;
 
         private string HotKey =>
@@ -30,8 +30,8 @@ namespace Raid.UI.ActionFrames.ActionBars.CharacterSkillBars
             };
 
 
-        public void Initialize(AdventurerBehaviour adventurer) => OnFocusChanged(adventurer);
-        public void OnFocusChanged(AdventurerBehaviour ab)
+        public void Initialize(Adventurer adventurer) => OnFocusChanged(adventurer);
+        public void OnFocusChanged(Adventurer ab)
         {
             MainManager.Input.TryGetAction(bindingCode, out var inputAction);
             
