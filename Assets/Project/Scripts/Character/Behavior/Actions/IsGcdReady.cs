@@ -14,7 +14,7 @@ namespace Character.Behavior.Actions
             TryGetComponent(out ab);
         }
         
-        public override TaskStatus OnUpdate() => ab.Conditions.IsAllTrue
+        public override TaskStatus OnUpdate() => ab.GlobalConditions.IsAllTrue
             ? TaskStatus.Success 
             : TaskStatus.Failure;
     }

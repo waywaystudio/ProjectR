@@ -6,8 +6,6 @@ namespace Character.Actions.Assassin
     {
         [SerializeField] private ValueCompletion power;
         
-        
-        public override void Release() { }
 
         protected override void PlayAnimation()
         {

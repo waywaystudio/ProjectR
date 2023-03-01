@@ -8,8 +8,6 @@ namespace Character.Actions.Knight
         [SerializeField] private ValueCompletion power;
         [SerializeField] private StatusEffectCompletion armorCrash;
         
-        public override void Release() { }
-        
         
         protected override void PlayAnimation()
         {

@@ -1,10 +1,11 @@
 namespace Character
 {
-    public enum ProcessType
+    public enum SkillType
     {
         None = 0,
+        Instant,
         Casting,
-        Holding,
         Charging,
+        Holding,
     }
 }

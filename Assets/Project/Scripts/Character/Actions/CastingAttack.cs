@@ -11,7 +11,7 @@ namespace Character.Actions
         
         public void UpdateStatTable() { }
 
-        public override void Release() { }
+        // public override void Release() { }
 
         protected override void PlayAnimation()
         {

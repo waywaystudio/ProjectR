@@ -109,10 +109,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c984734517cb97a43b37c35ce611e625, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  model: {fileID: 0}
-  searching: {fileID: 0}
-  colliding: {fileID: 0}
   actionCode: 13000006
+  skillType: 2
   priority: 2
   range: 4
   angle: 360
@@ -125,10 +123,9 @@ MonoBehaviour:
   coolTime: 12
   cost: 0
   animationKey: casting
-  processType: 0
   progressTime: 3
   powerValue:
-    value: 0
+    value: 36
     statCode: 1
   projector: {fileID: 8959908313466980663}
 --- !u!1001 &8189305718710697496

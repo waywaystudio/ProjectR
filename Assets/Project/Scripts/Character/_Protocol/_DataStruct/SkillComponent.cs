@@ -11,6 +11,7 @@ namespace Character
     {
         /* Common Attribution */
         [SerializeField] protected DataIndex actionCode;
+        [SerializeField] protected SkillType skillType;
         [SerializeField] protected int priority;
         [SerializeField] protected float range;
         [SerializeField] protected float angle;
@@ -20,6 +21,7 @@ namespace Character
         [SerializeField] private string description;
 
         /* Condition Entity */
+        [SerializeField] private bool isRigid;
         [SerializeField] private float coolTime;
         [SerializeField] private float cost;
         
@@ -41,7 +43,9 @@ namespace Character
         [ShowInInspector] public ActionTable OnCompleted { get; } = new();
         [ShowInInspector] public ActionTable OnEnded { get; } = new();
 
-        public bool IsProgress { get; protected set; }
+        
+        public SkillType SkillType => skillType;
+        public bool IsRigid => isRigid;
         public bool IsEnded { get; protected set; } = true;
         public int Priority => priority;
         public float CoolTime => coolTime;
@@ -57,32 +61,29 @@ namespace Character
         public ICombatProvider Provider { get; set; }
         public virtual ICombatTaker MainTarget => 
             CharacterSystem.Searching.GetMainTarget(targetLayer, Provider.Object.transform.position, sortingType);
+        
+        protected bool IsProgress { get; set; }
 
+
+        public bool Conditions() => ConditionTable.IsAllTrue;
 
         public void Activate()
         {
-            if (ConditionTable.HasFalse) return;
-
             IsProgress = true;
-
+            CharacterSystem.Pathfinding.Stop();
             OnActivated.Invoke();
         }
 
         public void Cancel()
         {
-            // if (!IsProgress) return;
-
             OnCanceled.Invoke();
         }
-
-        public virtual void Release()
+        
+        public void Complete()
         {
-            if (!IsProgress) return;
-
-            OnCompleted.Invoke();
+            if (IsProgress) 
+                OnCompleted.Invoke();
         }
-
-
 
         // protected void ConsumeResource() => Provider.DynamicStatEntry.Resource.Value -= cost;
         protected void StartCooling() => coolTimeRoutine = StartCoroutine(CoolingRoutine());
@@ -150,11 +151,13 @@ namespace Character
         {
             Provider        = GetComponentInParent<ICombatProvider>();
             CharacterSystem = GetComponentInParent<ICharacterSystem>();
-
+            
             OnActivated.Register("IsEndedToFalse", () => IsEnded = false);
             OnActivated.Register("PlayAnimation", PlayAnimation);
             
             OnCanceled.Register("EndCallback", OnEnded.Invoke);
+            
+            OnCompleted.Register("Debug", () => Debug.Log(Provider.Object.transform.forward));
 
             OnEnded.Register("Idle", CharacterSystem.Animating.Idle);
             OnEnded.Register("IsProgressionToFalse", () => IsProgress = false);
@@ -176,6 +179,7 @@ namespace Character
         {
             var skillData = MainData.SkillSheetData(actionCode);
 
+            skillType    = skillData.SkillType.ToEnum<SkillType>();
             priority     = skillData.BasePriority;
             range        = skillData.TargetParam.x;
             angle        = skillData.TargetParam.y;
@@ -189,7 +193,7 @@ namespace Character
             icon         = GetSkillIcon();
         }
 
-        private void ShowDataBase()
+        public void ShowDataBase()
         {
             var skillData = MainData.SheetDataTable[DataIndex.Skill];
 

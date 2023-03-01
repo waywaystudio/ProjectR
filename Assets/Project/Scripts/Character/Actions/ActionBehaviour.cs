@@ -1,50 +1,40 @@
 using System.Collections.Generic;
-using Character.Graphic;
-using Character.Skill;
-using Character.Systems;
 using Core;
-using MainGame;
 using UnityEngine;
 
 namespace Character.Actions
 {
     public class ActionBehaviour : MonoBehaviour, IEditable
     {
-        [SerializeField] private Transform rootTransform;
         [SerializeField] private GlobalCoolDown gcd;
         [SerializeField] private CommonMove commonMove;
         [SerializeField] private List<SkillComponent> skillList = new();
-        [SerializeField] private SkillComponent dashSkill;
         [SerializeField] private SkillComponent firstSkill;
         [SerializeField] private SkillComponent secondSkill;
         [SerializeField] private SkillComponent thirdSkill;
         [SerializeField] private SkillComponent fourthSkill;
 
-        private Camera mainCamera;
-
+        public bool IsSkillEnded => Current.IsNullOrEmpty() || Current.IsEnded;
+        public SkillComponent Current { get; set; }
         public List<SkillComponent> SkillList => skillList;
-        public SkillComponent DashSkill => dashSkill;
         public SkillComponent FirstSkill => firstSkill;
         public SkillComponent SecondSkill => secondSkill;
         public SkillComponent ThirdSkill => thirdSkill;
         public SkillComponent FourthSkill => fourthSkill;
 
-        public ConditionTable Conditions { get; } = new();
-        public ActionTable<SkillComponent> OnCommonActivated { get; } = new();
-        public ActionTable<SkillComponent> OnCommonCanceled { get; } = new();
-        public ActionTable<SkillComponent> OnCommonReleased { get; } = new();
-        public SkillComponent Current { get; set; }
-        public Vector3 RootPosition => rootTransform.position;
-        public bool IsSkillEnded => Current.IsNullOrEmpty() || Current.IsEnded;
-
-        private AnimationModel Animating { get; set; }
-        private PathfindingSystem Pathfinding { get; set; }
+        public ConditionTable GlobalConditions { get; } = new();
+        public ActionTable<SkillComponent> OnGlobalActivated { get; } = new();
+        public ActionTable<SkillComponent> OnGlobalCanceled { get; } = new();
+        public ActionTable<SkillComponent> OnGlobalCompleted { get; } = new();
+        
 
         public void Run(Vector3 destination)
         {
-            commonMove.Run(destination);
+            if (!Current.IsNullOrEmpty() && !Current.IsEnded && Current.IsRigid) return;
             
             CancelSkill();
+            
+            commonMove.Run(destination);
         }
 
         public void Rotate(Vector3 lookTargetPosition)
@@ -57,55 +47,34 @@ namespace Character.Actions
             commonMove.Stop();
         }
 
-        public void Dash(Vector3 position)
+        public void Dash(Vector3 position, float distance)
         {
             CancelSkill();
-        
-            Pathfinding.RotateTo(position);
-            Stop();
-            Current = DashSkill;
-            gcd.StartCooling();
-            
-            DashSkill.Activate();
-            OnCommonActivated.Invoke(DashSkill);
+
+            commonMove.Dash(position, distance);
         }
-        
-        public void Teleport()
-        {
-            if (!MainManager.Input.TryGetMousePosition(out var mousePosition)) return;
-            
-            Teleport(mousePosition - RootPosition);
-        }
-        
-        public void Teleport(Vector3 position)
+
+        public void Teleport(Vector3 direction, float distance)
         {
             CancelSkill();
             
-            Pathfinding.RotateTo(position);
-            Pathfinding.Teleport(position);
-            Animating.Idle();
+            commonMove.Teleport(direction, distance);
         }
         
 
         public void ActiveSkill(SkillComponent skill, Vector3 targetPosition)
         {
-            if (Conditions.HasFalse) return;
+            if (GlobalConditions.HasFalse) return;
+            if (!skill.Conditions()) return;
 
-            Stop();
             Rotate(targetPosition);
-            Current = skill;
-            gcd.StartCooling();
-                
-            skill.Activate();
-            
-            OnCommonActivated.Invoke(skill);
-        }
 
-        public void ReleaseSkill(SkillComponent skill)
-        {
-            skill.Release();
+            Current = skill;
+            Current.Activate();
+
+            OnGlobalActivated.Invoke(skill);
             
-            OnCommonReleased.Invoke(skill);
+            Debug.Log(skill.Provider.Object.transform.forward);
         }
 
         public void CancelSkill()
@@ -113,7 +82,15 @@ namespace Character.Actions
             if (Current.IsNullOrEmpty()) return;
             
             Current.Cancel();
-            OnCommonCanceled.Invoke(Current);
+            OnGlobalCanceled.Invoke(Current);
+        }
+
+        public void CompleteSkill()
+        {
+            if (Current.IsNullOrEmpty()) return;
+            
+            Current.Complete();
+            OnGlobalCompleted.Invoke(Current);
         }
 
         public bool TryGetMostPrioritySkill(out SkillComponent skill)
@@ -136,28 +113,21 @@ namespace Character.Actions
 
         private void Awake()
         {
-            var characterSystem =   GetComponentInParent<ICharacterSystem>();
-
-            Animating   =   characterSystem.Animating;
-            Pathfinding =   characterSystem.Pathfinding;
             gcd         ??= GetComponent<GlobalCoolDown>();
             commonMove  ??= GetComponent<CommonMove>();
             
             skillList.Clear();
             GetComponentsInChildren(false, skillList);
-            
             skillList.ForEach(x => x.OnEnded.Register("BehaviourUnregister", () => Current = null));
 
-            Conditions.Register("GlobalCoolTime", () => !gcd.IsCooling);
-            Conditions.Register("CurrentSkillCompleted", () => IsSkillEnded);
+            GlobalConditions.Register("GlobalCoolTime", () => !gcd.IsCooling);
+            GlobalConditions.Register("CurrentSkillCompleted", () => IsSkillEnded);
+            
+            OnGlobalActivated.Register("GlobalCooling", gcd.StartCooling);
         }
 
-        private void Update()
-        {
-            Animating.Flip(rootTransform.forward);
-        }
-        
 
+#if UNITY_EDITOR
         public void EditorSetUp()
         {
             TryGetComponent(out gcd);
@@ -166,5 +136,6 @@ namespace Character.Actions
             skillList.Clear();
             GetComponentsInChildren(false, skillList);
         }
+#endif
     }
 }

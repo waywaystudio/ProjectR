@@ -1,4 +1,3 @@
-using Core;
 using UnityEngine;
 
 namespace Character.Actions.Soldier
@@ -18,14 +17,21 @@ namespace Character.Actions.Soldier
             CharacterSystem.Animating.OnHit.Register("HoldingHit", OnHit.Invoke);
         }
         
+        
         private void OnHoldingAttack()
         {
-            if (!CharacterSystem.Colliding.TryGetTakersInSphere(transform.position, range, angle, targetLayer, out var takerList)) return;
+            // TODO. 현재 Test상 HitScan 방식이어서 이렇고, Projectile로 바뀌면 교체해야 함.
+            var providerTransform = Provider.Object.transform;
             
-            takerList.ForEach(taker =>
-            {
-                power.Damage(taker);
-            });
+            if (!CharacterSystem.Colliding.TryGetTakersByRaycast(
+                    providerTransform.position,
+                    providerTransform.forward,
+                    range,
+                    16,
+                    targetLayer,
+                    out var takerList)) return;
+            
+            takerList.ForEach(power.Damage);
         }
         
         protected void OnEnable()

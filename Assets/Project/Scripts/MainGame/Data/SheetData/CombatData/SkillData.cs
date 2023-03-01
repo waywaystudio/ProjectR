@@ -17,6 +17,7 @@ namespace MainGame.Data.SheetData.CombatData
 			[SerializeField] private Int32 id;
 			[SerializeField] private String name;
 			[SerializeField] private String description;
+			[SerializeField] private String skillType;
 			[SerializeField] private List<Single> completionValueList;
 			[SerializeField] private Single processTime;
 			[SerializeField] private Single coolTime;
@@ -31,6 +32,7 @@ namespace MainGame.Data.SheetData.CombatData
 			public Int32 ID => id;
 			public String Name => name;
 			public String Description => description;
+			public String SkillType => skillType;
 			public List<Single> CompletionValueList => completionValueList;
 			public Single ProcessTime => processTime;
 			public Single CoolTime => coolTime;

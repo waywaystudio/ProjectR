@@ -9,8 +9,6 @@ namespace Character.Actions.Knight
     {
         [SerializeField] private ValueCompletion power;
         
-        
-        public override void Release() { }
 
         protected override void PlayAnimation()
         {
@@ -19,12 +17,9 @@ namespace Character.Actions.Knight
 
         private void Jump()
         {
-            // TODO. Forward로 바꾼후, 플레이어는 마우스 포지션을 받아, 즉시 회전 후 Forward로 점프하는 형태.
-            var dest = !MainGame.MainManager.Input.TryGetMousePosition(out var mousePosition) 
-                ? transform.position 
-                : mousePosition;
+            var direction = Provider.Object.transform.forward;
             
-            CharacterSystem.Pathfinding.Jump(dest, 11f);
+            CharacterSystem.Pathfinding.Jump(direction, 11f);
         }
         
         protected void OnAttack()
@@ -47,7 +42,6 @@ namespace Character.Actions.Knight
             power.Initialize(Provider, ActionCode);
 
             OnActivated.Register("RegisterHitEvent", RegisterHitEvent);
-            OnActivated.Register("CanNotMoveUntilEnd", () => CharacterSystem.Pathfinding.CanMove = false);
             OnActivated.Register("Jump", Jump);
             OnActivated.Register("StartCooling", StartCooling);
             
@@ -56,7 +50,6 @@ namespace Character.Actions.Knight
             OnCompleted.Register("EndCallback", OnEnded.Invoke);
 
             OnEnded.Register("ReleaseHit", () => CharacterSystem.Animating.OnHit.Unregister("SkillHit"));
-            OnEnded.Register("ReleaseMove", () => CharacterSystem.Pathfinding.CanMove = true);
         }
         
         

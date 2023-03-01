@@ -13,14 +13,7 @@ namespace Character.Actions
         
         private ICombatProvider Provider { get; set; }
         public FloatEvent GlobalCoolTimeProgress { get; } = new(0, float.MaxValue);
-        public bool IsCooling
-        { 
-            get
-            {
-                // if (GlobalCoolTimeProgress.Value <= 0f) Debug.LogWarning("GlobalCoolDown On");
-                return GlobalCoolTimeProgress.Value != 0f;
-            }
-        }
+        public bool IsCooling => GlobalCoolTimeProgress.Value != 0f;
 
 
         public void StartCooling()

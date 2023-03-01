@@ -25,12 +25,6 @@ namespace Core
         { 
             get
             {
-                if (Count == 0)
-                {
-                    Debug.LogWarning("Table is Null or Empty. return true");
-                    return true;
-                }
-                
                 foreach (var item in this) 
                     if (!item.Value.Invoke()) return false;
 

@@ -4,22 +4,18 @@ namespace Character.Actions.Soldier
     {
         // TODO. Require TrapType Projectile
         
-        public override void Release() { }
         
         protected override void PlayAnimation()
         {
             CharacterSystem.Animating.PlayOnce(animationKey, progressTime, OnCompleted.Invoke);
         }
         
+        // TODO. 백점프를 하다보니, Flip이 이상해지는 구간이 생긴다.
         private void Jump()
         {
-            var providerTransform = Provider.Object.transform;
-            var jumpDirection     = providerTransform.forward * -1f;
+            var direction = Provider.Object.transform.forward * -1f;
             
-            // TODO. Forward로 바꾼후, 플레이어는 마우스 포지션을 받아, 즉시 회전 후 Forward로 점프하는 형태.
-            var dest = providerTransform.position + jumpDirection * 10f;
-            
-            CharacterSystem.Pathfinding.Jump(dest, 10f);
+            CharacterSystem.Pathfinding.Jump(direction, 10f);
         }
         
         protected void OnEnable()

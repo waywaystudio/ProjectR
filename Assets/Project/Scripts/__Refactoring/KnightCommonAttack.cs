@@ -11,7 +11,7 @@ namespace __Refactoring
         [SerializeField] protected ValueCompletion power;
         [SerializeField] private StatusEffectCompletion armorCrash;
 
-        public override void Release() { }
+        // public override void Release() { }
         
         protected override void PlayAnimation()
         {

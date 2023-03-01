@@ -17,6 +17,8 @@ namespace Raid.UI.ActionFrames.ActionBars
             
             adventurerList.ForEach((adventurer, index) =>
             {
+                if (index >= slotList.Count) return;
+                
                 slotList[index].Initialize(adventurer);
                 slotList[index].gameObject.SetActive(true);
             });

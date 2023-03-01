@@ -109,10 +109,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0b41bb0c3dbbd114882a16e954f7deac, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  model: {fileID: 0}
-  searching: {fileID: 0}
-  colliding: {fileID: 0}
   actionCode: 13000007
+  skillType: 1
   priority: 4
   range: 50
   angle: 0

@@ -6,7 +6,6 @@ namespace Character.Actions.Assassin
     {
         public override ICombatTaker MainTarget => CharacterSystem.Searching.GetSelf();
         
-        public override void Release() { }
         
         protected override void PlayAnimation()
         {

@@ -1,6 +1,5 @@
 using Character;
 using Character.Actions;
-using Character.Skill;
 using Core;
 using MainGame;
 using UnityEngine;
@@ -38,8 +37,9 @@ namespace Raid.UI.ActionFrames.ActionBars.CharacterSkillBars
         public void CompleteAction(InputAction.CallbackContext context)
         {
             if (skillComponent.IsNullOrEmpty() || focusedAdventurer.IsNullOrEmpty()) return;
+            if (skillComponent.SkillType is SkillType.Instant or SkillType.Casting) return;
             
-            ActionBehaviour.ReleaseSkill(skillComponent);
+            ActionBehaviour.CompleteSkill();
         }
 
     }

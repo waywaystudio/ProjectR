@@ -10,7 +10,7 @@ namespace __Refactoring
         [SerializeField] private ValueCompletion power;
         [SerializeField] private StatusEffectCompletion bleed;
 
-        public override void Release() { }
+        // public override void Release() { }
         
         
         protected override void PlayAnimation()

@@ -16,8 +16,8 @@ namespace Raid.UI.ActionFrames
         public void Initialize()
         {
             actionBehaviour = RaidDirector.FocusCharacter.ActionBehaviour;
-            actionBehaviour.OnCommonActivated.Unregister("ShowCastingUI");
-            actionBehaviour.OnCommonActivated.Register("ShowCastingUI", Register);
+            actionBehaviour.OnGlobalActivated.Unregister("ShowCastingUI");
+            actionBehaviour.OnGlobalActivated.Register("ShowCastingUI", Register);
         }
 
         public void OnAdventurerChanged(Adventurer ab)
@@ -27,14 +27,14 @@ namespace Raid.UI.ActionFrames
             if (ab.IsNullOrEmpty()) return;
             
             actionBehaviour = ab.ActionBehaviour;
-            actionBehaviour.OnCommonActivated.Register("ShowCastingUI", Register);
+            actionBehaviour.OnGlobalActivated.Register("ShowCastingUI", Register);
 
             Register();
         }
 
         private void Unregister()
         {
-            actionBehaviour.OnCommonActivated.Unregister("ShowCastingUI");
+            actionBehaviour.OnGlobalActivated.Unregister("ShowCastingUI");
             actionBehaviour.SkillList.ForEach(x => x.OnEnded.Unregister("OffCastingUI"));
         }
 

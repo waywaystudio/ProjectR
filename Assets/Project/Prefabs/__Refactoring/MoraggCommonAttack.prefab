@@ -109,10 +109,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e84f23e793470374a995f2cd805ab8e5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  model: {fileID: 0}
-  searching: {fileID: 0}
-  colliding: {fileID: 0}
   actionCode: 13000009
+  skillType: 1
   priority: 1
   range: 6
   angle: 360
@@ -125,7 +123,6 @@ MonoBehaviour:
   coolTime: 0
   cost: 0
   animationKey: attack
-  processType: 0
   progressTime: 0
   power: {fileID: 0}
 --- !u!114 &159349165042510227

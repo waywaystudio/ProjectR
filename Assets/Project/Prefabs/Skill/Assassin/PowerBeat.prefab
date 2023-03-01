@@ -110,6 +110,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   actionCode: 13000012
+  skillType: 1
   priority: 2
   range: 7
   angle: 90
@@ -137,5 +138,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   power:
-    value: 8
+    value: 12
     statCode: 1

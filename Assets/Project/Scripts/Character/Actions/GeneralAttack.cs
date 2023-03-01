@@ -2,8 +2,6 @@ namespace Character.Actions
 {
     public class GeneralAttack : SkillComponent
     {
-        public override void Release() { }
-
         protected virtual void OnAttack() { }
         protected override void PlayAnimation()
         {

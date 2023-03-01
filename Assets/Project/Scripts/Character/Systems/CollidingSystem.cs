@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using Core;
+using Sirenix.OdinInspector;
 using UnityEngine;
 
 namespace Character.Systems
@@ -9,6 +10,7 @@ namespace Character.Systems
         [SerializeField] private int maxBufferCount = 32;
         
         protected Collider[] ColliderBuffers;
+        [ShowInInspector]
         protected RaycastHit[] RayBuffers;
         
         public bool TryGetTakersInSphere(SkillComponent skill, out List<ICombatTaker> takerList) => (takerList = 
@@ -22,14 +24,14 @@ namespace Character.Systems
         public bool TryGetTakersInSphere(Vector3 center, float radius, float angle, LayerMask layer,
             out List<ICombatTaker> takerList) => (takerList = GetTakersInSphereType(center, radius, angle, layer)).HasElement();
 
-        public bool TryGetTakersByRaycast(Vector3 center, Vector3 target, float distance, int maxCount,
+        public bool TryGetTakersByRaycast(Vector3 center, Vector3 direction, float distance, int maxCount,
                                           LayerMask targetLayer,
                                           out List<ICombatTaker> takerList) =>
-            (takerList = GetTakerByRaycast(center, target, distance, maxCount, targetLayer)).HasElement();
+            (takerList = GetTakerByRaycast(center, direction, distance, maxCount, targetLayer)).HasElement();
 
-        public bool TryGetTakerByRayCast(Vector3 center, Vector3 target, float distance, int maxCount,
+        public bool TryGetTakerByRayCast(Vector3 center, Vector3 direction, float distance, int maxCount,
                                          LayerMask targetLayer, out ICombatTaker taker) =>
-            (taker = GetTakerByRaycast(center, target, distance, maxCount, targetLayer).FirstOrNull()) != null;
+            (taker = GetTakerByRaycast(center, direction, distance, maxCount, targetLayer).FirstOrNull()) != null;
 
 
         private List<ICombatTaker> GetTakersInSphereType(Vector3 center, float radius, float angle, LayerMask layer)
@@ -55,45 +57,31 @@ namespace Character.Systems
             return result;
         }
         
-        public List<ICombatTaker> GetTakerByRaycast(Vector3 center, Vector3 target, float distance, float maxCount, LayerMask targetLayer)
+        private List<ICombatTaker> GetTakerByRaycast(Vector3 center, Vector3 direction, float distance, float maxCount, LayerMask targetLayer)
         {
-            var direction = (target - center).normalized;
-            
-            if (Physics.RaycastNonAlloc(center, direction, RayBuffers, distance) == 0)
-            {
-                Debug.Log("Noting In Raycast");
-            }
+            // Add order : Distance Descendent
+            if (Physics.RaycastNonAlloc(center, direction, RayBuffers, distance, targetLayer.value) == 0) return null;
 
-            // TODO. 가까운 거리 기준으로 먼저 들어오나 확인해야 함.
-            if (Physics.RaycastNonAlloc(center, direction, RayBuffers, distance, targetLayer) == 0)
-            {
-                return null;
-            }
-            
-            Debug.DrawRay(center, direction, Color.green, 2, false);
-            
             var result  = new List<ICombatTaker>();
             var counter = 0;
 
-            foreach (var ray in RayBuffers)
+            // Reverse For loop for check nearest collider.
+            for (var i = RayBuffers.Length - 1; i >= 0; i--)
             {
-                if (ray.collider.IsNullOrEmpty() || !ray.collider.TryGetComponent(out ICombatTaker taker)) continue;
-                if (counter > maxCount)
-                {
-                    return result;
-                }
-                
+                if (RayBuffers[i].collider.IsNullOrEmpty() || !RayBuffers[i].collider.TryGetComponent(out ICombatTaker taker)) continue;
+                if (counter > maxCount) break;
+
                 result.Add(taker);
                 counter++;
             }
-
-            return null;
+            
+            return result;
         }
 
-        private List<ICombatTaker> GetTakersInRectangleType(Vector3 center, float width, float height, LayerMask layer)
-        {
-            return null;
-        }
+        // private List<ICombatTaker> GetTakersInRectangleType(Vector3 center, float width, float height, LayerMask layer)
+        // {
+        //     return null;
+        // }
 
 
         private void Awake()

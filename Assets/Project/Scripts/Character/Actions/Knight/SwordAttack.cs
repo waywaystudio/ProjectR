@@ -7,8 +7,6 @@ namespace Character.Actions.Knight
     {
         [SerializeField] private ValueCompletion power;
         
-        public override void Release() { }
-        
         
         protected override void PlayAnimation()
         {

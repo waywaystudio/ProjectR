@@ -41,13 +41,12 @@ namespace Character
         public IDynamicStatEntry DynamicStatEntry => dynamicStatEntry ??= GetComponentInChildren<DynamicStatEntry>();
         public GameObject Object => gameObject;
         public StatTable StatTable => DynamicStatEntry.StatTable;
+        
         public ActionTable OnDead { get; } = new();
-
         public ActionTable<CombatEntity> OnProvideDamage { get; } = new();
         public ActionTable<CombatEntity> OnProvideHeal { get; } = new();
         public ActionTable<StatusEffectEntity> OnProvideDeBuff { get; } = new();
         public ActionTable<StatusEffectEntity> OnProvideBuff { get; } = new();
-        
         public ActionTable<CombatEntity> OnTakeDamage { get; } = new();
         public ActionTable<CombatEntity> OnTakeHeal { get; } = new();
         public ActionTable<StatusEffectEntity> OnTakeDeBuff { get; } = new();

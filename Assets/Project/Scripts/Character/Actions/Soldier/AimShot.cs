@@ -13,8 +13,17 @@ namespace Character.Actions.Soldier
         
         private void OnAimShotAttack()
         {
-            if (!CharacterSystem.Colliding.TryGetTakersInSphere(this, out var takerList)) return;
+            // TODO. 현재 Test상 HitScan 방식이어서 이렇고, Projectile로 바뀌면 교체해야 함.
+            var providerTransform = Provider.Object.transform;
             
+            if (!CharacterSystem.Colliding.TryGetTakersByRaycast(
+                    providerTransform.position,
+                    providerTransform.forward,
+                    range,
+                    16,
+                    targetLayer,
+                    out var takerList)) return;
+
             takerList.ForEach(power.Damage);
         }
         

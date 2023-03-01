@@ -1,4 +1,3 @@
-using Core;
 using UnityEngine;
 
 namespace Character.Actions.Soldier
@@ -7,28 +6,25 @@ namespace Character.Actions.Soldier
     {
         [SerializeField] private ValueCompletion power;
         
-        public override void Release() { }
-        
         protected override void PlayAnimation()
         {
             CharacterSystem.Animating.PlayOnce(animationKey, progressTime, OnCompleted.Invoke);
+            // OnCompleted.Invoke();
         }
         
         protected void OnAttack()
         {
-            // TODO. Damage를 주기보다, Projectile을 발사해야 할 수 있다.
-            // var providerTransform = Provider.Object.transform;
-            // var tempTarget        = providerTransform.position + providerTransform.forward; 
-            //     
-            // if (!CharacterSystem.Colliding.TryGetTakerByRayCast(providerTransform.position, tempTarget,
-            //         range, 10, targetLayer, out var taker))
-            // {
-            //     Debug.Log("No Taker");
-            //     return;
-            // }
+            // TODO. 현재 Test상 HitScan 방식이어서 이렇고, Projectile로 바뀌면 교체해야 함.
+            var providerTransform = Provider.Object.transform;
             
-            if (!CharacterSystem.Colliding.TryGetTakersInSphere(this, out var takerList)) return;
-            
+            if (!CharacterSystem.Colliding.TryGetTakersByRaycast(
+                    providerTransform.position,
+                    providerTransform.forward,
+                    range,
+                    16,
+                    targetLayer,
+                    out var takerList)) return;
+
             takerList.ForEach(power.Damage);
         }
         

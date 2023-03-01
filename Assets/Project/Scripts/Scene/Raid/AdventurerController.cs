@@ -46,7 +46,7 @@ namespace Raid
             if (focusedAdventurer.IsNullOrEmpty()) return;
             if (!focusedAdventurer.isActiveAndEnabled) return;
             
-            focusedAdventurer.ActionBehaviour.Teleport();
+            // focusedAdventurer.ActionBehaviour.Teleport();
         }
 
 
