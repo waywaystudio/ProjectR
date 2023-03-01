@@ -55,7 +55,8 @@ namespace Character
         public Sprite Icon => icon;
         public DataIndex ActionCode => actionCode;
         public ICombatProvider Provider { get; set; }
-        public ICombatTaker MainTarget => CharacterSystem.Searching.GetMainTarget(targetLayer, Provider.Object.transform.position, sortingType);
+        public virtual ICombatTaker MainTarget => 
+            CharacterSystem.Searching.GetMainTarget(targetLayer, Provider.Object.transform.position, sortingType);
 
 
         public void Activate()
@@ -69,7 +70,7 @@ namespace Character
 
         public void Cancel()
         {
-            if (!IsProgress) return;
+            // if (!IsProgress) return;
 
             OnCanceled.Invoke();
         }

@@ -71,11 +71,11 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 234500611213636336}
-  - component: {fileID: 1416249181191727617}
+  - component: {fileID: 9094432963895350988}
   - component: {fileID: 6638601734450639617}
   - component: {fileID: 7244589487955510195}
   m_Layer: 0
-  m_Name: Bash
+  m_Name: UpperSlash
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -98,7 +98,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1416249181191727617
+--- !u!114 &9094432963895350988
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -107,25 +107,25 @@ MonoBehaviour:
   m_GameObject: {fileID: 8380361914805468174}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 222a8f415f8434843b9aa37f3873ad23, type: 3}
+  m_Script: {fileID: 11500000, guid: a4fad5fa044eb484489ab877718b568a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  actionCode: 13000002
-  priority: 2
-  range: 6
+  actionCode: 13000003
+  priority: 3
+  range: 8
   angle: 90
   sortingType: 0
   targetLayer:
     serializedVersion: 2
     m_Bits: 256
-  icon: {fileID: 21300000, guid: 8f65b4f511f4d784a8f0bef07957cfbd, type: 3}
+  icon: {fileID: 21300000, guid: 5bb14a259eefff541a510382c2530229, type: 3}
   description: Starts combat by attacking a target with a melee weapon.
-  coolTime: 5
+  coolTime: 7
   cost: 0
-  animationKey: bash
+  animationKey: upperSlash
   progressTime: 0
   power: {fileID: 6638601734450639617}
-  armorCrash: {fileID: 7244589487955510195}
+  bleed: {fileID: 7244589487955510195}
 --- !u!114 &6638601734450639617
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -139,7 +139,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   power:
-    value: 20
+    value: 48
     statCode: 1
 --- !u!114 &7244589487955510195
 MonoBehaviour:
@@ -153,5 +153,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 75e87109fe881904d8926813d4540676, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  prefab: {fileID: 8333227002716821657, guid: b8a0db4494b80d1418934391f99ec561, type: 3}
+  prefab: {fileID: 8333227002716821657, guid: 5d2fb8c7eb66cd742b1e14925d73c808, type: 3}
   maxCount: 16

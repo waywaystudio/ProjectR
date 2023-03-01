@@ -50,6 +50,8 @@ namespace Character.Systems
             return null;
         }
 
+        public ICombatTaker GetSelf() => GetComponentInParent<ICombatExecutor>();
+
 
         private static bool IsAbleToCombat(Component other, LayerMask layer, out ICombatTaker taker)
             => other.TryGetComponent(out taker) && other.gameObject.IsInLayerMask(layer);

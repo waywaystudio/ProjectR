@@ -1089,6 +1089,10 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: -6687176528768826702, guid: 4ae3fbab6c1c1ed48bbe37492124f254, type: 3}
+      propertyPath: sortingType
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: -6687176528768826702, guid: 4ae3fbab6c1c1ed48bbe37492124f254, type: 3}
       propertyPath: powerValue.value
       value: 36
       objectReference: {fileID: 0}

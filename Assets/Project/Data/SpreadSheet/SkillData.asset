@@ -18,7 +18,7 @@ MonoBehaviour:
     name: SwordAttack
     description: Starts combat by attacking a target with a melee weapon.
     completionValueList:
-    - 10
+    - 15
     processTime: 0
     coolTime: 0
     cost: 0
@@ -32,7 +32,7 @@ MonoBehaviour:
     name: Bash
     description: Starts combat by attacking a target with a melee weapon.
     completionValueList:
-    - 20
+    - 30
     processTime: 0
     coolTime: 5
     cost: 0
@@ -46,7 +46,7 @@ MonoBehaviour:
     name: UpperSlash
     description: Starts combat by attacking a target with a melee weapon.
     completionValueList:
-    - 30
+    - 48
     processTime: 0
     coolTime: 7
     cost: 0
@@ -60,7 +60,7 @@ MonoBehaviour:
     name: ThunderClap
     description: Starts combat by attacking a target with a melee weapon.
     completionValueList:
-    - 8
+    - 15
     processTime: 0
     coolTime: 8
     cost: 0
@@ -153,4 +153,116 @@ MonoBehaviour:
     sortingType: HpRatioAscending
     targetLayer: Adventurer
     targetParam: {x: 5, y: 25}
+    statusEffect: 0
+  - id: 13000011
+    name: ClawAttack
+    description: Starts combat by attacking a target with a melee weapon.
+    completionValueList:
+    - 14
+    processTime: 0
+    coolTime: 0
+    cost: 0
+    basePriority: 1
+    animationKey: clawAttack
+    sortingType: None
+    targetLayer: Monster
+    targetParam: {x: 6, y: 90}
+    statusEffect: 0
+  - id: 13000012
+    name: PowerBeat
+    description: Starts combat by attacking a target with a melee weapon.
+    completionValueList:
+    - 12
+    processTime: 0
+    coolTime: 6
+    cost: 0
+    basePriority: 2
+    animationKey: powerBeat
+    sortingType: None
+    targetLayer: Monster
+    targetParam: {x: 7, y: 90}
+    statusEffect: 0
+  - id: 13000013
+    name: Liberation
+    description: Starts combat by attacking a target with a melee weapon.
+    completionValueList:
+    - 0
+    processTime: 0
+    coolTime: 12
+    cost: 0
+    basePriority: 3
+    animationKey: liberation
+    sortingType: None
+    targetLayer: Adventurer
+    targetParam: {x: 0, y: 0}
+    statusEffect: 0
+  - id: 13000014
+    name: Annihilation
+    description: Starts combat by attacking a target with a melee weapon.
+    completionValueList:
+    - 20
+    processTime: 0
+    coolTime: 18
+    cost: 0
+    basePriority: 4
+    animationKey: annihilation
+    sortingType: None
+    targetLayer: Monster
+    targetParam: {x: 12, y: 360}
+    statusEffect: 0
+  - id: 13000015
+    name: ShotAttack
+    description: Starts combat by attacking a target with a melee weapon.
+    completionValueList:
+    - 9
+    processTime: 0
+    coolTime: 0
+    cost: 0
+    basePriority: 1
+    animationKey: shotAttack
+    sortingType: None
+    targetLayer: Monster
+    targetParam: {x: 30, y: 6}
+    statusEffect: 0
+  - id: 13000016
+    name: ContinuesAttack
+    description: Starts combat by attacking a target with a melee weapon.
+    completionValueList:
+    - 4
+    processTime: 4
+    coolTime: 12
+    cost: 0
+    basePriority: 2
+    animationKey: continuesAttack
+    sortingType: None
+    targetLayer: Monster
+    targetParam: {x: 30, y: 6}
+    statusEffect: 0
+  - id: 13000017
+    name: Trap
+    description: Starts combat by attacking a target with a melee weapon.
+    completionValueList:
+    - 50
+    processTime: 0
+    coolTime: 15
+    cost: 0
+    basePriority: 3
+    animationKey: jump
+    sortingType: None
+    targetLayer: Monster
+    targetParam: {x: 4, y: 360}
+    statusEffect: 0
+  - id: 13000018
+    name: AimShot
+    description: Starts combat by attacking a target with a melee weapon.
+    completionValueList:
+    - 50
+    processTime: 3
+    coolTime: 18
+    cost: 0
+    basePriority: 4
+    animationKey: aiming
+    sortingType: None
+    targetLayer: Monster
+    targetParam: {x: 40, y: 8}
     statusEffect: 0

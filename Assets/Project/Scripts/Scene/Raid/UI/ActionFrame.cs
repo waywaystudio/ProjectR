@@ -23,7 +23,7 @@ namespace Raid.UI
             dynamicValueProcess.Initialize(RaidDirector.Player);
             actionBar.Initialize(RaidDirector.Player);
             // dashAction.Initialize(RaidDirector.Player);
-            // adventurerBar.Initialize(RaidDirector.AdventurerList);
+            adventurerBar.Initialize(RaidDirector.AdventurerList);
         }
         
 

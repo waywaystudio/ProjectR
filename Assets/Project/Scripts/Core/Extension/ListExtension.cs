@@ -146,6 +146,8 @@ namespace Core
         {
             if (list.Count > count) list.RemoveRange(count, list.Count - count);
         }
+
+        public static T FirstOrNull<T>(this List<T> list) where T : class => list.HasElement() ? list[0] : null;
     }
 }
 

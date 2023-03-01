@@ -1,0 +1,32 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 84f978e06becd664396e8641cc7d3033, type: 3}
+  m_Name: SoldierAnimationModelData
+  m_EditorClassIdentifier: 
+  animationList:
+  - Asset: {fileID: 11400000, guid: a5212cf48c152fa4e86d83149caf4300, type: 2}
+  - Asset: {fileID: 11400000, guid: 45ca87b4286eba94b81d317321bd529c, type: 2}
+  - Asset: {fileID: 11400000, guid: fe4ba91d99919c6419245358be3f6f8e, type: 2}
+  - Asset: {fileID: 11400000, guid: 60ee5b750c2a37c4db002f51c1c5a42b, type: 2}
+  - Asset: {fileID: 11400000, guid: 721038666b64f06418ad0c3f2d21b9e8, type: 2}
+  - Asset: {fileID: 11400000, guid: 70e553d1fa2127a4c98b9a9b885d9e5a, type: 2}
+  - Asset: {fileID: 11400000, guid: db9e0047940938343881b3c2a81c2058, type: 2}
+  - Asset: {fileID: 11400000, guid: 819c8133310bf6c4ba1d3d387924a35c, type: 2}
+  - Asset: {fileID: 11400000, guid: c6d8ca142008f394fb4414550d4aab99, type: 2}
+  - Asset: {fileID: 11400000, guid: 45b6b5cb98900ad41a563e97c712a627, type: 2}
+  - Asset: {fileID: 11400000, guid: 06c7f40afc0b8254ab507b4c9135114b, type: 2}
+  - Asset: {fileID: 11400000, guid: 15333e230f04a0049b3af51c3d2750b7, type: 2}
+  - Asset: {fileID: 11400000, guid: f2228d31795ae274d80670090eee23ca, type: 2}
+  - Asset: {fileID: 11400000, guid: 5879146e349c3e640b811bd03837116d, type: 2}
+  - Asset: {fileID: 11400000, guid: ee219be1c160f4f4ab09227c5eb2070b, type: 2}
+  transitionIndexList: []
+  referenceDirectory: Assets/Project/Graphics/Spine/Soldier/ReferenceAssets

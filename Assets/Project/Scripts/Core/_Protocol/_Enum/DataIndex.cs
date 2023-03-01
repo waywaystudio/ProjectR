@@ -41,6 +41,14 @@ public enum DataIndex
 	MoraggHowling = 13000008,
 	MoraggCommonAttack = 13000009,
 	PriestCommonHeal = 13000010,
+	ClawAttack = 13000011,
+	PowerBeat = 13000012,
+	Liberation = 13000013,
+	Annihilation = 13000014,
+	ShotAttack = 13000015,
+	ContinuesAttack = 13000016,
+	Trap = 13000017,
+	AimShot = 13000018,
 
 	/* StatusEffectData */
 	ArmorCrash = 14000001,
