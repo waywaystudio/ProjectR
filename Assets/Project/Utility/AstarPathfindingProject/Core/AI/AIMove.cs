@@ -12,7 +12,6 @@ namespace Pathfinding
     {
         [SerializeField] private Transform rootObject;
 
-        // Invoked When actual Arrived.
         public Action Callback { get; set; }
 
         public override void FindComponents()
@@ -25,8 +24,13 @@ namespace Pathfinding
             rigid2D = GetComponent<Rigidbody2D>();
         }
         
+        /// <summary>
+        /// CallBack When Completely Reached.
+        /// 도착 전에 목적지를 바꾸거나, 다른 행동을 하면 호출되지 않음.
+        /// </summary>
         public override void OnTargetReached()
         {
+            Debug.Log("OnTargetReached Call!");
             Callback?.Invoke();
         }
     }

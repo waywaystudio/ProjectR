@@ -29,9 +29,8 @@ namespace Character.Graphic
             
             PlayLoop("idle");
         }
-        public void Walk() => PlayLoop("walk");
         public void Run() => PlayLoop("run");
-        public void Dead() => PlayOnce("Dead");
+        public void Dead() => PlayOnce("dead");
 
         public void PlayOnce(string animationKey, float timeScale = 0f, Action callback = null) 
             => Play(animationKey, 0, false, timeScale, callback);

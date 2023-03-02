@@ -1,3 +1,4 @@
+using System;
 using Core;
 using Sirenix.OdinInspector;
 using UnityEngine;
@@ -21,15 +22,13 @@ public class SandBox : MonoBehaviour
     public void C() { Debug.Log("C");}
     public void D() { Debug.Log("D");}
 
-    private void Awake()
-    {
-        TryGetComponent(out sandSphere);
-
-        // combatEntity = sandSphere.Entity;
-        
-        ActionTable.Register("A", A);
-        ActionTable.Register("B", B);
-        ActionTable.Register("C", C);
-        ActionTable.Register("D_", D);
-    }
+    // private void Awake()
+    // {
+    //     TryGetComponent(out sandSphere);
+    //     
+    //     ActionTable.Register("A", A);
+    //     ActionTable.Register("B", B);
+    //     ActionTable.Register("C", C);
+    //     ActionTable.Register("D_", D);
+    // }
 }

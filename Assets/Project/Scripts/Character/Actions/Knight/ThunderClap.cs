@@ -2,9 +2,6 @@ using UnityEngine;
 
 namespace Character.Actions.Knight
 {
-    /* TODO.점프 중에 이동하면 모션이 부자연스러워지는 현상이 있다. 개발 아이디어가 필요하다. */
-    // 1. ActionBehaviour.CommonMove.Run(Vector3 destination) 을 bool TryRun으로 바꾼다.
-    // 2. ...
     public class ThunderClap : SkillComponent
     {
         [SerializeField] private ValueCompletion power;
@@ -19,7 +16,7 @@ namespace Character.Actions.Knight
         {
             var direction = Provider.Object.transform.forward;
             
-            CharacterSystem.Pathfinding.Jump(direction, 11f);
+            CharacterSystem.Pathfinding.Jump(direction, 11f, 2.4f, 0.77f);
         }
         
         protected void OnAttack()

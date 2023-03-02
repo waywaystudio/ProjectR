@@ -78,6 +78,8 @@ namespace Core
         ActionTable<CombatEntity> OnTakeHeal { get; }
         ActionTable<StatusEffectEntity> OnTakeDeBuff { get; }
         ActionTable<StatusEffectEntity> OnTakeBuff { get; }
+        
+        // IBehaviour ActionBehaviour {get;}
 
         void Dead();
         CombatEntity TakeDamage(ICombatTable combatTable);
@@ -107,5 +109,16 @@ namespace Core
         // + CombatEntity TakeHeal(ICombatTable combatTable);
         // + StatusEffectEntity TakeDeBuff(IStatusEffect statusEffect);
         // + StatusEffectEntity TakeBuff(IStatusEffect statusEffect);
+    }
+
+    public interface IActionBehaviour
+    {
+        void Run(Vector3 destination);
+        void RigidRotate(Vector3 lookTarget);
+        void Stop();
+        void Dead();
+        // void Stun();
+        // void KnockBack();
+        // void Hit();
     }
 }

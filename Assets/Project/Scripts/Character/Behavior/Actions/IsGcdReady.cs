@@ -1,13 +1,12 @@
 using BehaviorDesigner.Runtime.Tasks;
 using Character.Actions;
-using Character.Skill;
 
 namespace Character.Behavior.Actions
 {
     [TaskIcon("{SkinColor}SelectorIcon.png"), TaskCategory("Character/Combat")]
     public class IsGcdReady : Action
     {
-        private ActionBehaviour ab;
+        private CharacterAction ab;
         
         public override void OnAwake()
         {

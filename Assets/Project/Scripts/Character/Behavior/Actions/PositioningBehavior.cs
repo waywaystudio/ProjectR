@@ -7,7 +7,7 @@ namespace Character.Behavior.Actions
     [TaskCategory("Character/Combat")]
     public class PositioningBehavior : Action
     {
-        private ActionBehaviour ab;
+        private CharacterAction ab;
         
         public override void OnAwake()
         {

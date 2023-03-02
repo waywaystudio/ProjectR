@@ -36,7 +36,7 @@ namespace Raid.UI.ActionFrames.ActionBars.CharacterSkillBars
             MainManager.Input.TryGetAction(bindingCode, out var inputAction);
             
             inputAction.started  -= skillAction.StartAction;
-            inputAction.canceled -= skillAction.CompleteAction;
+            inputAction.canceled -= skillAction.ReleaseAction;
             
             coolDownFiller.ProgressImage.enabled = false;
 
@@ -44,7 +44,7 @@ namespace Raid.UI.ActionFrames.ActionBars.CharacterSkillBars
             
             focusedAdventurer = ab;
             
-            var actionBehaviour = focusedAdventurer.ActionBehaviour;
+            var actionBehaviour = focusedAdventurer.CharacterAction;
             var skill = skillIndex switch
             {
                 1 => actionBehaviour.FirstSkill,
@@ -70,7 +70,7 @@ namespace Raid.UI.ActionFrames.ActionBars.CharacterSkillBars
                 
             
             inputAction.started  += skillAction.StartAction;
-            inputAction.canceled += skillAction.CompleteAction;
+            inputAction.canceled += skillAction.ReleaseAction;
         }
 
         private void Awake()

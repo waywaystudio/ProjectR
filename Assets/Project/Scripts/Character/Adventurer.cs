@@ -6,6 +6,7 @@ using Character.Systems;
 using Core;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.Serialization;
 
 namespace Character
 {
@@ -18,26 +19,20 @@ namespace Character
         [SerializeField] protected DataIndex combatClassID;
         [SerializeField] protected DynamicStatEntry dynamicStatEntry;
         [SerializeField] protected CharacterConstStats constStats;
-        [SerializeField] protected ActionBehaviour actionBehaviour;
+        [SerializeField] protected CharacterAction characterAction;
+        
         [SerializeField] protected SearchingSystem searching;
         [SerializeField] protected CollidingSystem colliding;
         [SerializeField] protected PathfindingSystem pathfinding;
         [SerializeField] protected AnimationModel animating;
-        [SerializeField] protected UnityEvent onManualControl;
-        [SerializeField] protected UnityEvent onAutoControl;
-        
         [SerializeField] protected Transform damageSpawn;
         [SerializeField] protected Transform statusEffectHierarchy;
+        [SerializeField] protected UnityEvent onManualControl;
+        [SerializeField] protected UnityEvent onAutoControl;
 
-        public ActionBehaviour ActionBehaviour => actionBehaviour;
-        public Transform DamageSpawn => damageSpawn;
-        public Transform StatusEffectHierarchy => statusEffectHierarchy;
-
-        private bool IsAutoMode { get; set; }
-
+        public DataIndex ClassCode => combatClassID;
         public string Name => characterName;
         public RoleType Role => role;
-        public DataIndex ClassCode => combatClassID;
         public IDynamicStatEntry DynamicStatEntry => dynamicStatEntry ??= GetComponentInChildren<DynamicStatEntry>();
         public GameObject Object => gameObject;
         public StatTable StatTable => DynamicStatEntry.StatTable;
@@ -56,6 +51,10 @@ namespace Character
         public CollidingSystem Colliding => colliding;
         public PathfindingSystem Pathfinding => pathfinding;
         public AnimationModel Animating => animating;
+        public Transform DamageSpawn => damageSpawn;
+        public Transform StatusEffectHierarchy => statusEffectHierarchy;
+        public CharacterAction CharacterAction => characterAction;
+        
 
         public void Dead() => OnDead.Invoke();
         public CombatEntity TakeDamage(ICombatTable combatTable) => CombatUtility.TakeDamage(combatTable, this);
@@ -66,22 +65,18 @@ namespace Character
 
         public void OnFocused(Adventurer focus)
         {
-            if (focus == this)
-            {
-                IsAutoMode = false;
-                onManualControl.Invoke();
-            }
-            else
-            {
-                onAutoControl.Invoke();
-            }
+            if (focus == this) onManualControl.Invoke();
+            else OnReleased();
         }
+
+        public void OnReleased() => onAutoControl.Invoke();
+        
         
         protected void Awake()
         {
             constStats       ??= GetComponentInChildren<CharacterConstStats>();
             dynamicStatEntry ??= GetComponentInChildren<DynamicStatEntry>();
-            actionBehaviour  ??= GetComponentInChildren<ActionBehaviour>();
+            characterAction  ??= GetComponentInChildren<CharacterAction>();
             searching        ??= GetComponentInChildren<SearchingSystem>();
             colliding        ??= GetComponentInChildren<CollidingSystem>();
             pathfinding      ??= GetComponentInChildren<PathfindingSystem>();
@@ -89,15 +84,11 @@ namespace Character
 
             constStats.Initialize(StatTable);
             dynamicStatEntry.Initialize();
-            OnDead.Register("DynamicAliveValue", () => dynamicStatEntry.IsAlive.Value = false);
-
-            IsAutoMode = IsAutoStart;
             
-            if (IsAutoMode) onAutoControl.Invoke();
-            else
-            {
-                onManualControl.Invoke();
-            }
+            if (IsAutoStart) onAutoControl.Invoke();
+            else onManualControl.Invoke();
         }
+
+        private void Update() { Animating.Flip(transform.forward); }
     }
 }

@@ -9,13 +9,12 @@ namespace Character.Actions.Soldier
         {
             CharacterSystem.Animating.PlayOnce(animationKey, progressTime, OnCompleted.Invoke);
         }
-        
-        // TODO. 백점프를 하다보니, Flip이 이상해지는 구간이 생긴다.
+
         private void Jump()
         {
             var direction = Provider.Object.transform.forward * -1f;
             
-            CharacterSystem.Pathfinding.Jump(direction, 10f);
+            CharacterSystem.Pathfinding.Jump(direction, 10f, 2, 0.5f);
         }
         
         protected void OnEnable()

@@ -7,7 +7,7 @@ namespace Character.Behavior.Actions
     [TaskIcon("{SkinColor}SelectorIcon.png"), TaskCategory("Character/Combat")]
     public class IsSkillFinished : Action
     {
-        private ActionBehaviour ab;
+        private CharacterAction ab;
         
         public override void OnAwake()
         {

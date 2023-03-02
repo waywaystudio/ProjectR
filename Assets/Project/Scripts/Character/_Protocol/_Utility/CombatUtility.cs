@@ -28,7 +28,7 @@ namespace Character
 
         public static CombatEntity TakeDamage(ICombatTable combatTable, ICombatTaker taker)
         {
-            if (!taker.DynamicStatEntry.IsAlive.Value) return null;
+            if (!taker.DynamicStatEntry.Alive.Value) return null;
             
             combatTable.UpdateStatTable();
             
@@ -49,8 +49,9 @@ namespace Character
             if (damageAmount >= taker.DynamicStatEntry.Hp.Value)
             {
                 Debug.Log("Dead!");
-                taker.DynamicStatEntry.Hp.Value = 0;
-                combatEntity.Value -= taker.DynamicStatEntry.Hp.Value;
+                taker.DynamicStatEntry.Hp.Value      =  0;
+                taker.DynamicStatEntry.Alive.Value =  false;
+                combatEntity.Value                   -= taker.DynamicStatEntry.Hp.Value;
                 
                 taker.Dead();
             }
@@ -65,7 +66,7 @@ namespace Character
         
         public static CombatEntity TakeHeal(ICombatTable combatTable, ICombatTaker taker)
         {
-            if (!taker.DynamicStatEntry.IsAlive.Value) return null;
+            if (!taker.DynamicStatEntry.Alive.Value) return null;
             
             combatTable.UpdateStatTable();
             
@@ -95,7 +96,7 @@ namespace Character
 
         public static StatusEffectEntity TakeDeBuff(IStatusEffect statusEffect, ICombatTaker taker)
         {
-            if (!taker.DynamicStatEntry.IsAlive.Value) return null;
+            if (!taker.DynamicStatEntry.Alive.Value) return null;
             
             var statusEffectEntity = new StatusEffectEntity(statusEffect, taker);
             var table = taker.DynamicStatEntry.DeBuffTable;
@@ -110,7 +111,7 @@ namespace Character
         
         public static StatusEffectEntity TakeBuff(IStatusEffect statusEffect, ICombatTaker taker)
         {
-            if (!taker.DynamicStatEntry.IsAlive.Value) return null;
+            if (!taker.DynamicStatEntry.Alive.Value) return null;
             
             var statusEffectEntity = new StatusEffectEntity(statusEffect, taker);
             var table = taker.DynamicStatEntry.BuffTable;

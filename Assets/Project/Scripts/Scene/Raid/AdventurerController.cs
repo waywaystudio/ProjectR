@@ -38,7 +38,7 @@ namespace Raid
             if (MainManager.Input.IsMouseOnUI) return;
 
             moveProjector.Projecting();
-            focusedAdventurer.ActionBehaviour.Run(mousePosition);
+            focusedAdventurer.CharacterAction.Run(mousePosition);
         }
 
         public void Teleport(InputAction.CallbackContext context)

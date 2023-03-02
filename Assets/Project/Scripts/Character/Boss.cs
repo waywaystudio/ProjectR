@@ -65,7 +65,7 @@ namespace Character
 
             constStats.Initialize(StatTable);
             dynamicStatEntry.Initialize();
-            OnDead.Register("DynamicAliveValue", () => dynamicStatEntry.IsAlive.Value = false);
+            OnDead.Register("DynamicAliveValue", () => dynamicStatEntry.Alive.Value = false);
         }
 
   

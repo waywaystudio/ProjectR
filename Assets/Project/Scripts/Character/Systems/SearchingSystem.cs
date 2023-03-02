@@ -29,7 +29,7 @@ namespace Character.Systems
                 
                 foreach (var adventurer in AdventurerList)
                 {
-                    if (adventurer.DynamicStatEntry.IsAlive.Value) return adventurer;
+                    if (adventurer.DynamicStatEntry.Alive.Value) return adventurer;
                 }
                 
                 return null;
@@ -41,7 +41,7 @@ namespace Character.Systems
 
                 foreach (var monster in MonsterList)
                 {
-                    if (monster.DynamicStatEntry.IsAlive.Value) return monster;
+                    if (monster.DynamicStatEntry.Alive.Value) return monster;
                 }
                 
                 return null;

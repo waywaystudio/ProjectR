@@ -1,6 +1,5 @@
 using System.Collections.Generic;
 using Core;
-using Sirenix.OdinInspector;
 using UnityEngine;
 
 namespace Character.Systems
@@ -10,7 +9,6 @@ namespace Character.Systems
         [SerializeField] private int maxBufferCount = 32;
         
         protected Collider[] ColliderBuffers;
-        [ShowInInspector]
         protected RaycastHit[] RayBuffers;
         
         public bool TryGetTakersInSphere(SkillComponent skill, out List<ICombatTaker> takerList) => (takerList = 

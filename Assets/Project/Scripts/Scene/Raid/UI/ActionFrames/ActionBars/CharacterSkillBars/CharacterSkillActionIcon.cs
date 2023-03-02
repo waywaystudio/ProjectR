@@ -15,7 +15,7 @@ namespace Raid.UI.ActionFrames.ActionBars.CharacterSkillBars
         private SkillComponent skillComponent;
         private Adventurer focusedAdventurer;
         private Transform preTransform;
-        private ActionBehaviour ActionBehaviour => focusedAdventurer.ActionBehaviour;
+        private CharacterAction characterAction => focusedAdventurer.CharacterAction;
         
 
         public void Initialize(Adventurer adventurer, SkillComponent skillComponent)
@@ -31,15 +31,15 @@ namespace Raid.UI.ActionFrames.ActionBars.CharacterSkillBars
             if (skillComponent.IsNullOrEmpty()) return;
             if (!MainManager.Input.TryGetMousePosition(out var mousePosition)) return;
 
-            ActionBehaviour.ActiveSkill(skillComponent, mousePosition);
+            characterAction.ActiveSkill(skillComponent, mousePosition);
         }
 
-        public void CompleteAction(InputAction.CallbackContext context)
+        public void ReleaseAction(InputAction.CallbackContext context)
         {
             if (skillComponent.IsNullOrEmpty() || focusedAdventurer.IsNullOrEmpty()) return;
             if (skillComponent.SkillType is SkillType.Instant or SkillType.Casting) return;
             
-            ActionBehaviour.CompleteSkill();
+            characterAction.ReleaseSkill();
         }
 
     }

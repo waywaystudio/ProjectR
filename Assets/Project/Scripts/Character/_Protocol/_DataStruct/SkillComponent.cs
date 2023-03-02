@@ -43,7 +43,6 @@ namespace Character
         [ShowInInspector] public ActionTable OnCompleted { get; } = new();
         [ShowInInspector] public ActionTable OnEnded { get; } = new();
 
-        
         public SkillType SkillType => skillType;
         public bool IsRigid => isRigid;
         public bool IsEnded { get; protected set; } = true;
@@ -65,8 +64,6 @@ namespace Character
         protected bool IsProgress { get; set; }
 
 
-        public bool Conditions() => ConditionTable.IsAllTrue;
-
         public void Activate()
         {
             IsProgress = true;
@@ -79,7 +76,7 @@ namespace Character
             OnCanceled.Invoke();
         }
         
-        public void Complete()
+        public void Release()
         {
             if (IsProgress) 
                 OnCompleted.Invoke();
@@ -156,8 +153,6 @@ namespace Character
             OnActivated.Register("PlayAnimation", PlayAnimation);
             
             OnCanceled.Register("EndCallback", OnEnded.Invoke);
-            
-            OnCompleted.Register("Debug", () => Debug.Log(Provider.Object.transform.forward));
 
             OnEnded.Register("Idle", CharacterSystem.Animating.Idle);
             OnEnded.Register("IsProgressionToFalse", () => IsProgress = false);
@@ -165,7 +160,6 @@ namespace Character
 
             if (coolTime != 0f) ConditionTable.Register("IsCoolTimeReady", IsCoolTimeReady);
             if (cost != 0f ) ConditionTable.Register("IsCostReady", IsCostReady);
-            
             if (progressTime != 0f)
             {
                 OnActivated.Register("StartProgress", () => StartProgression(OnCompleted.Invoke));
