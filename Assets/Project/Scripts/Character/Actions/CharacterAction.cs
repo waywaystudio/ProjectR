@@ -116,7 +116,7 @@ namespace Character.Actions
         }
 
         private static bool HasFlag(CharacterActionMask actionMask, CharacterActionMask action) 
-            => (actionMask & action) == actionMask;
+            => (actionMask | action) == actionMask;
 
         private void Awake()
         {
@@ -134,14 +134,18 @@ namespace Character.Actions
             runAction.OnActivated.Register("CancelSkill", CancelSkill);
             
             stunAction.OnActivated.Register("CancelSkill", CancelSkill);
+            stunAction.OnActivated.Register("Stop", Stop);
             stunAction.OnActivated.Register("DisableActions", () => DisableActions(stunAction.DisableActionMask, "byStun"));
             stunAction.OnCompleted.Register("EnableActions", () => EnableActions(stunAction.DisableActionMask, "byStun"));
             
             knockBackAction.OnActivated.Register("CancelSkill", CancelSkill);
+            knockBackAction.OnActivated.Register("Stop", Stop);
+            knockBackAction.OnActivated.Register("Rotate", Rotate);
             knockBackAction.OnActivated.Register("DisableActions", () => DisableActions(knockBackAction.DisableActionMask, "byKnockBack"));
             knockBackAction.OnCompleted.Register("EnableActions", () => EnableActions(knockBackAction.DisableActionMask, "byKnockBack"));
             
             deadAction.OnActivated.Register("CancelSkill", CancelSkill);
+            deadAction.OnActivated.Register("Stop", Stop);
             deadAction.OnActivated.Register("DisableActions", () => DisableActions(deadAction.DisableActionMask, "byDead"));
         }
 

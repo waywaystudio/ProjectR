@@ -7,11 +7,12 @@ namespace Character.Systems
 {
     public class PathfindingSystem : MonoBehaviour
     {
-        [SerializeField] private Transform rootTransform;
+        [SerializeField] private float moveSpeed;
         [SerializeField] private float raycastThreshHold = 2f;
+        [SerializeField] private float knockBackDuration = 0.35f;
+        [SerializeField] private Transform rootTransform;
         [SerializeField] private Seeker agent;
         [SerializeField] private AIMove aiMove;
-        [SerializeField] private float moveSpeed;
         [SerializeField] private LayerMask environmentLayer;
 
         public bool IsReached => aiMove.reachedEndOfPath;
@@ -109,7 +110,8 @@ namespace Character.Systems
                 distance = hitInfo.distance - raycastThreshHold;
             }
 
-            rootTransform.DOMove(rootPosition + knockBackDirection * distance, 0.15f).OnComplete(callback.Invoke);
+            rootTransform.DOMove(rootPosition + knockBackDirection * distance, knockBackDuration)
+                         .OnComplete(() => callback?.Invoke());
         }
 
         public void Quit()
