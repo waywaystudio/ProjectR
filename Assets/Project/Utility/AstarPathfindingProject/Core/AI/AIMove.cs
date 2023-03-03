@@ -30,7 +30,6 @@ namespace Pathfinding
         /// </summary>
         public override void OnTargetReached()
         {
-            Debug.Log("OnTargetReached Call!");
             Callback?.Invoke();
         }
     }

@@ -6,7 +6,6 @@ using Character.Systems;
 using Core;
 using UnityEngine;
 using UnityEngine.Events;
-using UnityEngine.Serialization;
 
 namespace Character
 {

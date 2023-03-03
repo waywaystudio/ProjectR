@@ -99,12 +99,11 @@ namespace Character.Systems
             callback?.Invoke();
         }
 
-        public void KnockBack(Vector3 from, Action callback)
+        public void KnockBack(Vector3 from, float distance, Action callback)
         {
             var knockBackDirection = (rootPosition - from).normalized;
-            var knockBackDestination = rootPosition + knockBackDirection * 5f;
-            var distance = Vector3.Distance(knockBackDestination, rootPosition);
-            
+            var knockBackDestination = rootPosition + knockBackDirection * distance;
+
             if (Physics.Raycast(rootPosition, knockBackDestination, out var hitInfo, distance, environmentLayer))
             {
                 distance = hitInfo.distance - raycastThreshHold;

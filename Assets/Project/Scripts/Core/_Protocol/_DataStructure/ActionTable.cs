@@ -82,8 +82,7 @@ namespace Core
             RemoveOnceActions();
         }
     }
-    
-    /* TODO. 가급적 ActionTable은 One Param에서 끝내보자. 
+
     public class ActionTable<T0, T1> : ActionTableCore<Action<T0, T1>>
     {
         public ActionTable(){}
@@ -93,19 +92,41 @@ namespace Core
         public void Register(string key, Action<T0> action) => TryAdd(key, (x, _) => action(x));
         public void Register(string key, Action<T0, T1> action) => TryAdd(key, action);
         
-        public void Register(ActionTable otherTable) => 
-            otherTable.ForEach(x => TryAdd(x.Key, (_, _) => x.Value.Invoke()));
+        public void Register(ActionTable otherTable)
+        {
+            foreach (var item in otherTable) TryAdd(item.Key, (_, _) => item.Value.Invoke());
+        }
+
+        public void Register(ActionTable<T0> otherTable)
+        {
+            foreach (var item in otherTable) TryAdd(item.Key, (x, _) => item.Value.Invoke(x));
+        } 
         
-        public void Register(ActionTable<T0> otherTable) => 
-            otherTable.ForEach(x => TryAdd(x.Key, (t0, _) => x.Value.Invoke(t0)));
+        public void Register(ActionTable<T0, T1> otherTable)
+        {
+            foreach (var item in otherTable) TryAdd(item.Key, item.Value.Invoke);
+        }
         
-        public void Register(ActionTable<T0, T1> otherTable) => 
-            otherTable.ForEach(x => TryAdd(x.Key, x.Value));
-    
+        public void RegisterOnce(string key, Action action)
+        {
+            if (TryAdd(key, (_, _) => action())) OnceKeys.Add(key);
+        }
+        
+        public void RegisterOnce(string key, Action<T0> action)
+        {
+            if (TryAdd(key, (x, _) => action(x))) OnceKeys.Add(key);
+        }
+        
+        public void RegisterOnce(string key, Action<T0, T1> action)
+        {
+            if (TryAdd(key, action)) OnceKeys.Add(key);
+        }
+
         public void Invoke(T0 value0, T1 value1)
         {
             foreach (var action in Values) action?.Invoke(value0, value1);
+            
+            RemoveOnceActions();
         }
     }
-    */
 }

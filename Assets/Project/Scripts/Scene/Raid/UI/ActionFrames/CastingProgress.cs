@@ -16,8 +16,8 @@ namespace Raid.UI.ActionFrames
         public void Initialize()
         {
             characterAction = RaidDirector.FocusCharacter.CharacterAction;
-            characterAction.OnGlobalActivated.Unregister("ShowCastingUI");
-            characterAction.OnGlobalActivated.Register("ShowCastingUI", Register);
+            characterAction.SkillAction.OnGlobalActivated.Unregister("ShowCastingUI");
+            characterAction.SkillAction.OnGlobalActivated.Register("ShowCastingUI", Register);
         }
 
         public void OnAdventurerChanged(Adventurer ab)
@@ -27,20 +27,20 @@ namespace Raid.UI.ActionFrames
             if (ab.IsNullOrEmpty()) return;
             
             characterAction = ab.CharacterAction;
-            characterAction.OnGlobalActivated.Register("ShowCastingUI", Register);
+            characterAction.SkillAction.OnGlobalActivated.Register("ShowCastingUI", Register);
 
             Register();
         }
 
         private void Unregister()
         {
-            characterAction.OnGlobalActivated.Unregister("ShowCastingUI");
+            characterAction.SkillAction.OnGlobalActivated.Unregister("ShowCastingUI");
             characterAction.SkillList.ForEach(x => x.OnEnded.Unregister("OffCastingUI"));
         }
 
         private void Register()
         {
-            currentSkill = characterAction.Current;
+            currentSkill = characterAction.SkillAction.Current;
             
             if (currentSkill.IsNullOrEmpty() || currentSkill.CastingProgress.Value == 0f)
             {

@@ -13,8 +13,8 @@ namespace Character.Behavior.Actions
             TryGetComponent(out ab);
         }
         
-        public override TaskStatus OnUpdate() => ab.GlobalConditions.IsAllTrue
-            ? TaskStatus.Success 
-            : TaskStatus.Failure;
+        public override TaskStatus OnUpdate() => ab.IsGlobalCooling
+            ? TaskStatus.Failure
+            : TaskStatus.Success;
     }
 }
