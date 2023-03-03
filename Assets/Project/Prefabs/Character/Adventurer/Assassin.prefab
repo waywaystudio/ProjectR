@@ -378,6 +378,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Annihilation
       objectReference: {fileID: 0}
+    - target: {fileID: 8477215023932391136, guid: 288edbf9e83041541bb19009717ec8e6, type: 3}
+      propertyPath: isRigid
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 288edbf9e83041541bb19009717ec8e6, type: 3}
 --- !u!114 &3246204844080293775 stripped

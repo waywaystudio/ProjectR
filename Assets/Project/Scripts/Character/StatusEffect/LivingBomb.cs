@@ -1,17 +1,16 @@
 using System.Collections;
 using Character.Actions;
 using Character.Projector;
-using Character.Skill;
 using Character.Systems;
 using Core;
 using UnityEngine;
-using UnityEngine.Serialization;
 
 namespace Character.StatusEffect
 {
     public class LivingBomb : DamageOverTimeEffect
     {
         [SerializeField] private float radius = 12f;
+        [SerializeField] private float stunDuration = 5f;
         [SerializeField] private CollidingSystem collidingSystem;
         [SerializeField] private LayerMask adventurerLayer;
         [SerializeField] private SphereProjector projector;
@@ -48,7 +47,13 @@ namespace Character.StatusEffect
                 out var takerList
             );
             
-            takerList.ForEach(bombPower.Damage);
+            // TODO. 함수 구조를 수정하여 데미지 주는 주객 순서와 기절의 주객 순서를 통일하면 좋겠다.
+            takerList.ForEach(taker =>
+            {
+                bombPower.Damage(taker);
+                taker.CharacterBehaviour.Stun(stunDuration);
+            });
+            
             projector.OnCompleted.Invoke();
             
             base.Complete();

@@ -1,3 +1,4 @@
+using Character.Actions;
 using Character.Data;
 using Character.Data.BaseStats;
 using Character.Graphic;
@@ -14,6 +15,8 @@ namespace Character
         [SerializeField] protected RoleType role;
         [SerializeField] protected DynamicStatEntry dynamicStatEntry;
         [SerializeField] protected CharacterConstStats constStats;
+        [SerializeField] protected CharacterAction characterAction;
+        
         [SerializeField] protected SearchingSystem searching;
         [SerializeField] protected CollidingSystem colliding;
         [SerializeField] protected PathfindingSystem pathfinding;
@@ -26,12 +29,12 @@ namespace Character
         public RoleType Role => role;
         public DataIndex ClassCode => dataIndex;
         public IDynamicStatEntry DynamicStatEntry => dynamicStatEntry ??= GetComponentInChildren<DynamicStatEntry>();
+        public ICharacterBehaviour CharacterBehaviour => characterAction;
         public GameObject Object => gameObject;
         public StatTable StatTable => DynamicStatEntry.StatTable;
         
         public Transform DamageSpawn => damageSpawn;
         public Transform StatusEffectHierarchy => statusEffectHierarchy;
-        public ActionTable OnDead { get; } = new();
         
         public ActionTable<CombatEntity> OnProvideDamage { get; } = new();
         public ActionTable<CombatEntity> OnProvideHeal { get; } = new();
@@ -48,7 +51,6 @@ namespace Character
         public PathfindingSystem Pathfinding => pathfinding;
         public AnimationModel Animating => animating;
 
-        public void Dead() => OnDead.Invoke();
         public CombatEntity TakeDamage(ICombatTable combatTable) => CombatUtility.TakeDamage(combatTable, this);
         public CombatEntity TakeHeal(ICombatTable combatTable) => CombatUtility.TakeHeal(combatTable, this);
         public StatusEffectEntity TakeDeBuff(IStatusEffect statusEffect) => CombatUtility.TakeDeBuff(statusEffect, this);
@@ -58,6 +60,7 @@ namespace Character
         {
             constStats       ??= GetComponentInChildren<CharacterConstStats>();
             dynamicStatEntry ??= GetComponentInChildren<DynamicStatEntry>();
+            characterAction  ??= GetComponentInChildren<CharacterAction>();
             searching        ??= GetComponentInChildren<SearchingSystem>();
             colliding        ??= GetComponentInChildren<CollidingSystem>();
             pathfinding      ??= GetComponentInChildren<PathfindingSystem>();
@@ -65,9 +68,8 @@ namespace Character
 
             constStats.Initialize(StatTable);
             dynamicStatEntry.Initialize();
-            OnDead.Register("DynamicAliveValue", () => dynamicStatEntry.Alive.Value = false);
         }
 
-  
+        private void Update() { Animating.Flip(transform.forward); }
     }
 }

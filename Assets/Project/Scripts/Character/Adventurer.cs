@@ -33,10 +33,10 @@ namespace Character
         public string Name => characterName;
         public RoleType Role => role;
         public IDynamicStatEntry DynamicStatEntry => dynamicStatEntry ??= GetComponentInChildren<DynamicStatEntry>();
+        public ICharacterBehaviour CharacterBehaviour => characterAction;
         public GameObject Object => gameObject;
         public StatTable StatTable => DynamicStatEntry.StatTable;
-        
-        public ActionTable OnDead { get; } = new();
+
         public ActionTable<CombatEntity> OnProvideDamage { get; } = new();
         public ActionTable<CombatEntity> OnProvideHeal { get; } = new();
         public ActionTable<StatusEffectEntity> OnProvideDeBuff { get; } = new();
@@ -53,9 +53,7 @@ namespace Character
         public Transform DamageSpawn => damageSpawn;
         public Transform StatusEffectHierarchy => statusEffectHierarchy;
         public CharacterAction CharacterAction => characterAction;
-        
 
-        public void Dead() => OnDead.Invoke();
         public CombatEntity TakeDamage(ICombatTable combatTable) => CombatUtility.TakeDamage(combatTable, this);
         public CombatEntity TakeHeal(ICombatTable combatTable) => CombatUtility.TakeHeal(combatTable, this);
         public StatusEffectEntity TakeDeBuff(IStatusEffect statusEffect) => CombatUtility.TakeDeBuff(statusEffect, this);
@@ -83,7 +81,7 @@ namespace Character
 
             constStats.Initialize(StatTable);
             dynamicStatEntry.Initialize();
-            
+
             if (IsAutoStart) onAutoControl.Invoke();
             else onManualControl.Invoke();
         }

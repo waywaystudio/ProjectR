@@ -174,6 +174,7 @@ namespace Character
             var skillData = MainData.SkillSheetData(actionCode);
 
             skillType    = skillData.SkillType.ToEnum<SkillType>();
+            isRigid      = skillData.IsRigid;
             priority     = skillData.BasePriority;
             range        = skillData.TargetParam.x;
             angle        = skillData.TargetParam.y;

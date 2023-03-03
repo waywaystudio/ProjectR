@@ -1,18 +1,11 @@
 using System.Collections.Generic;
-using Character.Actions.Commons;
 using Core;
 using UnityEngine;
 
 namespace Character.Actions
 {
-    public class CharacterAction : MonoBehaviour, IEditable
+    public class CharacterAction : MonoBehaviour, ICharacterBehaviour, IEditable
     {
-        [Sirenix.OdinInspector.Button]
-        public void Stun3() => Stun(3);
-        
-        [Sirenix.OdinInspector.Button]
-        public void KnockBack3() => KnockBack(Vector3.zero, 10f);
-        
         [SerializeField] private SkillAction skillAction;
         [SerializeField] private RunAction runAction;
         [SerializeField] private RotateAction rotateAction;
@@ -33,25 +26,11 @@ namespace Character.Actions
 
 
         public void Run(Vector3 destination) => runAction.Active(destination);
-        public void Rotate(Vector3 lookTargetPosition) => rotateAction.Active(lookTargetPosition);
+        public void Rotate(Vector3 targetPosition) => rotateAction.Active(targetPosition);
         public void Stop() => stopAction.Active();
         public void Stun(float duration) => stunAction.Active(duration);
         public void KnockBack(Vector3 source, float distance) => knockBackAction.Active(source, distance);
         public void Dead() => deadAction.Active();
-
-        // public void Dash(Vector3 position, float distance)
-        // {
-        //     CancelSkill();
-        //
-        //     commonAction.Dash(position, distance);
-        // }
-        //
-        // public void Teleport(Vector3 direction, float distance)
-        // {
-        //     CancelSkill();
-        //     
-        //     commonAction.Teleport(direction, distance);
-        // }
 
         public void ActiveSkill(SkillComponent skill, Vector3 targetPosition)
         {
@@ -62,10 +41,13 @@ namespace Character.Actions
 
             if (skill.IsRigid)
             {
-                var runAble = runAction.Conditions;
-                
-                runAble.Register("OnRigidSkill", () => false);
-                skill.OnEnded.Register("ReleaseRunAction", () => runAble.Unregister("OnRigidSkill"));
+                const CharacterActionMask rigidImmune = CharacterActionMask.Run       |
+                                                        CharacterActionMask.Rotate    |
+                                                        CharacterActionMask.KnockBack |
+                                                        CharacterActionMask.Stun;
+
+                DisableActions(rigidImmune, "byRigidSkill");
+                skill.OnEnded.Register("ReleaseRunAction", () => EnableActions(rigidImmune, "byRigidSkill"));
             }
         }
 
@@ -89,17 +71,17 @@ namespace Character.Actions
             return skill is not null;
         }
         
-        public void EnableActions(CharacterActionMask actionMask, string disabledKey)
+        
+        private void EnableActions(CharacterActionMask actionMask, string disabledKey)
         {
             GetActionList(actionMask).ForEach(action => action.Conditions.Unregister(disabledKey));
         }
         
-        public void DisableActions(CharacterActionMask actionMask, string disableKey)
+        private void DisableActions(CharacterActionMask actionMask, string disableKey)
         {
             GetActionList(actionMask).ForEach(action => action.Conditions.Register(disableKey, () => false));
         }
-        
-        
+
         private List<ICharacterAction> GetActionList(CharacterActionMask actionMask)
         {
             List<ICharacterAction> result = new();

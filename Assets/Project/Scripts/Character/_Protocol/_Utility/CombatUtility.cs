@@ -48,12 +48,12 @@ namespace Character
 
             if (damageAmount >= taker.DynamicStatEntry.Hp.Value)
             {
-                Debug.Log("Dead!");
                 taker.DynamicStatEntry.Hp.Value      =  0;
                 taker.DynamicStatEntry.Alive.Value =  false;
                 combatEntity.Value                   -= taker.DynamicStatEntry.Hp.Value;
-                
-                taker.Dead();
+             
+                Debug.Log($"{taker.Name} dead by {combatEntity.CombatTable.Provider.Name}'s {combatEntity.CombatTable.ActionCode}");
+                taker.CharacterBehaviour.Dead();
             }
 
             taker.DynamicStatEntry.Hp.Value -= damageAmount;

@@ -181,6 +181,7 @@ MonoBehaviour:
   role: 1
   dynamicStatEntry: {fileID: 6714285254672120863}
   constStats: {fileID: 2479502076224076776}
+  characterAction: {fileID: 291626802760447148}
   searching: {fileID: 6799303759066484391}
   colliding: {fileID: 2790317631836767718}
   pathfinding: {fileID: 4103633887526501528}
@@ -596,11 +597,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b4e841defa0727248a0aa0ed3a51250d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rootTransform: {fileID: 3744010700067239340}
+  moveSpeed: 9
   raycastThreshHold: 2
+  knockBackDuration: 0.35
+  rootTransform: {fileID: 3744010700067239340}
   agent: {fileID: 5352250712032112386}
   aiMove: {fileID: 7464979735002361491}
-  moveSpeed: 9
   environmentLayer:
     serializedVersion: 2
     m_Bits: 64
@@ -1138,6 +1140,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 4723975105097867993}
     - target: {fileID: -6687176528768826702, guid: 4ae3fbab6c1c1ed48bbe37492124f254, type: 3}
+      propertyPath: power
+      value: 
+      objectReference: {fileID: 2002782247172268347}
+    - target: {fileID: -6687176528768826702, guid: 4ae3fbab6c1c1ed48bbe37492124f254, type: 3}
       propertyPath: range
       value: 8
       objectReference: {fileID: 0}
@@ -1160,6 +1166,10 @@ PrefabInstance:
     - target: {fileID: -6687176528768826702, guid: 4ae3fbab6c1c1ed48bbe37492124f254, type: 3}
       propertyPath: powerValue.value
       value: 36
+      objectReference: {fileID: 0}
+    - target: {fileID: -6687176528768826702, guid: 4ae3fbab6c1c1ed48bbe37492124f254, type: 3}
+      propertyPath: knockBackDistance
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: -6687176528768826702, guid: 4ae3fbab6c1c1ed48bbe37492124f254, type: 3}
       propertyPath: targetLayer.m_Bits
@@ -1219,6 +1229,17 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4ae3fbab6c1c1ed48bbe37492124f254, type: 3}
+--- !u!114 &2002782247172268347 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 386900657837893818, guid: 4ae3fbab6c1c1ed48bbe37492124f254, type: 3}
+  m_PrefabInstance: {fileID: 2203882884427909505}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8e628f5df72c2e949ab8a5b0ef9dc17a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &2149587970378939249 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 234500611213636336, guid: 4ae3fbab6c1c1ed48bbe37492124f254, type: 3}

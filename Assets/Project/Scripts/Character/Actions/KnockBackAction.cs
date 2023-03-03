@@ -1,7 +1,6 @@
 using Character.Graphic;
 using Character.Systems;
 using Core;
-using Sirenix.OdinInspector;
 using UnityEngine;
 
 namespace Character.Actions
@@ -14,9 +13,9 @@ namespace Character.Actions
         public CharacterActionMask ActionType => CharacterActionMask.Stun;
         public CharacterActionMask DisableActionMask => 
             CharacterActionMask.Run | 
-            CharacterActionMask.Rotate;
+            CharacterActionMask.Rotate |
+            CharacterActionMask.Skill;
         
-        [ShowInInspector]
         public ConditionTable Conditions { get; } = new();
         public ActionTable<Vector3, float> OnActivated { get; } = new();
         public ActionTable OnCompleted { get; } = new();

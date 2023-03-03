@@ -25,6 +25,7 @@ MonoBehaviour:
     cost: 0
     basePriority: 1
     animationKey: swordAttack
+    isRigid: 0
     sortingType: None
     targetLayer: Monster
     targetParam: {x: 6, y: 135}
@@ -40,6 +41,7 @@ MonoBehaviour:
     cost: 0
     basePriority: 2
     animationKey: bash
+    isRigid: 0
     sortingType: None
     targetLayer: Monster
     targetParam: {x: 6, y: 90}
@@ -55,6 +57,7 @@ MonoBehaviour:
     cost: 0
     basePriority: 3
     animationKey: upperSlash
+    isRigid: 0
     sortingType: None
     targetLayer: Monster
     targetParam: {x: 8, y: 90}
@@ -70,6 +73,7 @@ MonoBehaviour:
     cost: 0
     basePriority: 4
     animationKey: thunderClap
+    isRigid: 1
     sortingType: None
     targetLayer: Monster
     targetParam: {x: 15, y: 360}
@@ -85,6 +89,7 @@ MonoBehaviour:
     cost: 0
     basePriority: 0
     animationKey: mightyGuard
+    isRigid: 0
     sortingType: None
     targetLayer: Monster
     targetParam: {x: 0, y: 0}
@@ -100,6 +105,7 @@ MonoBehaviour:
     cost: 0
     basePriority: 2
     animationKey: casting
+    isRigid: 0
     sortingType: None
     targetLayer: Adventurer
     targetParam: {x: 4, y: 360}
@@ -115,6 +121,7 @@ MonoBehaviour:
     cost: 0
     basePriority: 4
     animationKey: attack
+    isRigid: 0
     sortingType: Random
     targetLayer: Adventurer
     targetParam: {x: 0, y: 0}
@@ -130,6 +137,7 @@ MonoBehaviour:
     cost: 0
     basePriority: 3
     animationKey: attack
+    isRigid: 0
     sortingType: None
     targetLayer: Adventurer
     targetParam: {x: 50, y: 360}
@@ -145,6 +153,7 @@ MonoBehaviour:
     cost: 0
     basePriority: 1
     animationKey: attack
+    isRigid: 0
     sortingType: Role
     targetLayer: Adventurer
     targetParam: {x: 6, y: 360}
@@ -160,6 +169,7 @@ MonoBehaviour:
     cost: 0
     basePriority: 1
     animationKey: casting
+    isRigid: 0
     sortingType: HpRatioAscending
     targetLayer: Adventurer
     targetParam: {x: 5, y: 25}
@@ -175,6 +185,7 @@ MonoBehaviour:
     cost: 0
     basePriority: 1
     animationKey: clawAttack
+    isRigid: 0
     sortingType: None
     targetLayer: Monster
     targetParam: {x: 6, y: 90}
@@ -190,6 +201,7 @@ MonoBehaviour:
     cost: 0
     basePriority: 2
     animationKey: powerBeat
+    isRigid: 0
     sortingType: None
     targetLayer: Monster
     targetParam: {x: 7, y: 90}
@@ -205,6 +217,7 @@ MonoBehaviour:
     cost: 0
     basePriority: 3
     animationKey: liberation
+    isRigid: 0
     sortingType: None
     targetLayer: Adventurer
     targetParam: {x: 0, y: 0}
@@ -220,6 +233,7 @@ MonoBehaviour:
     cost: 0
     basePriority: 4
     animationKey: annihilation
+    isRigid: 1
     sortingType: None
     targetLayer: Monster
     targetParam: {x: 12, y: 360}
@@ -235,6 +249,7 @@ MonoBehaviour:
     cost: 0
     basePriority: 1
     animationKey: shotAttack
+    isRigid: 0
     sortingType: None
     targetLayer: Monster
     targetParam: {x: 30, y: 6}
@@ -250,6 +265,7 @@ MonoBehaviour:
     cost: 0
     basePriority: 2
     animationKey: continuesAttack
+    isRigid: 0
     sortingType: None
     targetLayer: Monster
     targetParam: {x: 30, y: 6}
@@ -265,6 +281,7 @@ MonoBehaviour:
     cost: 0
     basePriority: 3
     animationKey: jump
+    isRigid: 1
     sortingType: None
     targetLayer: Monster
     targetParam: {x: 4, y: 360}
@@ -280,6 +297,7 @@ MonoBehaviour:
     cost: 0
     basePriority: 4
     animationKey: aiming
+    isRigid: 0
     sortingType: None
     targetLayer: Monster
     targetParam: {x: 40, y: 8}

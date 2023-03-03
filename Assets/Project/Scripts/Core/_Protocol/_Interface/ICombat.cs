@@ -71,17 +71,14 @@ namespace Core
         // + GameObject Object { get; }
 
         RoleType Role { get; }
+        ICharacterBehaviour CharacterBehaviour { get; }
         Transform DamageSpawn { get; }
         Transform StatusEffectHierarchy { get; }
-
         ActionTable<CombatEntity> OnTakeDamage { get; }
         ActionTable<CombatEntity> OnTakeHeal { get; }
         ActionTable<StatusEffectEntity> OnTakeDeBuff { get; }
         ActionTable<StatusEffectEntity> OnTakeBuff { get; }
-        
-        // IBehaviour ActionBehaviour {get;}
 
-        void Dead();
         CombatEntity TakeDamage(ICombatTable combatTable);
         CombatEntity TakeHeal(ICombatTable combatTable);
         StatusEffectEntity TakeDeBuff(IStatusEffect statusEffect);
@@ -94,6 +91,8 @@ namespace Core
         // + IDynamicStatEntry DynamicStatEntry { get; }
         // + string Name { get; }
         // + GameObject Object { get; }
+        // + RoleType Role { get; }
+        // + ICharacterAction CharacterAction { get; }
         
         // + ActionTable<CombatEntity> OnProvideDamage { get; }
         // + ActionTable<CombatEntity> OnProvideHeal { get; }
@@ -104,21 +103,9 @@ namespace Core
         // + ActionTable<StatusEffectEntity> OnTakeDeBuff { get; }
         // + ActionTable<StatusEffectEntity> OnTakeBuff { get; }
 
-        // + void Dead();
         // + CombatEntity TakeDamage(ICombatTable combatTable);
         // + CombatEntity TakeHeal(ICombatTable combatTable);
         // + StatusEffectEntity TakeDeBuff(IStatusEffect statusEffect);
         // + StatusEffectEntity TakeBuff(IStatusEffect statusEffect);
-    }
-
-    public interface IActionBehaviour
-    {
-        void Run(Vector3 destination);
-        void RigidRotate(Vector3 lookTarget);
-        void Stop();
-        void Dead();
-        // void Stun();
-        // void KnockBack();
-        // void Hit();
     }
 }

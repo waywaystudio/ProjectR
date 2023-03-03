@@ -1,9 +1,10 @@
 using Character.Graphic;
 using Character.Systems;
 using Core;
+using Sirenix.OdinInspector;
 using UnityEngine;
 
-namespace Character.Actions.Commons
+namespace Character.Actions
 {
     public class RotateAction : MonoBehaviour, ICharacterAction
     {
@@ -12,6 +13,8 @@ namespace Character.Actions.Commons
 
         public CharacterActionMask ActionType => CharacterActionMask.Rotate;
         public CharacterActionMask DisableActionMask => CharacterActionMask.None;
+        
+        [ShowInInspector]
         public ConditionTable Conditions { get; } = new();
         public ActionTable<Vector3> OnActivated { get; } = new();
         

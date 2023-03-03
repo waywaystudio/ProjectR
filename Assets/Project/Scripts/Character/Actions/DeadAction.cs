@@ -1,9 +1,10 @@
 using Character.Graphic;
 using Character.Systems;
 using Core;
+using Sirenix.OdinInspector;
 using UnityEngine;
 
-namespace Character.Actions.Commons
+namespace Character.Actions
 {
     public class DeadAction : MonoBehaviour, ICharacterAction
     {
@@ -15,7 +16,10 @@ namespace Character.Actions.Commons
                                                      CharacterActionMask.Rotate | 
                                                      CharacterActionMask.Stop | 
                                                      CharacterActionMask.Skill;
+
         public ConditionTable Conditions { get; } = new();
+        
+        [ShowInInspector]
         public ActionTable OnActivated { get; } = new();
 
         

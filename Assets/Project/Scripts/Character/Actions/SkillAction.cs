@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using Core;
+using Sirenix.OdinInspector;
 using UnityEngine;
 
 namespace Character.Actions
@@ -11,6 +12,8 @@ namespace Character.Actions
 
         public CharacterActionMask ActionType => CharacterActionMask.Skill;
         public CharacterActionMask DisableActionMask => CharacterActionMask.None;
+        
+        [ShowInInspector]
         public ConditionTable Conditions { get; } = new();
         public ActionTable<SkillComponent> OnGlobalActivated { get; } = new();
         public ActionTable<SkillComponent> OnGlobalCanceled { get; } = new();

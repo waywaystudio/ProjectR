@@ -24,6 +24,7 @@ namespace MainGame.Data.SheetData.CombatData
 			[SerializeField] private Single cost;
 			[SerializeField] private Int32 basePriority;
 			[SerializeField] private String animationKey;
+			[SerializeField] private Boolean isRigid;
 			[SerializeField] private String sortingType;
 			[SerializeField] private String targetLayer;
 			[SerializeField] private Vector2 targetParam;
@@ -39,6 +40,7 @@ namespace MainGame.Data.SheetData.CombatData
 			public Single Cost => cost;
 			public Int32 BasePriority => basePriority;
 			public String AnimationKey => animationKey;
+			public Boolean IsRigid => isRigid;
 			public String SortingType => sortingType;
 			public String TargetLayer => targetLayer;
 			public Vector2 TargetParam => targetParam;

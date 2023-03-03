@@ -3,7 +3,7 @@ using Character.Systems;
 using Core;
 using UnityEngine;
 
-namespace Character.Actions.Commons
+namespace Character.Actions
 {
     public class StopAction : MonoBehaviour, ICharacterAction
     {

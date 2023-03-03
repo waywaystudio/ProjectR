@@ -31,7 +31,7 @@ namespace Character.Graphic
         }
         public void Run() => PlayLoop("run");
         public void Dead() => PlayOnce("dead");
-        public void Stun() => PlayLoop("stun");
+        public virtual void Stun() => PlayLoop("stun");
         public void Hit() => PlayLoop("hit");
 
         public void PlayOnce(string animationKey, float timeScale = 0f, Action callback = null) 
@@ -87,8 +87,9 @@ namespace Character.Graphic
         {
             switch (e.Data.Name)
             {
-                case "attack" : OnHit.Invoke(); return;
+                case "attack" :   OnHit.Invoke(); return;
                 case "footstep" : return;
+                case "hit" :      return;
                 default:
                 {
                     Debug.LogWarning($"Unknown animation event key in. input:{e.Data.Name}");

@@ -16,8 +16,9 @@ namespace Character.Actions
 
         public CharacterActionMask ActionType => CharacterActionMask.Stun;
         public CharacterActionMask DisableActionMask => 
-            CharacterActionMask.Run | 
-            CharacterActionMask.Rotate;
+            CharacterActionMask.Run    | 
+            CharacterActionMask.Rotate | 
+            CharacterActionMask.Skill ;
         
         [ShowInInspector]
         public ConditionTable Conditions { get; } = new();
