@@ -25,7 +25,7 @@ namespace Raid.UI.ActionFrames.ActionBars
         }
 
 
-        public void SetUp()
+        public void EditorSetUp()
         {
             GetComponentsInChildren(true, slotList);
         }

@@ -3,7 +3,6 @@ using Character;
 using Core;
 using Core.Singleton;
 using MainGame;
-using Sirenix.OdinInspector;
 using UnityEngine;
 
 // ReSharper disable UnusedAutoPropertyAccessor.Global
@@ -20,23 +19,23 @@ namespace Raid
     public class RaidDirector : MonoSingleton<RaidDirector>, IEditable
     {
         [SerializeField] private RaidCameraDirector cameraDirector;
+        [SerializeField] private RaidStageDirector stageDirector;
         [SerializeField] private RaidCastingDirector castingDirector;
         [SerializeField] private RaidUIDirector uiDirector;
-        
-        // TODO. TEMP;
-        [SerializeField] private Adventurer player;
-        [SerializeField] private Boss boss;
-        
+        [SerializeField] private GameEventAdventurer adventurerFocusEvent;
+
         private Adventurer focusCharacter;
 
         public static RaidCastingDirector CastingDirector =>
             Instance.castingDirector ??= Instance.GetComponentInChildren<RaidCastingDirector>();
+        public static RaidStageDirector StageDirector =>
+            Instance.stageDirector ??= Instance.GetComponentInChildren<RaidStageDirector>();
         public static RaidUIDirector UIDirector => 
             Instance.uiDirector ??= Instance.GetComponentInChildren<RaidUIDirector>();
 
-        public static Adventurer Player => Instance.player;
+        // public static Adventurer Player => Instance.player;
         public static Adventurer FocusCharacter => Instance.focusCharacter;
-        public static Boss Boss => Instance.boss;
+        public static Boss Boss => MonsterList.IsNullOrEmpty() ? null : MonsterList[0];
         public static List<Adventurer> AdventurerList => CastingDirector.AdventurerList;
         public static List<Boss> MonsterList => CastingDirector.MonsterList;
 
@@ -62,8 +61,9 @@ namespace Raid
             cameraDirector  ??= GetComponentInChildren<RaidCameraDirector>();
             castingDirector ??= GetComponentInChildren<RaidCastingDirector>();
             uiDirector      ??= GetComponentInChildren<RaidUIDirector>();
-            focusCharacter = player;
-
+            
+            castingDirector.Initialize();
+            focusCharacter = castingDirector.AdventurerList[0];
             MainUI.FadePanel.PlayFadeIn();
         }
 
@@ -71,6 +71,7 @@ namespace Raid
         private void Start()
         {
             uiDirector.Initialize();
+            adventurerFocusEvent.Invoke(castingDirector.AdventurerList[0]);
         }
 
 #if UNITY_EDITOR

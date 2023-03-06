@@ -13,16 +13,14 @@ namespace Raid.UI
         [SerializeField] private StatusEffectBar statusEffectBar;
         [SerializeField] private DynamicValueProcess dynamicValueProcess;
         [SerializeField] private ActionBar actionBar;
-        [SerializeField] private CharacterDashActionSlot dashAction;
         [SerializeField] private AdventurerBar adventurerBar;
 
         public void Initialize()
         {
             castingProgress.Initialize();
-            statusEffectBar.Initialize(RaidDirector.Player);
-            dynamicValueProcess.Initialize(RaidDirector.Player);
-            actionBar.Initialize(RaidDirector.Player);
-            // dashAction.Initialize(RaidDirector.Player);
+            statusEffectBar.Initialize(RaidDirector.FocusCharacter);
+            dynamicValueProcess.Initialize(RaidDirector.FocusCharacter);
+            actionBar.Initialize(RaidDirector.FocusCharacter);
             adventurerBar.Initialize(RaidDirector.AdventurerList);
         }
         
@@ -34,7 +32,6 @@ namespace Raid.UI
             statusEffectBar     ??= GetComponentInChildren<StatusEffectBar>();
             dynamicValueProcess ??= GetComponentInChildren<DynamicValueProcess>();
             actionBar           ??= GetComponentInChildren<ActionBar>();
-            dashAction          ??= GetComponentInChildren<CharacterDashActionSlot>();
             adventurerBar       ??= GetComponentInChildren<AdventurerBar>();
         }
 #endif

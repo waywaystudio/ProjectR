@@ -1,6 +1,5 @@
 using Character;
 using Character.Actions;
-using Character.Skill;
 using Core;
 using UnityEngine;
 
