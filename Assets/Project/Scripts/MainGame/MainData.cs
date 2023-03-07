@@ -23,6 +23,8 @@ namespace MainGame
         [SerializeField] private List<DataObject> sheetDataList = new();
         [SerializeField] private SkillMaster skillMaster;
         [SerializeField] private StatusEffectMaster statusEffectMaster;
+        [SerializeField] private CombatClassMaster combatClassMaster;
+        [SerializeField] private BossMaster bossMaster;
         
         private readonly Dictionary<DataIndex, DataObject> sheetDataTable = new();
 
@@ -44,6 +46,8 @@ namespace MainGame
         
         public static SkillMaster SkillMaster => Instance.skillMaster;
         public static StatusEffectMaster StatusEffectMaster => Instance.statusEffectMaster;
+        public static CombatClassMaster CombatClassMaster => Instance.combatClassMaster;
+        public static BossMaster BossMaster => Instance.bossMaster;
         
         
 
@@ -53,7 +57,6 @@ namespace MainGame
         [SerializeField] private string idCodePath;
         [SerializeField] private string dataScriptPath;
         [SerializeField] private string dataObjectPath;
-        // [SerializeField] private string dataMasterPath;
         
         /// <summary>
         /// Editor Function

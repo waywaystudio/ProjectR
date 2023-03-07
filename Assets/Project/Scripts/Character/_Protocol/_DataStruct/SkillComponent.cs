@@ -7,7 +7,7 @@ using UnityEngine;
 
 namespace Character
 {
-    public abstract class SkillComponent : MonoBehaviour, ISequence, IEditable, IDataIndexer
+    public abstract class SkillComponent : MonoBehaviour, ISequence, IDataIndexer, IEditable
     {
         /* Common Attribution */
         [SerializeField] protected DataIndex actionCode;

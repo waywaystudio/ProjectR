@@ -136,6 +136,8 @@ MonoBehaviour:
   - {fileID: 11400000, guid: afdb984896de2944a8a2ecf72158de10, type: 2}
   skillMaster: {fileID: 11400000, guid: 743e24344e1679a46807160ebd4ef948, type: 2}
   statusEffectMaster: {fileID: 11400000, guid: 505adfbfe37de0349bc3edecc360a977, type: 2}
+  combatClassMaster: {fileID: 11400000, guid: 0d1a11bc20c568845babb92115bd2dff, type: 2}
+  bossMaster: {fileID: 11400000, guid: ef22e9954402c8e4b8904cf91401ece0, type: 2}
   iconPath: Assets/Project/Graphics/Icon
   idCodePath: Assets/Project/Scripts/Core/_Protocol/_Enum
   dataScriptPath: Assets/Project/Scripts/MainGame/Data/SheetData

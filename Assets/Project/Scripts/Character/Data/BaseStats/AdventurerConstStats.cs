@@ -12,7 +12,7 @@ namespace Character.Data.BaseStats
             
             var ab = GetComponentInParent<Adventurer>();
             
-            baseStatCode = ab.ClassCode;
+            baseStatCode = ab.ActionCode;
             var classData = MainData.CombatClassSheetData(baseStatCode);
             
             maxHp.Value       = classData.MaxHp;
@@ -22,7 +22,7 @@ namespace Character.Data.BaseStats
             haste.Value       = classData.Haste;
             armor.Value      = classData.Armor;
             
-            Debug.Log($"Adventurer Const Stat:{ab.ClassCode} Load Complete");
+            Debug.Log($"Adventurer Const Stat:{ab.ActionCode} Load Complete");
         }
 #endif
     }

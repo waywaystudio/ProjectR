@@ -29,7 +29,7 @@ namespace Character
         [SerializeField] protected UnityEvent onManualControl;
         [SerializeField] protected UnityEvent onAutoControl;
 
-        public DataIndex ClassCode => combatClassID;
+        public DataIndex ActionCode => combatClassID;
         public string Name => characterName;
         public RoleType Role => role;
         public IDynamicStatEntry DynamicStatEntry => dynamicStatEntry ??= GetComponentInChildren<DynamicStatEntry>();

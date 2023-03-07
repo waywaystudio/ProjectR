@@ -1,81 +1,53 @@
 using System.Collections.Generic;
 using Character;
 using Core;
+using MainGame;
 using Sirenix.OdinInspector;
 using UnityEngine;
 
 namespace Raid
 {
-    public class RaidCastingDirector : MonoBehaviour, IEditable
+    public class RaidCastingDirector : MonoBehaviour
     {
         [SerializeField] private Transform adventurerHierarchy;
         [SerializeField] private Transform monsterHierarchy;
-        [SerializeField] private DataIndex mainBoss;
-        
-        [SerializeField] private DataIndex firstAdventurer;
-        [SerializeField] private DataIndex secondAdventurer;
-        [SerializeField] private DataIndex thirdAdventurer;
-        [SerializeField] private DataIndex fourthAdventurer;
-        
-        [SerializeField] private List<GameObject> adventurerPrefabList = new();
-        [SerializeField] private List<GameObject> bossPrefabList = new();
 
         [ShowInInspector] public List<Adventurer> AdventurerList { get; } = new();
         [ShowInInspector] public List<Boss> MonsterList { get; } = new();
 
-        public void Initialize()
+
+        public void Initialize(List<DataIndex> adventurerEntry, DataIndex bossEntry)
         {
-            var adventurer1 = adventurerPrefabList.Find(x =>
-                x.TryGetComponent(out Adventurer adventurer) && adventurer.ClassCode == firstAdventurer);
+            if (adventurerEntry.IsNullOrEmpty())
+            {
+                Debug.Log($"Adventurer Not Existed. HasEntry ? : {!adventurerEntry.IsNullOrEmpty()}");
+                return;
+            }
             
-            var adventurer2 = adventurerPrefabList.Find(x =>
-                x.TryGetComponent(out Adventurer adventurer) && adventurer.ClassCode == secondAdventurer);
+            if (adventurerEntry.Count > 8)
+            {
+                Debug.Log($"Adventurer Count Error. EntryCount : {adventurerEntry.Count}");
+                return;
+            }
             
-            var adventurer3 = adventurerPrefabList.Find(x =>
-                x.TryGetComponent(out Adventurer adventurer) && adventurer.ClassCode == thirdAdventurer);
-            
-            var adventurer4 = adventurerPrefabList.Find(x =>
-                x.TryGetComponent(out Adventurer adventurer) && adventurer.ClassCode == fourthAdventurer);
-            
-            var boss = bossPrefabList.Find(x =>
-                x.TryGetComponent(out Boss boss) && boss.ClassCode == mainBoss);
+            if (!MainData.CombatClassMaster.Gets(adventurerEntry, out var adventurerPrefabs)) return;
+            if (!MainData.BossMaster.Get(bossEntry, out var bossPrefab)) return;
 
-            var adv1Object = Instantiate(adventurer1, RaidDirector.StageDirector.GetAdventurerPosition(0).position,
-                RaidDirector.StageDirector.GetAdventurerPosition(0).rotation, adventurerHierarchy);
+            adventurerPrefabs.ForEach((prefab, index) =>
+            {
+                var adventurerObject = Instantiate(prefab, 
+                    RaidDirector.StageDirector.GetAdventurerPosition(index).position, 
+                    Quaternion.identity, 
+                    adventurerHierarchy);
+                var adventurer = adventurerObject.GetComponent<Adventurer>();
+                
+                AdventurerList.Add(adventurer);
+            });
+
+            var bossObject = Instantiate(bossPrefab, RaidDirector.StageDirector.BossSpawn.position, Quaternion.identity, monsterHierarchy);
+            var boss = bossObject.GetComponent<Boss>();
             
-            var adv2Object = Instantiate(adventurer2, RaidDirector.StageDirector.GetAdventurerPosition(1).position,
-                RaidDirector.StageDirector.GetAdventurerPosition(1).rotation, adventurerHierarchy);
-            
-            var adv3Object = Instantiate(adventurer3, RaidDirector.StageDirector.GetAdventurerPosition(2).position,
-                RaidDirector.StageDirector.GetAdventurerPosition(2).rotation, adventurerHierarchy);
-            
-            var adv4Object = Instantiate(adventurer4, RaidDirector.StageDirector.GetAdventurerPosition(3).position,
-                RaidDirector.StageDirector.GetAdventurerPosition(3).rotation, adventurerHierarchy);
-            
-            var bossObject = Instantiate(boss, RaidDirector.StageDirector.BossSpawn.position,
-                RaidDirector.StageDirector.BossSpawn.rotation, monsterHierarchy);
-            
-            AdventurerList.Add(adv1Object.GetComponent<Adventurer>());
-            AdventurerList.Add(adv2Object.GetComponent<Adventurer>());
-            AdventurerList.Add(adv3Object.GetComponent<Adventurer>());
-            AdventurerList.Add(adv4Object.GetComponent<Adventurer>());
-            
-            MonsterList.Add(bossObject.GetComponent<Boss>());
+            MonsterList.Add(boss);
         }
-
-        // private void Awake()
-        // {
-        //     // GetComponentsInChildren(AdventurerList);
-        //     // GetComponentsInChildren(MonsterList);
-        // }
-
-
-#if UNITY_EDITOR
-        public void EditorSetUp()
-        {
-            // GetComponentsInChildren(AdventurerList);
-            // GetComponentsInChildren(MonsterList);
-        }
-#endif
     }
 }

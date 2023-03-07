@@ -85,8 +85,10 @@ namespace Core
         StatusEffectEntity TakeBuff(IStatusEffect statusEffect);
     }
 
-    public interface ICombatExecutor : ICombatProvider, ICombatTaker
+    public interface ICombatExecutor : ICombatProvider, ICombatTaker, IDataIndexer
     {
+        // + DataIndex ActionCode { get; }
+        
         // + StatTable StatTable { get; }
         // + IDynamicStatEntry DynamicStatEntry { get; }
         // + string Name { get; }

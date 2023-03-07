@@ -11,7 +11,7 @@ namespace Character.Data.BaseStats
 
             var mb = GetComponentInParent<Boss>();
             
-            baseStatCode = mb.ClassCode;
+            baseStatCode = mb.ActionCode;
             var bossData = MainData.BossSheetData(baseStatCode);
             
             maxHp.Value       = bossData.MaxHp;

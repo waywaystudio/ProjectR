@@ -120,6 +120,7 @@ MonoBehaviour:
     m_Bits: 256
   icon: {fileID: 21300000, guid: 68ac4a9cd0f808b4e82a25a73bacce7e, type: 3}
   description: Starts combat by attacking a target with a melee weapon.
+  isRigid: 1
   coolTime: 8
   cost: 0
   animationKey: thunderClap

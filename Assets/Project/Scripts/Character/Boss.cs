@@ -25,9 +25,9 @@ namespace Character
         [SerializeField] protected Transform damageSpawn;
         [SerializeField] protected Transform statusEffectHierarchy;
 
+        public DataIndex ActionCode => dataIndex;
         public string Name => characterName;
         public RoleType Role => role;
-        public DataIndex ClassCode => dataIndex;
         public IDynamicStatEntry DynamicStatEntry => dynamicStatEntry ??= GetComponentInChildren<DynamicStatEntry>();
         public ICharacterBehaviour CharacterBehaviour => characterAction;
         public GameObject Object => gameObject;

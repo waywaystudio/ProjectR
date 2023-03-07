@@ -9,15 +9,13 @@ using UnityEngine;
 
 namespace Raid
 {
-    /* Raid는 프리팹 베리언트로 만들어질 예정.
-     * 각 레이드 마다 프리팹이 존재 할 것이며, 보스 몬스터, 스테이지를 기본 포함한다.
-     * 다음 항목을 다른 씬에서 받는다.
-     * 플레이어
-     * 파티원
-     * 설정 난이도.
-     */
     public class RaidDirector : MonoSingleton<RaidDirector>, IEditable
     {
+        // TODO.TEMP : 이 후에는 로비씬에서 받아올 듯.
+        [SerializeField] private List<DataIndex> adventurerEntry;
+        [SerializeField] private DataIndex bossEntry;
+        // 
+        
         [SerializeField] private RaidCameraDirector cameraDirector;
         [SerializeField] private RaidStageDirector stageDirector;
         [SerializeField] private RaidCastingDirector castingDirector;
@@ -33,27 +31,13 @@ namespace Raid
         public static RaidUIDirector UIDirector => 
             Instance.uiDirector ??= Instance.GetComponentInChildren<RaidUIDirector>();
 
-        // public static Adventurer Player => Instance.player;
+        
         public static Adventurer FocusCharacter => Instance.focusCharacter;
         public static Boss Boss => MonsterList.IsNullOrEmpty() ? null : MonsterList[0];
         public static List<Adventurer> AdventurerList => CastingDirector.AdventurerList;
         public static List<Boss> MonsterList => CastingDirector.MonsterList;
 
-
-        /* TODO. FUTURE...
-        public void Initialize(AdventurerBehaviour player, List<AdventurerBehaviour> party, int level)
-        {
-            this.player = player;
-            castingDirector.SetCharacter(party, level);
-             
-            cameraDirector.SetUp();
-            castingDirector.SetUp();
-            ui.SetUp();
-             
-            MainUI.FadePanel.PlayFadeIn();
-        }*/
-
-        // TODO. 개발 버전에서는 Initialize를 대체한다.
+        
         protected override void Awake()
         {
             base.Awake();
@@ -62,7 +46,7 @@ namespace Raid
             castingDirector ??= GetComponentInChildren<RaidCastingDirector>();
             uiDirector      ??= GetComponentInChildren<RaidUIDirector>();
             
-            castingDirector.Initialize();
+            castingDirector.Initialize(adventurerEntry, bossEntry);
             focusCharacter = castingDirector.AdventurerList[0];
             MainUI.FadePanel.PlayFadeIn();
         }
