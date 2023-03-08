@@ -29,10 +29,30 @@ namespace Raid
                 Debug.Log($"Adventurer Count Error. EntryCount : {adventurerEntry.Count}");
                 return;
             }
-            
-            if (!MainData.CombatClassMaster.Gets(adventurerEntry, out var adventurerPrefabs)) return;
-            if (!MainData.BossMaster.Get(bossEntry, out var bossPrefab)) return;
 
+            // adventurerEntry.ForEach(adventurerIndex =>
+            // {
+            //     GameObject characterObject = null;
+            //     
+            //     if (adventurerIndex == DataIndex.Knight) characterObject = MainCharacter.Knight;
+            //     if (adventurerIndex == DataIndex.Rogue) characterObject = MainCharacter.Assassin;
+            //     if (adventurerIndex == DataIndex.Hunter) characterObject = MainCharacter.Soldier;
+            //
+            //     if (characterObject != null)
+            //     {
+            //         characterObject.transform.SetParent(transform);
+            //         characterObject.SetActive(true);
+            //     }
+            //         
+            //     else return;
+            //     
+            //     var adventurer = characterObject.GetComponent<Adventurer>();
+            //     
+            //     AdventurerList.Add(adventurer);
+            // });
+
+            if (!MainData.CombatClassMaster.Gets(adventurerEntry, out var adventurerPrefabs)) return;
+            
             adventurerPrefabs.ForEach((prefab, index) =>
             {
                 var adventurerObject = Instantiate(prefab, 
@@ -43,6 +63,8 @@ namespace Raid
                 
                 AdventurerList.Add(adventurer);
             });
+            
+            if (!MainData.BossMaster.Get(bossEntry, out var bossPrefab)) return;
 
             var bossObject = Instantiate(bossPrefab, RaidDirector.StageDirector.BossSpawn.position, Quaternion.identity, monsterHierarchy);
             var boss = bossObject.GetComponent<Boss>();

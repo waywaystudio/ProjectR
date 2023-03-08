@@ -8,7 +8,7 @@ using UnityEngine.UI;
 
 namespace Raid.UI.ActionFrames.ActionBars.CharacterSkillBars
 {
-    public class CharacterSkillActionIcon : MonoBehaviour
+    public class CharacterSkillActionIcon : MonoBehaviour, ITooltipInfo
     {
         [SerializeField] private Image actionImage;
 
@@ -20,7 +20,7 @@ namespace Raid.UI.ActionFrames.ActionBars.CharacterSkillBars
 
         public void Initialize(Adventurer adventurer, SkillComponent skillComponent)
         {
-            focusedAdventurer = adventurer;
+            focusedAdventurer = adventurer; 
 
             this.skillComponent = skillComponent;
             actionImage.sprite  = skillComponent.Icon;
@@ -42,5 +42,6 @@ namespace Raid.UI.ActionFrames.ActionBars.CharacterSkillBars
             characterAction.ReleaseSkill();
         }
 
+        public string TooltipInfo => actionImage ? actionImage.sprite.ToString() : "None";
     }
 }

@@ -3,7 +3,7 @@ using DG.Tweening;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace Raid.UI
+namespace MainGame.UI.ImageUtility
 {
     public class ImageFiller : MonoBehaviour
     {

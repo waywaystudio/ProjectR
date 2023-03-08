@@ -1,4 +1,5 @@
 using Core;
+using MainGame.UI.Tooltips;
 using UnityEngine;
 
 namespace Raid
@@ -12,6 +13,9 @@ namespace Raid
 
         // Pool
         [SerializeField] private DamageTextPool damageTextPool;
+        [SerializeField] private TooltipPool tooltipPool;
+
+        public TooltipPool TooltipPool => tooltipPool;
 
         // [SerializeField] private List<PartyUnitFrame> partyFrameList;
         // public List<PartyUnitFrame> PartyFrameList => partyFrameList;
@@ -29,6 +33,7 @@ namespace Raid
             bossFrame      ??= GetComponentInChildren<BossFrame>();
             actionFrame    ??= GetComponentInChildren<ActionFrame>();
             damageTextPool ??= GetComponentInChildren<DamageTextPool>();
+            tooltipPool    ??= GetComponentInChildren<TooltipPool>();
         }
 #endif
     }
