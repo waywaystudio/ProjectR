@@ -8942,7 +8942,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3744010700067239338, guid: a1af0054aa925ee41872a7560b759664, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3744010700067239340, guid: a1af0054aa925ee41872a7560b759664, type: 3}
       propertyPath: m_RootOrder
@@ -8970,7 +8970,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3744010700067239340, guid: a1af0054aa925ee41872a7560b759664, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: 9.6
       objectReference: {fileID: 0}
     - target: {fileID: 3744010700067239340, guid: a1af0054aa925ee41872a7560b759664, type: 3}
       propertyPath: m_LocalRotation.w
@@ -15424,12 +15424,20 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5661615854900856076, guid: 9f6a97e7e5739ea469cdeb8ceab14b08, type: 3}
+      propertyPath: m_Name
+      value: Rogue
+      objectReference: {fileID: 0}
+    - target: {fileID: 5661615854900856076, guid: 9f6a97e7e5739ea469cdeb8ceab14b08, type: 3}
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5948248387940990852, guid: 9f6a97e7e5739ea469cdeb8ceab14b08, type: 3}
       propertyPath: m_Name
       value: MainGame
+      objectReference: {fileID: 0}
+    - target: {fileID: 7877028045064721975, guid: 9f6a97e7e5739ea469cdeb8ceab14b08, type: 3}
+      propertyPath: m_Name
+      value: Hunter
       objectReference: {fileID: 0}
     - target: {fileID: 7877028045064721975, guid: 9f6a97e7e5739ea469cdeb8ceab14b08, type: 3}
       propertyPath: m_IsActive
@@ -19416,8 +19424,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a1b39afc3fc8a9746883b0b3210f0283, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  adventurerEntry: 011bb700041bb700051bb700051bb700
-  bossEntry: 17000002
+  adventurerEntry: 011bb700041bb700051bb700
   cameraDirector: {fileID: 1943438065}
   stageDirector: {fileID: 570134823}
   castingDirector: {fileID: 1737851512}
@@ -19473,6 +19480,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 3744010700067239340, guid: a1af0054aa925ee41872a7560b759664, type: 3}
   m_PrefabInstance: {fileID: 522883980}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1119986513 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1194031104030257203, guid: a1af0054aa925ee41872a7560b759664, type: 3}
+  m_PrefabInstance: {fileID: 522883980}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a27bdbdf1c9c634480dedbf9d062a47, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1126254077
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -31401,6 +31419,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   adventurerHierarchy: {fileID: 1771157842}
   monsterHierarchy: {fileID: 21531010}
+  boss: {fileID: 1119986513}
 --- !u!1 &1765025875
 GameObject:
   m_ObjectHideFlags: 0

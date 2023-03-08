@@ -192,8 +192,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   knight: {fileID: 4886759636792181479}
-  assassin: {fileID: 5661615854900856076}
-  soldier: {fileID: 7877028045064721975}
+  rogue: {fileID: 5661615854900856076}
+  hunter: {fileID: 7877028045064721975}
 --- !u!1 &9039682236266940767
 GameObject:
   m_ObjectHideFlags: 0
@@ -282,7 +282,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8486275406067721365, guid: 7fe7cd8a4e2422b458244aa4866b0550, type: 3}
       propertyPath: m_Name
-      value: Soldier
+      value: Hunter
+      objectReference: {fileID: 0}
+    - target: {fileID: 8486275406067721365, guid: 7fe7cd8a4e2422b458244aa4866b0550, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7fe7cd8a4e2422b458244aa4866b0550, type: 3}
@@ -428,6 +432,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Knight
       objectReference: {fileID: 0}
+    - target: {fileID: 8486275406067721365, guid: fab80dc67bb3a6f4983488ea9b38fe88, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: fab80dc67bb3a6f4983488ea9b38fe88, type: 3}
 --- !u!4 &4886759636792181473 stripped
@@ -497,7 +505,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8486275406067721365, guid: d19fd07a00b203c4ca97781b737b8426, type: 3}
       propertyPath: m_Name
-      value: Assassin
+      value: Rogue
+      objectReference: {fileID: 0}
+    - target: {fileID: 8486275406067721365, guid: d19fd07a00b203c4ca97781b737b8426, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d19fd07a00b203c4ca97781b737b8426, type: 3}

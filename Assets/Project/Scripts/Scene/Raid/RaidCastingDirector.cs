@@ -11,12 +11,13 @@ namespace Raid
     {
         [SerializeField] private Transform adventurerHierarchy;
         [SerializeField] private Transform monsterHierarchy;
+        [SerializeField] private Boss boss = new();
 
         [ShowInInspector] public List<Adventurer> AdventurerList { get; } = new();
-        [ShowInInspector] public List<Boss> MonsterList { get; } = new();
+        [ShowInInspector] public Boss Boss => boss;
 
 
-        public void Initialize(List<DataIndex> adventurerEntry, DataIndex bossEntry)
+        public void Initialize(List<DataIndex> adventurerEntry)
         {
             if (adventurerEntry.IsNullOrEmpty())
             {
@@ -30,46 +31,18 @@ namespace Raid
                 return;
             }
 
-            // adventurerEntry.ForEach(adventurerIndex =>
-            // {
-            //     GameObject characterObject = null;
-            //     
-            //     if (adventurerIndex == DataIndex.Knight) characterObject = MainCharacter.Knight;
-            //     if (adventurerIndex == DataIndex.Rogue) characterObject = MainCharacter.Assassin;
-            //     if (adventurerIndex == DataIndex.Hunter) characterObject = MainCharacter.Soldier;
-            //
-            //     if (characterObject != null)
-            //     {
-            //         characterObject.transform.SetParent(transform);
-            //         characterObject.SetActive(true);
-            //     }
-            //         
-            //     else return;
-            //     
-            //     var adventurer = characterObject.GetComponent<Adventurer>();
-            //     
-            //     AdventurerList.Add(adventurer);
-            // });
-
-            if (!MainData.CombatClassMaster.Gets(adventurerEntry, out var adventurerPrefabs)) return;
-            
-            adventurerPrefabs.ForEach((prefab, index) =>
+            adventurerEntry.ForEach((adventurerIndex, index) =>
             {
-                var adventurerObject = Instantiate(prefab, 
-                    RaidDirector.StageDirector.GetAdventurerPosition(index).position, 
-                    Quaternion.identity, 
-                    adventurerHierarchy);
+                if (!MainAdventurer.TryGetAdventurer(adventurerIndex, out var adventurerObject)) return;
+                
+                adventurerObject.transform.SetParent(adventurerHierarchy);
+                adventurerObject.transform.position = RaidDirector.StageDirector.GetAdventurerPosition(index).position;
+                adventurerObject.SetActive(true);
+                
                 var adventurer = adventurerObject.GetComponent<Adventurer>();
                 
                 AdventurerList.Add(adventurer);
             });
-            
-            if (!MainData.BossMaster.Get(bossEntry, out var bossPrefab)) return;
-
-            var bossObject = Instantiate(bossPrefab, RaidDirector.StageDirector.BossSpawn.position, Quaternion.identity, monsterHierarchy);
-            var boss = bossObject.GetComponent<Boss>();
-            
-            MonsterList.Add(boss);
         }
     }
 }

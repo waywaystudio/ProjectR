@@ -13,7 +13,6 @@ namespace Raid
     {
         // TODO.TEMP : 이 후에는 로비씬에서 받아올 듯.
         [SerializeField] private List<DataIndex> adventurerEntry;
-        [SerializeField] private DataIndex bossEntry;
         // 
         
         [SerializeField] private RaidCameraDirector cameraDirector;
@@ -33,9 +32,18 @@ namespace Raid
 
         
         public static Adventurer FocusCharacter => Instance.focusCharacter;
-        public static Boss Boss => MonsterList.IsNullOrEmpty() ? null : MonsterList[0];
+        public static Boss Boss => CastingDirector.Boss;
         public static List<Adventurer> AdventurerList => CastingDirector.AdventurerList;
-        public static List<Boss> MonsterList => CastingDirector.MonsterList;
+
+
+        public void Initialize(List<DataIndex> adventurerEntry)
+        {
+            castingDirector.Initialize(adventurerEntry);
+            focusCharacter = castingDirector.AdventurerList[0];
+            
+            // uiDirector.Initialize();
+            // adventurerFocusEvent.Invoke(castingDirector.AdventurerList[0]);
+        }
 
         
         protected override void Awake()
@@ -45,9 +53,10 @@ namespace Raid
             cameraDirector  ??= GetComponentInChildren<RaidCameraDirector>();
             castingDirector ??= GetComponentInChildren<RaidCastingDirector>();
             uiDirector      ??= GetComponentInChildren<RaidUIDirector>();
-            
-            castingDirector.Initialize(adventurerEntry, bossEntry);
-            focusCharacter = castingDirector.AdventurerList[0];
+
+            // TODO.TEMP Initializer
+            Initialize(adventurerEntry);
+
             MainUI.FadePanel.PlayFadeIn();
         }
 

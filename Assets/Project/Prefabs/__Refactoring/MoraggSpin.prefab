@@ -126,7 +126,8 @@ MonoBehaviour:
   cost: 0
   animationKey: casting
   progressTime: 3
-  power: {fileID: 0}
+  knockBackDistance: 5
+  power: {fileID: 386900657837893818}
   projector: {fileID: 8959908313466980663}
 --- !u!114 &386900657837893818
 MonoBehaviour:
