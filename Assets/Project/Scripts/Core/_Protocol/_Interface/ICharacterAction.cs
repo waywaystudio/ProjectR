@@ -18,7 +18,6 @@ namespace Core
         void Stun(float duration);
         void KnockBack(Vector3 source, float distance);
         void Dead();
-        // void KnockDown(float duration);
         // void Horror(float duration);
     }
 }

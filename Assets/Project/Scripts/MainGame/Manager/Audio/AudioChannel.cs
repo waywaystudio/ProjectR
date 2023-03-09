@@ -1,11 +1,11 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using MainGame.Manager.Audio.Utility;
+using Manager.Audio.Utility;
 using UnityEngine;
 using UnityEngine.Audio;
 
-namespace MainGame.Manager.Audio
+namespace Manager.Audio
 {
     public class AudioChannel : MonoBehaviour
     {

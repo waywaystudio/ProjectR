@@ -1,10 +1,12 @@
 ﻿#if ODIN_INSPECTOR
 using System.Collections.Generic;
+using Manager.Audio;
 using Sirenix.OdinInspector;
 using Sirenix.OdinInspector.Editor;
 using Sirenix.Utilities.Editor;
 using UnityEditor;
 using UnityEngine;
+using AudioType = Manager.Audio.AudioType;
 
 namespace MainGame.Manager.Audio.Editor
 {

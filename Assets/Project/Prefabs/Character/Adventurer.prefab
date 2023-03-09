@@ -626,11 +626,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b4e841defa0727248a0aa0ed3a51250d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rootTransform: {fileID: 3744010700067239340}
+  moveSpeed: 7
   raycastThreshHold: 2
+  knockBackDuration: 0.35
+  rootTransform: {fileID: 3744010700067239340}
   agent: {fileID: 4715572446690749081}
   aiMove: {fileID: 6554939850863896418}
-  moveSpeed: 7
   environmentLayer:
     serializedVersion: 2
     m_Bits: 64
@@ -797,6 +798,7 @@ GameObject:
   - component: {fileID: 3911534717257950474}
   - component: {fileID: 6370810151153497551}
   - component: {fileID: 2164831663368211682}
+  - component: {fileID: 1367723563157091856}
   m_Layer: 2
   m_Name: Searching
   m_TagString: Untagged
@@ -845,6 +847,35 @@ SphereCollider:
   serializedVersion: 2
   m_Radius: 100
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &1367723563157091856
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8220216556235393295}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ce3fcee7828b40e41a9d08830f1dc9e5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  targetEvent: {fileID: 11400000, guid: 37dbb041f646666488e1bdb5370c5c9c, type: 2}
+  priority: 5
+  response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 6370810151153497551}
+        m_TargetAssemblyTypeName: Character.Systems.SearchingSystem, Common
+        m_MethodName: Clear
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &8533003538855746049
 GameObject:
   m_ObjectHideFlags: 0

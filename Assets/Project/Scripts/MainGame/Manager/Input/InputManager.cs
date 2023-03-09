@@ -4,16 +4,16 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
 
-namespace MainGame.Manager.Input
+namespace Manager.Input
 {
     public class InputManager : MonoBehaviour
     {
         private bool isMouseOnUI;
         private ProjectInput projectInput;
-        private Camera mainCamera;
         private readonly RaycastHit[] buffers = new RaycastHit[8];
 
         public bool IsMouseOnUI => isMouseOnUI;
+        public Camera MainCamera { get; set; }
 
         public bool TryGetAction(BindingCode bindingCode, out InputAction inputAction)
         {
@@ -51,7 +51,7 @@ namespace MainGame.Manager.Input
             mousePosition = Vector3.negativeInfinity;
                 
             var plane = new Plane(Vector3.up, 0f);
-            var ray = mainCamera.ScreenPointToRay(Mouse.current.position.ReadValue());
+            var ray = MainCamera.ScreenPointToRay(Mouse.current.position.ReadValue());
 
             // Check Zero Plane
             if (!plane.Raycast(ray, out var distance)) return false;
@@ -63,7 +63,7 @@ namespace MainGame.Manager.Input
         public bool TryGetGroundPosition(out Vector3 groundPosition)
         {
             groundPosition = Vector3.negativeInfinity;
-            var ray = mainCamera.ScreenPointToRay(Mouse.current.position.ReadValue());
+            var ray = MainCamera.ScreenPointToRay(Mouse.current.position.ReadValue());
 
             if (Physics.RaycastNonAlloc(ray, buffers, 1000f, LayerMask.GetMask("Ground")) == 0)
             {
@@ -87,7 +87,7 @@ namespace MainGame.Manager.Input
         private void Awake()
         {
             projectInput = new ProjectInput();
-            mainCamera = Camera.main;
+            MainCamera ??= Camera.main;
         }
 
         private void OnEnable()
@@ -122,6 +122,5 @@ namespace MainGame.Manager.Input
                 inputAction.Disable();
             }
         }
-        
     }
 }

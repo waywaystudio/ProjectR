@@ -23,7 +23,7 @@ namespace Character.Actions
         public SkillComponent SecondSkill => SkillList[1];
         public SkillComponent ThirdSkill => SkillList[2];
         public SkillComponent FourthSkill => SkillList[3];
-
+        public DeadAction DeadAction => deadAction;
 
         public void Run(Vector3 destination) => runAction.Active(destination);
         public void Rotate(Vector3 targetPosition) => rotateAction.Active(targetPosition);
@@ -41,7 +41,7 @@ namespace Character.Actions
 
             if (skill.IsRigid)
             {
-                const CharacterActionMask rigidImmune = CharacterActionMask.Run       |
+                const CharacterActionMask rigidImmune = CharacterActionMask.Run |
                                                         CharacterActionMask.Rotate    |
                                                         CharacterActionMask.KnockBack |
                                                         CharacterActionMask.Stun;

@@ -63,6 +63,16 @@ namespace Core
         {
             return gameObject == null || gameObject.activeSelf == false;
         }
+        
+        public static bool IsNullOrDestroyed(this object obj)
+        {
+            return obj switch
+            {
+                null     => true,
+                Object o => o == null,
+                _        => false
+            };
+        }
 
         public static bool IsNullOrEmpty(this Component component)
         {

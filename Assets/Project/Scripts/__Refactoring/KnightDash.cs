@@ -12,7 +12,7 @@ namespace Character.Actions.Knight
 
         private void OnKnightDash()
         {
-            if (!MainGame.MainManager.Input.TryGetMousePosition(out var mousePosition)) return;
+            if (!MainManager.Input.TryGetMousePosition(out var mousePosition)) return;
 
             pathfinding.Dash(mousePosition - transform.position, dashDistance, ()=> OnCompleted.Invoke());
         }

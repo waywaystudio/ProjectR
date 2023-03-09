@@ -7,7 +7,7 @@ using Sirenix.OdinInspector;
 using UnityEngine;
 using UnitySceneManager = UnityEngine.SceneManagement.SceneManager;
 
-namespace MainGame.Manager.Scene
+namespace Manager.Scene
 {
     public class SceneManager : MonoBehaviour
     {

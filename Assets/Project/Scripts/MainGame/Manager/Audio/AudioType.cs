@@ -1,4 +1,4 @@
-namespace MainGame.Manager.Audio
+namespace Manager.Audio
 {    
     public enum AudioType
     {        

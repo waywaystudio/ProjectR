@@ -2,7 +2,7 @@ using System;
 using Core;
 using UnityEngine;
 
-namespace MainGame.Manager.Save
+namespace Manager.Save
 {
     // TODO.
     /* SaveInfo 클래스의 Save(), Load(), Delete()는 사실 여기 없어도 된다.

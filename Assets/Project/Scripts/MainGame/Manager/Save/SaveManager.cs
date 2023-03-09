@@ -7,7 +7,7 @@ using UnityEngine;
 // ReSharper disable MemberCanBeMadeStatic.Global
 // ReSharper disable NotAccessedField.Local
 
-namespace MainGame.Manager.Save
+namespace Manager.Save
 {
     public class SaveManager : MonoBehaviour
     {

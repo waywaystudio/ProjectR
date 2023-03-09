@@ -1,5 +1,4 @@
 using Core;
-using MainGame.UI.ImageUtility;
 using TMPro;
 using UnityEngine;
 
@@ -10,7 +9,6 @@ namespace MainGame.UI.ActionBars
         [SerializeField] protected BindingCode hotKey;
         [SerializeField] protected Transform skillObjectHierarchy;
         [SerializeField] protected TextMeshProUGUI hotKeyTextUI;
-        // [SerializeField] protected ImageFiller filler;
         
 
         public void AssignAction(DataIndex actionCode)
@@ -20,14 +18,12 @@ namespace MainGame.UI.ActionBars
 
 
 #if UNITY_EDITOR
-        public void EditorSetUp()
+        public virtual void EditorSetUp()
         {
             skillObjectHierarchy =   transform.Find("ActionHierarchy");
             hotKeyTextUI         ??= GetComponentInChildren<TextMeshProUGUI>();
-            // filler               ??= transform.Find("SkillCooldown").GetComponent<ImageFiller>();
-
             hotKeyTextUI.text = hotKey.ToString() == "None" 
-                ? "#" 
+                ? string.Empty 
                 : hotKey.ToString();
         }
 #endif

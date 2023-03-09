@@ -7,7 +7,7 @@ using System;
 using System.Reflection;
 using UnityEngine;
 
-namespace MainGame.Manager.Audio.Utility
+namespace Manager.Audio.Utility
 {
     public static class AudioClipUtility
     {

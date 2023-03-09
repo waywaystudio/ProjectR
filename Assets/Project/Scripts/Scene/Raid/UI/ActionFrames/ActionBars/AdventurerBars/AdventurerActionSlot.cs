@@ -29,7 +29,7 @@ namespace Raid.UI.ActionFrames.ActionBars.AdventurerBars
             adventurerAction.Initialize(adventurer);
 
             hotKey.text = HotKey;
-            MainGame.MainManager.Input.TryGetAction(bindingCode, out var inputAction);
+            MainManager.Input.TryGetAction(bindingCode, out var inputAction);
 
             inputAction.started += adventurerAction.StartAction;
         }

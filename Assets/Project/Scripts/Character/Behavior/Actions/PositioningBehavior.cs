@@ -8,7 +8,12 @@ namespace Character.Behavior.Actions
     {
         private CharacterAction ab;
         
-        public override void OnAwake()
+        // public override void OnAwake()
+        // {
+        //     TryGetComponent(out ab);
+        // }
+
+        public override void OnStart()
         {
             TryGetComponent(out ab);
         }

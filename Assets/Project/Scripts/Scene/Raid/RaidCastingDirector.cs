@@ -11,7 +11,7 @@ namespace Raid
     {
         [SerializeField] private Transform adventurerHierarchy;
         [SerializeField] private Transform monsterHierarchy;
-        [SerializeField] private Boss boss = new();
+        [SerializeField] private Boss boss;
 
         [ShowInInspector] public List<Adventurer> AdventurerList { get; } = new();
         [ShowInInspector] public Boss Boss => boss;

@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using Core;
 using Core.Singleton;
 using UnityEngine;
@@ -9,10 +10,27 @@ namespace MainGame
         [SerializeField] private GameObject knight;
         [SerializeField] private GameObject rogue;
         [SerializeField] private GameObject hunter;
+        
+        private readonly List<GameObject> adventurerList = new();
 
         public static GameObject Knight => Instance.knight;
         public static GameObject Rogue => Instance.rogue;
         public static GameObject Hunter => Instance.hunter;
+
+        public static List<GameObject> AdventurerList
+        {
+            get
+            {
+                if (Instance.adventurerList.HasElement()) 
+                    return Instance.adventurerList;
+                
+                Instance.adventurerList.Add(Knight);
+                Instance.adventurerList.Add(Rogue);
+                Instance.adventurerList.Add(Hunter);
+
+                return Instance.adventurerList;
+            }
+        }
 
         public static bool TryGetAdventurer(DataIndex dataIndex, out GameObject adventurer)
         {
@@ -30,10 +48,43 @@ namespace MainGame
             return adventurer != null;
         }
 
-        public static void Return(GameObject characterObject)
+        public static GameObject GetNext(GameObject adventurer)
         {
-            characterObject.transform.SetParent(Instance.transform);
-            characterObject.SetActive(false);
+            if (Instance.adventurerList.IsNullOrEmpty()) return null;
+            
+            var index = Instance.adventurerList.FindIndex(x => x == adventurer);
+            var count = Instance.adventurerList.Count;
+
+            return Instance.adventurerList[(index + 1) % count];
+        }
+
+        public static GameObject GetPrev(GameObject adventurer)
+        {
+            if (Instance.adventurerList.IsNullOrEmpty()) return null;
+            
+            var index = Instance.adventurerList.FindIndex(x => x == adventurer);
+            var count = Instance.adventurerList.Count;
+
+            return Instance.adventurerList[(index - 1 + Instance.adventurerList.Count) % count];
+        }
+
+        public static void Return()
+        {
+            AdventurerList.ForEach(adventurer =>
+            {
+                adventurer.transform.SetParent(Instance.transform);
+                adventurer.SetActive(false);
+            });
+        }
+
+
+        protected override void Awake()
+        {
+            base.Awake();
+            
+            adventurerList.Add(Knight);
+            adventurerList.Add(Rogue);
+            adventurerList.Add(Hunter);
         }
 
 

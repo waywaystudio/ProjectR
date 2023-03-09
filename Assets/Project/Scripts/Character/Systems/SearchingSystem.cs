@@ -52,10 +52,16 @@ namespace Character.Systems
 
         public ICombatTaker GetSelf() => GetComponentInParent<ICombatExecutor>();
 
+        // TODO. Adventurer를 Main에서 사용할 예정이라면, 씬이 변경될 때 해제해 주어야 하는 파트를 고려해야 한다.
+        public void Clear()
+        {
+            AdventurerList.Clear();
+            MonsterList.Clear();
+        }
+
 
         private static bool IsAbleToCombat(Component other, LayerMask layer, out ICombatTaker taker)
             => other.TryGetComponent(out taker) && other.gameObject.IsInLayerMask(layer);
-
 
         private void OnTriggerEnter(Collider other)
         {

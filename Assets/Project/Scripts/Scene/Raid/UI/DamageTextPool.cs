@@ -26,9 +26,9 @@ namespace Raid.UI
                 return;
             }
             
-            if (adventurers.Count < 4)
+            if (adventurers.Count < 3)
             {
-                Debug.LogWarning($"Recommend 4 Adventurer. Input: Current Adventurer {adventurers.Count}");
+                Debug.LogWarning($"Recommend 3 Adventurer. Input: Current Adventurer {adventurers.Count}");
             }
 
             adventurerList = adventurers;
@@ -61,13 +61,13 @@ namespace Raid.UI
 
         protected override void OnGetPool(DamageTextUI damageText)
         {
-            damageText.transform.SetParent(Origin);
+            damageText.transform.SetParent(transform);
         }
         
         protected override void OnReleasePool(DamageTextUI damageText)
         {
             damageText.gameObject.SetActive(false);
-            damageText.transform.SetParent(Origin);
+            damageText.transform.SetParent(transform);
         }
         
         protected override void OnDestroyPool(DamageTextUI damageText)
@@ -82,6 +82,16 @@ namespace Raid.UI
             damageText.ShowValue(combatEntity);
             damageText.gameObject.SetActive(true);
         }
+
+        private void OnDisable()
+        {
+            adventurerList.ForEach(adventurer =>
+            {
+                adventurer.OnProvideDamage.Unregister("DamageTextUI");
+                adventurer.OnTakeDamage.Unregister("TakenDamageTextUI");
+            });
+        }
+
 
         #region TEMP
 

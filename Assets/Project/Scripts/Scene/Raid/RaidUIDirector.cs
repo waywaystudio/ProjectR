@@ -1,5 +1,5 @@
 using Core;
-using MainGame.UI.Tooltips;
+using Raid.UI.StageInitializer;
 using UnityEngine;
 
 namespace Raid
@@ -8,19 +8,20 @@ namespace Raid
 
     public class RaidUIDirector : MonoBehaviour, IEditable
     {
+        [SerializeField] private StageSetter stageInitializer;
         [SerializeField] private BossFrame bossFrame;
         [SerializeField] private ActionFrame actionFrame;
 
         // Pool
         [SerializeField] private DamageTextPool damageTextPool;
-        [SerializeField] private TooltipPool tooltipPool;
 
-        public TooltipPool TooltipPool => tooltipPool;
+        public StageSetter StageInitializer => stageInitializer;
+        
 
-        // [SerializeField] private List<PartyUnitFrame> partyFrameList;
-        // public List<PartyUnitFrame> PartyFrameList => partyFrameList;
         public void Initialize()
         {
+            actionFrame.gameObject.SetActive(true);
+            
             bossFrame.Initialize();
             actionFrame.Initialize();
             damageTextPool.Initialize(RaidDirector.AdventurerList);
@@ -30,10 +31,10 @@ namespace Raid
 #if UNITY_EDITOR
         public void EditorSetUp()
         {
-            bossFrame      ??= GetComponentInChildren<BossFrame>();
-            actionFrame    ??= GetComponentInChildren<ActionFrame>();
-            damageTextPool ??= GetComponentInChildren<DamageTextPool>();
-            tooltipPool    ??= GetComponentInChildren<TooltipPool>();
+            stageInitializer ??= GetComponentInChildren<StageSetter>();
+            bossFrame        ??= GetComponentInChildren<BossFrame>();
+            actionFrame      ??= GetComponentInChildren<ActionFrame>();
+            damageTextPool   ??= GetComponentInChildren<DamageTextPool>();
         }
 #endif
     }

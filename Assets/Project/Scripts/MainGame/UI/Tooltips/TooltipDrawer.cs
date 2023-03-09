@@ -16,9 +16,6 @@ namespace MainGame.UI.Tooltips
 
         public void OnPointerEnter(PointerEventData eventData)
         {
-            Debug.Log(rectTransform.sizeDelta.x);
-            Debug.Log(rectTransform.sizeDelta.y);
-            
             var spawnPosition = transform.position + spawnOffset;
 
             currentTooltipObject = 

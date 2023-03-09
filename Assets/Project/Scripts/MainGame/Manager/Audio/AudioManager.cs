@@ -4,7 +4,7 @@ using Core;
 using UnityEngine;
 using UnityEngine.Audio;
 
-namespace MainGame.Manager.Audio
+namespace Manager.Audio
 {
     public class AudioManager : MonoBehaviour
     {

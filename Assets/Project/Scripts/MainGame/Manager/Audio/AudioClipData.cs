@@ -1,7 +1,7 @@
-﻿using MainGame.Manager.Audio.Utility;
+﻿using Manager.Audio.Utility;
 using UnityEngine;
 
-namespace MainGame.Manager.Audio
+namespace Manager.Audio
 {
     public class AudioClipData : ScriptableObject, IAudioPlayable
     {

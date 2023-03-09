@@ -15,7 +15,8 @@ namespace Raid
 
         private void Awake()
         {
-            cameraBrain = mainCamera.GetComponent<CinemachineBrain>();
+            cameraBrain                  = mainCamera.GetComponent<CinemachineBrain>();
+            MainManager.Input.MainCamera = mainCamera;
         }
 
         /* GameEvent */

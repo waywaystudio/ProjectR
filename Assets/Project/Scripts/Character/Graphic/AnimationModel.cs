@@ -20,6 +20,8 @@ namespace Character.Graphic
         
         [ShowInInspector]
         public ActionTable OnHit { get; set; } = new();
+        public SkeletonDataAsset DataAsset => skeletonAnimation.SkeletonDataAsset;
+        
         private SpineAnimation TargetAnimation { get; set; }
         
         
@@ -90,6 +92,7 @@ namespace Character.Graphic
                 case "attack" :   OnHit.Invoke(); return;
                 case "footstep" : return;
                 case "hit" :      return;
+                case "get_hit" :  return;
                 default:
                 {
                     Debug.LogWarning($"Unknown animation event key in. input:{e.Data.Name}");
