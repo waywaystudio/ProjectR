@@ -1,6 +1,6 @@
 using Core;
 
-namespace MainGame.UI.Tooltips
+namespace UI.Tooltips
 {
     public class TooltipPool : Pool<Tooltip>
     {

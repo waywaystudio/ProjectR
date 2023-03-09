@@ -1,14 +1,13 @@
 using System;
 using System.Collections.Generic;
 using System.Reflection;
-using Manager.Save;
 using Sirenix.OdinInspector;
 using Sirenix.OdinInspector.Editor;
 
 // ReSharper disable ConvertIfStatementToSwitchStatement
 // ReSharper disable UnusedType.Global
 
-namespace MainGame.Manager.Save.Editor
+namespace Manager.Save.Editor
 {
     public class SaveInfoDrawer : OdinAttributeProcessor<SaveInfo>
     {

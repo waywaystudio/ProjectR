@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace MainGame.UI
+namespace UI
 {
     public class FadePanel : MonoBehaviour
     {

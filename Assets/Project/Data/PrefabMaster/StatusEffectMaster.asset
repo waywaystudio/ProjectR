@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: StatusEffectMaster
   m_EditorClassIdentifier: 
   prefabPath: Assets/Project/Prefabs/StatusEffect
-  statusEffectPrefabList:
+  prefabList:
   - {fileID: 8333227002716821657, guid: b8a0db4494b80d1418934391f99ec561, type: 3}
   - {fileID: 8333227002716821657, guid: 5d2fb8c7eb66cd742b1e14925d73c808, type: 3}
   - {fileID: 8333227002716821657, guid: 8fc553f91fd8269428ac00700eee662d, type: 3}

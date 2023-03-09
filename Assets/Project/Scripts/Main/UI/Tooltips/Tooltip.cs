@@ -2,7 +2,7 @@ using Core;
 using TMPro;
 using UnityEngine;
 
-namespace MainGame.UI.Tooltips
+namespace UI.Tooltips
 {
     public class Tooltip : MonoBehaviour, IPoolable<Tooltip>, IEditable
     {

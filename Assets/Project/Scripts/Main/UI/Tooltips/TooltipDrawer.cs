@@ -2,7 +2,7 @@ using Core;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-namespace MainGame.UI.Tooltips
+namespace UI.Tooltips
 {
     [RequireComponent(typeof(ITooltipInfo))]
     public class TooltipDrawer : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler

@@ -3,23 +3,42 @@ using UnityEngine;
 
 namespace Character.Actions.Moragg
 {
-    public class MoraggLivingBomb : GeneralAttack
+    public class MoraggLivingBomb : SkillComponent
     {
         [SerializeField] private StatusEffectCompletion livingBomb;
+        
+        
+        protected override void PlayAnimation()
+        {
+            CharacterSystem.Animating.PlayOnce(animationKey, progressTime, OnCompleted.Invoke);
+        }
 
-
-        protected override void OnAttack()
+        private void OnAttack()
         {
             if (MainTarget is null) return;
             
             livingBomb.DeBuff(MainTarget);
         }
-
-        protected override void OnEnable()
+        
+        private void RegisterHitEvent()
         {
-            base.OnEnable();
+            CharacterSystem.Animating.OnHit.Register("SkillHit", OnHit.Invoke);
+        }
+
+        private void OnEnable()
+        {
+            OnActivated.Register("PlayAnimation", PlayAnimation);
+            OnActivated.Register("RegisterHitEvent", RegisterHitEvent);
+            
+            OnHit.Register("MoraggLivingBomb", OnAttack);
+            
+            OnCanceled.Register("EndCallback", OnEnded.Invoke);
             
             OnCompleted.Register("StartCooling", StartCooling);
+            OnCompleted.Register("EndCallback", OnEnded.Invoke);
+            
+            OnEnded.Register("ReleaseHit", () => CharacterSystem.Animating.OnHit.Unregister("SkillHit"));
+            OnEnded.Register("Idle", CharacterSystem.Animating.Idle);
         }
     }
 }
