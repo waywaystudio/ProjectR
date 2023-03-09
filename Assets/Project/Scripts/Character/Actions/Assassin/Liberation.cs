@@ -26,7 +26,7 @@ namespace Character.Actions.Assassin
         {
             base.EditorSetUp();
             
-            var skillData = DB.SkillSheetData(actionCode);
+            var skillData = Database.SkillSheetData(actionCode);
 
             // MainGame.MainData.StatusEffectMaster.Get((DataIndex)skillData.StatusEffect, out var armorCrashObject);
             //

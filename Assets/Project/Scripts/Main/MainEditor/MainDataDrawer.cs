@@ -6,7 +6,7 @@ using Sirenix.OdinInspector.Editor;
 
 namespace MainEditor
 {
-    public class MainDataDrawer : OdinAttributeProcessor<DB>
+    public class MainDataDrawer : OdinAttributeProcessor<Database>
     {
         public override void ProcessChildMemberAttributes(InspectorProperty parentProperty, MemberInfo member, List<Attribute> attributes)
         {

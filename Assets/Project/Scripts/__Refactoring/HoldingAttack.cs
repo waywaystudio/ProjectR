@@ -58,7 +58,7 @@ namespace Character.Actions.Knight
         {
             base.EditorSetUp();
             
-            var skillData = DB.SkillSheetData(actionCode);
+            var skillData = Database.SkillSheetData(actionCode);
 
             powerValue.Value = skillData.CompletionValueList[0];
         }

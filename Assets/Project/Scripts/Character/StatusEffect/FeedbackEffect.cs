@@ -44,7 +44,7 @@ namespace Character.StatusEffect
         {
             base.EditorSetUp();
             
-            var statusEffectData = DB.StatusEffectSheetData(ActionCode);
+            var statusEffectData = Database.StatusEffectSheetData(ActionCode);
 
             drainPercentage = statusEffectData.ValueList[0];
         }

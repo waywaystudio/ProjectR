@@ -53,7 +53,7 @@ namespace __Refactoring
         {
             base.EditorSetUp();
             
-            var skillData = DB.SkillSheetData(actionCode);
+            var skillData = Database.SkillSheetData(actionCode);
 
             power.SetPower(skillData.CompletionValueList[0]);
         }

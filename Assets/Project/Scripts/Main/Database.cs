@@ -11,7 +11,7 @@ using Databases.SheetData.CombatData;
 using Databases.SheetData.ContentData;
 using UnityEngine;
 
-public class DB : MonoSingleton<DB>
+public class Database : MonoSingleton<Database>
 {
     [SerializeField] private List<DataObject> sheetDataList = new();
     [SerializeField] private SkillMaster skillMaster;
@@ -119,7 +119,7 @@ public class DB : MonoSingleton<DB>
         var mainObject = GameObject.Find("Main");
         if (mainObject != null)
         {
-            var dbComponent = mainObject.GetComponentInChildren<DB>();
+            var dbComponent = mainObject.GetComponentInChildren<Database>();
                 
             UnityEditor.EditorUtility.OpenPropertyEditor(dbComponent);
         }

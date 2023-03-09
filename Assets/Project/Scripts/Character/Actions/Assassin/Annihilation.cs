@@ -47,7 +47,7 @@ namespace Character.Actions.Assassin
         {
             base.EditorSetUp();
             
-            var skillData = DB.SkillSheetData(actionCode);
+            var skillData = Database.SkillSheetData(actionCode);
 
             if (!TryGetComponent(out power)) power = gameObject.AddComponent<ValueCompletion>();
 
