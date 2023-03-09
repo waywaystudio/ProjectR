@@ -1,7 +1,5 @@
-using System.Linq;
 using Core;
 using Sirenix.OdinInspector;
-using Unity.Linq;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -53,9 +51,9 @@ namespace Raid.UI
         private void SetUp()
         {
             unitFrame ??= GetComponentInParent<PartyUnitFrame>();
-            tank ??= gameObject.Children().First(x => x.name == "Tank").GetComponent<Image>();
-            dps ??= gameObject.Children().First(x => x.name == "Dps").GetComponent<Image>();
-            heal ??= gameObject.Children().First(x => x.name == "Heal").GetComponent<Image>();
+            // tank ??= gameObject.Children().First(x => x.name == "Tank").GetComponent<Image>();
+            // dps ??= gameObject.Children().First(x => x.name == "Dps").GetComponent<Image>();
+            // heal ??= gameObject.Children().First(x => x.name == "Heal").GetComponent<Image>();
         }
 #endif
     }

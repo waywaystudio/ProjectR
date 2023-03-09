@@ -171,7 +171,7 @@ namespace Character
 #if UNITY_EDITOR
         public virtual void EditorSetUp()
         {
-            var skillData = MainData.SkillSheetData(actionCode);
+            var skillData = DB.SkillSheetData(actionCode);
 
             skillType    = skillData.SkillType.ToEnum<SkillType>();
             isRigid      = skillData.IsRigid;
@@ -190,14 +190,14 @@ namespace Character
 
         public void ShowDataBase()
         {
-            var skillData = MainData.SheetDataTable[DataIndex.Skill];
+            var skillData = DB.SheetDataTable[DataIndex.Skill];
 
             UnityEditor.EditorUtility.OpenPropertyEditor(skillData);
         } 
         
         private Sprite GetSkillIcon()
         {
-            return !(MainData.TryGetIcon(actionCode.ToString(), out var result))
+            return !(DB.TryGetIcon(actionCode.ToString(), out var result))
                 ? null
                 : result;
         }

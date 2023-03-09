@@ -13,7 +13,7 @@ namespace Character.Data.BaseStats
             var ab = GetComponentInParent<Adventurer>();
             
             baseStatCode = ab.ActionCode;
-            var classData = MainData.CombatClassSheetData(baseStatCode);
+            var classData = DB.CombatClassSheetData(baseStatCode);
             
             maxHp.Value       = classData.MaxHp;
             moveSpeed.Value   = classData.MoveSpeed;

@@ -12,7 +12,7 @@ namespace Character.Data.BaseStats
             var mb = GetComponentInParent<Boss>();
             
             baseStatCode = mb.ActionCode;
-            var bossData = MainData.BossSheetData(baseStatCode);
+            var bossData = DB.BossSheetData(baseStatCode);
             
             maxHp.Value       = bossData.MaxHp;
             moveSpeed.Value   = bossData.MoveSpeed;

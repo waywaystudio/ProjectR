@@ -20,7 +20,7 @@ namespace Raid.UI.ActionFrames.StatusEffectIconBars
 
             gameObject.SetActive(true);
 
-            if (!MainGame.MainData.StatusEffectMaster.Get(statusEffect.ActionCode, out var seComponent))
+            if (!DB.StatusEffectMaster.Get(statusEffect.ActionCode, out var seComponent))
             {
                 Debug.LogError($"Cant not find StatusEffectComponent. Input:{statusEffect.ActionCode}");
                 return;

@@ -51,13 +51,13 @@ namespace Character.Actions.Knight
         {
             base.EditorSetUp();
             
-            var skillData = MainGame.MainData.SkillSheetData(actionCode);
+            var skillData = DB.SkillSheetData(actionCode);
 
             if (!TryGetComponent(out power)) power = gameObject.AddComponent<ValueCompletion>();
 
             power.SetPower(skillData.CompletionValueList[0]);
 
-            MainGame.MainData.StatusEffectMaster.Get((DataIndex)skillData.StatusEffect, out var armorCrashObject);
+            DB.StatusEffectMaster.Get((DataIndex)skillData.StatusEffect, out var armorCrashObject);
             
             if (!TryGetComponent(out armorCrash)) armorCrash = gameObject.AddComponent<StatusEffectCompletion>();
 

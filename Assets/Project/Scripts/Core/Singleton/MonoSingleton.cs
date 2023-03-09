@@ -17,7 +17,7 @@ namespace Core.Singleton
             {
                 lock (Lock)
                 {
-                    if (instance != null) 
+                    if (instance is not null) 
                         return instance;
 
                     var instances = FindObjectsOfType(typeof(T));
@@ -36,11 +36,10 @@ namespace Core.Singleton
 
         protected virtual void Awake()
         {
-            if (isFirst)
-            {
-                instance = this as T;
-                isFirst = false;
-            }
+            if (!isFirst) return;
+            
+            instance = this as T;
+            isFirst  = false;
         }
 
         protected virtual void OnDestroy()

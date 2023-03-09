@@ -10,8 +10,5 @@ namespace Core
         /*05*/ MoveSpeed,
         /*06*/ Armor,
         /*07*/ MaxResource,
-        // /*04*/ Hit,
-        // /*08*/ Evade,
-        // /*09*/ Resist,
     }
 }

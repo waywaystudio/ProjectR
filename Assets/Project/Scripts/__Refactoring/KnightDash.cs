@@ -33,7 +33,7 @@ namespace Character.Actions.Knight
         {
             base.EditorSetUp();
             
-            var skillData = MainGame.MainData.SkillSheetData(actionCode);
+            var skillData = DB.SkillSheetData(actionCode);
         
             dashDistance = skillData.CompletionValueList[0];
         }

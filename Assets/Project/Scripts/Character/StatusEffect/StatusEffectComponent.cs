@@ -99,14 +99,14 @@ namespace Character.StatusEffect
 
         public virtual void EditorSetUp()
         {
-            var statusEffectData = MainData.StatusEffectSheetData(ActionCode);
+            var statusEffectData = DB.StatusEffectSheetData(ActionCode);
 
             duration = statusEffectData.Duration;
             type = statusEffectData.IsBuff
                 ? StatusEffectType.Buff
                 : StatusEffectType.DeBuff;
 
-            MainData.TryGetIcon(ActionCode.ToString(), out icon);
+            DB.TryGetIcon(ActionCode.ToString(), out icon);
         }
     }
 }

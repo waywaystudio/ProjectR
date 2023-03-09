@@ -55,7 +55,7 @@ namespace Character.Actions.Knight
         {
             base.EditorSetUp();
             
-            var skillData = MainGame.MainData.SkillSheetData(actionCode);
+            var skillData = DB.SkillSheetData(actionCode);
 
             if (!TryGetComponent(out power)) power = gameObject.AddComponent<ValueCompletion>();
 
