@@ -1,5 +1,3 @@
-using MainGame;
-
 namespace Character.Data.BaseStats
 {
     public class MonsterConstStats : CharacterConstStats

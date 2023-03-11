@@ -1,4 +1,3 @@
-using MainGame;
 using UnityEngine;
 
 namespace Scene.Town

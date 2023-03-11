@@ -1,4 +1,3 @@
-using MainGame;
 using UnityEngine;
 
 namespace Character.Data.BaseStats

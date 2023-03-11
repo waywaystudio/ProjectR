@@ -1,5 +1,3 @@
-using System;
-using Core;
 using Sirenix.OdinInspector;
 using UnityEngine;
 

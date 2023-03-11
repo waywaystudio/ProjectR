@@ -1,6 +1,7 @@
 using System.Collections.Generic;
-using Core;
 using MainGame;
+using Manager;
+using Manager.Save;
 using UnityEngine;
 
 public class SaveTester : MonoBehaviour, ISavable

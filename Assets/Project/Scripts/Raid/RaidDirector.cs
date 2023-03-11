@@ -1,8 +1,6 @@
 using System.Collections.Generic;
 using Character;
-using Core;
-using Core.Singleton;
-using MainGame;
+using Singleton;
 using UnityEngine;
 
 // ReSharper disable UnusedAutoPropertyAccessor.Global

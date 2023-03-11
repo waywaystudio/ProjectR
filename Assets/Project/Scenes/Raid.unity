@@ -16451,6 +16451,10 @@ PrefabInstance:
       propertyPath: m_UIInputModule
       value: 
       objectReference: {fileID: 1126821806}
+    - target: {fileID: 3973655999943078701, guid: 9f6a97e7e5739ea469cdeb8ceab14b08, type: 3}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 4239195053507512741, guid: 9f6a97e7e5739ea469cdeb8ceab14b08, type: 3}
       propertyPath: m_Mesh
       value: 
@@ -16501,7 +16505,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5948248387940990852, guid: 9f6a97e7e5739ea469cdeb8ceab14b08, type: 3}
       propertyPath: m_Name
-      value: Main
+      value: CoreGameObject
       objectReference: {fileID: 0}
     - target: {fileID: 9039682236266940767, guid: 9f6a97e7e5739ea469cdeb8ceab14b08, type: 3}
       propertyPath: m_Name

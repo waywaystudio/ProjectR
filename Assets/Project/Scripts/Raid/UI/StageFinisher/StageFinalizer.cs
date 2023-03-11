@@ -1,5 +1,5 @@
 using Character;
-using MainGame;
+using Manager;
 using UnityEngine;
 
 namespace Raid.UI.StageFinisher

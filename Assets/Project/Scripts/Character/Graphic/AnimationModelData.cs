@@ -1,6 +1,5 @@
 using System;
 using System.Collections.Generic;
-using Core;
 using Spine.Unity;
 using UnityEngine;
 using Animation = Spine.Animation;

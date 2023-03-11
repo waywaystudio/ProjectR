@@ -32,16 +32,16 @@ MonoBehaviour:
     - BehaviorDesigner.Runtime
     - AstarPathfindingProject
     - ES3
+    - ProjectR.Raid
     - spine-unity
-    - Town
-    - Character
-    - Raid
-    - Loading
+    - ProjectR.Town
+    - ProjectR.Character
+    - ProjectR.Loading
     - Cinemachine
     - Assembly-CSharp
     - spine-csharp
-    - Core
-    - Main
+    - ProjectR.Core
+    - ProjectR.Global
     - DOTween.Modules
     - SoCreator
     - Assembly-CSharp-firstpass
@@ -52,11 +52,11 @@ MonoBehaviour:
     - SoCreator.Editor
     - PackageToolsEditor
     - ShortCuts.Editor
-    - Main.Editor
-    - Audio.Editor
-    - Character.Editor
+    - ProjectR.Core.Editor
+    - ProjectR.Global.Audio.Editor
+    - ProjectR.Character.Editor
     - Sirenix.OdinInspector.Modules.UnityMathematics
-    - Save.Editor
+    - ProjectR.Global.Save.Editor
     showAdvancedSettings: 0
   addMgrToSceneAutomatically: 0
   autoUpdateReferences: 1

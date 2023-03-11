@@ -1,4 +1,4 @@
-using MainGame;
+using Manager;
 using UnityEngine;
 
 namespace Loading

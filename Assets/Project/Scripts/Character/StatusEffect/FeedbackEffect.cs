@@ -1,5 +1,4 @@
 using System.Collections;
-using Core;
 using UnityEngine;
 
 namespace Character.StatusEffect

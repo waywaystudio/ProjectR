@@ -1,7 +1,6 @@
 using Character;
-using Core;
-using Core.GameEvents;
-using MainGame;
+using GameEvents;
+using Manager;
 using Raid.Art;
 using UnityEngine;
 using UnityEngine.InputSystem;

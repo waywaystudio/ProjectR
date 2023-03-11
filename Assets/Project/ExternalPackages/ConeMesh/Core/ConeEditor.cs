@@ -7,7 +7,7 @@ using UnityEngine;
 namespace KevinCastejon.ConeMesh
 {
     [CustomEditor(typeof(Cone))]
-    public class ConeEditor : Editor
+    public class ConeEditor : UnityEditor.Editor
     {
         private SerializedProperty _pivotAtTop;
         private SerializedProperty _orientation;

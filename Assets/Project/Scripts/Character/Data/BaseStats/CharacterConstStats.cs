@@ -1,4 +1,3 @@
-using Core;
 using UnityEngine;
 
 namespace Character.Data.BaseStats

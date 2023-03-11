@@ -1,5 +1,3 @@
-using Core;
-
 namespace Character.StatusEffect
 {
     public class StatusEffectCompletion : Pool<StatusEffectComponent>

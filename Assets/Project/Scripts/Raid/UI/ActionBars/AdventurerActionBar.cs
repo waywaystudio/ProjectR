@@ -1,5 +1,5 @@
 using Character;
-using MainGame.UI.ActionBars;
+using UI.ActionBars;
 using UnityEngine;
 
 namespace Raid.UI.ActionBars

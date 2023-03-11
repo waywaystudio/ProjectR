@@ -1,0 +1,4 @@
+namespace GameEvents.Listener
+{
+    public class GameEventStringListener : GameEventListener<string> {}
+}

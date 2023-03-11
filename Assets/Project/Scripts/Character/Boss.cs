@@ -3,7 +3,6 @@ using Character.Data;
 using Character.Data.BaseStats;
 using Character.Graphic;
 using Character.Systems;
-using Core;
 using UnityEngine;
 
 namespace Character

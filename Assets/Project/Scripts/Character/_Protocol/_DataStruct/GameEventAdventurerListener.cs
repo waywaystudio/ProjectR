@@ -1,4 +1,4 @@
-using Core.GameEvents.Listener;
+using GameEvents.Listener;
 
 namespace Character
 {

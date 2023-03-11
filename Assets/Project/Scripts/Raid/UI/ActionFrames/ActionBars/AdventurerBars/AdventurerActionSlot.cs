@@ -1,5 +1,5 @@
 using Character;
-using Core;
+using Manager;
 using TMPro;
 using UnityEngine;
 

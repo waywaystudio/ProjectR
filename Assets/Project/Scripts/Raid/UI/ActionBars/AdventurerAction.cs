@@ -1,5 +1,5 @@
-using MainGame.UI.ActionIcon;
-using MainGame.UI.ImageUtility;
+using UI.ActionIcon;
+using UI.ImageUtility;
 using UnityEngine;
 
 namespace Raid.UI.ActionBars

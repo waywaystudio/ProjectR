@@ -1,5 +1,4 @@
 using Character;
-using Core;
 using DG.Tweening;
 using TMPro;
 using UnityEngine;

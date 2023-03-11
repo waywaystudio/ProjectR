@@ -1,7 +1,5 @@
 using System.Collections.Generic;
 using Character;
-using Core;
-using MainGame;
 using Raid.UI.StageSetter;
 using Spine.Unity;
 using TMPro;

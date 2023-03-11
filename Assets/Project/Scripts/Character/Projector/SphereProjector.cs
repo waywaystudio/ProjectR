@@ -1,6 +1,5 @@
 using System.Collections.Specialized;
 using Character.StatusEffect;
-using Core;
 using UnityEngine;
 
 namespace Character.Projector

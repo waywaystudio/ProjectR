@@ -1,8 +1,7 @@
 using System;
 using System.Collections.Generic;
 using Character;
-using Core;
-using MainGame;
+using Manager;
 using TMPro;
 using UnityEngine;
 

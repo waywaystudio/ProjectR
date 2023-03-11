@@ -1,7 +1,6 @@
 using System;
 using System.Collections.Generic;
 using Character;
-using Core;
 using Raid.UI.ActionFrames.StatusEffectIconBars;
 using UnityEngine;
 

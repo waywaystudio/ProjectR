@@ -1,7 +1,6 @@
 using Character;
 using Character.Actions;
-using Core;
-using MainGame.UI.ImageUtility;
+using UI.ImageUtility;
 using UnityEngine;
 
 namespace Raid.UI.ActionFrames

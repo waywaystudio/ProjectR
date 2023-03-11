@@ -1,5 +1,3 @@
-using Core;
-
 namespace Character.Actions.Assassin
 {
     public class Liberation : SkillComponent

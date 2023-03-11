@@ -1,5 +1,3 @@
-using Core;
-
 namespace Character.Projector
 {
     public class SphereProjectorPool : Pool<SphereProjector>

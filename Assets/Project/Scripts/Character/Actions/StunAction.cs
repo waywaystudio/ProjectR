@@ -1,7 +1,6 @@
 using System.Collections;
 using Character.Graphic;
 using Character.Systems;
-using Core;
 using Sirenix.OdinInspector;
 using UnityEngine;
 

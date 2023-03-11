@@ -3,7 +3,6 @@ using Character.Data;
 using Character.Data.BaseStats;
 using Character.Graphic;
 using Character.Systems;
-using Core;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -50,6 +49,7 @@ namespace Character
         public CollidingSystem Colliding => colliding;
         public PathfindingSystem Pathfinding => pathfinding;
         public AnimationModel Animating => animating;
+        
         public Transform DamageSpawn => damageSpawn;
         public Transform StatusEffectHierarchy => statusEffectHierarchy;
         public CharacterAction CharacterAction => characterAction;

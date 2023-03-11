@@ -1,6 +1,6 @@
 using Character;
 using Cinemachine;
-using Core;
+using Manager;
 using UnityEngine;
 
 namespace Raid

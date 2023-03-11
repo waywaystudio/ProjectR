@@ -2,7 +2,6 @@ using System.Collections;
 using Character.Actions;
 using Character.Projector;
 using Character.Systems;
-using Core;
 using UnityEngine;
 
 namespace Character.StatusEffect

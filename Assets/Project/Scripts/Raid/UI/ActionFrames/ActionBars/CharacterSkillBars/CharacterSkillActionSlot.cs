@@ -1,9 +1,8 @@
 using Character;
-using Core;
-using MainGame;
-using MainGame.UI.ImageUtility;
+using Manager;
 using Sirenix.OdinInspector;
 using TMPro;
+using UI.ImageUtility;
 using UnityEngine;
 
 namespace Raid.UI.ActionFrames.ActionBars.CharacterSkillBars

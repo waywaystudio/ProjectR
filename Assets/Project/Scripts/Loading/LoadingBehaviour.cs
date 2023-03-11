@@ -1,7 +1,6 @@
 using System;
 using System.Collections.Generic;
-using Core;
-using MainGame;
+using Manager;
 using UnityEngine;
 
 namespace Loading

@@ -1,5 +1,4 @@
 using Character.StatusEffect;
-using Core;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;

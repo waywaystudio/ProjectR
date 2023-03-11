@@ -1,7 +1,5 @@
 using Character;
 using Character.Actions;
-using Core;
-using MainGame;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;

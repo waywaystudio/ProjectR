@@ -1,5 +1,5 @@
 using Character;
-using Core.GameEvents;
+using GameEvents;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;

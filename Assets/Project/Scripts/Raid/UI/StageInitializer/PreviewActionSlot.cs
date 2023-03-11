@@ -1,6 +1,5 @@
 using Character;
-using Core;
-using MainGame.UI.ActionBars;
+using UI.ActionBars;
 using UnityEngine;
 using UnityEngine.UI;
 

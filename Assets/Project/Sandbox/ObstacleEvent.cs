@@ -1,5 +1,5 @@
-using Core;
 using MainGame;
+using Manager;
 using UnityEngine;
 using UnityEngine.Events;
 
