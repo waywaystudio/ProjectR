@@ -1,3 +1,5 @@
+using Common;
+
 namespace Character.Projector
 {
     public class SphereProjectorPool : Pool<SphereProjector>

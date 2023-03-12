@@ -1,4 +1,5 @@
 using Character.Projector;
+using Common;
 using UnityEngine;
 
 namespace Character.Actions.Moragg
@@ -16,7 +17,7 @@ namespace Character.Actions.Moragg
         
         private void OnMoraggSpinAttack()
         {
-            if (!CharacterSystem.Colliding.TryGetTakersInSphere(this, out var takerList)) return;
+            if (!TryGetTakersInSphere(this, out var takerList)) return;
             
             takerList.ForEach(taker =>
             {

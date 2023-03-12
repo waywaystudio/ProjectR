@@ -6,7 +6,7 @@ namespace Character.Behavior.Actions
     [TaskCategory("Character/Combat")]
     public class ActiveSkillBehavior : Action
     {
-        private CharacterAction ab;
+        private ActionBehaviour ab;
         
         public override void OnAwake()
         {

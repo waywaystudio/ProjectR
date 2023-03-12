@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using Character;
+using Character.Adventurers;
 using Singleton;
 using UnityEngine;
 

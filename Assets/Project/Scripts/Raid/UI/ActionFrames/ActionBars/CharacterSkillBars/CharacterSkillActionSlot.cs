@@ -1,4 +1,5 @@
 using Character;
+using Character.Adventurers;
 using Manager;
 using Sirenix.OdinInspector;
 using TMPro;

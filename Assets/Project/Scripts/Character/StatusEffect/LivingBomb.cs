@@ -1,7 +1,8 @@
 using System.Collections;
 using Character.Actions;
 using Character.Projector;
-using Character.Systems;
+using Common;
+using Common.Systems;
 using UnityEngine;
 
 namespace Character.StatusEffect

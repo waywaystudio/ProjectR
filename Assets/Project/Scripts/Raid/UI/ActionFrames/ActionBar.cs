@@ -1,4 +1,5 @@
 using Character;
+using Character.Adventurers;
 using Raid.UI.ActionFrames.ActionBars;
 using Raid.UI.ActionFrames.ActionBars.AdventurerBars;
 using UnityEngine;

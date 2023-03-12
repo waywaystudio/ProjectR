@@ -1,4 +1,5 @@
 using Character;
+using Character.Adventurers;
 using Sirenix.OdinInspector;
 using UI.ImageUtility;
 using UnityEngine;

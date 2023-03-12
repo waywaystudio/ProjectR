@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using Character;
+using Character.Adventurers;
 using Raid.UI.ActionFrames.ActionBars.CharacterSkillBars;
 using UnityEngine;
 

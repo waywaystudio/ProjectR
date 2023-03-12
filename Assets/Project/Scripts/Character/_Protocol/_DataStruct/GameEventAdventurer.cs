@@ -1,3 +1,4 @@
+using Character.Adventurers;
 using GameEvents;
 
 namespace Character

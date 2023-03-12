@@ -41,7 +41,7 @@ MonoBehaviour:
     - Assembly-CSharp
     - spine-csharp
     - ProjectR.Core
-    - ProjectR.Global
+    - ProjectR.Common
     - DOTween.Modules
     - SoCreator
     - Assembly-CSharp-firstpass
@@ -56,6 +56,7 @@ MonoBehaviour:
     - ProjectR.Global.Audio.Editor
     - ProjectR.Character.Editor
     - Sirenix.OdinInspector.Modules.UnityMathematics
+    - ProjectR.Common.Editor
     - ProjectR.Global.Save.Editor
     showAdvancedSettings: 0
   addMgrToSceneAutomatically: 0

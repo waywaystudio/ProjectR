@@ -1,4 +1,6 @@
 using Character;
+using Character.Adventurers;
+using Common;
 using DG.Tweening;
 using TMPro;
 using UnityEngine;

@@ -1,5 +1,6 @@
 using Character;
 using Character.Actions;
+using Character.Adventurers;
 using UI.ImageUtility;
 using UnityEngine;
 
@@ -9,7 +10,7 @@ namespace Raid.UI.ActionFrames
     {
         [SerializeField] private ImageFiller progress;
 
-        private CharacterAction characterAction;
+        private ActionBehaviour characterAction;
         private SkillComponent currentSkill;
 
         public void Initialize()

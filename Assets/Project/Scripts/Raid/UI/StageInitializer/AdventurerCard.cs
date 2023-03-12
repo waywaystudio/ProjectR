@@ -1,5 +1,7 @@
 using System.Collections.Generic;
 using Character;
+using Character.Adventurers;
+using Common;
 using Raid.UI.StageSetter;
 using Spine.Unity;
 using TMPro;
@@ -27,7 +29,7 @@ namespace Raid.UI.StageInitializer
 
             headerTextUI.text          = currentAdventurer.Role.ToString();
             nameTextUI.text            = currentAdventurer.Name;
-            portrait.skeletonDataAsset = currentAdventurer.Animating.DataAsset;
+            // portrait.skeletonDataAsset = currentAdventurer.Animating.DataAsset;
             
             previewActionSlotList.ForEach((actionSlot, index) =>
             {

@@ -1,3 +1,5 @@
+using Common;
+
 namespace Character.StatusEffect
 {
     public class StatusEffectCompletion : Pool<StatusEffectComponent>

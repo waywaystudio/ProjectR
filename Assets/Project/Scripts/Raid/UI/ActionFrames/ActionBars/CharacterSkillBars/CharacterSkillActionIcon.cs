@@ -1,5 +1,7 @@
 using Character;
 using Character.Actions;
+using Character.Adventurers;
+using Common;
 using Manager;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -14,7 +16,7 @@ namespace Raid.UI.ActionFrames.ActionBars.CharacterSkillBars
         private SkillComponent skillComponent;
         private Adventurer focusedAdventurer;
         private Transform preTransform;
-        private CharacterAction characterAction => focusedAdventurer.CharacterAction;
+        private ActionBehaviour characterAction => focusedAdventurer.CharacterAction;
         
 
         public void Initialize(Adventurer adventurer, SkillComponent skillComponent)

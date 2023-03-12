@@ -1,5 +1,7 @@
 using System;
 using System.Collections;
+using System.Collections.Generic;
+using Common;
 using Sirenix.OdinInspector;
 using UnityEngine;
 
@@ -110,6 +112,14 @@ namespace Character
             // if (Provider.DynamicStatEntry.Resource.Value < cost) Debug.LogWarning("Not Enough Cost");
             return Provider.DynamicStatEntry.Resource.Value >= cost;
         }
+        
+        protected bool TryGetTakersInSphere(SkillComponent skill, out List<ICombatTaker> takerList) => (takerList = 
+                CharacterSystem.Colliding.GetTakersInSphereType(
+                skill.Provider.Object.transform.position, 
+                skill.Range, 
+                skill.Angle, 
+                skill.TargetLayer)
+            ).HasElement();
 
         private IEnumerator CoolingRoutine()
         {

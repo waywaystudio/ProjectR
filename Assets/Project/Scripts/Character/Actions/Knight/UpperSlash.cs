@@ -16,7 +16,7 @@ namespace Character.Actions.Knight
         
         protected void OnAttack()
         {
-            if (!CharacterSystem.Colliding.TryGetTakersInSphere(this, out var takerList)) return;
+            if (!TryGetTakersInSphere(this, out var takerList)) return;
 
             takerList.ForEach(taker =>
             {

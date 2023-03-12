@@ -1,4 +1,5 @@
 using Character;
+using Character.Adventurers;
 using DG.Tweening;
 using Sirenix.OdinInspector;
 using UnityEngine;

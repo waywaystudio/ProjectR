@@ -1,5 +1,6 @@
 using System.Collections;
 using Character.Actions;
+using Common;
 using UnityEngine;
 
 namespace Character.StatusEffect

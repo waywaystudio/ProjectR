@@ -6,7 +6,7 @@ namespace Character.Behavior.Actions
     [TaskIcon("{SkinColor}SelectorIcon.png"), TaskCategory("Character/Combat")]
     public class IsGcdReady : Action
     {
-        private CharacterAction ab;
+        private ActionBehaviour ab;
         
         public override void OnAwake()
         {

@@ -1,3 +1,5 @@
+using Common;
+
 namespace Character.Actions.Assassin
 {
     public class Liberation : SkillComponent

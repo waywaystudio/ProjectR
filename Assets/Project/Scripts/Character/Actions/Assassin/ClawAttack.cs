@@ -14,7 +14,7 @@ namespace Character.Actions.Assassin
         
         protected void OnAttack()
         {
-            if (!CharacterSystem.Colliding.TryGetTakersInSphere(this, out var takerList)) return;
+            if (!TryGetTakersInSphere(this, out var takerList)) return;
 
             takerList.ForEach(taker =>
             {

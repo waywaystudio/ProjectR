@@ -1,12 +1,13 @@
 using BehaviorDesigner.Runtime.Tasks;
 using Character.Actions;
+using Common.Systems;
 
 namespace Character.Behavior.Actions
 {
     [TaskCategory("Character/Combat")]
     public class PositioningBehavior : Action
     {
-        private CharacterAction ab;
+        private ActionBehaviour ab;
         
         // public override void OnAwake()
         // {
