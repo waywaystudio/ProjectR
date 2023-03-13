@@ -1,5 +1,6 @@
 using BehaviorDesigner.Runtime.Tasks;
 using Character.Actions;
+using Common.Actions;
 
 namespace Character.Behavior.Actions
 {

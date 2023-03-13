@@ -1,5 +1,5 @@
 using BehaviorDesigner.Runtime.Tasks;
-using Character.Actions;
+using Common.Actions;
 using Common.Systems;
 
 namespace Character.Behavior.Actions
@@ -9,12 +9,7 @@ namespace Character.Behavior.Actions
     {
         private ActionBehaviour ab;
         
-        // public override void OnAwake()
-        // {
-        //     TryGetComponent(out ab);
-        // }
-
-        public override void OnStart()
+        public override void OnAwake()
         {
             TryGetComponent(out ab);
         }

@@ -75,6 +75,30 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 3259723645145811741, guid: a3acb303f8f3ed24c8afb44fa3d18ccf, type: 3}
+      propertyPath: armor.value
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 3259723645145811741, guid: a3acb303f8f3ed24c8afb44fa3d18ccf, type: 3}
+      propertyPath: haste.value
+      value: 0.05
+      objectReference: {fileID: 0}
+    - target: {fileID: 3259723645145811741, guid: a3acb303f8f3ed24c8afb44fa3d18ccf, type: 3}
+      propertyPath: maxHp.value
+      value: 700
+      objectReference: {fileID: 0}
+    - target: {fileID: 3259723645145811741, guid: a3acb303f8f3ed24c8afb44fa3d18ccf, type: 3}
+      propertyPath: baseStatCode
+      value: 12000004
+      objectReference: {fileID: 0}
+    - target: {fileID: 3259723645145811741, guid: a3acb303f8f3ed24c8afb44fa3d18ccf, type: 3}
+      propertyPath: critical.value
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3259723645145811741, guid: a3acb303f8f3ed24c8afb44fa3d18ccf, type: 3}
+      propertyPath: moveSpeed.value
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 3744010700067239338, guid: a3acb303f8f3ed24c8afb44fa3d18ccf, type: 3}
       propertyPath: m_Name
       value: Rogue

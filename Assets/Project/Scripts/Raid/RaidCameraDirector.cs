@@ -1,5 +1,6 @@
 using Character;
 using Character.Adventurers;
+using Character.Monsters;
 using Cinemachine;
 using Manager;
 using UnityEngine;

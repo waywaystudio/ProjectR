@@ -31,7 +31,7 @@ Transform:
   m_Children:
   - {fileID: 3147096029349633165}
   m_Father: {fileID: 3744010700067239340}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1622328644261199398
 MonoBehaviour:
@@ -55,8 +55,11 @@ GameObject:
   m_Component:
   - component: {fileID: 3744010700067239340}
   - component: {fileID: 6884540845200242600}
+  - component: {fileID: 3259723645145811741}
+  - component: {fileID: 6397024410037532818}
   - component: {fileID: 3744010700067239343}
   - component: {fileID: 3744010700067239342}
+  - component: {fileID: 2456180222565774952}
   m_Layer: 7
   m_Name: Adventurer
   m_TagString: Player
@@ -76,7 +79,6 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 3744010700364922028}
   - {fileID: 1847282301087611055}
   - {fileID: 3744010699814045015}
   - {fileID: 3744010700442847974}
@@ -99,103 +101,25 @@ MonoBehaviour:
   characterName: Yoze
   role: 3
   combatClassID: 12000001
-  dynamicStatEntry: {fileID: 6714285254672120863}
-  constStats: {fileID: 8281854185582011221}
+  statEntry: {fileID: 3259723645145811741}
   characterAction: {fileID: 4044075457161744673}
-  modChanger: {fileID: 4921204153920957372}
+  modChanger: {fileID: 6397024410037532818}
   searching: {fileID: 6370810151153497551}
   colliding: {fileID: 3894537213432791220}
   pathfinding: {fileID: 2767833712095737796}
   animating: {fileID: 0}
   damageSpawn: {fileID: 7165625768315214134}
-  statusEffectHierarchy: {fileID: 3744010700364922028}
---- !u!54 &3744010700067239343
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3744010700067239338}
-  serializedVersion: 2
-  m_Mass: 1
-  m_Drag: 0
-  m_AngularDrag: 0
-  m_UseGravity: 0
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 116
-  m_CollisionDetection: 0
---- !u!136 &3744010700067239342
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3744010700067239338}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  m_Radius: 0.6
-  m_Height: 1
-  m_Direction: 1
-  m_Center: {x: 0, y: 0, z: 0}
---- !u!1 &3744010700364922029
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 3744010700364922028}
-  - component: {fileID: 6714285254672120863}
-  - component: {fileID: 8281854185582011221}
-  - component: {fileID: 4921204153920957372}
-  - component: {fileID: 8675410024260397958}
-  m_Layer: 0
-  m_Name: Adventurer.Partial
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &3744010700364922028
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3744010700364922029}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 3744010700067239340}
-  m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &6714285254672120863
+  statusEffectHierarchy: {fileID: 3744010700067239340}
+--- !u!114 &3259723645145811741
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3744010700364922029}
+  m_GameObject: {fileID: 3744010700067239338}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2e23587a43df6a44bbc61f367aaec4bb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &8281854185582011221
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3744010700364922029}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6e066ee75ec37ec4fb4761ca17e549fd, type: 3}
+  m_Script: {fileID: 11500000, guid: f865738da60c3e442ae51953dc29c83c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   baseStatCode: 12000001
@@ -217,13 +141,13 @@ MonoBehaviour:
   armor:
     value: 20
     statCode: 6
---- !u!114 &4921204153920957372
+--- !u!114 &6397024410037532818
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3744010700364922029}
+  m_GameObject: {fileID: 3744010700067239338}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f93b0e8a37b65ed4295d87cd9b2d4391, type: 3}
@@ -307,13 +231,43 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
---- !u!114 &8675410024260397958
+--- !u!54 &3744010700067239343
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3744010700067239338}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0
+  m_UseGravity: 0
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 116
+  m_CollisionDetection: 0
+--- !u!136 &3744010700067239342
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3744010700067239338}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  m_Radius: 0.6
+  m_Height: 1
+  m_Direction: 1
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &2456180222565774952
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3744010700364922029}
+  m_GameObject: {fileID: 3744010700067239338}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 180370f9798368d46aa0bb571fe46191, type: 3}
@@ -324,7 +278,7 @@ MonoBehaviour:
   response:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 4921204153920957372}
+      - m_Target: {fileID: 6397024410037532818}
         m_TargetAssemblyTypeName: Character.Adventurers.AdventurerModChanger, ProjectR.Character
         m_MethodName: OnFocused
         m_Mode: 0
@@ -375,7 +329,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 3744010700067239340}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &4044075457161744673
 MonoBehaviour:
@@ -457,11 +411,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gcd: {fileID: 6057010017344760637}
-  skillList:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  skillList: []
 --- !u!114 &6057010017344760637
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -922,7 +872,7 @@ Transform:
   - {fileID: 4456349002813650347}
   - {fileID: 3094198257002058221}
   m_Father: {fileID: 3744010700067239340}
-  m_RootOrder: 4
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &9206584074808134567
 GameObject:
@@ -964,7 +914,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 6133946495738554008, guid: dd131fdb27167964ca9de70cfbff2ba1, type: 3}
       propertyPath: m_RootOrder
-      value: 3
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 6133946495738554008, guid: dd131fdb27167964ca9de70cfbff2ba1, type: 3}
       propertyPath: m_LocalPosition.x

@@ -1,18 +1,17 @@
-using Character.Data;
 using Common;
+using Common.Actions;
 using Common.Animation;
 using Common.Systems;
 using UnityEngine;
 
 namespace Character.Adventurers
 {
-    public class Adventurer : MonoBehaviour, ICombatExecutor, ICharacterSystem
+    public class Adventurer : MonoBehaviour, ICombatExecutor, ICharacterSystem, IEditable
     {
         [SerializeField] protected string characterName = string.Empty;
         [SerializeField] protected RoleType role;
         [SerializeField] protected DataIndex combatClassID;
-        [SerializeField] protected DynamicStatEntry dynamicStatEntry;
-        [SerializeField] protected ConstStats constStats;
+        [SerializeField] protected CharacterStatEntry statEntry;
         [SerializeField] protected ActionBehaviour characterAction;
         [SerializeField] protected AdventurerModChanger modChanger;
         
@@ -26,11 +25,11 @@ namespace Character.Adventurers
         public DataIndex ActionCode => combatClassID;
         public string Name => characterName;
         public RoleType Role => role;
-        public IDynamicStatEntry DynamicStatEntry => dynamicStatEntry ??= GetComponentInChildren<DynamicStatEntry>();
+        public IDynamicStatEntry DynamicStatEntry => statEntry ??= GetComponentInChildren<CharacterStatEntry>();
         public ICharacterBehaviour CharacterBehaviour => characterAction;
         public GameObject Object => gameObject;
         public StatTable StatTable => DynamicStatEntry.StatTable;
-
+        
         public ActionTable<CombatEntity> OnProvideDamage { get; } = new();
         public ActionTable<CombatEntity> OnProvideHeal { get; } = new();
         public ActionTable<StatusEffectEntity> OnProvideDeBuff { get; } = new();
@@ -57,21 +56,24 @@ namespace Character.Adventurers
 
         protected void Awake()
         {
-            constStats       ??= GetComponentInChildren<ConstStats>();
-            dynamicStatEntry ??= GetComponentInChildren<DynamicStatEntry>();
-            modChanger       ??= GetComponentInChildren<AdventurerModChanger>();
-            characterAction  ??= GetComponentInChildren<ActionBehaviour>();
-            
-            searching        ??= GetComponentInChildren<SearchingSystem>();
-            colliding        ??= GetComponentInChildren<CollidingSystem>();
-            pathfinding      ??= GetComponentInChildren<PathfindingSystem>();
-            animating        ??= GetComponentInChildren<AnimationModel>();
-
-            constStats.Initialize(StatTable);
-            dynamicStatEntry.Initialize();
+            statEntry.Initialize();
             modChanger.Initialize(this);
         }
 
         private void Update() { Animating.Flip(transform.forward); }
+
+
+#if UNITY_EDITOR
+        public void EditorSetUp()
+        {
+            statEntry       ??= GetComponent<CharacterStatEntry>();
+            modChanger      ??= GetComponent<AdventurerModChanger>();
+            characterAction ??= GetComponentInChildren<ActionBehaviour>();
+            searching       ??= GetComponentInChildren<SearchingSystem>();
+            colliding       ??= GetComponentInChildren<CollidingSystem>();
+            pathfinding     ??= GetComponentInChildren<PathfindingSystem>();
+            animating       ??= GetComponentInChildren<AnimationModel>();
+        }
+#endif
     }
 }

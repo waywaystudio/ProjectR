@@ -1,5 +1,4 @@
 using System.Collections.Generic;
-using Character;
 using Character.Adventurers;
 using Common;
 using Sirenix.OdinInspector;

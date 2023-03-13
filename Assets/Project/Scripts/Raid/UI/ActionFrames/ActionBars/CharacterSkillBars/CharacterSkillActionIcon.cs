@@ -2,6 +2,8 @@ using Character;
 using Character.Actions;
 using Character.Adventurers;
 using Common;
+using Common.Actions;
+using Common.Skills;
 using Manager;
 using UnityEngine;
 using UnityEngine.InputSystem;

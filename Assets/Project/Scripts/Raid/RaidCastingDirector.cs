@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using Character;
 using Character.Adventurers;
+using Character.Monsters;
 using Common;
 using Sirenix.OdinInspector;
 using UnityEngine;
