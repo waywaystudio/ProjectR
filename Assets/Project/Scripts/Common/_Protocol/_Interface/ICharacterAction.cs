@@ -10,7 +10,7 @@ namespace Common
         ConditionTable Conditions { get; }
     }
 
-    public interface ICharacterBehaviour
+    public interface IActionBehaviour
     {
         void Run(Vector3 destination);
         void Rotate(Vector3 targetPosition);

@@ -1,6 +1,6 @@
 using Common.Skills;
 
-namespace Character.Adventurers.Hunter.Skills
+namespace Adventurers.Hunter.Skills
 {
     public class Trap : SkillComponent
     {

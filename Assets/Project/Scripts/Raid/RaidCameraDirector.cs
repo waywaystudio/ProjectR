@@ -1,8 +1,7 @@
-using Character;
-using Character.Adventurers;
-using Character.Monsters;
+using Adventurers;
 using Cinemachine;
 using Manager;
+using Monsters;
 using UnityEngine;
 
 namespace Raid

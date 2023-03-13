@@ -1,7 +1,7 @@
 using Character;
+using Common.UI;
 using Sirenix.OdinInspector;
 using TMPro;
-using UI.ImageUtility;
 using UnityEngine;
 
 namespace Raid.UI.BossFrames

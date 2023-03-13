@@ -1,7 +1,6 @@
 using System.Collections.Generic;
-using Character;
-using Character.Adventurers;
-using Character.Monsters;
+using Adventurers;
+using Monsters;
 using Singleton;
 using UnityEngine;
 

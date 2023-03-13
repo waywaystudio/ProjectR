@@ -1,7 +1,5 @@
-using System;
 using System.Collections.Generic;
-using Character;
-using Character.Adventurers;
+using Adventurers;
 using Manager;
 using TMPro;
 using UnityEngine;

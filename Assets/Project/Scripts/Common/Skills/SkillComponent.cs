@@ -1,7 +1,6 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using Character;
 using Sirenix.OdinInspector;
 using UnityEngine;
 
@@ -81,6 +80,7 @@ namespace Common.Skills
             if (IsProgress) 
                 OnCompleted.Invoke();
         }
+        
 
         // protected void ConsumeResource() => Provider.DynamicStatEntry.Resource.Value -= cost;
         protected void StartCooling() => coolTimeRoutine = StartCoroutine(CoolingRoutine());

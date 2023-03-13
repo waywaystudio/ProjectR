@@ -1,6 +1,5 @@
-using Character;
-using Character.Adventurers;
-using UI.ImageUtility;
+using Adventurers;
+using Common.UI;
 using UnityEngine;
 
 namespace Raid.UI.ActionFrames.ActionBars.CharacterSkillBars

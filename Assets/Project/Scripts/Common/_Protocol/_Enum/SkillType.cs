@@ -1,4 +1,4 @@
-namespace Character
+namespace Common
 {
     public enum SkillType
     {

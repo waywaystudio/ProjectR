@@ -1,7 +1,7 @@
 using Common;
 using Common.Skills;
 
-namespace Character.Adventurers.Rogue.Skills
+namespace Adventurers.Rogue.Skills
 {
     public class Liberation : SkillComponent
     {

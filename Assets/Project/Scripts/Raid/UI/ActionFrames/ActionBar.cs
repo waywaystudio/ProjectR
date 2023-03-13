@@ -1,7 +1,5 @@
-using Character;
-using Character.Adventurers;
+using Adventurers;
 using Raid.UI.ActionFrames.ActionBars;
-using Raid.UI.ActionFrames.ActionBars.AdventurerBars;
 using UnityEngine;
 
 namespace Raid.UI.ActionFrames

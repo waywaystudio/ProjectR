@@ -1,7 +1,7 @@
 using Character;
-using Character.Monsters;
 using Common;
 using Manager;
+using Monsters;
 using UnityEngine;
 
 namespace Raid.UI.StageFinisher

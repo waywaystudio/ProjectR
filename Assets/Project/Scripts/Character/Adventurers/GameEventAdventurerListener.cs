@@ -1,7 +1,6 @@
-using Character.Adventurers;
 using GameEvents.Listener;
 
-namespace Character
+namespace Adventurers
 {
     public class GameEventAdventurerListener : GameEventListener<Adventurer> { }
 }

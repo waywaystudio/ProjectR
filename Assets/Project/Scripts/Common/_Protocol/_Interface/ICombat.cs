@@ -71,7 +71,7 @@ namespace Common
         // + GameObject Object { get; }
 
         RoleType Role { get; }
-        ICharacterBehaviour CharacterBehaviour { get; }
+        IActionBehaviour ActionBehaviour { get; }
         Transform DamageSpawn { get; }
         Transform StatusEffectHierarchy { get; }
         ActionTable<CombatEntity> OnTakeDamage { get; }

@@ -1,7 +1,6 @@
-using Character;
-using Character.Adventurers;
+using Adventurers;
+using Common.UI;
 using Sirenix.OdinInspector;
-using UI.ImageUtility;
 using UnityEngine;
 
 namespace Raid.UI.ActionFrames

@@ -312,6 +312,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 658398342006283177}
     - target: {fileID: 6884540845200242600, guid: a3acb303f8f3ed24c8afb44fa3d18ccf, type: 3}
+      propertyPath: characterID
+      value: 12000001
+      objectReference: {fileID: 0}
+    - target: {fileID: 6884540845200242600, guid: a3acb303f8f3ed24c8afb44fa3d18ccf, type: 3}
       propertyPath: characterName
       value: Knight
       objectReference: {fileID: 0}

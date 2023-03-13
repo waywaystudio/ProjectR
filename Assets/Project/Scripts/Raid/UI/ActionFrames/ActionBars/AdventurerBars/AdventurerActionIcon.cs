@@ -1,5 +1,4 @@
-using Character;
-using Character.Adventurers;
+using Adventurers;
 using GameEvents;
 using UnityEngine;
 using UnityEngine.InputSystem;

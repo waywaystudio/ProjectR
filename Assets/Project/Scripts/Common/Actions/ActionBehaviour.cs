@@ -4,25 +4,28 @@ using UnityEngine;
 
 namespace Common.Actions
 {
-    public class ActionBehaviour : MonoBehaviour, ICharacterBehaviour, IEditable
+    public class ActionBehaviour : MonoBehaviour, IActionBehaviour, IEditable
     {
         [SerializeField] private SkillAction skillAction;
+        public SkillAction SkillAction => skillAction;
+        public List<SkillComponent> SkillList => skillAction.SkillList;
+        public SkillComponent FirstSkill => SkillList[0];
+        public SkillComponent SecondSkill => SkillList[1];
+        public SkillComponent ThirdSkill => SkillList[2];
+        public SkillComponent FourthSkill => SkillList[3];
+        
         [SerializeField] private RunAction runAction;
         [SerializeField] private RotateAction rotateAction;
         [SerializeField] private StopAction stopAction;
+        
         [SerializeField] private StunAction stunAction;
         [SerializeField] private KnockBackAction knockBackAction;
         [SerializeField] private DeadAction deadAction;
 
         public bool IsSkillEnded => skillAction.IsSkillEnded;
         public bool IsGlobalCooling => skillAction.IsCooling;
-        public SkillAction SkillAction => skillAction;
         
-        public List<SkillComponent> SkillList => skillAction.SkillList;
-        public SkillComponent FirstSkill => SkillList[0];
-        public SkillComponent SecondSkill => SkillList[1];
-        public SkillComponent ThirdSkill => SkillList[2];
-        public SkillComponent FourthSkill => SkillList[3];
+        
         public DeadAction DeadAction => deadAction;
 
         public void Run(Vector3 destination) => runAction.Active(destination);
@@ -34,6 +37,8 @@ namespace Common.Actions
 
         public void ActiveSkill(SkillComponent skill, Vector3 targetPosition)
         {
+            // transform.
+            
             if (!skillAction.IsAble(skill)) return;
 
             Rotate(targetPosition);

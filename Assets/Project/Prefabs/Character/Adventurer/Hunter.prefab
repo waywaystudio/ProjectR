@@ -404,6 +404,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 2106981023335654335}
     - target: {fileID: 6884540845200242600, guid: a3acb303f8f3ed24c8afb44fa3d18ccf, type: 3}
+      propertyPath: characterID
+      value: 12000005
+      objectReference: {fileID: 0}
+    - target: {fileID: 6884540845200242600, guid: a3acb303f8f3ed24c8afb44fa3d18ccf, type: 3}
       propertyPath: characterName
       value: Solider
       objectReference: {fileID: 0}

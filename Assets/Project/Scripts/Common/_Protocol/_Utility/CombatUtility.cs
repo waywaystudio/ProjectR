@@ -1,8 +1,7 @@
-using Common;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
-namespace Character
+namespace Common
 {
     public static class CombatUtility
     {
@@ -53,7 +52,7 @@ namespace Character
                 combatEntity.Value                   -= taker.DynamicStatEntry.Hp.Value;
              
                 Debug.Log($"{taker.Name} dead by {combatEntity.CombatTable.Provider.Name}'s {combatEntity.CombatTable.ActionCode}");
-                taker.CharacterBehaviour.Dead();
+                taker.ActionBehaviour.Dead();
             }
 
             taker.DynamicStatEntry.Hp.Value -= damageAmount;

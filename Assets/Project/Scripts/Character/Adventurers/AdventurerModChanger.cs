@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.Events;
 
-namespace Character.Adventurers
+namespace Adventurers
 {
     public class AdventurerModChanger : MonoBehaviour
     {

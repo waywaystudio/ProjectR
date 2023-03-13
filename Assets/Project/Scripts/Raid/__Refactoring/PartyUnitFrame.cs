@@ -1,5 +1,4 @@
-using Character;
-using Character.Adventurers;
+using Adventurers;
 using Common;
 using DG.Tweening;
 using TMPro;

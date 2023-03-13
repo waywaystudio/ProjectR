@@ -2,7 +2,7 @@ using Common.Completion;
 using Common.Skills;
 using UnityEngine;
 
-namespace Character.Adventurers.Knight.Skills
+namespace Adventurers.Knight.Skills
 {
     public class ThunderClap : SkillComponent
     {

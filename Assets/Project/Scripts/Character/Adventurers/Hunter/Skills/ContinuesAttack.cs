@@ -2,7 +2,7 @@ using Common.Completion;
 using Common.Skills;
 using UnityEngine;
 
-namespace Character.Adventurers.Hunter.Skills
+namespace Adventurers.Hunter.Skills
 {
     public class ContinuesAttack : SkillComponent
     {

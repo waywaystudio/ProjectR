@@ -2,7 +2,7 @@ using Common.Completion;
 using Common.Skills;
 using UnityEngine;
 
-namespace Character.Adventurers.Rogue.Skills
+namespace Adventurers.Rogue.Skills
 {
     public class PowerBeat : SkillComponent
     {

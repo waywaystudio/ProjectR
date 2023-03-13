@@ -1,5 +1,7 @@
+using Raid.UI.FloatingTexts;
 using Raid.UI.StageInitializer;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace Raid
 {
@@ -12,7 +14,7 @@ namespace Raid
         [SerializeField] private ActionFrame actionFrame;
 
         // Pool
-        [SerializeField] private DamageTextPool damageTextPool;
+        [SerializeField] private FloatingTextPool floatingTextPool;
 
         public StageSetter StageInitializer => stageInitializer;
         
@@ -23,7 +25,6 @@ namespace Raid
             
             bossFrame.Initialize();
             actionFrame.Initialize();
-            damageTextPool.Initialize(RaidDirector.AdventurerList);
         }
 
 
@@ -33,7 +34,7 @@ namespace Raid
             stageInitializer ??= GetComponentInChildren<StageSetter>();
             bossFrame        ??= GetComponentInChildren<BossFrame>();
             actionFrame      ??= GetComponentInChildren<ActionFrame>();
-            damageTextPool   ??= GetComponentInChildren<DamageTextPool>();
+            floatingTextPool   ??= GetComponentInChildren<FloatingTextPool>();
         }
 #endif
     }

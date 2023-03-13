@@ -1,7 +1,6 @@
-using Character.Adventurers;
 using GameEvents;
 
-namespace Character
+namespace Adventurers
 {
     public class GameEventAdventurer : GameEvent<Adventurer> { }
 }

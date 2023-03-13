@@ -1,6 +1,6 @@
 using Common.Animation;
 
-namespace Character.Adventurers.Hunter
+namespace Adventurers.Hunter
 {
     public class SoliderAnimationModel : AnimationModel
     {

@@ -1,7 +1,7 @@
 using TMPro;
 using UnityEngine;
 
-namespace UI.ActionBars
+namespace Common.UI.ActionBars
 {
     public class ActionSlot : MonoBehaviour, IEditable
     {

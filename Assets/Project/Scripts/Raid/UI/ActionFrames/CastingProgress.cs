@@ -1,9 +1,7 @@
-using Character;
-using Character.Actions;
-using Character.Adventurers;
+using Adventurers;
 using Common.Actions;
 using Common.Skills;
-using UI.ImageUtility;
+using Common.UI;
 using UnityEngine;
 
 namespace Raid.UI.ActionFrames

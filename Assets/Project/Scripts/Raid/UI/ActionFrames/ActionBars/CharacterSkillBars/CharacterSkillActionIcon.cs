@@ -1,6 +1,4 @@
-using Character;
-using Character.Actions;
-using Character.Adventurers;
+using Adventurers;
 using Common;
 using Common.Actions;
 using Common.Skills;
