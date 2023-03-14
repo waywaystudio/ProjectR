@@ -1,18 +1,21 @@
-using Adventurers;
+using Character.Adventurers;
+using Common.Actions;
+using Common.Skills;
 using Common.UI;
 using Manager;
 using Sirenix.OdinInspector;
 using TMPro;
 using UnityEngine;
 
-namespace Raid.UI.ActionFrames.ActionBars.CharacterSkillBars
+namespace Raid.UI.ActionFrames
 {
-    public class CharacterSkillActionSlot : MonoBehaviour
+    public class SkillActionSlot : MonoBehaviour
     {
-        [SerializeField] private CharacterSkillActionIcon skillAction;
-        [SerializeField] private ImageFiller coolDownFiller;
-        [SerializeField] private TextMeshProUGUI hotKey;
         [SerializeField] private BindingCode bindingCode;
+        [SerializeField] private TextMeshProUGUI hotKey;
+        [SerializeField] private SkillActionSymbol skillAction;
+        [SerializeField] private ImageFiller coolDownFiller;
+        
         [PropertyRange(1, 4)]
         [SerializeField] private int skillIndex;
 
@@ -29,6 +32,10 @@ namespace Raid.UI.ActionFrames.ActionBars.CharacterSkillBars
                 _ => "-",
             };
 
+        public void Initialize(ActionBehaviour actionBehaviour, SkillComponent skill)
+        {
+            // skillAction.Initialize(actionBehaviour, skill);
+        }
 
         public void Initialize(Adventurer adventurer) => OnFocusChanged(adventurer);
         public void OnFocusChanged(Adventurer ab)
@@ -60,29 +67,28 @@ namespace Raid.UI.ActionFrames.ActionBars.CharacterSkillBars
                 return;
             }
             
-            skillAction.Initialize(ab, skill);
+            // skillAction.Initialize(ab, skill);
 
             if (skill.CoolTime != 0.0f)
             {
                 coolDownFiller.ProgressImage.enabled = true;
                 coolDownFiller.Register(skill.RemainCoolTime, skill.CoolTime);
             }
-                
-            
+
             inputAction.started  += skillAction.StartAction;
             inputAction.canceled += skillAction.ReleaseAction;
         }
 
         private void Awake()
         {
-            skillAction ??= GetComponentInChildren<CharacterSkillActionIcon>();
+            skillAction ??= GetComponentInChildren<SkillActionSymbol>();
             hotKey.text =   HotKey;
         }
 
 
         public void SetUp()
         {
-            skillAction ??= GetComponentInChildren<CharacterSkillActionIcon>();
+            skillAction ??= GetComponentInChildren<SkillActionSymbol>();
             hotKey.text =   HotKey;
         }
     }

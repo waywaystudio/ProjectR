@@ -1,7 +1,8 @@
+using Adventurers;
 using Common.Characters;
 using UnityEngine;
 
-namespace Adventurers
+namespace Character.Adventurers
 {
     public class Adventurer : CharacterBehaviour
     {

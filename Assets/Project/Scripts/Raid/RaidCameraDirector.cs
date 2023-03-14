@@ -1,4 +1,5 @@
 using Adventurers;
+using Character.Adventurers;
 using Cinemachine;
 using Manager;
 using Monsters;

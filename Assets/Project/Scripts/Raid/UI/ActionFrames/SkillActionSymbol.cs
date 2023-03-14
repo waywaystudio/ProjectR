@@ -1,23 +1,24 @@
-using Adventurers;
+using Character.Adventurers;
 using Common;
 using Common.Actions;
 using Common.Skills;
+using Common.UI.ActionBars;
 using Manager;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
 
-namespace Raid.UI.ActionFrames.ActionBars.CharacterSkillBars
+namespace Raid.UI.ActionFrames
 {
-    public class CharacterSkillActionIcon : MonoBehaviour, ITooltipInfo
+    public class SkillActionSymbol : MonoBehaviour, ITooltipInfo
     {
-        [SerializeField] private Image actionImage;
-
+        [SerializeField] protected Image actionImage;
+        
         private SkillComponent skillComponent;
         private Adventurer focusedAdventurer;
         private Transform preTransform;
         private ActionBehaviour characterAction => focusedAdventurer.CharacterAction;
-        
+
 
         public void Initialize(Adventurer adventurer, SkillComponent skillComponent)
         {
@@ -38,11 +39,10 @@ namespace Raid.UI.ActionFrames.ActionBars.CharacterSkillBars
         public void ReleaseAction(InputAction.CallbackContext context)
         {
             if (skillComponent.IsNullOrEmpty() || focusedAdventurer.IsNullOrEmpty()) return;
-            if (skillComponent.SkillType is SkillType.Instant or SkillType.Casting) return;
-            
+
             characterAction.ReleaseSkill();
         }
 
-        public string TooltipInfo => actionImage ? actionImage.sprite.ToString() : "None";
+        public string TooltipInfo { get; }
     }
 }

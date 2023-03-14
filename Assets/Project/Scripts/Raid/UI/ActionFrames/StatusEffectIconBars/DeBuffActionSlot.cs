@@ -51,5 +51,7 @@ namespace Raid.UI.ActionFrames.StatusEffectIconBars
         {
             remainDuration.text = value.ToString("F1");
         }
+
+        private void OnDisable() => Unregister();
     }
 }

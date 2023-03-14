@@ -1,13 +1,14 @@
 using Adventurers;
+using Character.Adventurers;
 using Manager;
 using TMPro;
 using UnityEngine;
 
 namespace Raid.UI.ActionFrames.ActionBars.AdventurerBars
 {
-    public class AdventurerActionSlot : MonoBehaviour
+    public class OldAdventurerActionSlot : MonoBehaviour
     {
-        [SerializeField] private AdventurerActionIcon adventurerAction;
+        [SerializeField] private OldAdventurerActionIcon adventurerAction;
         [SerializeField] private TextMeshProUGUI hotKey;
         [SerializeField] private BindingCode bindingCode;
 

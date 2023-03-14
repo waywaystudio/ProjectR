@@ -6,7 +6,7 @@ using UnityEngine;
 
 namespace Common.Skills
 {
-    public abstract class SkillComponent : MonoBehaviour, ISequence, IDataIndexer, IEditable
+    public abstract class SkillComponent : MonoBehaviour, ISequence, IAssignable, IDataIndexer, IEditable
     {
         /* Common Attribution */
         [SerializeField] protected DataIndex actionCode;
@@ -77,6 +77,7 @@ namespace Common.Skills
         
         public void Release()
         {
+            if (SkillType is SkillType.Instant or SkillType.Casting) return;
             if (IsProgress) 
                 OnCompleted.Invoke();
         }

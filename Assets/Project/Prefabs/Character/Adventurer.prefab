@@ -99,17 +99,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   characterName: Yoze
+  characterID: 0
   role: 3
-  combatClassID: 12000001
   statEntry: {fileID: 3259723645145811741}
   characterAction: {fileID: 4044075457161744673}
-  modChanger: {fileID: 6397024410037532818}
   searching: {fileID: 6370810151153497551}
   colliding: {fileID: 3894537213432791220}
   pathfinding: {fileID: 2767833712095737796}
   animating: {fileID: 0}
   damageSpawn: {fileID: 7165625768315214134}
   statusEffectHierarchy: {fileID: 3744010700067239340}
+  modChanger: {fileID: 6397024410037532818}
 --- !u!114 &3259723645145811741
 MonoBehaviour:
   m_ObjectHideFlags: 0

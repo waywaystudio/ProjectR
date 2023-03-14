@@ -1,7 +1,6 @@
 using Raid.UI.FloatingTexts;
 using Raid.UI.StageInitializer;
 using UnityEngine;
-using UnityEngine.Serialization;
 
 namespace Raid
 {

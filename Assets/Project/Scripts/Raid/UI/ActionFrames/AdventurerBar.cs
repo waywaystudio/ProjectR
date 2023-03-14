@@ -1,5 +1,5 @@
 using System.Collections.Generic;
-using Adventurers;
+using Character.Adventurers;
 using Raid.UI.ActionFrames.ActionBars.AdventurerBars;
 using UnityEngine;
 
@@ -7,7 +7,7 @@ namespace Raid.UI.ActionFrames.ActionBars
 {
     public class AdventurerBar : MonoBehaviour
     {
-        [SerializeField] private List<AdventurerActionSlot> slotList = new();
+        [SerializeField] private List<OldAdventurerActionSlot> slotList = new();
         
 
         public void Initialize(IEnumerable<Adventurer> adventurerList)

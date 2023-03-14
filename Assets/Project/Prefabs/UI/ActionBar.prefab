@@ -397,7 +397,7 @@ GameObject:
   - component: {fileID: 6083151816900699627}
   - component: {fileID: 5063868086010639297}
   m_Layer: 0
-  m_Name: SkillObject
+  m_Name: ActionSymbol
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -497,7 +497,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6617564615831231898}
   m_Layer: 5
-  m_Name: ActionHierarchy
+  m_Name: ActionSymbolHierarchy
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -537,7 +537,7 @@ GameObject:
   - component: {fileID: 4376758763750768870}
   - component: {fileID: 994089204871972379}
   m_Layer: 5
-  m_Name: Slot
+  m_Name: ActionSlot
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -582,7 +582,6 @@ MonoBehaviour:
   hotKey: 0
   skillObjectHierarchy: {fileID: 6617564615831231898}
   hotKeyTextUI: {fileID: 7660433451794104941}
-  filler: {fileID: 8841285191868452920}
 --- !u!222 &4376758763750768870
 CanvasRenderer:
   m_ObjectHideFlags: 0

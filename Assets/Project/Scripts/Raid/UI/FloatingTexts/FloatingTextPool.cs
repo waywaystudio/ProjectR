@@ -1,4 +1,5 @@
 using Adventurers;
+using Character.Adventurers;
 using Common;
 using Sirenix.OdinInspector;
 

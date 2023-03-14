@@ -1,3 +1,4 @@
+using Character.Adventurers;
 using UnityEngine;
 using UnityEngine.Events;
 

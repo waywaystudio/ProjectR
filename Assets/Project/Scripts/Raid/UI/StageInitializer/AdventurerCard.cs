@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using Adventurers;
+using Character.Adventurers;
 using Common;
 using Raid.UI.StageSetter;
 using Spine.Unity;

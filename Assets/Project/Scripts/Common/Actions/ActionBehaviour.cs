@@ -37,8 +37,6 @@ namespace Common.Actions
 
         public void ActiveSkill(SkillComponent skill, Vector3 targetPosition)
         {
-            // transform.
-            
             if (!skillAction.IsAble(skill)) return;
 
             Rotate(targetPosition);

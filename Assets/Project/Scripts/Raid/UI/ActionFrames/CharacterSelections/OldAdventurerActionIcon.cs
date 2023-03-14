@@ -1,4 +1,4 @@
-using Adventurers;
+using Character.Adventurers;
 using GameEvents;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -6,7 +6,7 @@ using UnityEngine.UI;
 
 namespace Raid.UI.ActionFrames.ActionBars.AdventurerBars
 {
-    public class AdventurerActionIcon : MonoBehaviour
+    public class OldAdventurerActionIcon : MonoBehaviour
     {
         [SerializeField] private Image adventurerImage;
         [SerializeField] private GameEvent<Adventurer> onFocusChanged;

@@ -4,7 +4,7 @@ using UnityEngine.UI;
 
 namespace Common.UI
 {
-    public class ImageFiller : MonoBehaviour
+    public class ImageFiller : MonoBehaviour, IEditable
     {
         [SerializeField] private Image progressImage;
         [SerializeField] private string fillProgressionKey;
@@ -66,11 +66,13 @@ namespace Common.UI
         {
             Unregister();
         }
-        
 
-        public void SetUp()
+
+#if UNITY_EDITOR
+        public void EditorSetUp()
         {
             TryGetComponent(out progressImage);
         }
+#endif
     }
 }

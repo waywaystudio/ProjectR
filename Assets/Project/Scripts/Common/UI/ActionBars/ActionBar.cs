@@ -9,6 +9,19 @@ namespace Common.UI.ActionBars
         [SerializeField] protected string barName;
         [SerializeField] protected int slotCount;
         [SerializeField] protected List<ActionSlot> actionSlotList;
+        
+
+        public void RegisterSlot(int slotIndex, IAssignable actionSymbol)
+        {
+            // if (actionSlotList.MoreThen(slotIndex))
+            //     actionSlotList[slotIndex].RegisterSymbol(actionSymbol);
+        }
+
+        public void UnregisterSlot(int slotIndex)
+        {
+            // if (actionSlotList.MoreThen(slotIndex))
+            //     actionSlotList[slotIndex].UnregisterSymbol();
+        }
 
 
 #if UNITY_EDITOR
@@ -20,7 +33,7 @@ namespace Common.UI.ActionBars
 
         public void EditorSetUp()
         {
-            GetComponentsInChildren(actionSlotList);
+            GetComponentsInChildren(true, actionSlotList);
         }
 #endif
         
