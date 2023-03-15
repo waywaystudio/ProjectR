@@ -10,7 +10,7 @@ namespace Adventurers.Hunter.Skills
         
         protected override void PlayAnimation()
         {
-            CharacterSystem.Animating.PlayOnce(animationKey);
+            Cb.Animating.PlayOnce(animationKey);
         }
         
         private void OnAimShotAttack()
@@ -18,7 +18,7 @@ namespace Adventurers.Hunter.Skills
             // TODO. 현재 Test상 HitScan 방식이어서 이렇고, Projectile로 바뀌면 교체해야 함.
             var providerTransform = Provider.Object.transform;
             
-            if (!CharacterSystem.Colliding.TryGetTakersByRaycast(
+            if (!Cb.Colliding.TryGetTakersByRaycast(
                     providerTransform.position,
                     providerTransform.forward,
                     range,
@@ -31,7 +31,7 @@ namespace Adventurers.Hunter.Skills
         
         private void PlayEndChargingAnimation()
         {
-            CharacterSystem.Animating.PlayOnce("heavyAttack", 0f, OnEnded.Invoke);
+            Cb.Animating.PlayOnce("heavyAttack", 0f, OnEnded.Invoke);
         }
         
         protected void OnEnable()

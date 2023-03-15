@@ -11,7 +11,7 @@ namespace Monsters.Moragg.Skills
         
         protected override void PlayAnimation()
         {
-            CharacterSystem.Animating.PlayOnce(animationKey, progressTime, OnCompleted.Invoke);
+            Cb.Animating.PlayOnce(animationKey, progressTime, OnCompleted.Invoke);
         }
 
         private void OnAttack()
@@ -23,7 +23,7 @@ namespace Monsters.Moragg.Skills
         
         private void RegisterHitEvent()
         {
-            CharacterSystem.Animating.OnHit.Register("SkillHit", OnHit.Invoke);
+            Cb.Animating.OnHit.Register("SkillHit", OnHit.Invoke);
         }
 
         private void OnEnable()
@@ -38,8 +38,8 @@ namespace Monsters.Moragg.Skills
             OnCompleted.Register("StartCooling", StartCooling);
             OnCompleted.Register("EndCallback", OnEnded.Invoke);
             
-            OnEnded.Register("ReleaseHit", () => CharacterSystem.Animating.OnHit.Unregister("SkillHit"));
-            OnEnded.Register("Idle", CharacterSystem.Animating.Idle);
+            OnEnded.Register("ReleaseHit", () => Cb.Animating.OnHit.Unregister("SkillHit"));
+            OnEnded.Register("Idle", Cb.Animating.Idle);
         }
     }
 }

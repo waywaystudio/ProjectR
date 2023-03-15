@@ -1,4 +1,3 @@
-using Common.Actions;
 using Common.Animation;
 using Common.Characters.Behaviours;
 using Common.Characters.Behaviours.CrowdControlEffect;
@@ -20,24 +19,16 @@ namespace Common.Characters
         [SerializeField] protected AnimationModel animating;
         [SerializeField] protected Transform damageSpawn;
         [SerializeField] protected Transform statusEffectHierarchy;
-        
-        // TODO. : Now on CharacterBehaviour Working...
-        [SerializeField] protected OldActionBehaviour characterAction;
-
         [SerializeField] protected StopBehaviour stopBehaviour;
         [SerializeField] protected RunBehaviour runBehaviour;
         [SerializeField] protected StunBehaviour stunBehaviour;
         [SerializeField] protected KnockBackBehaviour knockBackBehaviour;
         [SerializeField] protected DeadBehaviour deadBehaviour;
-        
-        public StopBehaviour StopBehaviour => stopBehaviour;
-        public RunBehaviour RunBehaviour => runBehaviour;
-        public StunBehaviour StunBehaviour => stunBehaviour;
-        public KnockBackBehaviour KnockBackBehaviour => knockBackBehaviour;
-        public DeadBehaviour DeadBehaviour => deadBehaviour;
+        [SerializeField] protected SkillBehaviour skillBehaviour;
 
         public CharacterActionMask BehaviourMask => CurrentBehaviour is null ? CharacterActionMask.None : CurrentBehaviour.BehaviourMask;
         public ActionBehaviour CurrentBehaviour { get; set; }
+        public SkillBehaviour SkillBehaviour => skillBehaviour;
 
         public void Rotate(Vector3 lookTarget) { Pathfinding.RotateToTarget(lookTarget); Animating.Flip(transform.forward); }
         public void Stop() => stopBehaviour.Active();
@@ -45,12 +36,14 @@ namespace Common.Characters
         public void Stun(float duration) => stunBehaviour.Active(duration);
         public void KnockBack(Vector3 source, float distance) => knockBackBehaviour.Active(source, distance);
         public void Dead() => deadBehaviour.Dead();
+        public void ExecuteSkill(DataIndex actionCode, Vector3 targetPosition) => skillBehaviour.Active(actionCode, targetPosition);
+        public void CancelSkill() => skillBehaviour.Cancel();
+        public void ReleaseSkill() => skillBehaviour.Release();
 
         public DataIndex ActionCode => characterID;
         public RoleType Role => role;
         public string Name => characterName;
         public IDynamicStatEntry DynamicStatEntry => statEntry ??= GetComponentInChildren<CharacterStatEntry>();
-        public IActionBehaviour ActionBehaviour => characterAction;
         public GameObject Object => gameObject;
         public StatTable StatTable => DynamicStatEntry.StatTable;
         
@@ -70,10 +63,6 @@ namespace Common.Characters
         
         public Transform DamageSpawn => damageSpawn;
         public Transform StatusEffectHierarchy => statusEffectHierarchy;
-        
-        public OldActionBehaviour CharacterAction => characterAction;
-        
-
 
         public CombatEntity TakeDamage(ICombatTable combatTable) => CombatUtility.TakeDamage(combatTable, this);
         public CombatEntity TakeHeal(ICombatTable combatTable) => CombatUtility.TakeHeal(combatTable, this);
@@ -85,8 +74,8 @@ namespace Common.Characters
         public virtual void EditorSetUp()
         {
             statEntry          ??= GetComponent<CharacterStatEntry>();
-            characterAction    ??= GetComponentInChildren<OldActionBehaviour>();
-            stopBehaviour       ??= GetComponentInChildren<StopBehaviour>();
+            skillBehaviour     ??= GetComponentInChildren<SkillBehaviour>();
+            stopBehaviour      ??= GetComponentInChildren<StopBehaviour>();
             runBehaviour       ??= GetComponentInChildren<RunBehaviour>();
             stunBehaviour      ??= GetComponentInChildren<StunBehaviour>();
             knockBackBehaviour ??= GetComponentInChildren<KnockBackBehaviour>();

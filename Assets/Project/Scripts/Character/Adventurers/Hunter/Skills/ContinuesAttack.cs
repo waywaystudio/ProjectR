@@ -10,13 +10,13 @@ namespace Adventurers.Hunter.Skills
         
         protected override void PlayAnimation()
         {
-            CharacterSystem.Animating.PlayLoop(animationKey);
+            Cb.Animating.PlayLoop(animationKey);
         }
         
         private void RegisterHitEvent()
         {
-            CharacterSystem.Animating.OnHit.Unregister("HoldingHit");
-            CharacterSystem.Animating.OnHit.Register("HoldingHit", OnHit.Invoke);
+            Cb.Animating.OnHit.Unregister("HoldingHit");
+            Cb.Animating.OnHit.Register("HoldingHit", OnHit.Invoke);
         }
         
         
@@ -25,7 +25,7 @@ namespace Adventurers.Hunter.Skills
             // TODO. 현재 Test상 HitScan 방식이어서 이렇고, Projectile로 바뀌면 교체해야 함.
             var providerTransform = Provider.Object.transform;
             
-            if (!CharacterSystem.Colliding.TryGetTakersByRaycast(
+            if (!Cb.Colliding.TryGetTakersByRaycast(
                     providerTransform.position,
                     providerTransform.forward,
                     range,
@@ -47,7 +47,7 @@ namespace Adventurers.Hunter.Skills
             OnCompleted.Register("EndCallback", OnEnded.Invoke);
 
             OnEnded.Register("StartCooling", StartCooling);
-            OnEnded.Register("ReleaseHit", () => CharacterSystem.Animating.OnHit.Unregister("HoldingHit"));
+            OnEnded.Register("ReleaseHit", () => Cb.Animating.OnHit.Unregister("HoldingHit"));
         }
         
         

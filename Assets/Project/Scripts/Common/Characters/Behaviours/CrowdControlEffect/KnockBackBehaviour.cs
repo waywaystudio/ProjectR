@@ -29,7 +29,7 @@ namespace Common.Characters.Behaviours.CrowdControlEffect
 
         private void OnEnable()
         {
-            Conditions.Register("OverwriteMask", () => (IgnorableMask | Cb.BehaviourMask) == IgnorableMask);
+            Conditions.Register("OverwriteMask", IsOverBehaviour);
 
             OnKnockBacking.Register("Rotate", Cb.Rotate);
             

@@ -9,14 +9,14 @@ namespace Adventurers.Hunter.Skills
         
         protected override void PlayAnimation()
         {
-            CharacterSystem.Animating.PlayOnce(animationKey, progressTime, OnCompleted.Invoke);
+            Cb.Animating.PlayOnce(animationKey, progressTime, OnCompleted.Invoke);
         }
 
         private void Jump()
         {
             var direction = Provider.Object.transform.forward * -1f;
             
-            CharacterSystem.Pathfinding.Jump(direction, 10f, 2, 0.5f);
+            Cb.Pathfinding.Jump(direction, 10f, 2, 0.5f);
         }
         
         protected void OnEnable()

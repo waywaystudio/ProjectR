@@ -15,7 +15,7 @@ namespace Common.Characters.Behaviours.CrowdControlEffect
         {
             if (Conditions.HasFalse) return;
             
-            this.RegisterBehaviour(Cb);
+            RegisterBehaviour(Cb);
             
             OnActivated.Invoke();
 
@@ -26,7 +26,7 @@ namespace Common.Characters.Behaviours.CrowdControlEffect
         
         private void OnEnable()
         {
-            Conditions.Register("OverwriteMask", () => (IgnorableMask | Cb.BehaviourMask) == IgnorableMask);
+            Conditions.Register("OverwriteMask", IsOverBehaviour);
         }
         
         private void OnDisable()

@@ -8,6 +8,7 @@ namespace Common.Characters.Behaviours.Movement
         public void Active()
         {
             OnActivated.Invoke();
+            
             Cb.Pathfinding.Stop();
             Cb.Animating.Idle();
             Cb.CurrentBehaviour = this;

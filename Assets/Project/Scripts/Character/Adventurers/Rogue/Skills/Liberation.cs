@@ -5,12 +5,12 @@ namespace Adventurers.Rogue.Skills
 {
     public class Liberation : SkillComponent
     {
-        public override ICombatTaker MainTarget => CharacterSystem.Searching.GetSelf();
+        public override ICombatTaker MainTarget => Cb.Searching.GetSelf();
         
         
         protected override void PlayAnimation()
         {
-            CharacterSystem.Animating.PlayOnce(animationKey, progressTime, OnCompleted.Invoke);
+            Cb.Animating.PlayOnce(animationKey, progressTime, OnCompleted.Invoke);
         }
         
         protected void OnEnable()

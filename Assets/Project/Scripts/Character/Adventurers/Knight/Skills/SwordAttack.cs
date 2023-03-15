@@ -11,7 +11,7 @@ namespace Adventurers.Knight.Skills
         
         protected override void PlayAnimation()
         {
-            CharacterSystem.Animating.PlayOnce(animationKey, progressTime, OnCompleted.Invoke);
+            Cb.Animating.PlayOnce(animationKey, progressTime, OnCompleted.Invoke);
         }
         
         protected void OnAttack()
@@ -27,7 +27,7 @@ namespace Adventurers.Knight.Skills
         
         private void RegisterHitEvent()
         {
-            CharacterSystem.Animating.OnHit.Register("SkillHit", OnHit.Invoke);
+            Cb.Animating.OnHit.Register("SkillHit", OnHit.Invoke);
         }
         
         protected void OnEnable()
@@ -40,7 +40,7 @@ namespace Adventurers.Knight.Skills
 
             OnCompleted.Register("EndCallback", OnEnded.Invoke);
 
-            OnEnded.Register("ReleaseHit", () => CharacterSystem.Animating.OnHit.Unregister("SkillHit"));
+            OnEnded.Register("ReleaseHit", () => Cb.Animating.OnHit.Unregister("SkillHit"));
         }
 
 

@@ -1,8 +1,7 @@
 using Character.Adventurers;
 using Common;
-using Common.Actions;
+using Common.Characters.Behaviours;
 using Common.Skills;
-using Common.UI.ActionBars;
 using Manager;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -17,7 +16,7 @@ namespace Raid.UI.ActionFrames
         private SkillComponent skillComponent;
         private Adventurer focusedAdventurer;
         private Transform preTransform;
-        private OldActionBehaviour characterAction => focusedAdventurer.CharacterAction;
+        private SkillBehaviour characterAction => focusedAdventurer.SkillBehaviour;
 
 
         public void Initialize(Adventurer adventurer, SkillComponent skillComponent)
@@ -33,14 +32,14 @@ namespace Raid.UI.ActionFrames
             if (skillComponent.IsNullOrEmpty()) return;
             if (!MainManager.Input.TryGetMousePosition(out var mousePosition)) return;
 
-            characterAction.ActiveSkill(skillComponent, mousePosition);
+            characterAction.Active(skillComponent, mousePosition);
         }
 
         public void ReleaseAction(InputAction.CallbackContext context)
         {
             if (skillComponent.IsNullOrEmpty() || focusedAdventurer.IsNullOrEmpty()) return;
 
-            characterAction.ReleaseSkill();
+            characterAction.Release();
         }
 
         public string TooltipInfo { get; }

@@ -20,10 +20,10 @@ namespace Raid.UI.ActionFrames
             SlotList.ForEach(slot => slot.Initialize(ab));
             SlotList.ForEach((slot, index) =>
             {
-                if (ab.CharacterAction.SkillAction.SkillList.ElementCount() <= index) return;
+                if (ab.SkillBehaviour.SkillList.ElementCount() <= index) return;
                 
-                var skill = ab.CharacterAction.SkillAction.SkillList[index];
-                slot.Initialize(ab.CharacterAction, skill);
+                var skill = ab.SkillBehaviour.SkillList[index];
+                slot.Initialize(ab.SkillBehaviour, skill);
             });
         }
     }

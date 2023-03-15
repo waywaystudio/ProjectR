@@ -1,3 +1,4 @@
+using Common.Characters.Behaviours;
 using UnityEngine;
 
 namespace Common
@@ -71,7 +72,7 @@ namespace Common
         // + GameObject Object { get; }
 
         RoleType Role { get; }
-        IActionBehaviour ActionBehaviour { get; }
+        SkillBehaviour SkillBehaviour { get; }
         Transform DamageSpawn { get; }
         Transform StatusEffectHierarchy { get; }
         ActionTable<CombatEntity> OnTakeDamage { get; }

@@ -22,7 +22,7 @@ namespace Common.Characters.Behaviours.CrowdControlEffect
         {
             if (Conditions.HasFalse) return;
             
-            this.RegisterBehaviour(Cb);
+            RegisterBehaviour(Cb);
             
             OnStunning.Invoke(duration);
             OnActivated.Invoke();
@@ -64,9 +64,12 @@ namespace Common.Characters.Behaviours.CrowdControlEffect
 
         private void OnEnable()
         {
-            Conditions.Register("OverwriteMask", () => (IgnorableMask | Cb.BehaviourMask) == IgnorableMask);
+            Conditions.Register("OverwriteMask", IsOverBehaviour);
             
             OnStunning.Register("StartStunRoutine", StartStunRoutine);
+            
+            OnCanceled.Register("StopRoutine", StopStunRoutine);
+            OnCanceled.Register("Stop", Cb.Stop);
             
             OnCompleted.Register("StopRoutine", StopStunRoutine);
             OnCompleted.Register("Stop", Cb.Stop);
@@ -77,6 +80,9 @@ namespace Common.Characters.Behaviours.CrowdControlEffect
             Conditions.Unregister("OverwriteMask");
             
             OnStunning.Unregister("StartStunRoutine");
+            
+            OnCanceled.Unregister("StopRoutine");
+            OnCanceled.Unregister("Stop");
             
             OnCompleted.Unregister("StopRoutine");
             OnCompleted.Unregister("Stop");

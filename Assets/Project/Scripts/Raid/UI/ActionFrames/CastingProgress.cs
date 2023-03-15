@@ -1,5 +1,5 @@
 using Character.Adventurers;
-using Common.Actions;
+using Common.Characters.Behaviours;
 using Common.Skills;
 using Common.UI;
 using UnityEngine;
@@ -10,14 +10,14 @@ namespace Raid.UI.ActionFrames
     {
         [SerializeField] private ImageFiller progress;
 
-        private OldActionBehaviour characterAction;
+        private SkillBehaviour characterAction;
         private SkillComponent currentSkill;
 
         public void Initialize()
         {
-            characterAction = RaidDirector.FocusCharacter.CharacterAction;
-            characterAction.SkillAction.OnActivated.Unregister("ShowCastingUI");
-            characterAction.SkillAction.OnActivated.Register("ShowCastingUI", Register);
+            characterAction = RaidDirector.FocusCharacter.SkillBehaviour;
+            characterAction.OnExecuting.Unregister("ShowCastingUI");
+            characterAction.OnExecuting.Register("ShowCastingUI", Register);
         }
 
         public void OnAdventurerChanged(Adventurer ab)
@@ -26,21 +26,21 @@ namespace Raid.UI.ActionFrames
 
             if (ab.IsNullOrEmpty()) return;
             
-            characterAction = ab.CharacterAction;
-            characterAction.SkillAction.OnActivated.Register("ShowCastingUI", Register);
+            characterAction = ab.SkillBehaviour;
+            characterAction.OnExecuting.Register("ShowCastingUI", Register);
 
             Register();
         }
 
         private void Unregister()
         {
-            characterAction.SkillAction.OnActivated.Unregister("ShowCastingUI");
+            characterAction.OnExecuting.Unregister("ShowCastingUI");
             characterAction.SkillList.ForEach(x => x.OnEnded.Unregister("OffCastingUI"));
         }
 
         private void Register()
         {
-            currentSkill = characterAction.SkillAction.Current;
+            currentSkill = characterAction.Current;
             
             if (currentSkill.IsNullOrEmpty() || currentSkill.CastingProgress.Value == 0f)
             {

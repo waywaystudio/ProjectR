@@ -1,5 +1,5 @@
 using Character.Adventurers;
-using Common.Actions;
+using Common.Characters.Behaviours;
 using Common.Skills;
 using Common.UI;
 using Manager;
@@ -32,7 +32,7 @@ namespace Raid.UI.ActionFrames
                 _ => "-",
             };
 
-        public void Initialize(OldActionBehaviour actionBehaviour, SkillComponent skill)
+        public void Initialize(SkillBehaviour actionBehaviour, SkillComponent skill)
         {
             // skillAction.Initialize(actionBehaviour, skill);
         }
@@ -51,7 +51,7 @@ namespace Raid.UI.ActionFrames
             
             focusedAdventurer = ab;
             
-            var actionBehaviour = focusedAdventurer.CharacterAction;
+            var actionBehaviour = focusedAdventurer.SkillBehaviour;
             var skill = skillIndex switch
             {
                 1 => actionBehaviour.FirstSkill,

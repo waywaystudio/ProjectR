@@ -1,12 +1,12 @@
 using BehaviorDesigner.Runtime.Tasks;
-using Common.Actions;
+using Common.Characters.Behaviours;
 
 namespace Character.Behavior.Actions
 {
     [TaskCategory("Character/Combat")]
     public class ActiveSkillBehavior : Action
     {
-        private OldActionBehaviour ab;
+        private SkillBehaviour ab;
         
         public override void OnAwake()
         {
@@ -18,7 +18,7 @@ namespace Character.Behavior.Actions
             if (!ab.TryGetMostPrioritySkill(out var skill)) return TaskStatus.Failure;
             if (skill.MainTarget is null) return TaskStatus.Failure;
 
-            ab.ActiveSkill(skill, skill.MainTarget.Object.transform.position);
+            ab.Active(skill, skill.MainTarget.Object.transform.position);
                 
             return TaskStatus.Success;
         }

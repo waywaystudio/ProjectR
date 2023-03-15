@@ -33,7 +33,7 @@ namespace Raid.UI.StageInitializer
             
             previewActionSlotList.ForEach((actionSlot, index) =>
             {
-                actionSlot.Initialize(currentAdventurer.CharacterAction.SkillList[index]);
+                actionSlot.Initialize(currentAdventurer.SkillBehaviour.SkillList[index]);
             });
         }
 

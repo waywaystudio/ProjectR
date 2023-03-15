@@ -1,17 +1,17 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Common.Characters;
 using Sirenix.OdinInspector;
 using UnityEngine;
 
 namespace Common.Skills
 {
-    public abstract class SkillComponent : MonoBehaviour, ISequence, IDataIndexer, ICharacterAction, IEditable
+    public abstract class SkillComponent : MonoBehaviour, ISequence, IDataIndexer, IEditable
     {
         /* Common Attribution */
         [SerializeField] protected DataIndex actionCode;
         [SerializeField] protected SkillType skillType;
-        [SerializeField] protected CharacterActionMask disableActionMask;
         [SerializeField] protected int priority;
         [SerializeField] protected float range;
         [SerializeField] protected float angle;
@@ -31,7 +31,7 @@ namespace Common.Skills
         /* Progress Entity */
         [SerializeField] protected float progressTime;
 
-        protected ICharacterSystem CharacterSystem;
+        protected CharacterBehaviour Cb;
         private Coroutine progressRoutine;
         private Coroutine coolTimeRoutine;
 
@@ -42,9 +42,6 @@ namespace Common.Skills
         [ShowInInspector] public ActionTable OnHit { get; } = new();
         [ShowInInspector] public ActionTable OnCompleted { get; } = new();
         [ShowInInspector] public ActionTable OnEnded { get; } = new();
-
-        public CharacterActionMask ActionType => CharacterActionMask.Skill;
-        public CharacterActionMask DisableActionMask => disableActionMask;
 
         public SkillType SkillType => skillType;
         public bool IsRigid => isRigid;
@@ -62,18 +59,18 @@ namespace Common.Skills
         public DataIndex ActionCode => actionCode;
         public ICombatProvider Provider { get; set; }
         public virtual ICombatTaker MainTarget => 
-            CharacterSystem.Searching.GetMainTarget(targetLayer, Provider.Object.transform.position, sortingType);
+            Cb.Searching.GetMainTarget(targetLayer, Provider.Object.transform.position, sortingType);
         
         protected bool IsProgress { get; set; }
 
 
         public void Activate(Vector3 targetPosition)
         {
-            CharacterSystem.Pathfinding.RotateToTarget(targetPosition);
-            CharacterSystem.Animating.Flip(CharacterSystem.Pathfinding.Direction);
-            
             IsProgress = true;
-            CharacterSystem.Pathfinding.Stop();
+            
+            Cb.Rotate(targetPosition);
+            Cb.Pathfinding.Stop();
+            
             OnActivated.Invoke();
         }
 
@@ -91,10 +88,10 @@ namespace Common.Skills
         
 
         // protected void ConsumeResource() => Provider.DynamicStatEntry.Resource.Value -= cost;
-        protected void StartCooling() => coolTimeRoutine = StartCoroutine(CoolingRoutine());
+        protected void StartCooling() => coolTimeRoutine = StartCoroutine(Cooling());
         protected void StartProgression(Action callback = null)
         {
-            progressRoutine = StartCoroutine(Progressing(callback));
+            progressRoutine = StartCoroutine(Casting(callback));
         }
         
         protected void StopProgression()
@@ -106,7 +103,7 @@ namespace Common.Skills
 
         protected virtual void PlayAnimation()
         {
-            CharacterSystem.Animating.PlayOnce(animationKey, progressTime);
+            Cb.Animating.PlayOnce(animationKey, progressTime);
         }
         
         protected bool IsCoolTimeReady()
@@ -122,14 +119,15 @@ namespace Common.Skills
         }
         
         protected bool TryGetTakersInSphere(SkillComponent skill, out List<ICombatTaker> takerList) => (takerList = 
-                CharacterSystem.Colliding.GetTakersInSphereType(
+                Cb.Colliding.GetTakersInSphereType(
                 skill.Provider.Object.transform.position, 
                 skill.Range, 
                 skill.Angle, 
                 skill.TargetLayer)
             ).HasElement();
+        
 
-        private IEnumerator CoolingRoutine()
+        private IEnumerator Cooling()
         {
             RemainCoolTime.Value = coolTime;
 
@@ -140,7 +138,7 @@ namespace Common.Skills
             }
         }
 
-        private IEnumerator Progressing(Action callback)
+        private IEnumerator Casting(Action callback)
         {
             var endTime = progressTime * CharacterUtility.GetHasteValue(Provider.StatTable.Haste);
 
@@ -162,15 +160,15 @@ namespace Common.Skills
 
         protected virtual void Awake()
         {
-            Provider        = GetComponentInParent<ICombatProvider>();
-            CharacterSystem = GetComponentInParent<ICharacterSystem>();
+            Provider = GetComponentInParent<ICombatProvider>();
+            Cb       = GetComponentInParent<CharacterBehaviour>();
             
             OnActivated.Register("IsEndedToFalse", () => IsEnded = false);
             OnActivated.Register("PlayAnimation", PlayAnimation);
             
             OnCanceled.Register("EndCallback", OnEnded.Invoke);
 
-            OnEnded.Register("Idle", CharacterSystem.Animating.Idle);
+            OnEnded.Register("Idle", Cb.Stop);
             OnEnded.Register("IsProgressionToFalse", () => IsProgress = false);
             OnEnded.Register("IsEndedToTrue", () => IsEnded           = true);
 
@@ -202,12 +200,6 @@ namespace Common.Skills
             sortingType  = skillData.SortingType.ToEnum<SortingType>();
             targetLayer  = LayerMask.GetMask(skillData.TargetLayer);
             icon         = GetSkillIcon();
-
-            disableActionMask = isRigid
-                ? CharacterActionMask.Run       |
-                  CharacterActionMask.KnockBack |
-                  CharacterActionMask.Stun
-                : CharacterActionMask.None;
         }
 
         public void ShowDataBase()

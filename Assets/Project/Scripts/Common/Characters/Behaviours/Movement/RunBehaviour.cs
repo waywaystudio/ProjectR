@@ -18,7 +18,7 @@ namespace Common.Characters.Behaviours.Movement
         {
             if (Conditions.HasFalse) return;
             
-            this.RegisterBehaviour(Cb);
+            RegisterBehaviour(Cb);
             
             OnDeparting.Invoke(destination);
             OnActivated.Invoke();
@@ -31,7 +31,7 @@ namespace Common.Characters.Behaviours.Movement
         private void OnEnable()
         {
             Conditions.Register("pathfinding.CanMove", () => Cb.Pathfinding.CanMove);
-            Conditions.Register("OverwriteMask", () => (IgnorableMask | Cb.BehaviourMask) == IgnorableMask);
+            Conditions.Register("OverwriteMask", IsOverBehaviour);
             
             OnCanceled.Register("Stop", Cb.Stop);
 

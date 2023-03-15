@@ -14,7 +14,7 @@ namespace Character.Bosses.Moragg.Skills
         
         protected override void PlayAnimation()
         {
-            CharacterSystem.Animating.PlayLoop(animationKey);
+            Cb.Animating.PlayLoop(animationKey);
         }
         
         private void OnMoraggSpinAttack()
@@ -30,7 +30,7 @@ namespace Character.Bosses.Moragg.Skills
         
         private void PlayEndCastingAnimation()
         {
-            CharacterSystem.Animating.PlayOnce("attack", 0f, OnEnded.Invoke);
+            Cb.Animating.PlayOnce("attack", 0f, OnEnded.Invoke);
         }
         
         private void OnEnable()
@@ -52,7 +52,7 @@ namespace Character.Bosses.Moragg.Skills
             OnCompleted.Register("StartCooling", StartCooling);
             
             OnEnded.Register("StopProgress", StopProgression);
-            OnEnded.Register("Idle", CharacterSystem.Animating.Idle);
+            OnEnded.Register("Idle", Cb.Animating.Idle);
         }
     }
 }

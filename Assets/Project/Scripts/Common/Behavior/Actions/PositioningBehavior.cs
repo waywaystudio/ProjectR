@@ -1,6 +1,6 @@
 using BehaviorDesigner.Runtime.Tasks;
-using Common.Actions;
 using Common.Characters;
+using Common.Characters.Behaviours;
 using Common.Systems;
 
 namespace Character.Behavior.Actions
@@ -9,7 +9,7 @@ namespace Character.Behavior.Actions
     public class PositioningBehavior : Action
     {
         private CharacterBehaviour cb;
-        private OldActionBehaviour ab;
+        private SkillBehaviour ab;
         
         public override void OnAwake()
         {
