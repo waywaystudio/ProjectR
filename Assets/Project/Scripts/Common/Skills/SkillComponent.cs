@@ -6,11 +6,12 @@ using UnityEngine;
 
 namespace Common.Skills
 {
-    public abstract class SkillComponent : MonoBehaviour, ISequence, IAssignable, IDataIndexer, IEditable
+    public abstract class SkillComponent : MonoBehaviour, ISequence, IDataIndexer, ICharacterAction, IEditable
     {
         /* Common Attribution */
         [SerializeField] protected DataIndex actionCode;
         [SerializeField] protected SkillType skillType;
+        [SerializeField] protected CharacterActionMask disableActionMask;
         [SerializeField] protected int priority;
         [SerializeField] protected float range;
         [SerializeField] protected float angle;
@@ -35,12 +36,15 @@ namespace Common.Skills
         private Coroutine coolTimeRoutine;
 
         /* Sequence */
-        [ShowInInspector] public ConditionTable ConditionTable { get; } = new();
+        [ShowInInspector] public ConditionTable Conditions { get; } = new();
         [ShowInInspector] public ActionTable OnActivated { get; } = new();
         [ShowInInspector] public ActionTable OnCanceled { get; } = new();
         [ShowInInspector] public ActionTable OnHit { get; } = new();
         [ShowInInspector] public ActionTable OnCompleted { get; } = new();
         [ShowInInspector] public ActionTable OnEnded { get; } = new();
+
+        public CharacterActionMask ActionType => CharacterActionMask.Skill;
+        public CharacterActionMask DisableActionMask => disableActionMask;
 
         public SkillType SkillType => skillType;
         public bool IsRigid => isRigid;
@@ -63,8 +67,11 @@ namespace Common.Skills
         protected bool IsProgress { get; set; }
 
 
-        public void Activate()
+        public void Activate(Vector3 targetPosition)
         {
+            CharacterSystem.Pathfinding.RotateToTarget(targetPosition);
+            CharacterSystem.Animating.Flip(CharacterSystem.Pathfinding.Direction);
+            
             IsProgress = true;
             CharacterSystem.Pathfinding.Stop();
             OnActivated.Invoke();
@@ -167,8 +174,8 @@ namespace Common.Skills
             OnEnded.Register("IsProgressionToFalse", () => IsProgress = false);
             OnEnded.Register("IsEndedToTrue", () => IsEnded           = true);
 
-            if (coolTime != 0f) ConditionTable.Register("IsCoolTimeReady", IsCoolTimeReady);
-            if (cost != 0f ) ConditionTable.Register("IsCostReady", IsCostReady);
+            if (coolTime != 0f) Conditions.Register("IsCoolTimeReady", IsCoolTimeReady);
+            if (cost != 0f ) Conditions.Register("IsCostReady", IsCostReady);
             if (progressTime != 0f)
             {
                 OnActivated.Register("StartProgress", () => StartProgression(OnCompleted.Invoke));
@@ -195,6 +202,12 @@ namespace Common.Skills
             sortingType  = skillData.SortingType.ToEnum<SortingType>();
             targetLayer  = LayerMask.GetMask(skillData.TargetLayer);
             icon         = GetSkillIcon();
+
+            disableActionMask = isRigid
+                ? CharacterActionMask.Run       |
+                  CharacterActionMask.KnockBack |
+                  CharacterActionMask.Stun
+                : CharacterActionMask.None;
         }
 
         public void ShowDataBase()
@@ -211,5 +224,6 @@ namespace Common.Skills
                 : result;
         }
 #endif
+        
     }
 }

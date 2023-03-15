@@ -1,17 +1,19 @@
 using Common.Actions;
 using Common.Animation;
+using Common.Characters.Behaviours;
+using Common.Characters.Behaviours.CrowdControlEffect;
+using Common.Characters.Behaviours.Movement;
 using Common.Systems;
 using UnityEngine;
 
 namespace Common.Characters
 {
-    public class CharacterBehaviour : MonoBehaviour, ICombatExecutor, ICharacterSystem, IEditable
+    public class CharacterBehaviour : MonoBehaviour, ICombatExecutor, ICharacterSystem, ICharacterAnimation, IEditable
     {
         [SerializeField] protected string characterName = string.Empty;
         [SerializeField] protected DataIndex characterID;
         [SerializeField] protected RoleType role;
         [SerializeField] protected CharacterStatEntry statEntry;
-        [SerializeField] protected ActionBehaviour characterAction;
         [SerializeField] protected SearchingSystem searching;
         [SerializeField] protected CollidingSystem colliding;
         [SerializeField] protected PathfindingSystem pathfinding;
@@ -19,6 +21,31 @@ namespace Common.Characters
         [SerializeField] protected Transform damageSpawn;
         [SerializeField] protected Transform statusEffectHierarchy;
         
+        // TODO. : Now on CharacterBehaviour Working...
+        [SerializeField] protected OldActionBehaviour characterAction;
+
+        [SerializeField] protected StopBehaviour stopBehaviour;
+        [SerializeField] protected RunBehaviour runBehaviour;
+        [SerializeField] protected StunBehaviour stunBehaviour;
+        [SerializeField] protected KnockBackBehaviour knockBackBehaviour;
+        [SerializeField] protected DeadBehaviour deadBehaviour;
+        
+        public StopBehaviour StopBehaviour => stopBehaviour;
+        public RunBehaviour RunBehaviour => runBehaviour;
+        public StunBehaviour StunBehaviour => stunBehaviour;
+        public KnockBackBehaviour KnockBackBehaviour => knockBackBehaviour;
+        public DeadBehaviour DeadBehaviour => deadBehaviour;
+
+        public CharacterActionMask BehaviourMask => CurrentBehaviour is null ? CharacterActionMask.None : CurrentBehaviour.BehaviourMask;
+        public ActionBehaviour CurrentBehaviour { get; set; }
+
+        public void Rotate(Vector3 lookTarget) { Pathfinding.RotateToTarget(lookTarget); Animating.Flip(transform.forward); }
+        public void Stop() => stopBehaviour.Active();
+        public void Run(Vector3 destination) => runBehaviour.Active(destination);
+        public void Stun(float duration) => stunBehaviour.Active(duration);
+        public void KnockBack(Vector3 source, float distance) => knockBackBehaviour.Active(source, distance);
+        public void Dead() => deadBehaviour.Dead();
+
         public DataIndex ActionCode => characterID;
         public RoleType Role => role;
         public string Name => characterName;
@@ -43,9 +70,11 @@ namespace Common.Characters
         
         public Transform DamageSpawn => damageSpawn;
         public Transform StatusEffectHierarchy => statusEffectHierarchy;
-        public ActionBehaviour CharacterAction => characterAction;
         
+        public OldActionBehaviour CharacterAction => characterAction;
         
+
+
         public CombatEntity TakeDamage(ICombatTable combatTable) => CombatUtility.TakeDamage(combatTable, this);
         public CombatEntity TakeHeal(ICombatTable combatTable) => CombatUtility.TakeHeal(combatTable, this);
         public StatusEffectEntity TakeDeBuff(IStatusEffect statusEffect) => CombatUtility.TakeDeBuff(statusEffect, this);
@@ -55,8 +84,14 @@ namespace Common.Characters
 #if UNITY_EDITOR
         public virtual void EditorSetUp()
         {
-            statEntry       ??= GetComponent<CharacterStatEntry>();
-            characterAction ??= GetComponentInChildren<ActionBehaviour>();
+            statEntry          ??= GetComponent<CharacterStatEntry>();
+            characterAction    ??= GetComponentInChildren<OldActionBehaviour>();
+            stopBehaviour       ??= GetComponentInChildren<StopBehaviour>();
+            runBehaviour       ??= GetComponentInChildren<RunBehaviour>();
+            stunBehaviour      ??= GetComponentInChildren<StunBehaviour>();
+            knockBackBehaviour ??= GetComponentInChildren<KnockBackBehaviour>();
+            deadBehaviour      ??= GetComponentInChildren<DeadBehaviour>();
+
             searching       ??= GetComponentInChildren<SearchingSystem>();
             colliding       ??= GetComponentInChildren<CollidingSystem>();
             pathfinding     ??= GetComponentInChildren<PathfindingSystem>();

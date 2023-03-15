@@ -5,14 +5,14 @@ namespace Common
     [Flags]
     public enum CharacterActionMask
     {
-        None = 1      << 0,
+        None = 0,
+        Stop = 1      << 0,
         Run = 1       << 1,
-        Rotate = 1    << 2,
-        Stop = 1      << 3,
-        Dead = 1      << 4,
-        KnockBack = 1 << 5,
-        Stun = 1      << 7,
-        Skill = 1     << 8,
+        Dead = 1      << 2,
+        KnockBack = 1 << 3,
+        Stun = 1      << 4,
+        Skill = 1     << 5,
+        
         All = int.MaxValue
     }
 }

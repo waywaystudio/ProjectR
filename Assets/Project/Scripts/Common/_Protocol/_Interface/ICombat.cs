@@ -83,6 +83,13 @@ namespace Common
         CombatEntity TakeHeal(ICombatTable combatTable);
         StatusEffectEntity TakeDeBuff(IStatusEffect statusEffect);
         StatusEffectEntity TakeBuff(IStatusEffect statusEffect);
+
+        void Run(Vector3 destination);
+        void Rotate(Vector3 lookTarget);
+        void Stop();
+        void Stun(float duration);
+        void KnockBack(Vector3 source, float distance);
+        void Dead();
     }
 
     public interface ICombatExecutor : ICombatProvider, ICombatTaker, IDataIndexer

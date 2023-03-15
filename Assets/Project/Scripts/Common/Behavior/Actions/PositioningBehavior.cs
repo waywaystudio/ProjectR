@@ -1,5 +1,6 @@
 using BehaviorDesigner.Runtime.Tasks;
 using Common.Actions;
+using Common.Characters;
 using Common.Systems;
 
 namespace Character.Behavior.Actions
@@ -7,10 +8,12 @@ namespace Character.Behavior.Actions
     [TaskCategory("Character/Combat")]
     public class PositioningBehavior : Action
     {
-        private ActionBehaviour ab;
+        private CharacterBehaviour cb;
+        private OldActionBehaviour ab;
         
         public override void OnAwake()
         {
+            cb = gameObject.GetComponentInParent<CharacterBehaviour>();
             TryGetComponent(out ab);
         }
 
@@ -24,7 +27,7 @@ namespace Character.Behavior.Actions
                     out var destination))
                 return TaskStatus.Success;
             
-            ab.Run(destination);
+            cb.Run(destination);
             
             return TaskStatus.Failure;
         }

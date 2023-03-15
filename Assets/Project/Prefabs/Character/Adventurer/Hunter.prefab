@@ -538,6 +538,10 @@ PrefabInstance:
       propertyPath: isRigid
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 8592763601916381546, guid: 4f6ef69c46ead0944a759fe09405cd25, type: 3}
+      propertyPath: disableActionMask
+      value: 166
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4f6ef69c46ead0944a759fe09405cd25, type: 3}
 --- !u!114 &4306424560445645043 stripped

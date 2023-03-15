@@ -32,7 +32,7 @@ namespace Raid.UI.ActionFrames
                 _ => "-",
             };
 
-        public void Initialize(ActionBehaviour actionBehaviour, SkillComponent skill)
+        public void Initialize(OldActionBehaviour actionBehaviour, SkillComponent skill)
         {
             // skillAction.Initialize(actionBehaviour, skill);
         }
@@ -67,7 +67,7 @@ namespace Raid.UI.ActionFrames
                 return;
             }
             
-            // skillAction.Initialize(ab, skill);
+            skillAction.Initialize(ab, skill);
 
             if (skill.CoolTime != 0.0f)
             {

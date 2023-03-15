@@ -4,7 +4,7 @@ using Common.Projectors;
 using Common.Skills;
 using UnityEngine;
 
-namespace Monsters.Moragg.Skills
+namespace Character.Bosses.Moragg.Skills
 {
     public class MoraggSpin : SkillComponent
     {
@@ -24,7 +24,7 @@ namespace Monsters.Moragg.Skills
             takerList.ForEach(taker =>
             {
                 power.Damage(taker);
-                taker.ActionBehaviour.KnockBack(Provider.Object.transform.position, knockBackDistance);
+                taker.KnockBack(Provider.Object.transform.position, knockBackDistance);
             });
         }
         

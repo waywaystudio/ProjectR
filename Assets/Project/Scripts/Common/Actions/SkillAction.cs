@@ -15,22 +15,22 @@ namespace Common.Actions
         
         [ShowInInspector]
         public ConditionTable Conditions { get; } = new();
-        public ActionTable<SkillComponent> OnGlobalActivated { get; } = new();
-        public ActionTable<SkillComponent> OnGlobalCanceled { get; } = new();
-        public ActionTable<SkillComponent> OnGlobalReleased { get; } = new();
+        public ActionTable<SkillComponent> OnActivated { get; } = new();
+        public ActionTable<SkillComponent> OnCanceled { get; } = new();
+        public ActionTable<SkillComponent> OnReleased { get; } = new();
         public SkillComponent Current { get; set; }
         public List<SkillComponent> SkillList => skillList;
         public bool IsSkillEnded => Current.IsNullOrEmpty() || Current.IsEnded;
         public bool IsCooling => gcd.IsCooling;
 
 
-        public bool IsAble(SkillComponent skill) => Conditions.IsAllTrue && skill.ConditionTable.IsAllTrue;
+        public bool IsAble(SkillComponent skill) => Conditions.IsAllTrue && skill.Conditions.IsAllTrue;
         
-        public void ActiveSkill(SkillComponent skill)
+        public void ActiveSkill(SkillComponent skill, Vector3 position)
         {
             Current = skill;
-            Current.Activate();
-            OnGlobalActivated.Invoke(skill);
+            Current.Activate(position);
+            OnActivated.Invoke(skill);
         }
 
         public void CancelSkill()
@@ -38,7 +38,7 @@ namespace Common.Actions
             if (Current.IsNullOrEmpty()) return;
             
             Current.Cancel();
-            OnGlobalCanceled.Invoke(Current);
+            OnCanceled.Invoke(Current);
         }
 
         public void ReleaseSkill()
@@ -46,7 +46,7 @@ namespace Common.Actions
             if (Current.IsNullOrEmpty()) return;
             
             Current.Release();
-            OnGlobalReleased.Invoke(Current);
+            OnReleased.Invoke(Current);
         }
         
         
@@ -60,7 +60,7 @@ namespace Common.Actions
             Conditions.Register("GlobalCoolTime", () => !gcd.IsCooling);
             Conditions.Register("CurrentSkillCompleted", () => IsSkillEnded);
             
-            OnGlobalActivated.Register("GlobalCooling", gcd.StartCooling);
+            OnActivated.Register("GlobalCooling", gcd.StartCooling);
         }
         
         

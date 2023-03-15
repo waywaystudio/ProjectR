@@ -1,24 +1,24 @@
-using UnityEngine;
-
 namespace Common
 {
-    public interface ISequence
+    public interface ISequenceCore
     {
-        ActionTable OnActivated { get; }
         ActionTable OnCanceled { get; }
         ActionTable OnCompleted { get; }
         ActionTable OnEnded { get; }
     }
-
-    /// <summary>
-    /// UI Action Bar에 할당할 수 있다.
-    /// </summary>
-    public interface IAssignable
+    
+    public interface ISequence : ISequenceCore
     {
-        Sprite Icon { get; }
-        string Description { get; }
-        
-        void Activate();
-        void Release();
+        ActionTable OnActivated { get; }
+    }
+
+    public interface ISequence<T> : ISequenceCore
+    {
+        ActionTable<T> OnActivated { get; }
+    }
+    
+    public interface ISequence<T0, T1> : ISequenceCore
+    {
+        ActionTable<T0, T1> OnActivated { get; }
     }
 }

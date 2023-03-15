@@ -52,7 +52,7 @@ namespace Common
                 combatEntity.Value                   -= taker.DynamicStatEntry.Hp.Value;
              
                 Debug.Log($"{taker.Name} dead by {combatEntity.CombatTable.Provider.Name}'s {combatEntity.CombatTable.ActionCode}");
-                taker.ActionBehaviour.Dead();
+                taker.Dead();
             }
 
             taker.DynamicStatEntry.Hp.Value -= damageAmount;

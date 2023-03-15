@@ -12,12 +12,12 @@ namespace Common
 
     public interface IActionBehaviour
     {
-        void Run(Vector3 destination);
-        void Rotate(Vector3 targetPosition);
-        void Stop();
-        void Stun(float duration);
-        void KnockBack(Vector3 source, float distance);
-        void Dead();
+        // void Run(Vector3 destination);
+        // void Rotate(Vector3 targetPosition);
+        // void Stop();
+        // void Stun(float duration);
+        // void KnockBack(Vector3 source, float distance);
+        // void Dead();
         // void Horror(float duration);
     }
 }

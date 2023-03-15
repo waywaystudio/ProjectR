@@ -17,7 +17,7 @@ namespace Raid.UI.ActionFrames
         private SkillComponent skillComponent;
         private Adventurer focusedAdventurer;
         private Transform preTransform;
-        private ActionBehaviour characterAction => focusedAdventurer.CharacterAction;
+        private OldActionBehaviour characterAction => focusedAdventurer.CharacterAction;
 
 
         public void Initialize(Adventurer adventurer, SkillComponent skillComponent)

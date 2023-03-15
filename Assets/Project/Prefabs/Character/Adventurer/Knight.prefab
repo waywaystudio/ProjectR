@@ -195,6 +195,10 @@ PrefabInstance:
       propertyPath: isRigid
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 5452852995274357231, guid: a00acb9f0e0a6be44845333325089953, type: 3}
+      propertyPath: disableActionMask
+      value: 166
+      objectReference: {fileID: 0}
     - target: {fileID: 8380361914805468174, guid: a00acb9f0e0a6be44845333325089953, type: 3}
       propertyPath: m_Name
       value: ThunderClap

@@ -59,7 +59,7 @@ namespace Monsters.Moragg.StatusEffect
             takerList.ForEach(taker =>
             {
                 bombPower.Damage(taker);
-                taker.ActionBehaviour.Stun(stunDuration);
+                taker.Stun(stunDuration);
             });
             
             projector.OnCompleted.Invoke();

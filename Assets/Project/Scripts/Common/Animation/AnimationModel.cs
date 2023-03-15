@@ -79,8 +79,8 @@ namespace Common.Animation
                 _ => skeletonAnimation.Skeleton.ScaleX
             };
         }
-        
-        
+
+
         protected void EventHandler(TrackEntry trackEntry, Event e)
         {
             switch (e.Data.Name)

@@ -10,14 +10,14 @@ namespace Raid.UI.ActionFrames
     {
         [SerializeField] private ImageFiller progress;
 
-        private ActionBehaviour characterAction;
+        private OldActionBehaviour characterAction;
         private SkillComponent currentSkill;
 
         public void Initialize()
         {
             characterAction = RaidDirector.FocusCharacter.CharacterAction;
-            characterAction.SkillAction.OnGlobalActivated.Unregister("ShowCastingUI");
-            characterAction.SkillAction.OnGlobalActivated.Register("ShowCastingUI", Register);
+            characterAction.SkillAction.OnActivated.Unregister("ShowCastingUI");
+            characterAction.SkillAction.OnActivated.Register("ShowCastingUI", Register);
         }
 
         public void OnAdventurerChanged(Adventurer ab)
@@ -27,14 +27,14 @@ namespace Raid.UI.ActionFrames
             if (ab.IsNullOrEmpty()) return;
             
             characterAction = ab.CharacterAction;
-            characterAction.SkillAction.OnGlobalActivated.Register("ShowCastingUI", Register);
+            characterAction.SkillAction.OnActivated.Register("ShowCastingUI", Register);
 
             Register();
         }
 
         private void Unregister()
         {
-            characterAction.SkillAction.OnGlobalActivated.Unregister("ShowCastingUI");
+            characterAction.SkillAction.OnActivated.Unregister("ShowCastingUI");
             characterAction.SkillList.ForEach(x => x.OnEnded.Unregister("OffCastingUI"));
         }
 

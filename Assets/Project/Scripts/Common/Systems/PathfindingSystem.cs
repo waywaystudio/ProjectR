@@ -37,9 +37,10 @@ namespace Common.Systems
             agent.StartPath(rootPosition, destination);
         }
 
-        public void RigidRotate(Vector3 lookTarget)
+        public void RotateToTarget(Vector3 lookTarget)
         {
             Stop();
+            
             aiMove.updateRotation = false;
             rootTransform.LookAt(lookTarget);
         }
@@ -49,7 +50,8 @@ namespace Common.Systems
             aiMove.SetPath(null);
             aiMove.destination = Vector3.positiveInfinity;
         }
-
+        
+        // ------------------------------------------
         public void Jump(Vector3 direction, float availableDistance, float jumpPower = 2.4f, float duration = 0.77f)
         {
             var normalDirection = direction.normalized;
