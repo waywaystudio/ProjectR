@@ -14,12 +14,6 @@ namespace Adventurers.Knight.StatusEffect
             ProgressTime.Value += duration;
         }
 
-        protected override void Complete()
-        {
-            Provider.OnDamageProvided.Unregister("DrainBuff");
-            
-            base.Complete();
-        }
 
         protected override IEnumerator Effectuating()
         {
@@ -38,6 +32,16 @@ namespace Adventurers.Knight.StatusEffect
         private void DrainHp(CombatEntity entity)
         {
             Provider.DynamicStatEntry.Hp.Value += entity.Value * drainPercentage;
+        }
+        
+        private void OnEnable()
+        {
+            OnCompleted.Register("Return", () => Provider.OnDamageProvided.Unregister("DrainBuff"));
+        }
+
+        private void OnDisable()
+        {
+            OnCompleted.Unregister("Return");
         }
 
 

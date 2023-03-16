@@ -1,19 +1,19 @@
-using System.Collections.Specialized;
-using Common.StatusEffect;
+using Pathfinding;
 using UnityEngine;
 
 namespace Common.Projectors
 {
     public class SphereProjector : ProjectorComponent, IPoolable<SphereProjector>
     {
+        [SerializeField] private DynamicGridObstacle dynamicObstacle;
+        
         // # float CastingTime;
         private ICombatTaker taker;
         private Vector3 pivot = Vector3.negativeInfinity;
         private SphereCollider sphereCollider;
         private SphereCollider SphereCollider => sphereCollider ??= GetComponentInChildren<SphereCollider>();
-        private ListDictionary listDictionary;
-        
-         public Pool<SphereProjector> Pool { get; set; }
+
+        public Pool<SphereProjector> Pool { get; set; }
 
         public void Initialize(float castingTime, float radius)
         {
@@ -31,14 +31,6 @@ namespace Common.Projectors
 
         public void SetTaker(ICombatTaker taker) => this.taker = taker;
         public void SetPosition(Vector3 position) => transform.position = position;
-
-        public void UnionTo(StatusEffectComponent statusEffect)
-        {
-            statusEffect.OnActivated.Register(OnActivated);
-            statusEffect.OnCanceled.Register(OnCanceled);
-            statusEffect.OnCompleted.Register(OnCompleted);
-            statusEffect.OnEnded.Register(OnEnded);
-        }
 
 
         private void Update()

@@ -67,12 +67,12 @@ namespace Common.Characters
         
         public ActionTable<CombatEntity> OnDamageProvided { get; } = new();
         public ActionTable<CombatEntity> OnHealProvided { get; } = new();
-        public ActionTable<StatusEffectEntity> OnDeBuffProvided { get; } = new();
-        public ActionTable<StatusEffectEntity> OnBuffProvided { get; } = new();
+        public ActionTable<IStatusEffect> OnDeBuffProvided { get; } = new();
+        public ActionTable<IStatusEffect> OnBuffProvided { get; } = new();
         public ActionTable<CombatEntity> OnDamageTaken { get; } = new();
         public ActionTable<CombatEntity> OnHealTaken { get; } = new();
-        public ActionTable<StatusEffectEntity> OnDeBuffTaken { get; } = new();
-        public ActionTable<StatusEffectEntity> OnBuffTaken { get; } = new();
+        public ActionTable<IStatusEffect> OnDeBuffTaken { get; } = new();
+        public ActionTable<IStatusEffect> OnBuffTaken { get; } = new();
 
         public void TakeDamage(ICombatTable combatTable) => combatInteraction.TakeDamage(combatTable);
         public void TakeHeal(ICombatTable combatTable) => combatInteraction.TakeHeal(combatTable);

@@ -59,8 +59,8 @@ namespace Common
 
         ActionTable<CombatEntity> OnDamageProvided { get; }
         ActionTable<CombatEntity> OnHealProvided { get; }
-        ActionTable<StatusEffectEntity> OnDeBuffProvided { get; }
-        ActionTable<StatusEffectEntity> OnBuffProvided { get; }
+        ActionTable<IStatusEffect> OnDeBuffProvided { get; }
+        ActionTable<IStatusEffect> OnBuffProvided { get; }
     }
     
     public interface ICombatTaker : ICombatEntity, IObjectName
@@ -75,8 +75,8 @@ namespace Common
         
         ActionTable<CombatEntity> OnDamageTaken { get; }
         ActionTable<CombatEntity> OnHealTaken { get; }
-        ActionTable<StatusEffectEntity> OnDeBuffTaken { get; }
-        ActionTable<StatusEffectEntity> OnBuffTaken { get; }
+        ActionTable<IStatusEffect> OnDeBuffTaken { get; }
+        ActionTable<IStatusEffect> OnBuffTaken { get; }
 
         void TakeDamage(ICombatTable combatTable);
         void TakeHeal(ICombatTable combatTable);

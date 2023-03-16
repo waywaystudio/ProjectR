@@ -79,27 +79,17 @@ namespace Common.Characters.Interactions
         public void TakeDeBuff(IStatusEffect statusEffect)
         {
             if (!Taker.DynamicStatEntry.Alive.Value) return;
-            
-            var entity = new StatusEffectEntity(statusEffect, Taker);
-            
-            var table  = Taker.DynamicStatEntry.DeBuffTable;
-            table.Register(statusEffect);
 
-            statusEffect.Provider.OnDeBuffProvided.Invoke(entity);
-            Taker.OnDeBuffTaken.Invoke(entity);
+            statusEffect.Provider.OnDeBuffProvided.Invoke(statusEffect);
+            Taker.OnDeBuffTaken.Invoke(statusEffect);
         }
 
         public void TakeBuff(IStatusEffect statusEffect)
         {
             if (!Taker.DynamicStatEntry.Alive.Value) return;
-            
-            var entity = new StatusEffectEntity(statusEffect, Taker);
-            var table  = Taker.DynamicStatEntry.BuffTable;
-            
-            table.Register(statusEffect);
 
-            statusEffect.Provider.OnBuffProvided.Invoke(entity);
-            Taker.OnBuffTaken.Invoke(entity);
+            statusEffect.Provider.OnBuffProvided.Invoke(statusEffect);
+            Taker.OnBuffTaken.Invoke(statusEffect);
         }
         
         

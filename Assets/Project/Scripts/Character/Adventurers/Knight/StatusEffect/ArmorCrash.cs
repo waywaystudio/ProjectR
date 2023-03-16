@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using Common;
 using Common.StatusEffect;
@@ -8,21 +9,13 @@ namespace Adventurers.Knight.StatusEffect
     public class ArmorCrash : StatusEffectComponent
     {
         [SerializeField] private ArmorValue armorValue;
-        
 
         public override void OnOverride()
         {
             ProgressTime.Value += duration;
         }
         
-        protected override void Complete()
-        {
-            Taker.StatTable.Unregister(ActionCode, armorValue);
-            
-            base.Complete();
-        }
 
-        
         protected override IEnumerator Effectuating()
         {
             ProgressTime.Value = duration;
@@ -36,6 +29,16 @@ namespace Adventurers.Knight.StatusEffect
             }
 
             Complete();
+        }
+
+        private void OnEnable()
+        {
+            OnCompleted.Register("Return", () => Taker.StatTable.Unregister(ActionCode, armorValue));
+        }
+
+        private void OnDisable()
+        {
+            OnCompleted.Unregister("Return");
         }
     }
 }

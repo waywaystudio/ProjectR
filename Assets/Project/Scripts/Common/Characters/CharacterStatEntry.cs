@@ -11,6 +11,8 @@ namespace Common.Characters
         [SerializeField] private CriticalValue critical;
         [SerializeField] private HasteValue haste;
         [SerializeField] private ArmorValue armor;
+
+        private CharacterBehaviour cb;
         
         public MaxHpValue MaxHp => maxHp;
         public MaxResourceValue MaxResource => maxResource;
@@ -24,8 +26,10 @@ namespace Common.Characters
         public ResourceValue Resource { get; } = new();
         public ShieldValue Shield { get; } = new();
         public StatTable StatTable { get; } = new();
-        public StatusEffectTable BuffTable { get; } = new();
         public StatusEffectTable DeBuffTable { get; } = new();
+        public StatusEffectTable BuffTable { get; } = new();
+        
+        public CharacterBehaviour Cb => cb ??= GetComponentInParent<CharacterBehaviour>();
         
 
         public void Initialize()
@@ -53,7 +57,20 @@ namespace Common.Characters
             Shield.Value   = 0;
         }
         
-        
+
+        private void OnEnable()
+        {
+            Cb.OnDeBuffTaken.Register("RegisterTable", DeBuffTable.Register);
+            Cb.OnBuffTaken.Register("RegisterTable", BuffTable.Register);
+        }
+
+        private void OnDisable()
+        {
+            Cb.OnDeBuffTaken.Unregister("RegisterTable");
+            Cb.OnBuffTaken.Unregister("RegisterTable");
+        }
+
+
 #if UNITY_EDITOR
         public void EditorSetUp()
         {

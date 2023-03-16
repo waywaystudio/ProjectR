@@ -22,14 +22,14 @@ namespace Monsters.Moragg.StatusEffect
 
         public override void Active(ICombatProvider provider, ICombatTaker taker)
         {
+            projector.Initialize(0.25f, radius);
+            projector.AssignTo(this);
+            projector.SetTaker(taker);
+            
             base.Active(provider, taker);
             
             tickPower.Initialize(provider, ActionCode);
             bombPower.Initialize(provider, ActionCode);
-            
-            projector.Initialize(0.25f, radius);
-            projector.OnActivated.Invoke();
-            projector.SetTaker(taker);
         }
         
         public override void OnOverride()
@@ -37,14 +37,8 @@ namespace Monsters.Moragg.StatusEffect
             ProgressTime.Value += duration;
         }
         
-        public override void Cancel()
-        {
-            projector.OnCanceled.Invoke();
-            
-            base.Cancel();
-        }
-        
-        protected override void Complete()
+
+        protected void Bomb()
         {
             collidingSystem.TryGetTakersInSphere
             (
@@ -61,17 +55,6 @@ namespace Monsters.Moragg.StatusEffect
                 bombPower.Damage(taker);
                 taker.Stun(stunDuration);
             });
-            
-            projector.OnCompleted.Invoke();
-            
-            base.Complete();
-        }
-        
-        protected override void End()
-        {
-            projector.OnEnded.Invoke();
-            
-            base.End();
         }
 
         protected override IEnumerator Effectuating()
@@ -96,6 +79,16 @@ namespace Monsters.Moragg.StatusEffect
             }
 
             Complete();
+        }
+        
+        private void OnEnable()
+        {
+            OnCompleted.Register("Bomb", Bomb);
+        }
+
+        private void OnDisable()
+        {
+            OnCompleted.Unregister("Bomb");
         }
     }
 }

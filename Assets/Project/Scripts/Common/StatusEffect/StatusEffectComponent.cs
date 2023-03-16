@@ -41,7 +41,7 @@ namespace Common.StatusEffect
 
         public abstract void OnOverride();
 
-        public virtual void Cancel()
+        public void Cancel()
         {
             OnCanceled.Invoke();
             
@@ -51,20 +51,16 @@ namespace Common.StatusEffect
 
         protected abstract IEnumerator Effectuating();
 
-        protected virtual void Complete()
+        protected void Complete()
         {
             OnCompleted.Invoke();
-            End(); 
+            
+            End();
         }
-
-        protected virtual void End()
+        
+        protected void End()
         {
-            StopEffectuate();
-            UnregisterTable();
-
             OnEnded.Invoke();
-
-            Pool.Release(this);
         }
         
 
@@ -92,9 +88,14 @@ namespace Common.StatusEffect
         private void Awake()
         {
             ProgressTime.SetClamp(0f, Mathf.Min(duration * 1.5f, 3600));
-        }
-        
 
+            OnEnded.Register("StopEffectuate", StopEffectuate);
+            OnEnded.Register("UnregisterTable", UnregisterTable);
+            OnEnded.Register("ReleasePool", () => Pool.Release(this));
+        }
+
+
+#if UNITY_EDITOR
         public virtual void EditorSetUp()
         {
             var statusEffectData = Database.StatusEffectSheetData(ActionCode);
@@ -106,5 +107,6 @@ namespace Common.StatusEffect
 
             Database.TryGetIcon(ActionCode.ToString(), out icon);
         }
+#endif
     }
 }

@@ -6,7 +6,6 @@ namespace Raid.UI
     
     public class ActionFrame : MonoBehaviour, IEditable
     {
-        // [SerializeField] private StatusEffectBar statusEffectBar;
         [SerializeField] private AdventurerBar adventurerBar;
         
         public void Initialize()
@@ -19,7 +18,6 @@ namespace Raid.UI
 #if UNITY_EDITOR
         public void EditorSetUp()
         {
-            // statusEffectBar     ??= GetComponentInChildren<StatusEffectBar>();
             adventurerBar       ??= GetComponentInChildren<AdventurerBar>();
         }
 #endif

@@ -1,8 +1,4 @@
-using System.Collections.Generic;
-using Adventurers;
 using Character.Adventurers;
-using Common;
-using Raid.UI.StageSetter;
 using Spine.Unity;
 using TMPro;
 using UnityEngine;
@@ -15,7 +11,6 @@ namespace Raid.UI.StageInitializer
         [SerializeField] private TextMeshProUGUI headerTextUI;
         [SerializeField] private TextMeshProUGUI nameTextUI;
         [SerializeField] private SkeletonGraphic portrait;
-        [SerializeField] private List<PreviewActionSlot> previewActionSlotList;
 
         private Adventurer currentAdventurer;
 
@@ -30,11 +25,6 @@ namespace Raid.UI.StageInitializer
             headerTextUI.text          = currentAdventurer.Role.ToString();
             nameTextUI.text            = currentAdventurer.Name;
             // portrait.skeletonDataAsset = currentAdventurer.Animating.DataAsset;
-            
-            previewActionSlotList.ForEach((actionSlot, index) =>
-            {
-                actionSlot.Initialize(currentAdventurer.SkillBehaviour.SkillList[index]);
-            });
         }
 
         public void GetNextAdventurer()
@@ -72,8 +62,6 @@ namespace Raid.UI.StageInitializer
             headerTextUI = transform.Find("Header").Find("Text").GetComponent<TextMeshProUGUI>();
             nameTextUI   = transform.Find("Name").GetComponent<TextMeshProUGUI>();
             portrait     = GetComponentInChildren<SkeletonGraphic>();
-
-            GetComponentsInChildren(previewActionSlotList);
         }
 #endif
     }

@@ -15,17 +15,4 @@ namespace Common
             Taker       = taker;
         }
     }
-
-    public class StatusEffectEntity
-    {
-        public bool IsOverride;
-        public readonly IStatusEffect Effect;
-        public ICombatTaker Taker;
-    
-        public StatusEffectEntity(IStatusEffect effect, ICombatTaker taker)
-        {
-            Effect = effect;
-            Taker  = taker;
-        }
-    }
 }
