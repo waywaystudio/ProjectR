@@ -24,7 +24,7 @@ namespace Raid.UI.StageInitializer
 
         public void SetCardUI(DataIndex adventurerCode)
         {
-            if (!MainAdventurer.TryGetAdventurer(adventurerCode, out var abAdventurerObject)) return;
+            if (!Database.CombatClassMaster.Get(adventurerCode, out var abAdventurerObject)) return;
             if (!abAdventurerObject.TryGetComponent(out currentAdventurer)) return;
 
             headerTextUI.text          = currentAdventurer.Role.ToString();
@@ -39,22 +39,24 @@ namespace Raid.UI.StageInitializer
 
         public void GetNextAdventurer()
         {
-            if (currentAdventurer.IsNullOrEmpty()) return;
-
-            var nextAdventurer      = MainAdventurer.GetNext(currentAdventurer.gameObject);
-            var nextAdventurerIndex = nextAdventurer.GetComponent<IDataIndexer>().ActionCode;
-
-            SetCardUI(nextAdventurerIndex);
+            Debug.Log("Not Implemented yet.");
+            // if (currentAdventurer.IsNullOrEmpty()) return;
+            //
+            // var nextAdventurer      = MainAdventurer.GetNext(((Component)currentAdventurer).gameObject);
+            // var nextAdventurerIndex = nextAdventurer.GetComponent<IDataIndexer>().ActionCode;
+            //
+            // SetCardUI(nextAdventurerIndex);
         }
         
         public void GetPrevAdventurer()
         {
-            if (currentAdventurer.IsNullOrEmpty()) return;
-
-            var prevAdventurer      = MainAdventurer.GetPrev(currentAdventurer.gameObject);
-            var prevAdventurerIndex = prevAdventurer.GetComponent<IDataIndexer>().ActionCode;
-
-            SetCardUI(prevAdventurerIndex);
+            Debug.Log("Not Implemented yet.");
+            // if (currentAdventurer.IsNullOrEmpty()) return;
+            //
+            // var prevAdventurer      = MainAdventurer.GetPrev(((Component)currentAdventurer).gameObject);
+            // var prevAdventurerIndex = prevAdventurer.GetComponent<IDataIndexer>().ActionCode;
+            //
+            // SetCardUI(prevAdventurerIndex);
         }
 
 

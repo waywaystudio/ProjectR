@@ -48,7 +48,7 @@ namespace Monsters.Moragg.StatusEffect
         {
             collidingSystem.TryGetTakersInSphere
             (
-                Taker.Object.transform.position,
+                Taker.gameObject.transform.position,
                 radius,
                 360f,
                 adventurerLayer,

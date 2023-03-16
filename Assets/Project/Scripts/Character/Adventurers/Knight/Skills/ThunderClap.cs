@@ -2,7 +2,7 @@ using Common.Completion;
 using Common.Skills;
 using UnityEngine;
 
-namespace Adventurers.Knight.Skills
+namespace Character.Adventurers.Knight.Skills
 {
     public class ThunderClap : SkillComponent
     {
@@ -16,7 +16,7 @@ namespace Adventurers.Knight.Skills
 
         private void Jump()
         {
-            var direction = Provider.Object.transform.forward;
+            var direction = Cb.transform.forward;
             
             Cb.Pathfinding.Jump(direction, 11f, 2.4f, 0.77f);
         }
@@ -38,7 +38,7 @@ namespace Adventurers.Knight.Skills
         
         protected void OnEnable()
         {
-            power.Initialize(Provider, ActionCode);
+            power.Initialize(Cb, ActionCode);
 
             OnActivated.Register("RegisterHitEvent", RegisterHitEvent);
             OnActivated.Register("Jump", Jump);

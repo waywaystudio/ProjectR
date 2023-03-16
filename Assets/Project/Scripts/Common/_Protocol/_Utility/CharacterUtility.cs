@@ -27,7 +27,7 @@ namespace Common
         /// <returns></returns>
         public static LayerMask SetLayer(IObjectName provider, string allyOrEnemy)
         {
-            var selfLayer = (LayerMask)(1 << provider.Object.layer);
+            var selfLayer = (LayerMask)(1 << provider.gameObject.layer);
             
             return allyOrEnemy is "ally"
                 ? selfLayer

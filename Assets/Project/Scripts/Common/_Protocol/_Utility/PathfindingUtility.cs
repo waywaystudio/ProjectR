@@ -50,9 +50,9 @@ namespace Common.Systems
 
         public static bool TryGetCombatPosition(ICombatProvider provider, ICombatTaker taker, float range, out Vector3 combatPosition)
         {
-            var target = taker.Object;
+            var target = taker.gameObject;
             var targetPosition    = target.transform.position;
-            var characterPosition = provider.Object.transform.position;
+            var characterPosition = provider.gameObject.transform.position;
             
             var currentDistance = Vector3.Distance(targetPosition, characterPosition);
 

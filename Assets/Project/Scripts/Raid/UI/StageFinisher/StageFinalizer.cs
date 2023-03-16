@@ -21,7 +21,7 @@ namespace Raid.UI.StageFinisher
         public void Retry()
         {
             MainManager.Scene.LoadScene("Raid");
-            MainAdventurer.Return();
+            // MainAdventurer.Return();
         }
     }
 }

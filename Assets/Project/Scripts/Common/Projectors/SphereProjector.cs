@@ -45,7 +45,7 @@ namespace Common.Projectors
         {
             if (taker is null) return;
             
-            transform.position = taker.Object.transform.position;
+            transform.position = taker.gameObject.transform.position;
         }
 
         protected void OnValidate()

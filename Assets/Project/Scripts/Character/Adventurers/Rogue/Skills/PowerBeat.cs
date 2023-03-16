@@ -2,7 +2,7 @@ using Common.Completion;
 using Common.Skills;
 using UnityEngine;
 
-namespace Adventurers.Rogue.Skills
+namespace Character.Adventurers.Rogue.Skills
 {
     public class PowerBeat : SkillComponent
     {
@@ -31,7 +31,7 @@ namespace Adventurers.Rogue.Skills
         
         protected void OnEnable()
         {
-            power.Initialize(Provider, ActionCode);
+            power.Initialize(Cb, ActionCode);
 
             OnActivated.Register("RegisterHitEvent", RegisterHitEvent);
             OnActivated.Register("StartCooling", StartCooling);

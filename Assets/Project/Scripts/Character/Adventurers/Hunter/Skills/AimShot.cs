@@ -2,7 +2,7 @@ using Common.Completion;
 using Common.Skills;
 using UnityEngine;
 
-namespace Adventurers.Hunter.Skills
+namespace Character.Adventurers.Hunter.Skills
 {
     public class AimShot : SkillComponent
     {
@@ -16,7 +16,7 @@ namespace Adventurers.Hunter.Skills
         private void OnAimShotAttack()
         {
             // TODO. 현재 Test상 HitScan 방식이어서 이렇고, Projectile로 바뀌면 교체해야 함.
-            var providerTransform = Provider.Object.transform;
+            var providerTransform = Cb.transform;
             
             if (!Cb.Colliding.TryGetTakersByRaycast(
                     providerTransform.position,
@@ -36,7 +36,7 @@ namespace Adventurers.Hunter.Skills
         
         protected void OnEnable()
         {
-            power.Initialize(Provider, ActionCode);
+            power.Initialize(Cb, ActionCode);
             
             OnCompleted.Register("StartCooling", StartCooling);
             OnCompleted.Register("OnAimShotAttack", OnAimShotAttack);

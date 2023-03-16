@@ -2,7 +2,7 @@ using Common.Completion;
 using Common.Skills;
 using UnityEngine;
 
-namespace Adventurers.Knight.Skills
+namespace Character.Adventurers.Knight.Skills
 {
     public class Bash : SkillComponent
     {
@@ -33,8 +33,8 @@ namespace Adventurers.Knight.Skills
         
         protected void OnEnable()
         {
-            power.Initialize(Provider, ActionCode);
-            armorCrash.Initialize(Provider);
+            power.Initialize(Cb, ActionCode);
+            armorCrash.Initialize(Cb);
 
             OnActivated.Register("RegisterHitEvent", RegisterHitEvent);
             OnActivated.Register("StartCooling", StartCooling);

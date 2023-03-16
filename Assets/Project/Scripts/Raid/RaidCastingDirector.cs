@@ -34,14 +34,13 @@ namespace Raid
 
             adventurerEntry.ForEach((adventurerIndex, index) =>
             {
-                if (!MainAdventurer.TryGetAdventurer(adventurerIndex, out var adventurerObject)) return;
+                if (!Database.CombatClassMaster.Get<Adventurer>(adventurerIndex, out var adventurerPrefab)) return;
                 
-                adventurerObject.transform.SetParent(adventurerHierarchy);
-                adventurerObject.transform.position = RaidDirector.StageDirector.GetAdventurerPosition(index).position;
-                adventurerObject.SetActive(true);
-                
-                var adventurer = adventurerObject.GetComponent<Adventurer>();
-                
+                var profitPosition   = RaidDirector.StageDirector.GetAdventurerPosition(index).position;
+                var adventurer = Instantiate(adventurerPrefab, profitPosition, Quaternion.identity,
+                    adventurerHierarchy);
+
+                adventurer.gameObject.SetActive(true);
                 AdventurerList.Add(adventurer);
             });
         }

@@ -25,12 +25,12 @@ namespace Raid.UI.FloatingTexts
             if (newFocusedAdventurer is null) return;
             if (focusedAdventurer is not null)
             {
-                focusedAdventurer.OnProvideDamage.Unregister("DamageTextUI");
-                focusedAdventurer.OnTakeDamage.Unregister("TakenDamageTextUI");
+                focusedAdventurer.OnDamageProvided.Unregister("DamageTextUI");
+                focusedAdventurer.OnDamageTaken.Unregister("TakenDamageTextUI");
             }
             
-            newFocusedAdventurer.OnProvideDamage.Register("DamageTextUI", ShowDamage);
-            newFocusedAdventurer.OnTakeDamage.Register("TakenDamageTextUI", ShowDamage);
+            newFocusedAdventurer.OnDamageProvided.Register("DamageTextUI", ShowDamage);
+            newFocusedAdventurer.OnDamageTaken.Register("TakenDamageTextUI", ShowDamage);
         }
         
 
@@ -62,8 +62,8 @@ namespace Raid.UI.FloatingTexts
         {
             RaidDirector.AdventurerList.ForEach(adventurer =>
             {
-                adventurer.OnProvideDamage.Unregister("DamageTextUI");
-                adventurer.OnTakeDamage.Unregister("TakenDamageTextUI");
+                adventurer.OnDamageProvided.Unregister("DamageTextUI");
+                adventurer.OnDamageTaken.Unregister("TakenDamageTextUI");
             });
         }
 
@@ -73,32 +73,32 @@ namespace Raid.UI.FloatingTexts
         {
             if (RaidDirector.AdventurerList.Count < 0) return;
             
-            RaidDirector.AdventurerList[0].OnProvideDamage.Register("DamageTextUI", ShowDamage);
-            RaidDirector.AdventurerList[0].OnTakeDamage.Register("TakenDamageTextUI", ShowDamage);
+            RaidDirector.AdventurerList[0].OnDamageProvided.Register("DamageTextUI", ShowDamage);
+            RaidDirector.AdventurerList[0].OnDamageTaken.Register("TakenDamageTextUI", ShowDamage);
         }
         
         [Button] private void TogglePlayer2()
         {
             if (RaidDirector.AdventurerList.Count < 1) return;
             
-            RaidDirector.AdventurerList[1].OnProvideDamage.Register("DamageTextUI", ShowDamage);
-            RaidDirector.AdventurerList[1].OnTakeDamage.Register("TakenDamageTextUI", ShowDamage);
+            RaidDirector.AdventurerList[1].OnDamageProvided.Register("DamageTextUI", ShowDamage);
+            RaidDirector.AdventurerList[1].OnDamageTaken.Register("TakenDamageTextUI", ShowDamage);
         }
         
         [Button] private void TogglePlayer3()
         {
             if (RaidDirector.AdventurerList.Count < 2) return;
             
-            RaidDirector.AdventurerList[2].OnProvideDamage.Register("DamageTextUI", ShowDamage);
-            RaidDirector.AdventurerList[2].OnTakeDamage.Register("TakenDamageTextUI", ShowDamage);
+            RaidDirector.AdventurerList[2].OnDamageProvided.Register("DamageTextUI", ShowDamage);
+            RaidDirector.AdventurerList[2].OnDamageTaken.Register("TakenDamageTextUI", ShowDamage);
         }
         
         [Button] private void TogglePlayer4()
         {
             if (RaidDirector.AdventurerList.Count < 3) return;
             
-            RaidDirector.AdventurerList[3].OnProvideDamage.Register("DamageTextUI", ShowDamage);
-            RaidDirector.AdventurerList[3].OnTakeDamage.Register("TakenDamageTextUI", ShowDamage);
+            RaidDirector.AdventurerList[3].OnDamageProvided.Register("DamageTextUI", ShowDamage);
+            RaidDirector.AdventurerList[3].OnDamageTaken.Register("TakenDamageTextUI", ShowDamage);
         }
         #endregion
     }

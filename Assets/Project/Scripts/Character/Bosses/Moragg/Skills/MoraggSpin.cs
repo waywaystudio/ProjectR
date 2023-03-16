@@ -24,7 +24,7 @@ namespace Character.Bosses.Moragg.Skills
             takerList.ForEach(taker =>
             {
                 power.Damage(taker);
-                taker.KnockBack(Provider.Object.transform.position, knockBackDistance);
+                taker.KnockBack(Cb.transform.position, knockBackDistance);
             });
         }
         
@@ -37,7 +37,7 @@ namespace Character.Bosses.Moragg.Skills
         {
             var self = GetComponentInParent<ICombatTaker>();
             
-            power.Initialize(Provider, ActionCode);
+            power.Initialize(Cb, ActionCode);
             projector.Initialize(progressTime, range);
             projector.SetTaker(self);
             projector.AssignTo(this);

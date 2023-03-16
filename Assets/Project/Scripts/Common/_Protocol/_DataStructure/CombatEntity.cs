@@ -5,8 +5,8 @@ namespace Common
         public bool IsCritical;
         public bool IsFinishedAttack;
         public float Value;
-        public ICombatTable CombatTable;
-        public ICombatTaker Taker;
+        public readonly ICombatTable CombatTable;
+        public readonly ICombatTaker Taker;
 
         public CombatEntity() : this(null, null) { }
         public CombatEntity(ICombatTable combatTable, ICombatTaker taker)
@@ -21,7 +21,7 @@ namespace Common
         public bool IsOverride;
         public readonly IStatusEffect Effect;
         public ICombatTaker Taker;
-
+    
         public StatusEffectEntity(IStatusEffect effect, ICombatTaker taker)
         {
             Effect = effect;

@@ -1,4 +1,3 @@
-using Common.Characters.Behaviours;
 using UnityEngine;
 
 namespace Common
@@ -6,7 +5,8 @@ namespace Common
     public interface IObjectName
     {
         string Name { get; }
-        GameObject Object { get; }
+        GameObject gameObject { get; }
+        Transform transform { get; }
     }
     
     public interface IOriginalProvider
@@ -56,12 +56,11 @@ namespace Common
         // + StatTable StatTable { get; }
         // + IDynamicStatEntry DynamicStatEntry { get; }
         // + string Name { get; }
-        // + GameObject Object { get; }
 
-        ActionTable<CombatEntity> OnProvideDamage { get; }
-        ActionTable<CombatEntity> OnProvideHeal { get; }
-        ActionTable<StatusEffectEntity> OnProvideDeBuff { get; }
-        ActionTable<StatusEffectEntity> OnProvideBuff { get; }
+        ActionTable<CombatEntity> OnDamageProvided { get; }
+        ActionTable<CombatEntity> OnHealProvided { get; }
+        ActionTable<StatusEffectEntity> OnDeBuffProvided { get; }
+        ActionTable<StatusEffectEntity> OnBuffProvided { get; }
     }
     
     public interface ICombatTaker : ICombatEntity, IObjectName
@@ -69,21 +68,20 @@ namespace Common
         // + StatTable StatTable { get; }
         // + IDynamicStatEntry DynamicStatEntry { get; }
         // + string Name { get; }
-        // + GameObject Object { get; }
 
         RoleType Role { get; }
-        SkillBehaviour SkillBehaviour { get; }
         Transform DamageSpawn { get; }
         Transform StatusEffectHierarchy { get; }
-        ActionTable<CombatEntity> OnTakeDamage { get; }
-        ActionTable<CombatEntity> OnTakeHeal { get; }
-        ActionTable<StatusEffectEntity> OnTakeDeBuff { get; }
-        ActionTable<StatusEffectEntity> OnTakeBuff { get; }
+        
+        ActionTable<CombatEntity> OnDamageTaken { get; }
+        ActionTable<CombatEntity> OnHealTaken { get; }
+        ActionTable<StatusEffectEntity> OnDeBuffTaken { get; }
+        ActionTable<StatusEffectEntity> OnBuffTaken { get; }
 
-        CombatEntity TakeDamage(ICombatTable combatTable);
-        CombatEntity TakeHeal(ICombatTable combatTable);
-        StatusEffectEntity TakeDeBuff(IStatusEffect statusEffect);
-        StatusEffectEntity TakeBuff(IStatusEffect statusEffect);
+        void TakeDamage(ICombatTable combatTable);
+        void TakeHeal(ICombatTable combatTable);
+        void TakeDeBuff(IStatusEffect statusEffect);
+        void TakeBuff(IStatusEffect statusEffect);
 
         void Run(Vector3 destination);
         void Rotate(Vector3 lookTarget);
@@ -100,22 +98,21 @@ namespace Common
         // + StatTable StatTable { get; }
         // + IDynamicStatEntry DynamicStatEntry { get; }
         // + string Name { get; }
-        // + GameObject Object { get; }
         // + RoleType Role { get; }
         // + ICharacterAction CharacterAction { get; }
         
-        // + ActionTable<CombatEntity> OnProvideDamage { get; }
-        // + ActionTable<CombatEntity> OnProvideHeal { get; }
-        // + ActionTable<StatusEffectEntity> OnProvideDeBuff { get; }
-        // + ActionTable<StatusEffectEntity> OnProvideBuff { get; }
-        // + ActionTable<CombatEntity> OnTakeDamage { get; }
-        // + ActionTable<CombatEntity> OnTakeHeal { get; }
-        // + ActionTable<StatusEffectEntity> OnTakeDeBuff { get; }
-        // + ActionTable<StatusEffectEntity> OnTakeBuff { get; }
+        // + ActionTable<CombatEntity> OnDamageProvided { get; }
+        // + ActionTable<CombatEntity> OnHealProvided { get; }
+        // + ActionTable<StatusEffectEntity> OnDeBuffProvided { get; }
+        // + ActionTable<StatusEffectEntity> OnBuffProvided { get; }
+        // + ActionTable<CombatEntity> OnDamageTaken { get; }
+        // + ActionTable<CombatEntity> OnHealTaken { get; }
+        // + ActionTable<StatusEffectEntity> OnDeBuffTaken { get; }
+        // + ActionTable<StatusEffectEntity> OnBuffTaken { get; }
 
-        // + CombatEntity TakeDamage(ICombatTable combatTable);
-        // + CombatEntity TakeHeal(ICombatTable combatTable);
-        // + StatusEffectEntity TakeDeBuff(IStatusEffect statusEffect);
-        // + StatusEffectEntity TakeBuff(IStatusEffect statusEffect);
+        // + void TakeDamage(ICombatTable combatTable);
+        // + void TakeHeal(ICombatTable combatTable);
+        // + void TakeDeBuff(IStatusEffect statusEffect);
+        // + void TakeBuff(IStatusEffect statusEffect);
     }
 }

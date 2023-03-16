@@ -16,7 +16,7 @@ namespace Adventurers.Knight.StatusEffect
 
         protected override void Complete()
         {
-            Provider.OnProvideDamage.Unregister("DrainBuff");
+            Provider.OnDamageProvided.Unregister("DrainBuff");
             
             base.Complete();
         }
@@ -24,7 +24,7 @@ namespace Adventurers.Knight.StatusEffect
         protected override IEnumerator Effectuating()
         {
             ProgressTime.Value = duration;
-            Provider.OnProvideDamage.Register("DrainBuff", DrainHp);
+            Provider.OnDamageProvided.Register("DrainBuff", DrainHp);
             
             while (ProgressTime.Value > 0f)
             {

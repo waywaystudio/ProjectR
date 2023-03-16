@@ -31,7 +31,7 @@ namespace Common.Skills
         /* Progress Entity */
         [SerializeField] protected float progressTime;
 
-        protected CharacterBehaviour Cb;
+        private CharacterBehaviour cb;
         private Coroutine progressRoutine;
         private Coroutine coolTimeRoutine;
 
@@ -57,9 +57,9 @@ namespace Common.Skills
         public LayerMask TargetLayer => targetLayer;
         public Sprite Icon => icon;
         public DataIndex ActionCode => actionCode;
-        public ICombatProvider Provider { get; set; }
-        public virtual ICombatTaker MainTarget => 
-            Cb.Searching.GetMainTarget(targetLayer, Provider.Object.transform.position, sortingType);
+        public virtual ICombatTaker MainTarget =>
+            Cb.Searching.GetMainTarget(targetLayer, Cb.transform.position, sortingType);
+        public CharacterBehaviour Cb => cb ??= GetComponentInParent<CharacterBehaviour>();
         
         protected bool IsProgress { get; set; }
 
@@ -115,12 +115,12 @@ namespace Common.Skills
         protected bool IsCostReady()
         {
             // if (Provider.DynamicStatEntry.Resource.Value < cost) Debug.LogWarning("Not Enough Cost");
-            return Provider.DynamicStatEntry.Resource.Value >= cost;
+            return Cb.DynamicStatEntry.Resource.Value >= cost;
         }
         
         protected bool TryGetTakersInSphere(SkillComponent skill, out List<ICombatTaker> takerList) => (takerList = 
                 Cb.Colliding.GetTakersInSphereType(
-                skill.Provider.Object.transform.position, 
+                skill.Cb.transform.position, 
                 skill.Range, 
                 skill.Angle, 
                 skill.TargetLayer)
@@ -140,7 +140,7 @@ namespace Common.Skills
 
         private IEnumerator Casting(Action callback)
         {
-            var endTime = progressTime * CharacterUtility.GetHasteValue(Provider.StatTable.Haste);
+            var endTime = progressTime * CharacterUtility.GetHasteValue(Cb.StatTable.Haste);
 
             while (CastingProgress.Value < endTime)
             {
@@ -160,9 +160,6 @@ namespace Common.Skills
 
         protected virtual void Awake()
         {
-            Provider = GetComponentInParent<ICombatProvider>();
-            Cb       = GetComponentInParent<CharacterBehaviour>();
-            
             OnActivated.Register("IsEndedToFalse", () => IsEnded = false);
             OnActivated.Register("PlayAnimation", PlayAnimation);
             

@@ -11,8 +11,8 @@ namespace Common.Systems
         {
             targetList.Sort((x, y) =>
             {
-                var xDistance = Vector3.Distance(pivot, x.Object.transform.position);
-                var yDistance = Vector3.Distance(pivot, y.Object.transform.position);
+                var xDistance = Vector3.Distance(pivot, x.gameObject.transform.position);
+                var yDistance = Vector3.Distance(pivot, y.gameObject.transform.position);
 
                 return !isReverse 
                     ? xDistance.CompareTo(yDistance) 
@@ -73,9 +73,9 @@ namespace Common.Systems
 
         public static void RangeFilter(this List<ICombatTaker> list, ICombatProvider provider, float range)
         {
-            var pivot = provider.Object.transform.position;
+            var pivot = provider.gameObject.transform.position;
             
-            list.RemoveAll(x => Vector3.Distance(x.Object.transform.position, pivot) > range);
+            list.RemoveAll(x => Vector3.Distance(x.gameObject.transform.position, pivot) > range);
         }
 
         public static void SortingFilter(this List<ICombatTaker> list, Vector3 pivot, SortingType sortingType)

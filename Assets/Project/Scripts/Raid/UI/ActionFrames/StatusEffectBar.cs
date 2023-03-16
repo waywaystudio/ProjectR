@@ -19,7 +19,7 @@ namespace Raid.UI.ActionFrames
         {
             if (this.ab != null)
             {
-                this.ab.OnTakeDeBuff.Unregister("RegisterUI");
+                this.ab.OnDeBuffTaken.Unregister("RegisterUI");
                 
                 // Clear Previous StatusEffect.
                 buffActionSlotList.ForEach(buff => buff.Unregister());
@@ -30,8 +30,8 @@ namespace Raid.UI.ActionFrames
 
             this.ab = ab;
 
-            ab.OnTakeDeBuff.Unregister("RegisterUI");
-            ab.OnTakeDeBuff.Register("RegisterUI", OnRegisterStatusEffect);
+            ab.OnDeBuffTaken.Unregister("RegisterUI");
+            ab.OnDeBuffTaken.Register("RegisterUI", OnRegisterStatusEffect);
 
             UpdateStatusEffect(ab);
         }

@@ -8,7 +8,9 @@ namespace Common.Characters.Behaviours
 {
     public class SkillBehaviour : ActionBehaviour, IEditable
     {
-        [ShowInInspector] private const float GlobalCoolTime = 1.2f;
+        [ShowInInspector] 
+        private const float GlobalCoolTime = 1.2f;
+        
         [SerializeField] private List<SkillComponent> skillList = new();
         
         private Coroutine gcdRoutine;
@@ -20,8 +22,7 @@ namespace Common.Characters.Behaviours
         
         public ActionTable<SkillComponent> OnExecuting { get; } = new();
         public ActionTable OnReleased { get; } = new();
-        
-        [ShowInInspector]
+
         public SkillComponent Current { get; set; }
         public FloatEvent GlobalCoolTimeProgress { get; } = new(0, float.MaxValue);
         public List<SkillComponent> SkillList => skillList;
@@ -33,10 +34,13 @@ namespace Common.Characters.Behaviours
         
         [ShowInInspector]
         public bool IsSkillEnded => Current.IsNullOrEmpty() || Current.IsEnded;
-        
-        [ShowInInspector]
         public bool IsGlobalCooling => GlobalCoolTimeProgress.Value != 0f;
-        
+
+
+        public SkillComponent GetSkill(DataIndex actionCode)
+        {
+            return skillList.Find(item => item.ActionCode == actionCode);
+        }
         
         public bool IsAble(SkillComponent skill) => Conditions.IsAllTrue && skill.Conditions.IsAllTrue;
         

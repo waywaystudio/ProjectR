@@ -21,7 +21,7 @@ namespace Character.Behavior.Actions
         {
             if (!ab.TryGetMostPrioritySkill(out var skill)) return TaskStatus.Failure;
             if (skill.MainTarget == null) return TaskStatus.Failure;
-            if (!PathfindingUtility.TryGetCombatPosition(skill.Provider,
+            if (!PathfindingUtility.TryGetCombatPosition(skill.Cb,
                     skill.MainTarget,
                     skill.Range,
                     out var destination))

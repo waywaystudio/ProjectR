@@ -2,6 +2,8 @@ using Common.Animation;
 using Common.Characters.Behaviours;
 using Common.Characters.Behaviours.CrowdControlEffect;
 using Common.Characters.Behaviours.Movement;
+using Common.Characters.Interactions;
+using Common.Skills;
 using Common.Systems;
 using UnityEngine;
 
@@ -12,13 +14,13 @@ namespace Common.Characters
         [SerializeField] protected string characterName = string.Empty;
         [SerializeField] protected DataIndex characterID;
         [SerializeField] protected RoleType role;
+        
         [SerializeField] protected CharacterStatEntry statEntry;
-        [SerializeField] protected SearchingSystem searching;
-        [SerializeField] protected CollidingSystem colliding;
-        [SerializeField] protected PathfindingSystem pathfinding;
+        
         [SerializeField] protected AnimationModel animating;
         [SerializeField] protected Transform damageSpawn;
         [SerializeField] protected Transform statusEffectHierarchy;
+        
         [SerializeField] protected StopBehaviour stopBehaviour;
         [SerializeField] protected RunBehaviour runBehaviour;
         [SerializeField] protected StunBehaviour stunBehaviour;
@@ -26,10 +28,32 @@ namespace Common.Characters
         [SerializeField] protected DeadBehaviour deadBehaviour;
         [SerializeField] protected SkillBehaviour skillBehaviour;
 
+        [SerializeField] protected CombatInteraction combatInteraction;
+        
+        [SerializeField] protected SearchingSystem searching;
+        [SerializeField] protected CollidingSystem colliding;
+        [SerializeField] protected PathfindingSystem pathfinding;
+
         public CharacterActionMask BehaviourMask => CurrentBehaviour is null ? CharacterActionMask.None : CurrentBehaviour.BehaviourMask;
         public ActionBehaviour CurrentBehaviour { get; set; }
         public SkillBehaviour SkillBehaviour => skillBehaviour;
+        public DataIndex ActionCode => characterID;
+        public RoleType Role => role;
+        public string Name => characterName;
+        public IDynamicStatEntry DynamicStatEntry => statEntry ??= GetComponentInChildren<CharacterStatEntry>();
+        public StatTable StatTable => DynamicStatEntry.StatTable;
 
+        public SearchingSystem Searching => searching;
+        public CollidingSystem Colliding => colliding;
+        public PathfindingSystem Pathfinding => pathfinding;
+        public AnimationModel Animating => animating;
+        public CombatInteraction Combat => combatInteraction;
+        
+        public Transform DamageSpawn => damageSpawn;
+        public Transform StatusEffectHierarchy => statusEffectHierarchy;
+
+        public SkillComponent GetSkill(DataIndex actionCode) => skillBehaviour.GetSkill(actionCode);
+        
         public void Rotate(Vector3 lookTarget) { Pathfinding.RotateToTarget(lookTarget); Animating.Flip(transform.forward); }
         public void Stop() => stopBehaviour.Active();
         public void Run(Vector3 destination) => runBehaviour.Active(destination);
@@ -39,35 +63,21 @@ namespace Common.Characters
         public void ExecuteSkill(DataIndex actionCode, Vector3 targetPosition) => skillBehaviour.Active(actionCode, targetPosition);
         public void CancelSkill() => skillBehaviour.Cancel();
         public void ReleaseSkill() => skillBehaviour.Release();
+        
+        
+        public ActionTable<CombatEntity> OnDamageProvided { get; } = new();
+        public ActionTable<CombatEntity> OnHealProvided { get; } = new();
+        public ActionTable<StatusEffectEntity> OnDeBuffProvided { get; } = new();
+        public ActionTable<StatusEffectEntity> OnBuffProvided { get; } = new();
+        public ActionTable<CombatEntity> OnDamageTaken { get; } = new();
+        public ActionTable<CombatEntity> OnHealTaken { get; } = new();
+        public ActionTable<StatusEffectEntity> OnDeBuffTaken { get; } = new();
+        public ActionTable<StatusEffectEntity> OnBuffTaken { get; } = new();
 
-        public DataIndex ActionCode => characterID;
-        public RoleType Role => role;
-        public string Name => characterName;
-        public IDynamicStatEntry DynamicStatEntry => statEntry ??= GetComponentInChildren<CharacterStatEntry>();
-        public GameObject Object => gameObject;
-        public StatTable StatTable => DynamicStatEntry.StatTable;
-        
-        public ActionTable<CombatEntity> OnProvideDamage { get; } = new();
-        public ActionTable<CombatEntity> OnProvideHeal { get; } = new();
-        public ActionTable<StatusEffectEntity> OnProvideDeBuff { get; } = new();
-        public ActionTable<StatusEffectEntity> OnProvideBuff { get; } = new();
-        public ActionTable<CombatEntity> OnTakeDamage { get; } = new();
-        public ActionTable<CombatEntity> OnTakeHeal { get; } = new();
-        public ActionTable<StatusEffectEntity> OnTakeDeBuff { get; } = new();
-        public ActionTable<StatusEffectEntity> OnTakeBuff { get; } = new();
-        
-        public SearchingSystem Searching => searching;
-        public CollidingSystem Colliding => colliding;
-        public PathfindingSystem Pathfinding => pathfinding;
-        public AnimationModel Animating => animating;
-        
-        public Transform DamageSpawn => damageSpawn;
-        public Transform StatusEffectHierarchy => statusEffectHierarchy;
-
-        public CombatEntity TakeDamage(ICombatTable combatTable) => CombatUtility.TakeDamage(combatTable, this);
-        public CombatEntity TakeHeal(ICombatTable combatTable) => CombatUtility.TakeHeal(combatTable, this);
-        public StatusEffectEntity TakeDeBuff(IStatusEffect statusEffect) => CombatUtility.TakeDeBuff(statusEffect, this);
-        public StatusEffectEntity TakeBuff(IStatusEffect statusEffect) => CombatUtility.TakeBuff(statusEffect, this);
+        public void TakeDamage(ICombatTable combatTable) => combatInteraction.TakeDamage(combatTable);
+        public void TakeHeal(ICombatTable combatTable) => combatInteraction.TakeHeal(combatTable);
+        public void TakeDeBuff(IStatusEffect statusEffect) => combatInteraction.TakeDeBuff(statusEffect);
+        public void TakeBuff(IStatusEffect statusEffect) => combatInteraction.TakeBuff(statusEffect);
 
         
 #if UNITY_EDITOR
@@ -80,11 +90,11 @@ namespace Common.Characters
             stunBehaviour      ??= GetComponentInChildren<StunBehaviour>();
             knockBackBehaviour ??= GetComponentInChildren<KnockBackBehaviour>();
             deadBehaviour      ??= GetComponentInChildren<DeadBehaviour>();
-
-            searching       ??= GetComponentInChildren<SearchingSystem>();
-            colliding       ??= GetComponentInChildren<CollidingSystem>();
-            pathfinding     ??= GetComponentInChildren<PathfindingSystem>();
-            animating       ??= GetComponentInChildren<AnimationModel>();
+            combatInteraction  ??= GetComponentInChildren<CombatInteraction>();
+            searching          ??= GetComponentInChildren<SearchingSystem>();
+            colliding          ??= GetComponentInChildren<CollidingSystem>();
+            pathfinding        ??= GetComponentInChildren<PathfindingSystem>();
+            animating          ??= GetComponentInChildren<AnimationModel>();
         }
 #endif
     }

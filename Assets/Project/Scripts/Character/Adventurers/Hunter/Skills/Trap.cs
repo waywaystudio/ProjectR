@@ -1,6 +1,6 @@
 using Common.Skills;
 
-namespace Adventurers.Hunter.Skills
+namespace Character.Adventurers.Hunter.Skills
 {
     public class Trap : SkillComponent
     {
@@ -14,7 +14,7 @@ namespace Adventurers.Hunter.Skills
 
         private void Jump()
         {
-            var direction = Provider.Object.transform.forward * -1f;
+            var direction = Cb.transform.forward * -1f;
             
             Cb.Pathfinding.Jump(direction, 10f, 2, 0.5f);
         }

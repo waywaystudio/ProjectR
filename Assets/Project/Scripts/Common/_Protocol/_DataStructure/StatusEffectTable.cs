@@ -5,6 +5,8 @@ namespace Common
 {
     public class StatusEffectTable : Dictionary<(ICombatProvider, DataIndex), IStatusEffect>
     {
+        public ActionTable OnEffectChanged { get; } = new();
+
         public void Register(IStatusEffect statusEffect)
         {
             var key = (statusEffect.Provider, statusEffect.ActionCode);
@@ -12,6 +14,7 @@ namespace Common
             if (!ContainsKey(key))
             {
                 Add(key, statusEffect);
+                OnEffectChanged.Invoke();
             }
             else
             {
@@ -21,7 +24,10 @@ namespace Common
             }
         }
 
-        public void Unregister(IStatusEffect statusEffect) 
-            => this.TryRemove((statusEffect.Provider, statusEffect.ActionCode));
+        public void Unregister(IStatusEffect statusEffect)
+        {
+            this.TryRemove((statusEffect.Provider, statusEffect.ActionCode));
+            OnEffectChanged.Invoke();
+        }
     }
 }

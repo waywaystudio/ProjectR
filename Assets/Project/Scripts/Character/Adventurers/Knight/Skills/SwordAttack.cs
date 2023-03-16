@@ -2,7 +2,7 @@ using Common.Completion;
 using Common.Skills;
 using UnityEngine;
 
-namespace Adventurers.Knight.Skills
+namespace Character.Adventurers.Knight.Skills
 {
     public class SwordAttack : SkillComponent
     {
@@ -18,11 +18,7 @@ namespace Adventurers.Knight.Skills
         {
             if (!TryGetTakersInSphere(this, out var takerList)) return;
 
-            takerList.ForEach(taker =>
-            {
-                power.Damage(taker);
-                // armorCrash.Effect(taker);
-            });
+            takerList.ForEach(taker => power.Damage(taker));
         }
         
         private void RegisterHitEvent()
@@ -32,7 +28,7 @@ namespace Adventurers.Knight.Skills
         
         protected void OnEnable()
         {
-            power.Initialize(Provider, ActionCode);
+            power.Initialize(Cb, ActionCode);
 
             OnActivated.Register("RegisterHitEvent", RegisterHitEvent);
             

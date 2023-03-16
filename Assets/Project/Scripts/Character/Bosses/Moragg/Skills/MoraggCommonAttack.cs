@@ -2,11 +2,12 @@ using Common.Completion;
 using Common.Skills;
 using UnityEngine;
 
-namespace Monsters.Moragg.Skills
+namespace Character.Bosses.Moragg.Skills
 {
     public class MoraggCommonAttack : SkillComponent
     {
         [SerializeField] protected PowerCompletion power;
+        [SerializeField] protected StatusEffectCompletion armorCrash;
         
         
         protected override void PlayAnimation()
@@ -17,6 +18,7 @@ namespace Monsters.Moragg.Skills
         private void OnAttack()
         {
             power.Damage(MainTarget);
+            armorCrash.DeBuff(MainTarget);
         }
         
         private void RegisterHitEvent()
@@ -26,7 +28,8 @@ namespace Monsters.Moragg.Skills
         
         private void OnEnable()
         {
-            power.Initialize(Provider, ActionCode);
+            power.Initialize(Cb, ActionCode);
+            armorCrash.Initialize(Cb);
 
             OnActivated.Register("PlayAnimation", PlayAnimation);
             OnActivated.Register("RegisterHitEvent", RegisterHitEvent);

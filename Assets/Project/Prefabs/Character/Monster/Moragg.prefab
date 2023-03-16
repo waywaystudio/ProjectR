@@ -45,6 +45,82 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxBufferCount: 32
+--- !u!1 &1524073358984727567
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5539505904288631431}
+  - component: {fileID: 1786878172301220973}
+  m_Layer: 8
+  m_Name: Combat
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5539505904288631431
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1524073358984727567}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 3728794064825491646}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1786878172301220973
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1524073358984727567}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 233a6df4839f9894f94e65eea9b0b6e4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!1 &2932906195417268489
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3728794064825491646}
+  m_Layer: 8
+  m_Name: Interaction
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3728794064825491646
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2932906195417268489}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 5539505904288631431}
+  m_Father: {fileID: 3744010700067239340}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &3662072772575818509
 GameObject:
   m_ObjectHideFlags: 0
@@ -77,7 +153,7 @@ Transform:
   - {fileID: 1471249249138742876}
   - {fileID: 3613090715040079438}
   m_Father: {fileID: 3744010700067239340}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &3744010699814045012
 GameObject:
@@ -111,7 +187,7 @@ Transform:
   - {fileID: 5429485616240238995}
   - {fileID: 7855938594038078621}
   m_Father: {fileID: 3744010700067239340}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1622328644261199398
 MonoBehaviour:
@@ -159,6 +235,7 @@ Transform:
   m_Children:
   - {fileID: 7543387085409907241}
   - {fileID: 3744010700442847974}
+  - {fileID: 3728794064825491646}
   - {fileID: 3744010699814045015}
   - {fileID: 3941785278225685870}
   m_Father: {fileID: 0}
@@ -180,9 +257,6 @@ MonoBehaviour:
   characterID: 17000002
   role: 1
   statEntry: {fileID: 6616838061466276365}
-  searching: {fileID: 6799303759066484391}
-  colliding: {fileID: 2790317631836767718}
-  pathfinding: {fileID: 4103633887526501528}
   animating: {fileID: 4723975105097867993}
   damageSpawn: {fileID: 6740709097111906073}
   statusEffectHierarchy: {fileID: 3744010700067239340}
@@ -192,6 +266,10 @@ MonoBehaviour:
   knockBackBehaviour: {fileID: 1583247103151659224}
   deadBehaviour: {fileID: 6434334268031144768}
   skillBehaviour: {fileID: 291626802760447148}
+  combatInteraction: {fileID: 1786878172301220973}
+  searching: {fileID: 6799303759066484391}
+  colliding: {fileID: 2790317631836767718}
+  pathfinding: {fileID: 4103633887526501528}
 --- !u!114 &6616838061466276365
 MonoBehaviour:
   m_ObjectHideFlags: 0

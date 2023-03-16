@@ -16,7 +16,7 @@ namespace Common.Completion
         public void DeBuff(ICombatTaker taker)
         {
             var targetTable = taker.DynamicStatEntry.DeBuffTable;
-            var key         = (Provider: provider, effectInfo.ActionCode);
+            var key         = (provider, effectInfo.ActionCode);
 
             if (targetTable.ContainsKey(key)) 
                 targetTable[key].OnOverride();
