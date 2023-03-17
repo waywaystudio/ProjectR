@@ -5,11 +5,18 @@ namespace Character.Adventurers.Hunter.Skills
     public class Trap : SkillComponent
     {
         // TODO. Require TrapType Projectile
-        
-        
-        protected override void PlayAnimation()
+
+        protected override void Initialize()
         {
-            Cb.Animating.PlayOnce(animationKey, progressTime, OnCompleted.Invoke);
+            OnActivated.Register("Jump", Jump);
+            OnActivated.Register("StartCooling", StartCooling);
+
+            OnCompleted.Register("EndCallback", End);
+        }
+
+        protected override void Dispose()
+        {
+            // TODO. Unregister Sequence Events;
         }
 
         private void Jump()
@@ -17,14 +24,6 @@ namespace Character.Adventurers.Hunter.Skills
             var direction = Cb.transform.forward * -1f;
             
             Cb.Pathfinding.Jump(direction, 10f, 2, 0.5f);
-        }
-        
-        protected void OnEnable()
-        {
-            OnActivated.Register("Jump", Jump);
-            OnActivated.Register("StartCooling", StartCooling);
-
-            OnCompleted.Register("EndCallback", OnEnded.Invoke);
         }
     }
 }

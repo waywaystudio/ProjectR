@@ -1,16 +1,32 @@
 using Common.Completion;
 using Common.Skills;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace Character.Adventurers.Hunter.Skills
 {
     public class AimShot : SkillComponent
     {
-        [SerializeField] private PowerCompletion power;
+        [FormerlySerializedAs("power")] [SerializeField] private DamageCompletion damage;
         
         protected override void PlayAnimation()
         {
             Cb.Animating.PlayOnce(animationKey);
+        }
+        
+        protected override void Initialize()
+        {
+            damage.Initialize(Cb, ActionCode);
+            
+            OnCompleted.Register("StartCooling", StartCooling);
+            OnCompleted.Register("OnAimShotAttack", OnAimShotAttack);
+            OnCompleted.Register("PlayEndChargingAnimation", PlayEndChargingAnimation);
+            OnCompleted.Register("StopProcess", StopProgression);
+        }
+
+        protected override void Dispose()
+        {
+            // TODO. Unregister Sequence Events;
         }
         
         private void OnAimShotAttack()
@@ -26,26 +42,15 @@ namespace Character.Adventurers.Hunter.Skills
                     targetLayer,
                     out var takerList)) return;
 
-            takerList.ForEach(power.Damage);
+            takerList.ForEach(damage.Damage);
         }
         
         private void PlayEndChargingAnimation()
         {
-            Cb.Animating.PlayOnce("heavyAttack", 0f, OnEnded.Invoke);
+            Cb.Animating.PlayOnce("heavyAttack", 0f, End);
         }
-        
-        protected void OnEnable()
-        {
-            power.Initialize(Cb, ActionCode);
-            
-            OnCompleted.Register("StartCooling", StartCooling);
-            OnCompleted.Register("OnAimShotAttack", OnAimShotAttack);
-            OnCompleted.Register("PlayEndChargingAnimation", PlayEndChargingAnimation);
-            OnCompleted.Register("StopProcess", StopProgression);
-            OnCompleted.Register("ProgressEnd", () => IsProgress = false);
-        }
-        
-        
+
+
 #if UNITY_EDITOR
         public override void EditorSetUp()
         {
@@ -53,12 +58,12 @@ namespace Character.Adventurers.Hunter.Skills
             
             var skillData = Database.SkillSheetData(actionCode);
 
-            if (!TryGetComponent(out power))
+            if (!TryGetComponent(out damage))
             {
-                power = gameObject.AddComponent<PowerCompletion>();
+                damage = gameObject.AddComponent<DamageCompletion>();
             }
 
-            power.SetPower(skillData.CompletionValueList[0]);
+            damage.SetDamage(skillData.CompletionValueList[0]);
         }
 #endif
     }

@@ -5,7 +5,10 @@ namespace Common
 {
     public class StatusEffectTable : Dictionary<(ICombatProvider, DataIndex), IStatusEffect>
     {
-        public ActionTable OnEffectChanged { get; } = new();
+        private event System.Action OnEffectChanged;
+
+        public void AddListener(System.Action action) => OnEffectChanged += action;
+        public void RemoveListener(System.Action action) => OnEffectChanged -= action;
 
         public void Register(IStatusEffect statusEffect)
         {
@@ -14,12 +17,10 @@ namespace Common
             if (!ContainsKey(key))
             {
                 Add(key, statusEffect);
-                OnEffectChanged.Invoke();
+                OnEffectChanged?.Invoke();
             }
             else
             {
-                Debug.LogWarning("Duplicate Key inserted in Table Level. " +
-                                 "Check Duplicate logic. (this message should not be called)");
                 this[key] = statusEffect;
             }
         }
@@ -27,7 +28,8 @@ namespace Common
         public void Unregister(IStatusEffect statusEffect)
         {
             this.TryRemove((statusEffect.Provider, statusEffect.ActionCode));
-            OnEffectChanged.Invoke();
+            
+            OnEffectChanged?.Invoke();
         }
     }
 }

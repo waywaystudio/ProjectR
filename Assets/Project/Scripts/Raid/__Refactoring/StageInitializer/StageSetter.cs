@@ -26,7 +26,7 @@ namespace Raid.UI.StageInitializer
 #if UNITY_EDITOR
         public void EditorSetUp()
         {
-            GetComponentsInChildren(true, adventurerCardList);
+            GetComponentsInChildren(false, adventurerCardList);
         }
 #endif
     }

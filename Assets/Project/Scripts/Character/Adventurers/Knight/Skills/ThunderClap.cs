@@ -1,18 +1,14 @@
 using Common.Completion;
 using Common.Skills;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace Character.Adventurers.Knight.Skills
 {
     public class ThunderClap : SkillComponent
     {
-        [SerializeField] private PowerCompletion power;
+        [FormerlySerializedAs("power")] [SerializeField] private DamageCompletion damage;
         
-
-        protected override void PlayAnimation()
-        {
-            Cb.Animating.PlayOnce(animationKey, progressTime, OnCompleted.Invoke);
-        }
 
         private void Jump()
         {
@@ -27,31 +23,29 @@ namespace Character.Adventurers.Knight.Skills
 
             takerList.ForEach(taker =>
             {
-                power.Damage(taker);
+                damage.Damage(taker);
             });
         }
         
-        private void RegisterHitEvent()
+        protected override void Initialize()
         {
-            Cb.Animating.OnHit.Register("SkillHit", OnHit.Invoke);
-        }
-        
-        protected void OnEnable()
-        {
-            power.Initialize(Cb, ActionCode);
+            damage.Initialize(Cb, ActionCode);
 
             OnActivated.Register("RegisterHitEvent", RegisterHitEvent);
             OnActivated.Register("Jump", Jump);
             OnActivated.Register("StartCooling", StartCooling);
             
             OnHit.Register("ThunderClap", OnAttack);
-
-            OnCompleted.Register("EndCallback", OnEnded.Invoke);
-
-            OnEnded.Register("ReleaseHit", () => Cb.Animating.OnHit.Unregister("SkillHit"));
+            OnCompleted.Register("EndCallback", End);
+            OnEnded.Register("ReleaseHit", UnregisterHitEvent);
         }
-        
-        
+
+        protected override void Dispose()
+        {
+            // TODO. Unregister Sequence Events;
+        }
+
+
 #if UNITY_EDITOR
         public override void EditorSetUp()
         {
@@ -59,9 +53,9 @@ namespace Character.Adventurers.Knight.Skills
             
             var skillData = Database.SkillSheetData(actionCode);
 
-            if (!TryGetComponent(out power)) power = gameObject.AddComponent<PowerCompletion>();
+            if (!TryGetComponent(out damage)) damage = gameObject.AddComponent<DamageCompletion>();
 
-            power.SetPower(skillData.CompletionValueList[0]);
+            damage.SetDamage(skillData.CompletionValueList[0]);
         }
 #endif
     }

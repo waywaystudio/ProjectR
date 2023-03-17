@@ -2,10 +2,10 @@ using UnityEngine;
 
 namespace Common.Completion
 {
-    public class PowerCompletion : MonoBehaviour, ICombatTable
+    public class HealCompletion : MonoBehaviour
     {
         [SerializeField] private PowerValue power = new();
-        
+
         public ICombatProvider Provider { get; private set; }
         public DataIndex ActionCode { get; private set; }
         public StatTable StatTable { get; } = new();
@@ -17,16 +17,14 @@ namespace Common.Completion
             StatTable.UnionWith(Provider.StatTable);
         }
 
-        public void Damage(ICombatTaker taker) => taker.TakeDamage(this);
-        public void Heal(ICombatTaker taker) => taker.TakeHeal(this);
+        // public void Damage(ICombatTaker taker) => taker.TakeDamage(this);
         
-
         public void Initialize(ICombatProvider provider, DataIndex actionCode)
         {
             Provider   = provider;
             ActionCode = actionCode;
         }
         
-        public void SetPower(float value) => power.Value = value;
+        public void SetDamage(float value) => power.Value = value;
     }
 }

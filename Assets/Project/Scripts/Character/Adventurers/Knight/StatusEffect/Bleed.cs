@@ -1,5 +1,3 @@
-using System.Collections;
-using Character;
 using Common;
 using Common.Completion;
 using Common.StatusEffect;
@@ -9,43 +7,47 @@ namespace Adventurers.Knight.StatusEffect
 {
     public class Bleed : StatusEffectComponent
     {
-        [SerializeField] protected PowerCompletion tickPower;
+        [SerializeField] protected DamageCompletion tickDamage;
         [SerializeField] protected float interval;
         
-        public override void Active(ICombatProvider provider, ICombatTaker taker)
+        private float hasteWeight;
+        private float tickBuffer;
+        
+        public override void Initialized(ICombatProvider provider)
         {
-            base.Active(provider, taker);
+            base.Initialized(provider);
             
-            tickPower.Initialize(provider, ActionCode);
+            tickDamage.Initialize(provider, ActionCode);
         }
         
-        public override void OnOverride()
+        public override void Execution(ICombatTaker taker)
         {
-            ProgressTime.Value += duration;
+            base.Execution(taker);
+            
+            hasteWeight = tickBuffer = 
+                interval * CharacterUtility.GetHasteValue(Provider.StatTable.Haste);
         }
+        
 
-        protected override IEnumerator Effectuating()
+        private void Update()
         {
-            var hastedTick = interval * CharacterUtility.GetHasteValue(Provider.StatTable.Haste);
-
-            ProgressTime.Value = duration;
-
-            while (ProgressTime.Value > 0)
+            if (ProgressTime.Value > 0)
             {
-                var tickBuffer = hastedTick;
-
-                while (tickBuffer > 0f)
+                if (tickBuffer > 0f)
                 {
                     ProgressTime.Value -= Time.deltaTime;
                     tickBuffer         -= Time.deltaTime;
-                    
-                    yield return null;
                 }
-                
-                tickPower.Damage(Taker);
+                else
+                {
+                    tickDamage.Damage(Taker);
+                    tickBuffer = hasteWeight;
+                }
             }
-
-            Complete();
+            else
+            {
+                Complete();
+            }
         }
     }
 }

@@ -36,12 +36,16 @@ namespace Common.Skills
         private Coroutine coolTimeRoutine;
 
         /* Sequence */
+        // OnInitialized
+        // [ShowInInspector] public ActionTable OnInitialized { get; } = new();
         [ShowInInspector] public ConditionTable Conditions { get; } = new();
         [ShowInInspector] public ActionTable OnActivated { get; } = new();
-        [ShowInInspector] public ActionTable OnCanceled { get; } = new();
         [ShowInInspector] public ActionTable OnHit { get; } = new();
+        [ShowInInspector] public ActionTable OnCanceled { get; } = new();
         [ShowInInspector] public ActionTable OnCompleted { get; } = new();
         [ShowInInspector] public ActionTable OnEnded { get; } = new();
+        // [ShowInInspector] public ActionTable OnDisposed { get; } = new();
+        // OnDisposed
 
         public SkillType SkillType => skillType;
         public bool IsRigid => isRigid;
@@ -62,11 +66,18 @@ namespace Common.Skills
         public CharacterBehaviour Cb => cb ??= GetComponentInParent<CharacterBehaviour>();
         
         protected bool IsProgress { get; set; }
+        protected bool AbleToRelease => SkillType is not (SkillType.Instant or SkillType.Casting) && IsProgress;
+
+        protected abstract void Initialize();
+        protected abstract void Dispose();
 
 
-        public void Activate(Vector3 targetPosition)
+        public void Execution(Vector3 targetPosition)
         {
             IsProgress = true;
+            IsEnded    = false;
+            
+            PlayAnimation();
             
             Cb.Rotate(targetPosition);
             Cb.Pathfinding.Stop();
@@ -74,18 +85,35 @@ namespace Common.Skills
             OnActivated.Invoke();
         }
 
-        public void Cancel()
+        public void Cancellation()
         {
+            IsProgress = false;
+            
             OnCanceled.Invoke();
+            OnEnded.Invoke();
         }
-        
+
         public void Release()
         {
-            if (SkillType is SkillType.Instant or SkillType.Casting) return;
-            if (IsProgress) 
-                OnCompleted.Invoke();
+            AbleToRelease.OnTrue(Complete);
         }
-        
+
+
+        protected void Complete()
+        {
+            IsProgress = false;
+            
+            OnCompleted.Invoke();
+        }
+
+        protected void End()
+        {
+            IsEnded = true;
+                
+            Cb.Stop();
+            OnEnded.Invoke();
+        }
+
 
         // protected void ConsumeResource() => Provider.DynamicStatEntry.Resource.Value -= cost;
         protected void StartCooling() => coolTimeRoutine = StartCoroutine(Cooling());
@@ -103,18 +131,16 @@ namespace Common.Skills
 
         protected virtual void PlayAnimation()
         {
-            Cb.Animating.PlayOnce(animationKey, progressTime);
+            Cb.Animating.PlayOnce(animationKey, progressTime, Complete);
         }
         
         protected bool IsCoolTimeReady()
         {
-            // if (RemainCoolTime.Value > 0.0f) Debug.LogWarning("CoolTime is not ready");
             return RemainCoolTime.Value <= 0.0f;
         }
 
         protected bool IsCostReady()
         {
-            // if (Provider.DynamicStatEntry.Resource.Value < cost) Debug.LogWarning("Not Enough Cost");
             return Cb.DynamicStatEntry.Resource.Value >= cost;
         }
         
@@ -126,6 +152,15 @@ namespace Common.Skills
                 skill.TargetLayer)
             ).HasElement();
         
+        protected void RegisterHitEvent()
+        {
+            Cb.Animating.OnHit.Register("SkillHit", OnHit.Invoke);
+        }
+
+        protected void UnregisterHitEvent()
+        {
+            Cb.Animating.OnHit.Unregister("SkillHit");
+        }
 
         private IEnumerator Cooling()
         {
@@ -160,23 +195,18 @@ namespace Common.Skills
 
         protected virtual void Awake()
         {
-            OnActivated.Register("IsEndedToFalse", () => IsEnded = false);
-            OnActivated.Register("PlayAnimation", PlayAnimation);
-            
-            OnCanceled.Register("EndCallback", OnEnded.Invoke);
-
-            OnEnded.Register("Idle", Cb.Stop);
-            OnEnded.Register("IsProgressionToFalse", () => IsProgress = false);
-            OnEnded.Register("IsEndedToTrue", () => IsEnded           = true);
-
+            // TODO. Cost, CoolTime, Casting을 Component화 하면 빠질 수 있다.
             if (coolTime != 0f) Conditions.Register("IsCoolTimeReady", IsCoolTimeReady);
-            if (cost != 0f ) Conditions.Register("IsCostReady", IsCostReady);
+            if (cost     != 0f ) Conditions.Register("IsCostReady", IsCostReady);
             if (progressTime != 0f)
             {
                 OnActivated.Register("StartProgress", () => StartProgression(OnCompleted.Invoke));
                 OnEnded.Register("StopProgress", StopProgression);
             }
         }
+
+        protected void OnEnable() => Initialize();
+        protected void OnDisable() => Dispose();
 
 
 #if UNITY_EDITOR

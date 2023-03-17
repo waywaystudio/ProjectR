@@ -3,6 +3,7 @@ using Common.Completion;
 using Common.Projectiles;
 using DG.Tweening;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace Adventurers.Hunter.Projectile
 {
@@ -12,13 +13,13 @@ namespace Adventurers.Hunter.Projectile
         [SerializeField] private Ease easyType = Ease.Linear;
         [SerializeField] private SphereCollider projectileCollider;
         [SerializeField] private LayerMask targetLayer;
-        [SerializeField] private PowerCompletion power;
+        [FormerlySerializedAs("power")] [SerializeField] private DamageCompletion damage;
         
         
         public override void Initialize(ICombatProvider provider)
         {
             Provider = provider;
-            power.Initialize(Provider, ActionCode);
+            damage.Initialize(Provider, ActionCode);
         }
         
         protected void Flying(Vector3 destination)
@@ -37,7 +38,7 @@ namespace Adventurers.Hunter.Projectile
         {
             if (other.gameObject.IsInLayerMask(targetLayer) && other.TryGetComponent(out ICombatTaker taker))
             {
-                power.Damage(taker);
+                damage.Damage(taker);
             }
         }
     }

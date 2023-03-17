@@ -6,47 +6,40 @@ namespace Character.Adventurers.Knight.Skills
 {
     public class UpperSlash : SkillComponent
     {
-        [SerializeField] private PowerCompletion power;
-        [SerializeField] private StatusEffectCompletion bleed;
-        
-        
-        protected override void PlayAnimation()
-        {
-            Cb.Animating.PlayOnce(animationKey, progressTime, OnCompleted.Invoke);
-        }
-        
+        [SerializeField] private DamageCompletion damage;
+        [SerializeField] private DeBuffCompletion bleed;
+
+
         protected void OnAttack()
         {
             if (!TryGetTakersInSphere(this, out var takerList)) return;
 
             takerList.ForEach(taker =>
             {
-                power.Damage(taker);
+                damage.Damage(taker);
                 bleed.DeBuff(taker);
             });
         }
         
-        private void RegisterHitEvent()
+        protected override void Initialize()
         {
-            Cb.Animating.OnHit.Register("SkillHit", OnHit.Invoke);
-        }
-        
-        protected void OnEnable()
-        {
-            power.Initialize(Cb, ActionCode);
+            damage.Initialize(Cb, ActionCode);
             bleed.Initialize(Cb);
 
             OnActivated.Register("RegisterHitEvent", RegisterHitEvent);
             OnActivated.Register("StartCooling", StartCooling);
             
             OnHit.Register("UpperSlash", OnAttack);
-
-            OnCompleted.Register("EndCallback", OnEnded.Invoke);
-
-            OnEnded.Register("ReleaseHit", () => Cb.Animating.OnHit.Unregister("SkillHit"));
+            OnCompleted.Register("EndCallback", End);
+            OnEnded.Register("ReleaseHit", UnregisterHitEvent);
         }
-        
-        
+
+        protected override void Dispose()
+        {
+            // TODO. Unregister Sequence Events;
+        }
+
+
 #if UNITY_EDITOR
         public override void EditorSetUp()
         {
@@ -54,13 +47,13 @@ namespace Character.Adventurers.Knight.Skills
             
             var skillData = Database.SkillSheetData(actionCode);
 
-            if (!TryGetComponent(out power)) power = gameObject.AddComponent<PowerCompletion>();
+            if (!TryGetComponent(out damage)) damage = gameObject.AddComponent<DamageCompletion>();
 
-            power.SetPower(skillData.CompletionValueList[0]);
+            damage.SetDamage(skillData.CompletionValueList[0]);
 
             Database.StatusEffectMaster.Get((DataIndex)skillData.StatusEffect, out var armorCrashObject);
             
-            if (!TryGetComponent(out bleed)) bleed = gameObject.AddComponent<StatusEffectCompletion>();
+            if (!TryGetComponent(out bleed)) bleed = gameObject.AddComponent<DeBuffCompletion>();
 
             bleed.SetProperties(armorCrashObject, 16);
         }

@@ -29,6 +29,7 @@ namespace Common
         }
     }
 
+    
     public class ActionTable<T> : ActionTableCore<Action<T>>
     {
         public ActionTable(){}
@@ -53,6 +54,7 @@ namespace Common
         }
     }
 
+    
     public class ActionTable<T0, T1> : ActionTableCore<Action<T0, T1>>
     {
         public ActionTable(){}

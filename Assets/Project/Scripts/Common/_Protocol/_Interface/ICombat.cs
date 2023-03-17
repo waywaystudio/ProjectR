@@ -6,7 +6,6 @@ namespace Common
     {
         string Name { get; }
         GameObject gameObject { get; }
-        Transform transform { get; }
     }
     
     public interface IOriginalProvider
@@ -20,27 +19,14 @@ namespace Common
         // + DataIndex ActionCode { get; }
     }
 
-    public interface ICombatTable : IActionSender
-    {
-        // + ICombatProvider Provider { get; }
-        // + DataIndex ActionCode { get; }
-        
-        StatTable StatTable { get; }
-
-        void UpdateStatTable();
-    }
-    
     public interface IStatusEffect : IActionSender
     {
         // + ICombatProvider Provider { get; }
         // + DataIndex ActionCode { get; }
 
-        StatusEffectType Type { get; }
-        ICombatTaker Taker { get; }
-
         float Duration { get; }
         FloatEvent ProgressTime { get; }
-        ActionTable OnEnded { get; }
+        Sprite Icon { get; }
 
         void OnOverride();
     }
@@ -78,11 +64,6 @@ namespace Common
         ActionTable<IStatusEffect> OnDeBuffTaken { get; }
         ActionTable<IStatusEffect> OnBuffTaken { get; }
 
-        void TakeDamage(ICombatTable combatTable);
-        void TakeHeal(ICombatTable combatTable);
-        void TakeDeBuff(IStatusEffect statusEffect);
-        void TakeBuff(IStatusEffect statusEffect);
-
         void Run(Vector3 destination);
         void Rotate(Vector3 lookTarget);
         void Stop();
@@ -109,10 +90,5 @@ namespace Common
         // + ActionTable<CombatEntity> OnHealTaken { get; }
         // + ActionTable<StatusEffectEntity> OnDeBuffTaken { get; }
         // + ActionTable<StatusEffectEntity> OnBuffTaken { get; }
-
-        // + void TakeDamage(ICombatTable combatTable);
-        // + void TakeHeal(ICombatTable combatTable);
-        // + void TakeDeBuff(IStatusEffect statusEffect);
-        // + void TakeBuff(IStatusEffect statusEffect);
     }
 }

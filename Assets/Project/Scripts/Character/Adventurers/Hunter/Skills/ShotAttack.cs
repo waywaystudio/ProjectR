@@ -1,19 +1,15 @@
 using Common.Completion;
 using Common.Skills;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace Character.Adventurers.Hunter.Skills
 {
     public class ShotAttack : SkillComponent
     {
-        [SerializeField] private PowerCompletion power;
-        
-        protected override void PlayAnimation()
-        {
-            Cb.Animating.PlayOnce(animationKey, progressTime, OnCompleted.Invoke);
-            // OnCompleted.Invoke();
-        }
-        
+        [FormerlySerializedAs("power")] [SerializeField] private DamageCompletion damage;
+
+
         protected void OnAttack()
         {
             // TODO. 현재 Test상 HitScan 방식이어서 이렇고, Projectile로 바뀌면 교체해야 함.
@@ -27,28 +23,25 @@ namespace Character.Adventurers.Hunter.Skills
                     targetLayer,
                     out var takerList)) return;
 
-            takerList.ForEach(power.Damage);
+            takerList.ForEach(damage.Damage);
         }
         
-        private void RegisterHitEvent()
+        protected override void Initialize()
         {
-            Cb.Animating.OnHit.Register("SkillHit", OnHit.Invoke);
-        }
-        
-        protected void OnEnable()
-        {
-            power.Initialize(Cb, ActionCode);
+            damage.Initialize(Cb, ActionCode);
 
             OnActivated.Register("RegisterHitEvent", RegisterHitEvent);
-            
             OnHit.Register("SwordAttack", OnAttack);
-
-            OnCompleted.Register("EndCallback", OnEnded.Invoke);
-
-            OnEnded.Register("ReleaseHit", () => Cb.Animating.OnHit.Unregister("SkillHit"));
+            OnCompleted.Register("EndCallback", End);
+            OnEnded.Register("ReleaseHit", UnregisterHitEvent);
         }
-        
-        
+
+        protected override void Dispose()
+        {
+            // TODO. Unregister Sequence Events;
+        }
+
+
 #if UNITY_EDITOR
         public override void EditorSetUp()
         {
@@ -56,12 +49,12 @@ namespace Character.Adventurers.Hunter.Skills
             
             var skillData = Database.SkillSheetData(actionCode);
 
-            if (!TryGetComponent(out power))
+            if (!TryGetComponent(out damage))
             {
-                power = gameObject.AddComponent<PowerCompletion>();
+                damage = gameObject.AddComponent<DamageCompletion>();
             }
 
-            power.SetPower(skillData.CompletionValueList[0]);
+            damage.SetDamage(skillData.CompletionValueList[0]);
         }
 #endif
     }

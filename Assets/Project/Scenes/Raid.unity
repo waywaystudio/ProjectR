@@ -3258,12 +3258,16 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 291626802760447148, guid: a1af0054aa925ee41872a7560b759664, type: 3}
       propertyPath: skillList.Array.size
-      value: 3
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 291626802760447148, guid: a1af0054aa925ee41872a7560b759664, type: 3}
       propertyPath: skillList.Array.data[1]
       value: 
-      objectReference: {fileID: 1333775836}
+      objectReference: {fileID: 2046421132}
+    - target: {fileID: 1144377022904457136, guid: a1af0054aa925ee41872a7560b759664, type: 3}
+      propertyPath: bleed
+      value: 
+      objectReference: {fileID: 883712374}
     - target: {fileID: 1144377022904457136, guid: a1af0054aa925ee41872a7560b759664, type: 3}
       propertyPath: armorCrash
       value: 
@@ -3412,6 +3416,10 @@ PrefabInstance:
       propertyPath: m_Mesh
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 6370670999301307393, guid: a1af0054aa925ee41872a7560b759664, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6494511654835976145, guid: a1af0054aa925ee41872a7560b759664, type: 3}
       propertyPath: skillList.Array.size
       value: 3
@@ -3430,7 +3438,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7699120219021817231, guid: a1af0054aa925ee41872a7560b759664, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7838767061474648301, guid: a1af0054aa925ee41872a7560b759664, type: 3}
       propertyPath: m_IsActive
@@ -5438,6 +5446,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   prefab: {fileID: 8333227002716821657, guid: b8a0db4494b80d1418934391f99ec561, type: 3}
+  maxCount: 4
+--- !u!114 &883712374
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 883712366}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 75e87109fe881904d8926813d4540676, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  prefab: {fileID: 8333227002716821657, guid: 5d2fb8c7eb66cd742b1e14925d73c808, type: 3}
   maxCount: 4
 --- !u!1001 &890773670
 PrefabInstance:
@@ -11700,10 +11722,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 641f99c272f15cb4d9edda48cf341761, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  stageInitializer: {fileID: 0}
+  stageInitializer: {fileID: 1213613822}
   bossFrame: {fileID: 1175776410}
   actionFrame: {fileID: 2056513044}
-  floatingTextPool: {fileID: 0}
+  floatingTextPool: {fileID: 88930311}
 --- !u!1 &1868745124
 GameObject:
   m_ObjectHideFlags: 0

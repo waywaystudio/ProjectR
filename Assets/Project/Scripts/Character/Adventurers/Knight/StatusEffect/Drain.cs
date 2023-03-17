@@ -9,39 +9,38 @@ namespace Adventurers.Knight.StatusEffect
     {
         [SerializeField] private float drainPercentage;
 
-        public override void OnOverride()
+        public override void Initialized(ICombatProvider provider)
         {
-            ProgressTime.Value += duration;
-        }
-
-
-        protected override IEnumerator Effectuating()
-        {
-            ProgressTime.Value = duration;
-            Provider.OnDamageProvided.Register("DrainBuff", DrainHp);
+            base.Initialized(provider);
             
-            while (ProgressTime.Value > 0f)
-            {
-                ProgressTime.Value -= Time.deltaTime;
-                yield return null;
-            }
-
-            Complete();
+            OnActivated.Register("DrainBuff",() => Provider.OnDamageProvided.Register("DrainBuff", DrainHp));
+            OnCompleted.Register("Return", () => Provider.OnDamageProvided.Unregister("DrainBuff"));
         }
+
+        public override void Disposed()
+        {
+            OnActivated.Unregister("DrainBuff");
+            OnCompleted.Unregister("Return");
+            
+            Destroy(gameObject);
+        }
+        
 
         private void DrainHp(CombatEntity entity)
         {
             Provider.DynamicStatEntry.Hp.Value += entity.Value * drainPercentage;
         }
         
-        private void OnEnable()
+        private void Update()
         {
-            OnCompleted.Register("Return", () => Provider.OnDamageProvided.Unregister("DrainBuff"));
-        }
-
-        private void OnDisable()
-        {
-            OnCompleted.Unregister("Return");
+            if (ProgressTime.Value > 0)
+            {
+                ProgressTime.Value -= Time.deltaTime;
+            }
+            else
+            {
+                Complete();
+            }
         }
 
 

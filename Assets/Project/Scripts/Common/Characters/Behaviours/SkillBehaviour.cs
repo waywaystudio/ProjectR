@@ -26,12 +26,7 @@ namespace Common.Characters.Behaviours
         public SkillComponent Current { get; set; }
         public FloatEvent GlobalCoolTimeProgress { get; } = new(0, float.MaxValue);
         public List<SkillComponent> SkillList => skillList;
-        
-        public SkillComponent FirstSkill => SkillList[0];
-        public SkillComponent SecondSkill => SkillList[1];
-        public SkillComponent ThirdSkill => SkillList[2];
-        public SkillComponent FourthSkill => SkillList[3];
-        
+
         [ShowInInspector]
         public bool IsSkillEnded => Current.IsNullOrEmpty() || Current.IsEnded;
         public bool IsGlobalCooling => GlobalCoolTimeProgress.Value != 0f;
@@ -64,7 +59,7 @@ namespace Common.Characters.Behaviours
             RegisterBehaviour(Cb);
             
             Current = skill;
-            Current.Activate(targetPosition);
+            Current.Execution(targetPosition);
 
             OnActivated.Invoke();
             OnExecuting.Invoke(skill);
@@ -74,10 +69,7 @@ namespace Common.Characters.Behaviours
         {
             if (Current.IsNullOrEmpty()) return;
             
-            Current.Cancel();
-            
-            // TODO. 보통 Cancel()에서 OnCanceled를 호출하는데, OnCanceled에 Cancel()을 Register 하고 있다. 요상하다.
-            // OnCanceled.Invoke();
+            Current.Cancellation();
         }
 
         public void Release()

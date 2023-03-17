@@ -1,25 +1,43 @@
 using Common.Completion;
 using Common.Skills;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace Character.Adventurers.Hunter.Skills
 {
     public class ContinuesAttack : SkillComponent
     {
-        [SerializeField] private PowerCompletion power;
+        [FormerlySerializedAs("power")] [SerializeField] private DamageCompletion damage;
+        
         
         protected override void PlayAnimation()
         {
             Cb.Animating.PlayLoop(animationKey);
         }
         
-        private void RegisterHitEvent()
+        protected new void RegisterHitEvent()
         {
             Cb.Animating.OnHit.Unregister("HoldingHit");
             Cb.Animating.OnHit.Register("HoldingHit", OnHit.Invoke);
         }
         
-        
+        protected override void Initialize()
+        {
+            damage.Initialize(Cb, ActionCode);
+            
+            OnActivated.Register("RegisterHitEvent", RegisterHitEvent);
+            OnHit.Register("OnHoldingAttack", OnHoldingAttack);
+            OnCompleted.Register("EndCallback", End);
+
+            OnEnded.Register("StartCooling", StartCooling);
+            OnEnded.Register("ReleaseHit", () => Cb.Animating.OnHit.Unregister("HoldingHit"));
+        }
+
+        protected override void Dispose()
+        {
+            // TODO. Unregister Sequence Events;
+        }
+
         private void OnHoldingAttack()
         {
             // TODO. 현재 Test상 HitScan 방식이어서 이렇고, Projectile로 바뀌면 교체해야 함.
@@ -33,24 +51,10 @@ namespace Character.Adventurers.Hunter.Skills
                     targetLayer,
                     out var takerList)) return;
             
-            takerList.ForEach(power.Damage);
+            takerList.ForEach(damage.Damage);
         }
-        
-        protected void OnEnable()
-        {
-            power.Initialize(Cb, ActionCode);
-            
-            OnActivated.Register("RegisterHitEvent", RegisterHitEvent);
 
-            OnHit.Register("OnHoldingAttack", OnHoldingAttack);
-            
-            OnCompleted.Register("EndCallback", OnEnded.Invoke);
 
-            OnEnded.Register("StartCooling", StartCooling);
-            OnEnded.Register("ReleaseHit", () => Cb.Animating.OnHit.Unregister("HoldingHit"));
-        }
-        
-        
 #if UNITY_EDITOR
         public override void EditorSetUp()
         {
@@ -58,12 +62,12 @@ namespace Character.Adventurers.Hunter.Skills
             
             var skillData = Database.SkillSheetData(actionCode);
 
-            if (!TryGetComponent(out power))
+            if (!TryGetComponent(out damage))
             {
-                power = gameObject.AddComponent<PowerCompletion>();
+                damage = gameObject.AddComponent<DamageCompletion>();
             }
 
-            power.SetPower(skillData.CompletionValueList[0]);
+            damage.SetDamage(skillData.CompletionValueList[0]);
         }
 #endif
     }

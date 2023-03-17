@@ -11,11 +11,11 @@ namespace Common
         protected IObjectPool<T> ObjectPool { get; private set; }
         protected Transform Origin => transform;
 
-        public T Get() => ObjectPool.Get();
+        protected T Get() => ObjectPool.Get();
         public void Release(T element) => ObjectPool.Release(element);
         
 
-        protected T OnCreatePool()
+        protected virtual T OnCreatePool()
         {
             if (!prefab.IsNullOrEmpty() && Instantiate(prefab).TryGetComponent(out T component))
             {

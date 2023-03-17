@@ -2,7 +2,6 @@ using Common.Animation;
 using Common.Characters.Behaviours;
 using Common.Characters.Behaviours.CrowdControlEffect;
 using Common.Characters.Behaviours.Movement;
-using Common.Characters.Interactions;
 using Common.Skills;
 using Common.Systems;
 using UnityEngine;
@@ -27,8 +26,6 @@ namespace Common.Characters
         [SerializeField] protected KnockBackBehaviour knockBackBehaviour;
         [SerializeField] protected DeadBehaviour deadBehaviour;
         [SerializeField] protected SkillBehaviour skillBehaviour;
-
-        [SerializeField] protected CombatInteraction combatInteraction;
         
         [SerializeField] protected SearchingSystem searching;
         [SerializeField] protected CollidingSystem colliding;
@@ -47,7 +44,6 @@ namespace Common.Characters
         public CollidingSystem Colliding => colliding;
         public PathfindingSystem Pathfinding => pathfinding;
         public AnimationModel Animating => animating;
-        public CombatInteraction Combat => combatInteraction;
         
         public Transform DamageSpawn => damageSpawn;
         public Transform StatusEffectHierarchy => statusEffectHierarchy;
@@ -63,34 +59,28 @@ namespace Common.Characters
         public void ExecuteSkill(DataIndex actionCode, Vector3 targetPosition) => skillBehaviour.Active(actionCode, targetPosition);
         public void CancelSkill() => skillBehaviour.Cancel();
         public void ReleaseSkill() => skillBehaviour.Release();
-        
-        
+
         public ActionTable<CombatEntity> OnDamageProvided { get; } = new();
-        public ActionTable<CombatEntity> OnHealProvided { get; } = new();
-        public ActionTable<IStatusEffect> OnDeBuffProvided { get; } = new();
-        public ActionTable<IStatusEffect> OnBuffProvided { get; } = new();
         public ActionTable<CombatEntity> OnDamageTaken { get; } = new();
+        public ActionTable<CombatEntity> OnHealProvided { get; } = new();
         public ActionTable<CombatEntity> OnHealTaken { get; } = new();
+        public ActionTable<IStatusEffect> OnDeBuffProvided { get; } = new();
         public ActionTable<IStatusEffect> OnDeBuffTaken { get; } = new();
+        public ActionTable<IStatusEffect> OnBuffProvided { get; } = new();
         public ActionTable<IStatusEffect> OnBuffTaken { get; } = new();
 
-        public void TakeDamage(ICombatTable combatTable) => combatInteraction.TakeDamage(combatTable);
-        public void TakeHeal(ICombatTable combatTable) => combatInteraction.TakeHeal(combatTable);
-        public void TakeDeBuff(IStatusEffect statusEffect) => combatInteraction.TakeDeBuff(statusEffect);
-        public void TakeBuff(IStatusEffect statusEffect) => combatInteraction.TakeBuff(statusEffect);
 
-        
 #if UNITY_EDITOR
         public virtual void EditorSetUp()
         {
             statEntry          ??= GetComponent<CharacterStatEntry>();
+            
             skillBehaviour     ??= GetComponentInChildren<SkillBehaviour>();
             stopBehaviour      ??= GetComponentInChildren<StopBehaviour>();
             runBehaviour       ??= GetComponentInChildren<RunBehaviour>();
             stunBehaviour      ??= GetComponentInChildren<StunBehaviour>();
             knockBackBehaviour ??= GetComponentInChildren<KnockBackBehaviour>();
             deadBehaviour      ??= GetComponentInChildren<DeadBehaviour>();
-            combatInteraction  ??= GetComponentInChildren<CombatInteraction>();
             searching          ??= GetComponentInChildren<SearchingSystem>();
             colliding          ??= GetComponentInChildren<CollidingSystem>();
             pathfinding        ??= GetComponentInChildren<PathfindingSystem>();

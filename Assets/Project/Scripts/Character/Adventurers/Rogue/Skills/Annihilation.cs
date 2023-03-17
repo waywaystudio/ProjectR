@@ -1,46 +1,40 @@
 using Common.Completion;
 using Common.Skills;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace Character.Adventurers.Rogue.Skills
 {
     public class Annihilation : SkillComponent
     {
-        [SerializeField] private PowerCompletion power;
-        
+        [FormerlySerializedAs("power")] [SerializeField] private DamageCompletion damage;
 
-        protected override void PlayAnimation()
-        {
-            Cb.Animating.PlayOnce(animationKey, progressTime, OnCompleted.Invoke);
-        }
-        
+
         protected void OnAttack()
         {
             if (!TryGetTakersInSphere(this, out var takerList)) return;
 
             takerList.ForEach(taker =>
             {
-                power.Damage(taker);
+                damage.Damage(taker);
             });
         }
         
-        private void RegisterHitEvent()
+        protected override void Initialize()
         {
-            Cb.Animating.OnHit.Register("SkillHit", OnHit.Invoke);
-        }
-        
-        protected void OnEnable()
-        {
-            power.Initialize(Cb, ActionCode);
+            damage.Initialize(Cb, ActionCode);
 
             OnActivated.Register("RegisterHitEvent", RegisterHitEvent);
             OnActivated.Register("StartCooling", StartCooling);
             
             OnHit.Register("Annihilation", OnAttack);
+            OnCompleted.Register("EndCallback", End);
+            OnEnded.Register("ReleaseHit", UnregisterHitEvent);
+        }
 
-            OnCompleted.Register("EndCallback", OnEnded.Invoke);
-
-            OnEnded.Register("ReleaseHit", () => Cb.Animating.OnHit.Unregister("SkillHit"));
+        protected override void Dispose()
+        {
+            // TODO. Unregister Sequence Events;
         }
         
         
@@ -51,9 +45,9 @@ namespace Character.Adventurers.Rogue.Skills
             
             var skillData = Database.SkillSheetData(actionCode);
 
-            if (!TryGetComponent(out power)) power = gameObject.AddComponent<PowerCompletion>();
+            if (!TryGetComponent(out damage)) damage = gameObject.AddComponent<DamageCompletion>();
 
-            power.SetPower(skillData.CompletionValueList[0]);
+            damage.SetDamage(skillData.CompletionValueList[0]);
         }
 #endif
     }

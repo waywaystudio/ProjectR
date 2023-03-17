@@ -1,52 +1,48 @@
 using Common.Completion;
 using Common.Skills;
 using UnityEngine;
+using UnityEngine.Serialization;
+
+// SkillMechanicEntity;
 
 namespace Character.Adventurers.Knight.Skills
 {
     public class Bash : SkillComponent
     {
-        [SerializeField] private PowerCompletion power;
-        [SerializeField] private StatusEffectCompletion armorCrash;
-        
-        
-        protected override void PlayAnimation()
-        {
-            Cb.Animating.PlayOnce(animationKey, progressTime, OnCompleted.Invoke);
-        }
-        
+        [FormerlySerializedAs("power")] [SerializeField] private DamageCompletion damage;
+        [SerializeField] private DeBuffCompletion armorCrash;
+
+
         protected void OnAttack()
         {
             if (!TryGetTakersInSphere(this, out var takerList)) return;
 
             takerList.ForEach(taker =>
             {
-                power.Damage(taker);
+                damage.Damage(taker);
                 armorCrash.DeBuff(taker);
             });
         }
-        
-        private void RegisterHitEvent()
-        {
-            Cb.Animating.OnHit.Register("SkillHit", OnHit.Invoke);
-        }
-        
-        protected void OnEnable()
-        {
-            power.Initialize(Cb, ActionCode);
-            armorCrash.Initialize(Cb);
 
+        protected override void Initialize()
+        {
+            damage.Initialize(Cb, ActionCode);
+            armorCrash.Initialize(Cb);
+            
             OnActivated.Register("RegisterHitEvent", RegisterHitEvent);
             OnActivated.Register("StartCooling", StartCooling);
             
             OnHit.Register("Bash", OnAttack);
-
-            OnCompleted.Register("EndCallback", OnEnded.Invoke);
-
-            OnEnded.Register("ReleaseHit", () => Cb.Animating.OnHit.Unregister("SkillHit"));
+            OnCompleted.Register("EndCallback", End);
+            OnEnded.Register("ReleaseHit", UnregisterHitEvent);
         }
-        
-        
+
+        protected override void Dispose()
+        {
+            // TODO. Unregister Sequence Events;
+        }
+
+
 #if UNITY_EDITOR
         public override void EditorSetUp()
         {
@@ -54,13 +50,13 @@ namespace Character.Adventurers.Knight.Skills
             
             var skillData = Database.SkillSheetData(actionCode);
 
-            if (!TryGetComponent(out power)) power = gameObject.AddComponent<PowerCompletion>();
+            if (!TryGetComponent(out damage)) damage = gameObject.AddComponent<DamageCompletion>();
 
-            power.SetPower(skillData.CompletionValueList[0]);
+            damage.SetDamage(skillData.CompletionValueList[0]);
 
             Database.StatusEffectMaster.Get((DataIndex)skillData.StatusEffect, out var armorCrashObject);
             
-            if (!TryGetComponent(out armorCrash)) armorCrash = gameObject.AddComponent<StatusEffectCompletion>();
+            if (!TryGetComponent(out armorCrash)) armorCrash = gameObject.AddComponent<DeBuffCompletion>();
 
             armorCrash.SetProperties(armorCrashObject, 16);
         }

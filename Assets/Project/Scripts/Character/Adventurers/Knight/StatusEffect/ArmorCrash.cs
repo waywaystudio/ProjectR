@@ -1,5 +1,3 @@
-using System;
-using System.Collections;
 using Common;
 using Common.StatusEffect;
 using UnityEngine;
@@ -10,35 +8,33 @@ namespace Adventurers.Knight.StatusEffect
     {
         [SerializeField] private ArmorValue armorValue;
 
-        public override void OnOverride()
+        public override void Initialized(ICombatProvider provider)
         {
-            ProgressTime.Value += duration;
-        }
-        
-
-        protected override IEnumerator Effectuating()
-        {
-            ProgressTime.Value = duration;
-
-            Taker.StatTable.Register(ActionCode, armorValue);
-
-            while (ProgressTime.Value > 0f)
-            {
-                ProgressTime.Value -= Time.deltaTime;
-                yield return null;
-            }
-
-            Complete();
-        }
-
-        private void OnEnable()
-        {
+            base.Initialized(provider);
+            
+            OnActivated.Register("StatTableRegister", () => Taker.StatTable.Register(ActionCode, armorValue));
             OnCompleted.Register("Return", () => Taker.StatTable.Unregister(ActionCode, armorValue));
         }
 
-        private void OnDisable()
+        public override void Disposed()
         {
+            OnActivated.Unregister("StatTableRegister");
             OnCompleted.Unregister("Return");
+            
+            Destroy(gameObject);
+        }
+
+
+        private void Update()
+        {
+            if (ProgressTime.Value > 0)
+            {
+                ProgressTime.Value -= Time.deltaTime;
+            }
+            else
+            {
+                Complete();
+            }
         }
     }
 }
