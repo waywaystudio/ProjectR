@@ -1,3 +1,5 @@
+using System;
+
 namespace Common
 {
     public interface ISequence
@@ -38,6 +40,20 @@ namespace Common
             sequence.OnCanceled.Clear();
             sequence.OnCompleted.Clear();
             sequence.OnEnded.Clear();
+        }
+
+        public static ActionTable ConvertSection(this ISequence sequence, SectionType sectionType)
+        {
+            return sectionType switch
+            {
+                SectionType.None => throw new ArgumentOutOfRangeException(nameof(sectionType), sectionType, null),
+                SectionType.OnActivated => sequence.OnActivated,
+                SectionType.OnCanceled => sequence.OnCanceled,
+                SectionType.OnCompletion => throw new ArgumentOutOfRangeException(nameof(sectionType), sectionType,null),
+                SectionType.OnCompleted => sequence.OnCompleted,
+                SectionType.OnEnded     => sequence.OnEnded,
+                _                       => throw new ArgumentOutOfRangeException(nameof(sectionType), sectionType, null)
+            };
         }
     }
 }

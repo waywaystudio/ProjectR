@@ -2,12 +2,11 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using Common.Characters;
-using Sirenix.OdinInspector;
 using UnityEngine;
 
 namespace Common.Skills
 {
-    public abstract class SkillSequence : MonoBehaviour, ISequence, IDataIndexer, IEditable
+    public abstract class SkillComponent : MonoBehaviour, ISequence, IDataIndexer, IEditable
     {
         /* Common Attribution */
         [SerializeField] protected DataIndex actionCode;
@@ -22,38 +21,30 @@ namespace Common.Skills
 
         /* Condition Entity */
         [SerializeField] private bool isRigid;
-        [SerializeField] private float coolTime;
-        [SerializeField] private float cost;
-        
+
         /* Animation */
         [SerializeField] protected string animationKey;
-        
-        /* Progress Entity */
-        [SerializeField] protected float progressTime;
 
         private CharacterBehaviour cb;
-        private Coroutine progressRoutine;
-        private Coroutine coolTimeRoutine;
+        
 
         /* Sequence */
-        [ShowInInspector] public ConditionTable Conditions { get; } = new();
-        [ShowInInspector] public ActionTable OnActivated { get; } = new();
-        [ShowInInspector] public ActionTable OnHit { get; } = new();
-        [ShowInInspector] public ActionTable OnCanceled { get; } = new();
-        [ShowInInspector] public ActionTable OnCompleted { get; } = new();
-        [ShowInInspector] public ActionTable OnEnded { get; } = new();
+        public ConditionTable Conditions { get; } = new();
+        public ActionTable OnActivated { get; } = new();
+        public ActionTable OnCanceled { get; } = new();
+        public ActionTable<ICombatTaker> OnCompletion { get; } = new();
+        public ActionTable OnCompleted { get; } = new();
+        public ActionTable OnEnded { get; } = new();
 
         public SkillType SkillType => skillType;
         public bool IsRigid => isRigid;
-        public bool IsEnded { get; protected set; } = true;
+        public bool IsEnded { get; set; } = true;
         public int Priority => priority;
-        public float CoolTime => coolTime;
         public float Range => range;
         public float Angle => angle;
-        public float ProgressTime => progressTime;
+
         public string Description => description;
         public FloatEvent CastingProgress { get; } = new(0, float.MaxValue);
-        public FloatEvent RemainCoolTime { get; } = new(0f, float.MaxValue);
         public LayerMask TargetLayer => targetLayer;
         public Sprite Icon => icon;
         public DataIndex ActionCode => actionCode;
@@ -61,11 +52,11 @@ namespace Common.Skills
             Cb.Searching.GetMainTarget(targetLayer, Cb.transform.position, sortingType);
         public CharacterBehaviour Cb => cb ??= GetComponentInParent<CharacterBehaviour>();
         
-        protected bool IsProgress { get; set; }
         protected bool AbleToRelease => SkillType is not (SkillType.Instant or SkillType.Casting) && IsProgress;
+        protected bool IsProgress { get; set; }
 
         protected abstract void Initialize();
-
+        
 
         /// <summary>
         /// 스킬 사용시 호출.
@@ -79,26 +70,24 @@ namespace Common.Skills
             
             Cb.Rotate(targetPosition);
             Cb.Pathfinding.Stop();
-            
+         
             OnActivated.Invoke();
         }
 
-        
-        /// <summary>
-        /// 스킬 시퀀스 중에서 전투값을 대상에게 실제로 전달하는 함수.
-        /// 충돌 + 데미지 종류 + 상태이상 등이 있을 수 있다.
-        /// 스킬마다 호출되는 방법이 다르지만, 반드시 호출하는 곳이 있다.
-        /// </summary>
-        public virtual void OnAttack() { }
 
-        
+        /// <summary>
+        /// 대상(ICombatTaker)을 찾아 Completion을 실행하는 함수
+        /// </summary>
+        public abstract void MainAttack();
+
+
         /// <summary>
         /// 플레이어가 시전 중 이동하거나 cc를 받아 기술 취소 시 호출. 
         /// </summary>
         public void Cancellation()
         {
             IsProgress = false;
-            
+
             OnCanceled.Invoke();
             End();
         }
@@ -111,6 +100,18 @@ namespace Common.Skills
         {
             AbleToRelease.OnTrue(Complete);
         }
+        
+        
+        /// <summary>
+        /// 스킬 시퀀스 중에서 전투값을 대상에게 실제로 전달하는 함수.
+        /// 충돌 + 데미지 종류 + 상태이상 등이 있을 수 있다.
+        /// OnCompletion 하위 컴포넌트 중 Completion에서 실제 구현된다.
+        /// TODO. Complete와 이름이 비슷하여 안좋다. 바꾸자. 
+        /// </summary>
+        protected void Completion(ICombatTaker taker)
+        {
+            OnCompletion.Invoke(taker);
+        }
 
 
         /// <summary>
@@ -119,7 +120,7 @@ namespace Common.Skills
         protected void Complete()
         {
             IsProgress = false;
-            
+
             OnCompleted.Invoke();
         }
 
@@ -139,14 +140,22 @@ namespace Common.Skills
         /// <summary>
         /// 씬 종료 혹은 SkillSequence GameObject가 꺼질 때 호출.
         /// </summary>
-        protected virtual void Dispose()
+        protected void Dispose()
         {
-            this.Clear();
+            Conditions.Clear();
+            OnActivated.Clear();
+            OnCanceled.Clear();
+            OnCompletion.Clear();
+            OnCompleted.Clear();
+            OnEnded.Clear();
         }
+        
+        
+        /* Progress Entity */
+        [SerializeField] protected float progressTime;
+        private Coroutine progressRoutine;
+        public float ProgressTime => progressTime;
 
-
-        // protected void ConsumeResource() => Provider.DynamicStatEntry.Resource.Value -= cost;
-        protected void StartCooling() => coolTimeRoutine = StartCoroutine(Cooling());
         protected void StartProgression(Action callback = null)
         {
             progressRoutine = StartCoroutine(Casting(callback));
@@ -158,41 +167,7 @@ namespace Common.Skills
             
             ResetProgress();
         }
-
-        protected virtual void PlayAnimation()
-        {
-            Cb.Animating.PlayOnce(animationKey, progressTime, Complete);
-        }
         
-        protected bool IsCoolTimeReady()
-        {
-            return RemainCoolTime.Value <= 0.0f;
-        }
-
-        protected bool IsCostReady()
-        {
-            return Cb.DynamicStatEntry.Resource.Value >= cost;
-        }
-        
-        protected bool TryGetTakersInSphere(SkillSequence skill, out List<ICombatTaker> takerList) => (takerList = 
-                Cb.Colliding.GetTakersInSphereType(
-                skill.Cb.transform.position, 
-                skill.Range, 
-                skill.Angle, 
-                skill.TargetLayer)
-            ).HasElement();
-
-        private IEnumerator Cooling()
-        {
-            RemainCoolTime.Value = coolTime;
-
-            while (RemainCoolTime.Value > 0f)
-            {
-                RemainCoolTime.Value -= Time.deltaTime;
-                yield return null;
-            }
-        }
-
         private IEnumerator Casting(Action callback)
         {
             var endTime = progressTime * CharacterUtility.GetHasteValue(Cb.StatTable.Haste);
@@ -206,21 +181,33 @@ namespace Common.Skills
             callback?.Invoke();
             ResetProgress();
         }
-
+        
         private void ResetProgress()
         {
             progressRoutine       = null;
             CastingProgress.Value = 0f;
         }
+        
+
+        protected virtual void PlayAnimation()
+        {
+            Cb.Animating.PlayOnce(animationKey, progressTime, Complete);
+        }
+
+        protected bool TryGetTakersInSphere(SkillComponent skill, out List<ICombatTaker> takerList) => (takerList = 
+                Cb.Colliding.GetTakersInSphereType(
+                skill.Cb.transform.position, 
+                skill.Range, 
+                skill.Angle, 
+                skill.TargetLayer)
+            ).HasElement();
 
         protected virtual void Awake()
         {
             // TODO. Cost, CoolTime, Casting을 Component화 하면 빠질 수 있다.
-            if (coolTime != 0f) Conditions.Register("IsCoolTimeReady", IsCoolTimeReady);
-            if (cost     != 0f ) Conditions.Register("IsCostReady", IsCostReady);
             if (progressTime != 0f)
             {
-                OnActivated.Register("StartProgress", () => StartProgression(OnCompleted.Invoke));
+                OnActivated.Register("StartProgress", () => StartProgression(Complete));
                 OnEnded.Register("StopProgress", StopProgression);
             }
         }
@@ -240,22 +227,23 @@ namespace Common.Skills
             range        = skillData.TargetParam.x;
             angle        = skillData.TargetParam.y;
             description  = skillData.Description;
-            coolTime     = skillData.CoolTime;
-            cost         = skillData.Cost;
             animationKey = skillData.AnimationKey;
             progressTime = skillData.ProcessTime;
             sortingType  = skillData.SortingType.ToEnum<SortingType>();
             targetLayer  = LayerMask.GetMask(skillData.TargetLayer);
             icon         = GetSkillIcon();
-        }
 
-        public void ShowDataBase()
+            if (TryGetComponent(out SkillCoolTime coolTimeModule))
+            {
+                coolTimeModule.EditorSetUp();
+            }
+        }
+        private void ShowDataBase()
         {
             var skillData = Database.SheetDataTable[DataIndex.Skill];
 
             UnityEditor.EditorUtility.OpenPropertyEditor(skillData);
-        } 
-        
+        }
         private Sprite GetSkillIcon()
         {
             return !(Database.TryGetIcon(actionCode.ToString(), out var result))
@@ -265,3 +253,11 @@ namespace Common.Skills
 #endif
     }
 }
+
+// [SerializeField] private float cost;
+// public float Cost => cost;
+// protected void ConsumeResource() => Provider.DynamicStatEntry.Resource.Value -= cost;
+// protected bool IsCostReady()
+// {
+//     return Cb.DynamicStatEntry.Resource.Value >= cost;
+// }

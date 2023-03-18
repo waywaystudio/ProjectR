@@ -2,15 +2,14 @@ using Common.Skills;
 
 namespace Character.Adventurers.Hunter.Skills
 {
-    public class Trap : SkillSequence
+    public class Trap : SkillComponent
     {
         // TODO. Require TrapType Projectile
+        public override void MainAttack() { throw new System.NotImplementedException(); }
 
         protected override void Initialize()
         {
             OnActivated.Register("Jump", Jump);
-            OnActivated.Register("StartCooling", StartCooling);
-
             OnCompleted.Register("EndCallback", End);
         }
 

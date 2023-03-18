@@ -72,7 +72,8 @@ GameObject:
   m_Component:
   - component: {fileID: 234500611213636336}
   - component: {fileID: -7836975085712377097}
-  - component: {fileID: 7951750345919551842}
+  - component: {fileID: 8791721430062155317}
+  - component: {fileID: 2567593440413624352}
   m_Layer: 0
   m_Name: MoraggLivingBomb
   m_TagString: Untagged
@@ -121,12 +122,11 @@ MonoBehaviour:
   icon: {fileID: 21300000, guid: 66dd4d17749630548bd562332cf77491, type: 3}
   description: Starts combat by attacking a target with a melee weapon.
   isRigid: 0
-  coolTime: 20
   cost: 0
   animationKey: attack
   progressTime: 0
-  livingBomb: {fileID: 7951750345919551842}
---- !u!114 &7951750345919551842
+  coolTime: 20
+--- !u!114 &8791721430062155317
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -135,9 +135,23 @@ MonoBehaviour:
   m_GameObject: {fileID: 8380361914805468174}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 75e87109fe881904d8926813d4540676, type: 3}
+  m_Script: {fileID: 11500000, guid: 714e87efbca5f5e47a36249aecf0b6f2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   actionCode: 14000004
   prefabReference: {fileID: 8333227002716821657, guid: ae083ec149c3daa4fb7146db6fd69715, type: 3}
   poolCapacity: 2
+--- !u!114 &2567593440413624352
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8380361914805468174}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c558f34805c58af41b9759b2ae5634bd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  coolingTargetAction: 4
+  coolTime: 20

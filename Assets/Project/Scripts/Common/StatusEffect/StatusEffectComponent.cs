@@ -2,7 +2,7 @@ using UnityEngine;
 
 namespace Common.StatusEffect
 {
-    public abstract class StatusEffectSequence : MonoBehaviour, ISequence ,IStatusEffect, IEditable
+    public abstract class StatusEffectComponent : MonoBehaviour, ISequence ,IStatusEffect, IEditable
     {
         [SerializeField] protected DataIndex statusCode;
         [SerializeField] protected StatusEffectType type;
@@ -17,6 +17,7 @@ namespace Common.StatusEffect
         
         public ActionTable OnActivated { get; } = new();
         public ActionTable OnCanceled { get; } = new();
+        public ActionTable<ICombatTaker> OnCompletion { get; } = new();
         public ActionTable OnCompleted { get; } = new();
         public ActionTable OnEnded { get; } = new();
 

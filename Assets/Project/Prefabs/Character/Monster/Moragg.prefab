@@ -1101,6 +1101,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2567593440413624352, guid: 89b7f126af484b44fa7eba5693a04ec0, type: 3}
+      propertyPath: startCoolingMoment
+      value: 4
+      objectReference: {fileID: 0}
     - target: {fileID: 3513209316969996894, guid: 89b7f126af484b44fa7eba5693a04ec0, type: 3}
       propertyPath: uniqueID
       value: 3325856357513161807
@@ -1210,6 +1214,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3597284855680841089, guid: 4ae3fbab6c1c1ed48bbe37492124f254, type: 3}
+      propertyPath: startCoolingMoment
+      value: 4
+      objectReference: {fileID: 0}
     - target: {fileID: 8380361914805468174, guid: 4ae3fbab6c1c1ed48bbe37492124f254, type: 3}
       propertyPath: m_Name
       value: MoraggSpin
@@ -1261,11 +1269,11 @@ PrefabInstance:
     - target: {fileID: -6645754418306525249, guid: a357f5398beb58044b7041950abebf09, type: 3}
       propertyPath: power
       value: 
-      objectReference: {fileID: 3319771397484489116}
+      objectReference: {fileID: 0}
     - target: {fileID: -6645754418306525249, guid: a357f5398beb58044b7041950abebf09, type: 3}
       propertyPath: damage
       value: 
-      objectReference: {fileID: 3319771397484489116}
+      objectReference: {fileID: 0}
     - target: {fileID: -6645754418306525249, guid: a357f5398beb58044b7041950abebf09, type: 3}
       propertyPath: colliding
       value: 
@@ -1337,17 +1345,6 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e84f23e793470374a995f2cd805ab8e5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &3319771397484489116 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 159349165042510227, guid: a357f5398beb58044b7041950abebf09, type: 3}
-  m_PrefabInstance: {fileID: 3180717023739871247}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8e628f5df72c2e949ab8a5b0ef9dc17a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!4 &3415189046208344831 stripped

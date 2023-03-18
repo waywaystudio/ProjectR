@@ -48,7 +48,7 @@ namespace Common.Characters
         public Transform DamageSpawn => damageSpawn;
         public Transform StatusEffectHierarchy => statusEffectHierarchy;
 
-        public SkillSequence GetSkill(DataIndex actionCode) => skillBehaviour.GetSkill(actionCode);
+        public SkillComponent GetSkill(DataIndex actionCode) => skillBehaviour.GetSkill(actionCode);
         
         public void Rotate(Vector3 lookTarget) { Pathfinding.RotateToTarget(lookTarget); Animating.Flip(transform.forward); }
         public void Stop() => stopBehaviour.Active();

@@ -1,3 +1,4 @@
+using Common.Skills;
 using Common.UI;
 using Manager;
 using UnityEngine;
@@ -36,10 +37,10 @@ namespace Common.Characters.UI.ActionBars
             
             coolDownFiller.ProgressImage.enabled = false;
 
-            if (targetSkill.CoolTime != 0.0f)
+            if (targetSkill.TryGetComponent(out SkillCoolTime coolTime))
             {
                 coolDownFiller.ProgressImage.enabled = true;
-                coolDownFiller.Register(targetSkill.RemainCoolTime, targetSkill.CoolTime);
+                coolDownFiller.Register(coolTime.RemainCoolTime, coolTime.CoolTime);
             }
         }
 

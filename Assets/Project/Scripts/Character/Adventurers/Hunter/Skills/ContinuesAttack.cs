@@ -1,13 +1,10 @@
 using Common.Skills;
-using UnityEngine;
 
 namespace Character.Adventurers.Hunter.Skills
 {
-    public class ContinuesAttack : SkillSequence
+    public class ContinuesAttack : SkillComponent
     {
-        [SerializeField] private DirectHitEvent directHitEvent;
-
-        public override void OnAttack()
+        public override void MainAttack()
         {
             // TODO. 현재 Test상 HitScan 방식이어서 이렇고, Projectile로 바뀌면 교체해야 함.
             var providerTransform = Cb.transform;
@@ -20,31 +17,18 @@ namespace Character.Adventurers.Hunter.Skills
                     targetLayer,
                     out var takerList)) return;
             
-            takerList.ForEach(directHitEvent.Completion);
+            takerList.ForEach(Completion);
         }
         
         
         protected override void Initialize()
         {
-            directHitEvent.Initialize();
-            
             OnCompleted.Register("EndCallback", End);
-            OnEnded.Register("StartCooling", StartCooling);
         }
 
         protected override void PlayAnimation()
         {
             Cb.Animating.PlayLoop(animationKey);
         }
-
-
-#if UNITY_EDITOR
-        public override void EditorSetUp()
-        {
-            base.EditorSetUp();
-
-            TryGetComponent(out directHitEvent);
-        }
-#endif
     }
 }

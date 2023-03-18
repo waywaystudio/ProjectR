@@ -7,7 +7,7 @@ using UnityEngine;
 
 namespace Monsters.Moragg.StatusEffect
 {
-    public class LivingBomb : StatusEffectSequence
+    public class LivingBomb : StatusEffectComponent
     {
         [SerializeField] private SphereProjector projector;
         [SerializeField] private DamageCompletion tickDamage;

@@ -1,14 +1,10 @@
-using Common.Completion;
 using Common.Skills;
-using UnityEngine;
 
 namespace Character.Adventurers.Hunter.Skills
 {
-    public class AimShot : SkillSequence
+    public class AimShot : SkillComponent
     {
-        [SerializeField] private DamageCompletion damage;
-        
-        public override void OnAttack()
+        public override void MainAttack()
         {
             // TODO. 현재 Test상 HitScan 방식이어서 이렇고, Projectile로 바뀌면 교체해야 함.
             var providerTransform = Cb.transform;
@@ -21,16 +17,12 @@ namespace Character.Adventurers.Hunter.Skills
                     targetLayer,
                     out var takerList)) return;
 
-            takerList.ForEach(damage.Completion);
+            takerList.ForEach(Completion);
         }
-        
-        
+
         protected override void Initialize()
         {
-            damage.Initialize(Cb);
-            
-            OnCompleted.Register("StartCooling", StartCooling);
-            OnCompleted.Register("OnAimShotAttack", OnAttack);
+            OnCompleted.Register("OnAttack", MainAttack);
             OnCompleted.Register("PlayEndChargingAnimation", PlayEndChargingAnimation);
             OnCompleted.Register("StopProcess", StopProgression);
         }
@@ -44,22 +36,5 @@ namespace Character.Adventurers.Hunter.Skills
         {
             Cb.Animating.PlayOnce("heavyAttack", 0f, End);
         }
-
-
-#if UNITY_EDITOR
-        public override void EditorSetUp()
-        {
-            base.EditorSetUp();
-            
-            var skillData = Database.SkillSheetData(actionCode);
-
-            if (!TryGetComponent(out damage))
-            {
-                damage = gameObject.AddComponent<DamageCompletion>();
-            }
-
-            damage.SetDamage(skillData.CompletionValueList[0]);
-        }
-#endif
     }
 }

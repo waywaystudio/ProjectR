@@ -5,24 +5,24 @@ using UnityEngine;
 
 namespace Character.Bosses.Moragg.Skills
 {
-    public class MoraggSpin : SkillSequence
+    public class MoraggSpin : SkillComponent
     {
         [SerializeField] private float knockBackDistance = 5f;
-        [SerializeField] private DamageCompletion damage;
         [SerializeField] private SphereProjector projector;
         
-        public override void OnAttack()
+        
+        public override void MainAttack()
         {
             if (!TryGetTakersInSphere(this, out var takerList)) return;
             
             takerList.ForEach(taker =>
             {
-                damage.Completion(taker);
+                Completion(taker);
                 taker.KnockBack(Cb.transform.position, knockBackDistance);
             });
         }
         
-        
+
         protected override void PlayAnimation()
         {
             Cb.Animating.PlayLoop(animationKey);
@@ -30,15 +30,13 @@ namespace Character.Bosses.Moragg.Skills
         
         protected override void Initialize()
         {
-            damage.Initialize(Cb);
             projector.Initialize(progressTime, range, this);
 
             OnActivated.Register("StartProgress", () => StartProgression(Complete));
 
-            OnCompleted.Register("MoraggSpinAttack", OnAttack);
+            OnCompleted.Register("MoraggSpinAttack", MainAttack);
             OnCompleted.Register("PlayEndCastingAnimation", PlayEndCastingAnimation);
-            OnCompleted.Register("StartCooling", StartCooling);
-            
+
             OnEnded.Register("StopProgress", StopProgression);
         }
 

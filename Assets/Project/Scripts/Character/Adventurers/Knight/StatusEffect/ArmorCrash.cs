@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace Adventurers.Knight.StatusEffect
 {
-    public class ArmorCrash : StatusEffectSequence
+    public class ArmorCrash : StatusEffectComponent
     {
         [SerializeField] private ArmorValue armorValue;
 

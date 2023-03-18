@@ -11,7 +11,7 @@ namespace Common.Characters.Behaviours
         [ShowInInspector] 
         private const float GlobalCoolTime = 1.2f;
         
-        [SerializeField] private List<SkillSequence> skillList = new();
+        [SerializeField] private List<SkillComponent> skillList = new();
         
         private Coroutine gcdRoutine;
 
@@ -20,24 +20,24 @@ namespace Common.Characters.Behaviours
                                                              CharacterActionMask.Stop |
                                                              CharacterActionMask.Run;
         
-        public ActionTable<SkillSequence> OnExecuting { get; } = new();
+        public ActionTable<SkillComponent> OnExecuting { get; } = new();
         public ActionTable OnReleased { get; } = new();
 
-        public SkillSequence Current { get; set; }
+        public SkillComponent Current { get; set; }
         public FloatEvent GlobalCoolTimeProgress { get; } = new(0, float.MaxValue);
-        public List<SkillSequence> SkillList => skillList;
+        public List<SkillComponent> SkillList => skillList;
 
         [ShowInInspector]
         public bool IsSkillEnded => Current.IsNullOrEmpty() || Current.IsEnded;
         public bool IsGlobalCooling => GlobalCoolTimeProgress.Value != 0f;
 
 
-        public SkillSequence GetSkill(DataIndex actionCode)
+        public SkillComponent GetSkill(DataIndex actionCode)
         {
             return skillList.Find(item => item.ActionCode == actionCode);
         }
         
-        public bool IsAble(SkillSequence skill) => Conditions.IsAllTrue && skill.Conditions.IsAllTrue;
+        public bool IsAble(SkillComponent skill) => Conditions.IsAllTrue && skill.Conditions.IsAllTrue;
         
         public void Active(DataIndex actionCode, Vector3 targetPosition)
         {
@@ -52,7 +52,7 @@ namespace Common.Characters.Behaviours
             Active(skill, targetPosition);
         }
 
-        public void Active(SkillSequence skill, Vector3 targetPosition)
+        public void Active(SkillComponent skill, Vector3 targetPosition)
         {
             if (!IsAble(skill)) return;
             
@@ -80,9 +80,9 @@ namespace Common.Characters.Behaviours
             OnReleased.Invoke();
         }
 
-        public bool TryGetMostPrioritySkill(out SkillSequence skill)
+        public bool TryGetMostPrioritySkill(out SkillComponent skill)
         {
-            SkillSequence result = null;
+            SkillComponent result = null;
             
             foreach (var skillComponent in SkillList)
             {

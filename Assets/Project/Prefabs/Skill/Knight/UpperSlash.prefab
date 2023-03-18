@@ -73,8 +73,9 @@ GameObject:
   - component: {fileID: 234500611213636336}
   - component: {fileID: 9094432963895350988}
   - component: {fileID: 7007700515099946099}
-  - component: {fileID: 6638601734450639617}
-  - component: {fileID: 7244589487955510195}
+  - component: {fileID: 963758727364295140}
+  - component: {fileID: 2463293862878710345}
+  - component: {fileID: 2365266087017319703}
   m_Layer: 0
   m_Name: UpperSlash
   m_TagString: Untagged
@@ -123,11 +124,8 @@ MonoBehaviour:
   icon: {fileID: 21300000, guid: 5bb14a259eefff541a510382c2530229, type: 3}
   description: Starts combat by attacking a target with a melee weapon.
   isRigid: 0
-  coolTime: 7
-  cost: 0
   animationKey: upperSlash
   progressTime: 0
-  directHitEvent: {fileID: 7007700515099946099}
 --- !u!114 &7007700515099946099
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -140,11 +138,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 53c1327179b64ee489b48e7d271d4020, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  skillSequence: {fileID: 9094432963895350988}
-  completionList:
-  - {fileID: 6638601734450639617}
-  - {fileID: 7244589487955510195}
---- !u!114 &6638601734450639617
+--- !u!114 &963758727364295140
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -153,14 +147,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 8380361914805468174}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8e628f5df72c2e949ab8a5b0ef9dc17a, type: 3}
+  m_Script: {fileID: 11500000, guid: 910d8bb983b570146b7c330bb9a77e89, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   actionCode: 13000003
   damage:
     value: 48
     statCode: 1
---- !u!114 &7244589487955510195
+--- !u!114 &2463293862878710345
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -169,9 +163,23 @@ MonoBehaviour:
   m_GameObject: {fileID: 8380361914805468174}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 75e87109fe881904d8926813d4540676, type: 3}
+  m_Script: {fileID: 11500000, guid: 714e87efbca5f5e47a36249aecf0b6f2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   actionCode: 14000002
   prefabReference: {fileID: 8333227002716821657, guid: 5d2fb8c7eb66cd742b1e14925d73c808, type: 3}
   poolCapacity: 8
+--- !u!114 &2365266087017319703
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8380361914805468174}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c558f34805c58af41b9759b2ae5634bd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  startCoolingMoment: 1
+  coolTime: 7

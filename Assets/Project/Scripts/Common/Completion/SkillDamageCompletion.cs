@@ -1,22 +1,20 @@
+using Common.Skills;
 using UnityEngine;
 
 namespace Common.Completion
 {
-    public class DamageCompletion : CollidingCompletion, IEditable
+    public class SkillDamageCompletion : MonoBehaviour, IEditable
     {
+        [SerializeField] private DataIndex actionCode;
         [SerializeField] private PowerValue damage = new();
-
-        public StatTable StatTable { get; } = new();
         
+        private SkillComponent skillComponent;
+        
+        private StatTable StatTable { get; } = new();
+        private ICombatProvider Provider => skillComponent.Cb;
 
-        public void UpdateStatTable()
-        {
-            StatTable.Clear();
-            StatTable.Register(actionCode, damage);
-            StatTable.UnionWith(Provider.StatTable);
-        }
 
-        public override void Completion(ICombatTaker taker) => Completion(taker, 1.0f);
+        public void Completion(ICombatTaker taker) => Completion(taker, 1.0f);
         public void Completion(ICombatTaker taker, float instantMultiplier)
         {
             if (!taker.DynamicStatEntry.Alive.Value) return;
@@ -54,22 +52,36 @@ namespace Common.Completion
             Provider.OnDamageProvided.Invoke(entity);
             taker.OnDamageTaken.Invoke(entity);
         }
+        
+        
+        private void UpdateStatTable()
+        {
+            StatTable.Clear();
+            StatTable.Register(actionCode, damage);
+            StatTable.UnionWith(Provider.StatTable);
+        }
 
-        public void SetDamage(float value) => damage.Value = value;
+        private void Awake()
+        {
+            if (!TryGetComponent(out skillComponent))
+            {
+                Debug.LogError("Require SkillComponent In Same Inspector");
+            }
+            
+            skillComponent.OnCompletion.Register("Damage", Completion);
+        }
 
 
 #if UNITY_EDITOR
         public void EditorSetUp()
         {
-            var dataIndexer = GetComponent<IDataIndexer>();
-
-            if (dataIndexer is null || dataIndexer.ActionCode is DataIndex.None)
+            if (!TryGetComponent(out skillComponent))
             {
-                Debug.Log("Require IDataIndexer in GameObject");
-                return;
+                Debug.LogError("Require SkillComponent In Same Inspector");
             }
 
-            actionCode = dataIndexer.ActionCode;
+            actionCode   = skillComponent.ActionCode;
+            damage.Value = Database.SkillSheetData(actionCode).CompletionValueList[0];
         }
 #endif
     }

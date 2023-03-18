@@ -1,29 +1,20 @@
-using Common.Completion;
 using Common.Skills;
-using UnityEngine;
 
 namespace Monsters.Moragg.Skills
 {
-    public class MoraggLivingBomb : SkillSequence
+    public class MoraggLivingBomb : SkillComponent
     {
-        [SerializeField] private DeBuffCompletion livingBomb;
-
-        public override void OnAttack()
+        public override void MainAttack()
         {
             if (MainTarget is null) return;
-            
-            livingBomb.Completion(MainTarget);
+
+            Completion(MainTarget);
         }
         
 
         protected override void Initialize()
         {
-            livingBomb.Initialize(Cb);
-            
-            OnActivated.Register("PlayAnimation", PlayAnimation);
-            
-            OnCompleted.Register("MoraggLivingBomb", OnAttack);
-            OnCompleted.Register("StartCooling", StartCooling);
+            OnCompleted.Register("MoraggLivingBomb", MainAttack);
             OnCompleted.Register("EndCallback", End);
         }
     }

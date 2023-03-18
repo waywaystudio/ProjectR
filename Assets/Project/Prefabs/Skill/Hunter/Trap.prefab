@@ -72,6 +72,7 @@ GameObject:
   m_Component:
   - component: {fileID: 234500611213636336}
   - component: {fileID: 8592763601916381546}
+  - component: {fileID: 6662264705308858124}
   m_Layer: 0
   m_Name: Trap
   m_TagString: Untagged
@@ -120,7 +121,19 @@ MonoBehaviour:
   icon: {fileID: 21300000, guid: 2482dd41d4c9fcc44a20fb70153bb822, type: 3}
   description: Starts combat by attacking a target with a melee weapon.
   isRigid: 1
-  coolTime: 15
-  cost: 0
   animationKey: jump
   progressTime: 0
+--- !u!114 &6662264705308858124
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8380361914805468174}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c558f34805c58af41b9759b2ae5634bd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  startCoolingMoment: 1
+  coolTime: 15

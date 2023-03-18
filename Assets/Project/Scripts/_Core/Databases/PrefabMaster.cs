@@ -34,7 +34,7 @@ namespace Databases
         }
         
         
-        public bool Get(DataIndex index, out GameObject prefab)
+        public bool GetObject(DataIndex index, out GameObject prefab)
         {
             if (!PrefabTable.TryGetValue(index, out prefab))
             {
@@ -50,7 +50,7 @@ namespace Databases
             
             index.ForEach(x =>
             {
-                if (!Get(x, out var prefab)) return;
+                if (!GetObject(x, out var prefab)) return;
                 
                 result.Add(prefab);
             });

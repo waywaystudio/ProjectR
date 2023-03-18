@@ -5,7 +5,7 @@ using UnityEngine;
 
 namespace Adventurers.Knight.StatusEffect
 {
-    public class Bleed : StatusEffectSequence
+    public class Bleed : StatusEffectComponent
     {
         [SerializeField] protected DamageCompletion tickDamage;
         [SerializeField] protected float interval;
@@ -16,8 +16,7 @@ namespace Adventurers.Knight.StatusEffect
         public override void Initialize(ICombatProvider provider)
         {
             base.Initialize(provider);
-            
-            // tickDamage.Initialize(provider, ActionCode);
+
             tickDamage.Initialize(provider);
         }
         

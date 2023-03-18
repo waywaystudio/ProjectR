@@ -1,43 +1,20 @@
 using Common.Skills;
-using UnityEngine;
 // SkillMechanicEntity;
 
 namespace Character.Adventurers.Knight.Skills
 {
-    public class Bash : SkillSequence
+    public class Bash : SkillComponent
     {
-        [SerializeField] private DirectHitEvent directHitEvent;
-
-        protected override void Initialize()
-        {
-            directHitEvent.Initialize();
-
-            OnActivated.Register("StartCooling", StartCooling);
-            OnCompleted.Register("EndCallback", End);
-        }
-        
-        public override void OnAttack()
+        public override void MainAttack()
         {
             if (!TryGetTakersInSphere(this, out var takerList)) return;
         
-            takerList.ForEach(directHitEvent.Completion);
+            takerList.ForEach(Completion);
         }
-
-        protected override void Dispose()
+        
+        protected override void Initialize()
         {
-            base.Dispose();
-            
-            directHitEvent.Dispose();
+            OnCompleted.Register("EndCallback", End);
         }
-
-
-#if UNITY_EDITOR
-        public override void EditorSetUp()
-        {
-            base.EditorSetUp();
-
-            TryGetComponent(out directHitEvent);
-        }
-#endif
     }
 }

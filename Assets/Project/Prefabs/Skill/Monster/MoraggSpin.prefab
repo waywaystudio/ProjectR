@@ -73,6 +73,7 @@ GameObject:
   - component: {fileID: 234500611213636336}
   - component: {fileID: -6687176528768826702}
   - component: {fileID: 386900657837893818}
+  - component: {fileID: 3597284855680841089}
   m_Layer: 0
   m_Name: MoraggSpin
   m_TagString: Untagged
@@ -122,10 +123,10 @@ MonoBehaviour:
   icon: {fileID: 21300000, guid: fc4e83da78abc734b8dd9673f479ba4a, type: 3}
   description: Starts combat by attacking a target with a melee weapon.
   isRigid: 0
-  coolTime: 12
   cost: 0
   animationKey: casting
   progressTime: 3
+  coolTime: 12
   knockBackDistance: 5
   damage: {fileID: 0}
   projector: {fileID: 8959908313466980663}
@@ -145,6 +146,20 @@ MonoBehaviour:
   damage:
     value: 30
     statCode: 1
+--- !u!114 &3597284855680841089
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8380361914805468174}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c558f34805c58af41b9759b2ae5634bd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  coolingTargetAction: 4
+  coolTime: 12
 --- !u!1001 &8189305718710697496
 PrefabInstance:
   m_ObjectHideFlags: 0

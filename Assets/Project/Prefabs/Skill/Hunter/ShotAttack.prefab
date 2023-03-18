@@ -72,7 +72,8 @@ GameObject:
   m_Component:
   - component: {fileID: 234500611213636336}
   - component: {fileID: 671937298815967466}
-  - component: {fileID: 7701289761117660496}
+  - component: {fileID: 134586600652637011}
+  - component: {fileID: 7437017258072330440}
   m_Layer: 0
   m_Name: ShotAttack
   m_TagString: Untagged
@@ -121,12 +122,11 @@ MonoBehaviour:
   icon: {fileID: 21300000, guid: d67f720bb3783db43b6682b93885e2b5, type: 3}
   description: Starts combat by attacking a target with a melee weapon.
   isRigid: 0
-  coolTime: 0
   cost: 0
   animationKey: shotAttack
   progressTime: 0
-  damage: {fileID: 7701289761117660496}
---- !u!114 &7701289761117660496
+  coolTime: 0
+--- !u!114 &134586600652637011
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -135,7 +135,19 @@ MonoBehaviour:
   m_GameObject: {fileID: 8380361914805468174}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8e628f5df72c2e949ab8a5b0ef9dc17a, type: 3}
+  m_Script: {fileID: 11500000, guid: 53c1327179b64ee489b48e7d271d4020, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &7437017258072330440
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8380361914805468174}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 910d8bb983b570146b7c330bb9a77e89, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   actionCode: 13000015

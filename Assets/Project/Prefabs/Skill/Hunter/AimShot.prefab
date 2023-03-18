@@ -72,7 +72,8 @@ GameObject:
   m_Component:
   - component: {fileID: 234500611213636336}
   - component: {fileID: 3008013076941583783}
-  - component: {fileID: 6283077171958231575}
+  - component: {fileID: 6172509880453273305}
+  - component: {fileID: 7623086778811074887}
   m_Layer: 0
   m_Name: AimShot
   m_TagString: Untagged
@@ -121,12 +122,9 @@ MonoBehaviour:
   icon: {fileID: 21300000, guid: 125357d743831a743b704a4022fac076, type: 3}
   description: Starts combat by attacking a target with a melee weapon.
   isRigid: 0
-  coolTime: 18
-  cost: 0
   animationKey: aiming
   progressTime: 3
-  damage: {fileID: 6283077171958231575}
---- !u!114 &6283077171958231575
+--- !u!114 &6172509880453273305
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -135,10 +133,24 @@ MonoBehaviour:
   m_GameObject: {fileID: 8380361914805468174}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8e628f5df72c2e949ab8a5b0ef9dc17a, type: 3}
+  m_Script: {fileID: 11500000, guid: 910d8bb983b570146b7c330bb9a77e89, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   actionCode: 13000018
   damage:
     value: 50
     statCode: 1
+--- !u!114 &7623086778811074887
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8380361914805468174}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c558f34805c58af41b9759b2ae5634bd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  startCoolingMoment: 4
+  coolTime: 18
