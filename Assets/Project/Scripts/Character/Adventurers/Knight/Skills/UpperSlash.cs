@@ -1,42 +1,33 @@
-using Common.Completion;
 using Common.Skills;
 using UnityEngine;
 
 namespace Character.Adventurers.Knight.Skills
 {
-    public class UpperSlash : SkillComponent
+    public class UpperSlash : SkillSequence
     {
-        [SerializeField] private DamageCompletion damage;
-        [SerializeField] private DeBuffCompletion bleed;
-
-
-        protected void OnAttack()
+        [SerializeField] private DirectHitEvent directHitEvent;
+        
+        public override void OnAttack()
         {
             if (!TryGetTakersInSphere(this, out var takerList)) return;
-
-            takerList.ForEach(taker =>
-            {
-                damage.Damage(taker);
-                bleed.DeBuff(taker);
-            });
-        }
         
+            takerList.ForEach(directHitEvent.Completion);
+        }
+
+
         protected override void Initialize()
         {
-            damage.Initialize(Cb, ActionCode);
-            bleed.Initialize(Cb);
+            directHitEvent.Initialize();
 
-            OnActivated.Register("RegisterHitEvent", RegisterHitEvent);
             OnActivated.Register("StartCooling", StartCooling);
-            
-            OnHit.Register("UpperSlash", OnAttack);
             OnCompleted.Register("EndCallback", End);
-            OnEnded.Register("ReleaseHit", UnregisterHitEvent);
         }
 
         protected override void Dispose()
         {
-            // TODO. Unregister Sequence Events;
+            base.Dispose();
+            
+            directHitEvent.Dispose();
         }
 
 
@@ -44,18 +35,8 @@ namespace Character.Adventurers.Knight.Skills
         public override void EditorSetUp()
         {
             base.EditorSetUp();
-            
-            var skillData = Database.SkillSheetData(actionCode);
 
-            if (!TryGetComponent(out damage)) damage = gameObject.AddComponent<DamageCompletion>();
-
-            damage.SetDamage(skillData.CompletionValueList[0]);
-
-            Database.StatusEffectMaster.Get((DataIndex)skillData.StatusEffect, out var armorCrashObject);
-            
-            if (!TryGetComponent(out bleed)) bleed = gameObject.AddComponent<DeBuffCompletion>();
-
-            bleed.SetProperties(armorCrashObject, 16);
+            TryGetComponent(out directHitEvent);
         }
 #endif
     }

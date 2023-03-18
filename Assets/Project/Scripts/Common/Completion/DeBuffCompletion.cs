@@ -1,38 +1,46 @@
 using Common.StatusEffect;
 using UnityEngine;
+using UnityEngine.Pool;
 
 namespace Common.Completion
 {
-    public class DeBuffCompletion : Pool<StatusEffectComponent>
+    public class DeBuffCompletion : CollidingCompletion, IEditable
     {
-        private ICombatProvider provider;
-        private DataIndex statusCode;
+        [SerializeField] private GameObject prefabReference;
+        [SerializeField] private int poolCapacity;
 
-        public void Initialize(ICombatProvider provider)
+        private IObjectPool<StatusEffectSequence> pool;
+        
+        
+        public override void Initialize(ICombatProvider provider)
         {
-            this.provider = provider;
+            base.Initialize(provider);
             
-            prefab.TryGetComponent(out IStatusEffect statusEffectInfo);
-            statusCode = statusEffectInfo.ActionCode;
+            pool = new ObjectPool<StatusEffectSequence>(OnCreatePool,
+                null,
+                null,
+                (statusEffect) => statusEffect.Dispose(),
+                true,
+                poolCapacity);
         }
 
-        public void DeBuff(ICombatTaker taker)
+        public override void Completion(ICombatTaker taker)
         {
             if (!taker.DynamicStatEntry.Alive.Value) return;
             
             var targetTable = taker.DynamicStatEntry.DeBuffTable;
-            var key         = (provider, statusCode);
+            var key         = (provider: Provider, statusCode: actionCode);
 
             if (targetTable.ContainsKey(key))
             {
-                targetTable[key].OnOverride();
+                targetTable[key].Overriding();
             }
             
             else
             {
                 var effect = Get();
                 
-                effect.transform.SetParent(taker.StatusEffectHierarchy);
+                effect.transform.SetParent(taker.StatusEffectHierarchy, false);
                 effect.Execution(taker);
 
                 effect.Provider.OnDeBuffProvided.Invoke(effect);
@@ -40,35 +48,30 @@ namespace Common.Completion
             }
         }
 
-        
-        protected override StatusEffectComponent OnCreatePool()
+     
+        private StatusEffectSequence OnCreatePool()
         {
-            if (!prefab.IsNullOrEmpty() && Instantiate(prefab).TryGetComponent(out StatusEffectComponent component))
+            if (!prefabReference.IsNullOrEmpty() && Instantiate(prefabReference).TryGetComponent(out StatusEffectSequence component))
             {
-                component.Initialized(provider);
-
-                component.Pool = this;
+                component.Initialize(Provider);
+                component.OnEnded.Register("ReturnToPool", () => component.transform.SetParent(transform, false));
+                
                 return component;
             }
             
-            Debug.LogError($"Not Exist {nameof(StatusEffectComponent)} in prefab:{prefab.name}. return null");
+            Debug.LogError($"Not Exist {nameof(StatusEffectSequence)} in prefab:{prefabReference.name}. return null");
             return null;
         }
-
-        protected override void OnGetPool(StatusEffectComponent statusEffect)
-        {
-            statusEffect.gameObject.SetActive(true);
-        }
-
-        protected override void OnReleasePool(StatusEffectComponent statusEffect)
-        {
-            statusEffect.gameObject.SetActive(false);
-            statusEffect.transform.SetParent(Origin, false);
-        }
         
-        protected override void OnDestroyPool(StatusEffectComponent statusEffect)
+        private StatusEffectSequence Get() => pool.Get();
+
+
+#if UNITY_EDITOR
+        public void EditorSetUp()
         {
-            statusEffect.Disposed();
+            prefabReference.TryGetComponent(out IStatusEffect statusEffectInfo);
+            actionCode = statusEffectInfo.ActionCode;
         }
+#endif
     }
 }

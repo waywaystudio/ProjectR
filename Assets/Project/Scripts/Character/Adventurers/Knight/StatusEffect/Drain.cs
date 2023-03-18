@@ -1,30 +1,22 @@
-using System.Collections;
 using Common;
 using Common.StatusEffect;
 using UnityEngine;
 
 namespace Adventurers.Knight.StatusEffect
 {
-    public class Drain : StatusEffectComponent
+    public class Drain : StatusEffectSequence
     {
         [SerializeField] private float drainPercentage;
 
-        public override void Initialized(ICombatProvider provider)
+        public override void Initialize(ICombatProvider provider)
         {
-            base.Initialized(provider);
+            base.Initialize(provider);
             
             OnActivated.Register("DrainBuff",() => Provider.OnDamageProvided.Register("DrainBuff", DrainHp));
+            OnCanceled.Register("Dispel", () => Provider.OnDamageProvided.Unregister("DrainBuff"));
             OnCompleted.Register("Return", () => Provider.OnDamageProvided.Unregister("DrainBuff"));
         }
 
-        public override void Disposed()
-        {
-            OnActivated.Unregister("DrainBuff");
-            OnCompleted.Unregister("Return");
-            
-            Destroy(gameObject);
-        }
-        
 
         private void DrainHp(CombatEntity entity)
         {

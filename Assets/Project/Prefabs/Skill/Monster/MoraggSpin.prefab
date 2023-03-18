@@ -127,7 +127,7 @@ MonoBehaviour:
   animationKey: casting
   progressTime: 3
   knockBackDistance: 5
-  power: {fileID: 386900657837893818}
+  damage: {fileID: 0}
   projector: {fileID: 8959908313466980663}
 --- !u!114 &386900657837893818
 MonoBehaviour:
@@ -141,8 +141,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8e628f5df72c2e949ab8a5b0ef9dc17a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  power:
-    value: 50
+  actionCode: 13000006
+  damage:
+    value: 30
     statCode: 1
 --- !u!1001 &8189305718710697496
 PrefabInstance:

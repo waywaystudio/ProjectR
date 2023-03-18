@@ -1,35 +1,14 @@
 using Common.Completion;
 using Common.Skills;
 using UnityEngine;
-using UnityEngine.Serialization;
 
 namespace Character.Adventurers.Hunter.Skills
 {
-    public class AimShot : SkillComponent
+    public class AimShot : SkillSequence
     {
-        [FormerlySerializedAs("power")] [SerializeField] private DamageCompletion damage;
+        [SerializeField] private DamageCompletion damage;
         
-        protected override void PlayAnimation()
-        {
-            Cb.Animating.PlayOnce(animationKey);
-        }
-        
-        protected override void Initialize()
-        {
-            damage.Initialize(Cb, ActionCode);
-            
-            OnCompleted.Register("StartCooling", StartCooling);
-            OnCompleted.Register("OnAimShotAttack", OnAimShotAttack);
-            OnCompleted.Register("PlayEndChargingAnimation", PlayEndChargingAnimation);
-            OnCompleted.Register("StopProcess", StopProgression);
-        }
-
-        protected override void Dispose()
-        {
-            // TODO. Unregister Sequence Events;
-        }
-        
-        private void OnAimShotAttack()
+        public override void OnAttack()
         {
             // TODO. 현재 Test상 HitScan 방식이어서 이렇고, Projectile로 바뀌면 교체해야 함.
             var providerTransform = Cb.transform;
@@ -42,9 +21,25 @@ namespace Character.Adventurers.Hunter.Skills
                     targetLayer,
                     out var takerList)) return;
 
-            takerList.ForEach(damage.Damage);
+            takerList.ForEach(damage.Completion);
         }
         
+        
+        protected override void Initialize()
+        {
+            damage.Initialize(Cb);
+            
+            OnCompleted.Register("StartCooling", StartCooling);
+            OnCompleted.Register("OnAimShotAttack", OnAttack);
+            OnCompleted.Register("PlayEndChargingAnimation", PlayEndChargingAnimation);
+            OnCompleted.Register("StopProcess", StopProgression);
+        }
+        
+        protected override void PlayAnimation()
+        {
+            Cb.Animating.PlayOnce(animationKey);
+        }
+
         private void PlayEndChargingAnimation()
         {
             Cb.Animating.PlayOnce("heavyAttack", 0f, End);

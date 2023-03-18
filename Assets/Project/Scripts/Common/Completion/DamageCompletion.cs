@@ -2,36 +2,29 @@ using UnityEngine;
 
 namespace Common.Completion
 {
-    public class DamageCompletion : MonoBehaviour
+    public class DamageCompletion : CollidingCompletion, IEditable
     {
         [SerializeField] private PowerValue damage = new();
 
-        private ICombatProvider provider;
-        private DataIndex actionCode;
         public StatTable StatTable { get; } = new();
         
-        
-        public void Initialize(ICombatProvider provider, DataIndex actionCode)
-        {
-            this.provider   = provider;
-            this.actionCode = actionCode;
-        }
-        
+
         public void UpdateStatTable()
         {
             StatTable.Clear();
             StatTable.Register(actionCode, damage);
-            StatTable.UnionWith(provider.StatTable);
+            StatTable.UnionWith(Provider.StatTable);
         }
 
-        public void Damage(ICombatTaker taker)
+        public override void Completion(ICombatTaker taker) => Completion(taker, 1.0f);
+        public void Completion(ICombatTaker taker, float instantMultiplier)
         {
             if (!taker.DynamicStatEntry.Alive.Value) return;
             
             UpdateStatTable();
 
             var entity       = new CombatEntity(taker);
-            var damageAmount = StatTable.Power;
+            var damageAmount = StatTable.Power * instantMultiplier;
             
             // Critical Calculation : CombatFormula;
             if (CombatFormula.IsCritical(StatTable.Critical))
@@ -52,16 +45,31 @@ namespace Common.Completion
                 entity.Value                       -= taker.DynamicStatEntry.Hp.Value;
                 entity.IsFinishedAttack            =  true;
              
-                Debug.Log($"{taker.Name} dead by {provider.Name}'s {actionCode}");
+                Debug.Log($"{taker.Name} dead by {Provider.Name}'s {actionCode}");
                 taker.Dead();
             }
             
             taker.DynamicStatEntry.Hp.Value -= damageAmount;
 
-            provider.OnDamageProvided.Invoke(entity);
+            Provider.OnDamageProvided.Invoke(entity);
             taker.OnDamageTaken.Invoke(entity);
         }
 
         public void SetDamage(float value) => damage.Value = value;
+
+#if UNITY_EDITOR
+        public void EditorSetUp()
+        {
+            var dataIndexer = GetComponent<IDataIndexer>();
+
+            if (dataIndexer is null || dataIndexer.ActionCode is DataIndex.None)
+            {
+                Debug.Log("Require IDataIndexer in GameObject");
+                return;
+            }
+
+            actionCode = dataIndexer.ActionCode;
+        }
+#endif
     }
 }

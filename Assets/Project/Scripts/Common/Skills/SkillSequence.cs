@@ -7,7 +7,7 @@ using UnityEngine;
 
 namespace Common.Skills
 {
-    public abstract class SkillComponent : MonoBehaviour, ISequence, IDataIndexer, IEditable
+    public abstract class SkillSequence : MonoBehaviour, ISequence, IDataIndexer, IEditable
     {
         /* Common Attribution */
         [SerializeField] protected DataIndex actionCode;
@@ -36,16 +36,12 @@ namespace Common.Skills
         private Coroutine coolTimeRoutine;
 
         /* Sequence */
-        // OnInitialized
-        // [ShowInInspector] public ActionTable OnInitialized { get; } = new();
         [ShowInInspector] public ConditionTable Conditions { get; } = new();
         [ShowInInspector] public ActionTable OnActivated { get; } = new();
         [ShowInInspector] public ActionTable OnHit { get; } = new();
         [ShowInInspector] public ActionTable OnCanceled { get; } = new();
         [ShowInInspector] public ActionTable OnCompleted { get; } = new();
         [ShowInInspector] public ActionTable OnEnded { get; } = new();
-        // [ShowInInspector] public ActionTable OnDisposed { get; } = new();
-        // OnDisposed
 
         public SkillType SkillType => skillType;
         public bool IsRigid => isRigid;
@@ -69,9 +65,11 @@ namespace Common.Skills
         protected bool AbleToRelease => SkillType is not (SkillType.Instant or SkillType.Casting) && IsProgress;
 
         protected abstract void Initialize();
-        protected abstract void Dispose();
 
 
+        /// <summary>
+        /// 스킬 사용시 호출.
+        /// </summary>
         public void Execution(Vector3 targetPosition)
         {
             IsProgress = true;
@@ -85,20 +83,39 @@ namespace Common.Skills
             OnActivated.Invoke();
         }
 
+        
+        /// <summary>
+        /// 스킬 시퀀스 중에서 전투값을 대상에게 실제로 전달하는 함수.
+        /// 충돌 + 데미지 종류 + 상태이상 등이 있을 수 있다.
+        /// 스킬마다 호출되는 방법이 다르지만, 반드시 호출하는 곳이 있다.
+        /// </summary>
+        public virtual void OnAttack() { }
+
+        
+        /// <summary>
+        /// 플레이어가 시전 중 이동하거나 cc를 받아 기술 취소 시 호출. 
+        /// </summary>
         public void Cancellation()
         {
             IsProgress = false;
             
             OnCanceled.Invoke();
-            OnEnded.Invoke();
+            End();
         }
 
+        
+        /// <summary>
+        /// 버튼을 띌 때 호출되며 차징형 스킬에만 유효.
+        /// </summary>
         public void Release()
         {
             AbleToRelease.OnTrue(Complete);
         }
 
 
+        /// <summary>
+        /// 기술을 성공적으로 만료시 호출
+        /// </summary>
         protected void Complete()
         {
             IsProgress = false;
@@ -106,12 +123,25 @@ namespace Common.Skills
             OnCompleted.Invoke();
         }
 
+        
+        /// <summary>
+        /// 만료시 호출 (성공 실패 무관)
+        /// </summary>
         protected void End()
         {
             IsEnded = true;
                 
             Cb.Stop();
             OnEnded.Invoke();
+        }
+        
+        
+        /// <summary>
+        /// 씬 종료 혹은 SkillSequence GameObject가 꺼질 때 호출.
+        /// </summary>
+        protected virtual void Dispose()
+        {
+            this.Clear();
         }
 
 
@@ -144,23 +174,13 @@ namespace Common.Skills
             return Cb.DynamicStatEntry.Resource.Value >= cost;
         }
         
-        protected bool TryGetTakersInSphere(SkillComponent skill, out List<ICombatTaker> takerList) => (takerList = 
+        protected bool TryGetTakersInSphere(SkillSequence skill, out List<ICombatTaker> takerList) => (takerList = 
                 Cb.Colliding.GetTakersInSphereType(
                 skill.Cb.transform.position, 
                 skill.Range, 
                 skill.Angle, 
                 skill.TargetLayer)
             ).HasElement();
-        
-        protected void RegisterHitEvent()
-        {
-            Cb.Animating.OnHit.Register("SkillHit", OnHit.Invoke);
-        }
-
-        protected void UnregisterHitEvent()
-        {
-            Cb.Animating.OnHit.Unregister("SkillHit");
-        }
 
         private IEnumerator Cooling()
         {
@@ -243,6 +263,5 @@ namespace Common.Skills
                 : result;
         }
 #endif
-        
     }
 }

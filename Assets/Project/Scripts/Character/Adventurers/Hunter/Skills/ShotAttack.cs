@@ -1,16 +1,24 @@
 using Common.Completion;
 using Common.Skills;
 using UnityEngine;
-using UnityEngine.Serialization;
 
 namespace Character.Adventurers.Hunter.Skills
 {
-    public class ShotAttack : SkillComponent
+    public class ShotAttack : SkillSequence
     {
-        [FormerlySerializedAs("power")] [SerializeField] private DamageCompletion damage;
+        [SerializeField] private DamageCompletion damage;
+        
+        protected override void Initialize()
+        {
+            damage.Initialize(Cb);
 
-
-        protected void OnAttack()
+            OnActivated.Register("RegisterHitEvent", RegisterHitEvent);
+            OnHit.Register("SwordAttack", OnAttack);
+            OnCompleted.Register("EndCallback", End);
+            OnEnded.Register("ReleaseHit", UnregisterHitEvent);
+        }
+        
+        public override void OnAttack()
         {
             // TODO. 현재 Test상 HitScan 방식이어서 이렇고, Projectile로 바뀌면 교체해야 함.
             var providerTransform = Cb.transform;
@@ -23,24 +31,12 @@ namespace Character.Adventurers.Hunter.Skills
                     targetLayer,
                     out var takerList)) return;
 
-            takerList.ForEach(damage.Damage);
+            takerList.ForEach(damage.Completion);
         }
         
-        protected override void Initialize()
-        {
-            damage.Initialize(Cb, ActionCode);
-
-            OnActivated.Register("RegisterHitEvent", RegisterHitEvent);
-            OnHit.Register("SwordAttack", OnAttack);
-            OnCompleted.Register("EndCallback", End);
-            OnEnded.Register("ReleaseHit", UnregisterHitEvent);
-        }
-
-        protected override void Dispose()
-        {
-            // TODO. Unregister Sequence Events;
-        }
-
+        private void RegisterHitEvent() => Cb.Animating.OnHit.Register("SkillHit", OnHit.Invoke);
+        private void UnregisterHitEvent() => Cb.Animating.OnHit.Unregister("SkillHit");
+        
 
 #if UNITY_EDITOR
         public override void EditorSetUp()

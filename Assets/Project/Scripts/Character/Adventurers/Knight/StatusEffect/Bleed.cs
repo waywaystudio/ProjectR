@@ -5,7 +5,7 @@ using UnityEngine;
 
 namespace Adventurers.Knight.StatusEffect
 {
-    public class Bleed : StatusEffectComponent
+    public class Bleed : StatusEffectSequence
     {
         [SerializeField] protected DamageCompletion tickDamage;
         [SerializeField] protected float interval;
@@ -13,11 +13,12 @@ namespace Adventurers.Knight.StatusEffect
         private float hasteWeight;
         private float tickBuffer;
         
-        public override void Initialized(ICombatProvider provider)
+        public override void Initialize(ICombatProvider provider)
         {
-            base.Initialized(provider);
+            base.Initialize(provider);
             
-            tickDamage.Initialize(provider, ActionCode);
+            // tickDamage.Initialize(provider, ActionCode);
+            tickDamage.Initialize(provider);
         }
         
         public override void Execution(ICombatTaker taker)
@@ -40,7 +41,7 @@ namespace Adventurers.Knight.StatusEffect
                 }
                 else
                 {
-                    tickDamage.Damage(Taker);
+                    tickDamage.Completion(Taker);
                     tickBuffer = hasteWeight;
                 }
             }

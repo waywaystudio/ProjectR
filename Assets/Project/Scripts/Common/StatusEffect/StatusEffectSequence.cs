@@ -2,14 +2,13 @@ using UnityEngine;
 
 namespace Common.StatusEffect
 {
-    public abstract class StatusEffectComponent : MonoBehaviour, ISequence ,IPoolable<StatusEffectComponent>, IStatusEffect, IEditable
+    public abstract class StatusEffectSequence : MonoBehaviour, ISequence ,IStatusEffect, IEditable
     {
         [SerializeField] protected DataIndex statusCode;
         [SerializeField] protected StatusEffectType type;
         [SerializeField] protected Sprite icon;
         [SerializeField] protected float duration;
 
-        public Pool<StatusEffectComponent> Pool { get; set; }
         public ICombatProvider Provider { get; protected set; }
         public DataIndex ActionCode => statusCode;
         public Sprite Icon => icon;
@@ -20,13 +19,14 @@ namespace Common.StatusEffect
         public ActionTable OnCanceled { get; } = new();
         public ActionTable OnCompleted { get; } = new();
         public ActionTable OnEnded { get; } = new();
-        
+
         protected ICombatTaker Taker { get; set; }
 
         /// <summary>
         /// Scene 시작과 함께 한 번 호출.
+        /// 보통 SkillSequence에 StatusCompletion으로 부터 호출 됨.
         /// </summary>
-        public virtual void Initialized(ICombatProvider provider)
+        public virtual void Initialize(ICombatProvider provider)
         {
             Provider = provider;
             
@@ -43,6 +43,7 @@ namespace Common.StatusEffect
             enabled            = true;
             ProgressTime.Value = duration;
 
+            gameObject.SetActive(true);
             OnActivated.Invoke();
         }
         
@@ -50,7 +51,7 @@ namespace Common.StatusEffect
         /// <summary>
         /// 이미 효과를 가진 경우 호출.
         /// </summary>
-        public virtual void OnOverride()
+        public virtual void Overriding()
         {
             ProgressTime.Value += duration;
         }
@@ -59,7 +60,7 @@ namespace Common.StatusEffect
         /// <summary>
         /// 해제 시 호출. (만료 아님)
         /// </summary>
-        public void Cancellation()
+        public void Dispel()
         {
             OnCanceled.Invoke();
             
@@ -70,8 +71,10 @@ namespace Common.StatusEffect
         /// <summary>
         /// Scene이 종료되거나, 설정된 Pool 개수를 넘어서 생성된 상태이상효과가 만료될 때 호출
         /// </summary>
-        public virtual void Disposed()
+        public virtual void Dispose()
         {
+            this.Clear();
+            
             Destroy(gameObject);
         }
 
@@ -88,7 +91,7 @@ namespace Common.StatusEffect
         
         
         /// <summary>
-        /// 성공 실패와 관계없이 호출
+        /// 만료시 호출 (성공 실패와 무관)
         /// </summary>
         protected void End()
         {
@@ -99,8 +102,8 @@ namespace Common.StatusEffect
             targetTable.Unregister(this);
 
             OnEnded.Invoke();
-            Pool.Release(this);
             enabled = false;
+            gameObject.SetActive(false);
         }
 
 

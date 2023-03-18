@@ -7,46 +7,36 @@ using UnityEngine;
 
 namespace Monsters.Moragg.StatusEffect
 {
-    public class LivingBomb : StatusEffectComponent
+    public class LivingBomb : StatusEffectSequence
     {
+        [SerializeField] private SphereProjector projector;
         [SerializeField] private DamageCompletion tickDamage;
-        [SerializeField] private DamageCompletion bombDamage;
-        [SerializeField] private float interval;
+        [SerializeField] private CollidingSystem collidingSystem;
         
+        [SerializeField] private float interval;
         [SerializeField] private float radius = 12f;
         [SerializeField] private float stunDuration = 5f;
-        [SerializeField] private CollidingSystem collidingSystem;
         [SerializeField] private LayerMask adventurerLayer;
-        [SerializeField] private SphereProjector projector;
         
         private float hasteWeight;
         private float tickBuffer;
         
 
-        public override void Initialized(ICombatProvider provider)
+        public override void Initialize(ICombatProvider provider)
         {
-            base.Initialized(provider);
+            base.Initialize(provider);
             
-            tickDamage.Initialize(provider, ActionCode);
-            bombDamage.Initialize(provider, ActionCode);
-            projector.Initialize(0.25f, radius);
-            projector.AssignTo(this);
+            // tickDamage.Initialize(provider, ActionCode);
+            tickDamage.Initialize(provider);
+            projector.Initialize(Duration, radius, this);
+            
+            OnActivated.Register("SetHasteWeight", SetHasteWeight);
             OnCompleted.Register("Bomb", Bomb);
         }
-
-        public override void Execution(ICombatTaker taker)
-        {
-            base.Execution(taker);
-            
-            hasteWeight = tickBuffer = 
-                interval * CharacterUtility.GetHasteValue(Provider.StatTable.Haste);
-            
-            projector.SetTaker(taker);
-        }
         
-        public override void Disposed()
+        public override void Dispose()
         {
-            OnCompleted.Unregister("Bomb");
+            projector.Dispose();
             
             Destroy(gameObject);
         }
@@ -62,14 +52,16 @@ namespace Monsters.Moragg.StatusEffect
                 adventurerLayer,
                 out var takerList
             );
-            
-            // TODO. 함수 구조를 수정하여 데미지 주는 주객 순서와 기절의 주객 순서를 통일하면 좋겠다.
+
             takerList.ForEach(taker =>
             {
-                bombDamage.Damage(taker);
+                tickDamage.Completion(taker, 5f);
                 taker.Stun(stunDuration);
             });
         }
+        
+        private void SetHasteWeight() => hasteWeight = tickBuffer = 
+            interval * CharacterUtility.GetHasteValue(Provider.StatTable.Haste);
 
         private void Update()
         {
@@ -82,7 +74,7 @@ namespace Monsters.Moragg.StatusEffect
                 }
                 else
                 {
-                    tickDamage.Damage(Taker);
+                    tickDamage.Completion(Taker);
                     tickBuffer = hasteWeight;
                 }
             }

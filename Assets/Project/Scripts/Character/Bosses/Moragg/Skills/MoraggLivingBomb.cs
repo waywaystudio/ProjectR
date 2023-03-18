@@ -4,36 +4,27 @@ using UnityEngine;
 
 namespace Monsters.Moragg.Skills
 {
-    public class MoraggLivingBomb : SkillComponent
+    public class MoraggLivingBomb : SkillSequence
     {
         [SerializeField] private DeBuffCompletion livingBomb;
 
+        public override void OnAttack()
+        {
+            if (MainTarget is null) return;
+            
+            livingBomb.Completion(MainTarget);
+        }
+        
 
         protected override void Initialize()
         {
             livingBomb.Initialize(Cb);
             
             OnActivated.Register("PlayAnimation", PlayAnimation);
-            OnActivated.Register("RegisterHitEvent", RegisterHitEvent);
             
-            OnHit.Register("MoraggLivingBomb", OnAttack);
-
+            OnCompleted.Register("MoraggLivingBomb", OnAttack);
             OnCompleted.Register("StartCooling", StartCooling);
             OnCompleted.Register("EndCallback", End);
-            
-            OnEnded.Register("ReleaseHit", UnregisterHitEvent);
-        }
-
-        protected override void Dispose()
-        {
-            // TODO. Unregister Sequence Events;
-        }
-        
-        private void OnAttack()
-        {
-            if (MainTarget is null) return;
-            
-            livingBomb.DeBuff(MainTarget);
         }
     }
 }

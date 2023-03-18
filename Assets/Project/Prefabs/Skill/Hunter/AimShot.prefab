@@ -125,7 +125,7 @@ MonoBehaviour:
   cost: 0
   animationKey: aiming
   progressTime: 3
-  power: {fileID: 6283077171958231575}
+  damage: {fileID: 6283077171958231575}
 --- !u!114 &6283077171958231575
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -138,6 +138,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8e628f5df72c2e949ab8a5b0ef9dc17a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  power:
+  actionCode: 13000018
+  damage:
     value: 50
     statCode: 1

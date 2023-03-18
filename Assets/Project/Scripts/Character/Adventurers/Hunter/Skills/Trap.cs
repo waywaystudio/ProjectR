@@ -2,7 +2,7 @@ using Common.Skills;
 
 namespace Character.Adventurers.Hunter.Skills
 {
-    public class Trap : SkillComponent
+    public class Trap : SkillSequence
     {
         // TODO. Require TrapType Projectile
 
@@ -14,10 +14,6 @@ namespace Character.Adventurers.Hunter.Skills
             OnCompleted.Register("EndCallback", End);
         }
 
-        protected override void Dispose()
-        {
-            // TODO. Unregister Sequence Events;
-        }
 
         private void Jump()
         {

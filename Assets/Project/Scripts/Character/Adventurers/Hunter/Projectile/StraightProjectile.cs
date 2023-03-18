@@ -19,7 +19,8 @@ namespace Adventurers.Hunter.Projectile
         public override void Initialize(ICombatProvider provider)
         {
             Provider = provider;
-            damage.Initialize(Provider, ActionCode);
+            damage.Initialize(Provider);
+            // damage.Initialize(Provider, ActionCode);
         }
         
         protected void Flying(Vector3 destination)
@@ -38,7 +39,7 @@ namespace Adventurers.Hunter.Projectile
         {
             if (other.gameObject.IsInLayerMask(targetLayer) && other.TryGetComponent(out ICombatTaker taker))
             {
-                damage.Damage(taker);
+                damage.Completion(taker);
             }
         }
     }

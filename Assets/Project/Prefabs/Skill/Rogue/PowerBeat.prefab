@@ -71,10 +71,11 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 234500611213636336}
-  - component: {fileID: 7570178509490912204}
+  - component: {fileID: 1819389450473921400}
+  - component: {fileID: 6225999304902944521}
   - component: {fileID: 7701289761117660496}
   m_Layer: 0
-  m_Name: Liberation
+  m_Name: PowerBeat
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -97,7 +98,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &7570178509490912204
+--- !u!114 &1819389450473921400
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -106,25 +107,41 @@ MonoBehaviour:
   m_GameObject: {fileID: 8380361914805468174}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ec952cc3b4dcb35468b67f38113e6b58, type: 3}
+  m_Script: {fileID: 11500000, guid: 237af5b7bc0d83740b88abcbb992c404, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  actionCode: 13000013
+  actionCode: 13000012
   skillType: 1
-  priority: 3
-  range: 0
-  angle: 0
+  priority: 2
+  range: 7
+  angle: 90
   sortingType: 0
   targetLayer:
     serializedVersion: 2
-    m_Bits: 128
-  icon: {fileID: 21300000, guid: 40f7257cd353b9143b22df354bf239eb, type: 3}
+    m_Bits: 256
+  icon: {fileID: 21300000, guid: 006fa58004d237949b4cfee98db90909, type: 3}
   description: Starts combat by attacking a target with a melee weapon.
   isRigid: 0
-  coolTime: 12
+  coolTime: 6
   cost: 0
-  animationKey: liberation
+  animationKey: powerBeat
   progressTime: 0
+  directHitEvent: {fileID: 6225999304902944521}
+--- !u!114 &6225999304902944521
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8380361914805468174}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 53c1327179b64ee489b48e7d271d4020, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  skillSequence: {fileID: 1819389450473921400}
+  completionList:
+  - {fileID: 7701289761117660496}
 --- !u!114 &7701289761117660496
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -137,6 +154,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8e628f5df72c2e949ab8a5b0ef9dc17a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  power:
+  actionCode: 13000012
+  damage:
     value: 10
     statCode: 1

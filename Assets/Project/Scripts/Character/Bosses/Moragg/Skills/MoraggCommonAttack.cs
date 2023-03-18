@@ -1,37 +1,35 @@
-using Common.Completion;
 using Common.Skills;
 using UnityEngine;
 
 namespace Character.Bosses.Moragg.Skills
 {
-    public class MoraggCommonAttack : SkillComponent
+    public class MoraggCommonAttack : SkillSequence
     {
-        [SerializeField] protected DamageCompletion damage;
-        [SerializeField] protected DeBuffCompletion armorCrash;
+        [SerializeField] private DirectHitEvent directHitEvent;
+        
+        public override void OnAttack()
+        {
+            if (MainTarget is null) return;
+
+            directHitEvent.Completion(MainTarget);
+        }
         
 
         protected override void Initialize()
         {
-            damage.Initialize(Cb, ActionCode);
-            armorCrash.Initialize(Cb);
+            directHitEvent.Initialize();
 
-            OnActivated.Register("PlayAnimation", PlayAnimation);
-            OnActivated.Register("RegisterHitEvent", RegisterHitEvent);
-            
-            OnHit.Register("MoraggCommonAttack", OnAttack);
             OnCompleted.Register("EndCallback", End);
-            OnEnded.Register("ReleaseHit", UnregisterHitEvent);
-        }
-
-        protected override void Dispose()
-        {
-            // TODO. Unregister Sequence Events;
         }
         
-        private void OnAttack()
+        
+#if UNITY_EDITOR
+        public override void EditorSetUp()
         {
-            damage.Damage(MainTarget);
-            armorCrash.DeBuff(MainTarget);
+            base.EditorSetUp();
+
+            TryGetComponent(out directHitEvent);
         }
+#endif
     }
 }

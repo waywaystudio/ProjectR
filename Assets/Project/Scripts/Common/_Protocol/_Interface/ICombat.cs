@@ -28,7 +28,7 @@ namespace Common
         FloatEvent ProgressTime { get; }
         Sprite Icon { get; }
 
-        void OnOverride();
+        void Overriding();
     }
 
     public interface ICombatEntity

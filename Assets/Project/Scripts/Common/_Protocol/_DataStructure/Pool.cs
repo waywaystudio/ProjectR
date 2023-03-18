@@ -40,7 +40,6 @@ namespace Common
                 maxCount);
         }
 
-
         public void SetProperties(GameObject prefab, int maxCount)
         {
             this.prefab   = prefab;

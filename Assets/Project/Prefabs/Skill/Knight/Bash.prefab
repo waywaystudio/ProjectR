@@ -72,6 +72,7 @@ GameObject:
   m_Component:
   - component: {fileID: 234500611213636336}
   - component: {fileID: 1416249181191727617}
+  - component: {fileID: 6582650851353798731}
   - component: {fileID: 6638601734450639617}
   - component: {fileID: 7244589487955510195}
   m_Layer: 0
@@ -126,8 +127,23 @@ MonoBehaviour:
   cost: 0
   animationKey: bash
   progressTime: 0
-  power: {fileID: 6638601734450639617}
-  armorCrash: {fileID: 7244589487955510195}
+  directHitEvent: {fileID: 6582650851353798731}
+--- !u!114 &6582650851353798731
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8380361914805468174}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 53c1327179b64ee489b48e7d271d4020, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  skillSequence: {fileID: 1416249181191727617}
+  completionList:
+  - {fileID: 6638601734450639617}
+  - {fileID: 7244589487955510195}
 --- !u!114 &6638601734450639617
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -140,7 +156,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8e628f5df72c2e949ab8a5b0ef9dc17a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  power:
+  actionCode: 13000002
+  damage:
     value: 30
     statCode: 1
 --- !u!114 &7244589487955510195
@@ -155,5 +172,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 75e87109fe881904d8926813d4540676, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  prefab: {fileID: 8333227002716821657, guid: b8a0db4494b80d1418934391f99ec561, type: 3}
-  maxCount: 16
+  actionCode: 14000001
+  prefabReference: {fileID: 8333227002716821657, guid: b8a0db4494b80d1418934391f99ec561, type: 3}
+  poolCapacity: 8

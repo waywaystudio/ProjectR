@@ -72,6 +72,7 @@ GameObject:
   m_Component:
   - component: {fileID: 234500611213636336}
   - component: {fileID: 5452852995274357231}
+  - component: {fileID: 1672536105734440328}
   - component: {fileID: 6638601734450639617}
   m_Layer: 0
   m_Name: ThunderClap
@@ -125,7 +126,22 @@ MonoBehaviour:
   cost: 0
   animationKey: thunderClap
   progressTime: 0
-  power: {fileID: 6638601734450639617}
+  directHitEvent: {fileID: 1672536105734440328}
+--- !u!114 &1672536105734440328
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8380361914805468174}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 53c1327179b64ee489b48e7d271d4020, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  skillSequence: {fileID: 5452852995274357231}
+  completionList:
+  - {fileID: 6638601734450639617}
 --- !u!114 &6638601734450639617
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -138,6 +154,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8e628f5df72c2e949ab8a5b0ef9dc17a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  power:
+  actionCode: 13000004
+  damage:
     value: 15
     statCode: 1

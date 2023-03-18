@@ -4,24 +4,16 @@ using UnityEngine;
 
 namespace Adventurers.Knight.StatusEffect
 {
-    public class ArmorCrash : StatusEffectComponent
+    public class ArmorCrash : StatusEffectSequence
     {
         [SerializeField] private ArmorValue armorValue;
 
-        public override void Initialized(ICombatProvider provider)
+        public override void Initialize(ICombatProvider provider)
         {
-            base.Initialized(provider);
+            base.Initialize(provider);
             
             OnActivated.Register("StatTableRegister", () => Taker.StatTable.Register(ActionCode, armorValue));
             OnCompleted.Register("Return", () => Taker.StatTable.Unregister(ActionCode, armorValue));
-        }
-
-        public override void Disposed()
-        {
-            OnActivated.Unregister("StatTableRegister");
-            OnCompleted.Unregister("Return");
-            
-            Destroy(gameObject);
         }
 
 

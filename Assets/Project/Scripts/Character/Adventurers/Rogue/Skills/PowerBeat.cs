@@ -1,40 +1,33 @@
-using Common.Completion;
 using Common.Skills;
 using UnityEngine;
-using UnityEngine.Serialization;
 
 namespace Character.Adventurers.Rogue.Skills
 {
-    public class PowerBeat : SkillComponent
+    public class PowerBeat : SkillSequence
     {
-        [FormerlySerializedAs("power")] [SerializeField] private DamageCompletion damage;
-
-
-        protected void OnAttack()
+        [SerializeField] private DirectHitEvent directHitEvent;
+        
+        public override void OnAttack()
         {
             if (!TryGetTakersInSphere(this, out var takerList)) return;
-
-            takerList.ForEach(taker =>
-            {
-                damage.Damage(taker);
-            });
+        
+            takerList.ForEach(directHitEvent.Completion);
         }
         
+
         protected override void Initialize()
         {
-            damage.Initialize(Cb, ActionCode);
+            directHitEvent.Initialize();
 
-            OnActivated.Register("RegisterHitEvent", RegisterHitEvent);
             OnActivated.Register("StartCooling", StartCooling);
-            
-            OnHit.Register("PowerBeat", OnAttack);
             OnCompleted.Register("EndCallback", End);
-            OnEnded.Register("ReleaseHit", UnregisterHitEvent);
         }
 
         protected override void Dispose()
         {
-            // TODO. Unregister Sequence Events;
+            base.Dispose();
+            
+            directHitEvent.Dispose();
         }
 
 
@@ -42,12 +35,8 @@ namespace Character.Adventurers.Rogue.Skills
         public override void EditorSetUp()
         {
             base.EditorSetUp();
-            
-            var skillData = Database.SkillSheetData(actionCode);
 
-            if (!TryGetComponent(out damage)) damage = gameObject.AddComponent<DamageCompletion>();
-
-            damage.SetDamage(skillData.CompletionValueList[0]);
+            TryGetComponent(out directHitEvent);
         }
 #endif
     }

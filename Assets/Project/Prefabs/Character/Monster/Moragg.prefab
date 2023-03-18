@@ -1147,6 +1147,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 4723975105097867993}
     - target: {fileID: -6687176528768826702, guid: 4ae3fbab6c1c1ed48bbe37492124f254, type: 3}
+      propertyPath: damage
+      value: 
+      objectReference: {fileID: 2002782247172268347}
+    - target: {fileID: -6687176528768826702, guid: 4ae3fbab6c1c1ed48bbe37492124f254, type: 3}
       propertyPath: colliding
       value: 
       objectReference: {fileID: 0}
@@ -1216,6 +1220,17 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4ae3fbab6c1c1ed48bbe37492124f254, type: 3}
+--- !u!114 &2002782247172268347 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 386900657837893818, guid: 4ae3fbab6c1c1ed48bbe37492124f254, type: 3}
+  m_PrefabInstance: {fileID: 2203882884427909505}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8e628f5df72c2e949ab8a5b0ef9dc17a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &2149587970378939249 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 234500611213636336, guid: 4ae3fbab6c1c1ed48bbe37492124f254, type: 3}

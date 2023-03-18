@@ -60,7 +60,7 @@ public static class GameObjectExtension
 
     public static bool IsNullOrEmpty(this GameObject gameObject)
     {
-        return gameObject == null || gameObject.activeSelf == false;
+        return gameObject == null || !gameObject.activeSelf;
     }
         
     public static bool IsNullOrDestroyed(this object obj)
@@ -71,6 +71,11 @@ public static class GameObjectExtension
             Object o => o == null,
             _        => false
         };
+    }
+
+    public static bool HasObject(this GameObject gameObject)
+    {
+        return gameObject is not null && gameObject.activeSelf;
     }
 
     public static bool IsNullOrEmpty(this Component component)
