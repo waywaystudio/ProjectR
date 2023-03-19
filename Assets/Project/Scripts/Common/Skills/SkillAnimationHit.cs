@@ -5,18 +5,15 @@ using UnityEngine;
 namespace Common.Skills
 {
     [RequireComponent(typeof(SkillComponent))]
-    public class DirectHitEvent : MonoBehaviour
+    public class SkillAnimationHit : MonoBehaviour
     {
-        // [SerializeField] private List<CollidingCompletion> completionList;
-
+#if UNITY_EDITOR
+        private string scriptDescription;
+#endif
+        
         private CharacterBehaviour cb;
         
         protected CharacterBehaviour Cb => cb ??= GetComponentInParent<CharacterBehaviour>();
-
-        // private void Completion(ICombatTaker taker)
-        // {
-        //     completionList.ForEach(completion => completion.Completion(taker));
-        // }
 
         private void RegisterHitEvent(Action mainAction) => Cb.Animating.OnHit.Register("SkillHit", mainAction.Invoke);
         private void UnregisterHitEvent() => Cb.Animating.OnHit.Unregister("SkillHit");
@@ -27,9 +24,6 @@ namespace Common.Skills
 
             skill.OnActivated.Register("RegisterHitEvent", () => RegisterHitEvent(skill.MainAttack));
             skill.OnEnded.Register("ReleaseHit", UnregisterHitEvent);
-
-            // skill.OnCompletion.Register("Completion", Completion);
-            // completionList.ForEach(completion => completion.Initialize(Cb));
         }
     }
 }

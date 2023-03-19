@@ -1,3 +1,4 @@
+using Common.Skills;
 using Common.UI;
 using UnityEngine;
 
@@ -16,7 +17,7 @@ namespace Common.Characters.UI.CastingFrames
         {
             var currentSkill = Cb.SkillBehaviour.Current;
             
-            if (currentSkill.IsNullOrEmpty() || currentSkill.CastingProgress.Value == 0.0f)
+            if (currentSkill.IsNullOrEmpty() || !currentSkill.TryGetComponent(out SkillProcess process))
             {
                 castingBar.Unregister();
                 castingObject.SetActive(false);
@@ -24,7 +25,7 @@ namespace Common.Characters.UI.CastingFrames
             }
             
             castingObject.gameObject.SetActive(true);
-            castingBar.Register(currentSkill.CastingProgress, currentSkill.ProgressTime);
+            castingBar.Register(process.CastingProgress, process.ProcessTime);
             
             currentSkill.OnCompleted.Register("HideCastingUI", Hide);
             currentSkill.OnCanceled.Register("HideCastingUI", Hide);

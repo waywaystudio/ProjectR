@@ -1,4 +1,3 @@
-using Common.Completion;
 using Common.Projectors;
 using Common.Skills;
 using UnityEngine;
@@ -27,17 +26,14 @@ namespace Character.Bosses.Moragg.Skills
         {
             Cb.Animating.PlayLoop(animationKey);
         }
-        
+
         protected override void Initialize()
         {
-            projector.Initialize(progressTime, range, this);
-
-            OnActivated.Register("StartProgress", () => StartProgression(Complete));
+            // TODO. Projector.Initialize 에서 CastingTime을 받아오면 안되고, Active 에서 받아야 한다.
+            projector.Initialize(3f, range, this);
 
             OnCompleted.Register("MoraggSpinAttack", MainAttack);
             OnCompleted.Register("PlayEndCastingAnimation", PlayEndCastingAnimation);
-
-            OnEnded.Register("StopProgress", StopProgression);
         }
 
         private void PlayEndCastingAnimation()

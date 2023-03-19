@@ -56,6 +56,16 @@ namespace Common.StatusEffect
         {
             ProgressTime.Value += duration;
         }
+
+
+        /// <summary>
+        /// 대상에게 데미지 or 스탯변화 or cc를 주는 행위
+        /// DamageCompletion, DeBuffCompletion 등의 컴포넌트에서 실제 내용이 구현된다.
+        /// </summary>
+        public void Completion(ICombatTaker taker)
+        {
+            OnCompletion.Invoke(taker);
+        }
         
 
         /// <summary>

@@ -33,6 +33,7 @@ namespace Common.Skills
             if (!TryGetComponent(out SkillComponent skill))
             {
                 Debug.LogError("Require SKillComponent");
+                return;
             }
 
             skill.Conditions.Register("_IsCoolTimeReady", IsCoolTimeReady);

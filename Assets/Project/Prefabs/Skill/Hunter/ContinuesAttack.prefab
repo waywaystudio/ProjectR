@@ -75,6 +75,7 @@ GameObject:
   - component: {fileID: 7026212661829411919}
   - component: {fileID: 6670706153981092378}
   - component: {fileID: 5783596980821386739}
+  - component: {fileID: 5024528528447478869}
   m_Layer: 0
   m_Name: ContinuesAttack
   m_TagString: Untagged
@@ -124,7 +125,6 @@ MonoBehaviour:
   description: Starts combat by attacking a target with a melee weapon.
   isRigid: 0
   animationKey: continuesAttack
-  progressTime: 4
 --- !u!114 &7026212661829411919
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -167,3 +167,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   startCoolingMoment: 5
   coolTime: 12
+--- !u!114 &5024528528447478869
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8380361914805468174}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 374f53e3f9533cd45a16b6bd11192841, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  processTIme: 4

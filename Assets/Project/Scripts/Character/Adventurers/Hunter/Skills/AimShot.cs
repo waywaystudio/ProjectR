@@ -19,12 +19,12 @@ namespace Character.Adventurers.Hunter.Skills
 
             takerList.ForEach(Completion);
         }
+        
 
         protected override void Initialize()
         {
             OnCompleted.Register("OnAttack", MainAttack);
             OnCompleted.Register("PlayEndChargingAnimation", PlayEndChargingAnimation);
-            OnCompleted.Register("StopProcess", StopProgression);
         }
         
         protected override void PlayAnimation()

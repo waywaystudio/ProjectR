@@ -1,6 +1,6 @@
 using Common.Skills;
 
-namespace Monsters.Moragg.Skills
+namespace Character.Bosses.Moragg.Skills
 {
     public class MoraggLivingBomb : SkillComponent
     {

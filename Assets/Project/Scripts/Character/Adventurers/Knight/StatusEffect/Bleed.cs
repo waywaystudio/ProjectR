@@ -3,22 +3,16 @@ using Common.Completion;
 using Common.StatusEffect;
 using UnityEngine;
 
-namespace Adventurers.Knight.StatusEffect
+namespace Character.Adventurers.Knight.StatusEffect
 {
     public class Bleed : StatusEffectComponent
     {
-        [SerializeField] protected DamageCompletion tickDamage;
+        [SerializeField] protected StatusEffectDamageCompletion tickDamage;
         [SerializeField] protected float interval;
         
         private float hasteWeight;
         private float tickBuffer;
-        
-        public override void Initialize(ICombatProvider provider)
-        {
-            base.Initialize(provider);
 
-            tickDamage.Initialize(provider);
-        }
         
         public override void Execution(ICombatTaker taker)
         {

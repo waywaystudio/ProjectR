@@ -20,7 +20,7 @@ namespace Character.Adventurers.Hunter.Skills
             takerList.ForEach(Completion);
         }
         
-        
+
         protected override void Initialize()
         {
             OnCompleted.Register("EndCallback", End);

@@ -10,7 +10,7 @@ namespace Monsters.Moragg.StatusEffect
     public class LivingBomb : StatusEffectComponent
     {
         [SerializeField] private SphereProjector projector;
-        [SerializeField] private DamageCompletion tickDamage;
+        [SerializeField] private StatusEffectDamageCompletion tickDamage;
         [SerializeField] private CollidingSystem collidingSystem;
         
         [SerializeField] private float interval;
@@ -25,9 +25,7 @@ namespace Monsters.Moragg.StatusEffect
         public override void Initialize(ICombatProvider provider)
         {
             base.Initialize(provider);
-            
-            // tickDamage.Initialize(provider, ActionCode);
-            tickDamage.Initialize(provider);
+
             projector.Initialize(Duration, radius, this);
             
             OnActivated.Register("SetHasteWeight", SetHasteWeight);

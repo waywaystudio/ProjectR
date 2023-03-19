@@ -1,5 +1,3 @@
-using System;
-using System.Collections;
 using System.Collections.Generic;
 using Common.Characters;
 using UnityEngine;
@@ -27,7 +25,6 @@ namespace Common.Skills
 
         private CharacterBehaviour cb;
         
-
         /* Sequence */
         public ConditionTable Conditions { get; } = new();
         public ActionTable OnActivated { get; } = new();
@@ -42,9 +39,7 @@ namespace Common.Skills
         public int Priority => priority;
         public float Range => range;
         public float Angle => angle;
-
         public string Description => description;
-        public FloatEvent CastingProgress { get; } = new(0, float.MaxValue);
         public LayerMask TargetLayer => targetLayer;
         public Sprite Icon => icon;
         public DataIndex ActionCode => actionCode;
@@ -103,6 +98,17 @@ namespace Common.Skills
         
         
         /// <summary>
+        /// 기술을 성공적으로 만료시 호출
+        /// </summary>
+        public void Complete()
+        {
+            IsProgress = false;
+
+            OnCompleted.Invoke();
+        }
+        
+        
+        /// <summary>
         /// 스킬 시퀀스 중에서 전투값을 대상에게 실제로 전달하는 함수.
         /// 충돌 + 데미지 종류 + 상태이상 등이 있을 수 있다.
         /// OnCompletion 하위 컴포넌트 중 Completion에서 실제 구현된다.
@@ -113,18 +119,6 @@ namespace Common.Skills
             OnCompletion.Invoke(taker);
         }
 
-
-        /// <summary>
-        /// 기술을 성공적으로 만료시 호출
-        /// </summary>
-        protected void Complete()
-        {
-            IsProgress = false;
-
-            OnCompleted.Invoke();
-        }
-
-        
         /// <summary>
         /// 만료시 호출 (성공 실패 무관)
         /// </summary>
@@ -135,8 +129,7 @@ namespace Common.Skills
             Cb.Stop();
             OnEnded.Invoke();
         }
-        
-        
+
         /// <summary>
         /// 씬 종료 혹은 SkillSequence GameObject가 꺼질 때 호출.
         /// </summary>
@@ -149,68 +142,18 @@ namespace Common.Skills
             OnCompleted.Clear();
             OnEnded.Clear();
         }
-        
-        
-        /* Progress Entity */
-        [SerializeField] protected float progressTime;
-        private Coroutine progressRoutine;
-        public float ProgressTime => progressTime;
-
-        protected void StartProgression(Action callback = null)
-        {
-            progressRoutine = StartCoroutine(Casting(callback));
-        }
-        
-        protected void StopProgression()
-        {
-            if (progressRoutine != null) StopCoroutine(progressRoutine);
-            
-            ResetProgress();
-        }
-        
-        private IEnumerator Casting(Action callback)
-        {
-            var endTime = progressTime * CharacterUtility.GetHasteValue(Cb.StatTable.Haste);
-
-            while (CastingProgress.Value < endTime)
-            {
-                CastingProgress.Value += Time.deltaTime;
-                yield return null;
-            }
-
-            callback?.Invoke();
-            ResetProgress();
-        }
-        
-        private void ResetProgress()
-        {
-            progressRoutine       = null;
-            CastingProgress.Value = 0f;
-        }
-        
 
         protected virtual void PlayAnimation()
         {
-            Cb.Animating.PlayOnce(animationKey, progressTime, Complete);
+            Cb.Animating.PlayOnce(animationKey, 0f, Complete);
         }
 
-        protected bool TryGetTakersInSphere(SkillComponent skill, out List<ICombatTaker> takerList) => (takerList = 
-                Cb.Colliding.GetTakersInSphereType(
-                skill.Cb.transform.position, 
+        protected bool TryGetTakersInSphere(SkillComponent skill, out List<ICombatTaker> takerList) 
+            => (takerList =  Cb.Colliding.GetTakersInSphereType(
+                skill.Cb.transform.position,
                 skill.Range, 
                 skill.Angle, 
-                skill.TargetLayer)
-            ).HasElement();
-
-        protected virtual void Awake()
-        {
-            // TODO. Cost, CoolTime, Casting을 Component화 하면 빠질 수 있다.
-            if (progressTime != 0f)
-            {
-                OnActivated.Register("StartProgress", () => StartProgression(Complete));
-                OnEnded.Register("StopProgress", StopProgression);
-            }
-        }
+                skill.TargetLayer)).HasElement();
 
         protected void OnEnable() => Initialize();
         protected void OnDisable() => Dispose();
@@ -228,7 +171,6 @@ namespace Common.Skills
             angle        = skillData.TargetParam.y;
             description  = skillData.Description;
             animationKey = skillData.AnimationKey;
-            progressTime = skillData.ProcessTime;
             sortingType  = skillData.SortingType.ToEnum<SortingType>();
             targetLayer  = LayerMask.GetMask(skillData.TargetLayer);
             icon         = GetSkillIcon();

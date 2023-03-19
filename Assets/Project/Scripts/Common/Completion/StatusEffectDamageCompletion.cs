@@ -1,22 +1,18 @@
+using Common.StatusEffect;
 using UnityEngine;
 
 namespace Common.Completion
 {
-    public class DamageCompletion : CollidingCompletion, IEditable
+    public class StatusEffectDamageCompletion : MonoBehaviour, IEditable
     {
+        [SerializeField] private DataIndex actionCode;
         [SerializeField] private PowerValue damage = new();
 
-        public StatTable StatTable { get; } = new();
-        
+        private StatusEffectComponent statusEffect;
+        private StatTable StatTable { get; } = new();
+        private ICombatProvider Provider => statusEffect.Provider;
 
-        public void UpdateStatTable()
-        {
-            StatTable.Clear();
-            StatTable.Register(actionCode, damage);
-            StatTable.UnionWith(Provider.StatTable);
-        }
-
-        public override void Completion(ICombatTaker taker) => Completion(taker, 1.0f);
+        public void Completion(ICombatTaker taker) => Completion(taker, 1.0f);
         public void Completion(ICombatTaker taker, float instantMultiplier)
         {
             if (!taker.DynamicStatEntry.Alive.Value) return;
@@ -54,8 +50,21 @@ namespace Common.Completion
             Provider.OnDamageProvided.Invoke(entity);
             taker.OnDamageTaken.Invoke(entity);
         }
+        
+        
+        private void UpdateStatTable()
+        {
+            StatTable.Clear();
+            StatTable.Register(actionCode, damage);
+            StatTable.UnionWith(Provider.StatTable);
+        }
 
-        public void SetDamage(float value) => damage.Value = value;
+        private void Awake()
+        {
+            statusEffect = GetComponentInParent<StatusEffectComponent>();
+            
+            statusEffect.OnCompletion.Register("DamageCompletion", Completion);
+        }
 
 
 #if UNITY_EDITOR

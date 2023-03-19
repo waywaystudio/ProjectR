@@ -13,7 +13,7 @@ namespace Adventurers.Hunter.Projectile
         [SerializeField] private Ease easyType = Ease.Linear;
         [SerializeField] private SphereCollider projectileCollider;
         [SerializeField] private LayerMask targetLayer;
-        [FormerlySerializedAs("power")] [SerializeField] private DamageCompletion damage;
+        [FormerlySerializedAs("power")] [SerializeField] private StatusEffectDamageCompletion damage;
         
         
         public override void Initialize(ICombatProvider provider)
