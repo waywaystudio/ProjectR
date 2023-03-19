@@ -114,10 +114,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   actionCode: 13000016
   skillType: 4
+  sortingType: 0
   priority: 2
   range: 30
   angle: 6
-  sortingType: 0
   targetLayer:
     serializedVersion: 2
     m_Bits: 256
@@ -149,6 +149,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 910d8bb983b570146b7c330bb9a77e89, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  group: 1
   actionCode: 13000016
   damage:
     value: 4
@@ -179,4 +180,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 374f53e3f9533cd45a16b6bd11192841, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  processTIme: 4
+  castingTime: 4

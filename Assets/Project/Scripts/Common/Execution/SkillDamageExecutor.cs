@@ -1,19 +1,20 @@
-using Common.StatusEffect;
+using Common.Skills;
 using UnityEngine;
 
-namespace Common.Completion
+namespace Common.Execution
 {
-    public class StatusEffectDamageCompletion : MonoBehaviour, IEditable
+    public class SkillDamageExecutor : ExecuteComponent, IEditable
     {
         [SerializeField] private DataIndex actionCode;
         [SerializeField] private PowerValue damage = new();
-
-        private StatusEffectComponent statusEffect;
+        
+        private SkillComponent skillComponent;
+        
         private StatTable StatTable { get; } = new();
-        private ICombatProvider Provider => statusEffect.Provider;
+        private ICombatProvider Provider => skillComponent.Cb;
 
-        public void Completion(ICombatTaker taker) => Completion(taker, 1.0f);
-        public void Completion(ICombatTaker taker, float instantMultiplier)
+
+        public override void Execution(ICombatTaker taker, float instantMultiplier)
         {
             if (!taker.DynamicStatEntry.Alive.Value) return;
             
@@ -61,24 +62,25 @@ namespace Common.Completion
 
         private void Awake()
         {
-            statusEffect = GetComponentInParent<StatusEffectComponent>();
-            
-            statusEffect.OnCompletion.Register("DamageCompletion", Completion);
+            if (!TryGetComponent(out skillComponent))
+            {
+                Debug.LogError("Require SkillComponent In Same Inspector");
+            }
+
+            skillComponent.Executor.Add(this);
         }
 
 
 #if UNITY_EDITOR
         public void EditorSetUp()
         {
-            var dataIndexer = GetComponent<IDataIndexer>();
-
-            if (dataIndexer is null || dataIndexer.ActionCode is DataIndex.None)
+            if (!TryGetComponent(out skillComponent))
             {
-                Debug.Log("Require IDataIndexer in GameObject");
-                return;
+                Debug.LogError("Require SkillComponent In Same Inspector");
             }
 
-            actionCode = dataIndexer.ActionCode;
+            actionCode   = skillComponent.ActionCode;
+            damage.Value = Database.SkillSheetData(actionCode).CompletionValueList[0];
         }
 #endif
     }

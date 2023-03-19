@@ -5,11 +5,11 @@ namespace Character.Adventurers.Knight.Skills
 {
     public class Bash : SkillComponent
     {
-        public override void MainAttack()
+        public override void Execution()
         {
             if (!TryGetTakersInSphere(this, out var takerList)) return;
         
-            takerList.ForEach(Completion);
+            takerList.ForEach(Executor.Execute);
         }
         
         protected override void Initialize()

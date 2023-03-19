@@ -1153,7 +1153,7 @@ PrefabInstance:
     - target: {fileID: -6687176528768826702, guid: 4ae3fbab6c1c1ed48bbe37492124f254, type: 3}
       propertyPath: damage
       value: 
-      objectReference: {fileID: 2002782247172268347}
+      objectReference: {fileID: 0}
     - target: {fileID: -6687176528768826702, guid: 4ae3fbab6c1c1ed48bbe37492124f254, type: 3}
       propertyPath: colliding
       value: 
@@ -1218,6 +1218,10 @@ PrefabInstance:
       propertyPath: startCoolingMoment
       value: 4
       objectReference: {fileID: 0}
+    - target: {fileID: 4337732494131428132, guid: 4ae3fbab6c1c1ed48bbe37492124f254, type: 3}
+      propertyPath: castingTime
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8380361914805468174, guid: 4ae3fbab6c1c1ed48bbe37492124f254, type: 3}
       propertyPath: m_Name
       value: MoraggSpin
@@ -1228,17 +1232,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4ae3fbab6c1c1ed48bbe37492124f254, type: 3}
---- !u!114 &2002782247172268347 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 386900657837893818, guid: 4ae3fbab6c1c1ed48bbe37492124f254, type: 3}
-  m_PrefabInstance: {fileID: 2203882884427909505}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8e628f5df72c2e949ab8a5b0ef9dc17a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!4 &2149587970378939249 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 234500611213636336, guid: 4ae3fbab6c1c1ed48bbe37492124f254, type: 3}

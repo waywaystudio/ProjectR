@@ -4,13 +4,12 @@ namespace Character.Bosses.Moragg.Skills
 {
     public class MoraggCommonAttack : SkillComponent
     {
-        public override void MainAttack()
+        public override void Execution()
         {
             if (MainTarget is null) return;
-
-            Completion(MainTarget);
+            
+            Executor.Execute(MainTarget);
         }
-        
 
         protected override void Initialize()
         {

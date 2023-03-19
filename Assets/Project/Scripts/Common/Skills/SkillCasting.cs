@@ -4,21 +4,22 @@ using UnityEngine;
 
 namespace Common.Skills
 {
-    public class SkillProcess : MonoBehaviour, IEditable
+    public class SkillCasting : MonoBehaviour, IEditable
     {
-        [SerializeField] private float processTIme;
+        [SerializeField] private float castingTime;
 
-        private float ProcessWeight { get; set; }
         private Action complete;
-        private CharacterBehaviour Cb { get; set; }
-
+        
         public FloatEvent CastingProgress { get; } = new(0, float.MaxValue);
-        public float ProcessTime => processTIme;
+        public float CastingTime => castingTime;
+        
+        private float CastingWeight { get; set; }
+        private CharacterBehaviour Cb { get; set; }
         
 
         private void StartProcessing(float hasteWeight)
         {
-            ProcessWeight = processTIme * CharacterUtility.GetHasteValue(hasteWeight);
+            CastingWeight = castingTime * CharacterUtility.GetHasteValue(hasteWeight);
             enabled       = true;
         }
 
@@ -31,7 +32,7 @@ namespace Common.Skills
         private void Awake()
         {
             CastingProgress.Value = 0f;
-            ProcessWeight         = processTIme;
+            CastingWeight         = castingTime;
             enabled               = false;
 
             if (!TryGetComponent(out SkillComponent skill))
@@ -50,7 +51,7 @@ namespace Common.Skills
 
         private void Update()
         {
-            if (CastingProgress.Value < ProcessWeight)
+            if (CastingProgress.Value < CastingWeight)
             {
                 CastingProgress.Value += Time.deltaTime;
             }
@@ -73,7 +74,7 @@ namespace Common.Skills
             
             var skillData = Database.SkillSheetData(skill.ActionCode);
             
-            processTIme = skillData.ProcessTime;
+            castingTime = skillData.ProcessTime;
         }
 #endif
     }

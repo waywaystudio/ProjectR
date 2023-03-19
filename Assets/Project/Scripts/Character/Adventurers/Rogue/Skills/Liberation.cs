@@ -1,13 +1,18 @@
 using Common;
 using Common.Skills;
 
-namespace Adventurers.Rogue.Skills
+namespace Character.Adventurers.Rogue.Skills
 {
     public class Liberation : SkillComponent
     {
         public override ICombatTaker MainTarget => Cb.Searching.GetSelf();
 
-        public override void MainAttack() { }
+        public override void Execution()
+        {
+            if (MainTarget is null) return;
+            
+            Executor.Execute(MainTarget);
+        }
 
         protected override void Initialize()
         {

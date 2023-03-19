@@ -22,12 +22,9 @@ namespace Common.Characters.Behaviours
         
         public ActionTable<SkillComponent> OnExecuting { get; } = new();
         public ActionTable OnReleased { get; } = new();
-
         public SkillComponent Current { get; set; }
         public FloatEvent GlobalCoolTimeProgress { get; } = new(0, float.MaxValue);
         public List<SkillComponent> SkillList => skillList;
-
-        [ShowInInspector]
         public bool IsSkillEnded => Current.IsNullOrEmpty() || Current.IsEnded;
         public bool IsGlobalCooling => GlobalCoolTimeProgress.Value != 0f;
 
@@ -59,7 +56,7 @@ namespace Common.Characters.Behaviours
             RegisterBehaviour(Cb);
             
             Current = skill;
-            Current.Execution(targetPosition);
+            Current.Activate(targetPosition);
 
             OnActivated.Invoke();
             OnExecuting.Invoke(skill);

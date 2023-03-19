@@ -4,8 +4,10 @@ namespace Character.Adventurers.Hunter.Skills
 {
     public class Trap : SkillComponent
     {
-        // TODO. Require TrapType Projectile
-        public override void MainAttack() { throw new System.NotImplementedException(); }
+        public override void Execution()
+        {
+            // TODO. Require TrapType Projectile
+        }
 
         protected override void Initialize()
         {

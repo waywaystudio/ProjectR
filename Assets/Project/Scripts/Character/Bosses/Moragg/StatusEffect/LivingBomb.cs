@@ -1,16 +1,16 @@
 using Common;
-using Common.Completion;
+using Common.Execution;
 using Common.Projectors;
 using Common.StatusEffect;
 using Common.Systems;
 using UnityEngine;
 
-namespace Monsters.Moragg.StatusEffect
+namespace Character.Bosses.Moragg.StatusEffect
 {
     public class LivingBomb : StatusEffectComponent
     {
         [SerializeField] private SphereProjector projector;
-        [SerializeField] private StatusEffectDamageCompletion tickDamage;
+        [SerializeField] private StatusEffectDamageExecution tickDamage;
         [SerializeField] private CollidingSystem collidingSystem;
         
         [SerializeField] private float interval;
@@ -53,7 +53,7 @@ namespace Monsters.Moragg.StatusEffect
 
             takerList.ForEach(taker =>
             {
-                tickDamage.Completion(taker, 5f);
+                tickDamage.Execution(taker, 5f);
                 taker.Stun(stunDuration);
             });
         }
@@ -72,7 +72,7 @@ namespace Monsters.Moragg.StatusEffect
                 }
                 else
                 {
-                    tickDamage.Completion(Taker);
+                    tickDamage.Execution(Taker);
                     tickBuffer = hasteWeight;
                 }
             }

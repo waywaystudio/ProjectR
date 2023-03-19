@@ -72,7 +72,7 @@ GameObject:
   m_Component:
   - component: {fileID: 234500611213636336}
   - component: {fileID: -6687176528768826702}
-  - component: {fileID: 386900657837893818}
+  - component: {fileID: 1227390470127866362}
   - component: {fileID: 3597284855680841089}
   - component: {fileID: 4337732494131428132}
   m_Layer: 0
@@ -127,7 +127,7 @@ MonoBehaviour:
   animationKey: casting
   knockBackDistance: 5
   projector: {fileID: 8959908313466980663}
---- !u!114 &386900657837893818
+--- !u!114 &1227390470127866362
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -136,12 +136,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 8380361914805468174}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8e628f5df72c2e949ab8a5b0ef9dc17a, type: 3}
+  m_Script: {fileID: 11500000, guid: 910d8bb983b570146b7c330bb9a77e89, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   actionCode: 13000006
   damage:
-    value: 30
+    value: 36
     statCode: 1
 --- !u!114 &3597284855680841089
 MonoBehaviour:

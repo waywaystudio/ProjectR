@@ -1,39 +1,30 @@
+using Common.Skills;
 using Common.StatusEffect;
 using UnityEngine;
 using UnityEngine.Pool;
 
-namespace Common.Completion
+namespace Common.Execution
 {
-    public class DeBuffCompletion : CollidingCompletion, IEditable
+    public class SkillDeBuffExecution : ExecuteComponent, IEditable
     {
+        [SerializeField] protected DataIndex actionCode;
         [SerializeField] private GameObject prefabReference;
         [SerializeField] private int poolCapacity;
-
+        
+        private ICombatProvider provider;
         private IObjectPool<StatusEffectComponent> pool;
-        
-        
-        public override void Initialize(ICombatProvider provider)
-        {
-            base.Initialize(provider);
-            
-            pool = new ObjectPool<StatusEffectComponent>(OnCreatePool,
-                null,
-                null,
-                (statusEffect) => statusEffect.Dispose(),
-                true,
-                poolCapacity);
-        }
 
-        public override void Completion(ICombatTaker taker)
+
+        public override void Execution(ICombatTaker taker, float instantMultiplier)
         {
             if (!taker.DynamicStatEntry.Alive.Value) return;
             
             var targetTable = taker.DynamicStatEntry.DeBuffTable;
-            var key         = (provider: Provider, statusCode: actionCode);
+            var tableKey         = (provider, actionCode);
 
-            if (targetTable.ContainsKey(key))
+            if (targetTable.ContainsKey(tableKey))
             {
-                targetTable[key].Overriding();
+                targetTable[tableKey].Overriding();
             }
             
             else
@@ -47,13 +38,12 @@ namespace Common.Completion
                 taker.OnDeBuffTaken.Invoke(effect);
             }
         }
-
-     
+        
         private StatusEffectComponent OnCreatePool()
         {
             if (!prefabReference.IsNullOrEmpty() && Instantiate(prefabReference).TryGetComponent(out StatusEffectComponent component))
             {
-                component.Initialize(Provider);
+                component.Initialize(provider);
                 component.OnEnded.Register("ReturnToPool", () => component.transform.SetParent(transform, false));
                 
                 return component;
@@ -65,16 +55,40 @@ namespace Common.Completion
         
         private StatusEffectComponent Get() => pool.Get();
 
-
         private void Awake()
         {
+            if (!TryGetComponent(out SkillComponent skill))
+            {
+                Debug.LogError("Require SkillComponent In Same Inspector");
+                return;
+            }
             
+            provider = skill.Cb;
+            pool = new ObjectPool<StatusEffectComponent>(OnCreatePool,
+                null,
+                null,
+                (statusEffect) => statusEffect.Dispose(),
+                true,
+                poolCapacity);
+            
+            skill.Executor.Add(this);
+            // skill.OnCompletion.Register("DeBuff", Execution);
         }
-
-
+        
+        
 #if UNITY_EDITOR
         public void EditorSetUp()
         {
+            if (!TryGetComponent(out SkillComponent skill))
+            {
+                Debug.LogError("Require SkillComponent In Same Inspector");
+                return;
+            }
+
+            var statusEffectCode = (DataIndex)Database.SkillSheetData(skill.ActionCode).StatusEffect;
+
+            Database.StatusEffectMaster.GetObject(statusEffectCode, out prefabReference);
+            
             prefabReference.TryGetComponent(out IStatusEffect statusEffectInfo);
             actionCode = statusEffectInfo.ActionCode;
         }

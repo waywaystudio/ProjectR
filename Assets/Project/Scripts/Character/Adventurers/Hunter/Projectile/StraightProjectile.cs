@@ -1,5 +1,5 @@
 using Common;
-using Common.Completion;
+using Common.Execution;
 using Common.Projectiles;
 using DG.Tweening;
 using UnityEngine;
@@ -13,13 +13,13 @@ namespace Adventurers.Hunter.Projectile
         [SerializeField] private Ease easyType = Ease.Linear;
         [SerializeField] private SphereCollider projectileCollider;
         [SerializeField] private LayerMask targetLayer;
-        [FormerlySerializedAs("power")] [SerializeField] private StatusEffectDamageCompletion damage;
+        [FormerlySerializedAs("power")] [SerializeField] private StatusEffectDamageExecution damage;
         
         
         public override void Initialize(ICombatProvider provider)
         {
             Provider = provider;
-            damage.Initialize(Provider);
+            // damage.Initialize(Provider);
             // damage.Initialize(Provider, ActionCode);
         }
         
@@ -39,7 +39,7 @@ namespace Adventurers.Hunter.Projectile
         {
             if (other.gameObject.IsInLayerMask(targetLayer) && other.TryGetComponent(out ICombatTaker taker))
             {
-                damage.Completion(taker);
+                damage.Execution(taker);
             }
         }
     }

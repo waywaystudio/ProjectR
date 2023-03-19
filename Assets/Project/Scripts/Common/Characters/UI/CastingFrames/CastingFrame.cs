@@ -17,7 +17,7 @@ namespace Common.Characters.UI.CastingFrames
         {
             var currentSkill = Cb.SkillBehaviour.Current;
             
-            if (currentSkill.IsNullOrEmpty() || !currentSkill.TryGetComponent(out SkillProcess process))
+            if (currentSkill.IsNullOrEmpty() || !currentSkill.TryGetComponent(out SkillCasting process))
             {
                 castingBar.Unregister();
                 castingObject.SetActive(false);
@@ -25,7 +25,7 @@ namespace Common.Characters.UI.CastingFrames
             }
             
             castingObject.gameObject.SetActive(true);
-            castingBar.Register(process.CastingProgress, process.ProcessTime);
+            castingBar.Register(process.CastingProgress, process.CastingTime);
             
             currentSkill.OnCompleted.Register("HideCastingUI", Hide);
             currentSkill.OnCanceled.Register("HideCastingUI", Hide);

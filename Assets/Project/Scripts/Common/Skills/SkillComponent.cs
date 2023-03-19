@@ -9,33 +9,29 @@ namespace Common.Skills
         /* Common Attribution */
         [SerializeField] protected DataIndex actionCode;
         [SerializeField] protected SkillType skillType;
+        [SerializeField] protected SortingType sortingType;
         [SerializeField] protected int priority;
         [SerializeField] protected float range;
         [SerializeField] protected float angle;
-        [SerializeField] protected SortingType sortingType;
         [SerializeField] protected LayerMask targetLayer;
         [SerializeField] private Sprite icon;
         [SerializeField] private string description;
-
-        /* Condition Entity */
         [SerializeField] private bool isRigid;
-
-        /* Animation */
         [SerializeField] protected string animationKey;
 
         private CharacterBehaviour cb;
-        
+
         /* Sequence */
         public ConditionTable Conditions { get; } = new();
         public ActionTable OnActivated { get; } = new();
         public ActionTable OnCanceled { get; } = new();
-        public ActionTable<ICombatTaker> OnCompletion { get; } = new();
         public ActionTable OnCompleted { get; } = new();
         public ActionTable OnEnded { get; } = new();
+        public SkillExecutor Executor { get; } = new();
+        public bool IsEnded { get; set; } = true;
 
         public SkillType SkillType => skillType;
         public bool IsRigid => isRigid;
-        public bool IsEnded { get; set; } = true;
         public int Priority => priority;
         public float Range => range;
         public float Angle => angle;
@@ -56,7 +52,7 @@ namespace Common.Skills
         /// <summary>
         /// 스킬 사용시 호출.
         /// </summary>
-        public void Execution(Vector3 targetPosition)
+        public void Activate(Vector3 targetPosition)
         {
             IsProgress = true;
             IsEnded    = false;
@@ -69,12 +65,11 @@ namespace Common.Skills
             OnActivated.Invoke();
         }
 
-
         /// <summary>
-        /// 대상(ICombatTaker)을 찾아 Completion을 실행하는 함수
+        /// 스킬의 가동범위로 부터 대상을 받아서
+        /// 데미지, 상태이상 부여 등을 실제 수행하는 함수
         /// </summary>
-        public abstract void MainAttack();
-
+        public abstract void Execution();
 
         /// <summary>
         /// 플레이어가 시전 중 이동하거나 cc를 받아 기술 취소 시 호출. 
@@ -87,16 +82,14 @@ namespace Common.Skills
             End();
         }
 
-        
         /// <summary>
-        /// 버튼을 띌 때 호출되며 차징형 스킬에만 유효.
+        /// 버튼을 띌 때 호출되며 차징, 홀딩 스킬에 유효.
         /// </summary>
         public void Release()
         {
             AbleToRelease.OnTrue(Complete);
         }
-        
-        
+
         /// <summary>
         /// 기술을 성공적으로 만료시 호출
         /// </summary>
@@ -105,18 +98,6 @@ namespace Common.Skills
             IsProgress = false;
 
             OnCompleted.Invoke();
-        }
-        
-        
-        /// <summary>
-        /// 스킬 시퀀스 중에서 전투값을 대상에게 실제로 전달하는 함수.
-        /// 충돌 + 데미지 종류 + 상태이상 등이 있을 수 있다.
-        /// OnCompletion 하위 컴포넌트 중 Completion에서 실제 구현된다.
-        /// TODO. Complete와 이름이 비슷하여 안좋다. 바꾸자. 
-        /// </summary>
-        protected void Completion(ICombatTaker taker)
-        {
-            OnCompletion.Invoke(taker);
         }
 
         /// <summary>
@@ -138,9 +119,9 @@ namespace Common.Skills
             Conditions.Clear();
             OnActivated.Clear();
             OnCanceled.Clear();
-            OnCompletion.Clear();
             OnCompleted.Clear();
             OnEnded.Clear();
+            Executor.Clear();
         }
 
         protected virtual void PlayAnimation()
@@ -154,6 +135,16 @@ namespace Common.Skills
                 skill.Range, 
                 skill.Angle, 
                 skill.TargetLayer)).HasElement();
+
+        protected bool TryGetTakersByRayCast(out List<ICombatTaker> takerList)
+        {
+            var providerTransform = Cb.transform;
+
+            return Cb.Colliding.TryGetTakersByRaycast(
+                providerTransform.position, 
+                providerTransform.forward, range, 16,
+                targetLayer, out takerList);
+        }
 
         protected void OnEnable() => Initialize();
         protected void OnDisable() => Dispose();

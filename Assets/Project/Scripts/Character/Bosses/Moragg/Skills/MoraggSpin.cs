@@ -8,19 +8,18 @@ namespace Character.Bosses.Moragg.Skills
     {
         [SerializeField] private float knockBackDistance = 5f;
         [SerializeField] private SphereProjector projector;
-        
-        
-        public override void MainAttack()
+
+
+        public override void Execution()
         {
             if (!TryGetTakersInSphere(this, out var takerList)) return;
             
             takerList.ForEach(taker =>
             {
-                Completion(taker);
+                Executor.Execute(taker);
                 taker.KnockBack(Cb.transform.position, knockBackDistance);
             });
         }
-        
 
         protected override void PlayAnimation()
         {
@@ -32,7 +31,7 @@ namespace Character.Bosses.Moragg.Skills
             // TODO. Projector.Initialize 에서 CastingTime을 받아오면 안되고, Active 에서 받아야 한다.
             projector.Initialize(3f, range, this);
 
-            OnCompleted.Register("MoraggSpinAttack", MainAttack);
+            OnCompleted.Register("MoraggSpinAttack", Execution);
             OnCompleted.Register("PlayEndCastingAnimation", PlayEndCastingAnimation);
         }
 

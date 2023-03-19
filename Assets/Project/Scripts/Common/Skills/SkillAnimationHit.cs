@@ -15,14 +15,14 @@ namespace Common.Skills
         
         protected CharacterBehaviour Cb => cb ??= GetComponentInParent<CharacterBehaviour>();
 
-        private void RegisterHitEvent(Action mainAction) => Cb.Animating.OnHit.Register("SkillHit", mainAction.Invoke);
+        private void RegisterHitEvent(Action mainAction) => Cb.Animating.OnHit.Register("SkillHit", mainAction);
         private void UnregisterHitEvent() => Cb.Animating.OnHit.Unregister("SkillHit");
 
         private void Awake()
         {
             if (!TryGetComponent(out SkillComponent skill)) return;
 
-            skill.OnActivated.Register("RegisterHitEvent", () => RegisterHitEvent(skill.MainAttack));
+            skill.OnActivated.Register("RegisterHitEvent", () => RegisterHitEvent(skill.Execution));
             skill.OnEnded.Register("ReleaseHit", UnregisterHitEvent);
         }
     }
