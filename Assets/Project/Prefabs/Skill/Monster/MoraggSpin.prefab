@@ -73,6 +73,7 @@ GameObject:
   - component: {fileID: 234500611213636336}
   - component: {fileID: -6687176528768826702}
   - component: {fileID: 1227390470127866362}
+  - component: {fileID: 4534168677478532336}
   - component: {fileID: 3597284855680841089}
   - component: {fileID: 4337732494131428132}
   m_Layer: 0
@@ -114,10 +115,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   actionCode: 13000006
   skillType: 2
+  sortingType: 0
+  behaviourMask: 32
+  ignorableMask: 3
   priority: 2
   range: 4
   angle: 360
-  sortingType: 0
   targetLayer:
     serializedVersion: 2
     m_Bits: 0
@@ -125,7 +128,6 @@ MonoBehaviour:
   description: Starts combat by attacking a target with a melee weapon.
   isRigid: 0
   animationKey: casting
-  knockBackDistance: 5
   projector: {fileID: 8959908313466980663}
 --- !u!114 &1227390470127866362
 MonoBehaviour:
@@ -139,10 +141,27 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 910d8bb983b570146b7c330bb9a77e89, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  group: 1
   actionCode: 13000006
   damage:
     value: 36
     statCode: 1
+--- !u!114 &4534168677478532336
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8380361914805468174}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 761ddaaeeb9330044ad04eb47dd52a13, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  group: 1
+  ccMask: 24
+  knockBackDistance: 8
+  stunDuration: 0
 --- !u!114 &3597284855680841089
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -169,7 +188,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 374f53e3f9533cd45a16b6bd11192841, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  processTIme: 3
+  castingTime: 0
 --- !u!1001 &8189305718710697496
 PrefabInstance:
   m_ObjectHideFlags: 0

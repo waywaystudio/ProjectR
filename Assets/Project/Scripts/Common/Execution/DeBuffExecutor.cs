@@ -1,26 +1,24 @@
-using Common.Skills;
 using Common.StatusEffect;
 using UnityEngine;
 using UnityEngine.Pool;
 
 namespace Common.Execution
 {
-    public class SkillDeBuffExecution : ExecuteComponent, IEditable
+    public class DeBuffExecutor : ExecuteComponent, IEditable
     {
         [SerializeField] protected DataIndex actionCode;
         [SerializeField] private GameObject prefabReference;
         [SerializeField] private int poolCapacity;
-        
-        private ICombatProvider provider;
+
         private IObjectPool<StatusEffectComponent> pool;
 
 
-        public override void Execution(ICombatTaker taker, float instantMultiplier)
+        public override void Execution(ICombatTaker taker, float instantMultiplier = 1f)
         {
             if (!taker.DynamicStatEntry.Alive.Value) return;
             
             var targetTable = taker.DynamicStatEntry.DeBuffTable;
-            var tableKey         = (provider, actionCode);
+            var tableKey         = (Executor.Provider, actionCode);
 
             if (targetTable.ContainsKey(tableKey))
             {
@@ -32,7 +30,7 @@ namespace Common.Execution
                 var effect = Get();
                 
                 effect.transform.SetParent(taker.StatusEffectHierarchy, false);
-                effect.Execution(taker);
+                effect.Activate(taker);
 
                 effect.Provider.OnDeBuffProvided.Invoke(effect);
                 taker.OnDeBuffTaken.Invoke(effect);
@@ -43,7 +41,7 @@ namespace Common.Execution
         {
             if (!prefabReference.IsNullOrEmpty() && Instantiate(prefabReference).TryGetComponent(out StatusEffectComponent component))
             {
-                component.Initialize(provider);
+                component.Initialize(Executor.Provider);
                 component.OnEnded.Register("ReturnToPool", () => component.transform.SetParent(transform, false));
                 
                 return component;
@@ -55,40 +53,40 @@ namespace Common.Execution
         
         private StatusEffectComponent Get() => pool.Get();
 
-        private void Awake()
+        private void OnEnable()
         {
-            if (!TryGetComponent(out SkillComponent skill))
-            {
-                Debug.LogError("Require SkillComponent In Same Inspector");
-                return;
-            }
-            
-            provider = skill.Cb;
             pool = new ObjectPool<StatusEffectComponent>(OnCreatePool,
                 null,
                 null,
-                (statusEffect) => statusEffect.Dispose(),
+                (component) => component.Dispose(),
                 true,
                 poolCapacity);
             
-            skill.Executor.Add(this);
-            // skill.OnCompletion.Register("DeBuff", Execution);
+            Executor?.ExecutionTable.Add(this);
         }
-        
-        
+
+        private void OnDisable()
+        {
+            pool.Clear();
+            
+            Executor?.ExecutionTable.Remove(this);
+        }
+
+
 #if UNITY_EDITOR
         public void EditorSetUp()
         {
-            if (!TryGetComponent(out SkillComponent skill))
+            if (TryGetComponent(out Skills.SkillComponent skill))
             {
-                Debug.LogError("Require SkillComponent In Same Inspector");
-                return;
+                var statusEffectCode = (DataIndex)Database.SkillSheetData(skill.ActionCode).StatusEffect;
+                
+                Database.StatusEffectMaster.GetObject(statusEffectCode, out prefabReference);
+            }
+            else if (!TryGetComponent(out prefabReference))
+            {
+                Debug.LogError("At least SkillComponent or StatusEffectComponent In Same Inspector");
             }
 
-            var statusEffectCode = (DataIndex)Database.SkillSheetData(skill.ActionCode).StatusEffect;
-
-            Database.StatusEffectMaster.GetObject(statusEffectCode, out prefabReference);
-            
             prefabReference.TryGetComponent(out IStatusEffect statusEffectInfo);
             actionCode = statusEffectInfo.ActionCode;
         }

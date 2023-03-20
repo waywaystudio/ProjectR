@@ -1,23 +1,27 @@
 using System.Collections.Generic;
 using Common.Characters;
+using Common.Execution;
 using UnityEngine;
 
 namespace Common.Skills
 {
-    public abstract class SkillComponent : MonoBehaviour, ISequence, IDataIndexer, IEditable
+    public abstract class SkillComponent : MonoBehaviour, IConditionalSequence, IExecutable, IDataIndexer, IEditable
     {
         /* Common Attribution */
         [SerializeField] protected DataIndex actionCode;
         [SerializeField] protected SkillType skillType;
         [SerializeField] protected SortingType sortingType;
+        [SerializeField] protected CharacterActionMask behaviourMask = CharacterActionMask.Skill;
+        [SerializeField] protected CharacterActionMask ignorableMask = CharacterActionMask.SkillIgnoreMask;
         [SerializeField] protected int priority;
+        [SerializeField] protected LayerMask targetLayer;
+        
+        [SerializeField] private string description;
+        [SerializeField] protected string animationKey;
+        [SerializeField] private Sprite icon;
+        
         [SerializeField] protected float range;
         [SerializeField] protected float angle;
-        [SerializeField] protected LayerMask targetLayer;
-        [SerializeField] private Sprite icon;
-        [SerializeField] private string description;
-        [SerializeField] private bool isRigid;
-        [SerializeField] protected string animationKey;
 
         private CharacterBehaviour cb;
 
@@ -27,11 +31,12 @@ namespace Common.Skills
         public ActionTable OnCanceled { get; } = new();
         public ActionTable OnCompleted { get; } = new();
         public ActionTable OnEnded { get; } = new();
-        public SkillExecutor Executor { get; } = new();
+        public ExecutionTable ExecutionTable { get; } = new();
         public bool IsEnded { get; set; } = true;
 
         public SkillType SkillType => skillType;
-        public bool IsRigid => isRigid;
+        public CharacterActionMask BehaviourMask => behaviourMask;
+        public CharacterActionMask IgnorableMask => ignorableMask;
         public int Priority => priority;
         public float Range => range;
         public float Angle => angle;
@@ -42,6 +47,7 @@ namespace Common.Skills
         public virtual ICombatTaker MainTarget =>
             Cb.Searching.GetMainTarget(targetLayer, Cb.transform.position, sortingType);
         public CharacterBehaviour Cb => cb ??= GetComponentInParent<CharacterBehaviour>();
+        public ICombatProvider Provider => Cb;
         
         protected bool AbleToRelease => SkillType is not (SkillType.Instant or SkillType.Casting) && IsProgress;
         protected bool IsProgress { get; set; }
@@ -74,7 +80,7 @@ namespace Common.Skills
         /// <summary>
         /// 플레이어가 시전 중 이동하거나 cc를 받아 기술 취소 시 호출. 
         /// </summary>
-        public void Cancellation()
+        public void Cancel()
         {
             IsProgress = false;
 
@@ -121,7 +127,7 @@ namespace Common.Skills
             OnCanceled.Clear();
             OnCompleted.Clear();
             OnEnded.Clear();
-            Executor.Clear();
+            ExecutionTable.Clear();
         }
 
         protected virtual void PlayAnimation()
@@ -156,7 +162,6 @@ namespace Common.Skills
             var skillData = Database.SkillSheetData(actionCode);
 
             skillType    = skillData.SkillType.ToEnum<SkillType>();
-            isRigid      = skillData.IsRigid;
             priority     = skillData.BasePriority;
             range        = skillData.TargetParam.x;
             angle        = skillData.TargetParam.y;
@@ -166,17 +171,20 @@ namespace Common.Skills
             targetLayer  = LayerMask.GetMask(skillData.TargetLayer);
             icon         = GetSkillIcon();
 
-            if (TryGetComponent(out SkillCoolTime coolTimeModule))
+            if (TryGetComponent(out CoolTimer coolTimeModule))
             {
                 coolTimeModule.EditorSetUp();
             }
         }
+        
+        // ReSharper disable once UnusedMember.Local
         private void ShowDataBase()
         {
             var skillData = Database.SheetDataTable[DataIndex.Skill];
 
             UnityEditor.EditorUtility.OpenPropertyEditor(skillData);
         }
+        
         private Sprite GetSkillIcon()
         {
             return !(Database.TryGetIcon(actionCode.ToString(), out var result))
@@ -186,11 +194,3 @@ namespace Common.Skills
 #endif
     }
 }
-
-// [SerializeField] private float cost;
-// public float Cost => cost;
-// protected void ConsumeResource() => Provider.DynamicStatEntry.Resource.Value -= cost;
-// protected bool IsCostReady()
-// {
-//     return Cb.DynamicStatEntry.Resource.Value >= cost;
-// }

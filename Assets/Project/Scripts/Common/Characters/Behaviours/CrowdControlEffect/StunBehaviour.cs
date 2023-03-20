@@ -1,91 +1,62 @@
-using System.Collections;
 using UnityEngine;
 
 namespace Common.Characters.Behaviours.CrowdControlEffect
 {
     public class StunBehaviour : ActionBehaviour
     {
-        private Coroutine stunRoutine;
-        private float duration;
-        
         public override CharacterActionMask BehaviourMask => CharacterActionMask.Stun;
-        public override CharacterActionMask IgnorableMask => CharacterActionMask.None |
-                                                             CharacterActionMask.Stop |
-                                                             CharacterActionMask.Run  |
-                                                             CharacterActionMask.Skill ;
-            
+        public override CharacterActionMask IgnorableMask => CharacterActionMask.StunIgnoreMask;
 
+        public FloatEvent RemainStunTime { get; } = new(0f, float.MaxValue);
         public ActionTable<float> OnStunning { get; } = new();
+        
+        protected bool IsAble => Conditions.IsAllTrue 
+                                 && CanOverrideToCurrent;
 
 
         public void Active(float duration)
         {
-            if (Conditions.HasFalse) return;
+            if (!IsAble) return;
             
             RegisterBehaviour(Cb);
             
             OnStunning.Invoke(duration);
             OnActivated.Invoke();
             Cb.Animating.Stun();
+
+            enabled              = true;
+            RemainStunTime.Value = duration;
         }
-        
-        
-        private void StartStunRoutine(float duration)
+
+        public override void Cancel()
         {
-            if (stunRoutine != null)
+            enabled              = false;
+            RemainStunTime.Value = 0f;
+
+            Cb.Stop();
+            OnCanceled.Invoke();
+        }
+
+        protected override void Complete()
+        {
+            enabled              = false;
+            RemainStunTime.Value = 0f;
+            
+            Cb.Stop();
+            OnCompleted.Invoke();
+        }
+
+
+        private void Update()
+        {
+            if (RemainStunTime.Value > 0f)
             {
-                this.duration = duration;
+                RemainStunTime.Value -= Time.deltaTime;
             }
             else
             {
-                stunRoutine = StartCoroutine(Stunning(duration));
+                Complete();
             }
-        }
-        
-        private IEnumerator Stunning(float duration)
-        {
-            this.duration = duration;
-            
-            while (this.duration > 0f)
-            {
-                this.duration -= Time.deltaTime;
-
-                yield return null;
-            }
-            
-            OnCompleted.Invoke();
-        }
-        
-        private void StopStunRoutine()
-        {
-            StopCoroutine(stunRoutine);
-            stunRoutine = null;
-        }
-
-        private void OnEnable()
-        {
-            Conditions.Register("OverwriteMask", IsOverBehaviour);
-            
-            OnStunning.Register("StartStunRoutine", StartStunRoutine);
-            
-            OnCanceled.Register("StopRoutine", StopStunRoutine);
-            OnCanceled.Register("Stop", Cb.Stop);
-            
-            OnCompleted.Register("StopRoutine", StopStunRoutine);
-            OnCompleted.Register("Stop", Cb.Stop);
-        }
-
-        private void OnDisable()
-        {
-            Conditions.Unregister("OverwriteMask");
-            
-            OnStunning.Unregister("StartStunRoutine");
-            
-            OnCanceled.Unregister("StopRoutine");
-            OnCanceled.Unregister("Stop");
-            
-            OnCompleted.Unregister("StopRoutine");
-            OnCompleted.Unregister("Stop");
         }
     }
 }

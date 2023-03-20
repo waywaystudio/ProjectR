@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace Common.Characters.Behaviours
 {
-    public abstract class ActionBehaviour : MonoBehaviour
+    public abstract class ActionBehaviour : MonoBehaviour, IConditionalSequence
     {
         private CharacterBehaviour cb;
         
@@ -13,18 +13,30 @@ namespace Common.Characters.Behaviours
         [ShowInInspector] public ActionTable OnActivated { get; } = new();
         [ShowInInspector] public ActionTable OnCanceled { get; } = new();
         [ShowInInspector] public ActionTable OnCompleted { get; } = new();
+        [ShowInInspector] public ActionTable OnEnded { get; } = new();
         
         protected CharacterBehaviour Cb => cb ??= GetComponentInParent<CharacterBehaviour>();
-        
-        
-        protected bool IsOverBehaviour() => (IgnorableMask | Cb.BehaviourMask) == IgnorableMask;
-        
+
+        public virtual void Cancel() => OnCanceled.Invoke();
+        protected virtual void Complete() => OnCompleted.Invoke();
+
+        protected bool CanOverrideToCurrent => (IgnorableMask | Cb.BehaviourMask) == IgnorableMask;
+
         protected void RegisterBehaviour(CharacterBehaviour cb)
         {
             if (cb.CurrentBehaviour is not null && cb.BehaviourMask != BehaviourMask)
-                cb.CurrentBehaviour.OnCanceled.Invoke();
+                cb.CurrentBehaviour.Cancel();
             
             cb.CurrentBehaviour = this;
+        }
+
+        protected void Dispose()
+        {
+            Conditions.Clear();
+            OnActivated.Clear();
+            OnCanceled.Clear();
+            OnCompleted.Clear();
+            OnEnded.Clear();
         }
     }
 }

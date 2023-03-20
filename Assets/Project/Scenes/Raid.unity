@@ -3262,7 +3262,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 291626802760447148, guid: a1af0054aa925ee41872a7560b759664, type: 3}
       propertyPath: skillList.Array.size
-      value: 3
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 291626802760447148, guid: a1af0054aa925ee41872a7560b759664, type: 3}
       propertyPath: skillList.Array.data[0]
@@ -3288,21 +3288,9 @@ PrefabInstance:
       propertyPath: sortingType
       value: 8
       objectReference: {fileID: 0}
-    - target: {fileID: 2479502076224076776, guid: a1af0054aa925ee41872a7560b759664, type: 3}
-      propertyPath: armor.value
-      value: 500
-      objectReference: {fileID: 0}
-    - target: {fileID: 2479502076224076776, guid: a1af0054aa925ee41872a7560b759664, type: 3}
-      propertyPath: maxHp.value
-      value: 2000
-      objectReference: {fileID: 0}
     - target: {fileID: 3264795498149139108, guid: a1af0054aa925ee41872a7560b759664, type: 3}
       propertyPath: m_Enabled
       value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3319771397484489116, guid: a1af0054aa925ee41872a7560b759664, type: 3}
-      propertyPath: power.value
-      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 3338485140299279327, guid: a1af0054aa925ee41872a7560b759664, type: 3}
       propertyPath: uniqueID
@@ -3400,14 +3388,6 @@ PrefabInstance:
       propertyPath: m_Radius
       value: 3
       objectReference: {fileID: 0}
-    - target: {fileID: 3744010700364922029, guid: a1af0054aa925ee41872a7560b759664, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4082575703409226758, guid: a1af0054aa925ee41872a7560b759664, type: 3}
-      propertyPath: uniqueID
-      value: 5221851926545390393
-      objectReference: {fileID: 0}
     - target: {fileID: 4442699525421009715, guid: a1af0054aa925ee41872a7560b759664, type: 3}
       propertyPath: range
       value: 8
@@ -3438,20 +3418,8 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6370670999301307393, guid: a1af0054aa925ee41872a7560b759664, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 6494511654835976145, guid: a1af0054aa925ee41872a7560b759664, type: 3}
-      propertyPath: skillList.Array.size
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 6494511654835976145, guid: a1af0054aa925ee41872a7560b759664, type: 3}
-      propertyPath: skillList.Array.data[1]
-      value: 
-      objectReference: {fileID: 1333775836}
-    - target: {fileID: 6494511654835976145, guid: a1af0054aa925ee41872a7560b759664, type: 3}
-      propertyPath: skillList.Array.data[2]
-      value: 
-      objectReference: {fileID: 2046421132}
     - target: {fileID: 7116319549643243699, guid: a1af0054aa925ee41872a7560b759664, type: 3}
       propertyPath: m_IsActive
       value: 0
@@ -3462,7 +3430,7 @@ PrefabInstance:
       objectReference: {fileID: 7116319549643243702, guid: a1af0054aa925ee41872a7560b759664, type: 3}
     - target: {fileID: 7699120219021817231, guid: a1af0054aa925ee41872a7560b759664, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7838767061474648301, guid: a1af0054aa925ee41872a7560b759664, type: 3}
       propertyPath: m_IsActive
@@ -3470,7 +3438,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8945366538634865238, guid: a1af0054aa925ee41872a7560b759664, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a1af0054aa925ee41872a7560b759664, type: 3}
@@ -13346,17 +13314,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 3741.4978, y: 2060}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &2046421132 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 1969248501984980143, guid: a1af0054aa925ee41872a7560b759664, type: 3}
-  m_PrefabInstance: {fileID: 522883980}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0b41bb0c3dbbd114882a16e954f7deac, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &2048354302
 GameObject:
   m_ObjectHideFlags: 0

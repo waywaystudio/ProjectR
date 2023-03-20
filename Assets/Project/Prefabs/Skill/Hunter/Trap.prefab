@@ -73,6 +73,7 @@ GameObject:
   - component: {fileID: 234500611213636336}
   - component: {fileID: 8592763601916381546}
   - component: {fileID: 6662264705308858124}
+  - component: {fileID: 334648159840272248}
   m_Layer: 0
   m_Name: Trap
   m_TagString: Untagged
@@ -111,18 +112,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   actionCode: 13000017
   skillType: 1
-  priority: 3
-  range: 4
-  angle: 360
   sortingType: 0
+  behaviourMask: 64
+  ignorableMask: 3
+  priority: 3
   targetLayer:
     serializedVersion: 2
     m_Bits: 256
-  icon: {fileID: 21300000, guid: 2482dd41d4c9fcc44a20fb70153bb822, type: 3}
   description: Starts combat by attacking a target with a melee weapon.
-  isRigid: 1
   animationKey: jump
-  progressTime: 0
+  icon: {fileID: 21300000, guid: 2482dd41d4c9fcc44a20fb70153bb822, type: 3}
+  range: 8
+  angle: 360
 --- !u!114 &6662264705308858124
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -137,3 +138,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   startCoolingMoment: 1
   coolTime: 15
+--- !u!114 &334648159840272248
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8380361914805468174}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f43f38c71544bb74da15b508119a64d9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  group: 1
+  actionCode: 13000017
+  prefabReference: {fileID: 3865230921314547483, guid: 0ef534f56b8b72d429ea96d8b8cb4887, type: 3}
+  poolCapacity: 4

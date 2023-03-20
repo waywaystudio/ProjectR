@@ -1,8 +1,9 @@
+using Common.Execution;
 using UnityEngine;
 
 namespace Common.StatusEffect
 {
-    public abstract class StatusEffectComponent : MonoBehaviour, ISequence ,IStatusEffect, IEditable
+    public abstract class StatusEffectComponent : MonoBehaviour, ISequence, IExecutable, IStatusEffect, IEditable
     {
         [SerializeField] protected DataIndex statusCode;
         [SerializeField] protected StatusEffectType type;
@@ -17,9 +18,9 @@ namespace Common.StatusEffect
         
         public ActionTable OnActivated { get; } = new();
         public ActionTable OnCanceled { get; } = new();
-        public ActionTable<ICombatTaker> OnCompletion { get; } = new();
         public ActionTable OnCompleted { get; } = new();
         public ActionTable OnEnded { get; } = new();
+        public ExecutionTable ExecutionTable { get; } = new();
 
         protected ICombatTaker Taker { get; set; }
 
@@ -33,12 +34,11 @@ namespace Common.StatusEffect
             
             ProgressTime.SetClamp(0f, Mathf.Min(duration * 1.5f, 3600));
         }
-        
 
         /// <summary>
         /// 성공적으로 스킬 사용시 호출.
         /// </summary>
-        public virtual void Execution(ICombatTaker taker)
+        public virtual void Activate(ICombatTaker taker)
         {
             Taker              = taker;
             enabled            = true;
@@ -47,7 +47,6 @@ namespace Common.StatusEffect
             gameObject.SetActive(true);
             OnActivated.Invoke();
         }
-        
 
         /// <summary>
         /// 이미 효과를 가진 경우 호출.
@@ -56,17 +55,6 @@ namespace Common.StatusEffect
         {
             ProgressTime.Value += duration;
         }
-
-
-        /// <summary>
-        /// 대상에게 데미지 or 스탯변화 or cc를 주는 행위
-        /// DamageCompletion, DeBuffCompletion 등의 컴포넌트에서 실제 내용이 구현된다.
-        /// </summary>
-        public void Completion(ICombatTaker taker)
-        {
-            OnCompletion.Invoke(taker);
-        }
-        
 
         /// <summary>
         /// 해제 시 호출. (만료 아님)
@@ -77,18 +65,6 @@ namespace Common.StatusEffect
             
             End();
         }
-        
-        
-        /// <summary>
-        /// Scene이 종료되거나, 설정된 Pool 개수를 넘어서 생성된 상태이상효과가 만료될 때 호출
-        /// </summary>
-        public virtual void Dispose()
-        {
-            this.Clear();
-            
-            Destroy(gameObject);
-        }
-
 
         /// <summary>
         /// 성공적으로 만료시 호출
@@ -99,8 +75,7 @@ namespace Common.StatusEffect
 
             End();
         }
-        
-        
+
         /// <summary>
         /// 만료시 호출 (성공 실패와 무관)
         /// </summary>
@@ -115,6 +90,16 @@ namespace Common.StatusEffect
             OnEnded.Invoke();
             enabled = false;
             gameObject.SetActive(false);
+        }
+        
+        /// <summary>
+        /// Scene이 종료되거나, 설정된 Pool 개수를 넘어서 생성된 상태이상효과가 만료될 때 호출
+        /// </summary>
+        public virtual void Dispose()
+        {
+            this.Clear();
+            
+            Destroy(gameObject);
         }
 
 
@@ -133,3 +118,7 @@ namespace Common.StatusEffect
 #endif
     }
 }
+
+/* Skill과 다르게 Execution이 항상 내부에서 이루어진다.
+ * SE가 확장된다면, Skill Execution 구조를 참고하자. */
+ 

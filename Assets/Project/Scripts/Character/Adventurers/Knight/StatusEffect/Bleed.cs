@@ -1,5 +1,4 @@
 using Common;
-using Common.Execution;
 using Common.StatusEffect;
 using UnityEngine;
 
@@ -7,16 +6,15 @@ namespace Character.Adventurers.Knight.StatusEffect
 {
     public class Bleed : StatusEffectComponent
     {
-        [SerializeField] protected StatusEffectDamageExecution tickDamage;
         [SerializeField] protected float interval;
         
         private float hasteWeight;
         private float tickBuffer;
 
         
-        public override void Execution(ICombatTaker taker)
+        public override void Activate(ICombatTaker taker)
         {
-            base.Execution(taker);
+            base.Activate(taker);
             
             hasteWeight = tickBuffer = 
                 interval * CharacterUtility.GetHasteValue(Provider.StatTable.Haste);
@@ -34,7 +32,7 @@ namespace Character.Adventurers.Knight.StatusEffect
                 }
                 else
                 {
-                    tickDamage.Execution(Taker);
+                    ExecutionTable.Execute(Taker);
                     tickBuffer = hasteWeight;
                 }
             }

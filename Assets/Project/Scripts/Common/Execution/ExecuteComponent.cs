@@ -6,16 +6,17 @@ namespace Common.Execution
     {
         [SerializeField] protected ExecuteGroup group = ExecuteGroup.Group1;
 
+        private IExecutable executor;
+        
         public ExecuteGroup Group => group;
+        protected IExecutable Executor => executor ??= GetComponent<IExecutable>();
 
-        public abstract void Execution(ICombatTaker taker, float instantMultiplier);
-        public void Execution(ICombatTaker taker) => Execution(taker, 1f);
+        public abstract void Execution(ICombatTaker taker, float instantMultiplier = 1.0f);
     }
 }
 
 /* Annotation 
- * 대부분의 Execution은 public void Execution(ICombatTaker taker) 을 사용한다.
- * abstract 가 + float instantMultiplier 함수로 되어 있는 것은, 구현 편의성 때문이다.
+ * 대부분의 Execution은 public void Execution(ICombatTaker taker) 을 사용한다. 
  * StatusEffect 는 instantMultiplier를 거의 사용하지 않기 때문에, 깡통 함수이다.
  * 이러한 디자인에 대해서는 다음을 참고했다.
  *

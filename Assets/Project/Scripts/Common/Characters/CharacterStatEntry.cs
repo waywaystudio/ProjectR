@@ -1,3 +1,4 @@
+using Sirenix.OdinInspector;
 using UnityEngine;
 
 namespace Common.Characters
@@ -26,6 +27,7 @@ namespace Common.Characters
         public ResourceValue Resource { get; } = new();
         public ShieldValue Shield { get; } = new();
         public StatTable StatTable { get; } = new();
+        [ShowInInspector]
         public StatusEffectTable DeBuffTable { get; } = new();
         public StatusEffectTable BuffTable { get; } = new();
         

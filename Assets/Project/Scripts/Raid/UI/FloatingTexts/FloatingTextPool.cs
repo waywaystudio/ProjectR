@@ -2,6 +2,7 @@ using Adventurers;
 using Character.Adventurers;
 using Common;
 using Sirenix.OdinInspector;
+using UnityEngine;
 
 namespace Raid.UI.FloatingTexts
 {

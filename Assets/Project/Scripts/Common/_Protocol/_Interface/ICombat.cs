@@ -6,6 +6,7 @@ namespace Common
     {
         string Name { get; }
         GameObject gameObject { get; }
+        Vector3 Position { get; }
     }
     
     public interface IOriginalProvider

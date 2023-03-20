@@ -375,6 +375,10 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3748007606970478772, guid: a3acb303f8f3ed24c8afb44fa3d18ccf, type: 3}
+      propertyPath: conditionKey
+      value: IsCoolTimeReady
+      objectReference: {fileID: 0}
     - target: {fileID: 4044075457161744673, guid: a3acb303f8f3ed24c8afb44fa3d18ccf, type: 3}
       propertyPath: firstSkill
       value: 
@@ -585,7 +589,7 @@ PrefabInstance:
     - target: {fileID: 9094432963895350988, guid: ff38093493464f743863b7f84ec06ba6, type: 3}
       propertyPath: damage
       value: 
-      objectReference: {fileID: 3251052173419160917}
+      objectReference: {fileID: 0}
     - target: {fileID: 9094432963895350988, guid: ff38093493464f743863b7f84ec06ba6, type: 3}
       propertyPath: coolTime
       value: 7
@@ -601,17 +605,6 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a4fad5fa044eb484489ab877718b568a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &3251052173419160917 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 6638601734450639617, guid: ff38093493464f743863b7f84ec06ba6, type: 3}
-  m_PrefabInstance: {fileID: 8160245039269795412}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8e628f5df72c2e949ab8a5b0ef9dc17a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1001 &9196510676972788186

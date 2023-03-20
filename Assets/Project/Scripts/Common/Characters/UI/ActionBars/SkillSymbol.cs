@@ -37,7 +37,7 @@ namespace Common.Characters.UI.ActionBars
             
             coolDownFiller.ProgressImage.enabled = false;
 
-            if (targetSkill.TryGetComponent(out SkillCoolTime coolTime))
+            if (targetSkill.TryGetComponent(out CoolTimer coolTime))
             {
                 coolDownFiller.ProgressImage.enabled = true;
                 coolDownFiller.Register(coolTime.RemainCoolTime, coolTime.CoolTime);

@@ -10,7 +10,7 @@ namespace Common.Skills
 
         private Action complete;
         
-        public FloatEvent CastingProgress { get; } = new(0, float.MaxValue);
+        public FloatEvent Progress { get; } = new(0, float.MaxValue);
         public float CastingTime => castingTime;
         
         private float CastingWeight { get; set; }
@@ -25,13 +25,13 @@ namespace Common.Skills
 
         private void StopProcessing()
         {
-            CastingProgress.Value = 0f;
+            Progress.Value = 0f;
             enabled               = false;
         }
 
         private void Awake()
         {
-            CastingProgress.Value = 0f;
+            Progress.Value = 0f;
             CastingWeight         = castingTime;
             enabled               = false;
 
@@ -51,9 +51,9 @@ namespace Common.Skills
 
         private void Update()
         {
-            if (CastingProgress.Value < CastingWeight)
+            if (Progress.Value < CastingWeight)
             {
-                CastingProgress.Value += Time.deltaTime;
+                Progress.Value += Time.deltaTime;
             }
             else
             {

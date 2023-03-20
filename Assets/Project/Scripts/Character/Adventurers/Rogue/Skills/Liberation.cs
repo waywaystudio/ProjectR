@@ -11,7 +11,7 @@ namespace Character.Adventurers.Rogue.Skills
         {
             if (MainTarget is null) return;
             
-            Executor.Execute(MainTarget);
+            ExecutionTable.Execute(MainTarget);
         }
 
         protected override void Initialize()

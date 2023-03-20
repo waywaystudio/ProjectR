@@ -5,44 +5,38 @@ namespace Common.Characters.Behaviours.CrowdControlEffect
     public class KnockBackBehaviour : ActionBehaviour
     {
         public override CharacterActionMask BehaviourMask => CharacterActionMask.Stun;
-        public override CharacterActionMask IgnorableMask => CharacterActionMask.None |
-                                                             CharacterActionMask.Stop |
-                                                             CharacterActionMask.Run  |
-                                                             CharacterActionMask.Skill;
+        public override CharacterActionMask IgnorableMask => CharacterActionMask.KnockBackIgnoreMask;
 
         public ActionTable<Vector3, float> OnKnockBacking { get; } = new();
+        
+        protected bool IsAble => Conditions.IsAllTrue 
+                                 && CanOverrideToCurrent;
         
         
         public void Active(Vector3 source, float distance)
         {
-            if (Conditions.HasFalse) return;
+            if (!IsAble) return;
             
             RegisterBehaviour(Cb);
-            
+
             OnKnockBacking.Invoke(source, distance);
             OnActivated.Invoke();
         
-            Cb.Pathfinding.KnockBack(source, distance, OnCompleted.Invoke);
+            Cb.Rotate(source);
+            Cb.Pathfinding.KnockBack(source, distance, Complete);
             Cb.Animating.Hit();
         }
-
-
-        private void OnEnable()
-        {
-            Conditions.Register("OverwriteMask", IsOverBehaviour);
-
-            OnKnockBacking.Register("Rotate", Cb.Rotate);
-            
-            OnCompleted.Register("Stop", Cb.Stop);
-        }
         
-        private void OnDisable()
+        public override void Cancel()
         {
-            Conditions.Unregister("OverwriteMask");
+            Cb.Stop();
+            OnCanceled.Invoke();
+        }
 
-            OnKnockBacking.Unregister("Rotate");
-            
-            OnCompleted.Unregister("Stop");
+        protected override void Complete()
+        {
+            Cb.Stop();
+            OnCompleted.Invoke();
         }
     }
 }

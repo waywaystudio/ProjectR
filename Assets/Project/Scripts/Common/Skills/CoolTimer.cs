@@ -2,7 +2,9 @@ using UnityEngine;
 
 namespace Common.Skills
 {
-    public class SkillCoolTime : MonoBehaviour, IEditable
+    /* SkillComponent CoolTime */
+    /* SkillBehaviour GlobalCoolTime */
+    public class CoolTimer : MonoBehaviour, IEditable
     {
         [SerializeField] private SectionType startCoolingMoment;
         [SerializeField] private float coolTime;
@@ -30,14 +32,14 @@ namespace Common.Skills
 
         private void Awake()
         {
-            if (!TryGetComponent(out SkillComponent skill))
+            if (!TryGetComponent(out IConditionalSequence sequence))
             {
                 Debug.LogError("Require SKillComponent");
                 return;
             }
 
-            skill.Conditions.Register("_IsCoolTimeReady", IsCoolTimeReady);
-            skill.ConvertSection(startCoolingMoment).Register("_StartCooling", StartCooling);
+            sequence.Conditions.Register("IsCoolTimeReady", IsCoolTimeReady);
+            sequence.ConvertSection(startCoolingMoment).Register("StartCooling", StartCooling);
         }
 
         private void Update()
@@ -56,9 +58,9 @@ namespace Common.Skills
 #if UNITY_EDITOR
         public void EditorSetUp()
         {
-            var actionCode = GetComponent<IDataIndexer>().ActionCode;
-            var skillData  = Database.SkillSheetData(actionCode);
-            
+            if (!TryGetComponent<IDataIndexer>(out var indexer)) return;
+
+            var skillData  = Database.SkillSheetData(indexer.ActionCode);
             coolTime = skillData.CoolTime;
         }
 #endif

@@ -5,47 +5,37 @@ namespace Common.Characters.Behaviours.Movement
     public class RunBehaviour : ActionBehaviour
     {
         public override CharacterActionMask BehaviourMask => CharacterActionMask.Run;
-        public override CharacterActionMask IgnorableMask => CharacterActionMask.None |
-                                                             CharacterActionMask.Stop |
-                                                             CharacterActionMask.Run  |
-                                                             CharacterActionMask.Skill;
-            
+        public override CharacterActionMask IgnorableMask => CharacterActionMask.RunIgnoreMask;
 
         public ActionTable<Vector3> OnDeparting { get; } = new();
         
-        
+        protected bool IsAble => Conditions.IsAllTrue 
+                                 && Cb.Pathfinding.CanMove 
+                                 && CanOverrideToCurrent;
+
         public void Active(Vector3 destination)
         {
-            if (Conditions.HasFalse) return;
+            if (!IsAble) return;
             
             RegisterBehaviour(Cb);
             
             OnDeparting.Invoke(destination);
             OnActivated.Invoke();
         
-            Cb.Pathfinding.Move(destination, OnCompleted.Invoke);
+            Cb.Pathfinding.Move(destination, Complete);
             Cb.Animating.Run();
         }
 
-
-        private void OnEnable()
+        public override void Cancel()
         {
-            Conditions.Register("pathfinding.CanMove", () => Cb.Pathfinding.CanMove);
-            Conditions.Register("OverwriteMask", IsOverBehaviour);
-            
-            OnCanceled.Register("Stop", Cb.Stop);
-
-            OnCompleted.Register("Stop", Cb.Stop);
+            Cb.Stop();
+            OnCanceled.Invoke();
         }
         
-        private void OnDisable()
+        protected override void Complete()
         {
-            Conditions.Unregister("pathfinding.CanMove");
-            Conditions.Unregister("OverwriteMask");
-            
-            OnCanceled.Unregister("Stop");
-            
-            OnCompleted.Unregister("Stop");
+            Cb.Stop();
+            OnCompleted.Invoke();
         }
     }
 }

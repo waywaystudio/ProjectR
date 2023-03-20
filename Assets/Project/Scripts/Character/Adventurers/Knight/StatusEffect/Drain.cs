@@ -2,7 +2,7 @@ using Common;
 using Common.StatusEffect;
 using UnityEngine;
 
-namespace Adventurers.Knight.StatusEffect
+namespace Character.Adventurers.Knight.StatusEffect
 {
     public class Drain : StatusEffectComponent
     {

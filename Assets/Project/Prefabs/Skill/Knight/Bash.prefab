@@ -114,10 +114,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   actionCode: 13000002
   skillType: 1
+  sortingType: 0
+  behaviourMask: 32
+  ignorableMask: 3
   priority: 2
   range: 6
   angle: 90
-  sortingType: 0
   targetLayer:
     serializedVersion: 2
     m_Bits: 256
@@ -125,7 +127,6 @@ MonoBehaviour:
   description: Starts combat by attacking a target with a melee weapon.
   isRigid: 0
   animationKey: bash
-  progressTime: 0
 --- !u!114 &6582650851353798731
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -150,6 +151,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 910d8bb983b570146b7c330bb9a77e89, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  group: 1
   actionCode: 13000002
   damage:
     value: 30
@@ -166,6 +168,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 714e87efbca5f5e47a36249aecf0b6f2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  group: 1
   actionCode: 14000001
   prefabReference: {fileID: 8333227002716821657, guid: b8a0db4494b80d1418934391f99ec561, type: 3}
   poolCapacity: 8

@@ -3,35 +3,20 @@ namespace Common.Characters.Behaviours.CrowdControlEffect
     public class DeadBehaviour : ActionBehaviour
     {
         public override CharacterActionMask BehaviourMask => CharacterActionMask.Dead;
-        public override CharacterActionMask IgnorableMask => CharacterActionMask.None      |
-                                                             CharacterActionMask.Run       |
-                                                             CharacterActionMask.Stop      |
-                                                             CharacterActionMask.Stun      |
-                                                             CharacterActionMask.KnockBack |
-                                                             CharacterActionMask.Skill;
-                                                    
+        public override CharacterActionMask IgnorableMask => CharacterActionMask.DeadIgnoreMask;
+        
+        protected bool IsAble => Conditions.IsAllTrue 
+                                 && CanOverrideToCurrent;
 
         public void Dead()
         {
-            if (Conditions.HasFalse) return;
+            if (!IsAble) return;
             
             RegisterBehaviour(Cb);
             
             OnActivated.Invoke();
-
             Cb.Pathfinding.Quit();
             Cb.Animating.Dead();
-        }
-        
-        
-        private void OnEnable()
-        {
-            Conditions.Register("OverwriteMask", IsOverBehaviour);
-        }
-        
-        private void OnDisable()
-        {
-            Conditions.Unregister("OverwriteMask");
         }
     }
 }

@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2402494755454563105}
   - component: {fileID: -8862790993114922387}
-  - component: {fileID: 5905625701709508286}
+  - component: {fileID: -3768491190802695167}
   m_Layer: 0
   m_Name: Bleed
   m_TagString: Untagged
@@ -49,9 +49,8 @@ MonoBehaviour:
   type: 2
   icon: {fileID: 21300000, guid: a45b2bd5098294147a97c8fa8f2127e0, type: 3}
   duration: 12
-  tickDamage: {fileID: 5905625701709508286}
   interval: 3
---- !u!114 &5905625701709508286
+--- !u!114 &-3768491190802695167
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -60,9 +59,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 8333227002716821657}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8e628f5df72c2e949ab8a5b0ef9dc17a, type: 3}
+  m_Script: {fileID: 11500000, guid: 910d8bb983b570146b7c330bb9a77e89, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  group: 1
   actionCode: 14000002
   damage:
     value: 5

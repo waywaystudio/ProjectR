@@ -8,7 +8,7 @@ namespace Character.Adventurers.Knight.Skills
         {
             if (!TryGetTakersInSphere(this, out var takerList)) return;
         
-            takerList.ForEach(Executor.Execute);
+            takerList.ForEach(ExecutionTable.Execute);
         }
 
         protected override void Initialize()

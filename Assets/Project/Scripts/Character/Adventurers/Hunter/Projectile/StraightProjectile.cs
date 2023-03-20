@@ -13,7 +13,7 @@ namespace Adventurers.Hunter.Projectile
         [SerializeField] private Ease easyType = Ease.Linear;
         [SerializeField] private SphereCollider projectileCollider;
         [SerializeField] private LayerMask targetLayer;
-        [FormerlySerializedAs("power")] [SerializeField] private StatusEffectDamageExecution damage;
+        // [SerializeField] private StatusEffectDamageExecution damage;
         
         
         public override void Initialize(ICombatProvider provider)
@@ -39,7 +39,7 @@ namespace Adventurers.Hunter.Projectile
         {
             if (other.gameObject.IsInLayerMask(targetLayer) && other.TryGetComponent(out ICombatTaker taker))
             {
-                damage.Execution(taker);
+                // damage.Execution(taker);
             }
         }
     }

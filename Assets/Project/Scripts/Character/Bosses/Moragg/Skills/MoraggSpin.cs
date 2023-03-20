@@ -6,7 +6,6 @@ namespace Character.Bosses.Moragg.Skills
 {
     public class MoraggSpin : SkillComponent
     {
-        [SerializeField] private float knockBackDistance = 5f;
         [SerializeField] private SphereProjector projector;
 
 
@@ -14,11 +13,7 @@ namespace Character.Bosses.Moragg.Skills
         {
             if (!TryGetTakersInSphere(this, out var takerList)) return;
             
-            takerList.ForEach(taker =>
-            {
-                Executor.Execute(taker);
-                taker.KnockBack(Cb.transform.position, knockBackDistance);
-            });
+            takerList.ForEach(ExecutionTable.Execute);
         }
 
         protected override void PlayAnimation()

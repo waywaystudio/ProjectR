@@ -1,5 +1,4 @@
 using Common;
-using Common.Execution;
 using Common.Projectors;
 using Common.StatusEffect;
 using Common.Systems;
@@ -10,12 +9,10 @@ namespace Character.Bosses.Moragg.StatusEffect
     public class LivingBomb : StatusEffectComponent
     {
         [SerializeField] private SphereProjector projector;
-        [SerializeField] private StatusEffectDamageExecution tickDamage;
         [SerializeField] private CollidingSystem collidingSystem;
         
         [SerializeField] private float interval;
         [SerializeField] private float radius = 12f;
-        [SerializeField] private float stunDuration = 5f;
         [SerializeField] private LayerMask adventurerLayer;
         
         private float hasteWeight;
@@ -51,11 +48,7 @@ namespace Character.Bosses.Moragg.StatusEffect
                 out var takerList
             );
 
-            takerList.ForEach(taker =>
-            {
-                tickDamage.Execution(taker, 5f);
-                taker.Stun(stunDuration);
-            });
+            takerList.ForEach(ExecutionTable.Execute);
         }
         
         private void SetHasteWeight() => hasteWeight = tickBuffer = 
@@ -72,7 +65,7 @@ namespace Character.Bosses.Moragg.StatusEffect
                 }
                 else
                 {
-                    tickDamage.Execution(Taker);
+                    ExecutionTable.Execute(ExecuteGroup.Group1, Taker);
                     tickBuffer = hasteWeight;
                 }
             }

@@ -1,14 +1,14 @@
 using System.Collections.Generic;
-using Common.Execution;
+using Sirenix.OdinInspector;
 
-namespace Common.Skills
+namespace Common.Execution
 {
-    public class SkillExecutor
+    public class ExecutionTable
     {
-        [Sirenix.OdinInspector.ShowInInspector]
+        [ShowInInspector]
         private Dictionary<ExecuteGroup, List<ExecuteComponent>> Table { get; }
 
-        public SkillExecutor()
+        public ExecutionTable()
         {
             Table = new Dictionary<ExecuteGroup, List<ExecuteComponent>>();
         }

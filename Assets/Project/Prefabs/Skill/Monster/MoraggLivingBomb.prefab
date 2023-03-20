@@ -112,10 +112,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   actionCode: 13000007
   skillType: 1
+  sortingType: 8
+  behaviourMask: 32
+  ignorableMask: 3
   priority: 4
   range: 50
   angle: 0
-  sortingType: 8
   targetLayer:
     serializedVersion: 2
     m_Bits: 128
@@ -135,6 +137,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 714e87efbca5f5e47a36249aecf0b6f2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  group: 1
   actionCode: 14000004
   prefabReference: {fileID: 8333227002716821657, guid: ae083ec149c3daa4fb7146db6fd69715, type: 3}
   poolCapacity: 2

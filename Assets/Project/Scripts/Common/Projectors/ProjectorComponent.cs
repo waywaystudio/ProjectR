@@ -30,16 +30,60 @@ namespace Common.Projectors
             OnCompleted.Register("ResetMaterial", ResetMaterial);
             OnEnded.Register("DeActive", () => gameObject.SetActive(false));
             
-            mainSequence.Combine("Projector", this);
+            mainSequence.CombineAsReference("Projector", this);
         }
-
+        
+        private void ResetMaterial() => projector.material.SetFloat(FillAmount, 0f);
+        
         public void Dispose()
         {
             this.Clear();
         }
 
+        // TODO. Projector를 독립시킬 준비가 되면 구현해보자.
+        // protected ISequence MainSequence;
+        
+        // protected void Activate()
+        // {
+        //     gameObject.SetActive(true);
+        //     projector.material.DOFloat(1.5f, FillAmount, CastingTime);
+        // }
+        //
+        // protected void Cancel()
+        // {
+        //     ResetMaterial();
+        // }
+        //
+        // protected void Complete()
+        // {
+        //     ResetMaterial();
+        // }
+        //
+        // protected void End()
+        // {
+        //     gameObject.SetActive(false);
+        // }
 
-        private void ResetMaterial() => projector.material.SetFloat(FillAmount, 0f);
+        // private void Awake()
+        // {
+        //     /*
+        //      * Projector는 Skill(ex.MoraggSpin) 혹은 StatusEffect(ex.MoraggLivingBomb) 에 붙는다.             
+        //      * Projector를 완전히 분리시키려면, FillTIme(=CastingTime), 과 Radius 개념이 필요하다.
+        //      */
+        //     
+        //     if (!TryGetComponent(out MainSequence))
+        //     {
+        //         Debug.LogError($"Require ISequence. Call:{gameObject.name}");
+        //         return;
+        //     }
+        //     
+        //     projector.material = new Material(materialReference);
+        //     
+        //     MainSequence.OnActivated.Register("Projector", Activate);
+        //     MainSequence.OnCanceled.Register("Projector", Cancel);
+        //     MainSequence.OnCompleted.Register("Projector", Complete);
+        //     MainSequence.OnEnded.Register("Projector", End);
+        // }
 
 
 #if UNITY_EDITOR

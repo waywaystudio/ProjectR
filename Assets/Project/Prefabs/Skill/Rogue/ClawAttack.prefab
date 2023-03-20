@@ -112,20 +112,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   actionCode: 13000011
   skillType: 1
+  sortingType: 0
+  behaviourMask: 32
+  ignorableMask: 3
   priority: 1
   range: 6
   angle: 90
-  sortingType: 0
   targetLayer:
     serializedVersion: 2
     m_Bits: 256
   icon: {fileID: 21300000, guid: f77c1bbaa2a2a9543a6a657f87a256f9, type: 3}
   description: Starts combat by attacking a target with a melee weapon.
   isRigid: 0
-  cost: 0
   animationKey: clawAttack
-  progressTime: 0
-  coolTime: 0
 --- !u!114 &8442636931341427777
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -150,6 +149,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 910d8bb983b570146b7c330bb9a77e89, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  group: 1
   actionCode: 13000011
   damage:
     value: 14

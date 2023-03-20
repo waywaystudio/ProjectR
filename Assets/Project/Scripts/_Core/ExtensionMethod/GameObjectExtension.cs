@@ -3,7 +3,6 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
-using UnityEngine.Events;
 using Object = UnityEngine.Object;
 // ReSharper disable UnusedMember.Global
 
@@ -83,8 +82,7 @@ public static class GameObjectExtension
     {
         return Equals(component, null) || component.gameObject.activeSelf == false;
     }
-        
-        
+
     public static T GetOrAddComponent<T>(this GameObject gameObject) where T : MonoBehaviour
     {
         var component = gameObject.GetComponent<T>();

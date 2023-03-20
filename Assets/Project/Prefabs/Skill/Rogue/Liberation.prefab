@@ -111,10 +111,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   actionCode: 13000013
   skillType: 1
+  sortingType: 0
+  behaviourMask: 32
+  ignorableMask: 3
   priority: 3
   range: 0
   angle: 0
-  sortingType: 0
   targetLayer:
     serializedVersion: 2
     m_Bits: 128
@@ -122,7 +124,6 @@ MonoBehaviour:
   description: Starts combat by attacking a target with a melee weapon.
   isRigid: 0
   animationKey: liberation
-  progressTime: 0
 --- !u!114 &4756535447479527187
 MonoBehaviour:
   m_ObjectHideFlags: 0

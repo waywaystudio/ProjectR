@@ -1,20 +1,16 @@
-using Common.Skills;
 using UnityEngine;
 
 namespace Common.Execution
 {
-    public class SkillDamageExecutor : ExecuteComponent, IEditable
+    public class DamageExecutor : ExecuteComponent, IEditable
     {
         [SerializeField] private DataIndex actionCode;
         [SerializeField] private PowerValue damage = new();
-        
-        private SkillComponent skillComponent;
-        
+
         private StatTable StatTable { get; } = new();
-        private ICombatProvider Provider => skillComponent.Cb;
 
 
-        public override void Execution(ICombatTaker taker, float instantMultiplier)
+        public override void Execution(ICombatTaker taker, float instantMultiplier = 1f)
         {
             if (!taker.DynamicStatEntry.Alive.Value) return;
             
@@ -42,13 +38,13 @@ namespace Common.Execution
                 entity.Value                       -= taker.DynamicStatEntry.Hp.Value;
                 entity.IsFinishedAttack            =  true;
              
-                Debug.Log($"{taker.Name} dead by {Provider.Name}'s {actionCode}");
+                Debug.Log($"{taker.Name} dead by {Executor.Provider.Name}'s {actionCode}");
                 taker.Dead();
             }
             
             taker.DynamicStatEntry.Hp.Value -= damageAmount;
 
-            Provider.OnDamageProvided.Invoke(entity);
+            Executor.Provider.OnDamageProvided.Invoke(entity);
             taker.OnDamageTaken.Invoke(entity);
         }
         
@@ -57,30 +53,30 @@ namespace Common.Execution
         {
             StatTable.Clear();
             StatTable.Register(actionCode, damage);
-            StatTable.UnionWith(Provider.StatTable);
+            StatTable.UnionWith(Executor.Provider.StatTable);
         }
 
-        private void Awake()
-        {
-            if (!TryGetComponent(out skillComponent))
-            {
-                Debug.LogError("Require SkillComponent In Same Inspector");
-            }
-
-            skillComponent.Executor.Add(this);
-        }
+        private void OnEnable() { Executor?.ExecutionTable.Add(this); }
+        private void OnDisable() { Executor?.ExecutionTable.Remove(this); }
 
 
 #if UNITY_EDITOR
         public void EditorSetUp()
         {
-            if (!TryGetComponent(out skillComponent))
+            if (TryGetComponent(out Skills.SkillComponent skill))
             {
-                Debug.LogError("Require SkillComponent In Same Inspector");
+                actionCode   = skill.ActionCode;
+                damage.Value = Database.SkillSheetData(actionCode).CompletionValueList[0];
+                return;
+            }
+            
+            if (TryGetComponent(out IDataIndexer indexer) && indexer.ActionCode is not DataIndex.None)
+            {
+                actionCode   = indexer.ActionCode;
+                return;
             }
 
-            actionCode   = skillComponent.ActionCode;
-            damage.Value = Database.SkillSheetData(actionCode).CompletionValueList[0];
+            Debug.LogError("At least SkillComponent or StatusEffectComponent In Same Inspector");
         }
 #endif
     }

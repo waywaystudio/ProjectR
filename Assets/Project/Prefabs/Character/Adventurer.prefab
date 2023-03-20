@@ -1893,7 +1893,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2511762329398228883}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 100971ec1b076d041bcdbeabfca9ef89, type: 3}
   m_Name: 
@@ -2684,7 +2684,6 @@ MonoBehaviour:
   knockBackBehaviour: {fileID: 2876764487752019973}
   deadBehaviour: {fileID: 2208965012742206995}
   skillBehaviour: {fileID: 7971064793264385864}
-  combatInteraction: {fileID: 0}
   searching: {fileID: 6370810151153497551}
   colliding: {fileID: 3894537213432791220}
   pathfinding: {fileID: 2767833712095737796}
@@ -5091,6 +5090,7 @@ GameObject:
   - component: {fileID: 3975777049801717595}
   - component: {fileID: 7971064793264385864}
   - component: {fileID: 3682180189469010492}
+  - component: {fileID: 3748007606970478772}
   m_Layer: 7
   m_Name: Skill
   m_TagString: Untagged
@@ -5174,6 +5174,20 @@ MonoBehaviour:
       Version: 1.7.4
   gizmoViewMode: 2
   showBehaviorDesignerGizmo: 1
+--- !u!114 &3748007606970478772
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7737772315383808032}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c558f34805c58af41b9759b2ae5634bd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  startCoolingMoment: 1
+  coolTime: 1.2
 --- !u!1 &7767509534076270219
 GameObject:
   m_ObjectHideFlags: 0
