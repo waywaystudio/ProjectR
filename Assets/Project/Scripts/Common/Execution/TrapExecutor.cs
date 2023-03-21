@@ -14,18 +14,20 @@ namespace Common.Execution
         
         public override void Execution(ICombatTaker taker, float instantMultiplier = 1)
         {
-            Get().Activate();
+            Get().Activate(Executor.Provider.Position);
         }
 
         private TrapComponent OnCreatePool()
         {
             if (!prefabReference.IsNullOrEmpty() && Instantiate(prefabReference).TryGetComponent(out TrapComponent component))
             {
-                component.Initialize(Executor.Provider, Executor.Provider.Position);
+                component.Initialize(Executor.Provider);
                 component.OnEnded.Register("ReturnToPool",() =>
                 {
                     component.transform.position = Vector3.zero;
                     component.transform.SetParent(transform, false);
+                    
+                    Release(component);
                 });
                 
                 return component;
@@ -36,6 +38,7 @@ namespace Common.Execution
         }
 
         private TrapComponent Get() => pool.Get();
+        private void Release(TrapComponent element) => pool.Release(element);
 
         private void OnEnable()
         {

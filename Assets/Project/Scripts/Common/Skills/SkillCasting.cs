@@ -10,7 +10,7 @@ namespace Common.Skills
 
         private Action complete;
         
-        public FloatEvent Progress { get; } = new(0, float.MaxValue);
+        public FloatEvent Progress { get; } = new();
         public float CastingTime => castingTime;
         
         private float CastingWeight { get; set; }
@@ -32,8 +32,8 @@ namespace Common.Skills
         private void Awake()
         {
             Progress.Value = 0f;
-            CastingWeight         = castingTime;
-            enabled               = false;
+            CastingWeight  = castingTime;
+            enabled        = false;
 
             if (!TryGetComponent(out SkillComponent skill))
             {

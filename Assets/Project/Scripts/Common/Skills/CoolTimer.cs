@@ -10,7 +10,7 @@ namespace Common.Skills
         [SerializeField] private float coolTime;
 
         public float CoolTime => coolTime;
-        public FloatEvent RemainCoolTime { get; } = new(0f, float.MaxValue);
+        public FloatEvent RemainCoolTime { get; } = new();
         
 
         private void StartCooling()

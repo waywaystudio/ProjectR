@@ -23,10 +23,7 @@ namespace Common
         public virtual void Register(Action action) => Register(action.ToString(), _ => action());
         public virtual void Register(string key, Action action) => Register(key, _ => action());
         public virtual void Register(Action<T> action) => Register(action.ToString(), action);
-        public virtual void Register(string key, Action<T> action)
-        {
-            OnValueChanged.Register(key, action);
-        }
+        public virtual void Register(string key, Action<T> action) => OnValueChanged.Register(key, action);
 
         public void Unregister(Action action) => Unregister(action.ToString());
         public void Unregister(string key) => OnValueChanged.Unregister(key);
@@ -34,6 +31,8 @@ namespace Common
 
     public class FloatEvent : Observable<float>
     {
+        private const float Tolerance = 0.00001f;
+        
         protected float Min = float.NegativeInfinity;
         protected float Max = float.PositiveInfinity;
 
@@ -42,7 +41,7 @@ namespace Common
             get => value;
             set
             {
-                if (Math.Abs(this.value - value) < 0.000001f) return;
+                if (Math.Abs(this.value - value) < Tolerance) return;
                 
                 var clampedValue = Mathf.Clamp(value, Min, Max);
                 this.value = clampedValue;
@@ -51,13 +50,19 @@ namespace Common
             }
         }
 
-        public FloatEvent() { }
-        public FloatEvent(float min, float max) { SetClamp(min, max);}
+        public FloatEvent() : this(0f, float.PositiveInfinity) { }
+        public FloatEvent(float min, float max)
+        {
+            value = 0f;
+            SetClamp(min, max);
+        }
 
         public void SetClamp(float min, float max)
         {
-            Min = min;
-            Max = max;
+            Min   = min;
+            Max   = max;
         }
     }
+
+    
 }

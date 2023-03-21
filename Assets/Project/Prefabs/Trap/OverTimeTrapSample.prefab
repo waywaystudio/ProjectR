@@ -9,11 +9,11 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 426966613292769704}
-  - component: {fileID: 4109276324149782118}
+  - component: {fileID: 7448388928431272375}
   - component: {fileID: 8771204470701334892}
-  - component: {fileID: 4143136793427883522}
+  - component: {fileID: 7226112191054271320}
+  - component: {fileID: 2395313037951753882}
   - component: {fileID: 1653119476341693230}
-  - component: {fileID: 5519952511871739428}
   m_Layer: 0
   m_Name: OverTimeTrapSample
   m_TagString: Untagged
@@ -37,7 +37,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &4109276324149782118
+--- !u!114 &7448388928431272375
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -46,14 +46,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 3865230921314547483}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6045000cf0995e743bb9f518bb7f3f27, type: 3}
+  m_Script: {fileID: 11500000, guid: 051cae859b88f354d8882c7e55912d14, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   collidingSystem: {fileID: 8771204470701334892}
   trapCode: 0
-  delayTime: 2
-  radius: 3
-  prolongTime: 0
+  delayTime: 1
+  radius: 50
   targetLayer:
     serializedVersion: 2
     m_Bits: 256
@@ -70,7 +69,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxBufferCount: 32
---- !u!114 &4143136793427883522
+--- !u!114 &7226112191054271320
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -79,10 +78,23 @@ MonoBehaviour:
   m_GameObject: {fileID: 3865230921314547483}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fd381e14fe1ed324cbaa55668521e22d, type: 3}
+  m_Script: {fileID: 11500000, guid: 5ce59e97c74f771429cf5f08c788f4d9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  triggerCollider: {fileID: 5519952511871739428}
+  interval: 4
+--- !u!114 &2395313037951753882
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3865230921314547483}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ded1296d600c5ce41bad806da7c62f77, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  prolongTimer: 16
 --- !u!114 &1653119476341693230
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -100,19 +112,6 @@ MonoBehaviour:
   damage:
     value: 50
     statCode: 1
---- !u!135 &5519952511871739428
-SphereCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3865230921314547483}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 0
-  serializedVersion: 2
-  m_Radius: 0.5
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &8919642679339843494
 GameObject:
   m_ObjectHideFlags: 0

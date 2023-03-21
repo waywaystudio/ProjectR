@@ -7,7 +7,7 @@ namespace Common.Characters.Behaviours.CrowdControlEffect
         public override CharacterActionMask BehaviourMask => CharacterActionMask.Stun;
         public override CharacterActionMask IgnorableMask => CharacterActionMask.StunIgnoreMask;
 
-        public FloatEvent RemainStunTime { get; } = new(0f, float.MaxValue);
+        public FloatEvent RemainStunTime { get; } = new();
         public ActionTable<float> OnStunning { get; } = new();
         
         protected bool IsAble => Conditions.IsAllTrue 

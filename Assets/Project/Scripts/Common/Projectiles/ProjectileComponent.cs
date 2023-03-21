@@ -1,97 +1,113 @@
-using DG.Tweening;
+using System.Collections.Generic;
+using Common.Execution;
+using Common.Systems;
+using Sirenix.OdinInspector;
 using UnityEngine;
 
 namespace Common.Projectiles
 {
-    public class ProjectileComponent : MonoBehaviour, ISequence, IPoolable<ProjectileComponent>
+    
+    /// Trajectory Focus
+    // Instant
+    // Parabola
+    
+    /// Destination Focus
+    // Direction
+    // Position
+    
+    /// Execution Focus
+    // Damage, Heal, Status, Trap
+    
+    /// Completion Focus
+    // Bounce, Yoyo, 
+    public class ProjectileComponent : MonoBehaviour, ISequence, IExecutable
     {
-        /// OnActivated Focus
-        // Trajectory Type.
-        // Instantiate Type. (On Spot) // On Provider Position
-        // Raycast pierce Type.
-        // Chasing Type?
-
-        /// OnCompleted Focus
-        // Bounce Type.
-        // Time Trigger
-        // Trap Type. (Installed, if inCollider -> SingCompletion and End)
-        // Area Type. (Installed, if inCollider -> tickCompletion and Prolong)
-        // Trap, Area 모두 별도의 Component 느낌 아닌가?
-        // Projectile은 그래도, 어딘가에서 발사하고, 날아가서 충돌하면 없어지는 싸이클이 있는데
-        // Trap, Area는 라이프 사이클 생겨먹은게 다르다.
-        // TrapComponent - CompletionType 으로 보는게 좋을 것 같다.
-
-        protected ICombatProvider Provider;
-        protected DataIndex ActionCode; 
-        protected Tweener TrajectoryTweener;
+        [SerializeField] protected CollidingSystem collidingSystem;
+        [SerializeField] protected DataIndex projectileCode;
+        [SerializeField] protected LayerMask targetLayer;
+        [SerializeField] protected float radius;
         
-        public Pool<ProjectileComponent> Pool { get; set; }
+        protected DataIndex ActionCode => projectileCode;
         
-        protected Vector3 Destination { get; set; }
-        
+        public ICombatProvider Provider { get; protected set; }
+        public LayerMask TargetLayer => targetLayer;
 
-        /// <summary>
-        /// On Fire
-        /// </summary>
         public ActionTable OnActivated { get; } = new();
-        
-        /// <summary>
-        /// ???
-        /// </summary>
         public ActionTable OnCanceled { get; } = new();
-        
-        /// <summary>
-        /// On Collided
-        /// </summary>
+        [ShowInInspector]
         public ActionTable OnCompleted { get; } = new();
-        
-        /// <summary>
-        /// After all
-        /// </summary>
         public ActionTable OnEnded { get; } = new();
+        public ExecutionTable ExecutionTable { get; } = new();
 
-
+        /// <summary>
+        /// Create Pooling에서 호출
+        /// 보통 SkillSequence에 Execution으로 부터 호출 됨.
+        /// </summary>
         public virtual void Initialize(ICombatProvider provider)
         {
             Provider = provider;
         }
-
-        public void Active(Vector3 destination)
+        
+        /// <summary>
+        /// 성공적으로 스킬 사용시 호출.
+        /// </summary>
+        public void Activate()
         {
-            Destination = destination;
-            
+            gameObject.SetActive(true);
             OnActivated.Invoke();
         }
 
+        /// <summary>
+        /// 스킬의 가동범위로 부터 대상을 받아서
+        /// 데미지, 상태이상 부여 등을 실제 수행하는 함수
+        /// </summary>
+        public virtual void Execution() { }
 
-        
-
-        protected void IsColliding()
-        {
-            // 충돌 처리 판별을 어떤 방식으로 할까...
-            // 역시 온트리거 엔터가 제일 좋을까
-            // 히트스캔, TrapComponent 방식은 이 부분이 필요없다.
-        }
-
-        protected void Cancel()
+        /// <summary>
+        /// 해제 시 호출. (만료 아님)
+        /// </summary>
+        public void Cancel()
         {
             OnCanceled.Invoke();
-
-            End();
-        }
-
-        protected void Complete()
-        {
-            OnCompleted.Invoke();
             
             End();
         }
 
-        protected void End()
+        /// <summary>
+        /// 성공적으로 만료시 호출
+        /// </summary>
+        public virtual void Complete()
         {
-            TrajectoryTweener = null;
-            OnEnded.Invoke();
-            Pool.Release(this);
+            OnCompleted.Invoke();
+
+            End();
         }
+
+        /// <summary>
+        /// 만료시 호출 (성공 실패와 무관)
+        /// </summary>
+        public void End()
+        {
+            gameObject.SetActive(false);
+            OnEnded.Invoke();
+        }
+        
+        /// <summary>
+        /// Scene이 종료되거나, 설정된 Pool 개수를 넘어서 생성된 상태이상효과가 만료될 때 호출
+        /// </summary>
+        public void Dispose()
+        {
+            this.Clear();
+            
+            Destroy(gameObject);
+        }
+        
+        
+        protected bool TryGetTakerInSphere(out List<ICombatTaker> takerList)
+            => collidingSystem.TryGetTakersInSphere(transform.position, 
+                radius, 
+                360f, 
+                targetLayer, 
+                out takerList);
     }
 }

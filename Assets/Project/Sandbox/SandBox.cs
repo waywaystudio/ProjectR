@@ -1,29 +1,35 @@
-using System;
-using System.Collections.Generic;
+using Common;
 using Sirenix.OdinInspector;
-using Sirenix.Serialization;
 using UnityEngine;
 
 public class SandBox : MonoBehaviour
 {
-    public Action CsharpAction;
-    
-    [OdinSerialize]
-    public Action OdinAction;
+    // public Action CsharpAction;
+    // public SandSphere sandSphere;
 
-    [OdinSerialize]
-    public Dictionary<int, int> TableTest;
-
-    public SandSphere sandSphere;
-
+    [SerializeField] private Processor processor = new();
 
     public void ShowDebugMessage() => Debug.Log("Is In!");
 
     [Button]
     public void Debugger()
     {
-        
+        ShowDebugMessage();
+        processor.Activate(3f);
     }
+
+    [Button]
+    public void SetProgress(float value) => processor.Value = value;
+    
+    [Button]
+    public void SetEndTime(float value) => processor.EndTime = (value);
+
+    [Button]
+    public void GetProgress()
+    {
+        Debug.Log(processor.Value);
+    }
+    
     public void A() { Debug.Log("A");}
     public void B() { Debug.Log("B");}
     public void C() { Debug.Log("C");}

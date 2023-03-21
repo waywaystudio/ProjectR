@@ -3,7 +3,7 @@ using UnityEngine;
 namespace Common.Traps
 {
     [RequireComponent(typeof(SphereCollider))]
-    public class ExplodeTrigger : MonoBehaviour, IEditable
+    public class TrapCollidingTrigger : MonoBehaviour, IEditable
     {
         [SerializeField] protected SphereCollider triggerCollider;
         
@@ -27,8 +27,8 @@ namespace Common.Traps
             triggerCollider        ??= GetComponent<SphereCollider>();
             triggerCollider.radius =   trapComponent.Radius;
             
-            trapComponent.OnActivated.Register("TriggerOn", () => triggerCollider.enabled  = true);
-            trapComponent.OnCompleted.Register("TriggerOff", () => triggerCollider.enabled = false);
+            trapComponent.OnActivated.Register("CollidingTriggerOn", () => triggerCollider.enabled  = true);
+            trapComponent.OnEnded.Register("CollidingTriggerOff", () => triggerCollider.enabled = false);
         }
 
 

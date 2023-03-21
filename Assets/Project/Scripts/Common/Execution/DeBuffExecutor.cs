@@ -42,7 +42,11 @@ namespace Common.Execution
             if (!prefabReference.IsNullOrEmpty() && Instantiate(prefabReference).TryGetComponent(out StatusEffectComponent component))
             {
                 component.Initialize(Executor.Provider);
-                component.OnEnded.Register("ReturnToPool", () => component.transform.SetParent(transform, false));
+                component.OnEnded.Register("ReturnToPool", () =>
+                {
+                    component.transform.SetParent(transform, false);
+                    Release(component);
+                });
                 
                 return component;
             }
@@ -52,6 +56,7 @@ namespace Common.Execution
         }
         
         private StatusEffectComponent Get() => pool.Get();
+        private void Release(StatusEffectComponent element) => pool.Release(element);
 
         private void OnEnable()
         {

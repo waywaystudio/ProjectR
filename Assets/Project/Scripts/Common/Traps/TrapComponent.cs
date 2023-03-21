@@ -2,30 +2,26 @@ using System.Collections.Generic;
 using Common.Execution;
 using Common.Systems;
 using DG.Tweening;
+using Sirenix.OdinInspector;
 using UnityEngine;
 
 namespace Common.Traps
 {
-    /// 반대 개념 항상 존재. (딜 <-> 힐)
-    // 밟는 동안 효과
-    /// 효과 종류
-    // 데미지, 힐, 디버프, 버프
     public abstract class TrapComponent : MonoBehaviour, ISequence, IExecutable, IEditable
     {
         [SerializeField] private CollidingSystem collidingSystem;
         [SerializeField] protected DataIndex trapCode;
         [SerializeField] protected float delayTime;
         [SerializeField] protected float radius;
-        [SerializeField] protected float prolongTime;
         [SerializeField] protected LayerMask targetLayer;
 
         public ICombatProvider Provider { get; protected set; }
         public DataIndex ActionCode => trapCode;
-        public float ProlongTime => prolongTime;
         public float Radius => radius;
         public LayerMask TargetLayer => targetLayer;
-        public FloatEvent ProgressTime { get; } = new(0f, float.PositiveInfinity);
+        public FloatEvent ProgressTime { get; } = new();
         
+        [ShowInInspector]
         public ActionTable OnActivated { get; } = new();
         public ActionTable OnCanceled { get; } = new();
         public ActionTable OnCompleted { get; } = new();
@@ -33,20 +29,24 @@ namespace Common.Traps
         public ExecutionTable ExecutionTable { get; } = new();
         
         /// <summary>
-        /// Scene 시작과 함께 한 번 호출.
-        /// 보통 SkillSequence에 StatusCompletion으로 부터 호출 됨.
+        /// Create Pool 에서 호출
+        /// 보통 SkillSequence에 Execution 부터 호출 됨.
         /// </summary>
-        public virtual void Initialize(ICombatProvider provider, Vector3 position)
+        public virtual void Initialize(ICombatProvider provider)
         {
-            Provider           = provider;
-            transform.position = position;
+            Provider = provider;
         }
         
         /// <summary>
         /// 성공적으로 스킬 사용시 호출.
         /// </summary>
-        public void Activate()
+        public void Activate(Vector3 position)
         {
+            Transform transform1;
+            
+            (transform1 = transform).SetParent(null);
+            transform1.position = position;
+            
             gameObject.SetActive(true);
             ProgressTime.Value = 0f;
 

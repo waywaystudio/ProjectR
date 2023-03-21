@@ -1,46 +1,29 @@
 using Common;
-using Common.Execution;
 using Common.Projectiles;
-using DG.Tweening;
-using UnityEngine;
-using UnityEngine.Serialization;
 
-namespace Adventurers.Hunter.Projectile
+namespace Character.Adventurers.Hunter.Projectile
 {
     public class StraightProjectile : ProjectileComponent
     {
-        [SerializeField] private float speed;
-        [SerializeField] private Ease easyType = Ease.Linear;
-        [SerializeField] private SphereCollider projectileCollider;
-        [SerializeField] private LayerMask targetLayer;
-        // [SerializeField] private StatusEffectDamageExecution damage;
-        
-        
         public override void Initialize(ICombatProvider provider)
         {
-            Provider = provider;
-            // damage.Initialize(Provider);
-            // damage.Initialize(Provider, ActionCode);
-        }
-        
-        protected void Flying(Vector3 destination)
-        {
-            if (speed == 0f)
-            {
-                Debug.LogWarning("Projectile Speed Value Can not 0f.");
-                return;
-            }
+            base.Initialize(provider);
             
-            transform.DOMove(destination, 1f / speed)
-                     .SetEase(easyType);
+            OnCompleted.Register("Execution", Execution);
         }
 
-        private void OnTriggerEnter(Collider other)
+        public override void Execution()
         {
-            if (other.gameObject.IsInLayerMask(targetLayer) && other.TryGetComponent(out ICombatTaker taker))
-            {
-                // damage.Execution(taker);
-            }
+            if (!TryGetTakerInSphere(out var takerList)) return;
+            
+            takerList.ForEach(ExecutionTable.Execute);
+        }
+
+        public override void Complete()
+        {
+            OnCompleted.Invoke();
+
+            // End();
         }
     }
 }

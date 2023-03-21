@@ -8,7 +8,7 @@ namespace Common.Skills
     public class SkillAnimationHit : MonoBehaviour
     {
 #if UNITY_EDITOR
-        private string scriptDescription;
+        private string scriptDescription = string.Empty;
 #endif
         
         private CharacterBehaviour cb;
