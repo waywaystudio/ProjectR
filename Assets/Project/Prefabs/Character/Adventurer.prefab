@@ -2782,6 +2782,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
+      - m_Target: {fileID: 6884540845200242600}
+        m_TargetAssemblyTypeName: Common.Characters.CharacterBehaviour, ProjectR.Common
+        m_MethodName: set_IsPlayer
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
   onAuto:
     m_PersistentCalls:
       m_Calls:
@@ -2824,6 +2836,18 @@ MonoBehaviour:
       - m_Target: {fileID: 4586929172752689801}
         m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
         m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 6884540845200242600}
+        m_TargetAssemblyTypeName: Common.Characters.CharacterBehaviour, ProjectR.Common
+        m_MethodName: set_IsPlayer
         m_Mode: 6
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

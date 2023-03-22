@@ -119,15 +119,14 @@ MonoBehaviour:
   behaviourMask: 32
   ignorableMask: 3
   priority: 2
-  range: 4
-  angle: 360
   targetLayer:
     serializedVersion: 2
     m_Bits: 0
-  icon: {fileID: 21300000, guid: fc4e83da78abc734b8dd9673f479ba4a, type: 3}
   description: Starts combat by attacking a target with a melee weapon.
-  isRigid: 0
   animationKey: casting
+  icon: {fileID: 21300000, guid: fc4e83da78abc734b8dd9673f479ba4a, type: 3}
+  range: 4
+  angle: 360
   projector: {fileID: 8959908313466980663}
 --- !u!114 &1227390470127866362
 MonoBehaviour:

@@ -1,4 +1,3 @@
-using System.Collections.Generic;
 using Common.Execution;
 using Common.Systems;
 using Sirenix.OdinInspector;
@@ -25,12 +24,11 @@ namespace Common.Projectiles
         [SerializeField] protected CollidingSystem collidingSystem;
         [SerializeField] protected DataIndex projectileCode;
         [SerializeField] protected LayerMask targetLayer;
-        [SerializeField] protected float radius;
+        // [SerializeField] protected float radius;
         
-        protected DataIndex ActionCode => projectileCode;
-        
-        public ICombatProvider Provider { get; protected set; }
+        public DataIndex ActionCode => projectileCode;
         public LayerMask TargetLayer => targetLayer;
+        public ICombatProvider Provider { get; protected set; }
 
         public ActionTable OnActivated { get; } = new();
         public ActionTable OnCanceled { get; } = new();
@@ -101,13 +99,12 @@ namespace Common.Projectiles
             
             Destroy(gameObject);
         }
-        
-        
-        protected bool TryGetTakerInSphere(out List<ICombatTaker> takerList)
-            => collidingSystem.TryGetTakersInSphere(transform.position, 
-                radius, 
-                360f, 
-                targetLayer, 
-                out takerList);
+
+        // protected bool TryGetTakerInSphere(out List<ICombatTaker> takerList)
+        //     => collidingSystem.TryGetTakersInSphere(transform.position, 
+        //         radius, 
+        //         360f, 
+        //         targetLayer, 
+        //         out takerList);
     }
 }

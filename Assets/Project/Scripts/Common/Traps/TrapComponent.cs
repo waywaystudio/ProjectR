@@ -24,7 +24,9 @@ namespace Common.Traps
         [ShowInInspector]
         public ActionTable OnActivated { get; } = new();
         public ActionTable OnCanceled { get; } = new();
+        [ShowInInspector]
         public ActionTable OnCompleted { get; } = new();
+        [ShowInInspector]
         public ActionTable OnEnded { get; } = new();
         public ExecutionTable ExecutionTable { get; } = new();
         

@@ -20,7 +20,7 @@ namespace Common.Systems
         public ICombatTaker GetMainTarget(LayerMask targetLayerIndex, Vector3 rootPosition, SortingType sortingType = SortingType.None)
         {
             (targetLayerIndex == adventurerLayer || targetLayerIndex == monsterLayer).OnFalse(() 
-                => Debug.LogWarning($"Layer must be Adventurer or Monster. Input:{(int)targetLayerIndex}"));
+                => Debug.LogWarning($"Layer must be Adventurer:{(int)adventurerLayer} or Monster:{(int)monsterLayer}. Input:{(int)targetLayerIndex}"));
             
             if (targetLayerIndex == adventurerLayer && AdventurerList.HasElement())
             {

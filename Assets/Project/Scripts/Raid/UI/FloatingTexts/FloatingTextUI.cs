@@ -75,6 +75,8 @@ namespace Raid.UI.FloatingTexts
                 }
             }
 
+            Debug.Log($"{entity.Taker} takes damage {damageText.text}");
+            
             SetTextPosition();
             textTransform.position = transform.position;
         }

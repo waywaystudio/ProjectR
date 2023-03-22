@@ -6,7 +6,7 @@ namespace Common.Projectors
 {
     public abstract class ProjectorComponent : MonoBehaviour, ISequence, IEditable
     {
-        [SerializeField] private Material materialReference;
+        [SerializeField] protected Material materialReference;
         [SerializeField] protected DecalProjector projector;
 
         protected const float ProjectorDepth = 50f;

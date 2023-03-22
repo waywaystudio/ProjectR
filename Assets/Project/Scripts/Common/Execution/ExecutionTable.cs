@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using Sirenix.OdinInspector;
+using UnityEngine;
 
 namespace Common.Execution
 {
@@ -34,6 +35,17 @@ namespace Common.Execution
         }
         
         public void Clear() => Table.Clear();
+
+        public void Execute(Vector3 position)
+        {
+            foreach (var exrList in Table)
+            {
+                foreach (var exr in exrList.Value)
+                {
+                    exr.Execution(position);
+                }
+            } 
+        }
 
         public void Execute(ICombatTaker taker) => Execute(taker, 1f);
         public void Execute(ICombatTaker taker, float instantMultiplier)

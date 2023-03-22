@@ -12,6 +12,7 @@ namespace Common.Execution
         protected IExecutable Executor => executor ??= GetComponent<IExecutable>();
 
         public abstract void Execution(ICombatTaker taker, float instantMultiplier = 1.0f);
+        public virtual void Execution(Vector3 trapPosition) { }
     }
 }
 

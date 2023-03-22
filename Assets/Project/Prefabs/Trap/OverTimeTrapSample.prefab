@@ -11,8 +11,8 @@ GameObject:
   - component: {fileID: 426966613292769704}
   - component: {fileID: 7448388928431272375}
   - component: {fileID: 8771204470701334892}
-  - component: {fileID: 7226112191054271320}
   - component: {fileID: 2395313037951753882}
+  - component: {fileID: 7226112191054271320}
   - component: {fileID: 1653119476341693230}
   m_Layer: 0
   m_Name: OverTimeTrapSample
@@ -69,19 +69,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxBufferCount: 32
---- !u!114 &7226112191054271320
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3865230921314547483}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5ce59e97c74f771429cf5f08c788f4d9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  interval: 4
 --- !u!114 &2395313037951753882
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -95,6 +82,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   prolongTimer: 16
+--- !u!114 &7226112191054271320
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3865230921314547483}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5ce59e97c74f771429cf5f08c788f4d9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  interval: 4
 --- !u!114 &1653119476341693230
 MonoBehaviour:
   m_ObjectHideFlags: 0

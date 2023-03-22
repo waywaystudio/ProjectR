@@ -33,7 +33,10 @@ namespace Common.Projectiles
 
         private void Instant()
         {
-            projectile.SetPositionAndRotation(Direction, Quaternion.LookRotation(Direction - projectile.position));
+            var projectilePosition = projectile.position;
+            var destination        = projectilePosition + Direction * distance;
+            
+            projectile.SetPositionAndRotation(destination, Quaternion.LookRotation(Direction - projectilePosition));
         }
         
         private void Straight()
@@ -67,7 +70,7 @@ namespace Common.Projectiles
             
             projectileComponent.OnActivated.Register("Trajectory", Flying);
             projectileComponent.OnCanceled.Register("TrajectoryCancel", Stop);
-            // projectileComponent.OnCompleted.Register("TrajectoryCancel", Stop);
+            projectileComponent.OnCompleted.Register("TrajectoryCancel", Stop);
         }
     }
 }

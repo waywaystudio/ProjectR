@@ -54,7 +54,6 @@ namespace Common
                 SectionType.None => throw new ArgumentOutOfRangeException(nameof(sectionType), sectionType, null),
                 SectionType.OnActivated => sequence.OnActivated,
                 SectionType.OnCanceled => sequence.OnCanceled,
-                SectionType.OnCompletion => throw new ArgumentOutOfRangeException(nameof(sectionType), sectionType,null),
                 SectionType.OnCompleted => sequence.OnCompleted,
                 SectionType.OnEnded     => sequence.OnEnded,
                 _                       => throw new ArgumentOutOfRangeException(nameof(sectionType), sectionType, null)

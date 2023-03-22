@@ -10,12 +10,12 @@ GameObject:
   m_Component:
   - component: {fileID: 601654701044516039}
   - component: {fileID: -8521466867242721343}
-  - component: {fileID: 5054470619223413365}
   - component: {fileID: 4168170717895515227}
   - component: {fileID: 5800774552089560664}
+  - component: {fileID: 2795847014208442065}
   - component: {fileID: 6970810306177905816}
   - component: {fileID: 5072753418977620396}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: AimShotAttackProjectile
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -55,20 +55,8 @@ MonoBehaviour:
   targetLayer:
     serializedVersion: 2
     m_Bits: 256
-  radius: 2
---- !u!114 &5054470619223413365
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 68301466263117794}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 43e7447c5d32e2b408d5039a3045340e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
   triggerCollider: {fileID: 6970810306177905816}
+  maxPierceCount: 3
 --- !u!114 &4168170717895515227
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -102,6 +90,22 @@ MonoBehaviour:
   damage:
     value: 130
     statCode: 1
+--- !u!114 &2795847014208442065
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 68301466263117794}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 714e87efbca5f5e47a36249aecf0b6f2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  group: 1
+  actionCode: 0
+  prefabReference: {fileID: 8333227002716821657, guid: 5d2fb8c7eb66cd742b1e14925d73c808, type: 3}
+  poolCapacity: 6
 --- !u!135 &6970810306177905816
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -139,8 +143,7 @@ GameObject:
   - component: {fileID: 687310157729199627}
   - component: {fileID: 3969097267338007068}
   - component: {fileID: 4426638187581664626}
-  - component: {fileID: 8139722009799360826}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Sphere
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -212,16 +215,3 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!135 &8139722009799360826
-SphereCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8882434429761776426}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 0.5
-  m_Center: {x: 0, y: 0, z: 0}

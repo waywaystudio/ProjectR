@@ -9,13 +9,13 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 601654701044516039}
-  - component: {fileID: -8521466867242721343}
+  - component: {fileID: 4819646270435538067}
   - component: {fileID: 4168170717895515227}
-  - component: {fileID: 5800774552089560664}
-  - component: {fileID: 6970810306177905816}
-  - component: {fileID: 5072753418977620396}
+  - component: {fileID: 4603472540832385848}
+  - component: {fileID: -5250174752325060650}
+  - component: {fileID: 7614138140208064161}
   m_Layer: 9
-  m_Name: ShotAttackProjectile
+  m_Name: ContinuesShotProjectile
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -37,7 +37,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &-8521466867242721343
+--- !u!114 &4819646270435538067
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -46,16 +46,16 @@ MonoBehaviour:
   m_GameObject: {fileID: 68301466263117794}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c74c1809e76c79546b9fc5bfde86dfd3, type: 3}
+  m_Script: {fileID: 11500000, guid: 27b7d12f8410b084e9a426a2dad491dd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  collidingSystem: {fileID: 5072753418977620396}
-  projectileCode: 0
+  collidingSystem: {fileID: 7614138140208064161}
+  projectileCode: 13000016
   targetLayer:
     serializedVersion: 2
     m_Bits: 256
-  triggerCollider: {fileID: 6970810306177905816}
-  maxPierceCount: 1
+  triggerCollider: {fileID: -5250174752325060650}
+  radius: 3
 --- !u!114 &4168170717895515227
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -69,10 +69,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   trajectoryType: 2
-  speed: 30
-  distance: 30
+  speed: 35
+  distance: 20
   tweenType: 1
---- !u!114 &5800774552089560664
+--- !u!114 &4603472540832385848
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -87,9 +87,9 @@ MonoBehaviour:
   group: 1
   actionCode: 0
   damage:
-    value: 5
+    value: 8
     statCode: 1
---- !u!135 &6970810306177905816
+--- !u!135 &-5250174752325060650
 SphereCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -102,7 +102,7 @@ SphereCollider:
   serializedVersion: 2
   m_Radius: 0.5
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &5072753418977620396
+--- !u!114 &7614138140208064161
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

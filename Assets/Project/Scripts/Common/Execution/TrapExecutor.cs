@@ -11,10 +11,15 @@ namespace Common.Execution
         [SerializeField] private int poolCapacity;
         
         private IObjectPool<TrapComponent> pool;
+
+        public override void Execution(Vector3 position)
+        {
+            Get().Activate(position);
+        }
         
         public override void Execution(ICombatTaker taker, float instantMultiplier = 1)
         {
-            Get().Activate(Executor.Provider.Position);
+            Get().Activate(taker.Position);
         }
 
         private TrapComponent OnCreatePool()
@@ -42,12 +47,8 @@ namespace Common.Execution
 
         private void OnEnable()
         {
-            pool = new ObjectPool<TrapComponent>(OnCreatePool,
-                null,
-                null,
-                component => component.Dispose(),
-                true,
-                poolCapacity);
+            pool = new ObjectPool<TrapComponent>(OnCreatePool,null,null,
+                component => component.Dispose(),true, poolCapacity);
             
             Executor?.ExecutionTable.Add(this);
         }

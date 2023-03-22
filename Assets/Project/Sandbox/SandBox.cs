@@ -14,8 +14,16 @@ public class SandBox : MonoBehaviour
     [Button]
     public void Debugger()
     {
-        ShowDebugMessage();
-        processor.Activate(3f);
+        // if (!componentA.TryGetComponent(out IProgress progressA)) return;
+        // if (!componentB.TryGetComponent(out IProgress progressB)) return;
+        // if (!componentC.TryGetComponent(out IProgress progressC)) return;
+        
+        // Debug.Log(progressA.CastingTime);
+        // Debug.Log(progressB.CastingTime);
+        // Debug.Log(progressC.CastingTime);
+        
+        // ShowDebugMessage();
+        // processor.Activate(3f);
     }
 
     [Button]

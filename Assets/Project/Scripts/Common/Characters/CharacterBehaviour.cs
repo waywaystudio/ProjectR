@@ -31,6 +31,7 @@ namespace Common.Characters
         [SerializeField] protected CollidingSystem colliding;
         [SerializeField] protected PathfindingSystem pathfinding;
 
+        public bool IsPlayer { get; set; } = false;
         public CharacterActionMask BehaviourMask => CurrentBehaviour is null ? CharacterActionMask.None : CurrentBehaviour.BehaviourMask;
         public ActionBehaviour CurrentBehaviour { get; set; }
         public SkillBehaviour SkillBehaviour => skillBehaviour;

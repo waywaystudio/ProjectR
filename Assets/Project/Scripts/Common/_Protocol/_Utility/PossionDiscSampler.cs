@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
-
 namespace Common
 {
     public static class RandomSampler
@@ -40,9 +39,9 @@ namespace Common
                     var newPoint = new Vector2((int)(point.x + (Math.Cos(angle) * distance)),
                         (int)(point.y                        + (Math.Sin(angle) * distance)));
 
-                    if (points.All(p =>
-                            (Math.Pow(p.x - newPoint.x, 2) + Math.Pow(p.y - newPoint.y, 2)) >= Math.Pow(minDistance, 2))
-                        && (Math.Pow(newPoint.x, 2) + Math.Pow(newPoint.y, 2)) < Math.Pow(radius, 2))
+                    if (points.All(p 
+                            => Math.Pow(p.x - newPoint.x, 2) + Math.Pow(p.y - newPoint.y, 2) >= Math.Pow(minDistance, 2))
+                            && Math.Pow(newPoint.x, 2) + Math.Pow(newPoint.y, 2) < Math.Pow(radius, 2))
                     {
                         points.Add(newPoint);
                         added = true;
