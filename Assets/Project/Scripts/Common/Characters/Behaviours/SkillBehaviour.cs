@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using Common.Skills;
+using Sirenix.OdinInspector;
 using UnityEngine;
 
 namespace Common.Characters.Behaviours
@@ -13,6 +14,7 @@ namespace Common.Characters.Behaviours
         public override CharacterActionMask IgnorableMask => 
             Current ? Current.IgnorableMask : CharacterActionMask.SkillIgnoreMask;
         
+        [ShowInInspector]
         public SkillComponent Current { get; set; }
         public ActionTable OnReleased { get; } = new();
         public List<SkillComponent> SkillList => skillList;
@@ -26,7 +28,15 @@ namespace Common.Characters.Behaviours
 
         public void Active(DataIndex actionCode, Vector3 targetPosition)
         {
-            var skill = skillList.Find(item => item.ActionCode == actionCode);
+            SkillComponent skill = null;
+            
+            foreach (var item in skillList)
+            {
+                if (item.ActionCode != actionCode) continue;
+                
+                skill = item;
+                break;
+            }
 
             if (skill.IsNullOrEmpty())
             {

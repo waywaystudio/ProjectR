@@ -10,7 +10,8 @@ namespace Character.Adventurers.Knight.Skills
         
             takerList.ForEach(ExecutionTable.Execute);
         }
-
+        
+        
         protected override void Initialize()
         {
             OnCompleted.Register("EndCallback", End);

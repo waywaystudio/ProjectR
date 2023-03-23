@@ -1,3 +1,4 @@
+using System;
 using Common;
 using DG.Tweening;
 using Sirenix.OdinInspector;
@@ -74,8 +75,6 @@ namespace Raid.UI.FloatingTexts
                     isNormalTweenInitialized = true;
                 }
             }
-
-            Debug.Log($"{entity.Taker} takes damage {damageText.text}");
             
             SetTextPosition();
             textTransform.position = transform.position;
@@ -92,16 +91,22 @@ namespace Raid.UI.FloatingTexts
             transform.position = screenPosition;
         }
 
-        private void Update()
-        {
-            SetTextPosition();
-        }
-
         private void Awake()
         {
             mainCamera    =   Camera.main;
             damageText    ??= GetComponent<TextMeshProUGUI>();
             textTransform ??= GetComponent<RectTransform>();
+        }
+        
+        private void Update()
+        {
+            SetTextPosition();
+        }
+
+        private void OnDisable()
+        {
+            // normalDamageEffect.Kill();
+            // criticalDamageEffect.Kill();
         }
     }
 }

@@ -2,7 +2,6 @@ using System.Collections.Generic;
 using Common.Execution;
 using Common.Systems;
 using DG.Tweening;
-using Sirenix.OdinInspector;
 using UnityEngine;
 
 namespace Common.Traps
@@ -19,16 +18,14 @@ namespace Common.Traps
         public DataIndex ActionCode => trapCode;
         public float Radius => radius;
         public LayerMask TargetLayer => targetLayer;
-        public FloatEvent ProgressTime { get; } = new();
-        
-        [ShowInInspector]
+        public float ProlongTime { get; set; }
+
         public ActionTable OnActivated { get; } = new();
         public ActionTable OnCanceled { get; } = new();
-        [ShowInInspector]
         public ActionTable OnCompleted { get; } = new();
-        [ShowInInspector]
         public ActionTable OnEnded { get; } = new();
         public ExecutionTable ExecutionTable { get; } = new();
+        
         
         /// <summary>
         /// Create Pool 에서 호출
@@ -50,7 +47,6 @@ namespace Common.Traps
             transform1.position = position;
             
             gameObject.SetActive(true);
-            ProgressTime.Value = 0f;
 
             if (delayTime != 0f)
             {

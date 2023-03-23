@@ -1,13 +1,6 @@
 using System;
-using Common;
 using Common.Characters;
 using UnityEngine;
-
-public interface IHasProjectorEntity
-{
-    FloatEvent Progress { get; }
-    Vector2 SizeValue { get; set; }
-}
 
 
 namespace Common.Skills
@@ -55,6 +48,7 @@ namespace Common.Skills
             skill.OnActivated.Register("StartProcessing", () => StartProcessing(Cb.StatTable.Haste));
             skill.OnCanceled.Register("CancelProcessing", StopProcessing);
             skill.OnEnded.Register("StopProcessing", StopProcessing);
+            skill.CastingTime = castingTime;
         }
 
         private void Update()

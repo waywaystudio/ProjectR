@@ -23,6 +23,7 @@ namespace Raid
         public static Adventurer FocusCharacter => Instance.focusCharacter;
         public static Boss Boss => CastingDirector.Boss;
         public static List<Adventurer> AdventurerList => CastingDirector.AdventurerList;
+        public static void ChangeFocusAdventurer(Adventurer ab) => Instance.adventurerFocusEvent.Invoke(ab);
 
         private Adventurer focusCharacter;
         

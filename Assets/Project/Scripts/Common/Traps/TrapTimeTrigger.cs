@@ -28,7 +28,9 @@ namespace Common.Traps
             TryGetComponent(out trapComponent);
 
             trapComponent.OnActivated.Register("TimeTriggerOn", StartProgress);
+            trapComponent.OnCanceled.Register("TimeTriggerOff", StopProgress);
             trapComponent.OnEnded.Register("TimeTriggerOff", StopProgress);
+            trapComponent.ProlongTime = prolongTimer;
         }
 
         private void Update()

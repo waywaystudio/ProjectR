@@ -1,5 +1,4 @@
 using System.Collections.Generic;
-using MainGame;
 using Manager;
 using Manager.Save;
 using UnityEngine;

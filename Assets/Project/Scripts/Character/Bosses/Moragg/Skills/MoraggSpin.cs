@@ -1,20 +1,20 @@
-using Common.Projectors;
+using Common;
 using Common.Skills;
 using UnityEngine;
 
 namespace Character.Bosses.Moragg.Skills
 {
-    public class MoraggSpin : SkillComponent
+    public class MoraggSpin : SkillComponent, IProjectorSequence
     {
-        [SerializeField] private SphereProjector projector;
-
-
+        public Vector2 SizeVector => new(range * 2f, range * 2f);
+        
         public override void Execution()
         {
             if (!TryGetTakersInSphere(this, out var takerList)) return;
             
             takerList.ForEach(ExecutionTable.Execute);
         }
+        
 
         protected override void PlayAnimation()
         {
@@ -23,9 +23,6 @@ namespace Character.Bosses.Moragg.Skills
 
         protected override void Initialize()
         {
-            // TODO. Projector.Initialize 에서 CastingTime을 받아오면 안되고, Active 에서 받아야 한다.
-            projector.Initialize(3f, range, this);
-
             OnCompleted.Register("MoraggSpinAttack", Execution);
             OnCompleted.Register("PlayEndCastingAnimation", PlayEndCastingAnimation);
         }
@@ -34,5 +31,7 @@ namespace Character.Bosses.Moragg.Skills
         {
             Cb.Animating.PlayOnce("attack", 0f, End);
         }
+
+        
     }
 }

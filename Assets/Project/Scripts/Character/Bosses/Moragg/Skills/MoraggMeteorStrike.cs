@@ -8,8 +8,8 @@ namespace Character.Bosses.Moragg.Skills
 {
     public class MoraggMeteorStrike : SkillComponent
     {
-        [SerializeField] private int radius = 100;
-        [SerializeField] private int minDistance = 20;
+        [SerializeField] private int radius = 20;
+        [SerializeField] private int minDistance = 10;
         [SerializeField] private int maxPoints = 10;
         [SerializeField] private int sampleSize = 30;
         
@@ -19,6 +19,7 @@ namespace Character.Bosses.Moragg.Skills
         {
             meteorRoutine = StartCoroutine(StartMeteor());
         }
+        
 
         protected override void Initialize()
         {

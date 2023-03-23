@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using Common.Characters;
 using Common.Execution;
+using Sirenix.OdinInspector;
 using UnityEngine;
 
 namespace Common.Skills
@@ -27,11 +28,17 @@ namespace Common.Skills
 
         /* Sequence */
         public ConditionTable Conditions { get; } = new();
+        [ShowInInspector]
         public ActionTable OnActivated { get; } = new();
+        [ShowInInspector]
         public ActionTable OnCanceled { get; } = new();
+        [ShowInInspector]
         public ActionTable OnCompleted { get; } = new();
+        [ShowInInspector]
         public ActionTable OnEnded { get; } = new();
         public ExecutionTable ExecutionTable { get; } = new();
+        
+        [ShowInInspector]
         public bool IsEnded { get; set; } = true;
 
         public SkillType SkillType => skillType;
@@ -48,6 +55,7 @@ namespace Common.Skills
             Cb.Searching.GetMainTarget(targetLayer, Cb.transform.position, sortingType);
         public CharacterBehaviour Cb => cb ??= GetComponentInParent<CharacterBehaviour>();
         public ICombatProvider Provider => Cb;
+        public float CastingTime { get; set; }
         
         protected bool AbleToRelease => SkillType is not (SkillType.Instant or SkillType.Casting) && IsProgress;
         protected bool IsProgress { get; set; }

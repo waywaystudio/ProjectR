@@ -27,8 +27,10 @@ namespace Common.Traps
             triggerCollider        ??= GetComponent<SphereCollider>();
             triggerCollider.radius =   trapComponent.Radius;
             
-            trapComponent.OnActivated.Register("CollidingTriggerOn", () => triggerCollider.enabled  = true);
-            trapComponent.OnEnded.Register("CollidingTriggerOff", () => triggerCollider.enabled = false);
+            trapComponent.OnActivated.Register("CollidingTriggerOn", 
+                () => triggerCollider.IsNullOrDestroyed().OnFalse(() => triggerCollider.enabled  = true));
+            trapComponent.OnEnded.Register("CollidingTriggerOff", 
+                () => triggerCollider.IsNullOrDestroyed().OnFalse(() => triggerCollider.enabled = false));
         }
 
 

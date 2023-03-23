@@ -17,10 +17,6 @@ namespace Common
         /// <returns>Vector2 list, count of maxPoints</returns>
         public static List<Vector2> GetPointsInCircle(int radius, int minDistance, int maxPoints, int sampleSize)
         {
-            // const int radius = 100;
-            // const int minDistance = 20;
-            // const int maxPoints = 10;
-            // const int sampleSize = 30;
             var points = new List<Vector2>();
             var random = new System.Random();
 

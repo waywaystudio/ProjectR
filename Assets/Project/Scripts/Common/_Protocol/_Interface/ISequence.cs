@@ -1,4 +1,5 @@
 using System;
+using UnityEngine;
 
 namespace Common
 {
@@ -13,6 +14,12 @@ namespace Common
     public interface IConditionalSequence : ISequence
     {
         ConditionTable Conditions { get; }
+    }
+
+    public interface IProjectorSequence : ISequence
+    {
+        float CastingTime { get; }
+        Vector2 SizeVector { get; }
     }
 
     public static class SequenceExtension

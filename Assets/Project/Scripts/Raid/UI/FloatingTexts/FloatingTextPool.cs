@@ -61,6 +61,12 @@ namespace Raid.UI.FloatingTexts
 
         private void OnDisable()
         {
+            if (RaidDirector.Instance.IsNullOrDestroyed())
+            {
+                Debug.Log("RaidDirector Destroyed");
+                return;
+            }
+            
             RaidDirector.AdventurerList.ForEach(adventurer =>
             {
                 adventurer.OnDamageProvided.Unregister("DamageTextUI");

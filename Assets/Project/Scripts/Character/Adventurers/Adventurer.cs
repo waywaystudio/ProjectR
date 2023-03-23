@@ -15,7 +15,11 @@ namespace Character.Adventurers
             modChanger.Initialize(this);
         }
 
-        private void Update() { Animating.Flip(transform.forward); }
+        private void Update()
+        {
+            // Debug.Log(BehaviourMask.ToString());
+            Animating.Flip(transform.forward);
+        }
 
 
 #if UNITY_EDITOR

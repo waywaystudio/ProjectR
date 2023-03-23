@@ -1,3 +1,4 @@
+using System;
 using Common.Animation;
 using Common.Characters.Behaviours;
 using Common.Characters.Behaviours.CrowdControlEffect;
@@ -32,6 +33,7 @@ namespace Common.Characters
         [SerializeField] protected PathfindingSystem pathfinding;
 
         public bool IsPlayer { get; set; } = false;
+        [Sirenix.OdinInspector.ShowInInspector]
         public CharacterActionMask BehaviourMask => CurrentBehaviour is null ? CharacterActionMask.None : CurrentBehaviour.BehaviourMask;
         public ActionBehaviour CurrentBehaviour { get; set; }
         public SkillBehaviour SkillBehaviour => skillBehaviour;

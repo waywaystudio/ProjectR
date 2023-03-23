@@ -1,4 +1,3 @@
-using MainGame;
 using Manager;
 using UnityEngine;
 using UnityEngine.Events;

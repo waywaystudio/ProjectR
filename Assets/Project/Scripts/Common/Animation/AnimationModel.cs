@@ -1,9 +1,7 @@
 using System;
-using Sirenix.OdinInspector;
 using Spine;
 using Spine.Unity;
 using UnityEngine;
-
 
 namespace Common.Animation
 {
@@ -11,18 +9,17 @@ namespace Common.Animation
     using SpineState = Spine.AnimationState;
     using Event = Spine.Event;
     
-    public class AnimationModel : MonoBehaviour
+    public class AnimationModel : MonoBehaviour, IEditable
     {
         [SerializeField] protected AnimationModelData modelData;
         [SerializeField] private SkeletonAnimation skeletonAnimation;
         
         protected SpineState State;
-        private TrackEntry entryBuffer;
-        
-        [ShowInInspector]
+        private Action onEntireAnimationComplete;
+        private Action<TrackEntry> completeActionBuffer;
+        private TrackEntry currentEntry;
+
         public ActionTable OnHit { get; } = new();
-        public SkeletonDataAsset DataAsset => skeletonAnimation.SkeletonDataAsset;
-        
         private SpineAnimation TargetAnimation { get; set; }
         
         
@@ -44,30 +41,48 @@ namespace Common.Animation
                 Debug.LogError($"Not Exist Animation Key {animationKey}");
                 return;
             }
-            
-            entryBuffer = null;
+
+            if (currentEntry != null)
+            {
+                Canceled();
+            }
+
+            if (callback != null)
+            {
+                completeActionBuffer =  null;
+                completeActionBuffer += _ => callback.Invoke();
+            }
             
             if (IsSameAnimation(target, layer, loop)) return;
             if (HasTransition(target, layer, loop, callback)) return;
-            
-            entryBuffer = State.SetAnimation(layer, (SpineAnimation)target, loop);
-            
-            // Assign Custom timeScale Animation Speed
+
+            currentEntry = State.SetAnimation(layer, target, loop);
+
+            // TODO. Animation과 가속도 관계를 잡아보자.
             if (timeScale != 0f)
             {
                 var originalDuration = target.Duration;
                 var toStaticValue = originalDuration / timeScale;
             
-                State.TimeScale      *= toStaticValue;
-                entryBuffer.Complete += _ => State.TimeScale = 1f;
+                State.TimeScale  *= toStaticValue;
+                currentEntry.Complete += _ => State.TimeScale = 1f;
                 // state.TimeScale /= toStaticValue;
             }
-            
+
             // Handle Callback
-            if (callback != null) 
-                entryBuffer.Complete += _ => callback.Invoke();
+            if (callback != null)
+            {
+                currentEntry.Complete += completeActionBuffer.Invoke;
+            }   
             
             TargetAnimation = target;
+        }
+
+        public void Canceled()
+        {
+            if (currentEntry == null || completeActionBuffer == null) return;
+
+            currentEntry.Complete -= completeActionBuffer.Invoke;
         }
 
         public void Flip(Vector3 direction)
@@ -101,7 +116,7 @@ namespace Common.Animation
         {
             if (!target.Equals(TargetAnimation) || !loop) return false;
             
-            entryBuffer = State.GetCurrent(layer);
+            currentEntry = State.GetCurrent(layer);
         
             return true;
         }
@@ -113,9 +128,12 @@ namespace Common.Animation
         
             if (!hasCurrent || !hasTransition) return false;
             
-            entryBuffer = State.SetAnimation(layer, (SpineAnimation)transition, false);
+            currentEntry = State.SetAnimation(layer, transition, false);
         
-            if (callback != null) entryBuffer.Complete += _ => callback.Invoke();
+            if (callback != null)
+            {
+                currentEntry.Complete += _ => callback.Invoke();
+            } 
                 
             State.AddAnimation(layer, target, loop, 0f);
             

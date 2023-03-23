@@ -1,11 +1,9 @@
-﻿using UnityEngine;
-
-namespace Singleton
+﻿namespace Singleton
 {
     public class Singleton<T> where T : class, new()
     {
-        [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.SubsystemRegistration)]
-        public static void RuntimeInitialize() => instance = null;
+        // [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.SubsystemRegistration)]
+        // public static void RuntimeInitialize() => instance = null;
         
         private static T instance;
         public static T Instance

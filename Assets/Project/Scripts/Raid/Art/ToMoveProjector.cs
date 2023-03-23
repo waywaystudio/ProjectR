@@ -9,6 +9,8 @@ namespace Raid.Art
 
         public void Projecting()
         {
+            if (controller.IsNullOrDestroyed()) return;
+            
             if (!MainManager.Input.TryGetGroundPosition(out var groundPosition)) return;
 
             transform.position = groundPosition;

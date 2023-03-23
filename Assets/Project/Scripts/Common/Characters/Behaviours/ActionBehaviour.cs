@@ -25,7 +25,15 @@ namespace Common.Characters.Behaviours
         protected void RegisterBehaviour(CharacterBehaviour cb)
         {
             if (cb.CurrentBehaviour is not null && cb.BehaviourMask != BehaviourMask)
+            {
+                // if (cb.Role == RoleType.Tank)
+                // {
+                //     Debug.Log($"Current:{cb.BehaviourMask.ToString()} New:{this.BehaviourMask.ToString()}");
+                // }
+                
                 cb.CurrentBehaviour.Cancel();
+            }
+                
             
             cb.CurrentBehaviour = this;
         }

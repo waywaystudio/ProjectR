@@ -1,38 +1,35 @@
 using Common;
-using Common.Projectors;
 using Common.StatusEffect;
 using Common.Systems;
 using UnityEngine;
 
 namespace Character.Bosses.Moragg.StatusEffect
 {
-    public class LivingBomb : StatusEffectComponent
+    public class LivingBomb : StatusEffectComponent, IProjectorSequence
     {
-        [SerializeField] private SphereProjector projector;
         [SerializeField] private CollidingSystem collidingSystem;
-        
         [SerializeField] private float interval;
-        [SerializeField] private float radius = 12f;
+        [SerializeField] private float radius = 6f;
         [SerializeField] private LayerMask adventurerLayer;
         
         private float hasteWeight;
         private float tickBuffer;
+
+        // public FloatEvent Progress => ProgressTime;
+        public float CastingTime => Duration;
+        public Vector2 SizeVector => new (radius * 2f, radius * 2f);
         
 
         public override void Initialize(ICombatProvider provider)
         {
             base.Initialize(provider);
 
-            projector.Initialize(Duration, radius, this);
-            
             OnActivated.Register("SetHasteWeight", SetHasteWeight);
             OnCompleted.Register("Bomb", Bomb);
         }
         
         public override void Dispose()
         {
-            projector.Dispose();
-            
             Destroy(gameObject);
         }
 

@@ -1,13 +1,13 @@
 using System.Collections.Generic;
+using Raid.UI.StageInitializer;
 using UnityEngine;
 
-namespace Raid.UI.StageInitializer
+namespace Raid.UI.BriefingFrames
 {
-    public class StageSetter : MonoBehaviour, IEditable
+    public class Briefing : MonoBehaviour, IEditable
     {
         [SerializeField] private List<AdventurerCard> adventurerCardList;
 
-        
         public void LetsStart()
         {
             var adventurerEntry = new List<DataIndex>();

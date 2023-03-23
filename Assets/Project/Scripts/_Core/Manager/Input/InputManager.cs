@@ -82,14 +82,7 @@ namespace Manager.Input
             return groundPosition != Vector3.negativeInfinity;
         }
 
-
-        private void Awake()
-        {
-            projectInput = new ProjectInput();
-            MainCamera ??= Camera.main;
-        }
-
-        private void OnEnable()
+        public void InputOn()
         {
             foreach (var value in Enum.GetValues(typeof(BindingCode)))
             {
@@ -102,14 +95,9 @@ namespace Manager.Input
             }
         }
 
-        
-        /// TODO. 황당한 케이스; InputSystem에서 UI 클릭 or not 구분하기 위한 방법;
-        private void Update()
-        {
-            isMouseOnUI = EventSystem.current.IsPointerOverGameObject(PointerInputModule.kMouseLeftId);
-        }
-
-        private void OnDisable()
+        /* TODO.씬 로딩사이에 잠시 인풋을 꺼주고 싶은데, 다시 켜주는 시점 설정을 못잡았다.
+         Enabled, Start, Awake는 안된다. InputManager GameObject는 꺼지지 않는다.*/
+        public void InputOff()
         {
             foreach (var value in Enum.GetValues(typeof(BindingCode)))
             {
@@ -120,6 +108,22 @@ namespace Manager.Input
 
                 inputAction.Disable();
             }
+        }
+
+
+        private void Awake()
+        {
+            projectInput = new ProjectInput();
+            MainCamera ??= Camera.main;
+        }
+
+        private void OnEnable() => InputOn();
+        // private void OnDisable() => InputOff();
+
+        /// TODO. 황당한 케이스; InputSystem에서 UI 클릭 or not 구분하기 위한 방법;
+        private void Update()
+        {
+            isMouseOnUI = EventSystem.current.IsPointerOverGameObject(PointerInputModule.kMouseLeftId);
         }
     }
 }

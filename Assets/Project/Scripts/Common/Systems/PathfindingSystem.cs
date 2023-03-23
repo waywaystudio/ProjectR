@@ -1,4 +1,5 @@
 using System;
+using Common.Characters;
 using DG.Tweening;
 using Pathfinding;
 using UnityEngine;
@@ -9,7 +10,7 @@ namespace Common.Systems
     {
         [SerializeField] private float moveSpeed;
         [SerializeField] private float raycastThreshHold = 2f;
-        [SerializeField] private float knockBackDuration = 0.35f;
+        [SerializeField] private float knockBackDuration = 1f;
         [SerializeField] private Transform rootTransform;
         [SerializeField] private Seeker agent;
         [SerializeField] private AIMove aiMove;

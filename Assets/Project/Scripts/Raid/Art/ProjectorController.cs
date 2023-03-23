@@ -55,11 +55,5 @@ namespace Raid.Art
             projector     ??= GetComponent<DecalProjector>();
             decalMaterial =   projector.material;
         }
-
-
-        public void SetUp()
-        {
-            TryGetComponent(out projector);
-        }
     }
 }

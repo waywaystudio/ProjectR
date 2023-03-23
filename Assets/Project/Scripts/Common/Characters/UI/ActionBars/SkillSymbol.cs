@@ -32,12 +32,10 @@ namespace Common.Characters.UI.ActionBars
 
         private void OnEnable()
         {
-            if (Cb.IsNullOrDestroyed()) return;
-            var targetSkill = Cb.GetSkill(actionCode);
-            
             coolDownFiller.ProgressImage.enabled = false;
-
-            if (targetSkill.TryGetComponent(out CoolTimer coolTime))
+            
+            if (Cb.IsNullOrDestroyed()) return;
+            if (Cb.GetSkill(actionCode).TryGetComponent(out CoolTimer coolTime))
             {
                 coolDownFiller.ProgressImage.enabled = true;
                 coolDownFiller.Register(coolTime.RemainCoolTime, coolTime.CoolTime);
@@ -46,9 +44,9 @@ namespace Common.Characters.UI.ActionBars
 
         private void OnDisable()
         {
-            if (Cb.IsNullOrDestroyed()) return;
             coolDownFiller.Unregister();
-
+            
+            if (Cb.IsNullOrDestroyed()) return;
             cb = null;
         }
 

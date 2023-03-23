@@ -7,7 +7,7 @@ public class SandBox : MonoBehaviour
     // public Action CsharpAction;
     // public SandSphere sandSphere;
 
-    [SerializeField] private Processor processor = new();
+    // [SerializeField] private Processor processor = new();
 
     public void ShowDebugMessage() => Debug.Log("Is In!");
 
@@ -26,17 +26,17 @@ public class SandBox : MonoBehaviour
         // processor.Activate(3f);
     }
 
-    [Button]
-    public void SetProgress(float value) => processor.Value = value;
-    
-    [Button]
-    public void SetEndTime(float value) => processor.EndTime = (value);
-
-    [Button]
-    public void GetProgress()
-    {
-        Debug.Log(processor.Value);
-    }
+    // [Button]
+    // public void SetProgress(float value) => processor.Value = value;
+    //
+    // [Button]
+    // public void SetEndTime(float value) => processor.EndTime = (value);
+    //
+    // [Button]
+    // public void GetProgress()
+    // {
+    //     Debug.Log(processor.Value);
+    // }
     
     public void A() { Debug.Log("A");}
     public void B() { Debug.Log("B");}
