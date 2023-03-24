@@ -18,16 +18,12 @@ namespace Common.Characters.Behaviours.CrowdControlEffect
             if (!IsAble) return;
             
             RegisterBehaviour(Cb);
-            
-            // KnockBack
 
             OnKnockBacking.Invoke(source, distance);
             OnActivated.Invoke();
         
             Cb.Rotate(source);
             Cb.Animating.Hit();
-            
-            // KnockBack
             
             Cb.Pathfinding.KnockBack(source, distance, Complete);
         }
@@ -40,12 +36,8 @@ namespace Common.Characters.Behaviours.CrowdControlEffect
 
         protected override void Complete()
         {
-            // Skill
-            // Debug.Log(Cb.BehaviourMask.ToString());
-            
             Cb.Stop();
             
-            // Debug.Log(Cb.BehaviourMask.ToString());
             OnCompleted.Invoke();
         }
     }

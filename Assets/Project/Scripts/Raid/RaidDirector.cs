@@ -31,9 +31,8 @@ namespace Raid
         public static void Initialize(List<DataIndex> adventurerEntry)
         {
             CastingDirector.Initialize(adventurerEntry);
-            Instance.focusCharacter = CastingDirector.AdventurerList[0];
             
-            UIDirector.Initialize();
+            Instance.focusCharacter = CastingDirector.AdventurerList[0];
             Instance.adventurerFocusEvent.Invoke(FocusCharacter);
         }
 

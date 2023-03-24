@@ -6345,7 +6345,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1175776407}
-  - component: {fileID: 1175776410}
   - component: {fileID: 1175776409}
   - component: {fileID: 1175776408}
   m_Layer: 0
@@ -6418,19 +6417,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1175776406}
   m_CullTransparentMesh: 1
---- !u!114 &1175776410
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1175776406}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 44f01243a6a34b3478b9019cbf8d7e34, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  hpProgress: {fileID: 1926639028}
 --- !u!1 &1176461126
 GameObject:
   m_ObjectHideFlags: 0
@@ -9859,7 +9845,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   stageInitializer: {fileID: 1213613822}
-  bossFrame: {fileID: 1175776410}
   floatingTextPool: {fileID: 88930311}
 --- !u!1 &1868745124
 GameObject:

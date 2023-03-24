@@ -1,4 +1,3 @@
-using System;
 using Common.Animation;
 using Common.Characters.Behaviours;
 using Common.Characters.Behaviours.CrowdControlEffect;

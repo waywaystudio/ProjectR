@@ -1,4 +1,3 @@
-using Character;
 using Common.UI;
 using Sirenix.OdinInspector;
 using TMPro;
@@ -27,6 +26,11 @@ namespace Raid.UI.BossFrames
         private void ValueToText()
         {
             hpValueText.text = RaidDirector.Boss.DynamicStatEntry.Hp.Value.ToString("0");
+        }
+
+        private void OnEnable()
+        {
+            Initialize();
         }
 
         [Button] public void MinusHp() => RaidDirector.Boss.DynamicStatEntry.Hp.Value -= 50f;
