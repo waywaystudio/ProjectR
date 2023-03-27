@@ -75,7 +75,7 @@ GameObject:
   - component: {fileID: 8489858214629771129}
   - component: {fileID: 3597284855680841089}
   - component: {fileID: 4337732494131428132}
-  - component: {fileID: 3248682841998415112}
+  - component: {fileID: 7794042253166594363}
   m_Layer: 0
   m_Name: MoraggMeteorStrike
   m_TagString: Untagged
@@ -173,7 +173,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   castingTime: 3
---- !u!114 &3248682841998415112
+--- !u!114 &7794042253166594363
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -182,8 +182,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 8380361914805468174}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: afd300c7d835f904d9a29fa68ca901de, type: 3}
+  m_Script: {fileID: 11500000, guid: afccffeb00c11284dabf8f9823066b2e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  availableRatio: 0.5
-  availableCondition: 2
+  enableMask: 4

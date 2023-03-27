@@ -17,6 +17,7 @@ namespace Common.Systems
         [SerializeField] private LayerMask environmentLayer;
 
         public bool IsReached => aiMove.reachedEndOfPath;
+        public bool IsStopped => aiMove.isStopped;
         public bool IsSafe => PathfindingUtility.IsSafePosition(rootTransform.position);
         public bool CanMove { get => aiMove.canMove; set => aiMove.canMove = value; }
         public Vector3 Direction => rootTransform.forward;

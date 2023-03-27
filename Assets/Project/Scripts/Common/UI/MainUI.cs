@@ -1,6 +1,6 @@
+using Common.UI.Tooltips;
 using Singleton;
 using UI;
-using UI.Tooltips;
 using UnityEngine;
 
 public class MainUI : MonoSingleton<MainUI>

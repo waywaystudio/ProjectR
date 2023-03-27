@@ -1,52 +1,62 @@
 using System.Collections.Generic;
 using Common;
 using UnityEngine;
-using UnityEngine.Events;
 
 namespace Character.Bosses
 {
-    public class BossPhaseTable : MonoBehaviour
+    public class BossPhaseTable : MonoBehaviour, IEditable
     {
-        private int currentPhase;
-        
-        public int CurrentPhase => currentPhase;
+        [SerializeField] private List<BossPhase> phaseList;
 
-        private Dictionary<int, BossPhase> phaseTable = new();
-
-
-        public bool IsAbleToNextPhase()
+        public BossPhase GetStartPhase()
         {
-            return phaseTable[currentPhase].IsAbleToNextPhase;
-        }
-
-        public void ActiveNextPhase()
-        {
-            var nextPhase = phaseTable[CurrentPhase].NextPhaseIndex;
+            BossPhase result = null;
             
-            phaseTable[nextPhase].Activate();
-            currentPhase = nextPhase;
+            foreach (var phase in phaseList)
+            {
+                if (result is null)
+                {
+                    result = phase;
+                    continue;
+                }
+
+                if (phase.Index < result.Index)
+                {
+                    result = phase;
+                }
+            }
+
+            return result;
         }
-    }
+        
+        public BossPhase GetPhase(int index)
+        {
+            foreach (var phase in phaseList)
+            {
+                if (phase.Index == index) return phase;
+            }
 
-    public class BossPhase : MonoBehaviour, IConditionalSequence
-    {
-        [SerializeField] private int index;
-        [SerializeField] private UnityEvent onActiveEvent;
-        [SerializeField] private UnityEvent onCompleteEvent;
-        [SerializeField] private UnityEvent onEndEvent;
+            return null;
+        }
 
-        public ConditionTable Conditions { get; } = new();
-        public ActionTable OnActivated { get; } = new();
-        public ActionTable OnCanceled { get; } = new();
-        public ActionTable OnCompleted { get; } = new();
-        public ActionTable OnEnded { get; } = new();
+        public List<BossPhase> GetPhaseList(BossPhaseMask mask)
+        {
+            var result = new List<BossPhase>();
+            
+            foreach (var phase in phaseList)
+            {
+                if ((mask | phase.PhaseFlag) == mask) result.Add(phase);
+            }
 
-        public int NextPhaseIndex => index + 1;
-        public bool IsAbleToNextPhase => Conditions.IsAllTrue;
+            return result;
+        }
+        
 
-        public virtual void Activate() { }
-        public virtual void Cancel() { }
-        public virtual void Complete() { }
-        public virtual void End() { }
+#if UNITY_EDITOR
+        public void EditorSetUp()
+        {
+            GetComponentsInChildren(true, phaseList);
+        }
+#endif
     }
 }

@@ -1,6 +1,4 @@
 using BehaviorDesigner.Runtime.Tasks;
-using Monsters;
-using UnityEngine;
 
 namespace Character.Bosses
 {
@@ -8,20 +6,15 @@ namespace Character.Bosses
     public class BossPhaseChanger : Action
     {
         private Boss boss;
-        private BossPhaseTable bp;
         
         public override void OnAwake()
         {
-            TryGetComponent(out boss);
+            boss = gameObject.GetComponentInParent<Boss>();
         }
         
         public override TaskStatus OnUpdate()
         {
-            if (bp.IsAbleToNextPhase())
-            {
-                Debug.Log("Phase Changed");
-                bp.ActiveNextPhase();
-            }
+            boss.CurrentPhase.TryToNextPhase();
 
             return TaskStatus.Failure;
         }

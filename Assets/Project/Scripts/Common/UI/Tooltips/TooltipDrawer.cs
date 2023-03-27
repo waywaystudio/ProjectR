@@ -1,8 +1,7 @@
-using Common;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-namespace UI.Tooltips
+namespace Common.UI.Tooltips
 {
     [RequireComponent(typeof(ITooltipInfo))]
     public class TooltipDrawer : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler

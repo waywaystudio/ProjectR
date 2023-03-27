@@ -1,18 +1,22 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+using System;
 
-public class BossPhaseMask : MonoBehaviour
+namespace Common
 {
-    // Start is called before the first frame update
-    void Start()
+    [Flags] 
+    public enum BossPhaseMask
     {
+        None = 0,
         
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
+        Phase0 = 1 << 0,
+        Phase1 = 1 << 1,
+        Phase2 = 1 << 2,
+        Phase3 = 1 << 3,
+        Phase4 = 1 << 4,
+        Phase5 = 1 << 5,
+        Phase6 = 1 << 6,
+        Phase7 = 1 << 7,
+        Phase8 = 1 << 8,
         
+        All = int.MaxValue
     }
 }

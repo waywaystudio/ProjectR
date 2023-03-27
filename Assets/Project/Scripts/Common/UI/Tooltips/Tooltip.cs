@@ -1,8 +1,7 @@
-using Common;
 using TMPro;
 using UnityEngine;
 
-namespace UI.Tooltips
+namespace Common.UI.Tooltips
 {
     public class Tooltip : MonoBehaviour, IPoolable<Tooltip>, IEditable
     {

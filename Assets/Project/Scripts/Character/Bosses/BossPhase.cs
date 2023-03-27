@@ -1,27 +1,80 @@
-using System.Collections;
-using System.Collections.Generic;
 using Common;
 using UnityEngine;
 using UnityEngine.Events;
 
-public class BossPhase : MonoBehaviour
+namespace Character.Bosses
 {
-    [SerializeField] private int index;
-    [SerializeField] private UnityEvent onActiveEvent;
-    [SerializeField] private UnityEvent onCompleteEvent;
-    [SerializeField] private UnityEvent onEndEvent;
+    public abstract class BossPhase : MonoBehaviour
+    {
+        [SerializeField] protected bool isLast;
+        [SerializeField] protected int index;
+        [SerializeField] protected BossPhase nextPhase;
+        [SerializeField] protected UnityEvent onActiveEvent;
+        [SerializeField] protected UnityEvent onCompleteEvent;
+        [SerializeField] protected UnityEvent onEndEvent;
 
-    public ConditionTable Conditions { get; } = new();
-    public ActionTable OnActivated { get; } = new();
-    public ActionTable OnCanceled { get; } = new();
-    public ActionTable OnCompleted { get; } = new();
-    public ActionTable OnEnded { get; } = new();
+        private Boss boss;
 
-    public int NextPhaseIndex => index + 1;
-    public bool IsAbleToNextPhase => Conditions.IsAllTrue;
+        public ConditionTable Conditions { get; } = new();
+        public ActionTable OnActivated { get; } = new();
+        public ActionTable OnCanceled { get; } = new();
+        public ActionTable OnCompleted { get; } = new();
+        public ActionTable OnEnded { get; } = new();
 
-    public virtual void Activate() { }
-    public virtual void Cancel() { }
-    public virtual void Complete() { }
-    public virtual void End() { }
+        public BossPhaseMask PhaseFlag => (BossPhaseMask)(1 << index);
+        public bool IsProgress { get; private set; }
+        public bool IsEnd { get; private set; } = true;
+        public bool IsLastPhase => isLast;
+        public int Index => index;
+        public BossPhase NextPhase => nextPhase;
+        protected Boss Boss => boss ??= GetComponentInParent<Boss>();
+
+        public void TryToNextPhase()
+        {
+            if (!IsLastPhase && IsProgress && !IsEnd && IsAbleToNextPhase())
+            {
+                Complete();
+            }
+        }
+
+        public bool IsAbleToNextPhase()
+        {
+            return Conditions.IsAllTrue;
+        }
+
+        public void Activate()
+        {
+            IsProgress = true;
+            IsEnd      = false;
+            
+            onActiveEvent?.Invoke();
+            OnActivated.Invoke();
+        }
+
+        public void Cancel()
+        {
+            IsProgress = false;
+            
+            OnCanceled.Invoke();
+        }
+
+        public void Complete()
+        {
+            IsProgress = false;
+            
+            onCompleteEvent?.Invoke();
+            OnCompleted.Invoke();
+        }
+
+        public void End()
+        {
+            onEndEvent?.Invoke();
+            OnEnded.Invoke();
+            
+            IsEnd = true;
+            
+            nextPhase.Activate();
+            boss.CurrentPhase = nextPhase;
+        }
+    }
 }

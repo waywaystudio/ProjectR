@@ -1,6 +1,4 @@
-using Common;
-
-namespace UI.Tooltips
+namespace Common.UI.Tooltips
 {
     public class TooltipPool : Pool<Tooltip>
     {

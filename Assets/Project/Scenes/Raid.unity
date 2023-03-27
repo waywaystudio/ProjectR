@@ -2247,7 +2247,7 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
+  m_Size: {x: 1.2, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!33 &425081185
 MeshFilter:
@@ -2731,6 +2731,10 @@ PrefabInstance:
       propertyPath: skillList.Array.data[2]
       value: 
       objectReference: {fileID: 687416184}
+    - target: {fileID: 855232010076595029, guid: a1af0054aa925ee41872a7560b759664, type: 3}
+      propertyPath: onEndEvent.m_PersistentCalls.m_Calls.Array.size
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1144377022904457136, guid: a1af0054aa925ee41872a7560b759664, type: 3}
       propertyPath: bleed
       value: 
@@ -2753,10 +2757,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2965052365408092262, guid: a1af0054aa925ee41872a7560b759664, type: 3}
       propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3264795498149139108, guid: a1af0054aa925ee41872a7560b759664, type: 3}
-      propertyPath: m_Enabled
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3338485140299279327, guid: a1af0054aa925ee41872a7560b759664, type: 3}
@@ -5128,7 +5128,7 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
+  m_Size: {x: 1.2, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!23 &1047875397
 MeshRenderer:

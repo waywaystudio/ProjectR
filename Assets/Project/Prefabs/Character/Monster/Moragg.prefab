@@ -136,7 +136,7 @@ GameObject:
   - component: {fileID: 3744010700067239340}
   - component: {fileID: 1194031104030257203}
   - component: {fileID: 6616838061466276365}
-  - component: {fileID: 2336989535014297680}
+  - component: {fileID: 814105544417408393}
   - component: {fileID: 3744010700067239343}
   - component: {fileID: 3744010700067239342}
   m_Layer: 8
@@ -193,6 +193,7 @@ MonoBehaviour:
   searching: {fileID: 6799303759066484391}
   colliding: {fileID: 2790317631836767718}
   pathfinding: {fileID: 4103633887526501528}
+  phaseTable: {fileID: 814105544417408393}
 --- !u!114 &6616838061466276365
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -224,7 +225,7 @@ MonoBehaviour:
   armor:
     value: 500
     statCode: 6
---- !u!114 &2336989535014297680
+--- !u!114 &814105544417408393
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -236,6 +237,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f65535942020e3a4897eacc479d649ba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  phaseList:
+  - {fileID: 855232010076595029}
+  - {fileID: 3954843388123077938}
 --- !u!54 &3744010700067239343
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -930,14 +934,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   startWhenEnabled: 1
   asynchronousLoad: 0
-  pauseWhenDisabled: 0
+  pauseWhenDisabled: 1
   restartWhenComplete: 0
   logTaskChanges: 0
   group: 0
   resetValuesOnRestart: 0
   externalBehavior: {fileID: 0}
   mBehaviorSource:
-    behaviorName: CombatBehavior
+    behaviorName: MoraggCombatBehavior
     behaviorDescription: 
     mTaskData:
       types: []
@@ -945,14 +949,15 @@ MonoBehaviour:
       startIndex: 
       variableStartIndex: 
       JSONSerialization: '{"EntryTask":{"Type":"BehaviorDesigner.Runtime.Tasks.EntryTask","NodeData":{"Offset":"(502,122)"},"ID":0,"Name":"Entry","Instant":true},"RootTask":{"Type":"BehaviorDesigner.Runtime.Tasks.Repeater","NodeData":{"Offset":"(2.00003052,100.697365)"},"ID":1,"Name":"Repeater","Instant":true,"SharedIntcount":{"Type":"BehaviorDesigner.Runtime.SharedInt","Name":null,"Int32mValue":0},"SharedBoolrepeatForever":{"Type":"BehaviorDesigner.Runtime.SharedBool","Name":null,"BooleanmValue":true},"SharedBoolendOnFailure":{"Type":"BehaviorDesigner.Runtime.SharedBool","Name":null,"BooleanmValue":false},"Children":[{"Type":"BehaviorDesigner.Runtime.Tasks.SelectorEvaluator","NodeData":{"Offset":"(4.142853,97.30384)"},"ID":2,"Name":"Selector
-        Evaluator","Instant":true,"AbortTypeabortType":"None","Children":[{"Type":"BehaviorDesigner.Runtime.Tasks.Inverter","NodeData":{"Offset":"(-336.6211,115.252747)"},"ID":3,"Name":"Inverter","Instant":true,"Children":[{"Type":"Character.Behavior.Actions.IsAlive","NodeData":{"Offset":"(0,100)"},"ID":4,"Name":"Is
+        Evaluator","Instant":true,"AbortTypeabortType":"None","Children":[{"Type":"BehaviorDesigner.Runtime.Tasks.Inverter","NodeData":{"Offset":"(-153.287872,115.252747)"},"ID":3,"Name":"Inverter","Instant":true,"Children":[{"Type":"Character.Behavior.Actions.IsAlive","NodeData":{"Offset":"(0,100)"},"ID":4,"Name":"Is
         Alive","Instant":true}]},{"Type":"BehaviorDesigner.Runtime.Tasks.Cooldown","NodeData":{"Offset":"(141.666656,120)"},"ID":5,"Name":"Cooldown","Instant":true,"SharedFloatduration":{"Type":"BehaviorDesigner.Runtime.SharedFloat","Name":null,"SinglemValue":0.2},"Children":[{"Type":"BehaviorDesigner.Runtime.Tasks.Sequence","NodeData":{"Offset":"(0,100)"},"ID":6,"Name":"Sequence","Instant":true,"AbortTypeabortType":"None","Children":[{"Type":"Character.Behavior.Actions.PositioningBehavior","NodeData":{"Offset":"(-150,100)"},"ID":7,"Name":"Positioning
         Behavior","Instant":true},{"Type":"BehaviorDesigner.Runtime.Tasks.UntilSuccess","NodeData":{"Offset":"(0,100)"},"ID":8,"Name":"Until
         Success","Instant":true,"Children":[{"Type":"Character.Behavior.Actions.IsGcdReady","NodeData":{"Offset":"(0,120)"},"ID":9,"Name":"Is
         Gcd Ready","Instant":true}]},{"Type":"Character.Behavior.Actions.ActiveSkillBehavior","NodeData":{"Offset":"(150,100)"},"ID":10,"Name":"Active
         Skill Behavior","Instant":true},{"Type":"BehaviorDesigner.Runtime.Tasks.UntilSuccess","NodeData":{"Offset":"(300,100)"},"ID":11,"Name":"Until
         Success","Instant":true,"Children":[{"Type":"Character.Behavior.Actions.IsSkillFinished","NodeData":{"Offset":"(0,120)"},"ID":12,"Name":"Is
-        Skill Finished","Instant":true}]}]}]}]}]}}'
+        Skill Finished","Instant":true}]},{"Type":"Character.Bosses.BossPhaseChanger","NodeData":{"Offset":"(443.332642,99.9997559)"},"ID":13,"Name":"Boss
+        Phase Changer","Instant":true}]}]}]}]}}'
       fieldSerializationData:
         typeName: []
         fieldNameHash: 
@@ -1043,6 +1048,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6782141761680153026}
+  - component: {fileID: 855232010076595029}
+  - component: {fileID: 3954843388123077938}
   m_Layer: 8
   m_Name: Phase
   m_TagString: Untagged
@@ -1065,6 +1072,91 @@ Transform:
   m_Father: {fileID: 7543387085409907241}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &855232010076595029
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8615205136865817359}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c4366eaf15f19ad42a53ce7b45238c88, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isLast: 0
+  index: 1
+  nextPhase: {fileID: 3954843388123077938}
+  onActiveEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  onCompleteEvent:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 3264795498149139108}
+        m_TargetAssemblyTypeName: UnityEngine.Behaviour, UnityEngine
+        m_MethodName: set_enabled
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  onEndEvent:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 3264795498149139108}
+        m_TargetAssemblyTypeName: UnityEngine.Behaviour, UnityEngine
+        m_MethodName: set_enabled
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
+  nextPhaseHpRatio: 0.7
+--- !u!114 &3954843388123077938
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8615205136865817359}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7f1b720dfb1450942a46379a91b8ab54, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isLast: 1
+  index: 2
+  nextPhase: {fileID: 0}
+  onActiveEvent:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 3264795498149139108}
+        m_TargetAssemblyTypeName: UnityEngine.Behaviour, UnityEngine
+        m_MethodName: set_enabled
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
+  onCompleteEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  onEndEvent:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &9163881677564672601
 GameObject:
   m_ObjectHideFlags: 0

@@ -116,15 +116,14 @@ MonoBehaviour:
   behaviourMask: 32
   ignorableMask: 3
   priority: 1
-  range: 6
-  angle: 135
   targetLayer:
     serializedVersion: 2
     m_Bits: 256
-  icon: {fileID: 21300000, guid: 951b905eda8f8424fb1debd28c69ac92, type: 3}
-  description: Starts combat by attacking a target with a melee weapon.
-  isRigid: 0
+  description: Starts combat by attacking a target <br>with a melee weapon.
   animationKey: swordAttack
+  icon: {fileID: 21300000, guid: 951b905eda8f8424fb1debd28c69ac92, type: 3}
+  range: 6
+  angle: 135
 --- !u!114 &-4124476206816522535
 MonoBehaviour:
   m_ObjectHideFlags: 0
