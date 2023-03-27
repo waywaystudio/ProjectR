@@ -17,7 +17,6 @@ namespace Character.Adventurers
 
         private void Update()
         {
-            // Debug.Log(BehaviourMask.ToString());
             Animating.Flip(transform.forward);
         }
 

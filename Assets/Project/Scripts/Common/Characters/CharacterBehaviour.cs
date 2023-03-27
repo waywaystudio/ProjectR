@@ -39,7 +39,7 @@ namespace Common.Characters
         public DataIndex ActionCode => characterID;
         public RoleType Role => role;
         public string Name => characterName;
-        public IDynamicStatEntry DynamicStatEntry => statEntry ??= GetComponentInChildren<CharacterStatEntry>();
+        public IDynamicStatEntry DynamicStatEntry => statEntry ??= GetComponent<CharacterStatEntry>();
         public StatTable StatTable => DynamicStatEntry.StatTable;
         public Vector3 Position => transform.position;
 

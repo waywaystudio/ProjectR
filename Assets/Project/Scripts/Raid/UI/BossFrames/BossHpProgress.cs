@@ -27,11 +27,7 @@ namespace Raid.UI.BossFrames
         {
             hpValueText.text = RaidDirector.Boss.DynamicStatEntry.Hp.Value.ToString("0");
         }
-
-        private void OnEnable()
-        {
-            Initialize();
-        }
+        
 
         [Button] public void MinusHp() => RaidDirector.Boss.DynamicStatEntry.Hp.Value -= 50f;
         [Button] public void MinusResource() => RaidDirector.Boss.DynamicStatEntry.Resource.Value -= 8f;
