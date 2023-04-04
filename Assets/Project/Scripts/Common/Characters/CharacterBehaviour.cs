@@ -31,7 +31,7 @@ namespace Common.Characters
         [SerializeField] protected CollidingSystem colliding;
         [SerializeField] protected PathfindingSystem pathfinding;
 
-        public bool IsPlayer { get; set; } = false;
+        public bool IsPlayer { get; set; }
         public CharacterActionMask BehaviourMask => CurrentBehaviour is null ? CharacterActionMask.None : CurrentBehaviour.BehaviourMask;
         public ActionBehaviour CurrentBehaviour { get; set; }
         public SkillBehaviour SkillBehaviour => skillBehaviour;
@@ -39,7 +39,7 @@ namespace Common.Characters
         public RoleType Role => role;
         public string Name => characterName;
         public IDynamicStatEntry DynamicStatEntry => statEntry ??= GetComponent<CharacterStatEntry>();
-        public OldStatTable StatTable => DynamicStatEntry.StatTable;
+        public OldStatTable StatTable => DynamicStatEntry.OldStatTable;
         public Vector3 Position => transform.position;
 
         public SearchingSystem Searching => searching;
@@ -70,6 +70,19 @@ namespace Common.Characters
         public ActionTable<IStatusEffect> OnDeBuffTaken { get; } = new();
         public ActionTable<IStatusEffect> OnBuffProvided { get; } = new();
         public ActionTable<IStatusEffect> OnBuffTaken { get; } = new();
+        
+        
+        private void OnEnable()
+        {
+            OnDeBuffTaken.Register("RegisterTable", statEntry.DeBuffTable.Register);
+            OnBuffTaken.Register("RegisterTable", statEntry.BuffTable.Register);
+        }
+
+        private void OnDisable()
+        {
+            OnDeBuffTaken.Unregister("RegisterTable");
+            OnBuffTaken.Unregister("RegisterTable");
+        }
 
 
 #if UNITY_EDITOR

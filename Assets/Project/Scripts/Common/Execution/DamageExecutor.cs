@@ -6,10 +6,11 @@ namespace Common.Execution
     {
         [SerializeField] private DataIndex actionCode;
         [SerializeField] private PowerValue damage = new();
-        // EntryPowerStat;
-        // ExtraPowerStat;
-        // EntryCriticalStat;
-        // ExtraCriticalStat;
+
+        // ExtraPower;
+        // ExtraCriticalHitChance;
+        // ExtraCriticalDamage;
+        [SerializeField] private Spec damageSpec;
 
         private OldStatTable StatTable { get; } = new();
 

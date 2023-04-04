@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using Sirenix.OdinInspector;
 using UnityEngine;
 
 namespace Common
@@ -24,15 +25,15 @@ namespace Common
     [Serializable]
     public class Stat
     {
-        [SerializeField] private StatCode statType;
-        [SerializeField] private StatApplyType applyType;
-        [SerializeField] private float value;
+        [SerializeField] protected StatType statType;
+        [SerializeField] protected StatApplyType applyType;
+        [SerializeField] protected float value;
 
-        public StatCode StatType => statType;
+        public StatType StatType => statType;
         public StatApplyType ApplyType => applyType;
         public float Value => value;
 
-        public Stat(StatCode statType, StatApplyType applyType, float value)
+        public Stat(StatType statType, StatApplyType applyType, float value)
         {
             this.statType  = statType;
             this.applyType = applyType;
@@ -40,30 +41,65 @@ namespace Common
         }
     }
 
-    // [Serializable] public class PowerStat : Stat { }
-    // [Serializable] public class HealthStat : Stat { }
-    // [Serializable] public class CriticalStat : Stat { }
-    // [Serializable] public class HasteStat : Stat { }
-    // [Serializable] public class MoveSpeedStat : Stat { }
-    // [Serializable] public class ArmorStat : Stat { }
-    // [Serializable] public class MaxHpStat : Stat { }
-    // [Serializable] public class MaxResourceStat : Stat { }
-    // [Serializable] public class MinWeaponStat : Stat { }
-    // [Serializable] public class MaxWeaponStat : Stat { }
-
-    [Serializable]
-    public class Sword
+    public class StatSet
     {
-        // [SerializeField] private EquipSlotType slotType;
-        // [SerializeField] private int enchantLevel;
-        // [SerializeField] private Sprite icon;
-        [SerializeField] private List<Stat> statList = new();
+        private readonly Dictionary<string, Stat> table = new();
+        private float totalBaseValue;
+        private float totalMultiValue;
+        
+        [ShowInInspector]
+        public float Value => totalBaseValue * (3 + totalMultiValue);
+        
 
-        public List<Stat> StatList => statList;
+        public void Add(string key, Stat stat)
+        {
+            if (table.ContainsKey(key))
+            {
+                RemovePreviousStat(table[key]);
+                table[key] = stat;
+            }
+            else
+            {
+                table.Add(key, stat);
+            }
+            
+            AddNewStat(stat);
+        }
 
-        // [SerializeField] private PowerStat power;
-        // [SerializeField] private HealthStat health;
-        // [SerializeField] private CriticalStat critical;
-        // [SerializeField] private HasteStat haste;
+        public void Remove(string key)
+        {
+            if (!table.ContainsKey(key)) return;
+            
+            RemovePreviousStat(table[key]);
+            table.TryRemove(key);
+        }
+
+        public void Clear()
+        {
+            table.Clear();
+        }
+
+
+        private void RemovePreviousStat(Stat previousStat) => UpdateTotalValue(previousStat, true);
+        private void AddNewStat(Stat newStat) => UpdateTotalValue(newStat);
+
+        /// <param> False인 경우 amount를 type에 맞게 더해주며,
+        /// True인 경우 원래대로 돌려 놓는다.
+        ///     <name>isReverse</name>
+        /// </param>
+        private void UpdateTotalValue(Stat stat, bool isReverse = false)
+        {
+            var sign = isReverse ? -1.0f : 1.0f;
+
+            switch (stat.ApplyType)
+            {
+                case StatApplyType.Plus:            totalBaseValue  += stat.Value * sign; break;
+                case StatApplyType.Minus:           totalBaseValue  -= stat.Value * sign; break;
+                case StatApplyType.PercentIncrease: totalMultiValue += stat.Value * sign * 0.01f; break;
+                case StatApplyType.PercentDecrease: totalMultiValue -= stat.Value * sign * 0.01f; break;
+                case StatApplyType.None:            throw new ArgumentOutOfRangeException();
+                default:                            throw new ArgumentOutOfRangeException();
+            }
+        }
     }
 }

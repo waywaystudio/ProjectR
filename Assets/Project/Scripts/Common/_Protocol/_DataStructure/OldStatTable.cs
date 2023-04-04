@@ -5,7 +5,7 @@ using UnityEngine;
 namespace Common
 {
     [ShowInInspector]
-    public class OldStatTable : Dictionary<StatCode, StatValueTable>
+    public class OldStatTable : Dictionary<StatType, StatValueTable>
     {
         public OldStatTable() : this(1) { }
         public OldStatTable(int capacity) : base(capacity) { }
@@ -50,7 +50,7 @@ namespace Common
         
 
         public void Unregister(DataIndex key, StatValue statValue) => Unregister(key, statValue.StatCode);
-        public void Unregister(DataIndex key, StatCode statCode)
+        public void Unregister(DataIndex key, StatType statCode)
         {
             if (ContainsKey(statCode)) this[statCode].Unregister(key);
         }
@@ -67,22 +67,22 @@ namespace Common
         }
         
 
-        private void Recalculation(StatCode statCode)
+        private void Recalculation(StatType statCode)
         {
             var result = this[statCode].Result;
             
             switch (statCode)
             {
-                case StatCode.Power :       Power       = result; break;
-                case StatCode.Critical :    Critical    = result; break;
-                case StatCode.Haste :       Haste       = result; break;
-                case StatCode.MaxHp:        MaxHp       = result; break;
-                case StatCode.MaxResource : MaxResource = result; break;
-                case StatCode.MoveSpeed :   MoveSpeed   = result; break;
-                case StatCode.Armor :       Armor       = result; break;
-                case StatCode.None:
+                case StatType.Power :       Power       = result; break;
+                case StatType.CriticalChance :    Critical    = result; break;
+                case StatType.Haste :       Haste       = result; break;
+                case StatType.MaxHp:        MaxHp       = result; break;
+                case StatType.MaxResource : MaxResource = result; break;
+                case StatType.MoveSpeed :   MoveSpeed   = result; break;
+                case StatType.Armor :       Armor       = result; break;
+                case StatType.None:
                 {
-                    Debug.LogError($"statCode Missing. Input:{StatCode.None}");
+                    Debug.LogError($"statCode Missing. Input:{StatType.None}");
                     return;
                 }
                 default:

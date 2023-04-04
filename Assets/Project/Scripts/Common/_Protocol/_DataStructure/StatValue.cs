@@ -6,7 +6,7 @@ namespace Common
     [Serializable]
     public class StatValue : Observable<float>
     {
-        [SerializeField] protected StatCode statCode;
+        [SerializeField] protected StatType statCode;
         
         public StatValue() : this(0f) { }
         public StatValue(float value) => this.value = value;
@@ -23,7 +23,7 @@ namespace Common
             }
         }
         
-        public StatCode StatCode { get => statCode; set => statCode = value; }
+        public StatType StatCode { get => statCode; set => statCode = value; }
 
         private static float Abs(float number) =>
             number >= 0
@@ -37,7 +37,7 @@ namespace Common
         public PowerValue(float value)
         {
             this.value = value;
-            statCode   = StatCode.Power;
+            statCode   = StatType.Power;
         }
     }
 
@@ -47,7 +47,7 @@ namespace Common
         public CriticalValue(float value)
         {
             this.value = value;
-            statCode   = StatCode.Critical;
+            statCode   = StatType.CriticalChance;
         }
     }
     
@@ -57,7 +57,7 @@ namespace Common
         public HasteValue(float value)
         {
             this.value = value;
-            statCode   = StatCode.Haste;
+            statCode   = StatType.Haste;
         }
         
         public override float Value
@@ -77,7 +77,7 @@ namespace Common
         public MaxHpValue(float value)
         {
             this.value = value;
-            statCode   = StatCode.MaxHp;
+            statCode   = StatType.MaxHp;
         }
     }
 
@@ -87,7 +87,7 @@ namespace Common
         public MaxResourceValue(float value)
         {
             this.value = value;
-            statCode   = StatCode.MaxResource;
+            statCode   = StatType.MaxResource;
         }
     }
 
@@ -97,7 +97,7 @@ namespace Common
         public MoveSpeedValue(float value)
         {
             this.value = value;
-            statCode   = StatCode.MoveSpeed;
+            statCode   = StatType.MoveSpeed;
         }
     }
 
@@ -107,7 +107,7 @@ namespace Common
         public ArmorValue(float value)
         {
             this.value = value;
-            statCode   = StatCode.Armor;
+            statCode   = StatType.Armor;
         }
     }
 }

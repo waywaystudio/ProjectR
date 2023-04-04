@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using Sirenix.OdinInspector;
 using UnityEngine;
 
@@ -6,39 +7,41 @@ namespace Common.Characters
     public class CharacterStatEntry : MonoBehaviour, IDynamicStatEntry, IEditable
     {
         [SerializeField] private DataIndex baseStatCode;
+        [SerializeField] private Spec combatClassSpec = new();
+        // [SerializeField] private Equipments equipments;
+        
+        [SerializeField] private CriticalValue critical;
         [SerializeField] private MaxHpValue maxHp;
         [SerializeField] private MaxResourceValue maxResource;
         [SerializeField] private MoveSpeedValue moveSpeed;
-        [SerializeField] private CriticalValue critical;
         [SerializeField] private HasteValue haste;
         [SerializeField] private ArmorValue armor;
-
-        private CharacterBehaviour cb;
 
         public AliveValue Alive { get; } = new();
         public HpValue Hp { get; } = new();
         public ResourceValue Resource { get; } = new();
         public ShieldValue Shield { get; } = new();
         
-        [ShowInInspector] public OldStatTable StatTable { get; } = new();
+        public StatTable StatTable { get; } = new();
+        [ShowInInspector] public OldStatTable OldStatTable { get; } = new();
         [ShowInInspector] public StatusEffectTable DeBuffTable { get; } = new();
         [ShowInInspector] public StatusEffectTable BuffTable { get; } = new();
-        
-        public CharacterBehaviour Cb => cb ??= GetComponentInParent<CharacterBehaviour>();
         
 
         public void Initialize()
         {
-            StatTable.Register(baseStatCode, maxHp, true);
-            StatTable.Register(baseStatCode, moveSpeed, true);
-            StatTable.Register(baseStatCode, maxResource, true);
-            StatTable.Register(baseStatCode, critical, true);
-            StatTable.Register(baseStatCode, haste, true);
-            StatTable.Register(baseStatCode, armor, true);
+            // combatClassSpec.Register(StatTable);
             
-            Hp.StatTable       = StatTable;
-            Resource.StatTable = StatTable;
-            Shield.StatTable   = StatTable;
+            OldStatTable.Register(baseStatCode, maxHp, true);
+            OldStatTable.Register(baseStatCode, moveSpeed, true);
+            OldStatTable.Register(baseStatCode, maxResource, true);
+            OldStatTable.Register(baseStatCode, critical, true);
+            OldStatTable.Register(baseStatCode, haste, true);
+            OldStatTable.Register(baseStatCode, armor, true);
+            
+            Hp.StatTable       = OldStatTable;
+            Resource.StatTable = OldStatTable;
+            Shield.StatTable   = OldStatTable;
 
             SetDynamicStatEntry();
         }
@@ -46,22 +49,9 @@ namespace Common.Characters
         public void SetDynamicStatEntry()
         {
             Alive.Value    = true;
-            Hp.Value       = StatTable.MaxHp;
-            Resource.Value = StatTable.MaxResource;
+            Hp.Value       = OldStatTable.MaxHp;
+            Resource.Value = OldStatTable.MaxResource;
             Shield.Value   = 0;
-        }
-        
-
-        private void OnEnable()
-        {
-            Cb.OnDeBuffTaken.Register("RegisterTable", DeBuffTable.Register);
-            Cb.OnBuffTaken.Register("RegisterTable", BuffTable.Register);
-        }
-
-        private void OnDisable()
-        {
-            Cb.OnDeBuffTaken.Unregister("RegisterTable");
-            Cb.OnBuffTaken.Unregister("RegisterTable");
         }
 
 
@@ -70,18 +60,27 @@ namespace Common.Characters
         {
             baseStatCode = GetComponent<IDataIndexer>().ActionCode;
             
-            maxHp.StatCode       = StatCode.MaxHp;
-            moveSpeed.StatCode   = StatCode.MoveSpeed;
-            maxResource.StatCode = StatCode.MaxResource;
-            critical.StatCode    = StatCode.Critical;
-            haste.StatCode       = StatCode.Haste;
-            armor.StatCode       = StatCode.Armor;
+            maxHp.StatCode       = StatType.MaxHp;
+            moveSpeed.StatCode   = StatType.MoveSpeed;
+            maxResource.StatCode = StatType.MaxResource;
+            critical.StatCode    = StatType.CriticalChance;
+            haste.StatCode       = StatType.Haste;
+            armor.StatCode       = StatType.Armor;
+            
+            combatClassSpec.Clear();
 
             switch ((int)baseStatCode / 1000000)
             {
                 case (int)DataIndex.CombatClass:
                 {
                     var classData = Database.CombatClassSheetData(baseStatCode);
+
+                    // combatClassSpec.Add(StatCode.Critical,    StatApplyType.Plus, classData.Critical);
+                    // combatClassSpec.Add(StatCode.Haste,       StatApplyType.Plus, classData.Haste);
+                    // combatClassSpec.Add(StatCode.Armor,       StatApplyType.Plus, classData.Armor);
+                    // combatClassSpec.Add(StatCode.MaxHp,       StatApplyType.Plus, classData.MaxHp);
+                    // combatClassSpec.Add(StatCode.MaxResource, StatApplyType.Plus, classData.MaxResource);
+                    // combatClassSpec.Add(StatCode.MoveSpeed,   StatApplyType.Plus, classData.MoveSpeed);
             
                     maxHp.Value       = classData.MaxHp;
                     moveSpeed.Value   = classData.MoveSpeed;
@@ -94,6 +93,13 @@ namespace Common.Characters
                 case (int)DataIndex.Boss:
                 {
                     var bossData = Database.BossSheetData(baseStatCode);
+                    
+                    // combatClassSpec.Add(StatCode.Critical,    StatApplyType.Plus, bossData.Critical);
+                    // combatClassSpec.Add(StatCode.Haste,       StatApplyType.Plus, bossData.Haste);
+                    // combatClassSpec.Add(StatCode.Armor,       StatApplyType.Plus, bossData.Armor);
+                    // combatClassSpec.Add(StatCode.MaxHp,       StatApplyType.Plus, bossData.MaxHp);
+                    // combatClassSpec.Add(StatCode.MaxResource, StatApplyType.Plus, bossData.MaxResource);
+                    // combatClassSpec.Add(StatCode.MoveSpeed,   StatApplyType.Plus, bossData.MoveSpeed);
             
                     maxHp.Value       = bossData.MaxHp;
                     moveSpeed.Value   = bossData.MoveSpeed;
