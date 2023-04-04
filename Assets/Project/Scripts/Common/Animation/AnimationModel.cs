@@ -21,8 +21,7 @@ namespace Common.Animation
 
         public ActionTable OnHit { get; } = new();
         private SpineAnimation TargetAnimation { get; set; }
-        
-        
+    
         public void Idle() { State.TimeScale = 1f; PlayLoop("idle"); }
         public void Run() => PlayLoop("run");
         public void Dead() => PlayOnce("dead");
@@ -156,6 +155,7 @@ namespace Common.Animation
 
         private void OnEnable() => skeletonAnimation.AnimationState.Event += EventHandler;
         private void OnDisable() => skeletonAnimation.AnimationState.Event -= EventHandler;
+        
         
 #if UNITY_EDITOR
         [SpineEvent(dataField : "skAnimation", fallbackToTextField = true)]

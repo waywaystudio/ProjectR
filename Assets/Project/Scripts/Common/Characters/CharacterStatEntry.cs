@@ -14,20 +14,13 @@ namespace Common.Characters
         [SerializeField] private ArmorValue armor;
 
         private CharacterBehaviour cb;
-        
-        public MaxHpValue MaxHp => maxHp;
-        public MaxResourceValue MaxResource => maxResource;
-        public MoveSpeedValue MoveSpeed => moveSpeed;
-        public CriticalValue Critical => critical;
-        public HasteValue Haste => haste;
-        public ArmorValue Armor => armor;
 
         public AliveValue Alive { get; } = new();
         public HpValue Hp { get; } = new();
         public ResourceValue Resource { get; } = new();
         public ShieldValue Shield { get; } = new();
-        public StatTable StatTable { get; } = new();
         
+        [ShowInInspector] public OldStatTable StatTable { get; } = new();
         [ShowInInspector] public StatusEffectTable DeBuffTable { get; } = new();
         [ShowInInspector] public StatusEffectTable BuffTable { get; } = new();
         

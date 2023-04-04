@@ -38,6 +38,18 @@ public static class DictionaryExtension
         return true;
     }
 
+    public static bool TryOverride<TKey, TValue>(this Dictionary<TKey, TValue> table, TKey key, TValue value)
+    {
+        if (table.ContainsKey(key))
+        {
+            table[key] = value;
+            return true;
+        }
+        
+        table.Add(key, value);
+        return false;
+    }
+
     public static Dictionary<TKey, List<TValue>> Combine<TKey, TValue>(IEqualityComparer<TKey> comparer = null, params IDictionary<TKey, TValue>[] dictionaries)
     {
         comparer ??= EqualityComparer<TKey>.Default;

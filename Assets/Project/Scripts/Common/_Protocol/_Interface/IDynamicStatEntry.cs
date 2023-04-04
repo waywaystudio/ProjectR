@@ -6,7 +6,8 @@ namespace Common
         HpValue Hp { get; }
         ResourceValue Resource { get; }
         ShieldValue Shield { get; }
-        StatTable StatTable { get; }
+        
+        OldStatTable StatTable { get; }
         StatusEffectTable BuffTable { get; }
         StatusEffectTable DeBuffTable { get; }
     }

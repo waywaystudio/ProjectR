@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace Common
 {
-    [Serializable] public class DynamicStatValue : FloatEvent { public StatTable StatTable { get; set; }}
+    [Serializable] public class DynamicStatValue : FloatEvent { public OldStatTable StatTable { get; set; }}
     [Serializable] public class AliveValue : Observable<bool> { }
     
     [Serializable]

@@ -4,6 +4,7 @@ namespace Common
 {
     public interface IExecutable : IOriginalProvider
     {
+        // + ICombatProvider Provider { get; }
         ExecutionTable ExecutionTable { get; }
     }
 }

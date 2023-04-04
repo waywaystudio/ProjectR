@@ -6,8 +6,12 @@ namespace Common.Execution
     {
         [SerializeField] private DataIndex actionCode;
         [SerializeField] private PowerValue damage = new();
+        // EntryPowerStat;
+        // ExtraPowerStat;
+        // EntryCriticalStat;
+        // ExtraCriticalStat;
 
-        private StatTable StatTable { get; } = new();
+        private OldStatTable StatTable { get; } = new();
 
 
         public override void Execution(ICombatTaker taker, float instantMultiplier = 1f)

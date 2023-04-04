@@ -32,7 +32,6 @@ namespace Common.Characters
         [SerializeField] protected PathfindingSystem pathfinding;
 
         public bool IsPlayer { get; set; } = false;
-        [Sirenix.OdinInspector.ShowInInspector]
         public CharacterActionMask BehaviourMask => CurrentBehaviour is null ? CharacterActionMask.None : CurrentBehaviour.BehaviourMask;
         public ActionBehaviour CurrentBehaviour { get; set; }
         public SkillBehaviour SkillBehaviour => skillBehaviour;
@@ -40,7 +39,7 @@ namespace Common.Characters
         public RoleType Role => role;
         public string Name => characterName;
         public IDynamicStatEntry DynamicStatEntry => statEntry ??= GetComponent<CharacterStatEntry>();
-        public StatTable StatTable => DynamicStatEntry.StatTable;
+        public OldStatTable StatTable => DynamicStatEntry.StatTable;
         public Vector3 Position => transform.position;
 
         public SearchingSystem Searching => searching;
