@@ -13,8 +13,10 @@ namespace Common.Equipments
 
         // effect
         public DataIndex ActionCode => dataCode;
-        public Spec Spec => spec;
+        public string Title => title;
         public EquipType EquipType => equipType;
+        public CombatClassType AvailableClass => availableClass;
+        public Spec Spec => spec;
 
         
 #if UNITY_EDITOR

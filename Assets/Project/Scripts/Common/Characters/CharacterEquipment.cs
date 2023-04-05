@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using Common.Equipments;
 using Sirenix.OdinInspector;
@@ -17,6 +18,9 @@ namespace Common.Characters
         [SerializeField] private DataIndex trinket1Code;
         [SerializeField] private DataIndex trinket2Code;
         #endregion
+        
+        private CharacterBehaviour cb;
+        private CharacterBehaviour Cb => cb ??= GetComponentInParent<CharacterBehaviour>();
 
         [ShowInInspector]
         private Dictionary<EquipSlotIndex, EquipmentSlot> equipmentTable { get; } = new(6)
@@ -28,14 +32,43 @@ namespace Common.Characters
             { EquipSlotIndex.Trinket1, new EquipmentSlot(EquipType.Trinket) }, 
             { EquipSlotIndex.Trinket2, new EquipmentSlot(EquipType.Trinket) },
         };
-
-        private CharacterBehaviour cb;
-        private CharacterBehaviour Cb => cb ??= GetComponentInParent<CharacterBehaviour>();
         
+
+        public bool TryArm(Equipment equipment)
+        {
+            // Check AvailableClass
+            if(!equipment.AvailableClass.HasFlag(Cb.CombatClass))
+            {
+                Debug.LogWarning($"Not Available. "
+                                 + $"Available Class:{equipment.AvailableClass}. Target Class:{Cb.CombatClass}");
+                return false;
+            }
+
+            // Check Matched Slot
+            var targetSlot = equipment.EquipType switch
+            {
+                EquipType.Weapon => EquipSlotIndex.Weapon,
+                EquipType.Head   => EquipSlotIndex.Head,
+                EquipType.Top    => EquipSlotIndex.Top,
+                EquipType.Bottom => EquipSlotIndex.Bottom,
+                EquipType.Trinket => equipmentTable[EquipSlotIndex.Trinket2].HasEquipment
+                    ? EquipSlotIndex.Trinket1
+                    : EquipSlotIndex.Trinket2,
+                EquipType.None => throw new ArgumentOutOfRangeException(),
+                _              => throw new ArgumentOutOfRangeException()
+            };
+            
+            Disarm(targetSlot);
+
+            equipmentTable[targetSlot].Equipment = equipment;
+            Cb.StatTable.Add($"{equipment.EquipType}.{targetSlot}", equipment.Spec);
+
+            return true;
+        }
 
         public bool TryArm(EquipSlotIndex slotIndex, Equipment equipment)
         {
-            // Slot Condition
+            // Check Matched Slot
             if (equipmentTable[slotIndex].EquipType != equipment.EquipType)
             {
                 Debug.LogWarning($"Can't Arm Between different SlotType. "
@@ -43,8 +76,13 @@ namespace Common.Characters
                 return false;
             }
             
-            // Add AvailableClassCondition
-            
+            // Check AvailableClass
+            if(!equipment.AvailableClass.HasFlag(Cb.CombatClass))
+            {
+                Debug.LogWarning($"Not Available. "
+                                 + $"Available Class:{equipment.AvailableClass}. Target Class:{Cb.CombatClass}");
+                return false;
+            }
 
             Disarm(slotIndex);
 
@@ -73,6 +111,9 @@ namespace Common.Characters
             LoadEquipment(bottomCode,   EquipSlotIndex.Bottom);
             LoadEquipment(trinket1Code, EquipSlotIndex.Trinket1);
             LoadEquipment(trinket2Code, EquipSlotIndex.Trinket2);
+            
+            equipmentTable.ForEach(table
+                => table.Value.HasEquipment.OnTrue(() => TryArm(table.Key, table.Value.Equipment)));
         }
 
 
@@ -89,20 +130,13 @@ namespace Common.Characters
         private void Awake()
         {
             Load();
-            
-            equipmentTable.ForEach(table =>
-            {
-                if (table.Value.HasEquipment)
-                {
-                    TryArm(table.Key, table.Value.Equipment);
-                }
-            });
         }
 
         private class EquipmentSlot
         {
-            public EquipType EquipType { get; }
+            [ShowInInspector]
             public Equipment Equipment { get; set; }
+            public EquipType EquipType { get; }
             public bool HasEquipment => !Equipment.IsNullOrDestroyed();
 
             public EquipmentSlot(EquipType equipType)
