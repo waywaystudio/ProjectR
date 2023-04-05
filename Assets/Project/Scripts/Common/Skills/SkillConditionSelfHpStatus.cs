@@ -14,7 +14,7 @@ namespace Common.Skills
 
         private ICombatProvider provider;
         private IConditionalSequence sequence;
-        private float RemainHpRatio => provider.DynamicStatEntry.Hp.Value / provider.DynamicStatEntry.OldStatTable.MaxHp;
+        private float RemainHpRatio => provider.DynamicStatEntry.Hp.Value / provider.DynamicStatEntry.StatTable.MaxHp;
 
 
         private void OnEnable()

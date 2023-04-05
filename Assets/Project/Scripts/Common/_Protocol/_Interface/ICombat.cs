@@ -34,7 +34,7 @@ namespace Common
 
     public interface ICombatEntity
     {
-        OldStatTable StatTable { get; }
+        StatTable StatTable { get; }
         IDynamicStatEntry DynamicStatEntry { get; }
     }
 

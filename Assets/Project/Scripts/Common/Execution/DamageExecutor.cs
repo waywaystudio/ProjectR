@@ -5,35 +5,51 @@ namespace Common.Execution
     public class DamageExecutor : ExecuteComponent, IEditable
     {
         [SerializeField] private DataIndex actionCode;
-        [SerializeField] private PowerValue damage = new();
-
-        // ExtraPower;
-        // ExtraCriticalHitChance;
-        // ExtraCriticalDamage;
         [SerializeField] private Spec damageSpec;
-
-        private OldStatTable StatTable { get; } = new();
 
 
         public override void Execution(ICombatTaker taker, float instantMultiplier = 1f)
         {
             if (!taker.DynamicStatEntry.Alive.Value) return;
-            
-            UpdateStatTable();
 
-            var entity       = new CombatEntity(taker);
-            var damageAmount = StatTable.Power * instantMultiplier;
-            
+            var entity        = new CombatEntity(taker);
+            var providerTable = Executor.Provider.StatTable;
+
+            // Damage Creator
+            var weaponAverage = Random.Range(providerTable.MinWeaponValue, providerTable.MaxWeaponValue);
+            var damageAmount = weaponAverage 
+                  * (1.0f + providerTable.Power   * 0.01f) 
+                  * (1.0f + damageSpec.ExtraPower * 0.01f);
+
             // Critical Calculation : CombatFormula;
-            if (CombatFormula.IsCritical(StatTable.Critical))
+            if (CombatFormula.IsCritical(providerTable.CriticalChance + damageSpec.ExtraCriticalChance))
             {
                 entity.IsCritical =  true;
-                damageAmount      *= 2f;
+                damageAmount      *= 1.0f + (100 + providerTable.CriticalDamage + damageSpec.CriticalDamage) * 0.01f;
             }
             
             // Armor Calculation : CombatFormula
-            damageAmount = CombatFormula.ArmorReduce(taker.StatTable.Armor, damageAmount);
-            entity.Value = damageAmount;
+            var armorReduceRate = CombatFormula.ArmorReduce(taker.StatTable.Armor);
+            
+            damageAmount *= 1.0f - armorReduceRate;
+            entity.Value =  damageAmount;
+            
+            // Shield Calculation
+            var takerShield = taker.DynamicStatEntry.Shield;
+            
+            if (takerShield.Value > 0)
+            {
+                if (damageAmount > takerShield.Value)
+                {
+                    damageAmount      -= takerShield.Value;
+                    takerShield.Value =  0f;
+                }
+                else
+                {
+                    takerShield.Value -= damageAmount;
+                    damageAmount      =  0f;
+                }
+            }
 
             // Dead Calculation
             if (damageAmount >= taker.DynamicStatEntry.Hp.Value)
@@ -52,14 +68,7 @@ namespace Common.Execution
             Executor.Provider.OnDamageProvided.Invoke(entity);
             taker.OnDamageTaken.Invoke(entity);
         }
-        
-        
-        private void UpdateStatTable()
-        {
-            StatTable.Clear();
-            StatTable.Register(actionCode, damage);
-            StatTable.UnionWith(Executor.Provider.StatTable);
-        }
+
 
         private void OnEnable() { Executor?.ExecutionTable.Add(this); }
         private void OnDisable() { Executor?.ExecutionTable.Remove(this); }
@@ -68,10 +77,15 @@ namespace Common.Execution
 #if UNITY_EDITOR
         public void EditorSetUp()
         {
+            damageSpec.Clear();
+            damageSpec.Add(StatType.ExtraCriticalChance, StatApplyType.Plus, 0f);
+            damageSpec.Add(StatType.ExtraCriticalDamage, StatApplyType.Plus, 0f);
+            
             if (TryGetComponent(out Skills.SkillComponent skill))
             {
                 actionCode   = skill.ActionCode;
-                damage.Value = Database.SkillSheetData(actionCode).CompletionValueList[0];
+                
+                damageSpec.Add(StatType.ExtraPower, StatApplyType.Plus, Database.SkillSheetData(actionCode).CompletionValueList[0]);
                 return;
             }
             

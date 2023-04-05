@@ -17,7 +17,7 @@ namespace Character.Adventurers.Knight.StatusEffect
             base.Activate(taker);
             
             hasteWeight = tickBuffer = 
-                interval * CharacterUtility.GetHasteValue(Provider.StatTable.Haste);
+                interval * CombatFormula.GetHasteValue(Provider.StatTable.Haste);
         }
         
 

@@ -43,12 +43,13 @@ namespace Common
 
     public class StatSet
     {
+        [ShowInInspector]
         private readonly Dictionary<string, Stat> table = new();
         private float totalBaseValue;
         private float totalMultiValue;
         
         [ShowInInspector]
-        public float Value => totalBaseValue * (3 + totalMultiValue);
+        public float Value => totalBaseValue * (1 + totalMultiValue);
         
 
         public void Add(string key, Stat stat)

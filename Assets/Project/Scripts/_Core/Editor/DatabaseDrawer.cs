@@ -6,7 +6,7 @@ using Sirenix.OdinInspector.Editor;
 
 namespace Editor
 {
-    public class MainDataDrawer : OdinAttributeProcessor<Database>
+    public class DatabaseDrawer : OdinAttributeProcessor<Database>
     {
         public override void ProcessChildMemberAttributes(InspectorProperty parentProperty, MemberInfo member, List<Attribute> attributes)
         {
@@ -56,6 +56,15 @@ namespace Editor
                 attributes.Add(new ButtonAttribute(ButtonSizes.Large)
                 {
                     Icon = SdfIconType.FileSpreadsheet,
+                });
+            }
+            
+            if (member.Name == "GenerateIDCode")
+            {
+                attributes.Add(new HorizontalGroupAttribute("CommonHorizontal"));
+                attributes.Add(new ButtonAttribute(ButtonSizes.Large)
+                {
+                    Icon = SdfIconType.Gear,
                 });
             }
         }

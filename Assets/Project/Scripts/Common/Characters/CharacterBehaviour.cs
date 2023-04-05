@@ -14,7 +14,7 @@ namespace Common.Characters
         [SerializeField] protected DataIndex characterID;
         [SerializeField] protected RoleType role;
         
-        [SerializeField] protected CharacterStatEntry statEntry;
+        [SerializeField] protected CharacterStats stats;
         
         [SerializeField] protected AnimationModel animating;
         [SerializeField] protected Transform damageSpawn;
@@ -38,8 +38,8 @@ namespace Common.Characters
         public DataIndex ActionCode => characterID;
         public RoleType Role => role;
         public string Name => characterName;
-        public IDynamicStatEntry DynamicStatEntry => statEntry ??= GetComponent<CharacterStatEntry>();
-        public OldStatTable StatTable => DynamicStatEntry.OldStatTable;
+        public IDynamicStatEntry DynamicStatEntry => stats ??= GetComponent<CharacterStats>();
+        public StatTable StatTable => DynamicStatEntry.StatTable;
         public Vector3 Position => transform.position;
 
         public SearchingSystem Searching => searching;
@@ -74,8 +74,8 @@ namespace Common.Characters
         
         private void OnEnable()
         {
-            OnDeBuffTaken.Register("RegisterTable", statEntry.DeBuffTable.Register);
-            OnBuffTaken.Register("RegisterTable", statEntry.BuffTable.Register);
+            OnDeBuffTaken.Register("RegisterTable", stats.DeBuffTable.Register);
+            OnBuffTaken.Register("RegisterTable", stats.BuffTable.Register);
         }
 
         private void OnDisable()
@@ -88,7 +88,7 @@ namespace Common.Characters
 #if UNITY_EDITOR
         public virtual void EditorSetUp()
         {
-            statEntry          ??= GetComponent<CharacterStatEntry>();
+            stats          ??= GetComponent<CharacterStats>();
             
             skillBehaviour     ??= GetComponentInChildren<SkillBehaviour>();
             stopBehaviour      ??= GetComponentInChildren<StopBehaviour>();

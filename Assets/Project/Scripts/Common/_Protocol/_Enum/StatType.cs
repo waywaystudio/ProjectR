@@ -3,8 +3,8 @@ namespace Common
     public enum StatType
     {
         None = 0,
-        Power = 1,
-        Health = 2,
+        Power,
+        Health,
         CriticalChance,
         CriticalDamage,
         Haste,
@@ -12,9 +12,10 @@ namespace Common
         MoveSpeed,
         MaxHp,
         MaxResource,
-        MinWeaponValue,
-        MaxWeaponValue,
-        EntryPower,
+        MinDamage,
+        MaxDamage,
         ExtraPower,
+        ExtraCriticalChance,
+        ExtraCriticalDamage,
     }
 }

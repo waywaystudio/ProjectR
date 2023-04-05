@@ -1,12 +1,26 @@
 using System.Collections.Generic;
+using Sirenix.OdinInspector;
 
 namespace Common
 {
     public class StatTable
     {
+        public float Power => GetStatValue(StatType.Power);
+        public float Health => GetStatValue(StatType.Health);
+        public float CriticalChance => GetStatValue(StatType.CriticalChance);
+        public float CriticalDamage => GetStatValue(StatType.CriticalDamage);
+        public float Haste => GetStatValue(StatType.Haste);
+        public float Armor => GetStatValue(StatType.Armor);
+        public float MoveSpeed => GetStatValue(StatType.MoveSpeed);
+        public float MaxHp => GetStatValue(StatType.MaxHp);
+        public float MaxResource => GetStatValue(StatType.MaxResource);
+        public float MinWeaponValue => GetStatValue(StatType.MinDamage);
+        public float MaxWeaponValue => GetStatValue(StatType.MaxDamage);
+        
+        [ShowInInspector]
         private Dictionary<StatType, StatSet> statTable { get; } = new();
 
-        public void Add(Spec spec) => spec.Iterate(stat => Add(spec.Key, stat));
+        public void Add(string key, Spec spec) => spec.Iterate(stat => Add(key, stat));
         public void Add(string key, Stat stat)
         {
             if (statTable.ContainsKey(stat.StatType))
@@ -22,15 +36,18 @@ namespace Common
             }
         }
         
-        public void Remove(Spec spec) => spec.Iterate(stat => Remove(spec.Key, stat));
+        public void Remove(string key, Spec spec) => spec.Iterate(stat => Remove(key, stat));
         public void Remove(string key, Stat stat)
         {
             if (!statTable.ContainsKey(stat.StatType)) return;
             
             statTable[stat.StatType].Remove(key);
         }
+
+        public void Clear() => statTable.Clear();
         
-        public float GetStatValue(StatType statType)
+        
+        private float GetStatValue(StatType statType)
         {
             if (!statTable.ContainsKey(statType)) return 0;
         

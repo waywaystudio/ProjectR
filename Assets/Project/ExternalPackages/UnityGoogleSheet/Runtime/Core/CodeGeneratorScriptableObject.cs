@@ -49,8 +49,8 @@ namespace @namespace
 ";
         public string Generate()
         {
-            var soScriptPath = UgsConfig.Instance.ScriptableObjectScriptPath; // = Assets/Project/Scripts/Main/Database/SheetData
-            var trimmedPath = soScriptPath.Replace("Assets/Project/Scripts/Main/", "").Replace("/", ".");
+            var soScriptPath = UgsConfig.Instance.ScriptableObjectScriptPath; // = Assets/Project/Scripts/_Core/Databases/SheetData
+            var trimmedPath = soScriptPath.Replace("Assets/Project/Scripts/_Core/", "").Replace("/", ".");
             var @namespace = $"{trimmedPath}.{sheetInfo.sheetFileName}";
             var className = sheetInfo.sheetName;
             

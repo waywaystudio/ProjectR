@@ -21,10 +21,8 @@ MonoBehaviour:
     maxHp: 1000
     maxResource: 100
     moveSpeed: 7
-    critical: 0.05
+    critical: 5
     haste: 0
-    hit: 0.95
-    evade: 0
     armor: 20
   - id: 12000002
     name: Guardian
@@ -33,10 +31,8 @@ MonoBehaviour:
     maxHp: 1000
     maxResource: 100
     moveSpeed: 7
-    critical: 0.05
+    critical: 5
     haste: 0
-    hit: 0.95
-    evade: 0
     armor: 20
   - id: 12000003
     name: Warrior
@@ -45,10 +41,8 @@ MonoBehaviour:
     maxHp: 700
     maxResource: 100
     moveSpeed: 8
-    critical: 0.1
-    haste: 0.05
-    hit: 0.95
-    evade: 0.05
+    critical: 10
+    haste: 5
     armor: 15
   - id: 12000004
     name: Rogue
@@ -57,10 +51,8 @@ MonoBehaviour:
     maxHp: 700
     maxResource: 100
     moveSpeed: 8
-    critical: 0.1
-    haste: 0.05
-    hit: 0.95
-    evade: 0.05
+    critical: 10
+    haste: 5
     armor: 15
   - id: 12000005
     name: Hunter
@@ -69,10 +61,8 @@ MonoBehaviour:
     maxHp: 600
     maxResource: 100
     moveSpeed: 7
-    critical: 0.05
-    haste: 0.05
-    hit: 0.95
-    evade: 0
+    critical: 5
+    haste: 5
     armor: 12
   - id: 12000006
     name: Mage
@@ -81,10 +71,8 @@ MonoBehaviour:
     maxHp: 600
     maxResource: 100
     moveSpeed: 7
-    critical: 0.05
-    haste: 0.05
-    hit: 0.95
-    evade: 0
+    critical: 5
+    haste: 5
     armor: 12
   - id: 12000007
     name: Priest
@@ -93,10 +81,8 @@ MonoBehaviour:
     maxHp: 500
     maxResource: 100
     moveSpeed: 7
-    critical: 0.05
+    critical: 5
     haste: 0
-    hit: 0.95
-    evade: 0
     armor: 10
   - id: 12000008
     name: Bard
@@ -105,8 +91,6 @@ MonoBehaviour:
     maxHp: 500
     maxResource: 100
     moveSpeed: 7
-    critical: 0.05
+    critical: 5
     haste: 0
-    hit: 0.95
-    evade: 0
     armor: 10

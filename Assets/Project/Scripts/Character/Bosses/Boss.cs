@@ -11,7 +11,7 @@ namespace Character.Bosses
 
         protected void Awake()
         {
-            statEntry.Initialize();
+            stats.Initialize();
         }
 
         protected void Start()

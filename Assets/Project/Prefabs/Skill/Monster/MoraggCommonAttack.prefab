@@ -117,15 +117,14 @@ MonoBehaviour:
   behaviourMask: 32
   ignorableMask: 3
   priority: 1
-  range: 6
-  angle: 360
   targetLayer:
     serializedVersion: 2
     m_Bits: 128
-  icon: {fileID: 21300000, guid: 5a5b5e460d0775b42a594af04292f7c3, type: 3}
   description: Starts combat by attacking a target with a melee weapon.
-  isRigid: 0
   animationKey: attack
+  icon: {fileID: 21300000, guid: 5a5b5e460d0775b42a594af04292f7c3, type: 3}
+  range: 6
+  angle: 360
 --- !u!114 &2367492339547551117
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -152,9 +151,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   group: 1
   actionCode: 13000009
-  damage:
-    value: 20
-    statCode: 1
+  damageSpec:
+    statList:
+    - statType: 12
+      applyType: 1
+      value: 20
+    - statType: 13
+      applyType: 1
+      value: 0
+    - statType: 14
+      applyType: 1
+      value: 0
+    key: 
 --- !u!114 &932296179017073666
 MonoBehaviour:
   m_ObjectHideFlags: 0

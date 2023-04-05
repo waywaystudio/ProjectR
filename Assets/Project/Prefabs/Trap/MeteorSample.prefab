@@ -96,9 +96,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   group: 1
   actionCode: 0
-  damage:
-    value: 50
-    statCode: 1
+  damageSpec:
+    statList:
+    - statType: 12
+      applyType: 1
+      value: 50
+    - statType: 13
+      applyType: 1
+      value: 0
+    - statType: 14
+      applyType: 1
+      value: 0
+    key: 
 --- !u!114 &8631105741518899061
 MonoBehaviour:
   m_ObjectHideFlags: 0

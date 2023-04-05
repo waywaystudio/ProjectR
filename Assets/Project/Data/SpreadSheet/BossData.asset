@@ -21,19 +21,15 @@ MonoBehaviour:
     moveSpeed: 4
     critical: 0.05
     haste: 0
-    hit: 0.98
-    evade: 0.03
     armor: 500
   - id: 17000002
     name: Moragg
     maxHp: 2000
     maxResource: 100
     moveSpeed: 4
-    critical: 0.05
+    critical: 5
     haste: 0
-    hit: 0.98
-    evade: 0.03
-    armor: 500
+    armor: 50
   - id: 17000003
     name: Maiden of Grief
     maxHp: 2000
@@ -41,8 +37,6 @@ MonoBehaviour:
     moveSpeed: 4
     critical: 0.05
     haste: 0
-    hit: 0.98
-    evade: 0.03
     armor: 500
   - id: 17000004
     name: Keristrasza
@@ -51,8 +45,6 @@ MonoBehaviour:
     moveSpeed: 4
     critical: 0.05
     haste: 0
-    hit: 0.98
-    evade: 0.03
     armor: 500
   - id: 17000005
     name: Teron Gorefiend
@@ -61,8 +53,6 @@ MonoBehaviour:
     moveSpeed: 4
     critical: 0.05
     haste: 0
-    hit: 0.98
-    evade: 0.03
     armor: 500
   - id: 17000006
     name: Mother Shahraz
@@ -71,8 +61,6 @@ MonoBehaviour:
     moveSpeed: 4
     critical: 0.05
     haste: 0
-    hit: 0.98
-    evade: 0.03
     armor: 500
   - id: 17000007
     name: Illidan Stormrage
@@ -81,8 +69,6 @@ MonoBehaviour:
     moveSpeed: 4
     critical: 0.05
     haste: 0
-    hit: 0.98
-    evade: 0.03
     armor: 500
   - id: 17000008
     name: Patchwerk
@@ -91,8 +77,6 @@ MonoBehaviour:
     moveSpeed: 4
     critical: 0.05
     haste: 0
-    hit: 0.98
-    evade: 0.03
     armor: 500
   - id: 17000009
     name: Sapphiron
@@ -101,8 +85,6 @@ MonoBehaviour:
     moveSpeed: 4
     critical: 0.05
     haste: 0
-    hit: 0.98
-    evade: 0.03
     armor: 500
   - id: 17000010
     name: MaxBara
@@ -111,8 +93,6 @@ MonoBehaviour:
     moveSpeed: 4
     critical: 0.05
     haste: 0
-    hit: 0.98
-    evade: 0.03
     armor: 500
   - id: 17000011
     name: Magmadar
@@ -121,8 +101,6 @@ MonoBehaviour:
     moveSpeed: 4
     critical: 0.05
     haste: 0
-    hit: 0.98
-    evade: 0.03
     armor: 500
   - id: 17000012
     name: Baron Geddon
@@ -131,8 +109,6 @@ MonoBehaviour:
     moveSpeed: 4
     critical: 0.05
     haste: 0
-    hit: 0.98
-    evade: 0.03
     armor: 500
   - id: 17000013
     name: Ragnaros
@@ -141,8 +117,6 @@ MonoBehaviour:
     moveSpeed: 4
     critical: 0.05
     haste: 0
-    hit: 0.98
-    evade: 0.03
     armor: 500
   - id: 17000014
     name: Vaelastrasz the Corrupt
@@ -151,8 +125,6 @@ MonoBehaviour:
     moveSpeed: 4
     critical: 0.05
     haste: 0
-    hit: 0.98
-    evade: 0.03
     armor: 500
   - id: 17000015
     name: Chromaggus
@@ -161,8 +133,6 @@ MonoBehaviour:
     moveSpeed: 4
     critical: 0.05
     haste: 0
-    hit: 0.98
-    evade: 0.03
     armor: 500
   - id: 17000016
     name: Nefarian
@@ -171,6 +141,4 @@ MonoBehaviour:
     moveSpeed: 4
     critical: 0.05
     haste: 0
-    hit: 0.98
-    evade: 0.03
     armor: 500

@@ -20,7 +20,7 @@ namespace Common.Skills
 
         private void StartProcessing(float hasteWeight)
         {
-            CastingWeight = castingTime * CharacterUtility.GetHasteValue(hasteWeight);
+            CastingWeight = castingTime * CombatFormula.GetHasteValue(hasteWeight);
             enabled       = true;
         }
 

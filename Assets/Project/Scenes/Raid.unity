@@ -2911,6 +2911,38 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 6616838061466276365, guid: a1af0054aa925ee41872a7560b759664, type: 3}
+      propertyPath: armor.value
+      value: 300
+      objectReference: {fileID: 0}
+    - target: {fileID: 6616838061466276365, guid: a1af0054aa925ee41872a7560b759664, type: 3}
+      propertyPath: haste.statCode
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6616838061466276365, guid: a1af0054aa925ee41872a7560b759664, type: 3}
+      propertyPath: maxHp.statCode
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 6616838061466276365, guid: a1af0054aa925ee41872a7560b759664, type: 3}
+      propertyPath: critical.statCode
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 6616838061466276365, guid: a1af0054aa925ee41872a7560b759664, type: 3}
+      propertyPath: moveSpeed.statCode
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 6616838061466276365, guid: a1af0054aa925ee41872a7560b759664, type: 3}
+      propertyPath: maxResource.statCode
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 6616838061466276365, guid: a1af0054aa925ee41872a7560b759664, type: 3}
+      propertyPath: combatClassSpec.statList.Array.data[2].value
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6616838061466276365, guid: a1af0054aa925ee41872a7560b759664, type: 3}
+      propertyPath: combatClassSpec.statList.Array.data[4].value
+      value: 1000
+      objectReference: {fileID: 0}
     - target: {fileID: 6822162402771284056, guid: a1af0054aa925ee41872a7560b759664, type: 3}
       propertyPath: m_IsActive
       value: 1

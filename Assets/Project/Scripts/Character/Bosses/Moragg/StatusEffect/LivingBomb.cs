@@ -49,7 +49,7 @@ namespace Character.Bosses.Moragg.StatusEffect
         }
         
         private void SetHasteWeight() => hasteWeight = tickBuffer = 
-            interval * CharacterUtility.GetHasteValue(Provider.StatTable.Haste);
+            interval * CombatFormula.GetHasteValue(Provider.StatTable.Haste);
 
         private void Update()
         {

@@ -1,0 +1,60 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 751b23111e2838940bbf6cd4abc19a99, type: 3}
+  m_Name: BottomData
+  m_EditorClassIdentifier: 
+  Index: 24
+  list:
+  - id: 24010001
+    name: Sandle
+    equipable: 0
+    power: 0
+    health: 5
+    criticalChance: 0
+    criticalDamage: 0
+    haste: 10
+    armor: 0
+    extraSkillCode: 0
+    extraPower: 0
+  - id: 24010002
+    name: LeatherShoes
+    equipable: 0
+    power: 0
+    health: 10
+    criticalChance: 5
+    criticalDamage: 0
+    haste: 5
+    armor: 0
+    extraSkillCode: 0
+    extraPower: 0
+  - id: 24010003
+    name: Gaiters
+    equipable: 0
+    power: 5
+    health: 0
+    criticalChance: 0
+    criticalDamage: 0
+    haste: 0
+    armor: 30
+    extraSkillCode: 0
+    extraPower: 0
+  - id: 24010004
+    name: Puttees
+    equipable: 0
+    power: 12
+    health: 0
+    criticalChance: 0
+    criticalDamage: 0
+    haste: 0
+    armor: 50
+    extraSkillCode: 0
+    extraPower: 0

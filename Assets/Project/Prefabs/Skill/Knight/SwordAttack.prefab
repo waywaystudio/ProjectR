@@ -150,6 +150,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   group: 1
   actionCode: 13000001
-  damage:
-    value: 15
-    statCode: 1
+  damageSpec:
+    statList:
+    - statType: 12
+      applyType: 1
+      value: 150
+    - statType: 13
+      applyType: 1
+      value: 0
+    - statType: 14
+      applyType: 1
+      value: 0
+    key: 

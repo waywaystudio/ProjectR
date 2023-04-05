@@ -7,7 +7,7 @@ using Sirenix.OdinInspector.Editor;
 
 namespace Character.Editor
 {
-    public class CharacterStatEntryDrawer : OdinAttributeProcessor<CharacterStatEntry>
+    public class CharacterStatEntryDrawer : OdinAttributeProcessor<CharacterStats>
     {
         public override void ProcessChildMemberAttributes(InspectorProperty parentProperty, MemberInfo member, List<Attribute> attributes)
         {

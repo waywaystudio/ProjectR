@@ -17,7 +17,7 @@ namespace Databases
         {
             get
             {
-                if (prefabTable.IsNullOrEmpty())
+                if (prefabTable.IsNullOrEmpty() || prefabList.Count != prefabTable.Count)
                 {
                     prefabTable = new Dictionary<DataIndex, GameObject>();
                     prefabList.ForEach(prefab =>
@@ -95,7 +95,9 @@ namespace Databases
         {
             if (!Finder.TryGetObjectList(prefabPath, "", out List<GameObject> prefabs, true)) return;
             
+            // Exclude Prefab Name start "_". "_" is mean abstract prefab;
             prefabs.RemoveNull();
+            prefabs.RemoveAll(prefab => prefab.name.StartsWith("_"));
             
             prefabList.Clear();
             prefabList.AddRange(prefabs);

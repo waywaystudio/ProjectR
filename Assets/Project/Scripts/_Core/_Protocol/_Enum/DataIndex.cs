@@ -19,6 +19,11 @@ public enum DataIndex
 	Projector = 18,
 	Damage = 19,
 	Heal = 20,
+	Weapon = 21,
+	Head = 22,
+	Top = 23,
+	Bottom = 24,
+	Trinket = 25,
 
 	/* CombatClassData */
 	Knight = 12000001,
@@ -74,6 +79,32 @@ public enum DataIndex
 	VaelastrasztheCorrupt = 17000014,
 	Chromaggus = 17000015,
 	Nefarian = 17000016,
+
+	/* WeaponData */
+	TrainingSword = 21010001,
+	TrainingDagger = 21020002,
+	TrainingBow = 21030003,
+	MoraggSword = 21010004,
+
+	/* HeadData */
+	TrainingHelm = 22010001,
+	AdvancedHelm = 22010002,
+	ExpertHelm = 22010003,
+
+	/* TopData */
+	LetherArmor = 23010001,
+	PlateArmor = 23010002,
+
+	/* BottomData */
+	Sandle = 24010001,
+	LeatherShoes = 24010002,
+	Gaiters = 24010003,
+	Puttees = 24010004,
+
+	/* TrinketData */
+	HealthPearl = 25010001,
+	CriticalRing = 25010002,
+	HasteBelt = 25010003,
 
 	End = int.MaxValue
         

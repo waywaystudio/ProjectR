@@ -1,0 +1,64 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0362f26865729af46a633d35265bc912, type: 3}
+  m_Name: WeaponData
+  m_EditorClassIdentifier: 
+  Index: 21
+  list:
+  - id: 21010001
+    name: Training Sword
+    equipable: 0
+    minDamage: 10
+    maxDamage: 12
+    power: 20
+    health: 50
+    criticalChance: 0
+    criticalDamage: 0
+    haste: 0
+    extraSkillCode: 0
+    extraPower: 0
+  - id: 21020002
+    name: Training Dagger
+    equipable: 0
+    minDamage: 8
+    maxDamage: 14
+    power: 20
+    health: 30
+    criticalChance: 10
+    criticalDamage: 50
+    haste: 0
+    extraSkillCode: 0
+    extraPower: 0
+  - id: 21030003
+    name: Training Bow
+    equipable: 0
+    minDamage: 11
+    maxDamage: 18
+    power: 24
+    health: 30
+    criticalChance: 5
+    criticalDamage: 0
+    haste: 0
+    extraSkillCode: 0
+    extraPower: 0
+  - id: 21010004
+    name: Moragg Sword
+    equipable: 0
+    minDamage: 10
+    maxDamage: 15
+    power: 30
+    health: 30
+    criticalChance: 0
+    criticalDamage: 0
+    haste: 0
+    extraSkillCode: 0
+    extraPower: 0

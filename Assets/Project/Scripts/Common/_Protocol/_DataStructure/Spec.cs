@@ -8,9 +8,22 @@ namespace Common
     public class Spec
     {
         [SerializeField] private List<Stat> statList = new();
-        [SerializeField] private string key;
+        
+        public float Power => GetStatValue(StatType.Power);
+        public float Health => GetStatValue(StatType.Health);
+        public float CriticalChance => GetStatValue(StatType.CriticalChance);
+        public float CriticalDamage => GetStatValue(StatType.CriticalDamage);
+        public float Haste => GetStatValue(StatType.Haste);
+        public float Armor => GetStatValue(StatType.Armor);
+        public float MoveSpeed => GetStatValue(StatType.MoveSpeed);
+        public float MaxHp => GetStatValue(StatType.MaxHp);
+        public float MaxResource => GetStatValue(StatType.MaxResource);
+        public float MinWeaponValue => GetStatValue(StatType.MinDamage);
+        public float MaxWeaponValue => GetStatValue(StatType.MaxDamage);
+        public float ExtraPower => GetStatValue(StatType.ExtraPower);
+        public float ExtraCriticalChance => GetStatValue(StatType.ExtraCriticalChance);
+        public float ExtraCriticalDamage => GetStatValue(StatType.ExtraCriticalDamage);
 
-        public string Key => key;
 
         public void Add(Stat stat) => statList.AddUniquely(stat);
         public void Add(StatType statType, StatApplyType applyType, float value)
@@ -34,7 +47,19 @@ namespace Common
 
         public void Clear() => statList.Clear();
         public void Iterate(Action<Stat> action) => statList.ForEach(action.Invoke);
-        public void Register(StatTable table) => table.Add(this);
-        public void Unregister(StatTable table) => table.Remove(this);
+        public void Register(string key, StatTable table) => table.Add(key, this);
+        public void Unregister(string key, StatTable table) => table.Remove(key, this);
+
+
+        private float GetStatValue(StatType statType)
+        {
+            foreach (var stat in statList)
+            {
+                if (stat.StatType == statType) return stat.Value;
+            }
+
+            // Debug.LogWarning($"Not Exist {statType.ToString()}");
+            return 0f;
+        }
     }
 }

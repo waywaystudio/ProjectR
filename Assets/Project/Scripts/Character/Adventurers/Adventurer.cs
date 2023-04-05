@@ -11,7 +11,7 @@ namespace Character.Adventurers
 
         protected void Awake()
         {
-            statEntry.Initialize();
+            stats.Initialize();
             modChanger.Initialize(this);
         }
 

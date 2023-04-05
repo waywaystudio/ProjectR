@@ -1,0 +1,49 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e3f27c2e8d9f77542bd1f37accc88601, type: 3}
+  m_Name: HeadData
+  m_EditorClassIdentifier: 
+  Index: 22
+  list:
+  - id: 22010001
+    name: Training Helm
+    equipable: 0
+    power: 5
+    health: 10
+    criticalChance: 0
+    criticalDamage: 0
+    haste: 0
+    armor: 50
+    extraSkillCode: 0
+    extraPower: 0
+  - id: 22010002
+    name: Advanced Helm
+    equipable: 0
+    power: 11
+    health: 12
+    criticalChance: 0
+    criticalDamage: 0
+    haste: 0
+    armor: 60
+    extraSkillCode: 0
+    extraPower: 0
+  - id: 22010003
+    name: Expert Helm
+    equipable: 0
+    power: 25
+    health: 15
+    criticalChance: 5
+    criticalDamage: 0
+    haste: 0
+    armor: 100
+    extraSkillCode: 0
+    extraPower: 0

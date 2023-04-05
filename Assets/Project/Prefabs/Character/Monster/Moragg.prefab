@@ -45,6 +45,56 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxBufferCount: 32
+--- !u!1 &2003816797515124731
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7681027685326874348}
+  - component: {fileID: 2235858828711690559}
+  m_Layer: 8
+  m_Name: Equipments
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7681027685326874348
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2003816797515124731}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 3744010700067239340}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2235858828711690559
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2003816797515124731}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c77f401b3efc322408d5703e794e3f37, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  weaponCode: 21010001
+  headCode: 0
+  topCode: 0
+  bottomCode: 0
+  trinket1Code: 0
+  trinket2Code: 0
 --- !u!1 &3662072772575818509
 GameObject:
   m_ObjectHideFlags: 0
@@ -77,7 +127,7 @@ Transform:
   - {fileID: 1471249249138742876}
   - {fileID: 3613090715040079438}
   m_Father: {fileID: 3744010700067239340}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &3744010699814045012
 GameObject:
@@ -111,7 +161,7 @@ Transform:
   - {fileID: 5429485616240238995}
   - {fileID: 7855938594038078621}
   m_Father: {fileID: 3744010700067239340}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1622328644261199398
 MonoBehaviour:
@@ -160,6 +210,7 @@ Transform:
   m_Children:
   - {fileID: 7543387085409907241}
   - {fileID: 3744010700442847974}
+  - {fileID: 7681027685326874348}
   - {fileID: 3744010699814045015}
   - {fileID: 3941785278225685870}
   m_Father: {fileID: 0}
@@ -180,7 +231,7 @@ MonoBehaviour:
   characterName: Moragg
   characterID: 17000002
   role: 1
-  statEntry: {fileID: 6616838061466276365}
+  stats: {fileID: 6616838061466276365}
   animating: {fileID: 4723975105097867993}
   damageSpawn: {fileID: 6740709097111906073}
   statusEffectHierarchy: {fileID: 3744010700067239340}
@@ -207,24 +258,26 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   baseStatCode: 17000002
-  maxHp:
-    value: 2000
-    statCode: 4
-  maxResource:
-    value: 100
-    statCode: 7
-  moveSpeed:
-    value: 4
-    statCode: 5
-  critical:
-    value: 0.05
-    statCode: 2
-  haste:
-    value: 0
-    statCode: 3
-  armor:
-    value: 500
-    statCode: 6
+  combatClassSpec:
+    statList:
+    - statType: 3
+      applyType: 1
+      value: 0.05
+    - statType: 5
+      applyType: 1
+      value: 0
+    - statType: 6
+      applyType: 1
+      value: 20
+    - statType: 7
+      applyType: 1
+      value: 4
+    - statType: 8
+      applyType: 1
+      value: 2000
+    - statType: 9
+      applyType: 1
+      value: 100
 --- !u!114 &814105544417408393
 MonoBehaviour:
   m_ObjectHideFlags: 0
