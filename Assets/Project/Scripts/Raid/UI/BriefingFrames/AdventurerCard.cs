@@ -22,7 +22,7 @@ namespace Raid.UI.StageInitializer
             if (!Database.CombatClassMaster.GetObject(adventurerCode, out var abAdventurerObject)) return;
             if (!abAdventurerObject.TryGetComponent(out currentAdventurer)) return;
 
-            headerTextUI.text          = currentAdventurer.Role.ToString();
+            headerTextUI.text          = currentAdventurer.CombatClass.ToString();
             nameTextUI.text            = currentAdventurer.Name;
             // portrait.skeletonDataAsset = currentAdventurer.Animating.DataAsset;
         }

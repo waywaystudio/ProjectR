@@ -12,17 +12,17 @@ namespace Raid.UI
         [SerializeField] private Image dps;
         [SerializeField] private Image heal;
 
-        private void SetRoleIcon(RoleType role)
+        private void SetRoleIcon(CombatClassType role)
         {
             switch (role)
             {
-                case RoleType.Tank : tank.enabled = true;
+                case CombatClassType.Knight : tank.enabled = true;
                     return;
-                case RoleType.Melee : dps.enabled = true;
+                case CombatClassType.Rogue : dps.enabled = true;
                     return;
-                case RoleType.Range : dps.enabled = true;
+                case CombatClassType.Hunter : dps.enabled = true;
                     return;
-                case RoleType.Healer : heal.enabled = true;
+                case CombatClassType.Priest : heal.enabled = true;
                     return;
                 default: Debug.LogError($"role is not exist. input : {role}");
                     return;
@@ -34,7 +34,7 @@ namespace Raid.UI
             unitFrame ??= GetComponentInParent<PartyUnitFrame>();
             
             unitFrame.OnInitialize.Register("SetRoleIcon", 
-                () => SetRoleIcon(unitFrame.adventurer.Role));
+                () => SetRoleIcon(unitFrame.adventurer.CombatClass));
             
             if (tank.enabled) tank.enabled = false;
             if (dps.enabled) dps.enabled = false;

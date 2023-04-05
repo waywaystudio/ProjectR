@@ -8,8 +8,7 @@ namespace Common.Equipments
         [SerializeField] protected string title;
         [SerializeField] protected Sprite icon;
         [SerializeField] protected EquipType equipType;
-        [SerializeField] protected AvailableClass availableClass;
-        [SerializeField] protected float combatValue;
+        [SerializeField] protected CombatClassType availableClass;
         [SerializeField] protected Spec spec;
 
         // effect

@@ -56,7 +56,7 @@ namespace Common
         // + IDynamicStatEntry DynamicStatEntry { get; }
         // + string Name { get; }
 
-        RoleType Role { get; }
+        CombatClassType CombatClass { get; }
         Transform DamageSpawn { get; }
         Transform StatusEffectHierarchy { get; }
         

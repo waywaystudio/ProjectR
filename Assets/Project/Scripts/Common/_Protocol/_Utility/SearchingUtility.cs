@@ -46,12 +46,12 @@ namespace Common.Systems
             });
         }
 
-        public static void SortByRole(List<ICombatTaker> original, bool isReverse = false)
+        public static void SortByCombatClass(List<ICombatTaker> original, bool isReverse = false)
         {
             original.Sort((x, y) =>
             {
-                var xRoleIndex = (int)x.Role;
-                var yRoleIndex = (int)y.Role;
+                var xRoleIndex = (int)x.CombatClass;
+                var yRoleIndex = (int)y.CombatClass;
 
                 return !isReverse 
                     ? xRoleIndex.CompareTo(yRoleIndex) 
@@ -89,7 +89,7 @@ namespace Common.Systems
                 case SortingType.HpDescending: SortByHp(list, true); break;
                 case SortingType.HpRatioAscending: SortByHpRatio(list); break;
                 case SortingType.HpRatioDescending: SortByHpRatio(list, true); break;
-                case SortingType.Role: SortByRole(list); break;
+                case SortingType.CombatClass: SortByCombatClass(list); break;
                 case SortingType.Random: SortByRandom(list); break;
                 default:
                     throw new ArgumentOutOfRangeException(nameof(sortingType), sortingType, null);

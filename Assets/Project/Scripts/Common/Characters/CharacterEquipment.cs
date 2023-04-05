@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using Common.Equipments;
 using Sirenix.OdinInspector;
@@ -37,10 +36,10 @@ namespace Common.Characters
         public bool TryArm(EquipSlotIndex slotIndex, Equipment equipment)
         {
             // Slot Condition
-            if (equipmentTable[slotIndex].SlotType != equipment.EquipType)
+            if (equipmentTable[slotIndex].EquipType != equipment.EquipType)
             {
                 Debug.LogWarning($"Can't Arm Between different SlotType. "
-                                 + $"TrySlot:{equipmentTable[slotIndex].SlotType}, TryEquipment:{equipment.EquipType}");
+                                 + $"TrySlot:{equipmentTable[slotIndex].EquipType}, TryEquipment:{equipment.EquipType}");
                 return false;
             }
             
@@ -100,19 +99,15 @@ namespace Common.Characters
             });
         }
 
-        [Serializable]
         private class EquipmentSlot
         {
-            [SerializeField] private EquipType slotType;
-            [SerializeField] private Equipment equipment;
-
-            public EquipType SlotType => slotType;
-            public Equipment Equipment { get => equipment; set => equipment = value; }
+            public EquipType EquipType { get; }
+            public Equipment Equipment { get; set; }
             public bool HasEquipment => !Equipment.IsNullOrDestroyed();
 
-            public EquipmentSlot(EquipType slotType)
+            public EquipmentSlot(EquipType equipType)
             {
-                this.slotType  = slotType;
+                EquipType  = equipType;
             }
         }
     }

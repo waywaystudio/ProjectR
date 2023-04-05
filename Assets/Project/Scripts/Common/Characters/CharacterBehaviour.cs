@@ -12,7 +12,7 @@ namespace Common.Characters
     {
         [SerializeField] protected string characterName = string.Empty;
         [SerializeField] protected DataIndex characterID;
-        [SerializeField] protected RoleType role;
+        [SerializeField] protected CombatClassType role;
         
         [SerializeField] protected CharacterStats stats;
         
@@ -36,7 +36,7 @@ namespace Common.Characters
         public ActionBehaviour CurrentBehaviour { get; set; }
         public SkillBehaviour SkillBehaviour => skillBehaviour;
         public DataIndex ActionCode => characterID;
-        public RoleType Role => role;
+        public CombatClassType CombatClass => role;
         public string Name => characterName;
         public IDynamicStatEntry DynamicStatEntry => stats ??= GetComponent<CharacterStats>();
         public StatTable StatTable => DynamicStatEntry.StatTable;

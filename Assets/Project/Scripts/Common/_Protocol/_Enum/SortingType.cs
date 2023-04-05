@@ -9,7 +9,7 @@ namespace Common
         HpDescending,
         HpRatioAscending,
         HpRatioDescending,
-        Role,
+        CombatClass,
         Random,
     }
 }
