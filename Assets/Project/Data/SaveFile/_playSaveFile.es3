@@ -1,9 +1,24 @@
 {
+	"WeaponInventory" : {
+		"__type" : "System.Collections.Generic.List`1[[Common.Equipments.EquipmentInfo, ProjectR.Common, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]],mscorlib",
+		"value" : [
+			{
+				"dataCode" : 21010001,
+				"enchantLevel" : 3
+			}
+		]
+	},
+	"1Inventory" : {
+		"__type" : "System.Collections.Generic.List`1[[Common.Equipments.EquipmentInfo, ProjectR.Common, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]],mscorlib",
+		"value" : [
+			
+		]
+	},
 	"IsSaveInfo" : {
 		"__type" : "Manager.Save.SaveInfo,ProjectR.Core",
 		"value" : {
 			"saveName" : "_playSaveFile",
-			"saveTime" : "2023.03.12.21.38.56",
+			"saveTime" : "2023.04.06.19.32.43",
 			"lastSceneName" : "Lobby",
 			"version" : 0.1
 		}

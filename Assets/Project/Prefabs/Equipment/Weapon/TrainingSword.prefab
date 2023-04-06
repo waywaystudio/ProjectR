@@ -24,6 +24,18 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 322651164637827966, guid: d5aa113fd972c014c9546770a8434dd7, type: 3}
+      propertyPath: info.dataCode
+      value: 21010001
+      objectReference: {fileID: 0}
+    - target: {fileID: 322651164637827966, guid: d5aa113fd972c014c9546770a8434dd7, type: 3}
+      propertyPath: availableClass
+      value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: 322651164637827966, guid: d5aa113fd972c014c9546770a8434dd7, type: 3}
+      propertyPath: equipmentInfo.dataCode
+      value: 21010001
+      objectReference: {fileID: 0}
+    - target: {fileID: 322651164637827966, guid: d5aa113fd972c014c9546770a8434dd7, type: 3}
       propertyPath: spec.statList.Array.size
       value: 4
       objectReference: {fileID: 0}

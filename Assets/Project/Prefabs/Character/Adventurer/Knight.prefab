@@ -287,6 +287,30 @@ PrefabInstance:
       propertyPath: trinket2Code
       value: 25010003
       objectReference: {fileID: 0}
+    - target: {fileID: 1414989776311464069, guid: a3acb303f8f3ed24c8afb44fa3d18ccf, type: 3}
+      propertyPath: topInfo.dataCode
+      value: 23010002
+      objectReference: {fileID: 0}
+    - target: {fileID: 1414989776311464069, guid: a3acb303f8f3ed24c8afb44fa3d18ccf, type: 3}
+      propertyPath: headInfo.dataCode
+      value: 22010001
+      objectReference: {fileID: 0}
+    - target: {fileID: 1414989776311464069, guid: a3acb303f8f3ed24c8afb44fa3d18ccf, type: 3}
+      propertyPath: bottomInfo.dataCode
+      value: 24010004
+      objectReference: {fileID: 0}
+    - target: {fileID: 1414989776311464069, guid: a3acb303f8f3ed24c8afb44fa3d18ccf, type: 3}
+      propertyPath: weaponInfo.dataCode
+      value: 21010001
+      objectReference: {fileID: 0}
+    - target: {fileID: 1414989776311464069, guid: a3acb303f8f3ed24c8afb44fa3d18ccf, type: 3}
+      propertyPath: trinket1Info.dataCode
+      value: 25010002
+      objectReference: {fileID: 0}
+    - target: {fileID: 1414989776311464069, guid: a3acb303f8f3ed24c8afb44fa3d18ccf, type: 3}
+      propertyPath: trinket2Info.dataCode
+      value: 25010001
+      objectReference: {fileID: 0}
     - target: {fileID: 1579097280238113144, guid: a3acb303f8f3ed24c8afb44fa3d18ccf, type: 3}
       propertyPath: m_Sprite
       value: 

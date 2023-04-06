@@ -34,21 +34,15 @@ namespace Editor.Shortcut
         {
             EditorApplication.ExecuteMenuItem("Window/Layouts/FullWork");
         }
+
+        [MenuItem("Quick Menu/Prefab/Adventurer/Knight")]
+        public static void GetKnightPrefab() => GetAdventurerPrefab("Knight");
         
-        [MenuItem("Quick Menu/Prefab/Adventurer")]
-        public static void AdventurerPrefabs()
-        {
-            var guids = AssetDatabase.FindAssets($"t:Folder, {AdventurerPrefabFolder}", new []{PrefabPath});
-            
-            foreach (var guid in guids)
-            {
-                var path         = AssetDatabase.GUIDToAssetPath(guid);
-                var prefabFolder = AssetDatabase.LoadAssetAtPath(path, typeof(Object));
-                Selection.activeObject = prefabFolder;
-                EditorGUIUtility.PingObject(prefabFolder);
-                break;
-            }
-        }
+        [MenuItem("Quick Menu/Prefab/Adventurer/Rogue")]
+        public static void GetRoguePrefab() => GetAdventurerPrefab("Rogue");
+        
+        [MenuItem("Quick Menu/Prefab/Adventurer/Hunter")]
+        public static void GetHunterPrefab() => GetAdventurerPrefab("Hunter");
         
         [MenuItem("Quick Menu/Prefab/Skill")]
         public static void SkillPrefabs()
@@ -64,6 +58,24 @@ namespace Editor.Shortcut
                 break;
             }
         }
+        
+        public static void GetAdventurerPrefab(string className)
+        {
+            var adventurerPrefabDirectory = $"{PrefabPath}/Character/{AdventurerPrefabFolder}";
+
+            var gUIDs = AssetDatabase.FindAssets($"{className}", new[] { adventurerPrefabDirectory });
+
+            foreach (var guid in gUIDs)
+            {
+                var path         = AssetDatabase.GUIDToAssetPath(guid);
+                var prefab = AssetDatabase.LoadAssetAtPath(path, typeof(Object));
+                
+                EditorUtility.OpenPropertyEditor(prefab);
+                break;
+            }
+        }
+        
+        
     }
 }
 

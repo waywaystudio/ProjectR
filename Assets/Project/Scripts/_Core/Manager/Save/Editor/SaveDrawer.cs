@@ -1,8 +1,10 @@
 using System;
 using System.Collections.Generic;
 using System.Reflection;
+using Manager.Save.Listener;
 using Sirenix.OdinInspector;
 using Sirenix.OdinInspector.Editor;
+using UnityEngine;
 
 // ReSharper disable ConvertIfStatementToSwitchStatement
 // ReSharper disable UnusedType.Global
@@ -111,6 +113,32 @@ namespace Manager.Save.Editor
                 attributes.Add(new ButtonAttribute(ButtonSizes.Medium));
                 attributes.Add(new PropertyOrderAttribute(140));
             }
+        }
+    }
+    
+    public class SaveEventListenerDrawer : OdinAttributeProcessor<SaveEventListener>
+    {
+        public override void ProcessChildMemberAttributes(InspectorProperty parentProperty, MemberInfo member, List<Attribute> attributes)
+        {
+            if (member.Name == "targetEvent")
+            {
+                attributes.Add(new LabelTextAttribute("Global Save Event"));
+            }
+            
+            if (member.Name == "priority")
+            {
+                attributes.Add(new HideInInspector());
+            }
+            
+            if (member.Name == "response")
+            {
+                attributes.Add(new LabelTextAttribute("Save Event"));
+            }
+            
+            // if (member.Name == "EditorSetUp")
+            // {
+            //     attributes.Add(new OnInspectorInitAttribute());
+            // }
         }
     }
 }

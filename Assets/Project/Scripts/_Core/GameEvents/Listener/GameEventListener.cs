@@ -15,7 +15,7 @@ namespace GameEvents.Listener
     {
         [SerializeField] protected GameEvent targetEvent;
         [SerializeField] protected int priority = 5;
-        [SerializeField] private UnityEvent response;
+        [SerializeField] protected UnityEvent response;
 
         public float Priority => priority;
         public GameEvent TargetEvent => targetEvent;

@@ -5,12 +5,9 @@ namespace Common.Equipments
 #if UNITY_EDITOR
         public override void EditorSetUp()
         {
-            var trinketData = Database.TrinketData(dataCode);
-
-            title    = trinketData.Name;
-            equipType = EquipType.Trinket;
+            base.EditorSetUp();
             
-            spec.Clear();
+            var trinketData = Database.TrinketData(ActionCode);
 
             (trinketData.Power != 0.0f).OnTrue(() => spec.Add(StatType.Power, StatApplyType.Plus, trinketData.Power));
             (trinketData.Health != 0.0f).OnTrue(() => spec.Add(StatType.Health, StatApplyType.Plus, trinketData.Health));

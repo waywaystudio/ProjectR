@@ -22,15 +22,27 @@ namespace Manager.Save
         {
             if (member.Name == "Save")
             {
+                attributes.Add(new PropertySpaceAttribute(15f));
                 attributes.Add(new PropertyOrderAttribute(9999));
                 attributes.Add(new HorizontalGroupAttribute("ISavable"));
-                attributes.Add(new ButtonAttribute("Manual Save"));
+                attributes.Add(new ButtonAttribute
+                {
+                    Icon = SdfIconType.Upload,
+                    Name = "Manual Save",
+                    ButtonHeight = 40,
+                });
             }
             
             if (member.Name == "Load")
             {
+                attributes.Add(new PropertySpaceAttribute(15f));
                 attributes.Add(new HorizontalGroupAttribute("ISavable"));
-                attributes.Add(new ButtonAttribute("Manual Load"));
+                attributes.Add(new ButtonAttribute
+                {
+                    Icon         = SdfIconType.Download,
+                    Name         = "Manual Load",
+                    ButtonHeight = 40,
+                });
             }
         }
     }

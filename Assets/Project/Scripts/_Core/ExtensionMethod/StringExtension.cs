@@ -78,4 +78,30 @@ public static class StringExtension
         Array.Resize(ref original, newSize);
         original[^1] = item;
     }
+    
+    /// <summary>
+    /// Divide Word By Pascal Letter.
+    /// </summary>
+    public static string DivideWords(this string original)
+    {
+        if (string.IsNullOrEmpty(original))
+        {
+            return original;
+        }
+
+        var output = new System.Text.StringBuilder();
+        
+        for (var i = 0; i < original.Length; i++)
+        {
+            var currentChar = original[i];
+            output.Append(currentChar);
+            
+            if (i < original.Length - 1 && char.IsUpper(original[i + 1]))
+            {
+                output.Append(' ');
+            }
+        }
+
+        return output.ToString();
+    }
 }

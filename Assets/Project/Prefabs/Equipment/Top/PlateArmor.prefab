@@ -72,6 +72,18 @@ PrefabInstance:
       value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 7644491994779492336, guid: 3ee9cb63fc9b12c468d0c7c0b02a689c, type: 3}
+      propertyPath: info.dataCode
+      value: 23010002
+      objectReference: {fileID: 0}
+    - target: {fileID: 7644491994779492336, guid: 3ee9cb63fc9b12c468d0c7c0b02a689c, type: 3}
+      propertyPath: availableClass
+      value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: 7644491994779492336, guid: 3ee9cb63fc9b12c468d0c7c0b02a689c, type: 3}
+      propertyPath: equipmentInfo.dataCode
+      value: 23010002
+      objectReference: {fileID: 0}
+    - target: {fileID: 7644491994779492336, guid: 3ee9cb63fc9b12c468d0c7c0b02a689c, type: 3}
       propertyPath: spec.statList.Array.size
       value: 3
       objectReference: {fileID: 0}

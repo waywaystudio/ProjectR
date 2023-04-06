@@ -45,9 +45,9 @@ namespace Common.Characters
 
             combatClassSpec.Clear();
 
-            switch ((int)baseStatCode / 1000000)
+            switch (baseStatCode.GetCategory())
             {
-                case (int)DataIndex.CombatClass:
+                case DataIndex.CombatClass:
                 {
                     var classData = Database.CombatClassSheetData(baseStatCode);
 
@@ -59,7 +59,7 @@ namespace Common.Characters
                     combatClassSpec.Add(StatType.MoveSpeed,      StatApplyType.Plus, classData.MoveSpeed);
                     break;
                 }
-                case (int)DataIndex.Boss:
+                case DataIndex.Boss:
                 {
                     var bossData = Database.BossSheetData(baseStatCode);
 

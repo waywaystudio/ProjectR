@@ -5,12 +5,9 @@ namespace Common.Equipments
 #if UNITY_EDITOR
         public override void EditorSetUp()
         {
-            var topData = Database.TopData(dataCode);
-
-            title    = topData.Name;
-            equipType = EquipType.Top;
+            base.EditorSetUp();
             
-            spec.Clear();
+            var topData = Database.TopData(ActionCode);
 
             (topData.Power != 0.0f).OnTrue(() => spec.Add(StatType.Power, StatApplyType.Plus, topData.Power));
             (topData.Health != 0.0f).OnTrue(() => spec.Add(StatType.Health, StatApplyType.Plus, topData.Health));

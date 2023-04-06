@@ -58,7 +58,6 @@ namespace Common
                 if (stat.StatType == statType) return stat.Value;
             }
 
-            // Debug.LogWarning($"Not Exist {statType.ToString()}");
             return 0f;
         }
     }

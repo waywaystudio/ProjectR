@@ -48,6 +48,11 @@ namespace Manager.Save
             return ES3.Load(key, PlaySavePath, defaultValue);
         }
 
+        public void Clear(string key)
+        {
+            ES3.DeleteKey(key, PlaySavePath);
+        }
+
         public void PlaySave() => SaveEvent.Invoke();
         
 
@@ -183,10 +188,15 @@ namespace Manager.Save
 #if UNITY_EDITOR
         private void ResetSave()
         {
+            isInitiated = false;
+            
             DeleteSaveFile(AutoSaveFile);
-            DeleteSaveFile(AutoSaveFile);
+            DeleteSaveFile(PlaySaveFile);
+            
             ES3.Save(SaveInfoKey, new SaveInfo(AutoSaveFile), AutoSavePath);
             ES3.Save(SaveInfoKey, new SaveInfo(PlaySaveFile), PlaySavePath);
+
+            Refresh();
         }
 #endif
     }

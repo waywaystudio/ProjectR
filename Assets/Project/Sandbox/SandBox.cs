@@ -1,9 +1,12 @@
+using System;
 using Common;
+using Manager;
 using Sirenix.OdinInspector;
 using UnityEngine;
 
 public class SandBox : MonoBehaviour
 {
+    public DataIndex SampleDataIndex;
     // public Action CsharpAction;
     // public SandSphere sandSphere;
 
@@ -14,16 +17,7 @@ public class SandBox : MonoBehaviour
     [Button]
     public void Debugger()
     {
-        // if (!componentA.TryGetComponent(out IProgress progressA)) return;
-        // if (!componentB.TryGetComponent(out IProgress progressB)) return;
-        // if (!componentC.TryGetComponent(out IProgress progressC)) return;
-        
-        // Debug.Log(progressA.CastingTime);
-        // Debug.Log(progressB.CastingTime);
-        // Debug.Log(progressC.CastingTime);
-        
-        // ShowDebugMessage();
-        // processor.Activate(3f);
+        Debug.Log(SampleDataIndex.GetCategory());
     }
 
     // [Button]

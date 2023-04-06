@@ -1,14 +1,13 @@
-using System;
-using System.Collections.Generic;
 using GameEvents.Listener;
-using Sirenix.OdinInspector;
 using UnityEngine;
 using UnityEngine.Events;
 
 namespace Manager.Save.Listener
 {
-    public class SaveEventListener : GameEventListener
+    public class SaveEventListener : GameEventListener, IEditable
     {
+        // # GameEvent targetEvent;
+        // # int priority = 5;
         [SerializeField] private UnityEvent loadEvent;
 
         public void SaveInvoke() => Invoke();
@@ -27,36 +26,21 @@ namespace Manager.Save.Listener
         }
 
 #if UNITY_EDITOR
-        private void EditorSetUp()
+        public void EditorSetUp()
         {
             if (targetEvent is null)
-                Finder.TryGetObject("Assets/Project/Data/GameEvent/Save", "SaveEvent", out targetEvent);
-        }
-        
-        public class SaveEventListenerDrawer : Sirenix.OdinInspector.Editor.OdinAttributeProcessor<SaveEventListener>
-        {
-            public override void ProcessChildMemberAttributes(Sirenix.OdinInspector.Editor.InspectorProperty parentProperty, System.Reflection.MemberInfo member, List<Attribute> attributes)
+                Finder.TryGetObject("Assets/Project/Data/GameEvent/Save", "OnSaved", out targetEvent);
+
+            if(!TryGetComponent(out ISavable savable))
             {
-                if (member.Name == "targetEvent")
-                {
-                    attributes.Add(new LabelTextAttribute("Global Save Event"));
-                }
+                return;
+            } 
             
-                if (member.Name == "priority")
-                {
-                    attributes.Add(new HideInInspector());
-                }
+            response.ClearUnityEventInEditor();
+            response.AddPersistantListenerInEditor(savable, "Save");
             
-                if (member.Name == "response")
-                {
-                    attributes.Add(new LabelTextAttribute("Save Event"));
-                }
-            
-                if (member.Name == "EditorSetUp")
-                {
-                    attributes.Add(new OnInspectorInitAttribute());
-                }
-            }
+            loadEvent.ClearUnityEventInEditor();
+            loadEvent.AddPersistantListenerInEditor(savable, "Load");
         }
 #endif
     }

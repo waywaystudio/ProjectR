@@ -5,12 +5,9 @@ namespace Common.Equipments
 #if UNITY_EDITOR
         public override void EditorSetUp()
         {
-            var weaponData = Database.WeaponData(dataCode);
+            base.EditorSetUp();
 
-            title          = weaponData.Name;
-            equipType      = EquipType.Weapon;
-
-            spec.Clear();
+            var weaponData = Database.WeaponData(ActionCode);
             
             (weaponData.MinDamage != 0.0f).OnTrue(() => spec.Add(StatType.MinDamage, StatApplyType.Plus, weaponData.MinDamage));
             (weaponData.MaxDamage != 0.0f).OnTrue(() => spec.Add(StatType.MaxDamage, StatApplyType.Plus, weaponData.MaxDamage));

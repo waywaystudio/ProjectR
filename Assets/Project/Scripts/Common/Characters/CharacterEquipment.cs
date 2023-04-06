@@ -1,148 +1,134 @@
 using System;
 using System.Collections.Generic;
 using Common.Equipments;
-using Sirenix.OdinInspector;
 using UnityEngine;
 
 namespace Common.Characters
 {
-    /* Character Equipment는 종국에 빌드에서 Save, Load를 통해 데이터가 통신하므로, 
-     * 내부에 SerializeField 된 값들은 큰 의미가 없다. */
     public class CharacterEquipment : MonoBehaviour
     {
-        #region ForEditor
-        [SerializeField] private DataIndex weaponCode;
-        [SerializeField] private DataIndex headCode;
-        [SerializeField] private DataIndex topCode;
-        [SerializeField] private DataIndex bottomCode;
-        [SerializeField] private DataIndex trinket1Code;
-        [SerializeField] private DataIndex trinket2Code;
+        #region TEMP
+        [SerializeField] private EquipmentInfo weaponInfo;
+        [SerializeField] private EquipmentInfo headInfo;
+        [SerializeField] private EquipmentInfo topInfo;
+        [SerializeField] private EquipmentInfo bottomInfo;
+        [SerializeField] private EquipmentInfo trinket1Info;
+        [SerializeField] private EquipmentInfo trinket2Info;
         #endregion
-        
+
         private CharacterBehaviour cb;
         private CharacterBehaviour Cb => cb ??= GetComponentInParent<CharacterBehaviour>();
-
-        [ShowInInspector]
-        private Dictionary<EquipSlotIndex, EquipmentSlot> equipmentTable { get; } = new(6)
+        private Dictionary<EquipSlotIndex, Equipment> equipmentTable { get; } = new(6)
         {
-            { EquipSlotIndex.Weapon, new EquipmentSlot(EquipType.Weapon) }, 
-            { EquipSlotIndex.Head, new EquipmentSlot(EquipType.Head) }, 
-            { EquipSlotIndex.Top, new EquipmentSlot(EquipType.Top) }, 
-            { EquipSlotIndex.Bottom, new EquipmentSlot(EquipType.Bottom) }, 
-            { EquipSlotIndex.Trinket1, new EquipmentSlot(EquipType.Trinket) }, 
-            { EquipSlotIndex.Trinket2, new EquipmentSlot(EquipType.Trinket) },
+            { EquipSlotIndex.Weapon, null }, 
+            { EquipSlotIndex.Head, null }, 
+            { EquipSlotIndex.Top, null }, 
+            { EquipSlotIndex.Bottom, null }, 
+            { EquipSlotIndex.Trinket1, null }, 
+            { EquipSlotIndex.Trinket2, null },
         };
         
 
-        public bool TryArm(Equipment equipment)
+        public void TryArm(Equipment equipment)
         {
+            // NullCheck
+            if(equipment.IsNullOrDestroyed()) return;
+            
             // Check AvailableClass
-            if(!equipment.AvailableClass.HasFlag(Cb.CombatClass))
-            {
-                Debug.LogWarning($"Not Available. "
-                                 + $"Available Class:{equipment.AvailableClass}. Target Class:{Cb.CombatClass}");
-                return false;
-            }
+            if(!IsAvailableClass(equipment)) return;
 
-            // Check Matched Slot
+            // Get Matched Slot
+            var targetSlot = FindEquipSlot(equipment);
+            
+            TryDisarm(targetSlot);
+
+            equipmentTable[targetSlot] = equipment;
+            Cb.StatTable.Add($"{equipment.EquipType}.{targetSlot}", equipment.Spec);
+        }
+
+        public void TryDisarm(EquipSlotIndex slotIndex)
+        {
+            if (equipmentTable[slotIndex].IsNullOrEmpty()) return;
+
+            var currentEquipment = equipmentTable[slotIndex];
+            
+            Cb.StatTable.Remove($"{currentEquipment.EquipType}.{slotIndex}", currentEquipment.Spec);
+            equipmentTable[slotIndex] = null;
+        }
+
+        public void Save()
+        {
+#if !UNITY_EDITOR
+            var infoTable = new Dictionary<EquipSlotIndex, EquipmentInfo>();
+            equipmentTable.ForEach(table => infoTable.Add(table.Key, table.Value.Info));
+            MainManager.Save.Save($"{Cb.Name}'s Equipments", infoTable);
+#endif
+        }
+        
+        public void Load()
+        {
+#if UNITY_EDITOR
+            TryArm(Generate(weaponInfo));
+            TryArm(Generate(headInfo));
+            TryArm(Generate(topInfo));
+            TryArm(Generate(bottomInfo));
+            TryArm(Generate(trinket1Info));
+            TryArm(Generate(trinket2Info));
+#else
+            var infoTable = MainManager.Save.Load<Dictionary<EquipSlotIndex, EquipmentInfo>>($"{Cb.Name}'s Equipments");
+            infoTable.ForEach(info => TryArm(Generate(info.Value)));
+#endif
+        }
+        
+
+        private bool IsAvailableClass(Equipment equipment)
+        {
+            if(equipment.AvailableClass.HasFlag(Cb.CombatClass)) return true;
+            
+            Debug.LogWarning($"Not Available. "
+                             + $"Available Class:{equipment.AvailableClass}. Target Class:{Cb.CombatClass}");
+            return false;
+        }
+        
+        private EquipSlotIndex FindEquipSlot(Equipment equipment)
+        {
             var targetSlot = equipment.EquipType switch
             {
                 EquipType.Weapon => EquipSlotIndex.Weapon,
                 EquipType.Head   => EquipSlotIndex.Head,
                 EquipType.Top    => EquipSlotIndex.Top,
                 EquipType.Bottom => EquipSlotIndex.Bottom,
-                EquipType.Trinket => equipmentTable[EquipSlotIndex.Trinket2].HasEquipment
-                    ? EquipSlotIndex.Trinket1
-                    : EquipSlotIndex.Trinket2,
+                EquipType.Trinket => equipmentTable[EquipSlotIndex.Trinket2].IsNullOrEmpty()
+                    ? EquipSlotIndex.Trinket2
+                    : EquipSlotIndex.Trinket1,
                 EquipType.None => throw new ArgumentOutOfRangeException(),
                 _              => throw new ArgumentOutOfRangeException()
             };
-            
-            Disarm(targetSlot);
 
-            equipmentTable[targetSlot].Equipment = equipment;
-            Cb.StatTable.Add($"{equipment.EquipType}.{targetSlot}", equipment.Spec);
-
-            return true;
+            return targetSlot;
         }
 
-        public bool TryArm(EquipSlotIndex slotIndex, Equipment equipment)
+        private Equipment Generate(EquipmentInfo info)
         {
-            // Check Matched Slot
-            if (equipmentTable[slotIndex].EquipType != equipment.EquipType)
+            if (info.ActionCode == DataIndex.None) return null;
+
+            Database.EquipmentMaster.GetObject(info.ActionCode, out var equipmentPrefab);
+
+            var equipObject = Instantiate(equipmentPrefab, transform);
+        
+            if (!equipObject.TryGetComponent(out Equipment equipment))
             {
-                Debug.LogWarning($"Can't Arm Between different SlotType. "
-                                 + $"TrySlot:{equipmentTable[slotIndex].EquipType}, TryEquipment:{equipment.EquipType}");
-                return false;
+                Debug.LogWarning($"Not Exist Equipment script in {equipmentPrefab.name} GameObject");
+                return null;
             }
-            
-            // Check AvailableClass
-            if(!equipment.AvailableClass.HasFlag(Cb.CombatClass))
-            {
-                Debug.LogWarning($"Not Available. "
-                                 + $"Available Class:{equipment.AvailableClass}. Target Class:{Cb.CombatClass}");
-                return false;
-            }
-
-            Disarm(slotIndex);
-
-            equipmentTable[slotIndex].Equipment = equipment;
-            Cb.StatTable.Add($"{equipment.EquipType}.{slotIndex}", equipment.Spec);
-
-            return true;
-        }
-
-        public void Disarm(EquipSlotIndex slotIndex)
-        {
-            if (!equipmentTable[slotIndex].HasEquipment) return;
-
-            var currentEquipment = equipmentTable[slotIndex].Equipment;
-            
-            Cb.StatTable.Remove($"{currentEquipment.EquipType}.{slotIndex}", currentEquipment.Spec);
-            equipmentTable[slotIndex].Equipment = null;
-        }
-
-        public void Load()
-        {
-            // TODO. After Save&Load Complete
-            LoadEquipment(weaponCode,   EquipSlotIndex.Weapon);
-            LoadEquipment(headCode,     EquipSlotIndex.Head);
-            LoadEquipment(topCode,      EquipSlotIndex.Top);
-            LoadEquipment(bottomCode,   EquipSlotIndex.Bottom);
-            LoadEquipment(trinket1Code, EquipSlotIndex.Trinket1);
-            LoadEquipment(trinket2Code, EquipSlotIndex.Trinket2);
-            
-            equipmentTable.ForEach(table
-                => table.Value.HasEquipment.OnTrue(() => TryArm(table.Key, table.Value.Equipment)));
-        }
-
-
-        private void LoadEquipment(DataIndex dataCode, EquipSlotIndex slotIndex)
-        {
-            if (dataCode == DataIndex.None) return;
-            
-            Database.EquipmentMaster.GetObject(dataCode, out var equipmentPrefab)
-                    .OnFalse(() => Debug.LogWarning($"Not Exist {dataCode} prefab")); 
-                
-            equipmentTable[slotIndex].Equipment = Instantiate(equipmentPrefab, transform).GetComponent<Equipment>();
+        
+            equipment.Enchant(info.EnchantLevel);
+            return equipment;
         }
 
         private void Awake()
         {
             Load();
-        }
-
-        private class EquipmentSlot
-        {
-            [ShowInInspector]
-            public Equipment Equipment { get; set; }
-            public EquipType EquipType { get; }
-            public bool HasEquipment => !Equipment.IsNullOrDestroyed();
-
-            public EquipmentSlot(EquipType equipType)
-            {
-                EquipType  = equipType;
-            }
         }
     }
 }
