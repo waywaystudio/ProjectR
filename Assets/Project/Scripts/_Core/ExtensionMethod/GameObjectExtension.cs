@@ -83,6 +83,15 @@ public static class GameObjectExtension
         return Equals(component, null) || component.gameObject.activeSelf == false;
     }
 
+    public static bool TryGetComponent<T>(this GameObject gameObject, out T result, bool showMessageOnFailed) where T : Component
+    {
+        if (gameObject.TryGetComponent(out result)) return true;
+        if (!showMessageOnFailed) return true;
+        
+        Debug.LogWarning($"Can't Find TypeOf:{typeof(T)} in {gameObject.name}.");
+        return false;
+    }
+
     public static T GetOrAddComponent<T>(this GameObject gameObject) where T : MonoBehaviour
     {
         var component = gameObject.GetComponent<T>();

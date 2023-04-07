@@ -71,8 +71,8 @@ namespace Singleton
  * but it is often unnecessary for a Singleton implementation in Unity,
  * given that you're only accessing the Singleton from MonoBehaviour methods.
  *
- * Unity는 멀티스레딩을 지원하지만, 많은 유니티 API함수들이 멀티 스레딩에 안전하지 못한다.
- * 싱글톤에 lock을 사용하는 태도라면, 다른 많은 API함수들도 스레드 세이프 하게 다루어야 하는데 보통 그렇지 않다.
+ * Unity는 멀티스레딩을 지원하지만 많은 유니티 API함수들이 멀티 스레딩에 안전하지 못하다.
+ * 싱글톤에 lock을 사용하는 기조라면, 다른 많은 API함수들도 스레드 세이프 하게 다루어야 하는데 보통 그렇지 않다.
  * 이런 상황에서 굳이 싱글톤만 lock을 사용한다는 것은 어불성설이다.
  * 따라서 lock을 사용하지 않는다.
  */
@@ -80,12 +80,13 @@ namespace Singleton
  /* Annotation II
   * 굳이 Awake에서 instance = this as T; 를 활용하여 유니티 이벤트를 사용하는 이유는,
   * Instance Property에 FindObjectsByType 이하 구문을 사용하지 않기 위해서다.
-  * 따라서, MonoSingleton의 Awake보다 먼저 Singleton에 접근하여 Instance를 호출하는 경우,
-  * FindObjectsByType 이하 구문을 통해 instance가 할당되며, Awake에서 할당하는 의미가 약해진다.
-  * 만약 이런 부분이 자주 발생하며 통제가 불가능할 경우, MonoSingleton의 스크립트 실행 순서를 -10 ~ 0 사이로 잡아주거나
+  * 따라서 MonoSingleton의 Awake보다 먼저 Singleton에 접근하여 Instance를 호출하는 경우에는
+  * FindObjectsByType 이하 구문을 통해 instance가 할당되며 Awake에서 할당하는 의미가 약해진다.
+  * 만약 이런 부분이 자주 발생하며 통제가 불가능할 경우 MonoSingleton의 스크립트 실행 순서를 -10 ~ 0 사이로 잡아주거나
   * 차라리 Awake를 날려버리자.
   */
   
   /* Annotation III
    * FindObjectsByType은 FindObjectOfType의 업그레이드 버전으로, 2021.3버전에서 추가되었다.
+   * Of에 비해서 최적화 되었으며 사실상 Of는 Obsolete라고 한다.
    */

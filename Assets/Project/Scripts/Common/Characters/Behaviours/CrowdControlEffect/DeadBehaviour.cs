@@ -16,7 +16,7 @@ namespace Common.Characters.Behaviours.CrowdControlEffect
             
             OnActivated.Invoke();
             Cb.Pathfinding.Quit();
-            Cb.Animating.Dead();
+            Cb.Animating.Dead(OnCompleted.Invoke);
         }
     }
 }

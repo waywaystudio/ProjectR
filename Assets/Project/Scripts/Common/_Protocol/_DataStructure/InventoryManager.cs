@@ -14,13 +14,15 @@ namespace Common
         [SerializeField] private Inventory trinketInventory;
 
 
+        public static void Add(GameObject itemObject) => Add(itemObject.GetComponent<Equipment>());
         public static void Add(Equipment item)
         {
             var targetInventory = GetInventoryByType(item.EquipType);
             
             targetInventory.Add(item);
         }
-        
+
+        public static void Remove(GameObject itemObject) => Remove(itemObject.GetComponent<Equipment>());
         public static void Remove(Equipment item)
         {
             var targetInventory = GetInventoryByType(item.EquipType);
@@ -36,7 +38,6 @@ namespace Common
             EquipType.Top     => Instance.topInventory,
             EquipType.Bottom  => Instance.bottomInventory,
             EquipType.Trinket => Instance.trinketInventory,
-            EquipType.None    => throw new ArgumentOutOfRangeException(nameof(type), type, null),
             _                 => throw new ArgumentOutOfRangeException(nameof(type), type, null)
         };
 

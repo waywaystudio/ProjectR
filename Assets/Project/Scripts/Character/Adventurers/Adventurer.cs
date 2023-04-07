@@ -7,6 +7,8 @@ namespace Character.Adventurers
     public class Adventurer : CharacterBehaviour
     {
         [SerializeField] protected AdventurerModChanger modChanger;
+        
+        public bool IsPlayer { get; set; }
 
 
         protected void Awake()

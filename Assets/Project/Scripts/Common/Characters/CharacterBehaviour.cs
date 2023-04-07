@@ -1,3 +1,4 @@
+using System;
 using Common.Animation;
 using Common.Characters.Behaviours;
 using Common.Characters.Behaviours.CrowdControlEffect;
@@ -31,10 +32,8 @@ namespace Common.Characters
         [SerializeField] protected CollidingSystem colliding;
         [SerializeField] protected PathfindingSystem pathfinding;
 
-        public bool IsPlayer { get; set; }
         public CharacterActionMask BehaviourMask => CurrentBehaviour is null ? CharacterActionMask.None : CurrentBehaviour.BehaviourMask;
         public ActionBehaviour CurrentBehaviour { get; set; }
-        public SkillBehaviour SkillBehaviour => skillBehaviour;
         public DataIndex ActionCode => characterID;
         public CombatClassType CombatClass => role;
         public string Name => characterName;
@@ -51,6 +50,12 @@ namespace Common.Characters
         public Transform StatusEffectHierarchy => statusEffectHierarchy;
 
         public SkillComponent GetSkill(DataIndex actionCode) => skillBehaviour.GetSkill(actionCode);
+        public StopBehaviour StopBehaviour => stopBehaviour;
+        public RunBehaviour RunBehaviour  => runBehaviour;
+        public StunBehaviour StunBehaviour => stunBehaviour;
+        public KnockBackBehaviour KnockBackBehaviour => knockBackBehaviour;
+        public DeadBehaviour DeadBehaviour => deadBehaviour;
+        public SkillBehaviour SkillBehaviour => skillBehaviour;
         
         public void Rotate(Vector3 lookTarget) { Pathfinding.RotateToTarget(lookTarget); Animating.Flip(transform.forward); }
         public void Stop() => stopBehaviour.Active();

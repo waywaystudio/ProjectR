@@ -59,6 +59,8 @@ namespace Databases
 
             return !prefabs.IsNullOrEmpty();
         }
+
+        public List<GameObject> GetAll() => prefabList;
         
         public bool Get<T>(DataIndex index, out T component) where T : MonoBehaviour
         {

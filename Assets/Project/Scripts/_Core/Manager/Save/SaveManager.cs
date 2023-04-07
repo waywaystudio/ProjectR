@@ -15,7 +15,7 @@ namespace Manager.Save
 
         private const string PlaySaveFile = "_playSaveFile";
         private const string AutoSaveFile = "_autoSaveFile";
-        private const string Extension = "es3";
+        private const string Extension = "json";
         private const string SaveInfoKey = "IsSaveInfo";
         private bool isInitiated;
 
@@ -81,7 +81,7 @@ namespace Manager.Save
             });
             
             saveInfoList = SaveInfoList.OrderBy(x => x.SaveTime)
-                                                .ToList();
+                                       .ToList();
             
             AttachAutoSaveFileToList();
             Refresh();

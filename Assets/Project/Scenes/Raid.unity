@@ -4961,7 +4961,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7364561384061389512, guid: 9f6a97e7e5739ea469cdeb8ceab14b08, type: 3}
       propertyPath: saveInfoList.Array.data[0].saveTime
-      value: 2023.04.06.19.32.28
+      value: 2023.04.07.20.19.34
       objectReference: {fileID: 0}
     - target: {fileID: 7364561384061389512, guid: 9f6a97e7e5739ea469cdeb8ceab14b08, type: 3}
       propertyPath: saveInfoList.Array.data[0].lastSceneName
@@ -9487,6 +9487,7 @@ MonoBehaviour:
   adventurerHierarchy: {fileID: 1771157842}
   monsterHierarchy: {fileID: 21531010}
   boss: {fileID: 1119986513}
+  dropItemCount: 4
 --- !u!1 &1771157841
 GameObject:
   m_ObjectHideFlags: 0

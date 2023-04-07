@@ -15,6 +15,7 @@ namespace Raid
         [SerializeField] private RaidStageDirector stageDirector;
         [SerializeField] private RaidCastingDirector castingDirector;
         [SerializeField] private RaidUIDirector uiDirector;
+        
         [SerializeField] private GameEventAdventurer adventurerFocusEvent;
 
         public static RaidCastingDirector CastingDirector => Instance.castingDirector;
