@@ -10,7 +10,7 @@ namespace Common
     {
         [SerializeField] private EquipType equipType;
         
-        [ShowInInspector] 
+        [ShowInInspector]
         private List<Equipment> List { get; } = new();
         private string SaveKey => $"{equipType}Inventory";
 
@@ -40,6 +40,8 @@ namespace Common
 
         public void Load()
         {
+            List.ForEach(Remove);
+            
             var infoList = SaveManager.Load<List<EquipmentInfo>>(SaveKey);
             
             if (infoList.HasElement()) 

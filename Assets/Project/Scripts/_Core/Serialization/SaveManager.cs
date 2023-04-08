@@ -15,6 +15,7 @@ namespace Serialization
         private const string PlaySaveName = "_playSaveFile";
         private const string InfoKey = "_SaveInfo";
         private const string Extension = "json";
+        
 
         /// <summary>
         /// 특정 데이터를 저장하는 구현부에서 사용
@@ -48,11 +49,6 @@ namespace Serialization
                 }
 
                 var saveInfo = Load<SaveInfo>(InfoKey, saveFilePath);
-                
-                if (saveInfo.FilePath != saveFilePath)
-                {
-                    Debug.Log($"SaveFile Name Changed. FilePath:{saveFilePath}");
-                }
                 
                 saveInfoList.Add(saveInfo);
             });
@@ -175,9 +171,9 @@ namespace Serialization
         private static void CreatePlaySaveFile()
         {
             DeleteFilePath(PlaySavePath);
-            
-            ES3.Save(InfoKey,            new SaveInfo(PlaySaveName, PlaySavePath), GetPathByName(PlaySaveName));
-            ES3.Save("_FromPlaySaveFile", "Check",                         GetPathByName(PlaySaveName));
+
+            ES3.Save(InfoKey, new SaveInfo(PlaySaveName, PlaySavePath), PlaySavePath);
+            ES3.Save("_FromPlaySaveFile", "Check", PlaySavePath);
         }
 
         private bool TryGetSaveInfo(string saveFilename, out SaveInfo result)

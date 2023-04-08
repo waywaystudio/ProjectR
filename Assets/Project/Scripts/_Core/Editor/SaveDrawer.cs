@@ -4,8 +4,6 @@ using System.Reflection;
 using Serialization;
 using Sirenix.OdinInspector;
 using Sirenix.OdinInspector.Editor;
-using UnityEngine;
-
 // ReSharper disable ConvertIfStatementToSwitchStatement
 // ReSharper disable UnusedType.Global
 

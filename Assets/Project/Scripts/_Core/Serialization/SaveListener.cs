@@ -32,7 +32,7 @@ namespace Serialization
                 return;
             }
             
-            Debug.Log($"Successfully Find ISavable Interface on Same GameObject.");
+            Debug.Log("Successfully Find ISavable Interface on Same GameObject.");
             
             saveEvent.ClearUnityEventInEditor();
             saveEvent.AddPersistantListenerInEditor(savable, "Save");
