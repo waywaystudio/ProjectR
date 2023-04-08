@@ -6,19 +6,22 @@ using UnityEngine;
 
 namespace Manager.Serialize
 {
-    public class SerializeManager : ScriptableObject
+    public class SerializeManager : UniqueScriptableObject<SerializeManager>
     {
-        private const string PlaySaveName = "_playSaveFile";
-        private const string SaveInfo = "_SaveInfo";
-        private const string Extension = "json";
+        [ShowInInspector] 
+        private List<SerializeListener> listenerList = new();
         
         [ShowInInspector] 
         private List<SerializeInfo> saveInfoList = new();
+
+        private const string PlaySaveName = "_playSaveFile";
+        private const string SaveInfo = "_SaveInfo";
+        private const string Extension = "json";
+
         private static string PlaySavePath => GetPathByName(PlaySaveName);
         private static string SaveFileDirectory => ES3Settings.defaultSettings.path;
 
         public static string GetPathByName(string filename) => $"{SaveFileDirectory}/{filename}.{Extension}";
-
 
         /// <summary>
         /// SerializeManager 사용 시에 반드시 호출되어야 함. 
@@ -92,8 +95,8 @@ namespace Manager.Serialize
         public void SaveToFile(string existSaveFileName)
         {
             if (!TryGetSaveInfo(existSaveFileName, out _)) return;
-            
-            listenerList.ForEach(listener => listener.Save());
+
+            SaveAll();
 
             TransferSaveInfo(PlaySaveName, existSaveFileName);
         }
@@ -105,8 +108,8 @@ namespace Manager.Serialize
         public void LoadFromFile(string fromSaveFilename)
         {
             TransferSaveInfo(fromSaveFilename, PlaySaveName);
-        
-            listenerList.ForEach(listener => listener.Load());
+
+            LoadAll();
         }
 
         /// <summary>
@@ -146,6 +149,22 @@ namespace Manager.Serialize
             Refresh();
         }
         
+        public void AddListener(SerializeListener listener) => listenerList.AddUniquely(listener);
+        public void RemoveListener(SerializeListener listener) => listenerList.RemoveSafely(listener);
+        public void SaveAll() => listenerList.ForEach(listener => listener.Save());
+        public void LoadAll() => listenerList.ForEach(listener => listener.Load());
+        
+        public static void Save<T>(string key, T value)
+        {
+            ES3.Save(key, value, PlaySavePath);
+        }
+
+        public static T Load<T>(string key) => Load<T>(key, default);
+        public static T Load<T>(string key, T defaultValue)
+        {
+            return ES3.Load(key, PlaySavePath, defaultValue);
+        }
+
 
         /// <summary>
         /// 서로 다른 두 세이브 파일을 한 쪽으로 옮긴다.
@@ -186,24 +205,6 @@ namespace Manager.Serialize
             }
 
             return result != null;
-        }
-
-
-        [ShowInInspector] 
-        private List<SerializeListener> listenerList = new();
-        
-        public void AddListener(SerializeListener listener) => listenerList.AddUniquely(listener);
-        public void RemoveListener(SerializeListener listener) => listenerList.RemoveSafely(listener);
-
-        public void Save<T>(string key, T value)
-        {
-            ES3.Save(key, value, PlaySavePath);
-        }
-
-        public T Load<T>(string key) => Load<T>(key, default);
-        public T Load<T>(string key, T defaultValue)
-        {
-            return ES3.Load(key, PlaySavePath, defaultValue);
         }
 
         private static void Refresh()

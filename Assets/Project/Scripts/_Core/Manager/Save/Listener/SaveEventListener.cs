@@ -1,3 +1,4 @@
+using GameEvents;
 using GameEvents.Listener;
 using UnityEngine;
 using UnityEngine.Events;
@@ -8,10 +9,12 @@ namespace Manager.Save.Listener
     {
         // # GameEvent targetEvent;
         // # int priority = 5;
-        [SerializeField] private UnityEvent loadEvent;
+        // # UnityEvent response;
+        [SerializeField] private GameEvent loadEvent; 
+        [SerializeField] private UnityEvent loadResponse;
 
         public void SaveInvoke() => Invoke();
-        public void LoadInvoke() => loadEvent?.Invoke();
+        public void LoadInvoke() => loadResponse?.Invoke();
         
         protected new void OnEnable()
         {
@@ -39,8 +42,8 @@ namespace Manager.Save.Listener
             response.ClearUnityEventInEditor();
             response.AddPersistantListenerInEditor(savable, "Save");
             
-            loadEvent.ClearUnityEventInEditor();
-            loadEvent.AddPersistantListenerInEditor(savable, "Load");
+            loadResponse.ClearUnityEventInEditor();
+            loadResponse.AddPersistantListenerInEditor(savable, "Load");
         }
 #endif
     }

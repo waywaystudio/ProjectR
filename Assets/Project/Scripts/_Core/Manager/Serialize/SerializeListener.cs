@@ -6,43 +6,34 @@ namespace Manager.Serialize
 {
     public class SerializeListener : MonoBehaviour, IEditable
     {
-        [SerializeField] private SerializeManager serializer;
         [SerializeField] private UnityEvent saveEvent;
         [SerializeField] private UnityEvent loadEvent;
-        
-        
-        public void Save()
-        {
-            saveEvent?.Invoke();
-        }
 
-        public void Load()
-        {
-            loadEvent?.Invoke();
-        }
+        public void Save() => saveEvent?.Invoke();
+        public void Load() => loadEvent?.Invoke();
 
         private void OnEnable()
         {
             Load();
-            serializer.AddListener(this);
+            SerializeManager.Instance.AddListener(this);
         }
         
         private void OnDisable()
         {
             Save();
-            serializer.RemoveListener(this);
+            SerializeManager.Instance.RemoveListener(this);
         }
         
         
 #if UNITY_EDITOR
         public void EditorSetUp()
         {
-            serializer ??= Resources.Load<SerializeManager>("SerializeManager");
-
             if(!TryGetComponent(out ISavable savable))
             {
                 return;
-            } 
+            }
+            
+            Debug.Log($"Successfully Find ISavable Interface on Same GameObject.");
             
             saveEvent.ClearUnityEventInEditor();
             saveEvent.AddPersistantListenerInEditor(savable, "Save");
