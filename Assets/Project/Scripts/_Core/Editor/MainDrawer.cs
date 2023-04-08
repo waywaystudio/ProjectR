@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Reflection;
 using Sirenix.OdinInspector;
 using Sirenix.OdinInspector.Editor;
+using UnityEditor;
+using UnityEngine;
 
 namespace Editor
 {
@@ -15,7 +17,7 @@ namespace Editor
         {
             Title = "Set Up Group",
         };
-        
+
         public override void ProcessChildMemberAttributes(InspectorProperty parentProperty, MemberInfo member, List<Attribute> attributes)
         {
             if (member.Name == "EditorSetUp")
@@ -48,6 +50,19 @@ namespace Editor
                 });
             }
         }
+    }
+    
+    [AttributeUsage(AttributeTargets.Field | AttributeTargets.Property | AttributeTargets.Method)]
+    public class ShowInPlayModeAttribute : Attribute {}
         
+    public class ShowInPlayModeAttributeDrawer : OdinAttributeDrawer<ShowInPlayModeAttribute>
+    {
+        protected override void DrawPropertyLayout(GUIContent label)
+        {
+            if (EditorApplication.isPlaying)
+            {
+                CallNextDrawer(label);
+            }
+        }
     }
 }

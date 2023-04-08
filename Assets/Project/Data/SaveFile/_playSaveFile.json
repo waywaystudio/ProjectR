@@ -1,10 +1,68 @@
 {
+	"TrinketInventory" : {
+		"__type" : "System.Collections.Generic.List`1[[Common.Equipments.EquipmentInfo, ProjectR.Common, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]],mscorlib",
+		"value" : [
+			
+		]
+	},
+	"BottomInventory" : {
+		"__type" : "System.Collections.Generic.List`1[[Common.Equipments.EquipmentInfo, ProjectR.Common, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]],mscorlib",
+		"value" : [
+			{
+				"dataCode" : 24010003,
+				"enchantLevel" : 0
+			},{
+				"dataCode" : 24010003,
+				"enchantLevel" : 0
+			}
+		]
+	},
+	"TopInventory" : {
+		"__type" : "System.Collections.Generic.List`1[[Common.Equipments.EquipmentInfo, ProjectR.Common, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]],mscorlib",
+		"value" : [
+			{
+				"dataCode" : 23010002,
+				"enchantLevel" : 0
+			},{
+				"dataCode" : 23010002,
+				"enchantLevel" : 0
+			},{
+				"dataCode" : 23010001,
+				"enchantLevel" : 0
+			}
+		]
+	},
+	"HeadInventory" : {
+		"__type" : "System.Collections.Generic.List`1[[Common.Equipments.EquipmentInfo, ProjectR.Common, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]],mscorlib",
+		"value" : [
+			{
+				"dataCode" : 22010003,
+				"enchantLevel" : 0
+			},{
+				"dataCode" : 22010002,
+				"enchantLevel" : 0
+			}
+		]
+	},
+	"WeaponInventory" : {
+		"__type" : "System.Collections.Generic.List`1[[Common.Equipments.EquipmentInfo, ProjectR.Common, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]],mscorlib",
+		"value" : [
+			{
+				"dataCode" : 21030003,
+				"enchantLevel" : 0
+			}
+		]
+	},
+	"_FromPlaySaveFile" : {
+		"__type" : "string",
+		"value" : "Check"
+	},
 	"_SaveInfo" : {
-		"__type" : "Manager.Serialize.SerializeInfo,ProjectR.Core",
+		"__type" : "Serialization.SaveInfo,ProjectR.Core",
 		"value" : {
 			"filename" : "_playSaveFile",
 			"filePath" : "Project\/Data\/SaveFile\/_playSaveFile.json",
-			"saveTime" : "2023.04.08.03.14.01"
+			"saveTime" : "2023.04.08.21.24.00"
 		}
 	}
 }

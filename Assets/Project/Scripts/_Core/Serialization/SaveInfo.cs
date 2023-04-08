@@ -1,10 +1,10 @@
 using System;
 using UnityEngine;
 
-namespace Manager.Serialize
+namespace Serialization
 {
     [Serializable]
-    public class SerializeInfo
+    public class SaveInfo
     {
         [SerializeField] private string filename;
         [SerializeField] private string filePath;
@@ -14,11 +14,26 @@ namespace Manager.Serialize
         public string FilePath => filePath;
         public string SaveTime => saveTime;
 
-        public SerializeInfo(string filename, string filePath)
+        public SaveInfo(string filename, string filePath)
         {
             this.filename = filename;
             this.filePath = filePath;
             saveTime      = DateTime.Now.ToString("yyyy.MM.dd.HH.mm.ss");
+        }
+
+        public void Save()
+        {
+            SaveManager.Instance.SaveToFile(filename);
+        }
+
+        public void Load()
+        {
+            SaveManager.Instance.LoadFromFile(filename);
+        }
+
+        public void Delete()
+        {
+            SaveManager.Instance.DeleteSaveFile(filename);
         }
     }
 }

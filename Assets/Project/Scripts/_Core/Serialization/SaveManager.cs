@@ -1,52 +1,54 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using Sirenix.OdinInspector;
 using UnityEngine;
 
-namespace Manager.Serialize
+namespace Serialization
 {
-    public class SerializeManager : UniqueScriptableObject<SerializeManager>
+    public class SaveManager : UniqueScriptableObject<SaveManager>
     {
-        [ShowInInspector] 
-        private List<SerializeListener> listenerList = new();
-        
-        [ShowInInspector] 
-        private List<SerializeInfo> saveInfoList = new();
-
-        private const string PlaySaveName = "_playSaveFile";
-        private const string SaveInfo = "_SaveInfo";
-        private const string Extension = "json";
+        private readonly List<SaveListener> listenerList = new();
+        private readonly List<SaveInfo> saveInfoList = new();
 
         private static string PlaySavePath => GetPathByName(PlaySaveName);
         private static string SaveFileDirectory => ES3Settings.defaultSettings.path;
-
-        public static string GetPathByName(string filename) => $"{SaveFileDirectory}/{filename}.{Extension}";
+        private const string PlaySaveName = "_playSaveFile";
+        private const string InfoKey = "_SaveInfo";
+        private const string Extension = "json";
 
         /// <summary>
-        /// SerializeManager 사용 시에 반드시 호출되어야 함. 
+        /// 특정 데이터를 저장하는 구현부에서 사용
         /// </summary>
-        [Button]
+        public static void Save<T>(string key, T value) => Save(key, value, PlaySavePath);
+
+        /// <summary>
+        /// 특정 데이터를 불러오는 구현부에서 사용
+        /// </summary>
+        public static T Load<T>(string key, T defaultValue = default) => Load(key, PlaySavePath, defaultValue);
+
+
+        // TODO.어떤 방식으로 호출할지 생각해보자..
+        /// <summary>
+        /// SerializeManager 사용 시에 반드시 호출되어야 함.
+        /// </summary>
         public void LoadAllSaveFile()
         {
             CreatePlaySaveFile();
             
             saveInfoList.Clear();
             
-            var saveFileList = ES3.GetFiles(SaveFileDirectory)
-                                  .Where(file => file.EndsWith($".{Extension}"))
-                                  .Where(file => file.NotContains('_'));
-            
-            saveFileList.ForEach(saveFile =>
+            GetSaveFiles.ForEach(saveFile =>
             {
                 var saveFilePath = $"{SaveFileDirectory}/{saveFile}";
-                if (!ES3.KeyExists(SaveInfo, saveFilePath))
+                
+                if (!HasKeyInPath(InfoKey, saveFilePath))
                 {
                     Debug.LogWarning($"Invalid SaveFile Exist. FilePath:{saveFilePath}");
                     return;
                 }
+
+                var saveInfo = Load<SaveInfo>(InfoKey, saveFilePath);
                 
-                var saveInfo = ES3.Load<SerializeInfo>(SaveInfo, saveFilePath);
                 if (saveInfo.FilePath != saveFilePath)
                 {
                     Debug.Log($"SaveFile Name Changed. FilePath:{saveFilePath}");
@@ -61,16 +63,15 @@ namespace Manager.Serialize
         /// <summary>
         /// 새로운 세이브 파일을 기초 값으로 생성 시도하며 이미 이름이 있다면 취소된다.
         /// </summary>
-        [Button]
         public bool CreateNewSaveFile(string filename)
         {
+            LoadAllSaveFile();
+            
             if (TryGetSaveInfo(filename, out _)) return false;
 
-            LoadAllSaveFile();
-
-            var serializeInfo = new SerializeInfo(filename, GetPathByName(filename));
+            var serializeInfo = new SaveInfo(filename, GetPathByName(filename));
             
-            ES3.Save(SaveInfo, serializeInfo, GetPathByName(filename));
+            Save(InfoKey, serializeInfo, GetPathByName(filename));
             saveInfoList.Add(serializeInfo);
             Refresh();
             
@@ -80,7 +81,6 @@ namespace Manager.Serialize
         /// <summary>
         /// 새로운 세이브 파일을 현재 데이타 값으로 생성한다.
         /// </summary>
-        [Button]
         public void SaveToNewFile(string filename)
         {
             if (!CreateNewSaveFile(filename)) return;
@@ -89,9 +89,8 @@ namespace Manager.Serialize
         }
         
         /// <summary>
-        /// 이미 생성된 세이브 파일을 덮어쓴다.
+        /// 현재 데이터를 이미 생성된 세이브 파일에 덮어쓴다.
         /// </summary>
-        [Button]
         public void SaveToFile(string existSaveFileName)
         {
             if (!TryGetSaveInfo(existSaveFileName, out _)) return;
@@ -102,9 +101,8 @@ namespace Manager.Serialize
         }
 
         /// <summary>
-        /// 생성된 세이브 파일로부터 데이타를 받아온다.
+        /// 기존 세이브 파일로부터 현재 데이터를 갱신한다.
         /// </summary>
-        [Button]
         public void LoadFromFile(string fromSaveFilename)
         {
             TransferSaveInfo(fromSaveFilename, PlaySaveName);
@@ -116,13 +114,12 @@ namespace Manager.Serialize
         /// 세이브 파일을 삭제한다.
         /// 에디터 상태에선 메타파일도 같이 지워준다.
         /// </summary>
-        [Button]
         public void DeleteSaveFile(string filename)
         {
             if (!TryGetSaveInfo(filename, out var result)) return;
             
             saveInfoList.RemoveSafely(result);
-            ES3.DeleteFile(GetPathByName(filename));
+            DeleteFilePath(GetPathByName(filename));
             
 #if UNITY_EDITOR
             var metaPath = $"Assets/{GetPathByName(filename)}.meta";
@@ -135,10 +132,9 @@ namespace Manager.Serialize
         /// 세이브 파일 상태를 초기화 한다.
         /// 세이브 시스템에 핵심 파일인 _playSaveFile 을 초기화 한다.
         /// </summary>
-        [Button]
         public void ResetFile()
         {
-            ES3.DeleteDirectory(SaveFileDirectory);
+            DeleteSaveFileDirectory(SaveFileDirectory);
             saveInfoList.Clear();
             
 #if UNITY_EDITOR
@@ -149,22 +145,13 @@ namespace Manager.Serialize
             Refresh();
         }
         
-        public void AddListener(SerializeListener listener) => listenerList.AddUniquely(listener);
-        public void RemoveListener(SerializeListener listener) => listenerList.RemoveSafely(listener);
+        public void AddListener(SaveListener listener) => listenerList.AddUniquely(listener);
+        public void RemoveListener(SaveListener listener) => listenerList.RemoveSafely(listener);
         public void SaveAll() => listenerList.ForEach(listener => listener.Save());
         public void LoadAll() => listenerList.ForEach(listener => listener.Load());
+
         
-        public static void Save<T>(string key, T value)
-        {
-            ES3.Save(key, value, PlaySavePath);
-        }
-
-        public static T Load<T>(string key) => Load<T>(key, default);
-        public static T Load<T>(string key, T defaultValue)
-        {
-            return ES3.Load(key, PlaySavePath, defaultValue);
-        }
-
+        private static string GetPathByName(string filename) => $"{SaveFileDirectory}/{filename}.{Extension}";
 
         /// <summary>
         /// 서로 다른 두 세이브 파일을 한 쪽으로 옮긴다.
@@ -174,12 +161,11 @@ namespace Manager.Serialize
         private static void TransferSaveInfo(string fromName, string destName)
         {
             ES3.DeleteFile(GetPathByName(destName));
-            ES3.Save(SaveInfo, new SerializeInfo(destName, GetPathByName(destName)), GetPathByName(destName));
+            ES3.Save(InfoKey, new SaveInfo(destName, GetPathByName(destName)), GetPathByName(destName));
             ES3.GetKeys(GetPathByName(fromName)).ForEach(key =>
             {
-                if (key == SaveInfo) return;
+                if (key == InfoKey) return;
                 
-                Debug.Log(key);
                 ES3.Save(key, ES3.Load(key, GetPathByName(fromName)), GetPathByName(destName));
             });
             
@@ -188,11 +174,13 @@ namespace Manager.Serialize
         
         private static void CreatePlaySaveFile()
         {
-            ES3.Save(SaveInfo,            new SerializeInfo(PlaySaveName, PlaySavePath), GetPathByName(PlaySaveName));
+            DeleteFilePath(PlaySavePath);
+            
+            ES3.Save(InfoKey,            new SaveInfo(PlaySaveName, PlaySavePath), GetPathByName(PlaySaveName));
             ES3.Save("_FromPlaySaveFile", "Check",                         GetPathByName(PlaySaveName));
         }
 
-        private bool TryGetSaveInfo(string saveFilename, out SerializeInfo result)
+        private bool TryGetSaveInfo(string saveFilename, out SaveInfo result)
         {
             result = null;
             
@@ -207,11 +195,47 @@ namespace Manager.Serialize
             return result != null;
         }
 
+        #region ES3 Packing
+        private static void Save<T>(string key, T value, string filePath) 
+            => ES3.Save(key, value, filePath);
+
+        private static T Load<T>(string key, string filePath, T defaultValue = default) 
+            => ES3.Load(key, filePath, defaultValue);
+        
+        private static IEnumerable<string> GetSaveFiles 
+            => ES3.GetFiles(SaveFileDirectory)
+                  .Where(file => file.EndsWith($".{Extension}"))
+                  .Where(file => file.NotContains('_'));
+
+        private static bool HasKeyInPath(string key, string filePath)
+            => ES3.KeyExists(key, filePath);
+        
+        private static void DeleteFilePath(string filePath) => ES3.DeleteFile(filePath);
+        private static void DeleteSaveFileDirectory(string directory) => ES3.DeleteDirectory(directory);
+        #endregion
+
         private static void Refresh()
         {
 #if UNITY_EDITOR
             UnityEditor.AssetDatabase.Refresh();
 #endif
         }
+#if UNITY_EDITOR
+        public void OpenSaveFilePath()
+        {
+            var guids = UnityEditor.AssetDatabase.FindAssets($"t:Folder, SaveFile", new []{"Assets/Project/Data"});
+            
+            foreach (var guid in guids)
+            {
+                var path         = UnityEditor.AssetDatabase.GUIDToAssetPath(guid);
+                var prefabFolder = UnityEditor.AssetDatabase.LoadAssetAtPath(path, typeof(UnityEngine.Object));
+                
+                UnityEditor.Selection.activeObject = prefabFolder;
+                UnityEditor.EditorGUIUtility.PingObject(prefabFolder);
+                break;
+            }
+        }
+#endif  
+        
     }
 }

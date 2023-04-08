@@ -1,10 +1,9 @@
-using Manager.Save;
 using UnityEngine;
 using UnityEngine.Events;
 
-namespace Manager.Serialize
+namespace Serialization
 {
-    public class SerializeListener : MonoBehaviour, IEditable
+    public class SaveListener : MonoBehaviour, IEditable
     {
         [SerializeField] private UnityEvent saveEvent;
         [SerializeField] private UnityEvent loadEvent;
@@ -15,13 +14,13 @@ namespace Manager.Serialize
         private void OnEnable()
         {
             Load();
-            SerializeManager.Instance.AddListener(this);
+            SaveManager.Instance.AddListener(this);
         }
         
         private void OnDisable()
         {
             Save();
-            SerializeManager.Instance.RemoveListener(this);
+            SaveManager.Instance.RemoveListener(this);
         }
         
         

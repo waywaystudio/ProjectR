@@ -23,17 +23,8 @@ namespace Editor.Shortcut
                 method.Invoke(new object(), null);
         }
 
-        [Shortcut("HalfWork", KeyCode.F11)]
-        public static void HalfWorkLayout()
-        {
-            EditorApplication.ExecuteMenuItem("Window/Layouts/HalfWork");
-        }
-        
-        [Shortcut("FullWork", KeyCode.F12)]
-        public static void FullWorkLayout()
-        {
-            EditorApplication.ExecuteMenuItem("Window/Layouts/FullWork");
-        }
+        [MenuItem("Quick Menu/Assets/SaveManager")]
+        public static void GetSaveManager() => GetResources("SaveManager");
 
         [MenuItem("Quick Menu/Prefab/Adventurer/Knight")]
         public static void GetKnightPrefab() => GetAdventurerPrefab("Knight");
@@ -59,7 +50,8 @@ namespace Editor.Shortcut
             }
         }
         
-        public static void GetAdventurerPrefab(string className)
+        
+        private static void GetAdventurerPrefab(string className)
         {
             var adventurerPrefabDirectory = $"{PrefabPath}/Character/{AdventurerPrefabFolder}";
 
@@ -75,7 +67,12 @@ namespace Editor.Shortcut
             }
         }
         
-        
+        private static void GetResources(string resourceName)
+        {
+            var targetResource = Resources.Load(resourceName);
+            
+            EditorUtility.OpenPropertyEditor(targetResource);
+        }
     }
 }
 

@@ -1,7 +1,6 @@
 using System.Collections.Generic;
 using Common.Equipments;
-using Manager;
-using Manager.Save;
+using Serialization;
 using Sirenix.OdinInspector;
 using UnityEngine;
 
@@ -36,12 +35,12 @@ namespace Common
             
             List.ForEach(element => infoList.Add(element.Info));
             
-            MainManager.Save.Save(SaveKey, infoList);
+            SaveManager.Save(SaveKey, infoList);
         }
 
         public void Load()
         {
-            var infoList = MainManager.Save.Load<List<EquipmentInfo>>(SaveKey);
+            var infoList = SaveManager.Load<List<EquipmentInfo>>(SaveKey);
             
             if (infoList.HasElement()) 
                 infoList.ForEach(Generate);

@@ -2,13 +2,20 @@ using UnityEngine;
 
 public abstract class UniqueScriptableObject<T> : ScriptableObject where T : ScriptableObject
 {
+    [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.BeforeSceneLoad)]
+    public static void Initialize()
+    {
+        instance = null;
+        Debug.Log("Runtime Initialize On");
+    }
+    
     private static T instance;
 
     public static T Instance
     {
         get
         {
-            if (!instance.Equals(null)) return instance;
+            if (instance is not null) return instance;
 
             var typeObjects = Resources.FindObjectsOfTypeAll<T>();
 

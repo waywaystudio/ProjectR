@@ -505,6 +505,7 @@ GameObject:
   m_Component:
   - component: {fileID: 22320064}
   - component: {fileID: 22320065}
+  - component: {fileID: 22320066}
   m_Layer: 0
   m_Name: Top
   m_TagString: Untagged
@@ -540,6 +541,48 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   equipType: 23
+--- !u!114 &22320066
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 22320063}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: efaf969705ee123418a53e313e1db98d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  saveEvent:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 22320065}
+        m_TargetAssemblyTypeName: Common.Inventory, ProjectR.Common
+        m_MethodName: Save
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: 
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  loadEvent:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 22320065}
+        m_TargetAssemblyTypeName: Common.Inventory, ProjectR.Common
+        m_MethodName: Load
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: 
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &24216722
 GameObject:
   m_ObjectHideFlags: 0
@@ -2476,6 +2519,7 @@ GameObject:
   m_Component:
   - component: {fileID: 440435351}
   - component: {fileID: 440435352}
+  - component: {fileID: 440435353}
   m_Layer: 0
   m_Name: Bottom
   m_TagString: Untagged
@@ -2511,6 +2555,48 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   equipType: 24
+--- !u!114 &440435353
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 440435350}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: efaf969705ee123418a53e313e1db98d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  saveEvent:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 440435352}
+        m_TargetAssemblyTypeName: Common.Inventory, ProjectR.Common
+        m_MethodName: Save
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: 
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  loadEvent:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 440435352}
+        m_TargetAssemblyTypeName: Common.Inventory, ProjectR.Common
+        m_MethodName: Load
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: 
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &453843167
 GameObject:
   m_ObjectHideFlags: 0
@@ -3213,12 +3299,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 565154841}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 05330156ccad4994db26a8b4223ed318, type: 3}
+  m_Script: {fileID: 11500000, guid: efaf969705ee123418a53e313e1db98d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  targetEvent: {fileID: 11400000, guid: 621c54dff64b4274c860de59303dd753, type: 2}
-  priority: 5
-  response:
+  saveEvent:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 565154843}
@@ -5896,6 +5980,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1087717447}
   - component: {fileID: 1087717448}
+  - component: {fileID: 1087717449}
   m_Layer: 0
   m_Name: Trinket
   m_TagString: Untagged
@@ -5931,6 +6016,48 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   equipType: 25
+--- !u!114 &1087717449
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1087717446}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: efaf969705ee123418a53e313e1db98d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  saveEvent:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1087717448}
+        m_TargetAssemblyTypeName: Common.Inventory, ProjectR.Common
+        m_MethodName: Save
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: 
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  loadEvent:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1087717448}
+        m_TargetAssemblyTypeName: Common.Inventory, ProjectR.Common
+        m_MethodName: Load
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: 
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1093305732
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7014,6 +7141,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1259481678}
   - component: {fileID: 1259481679}
+  - component: {fileID: 1259481680}
   m_Layer: 0
   m_Name: Head
   m_TagString: Untagged
@@ -7049,6 +7177,48 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   equipType: 22
+--- !u!114 &1259481680
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1259481677}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: efaf969705ee123418a53e313e1db98d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  saveEvent:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1259481679}
+        m_TargetAssemblyTypeName: Common.Inventory, ProjectR.Common
+        m_MethodName: Save
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: 
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  loadEvent:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1259481679}
+        m_TargetAssemblyTypeName: Common.Inventory, ProjectR.Common
+        m_MethodName: Load
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: 
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &1287731036
 GameObject:
   m_ObjectHideFlags: 0
