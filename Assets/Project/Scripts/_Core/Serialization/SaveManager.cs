@@ -52,8 +52,8 @@ namespace Serialization
                 
                 saveInfoList.Add(saveInfo);
             });
-            
-            saveInfoList.Sort((a, b) => string.Compare(a.SaveTime, b.SaveTime, StringComparison.Ordinal));
+
+            SortByTimeStamp();
         }
 
         /// <summary>
@@ -61,14 +61,13 @@ namespace Serialization
         /// </summary>
         public bool CreateNewSaveFile(string filename)
         {
-            LoadAllSaveFile();
-            
             if (TryGetSaveInfo(filename, out _)) return false;
 
-            var serializeInfo = new SaveInfo(filename, GetPathByName(filename));
+            var serializeInfo = new SaveInfo(filename);
             
             Save(InfoKey, serializeInfo, GetPathByName(filename));
             saveInfoList.Add(serializeInfo);
+            SortByTimeStamp();
             Refresh();
             
             return true;
@@ -112,9 +111,9 @@ namespace Serialization
         /// </summary>
         public void DeleteSaveFile(string filename)
         {
-            if (!TryGetSaveInfo(filename, out var result)) return;
-            
-            saveInfoList.RemoveSafely(result);
+            if (TryGetSaveInfo(filename, out var result)) 
+                saveInfoList.RemoveSafely(result);
+
             DeleteFilePath(GetPathByName(filename));
             
 #if UNITY_EDITOR
@@ -134,7 +133,7 @@ namespace Serialization
             saveInfoList.Clear();
             
 #if UNITY_EDITOR
-            var metaPath = $"Assets/{SaveFileDirectory}.meta";
+            var metaPath = $"Assets/{SaveFileDirectory}.jason";
             System.IO.File.Delete(metaPath);
 #endif
             LoadAllSaveFile();
@@ -154,10 +153,11 @@ namespace Serialization
         /// </summary>
         /// <param name="fromName">복사시킬 대상</param>
         /// <param name="destName">복사받을 대상</param>
-        private static void TransferSaveInfo(string fromName, string destName)
+        private void TransferSaveInfo(string fromName, string destName)
         {
-            ES3.DeleteFile(GetPathByName(destName));
-            ES3.Save(InfoKey, new SaveInfo(destName, GetPathByName(destName)), GetPathByName(destName));
+            DeleteSaveFile(destName);
+            CreateNewSaveFile(destName);
+            
             ES3.GetKeys(GetPathByName(fromName)).ForEach(key =>
             {
                 if (key == InfoKey) return;
@@ -172,7 +172,7 @@ namespace Serialization
         {
             DeleteFilePath(PlaySavePath);
 
-            ES3.Save(InfoKey, new SaveInfo(PlaySaveName, PlaySavePath), PlaySavePath);
+            ES3.Save(InfoKey, new SaveInfo(PlaySaveName), PlaySavePath);
             ES3.Save("_FromPlaySaveFile", "Check", PlaySavePath);
         }
 
@@ -189,6 +189,11 @@ namespace Serialization
             }
 
             return result != null;
+        }
+
+        private void SortByTimeStamp()
+        {
+            saveInfoList.Sort((b, a) => string.Compare(a.SaveTime, b.SaveTime, StringComparison.Ordinal));
         }
 
         #region ES3 Packing
@@ -214,6 +219,7 @@ namespace Serialization
         {
 #if UNITY_EDITOR
             UnityEditor.AssetDatabase.Refresh();
+            UnityEditor.EditorUtility.SetDirty(Instance);
 #endif
         }
 #if UNITY_EDITOR
@@ -231,7 +237,13 @@ namespace Serialization
                 break;
             }
         }
-#endif  
+#endif
+
+        [Sirenix.OdinInspector.Button]
+        public void ShowTime()
+        {
+            saveInfoList.ForEach(saveInfo => Debug.Log(saveInfo.SaveTime));
+        }
         
     }
 }

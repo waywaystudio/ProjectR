@@ -1,15 +1,24 @@
+using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Events;
 
 namespace Serialization
 {
-    public class SaveListener : MonoBehaviour, IEditable
+    public class SaveListener : MonoBehaviour
     {
-        [SerializeField] private UnityEvent saveEvent;
-        [SerializeField] private UnityEvent loadEvent;
+        private readonly List<ISavable> savableList = new();
 
-        public void Save() => saveEvent?.Invoke();
-        public void Load() => loadEvent?.Invoke();
+        private List<ISavable> SavableList
+        {
+            get
+            {
+                if (savableList.IsNullOrEmpty()) GetComponents(savableList);
+
+                return savableList;
+            }
+        }
+
+        public void Save() => SavableList.ForEach(savable => savable.Save());
+        public void Load() => SavableList.ForEach(savable => savable.Load());
 
         private void OnEnable()
         {
@@ -22,24 +31,5 @@ namespace Serialization
             Save();
             SaveManager.Instance.RemoveListener(this);
         }
-        
-        
-#if UNITY_EDITOR
-        public void EditorSetUp()
-        {
-            if(!TryGetComponent(out ISavable savable))
-            {
-                return;
-            }
-            
-            Debug.Log("Successfully Find ISavable Interface on Same GameObject.");
-            
-            saveEvent.ClearUnityEventInEditor();
-            saveEvent.AddPersistantListenerInEditor(savable, "Save");
-            
-            loadEvent.ClearUnityEventInEditor();
-            loadEvent.AddPersistantListenerInEditor(savable, "Load");
-        }
-#endif
     }
 }

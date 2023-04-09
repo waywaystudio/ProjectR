@@ -188,15 +188,7 @@ namespace Editor
                     ButtonHeight = 24,
                 });
                 attributes.Add(new HorizontalGroupAttribute("SerializeEvents"));
-                attributes.Add(new VerticalGroupAttribute("SerializeEvents/Left"));
                 attributes.Add(new PropertyOrderAttribute(-2f));
-            }
-            
-            if (member.Name == "saveEvent")
-            {
-                attributes.Add(new HorizontalGroupAttribute("SerializeEvents"));
-                attributes.Add(new VerticalGroupAttribute("SerializeEvents/Left"));
-                attributes.Add(new PropertyOrderAttribute(-1f));
             }
 
             if (member.Name == "Load")
@@ -208,15 +200,7 @@ namespace Editor
                     ButtonHeight = 24,
                 });
                 attributes.Add(new HorizontalGroupAttribute("SerializeEvents"));
-                attributes.Add(new VerticalGroupAttribute("SerializeEvents/Right"));
                 attributes.Add(new PropertyOrderAttribute(-2f));
-            }
-
-            if (member.Name == "loadEvent")
-            {
-                attributes.Add(new HorizontalGroupAttribute("SerializeEvents"));
-                attributes.Add(new VerticalGroupAttribute("SerializeEvents/Right"));
-                attributes.Add(new PropertyOrderAttribute(-1f));
             }
         }
     }
