@@ -161,7 +161,7 @@ namespace Serialization
             ES3.GetKeys(GetPathByName(fromName)).ForEach(key =>
             {
                 if (key == InfoKey) return;
-                
+
                 ES3.Save(key, ES3.Load(key, GetPathByName(fromName)), GetPathByName(destName));
             });
             

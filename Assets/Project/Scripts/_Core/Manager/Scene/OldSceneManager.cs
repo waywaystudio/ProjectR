@@ -8,7 +8,7 @@ using UnitySceneManager = UnityEngine.SceneManagement.SceneManager;
 
 namespace Manager.Scene
 {
-    public class SceneManager : MonoBehaviour
+    public class OldSceneManager : MonoBehaviour
     {
         [SerializeField] private GameEvent beforeChanged;
         [SerializeField] private GameEvent afterChanged;
@@ -34,6 +34,10 @@ namespace Manager.Scene
             }
         }
 
+        /// <summary>
+        /// 로딩씬에서 실제 호출되는 함수.
+        /// 씬을 넘기는 함수 구현부에서 호출 하지 않는다.
+        /// </summary>
         public void LoadNextScene()
         {
             if (string.IsNullOrEmpty(NextScene))
@@ -43,6 +47,9 @@ namespace Manager.Scene
             NextScene = null;
         }
         
+        /// <summary>
+        /// 씬을 넘기는 함수 구현부에서 실제 사용하는 함수.
+        /// </summary>
         public void LoadScene(string sceneName)
         {
             if (!sceneNameList.Exists(x => x == sceneName))
@@ -54,6 +61,7 @@ namespace Manager.Scene
             NextScene = sceneName;
             StartCoroutine(LoadSceneAsync("Loading"));
         }
+        
 
         private IEnumerator LoadSceneAsync(string sceneName)
         {

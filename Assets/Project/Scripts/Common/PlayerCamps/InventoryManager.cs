@@ -1,11 +1,11 @@
 using System;
 using Common.Equipments;
-using Singleton;
+using Common.PlayerCamps.Inventories;
 using UnityEngine;
 
-namespace Common
+namespace Common.PlayerCamps
 {
-    public class InventoryManager : MonoSingleton<InventoryManager>, IEditable
+    public class InventoryManager : MonoBehaviour, IEditable
     {
         [SerializeField] private Inventory weaponInventory;
         [SerializeField] private Inventory headInventor;
@@ -14,16 +14,16 @@ namespace Common
         [SerializeField] private Inventory trinketInventory;
 
 
-        public static void Add(GameObject itemObject) => Add(itemObject.GetComponent<Equipment>());
-        public static void Add(Equipment item)
+        public void Add(GameObject itemObject) => Add(itemObject.GetComponent<Equipment>());
+        public void Add(Equipment item)
         {
             var targetInventory = GetInventoryByType(item.EquipType);
             
             targetInventory.Add(item);
         }
 
-        public static void Remove(GameObject itemObject) => Remove(itemObject.GetComponent<Equipment>());
-        public static void Remove(Equipment item)
+        public void Remove(GameObject itemObject) => Remove(itemObject.GetComponent<Equipment>());
+        public void Remove(Equipment item)
         {
             var targetInventory = GetInventoryByType(item.EquipType);
             
@@ -31,13 +31,13 @@ namespace Common
         }
 
 
-        private static Inventory GetInventoryByType(EquipType type) => type switch
+        private Inventory GetInventoryByType(EquipType type) => type switch
         {
-            EquipType.Weapon  => Instance.weaponInventory,
-            EquipType.Head    => Instance.headInventor,
-            EquipType.Top     => Instance.topInventory,
-            EquipType.Bottom  => Instance.bottomInventory,
-            EquipType.Trinket => Instance.trinketInventory,
+            EquipType.Weapon  => weaponInventory,
+            EquipType.Head    => headInventor,
+            EquipType.Top     => topInventory,
+            EquipType.Bottom  => bottomInventory,
+            EquipType.Trinket => trinketInventory,
             _                 => throw new ArgumentOutOfRangeException(nameof(type), type, null)
         };
 

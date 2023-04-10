@@ -4,6 +4,7 @@ using Adventurers;
 using Character.Adventurers;
 using Character.Bosses;
 using Common;
+using Common.PlayerCamps;
 using Sirenix.OdinInspector;
 using UnityEngine;
 
@@ -72,7 +73,7 @@ namespace Raid
                 var dropItemPrefab = Boss.DropItemTable.Random();
                 var dropItem       = Instantiate(dropItemPrefab);
                 
-                InventoryManager.Add(dropItem);
+                PlayerCamp.Inventories.Add(dropItem);
 
                 sb.Append($"{dropItem.name} Get!\n");
             }

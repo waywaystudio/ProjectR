@@ -8,10 +8,10 @@ namespace Editor.Shortcut
         private const string SceneDirectory = "Assets/Project/Scenes/";
         private const string SceneExtension = "unity";
         
-        [MenuItem("Quick Menu/Scene/Town")]
+        [MenuItem("Quick Menu/Scene/Lobby")]
         private static void ToTown()
         {
-            SceneMoveInEditor("Town");
+            SceneMoveInEditor("Lobby");
         }
         
         [MenuItem("Quick Menu/Scene/Raid")]

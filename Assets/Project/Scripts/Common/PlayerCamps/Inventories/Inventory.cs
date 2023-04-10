@@ -1,25 +1,24 @@
 using System.Collections.Generic;
 using Common.Equipments;
 using Serialization;
-using Sirenix.OdinInspector;
 using UnityEngine;
 
-namespace Common
+namespace Common.PlayerCamps.Inventories
 {
     public class Inventory : MonoBehaviour, ISavable
     {
         [SerializeField] private EquipType equipType;
         
-        [ShowInInspector]
+        [Sirenix.OdinInspector.ShowInInspector]
         private List<Equipment> List { get; } = new();
         private string SaveKey => $"{equipType}Inventory";
 
         public void Add(Equipment item)
         {
-            if(item.EquipType != equipType) return;
+            if(item.IsNullOrEmpty() || item.EquipType != equipType) return;
             
             item.gameObject.transform.SetParent(transform);
-            List.Add(item);
+            List.AddUniquely(item);
         }
 
         public void Remove(Equipment item)
@@ -34,7 +33,7 @@ namespace Common
             var infoList = new List<EquipmentInfo>(List.Count);
             
             List.ForEach(element => infoList.Add(element.Info));
-            
+
             SaveManager.Save(SaveKey, infoList);
         }
 
@@ -43,30 +42,15 @@ namespace Common
             List.ForEach(Remove);
             
             var infoList = SaveManager.Load<List<EquipmentInfo>>(SaveKey);
-            
-            if (infoList.HasElement()) 
-                infoList.ForEach(Generate);
-        }
-        
 
-        private void Generate(EquipmentInfo info)
-        {
-            if (info.ActionCode == DataIndex.None) return;
+            if (infoList.IsNullOrEmpty()) return;
             
-            Database.EquipmentMaster.GetObject(info.ActionCode, out var equipmentPrefab)
-                    .OnFalse(() => Debug.LogWarning($"Not Exist {info.ActionCode} prefab"));
-
-            var equipObject = Instantiate(equipmentPrefab, transform);
-        
-            if (!equipObject.TryGetComponent(out Equipment equipment))
+            infoList.ForEach(equipInfo =>
             {
-                Debug.LogWarning($"Not Exist Equipment script in {equipmentPrefab.name} GameObject");
-                return;
-            }
-        
-            equipment.Enchant(info.EnchantLevel);
-            
-            Add(equipment);
+                var equipment = EquipmentInfo.CreateEquipment(equipInfo, transform);
+
+                Add(equipment);
+            });
         }
     }
 }

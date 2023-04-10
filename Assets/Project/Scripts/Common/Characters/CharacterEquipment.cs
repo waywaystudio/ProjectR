@@ -68,12 +68,12 @@ namespace Common.Characters
         public void Load()
         {
 #if UNITY_EDITOR
-            TryArm(Generate(weaponInfo));
-            TryArm(Generate(headInfo));
-            TryArm(Generate(topInfo));
-            TryArm(Generate(bottomInfo));
-            TryArm(Generate(trinket1Info));
-            TryArm(Generate(trinket2Info));
+            TryArm(EquipmentInfo.CreateEquipment(weaponInfo, transform));
+            TryArm(EquipmentInfo.CreateEquipment(headInfo, transform));
+            TryArm(EquipmentInfo.CreateEquipment(topInfo, transform));
+            TryArm(EquipmentInfo.CreateEquipment(bottomInfo, transform));
+            TryArm(EquipmentInfo.CreateEquipment(trinket1Info, transform));
+            TryArm(EquipmentInfo.CreateEquipment(trinket2Info, transform));
 #else
             var infoTable = MainManager.Save.Load<Dictionary<EquipSlotIndex, EquipmentInfo>>($"{Cb.Name}'s Equipments");
             infoTable.ForEach(info => TryArm(Generate(info.Value)));
@@ -106,24 +106,6 @@ namespace Common.Characters
             };
 
             return targetSlot;
-        }
-
-        private Equipment Generate(EquipmentInfo info)
-        {
-            if (info.ActionCode == DataIndex.None) return null;
-
-            Database.EquipmentMaster.GetObject(info.ActionCode, out var equipmentPrefab);
-
-            var equipObject = Instantiate(equipmentPrefab, transform);
-        
-            if (!equipObject.TryGetComponent(out Equipment equipment))
-            {
-                Debug.LogWarning($"Not Exist Equipment script in {equipmentPrefab.name} GameObject");
-                return null;
-            }
-        
-            equipment.Enchant(info.EnchantLevel);
-            return equipment;
         }
 
         private void Awake()

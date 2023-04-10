@@ -6,7 +6,8 @@ using UnityEngine;
 
 public class SandBox : MonoBehaviour
 {
-    public DataIndex SampleDataIndex;
+    public CombatClassType SampleClassType;
+    public int NextIteratorCount;
     // public Action CsharpAction;
     // public SandSphere sandSphere;
 
@@ -17,7 +18,14 @@ public class SandBox : MonoBehaviour
     [Button]
     public void Debugger()
     {
-        Debug.Log(SampleDataIndex.GetCategory());
+        var typeBuffer = SampleClassType;
+        
+        for (var i = 0; i < NextIteratorCount; i++)
+        {
+            typeBuffer = typeBuffer.NextClass();
+        }
+        
+        Debug.Log(typeBuffer);
     }
 
     // [Button]

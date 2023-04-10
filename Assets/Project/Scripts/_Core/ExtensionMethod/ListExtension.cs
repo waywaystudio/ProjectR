@@ -147,4 +147,22 @@ public static class ListExtension
     }
 
     public static T FirstOrNull<T>(this List<T> list) where T : class => list.HasElement() ? list[0] : null;
+    
+    public static T GetNext<T>(this List<T> list, T element)
+    {
+        if (list == null || list.Count == 0)
+        {
+            throw new ArgumentException("The list is null or empty.");
+        }
+
+        var index = list.IndexOf(element);
+        
+        if (index == -1)
+        {
+            throw new ArgumentException("The element is not found in the list.");
+        }
+
+        // If the element is the last one in the list, return the first element; otherwise, return the next element.
+        return (index == list.Count - 1) ? list[0] : list[index + 1];
+    }
 }

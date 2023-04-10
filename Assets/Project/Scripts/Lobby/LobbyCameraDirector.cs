@@ -2,9 +2,9 @@ using Cinemachine;
 using Sirenix.OdinInspector;
 using UnityEngine;
 
-namespace Scene.Town
+namespace Lobby
 {
-    public class TownCameraDirector : MonoBehaviour
+    public class LobbyCameraDirector : MonoBehaviour
     {
         [SerializeField] private Camera mainCamera;
         [SerializeField] private CinemachineVirtualCamera playerCamera;
@@ -18,8 +18,8 @@ namespace Scene.Town
 
         public void SetPlayerCameraFocus(Transform target)
         {
-            playerCamera.Follow = target;
-            playerCamera.LookAt = target;
+            // playerCamera.Follow = target;
+            // playerCamera.LookAt = target;
         }
         
         public void ChangeCamera(ICinemachineCamera cameraName)
