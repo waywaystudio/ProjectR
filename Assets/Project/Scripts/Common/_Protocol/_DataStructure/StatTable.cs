@@ -23,9 +23,9 @@ namespace Common
         public void Add(string key, Spec spec) => spec.Iterate(stat => Add(key, stat));
         public void Add(string key, Stat stat)
         {
-            if (statTable.ContainsKey(stat.StatType))
+            if (statTable.TryGetValue(stat.StatType, out var value))
             {
-                statTable[stat.StatType].Add(key, stat);
+                value.Add(key, stat);
             }
             else
             {

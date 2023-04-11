@@ -47,7 +47,7 @@ namespace Raid
             castingDirector ??= GetComponentInChildren<RaidCastingDirector>();
             uiDirector      ??= GetComponentInChildren<RaidUIDirector>();
 
-            MainUI.FadePanel.PlayFadeIn();
+            // MainUI.FadePanel.PlayFadeIn();
         }
 
 

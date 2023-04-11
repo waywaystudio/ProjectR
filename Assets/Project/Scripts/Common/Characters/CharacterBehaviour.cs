@@ -16,6 +16,7 @@ namespace Common.Characters
         [SerializeField] protected CombatClassType role;
         
         [SerializeField] protected CharacterStats stats;
+        [SerializeField] protected CharacterEquipment equipment;
         
         [SerializeField] protected AnimationModel animating;
         [SerializeField] protected Transform damageSpawn;
@@ -32,6 +33,8 @@ namespace Common.Characters
         [SerializeField] protected CollidingSystem colliding;
         [SerializeField] protected PathfindingSystem pathfinding;
 
+        public bool IsInitialized { get; protected set; } = false;
+
         public CharacterActionMask BehaviourMask => CurrentBehaviour is null ? CharacterActionMask.None : CurrentBehaviour.BehaviourMask;
         public ActionBehaviour CurrentBehaviour { get; set; }
         public DataIndex ActionCode => characterID;
@@ -40,6 +43,7 @@ namespace Common.Characters
         public IDynamicStatEntry DynamicStatEntry => stats ??= GetComponent<CharacterStats>();
         public StatTable StatTable => DynamicStatEntry.StatTable;
         public Vector3 Position => transform.position;
+        public CharacterEquipment Equipment => equipment;
 
         public SearchingSystem Searching => searching;
         public CollidingSystem Colliding => colliding;
@@ -75,7 +79,15 @@ namespace Common.Characters
         public ActionTable<IStatusEffect> OnDeBuffTaken { get; } = new();
         public ActionTable<IStatusEffect> OnBuffProvided { get; } = new();
         public ActionTable<IStatusEffect> OnBuffTaken { get; } = new();
+
+
+        public virtual void Initialize() { }
         
+        
+        private void Awake()
+        {
+            Initialize();
+        }
         
         private void OnEnable()
         {
@@ -95,6 +107,7 @@ namespace Common.Characters
         {
             stats          ??= GetComponent<CharacterStats>();
             
+            equipment          ??= GetComponentInChildren<CharacterEquipment>(); 
             skillBehaviour     ??= GetComponentInChildren<SkillBehaviour>();
             stopBehaviour      ??= GetComponentInChildren<StopBehaviour>();
             runBehaviour       ??= GetComponentInChildren<RunBehaviour>();

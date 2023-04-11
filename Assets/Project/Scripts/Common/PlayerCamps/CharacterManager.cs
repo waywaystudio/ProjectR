@@ -9,7 +9,17 @@ namespace Common.PlayerCamps
     {
         [SerializeField] private List<CharacterBehaviour> characterList;
 
-        private Dictionary<CombatClassType, CharacterBehaviour> Table { get; } = new();
+        private readonly Dictionary<CombatClassType, CharacterBehaviour> table = new();
+        private Dictionary<CombatClassType, CharacterBehaviour> Table
+        {
+            get
+            {
+                if (table.IsNullOrEmpty())
+                    characterList.ForEach(character => table.Add(character.CombatClass, character));
+                
+                return table;
+            }
+        }
 
 
         public CharacterBehaviour Get(CombatClassType type)
@@ -19,6 +29,8 @@ namespace Common.PlayerCamps
                 Debug.LogError($"Can't Find Character. Input Type:{type.ToString()}");
                 return null;
             }
+            
+            character.Initialize();
 
             return character;
         }
@@ -39,10 +51,9 @@ namespace Common.PlayerCamps
 
         private void Awake()
         {
-            GetComponentsInChildren(true, characterList);
-            
             characterList.Sort((a, b) => a.CombatClass.CompareTo(b.CombatClass));
-            characterList.ForEach(character => Table.Add(character.CombatClass, character));
+            characterList.ForEach(character => character.Initialize());
+            // characterList.ForEach(character => Table.Add(character.CombatClass, character));
         }
 
 
@@ -52,7 +63,6 @@ namespace Common.PlayerCamps
             GetComponentsInChildren(true, characterList);
             
             characterList.Sort((a, b) => a.CombatClass.CompareTo(b.CombatClass));
-            characterList.ForEach(character => Table.Add(character.CombatClass, character));
         }
 #endif
     }

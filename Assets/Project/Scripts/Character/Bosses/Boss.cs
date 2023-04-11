@@ -11,11 +11,18 @@ namespace Character.Bosses
 
         public BossPhase CurrentPhase { get; set; }
         public List<GameObject> DropItemTable => dropTable.DropItemList;
-
-        protected void Awake()
+        
+        
+        public override void Initialize()
         {
+            if (IsInitialized) return;
+            
             stats.Initialize();
+            equipment.Initialize(this);
+
+            IsInitialized = false;
         }
+
 
         protected void Start()
         {

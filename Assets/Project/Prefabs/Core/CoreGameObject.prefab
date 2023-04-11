@@ -29,7 +29,6 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 5859175841367211944}
-  - {fileID: 7490997727852929124}
   - {fileID: 6252629391642875613}
   m_Father: {fileID: 4672108652296497339}
   m_RootOrder: 1
@@ -359,7 +358,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   audioManager: {fileID: 6957410591883614601}
-  sceneManager: {fileID: 7490997727852929123}
+  sceneManager: {fileID: 0}
   inputManager: {fileID: 985764908713922730}
 --- !u!114 &3116589895579563761
 MonoBehaviour:
@@ -512,11 +511,9 @@ GameObject:
   m_Component:
   - component: {fileID: 6999556447552447066}
   - component: {fileID: 5419303115267295683}
-  - component: {fileID: 8320432204502313618}
-  - component: {fileID: 8715853911052020856}
+  - component: {fileID: 5631717926413433435}
   - component: {fileID: 6999556447552447065}
   - component: {fileID: 6999556447552447064}
-  - component: {fileID: 5301016244125653985}
   m_Layer: 5
   m_Name: FadePanel
   m_TagString: Untagged
@@ -556,8 +553,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7d6e45eb6299bbd4db217d3210cbe1f1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fadeinAnimator: {fileID: 5301016244125653985}
---- !u!114 &8320432204502313618
+  panel: {fileID: 6999556447552447064}
+--- !u!114 &5631717926413433435
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -566,55 +563,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 6999556447552447061}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ce3fcee7828b40e41a9d08830f1dc9e5, type: 3}
+  m_Script: {fileID: 11500000, guid: a43e35a24be7e834d945f48332cf1929, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  targetEvent: {fileID: 11400000, guid: 37dbb041f646666488e1bdb5370c5c9c, type: 2}
-  priority: 5
-  response:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 5419303115267295683}
-        m_TargetAssemblyTypeName: Main.UI.FadePanel, Assembly-CSharp
-        m_MethodName: PlayFadeOut
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
---- !u!114 &8715853911052020856
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6999556447552447061}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ce3fcee7828b40e41a9d08830f1dc9e5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  targetEvent: {fileID: 11400000, guid: 982f1aa7fc88bf541a1703889e362e9d, type: 2}
-  priority: 5
-  response:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 5419303115267295683}
-        m_TargetAssemblyTypeName: Main.UI.FadePanel, Assembly-CSharp
-        m_MethodName: InitAnimation
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
 --- !u!222 &6999556447552447065
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -653,27 +604,6 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!95 &5301016244125653985
-Animator:
-  serializedVersion: 5
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6999556447552447061}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 41b0f4b62962cef4aafc32b33c8a94c5, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_StabilizeFeet: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorStateOnDisable: 0
-  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &9039682236266940767
 GameObject:
   m_ObjectHideFlags: 0
@@ -811,79 +741,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1db3e30e1b4c2614d9fd5f6b48a0f0be, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!1001 &6433662721757763343
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 2714927515206354961}
-    m_Modifications:
-    - target: {fileID: 4520954963599685483, guid: 90b5bdf7f97f5b640883dda72fbf3d84, type: 3}
-      propertyPath: m_RootOrder
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4520954963599685483, guid: 90b5bdf7f97f5b640883dda72fbf3d84, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4520954963599685483, guid: 90b5bdf7f97f5b640883dda72fbf3d84, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4520954963599685483, guid: 90b5bdf7f97f5b640883dda72fbf3d84, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4520954963599685483, guid: 90b5bdf7f97f5b640883dda72fbf3d84, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4520954963599685483, guid: 90b5bdf7f97f5b640883dda72fbf3d84, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4520954963599685483, guid: 90b5bdf7f97f5b640883dda72fbf3d84, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4520954963599685483, guid: 90b5bdf7f97f5b640883dda72fbf3d84, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4520954963599685483, guid: 90b5bdf7f97f5b640883dda72fbf3d84, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4520954963599685483, guid: 90b5bdf7f97f5b640883dda72fbf3d84, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4520954963599685483, guid: 90b5bdf7f97f5b640883dda72fbf3d84, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4520954963599685485, guid: 90b5bdf7f97f5b640883dda72fbf3d84, type: 3}
-      propertyPath: m_Name
-      value: Scene
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 90b5bdf7f97f5b640883dda72fbf3d84, type: 3}
---- !u!114 &7490997727852929123 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 4520954963599685484, guid: 90b5bdf7f97f5b640883dda72fbf3d84, type: 3}
-  m_PrefabInstance: {fileID: 6433662721757763343}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6ee0affc09e762f448046391efe65bc6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!4 &7490997727852929124 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 4520954963599685483, guid: 90b5bdf7f97f5b640883dda72fbf3d84, type: 3}
-  m_PrefabInstance: {fileID: 6433662721757763343}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &7902946539385545879
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -893,7 +750,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 4280993930481250890, guid: e6f3e228809f51f418fa25d4fa063293, type: 3}
       propertyPath: m_RootOrder
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4280993930481250890, guid: e6f3e228809f51f418fa25d4fa063293, type: 3}
       propertyPath: m_LocalPosition.x

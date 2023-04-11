@@ -30,9 +30,11 @@ MonoBehaviour:
     serializationDepthLimit: 64
     assemblyNames:
     - BehaviorDesigner.Runtime
+    - UniTask
     - AstarPathfindingProject
     - ES3
     - ProjectR.Raid
+    - UniTask.Linq
     - ProjectR.Core
     - spine-unity
     - ProjectR.Lobby
@@ -42,14 +44,18 @@ MonoBehaviour:
     - Assembly-CSharp
     - spine-csharp
     - ProjectR.Common
+    - UniTask.DOTween
     - DOTween.Modules
+    - UniTask.TextMeshPro
     - SoCreator
     - Assembly-CSharp-firstpass
+    - UniTask.Addressables
     - AstarPathfindingProjectEditor
     - ProjectR.Common.Editor
     - spine-unity-editor
     - PPv2URPConverters
     - ES3.editor
+    - UniTask.Editor
     - SoCreator.Editor
     - PackageToolsEditor
     - ShortCuts.Editor

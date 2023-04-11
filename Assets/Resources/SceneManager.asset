@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 67216c3c14d74c04281d1bf9e63e947d, type: 3}
+  m_Name: SceneManager
+  m_EditorClassIdentifier: 
+  loadingScenePreserveTimer: 1
+  sceneNameList:
+  - Loading
+  - Lobby
+  - Raid
+  sceneAssetList:
+  - {fileID: 102900000, guid: 69694473d06885e4ebc33278c1b9bb06, type: 3}
+  - {fileID: 102900000, guid: b979d18d3ebd5c94184db6447c78251a, type: 3}
+  - {fileID: 102900000, guid: a0b75db1d5d99cd44a3022c46d14960d, type: 3}

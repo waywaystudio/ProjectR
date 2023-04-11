@@ -1,4 +1,3 @@
-using Manager;
 using UnityEngine;
 
 namespace Loading
@@ -8,8 +7,6 @@ namespace Loading
         [SerializeField] private Animator animator;
         [SerializeField] private RectTransform barTransform;
 
-        private float barMaxLength = 800.0f;
-        private float barHeight = 10.0f;
         private readonly int rotateWheel = Animator.StringToHash("RotateWheel");
 
         private void Awake()
@@ -20,14 +17,6 @@ namespace Loading
         private void OnEnable()
         {
             Play();
-        }
-
-        private void Update()
-        {
-            var progress = MainManager.Scene.Progress
-                           * barMaxLength;
-
-            barTransform.sizeDelta = new Vector2(progress, barHeight);
         }
 
         public void Play()

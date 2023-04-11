@@ -6,7 +6,7 @@ namespace Common.Equipments
     {
         [SerializeField] protected EquipmentInfo info;
         [SerializeField] protected string title;
-        [SerializeField] protected Sprite image;
+        [SerializeField] protected Sprite icon;
         [SerializeField] protected CombatClassType availableClass;
         [SerializeField] protected Spec spec;
 
@@ -14,6 +14,7 @@ namespace Common.Equipments
         public EquipmentInfo Info => info;
         public DataIndex ActionCode => info.ActionCode;
         public string Title => title;
+        public Sprite Icon => icon;
         public EquipType EquipType => (EquipType)ActionCode.GetCategory();
         public CombatClassType AvailableClass => availableClass;
         public Spec Spec => spec;

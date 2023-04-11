@@ -1,24 +1,24 @@
 using System;
 using System.Collections.Generic;
 using Common.Equipments;
+using Serialization;
 using UnityEngine;
 
 namespace Common.Characters
 {
-    public class CharacterEquipment : MonoBehaviour
+    public class CharacterEquipment : MonoBehaviour, ISavable
     {
-        #region TEMP
+        /* Initial Equipment */
         [SerializeField] private EquipmentInfo weaponInfo;
         [SerializeField] private EquipmentInfo headInfo;
         [SerializeField] private EquipmentInfo topInfo;
         [SerializeField] private EquipmentInfo bottomInfo;
         [SerializeField] private EquipmentInfo trinket1Info;
         [SerializeField] private EquipmentInfo trinket2Info;
-        #endregion
+        
 
         private CharacterBehaviour cb;
-        private CharacterBehaviour Cb => cb ??= GetComponentInParent<CharacterBehaviour>();
-        private Dictionary<EquipSlotIndex, Equipment> equipmentTable { get; } = new(6)
+        public Dictionary<EquipSlotIndex, Equipment> Table { get; } = new(6)
         {
             { EquipSlotIndex.Weapon, null }, 
             { EquipSlotIndex.Head, null }, 
@@ -27,7 +27,13 @@ namespace Common.Characters
             { EquipSlotIndex.Trinket1, null }, 
             { EquipSlotIndex.Trinket2, null },
         };
-        
+
+
+        public void Initialize(CharacterBehaviour cb)
+        {
+            this.cb = cb;
+            Load();
+        }
 
         public void TryArm(Equipment equipment)
         {
@@ -42,51 +48,54 @@ namespace Common.Characters
             
             TryDisarm(targetSlot);
 
-            equipmentTable[targetSlot] = equipment;
-            Cb.StatTable.Add($"{equipment.EquipType}.{targetSlot}", equipment.Spec);
+            Table[targetSlot] = equipment;
+            cb.StatTable.Add($"{equipment.EquipType}.{equipment.Title}", equipment.Spec);
         }
 
         public void TryDisarm(EquipSlotIndex slotIndex)
         {
-            if (equipmentTable[slotIndex].IsNullOrEmpty()) return;
+            if (Table[slotIndex].IsNullOrEmpty()) return;
 
-            var currentEquipment = equipmentTable[slotIndex];
+            var currentEquipment = Table[slotIndex];
             
-            Cb.StatTable.Remove($"{currentEquipment.EquipType}.{slotIndex}", currentEquipment.Spec);
-            equipmentTable[slotIndex] = null;
+            cb.StatTable.Remove($"{currentEquipment.EquipType}.{slotIndex}", currentEquipment.Spec);
+            Table[slotIndex] = null;
         }
 
         public void Save()
         {
-#if !UNITY_EDITOR
             var infoTable = new Dictionary<EquipSlotIndex, EquipmentInfo>();
-            equipmentTable.ForEach(table => infoTable.Add(table.Key, table.Value.Info));
-            MainManager.Save.Save($"{Cb.Name}'s Equipments", infoTable);
-#endif
+            Table.ForEach(table => infoTable.Add(table.Key, table.Value.Info));
+            
+            SaveManager.Save($"{cb.Name}'s Equipments", infoTable);
         }
         
         public void Load()
         {
-#if UNITY_EDITOR
-            TryArm(EquipmentInfo.CreateEquipment(weaponInfo, transform));
-            TryArm(EquipmentInfo.CreateEquipment(headInfo, transform));
-            TryArm(EquipmentInfo.CreateEquipment(topInfo, transform));
-            TryArm(EquipmentInfo.CreateEquipment(bottomInfo, transform));
-            TryArm(EquipmentInfo.CreateEquipment(trinket1Info, transform));
-            TryArm(EquipmentInfo.CreateEquipment(trinket2Info, transform));
-#else
-            var infoTable = MainManager.Save.Load<Dictionary<EquipSlotIndex, EquipmentInfo>>($"{Cb.Name}'s Equipments");
-            infoTable.ForEach(info => TryArm(Generate(info.Value)));
-#endif
+            var infoTable = SaveManager.Load<Dictionary<EquipSlotIndex, EquipmentInfo>>($"{cb.Name}'s Equipments");
+
+            if (infoTable.IsNullOrEmpty())
+            {
+                TryArm(EquipmentInfo.CreateEquipment(weaponInfo, transform));
+                TryArm(EquipmentInfo.CreateEquipment(headInfo, transform));
+                TryArm(EquipmentInfo.CreateEquipment(topInfo, transform));
+                TryArm(EquipmentInfo.CreateEquipment(bottomInfo, transform));
+                TryArm(EquipmentInfo.CreateEquipment(trinket1Info, transform));
+                TryArm(EquipmentInfo.CreateEquipment(trinket2Info, transform));
+            }
+            else
+            {
+                infoTable.ForEach(info => TryArm(EquipmentInfo.CreateEquipment(info.Value, transform)));
+            }
         }
         
 
         private bool IsAvailableClass(Equipment equipment)
         {
-            if(equipment.AvailableClass.HasFlag(Cb.CombatClass)) return true;
+            if(equipment.AvailableClass.HasFlag(cb.CombatClass)) return true;
             
             Debug.LogWarning($"Not Available. "
-                             + $"Available Class:{equipment.AvailableClass}. Target Class:{Cb.CombatClass}");
+                             + $"Available Class:{equipment.AvailableClass}. Target Class:{cb.CombatClass}");
             return false;
         }
         
@@ -98,7 +107,7 @@ namespace Common.Characters
                 EquipType.Head   => EquipSlotIndex.Head,
                 EquipType.Top    => EquipSlotIndex.Top,
                 EquipType.Bottom => EquipSlotIndex.Bottom,
-                EquipType.Trinket => equipmentTable[EquipSlotIndex.Trinket2].IsNullOrEmpty()
+                EquipType.Trinket => Table[EquipSlotIndex.Trinket2].IsNullOrEmpty()
                     ? EquipSlotIndex.Trinket2
                     : EquipSlotIndex.Trinket1,
                 EquipType.None => throw new ArgumentOutOfRangeException(),
@@ -106,11 +115,6 @@ namespace Common.Characters
             };
 
             return targetSlot;
-        }
-
-        private void Awake()
-        {
-            Load();
         }
     }
 }

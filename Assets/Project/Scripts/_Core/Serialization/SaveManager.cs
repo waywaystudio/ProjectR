@@ -15,6 +15,8 @@ namespace Serialization
         private const string PlaySaveName = "_playSaveFile";
         private const string InfoKey = "_SaveInfo";
         private const string Extension = "json";
+
+        public static List<SaveInfo> SaveInfoList => Instance.saveInfoList;
         
 
         /// <summary>
@@ -61,6 +63,7 @@ namespace Serialization
         /// </summary>
         public bool CreateNewSaveFile(string filename)
         {
+            if (!IsValidFileName(filename)) return false;
             if (TryGetSaveInfo(filename, out _)) return false;
 
             var serializeInfo = new SaveInfo(filename);
@@ -174,6 +177,25 @@ namespace Serialization
 
             ES3.Save(InfoKey, new SaveInfo(PlaySaveName), PlaySavePath);
             ES3.Save("_FromPlaySaveFile", "Check", PlaySavePath);
+        }
+
+        private static bool IsValidFileName(string filename)
+        {
+            if (filename == PlaySaveName) return true;
+            
+            if (filename.StartsWith('_'))
+            {
+                Debug.LogWarning("Can't Create Name of StartWith _");
+                return false;
+            }
+
+            if (filename == string.Empty)
+            {
+                Debug.LogWarning("Can't Create Empty FileName");
+                return false;
+            }
+
+            return true;
         }
 
         private bool TryGetSaveInfo(string saveFilename, out SaveInfo result)

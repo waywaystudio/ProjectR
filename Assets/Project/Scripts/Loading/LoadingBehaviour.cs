@@ -1,6 +1,5 @@
-using System;
 using System.Collections.Generic;
-using Manager;
+using SceneAdaption;
 using UnityEngine;
 
 namespace Loading
@@ -11,6 +10,8 @@ namespace Loading
 
         private void Awake()
         {
+            Debug.Log("LoadingBehaviour Awake In");
+            
             if (loadingEffectList.IsNullOrEmpty())
             {
                 Debug.LogError("Loading Effect List is Null!");
@@ -23,7 +24,8 @@ namespace Loading
 
         private void Start()
         {
-            MainManager.Scene.LoadNextScene();
+            SceneManager.LoadNextScene();
+            // MainManager.Scene.LoadNextScene();
         }
 
         private void OnDisable()

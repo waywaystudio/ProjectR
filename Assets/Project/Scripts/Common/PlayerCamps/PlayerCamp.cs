@@ -10,7 +10,7 @@ namespace Common.PlayerCamps
 
         public static CharacterManager Characters => Instance.characters;
         public static InventoryManager Inventories => Instance.inventories;
-        
+
 
 #if UNITY_EDITOR
         public void EditorSetUp()

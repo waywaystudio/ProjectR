@@ -1388,6 +1388,7 @@ MonoBehaviour:
   characterID: 0
   role: 3
   stats: {fileID: 3259723645145811741}
+  equipment: {fileID: 1414989776311464069}
   animating: {fileID: 0}
   damageSpawn: {fileID: 7165625768315214134}
   statusEffectHierarchy: {fileID: 3744010700067239340}
@@ -2662,6 +2663,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4734263807500399249}
   - component: {fileID: 1414989776311464069}
+  - component: {fileID: 2482693565157764150}
   m_Layer: 7
   m_Name: Equipments
   m_TagString: Untagged
@@ -2696,11 +2698,36 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c77f401b3efc322408d5703e794e3f37, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  weaponCode: 0
-  headCode: 0
-  topCode: 0
-  bottomCode: 0
-  trinket1Code: 0
+  weaponInfo:
+    dataCode: 0
+    enchantLevel: 0
+  headInfo:
+    dataCode: 0
+    enchantLevel: 0
+  topInfo:
+    dataCode: 0
+    enchantLevel: 0
+  bottomInfo:
+    dataCode: 0
+    enchantLevel: 0
+  trinket1Info:
+    dataCode: 0
+    enchantLevel: 0
+  trinket2Info:
+    dataCode: 0
+    enchantLevel: 0
+--- !u!114 &2482693565157764150
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6030389877176828492}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: efaf969705ee123418a53e313e1db98d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &6188042393365916432
 GameObject:
   m_ObjectHideFlags: 0

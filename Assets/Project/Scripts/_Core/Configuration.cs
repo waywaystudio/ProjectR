@@ -7,6 +7,11 @@ public class Configuration : MonoBehaviour
 
     private void Awake()
     {
+        Application.targetFrameRate = 60;
+        
         saveManager.LoadAllSaveFile();
     }
+
+
+    public void Debugger() => Debug.Log("Debug In");
 }

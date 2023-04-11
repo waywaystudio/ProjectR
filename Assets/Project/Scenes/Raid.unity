@@ -4578,9 +4578,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 614737969}
-        m_TargetAssemblyTypeName: Raid.UI.StageFinisher.StageFinalizer, Raid
-        m_MethodName: Retry
+      - m_Target: {fileID: 11400000, guid: e9859cbf5565f0945a5b1d306fd94878, type: 2}
+        m_TargetAssemblyTypeName: SceneAdaption.SceneManager, ProjectR.Core
+        m_MethodName: ToLobbyScene
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -4726,8 +4726,7 @@ PrefabInstance:
       propertyPath: m_Name
       value: Database
       objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 5898489475029978976, guid: 9f6a97e7e5739ea469cdeb8ceab14b08, type: 3}
+    m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9f6a97e7e5739ea469cdeb8ceab14b08, type: 3}
 --- !u!1001 &902450961
 PrefabInstance:

@@ -1,7 +1,5 @@
-using Character;
 using Character.Bosses;
-using Common;
-using Manager;
+using SceneAdaption;
 using UnityEngine;
 
 namespace Raid.UI.StageFinisher
@@ -20,8 +18,8 @@ namespace Raid.UI.StageFinisher
         
         public void Retry()
         {
-            MainManager.Scene.LoadScene("Raid");
-            // MainAdventurer.Return();
+            SceneManager.LoadScene("Raid");
+            // MainManager.Scene.LoadScene("Raid");
         }
     }
 }

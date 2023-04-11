@@ -9,13 +9,18 @@ namespace Character.Adventurers
         [SerializeField] protected AdventurerModChanger modChanger;
         
         public bool IsPlayer { get; set; }
-
-
-        protected void Awake()
+        
+        public override void Initialize()
         {
+            if (IsInitialized) return;
+            
             stats.Initialize();
+            equipment.Initialize(this);
             modChanger.Initialize(this);
+
+            IsInitialized = false;
         }
+
 
         private void Update()
         {
