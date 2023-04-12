@@ -13,6 +13,8 @@ namespace Common.PlayerCamps.Inventories
         private List<Equipment> List { get; } = new();
         private string SaveKey => $"{equipType}Inventory";
 
+        public List<Equipment> GetList() => List;
+
         public void Add(Equipment item)
         {
             if(item.IsNullOrEmpty() || item.EquipType != equipType) return;
@@ -39,7 +41,7 @@ namespace Common.PlayerCamps.Inventories
         
         public void Load()
         {
-            List.ForEach(Remove);
+            List.ForReverse(Remove);
             
             var infoList = SaveManager.Load<List<EquipmentInfo>>(SaveKey);
         

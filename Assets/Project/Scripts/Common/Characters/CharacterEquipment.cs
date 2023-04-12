@@ -10,92 +10,71 @@ namespace Common.Characters
     {
         /* Initial Equipment */
         [SerializeField] private EquipmentInfo weaponInfo;
-        [SerializeField] private EquipmentInfo headInfo;
         [SerializeField] private EquipmentInfo topInfo;
-        [SerializeField] private EquipmentInfo bottomInfo;
-        [SerializeField] private EquipmentInfo trinket1Info;
-        [SerializeField] private EquipmentInfo trinket2Info;
-        
 
         private CharacterBehaviour cb;
-        public Dictionary<EquipSlotIndex, Equipment> Table { get; } = new(6)
+        private CharacterBehaviour Cb => cb ??= GetComponentInParent<CharacterBehaviour>(true);
+
+        [Sirenix.OdinInspector.ShowInInspector]
+        public Dictionary<EquipSlotIndex, Equipment> Table = new(6)
         {
-            { EquipSlotIndex.Weapon, null }, 
-            { EquipSlotIndex.Head, null }, 
-            { EquipSlotIndex.Top, null }, 
-            { EquipSlotIndex.Bottom, null }, 
-            { EquipSlotIndex.Trinket1, null }, 
+            { EquipSlotIndex.Weapon, null },
+            { EquipSlotIndex.Head, null },
+            { EquipSlotIndex.Top, null },
+            { EquipSlotIndex.Bottom, null },
+            { EquipSlotIndex.Trinket1, null },
             { EquipSlotIndex.Trinket2, null },
         };
 
 
-        public void Initialize(CharacterBehaviour cb)
+        public void Initialize()
         {
-            this.cb = cb;
             Load();
         }
 
-        public void TryArm(Equipment equipment)
+        public void Equip(Equipment equipment, out Equipment disarmed)
+        {
+            var targetSlot = FindEquipSlot(equipment);
+
+            Disarm(targetSlot, out disarmed);
+            Arm(targetSlot, equipment);
+            
+            equipment.transform.SetParent(transform);
+        }
+
+
+        private void Arm(EquipSlotIndex slotIndex, Equipment equipment)
         {
             // NullCheck
             if(equipment.IsNullOrDestroyed()) return;
             
             // Check AvailableClass
             if(!IsAvailableClass(equipment)) return;
-
-            // Get Matched Slot
-            var targetSlot = FindEquipSlot(equipment);
             
-            TryDisarm(targetSlot);
+            Debug.Log("Arm In");
 
-            Table[targetSlot] = equipment;
-            cb.StatTable.Add($"{equipment.EquipType}.{equipment.Title}", equipment.Spec);
+            Table.TryAdd(slotIndex, equipment);
+            Cb.StatTable.Add($"{equipment.EquipType}.{equipment.Title}", equipment.Spec);
         }
 
-        public void TryDisarm(EquipSlotIndex slotIndex)
+        private void Disarm(EquipSlotIndex slotIndex, out Equipment disarmed)
         {
-            if (Table[slotIndex].IsNullOrEmpty()) return;
+            disarmed = Table[slotIndex];
 
-            var currentEquipment = Table[slotIndex];
+            if (disarmed == null) return;
             
-            cb.StatTable.Remove($"{currentEquipment.EquipType}.{slotIndex}", currentEquipment.Spec);
+            disarmed = Table[slotIndex];
+            
             Table[slotIndex] = null;
+            Cb.StatTable.Remove($"{disarmed.EquipType}.{disarmed.Title}", disarmed.Spec);
         }
-
-        public void Save()
-        {
-            var infoTable = new Dictionary<EquipSlotIndex, EquipmentInfo>();
-            Table.ForEach(table => infoTable.Add(table.Key, table.Value.Info));
-            
-            SaveManager.Save($"{cb.Name}'s Equipments", infoTable);
-        }
-        
-        public void Load()
-        {
-            var infoTable = SaveManager.Load<Dictionary<EquipSlotIndex, EquipmentInfo>>($"{cb.Name}'s Equipments");
-
-            if (infoTable.IsNullOrEmpty())
-            {
-                TryArm(EquipmentInfo.CreateEquipment(weaponInfo, transform));
-                TryArm(EquipmentInfo.CreateEquipment(headInfo, transform));
-                TryArm(EquipmentInfo.CreateEquipment(topInfo, transform));
-                TryArm(EquipmentInfo.CreateEquipment(bottomInfo, transform));
-                TryArm(EquipmentInfo.CreateEquipment(trinket1Info, transform));
-                TryArm(EquipmentInfo.CreateEquipment(trinket2Info, transform));
-            }
-            else
-            {
-                infoTable.ForEach(info => TryArm(EquipmentInfo.CreateEquipment(info.Value, transform)));
-            }
-        }
-        
 
         private bool IsAvailableClass(Equipment equipment)
         {
-            if(equipment.AvailableClass.HasFlag(cb.CombatClass)) return true;
+            if(equipment.AvailableClass.HasFlag(Cb.CombatClass)) return true;
             
             Debug.LogWarning($"Not Available. "
-                             + $"Available Class:{equipment.AvailableClass}. Target Class:{cb.CombatClass}");
+                             + $"Available Class:{equipment.AvailableClass}. Target Class:{Cb.CombatClass}");
             return false;
         }
         
@@ -107,14 +86,38 @@ namespace Common.Characters
                 EquipType.Head   => EquipSlotIndex.Head,
                 EquipType.Top    => EquipSlotIndex.Top,
                 EquipType.Bottom => EquipSlotIndex.Bottom,
-                EquipType.Trinket => Table[EquipSlotIndex.Trinket2].IsNullOrEmpty()
-                    ? EquipSlotIndex.Trinket2
-                    : EquipSlotIndex.Trinket1,
+                EquipType.Trinket => Table[EquipSlotIndex.Trinket1] != null 
+                    ? EquipSlotIndex.Trinket1
+                    : EquipSlotIndex.Trinket2,
                 EquipType.None => throw new ArgumentOutOfRangeException(),
                 _              => throw new ArgumentOutOfRangeException()
             };
 
             return targetSlot;
+        }
+        
+        
+        public void Save()
+        {
+            var infoTable = new Dictionary<EquipSlotIndex, EquipmentInfo>();
+            
+            Table.ForEach(table =>
+            {
+                if (table.Value is null) return;
+                infoTable.Add(table.Key, table.Value.Info);
+            });
+            
+            SaveManager.Save($"{Cb.Name}'s Equipments", infoTable);
+        }
+        
+        public void Load()
+        {
+            var infoTable = SaveManager.Load<Dictionary<EquipSlotIndex, EquipmentInfo>>($"{Cb.Name}'s Equipments");
+
+            infoTable?.ForEach(info =>
+            {
+                Equip(EquipmentInfo.CreateEquipment(info.Value, transform), out _);
+            });
         }
     }
 }

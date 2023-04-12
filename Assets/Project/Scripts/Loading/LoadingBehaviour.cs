@@ -10,8 +10,6 @@ namespace Loading
 
         private void Awake()
         {
-            Debug.Log("LoadingBehaviour Awake In");
-            
             if (loadingEffectList.IsNullOrEmpty())
             {
                 Debug.LogError("Loading Effect List is Null!");

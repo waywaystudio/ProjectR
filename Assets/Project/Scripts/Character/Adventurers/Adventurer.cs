@@ -1,4 +1,3 @@
-using Adventurers;
 using Common.Characters;
 using UnityEngine;
 
@@ -15,10 +14,9 @@ namespace Character.Adventurers
             if (IsInitialized) return;
             
             stats.Initialize();
-            equipment.Initialize(this);
-            modChanger.Initialize(this);
+            equipment.Initialize();
 
-            IsInitialized = false;
+            IsInitialized = true;
         }
 
 

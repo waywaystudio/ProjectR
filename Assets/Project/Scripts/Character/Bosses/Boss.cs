@@ -18,7 +18,7 @@ namespace Character.Bosses
             if (IsInitialized) return;
             
             stats.Initialize();
-            equipment.Initialize(this);
+            equipment.Initialize();
 
             IsInitialized = false;
         }

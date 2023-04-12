@@ -1,6 +1,6 @@
-using System;
 using System.Collections.Generic;
 using Common.Characters;
+using Serialization;
 using UnityEngine;
 
 namespace Common.PlayerCamps
@@ -20,7 +20,7 @@ namespace Common.PlayerCamps
                 return table;
             }
         }
-
+        
 
         public CharacterBehaviour Get(CombatClassType type)
         {
@@ -35,7 +35,22 @@ namespace Common.PlayerCamps
             return character;
         }
         
-        public CharacterBehaviour NextCharacter(CombatClassType currentType)
+        public List<CharacterBehaviour> GetAllCharacters() => characterList;
+        public CharacterBehaviour GetNextCharacter(CombatClassType currentType) => characterList.GetNext(Table[currentType]);
+        public CharacterBehaviour GetPreviousCharacter(CombatClassType currentType) => characterList.GetPrevious(Table[currentType]);
+
+        // public void Save()
+        // {
+        //     characterDataList.ForEach(data => data.Save());
+        // }
+        //
+        // public void Load()
+        // {
+        //     characterDataList.ForEach(data => data.Load());
+        // }
+
+
+        private CharacterBehaviour GetCharacterByType(CombatClassType currentType)
         {
             CharacterBehaviour currentCharacter = null; 
             
@@ -45,9 +60,8 @@ namespace Common.PlayerCamps
                     currentCharacter = character;
             }
 
-            return currentCharacter == null ? null : characterList.GetNext(currentCharacter);
+            return currentCharacter;
         }
-
 
         private void Awake()
         {
@@ -65,5 +79,6 @@ namespace Common.PlayerCamps
             characterList.Sort((a, b) => a.CombatClass.CompareTo(b.CombatClass));
         }
 #endif
+        
     }
 }

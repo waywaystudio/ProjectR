@@ -14,24 +14,24 @@ namespace Lobby.UI
 
         public EquipSlotIndex EquipSlot => equipSlot;
 
-        public void SetEquipmentInfoUI(EquipmentInfo info)
+        public void SetEquipmentInfoUI(Equipment equipment)
         {
-            if (info == null)
+            if (equipment is null || equipment.Info.ActionCode == DataIndex.None)
             {
                 SetDefault();
                 return;
             }
-
-            var equipment = Database.EquipmentMaster.Get<Equipment>(info.ActionCode);
             
             image.sprite       = equipment.Icon;
+            image.color        = Color.white;
             equipmentName.text = equipment.Title;
         }
 
 
         private void SetDefault()
         {
-            image.sprite       = null;
+            // image.sprite       = Empty Equipment Icon
+            image.color        = new Color(1, 1, 1, 0.05f);
             equipmentName.text = "Empty";
         }
 

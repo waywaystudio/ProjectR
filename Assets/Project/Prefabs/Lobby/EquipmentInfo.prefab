@@ -220,7 +220,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Training Sword
+  m_text: '#EquipmentName'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 7f340abb63f105c448f71fc5fe73d924, type: 2}
   m_sharedMaterial: {fileID: -5016735741044500445, guid: 7f340abb63f105c448f71fc5fe73d924, type: 2}
@@ -340,6 +340,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 95c01928c70716f498de1808f7cb1e5b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  equipSlot: 0
   image: {fileID: 8388246919695905917}
   equipmentName: {fileID: 8388246918699515168}
 --- !u!1 &8388246919695905919

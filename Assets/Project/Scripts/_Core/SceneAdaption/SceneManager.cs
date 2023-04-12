@@ -17,8 +17,8 @@ namespace SceneAdaption
         private AsyncOperation sceneChangeOperation;
         
         /* Preset */
-        public void ToRaidScene() => LoadScene("Raid");
-        public void ToLobbyScene() => LoadScene("Lobby");
+        public static void ToRaidScene() => LoadScene("Raid");
+        public static void ToLobbyScene() => LoadScene("Lobby");
 
 
         public static void LoadNextScene()

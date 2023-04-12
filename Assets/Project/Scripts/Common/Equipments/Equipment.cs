@@ -13,9 +13,9 @@ namespace Common.Equipments
         // Effect
         public EquipmentInfo Info => info;
         public DataIndex ActionCode => info.ActionCode;
+        public EquipType EquipType => info.EquipType;
         public string Title => title;
         public Sprite Icon => icon;
-        public EquipType EquipType => (EquipType)ActionCode.GetCategory();
         public CombatClassType AvailableClass => availableClass;
         public Spec Spec => spec;
 

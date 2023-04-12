@@ -1,8 +1,7 @@
-using Character.Adventurers;
 using UnityEngine;
 using UnityEngine.Events;
 
-namespace Adventurers
+namespace Character.Adventurers
 {
     public class AdventurerModChanger : MonoBehaviour
     {
@@ -10,18 +9,14 @@ namespace Adventurers
         [SerializeField] private UnityEvent onAuto;
 
         private Adventurer adventurer;
+        private Adventurer Adventurer => adventurer ??= GetComponent<Adventurer>();
         
-
-        public void Initialize(Adventurer adventurer)
-        {
-            this.adventurer = adventurer;
-        }
 
         public void OnFocused(Adventurer focusAdventurer)
         {
-            if (adventurer is null) return;
+            if (Adventurer is null) return;
 
-            if (focusAdventurer == adventurer)
+            if (focusAdventurer == Adventurer)
             {
                 onManual?.Invoke();
             }

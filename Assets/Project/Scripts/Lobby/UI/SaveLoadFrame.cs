@@ -13,9 +13,11 @@ namespace Lobby.UI
         [ShowInInspector]
         private List<SaveInfoBox> infoBoxList = new();
 
-
+        [ShowInInspector]
         public void Reload()
         {
+            infoBoxList.RemoveAll(box => box == null);
+            
             var saveFileList = SaveManager.SaveInfoList;
 
             saveFileList.ForEach((saveFile, index) => 

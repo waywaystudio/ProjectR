@@ -16,6 +16,7 @@ namespace Serialization
         private const string InfoKey = "_SaveInfo";
         private const string Extension = "json";
 
+        [Sirenix.OdinInspector.ShowInInspector]
         public static List<SaveInfo> SaveInfoList => Instance.saveInfoList;
         
 
@@ -158,9 +159,16 @@ namespace Serialization
         /// <param name="destName">복사받을 대상</param>
         private void TransferSaveInfo(string fromName, string destName)
         {
-            DeleteSaveFile(destName);
-            CreateNewSaveFile(destName);
-            
+            if (destName == PlaySaveName)
+            {
+                CreatePlaySaveFile();
+            }
+            else
+            {
+                DeleteSaveFile(destName);
+                CreateNewSaveFile(destName);
+            }
+
             ES3.GetKeys(GetPathByName(fromName)).ForEach(key =>
             {
                 if (key == InfoKey) return;

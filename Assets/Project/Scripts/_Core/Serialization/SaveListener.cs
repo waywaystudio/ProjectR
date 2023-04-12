@@ -11,7 +11,8 @@ namespace Serialization
         {
             get
             {
-                if (savableList.IsNullOrEmpty()) GetComponents(savableList);
+                if (savableList.IsNullOrEmpty()) 
+                    GetComponents(savableList);
 
                 return savableList;
             }
@@ -30,6 +31,13 @@ namespace Serialization
         {
             Save();
             SaveManager.Instance.RemoveListener(this);
+        }
+        
+        private void OnDestroy()
+        {
+            Debug.Log($"{gameObject.name}'s SaveManager Destroy");
+            // Save();
+            // SaveManager.Instance.RemoveListener(this);
         }
     }
 }

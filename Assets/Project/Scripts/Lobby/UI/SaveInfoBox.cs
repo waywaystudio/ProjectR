@@ -1,3 +1,4 @@
+using SceneAdaption;
 using Serialization;
 using TMPro;
 using UnityEngine;
@@ -25,14 +26,13 @@ namespace Lobby.UI
             
             loadButton.onClick.RemoveAllListeners();
             loadButton.onClick.AddListener(info.Load);
+            loadButton.onClick.AddListener(SceneManager.ToLobbyScene);
             // loadButton.onClick.AddListener(Reload);
             
             deleteButton.onClick.RemoveAllListeners();
             deleteButton.onClick.AddListener(info.Delete);
             deleteButton.onClick.AddListener(Reload);
             deleteButton.onClick.AddListener(() => Destroy(gameObject));
-            
-            // LobbyDirector.SaveLoadFrame.Reload();
         }
         
         private static void Reload() => LobbyDirector.SaveLoadFrame.Reload();

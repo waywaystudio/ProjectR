@@ -10,9 +10,12 @@ namespace Lobby.UI
     public class AdventurerStatusUI : MonoBehaviour, IEditable
     {
         [SerializeField] private CombatClassType classType;
+        [SerializeField] private TextMeshProUGUI className;
         [SerializeField] private List<StatInfoUI> statInfoList;
         [SerializeField] private List<Image> skillImageList;
         [SerializeField] private List<EquipmentInfoUI> equipmentInfoList;
+
+        public CombatClassType ClassType => classType;
 
 
         [Sirenix.OdinInspector.Button]
@@ -20,7 +23,8 @@ namespace Lobby.UI
         {
             var adventurer = PlayerCamp.Characters.Get(classType);
 
-            // TODO. StatTable값이 안들어와 있을 수 있다.
+            className.text = classType.ToString();
+            
             GetStat(StatType.Power).SetValue(adventurer.StatTable.Power.ToString("0"));
             GetStat(StatType.CriticalChance).SetValue($"{adventurer.StatTable.CriticalChance:F1}%");
             GetStat(StatType.CriticalDamage).SetValue($"{200f + adventurer.StatTable.CriticalDamage:F1}%");
@@ -35,7 +39,9 @@ namespace Lobby.UI
             
             adventurer.Equipment.Table.ForEach(equipment =>
             {
-                GetEquipmentUI(equipment.Key).SetEquipmentInfoUI(equipment.Value.Info);
+                // if (equipment.Value is null) return;
+                
+                GetEquipmentUI(equipment.Key).SetEquipmentInfoUI(equipment.Value);
             });
         }
 
@@ -52,12 +58,10 @@ namespace Lobby.UI
 #if UNITY_EDITOR
         public void EditorSetUp()
         {
-            var className = transform.Find("Portrait")
+            className = transform.Find("Portrait")
                                      .Find("Header")
                                      .Find("Title")
                                      .GetComponent<TextMeshProUGUI>();
-
-            className.text = classType.ToString();
             
             GetComponentsInChildren(true, statInfoList);
             GetComponentsInChildren(true, equipmentInfoList);
@@ -71,6 +75,8 @@ namespace Lobby.UI
             skillImageList.Add(slotListTransform.Find("Slot 2").Find("Contents").GetComponent<Image>());
             skillImageList.Add(slotListTransform.Find("Slot 3").Find("Contents").GetComponent<Image>());
             skillImageList.Add(slotListTransform.Find("Slot 4").Find("Contents").GetComponent<Image>());
+            
+            UnityEditor.EditorUtility.SetDirty(this);
         }
 #endif
     }

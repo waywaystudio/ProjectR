@@ -2663,7 +2663,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4734263807500399249}
   - component: {fileID: 1414989776311464069}
-  - component: {fileID: 2482693565157764150}
+  - component: {fileID: 2555217960364456624}
   m_Layer: 7
   m_Name: Equipments
   m_TagString: Untagged
@@ -2701,22 +2701,10 @@ MonoBehaviour:
   weaponInfo:
     dataCode: 0
     enchantLevel: 0
-  headInfo:
-    dataCode: 0
-    enchantLevel: 0
   topInfo:
     dataCode: 0
     enchantLevel: 0
-  bottomInfo:
-    dataCode: 0
-    enchantLevel: 0
-  trinket1Info:
-    dataCode: 0
-    enchantLevel: 0
-  trinket2Info:
-    dataCode: 0
-    enchantLevel: 0
---- !u!114 &2482693565157764150
+--- !u!114 &2555217960364456624
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

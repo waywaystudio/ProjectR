@@ -31,7 +31,7 @@ namespace Common.PlayerCamps
         }
 
 
-        private Inventory GetInventoryByType(EquipType type) => type switch
+        public Inventory GetInventoryByType(EquipType type) => type switch
         {
             EquipType.Weapon  => weaponInventory,
             EquipType.Head    => headInventor,

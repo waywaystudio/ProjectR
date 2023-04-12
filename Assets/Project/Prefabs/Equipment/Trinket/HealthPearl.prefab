@@ -8,6 +8,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: -8978545940066208770, guid: e276ff5766e4ab542ae9875dd422a6fc, type: 3}
+      propertyPath: icon
+      value: 
+      objectReference: {fileID: 21300000, guid: 5e6c1f9997f19d14c8a12e3e7ff284a8, type: 3}
+    - target: {fileID: -8978545940066208770, guid: e276ff5766e4ab542ae9875dd422a6fc, type: 3}
       propertyPath: title
       value: Health Pearl
       objectReference: {fileID: 0}

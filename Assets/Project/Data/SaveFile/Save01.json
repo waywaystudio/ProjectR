@@ -1,0 +1,123 @@
+{
+	"_FromPlaySaveFile" : {
+		"__type" : "string",
+		"value" : "Check"
+	},
+	"Knight's Equipments" : {
+		"__type" : "System.Collections.Generic.Dictionary`2[[Common.EquipSlotIndex, ProjectR.Common, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null],[Common.Equipments.EquipmentInfo, ProjectR.Common, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]],mscorlib",
+		"value" : {1:{
+				"dataCode" : 21010001,
+				"enchantLevel" : 0
+			},2:{
+				"dataCode" : 22010001,
+				"enchantLevel" : 0
+			},3:{
+				"dataCode" : 23010002,
+				"enchantLevel" : 0
+			},4:{
+				"dataCode" : 24010004,
+				"enchantLevel" : 0
+			},5:{
+				"dataCode" : 25010001,
+				"enchantLevel" : 0
+			},6:{
+				"dataCode" : 25010002,
+				"enchantLevel" : 0
+			}
+		}
+	},
+	"Assassin's Equipments" : {
+		"__type" : "System.Collections.Generic.Dictionary`2[[Common.EquipSlotIndex, ProjectR.Common, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null],[Common.Equipments.EquipmentInfo, ProjectR.Common, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]],mscorlib",
+		"value" : {1:{
+				"dataCode" : 21020002,
+				"enchantLevel" : 0
+			},2:{
+				"dataCode" : 22010002,
+				"enchantLevel" : 0
+			},3:{
+				"dataCode" : 23010001,
+				"enchantLevel" : 0
+			},4:{
+				"dataCode" : 24010002,
+				"enchantLevel" : 0
+			},5:{
+				"dataCode" : 25010003,
+				"enchantLevel" : 0
+			},6:{
+				"dataCode" : 25010002,
+				"enchantLevel" : 0
+			}
+		}
+	},
+	"Solider's Equipments" : {
+		"__type" : "System.Collections.Generic.Dictionary`2[[Common.EquipSlotIndex, ProjectR.Common, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null],[Common.Equipments.EquipmentInfo, ProjectR.Common, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]],mscorlib",
+		"value" : {1:{
+				"dataCode" : 21030003,
+				"enchantLevel" : 0
+			},2:{
+				"dataCode" : 22010003,
+				"enchantLevel" : 0
+			},3:{
+				"dataCode" : 23010001,
+				"enchantLevel" : 0
+			},4:{
+				"dataCode" : 24010003,
+				"enchantLevel" : 0
+			},5:{
+				"dataCode" : 25010003,
+				"enchantLevel" : 0
+			},6:{
+				"dataCode" : 25010002,
+				"enchantLevel" : 0
+			}
+		}
+	},
+	"Moragg's Equipments" : {
+		"__type" : "System.Collections.Generic.Dictionary`2[[Common.EquipSlotIndex, ProjectR.Common, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null],[Common.Equipments.EquipmentInfo, ProjectR.Common, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]],mscorlib",
+		"value" : {
+		}
+	},
+	"TrinketInventory" : {
+		"__type" : "System.Collections.Generic.List`1[[Common.Equipments.EquipmentInfo, ProjectR.Common, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]],mscorlib",
+		"value" : [
+			
+		]
+	},
+	"BottomInventory" : {
+		"__type" : "System.Collections.Generic.List`1[[Common.Equipments.EquipmentInfo, ProjectR.Common, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]],mscorlib",
+		"value" : [
+			
+		]
+	},
+	"TopInventory" : {
+		"__type" : "System.Collections.Generic.List`1[[Common.Equipments.EquipmentInfo, ProjectR.Common, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]],mscorlib",
+		"value" : [
+			
+		]
+	},
+	"HeadInventory" : {
+		"__type" : "System.Collections.Generic.List`1[[Common.Equipments.EquipmentInfo, ProjectR.Common, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]],mscorlib",
+		"value" : [
+			{
+				"dataCode" : 22010003,
+				"enchantLevel" : 0
+			}
+		]
+	},
+	"WeaponInventory" : {
+		"__type" : "System.Collections.Generic.List`1[[Common.Equipments.EquipmentInfo, ProjectR.Common, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]],mscorlib",
+		"value" : [
+			{
+				"dataCode" : 21020002,
+				"enchantLevel" : 0
+			}
+		]
+	},
+	"_SaveInfo" : {
+		"__type" : "Serialization.SaveInfo,ProjectR.Core",
+		"value" : {
+			"filename" : "Save01",
+			"saveTime" : "2023.04.12.21.27.44"
+		}
+	}
+}

@@ -165,4 +165,32 @@ public static class ListExtension
         // If the element is the last one in the list, return the first element; otherwise, return the next element.
         return (index == list.Count - 1) ? list[0] : list[index + 1];
     }
+    
+    public static T GetPrevious<T>(this List<T> list, T element)
+    {
+        if (list == null || list.Count == 0)
+        {
+            throw new ArgumentException("The list is null or empty.");
+        }
+
+        var index = list.IndexOf(element);
+
+        if (index == -1)
+        {
+            throw new ArgumentException("The element is not found in the list.");
+        }
+
+        // If the element is the first one in the list, return the last element; otherwise, return the previous element.
+        return (index == 0) ? list[^1] : list[index - 1];
+    }
+
+    public static T TryGetElement<T>(this List<T> list, Predicate<T> condition)
+    {
+        foreach (var element in list)
+        {
+            if (condition.Invoke(element)) return element;
+        }
+
+        return default;
+    }
 }

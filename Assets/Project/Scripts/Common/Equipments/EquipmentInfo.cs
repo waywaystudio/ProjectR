@@ -12,6 +12,7 @@ namespace Common.Equipments
         // Additional Save Data Below
 
         public DataIndex ActionCode => dataCode;
+        public EquipType EquipType => (EquipType)ActionCode.GetCategory();
         public int EnchantLevel { get => enchantLevel; set => enchantLevel = value; }
 
         public EquipmentInfo(DataIndex dataCode, int enchantLevel = 0)

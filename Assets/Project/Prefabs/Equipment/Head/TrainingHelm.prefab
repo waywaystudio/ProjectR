@@ -8,6 +8,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: -8544672606141790727, guid: 1dc7dfacb62c80a4eae3cedb34e9cd5b, type: 3}
+      propertyPath: icon
+      value: 
+      objectReference: {fileID: 21300000, guid: 907ef841e6ba3624d9a355f453f1f323, type: 3}
+    - target: {fileID: -8544672606141790727, guid: 1dc7dfacb62c80a4eae3cedb34e9cd5b, type: 3}
       propertyPath: title
       value: Training Helm
       objectReference: {fileID: 0}
