@@ -103,4 +103,24 @@ public static class GameObjectExtension
     {
         return gameObject.GetComponent<T>() != null;
     }
+    
+    public static void TrimAndDestroy<T>(this List<T> list, int maxIndex) where T : MonoBehaviour
+    {
+        // Check if the specified index is within the bounds of the list
+        if (maxIndex < 0 || maxIndex >= list.Count)
+        {
+            return;
+        }
+
+        // Destroy GameObjects with index larger than or equal to maxIndex
+        for (var i = list.Count - 1; i >= maxIndex; i--)
+        {
+            var go = list[i].gameObject;
+            list.RemoveAt(i);
+            if (go != null)
+            {
+                Object.Destroy(go);
+            }
+        }
+    }
 }

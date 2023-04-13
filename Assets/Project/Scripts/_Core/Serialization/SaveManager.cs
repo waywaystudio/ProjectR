@@ -45,11 +45,7 @@ namespace Serialization
             {
                 var saveFilePath = $"{SaveFileDirectory}/{saveFile}";
                 
-                if (!HasKeyInPath(InfoKey, saveFilePath))
-                {
-                    Debug.LogWarning($"Invalid SaveFile Exist. FilePath:{saveFilePath}");
-                    return;
-                }
+                if (!HasKeyInPath(InfoKey, saveFilePath)) return;
 
                 var saveInfo = Load<SaveInfo>(InfoKey, saveFilePath);
                 
@@ -227,20 +223,20 @@ namespace Serialization
         }
 
         #region ES3 Packing
-        private static void Save<T>(string key, T value, string filePath) 
-            => ES3.Save(key, value, filePath);
-
-        private static T Load<T>(string key, string filePath, T defaultValue = default) 
-            => ES3.Load(key, filePath, defaultValue);
-        
+        private static void Save<T>(string key, T value, string filePath) => ES3.Save(key, value, filePath);
+        private static T Load<T>(string key, string filePath, T defaultValue = default) => ES3.Load(key, filePath, defaultValue);
         private static IEnumerable<string> GetSaveFiles 
             => ES3.GetFiles(SaveFileDirectory)
                   .Where(file => file.EndsWith($".{Extension}"))
                   .Where(file => file.NotContains('_'));
 
         private static bool HasKeyInPath(string key, string filePath)
-            => ES3.KeyExists(key, filePath);
-        
+        {
+            if (ES3.KeyExists(key, filePath)) return true;
+            
+            Debug.LogWarning($"Invalid SaveFile Exist. FilePath:{filePath}");
+            return false;
+        }
         private static void DeleteFilePath(string filePath) => ES3.DeleteFile(filePath);
         private static void DeleteSaveFileDirectory(string directory) => ES3.DeleteDirectory(directory);
         #endregion

@@ -1,0 +1,112 @@
+{
+	"_FromPlaySaveFile" : {
+		"__type" : "string",
+		"value" : "Check"
+	},
+	"Knight's Equipments" : {
+		"__type" : "System.Collections.Generic.Dictionary`2[[Common.EquipSlotIndex, ProjectR.Common, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null],[Common.Equipments.EquipmentInfo, ProjectR.Common, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]],mscorlib",
+		"value" : {1:{
+				"dataCode" : 21020002,
+				"enchantLevel" : 0,
+				"spec" : {
+					"statList" : [
+						{
+							"statType" : 1,
+							"applyType" : 1,
+							"value" : 20
+						},{
+							"statType" : 2,
+							"applyType" : 1,
+							"value" : 30
+						},{
+							"statType" : 3,
+							"applyType" : 1,
+							"value" : 10
+						},{
+							"statType" : 4,
+							"applyType" : 1,
+							"value" : 50
+						},{
+							"statType" : 10,
+							"applyType" : 1,
+							"value" : 8
+						},{
+							"statType" : 11,
+							"applyType" : 1,
+							"value" : 14
+						}
+					]
+				}
+			},3:{
+				"dataCode" : 23010001,
+				"enchantLevel" : 0,
+				"spec" : {
+					"statList" : [
+						{
+							"statType" : 1,
+							"applyType" : 1,
+							"value" : 20
+						},{
+							"statType" : 2,
+							"applyType" : 1,
+							"value" : 50
+						},{
+							"statType" : 3,
+							"applyType" : 1,
+							"value" : 10
+						},{
+							"statType" : 4,
+							"applyType" : 1,
+							"value" : 20
+						},{
+							"statType" : 5,
+							"applyType" : 1,
+							"value" : 10
+						},{
+							"statType" : 6,
+							"applyType" : 1,
+							"value" : 50
+						}
+					]
+				}
+			}
+		}
+	},
+	"TrinketInventory" : {
+		"__type" : "System.Collections.Generic.List`1[[Common.Equipments.EquipmentInfo, ProjectR.Common, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]],mscorlib",
+		"value" : [
+			
+		]
+	},
+	"BottomInventory" : {
+		"__type" : "System.Collections.Generic.List`1[[Common.Equipments.EquipmentInfo, ProjectR.Common, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]],mscorlib",
+		"value" : [
+			
+		]
+	},
+	"TopInventory" : {
+		"__type" : "System.Collections.Generic.List`1[[Common.Equipments.EquipmentInfo, ProjectR.Common, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]],mscorlib",
+		"value" : [
+			
+		]
+	},
+	"HeadInventory" : {
+		"__type" : "System.Collections.Generic.List`1[[Common.Equipments.EquipmentInfo, ProjectR.Common, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]],mscorlib",
+		"value" : [
+			
+		]
+	},
+	"WeaponInventory" : {
+		"__type" : "System.Collections.Generic.List`1[[Common.Equipments.EquipmentInfo, ProjectR.Common, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]],mscorlib",
+		"value" : [
+			
+		]
+	},
+	"_SaveInfo" : {
+		"__type" : "Serialization.SaveInfo,ProjectR.Core",
+		"value" : {
+			"filename" : "Save Default",
+			"saveTime" : "2023.04.13.14.00.45"
+		}
+	}
+}

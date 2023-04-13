@@ -21,33 +21,32 @@ namespace Lobby.UI
         [Sirenix.OdinInspector.Button]
         public void Reload()
         {
-            var adventurer = PlayerCamp.Characters.Get(classType);
+            var adventurer     = PlayerCamp.Characters.Get(classType);
+            var adventurerData = PlayerCamp.Characters.GetData(classType);
 
             className.text = classType.ToString();
             
-            GetStat(StatType.Power).SetValue(adventurer.StatTable.Power.ToString("0"));
-            GetStat(StatType.CriticalChance).SetValue($"{adventurer.StatTable.CriticalChance:F1}%");
-            GetStat(StatType.CriticalDamage).SetValue($"{200f + adventurer.StatTable.CriticalDamage:F1}%");
-            GetStat(StatType.Haste).SetValue($"{adventurer.StatTable.Haste:F1}%");
-            GetStat(StatType.Armor).SetValue(adventurer.StatTable.Armor.ToString("0"));
-            GetStat(StatType.Health).SetValue(adventurer.StatTable.Health.ToString("0"));
+            GetStat(StatType.Power).SetValue(adventurerData.GetStat(StatType.Power).ToString("0"));
+            GetStat(StatType.CriticalChance).SetValue($"{adventurerData.GetStat(StatType.CriticalChance):F1}%");
+            GetStat(StatType.CriticalDamage).SetValue($"{200f + adventurerData.GetStat(StatType.CriticalDamage):F1}%");
+            GetStat(StatType.Haste).SetValue($"{adventurerData.GetStat(StatType.Haste):F1}%");
+            GetStat(StatType.Armor).SetValue(adventurerData.GetStat(StatType.Armor).ToString("0"));
+            GetStat(StatType.Health).SetValue(adventurerData.GetStat(StatType.Health).ToString("0"));
             
             adventurer.SkillBehaviour.SkillList.ForEach((skill, index) =>
             {
                 if (skillImageList.Count > index) skillImageList[index].sprite = skill.Icon;
             });
             
-            adventurer.Equipment.Table.ForEach(equipment =>
+            adventurerData.Table.ForEach(equipment =>
             {
-                // if (equipment.Value is null) return;
-                
                 GetEquipmentUI(equipment.Key).SetEquipmentInfoUI(equipment.Value);
             });
         }
 
 
-        private StatInfoUI GetStat(StatType type) => statInfoList.Find(stat => stat.StatType == type);
-        private EquipmentInfoUI GetEquipmentUI(EquipSlotIndex type) => equipmentInfoList.Find(equip => equip.EquipSlot == type);
+        private StatInfoUI GetStat(StatType type) => statInfoList.TryGetElement(stat => stat.StatType == type);
+        private EquipmentInfoUI GetEquipmentUI(EquipSlotIndex type) => equipmentInfoList.TryGetElement(equip => equip.EquipSlot == type);
 
         private void Awake()
         {
@@ -59,9 +58,9 @@ namespace Lobby.UI
         public void EditorSetUp()
         {
             className = transform.Find("Portrait")
-                                     .Find("Header")
-                                     .Find("Title")
-                                     .GetComponent<TextMeshProUGUI>();
+                                 .Find("Header")
+                                 .Find("Title")
+                                 .GetComponent<TextMeshProUGUI>();
             
             GetComponentsInChildren(true, statInfoList);
             GetComponentsInChildren(true, equipmentInfoList);

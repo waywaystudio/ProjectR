@@ -12,8 +12,7 @@ namespace Lobby.UI
 
         public StatType StatType => statType;
 
-        
-        
+
         public void SetValue(string value)
         {
             valueText.text = value;

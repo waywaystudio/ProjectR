@@ -1,13 +1,14 @@
 using System;
 using System.Collections.Generic;
 using Common.Equipments;
-using Serialization;
 using UnityEngine;
 
 namespace Common.Characters
 {
-    public class CharacterEquipment : MonoBehaviour, ISavable
+    public class CharacterEquipment : MonoBehaviour
     {
+        [SerializeField] private CharacterData data;
+        
         /* Initial Equipment */
         [SerializeField] private EquipmentInfo weaponInfo;
         [SerializeField] private EquipmentInfo topInfo;
@@ -29,44 +30,61 @@ namespace Common.Characters
 
         public void Initialize()
         {
-            Load();
+            data.Table.ForEach(dataTable =>
+            {
+                Table[dataTable.Key] = EquipmentInfo.CreateEquipment(dataTable.Value, transform);
+                Cb.StatTable.Add($"{Table[dataTable.Key].EquipType}.{Table[dataTable.Key].Title}", Table[dataTable.Key].Spec);
+            });
+
+            if (Table[EquipSlotIndex.Weapon] == null && Table[EquipSlotIndex.Top] == null)
+            {
+                Equip(EquipmentInfo.CreateEquipment(weaponInfo, transform), out _);
+                Equip(EquipmentInfo.CreateEquipment(topInfo, transform), out _);
+            }
         }
 
         public void Equip(Equipment equipment, out Equipment disarmed)
         {
+            if (equipment == null)
+            {
+                disarmed = null;
+                return;
+            }
+            
             var targetSlot = FindEquipSlot(equipment);
 
-            Disarm(targetSlot, out disarmed);
-            Arm(targetSlot, equipment);
+            TryDisarm(targetSlot, out disarmed);
+            
+            if (!TryArm(targetSlot, equipment)) return;
             
             equipment.transform.SetParent(transform);
         }
 
-
-        private void Arm(EquipSlotIndex slotIndex, Equipment equipment)
-        {
-            // NullCheck
-            if(equipment.IsNullOrDestroyed()) return;
-            
-            // Check AvailableClass
-            if(!IsAvailableClass(equipment)) return;
-            
-            Debug.Log("Arm In");
-
-            Table.TryAdd(slotIndex, equipment);
-            Cb.StatTable.Add($"{equipment.EquipType}.{equipment.Title}", equipment.Spec);
-        }
-
-        private void Disarm(EquipSlotIndex slotIndex, out Equipment disarmed)
+        public bool TryDisarm(EquipSlotIndex slotIndex, out Equipment disarmed)
         {
             disarmed = Table[slotIndex];
 
-            if (disarmed == null) return;
+            if (disarmed == null) return false;
+
+            Table[slotIndex]      = null;
             
-            disarmed = Table[slotIndex];
-            
-            Table[slotIndex] = null;
+            data.Table.TryRemove(slotIndex);
             Cb.StatTable.Remove($"{disarmed.EquipType}.{disarmed.Title}", disarmed.Spec);
+
+            return true;
+        }
+        
+
+        private bool TryArm(EquipSlotIndex slotIndex, Equipment equipment)
+        {
+            // Check AvailableClass
+            if(!IsAvailableClass(equipment)) return false;
+
+            Table.TryAdd(slotIndex, equipment, true);
+            data.Table.TryAdd(slotIndex, equipment.Info, true);
+            Cb.StatTable.Add($"{equipment.EquipType}.{equipment.Title}", equipment.Spec);
+
+            return true;
         }
 
         private bool IsAvailableClass(Equipment equipment)
@@ -94,30 +112,6 @@ namespace Common.Characters
             };
 
             return targetSlot;
-        }
-        
-        
-        public void Save()
-        {
-            var infoTable = new Dictionary<EquipSlotIndex, EquipmentInfo>();
-            
-            Table.ForEach(table =>
-            {
-                if (table.Value is null) return;
-                infoTable.Add(table.Key, table.Value.Info);
-            });
-            
-            SaveManager.Save($"{Cb.Name}'s Equipments", infoTable);
-        }
-        
-        public void Load()
-        {
-            var infoTable = SaveManager.Load<Dictionary<EquipSlotIndex, EquipmentInfo>>($"{Cb.Name}'s Equipments");
-
-            infoTable?.ForEach(info =>
-            {
-                Equip(EquipmentInfo.CreateEquipment(info.Value, transform), out _);
-            });
         }
     }
 }

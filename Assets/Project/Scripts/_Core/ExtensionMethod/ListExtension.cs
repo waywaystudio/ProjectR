@@ -193,4 +193,12 @@ public static class ListExtension
 
         return default;
     }
+    
+    public static void RemoveExcess<T>(this List<T> fromList, int count)
+    {
+        while (fromList.Count > count)
+        {
+            fromList.RemoveAt(fromList.Count - 1);
+        }
+    }
 }

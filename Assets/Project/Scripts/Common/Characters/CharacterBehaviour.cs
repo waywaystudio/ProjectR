@@ -82,12 +82,7 @@ namespace Common.Characters
 
 
         public virtual void Initialize() { }
-        
-        
-        private void Awake()
-        {
-            Initialize();
-        }
+
         
         private void OnEnable()
         {

@@ -10,18 +10,22 @@ namespace Lobby.UI
     {
         [SerializeField] private Image itemImage;
 
+        [Sirenix.OdinInspector.ShowInInspector]
         public Equipment Equipment { get; private set; }
 
+        private InventoryUI MasterInventoryUI { get; set; }
 
-        public void SetItemUI(Equipment equipment)
+
+        public void SetItemUI(InventoryUI master, Equipment equipment)
         {
-            Equipment = equipment;
-
-            itemImage.sprite = equipment.Icon;
+            MasterInventoryUI = master;
+            Equipment         = equipment;
+            itemImage.sprite  = equipment.Icon;
         }
         
         public void OnPointerClick(PointerEventData eventData)
         {
+            // Right Click To Equip
             if (eventData.button == PointerEventData.InputButton.Right)
             {
                 var adventurer = LobbyDirector.AdventurerFrame.CurrentCharacter;
@@ -29,10 +33,20 @@ namespace Lobby.UI
                 adventurer.Equipment.Equip(Equipment, out var disarmed);
 
                 PlayerCamp.Inventories.Remove(Equipment);
-                PlayerCamp.Inventories.Add(disarmed);
+
+                // Replace
+                if (disarmed != null)
+                {
+                    PlayerCamp.Inventories.Add(disarmed);
                 
-                SetItemUI(disarmed);
-                
+                    SetItemUI(MasterInventoryUI, disarmed);
+                }
+                // Equip Character at Empty Slot
+                else
+                {
+                    MasterInventoryUI.RemoveInventorySlot(Equipment);
+                }
+
                 LobbyDirector.AdventurerFrame.ReloadAdventurer(adventurer.CombatClass);
             }
         }

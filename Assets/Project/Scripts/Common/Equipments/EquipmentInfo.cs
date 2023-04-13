@@ -9,11 +9,13 @@ namespace Common.Equipments
     {
         [SerializeField] private DataIndex dataCode;
         [SerializeField] private int enchantLevel;
+        [SerializeField] private Spec spec;
         // Additional Save Data Below
 
         public DataIndex ActionCode => dataCode;
         public EquipType EquipType => (EquipType)ActionCode.GetCategory();
         public int EnchantLevel { get => enchantLevel; set => enchantLevel = value; }
+        public Spec Spec => spec;
 
         public EquipmentInfo(DataIndex dataCode, int enchantLevel = 0)
         {
@@ -24,11 +26,7 @@ namespace Common.Equipments
         public static Equipment CreateEquipment(EquipmentInfo info, Transform parent)
         {
             if (info.ActionCode == DataIndex.None) return null;
-            if (!Database.EquipmentMaster.GetObject(info.ActionCode, out var equipmentPrefab))
-            {
-                Debug.LogWarning($"Not Exist {info.ActionCode} prefab. return out Null");
-                return null;
-            }
+            if (!Database.EquipmentMaster.GetObject(info.ActionCode, out var equipmentPrefab)) return null;
             
             var equipObject = Object.Instantiate(equipmentPrefab, parent);
             

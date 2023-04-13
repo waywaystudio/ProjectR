@@ -51,7 +51,7 @@ namespace Common
         public void Unregister(string key, StatTable table) => table.Remove(key, this);
 
 
-        private float GetStatValue(StatType statType)
+        public float GetStatValue(StatType statType)
         {
             foreach (var stat in statList)
             {

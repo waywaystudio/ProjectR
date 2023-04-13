@@ -9,12 +9,12 @@ namespace Common.Equipments
             
             var topData = Database.TopData(ActionCode);
 
-            (topData.Power != 0.0f).OnTrue(() => spec.Add(StatType.Power, StatApplyType.Plus, topData.Power));
-            (topData.Health != 0.0f).OnTrue(() => spec.Add(StatType.Health, StatApplyType.Plus, topData.Health));
-            (topData.CriticalChance != 0.0f).OnTrue(() => spec.Add(StatType.CriticalChance, StatApplyType.Plus, topData.CriticalChance));
-            (topData.CriticalDamage != 0.0f).OnTrue(() => spec.Add(StatType.CriticalDamage, StatApplyType.Plus, topData.CriticalDamage));
-            (topData.Haste != 0.0f).OnTrue(() => spec.Add(StatType.Haste, StatApplyType.Plus, topData.Haste));
-            (topData.Armor != 0.0f).OnTrue(() => spec.Add(StatType.Armor, StatApplyType.Plus, topData.Armor));
+            (topData.Power != 0.0f).OnTrue(() => Spec.Add(StatType.Power, StatApplyType.Plus, topData.Power));
+            (topData.Health != 0.0f).OnTrue(() => Spec.Add(StatType.Health, StatApplyType.Plus, topData.Health));
+            (topData.CriticalChance != 0.0f).OnTrue(() => Spec.Add(StatType.CriticalChance, StatApplyType.Plus, topData.CriticalChance));
+            (topData.CriticalDamage != 0.0f).OnTrue(() => Spec.Add(StatType.CriticalDamage, StatApplyType.Plus, topData.CriticalDamage));
+            (topData.Haste != 0.0f).OnTrue(() => Spec.Add(StatType.Haste, StatApplyType.Plus, topData.Haste));
+            (topData.Armor != 0.0f).OnTrue(() => Spec.Add(StatType.Armor, StatApplyType.Plus, topData.Armor));
         }
 #endif
     }

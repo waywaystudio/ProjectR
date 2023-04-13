@@ -8,16 +8,15 @@ namespace Common.Equipments
         [SerializeField] protected string title;
         [SerializeField] protected Sprite icon;
         [SerializeField] protected CombatClassType availableClass;
-        [SerializeField] protected Spec spec;
 
         // Effect
         public EquipmentInfo Info => info;
         public DataIndex ActionCode => info.ActionCode;
         public EquipType EquipType => info.EquipType;
+        public CombatClassType AvailableClass => availableClass;
         public string Title => title;
         public Sprite Icon => icon;
-        public CombatClassType AvailableClass => availableClass;
-        public Spec Spec => spec;
+        public Spec Spec => info.Spec;
 
         // TODO. After Enchant Design done,
         public void Enchant(int level)
@@ -39,7 +38,7 @@ namespace Common.Equipments
             availableClass = CombatClassType.All; // TEMP
             // image = Database.GetSprite(ActionCode)
             
-            spec.Clear();
+            Spec.Clear();
             UnityEditor.EditorUtility.SetDirty(this);
         }
 #endif

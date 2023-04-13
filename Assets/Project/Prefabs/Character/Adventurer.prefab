@@ -2663,7 +2663,6 @@ GameObject:
   m_Component:
   - component: {fileID: 4734263807500399249}
   - component: {fileID: 1414989776311464069}
-  - component: {fileID: 2555217960364456624}
   m_Layer: 7
   m_Name: Equipments
   m_TagString: Untagged
@@ -2698,24 +2697,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c77f401b3efc322408d5703e794e3f37, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  data: {fileID: 0}
   weaponInfo:
     dataCode: 0
     enchantLevel: 0
+    spec:
+      statList: []
   topInfo:
     dataCode: 0
     enchantLevel: 0
---- !u!114 &2555217960364456624
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6030389877176828492}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: efaf969705ee123418a53e313e1db98d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+    spec:
+      statList: []
 --- !u!1 &6188042393365916432
 GameObject:
   m_ObjectHideFlags: 0

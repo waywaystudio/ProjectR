@@ -13,4 +13,25 @@ MonoBehaviour:
   m_Name: RogueData
   m_EditorClassIdentifier: 
   classType: 4
-  characterName: Knight
+  dataIndex: 12000004
+  characterName: Rogue
+  classSpec:
+    statList:
+    - statType: 3
+      applyType: 1
+      value: 10
+    - statType: 5
+      applyType: 1
+      value: 5
+    - statType: 6
+      applyType: 1
+      value: 15
+    - statType: 7
+      applyType: 1
+      value: 8
+    - statType: 8
+      applyType: 1
+      value: 700
+    - statType: 9
+      applyType: 1
+      value: 100

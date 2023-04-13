@@ -26,8 +26,6 @@ namespace Common.PlayerCamps.Inventories
         public void Remove(Equipment item)
         {
             List.RemoveSafely(item);
-            
-            Destroy(item);
         }
 
         public void Save()
@@ -41,7 +39,11 @@ namespace Common.PlayerCamps.Inventories
         
         public void Load()
         {
-            List.ForReverse(Remove);
+            List.ForReverse(element =>
+            {
+                Remove(element);
+                Destroy(element.gameObject);
+            });
             
             var infoList = SaveManager.Load<List<EquipmentInfo>>(SaveKey);
         

@@ -13,4 +13,25 @@ MonoBehaviour:
   m_Name: KnightData
   m_EditorClassIdentifier: 
   classType: 1
+  dataIndex: 12000001
   characterName: Knight
+  classSpec:
+    statList:
+    - statType: 3
+      applyType: 1
+      value: 5
+    - statType: 5
+      applyType: 1
+      value: 0
+    - statType: 6
+      applyType: 1
+      value: 20
+    - statType: 7
+      applyType: 1
+      value: 7
+    - statType: 8
+      applyType: 1
+      value: 1000
+    - statType: 9
+      applyType: 1
+      value: 100

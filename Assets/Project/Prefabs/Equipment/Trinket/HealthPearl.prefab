@@ -44,6 +44,10 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: -8978545940066208770, guid: e276ff5766e4ab542ae9875dd422a6fc, type: 3}
+      propertyPath: info.spec.statList.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -8978545940066208770, guid: e276ff5766e4ab542ae9875dd422a6fc, type: 3}
       propertyPath: spec.statList.Array.data[0].value
       value: 100
       objectReference: {fileID: 0}
@@ -53,6 +57,18 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8978545940066208770, guid: e276ff5766e4ab542ae9875dd422a6fc, type: 3}
       propertyPath: spec.statList.Array.data[0].applyType
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -8978545940066208770, guid: e276ff5766e4ab542ae9875dd422a6fc, type: 3}
+      propertyPath: info.spec.statList.Array.data[0].value
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: -8978545940066208770, guid: e276ff5766e4ab542ae9875dd422a6fc, type: 3}
+      propertyPath: info.spec.statList.Array.data[0].statType
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: -8978545940066208770, guid: e276ff5766e4ab542ae9875dd422a6fc, type: 3}
+      propertyPath: info.spec.statList.Array.data[0].applyType
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5536838351561956448, guid: e276ff5766e4ab542ae9875dd422a6fc, type: 3}

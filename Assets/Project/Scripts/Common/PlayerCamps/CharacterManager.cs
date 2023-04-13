@@ -5,9 +5,10 @@ using UnityEngine;
 
 namespace Common.PlayerCamps
 {
-    public class CharacterManager : MonoBehaviour, IEditable
+    public class CharacterManager : MonoBehaviour, ISavable, IEditable
     {
         [SerializeField] private List<CharacterBehaviour> characterList;
+        [SerializeField] private List<CharacterData> characterDataList;
 
         private readonly Dictionary<CombatClassType, CharacterBehaviour> table = new();
         private Dictionary<CombatClassType, CharacterBehaviour> Table
@@ -34,40 +35,22 @@ namespace Common.PlayerCamps
 
             return character;
         }
+
+        public CharacterData GetData(CombatClassType type) =>
+            characterDataList.TryGetElement(data => data.ClassType == type);
         
         public List<CharacterBehaviour> GetAllCharacters() => characterList;
         public CharacterBehaviour GetNextCharacter(CombatClassType currentType) => characterList.GetNext(Table[currentType]);
         public CharacterBehaviour GetPreviousCharacter(CombatClassType currentType) => characterList.GetPrevious(Table[currentType]);
 
-        // public void Save()
-        // {
-        //     characterDataList.ForEach(data => data.Save());
-        // }
-        //
-        // public void Load()
-        // {
-        //     characterDataList.ForEach(data => data.Load());
-        // }
+        public void Save() => characterDataList.ForEach(data => data.Save());
+        public void Load() => characterDataList.ForEach(data => data.Load());
 
-
-        private CharacterBehaviour GetCharacterByType(CombatClassType currentType)
-        {
-            CharacterBehaviour currentCharacter = null; 
-            
-            foreach (var character in characterList)
-            {
-                if (character.CombatClass == currentType) 
-                    currentCharacter = character;
-            }
-
-            return currentCharacter;
-        }
 
         private void Awake()
         {
             characterList.Sort((a, b) => a.CombatClass.CompareTo(b.CombatClass));
-            characterList.ForEach(character => character.Initialize());
-            // characterList.ForEach(character => Table.Add(character.CombatClass, character));
+            // characterList.ForEach(character => character.Initialize());
         }
 
 
@@ -79,6 +62,5 @@ namespace Common.PlayerCamps
             characterList.Sort((a, b) => a.CombatClass.CompareTo(b.CombatClass));
         }
 #endif
-        
     }
 }

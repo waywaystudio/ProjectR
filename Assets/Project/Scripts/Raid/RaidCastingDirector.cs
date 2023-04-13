@@ -46,6 +46,9 @@ namespace Raid
                 adventurer.gameObject.SetActive(true);
                 AdventurerList.Add(adventurer);
             });
+            
+            Boss.Initialize();
+            AdventurerList.ForEach(adventurer => adventurer.Initialize());
 
             Rewards();
         }
