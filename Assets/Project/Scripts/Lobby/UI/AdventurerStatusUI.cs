@@ -22,7 +22,6 @@ namespace Lobby.UI
         [Sirenix.OdinInspector.Button]
         public void Reload()
         {
-            var adventurer     = PlayerCamp.Characters.Get(classType);
             var adventurerData = PlayerCamp.Characters.GetData(classType);
 
             className.text = classType.ToString();
@@ -34,7 +33,7 @@ namespace Lobby.UI
             GetStat(StatType.Armor).SetValue(adventurerData.GetStatValue(StatType.Armor).ToString("0"));
             GetStat(StatType.Health).SetValue(adventurerData.GetStatValue(StatType.Health).ToString("0"));
             
-            adventurer.SkillBehaviour.SkillList.ForEach((skill, index) =>
+            adventurerData.SkillList.ForEach((skill, index) =>
             {
                 if (skillImageList.Count > index) skillImageList[index].sprite = skill.Icon;
             });

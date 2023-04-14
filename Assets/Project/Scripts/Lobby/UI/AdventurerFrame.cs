@@ -15,7 +15,7 @@ namespace Lobby.UI
         private bool OnMoving { get; set; }
         
         [Sirenix.OdinInspector.ShowInInspector]
-        public CharacterBehaviour CurrentCharacter { get; private set; }
+        public CharacterData CurrentAdventurerData { get; private set; }
 
 
         public void ReloadAdventurer(CombatClassType type)
@@ -31,7 +31,7 @@ namespace Lobby.UI
 
         public void GetPreviousAdventurerInfo()
         {
-            if (CurrentCharacter.CombatClass == CombatClassType.Knight) return;
+            if (CurrentAdventurerData.ClassType == CombatClassType.Knight) return;
             if (OnMoving) return;
             
             OnMoving = true;
@@ -39,27 +39,27 @@ namespace Lobby.UI
             var targetValue = Mathf.Max(0f, contentsRect.localPosition.y - 550f);
 
             contentsRect.DOLocalMoveY(targetValue, 0.2f).OnComplete(() => OnMoving = false);;
-            CurrentCharacter = PlayerCamp.Characters.GetPreviousCharacter(CurrentCharacter.CombatClass);
+            CurrentAdventurerData = PlayerCamp.Characters.GetPreviousData(CurrentAdventurerData);
         }
         
         public void GetNextAdventurerInfo()
         {
-            if (CurrentCharacter.CombatClass == CombatClassType.Hunter) return;
+            if (CurrentAdventurerData.ClassType == CombatClassType.Hunter) return;
             if (OnMoving) return;
 
             OnMoving = true;
             
-            var targetValue = Mathf.Min((PlayerCamp.Characters.GetAllCharacters().Count - 1) * 550f,
+            var targetValue = Mathf.Min((PlayerCamp.Characters.GetAllData().Count - 1) * 550f,
                 contentsRect.localPosition.y + 550f);
 
             contentsRect.DOLocalMoveY(targetValue, 0.2f).OnComplete(() => OnMoving = false);
-            CurrentCharacter = PlayerCamp.Characters.GetNextCharacter(CurrentCharacter.CombatClass);
+            CurrentAdventurerData = PlayerCamp.Characters.GetNextData(CurrentAdventurerData);
         }
 
 
         private void Awake()
         {
-            CurrentCharacter = PlayerCamp.Characters.Get(CombatClassType.Knight);
+            CurrentAdventurerData = PlayerCamp.Characters.GetData(CombatClassType.Knight);
         }
 
 

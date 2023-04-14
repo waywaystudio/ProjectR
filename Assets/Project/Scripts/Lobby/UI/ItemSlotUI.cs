@@ -1,3 +1,4 @@
+using System;
 using Common;
 using Common.Equipments;
 using Common.PlayerCamps;
@@ -34,18 +35,33 @@ namespace Lobby.UI
             // Right Click To Equip
             if (eventData.button == PointerEventData.InputButton.Right)
             {
-                var adventurer = LobbyDirector.AdventurerFrame.CurrentCharacter;
+                var adventurerData = LobbyDirector.AdventurerFrame.CurrentAdventurerData;
+                var checkSlot = Equipment.EquipType switch
+                {
+                    EquipType.Weapon => EquipSlotIndex.Weapon,
+                    EquipType.Head   => EquipSlotIndex.Head,
+                    EquipType.Top    => EquipSlotIndex.Top,
+                    EquipType.Bottom => EquipSlotIndex.Bottom,
+                    EquipType.Trinket => adventurerData.Table.ContainsKey(EquipSlotIndex.Trinket1)
+                                         && adventurerData.Table[EquipSlotIndex.Trinket1] != null
+                        ? EquipSlotIndex.Trinket2
+                        : EquipSlotIndex.Trinket1,
+                    _ => throw new ArgumentOutOfRangeException()
+                };
+
+                adventurerData.Table.TryGetValue(checkSlot, out var disarmed);
+                adventurerData.AddEquipment(Equipment);
                 
-                adventurer.Equipment.Equip(Equipment, out var disarmed);
-
                 PlayerCamp.Inventories.Remove(Equipment);
-
+                
                 // Replace
                 if (disarmed != null)
                 {
-                    PlayerCamp.Inventories.Add(disarmed);
+                    var equipment = EquipmentInfo.CreateEquipment(disarmed, null);
+
+                    PlayerCamp.Inventories.Add(equipment);
                 
-                    SetItemUI(MasterInventoryUI, disarmed);
+                    SetItemUI(MasterInventoryUI, equipment);
                     TooltipDrawer.Draw();
                 }
                 // Equip Character at Empty Slot
@@ -54,7 +70,7 @@ namespace Lobby.UI
                     MasterInventoryUI.RemoveInventorySlot(Equipment);
                 }
 
-                LobbyDirector.AdventurerFrame.ReloadAdventurer(adventurer.CombatClass);
+                LobbyDirector.AdventurerFrame.ReloadAdventurer(adventurerData.ClassType);
             }
         }
 

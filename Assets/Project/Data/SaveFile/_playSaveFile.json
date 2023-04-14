@@ -2,19 +2,7 @@
 	"TrinketInventory" : {
 		"__type" : "System.Collections.Generic.List`1[[Common.Equipments.EquipmentInfo, ProjectR.Common, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]],mscorlib",
 		"value" : [
-			{
-				"dataCode" : 25010001,
-				"enchantLevel" : 0,
-				"spec" : {
-					"statList" : [
-						{
-							"statType" : 2,
-							"applyType" : 1,
-							"value" : 100
-						}
-					]
-				}
-			}
+			
 		]
 	},
 	"BottomInventory" : {
@@ -221,22 +209,22 @@
 					]
 				}
 			},{
-				"dataCode" : 22010002,
+				"dataCode" : 22010001,
 				"enchantLevel" : 0,
 				"spec" : {
 					"statList" : [
 						{
 							"statType" : 1,
 							"applyType" : 1,
-							"value" : 11
+							"value" : 5
 						},{
 							"statType" : 2,
 							"applyType" : 1,
-							"value" : 12
+							"value" : 10
 						},{
 							"statType" : 6,
 							"applyType" : 1,
-							"value" : 60
+							"value" : 50
 						}
 					]
 				}
@@ -566,22 +554,22 @@
 					]
 				}
 			},2:{
-				"dataCode" : 22010001,
+				"dataCode" : 22010002,
 				"enchantLevel" : 0,
 				"spec" : {
 					"statList" : [
 						{
 							"statType" : 1,
 							"applyType" : 1,
-							"value" : 5
+							"value" : 11
 						},{
 							"statType" : 2,
 							"applyType" : 1,
-							"value" : 10
+							"value" : 12
 						},{
 							"statType" : 6,
 							"applyType" : 1,
-							"value" : 50
+							"value" : 60
 						}
 					]
 				}
@@ -608,7 +596,7 @@
 		"__type" : "Serialization.SaveInfo,ProjectR.Core",
 		"value" : {
 			"filename" : "_playSaveFile",
-			"saveTime" : "2023.04.14.17.42.24"
+			"saveTime" : "2023.04.14.23.21.19"
 		}
 	}
 }

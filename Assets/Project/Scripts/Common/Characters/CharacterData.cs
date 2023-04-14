@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using Common.Equipments;
+using Common.Skills;
 using Serialization;
 using UnityEngine;
 
@@ -12,10 +13,12 @@ namespace Common.Characters
         [SerializeField] private DataIndex dataIndex;
         [SerializeField] private string characterName;
         [SerializeField] private Spec classSpec;
+        [SerializeField] private List<SkillComponent> skillList;
 
         public CombatClassType ClassType => classType;
         public DataIndex DataIndex => dataIndex;
         public Spec ClassSpec => classSpec;
+        public List<SkillComponent> SkillList => skillList;
 
         [Sirenix.OdinInspector.ShowInInspector]
         public Dictionary<EquipSlotIndex, EquipmentInfo> Table { get; private set; } = new();
@@ -35,6 +38,24 @@ namespace Common.Characters
             });
 
             return classSpec.GetStatValue(type) + equipmentStat;
+        }
+
+        public void AddEquipment(Equipment equipment)
+        {
+            var targetSlot = equipment.EquipType switch
+            {
+                EquipType.Weapon => EquipSlotIndex.Weapon,
+                EquipType.Head   => EquipSlotIndex.Head,
+                EquipType.Top    => EquipSlotIndex.Top,
+                EquipType.Bottom => EquipSlotIndex.Bottom,
+                EquipType.Trinket => Table.ContainsKey(EquipSlotIndex.Trinket1)
+                                     && Table[EquipSlotIndex.Trinket1] == null
+                    ? EquipSlotIndex.Trinket1
+                    : EquipSlotIndex.Trinket2,
+                _ => throw new ArgumentOutOfRangeException()
+            };
+
+            Table[targetSlot] = equipment.Info;
         }
 
         public void Save()

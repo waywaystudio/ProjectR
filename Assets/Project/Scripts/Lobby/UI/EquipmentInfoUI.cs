@@ -26,6 +26,12 @@ namespace Lobby.UI
 
         public void SetEquipmentInfoUI(EquipmentInfo equipInfo)
         {
+            if (equipInfo == null)
+            {
+                SetDefault();
+                return;
+            }
+            
             if (!Database.EquipmentMaster.Get(equipInfo.ActionCode, out Equipment equipment)) return;
 
             Equipment = equipment;
@@ -46,16 +52,17 @@ namespace Lobby.UI
             // Right Click To Disarm
             if (eventData.button == PointerEventData.InputButton.Right)
             {
-                var adventurer = LobbyDirector.AdventurerFrame.CurrentCharacter;
+                var adventurerData = LobbyDirector.AdventurerFrame.CurrentAdventurerData;
 
-                if (!adventurer.Equipment.TryDisarm(equipSlot, out var disarmed)) return;
-
-                PlayerCamp.Inventories.Add(disarmed);
+                var disarmed = adventurerData.Table[equipSlot];
                 
+                PlayerCamp.Inventories.Add(EquipmentInfo.CreateEquipment(disarmed, null));
+
+                adventurerData.Table[equipSlot] = null;
                 TooltipDrawer.Hide();
                 SetDefault();
                 
-                LobbyDirector.AdventurerFrame.ReloadAdventurer(adventurer.CombatClass);
+                LobbyDirector.AdventurerFrame.ReloadAdventurer(adventurerData.ClassType);
                 LobbyDirector.InventoryFrame.Reload(disarmed.EquipType);
             }
         }
