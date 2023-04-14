@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using Common;
 using UnityEngine;
@@ -18,6 +19,12 @@ namespace Lobby.UI
 
         public InventoryUI GetInventoryUI(EquipType slotType)
             => inventoryUIList.TryGetElement(inventoryUI => inventoryUI.EquipType == slotType);
+
+
+        private void Awake()
+        {
+            // ReloadAll();
+        }
 
 #if UNITY_EDITOR
         public void EditorSetUp()

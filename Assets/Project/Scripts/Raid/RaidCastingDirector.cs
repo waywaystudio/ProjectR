@@ -47,8 +47,8 @@ namespace Raid
                 AdventurerList.Add(adventurer);
             });
             
-            Boss.Initialize();
-            AdventurerList.ForEach(adventurer => adventurer.Initialize());
+            Boss.ForceInitialize();
+            AdventurerList.ForEach(adventurer => adventurer.ForceInitialize());
 
             Rewards();
         }

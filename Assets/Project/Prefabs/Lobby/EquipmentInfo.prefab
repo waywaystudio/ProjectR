@@ -299,6 +299,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8388246919408061585}
   - component: {fileID: 2070259577477498998}
+  - component: {fileID: 2478862060393455761}
   m_Layer: 0
   m_Name: EquipmentInfo
   m_TagString: Untagged
@@ -343,6 +344,20 @@ MonoBehaviour:
   equipSlot: 0
   image: {fileID: 8388246919695905917}
   equipmentName: {fileID: 8388246918699515168}
+  defaultSprite: {fileID: 0}
+--- !u!114 &2478862060393455761
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8388246919408061584}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9783c01fc5b546e46835ea9fe5a2323c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spawnOffset: {x: 1, y: 1, z: 0}
 --- !u!1 &8388246919695905919
 GameObject:
   m_ObjectHideFlags: 0

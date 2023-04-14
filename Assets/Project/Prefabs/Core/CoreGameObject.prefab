@@ -33,6 +33,57 @@ Transform:
   m_Father: {fileID: 4672108652296497339}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1840854594241607000
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3329244419038540253}
+  - component: {fileID: 6684832282938928654}
+  m_Layer: 0
+  m_Name: EquipmentTooltipPool
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &3329244419038540253
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1840854594241607000}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 6239269084689213391}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &6684832282938928654
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1840854594241607000}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5873b613f0983d44eae579f5fb67b059, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  prefab: {fileID: 2843207208072979468, guid: bfb611bf96a427f48a789255f7e746e7, type: 3}
+  maxCount: 2
 --- !u!1 &2862723306774822670
 GameObject:
   m_ObjectHideFlags: 0
@@ -255,6 +306,7 @@ RectTransform:
   m_Children:
   - {fileID: 6999556447552447066}
   - {fileID: 4954707232452428801}
+  - {fileID: 3329244419038540253}
   - {fileID: 6999556446930775125}
   m_Father: {fileID: 4672108652296497339}
   m_RootOrder: 3
@@ -278,6 +330,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   fadePanel: {fileID: 5419303115267295683}
   tooltipPool: {fileID: 4769190039609023406}
+  equipmentTooltipPool: {fileID: 6684832282938928654}
 --- !u!223 &4250760679888459069
 Canvas:
   m_ObjectHideFlags: 0
@@ -487,7 +540,7 @@ RectTransform:
   m_Children:
   - {fileID: 3069828388080354717}
   m_Father: {fileID: 6239269084689213391}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}

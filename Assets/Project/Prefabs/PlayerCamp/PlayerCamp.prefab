@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5512553879854084223}
   - component: {fileID: 5512553879854084208}
-  - component: {fileID: 5512553879854084209}
+  - component: {fileID: 254667121244764168}
   m_Layer: 0
   m_Name: Trinket
   m_TagString: Untagged
@@ -46,7 +46,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   equipType: 25
---- !u!114 &5512553879854084209
+--- !u!114 &254667121244764168
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -55,7 +55,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 5512553879854084222}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: efaf969705ee123418a53e313e1db98d, type: 3}
+  m_Script: {fileID: 11500000, guid: 34b474dc3830e3a4099f79dd6d06b3b9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &5512553879992015477
@@ -68,7 +68,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5512553879992015478}
   - component: {fileID: 5512553879992015479}
-  - component: {fileID: 5512553879992015464}
+  - component: {fileID: 3247520403941631061}
   m_Layer: 0
   m_Name: Head
   m_TagString: Untagged
@@ -104,7 +104,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   equipType: 22
---- !u!114 &5512553879992015464
+--- !u!114 &3247520403941631061
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -113,7 +113,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 5512553879992015477}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: efaf969705ee123418a53e313e1db98d, type: 3}
+  m_Script: {fileID: 11500000, guid: 34b474dc3830e3a4099f79dd6d06b3b9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &5512553880582723415
@@ -127,6 +127,7 @@ GameObject:
   - component: {fileID: 5512553880582723400}
   - component: {fileID: 5512553880582723401}
   - component: {fileID: 6025541035996458536}
+  - component: {fileID: 2726425592845009584}
   m_Layer: 0
   m_Name: Characters
   m_TagString: Untagged
@@ -184,6 +185,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 34b474dc3830e3a4099f79dd6d06b3b9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &2726425592845009584
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5512553880582723415}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a43e35a24be7e834d945f48332cf1929, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &5512553880677135780
 GameObject:
   m_ObjectHideFlags: 0
@@ -194,7 +207,6 @@ GameObject:
   m_Component:
   - component: {fileID: 5512553880677135781}
   - component: {fileID: 5512553880677135783}
-  - component: {fileID: 5512553880677135782}
   m_Layer: 0
   m_Name: PlayerCamp
   m_TagString: Untagged
@@ -234,20 +246,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   characters: {fileID: 5512553880582723401}
   inventories: {fileID: 5512553881389905085}
---- !u!114 &5512553880677135782
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5512553880677135780}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2ceef3bc02664fd4096833dc6bc8075f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ShowDebugMessage: 0
-  TargetBehaviour: {fileID: 5512553880677135783}
 --- !u!1 &5512553880902607751
 GameObject:
   m_ObjectHideFlags: 0
@@ -258,7 +256,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5512553880902607864}
   - component: {fileID: 5512553880902607865}
-  - component: {fileID: 5512553880902607866}
+  - component: {fileID: 5142145039030191994}
   m_Layer: 0
   m_Name: Top
   m_TagString: Untagged
@@ -294,7 +292,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   equipType: 23
---- !u!114 &5512553880902607866
+--- !u!114 &5142145039030191994
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -303,7 +301,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 5512553880902607751}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: efaf969705ee123418a53e313e1db98d, type: 3}
+  m_Script: {fileID: 11500000, guid: 34b474dc3830e3a4099f79dd6d06b3b9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &5512553881356382894
@@ -316,7 +314,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5512553881356382895}
   - component: {fileID: 5512553881356382880}
-  - component: {fileID: 5512553881356382881}
+  - component: {fileID: 4774818598534037316}
   m_Layer: 0
   m_Name: Bottom
   m_TagString: Untagged
@@ -352,7 +350,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   equipType: 24
---- !u!114 &5512553881356382881
+--- !u!114 &4774818598534037316
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -361,7 +359,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 5512553881356382894}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: efaf969705ee123418a53e313e1db98d, type: 3}
+  m_Script: {fileID: 11500000, guid: 34b474dc3830e3a4099f79dd6d06b3b9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &5512553881389905084
@@ -428,7 +426,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5512553881443083298}
   - component: {fileID: 5512553881443083299}
-  - component: {fileID: 5512553881443083300}
+  - component: {fileID: 9061328305603833445}
   m_Layer: 0
   m_Name: Weapon
   m_TagString: Untagged
@@ -464,7 +462,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   equipType: 21
---- !u!114 &5512553881443083300
+--- !u!114 &9061328305603833445
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -473,7 +471,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 5512553881443083297}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: efaf969705ee123418a53e313e1db98d, type: 3}
+  m_Script: {fileID: 11500000, guid: 34b474dc3830e3a4099f79dd6d06b3b9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &5512553881564641704

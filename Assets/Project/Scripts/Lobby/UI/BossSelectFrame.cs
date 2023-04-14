@@ -3,6 +3,7 @@ using Character.Bosses;
 using Common;
 using Common.Characters;
 using Common.Equipments;
+using Common.UI;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -35,15 +36,15 @@ namespace Lobby.UI
             selectedBossCode   = bossCode;
             bossTitleUGUI.text = bossBehaviour.Name;
             
-            bossBehaviour.Initialize();
+            bossBehaviour.ForceInitialize();
             
             // SetStat
-            GetStat(StatType.Power).SetValue(bossData.GetStat(StatType.Power).ToString("0"));
-            GetStat(StatType.CriticalChance).SetValue($"{bossData.GetStat(StatType.CriticalChance):F1}%");
-            GetStat(StatType.CriticalDamage).SetValue($"{200f + bossData.GetStat(StatType.CriticalDamage):F1}%");
-            GetStat(StatType.Haste).SetValue($"{bossData.GetStat(StatType.Haste):F1}%");
-            GetStat(StatType.Armor).SetValue(bossData.GetStat(StatType.Armor).ToString("0"));
-            GetStat(StatType.Health).SetValue(bossData.GetStat(StatType.Health).ToString("0"));
+            GetStat(StatType.Power).SetValue(bossData.GetStatValue(StatType.Power).ToString("0"));
+            GetStat(StatType.CriticalChance).SetValue($"{bossData.GetStatValue(StatType.CriticalChance):F1}%");
+            GetStat(StatType.CriticalDamage).SetValue($"{200f + bossData.GetStatValue(StatType.CriticalDamage):F1}%");
+            GetStat(StatType.Haste).SetValue($"{bossData.GetStatValue(StatType.Haste):F1}%");
+            GetStat(StatType.Armor).SetValue(bossData.GetStatValue(StatType.Armor).ToString("0"));
+            GetStat(StatType.Health).SetValue(bossData.GetStatValue(StatType.Health).ToString("0"));
             
             // SetSkillIcon
             bossBehaviour.SkillBehaviour.SkillList.ForEach((skill, index) =>

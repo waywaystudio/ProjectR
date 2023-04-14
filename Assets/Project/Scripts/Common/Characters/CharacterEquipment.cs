@@ -27,7 +27,6 @@ namespace Common.Characters
             { EquipSlotIndex.Trinket2, null },
         };
 
-
         public void Initialize()
         {
             data.Table.ForEach(dataTable =>
@@ -86,7 +85,6 @@ namespace Common.Characters
 
             return true;
         }
-
         private bool IsAvailableClass(Equipment equipment)
         {
             if(equipment.AvailableClass.HasFlag(Cb.CombatClass)) return true;
@@ -95,7 +93,6 @@ namespace Common.Characters
                              + $"Available Class:{equipment.AvailableClass}. Target Class:{Cb.CombatClass}");
             return false;
         }
-        
         private EquipSlotIndex FindEquipSlot(Equipment equipment)
         {
             var targetSlot = equipment.EquipType switch

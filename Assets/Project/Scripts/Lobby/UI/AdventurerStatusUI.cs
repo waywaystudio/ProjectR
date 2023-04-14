@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using Common;
 using Common.PlayerCamps;
+using Common.UI;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -26,12 +27,12 @@ namespace Lobby.UI
 
             className.text = classType.ToString();
             
-            GetStat(StatType.Power).SetValue(adventurerData.GetStat(StatType.Power).ToString("0"));
-            GetStat(StatType.CriticalChance).SetValue($"{adventurerData.GetStat(StatType.CriticalChance):F1}%");
-            GetStat(StatType.CriticalDamage).SetValue($"{200f + adventurerData.GetStat(StatType.CriticalDamage):F1}%");
-            GetStat(StatType.Haste).SetValue($"{adventurerData.GetStat(StatType.Haste):F1}%");
-            GetStat(StatType.Armor).SetValue(adventurerData.GetStat(StatType.Armor).ToString("0"));
-            GetStat(StatType.Health).SetValue(adventurerData.GetStat(StatType.Health).ToString("0"));
+            GetStat(StatType.Power).SetValue(adventurerData.GetStatValue(StatType.Power).ToString("0"));
+            GetStat(StatType.CriticalChance).SetValue($"{adventurerData.GetStatValue(StatType.CriticalChance):F1}%");
+            GetStat(StatType.CriticalDamage).SetValue($"{200f + adventurerData.GetStatValue(StatType.CriticalDamage):F1}%");
+            GetStat(StatType.Haste).SetValue($"{adventurerData.GetStatValue(StatType.Haste):F1}%");
+            GetStat(StatType.Armor).SetValue(adventurerData.GetStatValue(StatType.Armor).ToString("0"));
+            GetStat(StatType.Health).SetValue(adventurerData.GetStatValue(StatType.Health).ToString("0"));
             
             adventurer.SkillBehaviour.SkillList.ForEach((skill, index) =>
             {

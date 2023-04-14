@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using Common.Equipments;
 using Serialization;
@@ -22,7 +23,7 @@ namespace Common.Characters
         private string SerializeKey => $"{characterName}'s Equipments";
         
 
-        public float GetStat(StatType type)
+        public float GetStatValue(StatType type)
         {
             var equipmentStat = 0f;
             

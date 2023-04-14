@@ -8,6 +8,13 @@ namespace Character.Adventurers
         [SerializeField] protected AdventurerModChanger modChanger;
         
         public bool IsPlayer { get; set; }
+
+        // TODO. Temp
+        public override void ForceInitialize()
+        {
+            stats.Initialize();
+            equipment.Initialize();
+        }
         
         public override void Initialize()
         {

@@ -81,6 +81,7 @@ namespace Common.Characters
         public ActionTable<IStatusEffect> OnBuffTaken { get; } = new();
 
 
+        public virtual void ForceInitialize() { }
         public virtual void Initialize() { }
 
         

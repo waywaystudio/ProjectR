@@ -1,14 +1,18 @@
-using Common.UI;
-using Common.UI.Tooltips;
 using Singleton;
-using UI;
 using UnityEngine;
 
-public class MainUI : MonoSingleton<MainUI>
+namespace Common.UI
 {
-    [SerializeField] private FadePanel fadePanel;
-    [SerializeField] private TooltipPool tooltipPool;
+    using Tooltips;
+    
+    public class MainUI : MonoSingleton<MainUI>
+    {
+        [SerializeField] private FadePanel fadePanel;
+        [SerializeField] private TooltipPool tooltipPool;
+        [SerializeField] private EquipmentTooltipPool equipmentTooltipPool;
 
-    public static FadePanel FadePanel => Instance.fadePanel;
-    public static TooltipPool TooltipPool => Instance.tooltipPool;
+        public static FadePanel FadePanel => Instance.fadePanel;
+        public static TooltipPool TooltipPool => Instance.tooltipPool;
+        public static EquipmentTooltipPool EquipmentTooltipPool => Instance.equipmentTooltipPool;
+    }
 }

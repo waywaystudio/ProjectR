@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using Common.Characters;
+using SceneAdaption;
 using Serialization;
 using UnityEngine;
 
@@ -7,6 +8,7 @@ namespace Common.PlayerCamps
 {
     public class CharacterManager : MonoBehaviour, ISavable, IEditable
     {
+        // TODO. CM에서 CharacterList라는 UnInstantiate Prefab을 띄어내야 하고, Data만 가지고 있게 해야 한다. 
         [SerializeField] private List<CharacterBehaviour> characterList;
         [SerializeField] private List<CharacterData> characterDataList;
 
@@ -32,7 +34,7 @@ namespace Common.PlayerCamps
             }
             
             character.Initialize();
-
+        
             return character;
         }
 
@@ -50,7 +52,6 @@ namespace Common.PlayerCamps
         private void Awake()
         {
             characterList.Sort((a, b) => a.CombatClass.CompareTo(b.CombatClass));
-            // characterList.ForEach(character => character.Initialize());
         }
 
 
@@ -58,9 +59,9 @@ namespace Common.PlayerCamps
         public void EditorSetUp()
         {
             GetComponentsInChildren(true, characterList);
-            
             characterList.Sort((a, b) => a.CombatClass.CompareTo(b.CombatClass));
         }
 #endif
+        
     }
 }

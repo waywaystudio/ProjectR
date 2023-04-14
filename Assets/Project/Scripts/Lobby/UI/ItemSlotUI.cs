@@ -1,12 +1,14 @@
+using Common;
 using Common.Equipments;
 using Common.PlayerCamps;
+using Common.UI.Tooltips;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 namespace Lobby.UI
 {
-    public class ItemSlotUI : MonoBehaviour, IPointerClickHandler, IEditable
+    public class ItemSlotUI : MonoBehaviour, IEquipmentTooltip, IPointerClickHandler, IEditable
     {
         [SerializeField] private Image itemImage;
 
@@ -14,6 +16,10 @@ namespace Lobby.UI
         public Equipment Equipment { get; private set; }
 
         private InventoryUI MasterInventoryUI { get; set; }
+        
+        // TODO. TEMP :: 추후에 이벤트 방식 or 시스템화를 통해서 Drawer Dependency 해제.
+        private EquipmentTooltipDrawer tooltipDrawer;
+        private EquipmentTooltipDrawer TooltipDrawer => tooltipDrawer ??= GetComponent<EquipmentTooltipDrawer>();
 
 
         public void SetItemUI(InventoryUI master, Equipment equipment)
@@ -40,6 +46,7 @@ namespace Lobby.UI
                     PlayerCamp.Inventories.Add(disarmed);
                 
                     SetItemUI(MasterInventoryUI, disarmed);
+                    TooltipDrawer.Draw();
                 }
                 // Equip Character at Empty Slot
                 else

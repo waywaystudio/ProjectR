@@ -1,10 +1,11 @@
+using Common;
 using Common.Equipments;
 using UnityEngine;
 using UnityEngine.UI;
 
 namespace Lobby.UI
 {
-    public class DropItemUI : MonoBehaviour, IEditable
+    public class DropItemUI : MonoBehaviour, IEquipmentTooltip, IEditable
     {
         [SerializeField] private Image itemImage;
 

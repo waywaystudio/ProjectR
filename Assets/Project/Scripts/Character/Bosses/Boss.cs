@@ -12,6 +12,12 @@ namespace Character.Bosses
         public BossPhase CurrentPhase { get; set; }
         public List<GameObject> DropItemTable => dropTable.DropItemList;
         
+        // TODO. Temp
+        public override void ForceInitialize()
+        {
+            stats.Initialize();
+            equipment.Initialize();
+        }
         
         public override void Initialize()
         {

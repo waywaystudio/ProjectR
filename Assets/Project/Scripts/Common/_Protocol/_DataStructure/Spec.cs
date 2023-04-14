@@ -24,6 +24,7 @@ namespace Common
         public float ExtraCriticalChance => GetStatValue(StatType.ExtraCriticalChance);
         public float ExtraCriticalDamage => GetStatValue(StatType.ExtraCriticalDamage);
 
+        public List<Stat> GetStatList() => statList;
 
         public void Add(Stat stat) => statList.AddUniquely(stat);
         public void Add(StatType statType, StatApplyType applyType, float value)
@@ -60,5 +61,24 @@ namespace Common
 
             return 0f;
         }
+        
+        public string GetStatValueText(StatType type) => type switch
+        {
+            StatType.Power               => GetStatValue(type).ToString("0"),
+            StatType.Health              => GetStatValue(type).ToString("0"),
+            StatType.CriticalChance      => $"{GetStatValue(type):F1}",
+            StatType.CriticalDamage      => $"{200 + GetStatValue(type):F1}",
+            StatType.Haste               => $"{GetStatValue(type):F1}",
+            StatType.Armor               => GetStatValue(type).ToString("0"),
+            StatType.MoveSpeed           => GetStatValue(type).ToString("0"),
+            StatType.MaxHp               => GetStatValue(type).ToString("0"),
+            StatType.MaxResource         => GetStatValue(type).ToString("0"),
+            StatType.MinDamage           => GetStatValue(type).ToString("0"),
+            StatType.MaxDamage           => GetStatValue(type).ToString("0"),
+            StatType.ExtraPower          => GetStatValue(type).ToString("0"),
+            StatType.ExtraCriticalChance => $"{GetStatValue(type):F1}",
+            StatType.ExtraCriticalDamage => $"{200 + GetStatValue(type):F1}",
+            _                            => "UnDefined Format",
+        };
     }
 }
