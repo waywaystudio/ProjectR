@@ -24,145 +24,13 @@
 						}
 					]
 				}
-			},{
-				"dataCode" : 24010004,
-				"enchantLevel" : 0,
-				"spec" : {
-					"statList" : [
-						{
-							"statType" : 1,
-							"applyType" : 1,
-							"value" : 12
-						},{
-							"statType" : 6,
-							"applyType" : 1,
-							"value" : 50
-						}
-					]
-				}
-			},{
-				"dataCode" : 24010004,
-				"enchantLevel" : 0,
-				"spec" : {
-					"statList" : [
-						{
-							"statType" : 1,
-							"applyType" : 1,
-							"value" : 12
-						},{
-							"statType" : 6,
-							"applyType" : 1,
-							"value" : 50
-						}
-					]
-				}
 			}
 		]
 	},
 	"TopInventory" : {
 		"__type" : "System.Collections.Generic.List`1[[Common.Equipments.EquipmentInfo, ProjectR.Common, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]],mscorlib",
 		"value" : [
-			{
-				"dataCode" : 23010002,
-				"enchantLevel" : 0,
-				"spec" : {
-					"statList" : [
-						{
-							"statType" : 1,
-							"applyType" : 1,
-							"value" : 30
-						},{
-							"statType" : 2,
-							"applyType" : 1,
-							"value" : 200
-						},{
-							"statType" : 6,
-							"applyType" : 1,
-							"value" : 300
-						}
-					]
-				}
-			},{
-				"dataCode" : 23010002,
-				"enchantLevel" : 0,
-				"spec" : {
-					"statList" : [
-						{
-							"statType" : 1,
-							"applyType" : 1,
-							"value" : 30
-						},{
-							"statType" : 2,
-							"applyType" : 1,
-							"value" : 200
-						},{
-							"statType" : 6,
-							"applyType" : 1,
-							"value" : 300
-						}
-					]
-				}
-			},{
-				"dataCode" : 23010002,
-				"enchantLevel" : 0,
-				"spec" : {
-					"statList" : [
-						{
-							"statType" : 1,
-							"applyType" : 1,
-							"value" : 30
-						},{
-							"statType" : 2,
-							"applyType" : 1,
-							"value" : 200
-						},{
-							"statType" : 6,
-							"applyType" : 1,
-							"value" : 300
-						}
-					]
-				}
-			},{
-				"dataCode" : 23010002,
-				"enchantLevel" : 0,
-				"spec" : {
-					"statList" : [
-						{
-							"statType" : 1,
-							"applyType" : 1,
-							"value" : 30
-						},{
-							"statType" : 2,
-							"applyType" : 1,
-							"value" : 200
-						},{
-							"statType" : 6,
-							"applyType" : 1,
-							"value" : 300
-						}
-					]
-				}
-			},{
-				"dataCode" : 23010002,
-				"enchantLevel" : 0,
-				"spec" : {
-					"statList" : [
-						{
-							"statType" : 1,
-							"applyType" : 1,
-							"value" : 30
-						},{
-							"statType" : 2,
-							"applyType" : 1,
-							"value" : 200
-						},{
-							"statType" : 6,
-							"applyType" : 1,
-							"value" : 300
-						}
-					]
-				}
-			}
+			
 		]
 	},
 	"HeadInventory" : {
@@ -188,53 +56,61 @@
 						}
 					]
 				}
-			},{
-				"dataCode" : 22010001,
-				"enchantLevel" : 0,
-				"spec" : {
-					"statList" : [
-						{
-							"statType" : 1,
-							"applyType" : 1,
-							"value" : 5
-						},{
-							"statType" : 2,
-							"applyType" : 1,
-							"value" : 10
-						},{
-							"statType" : 6,
-							"applyType" : 1,
-							"value" : 50
-						}
-					]
-				}
-			},{
-				"dataCode" : 22010001,
-				"enchantLevel" : 0,
-				"spec" : {
-					"statList" : [
-						{
-							"statType" : 1,
-							"applyType" : 1,
-							"value" : 5
-						},{
-							"statType" : 2,
-							"applyType" : 1,
-							"value" : 10
-						},{
-							"statType" : 6,
-							"applyType" : 1,
-							"value" : 50
-						}
-					]
-				}
 			}
 		]
 	},
 	"WeaponInventory" : {
 		"__type" : "System.Collections.Generic.List`1[[Common.Equipments.EquipmentInfo, ProjectR.Common, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]],mscorlib",
 		"value" : [
-			
+			{
+				"dataCode" : 21010001,
+				"enchantLevel" : 0,
+				"spec" : {
+					"statList" : [
+						{
+							"statType" : 1,
+							"applyType" : 1,
+							"value" : 20
+						},{
+							"statType" : 2,
+							"applyType" : 1,
+							"value" : 50
+						},{
+							"statType" : 10,
+							"applyType" : 1,
+							"value" : 10
+						},{
+							"statType" : 11,
+							"applyType" : 1,
+							"value" : 12
+						}
+					]
+				}
+			},{
+				"dataCode" : 21010001,
+				"enchantLevel" : 0,
+				"spec" : {
+					"statList" : [
+						{
+							"statType" : 1,
+							"applyType" : 1,
+							"value" : 20
+						},{
+							"statType" : 2,
+							"applyType" : 1,
+							"value" : 50
+						},{
+							"statType" : 10,
+							"applyType" : 1,
+							"value" : 10
+						},{
+							"statType" : 11,
+							"applyType" : 1,
+							"value" : 12
+						}
+					]
+				}
+			}
 		]
 	},
 	"Rogue's Equipments" : {
@@ -303,58 +179,6 @@
 						}
 					]
 				}
-			},4:{
-				"dataCode" : 24010002,
-				"enchantLevel" : 0,
-				"spec" : {
-					"statList" : [
-						{
-							"statType" : 2,
-							"applyType" : 1,
-							"value" : 10
-						},{
-							"statType" : 3,
-							"applyType" : 1,
-							"value" : 5
-						},{
-							"statType" : 5,
-							"applyType" : 1,
-							"value" : 5
-						}
-					]
-				}
-			},2:{
-				"dataCode" : 22010001,
-				"enchantLevel" : 0,
-				"spec" : {
-					"statList" : [
-						{
-							"statType" : 1,
-							"applyType" : 1,
-							"value" : 5
-						},{
-							"statType" : 2,
-							"applyType" : 1,
-							"value" : 10
-						},{
-							"statType" : 6,
-							"applyType" : 1,
-							"value" : 50
-						}
-					]
-				}
-			},6:{
-				"dataCode" : 25010001,
-				"enchantLevel" : 0,
-				"spec" : {
-					"statList" : [
-						{
-							"statType" : 2,
-							"applyType" : 1,
-							"value" : 100
-						}
-					]
-				}
 			}
 		}
 	},
@@ -420,61 +244,13 @@
 						}
 					]
 				}
-			},6:{
-				"dataCode" : 25010003,
-				"enchantLevel" : 0,
-				"spec" : {
-					"statList" : [
-						{
-							"statType" : 5,
-							"applyType" : 1,
-							"value" : 20
-						}
-					]
-				}
-			},2:{
-				"dataCode" : 22010001,
-				"enchantLevel" : 0,
-				"spec" : {
-					"statList" : [
-						{
-							"statType" : 1,
-							"applyType" : 1,
-							"value" : 5
-						},{
-							"statType" : 2,
-							"applyType" : 1,
-							"value" : 10
-						},{
-							"statType" : 6,
-							"applyType" : 1,
-							"value" : 50
-						}
-					]
-				}
-			},4:{
-				"dataCode" : 24010001,
-				"enchantLevel" : 0,
-				"spec" : {
-					"statList" : [
-						{
-							"statType" : 2,
-							"applyType" : 1,
-							"value" : 5
-						},{
-							"statType" : 5,
-							"applyType" : 1,
-							"value" : 10
-						}
-					]
-				}
 			}
 		}
 	},
 	"Knight's Equipments" : {
 		"__type" : "System.Collections.Generic.Dictionary`2[[Common.EquipSlotIndex, ProjectR.Common, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null],[Common.Equipments.EquipmentInfo, ProjectR.Common, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]],mscorlib",
 		"value" : {1:{
-				"dataCode" : 21020002,
+				"dataCode" : 21010001,
 				"enchantLevel" : 0,
 				"spec" : {
 					"statList" : [
@@ -484,104 +260,36 @@
 							"value" : 20
 						},{
 							"statType" : 2,
-							"applyType" : 1,
-							"value" : 30
-						},{
-							"statType" : 3,
-							"applyType" : 1,
-							"value" : 10
-						},{
-							"statType" : 4,
 							"applyType" : 1,
 							"value" : 50
 						},{
 							"statType" : 10,
 							"applyType" : 1,
-							"value" : 8
+							"value" : 10
 						},{
 							"statType" : 11,
 							"applyType" : 1,
-							"value" : 14
+							"value" : 12
 						}
 					]
 				}
 			},3:{
-				"dataCode" : 23010001,
+				"dataCode" : 23010002,
 				"enchantLevel" : 0,
 				"spec" : {
 					"statList" : [
 						{
 							"statType" : 1,
 							"applyType" : 1,
-							"value" : 20
+							"value" : 30
 						},{
 							"statType" : 2,
 							"applyType" : 1,
-							"value" : 50
-						},{
-							"statType" : 3,
-							"applyType" : 1,
-							"value" : 10
-						},{
-							"statType" : 4,
-							"applyType" : 1,
-							"value" : 20
-						},{
-							"statType" : 5,
-							"applyType" : 1,
-							"value" : 10
+							"value" : 200
 						},{
 							"statType" : 6,
 							"applyType" : 1,
-							"value" : 50
-						}
-					]
-				}
-			},4:{
-				"dataCode" : 24010001,
-				"enchantLevel" : 0,
-				"spec" : {
-					"statList" : [
-						{
-							"statType" : 2,
-							"applyType" : 1,
-							"value" : 5
-						},{
-							"statType" : 5,
-							"applyType" : 1,
-							"value" : 10
-						}
-					]
-				}
-			},2:{
-				"dataCode" : 22010002,
-				"enchantLevel" : 0,
-				"spec" : {
-					"statList" : [
-						{
-							"statType" : 1,
-							"applyType" : 1,
-							"value" : 11
-						},{
-							"statType" : 2,
-							"applyType" : 1,
-							"value" : 12
-						},{
-							"statType" : 6,
-							"applyType" : 1,
-							"value" : 60
-						}
-					]
-				}
-			},6:{
-				"dataCode" : 25010001,
-				"enchantLevel" : 0,
-				"spec" : {
-					"statList" : [
-						{
-							"statType" : 2,
-							"applyType" : 1,
-							"value" : 100
+							"value" : 300
 						}
 					]
 				}
@@ -596,7 +304,7 @@
 		"__type" : "Serialization.SaveInfo,ProjectR.Core",
 		"value" : {
 			"filename" : "_playSaveFile",
-			"saveTime" : "2023.04.14.23.21.19"
+			"saveTime" : "2023.04.16.22.32.34"
 		}
 	}
 }
