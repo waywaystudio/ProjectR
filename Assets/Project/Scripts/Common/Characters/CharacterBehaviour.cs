@@ -1,4 +1,3 @@
-using System;
 using Common.Animation;
 using Common.Characters.Behaviours;
 using Common.Characters.Behaviours.CrowdControlEffect;
@@ -33,7 +32,6 @@ namespace Common.Characters
         [SerializeField] protected CollidingSystem colliding;
         [SerializeField] protected PathfindingSystem pathfinding;
 
-        public bool IsInitialized { get; protected set; } = false;
 
         public CharacterActionMask BehaviourMask => CurrentBehaviour is null ? CharacterActionMask.None : CurrentBehaviour.BehaviourMask;
         public ActionBehaviour CurrentBehaviour { get; set; }
@@ -82,7 +80,6 @@ namespace Common.Characters
 
 
         public virtual void ForceInitialize() { }
-        public virtual void Initialize() { }
 
         
         private void OnEnable()

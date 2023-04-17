@@ -18,16 +18,6 @@ namespace Character.Bosses
             stats.Initialize();
             equipment.Initialize();
         }
-        
-        public override void Initialize()
-        {
-            if (IsInitialized) return;
-            
-            stats.Initialize();
-            equipment.Initialize();
-
-            IsInitialized = false;
-        }
 
 
         protected void Start()

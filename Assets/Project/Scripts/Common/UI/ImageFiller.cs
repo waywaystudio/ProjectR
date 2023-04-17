@@ -22,8 +22,8 @@ namespace Common.UI
             Progress = progress;
             Max      = max;
             
-            Progress.Register(fillProgressionKey, SetFill);
-            Max.Register(fillProgressionKey, SetFill);
+            Progress.AddListener(fillProgressionKey, SetFill);
+            Max.AddListener(fillProgressionKey, SetFill);
         }
         
         public void Register(FloatEvent progress, float constMax)
@@ -36,16 +36,16 @@ namespace Common.UI
                 Value = constMax
             };
 
-            Progress.Register(fillProgressionKey, SetFill);
-            Max.Register(fillProgressionKey, SetFill);
+            Progress.AddListener(fillProgressionKey, SetFill);
+            Max.AddListener(fillProgressionKey, SetFill);
             
             SetFill();
         }
         
         public void Unregister()
         {
-            Progress?.Unregister(fillProgressionKey);
-            Max?.Unregister(fillProgressionKey);
+            Progress?.RemoveListener(fillProgressionKey);
+            Max?.RemoveListener(fillProgressionKey);
         }
         
 

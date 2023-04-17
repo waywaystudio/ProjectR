@@ -5,7 +5,7 @@ using Common.Characters;
 using Sirenix.OdinInspector;
 using Sirenix.OdinInspector.Editor;
 
-namespace Character.Editor
+namespace Common.Editor
 {
     public class CharacterStatEntryDrawer : OdinAttributeProcessor<CharacterStats>
     {

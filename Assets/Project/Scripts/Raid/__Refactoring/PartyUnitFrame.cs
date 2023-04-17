@@ -31,8 +31,8 @@ namespace Raid.UI
             nameText.text = ab.Name;
             // Set Avatar
             
-            ab.DynamicStatEntry.Hp.Register("FillPartyFrameHealthBar", FillHealthBar);
-            ab.DynamicStatEntry.Resource.Register("FillPartyFrameResourceBar", FillResourceBar);
+            ab.DynamicStatEntry.Hp.AddListener("FillPartyFrameHealthBar", FillHealthBar);
+            ab.DynamicStatEntry.Resource.AddListener("FillPartyFrameResourceBar", FillResourceBar);
 
             FillHealthBar(ab.DynamicStatEntry.Hp.Value);
             FillResourceBar(ab.DynamicStatEntry.Resource.Value);
@@ -64,8 +64,8 @@ namespace Raid.UI
         {
             if (isInitialized)
             {
-                adventurer.DynamicStatEntry.Hp.Unregister("FillPartyFrameHealthBar");
-                adventurer.DynamicStatEntry.Resource.Unregister("FillPartyFrameResourceBar");
+                adventurer.DynamicStatEntry.Hp.RemoveListener("FillPartyFrameHealthBar");
+                adventurer.DynamicStatEntry.Resource.RemoveListener("FillPartyFrameResourceBar");
             }
         }
 

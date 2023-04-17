@@ -37,7 +37,7 @@ namespace Raid
 
             adventurerEntry.ForEach((adventurerIndex, index) =>
             {
-                if (!Database.CombatClassMaster.Get<Adventurer>(adventurerIndex, out var adventurerPrefab)) return;
+                if (!Database.CombatClassPrefabData.Get<Adventurer>(adventurerIndex, out var adventurerPrefab)) return;
                 
                 var profitPosition   = RaidDirector.StageDirector.GetAdventurerPosition(index).position;
                 var adventurer = Instantiate(adventurerPrefab, profitPosition, Quaternion.identity,

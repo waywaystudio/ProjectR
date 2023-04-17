@@ -8,8 +8,7 @@ namespace Common.PlayerCamps.Inventories
     public class Inventory : MonoBehaviour, ISavable
     {
         [SerializeField] private EquipType equipType;
-        
-        [Sirenix.OdinInspector.ShowInInspector]
+
         private List<Equipment> List { get; } = new();
         private string SaveKey => $"{equipType}Inventory";
 

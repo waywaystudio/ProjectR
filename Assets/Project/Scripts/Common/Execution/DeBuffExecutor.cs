@@ -20,9 +20,9 @@ namespace Common.Execution
             var targetTable = taker.DynamicStatEntry.DeBuffTable;
             var tableKey         = (Executor.Provider, actionCode);
 
-            if (targetTable.ContainsKey(tableKey))
+            if (targetTable.TryGetValue(tableKey, out var value))
             {
-                targetTable[tableKey].Overriding();
+                value.Overriding();
             }
             
             else
@@ -85,7 +85,7 @@ namespace Common.Execution
             {
                 var statusEffectCode = (DataIndex)Database.SkillSheetData(skill.ActionCode).StatusEffect;
                 
-                Database.StatusEffectMaster.GetObject(statusEffectCode, out prefabReference);
+                Database.StatusEffectPrefabData.GetObject(statusEffectCode, out prefabReference);
             }
             else if (!TryGetComponent(out prefabReference))
             {

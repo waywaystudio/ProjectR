@@ -1,5 +1,4 @@
 using System;
-using Common.Characters;
 using DG.Tweening;
 using Pathfinding;
 using UnityEngine;

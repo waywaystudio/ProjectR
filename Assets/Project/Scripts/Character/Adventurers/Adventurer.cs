@@ -15,16 +15,6 @@ namespace Character.Adventurers
             stats.Initialize();
             equipment.Initialize();
         }
-        
-        public override void Initialize()
-        {
-            if (IsInitialized) return;
-            
-            stats.Initialize();
-            equipment.Initialize();
-
-            IsInitialized = true;
-        }
 
 
         private void Update()

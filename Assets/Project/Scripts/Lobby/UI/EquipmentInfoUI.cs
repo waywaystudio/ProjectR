@@ -32,7 +32,7 @@ namespace Lobby.UI
                 return;
             }
             
-            if (!Database.EquipmentMaster.Get(equipInfo.ActionCode, out Equipment equipment)) return;
+            if (!Database.EquipmentPrefabData.Get(equipInfo.ActionCode, out Equipment equipment)) return;
 
             Equipment = equipment;
             

@@ -83,7 +83,7 @@ public partial class Database
         var mainObject = GameObject.Find("CoreGameObject");
         if (mainObject != null)
         {
-            var dbComponent = mainObject.GetComponentInChildren<Database>();
+            var dbComponent = mainObject.transform.Find("Database").gameObject;
                 
             UnityEditor.EditorUtility.OpenPropertyEditor(dbComponent);
         }

@@ -26,7 +26,7 @@ namespace Common.Equipments
         public static Equipment CreateEquipment(EquipmentInfo info, Transform parent)
         {
             if (info.ActionCode == DataIndex.None) return null;
-            if (!Database.EquipmentMaster.GetObject(info.ActionCode, out var equipmentPrefab)) return null;
+            if (!Database.EquipmentPrefabData.GetObject(info.ActionCode, out var equipmentPrefab)) return null;
             
             var equipObject = Object.Instantiate(equipmentPrefab, parent);
             

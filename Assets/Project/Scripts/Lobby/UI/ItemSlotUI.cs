@@ -36,21 +36,8 @@ namespace Lobby.UI
             if (eventData.button == PointerEventData.InputButton.Right)
             {
                 var adventurerData = LobbyDirector.AdventurerFrame.CurrentAdventurerData;
-                var checkSlot = Equipment.EquipType switch
-                {
-                    EquipType.Weapon => EquipSlotIndex.Weapon,
-                    EquipType.Head   => EquipSlotIndex.Head,
-                    EquipType.Top    => EquipSlotIndex.Top,
-                    EquipType.Bottom => EquipSlotIndex.Bottom,
-                    EquipType.Trinket => adventurerData.Table.ContainsKey(EquipSlotIndex.Trinket1)
-                                         && adventurerData.Table[EquipSlotIndex.Trinket1] != null
-                        ? EquipSlotIndex.Trinket2
-                        : EquipSlotIndex.Trinket1,
-                    _ => throw new ArgumentOutOfRangeException()
-                };
 
-                adventurerData.Table.TryGetValue(checkSlot, out var disarmed);
-                adventurerData.AddEquipment(Equipment);
+                adventurerData.AddEquipment(Equipment, out var disarmed);
                 
                 PlayerCamp.Inventories.Remove(Equipment);
                 
@@ -64,6 +51,7 @@ namespace Lobby.UI
                     SetItemUI(MasterInventoryUI, equipment);
                     TooltipDrawer.Draw();
                 }
+                
                 // Equip Character at Empty Slot
                 else
                 {

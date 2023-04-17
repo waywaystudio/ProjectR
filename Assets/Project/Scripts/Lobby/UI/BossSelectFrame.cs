@@ -29,7 +29,7 @@ namespace Lobby.UI
         {
             SetPortrait(bossCode);
 
-            if (!Database.BossMaster.Get(bossCode, out Boss bossBehaviour)) return;
+            if (!Database.BossPrefabData.Get(bossCode, out Boss bossBehaviour)) return;
 
             var bossData = bossDataList.TryGetElement(bossData => bossData.DataIndex == bossCode);
 

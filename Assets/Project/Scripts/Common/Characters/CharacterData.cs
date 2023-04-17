@@ -40,21 +40,11 @@ namespace Common.Characters
             return classSpec.GetStatValue(type) + equipmentStat;
         }
 
-        public void AddEquipment(Equipment equipment)
+        public void AddEquipment(Equipment equipment, out EquipmentInfo disarmed)
         {
-            var targetSlot = equipment.EquipType switch
-            {
-                EquipType.Weapon => EquipSlotIndex.Weapon,
-                EquipType.Head   => EquipSlotIndex.Head,
-                EquipType.Top    => EquipSlotIndex.Top,
-                EquipType.Bottom => EquipSlotIndex.Bottom,
-                EquipType.Trinket => Table.ContainsKey(EquipSlotIndex.Trinket1)
-                                     && Table[EquipSlotIndex.Trinket1] == null
-                    ? EquipSlotIndex.Trinket1
-                    : EquipSlotIndex.Trinket2,
-                _ => throw new ArgumentOutOfRangeException()
-            };
+            var targetSlot = FindSlot(equipment);
 
+            Table.TryGetValue(targetSlot, out disarmed);
             Table[targetSlot] = equipment.Info;
         }
 
@@ -72,6 +62,42 @@ namespace Common.Characters
             if (tableData.IsNullOrEmpty()) return;
             
             Table = tableData;
+        }
+        
+
+        private EquipSlotIndex FindSlot(Equipment equipment)
+        {
+            return equipment.EquipType switch
+            {
+                EquipType.Weapon  => EquipSlotIndex.Weapon,
+                EquipType.Head    => EquipSlotIndex.Head,
+                EquipType.Top     => EquipSlotIndex.Top,
+                EquipType.Bottom  => EquipSlotIndex.Bottom,
+                EquipType.Trinket => GetTrinketSlot(),
+                _                 => throw new ArgumentOutOfRangeException()
+            };
+        }
+
+        private EquipSlotIndex GetTrinketSlot()
+        {
+            if (!Table.TryGetValue(EquipSlotIndex.Trinket1, out var value1)) 
+                return EquipSlotIndex.Trinket1;
+            
+            if (value1 == null)
+            {
+                return EquipSlotIndex.Trinket1;
+            }
+
+            if (Table.TryGetValue(EquipSlotIndex.Trinket2, out var value2))
+            {
+                if (value2 == null) return EquipSlotIndex.Trinket2;
+            }
+            else
+            {
+                return EquipSlotIndex.Trinket1;
+            }
+
+            return EquipSlotIndex.Trinket1;
         }
 
 

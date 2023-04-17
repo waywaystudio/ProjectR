@@ -1,4 +1,3 @@
-using Adventurers;
 using Character.Adventurers;
 using Common;
 using Sirenix.OdinInspector;
@@ -8,8 +7,16 @@ namespace Raid.UI.FloatingTexts
 {
     public class FloatingTextPool : Pool<FloatingTextUI>
     {
+        // # GameObject prefab;
+        // # int maxCount;
         private Adventurer focusedAdventurer;
 
+        // protected override void Awake()
+        // {
+            // PoolManager.Register<this>(OnCreate, null, null, null, null);
+            // PoolManager.Get<this>();
+            // PoolManager.Release<this>();
+        // }
 
         public void OnFocusingAdventurer(Adventurer focusAdventurer)
         {
@@ -53,6 +60,7 @@ namespace Raid.UI.FloatingTexts
 
         private void ShowDamage(CombatEntity combatEntity)
         {
+            // var damageText = PoolManager.Get<FloatingTextUI>();
             var damageText = Get();
 
             damageText.ShowValue(combatEntity);

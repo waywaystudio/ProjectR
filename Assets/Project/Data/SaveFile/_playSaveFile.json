@@ -8,23 +8,7 @@
 	"BottomInventory" : {
 		"__type" : "System.Collections.Generic.List`1[[Common.Equipments.EquipmentInfo, ProjectR.Common, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]],mscorlib",
 		"value" : [
-			{
-				"dataCode" : 24010001,
-				"enchantLevel" : 0,
-				"spec" : {
-					"statList" : [
-						{
-							"statType" : 2,
-							"applyType" : 1,
-							"value" : 5
-						},{
-							"statType" : 5,
-							"applyType" : 1,
-							"value" : 10
-						}
-					]
-				}
-			}
+			
 		]
 	},
 	"TopInventory" : {
@@ -36,94 +20,26 @@
 	"HeadInventory" : {
 		"__type" : "System.Collections.Generic.List`1[[Common.Equipments.EquipmentInfo, ProjectR.Common, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]],mscorlib",
 		"value" : [
-			{
-				"dataCode" : 22010001,
-				"enchantLevel" : 0,
-				"spec" : {
-					"statList" : [
-						{
-							"statType" : 1,
-							"applyType" : 1,
-							"value" : 5
-						},{
-							"statType" : 2,
-							"applyType" : 1,
-							"value" : 10
-						},{
-							"statType" : 6,
-							"applyType" : 1,
-							"value" : 50
-						}
-					]
-				}
-			}
+			
 		]
 	},
 	"WeaponInventory" : {
 		"__type" : "System.Collections.Generic.List`1[[Common.Equipments.EquipmentInfo, ProjectR.Common, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]],mscorlib",
 		"value" : [
-			{
-				"dataCode" : 21010001,
-				"enchantLevel" : 0,
-				"spec" : {
-					"statList" : [
-						{
-							"statType" : 1,
-							"applyType" : 1,
-							"value" : 20
-						},{
-							"statType" : 2,
-							"applyType" : 1,
-							"value" : 50
-						},{
-							"statType" : 10,
-							"applyType" : 1,
-							"value" : 10
-						},{
-							"statType" : 11,
-							"applyType" : 1,
-							"value" : 12
-						}
-					]
-				}
-			},{
-				"dataCode" : 21010001,
-				"enchantLevel" : 0,
-				"spec" : {
-					"statList" : [
-						{
-							"statType" : 1,
-							"applyType" : 1,
-							"value" : 20
-						},{
-							"statType" : 2,
-							"applyType" : 1,
-							"value" : 50
-						},{
-							"statType" : 10,
-							"applyType" : 1,
-							"value" : 10
-						},{
-							"statType" : 11,
-							"applyType" : 1,
-							"value" : 12
-						}
-					]
-				}
-			}
+			
 		]
 	},
-	"Rogue's Equipments" : {
+	"Hunter's Equipments" : {
 		"__type" : "System.Collections.Generic.Dictionary`2[[Common.EquipSlotIndex, ProjectR.Common, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null],[Common.Equipments.EquipmentInfo, ProjectR.Common, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]],mscorlib",
 		"value" : {1:{
-				"dataCode" : 21020002,
+				"dataCode" : 21030003,
 				"enchantLevel" : 0,
 				"spec" : {
 					"statList" : [
 						{
 							"statType" : 1,
 							"applyType" : 1,
-							"value" : 20
+							"value" : 24
 						},{
 							"statType" : 2,
 							"applyType" : 1,
@@ -131,19 +47,15 @@
 						},{
 							"statType" : 3,
 							"applyType" : 1,
-							"value" : 10
-						},{
-							"statType" : 4,
-							"applyType" : 1,
-							"value" : 50
+							"value" : 5
 						},{
 							"statType" : 10,
 							"applyType" : 1,
-							"value" : 8
+							"value" : 11
 						},{
 							"statType" : 11,
 							"applyType" : 1,
-							"value" : 14
+							"value" : 18
 						}
 					]
 				}
@@ -182,17 +94,17 @@
 			}
 		}
 	},
-	"Hunter's Equipments" : {
+	"Rogue's Equipments" : {
 		"__type" : "System.Collections.Generic.Dictionary`2[[Common.EquipSlotIndex, ProjectR.Common, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null],[Common.Equipments.EquipmentInfo, ProjectR.Common, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]],mscorlib",
 		"value" : {1:{
-				"dataCode" : 21030003,
+				"dataCode" : 21020002,
 				"enchantLevel" : 0,
 				"spec" : {
 					"statList" : [
 						{
 							"statType" : 1,
 							"applyType" : 1,
-							"value" : 24
+							"value" : 20
 						},{
 							"statType" : 2,
 							"applyType" : 1,
@@ -200,15 +112,19 @@
 						},{
 							"statType" : 3,
 							"applyType" : 1,
-							"value" : 5
+							"value" : 10
+						},{
+							"statType" : 4,
+							"applyType" : 1,
+							"value" : 50
 						},{
 							"statType" : 10,
 							"applyType" : 1,
-							"value" : 11
+							"value" : 8
 						},{
 							"statType" : 11,
 							"applyType" : 1,
-							"value" : 18
+							"value" : 14
 						}
 					]
 				}
@@ -304,7 +220,7 @@
 		"__type" : "Serialization.SaveInfo,ProjectR.Core",
 		"value" : {
 			"filename" : "_playSaveFile",
-			"saveTime" : "2023.04.16.22.32.34"
+			"saveTime" : "2023.04.17.23.39.44"
 		}
 	}
 }

@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 using Databases;
-using Databases.PrefabData;
+using Databases.Prefabs;
 using CombatClass = Databases.SheetData.ContentData.CombatClassData.CombatClass;
 using Boss = Databases.SheetData.ContentData.BossData.Boss;
 using Skill = Databases.SheetData.CombatData.SkillData.Skill;
@@ -18,11 +18,11 @@ using UnityEngine;
 public partial class Database : MonoSingleton<Database>
 {
     [SerializeField] private List<DataObject> sheetDataList = new();
-    [SerializeField] private SkillMaster skillMaster;
-    [SerializeField] private StatusEffectMaster statusEffectMaster;
-    [SerializeField] private CombatClassMaster combatClassMaster;
-    [SerializeField] private BossMaster bossMaster;
-    [SerializeField] private EquipmentMaster equipmentMaster;
+    [SerializeField] private SkillPrefabData skillPrefabData;
+    [SerializeField] private StatusEffectPrefabData statusEffectPrefabData;
+    [SerializeField] private CombatClassPrefabData combatClassPrefabData;
+    [SerializeField] private BossPrefabData bossPrefabData;
+    [SerializeField] private EquipmentPrefabData equipmentPrefabData;
         
     private readonly Dictionary<DataIndex, DataObject> sheetDataTable = new();
 
@@ -47,9 +47,9 @@ public partial class Database : MonoSingleton<Database>
     public static Bottom BottomData(DataIndex dataIndex) => SheetDataTable[DataIndex.Bottom].Get<Bottom>(dataIndex);
     public static Trinket TrinketData(DataIndex dataIndex) => SheetDataTable[DataIndex.Trinket].Get<Trinket>(dataIndex);
         
-    public static SkillMaster SkillMaster => Instance.skillMaster;
-    public static StatusEffectMaster StatusEffectMaster => Instance.statusEffectMaster;
-    public static CombatClassMaster CombatClassMaster => Instance.combatClassMaster;
-    public static BossMaster BossMaster => Instance.bossMaster;
-    public static EquipmentMaster EquipmentMaster => Instance.equipmentMaster;
+    public static SkillPrefabData SkillPrefabData => Instance.skillPrefabData;
+    public static StatusEffectPrefabData StatusEffectPrefabData => Instance.statusEffectPrefabData;
+    public static CombatClassPrefabData CombatClassPrefabData => Instance.combatClassPrefabData;
+    public static BossPrefabData BossPrefabData => Instance.bossPrefabData;
+    public static EquipmentPrefabData EquipmentPrefabData => Instance.equipmentPrefabData;
 }

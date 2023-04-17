@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using Singleton;
 using UnityEngine;
 
 namespace Serialization
@@ -264,12 +265,5 @@ namespace Serialization
             }
         }
 #endif
-
-        [Sirenix.OdinInspector.Button]
-        public void ShowTime()
-        {
-            saveInfoList.ForEach(saveInfo => Debug.Log(saveInfo.SaveTime));
-        }
-        
     }
 }

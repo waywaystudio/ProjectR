@@ -8,6 +8,8 @@ public class SandBox : MonoBehaviour
 {
     public CombatClassType SampleClassType;
     public int NextIteratorCount;
+
+    public Table<int, string> TestTable;
     // public Action CsharpAction;
     // public SandSphere sandSphere;
 

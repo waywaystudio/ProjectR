@@ -17,12 +17,12 @@ namespace Common.Characters.UI.DeBuffFrames
         public void Register(IStatusEffect effect)
         {
             this.effect = effect;
-            this.effect.ProgressTime.Unregister("UpdateDeBuffSymbolTimer");
+            this.effect.ProgressTime.RemoveListener("UpdateDeBuffSymbolTimer");
 
             deBuffIcon.sprite = this.effect.Icon;
             timer.text        = this.effect.Duration.ToString("F1");
             
-            this.effect.ProgressTime.Register("UpdateDeBuffSymbolTimer", SetTimer);
+            this.effect.ProgressTime.AddListener("UpdateDeBuffSymbolTimer", SetTimer);
         }
 
         public void Unregister()

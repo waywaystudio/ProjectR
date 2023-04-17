@@ -92,7 +92,7 @@ public enum DataIndex
 	ExpertHelm = 22010003,
 
 	/* TopData */
-	LeatherArmor = 23010001,
+	LetherArmor = 23010001,
 	PlateArmor = 23010002,
 
 	/* BottomData */

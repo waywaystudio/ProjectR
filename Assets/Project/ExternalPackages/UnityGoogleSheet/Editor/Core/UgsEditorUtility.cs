@@ -89,52 +89,52 @@ namespace UnityGoogleSheet.Editor.Core
                 rows.Add(typeValues);
             }
 
-            if (rows.Count != 0)
+            if (rows.Count == 0) return list;
+            
+            var rowCount = rows[0].Count;
+            for (var i = 0; i < rowCount; i++)
             {
-                var rowCount = rows[0].Count;
-                for (var i = 0; i < rowCount; i++)
+                var instance = new T();
+                
+                for (var j = 0; j < typeInfos.Count; j++)
                 {
-                    var instance = new T();
-                    for (var j = 0; j < typeInfos.Count; j++)
+                    try
                     {
-                        try
-                        {
-                            var typeInfo = TypeMap.StrMap[typeInfos[j].type];
-                            var type = typeInfos[j].type;
+                        var typeInfo = TypeMap.StrMap[typeInfos[j].type];
+                        var type     = typeInfos[j].type;
                             
-                            if (type.StartsWith(" < ") && type.Substring(1, 4) == "Enum" && type.EndsWith(">"))
-                            {
-                                 Debug.Log("It's Enum");
-                            }
-
-                            var readValue = rows[j][i] is "" ? GetDefault(typeInfo)
-                                                             : TypeMap.Map[typeInfo].Read(rows[j][i]);
-                            
-                            fields[j].SetValue(instance, readValue);
-                        }
-                        catch (Exception e)
+                        if (type.StartsWith(" < ") && type.Substring(1, 4) == "Enum" && type.EndsWith(">"))
                         {
-                            if (e is UGSValueParseException)
-                            {
-                                Debug.LogError("<color=red> UGS Value Parse Failed! </color>");
-                                Debug.LogError(e);
-                                
-                                return null;
-                            }
-
-                            var type = typeInfos[j].type;
-                            type = type.Replace("Enum<", null);
-                            type = type.Replace(">", null);
-
-                            var readValue = TypeMap.EnumMap[type].Read(rows[j][i]);
-                            fields[j].SetValue(instance, readValue); 
+                            Debug.Log("It's Enum");
                         }
+
+                        var readValue = rows[j][i] is "" ? GetDefault(typeInfo)
+                            : TypeMap.Map[typeInfo].Read(rows[j][i]);
+                            
+                        fields[j].SetValue(instance, readValue);
                     }
-                    
-                    list.Add(instance);
+                    catch (Exception e)
+                    {
+                        if (e is UGSValueParseException)
+                        {
+                            Debug.LogError("<color=red> UGS Value Parse Failed! </color>");
+                            Debug.LogError(e);
+                                
+                            return null;
+                        }
+
+                        var type = typeInfos[j].type;
+                        type = type.Replace("Enum<", null);
+                        type = type.Replace(">", null);
+
+                        var readValue = TypeMap.EnumMap[type].Read(rows[j][i]);
+                        fields[j].SetValue(instance, readValue); 
+                    }
                 }
+                    
+                list.Add(instance);
             }
- 
+
             return list;
         }
 

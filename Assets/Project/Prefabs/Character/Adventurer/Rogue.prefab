@@ -212,6 +212,10 @@ PrefabInstance:
       value: 13000014
       objectReference: {fileID: 0}
     - target: {fileID: 3259723645145811741, guid: a3acb303f8f3ed24c8afb44fa3d18ccf, type: 3}
+      propertyPath: data
+      value: 
+      objectReference: {fileID: 11400000, guid: b7f22f296aa66704bbc1f57e69eee902, type: 2}
+    - target: {fileID: 3259723645145811741, guid: a3acb303f8f3ed24c8afb44fa3d18ccf, type: 3}
       propertyPath: armor.value
       value: 15
       objectReference: {fileID: 0}
@@ -227,6 +231,10 @@ PrefabInstance:
       propertyPath: baseStatCode
       value: 12000004
       objectReference: {fileID: 0}
+    - target: {fileID: 3259723645145811741, guid: a3acb303f8f3ed24c8afb44fa3d18ccf, type: 3}
+      propertyPath: classSpecData
+      value: 
+      objectReference: {fileID: 11400000, guid: b7f22f296aa66704bbc1f57e69eee902, type: 2}
     - target: {fileID: 3259723645145811741, guid: a3acb303f8f3ed24c8afb44fa3d18ccf, type: 3}
       propertyPath: critical.value
       value: 0.1

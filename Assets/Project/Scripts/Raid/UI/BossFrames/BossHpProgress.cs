@@ -18,7 +18,7 @@ namespace Raid.UI.BossFrames
             
             hpImage.Register(mb.DynamicStatEntry.Hp, mb.StatTable.MaxHp);
             monsterName.text = mb.Name;
-            mb.DynamicStatEntry.Hp.Register("UI.BossFrames.BossHpProcess", ValueToText);
+            mb.DynamicStatEntry.Hp.AddListener("UI.BossFrames.BossHpProcess", ValueToText);
             
             ValueToText();
         }
