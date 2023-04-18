@@ -18,79 +18,79 @@ MonoBehaviour:
     name: Knight
     baseRole: Tank
     basePower: 100
-    maxHp: 1000
-    maxResource: 100
-    moveSpeed: 7
-    critical: 5
-    haste: 0
-    armor: 20
+    health: 100
+    maxResource: 7
+    moveSpeed: 5
+    critical: 0
+    haste: 20
+    armor: 0
   - id: 12000002
     name: Guardian
     baseRole: Tank
     basePower: 100
-    maxHp: 1000
-    maxResource: 100
-    moveSpeed: 7
-    critical: 5
-    haste: 0
-    armor: 20
+    health: 100
+    maxResource: 7
+    moveSpeed: 5
+    critical: 0
+    haste: 20
+    armor: 0
   - id: 12000003
     name: Warrior
     baseRole: Melee
     basePower: 100
-    maxHp: 700
-    maxResource: 100
-    moveSpeed: 8
-    critical: 10
-    haste: 5
-    armor: 15
+    health: 80
+    maxResource: 8
+    moveSpeed: 10
+    critical: 5
+    haste: 15
+    armor: 0
   - id: 12000004
     name: Rogue
     baseRole: Melee
     basePower: 100
-    maxHp: 700
-    maxResource: 100
-    moveSpeed: 8
-    critical: 10
-    haste: 5
-    armor: 15
+    health: 80
+    maxResource: 8
+    moveSpeed: 10
+    critical: 5
+    haste: 15
+    armor: 0
   - id: 12000005
     name: Hunter
     baseRole: Range
     basePower: 100
-    maxHp: 600
-    maxResource: 100
-    moveSpeed: 7
+    health: 80
+    maxResource: 7
+    moveSpeed: 5
     critical: 5
-    haste: 5
-    armor: 12
+    haste: 12
+    armor: 0
   - id: 12000006
     name: Mage
     baseRole: Range
     basePower: 100
-    maxHp: 600
-    maxResource: 100
-    moveSpeed: 7
+    health: 60
+    maxResource: 7
+    moveSpeed: 5
     critical: 5
-    haste: 5
-    armor: 12
+    haste: 12
+    armor: 0
   - id: 12000007
     name: Priest
     baseRole: Heal
     basePower: 100
-    maxHp: 500
-    maxResource: 100
-    moveSpeed: 7
-    critical: 5
-    haste: 0
-    armor: 10
+    health: 60
+    maxResource: 7
+    moveSpeed: 5
+    critical: 0
+    haste: 10
+    armor: 0
   - id: 12000008
     name: Bard
     baseRole: Heal
     basePower: 100
-    maxHp: 500
-    maxResource: 100
-    moveSpeed: 7
-    critical: 5
-    haste: 0
-    armor: 10
+    health: 60
+    maxResource: 7
+    moveSpeed: 5
+    critical: 0
+    haste: 10
+    armor: 0

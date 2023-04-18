@@ -154,7 +154,7 @@ MonoBehaviour:
     basePriority: 1
     animationKey: attack
     isRigid: 0
-    sortingType: Role
+    sortingType: CombatClass
     targetLayer: Adventurer
     targetParam: {x: 6, y: 360}
     statusEffect: 0

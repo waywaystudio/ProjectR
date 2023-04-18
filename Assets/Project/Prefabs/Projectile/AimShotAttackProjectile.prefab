@@ -98,7 +98,6 @@ MonoBehaviour:
     - statType: 14
       applyType: 1
       value: 0
-    key: 
 --- !u!114 &2795847014208442065
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -113,6 +112,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   group: 1
   actionCode: 0
+  pool:
+    prefab: {fileID: 8333227002716821657, guid: 5d2fb8c7eb66cd742b1e14925d73c808, type: 3}
+    maxCount: 6
+    syncObjectActivity: 1
   prefabReference: {fileID: 8333227002716821657, guid: 5d2fb8c7eb66cd742b1e14925d73c808, type: 3}
   poolCapacity: 6
 --- !u!135 &6970810306177905816

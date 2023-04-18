@@ -322,7 +322,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1827710727402577211}
   - component: {fileID: 2539249840533019070}
-  - component: {fileID: 6154142461262374073}
   - component: {fileID: 3135980880983038101}
   - component: {fileID: 232144429708625700}
   m_Layer: 7
@@ -365,22 +364,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4cbe7bfeea0900d43adf9e0ded499703, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  actionIcon: {fileID: 0}
+  actionIcon: {fileID: 232144429708625700}
   coolDownFiller: {fileID: 8661234708831271904}
   actionCode: 0
---- !u!114 &6154142461262374073
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1837336147324467488}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 70893aee185e3c6419bd9f3309893bde, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  spawnOffset: {x: 0, y: 0, z: 0}
 --- !u!222 &3135980880983038101
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -939,7 +925,6 @@ GameObject:
   m_Component:
   - component: {fileID: 6911142793535200523}
   - component: {fileID: 3580003237418133017}
-  - component: {fileID: 1732961436970918897}
   - component: {fileID: 630278416800654145}
   - component: {fileID: 844248903425450187}
   m_Layer: 7
@@ -985,19 +970,6 @@ MonoBehaviour:
   actionIcon: {fileID: 0}
   coolDownFiller: {fileID: 7242109897312476271}
   actionCode: 0
---- !u!114 &1732961436970918897
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4647215040610749699}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 70893aee185e3c6419bd9f3309893bde, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  spawnOffset: {x: 0, y: 0, z: 0}
 --- !u!222 &630278416800654145
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1122,7 +1094,6 @@ GameObject:
   m_Component:
   - component: {fileID: 2895247373939713691}
   - component: {fileID: 5792075311521555864}
-  - component: {fileID: 1731183911894528253}
   - component: {fileID: 2435063652653340025}
   - component: {fileID: 4487718266422465297}
   m_Layer: 7
@@ -1168,19 +1139,6 @@ MonoBehaviour:
   actionIcon: {fileID: 4487718266422465297}
   coolDownFiller: {fileID: 2969525780643817183}
   actionCode: 13000003
---- !u!114 &1731183911894528253
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5309939978202874307}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 70893aee185e3c6419bd9f3309893bde, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  spawnOffset: {x: 0, y: 0, z: 0}
 --- !u!222 &2435063652653340025
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1361,7 +1319,6 @@ GameObject:
   m_Component:
   - component: {fileID: 8837028921743897504}
   - component: {fileID: 992610365013982821}
-  - component: {fileID: 6965841411141823970}
   - component: {fileID: 2950394686233462910}
   - component: {fileID: 4265129106563324835}
   m_Layer: 7
@@ -1407,19 +1364,6 @@ MonoBehaviour:
   actionIcon: {fileID: 4265129106563324835}
   coolDownFiller: {fileID: 2951090455484946249}
   actionCode: 13000001
---- !u!114 &6965841411141823970
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5815509342041741405}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 70893aee185e3c6419bd9f3309893bde, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  spawnOffset: {x: 0, y: 0, z: 0}
 --- !u!222 &2950394686233462910
 CanvasRenderer:
   m_ObjectHideFlags: 0

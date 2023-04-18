@@ -17,6 +17,9 @@ MonoBehaviour:
   characterName: Moragg
   classSpec:
     statList:
+    - statType: 2
+      applyType: 1
+      value: 200
     - statType: 3
       applyType: 1
       value: 5

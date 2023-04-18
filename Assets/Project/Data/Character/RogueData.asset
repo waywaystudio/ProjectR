@@ -17,6 +17,9 @@ MonoBehaviour:
   characterName: Rogue
   classSpec:
     statList:
+    - statType: 2
+      applyType: 1
+      value: 80
     - statType: 3
       applyType: 1
       value: 10

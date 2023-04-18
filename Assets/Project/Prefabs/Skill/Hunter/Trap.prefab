@@ -122,7 +122,7 @@ MonoBehaviour:
   description: Starts combat by attacking a target with a melee weapon.
   animationKey: jump
   icon: {fileID: 21300000, guid: 2482dd41d4c9fcc44a20fb70153bb822, type: 3}
-  range: 8
+  range: 4
   angle: 360
 --- !u!114 &6662264705308858124
 MonoBehaviour:
@@ -137,7 +137,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   startCoolingMoment: 1
-  coolTime: 3
+  coolTime: 15
 --- !u!114 &334648159840272248
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -152,5 +152,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   group: 1
   actionCode: 13000017
-  prefabReference: {fileID: 3865230921314547483, guid: 0ef534f56b8b72d429ea96d8b8cb4887, type: 3}
-  poolCapacity: 4
+  pool:
+    prefab: {fileID: 3865230921314547483, guid: 0ef534f56b8b72d429ea96d8b8cb4887, type: 3}
+    maxCount: 4
+    syncObjectActivity: 1

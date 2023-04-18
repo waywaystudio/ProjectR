@@ -16,7 +16,7 @@ namespace Common
             {
                 if (Math.Abs(this.value - value) < 0.000001f) return;
 
-                value      = Math.Clamp(value, 0, StatTable.MaxHp);
+                value      = Math.Max(value, 0);
                 this.value = value;
 
                 OnValueChanged?.Invoke(value);
@@ -50,7 +50,7 @@ namespace Common
             get => value;
             set
             {
-                this.value = Mathf.Min(StatTable.MaxHp * 0.1f, value);
+                this.value = Mathf.Min(StatTable.Health * 1.0f, value);
                 OnValueChanged?.Invoke(value);
             }
         }

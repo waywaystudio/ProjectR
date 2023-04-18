@@ -13,20 +13,20 @@ namespace Common.Execution
 
         public override void Execution(ICombatTaker taker, float instantMultiplier = 1f)
         {
-            if (Has(CharacterActionMask.Dead))
+            if (CrowdControlHas(CharacterActionMask.Dead))
             {
                 taker.Dead();
                 return;
             }
                 
-            if (Has(CharacterActionMask.Stun))
+            if (CrowdControlHas(CharacterActionMask.Stun))
                 taker.Stun(stunDuration * instantMultiplier);
             
-            if (Has(CharacterActionMask.KnockBack))
+            if (CrowdControlHas(CharacterActionMask.KnockBack))
                 taker.KnockBack(transform.position, knockBackDistance * instantMultiplier);
         }
 
-        private bool Has(CharacterActionMask cc) => (ccMask | cc) == ccMask;
+        private bool CrowdControlHas(CharacterActionMask cc) => (ccMask | cc) == ccMask;
         
         private void OnEnable() { Executor?.ExecutionTable.Add(this); }
         private void OnDisable() { Executor?.ExecutionTable.Remove(this); }

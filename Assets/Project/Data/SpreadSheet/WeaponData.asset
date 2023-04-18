@@ -17,8 +17,8 @@ MonoBehaviour:
   - id: 21010001
     name: Training Sword
     equipable: 0
-    minDamage: 10
-    maxDamage: 12
+    minDamage: 2
+    maxDamage: 3
     power: 20
     health: 50
     criticalChance: 0
@@ -29,8 +29,8 @@ MonoBehaviour:
   - id: 21020002
     name: Training Dagger
     equipable: 0
-    minDamage: 8
-    maxDamage: 14
+    minDamage: 1
+    maxDamage: 2
     power: 20
     health: 30
     criticalChance: 10
@@ -41,8 +41,8 @@ MonoBehaviour:
   - id: 21030003
     name: Training Bow
     equipable: 0
-    minDamage: 11
-    maxDamage: 18
+    minDamage: 1
+    maxDamage: 3
     power: 24
     health: 30
     criticalChance: 5
@@ -53,8 +53,8 @@ MonoBehaviour:
   - id: 21010004
     name: Moragg Sword
     equipable: 0
-    minDamage: 10
-    maxDamage: 15
+    minDamage: 1
+    maxDamage: 5
     power: 30
     health: 30
     criticalChance: 0

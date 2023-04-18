@@ -163,7 +163,6 @@ MonoBehaviour:
     - statType: 14
       applyType: 1
       value: 0
-    key: 
 --- !u!114 &4298641090789880137
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -178,8 +177,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   group: 1
   actionCode: 14000001
-  prefabReference: {fileID: 8333227002716821657, guid: b8a0db4494b80d1418934391f99ec561, type: 3}
-  poolCapacity: 8
+  pool:
+    prefab: {fileID: 8333227002716821657, guid: b8a0db4494b80d1418934391f99ec561, type: 3}
+    maxCount: 8
+    syncObjectActivity: 1
 --- !u!114 &7176212911941581069
 MonoBehaviour:
   m_ObjectHideFlags: 0

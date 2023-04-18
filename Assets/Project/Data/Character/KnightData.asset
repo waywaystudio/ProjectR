@@ -17,6 +17,9 @@ MonoBehaviour:
   characterName: Knight
   classSpec:
     statList:
+    - statType: 2
+      applyType: 1
+      value: 100
     - statType: 3
       applyType: 1
       value: 5

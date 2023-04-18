@@ -16,9 +16,9 @@ namespace Common.Execution
 
         public void Add(ExecuteComponent exr)
         {
-            if (Table.ContainsKey(exr.Group))
+            if (Table.TryGetValue(exr.Group, out var value))
             {
-                Table[exr.Group].Add(exr);
+                value.Add(exr);
             }
             else
             {

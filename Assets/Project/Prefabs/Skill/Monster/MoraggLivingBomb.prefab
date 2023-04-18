@@ -138,6 +138,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   group: 1
   actionCode: 14000004
+  pool:
+    prefab: {fileID: 8333227002716821657, guid: ae083ec149c3daa4fb7146db6fd69715, type: 3}
+    maxCount: 2
+    syncObjectActivity: 1
   prefabReference: {fileID: 8333227002716821657, guid: ae083ec149c3daa4fb7146db6fd69715, type: 3}
   poolCapacity: 2
 --- !u!114 &2567593440413624352

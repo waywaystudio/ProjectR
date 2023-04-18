@@ -3,12 +3,17 @@ using UnityEngine;
 
 namespace Common
 {
-    public interface ISequence
+    public interface IActiveSection { ActionTable OnActivated { get; }}
+    public interface ICancelSection { ActionTable OnCanceled { get; }}
+    public interface ICompleteSection { ActionTable OnCompleted { get; }}
+    public interface IEndSection { ActionTable OnEnded { get; }}
+
+    public interface ISequence : IActiveSection, ICancelSection, ICompleteSection, IEndSection
     {
-        ActionTable OnActivated { get; }
-        ActionTable OnCanceled { get; }
-        ActionTable OnCompleted { get; }
-        ActionTable OnEnded { get; }
+        // ActionTable OnActivated { get; }
+        // ActionTable OnCanceled { get; }
+        // ActionTable OnCompleted { get; }
+        // ActionTable OnEnded { get; }
     }
 
     public interface IConditionalSequence : ISequence

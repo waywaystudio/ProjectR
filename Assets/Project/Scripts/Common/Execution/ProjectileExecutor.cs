@@ -1,6 +1,5 @@
 using Common.Projectiles;
 using UnityEngine;
-using UnityEngine.Pool;
 
 namespace Common.Execution
 {
@@ -8,15 +7,14 @@ namespace Common.Execution
     {
         [SerializeField] protected DataIndex actionCode;
         [SerializeField] private Transform muzzle;
-        [SerializeField] private GameObject prefabReference;
-        [SerializeField] private int poolCapacity;
+        [SerializeField] private Pool<ProjectileComponent> pool;
         
-        private IObjectPool<ProjectileComponent> pool;
+
         private Vector3 MuzzlePosition => muzzle ? muzzle.position : transform.position + new Vector3(0, 3, 0);
         
         public override void Execution(ICombatTaker taker, float instantMultiplier = 1f)
         {
-            var projectile          = Get();
+            var projectile          = pool.Get();
             var projectileTransform = projectile.transform;
             var direction           = Executor.Provider.gameObject.transform.forward;
             
@@ -26,46 +24,29 @@ namespace Common.Execution
             projectile.Activate();
         }
         
-        private ProjectileComponent OnCreatePool()
-        {
-            if (!prefabReference.IsNullOrEmpty() && Instantiate(prefabReference).TryGetComponent(out ProjectileComponent component))
-            {
-                component.transform.position = MuzzlePosition;
-                component.Initialize(Executor.Provider);
-                component.OnEnded.Register("ReturnToPool",() =>
-                {
-                    component.transform.position = MuzzlePosition;
-                    component.transform.SetParent(transform, true);
 
-                    Release(component);
-                });
-                
-                return component;
-            }
-            
-            Debug.LogError($"Not Exist {nameof(ProjectileComponent)} in prefab:{prefabReference.name}. return null");
-            return null;
+        private void CreateProjectile(ProjectileComponent projectile)
+        {
+            projectile.transform.position = MuzzlePosition;
+            projectile.Initialize(Executor.Provider);
+            projectile.OnEnded.Register("ReturnToPool",() =>
+            {
+                projectile.transform.position = MuzzlePosition;
+                projectile.transform.SetParent(transform, true);
+
+                pool.Release(projectile);
+            });
         }
-        
-        private ProjectileComponent Get() => pool.Get();
-        private void Release(ProjectileComponent element) => pool.Release(element);
 
         private void OnEnable()
         {
-            pool = new ObjectPool<ProjectileComponent>(OnCreatePool,
-                null,
-                null,
-                component => component.Dispose(),
-                true,
-                poolCapacity);
-            
+            pool.Initialize(CreateProjectile, transform);
             Executor?.ExecutionTable.Add(this);
         }
 
         private void OnDisable()
         {
             pool.Clear();
-            
             Executor?.ExecutionTable.Remove(this);
         }
     }

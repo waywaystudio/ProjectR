@@ -6351,6 +6351,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: CoreGameObject
       objectReference: {fileID: 0}
+    - target: {fileID: 6684832282938928654, guid: 9f6a97e7e5739ea469cdeb8ceab14b08, type: 3}
+      propertyPath: pool.maxCount
+      value: 2
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9f6a97e7e5739ea469cdeb8ceab14b08, type: 3}
 --- !u!1 &833277149

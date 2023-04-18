@@ -153,7 +153,6 @@ MonoBehaviour:
     - statType: 14
       applyType: 1
       value: 0
-    key: 
 --- !u!114 &4534168677478532336
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -167,7 +166,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   group: 1
-  ccMask: 24
+  ccMask: 8
   knockBackDistance: 8
   stunDuration: 0
 --- !u!114 &3597284855680841089

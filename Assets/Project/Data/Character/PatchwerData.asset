@@ -17,6 +17,9 @@ MonoBehaviour:
   characterName: Pathwerk
   classSpec:
     statList:
+    - statType: 2
+      applyType: 1
+      value: 200
     - statType: 3
       applyType: 1
       value: 5
@@ -25,7 +28,7 @@ MonoBehaviour:
       value: 0
     - statType: 6
       applyType: 1
-      value: 20
+      value: 50
     - statType: 7
       applyType: 1
       value: 4

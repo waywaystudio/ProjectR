@@ -5,18 +5,12 @@ using UnityEngine;
 
 namespace Raid.UI.FloatingTexts
 {
-    public class FloatingTextPool : Pool<FloatingTextUI>
+    public class FloatingTextPool : MonoBehaviour 
     {
-        // # GameObject prefab;
-        // # int maxCount;
+        [SerializeField] private Pool<FloatingTextUI> pool;
+        
         private Adventurer focusedAdventurer;
 
-        // protected override void Awake()
-        // {
-            // PoolManager.Register<this>(OnCreate, null, null, null, null);
-            // PoolManager.Get<this>();
-            // PoolManager.Release<this>();
-        // }
 
         public void OnFocusingAdventurer(Adventurer focusAdventurer)
         {
@@ -40,34 +34,26 @@ namespace Raid.UI.FloatingTexts
             newFocusedAdventurer.OnDamageProvided.Register("DamageTextUI", ShowDamage);
             newFocusedAdventurer.OnDamageTaken.Register("TakenDamageTextUI", ShowDamage);
         }
-        
 
-        protected override void OnGetPool(FloatingTextUI floatingText)
-        {
-            floatingText.transform.SetParent(transform);
-        }
-        
-        protected override void OnReleasePool(FloatingTextUI floatingText)
-        {
-            floatingText.gameObject.SetActive(false);
-            floatingText.transform.SetParent(transform);
-        }
-        
-        protected override void OnDestroyPool(FloatingTextUI floatingText)
-        {
-            Destroy(floatingText.gameObject);
-        }
 
         private void ShowDamage(CombatEntity combatEntity)
         {
-            // var damageText = PoolManager.Get<FloatingTextUI>();
-            var damageText = Get();
+            var damageText = pool.Get();
 
             damageText.ShowValue(combatEntity);
-            damageText.gameObject.SetActive(true);
         }
 
-        private void OnDisable()
+        private void CreateFloatingTextUI(FloatingTextUI textUIComponent)
+        {
+            textUIComponent.OnEnded.Register("ReleasePool", () => pool.Release(textUIComponent));
+        }
+
+        private void Awake()
+        {
+            pool.Initialize(CreateFloatingTextUI, transform);
+        }
+
+        private void OnDestroy()
         {
             if (RaidDirector.Instance.IsNullOrDestroyed())
             {

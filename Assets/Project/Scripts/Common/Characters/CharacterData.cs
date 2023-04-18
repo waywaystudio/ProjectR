@@ -112,10 +112,10 @@ namespace Common.Characters
                 {
                     var classData = Database.CombatClassSheetData(dataIndex);
 
+                    classSpec.Add(StatType.Health, StatApplyType.Plus, classData.Health);
                     classSpec.Add(StatType.CriticalChance, StatApplyType.Plus, classData.Critical);
                     classSpec.Add(StatType.Haste,          StatApplyType.Plus, classData.Haste);
                     classSpec.Add(StatType.Armor,          StatApplyType.Plus, classData.Armor);
-                    classSpec.Add(StatType.MaxHp,          StatApplyType.Plus, classData.MaxHp);
                     classSpec.Add(StatType.MaxResource,    StatApplyType.Plus, classData.MaxResource);
                     classSpec.Add(StatType.MoveSpeed,      StatApplyType.Plus, classData.MoveSpeed);
                     break;
@@ -124,10 +124,10 @@ namespace Common.Characters
                 {
                     var bossData = Database.BossSheetData(dataIndex);
 
+                    classSpec.Add(StatType.Health, StatApplyType.Plus, bossData.Health);
                     classSpec.Add(StatType.CriticalChance, StatApplyType.Plus, bossData.Critical);
                     classSpec.Add(StatType.Haste,          StatApplyType.Plus, bossData.Haste);
                     classSpec.Add(StatType.Armor,          StatApplyType.Plus, bossData.Armor);
-                    classSpec.Add(StatType.MaxHp,          StatApplyType.Plus, bossData.MaxHp);
                     classSpec.Add(StatType.MaxResource,    StatApplyType.Plus, bossData.MaxResource);
                     classSpec.Add(StatType.MoveSpeed,      StatApplyType.Plus, bossData.MoveSpeed);
                     break;

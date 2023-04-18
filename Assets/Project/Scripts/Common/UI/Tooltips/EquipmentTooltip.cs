@@ -5,14 +5,13 @@ using UnityEngine;
 
 namespace Common.UI.Tooltips
 {
-    public class EquipmentTooltip : MonoBehaviour, IPoolable<EquipmentTooltip>, IEditable
+    public class EquipmentTooltip : MonoBehaviour, IEndSection, IEditable
     {
         [SerializeField] private TextMeshProUGUI title;
         [SerializeField] private List<StatInfoUI> statInfoList;
         [SerializeField] private TextMeshProUGUI effect;
-        
-        public Pool<EquipmentTooltip> Pool { get; set; }
 
+        public ActionTable OnEnded { get; } = new();
 
         public void Show(Equipment equipment)
         {
@@ -36,6 +35,7 @@ namespace Common.UI.Tooltips
         public void Hide()
         {
             statInfoList.ForEach(statInfoUI => statInfoUI.gameObject.SetActive(false));
+            OnEnded.Invoke();
         }
 
 
@@ -48,5 +48,6 @@ namespace Common.UI.Tooltips
             effect = transform.Find("Tooltip").Find("Effect").GetComponent<TextMeshProUGUI>();
         }
 #endif
+        
     }
 }

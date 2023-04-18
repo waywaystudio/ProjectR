@@ -153,8 +153,10 @@ MonoBehaviour:
   group: 1
   actionCode: 0
   muzzle: {fileID: 0}
-  prefabReference: {fileID: 68301466263117794, guid: 58eeb49f3ebbf29468558a20029bdcc1, type: 3}
-  poolCapacity: 32
+  pool:
+    prefab: {fileID: 68301466263117794, guid: 58eeb49f3ebbf29468558a20029bdcc1, type: 3}
+    maxCount: 32
+    syncObjectActivity: 1
 --- !u!114 &5783596980821386739
 MonoBehaviour:
   m_ObjectHideFlags: 0

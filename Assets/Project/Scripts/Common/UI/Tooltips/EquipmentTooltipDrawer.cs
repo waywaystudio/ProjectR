@@ -44,7 +44,7 @@ namespace Common.UI.Tooltips
                 equipmentTooltipObject == null)
                 return;
             
-            MainUI.EquipmentTooltipPool.Release(equipmentTooltipObject);
+            equipmentTooltipObject.Hide();
             equipmentTooltipObject = null;
         }
 
@@ -53,7 +53,7 @@ namespace Common.UI.Tooltips
         {
             if (equipmentTooltipObject.IsNullOrDestroyed() || !equipmentTooltipObject.gameObject.activeSelf) return;
             
-            MainUI.EquipmentTooltipPool.Release(equipmentTooltipObject);
+            equipmentTooltipObject.Hide();
         }
     }
 }

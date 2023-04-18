@@ -140,8 +140,10 @@ MonoBehaviour:
   group: 1
   actionCode: 13000018
   muzzle: {fileID: 0}
-  prefabReference: {fileID: 68301466263117794, guid: 614519c2858722748860125352e5a59e, type: 3}
-  poolCapacity: 4
+  pool:
+    prefab: {fileID: 68301466263117794, guid: 614519c2858722748860125352e5a59e, type: 3}
+    maxCount: 4
+    syncObjectActivity: 1
 --- !u!114 &7623086778811074887
 MonoBehaviour:
   m_ObjectHideFlags: 0

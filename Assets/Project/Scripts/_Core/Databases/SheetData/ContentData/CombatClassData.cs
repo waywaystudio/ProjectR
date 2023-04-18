@@ -18,7 +18,7 @@ namespace Databases.SheetData.ContentData
 			[SerializeField] private String name;
 			[SerializeField] private String baseRole;
 			[SerializeField] private Single basePower;
-			[SerializeField] private Single maxHp;
+			[SerializeField] private Single health;
 			[SerializeField] private Single maxResource;
 			[SerializeField] private Single moveSpeed;
 			[SerializeField] private Single critical;
@@ -29,7 +29,7 @@ namespace Databases.SheetData.ContentData
 			public String Name => name;
 			public String BaseRole => baseRole;
 			public Single BasePower => basePower;
-			public Single MaxHp => maxHp;
+			public Single Health => health;
 			public Single MaxResource => maxResource;
 			public Single MoveSpeed => moveSpeed;
 			public Single Critical => critical;

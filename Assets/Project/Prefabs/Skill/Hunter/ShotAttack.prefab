@@ -151,7 +151,7 @@ MonoBehaviour:
   group: 1
   actionCode: 0
   muzzle: {fileID: 0}
-  projectileSpeed: 30
-  distance: 30
-  prefabReference: {fileID: 68301466263117794, guid: 541d0ef7d87ec2b409401093e6f3ee17, type: 3}
-  poolCapacity: 12
+  pool:
+    prefab: {fileID: 68301466263117794, guid: 541d0ef7d87ec2b409401093e6f3ee17, type: 3}
+    maxCount: 12
+    syncObjectActivity: 1

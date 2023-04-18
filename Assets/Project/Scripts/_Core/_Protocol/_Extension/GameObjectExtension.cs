@@ -2,7 +2,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using System.Runtime.CompilerServices;
 using UnityEngine;
 using Object = UnityEngine.Object;
 // ReSharper disable UnusedMember.Global
@@ -84,20 +83,6 @@ public static class GameObjectExtension
         return Equals(component, null) || component.gameObject.activeSelf == false;
     }
 
-    public static bool TryGetComponent<T>(this Component gameObject, out T result, bool showMessageOnFailed) where T : Component
-    {
-        if (gameObject.TryGetComponent(out result)) return true;
-        if (showMessageOnFailed)
-        {
-            Debug.LogWarning($"Can't Find TypeOf:{typeof(T)} in {gameObject.name}.");
-        }
-
-        return false;
-    }
-
-    public static bool TryGetInstance(this Component gameObject, out Component component, bool showMessageOnFailed) =>
-        TryGetComponent(gameObject, out component, showMessageOnFailed);
-
     public static T GetOrAddComponent<T>(this GameObject gameObject) where T : MonoBehaviour
     {
         var component = gameObject.GetComponent<T>();
@@ -128,5 +113,17 @@ public static class GameObjectExtension
                 Object.Destroy(go);
             }
         }
+    }
+
+    public static bool ValidInstantiate<T>(this GameObject gameObject, out T component, Transform parent) where T : class
+    {
+        if (gameObject.HasObject() && gameObject.TryGetComponent(out T _))
+        {
+            return Object.Instantiate(gameObject, parent).TryGetComponent(out component);
+        }
+        
+        Debug.LogError($"Not Exist {nameof(T)} in prefab:{gameObject.name}. return false");
+        component = null;
+        return false;
     }
 }

@@ -7,7 +7,7 @@ using Random = UnityEngine.Random;
 
 namespace Raid.UI.FloatingTexts
 {
-    public class FloatingTextUI : MonoBehaviour, IPoolable<FloatingTextUI>
+    public class FloatingTextUI : MonoBehaviour, IEndSection
     {
         [ColorPalette("Fall"), SerializeField] private Color normalColor;
         [ColorPalette("Fall"), SerializeField] private Color criticalColor;
@@ -25,7 +25,8 @@ namespace Raid.UI.FloatingTexts
         private Sequence normalDamageEffect;
         private Sequence criticalDamageEffect;
 
-        public Pool<FloatingTextUI> Pool { get; set; }
+        public ActionTable OnEnded { get; } = new();
+        
         
         public void ShowValue(CombatEntity entity)
         {
@@ -49,7 +50,7 @@ namespace Raid.UI.FloatingTexts
                         .Append(textTransform.DOScale(criticalDamageScale, 0.45f).From())
                         .Append(textTransform.DOLocalMoveY(-25.0f, 0.35f).SetRelative().SetEase(Ease.InCubic))
                         .Join(damageText.DOFade(0.0f, 0.35f))
-                        .OnComplete(() => Pool.Release(this));
+                        .OnComplete(OnEnded.Invoke);
                     
                     isCriticalTweenInitialized = true;
                 }
@@ -69,7 +70,7 @@ namespace Raid.UI.FloatingTexts
                         .Append(textTransform.DOScale(normalDamageScale, 0.35f).From())
                         .Append(textTransform.DOLocalMoveY(-15.0f, 0.35f).SetRelative().SetEase(Ease.InCubic))
                         .Join(damageText.DOFade(0.0f, 0.35f))
-                        .OnComplete(() => Pool.Release(this));
+                        .OnComplete(OnEnded.Invoke);
 
                     isNormalTweenInitialized = true;
                 }
@@ -100,12 +101,6 @@ namespace Raid.UI.FloatingTexts
         private void Update()
         {
             SetTextPosition();
-        }
-
-        private void OnDisable()
-        {
-            // normalDamageEffect.Kill();
-            // criticalDamageEffect.Kill();
         }
     }
 }

@@ -1,49 +1,83 @@
+using System;
 using UnityEngine;
 using UnityEngine.Pool;
+using Object = UnityEngine.Object;
 
 namespace Common
 {
-    public abstract class Pool<T> : MonoBehaviour where T : class, IPoolable<T>
+    [Serializable]
+    public class Pool<T> where T : MonoBehaviour
     {
-        [SerializeField] protected GameObject prefab;
-        [SerializeField] protected int maxCount;
-
-        protected IObjectPool<T> ObjectPool { get; private set; }
-        protected Transform Origin => transform;
-
-        protected T Get() => ObjectPool.Get();
-        public void Release(T element) => ObjectPool.Release(element);
+        [SerializeField] private GameObject prefab;
+        [SerializeField] private int maxCount = 8;
         
+        /// <summary>
+        /// 풀링되는 게임오브젝트의 Activity를 시퀀스에 따라서 true(= OnGet), false(= OnRelease)하며
+        /// Pool을 Clear할 때 삭제한다.
+        /// </summary>
+        [SerializeField] private bool syncObjectActivity = true;
 
-        protected virtual T OnCreatePool()
+        private bool isInitialized;
+        private IObjectPool<T> objectPool;
+        
+        public GameObject Prefab => prefab;
+
+
+        /// <summary>
+        /// Constructor. Pool<T>을 사용하기 위해서는 반드시 한 번 선행되어야 한다.
+        /// 이미 생성된 후에 다시 실행하면, 하위 Action을 갱신할 수 있다.
+        /// </summary>
+        public void Initialize(Action<T> onInitialize = null, Transform parent = null, Action<T> onGet = null, Action<T> onRelease = null, Action<T> onPoolCleared = null)
         {
-            if (!prefab.IsNullOrEmpty() && Instantiate(prefab).TryGetComponent(out T component))
+            if (syncObjectActivity)
             {
-                component.Pool = this;
-                return component;
+                onGet         += component => component.gameObject.SetActive(true);
+                onRelease     += component => component.gameObject.SetActive(false);
+                onPoolCleared += component => Object.Destroy(component.gameObject);
             }
             
-            Debug.LogError($"Not Exist {nameof(T)} in prefab:{prefab.name}. return null");
+            objectPool?.Clear();
+            objectPool = new ObjectPool<T>(() => Create(parent, onInitialize), onGet, onRelease, onPoolCleared, 
+                true, 10, maxCount);
+
+            isInitialized = true;
+        }
+
+        public T Get()
+        {
+            if (isInitialized) return objectPool.Get();
+            
+            Debug.LogError("PoolingSystem not Initialized. please run Initialize Function before use PoolingSystem. "
+                           + $"Input:{prefab.name}");
             return null;
         }
-        protected abstract void OnGetPool(T element);
-        protected abstract void OnReleasePool(T element);
-        protected abstract void OnDestroyPool(T element);
 
-        protected virtual void Awake()
+        public void Release(T element)
         {
-            ObjectPool = new ObjectPool<T>(OnCreatePool,
-                OnGetPool,
-                OnReleasePool,
-                OnDestroyPool,
-                true,
-                maxCount);
+            if (isInitialized)
+            {
+                objectPool.Release(element);
+                return;
+            }
+            
+            Debug.LogError("PoolingSystem not Initialized. please run Initialize Function before use PoolingSystem. "
+                           + $"Input:{prefab.name}");
         }
 
-        public void SetProperties(GameObject prefab, int maxCount)
+        public void Clear() => objectPool.Clear();
+        
+        
+        private T Create(Transform parent, Action<T> onActivated)
         {
-            this.prefab   = prefab;
-            this.maxCount = maxCount;
+            if (!prefab.ValidInstantiate(out T component, parent)) return null;
+
+            onActivated?.Invoke(component);
+            return component;
         }
     }
 }
+
+/* Annotation
+ * Create함수는 상위 Transform을 잡아주는 기능 외에 스케일, 로태이션, 포지션을 잡아주는 기능은 없다.
+ * Instantiate의 추가적인 기능이 필요할 경우, Create를 오버로드하여 사용하도록 하자. 
+ */

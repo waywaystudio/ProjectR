@@ -1,35 +1,31 @@
 using Common.Equipments;
+using UnityEngine;
 
 namespace Common.UI.Tooltips
 {
-    public class EquipmentTooltipPool : Pool<EquipmentTooltip>
+    public class EquipmentTooltipPool : MonoBehaviour 
     {
-        public EquipmentTooltip ShowToolTip(UnityEngine.Vector3 position, Equipment equipment)
+        [SerializeField] private Pool<EquipmentTooltip> pool;
+        
+        public EquipmentTooltip ShowToolTip(Vector3 position, Equipment equipment)
         {
-            var tooltipObject = Get();
+            var tooltipObject = pool.Get();
 
             tooltipObject.transform.position = position;
             tooltipObject.Show(equipment);
 
             return tooltipObject;
         }
-        
-        protected override void OnGetPool(EquipmentTooltip element)
+
+
+        private void ToolTipInitialize(EquipmentTooltip tooltip)
         {
-            element.gameObject.SetActive(true);
-            element.transform.SetParent(Origin);
+            tooltip.OnEnded.Register("ReleasePool", () => pool.Release(tooltip));
         }
 
-        protected override void OnReleasePool(EquipmentTooltip element)
+        private void Awake()
         {
-            element.Hide();
-            element.gameObject.SetActive(false);
-            element.transform.SetParent(Origin);
-        }
-
-        protected override void OnDestroyPool(EquipmentTooltip element)
-        {
-            Destroy(element.gameObject);
+            pool.Initialize(ToolTipInitialize, transform);
         }
     }
 }

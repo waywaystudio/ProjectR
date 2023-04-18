@@ -7,7 +7,7 @@ using UnityEngine.UI;
 
 namespace Common.Characters.UI.ActionBars
 {
-    public class SkillSymbol : MonoBehaviour, ITooltipInfo, IEditable
+    public class SkillSymbol : MonoBehaviour, IEditable
     {
         [SerializeField] private Image actionIcon;
         [SerializeField] private ImageFiller coolDownFiller;
@@ -15,7 +15,6 @@ namespace Common.Characters.UI.ActionBars
 
         private CharacterBehaviour cb;
         public CharacterBehaviour Cb => cb ??= GetComponentInParent<CharacterBehaviour>();
-        public string TooltipInfo => Cb.GetSkill(actionCode).Description;
 
 
         public void StartAction(InputAction.CallbackContext callbackContext)

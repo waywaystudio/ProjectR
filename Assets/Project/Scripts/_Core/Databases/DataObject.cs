@@ -16,12 +16,26 @@ namespace Databases
     {
         [SerializeField] protected List<T> list;
         
-        private List<IIdentifier> keyList = new();
+        private readonly List<IIdentifier> keyList = new();
         private Dictionary<int, T> table;
 
         protected List<T> List { get => list; set => list = value; }
 
-        public override List<IIdentifier> KeyList => keyList ??= list.ConvertAll(element => (IIdentifier)element);
+        public override List<IIdentifier> KeyList
+        {
+            get
+            {
+                if (keyList.IsNullOrEmpty())
+                {
+                    list.ForEach(element => keyList.Add(element));
+                }
+
+                return keyList;
+            }
+        }
+            
+        
+        
         public Dictionary<int, T> Table => table ??= list.ToDictionary(x => x.ID);
 
         public override T0 Get<T0>(DataIndex dataIndex)

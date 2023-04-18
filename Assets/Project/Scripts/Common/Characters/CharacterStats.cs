@@ -32,7 +32,9 @@ namespace Common.Characters
         public void SetDynamicStatEntry()
         {
             Alive.Value    = true;
-            Hp.Value       = StatTable.MaxHp;
+            
+            // Health 값이 모두 들어온 후에 * 10f 계산해야 하는데...
+            Hp.Value       = StatTable.Health * 10f;
             Resource.Value = StatTable.MaxResource;
             Shield.Value   = 0;
         }
