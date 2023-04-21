@@ -10,8 +10,12 @@ namespace Editor
     {
         public override void ProcessChildMemberAttributes(InspectorProperty parentProperty, MemberInfo member, List<Attribute> attributes)
         {
+            /*
+             * SpreadSheetData
+             */ 
             if (member.Name == "sheetDataList")
             {
+                attributes.Add(new TitleGroupAttribute("SheetData", "dataObject and configurations"));
                 attributes.Add(new PropertySpaceAttribute(0, 20f));
                 attributes.Add(new ListDrawerSettingsAttribute
                 {
@@ -21,35 +25,27 @@ namespace Editor
                    IsReadOnly = true,
                 });
             }
-            
-            if (member.Name == "SheetDataTable")
+
+            /*
+             * PrefabData
+             */
+            if (member.Name.Contains("PrefabData"))
             {
-                // attributes.Add(new ShowInInspectorAttribute());
+                attributes.Add(new TitleGroupAttribute("PrefabData", "ScriptableObjects"));
             }
-            
-            if (member.Name == "iconPath")
+
+            /*
+             * Paths
+             */
+            if (member.Name.Contains("Path"))
             {
+                attributes.Add(new TitleGroupAttribute("Path", "Object Locate Path"));
                 attributes.Add(new FolderPathAttribute());
             }
-            
-            if (member.Name == "idCodePath")
-            {
-                attributes.Add(new FolderPathAttribute());
-            }
-            
-            if (member.Name == "dataScriptPath")
-            {
-                attributes.Add(new FolderPathAttribute());
-            }
-            
-            if (member.Name == "dataObjectPath")
-            {
-                attributes.Add(new PropertySpaceAttribute(0, 20f));
-                attributes.Add(new FolderPathAttribute());
-            }
-            
-            
-            
+
+            /*
+             * Functions
+             */
             if (member.Name == "OpenSpreadSheetPanel")
             {
                 attributes.Add(new HorizontalGroupAttribute("CommonHorizontal"));

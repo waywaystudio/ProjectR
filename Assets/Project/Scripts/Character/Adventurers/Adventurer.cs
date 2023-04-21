@@ -12,8 +12,8 @@ namespace Character.Adventurers
         // TODO. Temp
         public override void ForceInitialize()
         {
-            stats.Initialize();
             equipment.Initialize();
+            stats.Initialize();
         }
 
 

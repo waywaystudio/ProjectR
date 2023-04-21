@@ -20,6 +20,20 @@ namespace Common
         [ShowInInspector]
         private Dictionary<StatType, StatSet> statTable { get; } = new();
 
+        public void Add(StatTable anotherTable)
+        {
+            anotherTable.statTable.ForEach(tableElement =>
+            {
+                if (statTable.TryGetValue(tableElement.Key, out var value))
+                {
+                    value.Add(tableElement.Value);
+                }
+                else
+                {
+                    statTable.Add(tableElement.Key, tableElement.Value);
+                }
+            });
+        }
         public void Add(string key, Spec spec) => spec.Iterate(stat => Add(key, stat));
         public void Add(string key, Stat stat)
         {
@@ -35,7 +49,17 @@ namespace Common
                 statTable.Add(stat.StatType, newTable);
             }
         }
-        
+
+        public void Remove(StatTable anotherTable)
+        {
+            anotherTable.statTable.ForEach(tableElement =>
+            {
+                if (statTable.TryGetValue(tableElement.Key, out var value))
+                {
+                    value.Remove(tableElement.Value);
+                }
+            });
+        }
         public void Remove(string key, Spec spec) => spec.Iterate(stat => Remove(key, stat));
         public void Remove(string key, Stat stat)
         {

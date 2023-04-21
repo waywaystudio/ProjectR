@@ -11,15 +11,14 @@ namespace Common.Execution
         public override void Execution(ICombatTaker taker, float instantMultiplier = 1f)
         {
             if (!taker.DynamicStatEntry.Alive.Value) return;
-            
+
             var targetTable = taker.DynamicStatEntry.DeBuffTable;
-            var tableKey         = (Executor.Provider, actionCode);
+            var tableKey    = new StatusEffectTable.StatusEffectKey(Executor.Provider, actionCode);
 
             if (targetTable.TryGetValue(tableKey, out var value))
             {
                 value.Overriding();
             }
-            
             else
             {
                 var effect = pool.Get();

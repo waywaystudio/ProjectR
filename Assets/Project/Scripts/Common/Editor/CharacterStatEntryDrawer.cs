@@ -11,7 +11,7 @@ namespace Common.Editor
     {
         public override void ProcessChildMemberAttributes(InspectorProperty parentProperty, MemberInfo member, List<Attribute> attributes)
         {
-            if (member.Name == "IsAlive")
+            if (member.Name == "Alive")
             {
                 attributes.Add(new ShowInInspectorAttribute());
             }
@@ -27,13 +27,14 @@ namespace Common.Editor
             {
                 attributes.Add(new ShowInInspectorAttribute());
             }
+            
             if (member.Name == "BuffTable")
             {
-                attributes.Add(new PropertySpaceAttribute(15f, 0f));
                 attributes.Add(new ShowInInspectorAttribute());
             }
             if (member.Name == "DeBuffTable")
             {
+                attributes.Add(new PropertySpaceAttribute(15f, 0f));
                 attributes.Add(new ShowInInspectorAttribute());
             }
         }

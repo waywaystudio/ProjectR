@@ -5,22 +5,23 @@ namespace Common.Characters
 {
     public class CharacterStats : MonoBehaviour, IDynamicStatEntry, IEditable
     {
-        [SerializeField] private CharacterData classSpecData;
+        [SerializeField] private CharacterData classData;
 
         public AliveValue Alive { get; } = new();
         public HpValue Hp { get; } = new();
         public ResourceValue Resource { get; } = new();
         public ShieldValue Shield { get; } = new();
-        public Spec CombatClassSpec => classSpecData.ClassSpec;
         
-        [ShowInInspector] public StatTable StatTable { get; } = new();
-        [ShowInInspector] public StatusEffectTable DeBuffTable { get; } = new();
-        [ShowInInspector] public StatusEffectTable BuffTable { get; } = new();
+        [ShowInInspector] 
+        public StatTable StatTable { get; private set; } = new();
+        public StatusEffectTable DeBuffTable { get; } = new();
+        public StatusEffectTable BuffTable { get; } = new();
         
 
         public void Initialize()
         {
-            CombatClassSpec.Register("CombatClassSpec", StatTable);
+            classData.UpdateTable();
+            StatTable.Add(classData.StaticSpecTable);
             
             Hp.StatTable       = StatTable;
             Resource.StatTable = StatTable;

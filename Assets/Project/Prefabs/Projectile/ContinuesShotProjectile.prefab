@@ -85,7 +85,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   group: 1
-  actionCode: 0
+  actionCode: 13000016
   damageSpec:
     statList:
     - statType: 12
@@ -97,7 +97,6 @@ MonoBehaviour:
     - statType: 14
       applyType: 1
       value: 0
-    key: 
 --- !u!135 &-5250174752325060650
 SphereCollider:
   m_ObjectHideFlags: 0

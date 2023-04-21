@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+// using System.Linq;
 using Sirenix.OdinInspector;
 using UnityEngine;
 
@@ -50,8 +51,10 @@ namespace Common
         
         [ShowInInspector]
         public float Value => totalBaseValue * (1 + totalMultiValue);
-        
 
+
+        public void Add(StatSet otherSet) => otherSet.table.ForEach(otherSetElement 
+            => Add(otherSetElement.Key, otherSetElement.Value));
         public void Add(string key, Stat stat)
         {
             if (table.ContainsKey(key))
@@ -67,6 +70,8 @@ namespace Common
             AddNewStat(stat);
         }
 
+        public void Remove(StatSet otherSet) => otherSet.table.ForEach(otherSetElement 
+            => Remove(otherSetElement.Key));
         public void Remove(string key)
         {
             if (!table.ContainsKey(key)) return;

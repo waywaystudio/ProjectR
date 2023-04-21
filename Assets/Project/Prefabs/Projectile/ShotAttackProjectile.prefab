@@ -50,7 +50,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   collidingSystem: {fileID: 5072753418977620396}
-  projectileCode: 0
+  projectileCode: 13000015
   targetLayer:
     serializedVersion: 2
     m_Bits: 256
@@ -85,7 +85,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   group: 1
-  actionCode: 0
+  actionCode: 13000015
   damageSpec:
     statList:
     - statType: 12
@@ -97,7 +97,6 @@ MonoBehaviour:
     - statType: 14
       applyType: 1
       value: 0
-    key: 
 --- !u!135 &6970810306177905816
 SphereCollider:
   m_ObjectHideFlags: 0

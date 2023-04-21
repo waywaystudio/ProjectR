@@ -15,8 +15,8 @@ namespace Character.Bosses
         // TODO. Temp
         public override void ForceInitialize()
         {
-            stats.Initialize();
             equipment.Initialize();
+            stats.Initialize();
         }
 
 

@@ -17,7 +17,9 @@ namespace Common.Characters
 
         public CombatClassType ClassType => classType;
         public DataIndex DataIndex => dataIndex;
-        public Spec ClassSpec => classSpec;
+        
+        [Sirenix.OdinInspector.ShowInInspector]
+        public StatTable StaticSpecTable { get; } = new();
         public List<SkillComponent> SkillList => skillList;
 
         [Sirenix.OdinInspector.ShowInInspector]
@@ -48,6 +50,11 @@ namespace Common.Characters
             Table[targetSlot] = equipment.Info;
         }
 
+        public void UpdateTable()
+        {
+            StaticSpecTable.Add("ClassSpec", classSpec);
+        }
+
         public void Save()
         {
             SaveManager.Save(SerializeKey, Table);
@@ -59,8 +66,11 @@ namespace Common.Characters
             
             var tableData = SaveManager.Load<Dictionary<EquipSlotIndex, EquipmentInfo>>(SerializeKey);
 
+            UpdateTable();
+
             if (tableData.IsNullOrEmpty()) return;
-            
+
+            tableData.Values.ForEach(equipInfo => StaticSpecTable.Add(equipInfo.EquipType.ToString(), equipInfo.Spec));
             Table = tableData;
         }
         

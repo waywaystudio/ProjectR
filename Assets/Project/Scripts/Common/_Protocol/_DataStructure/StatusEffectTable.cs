@@ -1,9 +1,11 @@
+using System;
 using System.Collections.Generic;
+using Sirenix.OdinInspector;
 using UnityEngine;
 
 namespace Common
 {
-    public class StatusEffectTable : Dictionary<(ICombatProvider, DataIndex), IStatusEffect>
+    public class StatusEffectTable : Dictionary<StatusEffectTable.StatusEffectKey, IStatusEffect>
     {
         private event System.Action OnEffectChanged;
 
@@ -12,7 +14,8 @@ namespace Common
 
         public void Register(IStatusEffect statusEffect)
         {
-            var key = (statusEffect.Provider, statusEffect.ActionCode);
+            var key = new StatusEffectKey(statusEffect.Provider, statusEffect.ActionCode);
+            // (statusEffect.Provider, statusEffect.ActionCode);
             
             if (!ContainsKey(key))
             {
@@ -27,9 +30,39 @@ namespace Common
 
         public void Unregister(IStatusEffect statusEffect)
         {
-            this.TryRemove((statusEffect.Provider, statusEffect.ActionCode));
+            this.TryRemove(new StatusEffectKey(statusEffect.Provider, statusEffect.ActionCode));
+                //((statusEffect.Provider, statusEffect.ActionCode));
             
             OnEffectChanged?.Invoke();
+        }
+        
+        [Serializable]
+        public class StatusEffectKey
+        {
+            [ShowInInspector]
+            public ICombatProvider Provider { get; }
+            public DataIndex ActionCode { get; }
+
+            public StatusEffectKey(ICombatProvider provider, DataIndex actionCode)
+            {
+                Provider   = provider;
+                ActionCode = actionCode;
+            }
+
+            // Override GetHashCode and Equals for proper dictionary key handling
+            public override int GetHashCode()
+            {
+                return (Provider, ActionCode).GetHashCode();
+            }
+
+            public override bool Equals(object obj)
+            {
+                if (obj is StatusEffectKey other)
+                {
+                    return other.Provider == Provider && other.ActionCode.Equals(ActionCode);
+                }
+                return false;
+            }
         }
     }
 }
