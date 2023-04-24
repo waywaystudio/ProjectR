@@ -21,6 +21,7 @@ namespace Common.Characters
         public void Initialize()
         {
             classData.UpdateTable();
+            StatTable.Clear();
             StatTable.Add(classData.StaticSpecTable);
             
             Hp.StatTable       = StatTable;

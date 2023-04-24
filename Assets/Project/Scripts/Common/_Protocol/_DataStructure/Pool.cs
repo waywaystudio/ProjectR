@@ -12,8 +12,7 @@ namespace Common
         [SerializeField] private int maxCount = 8;
         
         /// <summary>
-        /// 풀링되는 게임오브젝트의 Activity를 시퀀스에 따라서 true(= OnGet), false(= OnRelease)하며
-        /// Pool을 Clear할 때 삭제한다.
+        /// 게임오브젝트의 Active 상태를 풀링할 때 true(= OnGet), 릴리스 할 때 false(= OnRelease)한다.
         /// </summary>
         [SerializeField] private bool syncObjectActivity = true;
 
@@ -78,6 +77,6 @@ namespace Common
 }
 
 /* Annotation
- * Create함수는 상위 Transform을 잡아주는 기능 외에 스케일, 로태이션, 포지션을 잡아주는 기능은 없다.
+ * Create함수는 Hierarchy의 부모를 잡아주는 기능만 있다.
  * Instantiate의 추가적인 기능이 필요할 경우, Create를 오버로드하여 사용하도록 하자. 
  */
