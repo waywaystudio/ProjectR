@@ -38,6 +38,7 @@ MonoBehaviour:
     - UniTask.Linq
     - spine-unity
     - ProjectR.Lobby
+    - QcPrimitives
     - ProjectR.Character
     - ProjectR.Loading
     - Cinemachine
@@ -50,8 +51,8 @@ MonoBehaviour:
     - SoCreator
     - Assembly-CSharp-firstpass
     - UniTask.Addressables
-    - QcPrimitives
     - AstarPathfindingProjectEditor
+    - QcPrimitives.Editor
     - ProjectR.Common.Editor
     - spine-unity-editor
     - PPv2URPConverters
@@ -63,7 +64,6 @@ MonoBehaviour:
     - ProjectR.Core.Editor
     - ProjectR.Global.Audio.Editor
     - Sirenix.OdinInspector.Modules.UnityMathematics
-    - QcPrimitives.Editor
     showAdvancedSettings: 1
   addMgrToSceneAutomatically: 0
   autoUpdateReferences: 1

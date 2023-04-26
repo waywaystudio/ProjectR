@@ -9,9 +9,10 @@ namespace Common.Projectors
     {
         [SerializeField] protected Material materialReference;
         [SerializeField] protected DecalProjector projector;
+        [SerializeField] protected Ease easeType = Ease.Linear;
 
         protected const float ProjectorDepth = 50f;
-        protected static readonly int FillAmount = Shader.PropertyToID("_FillAmount");
+        protected static readonly int ProgressID = Shader.PropertyToID("_Progress");
         protected IProjectorSequence ProjectorSequencer;
         protected Func<float> CastingTime;
         protected Func<Vector2> SizeReference;
@@ -22,9 +23,9 @@ namespace Common.Projectors
 
         protected void Activate()
         {
-            DecalObject.SetActive(true);
-
-            projector.material.DOFloat(1.5f, FillAmount, CastingTime.Invoke());
+            OnObject();
+            projector.material.DOFloat(1.0f, ProgressID, CastingTime.Invoke())
+                     .SetEase(easeType);
         }
         
         protected void Cancel()
@@ -39,12 +40,22 @@ namespace Common.Projectors
         
         protected void End()
         {
-            DecalObject.SetActive(false);
+            OffObject();
         }
 
 
-        private void ResetMaterial() => projector.material.SetFloat(FillAmount, 0f);
+        protected virtual void OnObject()
+        {
+            DecalObject.SetActive(true);
+        }
+
+        protected virtual void OffObject()
+        {
+            DecalObject.SetActive(false);
+        }
         
+        protected void ResetMaterial() => projector.material.SetFloat(ProgressID, 0f);
+
         private void Awake()
         {
             projector.material = new Material(materialReference);

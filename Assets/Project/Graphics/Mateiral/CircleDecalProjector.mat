@@ -90,7 +90,7 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - _Alpha: 0.2
+    - _Alpha: 0.4
     - _AlphaClip: 0
     - _BackgroundAlpha: 0.5
     - _Blend: 0
@@ -117,6 +117,7 @@ Material:
     - _OcclusionStrength: 1
     - _Parallax: 0.005
     - _Power: 0
+    - _Progress: 0
     - _QueueOffset: 0
     - _Radius: 1
     - _ReceiveShadows: 1

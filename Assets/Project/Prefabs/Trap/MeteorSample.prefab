@@ -107,7 +107,6 @@ MonoBehaviour:
     - statType: 14
       applyType: 1
       value: 0
-    key: 
 --- !u!114 &8631105741518899061
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -120,8 +119,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9934c7bbe067bbc4082416db634c2342, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  materialReference: {fileID: 2100000, guid: 4ac08c9fa98a0ec4b85d160acee8b9b9, type: 2}
+  materialReference: {fileID: 2100000, guid: 04069967a3e66be4b8295e56e0e21faa, type: 2}
   projector: {fileID: 7066129449949791912}
+  easeType: 12
   obstacleCollider: {fileID: 7066129449949791911}
 --- !u!1001 &6191364074054136059
 PrefabInstance:

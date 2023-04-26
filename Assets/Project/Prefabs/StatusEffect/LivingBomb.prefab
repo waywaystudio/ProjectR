@@ -125,8 +125,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9934c7bbe067bbc4082416db634c2342, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  materialReference: {fileID: 2100000, guid: 4ac08c9fa98a0ec4b85d160acee8b9b9, type: 2}
+  materialReference: {fileID: 2100000, guid: 04069967a3e66be4b8295e56e0e21faa, type: 2}
   projector: {fileID: 2840183091458945907}
+  easeType: 9
   obstacleCollider: {fileID: 2840183091458945916}
 --- !u!1001 &1191642871573808416
 PrefabInstance:

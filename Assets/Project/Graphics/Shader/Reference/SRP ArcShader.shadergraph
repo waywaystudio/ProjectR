@@ -773,7 +773,7 @@
     },
     "m_PreviewData": {
         "serializedMesh": {
-            "m_SerializedMesh": "{\"mesh\":{\"instanceID\":0}}",
+            "m_SerializedMesh": "{\"mesh\":{\"fileID\":10210,\"guid\":\"0000000000000000e000000000000000\",\"type\":0}}",
             "m_Guid": ""
         },
         "preventRotation": false
@@ -4884,10 +4884,10 @@
     "m_Guid": {
         "m_GuidSerialized": "3218bb0e-2037-4ea7-93ce-7414a7d7a062"
     },
-    "m_Name": "FillProgress",
+    "m_Name": "Progress",
     "m_DefaultRefNameVersion": 1,
-    "m_RefNameGeneratedByDisplayName": "FillProgress",
-    "m_DefaultReferenceName": "_FillProgress",
+    "m_RefNameGeneratedByDisplayName": "Progress",
+    "m_DefaultReferenceName": "_Progress",
     "m_OverrideReferenceName": "_FillProgress",
     "m_GeneratePropertyBlock": true,
     "m_UseCustomSlotLabel": false,
@@ -4909,7 +4909,7 @@
     "m_Type": "UnityEditor.ShaderGraph.Vector1MaterialSlot",
     "m_ObjectId": "fda252298f26423abff1fef79fa09754",
     "m_Id": 0,
-    "m_DisplayName": "FillProgress",
+    "m_DisplayName": "Progress",
     "m_SlotType": 1,
     "m_Hidden": false,
     "m_ShaderOutputName": "Out",

@@ -6,7 +6,7 @@ namespace Character.Bosses.Moragg.Skills
 {
     public class MoraggSpin : SkillComponent, IProjectorSequence
     {
-        public Vector2 SizeVector => new(range * 2f, range * 2f);
+        public Vector2 SizeVector => new(range, 60);
         
         public override void Execution()
         {

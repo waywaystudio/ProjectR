@@ -808,10 +808,10 @@
         "m_Expanded": true,
         "m_Position": {
             "serializedVersion": "2",
-            "x": -5564.0,
+            "x": -5665.00048828125,
             "y": -583.0000610351563,
-            "width": 207.99951171875,
-            "height": 278.00006103515627
+            "width": 208.0,
+            "height": 277.9999694824219
         }
     },
     "m_Slots": [
@@ -2235,10 +2235,10 @@
         "m_Expanded": true,
         "m_Position": {
             "serializedVersion": "2",
-            "x": -5783.0,
+            "x": -5873.00048828125,
             "y": -583.0000610351563,
             "width": 208.0,
-            "height": 326.0
+            "height": 325.9999694824219
         }
     },
     "m_Slots": [
@@ -2326,7 +2326,7 @@
     "m_Type": "UnityEditor.ShaderGraph.Vector1MaterialSlot",
     "m_ObjectId": "7528816b53ab4216805596e5ee51fe0f",
     "m_Id": 0,
-    "m_DisplayName": "Radius",
+    "m_DisplayName": "Progress",
     "m_SlotType": 1,
     "m_Hidden": false,
     "m_ShaderOutputName": "Out",
@@ -3094,10 +3094,10 @@
     "m_Guid": {
         "m_GuidSerialized": "14a72615-f819-431c-a6f4-04900229a1e4"
     },
-    "m_Name": "Radius",
+    "m_Name": "Progress",
     "m_DefaultRefNameVersion": 1,
-    "m_RefNameGeneratedByDisplayName": "Radius",
-    "m_DefaultReferenceName": "_Radius",
+    "m_RefNameGeneratedByDisplayName": "Progress",
+    "m_DefaultReferenceName": "_Progress",
     "m_OverrideReferenceName": "",
     "m_GeneratePropertyBlock": true,
     "m_UseCustomSlotLabel": false,
