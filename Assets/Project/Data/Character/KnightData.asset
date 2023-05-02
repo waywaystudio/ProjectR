@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   classType: 1
   dataIndex: 12000001
-  characterName: Knight
+  characterName: Ain
   classSpec:
     statList:
     - statType: 2
@@ -32,12 +32,15 @@ MonoBehaviour:
     - statType: 7
       applyType: 1
       value: 7
-    - statType: 8
-      applyType: 1
-      value: 1000
     - statType: 9
       applyType: 1
       value: 100
+    - statType: 10
+      applyType: 1
+      value: 1
+    - statType: 11
+      applyType: 1
+      value: 1
   skillList:
   - {fileID: 4087849359829221962, guid: 2087c7b1b7ea94c4d951fbb90e78849a, type: 3}
   - {fileID: 1416249181191727617, guid: 92753f0d57f468940b4a9165e8fd78c0, type: 3}

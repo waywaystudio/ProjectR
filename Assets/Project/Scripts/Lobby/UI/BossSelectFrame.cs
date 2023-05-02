@@ -99,9 +99,9 @@ namespace Lobby.UI
         // TODO.TEMP Initialize
         private void Awake()
         {
-            selectedBossCode = DataIndex.Moragg;
+            selectedBossCode = DataIndex.Graevar;
             
-            SetBoss(DataIndex.Moragg);
+            SetBoss(DataIndex.Graevar);
         }
 
         private void SetPortrait(DataIndex bossCode)

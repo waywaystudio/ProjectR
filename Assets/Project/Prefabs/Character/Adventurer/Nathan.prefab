@@ -589,7 +589,7 @@ PrefabInstance:
       objectReference: {fileID: 21300000, guid: 126effccf14aace4fa7015d10c4ea912, type: 3}
     - target: {fileID: 3744010700067239338, guid: a3acb303f8f3ed24c8afb44fa3d18ccf, type: 3}
       propertyPath: m_Name
-      value: Hunter
+      value: Nathan
       objectReference: {fileID: 0}
     - target: {fileID: 3744010700067239340, guid: a3acb303f8f3ed24c8afb44fa3d18ccf, type: 3}
       propertyPath: m_RootOrder
@@ -673,7 +673,7 @@ PrefabInstance:
       objectReference: {fileID: 21300000, guid: 126effccf14aace4fa7015d10c4ea912, type: 3}
     - target: {fileID: 6884540845200242600, guid: a3acb303f8f3ed24c8afb44fa3d18ccf, type: 3}
       propertyPath: role
-      value: 16
+      value: 24
       objectReference: {fileID: 0}
     - target: {fileID: 6884540845200242600, guid: a3acb303f8f3ed24c8afb44fa3d18ccf, type: 3}
       propertyPath: animating
@@ -681,11 +681,11 @@ PrefabInstance:
       objectReference: {fileID: 2106981023335654335}
     - target: {fileID: 6884540845200242600, guid: a3acb303f8f3ed24c8afb44fa3d18ccf, type: 3}
       propertyPath: characterID
-      value: 12000005
+      value: 12000004
       objectReference: {fileID: 0}
     - target: {fileID: 6884540845200242600, guid: a3acb303f8f3ed24c8afb44fa3d18ccf, type: 3}
       propertyPath: characterName
-      value: Solider
+      value: Nathan
       objectReference: {fileID: 0}
     - target: {fileID: 6884540845200242600, guid: a3acb303f8f3ed24c8afb44fa3d18ccf, type: 3}
       propertyPath: combatClassID

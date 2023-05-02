@@ -17,6 +17,7 @@ namespace Databases.SheetData.ContentData
 			[SerializeField] private Int32 id;
 			[SerializeField] private String name;
 			[SerializeField] private String baseRole;
+			[SerializeField] private Single defaultDamage;
 			[SerializeField] private Single basePower;
 			[SerializeField] private Single health;
 			[SerializeField] private Single maxResource;
@@ -28,6 +29,7 @@ namespace Databases.SheetData.ContentData
 			public Int32 ID => id;
 			public String Name => name;
 			public String BaseRole => baseRole;
+			public Single DefaultDamage => defaultDamage;
 			public Single BasePower => basePower;
 			public Single Health => health;
 			public Single MaxResource => maxResource;

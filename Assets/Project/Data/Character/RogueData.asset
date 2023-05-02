@@ -13,31 +13,34 @@ MonoBehaviour:
   m_Name: RogueData
   m_EditorClassIdentifier: 
   classType: 4
-  dataIndex: 12000004
-  characterName: Rogue
+  dataIndex: 12000003
+  characterName: Lira
   classSpec:
     statList:
     - statType: 2
       applyType: 1
-      value: 80
+      value: 70
     - statType: 3
       applyType: 1
-      value: 10
+      value: 5
     - statType: 5
       applyType: 1
       value: 5
     - statType: 6
       applyType: 1
-      value: 15
+      value: 12
     - statType: 7
       applyType: 1
-      value: 8
-    - statType: 8
-      applyType: 1
-      value: 700
+      value: 7
     - statType: 9
       applyType: 1
-      value: 100
+      value: 60
+    - statType: 10
+      applyType: 1
+      value: 1
+    - statType: 11
+      applyType: 1
+      value: 1
   skillList:
   - {fileID: 3573146375285310108, guid: 169d24e85c16950479aaff8b74850c9c, type: 3}
   - {fileID: 1819389450473921400, guid: e72a4196ca09d6f4faaf9c9d00925e97, type: 3}

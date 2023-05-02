@@ -15,146 +15,32 @@ MonoBehaviour:
   Index: 17
   list:
   - id: 17000001
-    name: Devourer of Souls
-    power: 500
+    name: Graevar
+    defaultDamage: 1
+    power: 100
     health: 200
-    maxResource: 4
-    moveSpeed: 5
-    critical: 0
-    haste: 50
-    armor: 0
+    maxResource: 100
+    moveSpeed: 7
+    critical: 5
+    haste: 0
+    armor: 50
   - id: 17000002
-    name: Moragg
-    power: 500
+    name: Maelmire
+    defaultDamage: 1
+    power: 100
     health: 200
-    maxResource: 4
-    moveSpeed: 5
-    critical: 0
-    haste: 50
-    armor: 0
+    maxResource: 100
+    moveSpeed: 7
+    critical: 5
+    haste: 0
+    armor: 50
   - id: 17000003
-    name: Maiden of Grief
-    power: 500
+    name: Sylvaroth
+    defaultDamage: 1
+    power: 100
     health: 200
-    maxResource: 4
-    moveSpeed: 5
-    critical: 0
-    haste: 50
-    armor: 0
-  - id: 17000004
-    name: Keristrasza
-    power: 500
-    health: 200
-    maxResource: 4
-    moveSpeed: 5
-    critical: 0
-    haste: 50
-    armor: 0
-  - id: 17000005
-    name: Teron Gorefiend
-    power: 500
-    health: 200
-    maxResource: 4
-    moveSpeed: 5
-    critical: 0
-    haste: 50
-    armor: 0
-  - id: 17000006
-    name: Mother Shahraz
-    power: 500
-    health: 200
-    maxResource: 4
-    moveSpeed: 5
-    critical: 0
-    haste: 50
-    armor: 0
-  - id: 17000007
-    name: Illidan Stormrage
-    power: 500
-    health: 200
-    maxResource: 4
-    moveSpeed: 5
-    critical: 0
-    haste: 50
-    armor: 0
-  - id: 17000008
-    name: Patchwerk
-    power: 500
-    health: 200
-    maxResource: 4
-    moveSpeed: 5
-    critical: 0
-    haste: 50
-    armor: 0
-  - id: 17000009
-    name: Sapphiron
-    power: 500
-    health: 200
-    maxResource: 4
-    moveSpeed: 5
-    critical: 0
-    haste: 50
-    armor: 0
-  - id: 17000010
-    name: MaxBara
-    power: 500
-    health: 200
-    maxResource: 4
-    moveSpeed: 5
-    critical: 0
-    haste: 50
-    armor: 0
-  - id: 17000011
-    name: Magmadar
-    power: 500
-    health: 200
-    maxResource: 4
-    moveSpeed: 5
-    critical: 0
-    haste: 50
-    armor: 0
-  - id: 17000012
-    name: Baron Geddon
-    power: 500
-    health: 200
-    maxResource: 4
-    moveSpeed: 5
-    critical: 0
-    haste: 50
-    armor: 0
-  - id: 17000013
-    name: Ragnaros
-    power: 500
-    health: 200
-    maxResource: 4
-    moveSpeed: 5
-    critical: 0
-    haste: 50
-    armor: 0
-  - id: 17000014
-    name: Vaelastrasz the Corrupt
-    power: 500
-    health: 200
-    maxResource: 4
-    moveSpeed: 5
-    critical: 0
-    haste: 50
-    armor: 0
-  - id: 17000015
-    name: Chromaggus
-    power: 500
-    health: 200
-    maxResource: 4
-    moveSpeed: 5
-    critical: 0
-    haste: 50
-    armor: 0
-  - id: 17000016
-    name: Nefarian
-    power: 500
-    health: 200
-    maxResource: 4
-    moveSpeed: 5
-    critical: 0
-    haste: 50
-    armor: 0
+    maxResource: 100
+    moveSpeed: 7
+    critical: 5
+    haste: 0
+    armor: 50

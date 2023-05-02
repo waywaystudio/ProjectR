@@ -10,11 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7b4303f492ee94242b6af21bbaf702f8, type: 3}
-  m_Name: MoraggData
+  m_Name: GraevarData
   m_EditorClassIdentifier: 
   classType: 536870912
-  dataIndex: 17000002
-  characterName: Moragg
+  dataIndex: 17000001
+  characterName: Graevar
   classSpec:
     statList:
     - statType: 2
@@ -31,13 +31,16 @@ MonoBehaviour:
       value: 50
     - statType: 7
       applyType: 1
-      value: 4
-    - statType: 8
-      applyType: 1
-      value: 2000
+      value: 7
     - statType: 9
       applyType: 1
       value: 100
+    - statType: 10
+      applyType: 1
+      value: 1
+    - statType: 11
+      applyType: 1
+      value: 1
   skillList:
   - {fileID: -6645754418306525249, guid: a357f5398beb58044b7041950abebf09, type: 3}
   - {fileID: -6687176528768826702, guid: 4ae3fbab6c1c1ed48bbe37492124f254, type: 3}

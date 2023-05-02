@@ -29,7 +29,7 @@
 			
 		]
 	},
-	"Hunter's Equipments" : {
+	"Nathan's Equipments" : {
 		"__type" : "System.Collections.Generic.Dictionary`2[[Common.EquipSlotIndex, ProjectR.Common, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null],[Common.Equipments.EquipmentInfo, ProjectR.Common, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]],mscorlib",
 		"value" : {1:{
 				"dataCode" : 21030003,
@@ -94,7 +94,7 @@
 			}
 		}
 	},
-	"Rogue's Equipments" : {
+	"Lira's Equipments" : {
 		"__type" : "System.Collections.Generic.Dictionary`2[[Common.EquipSlotIndex, ProjectR.Common, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null],[Common.Equipments.EquipmentInfo, ProjectR.Common, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]],mscorlib",
 		"value" : {1:{
 				"dataCode" : 21020002,
@@ -163,7 +163,7 @@
 			}
 		}
 	},
-	"Knight's Equipments" : {
+	"Ain's Equipments" : {
 		"__type" : "System.Collections.Generic.Dictionary`2[[Common.EquipSlotIndex, ProjectR.Common, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null],[Common.Equipments.EquipmentInfo, ProjectR.Common, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]],mscorlib",
 		"value" : {1:{
 				"dataCode" : 21010001,
@@ -220,7 +220,7 @@
 		"__type" : "Serialization.SaveInfo,ProjectR.Core",
 		"value" : {
 			"filename" : "_playSaveFile",
-			"saveTime" : "2023.04.26.12.11.52"
+			"saveTime" : "2023.05.02.15.22.02"
 		}
 	}
 }

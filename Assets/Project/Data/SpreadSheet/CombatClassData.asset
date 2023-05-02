@@ -17,80 +17,66 @@ MonoBehaviour:
   - id: 12000001
     name: Knight
     baseRole: Tank
+    defaultDamage: 1
     basePower: 100
     health: 100
-    maxResource: 7
-    moveSpeed: 5
-    critical: 0
-    haste: 20
-    armor: 0
+    maxResource: 100
+    moveSpeed: 7
+    critical: 5
+    haste: 0
+    armor: 20
   - id: 12000002
-    name: Guardian
-    baseRole: Tank
-    basePower: 100
-    health: 100
-    maxResource: 7
-    moveSpeed: 5
-    critical: 0
-    haste: 20
-    armor: 0
-  - id: 12000003
     name: Warrior
     baseRole: Melee
+    defaultDamage: 1
     basePower: 100
     health: 80
-    maxResource: 8
-    moveSpeed: 10
-    critical: 5
-    haste: 15
-    armor: 0
-  - id: 12000004
+    maxResource: 100
+    moveSpeed: 8
+    critical: 10
+    haste: 5
+    armor: 15
+  - id: 12000003
     name: Rogue
     baseRole: Melee
+    defaultDamage: 1
     basePower: 100
     health: 80
-    maxResource: 8
-    moveSpeed: 10
-    critical: 5
-    haste: 15
-    armor: 0
-  - id: 12000005
-    name: Hunter
+    maxResource: 100
+    moveSpeed: 8
+    critical: 10
+    haste: 5
+    armor: 12
+  - id: 12000004
+    name: Ranger
     baseRole: Range
+    defaultDamage: 1
     basePower: 100
-    health: 80
-    maxResource: 7
-    moveSpeed: 5
+    health: 70
+    maxResource: 60
+    moveSpeed: 7
     critical: 5
-    haste: 12
-    armor: 0
-  - id: 12000006
+    haste: 5
+    armor: 12
+  - id: 12000005
     name: Mage
     baseRole: Range
+    defaultDamage: 1
     basePower: 100
     health: 60
-    maxResource: 7
-    moveSpeed: 5
+    maxResource: 100
+    moveSpeed: 7
     critical: 5
-    haste: 12
-    armor: 0
-  - id: 12000007
+    haste: 5
+    armor: 10
+  - id: 12000006
     name: Priest
     baseRole: Heal
+    defaultDamage: 1
     basePower: 100
     health: 60
-    maxResource: 7
-    moveSpeed: 5
-    critical: 0
-    haste: 10
-    armor: 0
-  - id: 12000008
-    name: Bard
-    baseRole: Heal
-    basePower: 100
-    health: 60
-    maxResource: 7
-    moveSpeed: 5
-    critical: 0
-    haste: 10
-    armor: 0
+    maxResource: 100
+    moveSpeed: 7
+    critical: 5
+    haste: 0
+    armor: 10

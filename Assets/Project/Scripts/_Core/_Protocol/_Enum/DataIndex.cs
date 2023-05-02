@@ -27,13 +27,11 @@ public enum DataIndex
 
 	/* CombatClassData */
 	Knight = 12000001,
-	Guardian = 12000002,
-	Warrior = 12000003,
-	Rogue = 12000004,
-	Hunter = 12000005,
-	Mage = 12000006,
-	Priest = 12000007,
-	Bard = 12000008,
+	Warrior = 12000002,
+	Rogue = 12000003,
+	Ranger = 12000004,
+	Mage = 12000005,
+	Priest = 12000006,
 
 	/* SkillData */
 	SwordAttack = 13000001,
@@ -63,22 +61,9 @@ public enum DataIndex
 	Horror = 14000005,
 
 	/* BossData */
-	DevourerofSouls = 17000001,
-	Moragg = 17000002,
-	MaidenofGrief = 17000003,
-	Keristrasza = 17000004,
-	TeronGorefiend = 17000005,
-	MotherShahraz = 17000006,
-	IllidanStormrage = 17000007,
-	Patchwerk = 17000008,
-	Sapphiron = 17000009,
-	MaxBara = 17000010,
-	Magmadar = 17000011,
-	BaronGeddon = 17000012,
-	Ragnaros = 17000013,
-	VaelastrasztheCorrupt = 17000014,
-	Chromaggus = 17000015,
-	Nefarian = 17000016,
+	Graevar = 17000001,
+	Maelmire = 17000002,
+	Sylvaroth = 17000003,
 
 	/* WeaponData */
 	TrainingSword = 21010001,

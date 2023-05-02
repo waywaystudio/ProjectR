@@ -20,7 +20,7 @@ namespace Raid.UI
                     return;
                 case CombatClassType.Rogue : dps.enabled = true;
                     return;
-                case CombatClassType.Hunter : dps.enabled = true;
+                case CombatClassType.Ranger : dps.enabled = true;
                     return;
                 case CombatClassType.Priest : heal.enabled = true;
                     return;

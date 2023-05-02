@@ -9,19 +9,17 @@ namespace Common
         Knight = 1  << 0,
         Warrior = 1 << 1,
         Rogue = 1   << 2,
-        Monk = 1    << 3,
-        Hunter = 1  << 4,
-        Mage = 1    << 5,
-        Priest = 1  << 6,
-        Bard = 1    << 7,
+        Ranger = 1  << 3,
+        Mage = 1    << 4,
+        Priest = 1  << 5,
         Boss = 1    << 29,
         Minion = 1  << 30,
         
         /* Preset */
-        Tank = Knight | Warrior,
-        Melee = Rogue | Monk,
-        Range = Hunter | Mage,
-        Heal = Priest | Bard,
+        Tank = Knight,
+        Melee = Warrior | Rogue,
+        Range = Ranger | Mage,
+        Heal = Priest,
         Monster = Boss | Minion,
         
         All = int.MaxValue

@@ -122,6 +122,8 @@ namespace Common.Characters
                 {
                     var classData = Database.CombatClassSheetData(dataIndex);
 
+                    classSpec.Add(StatType.MinDamage, StatApplyType.Plus, classData.DefaultDamage);
+                    classSpec.Add(StatType.MaxDamage, StatApplyType.Plus, classData.DefaultDamage);
                     classSpec.Add(StatType.Health, StatApplyType.Plus, classData.Health);
                     classSpec.Add(StatType.CriticalChance, StatApplyType.Plus, classData.Critical);
                     classSpec.Add(StatType.Haste,          StatApplyType.Plus, classData.Haste);
@@ -134,6 +136,8 @@ namespace Common.Characters
                 {
                     var bossData = Database.BossSheetData(dataIndex);
 
+                    classSpec.Add(StatType.MinDamage, StatApplyType.Plus, bossData.DefaultDamage);
+                    classSpec.Add(StatType.MaxDamage, StatApplyType.Plus, bossData.DefaultDamage);
                     classSpec.Add(StatType.Health, StatApplyType.Plus, bossData.Health);
                     classSpec.Add(StatType.CriticalChance, StatApplyType.Plus, bossData.Critical);
                     classSpec.Add(StatType.Haste,          StatApplyType.Plus, bossData.Haste);

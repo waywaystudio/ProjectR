@@ -44,7 +44,7 @@ namespace Lobby.UI
         
         public void GetNextAdventurerInfo()
         {
-            if (CurrentAdventurerData.ClassType == CombatClassType.Hunter) return;
+            if (CurrentAdventurerData.ClassType == CombatClassType.Ranger) return;
             if (OnMoving) return;
 
             OnMoving = true;
