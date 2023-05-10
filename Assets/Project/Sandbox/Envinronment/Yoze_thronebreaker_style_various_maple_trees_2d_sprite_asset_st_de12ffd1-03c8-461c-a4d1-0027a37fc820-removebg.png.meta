@@ -1,0 +1,475 @@
+fileFormatVersion: 2
+guid: b79dfbfe7e3773b408c0c37abfb08865
+TextureImporter:
+  internalIDToNameTable: []
+  externalObjects: {}
+  serializedVersion: 12
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMasterTextureLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 0
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Server
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: Yoze_thronebreaker_style_various_maple_trees_2d_sprite_asset_st_de12ffd1-03c8-461c-a4d1-0027a37fc820-removebg_0
+      rect:
+        serializedVersion: 2
+        x: 21
+        y: 667
+        width: 209
+        height: 317
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7f4829a7c7113ba49af891ad2f1932fd
+      internalID: 1466047560
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Yoze_thronebreaker_style_various_maple_trees_2d_sprite_asset_st_de12ffd1-03c8-461c-a4d1-0027a37fc820-removebg_1
+      rect:
+        serializedVersion: 2
+        x: 250
+        y: 663
+        width: 317
+        height: 309
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 871eea7abd973734ba2ca4753ff85386
+      internalID: -697829969
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Yoze_thronebreaker_style_various_maple_trees_2d_sprite_asset_st_de12ffd1-03c8-461c-a4d1-0027a37fc820-removebg_2
+      rect:
+        serializedVersion: 2
+        x: 591
+        y: 676
+        width: 177
+        height: 241
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c64fe825df0088b43aaee882a4b079e7
+      internalID: -1839157860
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Yoze_thronebreaker_style_various_maple_trees_2d_sprite_asset_st_de12ffd1-03c8-461c-a4d1-0027a37fc820-removebg_3
+      rect:
+        serializedVersion: 2
+        x: 808
+        y: 686
+        width: 175
+        height: 292
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fb8fd09f0aa9b98428a7fa13b9060cf9
+      internalID: 700815594
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Yoze_thronebreaker_style_various_maple_trees_2d_sprite_asset_st_de12ffd1-03c8-461c-a4d1-0027a37fc820-removebg_4
+      rect:
+        serializedVersion: 2
+        x: 295
+        y: 658
+        width: 21
+        height: 7
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b442a69739eee4b4a9acf5692564c68e
+      internalID: 909658476
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Yoze_thronebreaker_style_various_maple_trees_2d_sprite_asset_st_de12ffd1-03c8-461c-a4d1-0027a37fc820-removebg_5
+      rect:
+        serializedVersion: 2
+        x: 477
+        y: 660
+        width: 20
+        height: 6
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5e1c6bb3657ff7b47be5f346f89a725b
+      internalID: -1698910333
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Yoze_thronebreaker_style_various_maple_trees_2d_sprite_asset_st_de12ffd1-03c8-461c-a4d1-0027a37fc820-removebg_6
+      rect:
+        serializedVersion: 2
+        x: 19
+        y: 286
+        width: 232
+        height: 340
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7d56b86cb176702469bf37a4ea9a90e9
+      internalID: -1487792576
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Yoze_thronebreaker_style_various_maple_trees_2d_sprite_asset_st_de12ffd1-03c8-461c-a4d1-0027a37fc820-removebg_7
+      rect:
+        serializedVersion: 2
+        x: 268
+        y: 326
+        width: 168
+        height: 287
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 294a3f3bfdc0dc54c8ac051bce6f2f83
+      internalID: 1602152565
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Yoze_thronebreaker_style_various_maple_trees_2d_sprite_asset_st_de12ffd1-03c8-461c-a4d1-0027a37fc820-removebg_8
+      rect:
+        serializedVersion: 2
+        x: 440
+        y: 321
+        width: 151
+        height: 330
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3125f44a95f202b45a12b886d72188e3
+      internalID: 1847024810
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Yoze_thronebreaker_style_various_maple_trees_2d_sprite_asset_st_de12ffd1-03c8-461c-a4d1-0027a37fc820-removebg_9
+      rect:
+        serializedVersion: 2
+        x: 780
+        y: 337
+        width: 221
+        height: 313
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 21c3c9de005fc0f408a22fc6e6dc0001
+      internalID: 2094166164
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Yoze_thronebreaker_style_various_maple_trees_2d_sprite_asset_st_de12ffd1-03c8-461c-a4d1-0027a37fc820-removebg_10
+      rect:
+        serializedVersion: 2
+        x: 131
+        y: 279
+        width: 6
+        height: 4
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 38c91812a0523504abd79e441d197232
+      internalID: 1928777094
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Yoze_thronebreaker_style_various_maple_trees_2d_sprite_asset_st_de12ffd1-03c8-461c-a4d1-0027a37fc820-removebg_11
+      rect:
+        serializedVersion: 2
+        x: 740
+        y: 41
+        width: 257
+        height: 265
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: db96ff9558e5deb4ea520bb72adfdf23
+      internalID: -784942088
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Yoze_thronebreaker_style_various_maple_trees_2d_sprite_asset_st_de12ffd1-03c8-461c-a4d1-0027a37fc820-removebg_12
+      rect:
+        serializedVersion: 2
+        x: 22
+        y: 45
+        width: 279
+        height: 186
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2196533002ff46042a9abafa41648a06
+      internalID: -1285821836
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Yoze_thronebreaker_style_various_maple_trees_2d_sprite_asset_st_de12ffd1-03c8-461c-a4d1-0027a37fc820-removebg_13
+      rect:
+        serializedVersion: 2
+        x: 302
+        y: 43
+        width: 196
+        height: 213
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 574eb1f6425b1f040bc723b46df4a364
+      internalID: -731192645
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Yoze_thronebreaker_style_various_maple_trees_2d_sprite_asset_st_de12ffd1-03c8-461c-a4d1-0027a37fc820-removebg_14
+      rect:
+        serializedVersion: 2
+        x: 521
+        y: 43
+        width: 194
+        height: 228
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 41bd1a787e2bf0342817400cc554f5ef
+      internalID: 911880733
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Yoze_thronebreaker_style_various_maple_trees_2d_sprite_asset_st_de12ffd1-03c8-461c-a4d1-0027a37fc820-removebg_15
+      rect:
+        serializedVersion: 2
+        x: 581
+        y: 322
+        width: 195
+        height: 331
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e530f0f62eb81594b81244915b3dbfc3
+      internalID: -1920801306
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: d73f5cea8a975a3449d01a7e1f369fbc
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    nameFileIdTable:
+      Yoze_thronebreaker_style_various_maple_trees_2d_sprite_asset_st_de12ffd1-03c8-461c-a4d1-0027a37fc820-removebg_0: 1466047560
+      Yoze_thronebreaker_style_various_maple_trees_2d_sprite_asset_st_de12ffd1-03c8-461c-a4d1-0027a37fc820-removebg_1: -697829969
+      Yoze_thronebreaker_style_various_maple_trees_2d_sprite_asset_st_de12ffd1-03c8-461c-a4d1-0027a37fc820-removebg_10: 1928777094
+      Yoze_thronebreaker_style_various_maple_trees_2d_sprite_asset_st_de12ffd1-03c8-461c-a4d1-0027a37fc820-removebg_11: -784942088
+      Yoze_thronebreaker_style_various_maple_trees_2d_sprite_asset_st_de12ffd1-03c8-461c-a4d1-0027a37fc820-removebg_12: -1285821836
+      Yoze_thronebreaker_style_various_maple_trees_2d_sprite_asset_st_de12ffd1-03c8-461c-a4d1-0027a37fc820-removebg_13: -731192645
+      Yoze_thronebreaker_style_various_maple_trees_2d_sprite_asset_st_de12ffd1-03c8-461c-a4d1-0027a37fc820-removebg_14: 911880733
+      Yoze_thronebreaker_style_various_maple_trees_2d_sprite_asset_st_de12ffd1-03c8-461c-a4d1-0027a37fc820-removebg_15: -1920801306
+      Yoze_thronebreaker_style_various_maple_trees_2d_sprite_asset_st_de12ffd1-03c8-461c-a4d1-0027a37fc820-removebg_2: -1839157860
+      Yoze_thronebreaker_style_various_maple_trees_2d_sprite_asset_st_de12ffd1-03c8-461c-a4d1-0027a37fc820-removebg_3: 700815594
+      Yoze_thronebreaker_style_various_maple_trees_2d_sprite_asset_st_de12ffd1-03c8-461c-a4d1-0027a37fc820-removebg_4: 909658476
+      Yoze_thronebreaker_style_various_maple_trees_2d_sprite_asset_st_de12ffd1-03c8-461c-a4d1-0027a37fc820-removebg_5: -1698910333
+      Yoze_thronebreaker_style_various_maple_trees_2d_sprite_asset_st_de12ffd1-03c8-461c-a4d1-0027a37fc820-removebg_6: -1487792576
+      Yoze_thronebreaker_style_various_maple_trees_2d_sprite_asset_st_de12ffd1-03c8-461c-a4d1-0027a37fc820-removebg_7: 1602152565
+      Yoze_thronebreaker_style_various_maple_trees_2d_sprite_asset_st_de12ffd1-03c8-461c-a4d1-0027a37fc820-removebg_8: 1847024810
+      Yoze_thronebreaker_style_various_maple_trees_2d_sprite_asset_st_de12ffd1-03c8-461c-a4d1-0027a37fc820-removebg_9: 2094166164
+  spritePackingTag: 
+  pSDRemoveMatte: 0
+  pSDShowRemoveMatteOption: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
