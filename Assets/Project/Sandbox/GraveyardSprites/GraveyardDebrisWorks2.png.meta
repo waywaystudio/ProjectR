@@ -1,0 +1,981 @@
+fileFormatVersion: 2
+guid: 86485c62831a51c45a2213fecc8797b9
+TextureImporter:
+  internalIDToNameTable: []
+  externalObjects: {}
+  serializedVersion: 12
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMasterTextureLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 0
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Server
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: GraveyardDebrisWorks2_0
+      rect:
+        serializedVersion: 2
+        x: 23
+        y: 870
+        width: 150
+        height: 96
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1596be4d64a900b4e8df7530065b1a0c
+      internalID: 1399610685
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GraveyardDebrisWorks2_1
+      rect:
+        serializedVersion: 2
+        x: 180
+        y: 865
+        width: 188
+        height: 127
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 253ebcebe1350c34683929457134bc3f
+      internalID: 1519123885
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GraveyardDebrisWorks2_2
+      rect:
+        serializedVersion: 2
+        x: 403
+        y: 862
+        width: 107
+        height: 132
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 476d86fb40e84414e8c191275fa50700
+      internalID: 1943691747
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GraveyardDebrisWorks2_3
+      rect:
+        serializedVersion: 2
+        x: 514
+        y: 861
+        width: 129
+        height: 132
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a8a260928fc6ba44b8f51449febb9dd9
+      internalID: 1474521994
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GraveyardDebrisWorks2_4
+      rect:
+        serializedVersion: 2
+        x: 659
+        y: 863
+        width: 222
+        height: 123
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 88f1db16310614242a450bf515922e39
+      internalID: 1071412264
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GraveyardDebrisWorks2_5
+      rect:
+        serializedVersion: 2
+        x: 885
+        y: 858
+        width: 116
+        height: 139
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bfb5f8e3223b0464caefc9198f091c5b
+      internalID: -110262231
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GraveyardDebrisWorks2_6
+      rect:
+        serializedVersion: 2
+        x: 28
+        y: 738
+        width: 129
+        height: 104
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 01fedee1524f8e540a0126ecc208a6fb
+      internalID: -1381297231
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GraveyardDebrisWorks2_7
+      rect:
+        serializedVersion: 2
+        x: 181
+        y: 734
+        width: 192
+        height: 119
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a216e05be37f17b4894af01a24ced882
+      internalID: 2142179878
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GraveyardDebrisWorks2_8
+      rect:
+        serializedVersion: 2
+        x: 398
+        y: 735
+        width: 118
+        height: 118
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4ffc1d4150811c044ba9c9b4fab19c51
+      internalID: 436830762
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GraveyardDebrisWorks2_9
+      rect:
+        serializedVersion: 2
+        x: 515
+        y: 734
+        width: 122
+        height: 133
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 31aaa4f539326df4a892f384fc35e198
+      internalID: -434237111
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GraveyardDebrisWorks2_10
+      rect:
+        serializedVersion: 2
+        x: 653
+        y: 734
+        width: 114
+        height: 120
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c0aaf357b9ec5e64fb6dcc94b027a455
+      internalID: 131927839
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GraveyardDebrisWorks2_11
+      rect:
+        serializedVersion: 2
+        x: 772
+        y: 730
+        width: 109
+        height: 123
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9ac35defd92a95640b92b8765737514a
+      internalID: 1119192077
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GraveyardDebrisWorks2_12
+      rect:
+        serializedVersion: 2
+        x: 885
+        y: 739
+        width: 111
+        height: 114
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7cd62c05e5389984680e7bf7da8268c3
+      internalID: 1980136822
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GraveyardDebrisWorks2_13
+      rect:
+        serializedVersion: 2
+        x: 24
+        y: 599
+        width: 140
+        height: 131
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9e4cb11f4946a974d8ba97e5c3d53018
+      internalID: 1897264636
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GraveyardDebrisWorks2_14
+      rect:
+        serializedVersion: 2
+        x: 179
+        y: 601
+        width: 198
+        height: 119
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 385861ef5276f654da564b668ad59fce
+      internalID: 1166220131
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GraveyardDebrisWorks2_15
+      rect:
+        serializedVersion: 2
+        x: 397
+        y: 578
+        width: 168
+        height: 136
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0f25b0133744ccc4aaf1a5d6564a5339
+      internalID: -485490420
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GraveyardDebrisWorks2_16
+      rect:
+        serializedVersion: 2
+        x: 592
+        y: 589
+        width: 101
+        height: 59
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 77297c4879f4a974eba77688fcc0f1d1
+      internalID: 1628649317
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GraveyardDebrisWorks2_17
+      rect:
+        serializedVersion: 2
+        x: 727
+        y: 589
+        width: 92
+        height: 105
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 39a2714482c32e34f9aa87531b2029b3
+      internalID: 1277262701
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GraveyardDebrisWorks2_18
+      rect:
+        serializedVersion: 2
+        x: 859
+        y: 587
+        width: 108
+        height: 83
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e6407a2aec0a40e4085cfb72706b8734
+      internalID: 817600927
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GraveyardDebrisWorks2_19
+      rect:
+        serializedVersion: 2
+        x: 50
+        y: 457
+        width: 97
+        height: 105
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d5af549ef6244594aa8c925bf4ef2a03
+      internalID: -1497490133
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GraveyardDebrisWorks2_20
+      rect:
+        serializedVersion: 2
+        x: 180
+        y: 461
+        width: 191
+        height: 125
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 02b185ff686d0a3478c2fd5b0154ffa6
+      internalID: 1392178117
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GraveyardDebrisWorks2_21
+      rect:
+        serializedVersion: 2
+        x: 401
+        y: 438
+        width: 167
+        height: 122
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6ec9aca9ecd58f444aaa5a04005dbf63
+      internalID: 1600635252
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GraveyardDebrisWorks2_22
+      rect:
+        serializedVersion: 2
+        x: 607
+        y: 443
+        width: 86
+        height: 83
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: aa80f52b4429e4548be4e76fb5f408ca
+      internalID: -1784302011
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GraveyardDebrisWorks2_23
+      rect:
+        serializedVersion: 2
+        x: 728
+        y: 433
+        width: 102
+        height: 97
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5277de87778569a4facb6f372b93588b
+      internalID: -1849612849
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GraveyardDebrisWorks2_24
+      rect:
+        serializedVersion: 2
+        x: 871
+        y: 431
+        width: 108
+        height: 97
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 600718828823c844ba17011166b56d7f
+      internalID: 1915932039
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GraveyardDebrisWorks2_25
+      rect:
+        serializedVersion: 2
+        x: 30
+        y: 254
+        width: 170
+        height: 182
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e98f7d4cb4368824b9119e9f31dbfe16
+      internalID: 679534169
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GraveyardDebrisWorks2_26
+      rect:
+        serializedVersion: 2
+        x: 214
+        y: 255
+        width: 152
+        height: 171
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a845d1635eb26504db613928d55c8f78
+      internalID: 1450870163
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GraveyardDebrisWorks2_27
+      rect:
+        serializedVersion: 2
+        x: 402
+        y: 275
+        width: 165
+        height: 147
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7e31464d99e875c428a3042156e11bb8
+      internalID: 1837046589
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GraveyardDebrisWorks2_28
+      rect:
+        serializedVersion: 2
+        x: 590
+        y: 275
+        width: 415
+        height: 131
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d25fbf278dd64c5438d76249361075a2
+      internalID: -242234075
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GraveyardDebrisWorks2_29
+      rect:
+        serializedVersion: 2
+        x: 21
+        y: 23
+        width: 245
+        height: 169
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 18006696668a25f459aaf66f59a7f771
+      internalID: -654255449
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GraveyardDebrisWorks2_30
+      rect:
+        serializedVersion: 2
+        x: 383
+        y: 155
+        width: 98
+        height: 63
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 75749efcdd6a984479679da22324abf5
+      internalID: 1882650023
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GraveyardDebrisWorks2_31
+      rect:
+        serializedVersion: 2
+        x: 496
+        y: 155
+        width: 103
+        height: 62
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 45257f6ab379de84ebc3a2a801eb7ce7
+      internalID: 278516857
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GraveyardDebrisWorks2_32
+      rect:
+        serializedVersion: 2
+        x: 613
+        y: 156
+        width: 103
+        height: 62
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f6d06be12e4f96541a7b368d3b960dcb
+      internalID: 617904463
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GraveyardDebrisWorks2_33
+      rect:
+        serializedVersion: 2
+        x: 733
+        y: 156
+        width: 98
+        height: 58
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a2af34979156e8643bde4488bedd12e0
+      internalID: -19292745
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GraveyardDebrisWorks2_34
+      rect:
+        serializedVersion: 2
+        x: 835
+        y: 23
+        width: 168
+        height: 211
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: da08e428660db4048a94c0aaca6824fb
+      internalID: 728173539
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GraveyardDebrisWorks2_35
+      rect:
+        serializedVersion: 2
+        x: 278
+        y: 22
+        width: 102
+        height: 67
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c1d47098da10d34458fb703b122464e4
+      internalID: -1288823031
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GraveyardDebrisWorks2_36
+      rect:
+        serializedVersion: 2
+        x: 395
+        y: 23
+        width: 103
+        height: 80
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8429ecf2f5de79642b73e80ad7afb37b
+      internalID: 444913816
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GraveyardDebrisWorks2_37
+      rect:
+        serializedVersion: 2
+        x: 510
+        y: 23
+        width: 223
+        height: 95
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1bd1dc6d54dd49748aa3aa417a7d8c29
+      internalID: 1364440087
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GraveyardDebrisWorks2_38
+      rect:
+        serializedVersion: 2
+        x: 795
+        y: 85
+        width: 6
+        height: 5
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 417b05dcf91160b4dbd75898f54a5c95
+      internalID: 654781477
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 6804624f425fa6842899cb067b127e4d
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    nameFileIdTable:
+      GraveyardDebrisWorks2_0: 1399610685
+      GraveyardDebrisWorks2_1: 1519123885
+      GraveyardDebrisWorks2_10: 131927839
+      GraveyardDebrisWorks2_11: 1119192077
+      GraveyardDebrisWorks2_12: 1980136822
+      GraveyardDebrisWorks2_13: 1897264636
+      GraveyardDebrisWorks2_14: 1166220131
+      GraveyardDebrisWorks2_15: -485490420
+      GraveyardDebrisWorks2_16: 1628649317
+      GraveyardDebrisWorks2_17: 1277262701
+      GraveyardDebrisWorks2_18: 817600927
+      GraveyardDebrisWorks2_19: -1497490133
+      GraveyardDebrisWorks2_2: 1943691747
+      GraveyardDebrisWorks2_20: 1392178117
+      GraveyardDebrisWorks2_21: 1600635252
+      GraveyardDebrisWorks2_22: -1784302011
+      GraveyardDebrisWorks2_23: -1849612849
+      GraveyardDebrisWorks2_24: 1915932039
+      GraveyardDebrisWorks2_25: 679534169
+      GraveyardDebrisWorks2_26: 1450870163
+      GraveyardDebrisWorks2_27: 1837046589
+      GraveyardDebrisWorks2_28: -242234075
+      GraveyardDebrisWorks2_29: -654255449
+      GraveyardDebrisWorks2_3: 1474521994
+      GraveyardDebrisWorks2_30: 1882650023
+      GraveyardDebrisWorks2_31: 278516857
+      GraveyardDebrisWorks2_32: 617904463
+      GraveyardDebrisWorks2_33: -19292745
+      GraveyardDebrisWorks2_34: 728173539
+      GraveyardDebrisWorks2_35: -1288823031
+      GraveyardDebrisWorks2_36: 444913816
+      GraveyardDebrisWorks2_37: 1364440087
+      GraveyardDebrisWorks2_38: 654781477
+      GraveyardDebrisWorks2_4: 1071412264
+      GraveyardDebrisWorks2_5: -110262231
+      GraveyardDebrisWorks2_6: -1381297231
+      GraveyardDebrisWorks2_7: 2142179878
+      GraveyardDebrisWorks2_8: 436830762
+      GraveyardDebrisWorks2_9: -434237111
+  spritePackingTag: 
+  pSDRemoveMatte: 0
+  pSDShowRemoveMatteOption: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

@@ -22,18 +22,16 @@ MonoBehaviour:
     applyAdditiveMaterial: 1
     additiveMaterials:
     - pageName: Assasin.png
-      material: {fileID: 2100000, guid: 94b588a8a1148f64b8eb5a083ee632e0, type: 2}
+      material: {fileID: 2100000, guid: 70875be77e92341469d7a79c4375d801, type: 2}
     - pageName: Assasin_2.png
-      material: {fileID: 2100000, guid: 09e9132da8f48184a82be54aad8f4c09, type: 2}
-    - pageName: Assasin_3.png
-      material: {fileID: 2100000, guid: f2118c7468fd37f4aa8cd72f6adfdaa4, type: 2}
-    - pageName: Assasin_5.png
-      material: {fileID: 2100000, guid: 78f969fb471027d47a40cb6797f2befa, type: 2}
+      material: {fileID: 2100000, guid: 3b50dd3ee53d39f46aa1d272382f097d, type: 2}
     - pageName: Assasin_4.png
-      material: {fileID: 2100000, guid: 99312fcd9a135a7458af81de5934dc20, type: 2}
+      material: {fileID: 2100000, guid: 30ab9240947c1ea4a8a27180c7866214, type: 2}
+    - pageName: Assasin_3.png
+      material: {fileID: 2100000, guid: ec760089e9c553649bdd1425cf8be456, type: 2}
     multiplyMaterials:
-    - pageName: Assasin.png
-      material: {fileID: 2100000, guid: 33cc22ef7eaa0794e9fe459209bf4f75, type: 2}
+    - pageName: Assasin_4.png
+      material: {fileID: 2100000, guid: 327c8aac6e0c5564ba8ee7a501947590, type: 2}
     screenMaterials: []
   skeletonDataModifiers: []
   fromAnimation: []

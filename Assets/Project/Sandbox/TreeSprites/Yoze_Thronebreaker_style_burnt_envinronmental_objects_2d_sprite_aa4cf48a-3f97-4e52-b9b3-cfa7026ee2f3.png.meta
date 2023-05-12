@@ -1,0 +1,321 @@
+fileFormatVersion: 2
+guid: c8c93211e469d9a488c4f2f83143e6b5
+TextureImporter:
+  internalIDToNameTable: []
+  externalObjects: {}
+  serializedVersion: 12
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMasterTextureLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 0
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Server
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: Yoze_Thronebreaker_style_burnt_envinronmental_objects_2d_sprite_aa4cf48a-3f97-4e52-b9b3-cfa7026ee2f3_0
+      rect:
+        serializedVersion: 2
+        x: 129
+        y: 518
+        width: 223
+        height: 309
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 730bcb7854727894e90a11ba2f9d3476
+      internalID: -2012382982
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Yoze_Thronebreaker_style_burnt_envinronmental_objects_2d_sprite_aa4cf48a-3f97-4e52-b9b3-cfa7026ee2f3_1
+      rect:
+        serializedVersion: 2
+        x: 409
+        y: 519
+        width: 215
+        height: 359
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 045f6fa2af4929e49872b4a15981d779
+      internalID: 82196650
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Yoze_Thronebreaker_style_burnt_envinronmental_objects_2d_sprite_aa4cf48a-3f97-4e52-b9b3-cfa7026ee2f3_2
+      rect:
+        serializedVersion: 2
+        x: 563
+        y: 518
+        width: 16
+        height: 4
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 44779ae843dc63a4c8ed4bf95e1932f3
+      internalID: -1656108103
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Yoze_Thronebreaker_style_burnt_envinronmental_objects_2d_sprite_aa4cf48a-3f97-4e52-b9b3-cfa7026ee2f3_3
+      rect:
+        serializedVersion: 2
+        x: 743
+        y: 520
+        width: 177
+        height: 428
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 641df2dab47c4c441b640a5b0ea57ad1
+      internalID: -2073760368
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Yoze_Thronebreaker_style_burnt_envinronmental_objects_2d_sprite_aa4cf48a-3f97-4e52-b9b3-cfa7026ee2f3_4
+      rect:
+        serializedVersion: 2
+        x: 207
+        y: 515
+        width: 30
+        height: 4
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: acc230ff420ebf94aa70e622738d64cc
+      internalID: 60263555
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Yoze_Thronebreaker_style_burnt_envinronmental_objects_2d_sprite_aa4cf48a-3f97-4e52-b9b3-cfa7026ee2f3_5
+      rect:
+        serializedVersion: 2
+        x: 87
+        y: 124
+        width: 233
+        height: 313
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 744833862687da74f978603e77061cf0
+      internalID: -1609172091
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Yoze_Thronebreaker_style_burnt_envinronmental_objects_2d_sprite_aa4cf48a-3f97-4e52-b9b3-cfa7026ee2f3_6
+      rect:
+        serializedVersion: 2
+        x: 412
+        y: 117
+        width: 199
+        height: 369
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5dfa920524459a44399334dc93438064
+      internalID: -1477372755
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Yoze_Thronebreaker_style_burnt_envinronmental_objects_2d_sprite_aa4cf48a-3f97-4e52-b9b3-cfa7026ee2f3_7
+      rect:
+        serializedVersion: 2
+        x: 700
+        y: 120
+        width: 227
+        height: 378
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 72cca0e4936c2304fa744a23834db5bf
+      internalID: 443727561
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Yoze_Thronebreaker_style_burnt_envinronmental_objects_2d_sprite_aa4cf48a-3f97-4e52-b9b3-cfa7026ee2f3_8
+      rect:
+        serializedVersion: 2
+        x: 810
+        y: 124
+        width: 27
+        height: 4
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f423dbec6feecd54b808ab1b53356d2e
+      internalID: -664568441
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 944b811e7ecadf742a30ea605896511f
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    nameFileIdTable:
+      Yoze_Thronebreaker_style_burnt_envinronmental_objects_2d_sprite_aa4cf48a-3f97-4e52-b9b3-cfa7026ee2f3_0: -2012382982
+      Yoze_Thronebreaker_style_burnt_envinronmental_objects_2d_sprite_aa4cf48a-3f97-4e52-b9b3-cfa7026ee2f3_1: 82196650
+      Yoze_Thronebreaker_style_burnt_envinronmental_objects_2d_sprite_aa4cf48a-3f97-4e52-b9b3-cfa7026ee2f3_2: -1656108103
+      Yoze_Thronebreaker_style_burnt_envinronmental_objects_2d_sprite_aa4cf48a-3f97-4e52-b9b3-cfa7026ee2f3_3: -2073760368
+      Yoze_Thronebreaker_style_burnt_envinronmental_objects_2d_sprite_aa4cf48a-3f97-4e52-b9b3-cfa7026ee2f3_4: 60263555
+      Yoze_Thronebreaker_style_burnt_envinronmental_objects_2d_sprite_aa4cf48a-3f97-4e52-b9b3-cfa7026ee2f3_5: -1609172091
+      Yoze_Thronebreaker_style_burnt_envinronmental_objects_2d_sprite_aa4cf48a-3f97-4e52-b9b3-cfa7026ee2f3_6: -1477372755
+      Yoze_Thronebreaker_style_burnt_envinronmental_objects_2d_sprite_aa4cf48a-3f97-4e52-b9b3-cfa7026ee2f3_7: 443727561
+      Yoze_Thronebreaker_style_burnt_envinronmental_objects_2d_sprite_aa4cf48a-3f97-4e52-b9b3-cfa7026ee2f3_8: -664568441
+  spritePackingTag: 
+  pSDRemoveMatte: 0
+  pSDShowRemoveMatteOption: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 4933293693679076565}
   - component: {fileID: 2208922206230637236}
   - component: {fileID: 7595162724056122380}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: KnightAnimation
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -122,7 +122,7 @@ MonoBehaviour:
   zSpacing: 0
   useClipping: 1
   immutableTriangles: 0
-  pmaVertexColors: 1
+  pmaVertexColors: 0
   clearStateOnDisable: 0
   tintBlack: 0
   singleSubmesh: 0

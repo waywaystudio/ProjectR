@@ -46,8 +46,9 @@ namespace Raid
             cameraDirector  ??= GetComponentInChildren<RaidCameraDirector>();
             castingDirector ??= GetComponentInChildren<RaidCastingDirector>();
             uiDirector      ??= GetComponentInChildren<RaidUIDirector>();
-
-            // MainUI.FadePanel.PlayFadeIn();
+            
+            // TEMP
+            uiDirector.gameObject.SetActive(true);
         }
 
 
