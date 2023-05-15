@@ -90,7 +90,7 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - _Alpha: 0.4
+    - _Alpha: 0
     - _AlphaClip: 0
     - _BackgroundAlpha: 0.5
     - _Blend: 0
@@ -132,9 +132,9 @@ Material:
     - _BaseColor: {r: 1, g: 1, b: 1, a: 1}
     - _Color: {r: 0.24528286, g: 0, b: 0, a: 0.105882354}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
-    - _FillColor: {r: 0.4433962, g: 0.085751146, b: 0.085751146, a: 0}
+    - _FillColor: {r: 0.6320754, g: 0, b: 0, a: 0}
     - _SpecColor: {r: 0.19999996, g: 0.19999996, b: 0.19999996, a: 1}
-    - _TextureColor: {r: 0.15686277, g: 0.15686277, b: 0.15686277, a: 0}
+    - _TextureColor: {r: 1, g: 1, b: 1, a: 0}
   m_BuildTextureStacks: []
 --- !u!114 &4555780790469654431
 MonoBehaviour:

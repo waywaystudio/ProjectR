@@ -29,41 +29,41 @@ MonoBehaviour:
     referenceMode: 2
     serializationDepthLimit: 64
     assemblyNames:
-    - BehaviorDesigner.Runtime
     - UniTask
-    - ProjectR.Core
+    - BehaviorDesigner.Runtime
     - AstarPathfindingProject
     - ES3
-    - ProjectR.Raid
     - UniTask.Linq
+    - ProjectR.Core
     - spine-unity
-    - ProjectR.Lobby
-    - QcPrimitives
     - ProjectR.Character
-    - ProjectR.Loading
-    - Cinemachine
     - Assembly-CSharp
     - spine-csharp
+    - Cinemachine
     - ProjectR.Common
     - UniTask.DOTween
+    - QcPrimitives
+    - ProjectR.Raid
+    - ProjectR.Lobby
     - DOTween.Modules
-    - UniTask.TextMeshPro
     - SoCreator
     - Assembly-CSharp-firstpass
+    - ProjectR.Loading
     - UniTask.Addressables
+    - UniTask.TextMeshPro
     - AstarPathfindingProjectEditor
     - QcPrimitives.Editor
     - ProjectR.Common.Editor
     - spine-unity-editor
     - PPv2URPConverters
-    - ES3.editor
-    - UniTask.Editor
     - SoCreator.Editor
+    - ES3.editor
     - PackageToolsEditor
-    - ShortCuts.Editor
+    - UniTask.Editor
     - ProjectR.Core.Editor
-    - ProjectR.Global.Audio.Editor
+    - ShortCuts.Editor
     - Sirenix.OdinInspector.Modules.UnityMathematics
+    - ProjectR.Global.Audio.Editor
     showAdvancedSettings: 1
   addMgrToSceneAutomatically: 0
   autoUpdateReferences: 1
