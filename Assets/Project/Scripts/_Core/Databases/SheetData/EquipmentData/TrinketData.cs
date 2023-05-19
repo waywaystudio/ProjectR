@@ -24,6 +24,7 @@ namespace Databases.SheetData.EquipmentData
 			[SerializeField] private Single haste;
 			[SerializeField] private Int32 extraSkillCode;
 			[SerializeField] private Single extraPower;
+			[SerializeField] private String iconFileName;
 
 			public Int32 ID => id;
 			public String Name => name;
@@ -35,6 +36,7 @@ namespace Databases.SheetData.EquipmentData
 			public Single Haste => haste;
 			public Int32 ExtraSkillCode => extraSkillCode;
 			public Single ExtraPower => extraPower;
+			public String IconFileName => iconFileName;
 
         }
         

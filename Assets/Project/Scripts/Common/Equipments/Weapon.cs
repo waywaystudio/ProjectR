@@ -12,10 +12,6 @@ namespace Common.Equipments
             (weaponData.MinDamage != 0.0f).OnTrue(() => Spec.Add(StatType.MinDamage, StatApplyType.Plus, weaponData.MinDamage));
             (weaponData.MaxDamage != 0.0f).OnTrue(() => Spec.Add(StatType.MaxDamage, StatApplyType.Plus, weaponData.MaxDamage));
             (weaponData.Power != 0.0f).OnTrue(() => Spec.Add(StatType.Power, StatApplyType.Plus, weaponData.Power));
-            (weaponData.Health != 0.0f).OnTrue(() => Spec.Add(StatType.Health, StatApplyType.Plus, weaponData.Health));
-            (weaponData.CriticalChance != 0.0f).OnTrue(() => Spec.Add(StatType.CriticalChance, StatApplyType.Plus, weaponData.CriticalChance));
-            (weaponData.CriticalDamage != 0.0f).OnTrue(() => Spec.Add(StatType.CriticalDamage, StatApplyType.Plus, weaponData.CriticalDamage));
-            (weaponData.Haste != 0.0f).OnTrue(() => Spec.Add(StatType.Haste, StatApplyType.Plus, weaponData.Haste));
         }
 #endif
     }

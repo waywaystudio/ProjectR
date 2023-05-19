@@ -16,7 +16,6 @@ namespace Databases.SheetData.CombatData
         {
 			[SerializeField] private Int32 id;
 			[SerializeField] private String name;
-			[SerializeField] private String description;
 			[SerializeField] private String skillType;
 			[SerializeField] private List<Single> completionValueList;
 			[SerializeField] private Single processTime;
@@ -29,10 +28,11 @@ namespace Databases.SheetData.CombatData
 			[SerializeField] private String targetLayer;
 			[SerializeField] private Vector2 targetParam;
 			[SerializeField] private Int32 statusEffect;
+			[SerializeField] private String iconFileName;
+			[SerializeField] private String description;
 
 			public Int32 ID => id;
 			public String Name => name;
-			public String Description => description;
 			public String SkillType => skillType;
 			public List<Single> CompletionValueList => completionValueList;
 			public Single ProcessTime => processTime;
@@ -45,6 +45,8 @@ namespace Databases.SheetData.CombatData
 			public String TargetLayer => targetLayer;
 			public Vector2 TargetParam => targetParam;
 			public Int32 StatusEffect => statusEffect;
+			public String IconFileName => iconFileName;
+			public String Description => description;
 
         }
         

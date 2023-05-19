@@ -54,11 +54,11 @@ namespace Lobby.UI
             {
                 var adventurerData = LobbyDirector.AdventurerFrame.CurrentAdventurerData;
 
-                var disarmed = adventurerData.Table[equipSlot];
+                var disarmed = adventurerData.EquipmentTable[equipSlot];
                 
                 PlayerCamp.Inventories.Add(EquipmentInfo.CreateEquipment(disarmed, null));
 
-                adventurerData.Table[equipSlot] = null;
+                adventurerData.EquipmentTable[equipSlot] = null;
                 TooltipDrawer.Hide();
                 SetDefault();
                 

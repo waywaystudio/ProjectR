@@ -25,7 +25,7 @@ namespace Singleton
                 {
                     case 0 :
                     {
-                        Debug.LogError($"Not Exist {typeof(T)} ScriptableObject in Resources Folder"
+                        Debug.LogError($"Not Exist {typeof(T)} ScriptableObject in Resources Folder\n"
                                        + "UniqueScriptableObject does not Create Instance. Return null");
                         return null;
                     }

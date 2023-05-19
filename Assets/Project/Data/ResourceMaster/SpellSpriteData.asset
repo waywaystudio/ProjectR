@@ -1,0 +1,53 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 035db33658f20cb46bdd3d3b90e522ac, type: 3}
+  m_Name: SpellSpriteData
+  m_EditorClassIdentifier: 
+  searchingTargetPath: Assets/Project/Graphics/Icon/Skill
+  dataObjectParamName: IconFileName
+  resourceList:
+  - DataIndex: 13000001
+    Resource: {fileID: 21300000, guid: 951b905eda8f8424fb1debd28c69ac92, type: 3}
+  - DataIndex: 13000002
+    Resource: {fileID: 21300000, guid: 8f65b4f511f4d784a8f0bef07957cfbd, type: 3}
+  - DataIndex: 13000003
+    Resource: {fileID: 21300000, guid: 5bb14a259eefff541a510382c2530229, type: 3}
+  - DataIndex: 13000004
+    Resource: {fileID: 21300000, guid: 68ac4a9cd0f808b4e82a25a73bacce7e, type: 3}
+  - DataIndex: 13000006
+    Resource: {fileID: 21300000, guid: fc4e83da78abc734b8dd9673f479ba4a, type: 3}
+  - DataIndex: 13000007
+    Resource: {fileID: 21300000, guid: 66dd4d17749630548bd562332cf77491, type: 3}
+  - DataIndex: 13000009
+    Resource: {fileID: 21300000, guid: 5a5b5e460d0775b42a594af04292f7c3, type: 3}
+  - DataIndex: 13000011
+    Resource: {fileID: 21300000, guid: f77c1bbaa2a2a9543a6a657f87a256f9, type: 3}
+  - DataIndex: 13000012
+    Resource: {fileID: 21300000, guid: 006fa58004d237949b4cfee98db90909, type: 3}
+  - DataIndex: 13000013
+    Resource: {fileID: 21300000, guid: 40f7257cd353b9143b22df354bf239eb, type: 3}
+  - DataIndex: 13000014
+    Resource: {fileID: 21300000, guid: b7a86745c554af74487fb5e5106421a1, type: 3}
+  - DataIndex: 13000015
+    Resource: {fileID: 21300000, guid: d67f720bb3783db43b6682b93885e2b5, type: 3}
+  - DataIndex: 13000016
+    Resource: {fileID: 21300000, guid: 126effccf14aace4fa7015d10c4ea912, type: 3}
+  - DataIndex: 13000017
+    Resource: {fileID: 21300000, guid: 2482dd41d4c9fcc44a20fb70153bb822, type: 3}
+  - DataIndex: 13000018
+    Resource: {fileID: 21300000, guid: 125357d743831a743b704a4022fac076, type: 3}
+  - DataIndex: 14000001
+    Resource: {fileID: 21300000, guid: 8577a2b57b7035f478ff079c8bfb7699, type: 3}
+  - DataIndex: 14000002
+    Resource: {fileID: 21300000, guid: a45b2bd5098294147a97c8fa8f2127e0, type: 3}
+  - DataIndex: 14000003
+    Resource: {fileID: 21300000, guid: 4ac7ba050b151c74d86ac7beed98bcdb, type: 3}

@@ -152,6 +152,67 @@ public static class Finder
         return false;
     }
     
+    
+    public static bool TryGetSprite(string directory, string filter, out Sprite value, bool showDebug = false)
+    {
+        var gUIDs = AssetDatabase.FindAssets(filter, new [] { directory });
+    
+        switch (gUIDs.Length)
+        {
+            case 0:
+            {
+                if (showDebug)
+                    Debug.LogError($"Can't Find {filter} sprite in Project");
+
+                value = null;
+                return false;
+            }
+            case 1:
+            {
+                var assetPath = AssetDatabase.GUIDToAssetPath(gUIDs[0]);
+                var allAssets = AssetDatabase.LoadAllAssetsAtPath(assetPath);
+
+                foreach (var asset in allAssets)
+                {
+                    if (asset is Sprite sprite && sprite.name == filter)
+                    {
+                        value = sprite;
+                        return true;
+                    }
+                }
+
+                if (showDebug)
+                    Debug.LogError($"Can't Find {filter} sprite in {assetPath}");
+
+                value = null;
+                return false;
+            }
+            default:
+            {
+                foreach (var gUid in gUIDs)
+                {
+                    var assetPath = AssetDatabase.GUIDToAssetPath(gUid);
+                    var allAssets = AssetDatabase.LoadAllAssetsAtPath(assetPath);
+                    
+                    foreach (var asset in allAssets)
+                    {
+                        if (asset is Sprite sprite && sprite.name == filter && sprite.name.Length == filter.Length)
+                        {
+                            value = sprite;
+                            return true;
+                        }
+                    }
+                }
+                
+                if (showDebug)
+                    Debug.LogError($"Can't Find {filter} sprite");
+
+                value = null;
+                return false;
+            }
+        }
+    }
+    
 
     /// <summary>
     /// Create Prefab at specific Path
@@ -263,6 +324,20 @@ public static class Finder
             Debug.Log($"Create <b><color=green>{uniquePath}</color></b> Scriptable Object");
 
         return result;
+    }
+
+    public static void CreateFolder(string path)
+    {
+        if (System.IO.Directory.Exists(path)) return;
+        
+        System.IO.Directory.CreateDirectory(path);
+        Debug.Log($"Create Folder : <b><color=green>{path}</color></b> Successfully!");
+    }
+
+    public static void WriteText(string path, string contents)
+    {
+        System.IO.File.WriteAllText(path, contents);
+        Debug.Log($"Create Text : <b><color=green>{path}</color></b> Successfully!");
     }
 }
 

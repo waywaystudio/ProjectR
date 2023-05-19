@@ -14,10 +14,9 @@ public partial class Database
     [SerializeField] private string idCodePath;
     [SerializeField] private string dataScriptPath;
     [SerializeField] private string dataObjectPath;
-        
-    /// <summary>
-    /// Editor Function
-    /// </summary>
+    
+
+    // TODO. Skill과 StatusEffect가 모두 들어오면 삭제.
     public static bool TryGetIcon(string iconName, out Sprite icon)
     {
         icon = !Finder.TryGetObject($"{Instance.iconPath}", $"{iconName}", out Sprite result, true)
@@ -27,10 +26,11 @@ public partial class Database
         return icon is not null;
     }
 
-    private void EditorSetUp()
+    public void EditorSetUp()
     {
         CreateAndUpdateDataObjects();
         GenerateIDCode();
+        ReloadResourceData();
     }
 
 
@@ -72,6 +72,12 @@ public partial class Database
             Directory.CreateDirectory(idCodePath);
             
         File.WriteAllText($"{idCodePath}/DataIndex.cs", DataIndexGenerator.Generate());
+    }
+
+    private void ReloadResourceData()
+    {
+        equipmentSpriteData.EditorSetUp();
+        spellSpriteData.EditorSetUp();
     }
         
     private void OpenSpreadSheetPanel() 

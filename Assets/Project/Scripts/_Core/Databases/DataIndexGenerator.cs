@@ -1,4 +1,5 @@
 using System.Text;
+using UnityEngine;
 
 namespace Databases
 {
@@ -61,7 +62,10 @@ public enum DataIndex
 
         private static string DataIndexConvention(string original)
         {
-            return original.Replace(" ", "").ToPascalCase();
+            return original.Replace(" ", "")
+                           .Replace("'", "")
+                           .Replace("&", "")
+                           .ToPascalCase();
         }
 #endif
     }

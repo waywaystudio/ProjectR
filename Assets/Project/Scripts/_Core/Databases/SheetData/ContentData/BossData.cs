@@ -16,6 +16,8 @@ namespace Databases.SheetData.ContentData
         {
 			[SerializeField] private Int32 id;
 			[SerializeField] private String name;
+			[SerializeField] private String wCode;
+			[SerializeField] private String fullName;
 			[SerializeField] private Single defaultDamage;
 			[SerializeField] private Single power;
 			[SerializeField] private Single health;
@@ -24,9 +26,12 @@ namespace Databases.SheetData.ContentData
 			[SerializeField] private Single critical;
 			[SerializeField] private Single haste;
 			[SerializeField] private Single armor;
+			[SerializeField] private List<Int32> defaultSkills;
 
 			public Int32 ID => id;
 			public String Name => name;
+			public String WCode => wCode;
+			public String FullName => fullName;
 			public Single DefaultDamage => defaultDamage;
 			public Single Power => power;
 			public Single Health => health;
@@ -35,6 +40,7 @@ namespace Databases.SheetData.ContentData
 			public Single Critical => critical;
 			public Single Haste => haste;
 			public Single Armor => armor;
+			public List<Int32> DefaultSkills => defaultSkills;
 
         }
         

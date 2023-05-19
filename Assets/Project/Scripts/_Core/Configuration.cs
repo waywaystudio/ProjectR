@@ -11,7 +11,4 @@ public class Configuration : MonoBehaviour
         
         saveManager.LoadAllSaveFile();
     }
-
-
-    public void Debugger() => Debug.Log("Debug In");
 }

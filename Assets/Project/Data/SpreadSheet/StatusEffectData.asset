@@ -19,6 +19,7 @@ MonoBehaviour:
     isBuff: 0
     targetLayer: enemy
     duration: 8
+    iconFileName: ArmorCrash Sprite
     valueList:
     - 0.1
   - id: 14000002
@@ -26,6 +27,7 @@ MonoBehaviour:
     isBuff: 0
     targetLayer: enemy
     duration: 12
+    iconFileName: Bleed Sprite
     valueList:
     - 2
     - 4
@@ -34,6 +36,7 @@ MonoBehaviour:
     isBuff: 1
     targetLayer: ally
     duration: 10
+    iconFileName: Drain Sprite
     valueList:
     - 0.25
   - id: 14000004
@@ -41,6 +44,7 @@ MonoBehaviour:
     isBuff: 0
     targetLayer: enemy
     duration: 5
+    iconFileName: LivingBomb Sprite
     valueList:
     - 10
     - 50
@@ -49,4 +53,5 @@ MonoBehaviour:
     isBuff: 0
     targetLayer: enemy
     duration: 3
+    iconFileName: Horror Sprite
     valueList: []

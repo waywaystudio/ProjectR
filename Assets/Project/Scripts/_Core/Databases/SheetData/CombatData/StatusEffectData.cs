@@ -19,6 +19,7 @@ namespace Databases.SheetData.CombatData
 			[SerializeField] private Boolean isBuff;
 			[SerializeField] private String targetLayer;
 			[SerializeField] private Single duration;
+			[SerializeField] private String iconFileName;
 			[SerializeField] private List<Single> valueList;
 
 			public Int32 ID => id;
@@ -26,6 +27,7 @@ namespace Databases.SheetData.CombatData
 			public Boolean IsBuff => isBuff;
 			public String TargetLayer => targetLayer;
 			public Single Duration => duration;
+			public String IconFileName => iconFileName;
 			public List<Single> ValueList => valueList;
 
         }

@@ -690,13 +690,17 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 9378e933dec0a31468650a60242c1146, type: 2}
   - {fileID: 11400000, guid: 956d205c68141744797331f13bd10323, type: 2}
   - {fileID: 11400000, guid: 7939cc38fb09550409d78a736df17a9a, type: 2}
+  - {fileID: 11400000, guid: 17a323007650260459091a67806ef756, type: 2}
   - {fileID: 11400000, guid: e12653d7f014e6348a207e962baca78c, type: 2}
+  - {fileID: 11400000, guid: d99d4202b3c61ca4dbddcd3317339e81, type: 2}
   - {fileID: 11400000, guid: 58d009f40b86dfa4fa544cd8f88dd224, type: 2}
   skillPrefabData: {fileID: 11400000, guid: 743e24344e1679a46807160ebd4ef948, type: 2}
   statusEffectPrefabData: {fileID: 11400000, guid: 505adfbfe37de0349bc3edecc360a977, type: 2}
   combatClassPrefabData: {fileID: 11400000, guid: 0d1a11bc20c568845babb92115bd2dff, type: 2}
   bossPrefabData: {fileID: 11400000, guid: ef22e9954402c8e4b8904cf91401ece0, type: 2}
   equipmentPrefabData: {fileID: 11400000, guid: 126a0911c5fed284e85af47a8e233485, type: 2}
+  equipmentSpriteData: {fileID: 11400000, guid: 3cd7c6de439171b44add7428acdf70a4, type: 2}
+  skillSpriteData: {fileID: 11400000, guid: da9eb427853c5994e8929573f1bc2e4d, type: 2}
   iconPath: Assets/Project/Graphics/Icon
   idCodePath: Assets/Project/Scripts/_Core/_Protocol/_Enum
   dataScriptPath: Assets/Project/Scripts/_Core/Databases/SheetData

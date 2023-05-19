@@ -1,5 +1,7 @@
 using System;
 using System.Collections.Generic;
+using Object = UnityEngine.Object;
+
 // ReSharper disable UnusedMember.Global
 
 public static class ListExtension
@@ -184,14 +186,14 @@ public static class ListExtension
         return (index == 0) ? list[^1] : list[index - 1];
     }
 
-    public static T TryGetElement<T>(this List<T> list, Predicate<T> condition)
+    public static T TryGetElement<T>(this List<T> list, Predicate<T> condition) where T : class
     {
         foreach (var element in list)
         {
             if (condition.Invoke(element)) return element;
         }
 
-        return default;
+        return null;
     }
     
     public static void RemoveExcess<T>(this List<T> fromList, int count)

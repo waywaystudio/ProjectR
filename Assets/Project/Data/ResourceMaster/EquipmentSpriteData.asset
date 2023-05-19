@@ -1,0 +1,161 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 035db33658f20cb46bdd3d3b90e522ac, type: 3}
+  m_Name: EquipmentSpriteData
+  m_EditorClassIdentifier: 
+  searchingTargetPath: Assets/Project/Graphics/Icon/Equipments
+  dataObjectParamName: IconFileName
+  resourceList:
+  - DataIndex: 21010001
+    Resource: {fileID: 21300000, guid: f15a9ba9b1906a64eb697ea5f05c0c17, type: 3}
+  - DataIndex: 21011002
+    Resource: {fileID: 21300000, guid: 78a836b501c54ee4983d57cb45a79b14, type: 3}
+  - DataIndex: 21012003
+    Resource: {fileID: 21300000, guid: 54f7899e5f5df094da6fdbd55c91c205, type: 3}
+  - DataIndex: 21013004
+    Resource: {fileID: 21300000, guid: 0c9326f8c5994f049b960df7319c3b09, type: 3}
+  - DataIndex: 21020005
+    Resource: {fileID: 21300000, guid: 00566ada27deb454d8322aacd4dd6f56, type: 3}
+  - DataIndex: 21021006
+    Resource: {fileID: 21300000, guid: 3be4686cfa5bd824f99600df674039d3, type: 3}
+  - DataIndex: 21022007
+    Resource: {fileID: 21300000, guid: f39578450a7170c4085f1c6bfecf4dfd, type: 3}
+  - DataIndex: 21023008
+    Resource: {fileID: 21300000, guid: 55db37e8082a12248a0080f53c36a005, type: 3}
+  - DataIndex: 21030009
+    Resource: {fileID: 21300000, guid: dda6a2ef86f9c1648952be069b1584f9, type: 3}
+  - DataIndex: 21031010
+    Resource: {fileID: 21300000, guid: b0116b3cc9ce0504bb0bddefc46314c6, type: 3}
+  - DataIndex: 21032011
+    Resource: {fileID: 21300000, guid: cef5a888b226a914aa48317b76eaf8fd, type: 3}
+  - DataIndex: 21033012
+    Resource: {fileID: 21300000, guid: a0fac768ded37d84b84aea869b104304, type: 3}
+  - DataIndex: 21040013
+    Resource: {fileID: 21300000, guid: a5e1e13cd766170428076cb511150f73, type: 3}
+  - DataIndex: 21041014
+    Resource: {fileID: 21300000, guid: e4e0350ac32ca7c4d98e3ec1a44116da, type: 3}
+  - DataIndex: 21042015
+    Resource: {fileID: 21300000, guid: c87c15e93d362ec42a32a1dc7621e069, type: 3}
+  - DataIndex: 21043016
+    Resource: {fileID: 21300000, guid: a157e4599fa063e40b6bde9a0813fe72, type: 3}
+  - DataIndex: 21050017
+    Resource: {fileID: 21300000, guid: 443106affca4f2246a0f1ddd7750dd6d, type: 3}
+  - DataIndex: 21051018
+    Resource: {fileID: 21300000, guid: 5c861c6143d1f3f4f96802c4352619e4, type: 3}
+  - DataIndex: 21052019
+    Resource: {fileID: 21300000, guid: 265a7c7974d46a4449be64f97ddb2850, type: 3}
+  - DataIndex: 21053020
+    Resource: {fileID: 21300000, guid: a3673291ca2870641a7226ac09baedb6, type: 3}
+  - DataIndex: 21060021
+    Resource: {fileID: 21300000, guid: 5e6c1f9997f19d14c8a12e3e7ff284a8, type: 3}
+  - DataIndex: 21061022
+    Resource: {fileID: 21300000, guid: ffa5d1f35edbf864e815b1c494a0e3c8, type: 3}
+  - DataIndex: 21062023
+    Resource: {fileID: 21300000, guid: cf967fda2fe3d974a8a6c2c4c4b69611, type: 3}
+  - DataIndex: 21063024
+    Resource: {fileID: 21300000, guid: 1653b3b212d371a4bbb0155f34114a9f, type: 3}
+  - DataIndex: 22010001
+    Resource: {fileID: 21300000, guid: 256f8f78a3b7bb54581f4bdcae70c0e1, type: 3}
+  - DataIndex: 22011002
+    Resource: {fileID: 21300000, guid: cf5e6d3ff6e9cff4c97417277973a3bb, type: 3}
+  - DataIndex: 22012003
+    Resource: {fileID: 21300000, guid: 5c3358a333574974288e8870884286d2, type: 3}
+  - DataIndex: 22013004
+    Resource: {fileID: 21300000, guid: c2324dc956051b44b9e62a9794df790d, type: 3}
+  - DataIndex: 22020005
+    Resource: {fileID: 21300000, guid: c44fef777ea9e8045afb613d2c778ab9, type: 3}
+  - DataIndex: 22021006
+    Resource: {fileID: 21300000, guid: 6bd125e70287220418160430341cb616, type: 3}
+  - DataIndex: 22022007
+    Resource: {fileID: 21300000, guid: 19575af296370cb4fbb18462e454e8ee, type: 3}
+  - DataIndex: 22023008
+    Resource: {fileID: 21300000, guid: 40a979c2f859baf46b6f2f60b3dadd27, type: 3}
+  - DataIndex: 22030009
+    Resource: {fileID: 21300000, guid: b9d1c200a19e84f439cc1ed3b4dd0836, type: 3}
+  - DataIndex: 22031010
+    Resource: {fileID: 21300000, guid: 1a03624f3c0f827439c5fe1a7220439e, type: 3}
+  - DataIndex: 22032011
+    Resource: {fileID: 21300000, guid: 24b942061491c514aa34603aed2a3543, type: 3}
+  - DataIndex: 22033012
+    Resource: {fileID: 21300000, guid: 89ed6be7db2e4dc459d8d10984ae8953, type: 3}
+  - DataIndex: 22040013
+    Resource: {fileID: 21300000, guid: 0be3eccf999faa541b51814b9fe71135, type: 3}
+  - DataIndex: 22041014
+    Resource: {fileID: 21300000, guid: d71c9ba4d379c0a4ba237794fa30f140, type: 3}
+  - DataIndex: 22042015
+    Resource: {fileID: 21300000, guid: 5d980a5215ee95e42ac14e29b368fd2e, type: 3}
+  - DataIndex: 22043016
+    Resource: {fileID: 21300000, guid: 060a9c6a97f035340bd10c9d9d8ab2ce, type: 3}
+  - DataIndex: 22050017
+    Resource: {fileID: 21300000, guid: 6de62f3327784bb4e8fd783b06db7bac, type: 3}
+  - DataIndex: 22051018
+    Resource: {fileID: 21300000, guid: 37b3c46c893cfaf4bb2f392c04217018, type: 3}
+  - DataIndex: 22052019
+    Resource: {fileID: 21300000, guid: bef4728c89ea0a747ab2c1132288eab2, type: 3}
+  - DataIndex: 22053020
+    Resource: {fileID: 21300000, guid: 7ada511f3a6554641a624aab43df9efd, type: 3}
+  - DataIndex: 22060021
+    Resource: {fileID: 21300000, guid: 479f7af75f15bb2428d1a5edbd494f65, type: 3}
+  - DataIndex: 22061022
+    Resource: {fileID: 21300000, guid: 4f9b6902b2a980945bef4c76c9f9bc29, type: 3}
+  - DataIndex: 22062023
+    Resource: {fileID: 21300000, guid: 630963041c93569499832051bbd328e1, type: 3}
+  - DataIndex: 22063024
+    Resource: {fileID: 21300000, guid: f88db1069b60aa64c826b0309aa5c0bf, type: 3}
+  - DataIndex: 23010001
+    Resource: {fileID: 21300000, guid: f5849f9671cbbc6429fc1d12336608a1, type: 3}
+  - DataIndex: 23011002
+    Resource: {fileID: 21300000, guid: a633570e69bd2f24ab10494cb04d21d4, type: 3}
+  - DataIndex: 23012003
+    Resource: {fileID: 21300000, guid: 7bbbda22792b30345bee9e9ce13c8760, type: 3}
+  - DataIndex: 23013004
+    Resource: {fileID: 21300000, guid: 0c5c89a781b592e4394d058deaa2803b, type: 3}
+  - DataIndex: 23020005
+    Resource: {fileID: 21300000, guid: 1e340b20f66aa3343b4397c0510e6d55, type: 3}
+  - DataIndex: 23021006
+    Resource: {fileID: 21300000, guid: 1c073afcbf1d8c84dba59c07ca8ef010, type: 3}
+  - DataIndex: 23022007
+    Resource: {fileID: 21300000, guid: 76fd08d9370c0c2449ce93a2635cedca, type: 3}
+  - DataIndex: 23023008
+    Resource: {fileID: 21300000, guid: fd190dc9f2f2afa4a810cd31282ef91c, type: 3}
+  - DataIndex: 23030009
+    Resource: {fileID: 21300000, guid: 81db75a305e46b246ae6cac7632fc157, type: 3}
+  - DataIndex: 23031010
+    Resource: {fileID: 21300000, guid: 8ba2316ceff0c174881f8384b40dc946, type: 3}
+  - DataIndex: 23032011
+    Resource: {fileID: 21300000, guid: 8c45ae90cb6dc504c9a9db1ebb454deb, type: 3}
+  - DataIndex: 23033012
+    Resource: {fileID: 21300000, guid: 00370307789fbd449b1b8087fa007d3e, type: 3}
+  - DataIndex: 23040013
+    Resource: {fileID: 21300000, guid: 4b8882d78e3ec3247ba496d380fb468b, type: 3}
+  - DataIndex: 23041014
+    Resource: {fileID: 21300000, guid: 23cf1edb2464ac24284b504a5498d0f6, type: 3}
+  - DataIndex: 23042015
+    Resource: {fileID: 21300000, guid: 20165ab0a0e40de47ad3738a01031dd7, type: 3}
+  - DataIndex: 23043016
+    Resource: {fileID: 21300000, guid: f9ec7a1e64ad32f4e860e2682569e1b0, type: 3}
+  - DataIndex: 23050017
+    Resource: {fileID: 21300000, guid: b91700fd80292e842930d556df1264c9, type: 3}
+  - DataIndex: 23051018
+    Resource: {fileID: 21300000, guid: c67fcfeee4bc6a043851915e06167e47, type: 3}
+  - DataIndex: 23052019
+    Resource: {fileID: 21300000, guid: 08d92f5c361c1ec41bc773cbfb171056, type: 3}
+  - DataIndex: 23053020
+    Resource: {fileID: 21300000, guid: 5532582ac67c6cd42b557fb057da5ca9, type: 3}
+  - DataIndex: 23060021
+    Resource: {fileID: 21300000, guid: 484a0154dab924a4ca367a234c7d4930, type: 3}
+  - DataIndex: 23061022
+    Resource: {fileID: 21300000, guid: fd0eeb910b86c694698b49f8efd3e4f2, type: 3}
+  - DataIndex: 23062023
+    Resource: {fileID: 21300000, guid: 7eadd40e544246541a3c31316d6b1cf3, type: 3}
+  - DataIndex: 23063024
+    Resource: {fileID: 21300000, guid: 0cbb42be20f050340ab55f9e77e00257, type: 3}

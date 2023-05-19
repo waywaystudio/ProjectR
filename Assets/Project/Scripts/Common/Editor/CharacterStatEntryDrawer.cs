@@ -39,4 +39,12 @@ namespace Common.Editor
             }
         }
     }
+    
+    public class StatTableDrawer : OdinAttributeProcessor<StatTable>
+    {
+        public override void ProcessSelfAttributes(InspectorProperty property, List<Attribute> attributes)
+        {
+            attributes.Add(new HideLabelAttribute());
+        }
+    }
 }

@@ -20,12 +20,7 @@ namespace Databases.SheetData.EquipmentData
 			[SerializeField] private Single minDamage;
 			[SerializeField] private Single maxDamage;
 			[SerializeField] private Single power;
-			[SerializeField] private Single health;
-			[SerializeField] private Single criticalChance;
-			[SerializeField] private Single criticalDamage;
-			[SerializeField] private Single haste;
-			[SerializeField] private Int32 extraSkillCode;
-			[SerializeField] private Single extraPower;
+			[SerializeField] private String iconFileName;
 
 			public Int32 ID => id;
 			public String Name => name;
@@ -33,12 +28,7 @@ namespace Databases.SheetData.EquipmentData
 			public Single MinDamage => minDamage;
 			public Single MaxDamage => maxDamage;
 			public Single Power => power;
-			public Single Health => health;
-			public Single CriticalChance => criticalChance;
-			public Single CriticalDamage => criticalDamage;
-			public Single Haste => haste;
-			public Int32 ExtraSkillCode => extraSkillCode;
-			public Single ExtraPower => extraPower;
+			public String IconFileName => iconFileName;
 
         }
         

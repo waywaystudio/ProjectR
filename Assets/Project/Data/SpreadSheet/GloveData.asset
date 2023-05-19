@@ -1,0 +1,160 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bdfc15658a1be2f49ac8acc408806422, type: 3}
+  m_Name: GloveData
+  m_EditorClassIdentifier: 
+  Index: 24
+  list:
+  - id: 24010001
+    name: Plate HandGuard
+    power: 5
+    health: 10
+    armor: 50
+    iconFileName: Plate HandGuard Sprite
+  - id: 24011002
+    name: Guardian's HandGuard
+    power: 5
+    health: 10
+    armor: 50
+    iconFileName: Guardian's HandGuard Sprite
+  - id: 24012003
+    name: Garvin's HandGuard
+    power: 5
+    health: 10
+    armor: 50
+    iconFileName: Garvin's HandGuard Sprite
+  - id: 24013004
+    name: HandGuard of Fate
+    power: 5
+    health: 10
+    armor: 50
+    iconFileName: HandGuard of Fate Sprite
+  - id: 24020005
+    name: Heavy Gauntlet
+    power: 5
+    health: 10
+    armor: 50
+    iconFileName: Heavy Gauntlet Sprite
+  - id: 24021006
+    name: Pathfinder Gauntlet
+    power: 5
+    health: 10
+    armor: 50
+    iconFileName: Pathfinder Gauntlet Sprite
+  - id: 24022007
+    name: Pavel's Gauntlet
+    power: 5
+    health: 10
+    armor: 50
+    iconFileName: Pavel's Gauntlet Sprite
+  - id: 24023008
+    name: Gauntlet of Luna
+    power: 5
+    health: 10
+    armor: 50
+    iconFileName: Gauntlet of Luna Sprite
+  - id: 24030009
+    name: Leather Gloves
+    power: 5
+    health: 10
+    armor: 50
+    iconFileName: Leather Gloves Sprite
+  - id: 24031010
+    name: Blacksmith's Gloves
+    power: 5
+    health: 10
+    armor: 50
+    iconFileName: Blacksmith's Gloves Sprite
+  - id: 24032011
+    name: Vesta's Gloves
+    power: 5
+    health: 10
+    armor: 50
+    iconFileName: Vesta's Gloves Sprite
+  - id: 24033012
+    name: Gloves of Quiet
+    power: 5
+    health: 10
+    armor: 50
+    iconFileName: Gloves of Quiet Sprite
+  - id: 24040013
+    name: Mithril Gloves
+    power: 5
+    health: 10
+    armor: 50
+    iconFileName: Mithril Gloves Sprite
+  - id: 24041014
+    name: Ranger's Gloves
+    power: 5
+    health: 10
+    armor: 50
+    iconFileName: Ranger's Gloves Sprite
+  - id: 24042015
+    name: Ives's Gloves
+    power: 5
+    health: 10
+    armor: 50
+    iconFileName: Ives's Gloves Sprite
+  - id: 24043016
+    name: Gloves of Wind
+    power: 5
+    health: 10
+    armor: 50
+    iconFileName: Gloves of Wind Sprite
+  - id: 24050017
+    name: Mage Gloves
+    power: 5
+    health: 10
+    armor: 50
+    iconFileName: Mage Gloves Sprite
+  - id: 24051018
+    name: Unnamed Gloves
+    power: 5
+    health: 10
+    armor: 50
+    iconFileName: Unnamed Gloves Sprite
+  - id: 24052019
+    name: Leah's Gloves
+    power: 5
+    health: 10
+    armor: 50
+    iconFileName: Leah's Gloves Sprite
+  - id: 24053020
+    name: Gloves of Dawn
+    power: 5
+    health: 10
+    armor: 50
+    iconFileName: Gloves of Dawn Sprite
+  - id: 24060021
+    name: Cloth Gloves
+    power: 5
+    health: 10
+    armor: 50
+    iconFileName: Cloth Gloves Sprite
+  - id: 24061022
+    name: Cleric's Gloves
+    power: 5
+    health: 10
+    armor: 50
+    iconFileName: Cleric's Gloves Sprite
+  - id: 24062023
+    name: Clover's Gloves
+    power: 5
+    health: 10
+    armor: 50
+    iconFileName: Clover's Gloves Sprite
+  - id: 24063024
+    name: Gloves of Elysium
+    power: 5
+    health: 10
+    armor: 50
+    iconFileName: Gloves of Elysium Sprite

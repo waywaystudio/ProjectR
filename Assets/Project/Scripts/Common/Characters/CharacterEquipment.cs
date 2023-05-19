@@ -29,7 +29,7 @@ namespace Common.Characters
 
         public void Initialize()
         {
-            data.Table.ForEach(dataTable =>
+            data.EquipmentTable.ForEach(dataTable =>
             {
                 Table[dataTable.Key] = EquipmentInfo.CreateEquipment(dataTable.Value, transform);
                 Cb.StatTable.Add($"{Table[dataTable.Key].EquipType}.{Table[dataTable.Key].Title}", Table[dataTable.Key].Spec);
@@ -67,7 +67,7 @@ namespace Common.Characters
 
             Table[slotIndex]      = null;
             
-            data.Table.TryRemove(slotIndex);
+            data.EquipmentTable.TryRemove(slotIndex);
             Cb.StatTable.Remove($"{disarmed.EquipType}.{disarmed.Title}", disarmed.Spec);
 
             return true;
@@ -80,7 +80,7 @@ namespace Common.Characters
             if(!IsAvailableClass(equipment)) return false;
 
             Table.TryAdd(slotIndex, equipment, true);
-            data.Table.TryAdd(slotIndex, equipment.Info, true);
+            data.EquipmentTable.TryAdd(slotIndex, equipment.Info, true);
             Cb.StatTable.Add($"{equipment.EquipType}.{equipment.Title}", equipment.Spec);
 
             return true;

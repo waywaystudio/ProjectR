@@ -12,9 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 663bded8080c2dd40918161d5b879668, type: 3}
   m_Name: TrinketData
   m_EditorClassIdentifier: 
-  Index: 25
+  Index: 27
   list:
-  - id: 25010001
+  - id: 27010001
     name: Health Pearl
     equipable: 0
     power: 0
@@ -24,7 +24,8 @@ MonoBehaviour:
     haste: 0
     extraSkillCode: 0
     extraPower: 0
-  - id: 25010002
+    iconFileName: Health Pearl Sprite
+  - id: 27011002
     name: Critical Ring
     equipable: 0
     power: 0
@@ -34,7 +35,8 @@ MonoBehaviour:
     haste: 0
     extraSkillCode: 0
     extraPower: 0
-  - id: 25010003
+    iconFileName: Critical Ring Sprite
+  - id: 27012003
     name: Haste Belt
     equipable: 0
     power: 0
@@ -44,3 +46,4 @@ MonoBehaviour:
     haste: 20
     extraSkillCode: 0
     extraPower: 0
+    iconFileName: Haste Belt Sprite

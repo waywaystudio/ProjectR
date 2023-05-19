@@ -78,8 +78,8 @@ namespace UnityGoogleSheet.Editor.Core
                 // 구글드라이브 폴더의 파일을 List<FileData>에 추가
                 for (var i = 0; i < x.fileId.Count; i++)
                 {
-                    DriveFileDataList.Add(new FileData((FileType)x.fileType[i], 
-                                                                      x.url[i], 
+                    DriveFileDataList.Add(new FileData((FileType) x.fileType[i], 
+                                                                      x.url[i],
                                                                       x.fileId[i], 
                                                                       x.fileName[i],
                                                                       ActionSelector((FileType)x.fileType[i], x.fileId[i])));

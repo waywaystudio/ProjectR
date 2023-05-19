@@ -38,7 +38,7 @@ namespace Lobby.UI
                 if (skillImageList.Count > index) skillImageList[index].sprite = skill.Icon;
             });
             
-            adventurerData.Table.ForEach(equipment =>
+            adventurerData.EquipmentTable.ForEach(equipment =>
             {
                 GetEquipmentUI(equipment.Key).SetEquipmentInfoUI(equipment.Value);
             });

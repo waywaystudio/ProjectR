@@ -33,6 +33,14 @@ namespace Editor
             {
                 attributes.Add(new TitleGroupAttribute("PrefabData", "ScriptableObjects"));
             }
+            
+            /*
+             * ResourceData
+             */
+            if (member.Name.Contains("SpriteData"))
+            {
+                attributes.Add(new TitleGroupAttribute("SpriteData", "ScriptableObjects"));
+            }
 
             /*
              * Paths

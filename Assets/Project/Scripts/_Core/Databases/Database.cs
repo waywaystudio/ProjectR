@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using Databases;
 using Databases.Prefabs;
+using Databases.ResourceData;
 using CombatClass = Databases.SheetData.ContentData.CombatClassData.CombatClass;
 using Boss = Databases.SheetData.ContentData.BossData.Boss;
 using Skill = Databases.SheetData.CombatData.SkillData.Skill;
@@ -12,17 +13,22 @@ using Bottom = Databases.SheetData.EquipmentData.BottomData.Bottom;
 using Trinket = Databases.SheetData.EquipmentData.TrinketData.Trinket;
 using Singleton;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 // ReSharper disable CheckNamespace
 
-public partial class Database : MonoSingleton<Database>
+public partial class Database : MonoSingleton<Database>, IEditable
 {
     [SerializeField] private List<DataObject> sheetDataList = new();
+    
     [SerializeField] private SkillPrefabData skillPrefabData;
     [SerializeField] private StatusEffectPrefabData statusEffectPrefabData;
     [SerializeField] private CombatClassPrefabData combatClassPrefabData;
     [SerializeField] private BossPrefabData bossPrefabData;
     [SerializeField] private EquipmentPrefabData equipmentPrefabData;
+
+    [SerializeField] private SpriteData equipmentSpriteData;
+    [FormerlySerializedAs("skillSpriteData")] [SerializeField] private SpriteData spellSpriteData;
         
     private readonly Dictionary<DataIndex, DataObject> sheetDataTable = new();
 
@@ -52,4 +58,7 @@ public partial class Database : MonoSingleton<Database>
     public static CombatClassPrefabData CombatClassPrefabData => Instance.combatClassPrefabData;
     public static BossPrefabData BossPrefabData => Instance.bossPrefabData;
     public static EquipmentPrefabData EquipmentPrefabData => Instance.equipmentPrefabData;
+
+    public static SpriteData EquipmentSpriteData => Instance.equipmentSpriteData;
+    public static SpriteData SpellSpriteData => Instance.spellSpriteData;
 }

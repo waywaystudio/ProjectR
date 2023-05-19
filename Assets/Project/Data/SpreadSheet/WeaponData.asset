@@ -15,50 +15,170 @@ MonoBehaviour:
   Index: 21
   list:
   - id: 21010001
-    name: Training Sword
+    name: Sword And Shield
     equipable: 0
     minDamage: 2
     maxDamage: 3
     power: 20
-    health: 50
-    criticalChance: 0
-    criticalDamage: 0
-    haste: 0
-    extraSkillCode: 0
-    extraPower: 0
-  - id: 21020002
-    name: Training Dagger
+    iconFileName: Sword And Shield Sprite
+  - id: 21011002
+    name: Guardian's Sword & Shield
+    equipable: 0
+    minDamage: 2
+    maxDamage: 3
+    power: 20
+    iconFileName: Guardian's Sword & Shield Sprite
+  - id: 21012003
+    name: Garvin's Sword
+    equipable: 0
+    minDamage: 2
+    maxDamage: 3
+    power: 20
+    iconFileName: Garvin's Sword Sprite
+  - id: 21013004
+    name: Last Survivor
+    equipable: 0
+    minDamage: 2
+    maxDamage: 3
+    power: 20
+    iconFileName: Last Survivor Sprite
+  - id: 21020005
+    name: Two Hand Sword
     equipable: 0
     minDamage: 1
     maxDamage: 2
     power: 20
-    health: 30
-    criticalChance: 10
-    criticalDamage: 50
-    haste: 0
-    extraSkillCode: 0
-    extraPower: 0
-  - id: 21030003
-    name: Training Bow
+    iconFileName: Two Hand Sword Sprite
+  - id: 21021006
+    name: Pathfinder Two Hand Swrod
+    equipable: 0
+    minDamage: 1
+    maxDamage: 2
+    power: 20
+    iconFileName: Pathfinder Two Hand Swrod Sprite
+  - id: 21022007
+    name: Pavel's Greate Sword
+    equipable: 0
+    minDamage: 1
+    maxDamage: 2
+    power: 20
+    iconFileName: Pavel's Greate Sword Sprite
+  - id: 21023008
+    name: Luna Embracer
+    equipable: 0
+    minDamage: 1
+    maxDamage: 2
+    power: 20
+    iconFileName: Luna Embracer Sprite
+  - id: 21030009
+    name: Dagger
     equipable: 0
     minDamage: 1
     maxDamage: 3
     power: 24
-    health: 30
-    criticalChance: 5
-    criticalDamage: 0
-    haste: 0
-    extraSkillCode: 0
-    extraPower: 0
-  - id: 21010004
-    name: Moragg Sword
+    iconFileName: Dagger Sprite
+  - id: 21031010
+    name: Blacksmith's Dagger
+    equipable: 0
+    minDamage: 1
+    maxDamage: 3
+    power: 24
+    iconFileName: Blacksmith's Dagger Sprite
+  - id: 21032011
+    name: Vesta's Dagger
+    equipable: 0
+    minDamage: 1
+    maxDamage: 3
+    power: 24
+    iconFileName: Vesta's Dagger Sprite
+  - id: 21033012
+    name: Quiet Sting
+    equipable: 0
+    minDamage: 1
+    maxDamage: 3
+    power: 24
+    iconFileName: Quiet Sting Sprite
+  - id: 21040013
+    name: Bow
     equipable: 0
     minDamage: 1
     maxDamage: 5
     power: 30
-    health: 30
-    criticalChance: 0
-    criticalDamage: 0
-    haste: 0
-    extraSkillCode: 0
-    extraPower: 0
+    iconFileName: Bow Sprite
+  - id: 21041014
+    name: Inventor's Magical Bow
+    equipable: 0
+    minDamage: 1
+    maxDamage: 5
+    power: 30
+    iconFileName: Inventor's Magical Bow Sprite
+  - id: 21042015
+    name: Ives's Bow
+    equipable: 0
+    minDamage: 1
+    maxDamage: 5
+    power: 30
+    iconFileName: Ives's Bow Sprite
+  - id: 21043016
+    name: Wind Seal
+    equipable: 0
+    minDamage: 1
+    maxDamage: 5
+    power: 30
+    iconFileName: Wind Seal Sprite
+  - id: 21050017
+    name: Staff
+    equipable: 0
+    minDamage: 1
+    maxDamage: 3
+    power: 24
+    iconFileName: Staff Sprite
+  - id: 21051018
+    name: Unnamed Staff
+    equipable: 0
+    minDamage: 1
+    maxDamage: 3
+    power: 24
+    iconFileName: Unnamed Staff Sprite
+  - id: 21052019
+    name: Leah's Staff
+    equipable: 0
+    minDamage: 1
+    maxDamage: 3
+    power: 24
+    iconFileName: Leah's Staff Sprite
+  - id: 21053020
+    name: First Dawn
+    equipable: 0
+    minDamage: 1
+    maxDamage: 3
+    power: 24
+    iconFileName: First Dawn Sprite
+  - id: 21060021
+    name: Orb
+    equipable: 0
+    minDamage: 1
+    maxDamage: 5
+    power: 30
+    iconFileName: Orb Sprite
+  - id: 21061022
+    name: Cleric's Orb
+    equipable: 0
+    minDamage: 1
+    maxDamage: 5
+    power: 30
+    iconFileName: Cleric's Orb Sprite
+  - id: 21062023
+    name: Clover's Orb
+    equipable: 0
+    minDamage: 1
+    maxDamage: 5
+    power: 30
+    iconFileName: Clover's Orb Sprite
+  - id: 21063024
+    name: Orb of Elysium
+    equipable: 0
+    minDamage: 1
+    maxDamage: 5
+    power: 30
+    iconFileName: Orb of Elysium Sprite

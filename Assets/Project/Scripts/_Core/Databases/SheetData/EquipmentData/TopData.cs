@@ -16,27 +16,17 @@ namespace Databases.SheetData.EquipmentData
         {
 			[SerializeField] private Int32 id;
 			[SerializeField] private String name;
-			[SerializeField] private Int32 equipable;
 			[SerializeField] private Single power;
 			[SerializeField] private Single health;
-			[SerializeField] private Single criticalChance;
-			[SerializeField] private Single criticalDamage;
-			[SerializeField] private Single haste;
 			[SerializeField] private Single armor;
-			[SerializeField] private Int32 extraSkillCode;
-			[SerializeField] private Single extraPower;
+			[SerializeField] private String iconFileName;
 
 			public Int32 ID => id;
 			public String Name => name;
-			public Int32 Equipable => equipable;
 			public Single Power => power;
 			public Single Health => health;
-			public Single CriticalChance => criticalChance;
-			public Single CriticalDamage => criticalDamage;
-			public Single Haste => haste;
 			public Single Armor => armor;
-			public Int32 ExtraSkillCode => extraSkillCode;
-			public Single ExtraPower => extraPower;
+			public String IconFileName => iconFileName;
 
         }
         
