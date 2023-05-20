@@ -10,21 +10,10 @@ using UnityEngine;
 public partial class Database
 {
 #if UNITY_EDITOR
-    [SerializeField] private string iconPath;
     [SerializeField] private string idCodePath;
     [SerializeField] private string dataScriptPath;
     [SerializeField] private string dataObjectPath;
-    
 
-    // TODO. Skill과 StatusEffect가 모두 들어오면 삭제.
-    public static bool TryGetIcon(string iconName, out Sprite icon)
-    {
-        icon = !Finder.TryGetObject($"{Instance.iconPath}", $"{iconName}", out Sprite result, true)
-            ? null
-            : result;
-
-        return icon is not null;
-    }
 
     public void EditorSetUp()
     {

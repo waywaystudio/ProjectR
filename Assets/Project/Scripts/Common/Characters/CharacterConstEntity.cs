@@ -25,11 +25,8 @@ namespace Common.Characters
 #if UNITY_EDITOR
         public void EditorSetUp()
         {
-            if (dataIndex == DataIndex.None)
-            {
-                Debug.LogError("Require Character DataIndex for import data");
+            if (!Verify.IsNotDefault(dataIndex, "Require Character DataIndex for import data")) 
                 return;
-            }
             
             switch (dataIndex.GetCategory())
             {
@@ -47,11 +44,8 @@ namespace Common.Characters
         {
             var classData = Database.CombatClassSheetData(dataIndex);
 
-            if (classData == null)
-            {
-                Debug.LogError($"Not Exist {dataIndex} in AdventurerData");
-                return;
-            }
+            if (!Verify.IsNotNull(classData, $"Not Exist {dataIndex} in AdventurerData")) return;
+            
 
             classType     = classData.BaseRole.ToEnum<CombatClassType>();
             characterName = classData.CharacterName;
@@ -78,11 +72,7 @@ namespace Common.Characters
         {
             var monsterData = Database.BossSheetData(dataIndex);
 
-            if (monsterData == null)
-            {
-                Debug.LogError($"Not Exist {dataIndex} in BossData");
-                return;
-            }
+            if (!Verify.IsNotNull(monsterData, $"Not Exist {dataIndex} in BossData")) return;
 
             classType     = CombatClassType.Boss;
             characterName = monsterData.FullName;

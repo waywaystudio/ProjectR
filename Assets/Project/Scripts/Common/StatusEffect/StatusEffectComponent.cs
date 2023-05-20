@@ -108,12 +108,11 @@ namespace Common.StatusEffect
         {
             var statusEffectData = Database.StatusEffectSheetData(ActionCode);
 
+            icon     = Database.SpellSpriteData.Get(ActionCode);
             duration = statusEffectData.Duration;
             type = statusEffectData.IsBuff
                 ? StatusEffectType.Buff
                 : StatusEffectType.DeBuff;
-
-            Database.TryGetIcon(ActionCode.ToString(), out icon);
         }
 #endif
     }

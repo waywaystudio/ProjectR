@@ -177,7 +177,7 @@ namespace Common.Skills
             animationKey = skillData.AnimationKey;
             sortingType  = skillData.SortingType.ToEnum<SortingType>();
             targetLayer  = LayerMask.GetMask(skillData.TargetLayer);
-            icon         = GetSkillIcon();
+            icon         = Database.SpellSpriteData.Get(actionCode);
 
             if (TryGetComponent(out CoolTimer coolTimeModule))
             {
@@ -191,13 +191,6 @@ namespace Common.Skills
             var skillData = Database.SheetDataTable[DataIndex.Skill];
 
             UnityEditor.EditorUtility.OpenPropertyEditor(skillData);
-        }
-        
-        private Sprite GetSkillIcon()
-        {
-            return !(Database.TryGetIcon(actionCode.ToString(), out var result))
-                ? null
-                : result;
         }
 #endif
     }

@@ -33,9 +33,10 @@ namespace Lobby.UI
             GetStat(StatType.Armor).SetValue(adventurerData.GetStatValue(StatType.Armor).ToString("0"));
             GetStat(StatType.Health).SetValue(adventurerData.GetStatValue(StatType.Health).ToString("0"));
             
-            adventurerData.SkillList.ForEach((skill, index) =>
+            adventurerData.DefaultSkillList.ForEach((dataIndex, index) =>
             {
-                if (skillImageList.Count > index) skillImageList[index].sprite = skill.Icon;
+                if (skillImageList.Count > index)
+                    skillImageList[index].sprite = Database.SpellSpriteData.Get(dataIndex);
             });
             
             adventurerData.EquipmentTable.ForEach(equipment =>

@@ -1,7 +1,6 @@
 using System;
 using System.Collections.Generic;
 using Common.Equipments;
-using Common.Skills;
 using Serialization;
 using UnityEngine;
 
@@ -10,26 +9,24 @@ namespace Common.Characters
     public class CharacterData : ScriptableObject, ISavable, IEditable
     {
         [SerializeField] private CharacterConstEntity constEntity;
-        
         [SerializeField] private Spec classSpec;
-        [SerializeField] private List<SkillComponent> skillList;
 
         [Sirenix.OdinInspector.ShowInInspector]
         public StatTable StaticSpecTable { get; } = new();
         
         public DataIndex DataIndex => constEntity.DataIndex;
         public CombatClassType ClassType => constEntity.ClassType;
-        public List<SkillComponent> SkillList => skillList;
+        public IEnumerable<DataIndex> DefaultSkillList => constEntity.DefaultSkillList;
 
         [Sirenix.OdinInspector.ShowInInspector]
         public Dictionary<EquipSlotIndex, EquipmentInfo> EquipmentTable { get; private set; } = new();
 
-        // public Spec CharacterSpec;
-        private Sprite sampleSprite;
 
         private string SerializeKey => $"{constEntity.CharacterName}'s Equipments";
         public float GetStatValue(StatType type)
         {
+            // if (!Verify.IsNotNull(value)) return;
+            
             var equipmentStat = 0f;
             
             EquipmentTable.ForEach(table =>
