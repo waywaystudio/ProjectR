@@ -59,7 +59,7 @@ namespace Common.Execution
         public void EditorSetUp()
         {
             pool.Prefab.TryGetComponent(out IStatusEffect statusEffectInfo);
-            actionCode = statusEffectInfo.ActionCode;
+            actionCode = statusEffectInfo.DataIndex;
         }
 #endif
     }

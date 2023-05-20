@@ -8,14 +8,13 @@ namespace Common.Equipments
     public class EquipmentInfo
     {
         [SerializeField] private DataIndex dataCode;
+        [SerializeField] private Spec constSpec;
         [SerializeField] private int enchantLevel;
-        [SerializeField] private Spec spec;
-        // Additional Save Data Below
 
         public DataIndex ActionCode => dataCode;
         public EquipType EquipType => (EquipType)ActionCode.GetCategory();
         public int EnchantLevel { get => enchantLevel; set => enchantLevel = value; }
-        public Spec Spec => spec;
+        public Spec ConstSpec => constSpec;
 
         public EquipmentInfo(DataIndex dataCode, int enchantLevel = 0)
         {
@@ -35,8 +34,7 @@ namespace Common.Equipments
                 Debug.LogWarning($"Not Exist Equipment script in {equipmentPrefab.name} GameObject");
                 return null;
             }
-            
-            equipment.Enchant(info.EnchantLevel);
+
             return equipment;
         }
 

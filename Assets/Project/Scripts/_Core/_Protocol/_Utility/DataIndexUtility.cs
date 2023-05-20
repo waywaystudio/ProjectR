@@ -12,5 +12,18 @@ public static class DataIndexUtility
     {
         return Enum.TryParse(text, out result);
     }
+    
+    public static DataIndex TryFindDataIndex(this string original)
+    {
+        return Enum.TryParse<DataIndex>(original, out var result) ? result : DataIndex.None;
+    }
+
+    public static string ConvertDataIndexStyle(this string original)
+    {
+        return original.Replace(" ", "")
+                       .Replace("'", "")
+                       .Replace("&", "")
+                       .ToPascalCase();
+    }
 }
 

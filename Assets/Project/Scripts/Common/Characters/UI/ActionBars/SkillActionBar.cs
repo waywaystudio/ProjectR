@@ -24,10 +24,10 @@ namespace Common.Characters.UI.ActionBars
 
             var skillListIndex = new List<DataIndex>
             {
-                cb.SkillBehaviour.SkillList[0].ActionCode,
-                cb.SkillBehaviour.SkillList[1].ActionCode,
-                cb.SkillBehaviour.SkillList[2].ActionCode,
-                cb.SkillBehaviour.SkillList[3].ActionCode,
+                cb.SkillBehaviour.SkillList[0].DataIndex,
+                cb.SkillBehaviour.SkillList[1].DataIndex,
+                cb.SkillBehaviour.SkillList[2].DataIndex,
+                cb.SkillBehaviour.SkillList[3].DataIndex,
             };
 
             slotList.ForEach((slot, index) => 

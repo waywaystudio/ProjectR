@@ -1,11 +1,11 @@
 {
-	"TrinketInventory" : {
+	"BottomInventory" : {
 		"__type" : "System.Collections.Generic.List`1[[Common.Equipments.EquipmentInfo, ProjectR.Common, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]],mscorlib",
 		"value" : [
 			
 		]
 	},
-	"BottomInventory" : {
+	"24Inventory" : {
 		"__type" : "System.Collections.Generic.List`1[[Common.Equipments.EquipmentInfo, ProjectR.Common, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]],mscorlib",
 		"value" : [
 			
@@ -29,7 +29,7 @@
 			
 		]
 	},
-	"Nathan's Equipments" : {
+	"Ives's Equipments" : {
 		"__type" : "System.Collections.Generic.Dictionary`2[[Common.EquipSlotIndex, ProjectR.Common, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null],[Common.Equipments.EquipmentInfo, ProjectR.Common, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]],mscorlib",
 		"value" : {1:{
 				"dataCode" : 21030003,
@@ -38,23 +38,23 @@
 					"statList" : [
 						{
 							"statType" : 1,
-							"applyType" : 1,
+							"statKey" : "",
 							"value" : 24
 						},{
 							"statType" : 2,
-							"applyType" : 1,
+							"statKey" : "",
 							"value" : 30
 						},{
 							"statType" : 3,
-							"applyType" : 1,
+							"statKey" : "",
 							"value" : 5
 						},{
 							"statType" : 10,
-							"applyType" : 1,
+							"statKey" : "",
 							"value" : 11
 						},{
 							"statType" : 11,
-							"applyType" : 1,
+							"statKey" : "",
 							"value" : 18
 						}
 					]
@@ -66,27 +66,27 @@
 					"statList" : [
 						{
 							"statType" : 1,
-							"applyType" : 1,
+							"statKey" : "",
 							"value" : 20
 						},{
 							"statType" : 2,
-							"applyType" : 1,
+							"statKey" : "",
 							"value" : 50
 						},{
 							"statType" : 3,
-							"applyType" : 1,
+							"statKey" : "",
 							"value" : 10
 						},{
 							"statType" : 4,
-							"applyType" : 1,
+							"statKey" : "",
 							"value" : 20
 						},{
 							"statType" : 5,
-							"applyType" : 1,
+							"statKey" : "",
 							"value" : 10
 						},{
 							"statType" : 6,
-							"applyType" : 1,
+							"statKey" : "",
 							"value" : 50
 						}
 					]
@@ -94,7 +94,7 @@
 			}
 		}
 	},
-	"Lira's Equipments" : {
+	"Vesta's Equipments" : {
 		"__type" : "System.Collections.Generic.Dictionary`2[[Common.EquipSlotIndex, ProjectR.Common, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null],[Common.Equipments.EquipmentInfo, ProjectR.Common, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]],mscorlib",
 		"value" : {1:{
 				"dataCode" : 21020002,
@@ -103,27 +103,27 @@
 					"statList" : [
 						{
 							"statType" : 1,
-							"applyType" : 1,
+							"statKey" : "",
 							"value" : 20
 						},{
 							"statType" : 2,
-							"applyType" : 1,
+							"statKey" : "",
 							"value" : 30
 						},{
 							"statType" : 3,
-							"applyType" : 1,
+							"statKey" : "",
 							"value" : 10
 						},{
 							"statType" : 4,
-							"applyType" : 1,
+							"statKey" : "",
 							"value" : 50
 						},{
 							"statType" : 10,
-							"applyType" : 1,
+							"statKey" : "",
 							"value" : 8
 						},{
 							"statType" : 11,
-							"applyType" : 1,
+							"statKey" : "",
 							"value" : 14
 						}
 					]
@@ -135,27 +135,27 @@
 					"statList" : [
 						{
 							"statType" : 1,
-							"applyType" : 1,
+							"statKey" : "",
 							"value" : 20
 						},{
 							"statType" : 2,
-							"applyType" : 1,
+							"statKey" : "",
 							"value" : 50
 						},{
 							"statType" : 3,
-							"applyType" : 1,
+							"statKey" : "",
 							"value" : 10
 						},{
 							"statType" : 4,
-							"applyType" : 1,
+							"statKey" : "",
 							"value" : 20
 						},{
 							"statType" : 5,
-							"applyType" : 1,
+							"statKey" : "",
 							"value" : 10
 						},{
 							"statType" : 6,
-							"applyType" : 1,
+							"statKey" : "",
 							"value" : 50
 						}
 					]
@@ -163,7 +163,7 @@
 			}
 		}
 	},
-	"Ain's Equipments" : {
+	"Garvin's Equipments" : {
 		"__type" : "System.Collections.Generic.Dictionary`2[[Common.EquipSlotIndex, ProjectR.Common, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null],[Common.Equipments.EquipmentInfo, ProjectR.Common, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]],mscorlib",
 		"value" : {1:{
 				"dataCode" : 21010001,
@@ -172,20 +172,16 @@
 					"statList" : [
 						{
 							"statType" : 1,
-							"applyType" : 1,
+							"statKey" : "Weapon",
 							"value" : 20
 						},{
-							"statType" : 2,
-							"applyType" : 1,
-							"value" : 50
-						},{
 							"statType" : 10,
-							"applyType" : 1,
-							"value" : 10
+							"statKey" : "Weapon",
+							"value" : 2
 						},{
 							"statType" : 11,
-							"applyType" : 1,
-							"value" : 12
+							"statKey" : "Weapon",
+							"value" : 3
 						}
 					]
 				}
@@ -196,15 +192,15 @@
 					"statList" : [
 						{
 							"statType" : 1,
-							"applyType" : 1,
+							"statKey" : "",
 							"value" : 30
 						},{
 							"statType" : 2,
-							"applyType" : 1,
+							"statKey" : "",
 							"value" : 200
 						},{
 							"statType" : 6,
-							"applyType" : 1,
+							"statKey" : "",
 							"value" : 300
 						}
 					]
@@ -220,7 +216,7 @@
 		"__type" : "Serialization.SaveInfo,ProjectR.Core",
 		"value" : {
 			"filename" : "_playSaveFile",
-			"saveTime" : "2023.05.16.20.18.20"
+			"saveTime" : "2023.05.20.21.01.39"
 		}
 	}
 }

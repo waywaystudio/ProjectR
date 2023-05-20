@@ -121,8 +121,8 @@ public static class Finder
                 }
             
                 if (showDebug)
-                    Debug.Log($"{filter} Objects in Project List : " +
-                              $"{stringBuilder}");
+                    Debug.Log($"{filter} Objects in Project List : \n" +
+                              $"<color=green>{stringBuilder}</color>");
 
                 return true;
             }

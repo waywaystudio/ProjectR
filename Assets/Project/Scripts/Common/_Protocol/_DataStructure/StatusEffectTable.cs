@@ -14,7 +14,7 @@ namespace Common
 
         public void Register(IStatusEffect statusEffect)
         {
-            var key = new StatusEffectKey(statusEffect.Provider, statusEffect.ActionCode);
+            var key = new StatusEffectKey(statusEffect.Provider, statusEffect.DataIndex);
             // (statusEffect.Provider, statusEffect.ActionCode);
             
             if (!ContainsKey(key))
@@ -30,7 +30,7 @@ namespace Common
 
         public void Unregister(IStatusEffect statusEffect)
         {
-            this.TryRemove(new StatusEffectKey(statusEffect.Provider, statusEffect.ActionCode));
+            this.TryRemove(new StatusEffectKey(statusEffect.Provider, statusEffect.DataIndex));
                 //((statusEffect.Provider, statusEffect.ActionCode));
             
             OnEffectChanged?.Invoke();

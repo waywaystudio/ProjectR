@@ -6,14 +6,14 @@ namespace Character.Adventurers.Knight.StatusEffect
 {
     public class ArmorCrash : StatusEffectComponent
     {
-        [SerializeField] private Stat armorReduce = new(StatType.Armor, StatApplyType.PercentDecrease, 5);
+        [SerializeField] private Stat armorReduce = new(StatType.Armor, "ArmorCrashDebBuff", -50);
 
         public override void Initialize(ICombatProvider provider)
         {
             base.Initialize(provider);
             
-            OnActivated.Register("StatTableRegister", () => Taker.StatTable.Add("ArmorCrash", armorReduce));
-            OnCompleted.Register("Return", () => Taker.StatTable.Remove("ArmorCrash", armorReduce));
+            OnActivated.Register("StatTableRegister", () => Taker.StatTable.Add(armorReduce));
+            OnCompleted.Register("Return", () => Taker.StatTable.Remove(armorReduce));
         }
 
 

@@ -29,8 +29,9 @@ namespace Common.UI.Tooltips
             
             var spawnPosition = transform.position + spawnOffset;
 
-            if (TooltipIncludedObject.Equipment      == null ||
-                TooltipIncludedObject.Equipment.Info == null)
+            if (TooltipIncludedObject.Equipment      == null 
+                // || TooltipIncludedObject.Equipment.Info == null
+                )
                 return;
             
             equipmentTooltipObject = 
@@ -39,9 +40,9 @@ namespace Common.UI.Tooltips
 
         public void Hide()
         {
-            if (TooltipIncludedObject.Equipment      == null ||
-                TooltipIncludedObject.Equipment.Info == null || 
-                equipmentTooltipObject == null)
+            if (TooltipIncludedObject.Equipment      == null 
+                // || TooltipIncludedObject.Equipment.Info == null 
+                || equipmentTooltipObject == null)
                 return;
             
             equipmentTooltipObject.Hide();

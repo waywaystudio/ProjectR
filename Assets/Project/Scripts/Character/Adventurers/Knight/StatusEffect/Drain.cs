@@ -41,7 +41,7 @@ namespace Character.Adventurers.Knight.StatusEffect
         {
             base.EditorSetUp();
             
-            var statusEffectData = Database.StatusEffectSheetData(ActionCode);
+            var statusEffectData = Database.StatusEffectSheetData(DataIndex);
 
             drainPercentage = statusEffectData.ValueList[0];
         }

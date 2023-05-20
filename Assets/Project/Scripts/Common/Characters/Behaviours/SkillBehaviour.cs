@@ -23,7 +23,7 @@ namespace Common.Characters.Behaviours
 
         public SkillComponent GetSkill(DataIndex actionCode)
         {
-            return skillList.Find(item => item.ActionCode == actionCode);
+            return skillList.Find(item => item.DataIndex == actionCode);
         }
 
         public void Active(DataIndex actionCode, Vector3 targetPosition)
@@ -32,7 +32,7 @@ namespace Common.Characters.Behaviours
             
             foreach (var item in skillList)
             {
-                if (item.ActionCode != actionCode) continue;
+                if (item.DataIndex != actionCode) continue;
                 
                 skill = item;
                 break;

@@ -11,7 +11,7 @@ namespace Common.StatusEffect
         [SerializeField] protected float duration;
 
         public ICombatProvider Provider { get; protected set; }
-        public DataIndex ActionCode => statusCode;
+        public DataIndex DataIndex => statusCode;
         public Sprite Icon => icon;
         public float Duration => duration;
         public FloatEvent ProgressTime { get; } = new();
@@ -106,9 +106,9 @@ namespace Common.StatusEffect
 #if UNITY_EDITOR
         public virtual void EditorSetUp()
         {
-            var statusEffectData = Database.StatusEffectSheetData(ActionCode);
+            var statusEffectData = Database.StatusEffectSheetData(DataIndex);
 
-            icon     = Database.SpellSpriteData.Get(ActionCode);
+            icon     = Database.SpellSpriteData.Get(DataIndex);
             duration = statusEffectData.Duration;
             type = statusEffectData.IsBuff
                 ? StatusEffectType.Buff

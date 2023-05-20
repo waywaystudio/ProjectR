@@ -32,7 +32,8 @@ namespace Common.Characters
             data.EquipmentTable.ForEach(dataTable =>
             {
                 Table[dataTable.Key] = EquipmentInfo.CreateEquipment(dataTable.Value, transform);
-                Cb.StatTable.Add($"{Table[dataTable.Key].EquipType}.{Table[dataTable.Key].Title}", Table[dataTable.Key].Spec);
+                // Cb.StatTable.Add($"{Table[dataTable.Key].EquipType}.{Table[dataTable.Key].Title}", Table[dataTable.Key].Spec);
+                Cb.StatTable.Add(Table[dataTable.Key].ConstSpec);
             });
 
             if (Table[EquipSlotIndex.Weapon] == null && Table[EquipSlotIndex.Top] == null)
@@ -68,7 +69,8 @@ namespace Common.Characters
             Table[slotIndex]      = null;
             
             data.EquipmentTable.TryRemove(slotIndex);
-            Cb.StatTable.Remove($"{disarmed.EquipType}.{disarmed.Title}", disarmed.Spec);
+            // Cb.StatTable.Remove($"{disarmed.EquipType}.{disarmed.Title}", disarmed.Spec);
+            Cb.StatTable.Remove(disarmed.ConstSpec);
 
             return true;
         }
@@ -77,11 +79,12 @@ namespace Common.Characters
         private bool TryArm(EquipSlotIndex slotIndex, Equipment equipment)
         {
             // Check AvailableClass
-            if(!IsAvailableClass(equipment)) return false;
-
-            Table.TryAdd(slotIndex, equipment, true);
-            data.EquipmentTable.TryAdd(slotIndex, equipment.Info, true);
-            Cb.StatTable.Add($"{equipment.EquipType}.{equipment.Title}", equipment.Spec);
+            // if(!IsAvailableClass(equipment)) return false;
+// 
+            // Table.TryAdd(slotIndex, equipment, true);
+            // data.EquipmentTable.TryAdd(slotIndex, equipment.Info, true);
+            // Cb.StatTable.Add(equipment.Spec);
+            // Cb.StatTable.Add($"{equipment.EquipType}.{equipment.Title}", equipment.Spec);
 
             return true;
         }

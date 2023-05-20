@@ -25,7 +25,7 @@ namespace Databases
                         if (prefab.IsNullOrEmpty()) return;
                         if (!prefab.TryGetComponent(out IDataIndexer indexer)) return;
                         
-                        prefabTable.TryAdd(indexer.ActionCode, prefab);
+                        prefabTable.TryAdd(indexer.DataIndex, prefab);
                     });
                 }
 

@@ -7,6 +7,7 @@ namespace Common.Execution
         [SerializeField] private DataIndex actionCode;
         [SerializeField] private Spec damageSpec;
 
+        private const string DamageExecutorKey = "DamageExecutorKey"; 
 
         public override void Execution(ICombatTaker taker, float instantMultiplier = 1f)
         {
@@ -78,20 +79,20 @@ namespace Common.Execution
         public void EditorSetUp()
         {
             damageSpec.Clear();
-            damageSpec.Add(StatType.ExtraCriticalChance, StatApplyType.Plus, 0f);
-            damageSpec.Add(StatType.ExtraCriticalDamage, StatApplyType.Plus, 0f);
+            damageSpec.Add(StatType.ExtraCriticalChance, DamageExecutorKey, 0f);
+            damageSpec.Add(StatType.ExtraCriticalDamage, DamageExecutorKey, 0f);
             
             if (TryGetComponent(out Skills.SkillComponent skill))
             {
-                actionCode   = skill.ActionCode;
+                actionCode   = skill.DataIndex;
                 
-                damageSpec.Add(StatType.ExtraPower, StatApplyType.Plus, Database.SkillSheetData(actionCode).CompletionValueList[0]);
+                damageSpec.Add(StatType.ExtraPower, DamageExecutorKey, Database.SkillSheetData(actionCode).CompletionValueList[0]);
                 return;
             }
             
-            if (TryGetComponent(out IDataIndexer indexer) && indexer.ActionCode is not DataIndex.None)
+            if (TryGetComponent(out IDataIndexer indexer) && indexer.DataIndex is not DataIndex.None)
             {
-                actionCode   = indexer.ActionCode;
+                actionCode   = indexer.DataIndex;
                 return;
             }
 

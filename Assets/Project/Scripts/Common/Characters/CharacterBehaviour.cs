@@ -35,7 +35,7 @@ namespace Common.Characters
 
         public CharacterActionMask BehaviourMask => CurrentBehaviour is null ? CharacterActionMask.None : CurrentBehaviour.BehaviourMask;
         public ActionBehaviour CurrentBehaviour { get; set; }
-        public DataIndex ActionCode => characterID;
+        public DataIndex DataIndex => characterID;
         public CombatClassType CombatClass => role;
         public string Name => characterName;
         public IDynamicStatEntry DynamicStatEntry => stats ??= GetComponent<CharacterStats>();

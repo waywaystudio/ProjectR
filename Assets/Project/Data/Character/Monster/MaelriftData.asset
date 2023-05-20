@@ -19,59 +19,28 @@ MonoBehaviour:
     defaultSpec:
       statList:
       - statType: 2
-        applyType: 1
+        statKey: ConstStatKey
         value: 200
       - statType: 3
-        applyType: 1
+        statKey: ConstStatKey
         value: 5
       - statType: 5
-        applyType: 1
+        statKey: ConstStatKey
         value: 0
       - statType: 6
-        applyType: 1
+        statKey: ConstStatKey
         value: 50
       - statType: 7
-        applyType: 1
+        statKey: ConstStatKey
         value: 7
       - statType: 9
-        applyType: 1
+        statKey: ConstStatKey
         value: 100
       - statType: 10
-        applyType: 1
+        statKey: ConstStatKey
         value: 1
       - statType: 11
-        applyType: 1
+        statKey: ConstStatKey
         value: 1
     defaultSkillList: 495dc600465dc600
     initialEquipmentList: 
-  classSpec:
-    statList:
-    - statType: 2
-      applyType: 1
-      value: 200
-    - statType: 3
-      applyType: 1
-      value: 5
-    - statType: 5
-      applyType: 1
-      value: 0
-    - statType: 6
-      applyType: 1
-      value: 50
-    - statType: 7
-      applyType: 1
-      value: 7
-    - statType: 9
-      applyType: 1
-      value: 100
-    - statType: 10
-      applyType: 1
-      value: 1
-    - statType: 11
-      applyType: 1
-      value: 1
-  skillList:
-  - {fileID: -6645754418306525249, guid: a357f5398beb58044b7041950abebf09, type: 3}
-  - {fileID: -6687176528768826702, guid: 4ae3fbab6c1c1ed48bbe37492124f254, type: 3}
-  - {fileID: -7836975085712377097, guid: 89b7f126af484b44fa7eba5693a04ec0, type: 3}
-  - {fileID: 6990209160415545652, guid: bc97391f2869fab429f090747d781a5f, type: 3}

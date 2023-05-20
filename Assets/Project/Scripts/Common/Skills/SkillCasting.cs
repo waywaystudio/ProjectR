@@ -74,7 +74,7 @@ namespace Common.Skills
                 return;
             }
             
-            var skillData = Database.SkillSheetData(skill.ActionCode);
+            var skillData = Database.SkillSheetData(skill.DataIndex);
             
             castingTime = skillData.ProcessTime;
         }

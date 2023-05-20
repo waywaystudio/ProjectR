@@ -1,4 +1,4 @@
 public interface IDataIndexer
 {
-    DataIndex ActionCode { get; }
+    DataIndex DataIndex { get; }
 }

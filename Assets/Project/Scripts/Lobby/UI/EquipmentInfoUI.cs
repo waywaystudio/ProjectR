@@ -78,7 +78,9 @@ namespace Lobby.UI
 
         private void Awake()
         {
-            if (Equipment == null || Equipment.Info == null)
+            if (Equipment == null 
+                // || Equipment.Info == null
+                )
             {
                 SetDefault();
             }

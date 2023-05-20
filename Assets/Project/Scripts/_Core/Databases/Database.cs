@@ -9,7 +9,9 @@ using StatusEffect = Databases.SheetData.CombatData.StatusEffectData.StatusEffec
 using Weapon = Databases.SheetData.EquipmentData.WeaponData.Weapon;
 using Head = Databases.SheetData.EquipmentData.HeadData.Head;
 using Top = Databases.SheetData.EquipmentData.TopData.Top;
+using Glove = Databases.SheetData.EquipmentData.GloveData.Glove;
 using Bottom = Databases.SheetData.EquipmentData.BottomData.Bottom;
+using Boot = Databases.SheetData.EquipmentData.BootData.Boot;
 using Trinket = Databases.SheetData.EquipmentData.TrinketData.Trinket;
 using Singleton;
 using UnityEngine;
@@ -50,7 +52,9 @@ public partial class Database : MonoSingleton<Database>, IEditable
     public static Weapon WeaponData(DataIndex dataIndex) => SheetDataTable[DataIndex.Weapon].Get<Weapon>(dataIndex);
     public static Head HeadData(DataIndex dataIndex) => SheetDataTable[DataIndex.Head].Get<Head>(dataIndex);
     public static Top TopData(DataIndex dataIndex) => SheetDataTable[DataIndex.Top].Get<Top>(dataIndex);
+    public static Glove GloveData(DataIndex dataIndex) => SheetDataTable[DataIndex.Glove].Get<Glove>(dataIndex);
     public static Bottom BottomData(DataIndex dataIndex) => SheetDataTable[DataIndex.Bottom].Get<Bottom>(dataIndex);
+    public static Boot BootData(DataIndex dataIndex) => SheetDataTable[DataIndex.Boot].Get<Boot>(dataIndex);
     public static Trinket TrinketData(DataIndex dataIndex) => SheetDataTable[DataIndex.Trinket].Get<Trinket>(dataIndex);
         
     public static SkillPrefabData SkillPrefabData => Instance.skillPrefabData;

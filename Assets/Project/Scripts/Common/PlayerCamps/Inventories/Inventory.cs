@@ -31,7 +31,7 @@ namespace Common.PlayerCamps.Inventories
         {
             var infoList = new List<EquipmentInfo>(List.Count);
             
-            List.ForEach(element => infoList.Add(element.Info));
+            // List.ForEach(element => infoList.Add(element.Info));
         
             SaveManager.Save(SaveKey, infoList);
         }

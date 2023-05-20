@@ -7,13 +7,13 @@ namespace Common.Equipments
         {
             base.EditorSetUp();
             
-            var trinketData = Database.TrinketData(ActionCode);
+            var trinketData = Database.TrinketData(DataIndex);
 
-            (trinketData.Power != 0.0f).OnTrue(() => Spec.Add(StatType.Power, StatApplyType.Plus, trinketData.Power));
-            (trinketData.Health != 0.0f).OnTrue(() => Spec.Add(StatType.Health, StatApplyType.Plus, trinketData.Health));
-            (trinketData.CriticalChance != 0.0f).OnTrue(() => Spec.Add(StatType.CriticalChance, StatApplyType.Plus, trinketData.CriticalChance));
-            (trinketData.CriticalDamage != 0.0f).OnTrue(() => Spec.Add(StatType.CriticalDamage, StatApplyType.Plus, trinketData.CriticalDamage));
-            (trinketData.Haste != 0.0f).OnTrue(() => Spec.Add(StatType.Haste, StatApplyType.Plus, trinketData.Haste));
+            (trinketData.Power != 0.0f).OnTrue(() => ConstSpec.Add(StatType.Power, EquipmentKey, trinketData.Power));
+            (trinketData.Health != 0.0f).OnTrue(() => ConstSpec.Add(StatType.Health, EquipmentKey, trinketData.Health));
+            (trinketData.CriticalChance != 0.0f).OnTrue(() => ConstSpec.Add(StatType.CriticalChance, EquipmentKey, trinketData.CriticalChance));
+            (trinketData.CriticalDamage != 0.0f).OnTrue(() => ConstSpec.Add(StatType.CriticalDamage, EquipmentKey, trinketData.CriticalDamage));
+            (trinketData.Haste != 0.0f).OnTrue(() => ConstSpec.Add(StatType.Haste, EquipmentKey, trinketData.Haste));
         }
 #endif
     }

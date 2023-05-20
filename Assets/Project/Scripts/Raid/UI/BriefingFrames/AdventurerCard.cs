@@ -14,7 +14,7 @@ namespace Raid.UI.StageInitializer
 
         private Adventurer currentAdventurer;
 
-        public DataIndex TargetAdventurerIndex => currentAdventurer.ActionCode; 
+        public DataIndex TargetAdventurerIndex => currentAdventurer.DataIndex; 
 
 
         public void SetCardUI(DataIndex adventurerCode)

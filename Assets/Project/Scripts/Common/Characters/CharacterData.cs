@@ -9,7 +9,6 @@ namespace Common.Characters
     public class CharacterData : ScriptableObject, ISavable, IEditable
     {
         [SerializeField] private CharacterConstEntity constEntity;
-        [SerializeField] private Spec classSpec;
 
         [Sirenix.OdinInspector.ShowInInspector]
         public StatTable StaticSpecTable { get; } = new();
@@ -17,6 +16,7 @@ namespace Common.Characters
         public DataIndex DataIndex => constEntity.DataIndex;
         public CombatClassType ClassType => constEntity.ClassType;
         public IEnumerable<DataIndex> DefaultSkillList => constEntity.DefaultSkillList;
+        public Spec ClassSpec => constEntity.DefaultSpec;
 
         [Sirenix.OdinInspector.ShowInInspector]
         public Dictionary<EquipSlotIndex, EquipmentInfo> EquipmentTable { get; private set; } = new();
@@ -33,10 +33,10 @@ namespace Common.Characters
             {
                 if (table.Value == null) return;
 
-                equipmentStat += table.Value.Spec.GetStatValue(type);
+                equipmentStat += table.Value.ConstSpec.GetStatValue(type);
             });
 
-            return classSpec.GetStatValue(type) + equipmentStat;
+            return ClassSpec.GetStatValue(type) + equipmentStat;
         }
 
         public void AddEquipment(Equipment equipment, out EquipmentInfo disarmed)
@@ -44,12 +44,13 @@ namespace Common.Characters
             var targetSlot = FindSlot(equipment);
 
             EquipmentTable.TryGetValue(targetSlot, out disarmed);
-            EquipmentTable[targetSlot] = equipment.Info;
+            // EquipmentTable[targetSlot] = equipment.Info;
         }
 
         public void UpdateTable()
         {
-            StaticSpecTable.Add("ClassSpec", classSpec);
+            // StaticSpecTable.Add("ClassSpec", classSpec);
+            StaticSpecTable.Add(ClassSpec);
         }
 
         public void Save()
@@ -67,7 +68,8 @@ namespace Common.Characters
 
             if (tableData.IsNullOrEmpty()) return;
 
-            tableData.Values.ForEach(equipInfo => StaticSpecTable.Add(equipInfo.EquipType.ToString(), equipInfo.Spec));
+            // tableData.Values.ForEach(equipInfo => StaticSpecTable.Add(equipInfo.EquipType.ToString(), equipInfo.Spec));
+            tableData.Values.ForEach(equipInfo => StaticSpecTable.Add(equipInfo.ConstSpec));
             EquipmentTable = tableData;
         }
         

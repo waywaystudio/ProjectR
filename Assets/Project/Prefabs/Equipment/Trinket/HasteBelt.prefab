@@ -29,7 +29,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8978545940066208770, guid: e276ff5766e4ab542ae9875dd422a6fc, type: 3}
       propertyPath: info.dataCode
-      value: 25010003
+      value: 27012003
       objectReference: {fileID: 0}
     - target: {fileID: -8978545940066208770, guid: e276ff5766e4ab542ae9875dd422a6fc, type: 3}
       propertyPath: availableClass
@@ -54,6 +54,10 @@ PrefabInstance:
     - target: {fileID: -8978545940066208770, guid: e276ff5766e4ab542ae9875dd422a6fc, type: 3}
       propertyPath: spec.statList.Array.data[1].value
       value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: -8978545940066208770, guid: e276ff5766e4ab542ae9875dd422a6fc, type: 3}
+      propertyPath: info.constSpec.statList.Array.size
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: -8978545940066208770, guid: e276ff5766e4ab542ae9875dd422a6fc, type: 3}
       propertyPath: spec.statList.Array.data[0].statType
@@ -82,6 +86,18 @@ PrefabInstance:
     - target: {fileID: -8978545940066208770, guid: e276ff5766e4ab542ae9875dd422a6fc, type: 3}
       propertyPath: info.spec.statList.Array.data[0].applyType
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -8978545940066208770, guid: e276ff5766e4ab542ae9875dd422a6fc, type: 3}
+      propertyPath: info.constSpec.statList.Array.data[0].value
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: -8978545940066208770, guid: e276ff5766e4ab542ae9875dd422a6fc, type: 3}
+      propertyPath: info.constSpec.statList.Array.data[0].statKey
+      value: Trinket
+      objectReference: {fileID: 0}
+    - target: {fileID: -8978545940066208770, guid: e276ff5766e4ab542ae9875dd422a6fc, type: 3}
+      propertyPath: info.constSpec.statList.Array.data[0].statType
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 5536838351561956448, guid: e276ff5766e4ab542ae9875dd422a6fc, type: 3}
       propertyPath: m_RootOrder

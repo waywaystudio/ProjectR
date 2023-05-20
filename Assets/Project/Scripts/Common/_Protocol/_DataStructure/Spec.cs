@@ -8,7 +8,12 @@ namespace Common
     public class Spec
     {
         [SerializeField] private List<Stat> statList = new();
-        
+
+        /*
+         * PRESET
+         */
+        #region GetStatValue List
+
         public float Power => GetStatValue(StatType.Power);
         public float Health => GetStatValue(StatType.Health);
         public float CriticalChance => GetStatValue(StatType.CriticalChance);
@@ -24,12 +29,12 @@ namespace Common
         public float ExtraCriticalChance => GetStatValue(StatType.ExtraCriticalChance);
         public float ExtraCriticalDamage => GetStatValue(StatType.ExtraCriticalDamage);
 
-        public List<Stat> GetStatList() => statList;
+        #endregion
 
         public void Add(Stat stat) => statList.AddUniquely(stat);
-        public void Add(StatType statType, StatApplyType applyType, float value)
+        public void Add(StatType statType, string statKey, float value)
         {
-            statList.Add(new Stat(statType, applyType, value));
+            statList.Add(new Stat(statType, statKey, value));
             statList.Sort((x, y) => x.StatType.CompareTo(y.StatType));
         }
 
@@ -48,37 +53,25 @@ namespace Common
 
         public void Clear() => statList.Clear();
         public void Iterate(Action<Stat> action) => statList.ForEach(action.Invoke);
-        public void Register(string key, StatTable table) => table.Add(key, this);
-        public void Unregister(string key, StatTable table) => table.Remove(key, this);
-
-
         public float GetStatValue(StatType statType)
         {
-            foreach (var stat in statList)
-            {
-                if (stat.StatType == statType) return stat.Value;
-            }
+            var stat = statList.TryGetElement(element => element.StatType == statType);
 
-            return 0f;
+            return stat is not null ? stat.Value : 0f;
         }
-        
-        public string GetStatValueText(StatType type) => type switch
+
+        public static Spec operator +(Spec a, Spec b)
         {
-            StatType.Power               => GetStatValue(type).ToString("0"),
-            StatType.Health              => GetStatValue(type).ToString("0"),
-            StatType.CriticalChance      => $"{GetStatValue(type):F1}",
-            StatType.CriticalDamage      => $"{200 + GetStatValue(type):F1}",
-            StatType.Haste               => $"{GetStatValue(type):F1}",
-            StatType.Armor               => GetStatValue(type).ToString("0"),
-            StatType.MoveSpeed           => GetStatValue(type).ToString("0"),
-            StatType.MaxHp               => GetStatValue(type).ToString("0"),
-            StatType.MaxResource         => GetStatValue(type).ToString("0"),
-            StatType.MinDamage           => GetStatValue(type).ToString("0"),
-            StatType.MaxDamage           => GetStatValue(type).ToString("0"),
-            StatType.ExtraPower          => GetStatValue(type).ToString("0"),
-            StatType.ExtraCriticalChance => $"{GetStatValue(type):F1}",
-            StatType.ExtraCriticalDamage => $"{200 + GetStatValue(type):F1}",
-            _                            => "UnDefined Format",
-        };
+            var result = new Spec();
+            
+            a.Iterate(result.Add);
+            b.Iterate(result.Add);
+
+            return result;
+        }
+
+        // TODO. 가급적 StatTable에서 Add하는 걸로 진행해보고, 가능하다면 아래 함수들은 삭제.
+        public void Register(StatTable table) => table.Add(this);
+        public void Unregister(StatTable table) => table.Remove(this);
     }
 }

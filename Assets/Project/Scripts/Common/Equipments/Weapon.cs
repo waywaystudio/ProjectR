@@ -7,11 +7,11 @@ namespace Common.Equipments
         {
             base.EditorSetUp();
 
-            var weaponData = Database.WeaponData(ActionCode);
+            var weaponData = Database.WeaponData(DataIndex);
             
-            (weaponData.MinDamage != 0.0f).OnTrue(() => Spec.Add(StatType.MinDamage, StatApplyType.Plus, weaponData.MinDamage));
-            (weaponData.MaxDamage != 0.0f).OnTrue(() => Spec.Add(StatType.MaxDamage, StatApplyType.Plus, weaponData.MaxDamage));
-            (weaponData.Power != 0.0f).OnTrue(() => Spec.Add(StatType.Power, StatApplyType.Plus, weaponData.Power));
+            (weaponData.MinDamage != 0.0f).OnTrue(() => ConstSpec.Add(StatType.MinDamage, EquipmentKey, weaponData.MinDamage));
+            (weaponData.MaxDamage != 0.0f).OnTrue(() => ConstSpec.Add(StatType.MaxDamage, EquipmentKey, weaponData.MaxDamage));
+            (weaponData.Power != 0.0f).OnTrue(() => ConstSpec.Add(StatType.Power, EquipmentKey, weaponData.Power));
         }
 #endif
     }

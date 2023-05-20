@@ -4,43 +4,60 @@ namespace Common.Equipments
 {
     public class Equipment : MonoBehaviour, IDataIndexer, IEditable
     {
-        [SerializeField] protected EquipmentInfo info;
-        [SerializeField] protected string title;
-        [SerializeField] protected Sprite icon;
-        [SerializeField] protected CombatClassType availableClass;
+        [SerializeField] protected EquipmentConstEntity constEntity;
 
-        // Effect
-        public EquipmentInfo Info => info;
-        public DataIndex ActionCode => info.ActionCode;
-        public EquipType EquipType => info.EquipType;
-        public CombatClassType AvailableClass => availableClass;
-        public string Title => title;
-        public Sprite Icon => icon;
-        public Spec Spec => info.Spec;
+        public DataIndex DataIndex => constEntity.DataIndex;
+        public EquipType EquipType => constEntity.EquipType;
+        public CombatClassType AvailableClass => constEntity.AvailableClassType;
+        public string Title => constEntity.ItemName;
+        public Sprite Icon => constEntity.Icon;
+        public Spec ConstSpec => constEntity.ConstSpec;
+        public Spec DynamicSpec { get; set; }
+        public int UpgradeLevel { get; set; }
+        // Vices
+        public Spec EquipmentSpec { get; set; }
 
-        // TODO. After Enchant Design done,
-        public void Enchant(int level)
+        protected string EquipmentKey => EquipType.ToString();
+
+        public void Initialize()
         {
-            info.EnchantLevel = level;
+            EquipmentSpec = ConstSpec + DynamicSpec;
         }
         
+        // public void Upgrade()
+        // {
+        //     
+        // }
+        //
+        // public void EnchantSpec()
+        // {
+        //     
+        // }
+        //
+        // public void EnchantVices()
+        // {
+        //     
+        // }
+
 
 #if UNITY_EDITOR
         public virtual void EditorSetUp()
         {
-            if (ActionCode == DataIndex.None)
+            var targetDataIndex = DataIndex;
+            
+            if (DataIndex == DataIndex.None)
             {
-                ActionCode.TryFindDataIndex(name, out var dataCode)
-                          .OnTrue(() => info.SetDataCode(dataCode));
+                targetDataIndex = name.ConvertDataIndexStyle().TryFindDataIndex();
             }
             
-            title          = ActionCode.ToString().DivideWords();
-            availableClass = CombatClassType.All; // TEMP
-            // image = Database.GetSprite(ActionCode)
+            constEntity.ConstSpec.Clear();
+            constEntity.SetEntity(targetDataIndex);
             
-            Spec.Clear();
             UnityEditor.EditorUtility.SetDirty(this);
         }
+        
+        // [SerializeField] protected EquipmentInfo info;
+        // public EquipmentInfo Info => info;
 #endif
     }
 }

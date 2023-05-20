@@ -1,5 +1,4 @@
 using System.Collections.Generic;
-using Sirenix.OdinInspector;
 
 namespace Common
 {
@@ -16,66 +15,120 @@ namespace Common
         public float MaxResource => GetStatValue(StatType.MaxResource);
         public float MinWeaponValue => GetStatValue(StatType.MinDamage);
         public float MaxWeaponValue => GetStatValue(StatType.MaxDamage);
-        
-        [ShowInInspector]
-        private Dictionary<StatType, StatSet> statTable { get; } = new();
+
+        private Dictionary<StatType, StatSet> Table { get; } = new();
 
         public void Add(StatTable anotherTable)
         {
-            anotherTable.statTable.ForEach(tableElement =>
+            anotherTable.Table.ForEach(tableElement =>
             {
-                if (statTable.TryGetValue(tableElement.Key, out var value))
+                if (Table.TryGetValue(tableElement.Key, out var value))
                 {
                     value.Add(tableElement.Value);
                 }
                 else
                 {
-                    statTable.Add(tableElement.Key, tableElement.Value);
+                    Table.Add(tableElement.Key, tableElement.Value);
                 }
             });
         }
-        public void Add(string key, Spec spec) => spec.Iterate(stat => Add(key, stat));
-        public void Add(string key, Stat stat)
+        public void Add(Spec spec) => spec.Iterate(Add);
+        public void Add(Stat stat)
         {
-            if (statTable.TryGetValue(stat.StatType, out var value))
+            if (Table.TryGetValue(stat.StatType, out var value))
             {
-                value.Add(key, stat);
+                value.Add(stat);
             }
             else
             {
                 var newTable = new StatSet();
-                newTable.Add(key, stat);
+                newTable.Add(stat);
                 
-                statTable.Add(stat.StatType, newTable);
+                Table.Add(stat.StatType, newTable);
             }
         }
 
         public void Remove(StatTable anotherTable)
         {
-            anotherTable.statTable.ForEach(tableElement =>
+            anotherTable.Table.ForEach(tableElement =>
             {
-                if (statTable.TryGetValue(tableElement.Key, out var value))
+                if (Table.TryGetValue(tableElement.Key, out var value))
                 {
                     value.Remove(tableElement.Value);
                 }
             });
         }
-        public void Remove(string key, Spec spec) => spec.Iterate(stat => Remove(key, stat));
-        public void Remove(string key, Stat stat)
+        public void Remove(Spec spec) => spec.Iterate(Remove);
+        public void Remove(Stat stat)
         {
-            if (!statTable.ContainsKey(stat.StatType)) return;
+            if (!Table.ContainsKey(stat.StatType)) return;
             
-            statTable[stat.StatType].Remove(key);
+            Table[stat.StatType].Remove(stat);
         }
 
-        public void Clear() => statTable.Clear();
+        public void Clear() => Table.Clear();
         
         
         private float GetStatValue(StatType statType)
         {
-            if (!statTable.ContainsKey(statType)) return 0;
+            if (!Table.ContainsKey(statType)) return 0;
         
-            return statTable[statType].Value;
+            return Table[statType].Value;
+        }
+        
+        public class StatSet
+        {
+            private readonly Dictionary<string, Stat> table = new();
+            private float totalBaseValue;
+            private float totalMultiValue;
+
+            public float Value => totalBaseValue * (1 + totalMultiValue);
+
+
+            public void Add(StatSet otherSet) => otherSet.table.ForEach(otherSetElement 
+                => Add(otherSetElement.Value));
+            public void Add(Stat stat)
+            {
+                if (table.ContainsKey(stat.StatKey))
+                {
+                    RemovePreviousStat(table[stat.StatKey]);
+                    table[stat.StatKey] = stat;
+                }
+                else
+                {
+                    table.Add(stat.StatKey, stat);
+                }
+                
+                AddNewStat(stat);
+            }
+
+            public void Remove(StatSet otherSet) => otherSet.table.ForEach(otherSetElement 
+                => Remove(otherSetElement.Value));
+            public void Remove(Stat stat)
+            {
+                var key = stat.StatKey;
+                
+                if (!table.ContainsKey(key)) return;
+                
+                RemovePreviousStat(table[key]);
+                table.TryRemove(key);
+            }
+            
+            public void Clear() => table.Clear();
+
+
+            private void RemovePreviousStat(Stat previousStat) => UpdateTotalValue(previousStat, true);
+            private void AddNewStat(Stat newStat) => UpdateTotalValue(newStat);
+
+            /// <param> False인 경우 amount를 type에 맞게 더해주며,
+            /// True인 경우 원래대로 돌려 놓는다.
+            ///     <name>isReverse</name>
+            /// </param>
+            private void UpdateTotalValue(Stat stat, bool isReverse = false)
+            {
+                var sign = isReverse ? -1.0f : 1.0f;
+                totalBaseValue += stat.Value * sign;
+            }
         }
     }
 }

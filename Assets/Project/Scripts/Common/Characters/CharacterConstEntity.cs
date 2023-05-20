@@ -13,6 +13,8 @@ namespace Common.Characters
         [SerializeField] private Spec defaultSpec;
         [SerializeField] private List<DataIndex> defaultSkillList;
         [SerializeField] private List<DataIndex> initialEquipmentList;
+
+        private const string ConstStatKey = "ConstStatKey"; 
         
         public CombatClassType ClassType => classType;
         public DataIndex DataIndex => dataIndex;
@@ -27,7 +29,11 @@ namespace Common.Characters
         {
             if (!Verify.IsNotDefault(dataIndex, "Require Character DataIndex for import data")) 
                 return;
-            
+
+            defaultSpec.Clear();
+            defaultSkillList.Clear();
+            initialEquipmentList.Clear();
+
             switch (dataIndex.GetCategory())
             {
                 case DataIndex.CombatClass: LoadAdventurerData(dataIndex); break;
@@ -51,21 +57,19 @@ namespace Common.Characters
             characterName = classData.CharacterName;
             
             // defaultSpec
-            defaultSpec.Add(StatType.MinDamage, StatApplyType.Plus, classData.DefaultDamage);
-            defaultSpec.Add(StatType.MaxDamage, StatApplyType.Plus, classData.DefaultDamage);
-            defaultSpec.Add(StatType.Health, StatApplyType.Plus, classData.Health);
-            defaultSpec.Add(StatType.CriticalChance, StatApplyType.Plus, classData.Critical);
-            defaultSpec.Add(StatType.Haste,          StatApplyType.Plus, classData.Haste);
-            defaultSpec.Add(StatType.Armor,          StatApplyType.Plus, classData.Armor);
-            defaultSpec.Add(StatType.MaxResource,    StatApplyType.Plus, classData.MaxResource);
-            defaultSpec.Add(StatType.MoveSpeed,      StatApplyType.Plus, classData.MoveSpeed);
+            defaultSpec.Add(StatType.MinDamage, ConstStatKey, classData.DefaultDamage);
+            defaultSpec.Add(StatType.MaxDamage, ConstStatKey, classData.DefaultDamage);
+            defaultSpec.Add(StatType.Health, ConstStatKey, classData.Health);
+            defaultSpec.Add(StatType.CriticalChance, ConstStatKey, classData.Critical);
+            defaultSpec.Add(StatType.Haste,          ConstStatKey, classData.Haste);
+            defaultSpec.Add(StatType.Armor,          ConstStatKey, classData.Armor);
+            defaultSpec.Add(StatType.MaxResource,    ConstStatKey, classData.MaxResource);
+            defaultSpec.Add(StatType.MoveSpeed,      ConstStatKey, classData.MoveSpeed);
             
             // defaultSkills
-            defaultSkillList.Clear();
             classData.DefaultSkills.ForEach(skill => defaultSkillList.Add((DataIndex)skill));
             
             // defaultEquipments
-            initialEquipmentList.Clear();
             classData.InitialEquipments.ForEach(equipment => initialEquipmentList.Add((DataIndex)equipment));
         }
         private void LoadMonsterData(DataIndex dataIndex)
@@ -78,17 +82,16 @@ namespace Common.Characters
             characterName = monsterData.FullName;
             
             // defaultSpec
-            defaultSpec.Add(StatType.MinDamage, StatApplyType.Plus, monsterData.DefaultDamage);
-            defaultSpec.Add(StatType.MaxDamage, StatApplyType.Plus, monsterData.DefaultDamage);
-            defaultSpec.Add(StatType.Health, StatApplyType.Plus, monsterData.Health);
-            defaultSpec.Add(StatType.CriticalChance, StatApplyType.Plus, monsterData.Critical);
-            defaultSpec.Add(StatType.Haste,          StatApplyType.Plus, monsterData.Haste);
-            defaultSpec.Add(StatType.Armor,          StatApplyType.Plus, monsterData.Armor);
-            defaultSpec.Add(StatType.MaxResource,    StatApplyType.Plus, monsterData.MaxResource);
-            defaultSpec.Add(StatType.MoveSpeed,      StatApplyType.Plus, monsterData.MoveSpeed);
+            defaultSpec.Add(StatType.MinDamage, ConstStatKey, monsterData.DefaultDamage);
+            defaultSpec.Add(StatType.MaxDamage, ConstStatKey, monsterData.DefaultDamage);
+            defaultSpec.Add(StatType.Health, ConstStatKey, monsterData.Health);
+            defaultSpec.Add(StatType.CriticalChance, ConstStatKey, monsterData.Critical);
+            defaultSpec.Add(StatType.Haste,          ConstStatKey, monsterData.Haste);
+            defaultSpec.Add(StatType.Armor,          ConstStatKey, monsterData.Armor);
+            defaultSpec.Add(StatType.MaxResource,    ConstStatKey, monsterData.MaxResource);
+            defaultSpec.Add(StatType.MoveSpeed,      ConstStatKey, monsterData.MoveSpeed);
             
             // defaultSkills
-            defaultSkillList.Clear();
             monsterData.DefaultSkills.ForEach(skill => defaultSkillList.Add((DataIndex)skill));
         }
 #endif

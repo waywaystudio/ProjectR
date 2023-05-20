@@ -2,7 +2,6 @@ using System;
 using System.Collections.Generic;
 using Common.Equipments;
 using Sirenix.OdinInspector;
-using UnityEngine;
 
 namespace Common.Characters
 {

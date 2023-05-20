@@ -7,11 +7,11 @@ namespace Common.Equipments
         {
             base.EditorSetUp();
             
-            var topData = Database.TopData(ActionCode);
+            var topData = Database.TopData(DataIndex);
 
-            (topData.Power  != 0.0f).OnTrue(() => Spec.Add(StatType.Power, StatApplyType.Plus, topData.Power));
-            (topData.Health != 0.0f).OnTrue(() => Spec.Add(StatType.Health, StatApplyType.Plus, topData.Health));
-            (topData.Armor  != 0.0f).OnTrue(() => Spec.Add(StatType.Armor, StatApplyType.Plus, topData.Armor));
+            (topData.Power  != 0.0f).OnTrue(() => ConstSpec.Add(StatType.Power, EquipmentKey, topData.Power));
+            (topData.Health != 0.0f).OnTrue(() => ConstSpec.Add(StatType.Health, EquipmentKey, topData.Health));
+            (topData.Armor  != 0.0f).OnTrue(() => ConstSpec.Add(StatType.Armor, EquipmentKey, topData.Armor));
         }
 #endif
     }

@@ -50,7 +50,7 @@ namespace Common.Skills
         public string Description => description;
         public LayerMask TargetLayer => targetLayer;
         public Sprite Icon => icon;
-        public DataIndex ActionCode => actionCode;
+        public DataIndex DataIndex => actionCode;
         public virtual ICombatTaker MainTarget =>
             Cb.Searching.GetMainTarget(targetLayer, Cb.transform.position, sortingType);
         public CharacterBehaviour Cb => cb ??= GetComponentInParent<CharacterBehaviour>();

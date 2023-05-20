@@ -60,7 +60,7 @@ namespace Common.Skills
         {
             if (!TryGetComponent<IDataIndexer>(out var indexer)) return;
 
-            var skillData  = Database.SkillSheetData(indexer.ActionCode);
+            var skillData  = Database.SkillSheetData(indexer.DataIndex);
             coolTime = skillData.CoolTime;
         }
 #endif
