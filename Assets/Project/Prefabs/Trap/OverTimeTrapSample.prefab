@@ -111,16 +111,15 @@ MonoBehaviour:
   actionCode: 0
   damageSpec:
     statList:
-    - statType: 12
-      applyType: 1
+    - statType: 1
+      statKey: 
       value: 50
-    - statType: 13
-      applyType: 1
+    - statType: 3
+      statKey: 
       value: 0
-    - statType: 14
-      applyType: 1
+    - statType: 4
+      statKey: 
       value: 0
-    key: 
 --- !u!1 &8919642679339843494
 GameObject:
   m_ObjectHideFlags: 0

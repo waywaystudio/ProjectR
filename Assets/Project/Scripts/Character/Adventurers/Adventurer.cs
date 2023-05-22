@@ -12,8 +12,7 @@ namespace Character.Adventurers
         // TODO. Temp
         public override void ForceInitialize()
         {
-            equipment.Initialize();
-            stats.Initialize();
+            combatStatus.Initialize();
         }
 
 

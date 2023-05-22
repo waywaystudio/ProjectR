@@ -66,12 +66,9 @@ MonoBehaviour:
   actionCode: 14000002
   damageSpec:
     statList:
-    - statType: 12
-      applyType: 1
-      value: 1
-    - statType: 13
-      applyType: 1
+    - statType: 3
+      statKey: DamageExecutorKey
       value: 0
-    - statType: 14
-      applyType: 1
+    - statType: 4
+      statKey: DamageExecutorKey
       value: 0

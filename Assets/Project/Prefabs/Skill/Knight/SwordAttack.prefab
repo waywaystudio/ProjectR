@@ -116,14 +116,14 @@ MonoBehaviour:
   behaviourMask: 32
   ignorableMask: 3
   priority: 1
+  range: 6
+  angle: 135
+  animationKey: swordAttack
   targetLayer:
     serializedVersion: 2
     m_Bits: 256
   description: Starts combat by attacking a target with a melee weapon.
-  animationKey: swordAttack
   icon: {fileID: 21300000, guid: 951b905eda8f8424fb1debd28c69ac92, type: 3}
-  range: 6
-  angle: 135
 --- !u!114 &-4124476206816522535
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -152,12 +152,12 @@ MonoBehaviour:
   actionCode: 13000001
   damageSpec:
     statList:
-    - statType: 12
-      applyType: 1
-      value: 150
-    - statType: 13
-      applyType: 1
+    - statType: 1
+      statKey: DamageExecutorKey
+      value: 15
+    - statType: 3
+      statKey: DamageExecutorKey
       value: 0
-    - statType: 14
-      applyType: 1
+    - statType: 4
+      statKey: DamageExecutorKey
       value: 0

@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7b4303f492ee94242b6af21bbaf702f8, type: 3}
   m_Name: KnightData
   m_EditorClassIdentifier: 
+  characterIndex: 12000001
   constEntity:
-    dataIndex: 12000001
     classType: 1
     characterName: Garvin
     defaultSpec:
@@ -27,20 +27,21 @@ MonoBehaviour:
       - statType: 5
         statKey: ConstStatKey
         value: 0
-      - statType: 6
+      - statType: 8
         statKey: ConstStatKey
         value: 20
-      - statType: 7
-        statKey: ConstStatKey
-        value: 7
       - statType: 9
         statKey: ConstStatKey
+        value: 7
+      - statType: 11
+        statKey: ConstStatKey
         value: 100
-      - statType: 10
+      - statType: 12
         statKey: ConstStatKey
         value: 1
-      - statType: 11
+      - statType: 13
         statKey: ConstStatKey
         value: 1
     defaultSkillList: 415dc600425dc600435dc600445dc600
-    initialEquipmentList: 5196400191d84f01d11a5f01115d6e01519f7d0191e18c01
+  equipmentEntity:
+    initialEquipmentIndexList: 5196400191d84f01d11a5f01115d6e01519f7d0191e18c01

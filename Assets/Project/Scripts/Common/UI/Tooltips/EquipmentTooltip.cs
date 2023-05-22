@@ -13,30 +13,30 @@ namespace Common.UI.Tooltips
 
         public ActionTable OnEnded { get; } = new();
 
-        public void Show(Equipment equipment)
-        {
-            if (equipment == null) return;
-
-            title.text = equipment.Title;
-            statInfoList.ForEach(statInfoUI => statInfoUI.gameObject.SetActive(false));
-            
-            equipment.ConstSpec.Iterate(stat =>
-            {
-                var statInfo = statInfoList.TryGetElement(info => info.StatType == stat.StatType);
-
-                if (statInfo != null)
-                {
-                    statInfo.SetValue(stat);
-                    statInfo.gameObject.SetActive(true);
-                }
-            });
-        }
-
-        public void Hide()
-        {
-            statInfoList.ForEach(statInfoUI => statInfoUI.gameObject.SetActive(false));
-            OnEnded.Invoke();
-        }
+        // public void Show(Equipment equipment)
+        // {
+        //     if (equipment == null) return;
+        //
+        //     title.text = equipment.Title;
+        //     statInfoList.ForEach(statInfoUI => statInfoUI.gameObject.SetActive(false));
+        //     
+        //     equipment.ConstSpec.IterateOverStats(stat =>
+        //     {
+        //         var statInfo = statInfoList.TryGetElement(info => info.StatType == stat.StatType);
+        //
+        //         if (statInfo != null)
+        //         {
+        //             statInfo.SetValue(stat);
+        //             statInfo.gameObject.SetActive(true);
+        //         }
+        //     });
+        // }
+        //
+        // public void Hide()
+        // {
+        //     statInfoList.ForEach(statInfoUI => statInfoUI.gameObject.SetActive(false));
+        //     OnEnded.Invoke();
+        // }
 
 
 #if UNITY_EDITOR

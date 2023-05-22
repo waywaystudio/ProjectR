@@ -26,6 +26,7 @@ public enum DataIndex
 	Bottom = 25,
 	Boot = 26,
 	Trinket = 27,
+	Material = 28,
 
 	/* CombatClassData */
 	Knight = 12000001,
@@ -242,6 +243,32 @@ public enum DataIndex
 	HealthPearl = 27010001,
 	CriticalRing = 27011002,
 	HasteBelt = 27012003,
+
+	/* MaterialData */
+	Vowedshard = 28010001,
+	Vowedstone = 28011002,
+	Vowedcrystal = 28012003,
+	Volorousshard = 28020004,
+	Volorousstone = 28021005,
+	Volorouscrystal = 28022006,
+	Veteransshard = 28030007,
+	Veteransstone = 28031008,
+	Veteranscrystal = 28032009,
+	Vitalshard = 28040010,
+	Vitalstone = 28041011,
+	Vitalcrystal = 28042012,
+	Verdictiveshard = 28050013,
+	Verdictivestone = 28051014,
+	Verdictivecrystal = 28052015,
+	Votiveshard = 28060016,
+	Votivestone = 28061017,
+	Votivecrystal = 28062018,
+	Virtuousshard = 28070019,
+	Virtuousstone = 28071020,
+	Virtuouscrystal = 28072021,
+	Viciousshard = 28080022,
+	Viciousstone = 28081023,
+	Viciouscrystal = 28082024,
 
 	End = int.MaxValue
         

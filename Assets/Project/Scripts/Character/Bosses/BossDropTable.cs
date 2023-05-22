@@ -14,10 +14,9 @@ namespace Character.Bosses
 #if UNITY_EDITOR
         public void EditorSetUp()
         {
-            var entireItemList = Database.EquipmentPrefabData.GetAll();
-            
-            dropItemList.Clear();
-            dropItemList.AddRange(entireItemList);
+            // var entireItemList = Database.EquipmentPrefabData.GetAll();
+            // dropItemList.Clear();
+            // dropItemList.AddRange(entireItemList);
         }
 #endif
     }

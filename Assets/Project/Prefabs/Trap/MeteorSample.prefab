@@ -98,14 +98,11 @@ MonoBehaviour:
   actionCode: 0
   damageSpec:
     statList:
-    - statType: 12
-      applyType: 1
-      value: 50
-    - statType: 13
-      applyType: 1
+    - statType: 3
+      statKey: DamageExecutorKey
       value: 0
-    - statType: 14
-      applyType: 1
+    - statType: 4
+      statKey: DamageExecutorKey
       value: 0
 --- !u!114 &8631105741518899061
 MonoBehaviour:

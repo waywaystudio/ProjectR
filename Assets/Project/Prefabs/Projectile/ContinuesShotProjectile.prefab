@@ -88,14 +88,14 @@ MonoBehaviour:
   actionCode: 13000016
   damageSpec:
     statList:
-    - statType: 12
-      applyType: 1
+    - statType: 1
+      statKey: 
       value: 10
-    - statType: 13
-      applyType: 1
+    - statType: 3
+      statKey: 
       value: 0
-    - statType: 14
-      applyType: 1
+    - statType: 4
+      statKey: 
       value: 0
 --- !u!135 &-5250174752325060650
 SphereCollider:

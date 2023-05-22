@@ -65,7 +65,7 @@ public static class Verify
 
         if (showLog)
         {
-            Debug.LogError($"inserted {value} is typeof{typeof(T).Name}'s default value.");
+            Debug.LogError($"Value is {value}. typeof <color=yellow>{typeof(T).Name}</color>'s default value.");
         }
 
         return false;

@@ -62,20 +62,20 @@ namespace Lobby.UI
 
             dropItemList.ForEach((itemObject, index) =>
             {
-                if (!itemObject.TryGetComponent(out Equipment dropItem)) return;
-                if (dropItemUIList.Count > index)
-                {
-                    dropItemUIList[index].SetDropItemUI(dropItem);
-                }
-                else
-                {
-                    var dropItemUIObject = Instantiate(dropItemSlotPrefab, dropItemsInfoUIHierarchy);
-
-                    if (!dropItemUIObject.TryGetComponent(out DropItemUI dropItemUIBehaviour)) return;
-                    
-                    dropItemUIBehaviour.SetDropItemUI(dropItem);
-                    dropItemUIList.Add(dropItemUIBehaviour);
-                }
+                // if (!itemObject.TryGetComponent(out Equipment dropItem)) return;
+                // if (dropItemUIList.Count > index)
+                // {
+                //     dropItemUIList[index].SetDropItemUI(dropItem);
+                // }
+                // else
+                // {
+                //     var dropItemUIObject = Instantiate(dropItemSlotPrefab, dropItemsInfoUIHierarchy);
+                //
+                //     if (!dropItemUIObject.TryGetComponent(out DropItemUI dropItemUIBehaviour)) return;
+                //     
+                //     dropItemUIBehaviour.SetDropItemUI(dropItem);
+                //     dropItemUIList.Add(dropItemUIBehaviour);
+                // }
             });
         }
 

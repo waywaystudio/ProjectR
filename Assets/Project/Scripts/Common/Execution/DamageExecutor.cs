@@ -20,10 +20,10 @@ namespace Common.Execution
             var weaponAverage = Random.Range(providerTable.MinWeaponValue, providerTable.MaxWeaponValue);
             var damageAmount = weaponAverage 
                   * (1.0f + providerTable.Power   * 0.01f) 
-                  * (1.0f + damageSpec.ExtraPower * 0.01f);
+                  * (1.0f + damageSpec.Power * 0.01f);
 
             // Critical Calculation : CombatFormula;
-            if (CombatFormula.IsCritical(providerTable.CriticalChance + damageSpec.ExtraCriticalChance))
+            if (CombatFormula.IsCritical(providerTable.CriticalChance + damageSpec.CriticalChance))
             {
                 entity.IsCritical =  true;
                 damageAmount      *= 1.0f + (100 + providerTable.CriticalDamage + damageSpec.CriticalDamage) * 0.01f;
@@ -79,14 +79,14 @@ namespace Common.Execution
         public void EditorSetUp()
         {
             damageSpec.Clear();
-            damageSpec.Add(StatType.ExtraCriticalChance, DamageExecutorKey, 0f);
-            damageSpec.Add(StatType.ExtraCriticalDamage, DamageExecutorKey, 0f);
+            damageSpec.Add(StatType.CriticalChance, DamageExecutorKey, 0f);
+            damageSpec.Add(StatType.CriticalDamage, DamageExecutorKey, 0f);
             
             if (TryGetComponent(out Skills.SkillComponent skill))
             {
                 actionCode   = skill.DataIndex;
                 
-                damageSpec.Add(StatType.ExtraPower, DamageExecutorKey, Database.SkillSheetData(actionCode).CompletionValueList[0]);
+                damageSpec.Add(StatType.Power, DamageExecutorKey, Database.SkillSheetData(actionCode).CompletionValueList[0]);
                 return;
             }
             

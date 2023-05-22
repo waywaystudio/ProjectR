@@ -1,0 +1,65 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 035db33658f20cb46bdd3d3b90e522ac, type: 3}
+  m_Name: MaterialSpriteData
+  m_EditorClassIdentifier: 
+  searchingTargetPath: Assets/Project/Graphics/Icon/Material
+  dataObjectParamName: IconFileName
+  resourceList:
+  - DataIndex: 28010001
+    Resource: {fileID: 21300000, guid: c08c3e5f5437e9e4883340f0e6171064, type: 3}
+  - DataIndex: 28011002
+    Resource: {fileID: 21300000, guid: c8985f6453cadc34c96dd19125966fb3, type: 3}
+  - DataIndex: 28012003
+    Resource: {fileID: 21300000, guid: 0ee87ebb91ad07e4f8c64c82418582ad, type: 3}
+  - DataIndex: 28020004
+    Resource: {fileID: 21300000, guid: d7c1603eb8049934ca06f634ad886788, type: 3}
+  - DataIndex: 28021005
+    Resource: {fileID: 21300000, guid: 0c24f293988370049845ee6472381883, type: 3}
+  - DataIndex: 28022006
+    Resource: {fileID: 21300000, guid: 51c324958760e7746af7d80da2034e1b, type: 3}
+  - DataIndex: 28030007
+    Resource: {fileID: 21300000, guid: e7e3df307067d0a45b843fc0ef117e6a, type: 3}
+  - DataIndex: 28031008
+    Resource: {fileID: 21300000, guid: e53397fa275b83048af5b8b7061c521b, type: 3}
+  - DataIndex: 28032009
+    Resource: {fileID: 21300000, guid: db10a97896e405044b30f924c5922df1, type: 3}
+  - DataIndex: 28040010
+    Resource: {fileID: 21300000, guid: 53a22ba347ed14e498c50209a572f290, type: 3}
+  - DataIndex: 28041011
+    Resource: {fileID: 21300000, guid: d085e9b5901e4794abd20e2f564bd9f8, type: 3}
+  - DataIndex: 28042012
+    Resource: {fileID: 21300000, guid: 908f8aea529bc3e47893c47a47429c78, type: 3}
+  - DataIndex: 28050013
+    Resource: {fileID: 21300000, guid: 254c873006e7ec14d807ab42b9633e34, type: 3}
+  - DataIndex: 28051014
+    Resource: {fileID: 21300000, guid: 67018c8e3f38249439eb378a1343bb0c, type: 3}
+  - DataIndex: 28052015
+    Resource: {fileID: 21300000, guid: 67d1c851f7e061047b7151ade7cdd381, type: 3}
+  - DataIndex: 28060016
+    Resource: {fileID: 21300000, guid: ea75713dec9a81741b951c84543fa0cd, type: 3}
+  - DataIndex: 28061017
+    Resource: {fileID: 21300000, guid: 80f36872b0ab754459d31b188c6bc800, type: 3}
+  - DataIndex: 28062018
+    Resource: {fileID: 21300000, guid: 7d235f56112f71c4189199fc25cf5f28, type: 3}
+  - DataIndex: 28070019
+    Resource: {fileID: 21300000, guid: 31a755421da1a4c469c537b61bb1927e, type: 3}
+  - DataIndex: 28071020
+    Resource: {fileID: 21300000, guid: 6fbfac12f66e86c468fdc898874bc43f, type: 3}
+  - DataIndex: 28072021
+    Resource: {fileID: 21300000, guid: 9f8155eb901795b4f810bfdd36840bb3, type: 3}
+  - DataIndex: 28080022
+    Resource: {fileID: 21300000, guid: 0300c688f366cf448978d94afa26baad, type: 3}
+  - DataIndex: 28081023
+    Resource: {fileID: 21300000, guid: 3263d502c05df394d835a84e41a07e4d, type: 3}
+  - DataIndex: 28082024
+    Resource: {fileID: 21300000, guid: 3fe2bf8f169b69844aa90353e3fb8ce1, type: 3}

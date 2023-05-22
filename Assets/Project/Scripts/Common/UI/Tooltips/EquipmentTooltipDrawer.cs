@@ -25,28 +25,28 @@ namespace Common.UI.Tooltips
 
         public void Draw()
         {
-            Hide();
-            
-            var spawnPosition = transform.position + spawnOffset;
-
-            if (TooltipIncludedObject.Equipment      == null 
-                // || TooltipIncludedObject.Equipment.Info == null
-                )
-                return;
-            
-            equipmentTooltipObject = 
-                MainUI.EquipmentTooltipPool.ShowToolTip(spawnPosition, TooltipIncludedObject.Equipment);
+            // Hide();
+            //
+            // var spawnPosition = transform.position + spawnOffset;
+            //
+            // if (TooltipIncludedObject.Equipment      == null 
+            //     // || TooltipIncludedObject.Equipment.Info == null
+            //     )
+            //     return;
+            //
+            // equipmentTooltipObject = 
+            //     MainUI.EquipmentTooltipPool.ShowToolTip(spawnPosition, TooltipIncludedObject.Equipment);
         }
 
         public void Hide()
         {
-            if (TooltipIncludedObject.Equipment      == null 
-                // || TooltipIncludedObject.Equipment.Info == null 
-                || equipmentTooltipObject == null)
-                return;
-            
-            equipmentTooltipObject.Hide();
-            equipmentTooltipObject = null;
+            // if (TooltipIncludedObject.Equipment      == null 
+            //     // || TooltipIncludedObject.Equipment.Info == null 
+            //     || equipmentTooltipObject == null)
+            //     return;
+            //
+            // equipmentTooltipObject.Hide();
+            // equipmentTooltipObject = null;
         }
 
 
@@ -54,7 +54,7 @@ namespace Common.UI.Tooltips
         {
             if (equipmentTooltipObject.IsNullOrDestroyed() || !equipmentTooltipObject.gameObject.activeSelf) return;
             
-            equipmentTooltipObject.Hide();
+            // equipmentTooltipObject.Hide();
         }
     }
 }

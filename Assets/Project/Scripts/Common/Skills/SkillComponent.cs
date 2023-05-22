@@ -15,32 +15,28 @@ namespace Common.Skills
         [SerializeField] protected CharacterActionMask behaviourMask = CharacterActionMask.Skill;
         [SerializeField] protected CharacterActionMask ignorableMask = CharacterActionMask.SkillIgnoreMask;
         [SerializeField] protected int priority;
-        [SerializeField] protected LayerMask targetLayer;
-        
-        [SerializeField] private string description;
-        [SerializeField] protected string animationKey;
-        [SerializeField] private Sprite icon;
-        
         [SerializeField] protected float range;
         [SerializeField] protected float angle;
+        [SerializeField] protected string animationKey;
+        [SerializeField] protected LayerMask targetLayer;
+        [SerializeField] private string description;
+        [SerializeField] private Sprite icon;
+        
 
         private CharacterBehaviour cb;
 
         /* Sequence */
         public ConditionTable Conditions { get; } = new();
-        [ShowInInspector]
-        public ActionTable OnActivated { get; } = new();
-        [ShowInInspector]
-        public ActionTable OnCanceled { get; } = new();
-        [ShowInInspector]
-        public ActionTable OnCompleted { get; } = new();
-        [ShowInInspector]
-        public ActionTable OnEnded { get; } = new();
-        public ExecutionTable ExecutionTable { get; } = new();
+        [ShowInInspector] public ActionTable OnActivated { get; } = new();
+        [ShowInInspector] public ActionTable OnCanceled { get; } = new();
+        [ShowInInspector] public ActionTable OnCompleted { get; } = new();
+        [ShowInInspector] public ActionTable OnEnded { get; } = new();
+        [ShowInInspector] public bool IsEnded { get; set; } = true;
         
-        [ShowInInspector]
-        public bool IsEnded { get; set; } = true;
+        public ExecutionTable ExecutionTable { get; } = new();
 
+        public DataIndex DataIndex => actionCode;
+        public ICombatProvider Provider => Cb;
         public SkillType SkillType => skillType;
         public CharacterActionMask BehaviourMask => behaviourMask;
         public CharacterActionMask IgnorableMask => ignorableMask;
@@ -48,14 +44,12 @@ namespace Common.Skills
         public float Range => range;
         public float Angle => angle;
         public string Description => description;
+        public float CastingTime { get; set; }
         public LayerMask TargetLayer => targetLayer;
         public Sprite Icon => icon;
-        public DataIndex DataIndex => actionCode;
         public virtual ICombatTaker MainTarget =>
             Cb.Searching.GetMainTarget(targetLayer, Cb.transform.position, sortingType);
         public CharacterBehaviour Cb => cb ??= GetComponentInParent<CharacterBehaviour>();
-        public ICombatProvider Provider => Cb;
-        public float CastingTime { get; set; }
         
         protected bool AbleToRelease => SkillType is not (SkillType.Instant or SkillType.Casting) && IsProgress;
         protected bool IsProgress { get; set; }

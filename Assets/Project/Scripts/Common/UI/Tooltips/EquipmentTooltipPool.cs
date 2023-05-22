@@ -7,15 +7,15 @@ namespace Common.UI.Tooltips
     {
         [SerializeField] private Pool<EquipmentTooltip> pool;
         
-        public EquipmentTooltip ShowToolTip(Vector3 position, Equipment equipment)
-        {
-            var tooltipObject = pool.Get();
-
-            tooltipObject.transform.position = position;
-            tooltipObject.Show(equipment);
-
-            return tooltipObject;
-        }
+        // public EquipmentTooltip ShowToolTip(Vector3 position, Equipment equipment)
+        // {
+        //     var tooltipObject = pool.Get();
+        //
+        //     tooltipObject.transform.position = position;
+        //     tooltipObject.Show(equipment);
+        //
+        //     return tooltipObject;
+        // }
 
 
         private void ToolTipInitialize(EquipmentTooltip tooltip)

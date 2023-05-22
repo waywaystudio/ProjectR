@@ -19,6 +19,8 @@ public abstract class ActionTableCore<T> : Dictionary<string, T>
 
 public class ActionTable : ActionTableCore<Action>
 {
+    public Dictionary<string, Action> SampleTable;
+    
     public ActionTable() { }
     public ActionTable(int capacity) : base(capacity) { }
     

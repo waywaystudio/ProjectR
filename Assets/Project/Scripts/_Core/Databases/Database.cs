@@ -13,9 +13,9 @@ using Glove = Databases.SheetData.EquipmentData.GloveData.Glove;
 using Bottom = Databases.SheetData.EquipmentData.BottomData.Bottom;
 using Boot = Databases.SheetData.EquipmentData.BootData.Boot;
 using Trinket = Databases.SheetData.EquipmentData.TrinketData.Trinket;
+using Material = Databases.SheetData.ItemData.MaterialData.Material;
 using Singleton;
 using UnityEngine;
-using UnityEngine.Serialization;
 
 // ReSharper disable CheckNamespace
 
@@ -27,10 +27,10 @@ public partial class Database : MonoSingleton<Database>, IEditable
     [SerializeField] private StatusEffectPrefabData statusEffectPrefabData;
     [SerializeField] private CombatClassPrefabData combatClassPrefabData;
     [SerializeField] private BossPrefabData bossPrefabData;
-    [SerializeField] private EquipmentPrefabData equipmentPrefabData;
 
     [SerializeField] private SpriteData equipmentSpriteData;
-    [FormerlySerializedAs("skillSpriteData")] [SerializeField] private SpriteData spellSpriteData;
+    [SerializeField] private SpriteData spellSpriteData;
+    [SerializeField] private SpriteData materialSpriteData;
         
     private readonly Dictionary<DataIndex, DataObject> sheetDataTable = new();
 
@@ -56,13 +56,14 @@ public partial class Database : MonoSingleton<Database>, IEditable
     public static Bottom BottomData(DataIndex dataIndex) => SheetDataTable[DataIndex.Bottom].Get<Bottom>(dataIndex);
     public static Boot BootData(DataIndex dataIndex) => SheetDataTable[DataIndex.Boot].Get<Boot>(dataIndex);
     public static Trinket TrinketData(DataIndex dataIndex) => SheetDataTable[DataIndex.Trinket].Get<Trinket>(dataIndex);
+    public static Material MaterialData(DataIndex dataIndex) => SheetDataTable[DataIndex.Material].Get<Material>(dataIndex);
         
     public static SkillPrefabData SkillPrefabData => Instance.skillPrefabData;
     public static StatusEffectPrefabData StatusEffectPrefabData => Instance.statusEffectPrefabData;
     public static CombatClassPrefabData CombatClassPrefabData => Instance.combatClassPrefabData;
     public static BossPrefabData BossPrefabData => Instance.bossPrefabData;
-    public static EquipmentPrefabData EquipmentPrefabData => Instance.equipmentPrefabData;
 
     public static SpriteData EquipmentSpriteData => Instance.equipmentSpriteData;
     public static SpriteData SpellSpriteData => Instance.spellSpriteData;
+    public static SpriteData MaterialSpriteData => Instance.materialSpriteData;
 }

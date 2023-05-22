@@ -9,7 +9,6 @@ namespace Common.PlayerCamps
     {
         [SerializeField] private List<CharacterData> characterDataList;
 
-
         public List<CharacterData> GetAllData() => characterDataList;
         public CharacterData GetData(CombatClassType type) =>
             characterDataList.TryGetElement(data => data.ClassType == type);

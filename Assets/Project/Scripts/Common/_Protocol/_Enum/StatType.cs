@@ -8,14 +8,13 @@ namespace Common
         CriticalChance,
         CriticalDamage,
         Haste,
+        Mastery,
+        Retention,
         Armor,
         MoveSpeed,
         MaxHp,
         MaxResource,
         MinDamage,
         MaxDamage,
-        ExtraPower,
-        ExtraCriticalChance,
-        ExtraCriticalDamage,
     }
 }

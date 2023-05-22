@@ -9,6 +9,8 @@ namespace Common
     {
         [SerializeField] private List<Stat> statList = new();
 
+        private const float Epsilon = 0.0001f;
+
         /*
          * PRESET
          */
@@ -25,9 +27,6 @@ namespace Common
         public float MaxResource => GetStatValue(StatType.MaxResource);
         public float MinWeaponValue => GetStatValue(StatType.MinDamage);
         public float MaxWeaponValue => GetStatValue(StatType.MaxDamage);
-        public float ExtraPower => GetStatValue(StatType.ExtraPower);
-        public float ExtraCriticalChance => GetStatValue(StatType.ExtraCriticalChance);
-        public float ExtraCriticalDamage => GetStatValue(StatType.ExtraCriticalDamage);
 
         #endregion
 
@@ -43,7 +42,7 @@ namespace Common
         {
             foreach (var stat in statList)
             {
-                if (stat.StatType != statType || Math.Abs(stat.Value - value) > 0.0001f) continue;
+                if (stat.StatType != statType || Math.Abs(stat.Value - value) > Epsilon) continue;
                 
                 statList.Remove(stat);
                 statList.Sort((x, y) => x.StatType.CompareTo(y.StatType));
@@ -52,7 +51,7 @@ namespace Common
         }
 
         public void Clear() => statList.Clear();
-        public void Iterate(Action<Stat> action) => statList.ForEach(action.Invoke);
+        public void IterateOverStats(Action<Stat> action) => statList.ForEach(action.Invoke);
         public float GetStatValue(StatType statType)
         {
             var stat = statList.TryGetElement(element => element.StatType == statType);
@@ -64,14 +63,10 @@ namespace Common
         {
             var result = new Spec();
             
-            a.Iterate(result.Add);
-            b.Iterate(result.Add);
+            a.IterateOverStats(result.Add);
+            b.IterateOverStats(result.Add);
 
             return result;
         }
-
-        // TODO. 가급적 StatTable에서 Add하는 걸로 진행해보고, 가능하다면 아래 함수들은 삭제.
-        public void Register(StatTable table) => table.Add(this);
-        public void Unregister(StatTable table) => table.Remove(this);
     }
 }

@@ -13,8 +13,8 @@ namespace Lobby.UI
     {
         [SerializeField] private Image itemImage;
 
-        [Sirenix.OdinInspector.ShowInInspector]
-        public Equipment Equipment { get; private set; }
+        // [Sirenix.OdinInspector.ShowInInspector]
+        // public Equipment Equipment { get; private set; }
 
         private InventoryUI MasterInventoryUI { get; set; }
         
@@ -23,42 +23,43 @@ namespace Lobby.UI
         private EquipmentTooltipDrawer TooltipDrawer => tooltipDrawer ??= GetComponent<EquipmentTooltipDrawer>();
 
 
-        public void SetItemUI(InventoryUI master, Equipment equipment)
-        {
-            MasterInventoryUI = master;
-            Equipment         = equipment;
-            itemImage.sprite  = equipment.Icon;
-        }
+        // public void SetItemUI(InventoryUI master, Equipment equipment)
+        // {
+        //     MasterInventoryUI = master;
+        //     Equipment         = equipment;
+        //     itemImage.sprite  = equipment.Icon;
+        // }
         
         public void OnPointerClick(PointerEventData eventData)
         {
             // Right Click To Equip
             if (eventData.button == PointerEventData.InputButton.Right)
             {
-                var adventurerData = LobbyDirector.AdventurerFrame.CurrentAdventurerData;
-
-                adventurerData.AddEquipment(Equipment, out var disarmed);
-                
-                PlayerCamp.Inventories.Remove(Equipment);
-                
-                // Replace
-                if (disarmed != null)
-                {
-                    var equipment = EquipmentInfo.CreateEquipment(disarmed, null);
-
-                    PlayerCamp.Inventories.Add(equipment);
-                
-                    SetItemUI(MasterInventoryUI, equipment);
-                    TooltipDrawer.Draw();
-                }
-                
-                // Equip Character at Empty Slot
-                else
-                {
-                    MasterInventoryUI.RemoveInventorySlot(Equipment);
-                }
-
-                LobbyDirector.AdventurerFrame.ReloadAdventurer(adventurerData.ClassType);
+                Debug.LogWarning("Equip Function is on Working...");
+                // var adventurerData = LobbyDirector.AdventurerFrame.CurrentAdventurerData;
+                //
+                // adventurerData.AddEquipment(Equipment, out var disarmed);
+                //
+                // PlayerCamp.Inventories.Remove(Equipment);
+                //
+                // // Replace
+                // if (disarmed != null)
+                // {
+                //     var equipment = EquipmentInfo.CreateEquipment(disarmed, null);
+                //
+                //     PlayerCamp.Inventories.Add(equipment);
+                //
+                //     SetItemUI(MasterInventoryUI, equipment);
+                //     TooltipDrawer.Draw();
+                // }
+                //
+                // // Equip Character at Empty Slot
+                // else
+                // {
+                //     MasterInventoryUI.RemoveInventorySlot(Equipment);
+                // }
+                //
+                // LobbyDirector.AdventurerFrame.ReloadAdventurer(adventurerData.ClassType);
             }
         }
 

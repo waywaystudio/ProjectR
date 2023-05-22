@@ -1,119 +1,54 @@
-using System;
-using System.Collections.Generic;
-using Common.Equipments;
 using Serialization;
 using UnityEngine;
 
 namespace Common.Characters
 {
+    /*
+     * CharacterData 는 Prefab과 UI에서 사용하는 핵심 데이타.
+     * 따라서 편의성 함수들이 존재 해야함.
+     */
     public class CharacterData : ScriptableObject, ISavable, IEditable
     {
+        [SerializeField] private DataIndex characterIndex;
         [SerializeField] private CharacterConstEntity constEntity;
+        [SerializeField] private CharacterEquipmentEntity equipmentEntity;
 
-        [Sirenix.OdinInspector.ShowInInspector]
-        public StatTable StaticSpecTable { get; } = new();
-        
-        public DataIndex DataIndex => constEntity.DataIndex;
+        public DataIndex DataIndex => characterIndex;
         public CombatClassType ClassType => constEntity.ClassType;
-        public IEnumerable<DataIndex> DefaultSkillList => constEntity.DefaultSkillList;
-        public Spec ClassSpec => constEntity.DefaultSpec;
+        public CharacterConstEntity ConstEntity => constEntity;
+        public CharacterEquipmentEntity EquipmentEntity => equipmentEntity;
 
         [Sirenix.OdinInspector.ShowInInspector]
-        public Dictionary<EquipSlotIndex, EquipmentInfo> EquipmentTable { get; private set; } = new();
+        public StatTable StaticStatTable { get; set; } = new();
 
 
-        private string SerializeKey => $"{constEntity.CharacterName}'s Equipments";
-        public float GetStatValue(StatType type)
-        {
-            // if (!Verify.IsNotNull(value)) return;
-            
-            var equipmentStat = 0f;
-            
-            EquipmentTable.ForEach(table =>
-            {
-                if (table.Value == null) return;
-
-                equipmentStat += table.Value.ConstSpec.GetStatValue(type);
-            });
-
-            return ClassSpec.GetStatValue(type) + equipmentStat;
-        }
-
-        public void AddEquipment(Equipment equipment, out EquipmentInfo disarmed)
-        {
-            var targetSlot = FindSlot(equipment);
-
-            EquipmentTable.TryGetValue(targetSlot, out disarmed);
-            // EquipmentTable[targetSlot] = equipment.Info;
-        }
-
-        public void UpdateTable()
-        {
-            // StaticSpecTable.Add("ClassSpec", classSpec);
-            StaticSpecTable.Add(ClassSpec);
-        }
-
+        public float GetStatValue(StatType type) => StaticStatTable.GetStatValue(type);
         public void Save()
         {
-            SaveManager.Save(SerializeKey, EquipmentTable);
+            equipmentEntity.Save(characterIndex.ToString());
         }
 
         public void Load()
         {
-            EquipmentTable.Clear();
+            equipmentEntity.Load(characterIndex.ToString());
             
-            var tableData = SaveManager.Load<Dictionary<EquipSlotIndex, EquipmentInfo>>(SerializeKey);
-
-            UpdateTable();
-
-            if (tableData.IsNullOrEmpty()) return;
-
-            // tableData.Values.ForEach(equipInfo => StaticSpecTable.Add(equipInfo.EquipType.ToString(), equipInfo.Spec));
-            tableData.Values.ForEach(equipInfo => StaticSpecTable.Add(equipInfo.ConstSpec));
-            EquipmentTable = tableData;
-        }
-        
-
-        private EquipSlotIndex FindSlot(Equipment equipment)
-        {
-            return equipment.EquipType switch
-            {
-                EquipType.Weapon  => EquipSlotIndex.Weapon,
-                EquipType.Head    => EquipSlotIndex.Head,
-                EquipType.Top     => EquipSlotIndex.Top,
-                EquipType.Bottom  => EquipSlotIndex.Bottom,
-                EquipType.Trinket => GetTrinketSlot(),
-                _                 => throw new ArgumentOutOfRangeException()
-            };
-        }
-
-        private EquipSlotIndex GetTrinketSlot()
-        {
-            if (!EquipmentTable.TryGetValue(EquipSlotIndex.Trinket1, out var value1)) 
-                return EquipSlotIndex.Trinket1;
-            
-            if (value1 == null)
-            {
-                return EquipSlotIndex.Trinket1;
-            }
-
-            if (EquipmentTable.TryGetValue(EquipSlotIndex.Trinket2, out var value2))
-            {
-                if (value2 == null) return EquipSlotIndex.Trinket2;
-            }
-            else
-            {
-                return EquipSlotIndex.Trinket1;
-            }
-
-            return EquipSlotIndex.Trinket1;
+            StaticStatTable.Clear();
+            StaticStatTable.Add(ConstEntity.DefaultSpec);
+            StaticStatTable.Add(EquipmentEntity.EquipmentsStatTable);
         }
 
 
 #if UNITY_EDITOR
         public void EditorSetUp()
         {
+            if (!Verify.IsNotDefault(characterIndex, "", false))
+            {
+                var soObjectNameToDatIndex = name.Replace("Data", "").ConvertDataIndexStyle();
+                if (!DataIndex.TryFindDataIndex(soObjectNameToDatIndex, out characterIndex)) return;
+            }
             
+            constEntity.EditorSetUpByDataIndex(characterIndex);
+            equipmentEntity.EditorSetUpByDataIndex(characterIndex);
         }
 #endif
     }

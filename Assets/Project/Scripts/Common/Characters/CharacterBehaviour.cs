@@ -13,51 +13,44 @@ namespace Common.Characters
         [SerializeField] protected string characterName = string.Empty;
         [SerializeField] protected DataIndex characterID;
         [SerializeField] protected CombatClassType role;
-        
-        [SerializeField] protected CharacterStats stats;
-        [SerializeField] protected CharacterEquipment equipment;
-        
+
+        [SerializeField] protected CharacterCombatStatus combatStatus;
         [SerializeField] protected AnimationModel animating;
         [SerializeField] protected Transform damageSpawn;
         [SerializeField] protected Transform statusEffectHierarchy;
-        
         [SerializeField] protected StopBehaviour stopBehaviour;
         [SerializeField] protected RunBehaviour runBehaviour;
         [SerializeField] protected StunBehaviour stunBehaviour;
         [SerializeField] protected KnockBackBehaviour knockBackBehaviour;
         [SerializeField] protected DeadBehaviour deadBehaviour;
         [SerializeField] protected SkillBehaviour skillBehaviour;
-        
         [SerializeField] protected SearchingSystem searching;
         [SerializeField] protected CollidingSystem colliding;
         [SerializeField] protected PathfindingSystem pathfinding;
 
-
-        public CharacterActionMask BehaviourMask => CurrentBehaviour is null ? CharacterActionMask.None : CurrentBehaviour.BehaviourMask;
-        public ActionBehaviour CurrentBehaviour { get; set; }
+        /*
+         * Common Attribute
+         */ 
         public DataIndex DataIndex => characterID;
         public CombatClassType CombatClass => role;
         public string Name => characterName;
-        public IDynamicStatEntry DynamicStatEntry => stats ??= GetComponent<CharacterStats>();
-        public StatTable StatTable => DynamicStatEntry.StatTable;
         public Vector3 Position => transform.position;
-        public CharacterEquipment Equipment => equipment;
-
         public SearchingSystem Searching => searching;
         public CollidingSystem Colliding => colliding;
         public PathfindingSystem Pathfinding => pathfinding;
         public AnimationModel Animating => animating;
-        
         public Transform DamageSpawn => damageSpawn;
-        public Transform StatusEffectHierarchy => statusEffectHierarchy;
 
-        public SkillComponent GetSkill(DataIndex actionCode) => skillBehaviour.GetSkill(actionCode);
+        /*
+         * Behaviour Attribute
+         */
+        public CharacterActionMask BehaviourMask => CurrentBehaviour is null ? CharacterActionMask.None : CurrentBehaviour.BehaviourMask;
+        public ActionBehaviour CurrentBehaviour { get; set; }
         public StopBehaviour StopBehaviour => stopBehaviour;
         public RunBehaviour RunBehaviour  => runBehaviour;
         public StunBehaviour StunBehaviour => stunBehaviour;
         public KnockBackBehaviour KnockBackBehaviour => knockBackBehaviour;
         public DeadBehaviour DeadBehaviour => deadBehaviour;
-        public SkillBehaviour SkillBehaviour => skillBehaviour;
         
         public void Rotate(Vector3 lookTarget) { Pathfinding.RotateToTarget(lookTarget); Animating.Flip(transform.forward); }
         public void Stop() => stopBehaviour.Active();
@@ -65,9 +58,22 @@ namespace Common.Characters
         public void Stun(float duration) => stunBehaviour.Active(duration);
         public void KnockBack(Vector3 source, float distance) => knockBackBehaviour.Active(source, distance);
         public void Dead() => deadBehaviour.Dead();
+        
+        
+        /* Skill Behaviour */
+        public SkillComponent GetSkill(DataIndex actionCode) => skillBehaviour.GetSkill(actionCode);
+        public SkillBehaviour SkillBehaviour => skillBehaviour;
+        
         public void ExecuteSkill(DataIndex actionCode, Vector3 targetPosition) => skillBehaviour.Active(actionCode, targetPosition);
         public void CancelSkill() => skillBehaviour.Cancel();
         public void ReleaseSkill() => skillBehaviour.Release();
+
+        /*
+         * Combat Status
+         */
+        public IDynamicStatEntry DynamicStatEntry => combatStatus ??= GetComponentInChildren<CharacterCombatStatus>();
+        public StatTable StatTable => DynamicStatEntry.StatTable;
+        public Transform StatusEffectHierarchy => statusEffectHierarchy;
 
         public ActionTable<CombatEntity> OnDamageProvided { get; } = new();
         public ActionTable<CombatEntity> OnDamageTaken { get; } = new();
@@ -77,6 +83,7 @@ namespace Common.Characters
         public ActionTable<IStatusEffect> OnDeBuffTaken { get; } = new();
         public ActionTable<IStatusEffect> OnBuffProvided { get; } = new();
         public ActionTable<IStatusEffect> OnBuffTaken { get; } = new();
+        
 
 
         public virtual void ForceInitialize() { }
@@ -84,8 +91,8 @@ namespace Common.Characters
         
         private void OnEnable()
         {
-            OnDeBuffTaken.Register("RegisterTable", stats.DeBuffTable.Register);
-            OnBuffTaken.Register("RegisterTable", stats.BuffTable.Register);
+            OnDeBuffTaken.Register("RegisterTable", combatStatus.DeBuffTable.Register);
+            OnBuffTaken.Register("RegisterTable", combatStatus.BuffTable.Register);
         }
 
         private void OnDisable()
@@ -98,9 +105,7 @@ namespace Common.Characters
 #if UNITY_EDITOR
         public virtual void EditorSetUp()
         {
-            stats          ??= GetComponent<CharacterStats>();
-            
-            equipment          ??= GetComponentInChildren<CharacterEquipment>(); 
+            combatStatus       ??= GetComponentInChildren<CharacterCombatStatus>();
             skillBehaviour     ??= GetComponentInChildren<SkillBehaviour>();
             stopBehaviour      ??= GetComponentInChildren<StopBehaviour>();
             runBehaviour       ??= GetComponentInChildren<RunBehaviour>();

@@ -22,27 +22,24 @@ namespace Lobby.UI
         [Sirenix.OdinInspector.Button]
         public void Reload()
         {
-            var adventurerData = PlayerCamp.Characters.GetData(classType);
-
-            className.text = classType.ToString();
-            
-            GetStat(StatType.Power).SetValue(adventurerData.GetStatValue(StatType.Power).ToString("0"));
-            GetStat(StatType.CriticalChance).SetValue($"{adventurerData.GetStatValue(StatType.CriticalChance):F1}%");
-            GetStat(StatType.CriticalDamage).SetValue($"{200f + adventurerData.GetStatValue(StatType.CriticalDamage):F1}%");
-            GetStat(StatType.Haste).SetValue($"{adventurerData.GetStatValue(StatType.Haste):F1}%");
-            GetStat(StatType.Armor).SetValue(adventurerData.GetStatValue(StatType.Armor).ToString("0"));
-            GetStat(StatType.Health).SetValue(adventurerData.GetStatValue(StatType.Health).ToString("0"));
-            
-            adventurerData.DefaultSkillList.ForEach((dataIndex, index) =>
-            {
-                if (skillImageList.Count > index)
-                    skillImageList[index].sprite = Database.SpellSpriteData.Get(dataIndex);
-            });
-            
-            adventurerData.EquipmentTable.ForEach(equipment =>
-            {
-                GetEquipmentUI(equipment.Key).SetEquipmentInfoUI(equipment.Value);
-            });
+            Debug.LogWarning("Reload Function is now on working...");
+            // var adventurerData = PlayerCamp.Characters.GetData(classType);
+            // className.text = classType.ToString();
+            // GetStat(StatType.Power).SetValue(adventurerData.GetStatValue(StatType.Power).ToString("0"));
+            // GetStat(StatType.CriticalChance).SetValue($"{adventurerData.GetStatValue(StatType.CriticalChance):F1}%");
+            // GetStat(StatType.CriticalDamage).SetValue($"{200f + adventurerData.GetStatValue(StatType.CriticalDamage):F1}%");
+            // GetStat(StatType.Haste).SetValue($"{adventurerData.GetStatValue(StatType.Haste):F1}%");
+            // GetStat(StatType.Armor).SetValue(adventurerData.GetStatValue(StatType.Armor).ToString("0"));
+            // GetStat(StatType.Health).SetValue(adventurerData.GetStatValue(StatType.Health).ToString("0"));
+            // adventurerData.DefaultSkillList.ForEach((dataIndex, index) =>
+            // {
+            //     if (skillImageList.Count > index)
+            //         skillImageList[index].sprite = Database.SpellSpriteData.Get(dataIndex);
+            // });
+            // adventurerData.EquipmentTable.ForEach(equipment =>
+            // {
+            //     GetEquipmentUI(equipment.Key).SetEquipmentInfoUI(equipment.Value);
+            // });
         }
 
 

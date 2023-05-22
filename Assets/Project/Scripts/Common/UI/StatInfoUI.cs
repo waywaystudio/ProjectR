@@ -25,21 +25,18 @@ namespace Common.UI
         
         private static string ConvertStatToUIText(Stat stat) => stat.StatType switch
         {
-            StatType.Power               => stat.Value.ToString("0"),
-            StatType.Health              => stat.Value.ToString("0"),
-            StatType.CriticalChance      => $"{stat.Value:F1}%",
-            StatType.CriticalDamage      => $"{200 + stat.Value:F1}%",
-            StatType.Haste               => $"{stat.Value:F1}%",
-            StatType.Armor               => stat.Value.ToString("0"),
-            StatType.MoveSpeed           => stat.Value.ToString("0"),
-            StatType.MaxHp               => stat.Value.ToString("0"),
-            StatType.MaxResource         => stat.Value.ToString("0"),
-            StatType.MinDamage           => stat.Value.ToString("0"),
-            StatType.MaxDamage           => stat.Value.ToString("0"),
-            StatType.ExtraPower          => stat.Value.ToString("0"),
-            StatType.ExtraCriticalChance => $"{stat.Value:F1}%",
-            StatType.ExtraCriticalDamage => $"{200 + stat.Value:F1}%",
-            _                            => "UnDefined Format",
+            StatType.Power          => stat.Value.ToString("0"),
+            StatType.Health         => stat.Value.ToString("0"),
+            StatType.CriticalChance => $"{stat.Value:F1}%",
+            StatType.CriticalDamage => $"{200 + stat.Value:F1}%",
+            StatType.Haste          => $"{stat.Value:F1}%",
+            StatType.Armor          => stat.Value.ToString("0"),
+            StatType.MoveSpeed      => stat.Value.ToString("0"),
+            StatType.MaxHp          => stat.Value.ToString("0"),
+            StatType.MaxResource    => stat.Value.ToString("0"),
+            StatType.MinDamage      => stat.Value.ToString("0"),
+            StatType.MaxDamage      => stat.Value.ToString("0"),
+            _                       => "UnDefined Format",
         };
 
 

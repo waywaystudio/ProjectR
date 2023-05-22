@@ -1,6 +1,5 @@
 using System.Collections.Generic;
 using Common.Skills;
-using Sirenix.OdinInspector;
 using UnityEngine;
 
 namespace Common.Characters.Behaviours
@@ -13,8 +12,7 @@ namespace Common.Characters.Behaviours
             Current ? Current.BehaviourMask : CharacterActionMask.Skill;
         public override CharacterActionMask IgnorableMask => 
             Current ? Current.IgnorableMask : CharacterActionMask.SkillIgnoreMask;
-        
-        [ShowInInspector]
+
         public SkillComponent Current { get; set; }
         public ActionTable OnReleased { get; } = new();
         public List<SkillComponent> SkillList => skillList;

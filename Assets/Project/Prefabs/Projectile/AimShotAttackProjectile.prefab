@@ -89,14 +89,14 @@ MonoBehaviour:
   actionCode: 13000018
   damageSpec:
     statList:
-    - statType: 12
-      applyType: 1
+    - statType: 1
+      statKey: 
       value: 100
-    - statType: 13
-      applyType: 1
+    - statType: 3
+      statKey: 
       value: 0
-    - statType: 14
-      applyType: 1
+    - statType: 4
+      statKey: 
       value: 0
 --- !u!114 &2795847014208442065
 MonoBehaviour:

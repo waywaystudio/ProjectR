@@ -591,6 +591,10 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: -150
       objectReference: {fileID: 0}
+    - target: {fileID: 3808040565392502506, guid: a3acb303f8f3ed24c8afb44fa3d18ccf, type: 3}
+      propertyPath: entity
+      value: 
+      objectReference: {fileID: 11400000, guid: e3bf1fcd401752c4ca01d9b796b52808, type: 2}
     - target: {fileID: 4044075457161744673, guid: a3acb303f8f3ed24c8afb44fa3d18ccf, type: 3}
       propertyPath: firstSkill
       value: 
@@ -771,6 +775,14 @@ PrefabInstance:
       propertyPath: actionCode
       value: 13000004
       objectReference: {fileID: 0}
+    - target: {fileID: 4968826710418206697, guid: a3acb303f8f3ed24c8afb44fa3d18ccf, type: 3}
+      propertyPath: classData
+      value: 
+      objectReference: {fileID: 11400000, guid: e3bf1fcd401752c4ca01d9b796b52808, type: 2}
+    - target: {fileID: 4968826710418206697, guid: a3acb303f8f3ed24c8afb44fa3d18ccf, type: 3}
+      propertyPath: characterData
+      value: 
+      objectReference: {fileID: 11400000, guid: e3bf1fcd401752c4ca01d9b796b52808, type: 2}
     - target: {fileID: 5062833017149706086, guid: a3acb303f8f3ed24c8afb44fa3d18ccf, type: 3}
       propertyPath: skillList.Array.size
       value: 4
@@ -823,6 +835,10 @@ PrefabInstance:
       propertyPath: characterID
       value: 12000001
       objectReference: {fileID: 0}
+    - target: {fileID: 6884540845200242600, guid: a3acb303f8f3ed24c8afb44fa3d18ccf, type: 3}
+      propertyPath: combatStatus
+      value: 
+      objectReference: {fileID: 199560196790107862}
     - target: {fileID: 6884540845200242600, guid: a3acb303f8f3ed24c8afb44fa3d18ccf, type: 3}
       propertyPath: characterName
       value: Garvin
@@ -921,6 +937,17 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a3acb303f8f3ed24c8afb44fa3d18ccf, type: 3}
+--- !u!114 &199560196790107862 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4968826710418206697, guid: a3acb303f8f3ed24c8afb44fa3d18ccf, type: 3}
+  m_PrefabInstance: {fileID: 5057590073391321407}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f865738da60c3e442ae51953dc29c83c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &6166315007879586234 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 1414989776311464069, guid: a3acb303f8f3ed24c8afb44fa3d18ccf, type: 3}

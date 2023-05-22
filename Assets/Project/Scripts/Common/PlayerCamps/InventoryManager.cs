@@ -1,5 +1,5 @@
 using System;
-using Common.Equipments;
+using System.Collections.Generic;
 using Common.PlayerCamps.Inventories;
 using UnityEngine;
 
@@ -12,34 +12,59 @@ namespace Common.PlayerCamps
         [SerializeField] private Inventory topInventory;
         [SerializeField] private Inventory bottomInventory;
         [SerializeField] private Inventory trinketInventory;
+        
+        public Dictionary<MaterialType, int> MaterialInventory { get; set; } = new();
 
-
-        public void Add(GameObject itemObject) => Add(itemObject.GetComponent<Equipment>());
-        public void Add(Equipment item)
+        public void AddMaterial(MaterialType type, int count)
         {
-            var targetInventory = GetInventoryByType(item.EquipType);
+            if (MaterialInventory.ContainsKey(type))
+            {
+                MaterialInventory[type] += count;
+            }
+            else
+            {
+                MaterialInventory.Add(type, count);
+            }
+        }
+        
+        public void ConsumeMaterial(MaterialType type, int count)
+        {
+            if (!IsEnough(type, count)) return;
             
-            targetInventory.Add(item);
+            MaterialInventory[type] -= count;
         }
 
-        public void Remove(GameObject itemObject) => Remove(itemObject.GetComponent<Equipment>());
-        public void Remove(Equipment item)
+        public bool IsEnough(MaterialType type, int count)
         {
-            var targetInventory = GetInventoryByType(item.EquipType);
-            
-            targetInventory.Remove(item);
+            if (!MaterialInventory.ContainsKey(type)) return false;
+            return MaterialInventory[type] >= count;
         }
 
 
-        public Inventory GetInventoryByType(EquipType type) => type switch
-        {
-            EquipType.Weapon  => weaponInventory,
-            EquipType.Head    => headInventor,
-            EquipType.Top     => topInventory,
-            EquipType.Bottom  => bottomInventory,
-            EquipType.Trinket => trinketInventory,
-            _                 => throw new ArgumentOutOfRangeException(nameof(type), type, null)
-        };
+        // public void Add(GameObject itemObject) => Add(itemObject.GetComponent<Equipment>());
+        // public void Add(Equipment item)
+        // {
+        //     var targetInventory = GetInventoryByType(item.EquipType);
+        //     
+        //     targetInventory.Add(item);
+        // }
+        //
+        // public void Remove(GameObject itemObject) => Remove(itemObject.GetComponent<Equipment>());
+        // public void Remove(Equipment item)
+        // {
+        //     var targetInventory = GetInventoryByType(item.EquipType);
+        //     
+        //     targetInventory.Remove(item);
+        // }
+        // public Inventory GetInventoryByType(EquipType type) => type switch
+        // {
+        //     EquipType.Weapon  => weaponInventory,
+        //     EquipType.Head    => headInventor,
+        //     EquipType.Top     => topInventory,
+        //     EquipType.Bottom  => bottomInventory,
+        //     EquipType.Trinket => trinketInventory,
+        //     _                 => throw new ArgumentOutOfRangeException(nameof(type), type, null)
+        // };
 
 
 #if UNITY_EDITOR

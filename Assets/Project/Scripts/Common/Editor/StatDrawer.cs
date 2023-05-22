@@ -11,6 +11,7 @@ namespace Common.Editor
         public override void ProcessSelfAttributes(InspectorProperty property, List<Attribute> attributes)
         {
             attributes.Add(new InlinePropertyAttribute());
+            attributes.Add(new HideReferenceObjectPickerAttribute());
             attributes.Add(new HideLabelAttribute());
         }
     
@@ -42,6 +43,7 @@ namespace Common.Editor
         public override void ProcessSelfAttributes(InspectorProperty property, List<Attribute> attributes)
         {
             attributes.Add(new InlinePropertyAttribute());
+            attributes.Add(new HideReferenceObjectPickerAttribute());
             attributes.Add(new HideLabelAttribute());
         }
     

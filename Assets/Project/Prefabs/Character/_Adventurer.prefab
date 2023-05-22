@@ -696,50 +696,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   deBuffIcon: {fileID: 3409751285657943054}
   timer: {fileID: 506665227199301162}
---- !u!1 &1764270755551859336
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 8584444818209439364}
-  - component: {fileID: 4438020329659040149}
-  m_Layer: 7
-  m_Name: Combat
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &8584444818209439364
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1764270755551859336}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 3744010700067239340}
-  m_RootOrder: 2
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &4438020329659040149
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1764270755551859336}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d71ee20c3c5337040a63da60f2d124fa, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &2511762329398228883
 GameObject:
   m_ObjectHideFlags: 0
@@ -1383,7 +1339,6 @@ GameObject:
   m_Component:
   - component: {fileID: 3744010700067239340}
   - component: {fileID: 6884540845200242600}
-  - component: {fileID: 3259723645145811741}
   - component: {fileID: 6397024410037532818}
   - component: {fileID: 3744010700067239343}
   - component: {fileID: 3744010700067239342}
@@ -1409,9 +1364,8 @@ Transform:
   m_Children:
   - {fileID: 3744010699814045015}
   - {fileID: 7417837823904446708}
-  - {fileID: 8584444818209439364}
-  - {fileID: 3744010700442847974}
   - {fileID: 4734263807500399249}
+  - {fileID: 3744010700442847974}
   - {fileID: 5635823431539096102}
   - {fileID: 2387852950225087595}
   m_Father: {fileID: 0}
@@ -1432,8 +1386,7 @@ MonoBehaviour:
   characterName: Yoze
   characterID: 0
   role: 3
-  stats: {fileID: 3259723645145811741}
-  equipment: {fileID: 1414989776311464069}
+  combatStatus: {fileID: 0}
   animating: {fileID: 0}
   damageSpawn: {fileID: 7165625768315214134}
   statusEffectHierarchy: {fileID: 3744010700067239340}
@@ -1447,19 +1400,6 @@ MonoBehaviour:
   colliding: {fileID: 3894537213432791220}
   pathfinding: {fileID: 2767833712095737796}
   modChanger: {fileID: 6397024410037532818}
---- !u!114 &3259723645145811741
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3744010700067239338}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f865738da60c3e442ae51953dc29c83c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  classData: {fileID: 0}
 --- !u!114 &6397024410037532818
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1900,7 +1840,7 @@ RectTransform:
   - {fileID: 5599435024341973063}
   - {fileID: 1417641475840845681}
   m_Father: {fileID: 3744010700067239340}
-  m_RootOrder: 6
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -2705,9 +2645,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4734263807500399249}
-  - component: {fileID: 1414989776311464069}
+  - component: {fileID: 4968826710418206697}
   m_Layer: 7
-  m_Name: Equipments
+  m_Name: CombatStatus
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2726,9 +2666,9 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 3744010700067239340}
-  m_RootOrder: 4
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1414989776311464069
+--- !u!114 &4968826710418206697
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -2737,20 +2677,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 6030389877176828492}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c77f401b3efc322408d5703e794e3f37, type: 3}
+  m_Script: {fileID: 11500000, guid: f865738da60c3e442ae51953dc29c83c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  data: {fileID: 0}
-  weaponInfo:
-    dataCode: 0
-    enchantLevel: 0
-    spec:
-      statList: []
-  topInfo:
-    dataCode: 0
-    enchantLevel: 0
-    spec:
-      statList: []
+  characterData: {fileID: 11400000, guid: 85f0095311eff3c498a35054145a18e7, type: 2}
 --- !u!1 &6188042393365916432
 GameObject:
   m_ObjectHideFlags: 0
@@ -3663,7 +3593,7 @@ Transform:
   - {fileID: 4456349002813650347}
   - {fileID: 3094198257002058221}
   m_Father: {fileID: 3744010700067239340}
-  m_RootOrder: 5
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &8816907051797317744
 GameObject:

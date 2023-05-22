@@ -32,7 +32,7 @@ namespace Common
                 }
             });
         }
-        public void Add(Spec spec) => spec.Iterate(Add);
+        public void Add(Spec spec) => spec.IterateOverStats(Add);
         public void Add(Stat stat)
         {
             if (Table.TryGetValue(stat.StatType, out var value))
@@ -58,7 +58,7 @@ namespace Common
                 }
             });
         }
-        public void Remove(Spec spec) => spec.Iterate(Remove);
+        public void Remove(Spec spec) => spec.IterateOverStats(Remove);
         public void Remove(Stat stat)
         {
             if (!Table.ContainsKey(stat.StatType)) return;
@@ -66,10 +66,16 @@ namespace Common
             Table[stat.StatType].Remove(stat);
         }
 
+        public void Remove(StatType type, string statKey)
+        {
+            if (!Table.ContainsKey(type)) return;
+            
+            Table[type].Remove(statKey);
+        }
+
         public void Clear() => Table.Clear();
-        
-        
-        private float GetStatValue(StatType statType)
+
+        public float GetStatValue(StatType statType)
         {
             if (!Table.ContainsKey(statType)) return 0;
         
@@ -108,6 +114,13 @@ namespace Common
             {
                 var key = stat.StatKey;
                 
+                if (!table.ContainsKey(key)) return;
+                
+                RemovePreviousStat(table[key]);
+                table.TryRemove(key);
+            }
+            public void Remove(string key)
+            {
                 if (!table.ContainsKey(key)) return;
                 
                 RemovePreviousStat(table[key]);

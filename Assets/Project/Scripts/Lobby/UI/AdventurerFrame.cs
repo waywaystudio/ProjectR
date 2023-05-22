@@ -31,35 +31,31 @@ namespace Lobby.UI
 
         public void GetPreviousAdventurerInfo()
         {
-            if (CurrentAdventurerData.ClassType == CombatClassType.Knight) return;
-            if (OnMoving) return;
-            
-            OnMoving = true;
-            
-            var targetValue = Mathf.Max(0f, contentsRect.localPosition.y - 550f);
-
-            contentsRect.DOLocalMoveY(targetValue, 0.2f).OnComplete(() => OnMoving = false);;
-            CurrentAdventurerData = PlayerCamp.Characters.GetPreviousData(CurrentAdventurerData);
+            Debug.LogWarning("GetPreviousAdventurerInfo On Working...");
+            // if (CurrentAdventurerData.ClassType == CombatClassType.Knight) return;
+            // if (OnMoving) return;
+            // OnMoving = true;
+            // var targetValue = Mathf.Max(0f, contentsRect.localPosition.y - 550f);
+            // contentsRect.DOLocalMoveY(targetValue, 0.2f).OnComplete(() => OnMoving = false);;
+            // CurrentAdventurerData = PlayerCamp.Characters.GetPreviousData(CurrentAdventurerData);
         }
         
         public void GetNextAdventurerInfo()
         {
-            if (CurrentAdventurerData.ClassType == CombatClassType.Ranger) return;
-            if (OnMoving) return;
-
-            OnMoving = true;
-            
-            var targetValue = Mathf.Min((PlayerCamp.Characters.GetAllData().Count - 1) * 550f,
-                contentsRect.localPosition.y + 550f);
-
-            contentsRect.DOLocalMoveY(targetValue, 0.2f).OnComplete(() => OnMoving = false);
-            CurrentAdventurerData = PlayerCamp.Characters.GetNextData(CurrentAdventurerData);
+            Debug.LogWarning("GetNextAdventurerInfo On Working...");
+            // if (CurrentAdventurerData.ClassType == CombatClassType.Ranger) return;
+            // if (OnMoving) return;
+            // OnMoving = true;
+            // var targetValue = Mathf.Min((PlayerCamp.Characters.GetAllData().Count - 1) * 550f,
+            //                             contentsRect.localPosition.y + 550f);
+            // contentsRect.DOLocalMoveY(targetValue, 0.2f).OnComplete(() => OnMoving = false);
+            // CurrentAdventurerData = PlayerCamp.Characters.GetNextData(CurrentAdventurerData);
         }
 
 
         private void Awake()
         {
-            CurrentAdventurerData = PlayerCamp.Characters.GetData(CombatClassType.Knight);
+            // CurrentAdventurerData = PlayerCamp.Characters.GetData(CombatClassType.Knight);
         }
 
 

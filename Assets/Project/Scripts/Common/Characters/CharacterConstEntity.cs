@@ -5,34 +5,29 @@ using UnityEngine;
 namespace Common.Characters
 {
     [Serializable]
-    public class CharacterConstEntity : IEditable
+    public class CharacterConstEntity
     {
-        [SerializeField] private DataIndex dataIndex;
         [SerializeField] private CombatClassType classType;
         [SerializeField] private string characterName;
         [SerializeField] private Spec defaultSpec;
         [SerializeField] private List<DataIndex> defaultSkillList;
-        [SerializeField] private List<DataIndex> initialEquipmentList;
 
         private const string ConstStatKey = "ConstStatKey"; 
         
         public CombatClassType ClassType => classType;
-        public DataIndex DataIndex => dataIndex;
         public string CharacterName => characterName;
         public Spec DefaultSpec => defaultSpec;
         public List<DataIndex> DefaultSkillList => defaultSkillList;
-        public List<DataIndex> InitialEquipmentList => initialEquipmentList;
 
 
 #if UNITY_EDITOR
-        public void EditorSetUp()
+        public void EditorSetUpByDataIndex(DataIndex dataIndex)
         {
             if (!Verify.IsNotDefault(dataIndex, "Require Character DataIndex for import data")) 
                 return;
 
             defaultSpec.Clear();
             defaultSkillList.Clear();
-            initialEquipmentList.Clear();
 
             switch (dataIndex.GetCategory())
             {
@@ -68,9 +63,6 @@ namespace Common.Characters
             
             // defaultSkills
             classData.DefaultSkills.ForEach(skill => defaultSkillList.Add((DataIndex)skill));
-            
-            // defaultEquipments
-            classData.InitialEquipments.ForEach(equipment => initialEquipmentList.Add((DataIndex)equipment));
         }
         private void LoadMonsterData(DataIndex dataIndex)
         {

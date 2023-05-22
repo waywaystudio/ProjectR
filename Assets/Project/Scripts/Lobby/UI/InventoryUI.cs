@@ -20,79 +20,78 @@ namespace Lobby.UI
 
         public void Reload()
         {
-            var playerInventory = PlayerCamp.Inventories.GetInventoryByType(type);
-
-            playerInventory.GetList().ForEach((item, index) => 
-            {
-                if (itemSlotList.Count > index)
-                {
-                    itemSlotList[index].SetItemUI(this, item);
-                }
-                else
-                {
-                    AddInventorySlot(item);
-                }
-            });
-            
-            DynamicContentSizeFitting();
-            
-            if (itemSlotList.Count == 0) 
-                gameObject.SetActive(false);
+            Debug.LogWarning("InventoryUI.Reload Depricated");
+            // var playerInventory = PlayerCamp.Inventories.GetInventoryByType(type);
+            // playerInventory.GetList().ForEach((item, index) => 
+            // {
+            //     if (itemSlotList.Count > index)
+            //     {
+            //         itemSlotList[index].SetItemUI(this, item);
+            //     }
+            //     else
+            //     {
+            //         AddInventorySlot(item);
+            //     }
+            // });
+            //
+            // DynamicContentSizeFitting();
+            //
+            // if (itemSlotList.Count == 0) 
+            //     gameObject.SetActive(false);
         }
         
-        public void AddInventorySlot(Equipment equipment)
-        {
-            if (!gameObject.activeSelf)
-                gameObject.SetActive(true);
-
-            var newSlot = Instantiate(slotPrefab, items);
-
-            if (!newSlot.TryGetComponent(out ItemSlotUI itemSlotBehaviour))
-            {
-                Debug.LogError($"Not Exist {typeof(ItemSlotUI)} in {newSlot.name} Object");
-                return;
-            }
-            
-            itemSlotBehaviour.SetItemUI(this, equipment);
-            itemSlotList.Add(itemSlotBehaviour);
-            
-            DynamicContentSizeFitting();
-        }
-
-        public void RemoveInventorySlot(Equipment equipment)
-        {
-            ItemSlotUI targetSlot = null;
-            
-            foreach (var itemSlot in itemSlotList)
-            {
-                if (itemSlot.Equipment != equipment) continue;
-                
-                targetSlot = itemSlot;
-                break;
-            }
-
-            itemSlotList.Remove(targetSlot);
-            
-            if (targetSlot != null) 
-                Destroy(targetSlot.gameObject);
-
-            DynamicContentSizeFitting();
-            
-            if (itemSlotList.Count == 0) 
-                gameObject.SetActive(false);
-        }
+        // public void AddInventorySlot(Equipment equipment)
+        // {
+        //     if (!gameObject.activeSelf)
+        //         gameObject.SetActive(true);
+        //
+        //     var newSlot = Instantiate(slotPrefab, items);
+        //
+        //     if (!newSlot.TryGetComponent(out ItemSlotUI itemSlotBehaviour))
+        //     {
+        //         Debug.LogError($"Not Exist {typeof(ItemSlotUI)} in {newSlot.name} Object");
+        //         return;
+        //     }
+        //     
+        //     itemSlotBehaviour.SetItemUI(this, equipment);
+        //     itemSlotList.Add(itemSlotBehaviour);
+        //     
+        //     DynamicContentSizeFitting();
+        // }
+        //
+        // public void RemoveInventorySlot(Equipment equipment)
+        // {
+        //     ItemSlotUI targetSlot = null;
+        //     
+        //     foreach (var itemSlot in itemSlotList)
+        //     {
+        //         if (itemSlot.Equipment != equipment) continue;
+        //         
+        //         targetSlot = itemSlot;
+        //         break;
+        //     }
+        //
+        //     itemSlotList.Remove(targetSlot);
+        //     
+        //     if (targetSlot != null) 
+        //         Destroy(targetSlot.gameObject);
+        //
+        //     DynamicContentSizeFitting();
+        //     
+        //     if (itemSlotList.Count == 0) 
+        //         gameObject.SetActive(false);
+        // }
 
 
         private void Awake()
         {
-            var playerInventory = PlayerCamp.Inventories.GetInventoryByType(type);
-            
-            playerInventory.GetList().ForEach(AddInventorySlot);
-            
-            DynamicContentSizeFitting();
-            
-            if (itemSlotList.Count == 0) 
-                gameObject.SetActive(false);
+            // var playerInventory = PlayerCamp.Inventories.GetInventoryByType(type);
+            // playerInventory.GetList().ForEach(AddInventorySlot);
+            //
+            // DynamicContentSizeFitting();
+            //
+            // if (itemSlotList.Count == 0) 
+            //     gameObject.SetActive(false);
         }
 
         /* UI */

@@ -120,14 +120,14 @@ MonoBehaviour:
   behaviourMask: 32
   ignorableMask: 3
   priority: 2
+  range: 4
+  angle: 360
+  animationKey: casting
   targetLayer:
     serializedVersion: 2
     m_Bits: 0
   description: Starts combat by attacking a target with a melee weapon.
-  animationKey: casting
   icon: {fileID: 21300000, guid: fc4e83da78abc734b8dd9673f479ba4a, type: 3}
-  range: 4
-  angle: 360
 --- !u!114 &1227390470127866362
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -144,14 +144,14 @@ MonoBehaviour:
   actionCode: 13000006
   damageSpec:
     statList:
-    - statType: 12
-      applyType: 1
+    - statType: 1
+      statKey: DamageExecutorKey
       value: 36
-    - statType: 13
-      applyType: 1
+    - statType: 3
+      statKey: DamageExecutorKey
       value: 0
-    - statType: 14
-      applyType: 1
+    - statType: 4
+      statKey: DamageExecutorKey
       value: 0
 --- !u!114 &4534168677478532336
 MonoBehaviour:
@@ -210,6 +210,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   materialReference: {fileID: 2100000, guid: 2092dced32dbaf44581c2734edec3e94, type: 2}
   projector: {fileID: 7800130978324375920}
+  easeType: 1
   colliderTransform: {fileID: 4068828769749112489}
 --- !u!1001 &2852894989944797788
 PrefabInstance:
