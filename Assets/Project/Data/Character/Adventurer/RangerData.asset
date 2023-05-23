@@ -18,6 +18,9 @@ MonoBehaviour:
     characterName: Ives
     defaultSpec:
       statList:
+      - statType: 1
+        statKey: ConstStatKey
+        value: 100
       - statType: 2
         statKey: ConstStatKey
         value: 70

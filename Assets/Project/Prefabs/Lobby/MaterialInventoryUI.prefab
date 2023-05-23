@@ -66,7 +66,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Weapon
+  m_text: Materials
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 7f340abb63f105c448f71fc5fe73d924, type: 2}
   m_sharedMaterial: {fileID: -5016735741044500445, guid: 7f340abb63f105c448f71fc5fe73d924, type: 2}
@@ -505,7 +505,7 @@ GameObject:
   - component: {fileID: 6790782571006039713}
   - component: {fileID: 6790782571006039712}
   m_Layer: 5
-  m_Name: EquipmentInventory
+  m_Name: MaterialInventoryUI
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -518,7 +518,7 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6790782571006039714}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -545,9 +545,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6ec0cfcd262b9494a9f8b9e5f6c8bcfc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  type: 21
+  category: 28
   header: {fileID: 6790782571219583406}
-  items: {fileID: 6790782569877772538}
+  itemsHierarchy: {fileID: 6790782569877772538}
   slotPrefab: {fileID: 8953345062062405962, guid: df07e7b2d16e5d44cae812de1a8eaf17, type: 3}
 --- !u!222 &6790782571006039713
 CanvasRenderer:

@@ -198,7 +198,7 @@ GameObject:
   - component: {fileID: 3744010700067239343}
   - component: {fileID: 3744010700067239342}
   m_Layer: 8
-  m_Name: Graevar
+  m_Name: Load Stonehelm
   m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -236,8 +236,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9a27bdbdf1c9c634480dedbf9d062a47, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  characterName: Graevar
-  characterID: 17000001
+  characterName: Load Stonehelm
+  characterID: 17105001
   role: 536870912
   combatStatus: {fileID: 8378235592642627811}
   animating: {fileID: 4723975105097867993}
@@ -281,15 +281,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 182740f27b6e4d24fbbf229e1ea3e69e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dropItemList:
-  - {fileID: 4380713184819390826, guid: 6abfa10e94d1c8e49822432906a1b177, type: 3}
-  - {fileID: 4380713184819390826, guid: e670d9af54d2e4f4d9eb538f7ed18b7d, type: 3}
-  - {fileID: 8658681073857595108, guid: 097004414d079064bab4f4262af2bfa0, type: 3}
-  - {fileID: 8658681073857595108, guid: ef88d967ad10cc04d888a6a7202703ed, type: 3}
-  - {fileID: 9085450499179400754, guid: 2c276fea81d8cc74f9a8e3df0befb4af, type: 3}
-  - {fileID: 7417098751248847840, guid: f6c8407f1975f1146b19e359b44f65ba, type: 3}
-  - {fileID: 7417098751248847840, guid: 5dd994d50f71aed4eb9005c59a2985d3, type: 3}
-  - {fileID: 8540191811145231828, guid: a1e028f830e81e04dacc4762f56af8a4, type: 3}
+  dropItemList: []
 --- !u!54 &3744010700067239343
 Rigidbody:
   m_ObjectHideFlags: 0

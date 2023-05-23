@@ -9,6 +9,8 @@ namespace Common
         public float CriticalChance => GetStatValue(StatType.CriticalChance);
         public float CriticalDamage => GetStatValue(StatType.CriticalDamage);
         public float Haste => GetStatValue(StatType.Haste);
+        public float Mastery => GetStatValue(StatType.Mastery);
+        public float Retention => GetStatValue(StatType.Retention);
         public float Armor => GetStatValue(StatType.Armor);
         public float MoveSpeed => GetStatValue(StatType.MoveSpeed);
         public float MaxHp => GetStatValue(StatType.MaxHp);

@@ -10,13 +10,13 @@ namespace Lobby.UI
         [SerializeField] private Image itemImage;
 
         [Sirenix.OdinInspector.ShowInInspector]
-        // public Equipment Equipment { get; private set; }
+        public EquipmentEntity EquipmentEntity { get; private set; }
         
-        // public void SetDropItemUI(Equipment equipment)
-        // {
-            // Equipment         = equipment;
-            // itemImage.sprite  = equipment.Icon;
-        // }
+        public void SetDropItemUI(EquipmentEntity equipment)
+        {
+            EquipmentEntity  = equipment;
+            itemImage.sprite = equipment.Icon;
+        }
         
         
 #if UNITY_EDITOR

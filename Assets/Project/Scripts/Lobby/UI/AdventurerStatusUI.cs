@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 using Common;
-using Common.PlayerCamps;
+using Common.PartyCamps;
 using Common.UI;
 using TMPro;
 using UnityEngine;
@@ -10,36 +10,47 @@ namespace Lobby.UI
 {
     public class AdventurerStatusUI : MonoBehaviour, IEditable
     {
-        [SerializeField] private CombatClassType classType;
+        [SerializeField] private DataIndex dataIndex;
         [SerializeField] private TextMeshProUGUI className;
         [SerializeField] private List<StatInfoUI> statInfoList;
         [SerializeField] private List<Image> skillImageList;
         [SerializeField] private List<EquipmentInfoUI> equipmentInfoList;
 
-        public CombatClassType ClassType => classType;
+        public DataIndex DataIndex => dataIndex;
 
 
         [Sirenix.OdinInspector.Button]
         public void Reload()
         {
-            Debug.LogWarning("Reload Function is now on working...");
-            // var adventurerData = PlayerCamp.Characters.GetData(classType);
-            // className.text = classType.ToString();
+            var adventurerData = PartyCamp.Characters.GetData(dataIndex);
+            
+            // Set Stat Value
+            statInfoList.ForEach(statInfo =>
+            {
+                statInfo.SetValue(adventurerData.GetStatTextValue(statInfo.StatType));
+            });
+            
             // GetStat(StatType.Power).SetValue(adventurerData.GetStatValue(StatType.Power).ToString("0"));
             // GetStat(StatType.CriticalChance).SetValue($"{adventurerData.GetStatValue(StatType.CriticalChance):F1}%");
             // GetStat(StatType.CriticalDamage).SetValue($"{200f + adventurerData.GetStatValue(StatType.CriticalDamage):F1}%");
             // GetStat(StatType.Haste).SetValue($"{adventurerData.GetStatValue(StatType.Haste):F1}%");
             // GetStat(StatType.Armor).SetValue(adventurerData.GetStatValue(StatType.Armor).ToString("0"));
             // GetStat(StatType.Health).SetValue(adventurerData.GetStatValue(StatType.Health).ToString("0"));
-            // adventurerData.DefaultSkillList.ForEach((dataIndex, index) =>
-            // {
-            //     if (skillImageList.Count > index)
-            //         skillImageList[index].sprite = Database.SpellSpriteData.Get(dataIndex);
-            // });
-            // adventurerData.EquipmentTable.ForEach(equipment =>
-            // {
-            //     GetEquipmentUI(equipment.Key).SetEquipmentInfoUI(equipment.Value);
-            // });
+            
+            // Set Skill Icon
+            adventurerData.SkillList.ForEach((dataIndex, index) =>
+            {
+                if (skillImageList.Count > index)
+                {
+                    skillImageList[index].sprite = Database.SpellSpriteData.Get(dataIndex);
+                }
+            });
+            
+            // Equipment Drawer
+            adventurerData.EquipmentEntity.EquipmentEntities.ForEach(equipment =>
+            {
+                GetEquipmentUI(equipment.Key).SetEquipmentInfoUI(equipment.Value);
+            });
         }
 
 

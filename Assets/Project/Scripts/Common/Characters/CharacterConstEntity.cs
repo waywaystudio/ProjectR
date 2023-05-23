@@ -52,14 +52,15 @@ namespace Common.Characters
             characterName = classData.CharacterName;
             
             // defaultSpec
+            defaultSpec.Add(StatType.Power, ConstStatKey, classData.BasePower);
             defaultSpec.Add(StatType.MinDamage, ConstStatKey, classData.DefaultDamage);
             defaultSpec.Add(StatType.MaxDamage, ConstStatKey, classData.DefaultDamage);
             defaultSpec.Add(StatType.Health, ConstStatKey, classData.Health);
             defaultSpec.Add(StatType.CriticalChance, ConstStatKey, classData.Critical);
-            defaultSpec.Add(StatType.Haste,          ConstStatKey, classData.Haste);
-            defaultSpec.Add(StatType.Armor,          ConstStatKey, classData.Armor);
-            defaultSpec.Add(StatType.MaxResource,    ConstStatKey, classData.MaxResource);
-            defaultSpec.Add(StatType.MoveSpeed,      ConstStatKey, classData.MoveSpeed);
+            defaultSpec.Add(StatType.Haste, ConstStatKey, classData.Haste);
+            defaultSpec.Add(StatType.Armor, ConstStatKey, classData.Armor);
+            defaultSpec.Add(StatType.MaxResource, ConstStatKey, classData.MaxResource);
+            defaultSpec.Add(StatType.MoveSpeed, ConstStatKey, classData.MoveSpeed);
             
             // defaultSkills
             classData.DefaultSkills.ForEach(skill => defaultSkillList.Add((DataIndex)skill));
@@ -74,14 +75,15 @@ namespace Common.Characters
             characterName = monsterData.FullName;
             
             // defaultSpec
+            defaultSpec.Add(StatType.Power, ConstStatKey, monsterData.Power);
             defaultSpec.Add(StatType.MinDamage, ConstStatKey, monsterData.DefaultDamage);
             defaultSpec.Add(StatType.MaxDamage, ConstStatKey, monsterData.DefaultDamage);
             defaultSpec.Add(StatType.Health, ConstStatKey, monsterData.Health);
             defaultSpec.Add(StatType.CriticalChance, ConstStatKey, monsterData.Critical);
-            defaultSpec.Add(StatType.Haste,          ConstStatKey, monsterData.Haste);
-            defaultSpec.Add(StatType.Armor,          ConstStatKey, monsterData.Armor);
-            defaultSpec.Add(StatType.MaxResource,    ConstStatKey, monsterData.MaxResource);
-            defaultSpec.Add(StatType.MoveSpeed,      ConstStatKey, monsterData.MoveSpeed);
+            defaultSpec.Add(StatType.Haste, ConstStatKey, monsterData.Haste);
+            defaultSpec.Add(StatType.Armor, ConstStatKey, monsterData.Armor);
+            defaultSpec.Add(StatType.MaxResource, ConstStatKey, monsterData.MaxResource);
+            defaultSpec.Add(StatType.MoveSpeed, ConstStatKey, monsterData.MoveSpeed);
             
             // defaultSkills
             monsterData.DefaultSkills.ForEach(skill => defaultSkillList.Add((DataIndex)skill));

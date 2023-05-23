@@ -1,21 +1,21 @@
 using Singleton;
 using UnityEngine;
 
-namespace Common.PlayerCamps
+namespace Common.PartyCamps
 {
-    public class PlayerCamp : MonoSingleton<PlayerCamp>, IEditable
+    public class PartyCamp : MonoSingleton<PartyCamp>, IEditable
     {
-        [SerializeField] private CharacterManager characters;
+        [SerializeField] private AdventurerManager characters;
         [SerializeField] private InventoryManager inventories;
 
-        public static CharacterManager Characters => Instance.characters;
+        public static AdventurerManager Characters => Instance.characters;
         public static InventoryManager Inventories => Instance.inventories;
 
 
 #if UNITY_EDITOR
         public void EditorSetUp()
         {
-            characters  ??= GetComponentInChildren<CharacterManager>();
+            characters  ??= GetComponentInChildren<AdventurerManager>();
             inventories ??= GetComponentInChildren<InventoryManager>();
         }
 #endif

@@ -16,7 +16,6 @@ namespace Databases.SheetData.ContentData
         {
 			[SerializeField] private Int32 id;
 			[SerializeField] private String name;
-			[SerializeField] private String wCode;
 			[SerializeField] private String fullName;
 			[SerializeField] private Single defaultDamage;
 			[SerializeField] private Single power;
@@ -30,7 +29,6 @@ namespace Databases.SheetData.ContentData
 
 			public Int32 ID => id;
 			public String Name => name;
-			public String WCode => wCode;
 			public String FullName => fullName;
 			public Single DefaultDamage => defaultDamage;
 			public Single Power => power;

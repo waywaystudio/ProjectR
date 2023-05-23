@@ -15,14 +15,10 @@ namespace Databases.SheetData.GlobalData
         public class Protocol : IIdentifier
         {
 			[SerializeField] private Int32 id;
-			[SerializeField] private Int32 index;
 			[SerializeField] private String name;
-			[SerializeField] private String description;
 
 			public Int32 ID => id;
-			public Int32 Index => index;
 			public String Name => name;
-			public String Description => description;
 
         }
         

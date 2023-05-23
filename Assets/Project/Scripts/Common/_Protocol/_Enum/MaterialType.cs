@@ -22,4 +22,16 @@ namespace Common
         VotiveStone       = DataIndex.Votivestone,
         VotiveCrystal     = DataIndex.Votivecrystal,
     }
+
+    public static class MaterialTypeExtension
+    {
+        /// <summary>
+        /// MaterialType enum은 DataIndex에서 발췌한 열거형.
+        /// 따라서 강제 형변환도 가능하다.
+        /// </summary>
+        public static DataIndex ConvertToDataIndex(this MaterialType materialType)
+        {
+            return (DataIndex)materialType;
+        }
+    }
 }

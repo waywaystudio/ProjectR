@@ -1,13 +1,11 @@
-using System;
 using System.Collections.Generic;
-using Common;
 using UnityEngine;
 
 namespace Lobby.UI
 {
     public class InventoryFrame : MonoBehaviour, IEditable
     {
-        [SerializeField] private List<InventoryUI> inventoryUIList;
+        [SerializeField] private List<MaterialInventoryUI> inventoryUIList;
 
 
         public void ReloadAll()
@@ -15,10 +13,8 @@ namespace Lobby.UI
             inventoryUIList.ForEach(inventory => inventory.Reload());
         }
 
-        public void Reload(EquipType slotType) => GetInventoryUI(slotType).Reload();
-
-        public InventoryUI GetInventoryUI(EquipType slotType)
-            => inventoryUIList.TryGetElement(inventoryUI => inventoryUI.EquipType == slotType);
+        public MaterialInventoryUI GetInventoryUI(DataIndex dataIndex)
+            => inventoryUIList.TryGetElement(inventoryUI => inventoryUI.Category == dataIndex);
 
 
         private void Awake()

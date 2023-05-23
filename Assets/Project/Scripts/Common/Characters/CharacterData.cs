@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using Serialization;
 using UnityEngine;
 
@@ -18,11 +19,11 @@ namespace Common.Characters
         public CharacterConstEntity ConstEntity => constEntity;
         public CharacterEquipmentEntity EquipmentEntity => equipmentEntity;
 
-        [Sirenix.OdinInspector.ShowInInspector]
+        public List<DataIndex> SkillList => constEntity.DefaultSkillList;
         public StatTable StaticStatTable { get; set; } = new();
 
-
-        public float GetStatValue(StatType type) => StaticStatTable.GetStatValue(type);
+        public string GetStatTextValue(StatType type) => StaticStatTable.GetStatValue(type).ToStatUIValue(type);
+        public float GetStatValue(StatType     type) => StaticStatTable.GetStatValue(type);
         public void Save()
         {
             equipmentEntity.Save(characterIndex.ToString());

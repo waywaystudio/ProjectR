@@ -18,6 +18,9 @@ MonoBehaviour:
     characterName: Garvin
     defaultSpec:
       statList:
+      - statType: 1
+        statKey: ConstStatKey
+        value: 2000
       - statType: 2
         statKey: ConstStatKey
         value: 100

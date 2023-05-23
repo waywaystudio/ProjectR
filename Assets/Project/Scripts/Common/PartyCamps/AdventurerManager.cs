@@ -3,15 +3,17 @@ using Common.Characters;
 using Serialization;
 using UnityEngine;
 
-namespace Common.PlayerCamps
+namespace Common.PartyCamps
 {
-    public class CharacterManager : MonoBehaviour, ISavable, IEditable
+    public class AdventurerManager : MonoBehaviour, ISavable, IEditable
     {
         [SerializeField] private List<CharacterData> characterDataList;
 
         public List<CharacterData> GetAllData() => characterDataList;
         public CharacterData GetData(CombatClassType type) =>
             characterDataList.TryGetElement(data => data.ClassType == type);
+        public CharacterData GetData(DataIndex type) =>
+            characterDataList.TryGetElement(data => data.DataIndex == type);
 
         public CharacterData GetNextData(CharacterData currentData) => characterDataList.GetNext(currentData);
         public CharacterData GetPreviousData(CharacterData currentData) => characterDataList.GetPrevious(currentData);

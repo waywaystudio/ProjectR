@@ -4,7 +4,7 @@ using Character.Adventurers;
 using Character.Bosses;
 using Common;
 using Common.Characters;
-using Common.PlayerCamps;
+using Common.PartyCamps;
 using Serialization;
 using Sirenix.OdinInspector;
 using UnityEngine;
@@ -31,7 +31,7 @@ namespace Raid
                 return;
             }
             
-            if (adventurerEntry.Count > 8)
+            if (adventurerEntry.Count > 6)
             {
                 Debug.Log($"Adventurer Count Error. EntryCount : {adventurerEntry.Count}");
                 return;
@@ -80,9 +80,9 @@ namespace Raid
             var upgradeMaterialDropCount = Random.Range(5, 16);
             var enchantMaterialDropCount = Random.Range(5, 16);
             
-            PlayerCamp.Inventories.AddMaterial(MaterialType.VowedShard, themeMaterialDropCount);
-            PlayerCamp.Inventories.AddMaterial(MaterialType.VerdictiveShard, upgradeMaterialDropCount);
-            PlayerCamp.Inventories.AddMaterial(MaterialType.VotiveShard, enchantMaterialDropCount);
+            PartyCamp.Inventories.AddMaterial(MaterialType.VowedShard, themeMaterialDropCount);
+            PartyCamp.Inventories.AddMaterial(MaterialType.VerdictiveShard, upgradeMaterialDropCount);
+            PartyCamp.Inventories.AddMaterial(MaterialType.VotiveShard, enchantMaterialDropCount);
 
             sb.Append($"{MaterialType.VowedShard} {themeMaterialDropCount} Get!\n");
             sb.Append($"{MaterialType.VerdictiveShard} {upgradeMaterialDropCount} Get!\n");

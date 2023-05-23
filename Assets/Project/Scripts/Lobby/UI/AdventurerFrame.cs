@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using Common;
 using Common.Characters;
-using Common.PlayerCamps;
+using Common.PartyCamps;
 using DG.Tweening;
 using UnityEngine;
 
@@ -12,17 +12,16 @@ namespace Lobby.UI
         [SerializeField] private List<AdventurerStatusUI> adventurerStatusUiList;
         [SerializeField] private RectTransform contentsRect;
 
-        private bool OnMoving { get; set; }
-        
-        [Sirenix.OdinInspector.ShowInInspector]
         public CharacterData CurrentAdventurerData { get; private set; }
+        
+        private bool OnMoving { get; set; }
 
 
-        public void ReloadAdventurer(CombatClassType type)
+        public void ReloadAdventurer(DataIndex type)
         {
             foreach (var adventurerStatusUi in adventurerStatusUiList)
             {
-                if (adventurerStatusUi.ClassType != type) continue;
+                if (adventurerStatusUi.DataIndex != type) continue;
                 
                 adventurerStatusUi.Reload();
                 break;
@@ -31,31 +30,33 @@ namespace Lobby.UI
 
         public void GetPreviousAdventurerInfo()
         {
-            Debug.LogWarning("GetPreviousAdventurerInfo On Working...");
-            // if (CurrentAdventurerData.ClassType == CombatClassType.Knight) return;
-            // if (OnMoving) return;
-            // OnMoving = true;
-            // var targetValue = Mathf.Max(0f, contentsRect.localPosition.y - 550f);
-            // contentsRect.DOLocalMoveY(targetValue, 0.2f).OnComplete(() => OnMoving = false);;
-            // CurrentAdventurerData = PlayerCamp.Characters.GetPreviousData(CurrentAdventurerData);
+            if (OnMoving || CurrentAdventurerData.ClassType == CombatClassType.Knight) return;
+            
+            OnMoving = true;
+            
+            var targetValue = Mathf.Max(0f, contentsRect.localPosition.y - 550f);
+            
+            contentsRect.DOLocalMoveY(targetValue, 0.2f).OnComplete(() => OnMoving = false);
+            CurrentAdventurerData = PartyCamp.Characters.GetPreviousData(CurrentAdventurerData);
         }
         
         public void GetNextAdventurerInfo()
         {
-            Debug.LogWarning("GetNextAdventurerInfo On Working...");
-            // if (CurrentAdventurerData.ClassType == CombatClassType.Ranger) return;
-            // if (OnMoving) return;
-            // OnMoving = true;
-            // var targetValue = Mathf.Min((PlayerCamp.Characters.GetAllData().Count - 1) * 550f,
-            //                             contentsRect.localPosition.y + 550f);
-            // contentsRect.DOLocalMoveY(targetValue, 0.2f).OnComplete(() => OnMoving = false);
-            // CurrentAdventurerData = PlayerCamp.Characters.GetNextData(CurrentAdventurerData);
+            if (OnMoving || CurrentAdventurerData.ClassType == CombatClassType.Ranger) return;
+            
+            OnMoving = true;
+            
+            var targetValue = Mathf.Min((PartyCamp.Characters.GetAllData().Count - 1) * 550f,
+                                        contentsRect.localPosition.y + 550f);
+            
+            contentsRect.DOLocalMoveY(targetValue, 0.2f).OnComplete(() => OnMoving = false);
+            CurrentAdventurerData = PartyCamp.Characters.GetNextData(CurrentAdventurerData);
         }
 
 
         private void Awake()
         {
-            // CurrentAdventurerData = PlayerCamp.Characters.GetData(CombatClassType.Knight);
+            CurrentAdventurerData = PartyCamp.Characters.GetData(DataIndex.Knight);
         }
 
 

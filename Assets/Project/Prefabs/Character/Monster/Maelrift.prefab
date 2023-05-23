@@ -198,7 +198,7 @@ GameObject:
   - component: {fileID: 3744010700067239343}
   - component: {fileID: 3744010700067239342}
   m_Layer: 8
-  m_Name: Maelmire
+  m_Name: Maelrift
   m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -236,8 +236,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9a27bdbdf1c9c634480dedbf9d062a47, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  characterName: Maelmire
-  characterID: 17000002
+  characterName: Maelrift
+  characterID: 17107001
   role: 536870912
   combatStatus: {fileID: 9194830890024535769}
   animating: {fileID: 4723975105097867993}
@@ -281,16 +281,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 182740f27b6e4d24fbbf229e1ea3e69e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dropItemList:
-  - {fileID: 4380713184819390826, guid: 6c925c1d6d86d554bbecbcef9587e181, type: 3}
-  - {fileID: 4380713184819390826, guid: 38bd2588bcac998458d404bb05e559b6, type: 3}
-  - {fileID: 8658681073857595108, guid: b3bc2dada93bb714e8cd3e6801b755a3, type: 3}
-  - {fileID: 8658681073857595108, guid: 097004414d079064bab4f4262af2bfa0, type: 3}
-  - {fileID: 9085450499179400754, guid: 82f4f13751be62b49ad2e0c379e7bc53, type: 3}
-  - {fileID: 7417098751248847840, guid: 221fd1245ac72894fad31b2545853ebe, type: 3}
-  - {fileID: 7417098751248847840, guid: f6c8407f1975f1146b19e359b44f65ba, type: 3}
-  - {fileID: 8540191811145231828, guid: 03bd28498f83d294f850158770b5551f, type: 3}
-  - {fileID: 8540191811145231828, guid: 93944d1ade5983248b431f14446aa450, type: 3}
+  dropItemList: []
 --- !u!54 &3744010700067239343
 Rigidbody:
   m_ObjectHideFlags: 0

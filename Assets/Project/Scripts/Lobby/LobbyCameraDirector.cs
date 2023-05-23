@@ -1,5 +1,5 @@
 using Cinemachine;
-using Sirenix.OdinInspector;
+using Manager;
 using UnityEngine;
 
 namespace Lobby
@@ -11,25 +11,38 @@ namespace Lobby
 
         private CinemachineBrain cameraBrain;
 
-        private void Awake()
-        {
-            cameraBrain = mainCamera.GetComponent<CinemachineBrain>();
-        }
 
-        public void SetPlayerCameraFocus(Transform target)
+        public void Initialize(Transform adventurer)
         {
-            // playerCamera.Follow = target;
-            // playerCamera.LookAt = target;
+            cameraBrain                  = mainCamera.GetComponent<CinemachineBrain>();
+            MainManager.Input.MainCamera = mainCamera;
+            
+            playerCamera.Follow = adventurer;
+            playerCamera.LookAt = adventurer;
+            
+            // ChangeCamera(playerCamera);
         }
         
         public void ChangeCamera(ICinemachineCamera cameraName)
         {
+            Debug.Log(cameraBrain != null);
+            Debug.Log(cameraBrain.ActiveVirtualCamera != null);
+            Debug.Log(cameraName);
+            
             var currentCamera = cameraBrain.ActiveVirtualCamera;
             if (currentCamera.Equals(cameraName)) return;
 
             (currentCamera.Priority, cameraName.Priority) = (cameraName.Priority, currentCamera.Priority);
         }
-        
-        [Button] private void PlayerCamera() => ChangeCamera(playerCamera);
+
+        // public void ChangeCamera(ICinemachineCamera cameraName)
+        // {
+        //     var currentCamera = cameraBrain.ActiveVirtualCamera;
+        //     if (currentCamera.Equals(cameraName)) return;
+        //
+        //     (currentCamera.Priority, cameraName.Priority) = (cameraName.Priority, currentCamera.Priority);
+        // }
+        //
+        // [Button] private void PlayerCamera() => ChangeCamera(playerCamera);
     }
 }

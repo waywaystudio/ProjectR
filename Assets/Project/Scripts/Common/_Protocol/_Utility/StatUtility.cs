@@ -9,6 +9,8 @@ namespace Common
             StatType.CriticalChance => $"{value:F1}",
             StatType.CriticalDamage => $"{200 + value:F1}",
             StatType.Haste          => $"{value:F1}",
+            StatType.Mastery        => $"{value:F1}",
+            StatType.Retention      => $"{value:F1}",
             StatType.Armor          => value.ToString("0"),
             StatType.MoveSpeed      => value.ToString("0"),
             StatType.MaxHp          => value.ToString("0"),

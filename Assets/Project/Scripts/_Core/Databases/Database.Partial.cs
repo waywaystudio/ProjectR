@@ -67,6 +67,7 @@ public partial class Database
     {
         equipmentSpriteData.EditorSetUp();
         spellSpriteData.EditorSetUp();
+        materialSpriteData.EditorSetUp();
     }
         
     private void OpenSpreadSheetPanel() 
