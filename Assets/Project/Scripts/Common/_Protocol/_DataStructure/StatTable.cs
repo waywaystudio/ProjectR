@@ -1,42 +1,36 @@
 using System.Collections.Generic;
+using Sirenix.OdinInspector;
 
 namespace Common
 {
     public class StatTable
     {
-        public float Power => GetStatValue(StatType.Power);
-        public float Health => GetStatValue(StatType.Health);
-        public float CriticalChance => GetStatValue(StatType.CriticalChance);
-        public float CriticalDamage => GetStatValue(StatType.CriticalDamage);
-        public float Haste => GetStatValue(StatType.Haste);
-        public float Mastery => GetStatValue(StatType.Mastery);
-        public float Retention => GetStatValue(StatType.Retention);
-        public float Armor => GetStatValue(StatType.Armor);
-        public float MoveSpeed => GetStatValue(StatType.MoveSpeed);
-        public float MaxHp => GetStatValue(StatType.MaxHp);
-        public float MaxResource => GetStatValue(StatType.MaxResource);
-        public float MinWeaponValue => GetStatValue(StatType.MinDamage);
-        public float MaxWeaponValue => GetStatValue(StatType.MaxDamage);
+        #region Preset
+        [ShowInInspector] public float Power => GetStatValue(StatType.Power);
+        [ShowInInspector] public float Health => GetStatValue(StatType.Health);
+        [ShowInInspector] public float CriticalChance => GetStatValue(StatType.CriticalChance);
+        [ShowInInspector] public float CriticalDamage => GetStatValue(StatType.CriticalDamage);
+        [ShowInInspector] public float Haste => GetStatValue(StatType.Haste);
+        [ShowInInspector] public float Mastery => GetStatValue(StatType.Mastery);
+        [ShowInInspector] public float Retention => GetStatValue(StatType.Retention);
+        [ShowInInspector] public float Armor => GetStatValue(StatType.Armor);
+        [ShowInInspector] public float MoveSpeed => GetStatValue(StatType.MoveSpeed);
+        [ShowInInspector] public float MaxResource => GetStatValue(StatType.MaxResource);
+        [ShowInInspector] public float MinWeaponValue => GetStatValue(StatType.MinDamage);
+        [ShowInInspector] public float MaxWeaponValue => GetStatValue(StatType.MaxDamage);
+        [ShowInInspector] public float MaxHp => Health * 10f;
+        #endregion
 
         private Dictionary<StatType, StatSet> Table { get; } = new();
+        private List<StatTable> ReferenceTable { get; } = new();
 
-        public void Add(StatTable anotherTable)
+        public void RegisterTable(StatTable   anotherTable) => ReferenceTable.AddUniquely(anotherTable);
+        public void UnregisterTable(StatTable anotherTable) => ReferenceTable.RemoveSafely(anotherTable);
+
+        public void Add(StatSpec statSpec) => statSpec?.IterateOverStats(Add);
+        public void Add(StatEntity stat)
         {
-            anotherTable.Table.ForEach(tableElement =>
-            {
-                if (Table.TryGetValue(tableElement.Key, out var value))
-                {
-                    value.Add(tableElement.Value);
-                }
-                else
-                {
-                    Table.Add(tableElement.Key, tableElement.Value);
-                }
-            });
-        }
-        public void Add(Spec spec) => spec.IterateOverStats(Add);
-        public void Add(Stat stat)
-        {
+            if (stat == null) return;
             if (Table.TryGetValue(stat.StatType, out var value))
             {
                 value.Add(stat);
@@ -50,99 +44,60 @@ namespace Common
             }
         }
 
-        public void Remove(StatTable anotherTable)
+        public void Remove(StatSpec statSpec) => statSpec?.IterateOverStats(Remove);
+        public void Remove(StatEntity stat)
         {
-            anotherTable.Table.ForEach(tableElement =>
-            {
-                if (Table.TryGetValue(tableElement.Key, out var value))
-                {
-                    value.Remove(tableElement.Value);
-                }
-            });
-        }
-        public void Remove(Spec spec) => spec.IterateOverStats(Remove);
-        public void Remove(Stat stat)
-        {
+            if (stat == null) return;
             if (!Table.ContainsKey(stat.StatType)) return;
             
             Table[stat.StatType].Remove(stat);
-        }
-
-        public void Remove(StatType type, string statKey)
-        {
-            if (!Table.ContainsKey(type)) return;
-            
-            Table[type].Remove(statKey);
         }
 
         public void Clear() => Table.Clear();
 
         public float GetStatValue(StatType statType)
         {
-            if (!Table.ContainsKey(statType)) return 0;
+            var result = !Table.ContainsKey(statType) ? 0f : Table[statType].Value;
+            
+            ReferenceTable.ForEach(otherTable =>
+            {
+                result += otherTable.GetStatValue(statType);
+            });
         
-            return Table[statType].Value;
+            return result;
         }
-        
+
+
         public class StatSet
         {
-            private readonly Dictionary<string, Stat> table = new();
-            private float totalBaseValue;
-            private float totalMultiValue;
+            private readonly Dictionary<string, StatEntity> table = new();
+            public float Value { get; private set; }
 
-            public float Value => totalBaseValue * (1 + totalMultiValue);
-
-
-            public void Add(StatSet otherSet) => otherSet.table.ForEach(otherSetElement 
-                => Add(otherSetElement.Value));
-            public void Add(Stat stat)
+            public void Add(StatEntity stat)
             {
-                if (table.ContainsKey(stat.StatKey))
-                {
-                    RemovePreviousStat(table[stat.StatKey]);
-                    table[stat.StatKey] = stat;
-                }
-                else
-                {
-                    table.Add(stat.StatKey, stat);
-                }
-                
-                AddNewStat(stat);
+                table[stat.StatKey] = stat;
+
+                stat.OnValueChanged -= Calculate;
+                stat.OnValueChanged += Calculate;
+                Calculate(stat);
             }
 
-            public void Remove(StatSet otherSet) => otherSet.table.ForEach(otherSetElement 
-                => Remove(otherSetElement.Value));
-            public void Remove(Stat stat)
+            public void Remove(StatEntity stat)
             {
                 var key = stat.StatKey;
                 
                 if (!table.ContainsKey(key)) return;
                 
-                RemovePreviousStat(table[key]);
+                stat.OnValueChanged -= Calculate;
                 table.TryRemove(key);
-            }
-            public void Remove(string key)
-            {
-                if (!table.ContainsKey(key)) return;
-                
-                RemovePreviousStat(table[key]);
-                table.TryRemove(key);
+                Calculate(stat);
             }
             
-            public void Clear() => table.Clear();
 
-
-            private void RemovePreviousStat(Stat previousStat) => UpdateTotalValue(previousStat, true);
-            private void AddNewStat(Stat newStat) => UpdateTotalValue(newStat);
-
-            /// <param> False인 경우 amount를 type에 맞게 더해주며,
-            /// True인 경우 원래대로 돌려 놓는다.
-            ///     <name>isReverse</name>
-            /// </param>
-            private void UpdateTotalValue(Stat stat, bool isReverse = false)
+            private void Calculate(StatEntity stat)
             {
-                var sign = isReverse ? -1.0f : 1.0f;
-                totalBaseValue += stat.Value * sign;
+                Value = 0f;
+                table.Values.ForEach(statValue => Value += statValue.Value);
             }
         }
     }

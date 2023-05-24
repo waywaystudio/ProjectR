@@ -12,15 +12,24 @@ public static class EnumExtension
         var j   = Array.IndexOf(arr, src) + 1;
         return arr.Length ==j ? arr[0] : arr[j];
     }
-        
-    public static Enum GetRandomEnumValue(this Type t)
+
+    public static T RandomEnum<T>(this T source) where T : Enum
     {
-        return Enum.GetValues(t)            
-                   .OfType<Enum>()                 
-                   .OrderBy(_ => Guid.NewGuid())   
-                   .FirstOrDefault();              
-    }
+        var random = new Random();
+        var values = Enum.GetValues(typeof(T)).Cast<T>().ToList();
+
+        // Exclude the None value if it exists
+        var noneValue = Enum.Parse(typeof(T), "None", true);
+        if (noneValue != null)
+        {
+            values.Remove((T)noneValue);
+        }
         
+        values.Remove((T)noneValue);
+
+        return values[random.Next(values.Count)];
+    }
+
     /// <summary>
     /// Includes an enumerated type and returns the new value
     /// </summary>

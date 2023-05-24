@@ -113,19 +113,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   actionCode: 13000008
-  skillType: 2
+  skillType: 1
   sortingType: 0
   behaviourMask: 32
   ignorableMask: 3
-  priority: 10
+  priority: 3
+  range: 50
+  angle: 360
+  animationKey: attack
   targetLayer:
     serializedVersion: 2
     m_Bits: 128
   description: Starts combat by attacking a target with a melee weapon.
-  animationKey: casting
-  icon: {fileID: 21300000, guid: 66dd4d17749630548bd562332cf77491, type: 3}
-  range: 30
-  angle: 360
+  icon: {fileID: 0}
   radius: 20
   minDistance: 8
   maxPoints: 10
@@ -148,8 +148,6 @@ MonoBehaviour:
     prefab: {fileID: 3865230921314547483, guid: 9cf6115b552997a478910cf9d8071967, type: 3}
     maxCount: 20
     syncObjectActivity: 1
-  prefabReference: {fileID: 3865230921314547483, guid: 9cf6115b552997a478910cf9d8071967, type: 3}
-  poolCapacity: 20
 --- !u!114 &3597284855680841089
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -163,7 +161,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   startCoolingMoment: 0
-  coolTime: 12
+  coolTime: 30
 --- !u!114 &4337732494131428132
 MonoBehaviour:
   m_ObjectHideFlags: 0

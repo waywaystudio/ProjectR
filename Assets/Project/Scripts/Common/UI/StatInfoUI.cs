@@ -17,7 +17,7 @@ namespace Common.UI
             valueText.text = value;
         }
         
-        public void SetValue(Stat stat)
+        public void SetValue(StatEntity stat)
         {
             valueText.text = stat.Value.ToStatUIValue(statType);
         }

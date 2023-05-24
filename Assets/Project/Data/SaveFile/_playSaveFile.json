@@ -1,4 +1,2328 @@
 {
+	"MaterialSerializeKey" : {
+		"__type" : "System.Collections.Generic.Dictionary`2[[Common.MaterialType, ProjectR.Common, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null],[System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]],mscorlib",
+		"value" : {
+		}
+	},
+	"Ranger.EquipmentEntity" : {
+		"__type" : "System.Collections.Generic.Dictionary`2[[Common.EquipSlotIndex, ProjectR.Common, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null],[Common.Equipments.EquipmentEntity, ProjectR.Common, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]],mscorlib",
+		"value" : {21:{
+				"dataIndex" : 21041010,
+				"UpgradeLevel" : 0,
+				"RelicTable" : {
+					"Table" : {106:{
+							"isUnlocked" : false,
+							"ethos" : {
+								"ethosList" : [
+									{
+										"ethosType" : 106,
+										"ethosKey" : "Relic",
+										"value" : 6
+									}
+								]
+							},
+							"statSpec" : {
+								"statList" : [
+									{
+										"statType" : 8,
+										"statKey" : "_tempConstructor",
+										"value" : 0.1
+									}
+								]
+							}
+						},109:{
+							"isUnlocked" : false,
+							"ethos" : {
+								"ethosList" : [
+									{
+										"ethosType" : 109,
+										"ethosKey" : "Relic",
+										"value" : 6
+									}
+								]
+							},
+							"statSpec" : {
+								"statList" : [
+									{
+										"statType" : 1,
+										"statKey" : "_tempConstructor",
+										"value" : 0.1
+									}
+								]
+							}
+						},112:{
+							"isUnlocked" : false,
+							"ethos" : {
+								"ethosList" : [
+									{
+										"ethosType" : 112,
+										"ethosKey" : "Relic",
+										"value" : 6
+									}
+								]
+							},
+							"statSpec" : {
+								"statList" : [
+									{
+										"statType" : 3,
+										"statKey" : "_tempConstructor",
+										"value" : 0.1
+									}
+								]
+							}
+						},115:{
+							"isUnlocked" : false,
+							"ethos" : {
+								"ethosList" : [
+									{
+										"ethosType" : 115,
+										"ethosKey" : "Relic",
+										"value" : 6
+									}
+								]
+							},
+							"statSpec" : {
+								"statList" : [
+									{
+										"statType" : 6,
+										"statKey" : "_tempConstructor",
+										"value" : 0.1
+									}
+								]
+							}
+						},118:{
+							"isUnlocked" : false,
+							"ethos" : {
+								"ethosList" : [
+									{
+										"ethosType" : 118,
+										"ethosKey" : "Relic",
+										"value" : 6
+									}
+								]
+							},
+							"statSpec" : {
+								"statList" : [
+									{
+										"statType" : 7,
+										"statKey" : "_tempConstructor",
+										"value" : 0.1
+									}
+								]
+							}
+						},121:{
+							"isUnlocked" : false,
+							"ethos" : {
+								"ethosList" : [
+									{
+										"ethosType" : 121,
+										"ethosKey" : "Relic",
+										"value" : 6
+									}
+								]
+							},
+							"statSpec" : {
+								"statList" : [
+									{
+										"statType" : 9,
+										"statKey" : "_tempConstructor",
+										"value" : 0.1
+									}
+								]
+							}
+						}
+					},
+					"CurrentRelicType" : 0
+				}
+			},22:{
+				"dataIndex" : 22041010,
+				"UpgradeLevel" : 0,
+				"RelicTable" : {
+					"Table" : {106:{
+							"isUnlocked" : false,
+							"ethos" : {
+								"ethosList" : [
+									{
+										"ethosType" : 106,
+										"ethosKey" : "Relic",
+										"value" : 6
+									}
+								]
+							},
+							"statSpec" : {
+								"statList" : [
+									{
+										"statType" : 8,
+										"statKey" : "_tempConstructor",
+										"value" : 0.1
+									}
+								]
+							}
+						},109:{
+							"isUnlocked" : false,
+							"ethos" : {
+								"ethosList" : [
+									{
+										"ethosType" : 109,
+										"ethosKey" : "Relic",
+										"value" : 6
+									}
+								]
+							},
+							"statSpec" : {
+								"statList" : [
+									{
+										"statType" : 1,
+										"statKey" : "_tempConstructor",
+										"value" : 0.1
+									}
+								]
+							}
+						},112:{
+							"isUnlocked" : false,
+							"ethos" : {
+								"ethosList" : [
+									{
+										"ethosType" : 112,
+										"ethosKey" : "Relic",
+										"value" : 6
+									}
+								]
+							},
+							"statSpec" : {
+								"statList" : [
+									{
+										"statType" : 3,
+										"statKey" : "_tempConstructor",
+										"value" : 0.1
+									}
+								]
+							}
+						},115:{
+							"isUnlocked" : false,
+							"ethos" : {
+								"ethosList" : [
+									{
+										"ethosType" : 115,
+										"ethosKey" : "Relic",
+										"value" : 6
+									}
+								]
+							},
+							"statSpec" : {
+								"statList" : [
+									{
+										"statType" : 6,
+										"statKey" : "_tempConstructor",
+										"value" : 0.1
+									}
+								]
+							}
+						},118:{
+							"isUnlocked" : false,
+							"ethos" : {
+								"ethosList" : [
+									{
+										"ethosType" : 118,
+										"ethosKey" : "Relic",
+										"value" : 6
+									}
+								]
+							},
+							"statSpec" : {
+								"statList" : [
+									{
+										"statType" : 7,
+										"statKey" : "_tempConstructor",
+										"value" : 0.1
+									}
+								]
+							}
+						},121:{
+							"isUnlocked" : false,
+							"ethos" : {
+								"ethosList" : [
+									{
+										"ethosType" : 121,
+										"ethosKey" : "Relic",
+										"value" : 6
+									}
+								]
+							},
+							"statSpec" : {
+								"statList" : [
+									{
+										"statType" : 9,
+										"statKey" : "_tempConstructor",
+										"value" : 0.1
+									}
+								]
+							}
+						}
+					},
+					"CurrentRelicType" : 0
+				}
+			},23:{
+				"dataIndex" : 23041010,
+				"UpgradeLevel" : 0,
+				"RelicTable" : {
+					"Table" : {106:{
+							"isUnlocked" : false,
+							"ethos" : {
+								"ethosList" : [
+									{
+										"ethosType" : 106,
+										"ethosKey" : "Relic",
+										"value" : 6
+									}
+								]
+							},
+							"statSpec" : {
+								"statList" : [
+									{
+										"statType" : 8,
+										"statKey" : "_tempConstructor",
+										"value" : 0.1
+									}
+								]
+							}
+						},109:{
+							"isUnlocked" : false,
+							"ethos" : {
+								"ethosList" : [
+									{
+										"ethosType" : 109,
+										"ethosKey" : "Relic",
+										"value" : 6
+									}
+								]
+							},
+							"statSpec" : {
+								"statList" : [
+									{
+										"statType" : 1,
+										"statKey" : "_tempConstructor",
+										"value" : 0.1
+									}
+								]
+							}
+						},112:{
+							"isUnlocked" : false,
+							"ethos" : {
+								"ethosList" : [
+									{
+										"ethosType" : 112,
+										"ethosKey" : "Relic",
+										"value" : 6
+									}
+								]
+							},
+							"statSpec" : {
+								"statList" : [
+									{
+										"statType" : 3,
+										"statKey" : "_tempConstructor",
+										"value" : 0.1
+									}
+								]
+							}
+						},115:{
+							"isUnlocked" : false,
+							"ethos" : {
+								"ethosList" : [
+									{
+										"ethosType" : 115,
+										"ethosKey" : "Relic",
+										"value" : 6
+									}
+								]
+							},
+							"statSpec" : {
+								"statList" : [
+									{
+										"statType" : 6,
+										"statKey" : "_tempConstructor",
+										"value" : 0.1
+									}
+								]
+							}
+						},118:{
+							"isUnlocked" : false,
+							"ethos" : {
+								"ethosList" : [
+									{
+										"ethosType" : 118,
+										"ethosKey" : "Relic",
+										"value" : 6
+									}
+								]
+							},
+							"statSpec" : {
+								"statList" : [
+									{
+										"statType" : 7,
+										"statKey" : "_tempConstructor",
+										"value" : 0.1
+									}
+								]
+							}
+						},121:{
+							"isUnlocked" : false,
+							"ethos" : {
+								"ethosList" : [
+									{
+										"ethosType" : 121,
+										"ethosKey" : "Relic",
+										"value" : 6
+									}
+								]
+							},
+							"statSpec" : {
+								"statList" : [
+									{
+										"statType" : 9,
+										"statKey" : "_tempConstructor",
+										"value" : 0.1
+									}
+								]
+							}
+						}
+					},
+					"CurrentRelicType" : 0
+				}
+			},24:{
+				"dataIndex" : 24041010,
+				"UpgradeLevel" : 0,
+				"RelicTable" : {
+					"Table" : {106:{
+							"isUnlocked" : false,
+							"ethos" : {
+								"ethosList" : [
+									{
+										"ethosType" : 106,
+										"ethosKey" : "Relic",
+										"value" : 6
+									}
+								]
+							},
+							"statSpec" : {
+								"statList" : [
+									{
+										"statType" : 8,
+										"statKey" : "_tempConstructor",
+										"value" : 0.1
+									}
+								]
+							}
+						},109:{
+							"isUnlocked" : false,
+							"ethos" : {
+								"ethosList" : [
+									{
+										"ethosType" : 109,
+										"ethosKey" : "Relic",
+										"value" : 6
+									}
+								]
+							},
+							"statSpec" : {
+								"statList" : [
+									{
+										"statType" : 1,
+										"statKey" : "_tempConstructor",
+										"value" : 0.1
+									}
+								]
+							}
+						},112:{
+							"isUnlocked" : false,
+							"ethos" : {
+								"ethosList" : [
+									{
+										"ethosType" : 112,
+										"ethosKey" : "Relic",
+										"value" : 6
+									}
+								]
+							},
+							"statSpec" : {
+								"statList" : [
+									{
+										"statType" : 3,
+										"statKey" : "_tempConstructor",
+										"value" : 0.1
+									}
+								]
+							}
+						},115:{
+							"isUnlocked" : false,
+							"ethos" : {
+								"ethosList" : [
+									{
+										"ethosType" : 115,
+										"ethosKey" : "Relic",
+										"value" : 6
+									}
+								]
+							},
+							"statSpec" : {
+								"statList" : [
+									{
+										"statType" : 6,
+										"statKey" : "_tempConstructor",
+										"value" : 0.1
+									}
+								]
+							}
+						},118:{
+							"isUnlocked" : false,
+							"ethos" : {
+								"ethosList" : [
+									{
+										"ethosType" : 118,
+										"ethosKey" : "Relic",
+										"value" : 6
+									}
+								]
+							},
+							"statSpec" : {
+								"statList" : [
+									{
+										"statType" : 7,
+										"statKey" : "_tempConstructor",
+										"value" : 0.1
+									}
+								]
+							}
+						},121:{
+							"isUnlocked" : false,
+							"ethos" : {
+								"ethosList" : [
+									{
+										"ethosType" : 121,
+										"ethosKey" : "Relic",
+										"value" : 6
+									}
+								]
+							},
+							"statSpec" : {
+								"statList" : [
+									{
+										"statType" : 9,
+										"statKey" : "_tempConstructor",
+										"value" : 0.1
+									}
+								]
+							}
+						}
+					},
+					"CurrentRelicType" : 0
+				}
+			},25:{
+				"dataIndex" : 25041010,
+				"UpgradeLevel" : 0,
+				"RelicTable" : {
+					"Table" : {106:{
+							"isUnlocked" : false,
+							"ethos" : {
+								"ethosList" : [
+									{
+										"ethosType" : 106,
+										"ethosKey" : "Relic",
+										"value" : 6
+									}
+								]
+							},
+							"statSpec" : {
+								"statList" : [
+									{
+										"statType" : 8,
+										"statKey" : "_tempConstructor",
+										"value" : 0.1
+									}
+								]
+							}
+						},109:{
+							"isUnlocked" : false,
+							"ethos" : {
+								"ethosList" : [
+									{
+										"ethosType" : 109,
+										"ethosKey" : "Relic",
+										"value" : 6
+									}
+								]
+							},
+							"statSpec" : {
+								"statList" : [
+									{
+										"statType" : 1,
+										"statKey" : "_tempConstructor",
+										"value" : 0.1
+									}
+								]
+							}
+						},112:{
+							"isUnlocked" : false,
+							"ethos" : {
+								"ethosList" : [
+									{
+										"ethosType" : 112,
+										"ethosKey" : "Relic",
+										"value" : 6
+									}
+								]
+							},
+							"statSpec" : {
+								"statList" : [
+									{
+										"statType" : 3,
+										"statKey" : "_tempConstructor",
+										"value" : 0.1
+									}
+								]
+							}
+						},115:{
+							"isUnlocked" : false,
+							"ethos" : {
+								"ethosList" : [
+									{
+										"ethosType" : 115,
+										"ethosKey" : "Relic",
+										"value" : 6
+									}
+								]
+							},
+							"statSpec" : {
+								"statList" : [
+									{
+										"statType" : 6,
+										"statKey" : "_tempConstructor",
+										"value" : 0.1
+									}
+								]
+							}
+						},118:{
+							"isUnlocked" : false,
+							"ethos" : {
+								"ethosList" : [
+									{
+										"ethosType" : 118,
+										"ethosKey" : "Relic",
+										"value" : 6
+									}
+								]
+							},
+							"statSpec" : {
+								"statList" : [
+									{
+										"statType" : 7,
+										"statKey" : "_tempConstructor",
+										"value" : 0.1
+									}
+								]
+							}
+						},121:{
+							"isUnlocked" : false,
+							"ethos" : {
+								"ethosList" : [
+									{
+										"ethosType" : 121,
+										"ethosKey" : "Relic",
+										"value" : 6
+									}
+								]
+							},
+							"statSpec" : {
+								"statList" : [
+									{
+										"statType" : 9,
+										"statKey" : "_tempConstructor",
+										"value" : 0.1
+									}
+								]
+							}
+						}
+					},
+					"CurrentRelicType" : 0
+				}
+			},26:{
+				"dataIndex" : 26041010,
+				"UpgradeLevel" : 0,
+				"RelicTable" : {
+					"Table" : {106:{
+							"isUnlocked" : false,
+							"ethos" : {
+								"ethosList" : [
+									{
+										"ethosType" : 106,
+										"ethosKey" : "Relic",
+										"value" : 6
+									}
+								]
+							},
+							"statSpec" : {
+								"statList" : [
+									{
+										"statType" : 8,
+										"statKey" : "_tempConstructor",
+										"value" : 0.1
+									}
+								]
+							}
+						},109:{
+							"isUnlocked" : false,
+							"ethos" : {
+								"ethosList" : [
+									{
+										"ethosType" : 109,
+										"ethosKey" : "Relic",
+										"value" : 6
+									}
+								]
+							},
+							"statSpec" : {
+								"statList" : [
+									{
+										"statType" : 1,
+										"statKey" : "_tempConstructor",
+										"value" : 0.1
+									}
+								]
+							}
+						},112:{
+							"isUnlocked" : false,
+							"ethos" : {
+								"ethosList" : [
+									{
+										"ethosType" : 112,
+										"ethosKey" : "Relic",
+										"value" : 6
+									}
+								]
+							},
+							"statSpec" : {
+								"statList" : [
+									{
+										"statType" : 3,
+										"statKey" : "_tempConstructor",
+										"value" : 0.1
+									}
+								]
+							}
+						},115:{
+							"isUnlocked" : false,
+							"ethos" : {
+								"ethosList" : [
+									{
+										"ethosType" : 115,
+										"ethosKey" : "Relic",
+										"value" : 6
+									}
+								]
+							},
+							"statSpec" : {
+								"statList" : [
+									{
+										"statType" : 6,
+										"statKey" : "_tempConstructor",
+										"value" : 0.1
+									}
+								]
+							}
+						},118:{
+							"isUnlocked" : false,
+							"ethos" : {
+								"ethosList" : [
+									{
+										"ethosType" : 118,
+										"ethosKey" : "Relic",
+										"value" : 6
+									}
+								]
+							},
+							"statSpec" : {
+								"statList" : [
+									{
+										"statType" : 7,
+										"statKey" : "_tempConstructor",
+										"value" : 0.1
+									}
+								]
+							}
+						},121:{
+							"isUnlocked" : false,
+							"ethos" : {
+								"ethosList" : [
+									{
+										"ethosType" : 121,
+										"ethosKey" : "Relic",
+										"value" : 6
+									}
+								]
+							},
+							"statSpec" : {
+								"statList" : [
+									{
+										"statType" : 9,
+										"statKey" : "_tempConstructor",
+										"value" : 0.1
+									}
+								]
+							}
+						}
+					},
+					"CurrentRelicType" : 0
+				}
+			}
+		}
+	},
+	"Rogue.EquipmentEntity" : {
+		"__type" : "System.Collections.Generic.Dictionary`2[[Common.EquipSlotIndex, ProjectR.Common, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null],[Common.Equipments.EquipmentEntity, ProjectR.Common, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]],mscorlib",
+		"value" : {21:{
+				"dataIndex" : 21031007,
+				"UpgradeLevel" : 0,
+				"RelicTable" : {
+					"Table" : {106:{
+							"isUnlocked" : false,
+							"ethos" : {
+								"ethosList" : [
+									{
+										"ethosType" : 106,
+										"ethosKey" : "Relic",
+										"value" : 6
+									}
+								]
+							},
+							"statSpec" : {
+								"statList" : [
+									{
+										"statType" : 8,
+										"statKey" : "_tempConstructor",
+										"value" : 0.1
+									}
+								]
+							}
+						},109:{
+							"isUnlocked" : false,
+							"ethos" : {
+								"ethosList" : [
+									{
+										"ethosType" : 109,
+										"ethosKey" : "Relic",
+										"value" : 6
+									}
+								]
+							},
+							"statSpec" : {
+								"statList" : [
+									{
+										"statType" : 1,
+										"statKey" : "_tempConstructor",
+										"value" : 0.1
+									}
+								]
+							}
+						},112:{
+							"isUnlocked" : false,
+							"ethos" : {
+								"ethosList" : [
+									{
+										"ethosType" : 112,
+										"ethosKey" : "Relic",
+										"value" : 6
+									}
+								]
+							},
+							"statSpec" : {
+								"statList" : [
+									{
+										"statType" : 3,
+										"statKey" : "_tempConstructor",
+										"value" : 0.1
+									}
+								]
+							}
+						},115:{
+							"isUnlocked" : false,
+							"ethos" : {
+								"ethosList" : [
+									{
+										"ethosType" : 115,
+										"ethosKey" : "Relic",
+										"value" : 6
+									}
+								]
+							},
+							"statSpec" : {
+								"statList" : [
+									{
+										"statType" : 6,
+										"statKey" : "_tempConstructor",
+										"value" : 0.1
+									}
+								]
+							}
+						},118:{
+							"isUnlocked" : false,
+							"ethos" : {
+								"ethosList" : [
+									{
+										"ethosType" : 118,
+										"ethosKey" : "Relic",
+										"value" : 6
+									}
+								]
+							},
+							"statSpec" : {
+								"statList" : [
+									{
+										"statType" : 7,
+										"statKey" : "_tempConstructor",
+										"value" : 0.1
+									}
+								]
+							}
+						},121:{
+							"isUnlocked" : false,
+							"ethos" : {
+								"ethosList" : [
+									{
+										"ethosType" : 121,
+										"ethosKey" : "Relic",
+										"value" : 6
+									}
+								]
+							},
+							"statSpec" : {
+								"statList" : [
+									{
+										"statType" : 9,
+										"statKey" : "_tempConstructor",
+										"value" : 0.1
+									}
+								]
+							}
+						}
+					},
+					"CurrentRelicType" : 0
+				}
+			},22:{
+				"dataIndex" : 22031007,
+				"UpgradeLevel" : 0,
+				"RelicTable" : {
+					"Table" : {106:{
+							"isUnlocked" : false,
+							"ethos" : {
+								"ethosList" : [
+									{
+										"ethosType" : 106,
+										"ethosKey" : "Relic",
+										"value" : 6
+									}
+								]
+							},
+							"statSpec" : {
+								"statList" : [
+									{
+										"statType" : 8,
+										"statKey" : "_tempConstructor",
+										"value" : 0.1
+									}
+								]
+							}
+						},109:{
+							"isUnlocked" : false,
+							"ethos" : {
+								"ethosList" : [
+									{
+										"ethosType" : 109,
+										"ethosKey" : "Relic",
+										"value" : 6
+									}
+								]
+							},
+							"statSpec" : {
+								"statList" : [
+									{
+										"statType" : 1,
+										"statKey" : "_tempConstructor",
+										"value" : 0.1
+									}
+								]
+							}
+						},112:{
+							"isUnlocked" : false,
+							"ethos" : {
+								"ethosList" : [
+									{
+										"ethosType" : 112,
+										"ethosKey" : "Relic",
+										"value" : 6
+									}
+								]
+							},
+							"statSpec" : {
+								"statList" : [
+									{
+										"statType" : 3,
+										"statKey" : "_tempConstructor",
+										"value" : 0.1
+									}
+								]
+							}
+						},115:{
+							"isUnlocked" : false,
+							"ethos" : {
+								"ethosList" : [
+									{
+										"ethosType" : 115,
+										"ethosKey" : "Relic",
+										"value" : 6
+									}
+								]
+							},
+							"statSpec" : {
+								"statList" : [
+									{
+										"statType" : 6,
+										"statKey" : "_tempConstructor",
+										"value" : 0.1
+									}
+								]
+							}
+						},118:{
+							"isUnlocked" : false,
+							"ethos" : {
+								"ethosList" : [
+									{
+										"ethosType" : 118,
+										"ethosKey" : "Relic",
+										"value" : 6
+									}
+								]
+							},
+							"statSpec" : {
+								"statList" : [
+									{
+										"statType" : 7,
+										"statKey" : "_tempConstructor",
+										"value" : 0.1
+									}
+								]
+							}
+						},121:{
+							"isUnlocked" : false,
+							"ethos" : {
+								"ethosList" : [
+									{
+										"ethosType" : 121,
+										"ethosKey" : "Relic",
+										"value" : 6
+									}
+								]
+							},
+							"statSpec" : {
+								"statList" : [
+									{
+										"statType" : 9,
+										"statKey" : "_tempConstructor",
+										"value" : 0.1
+									}
+								]
+							}
+						}
+					},
+					"CurrentRelicType" : 0
+				}
+			},23:{
+				"dataIndex" : 23031007,
+				"UpgradeLevel" : 0,
+				"RelicTable" : {
+					"Table" : {106:{
+							"isUnlocked" : false,
+							"ethos" : {
+								"ethosList" : [
+									{
+										"ethosType" : 106,
+										"ethosKey" : "Relic",
+										"value" : 6
+									}
+								]
+							},
+							"statSpec" : {
+								"statList" : [
+									{
+										"statType" : 8,
+										"statKey" : "_tempConstructor",
+										"value" : 0.1
+									}
+								]
+							}
+						},109:{
+							"isUnlocked" : false,
+							"ethos" : {
+								"ethosList" : [
+									{
+										"ethosType" : 109,
+										"ethosKey" : "Relic",
+										"value" : 6
+									}
+								]
+							},
+							"statSpec" : {
+								"statList" : [
+									{
+										"statType" : 1,
+										"statKey" : "_tempConstructor",
+										"value" : 0.1
+									}
+								]
+							}
+						},112:{
+							"isUnlocked" : false,
+							"ethos" : {
+								"ethosList" : [
+									{
+										"ethosType" : 112,
+										"ethosKey" : "Relic",
+										"value" : 6
+									}
+								]
+							},
+							"statSpec" : {
+								"statList" : [
+									{
+										"statType" : 3,
+										"statKey" : "_tempConstructor",
+										"value" : 0.1
+									}
+								]
+							}
+						},115:{
+							"isUnlocked" : false,
+							"ethos" : {
+								"ethosList" : [
+									{
+										"ethosType" : 115,
+										"ethosKey" : "Relic",
+										"value" : 6
+									}
+								]
+							},
+							"statSpec" : {
+								"statList" : [
+									{
+										"statType" : 6,
+										"statKey" : "_tempConstructor",
+										"value" : 0.1
+									}
+								]
+							}
+						},118:{
+							"isUnlocked" : false,
+							"ethos" : {
+								"ethosList" : [
+									{
+										"ethosType" : 118,
+										"ethosKey" : "Relic",
+										"value" : 6
+									}
+								]
+							},
+							"statSpec" : {
+								"statList" : [
+									{
+										"statType" : 7,
+										"statKey" : "_tempConstructor",
+										"value" : 0.1
+									}
+								]
+							}
+						},121:{
+							"isUnlocked" : false,
+							"ethos" : {
+								"ethosList" : [
+									{
+										"ethosType" : 121,
+										"ethosKey" : "Relic",
+										"value" : 6
+									}
+								]
+							},
+							"statSpec" : {
+								"statList" : [
+									{
+										"statType" : 9,
+										"statKey" : "_tempConstructor",
+										"value" : 0.1
+									}
+								]
+							}
+						}
+					},
+					"CurrentRelicType" : 0
+				}
+			},24:{
+				"dataIndex" : 24031007,
+				"UpgradeLevel" : 0,
+				"RelicTable" : {
+					"Table" : {106:{
+							"isUnlocked" : false,
+							"ethos" : {
+								"ethosList" : [
+									{
+										"ethosType" : 106,
+										"ethosKey" : "Relic",
+										"value" : 6
+									}
+								]
+							},
+							"statSpec" : {
+								"statList" : [
+									{
+										"statType" : 8,
+										"statKey" : "_tempConstructor",
+										"value" : 0.1
+									}
+								]
+							}
+						},109:{
+							"isUnlocked" : false,
+							"ethos" : {
+								"ethosList" : [
+									{
+										"ethosType" : 109,
+										"ethosKey" : "Relic",
+										"value" : 6
+									}
+								]
+							},
+							"statSpec" : {
+								"statList" : [
+									{
+										"statType" : 1,
+										"statKey" : "_tempConstructor",
+										"value" : 0.1
+									}
+								]
+							}
+						},112:{
+							"isUnlocked" : false,
+							"ethos" : {
+								"ethosList" : [
+									{
+										"ethosType" : 112,
+										"ethosKey" : "Relic",
+										"value" : 6
+									}
+								]
+							},
+							"statSpec" : {
+								"statList" : [
+									{
+										"statType" : 3,
+										"statKey" : "_tempConstructor",
+										"value" : 0.1
+									}
+								]
+							}
+						},115:{
+							"isUnlocked" : false,
+							"ethos" : {
+								"ethosList" : [
+									{
+										"ethosType" : 115,
+										"ethosKey" : "Relic",
+										"value" : 6
+									}
+								]
+							},
+							"statSpec" : {
+								"statList" : [
+									{
+										"statType" : 6,
+										"statKey" : "_tempConstructor",
+										"value" : 0.1
+									}
+								]
+							}
+						},118:{
+							"isUnlocked" : false,
+							"ethos" : {
+								"ethosList" : [
+									{
+										"ethosType" : 118,
+										"ethosKey" : "Relic",
+										"value" : 6
+									}
+								]
+							},
+							"statSpec" : {
+								"statList" : [
+									{
+										"statType" : 7,
+										"statKey" : "_tempConstructor",
+										"value" : 0.1
+									}
+								]
+							}
+						},121:{
+							"isUnlocked" : false,
+							"ethos" : {
+								"ethosList" : [
+									{
+										"ethosType" : 121,
+										"ethosKey" : "Relic",
+										"value" : 6
+									}
+								]
+							},
+							"statSpec" : {
+								"statList" : [
+									{
+										"statType" : 9,
+										"statKey" : "_tempConstructor",
+										"value" : 0.1
+									}
+								]
+							}
+						}
+					},
+					"CurrentRelicType" : 0
+				}
+			},25:{
+				"dataIndex" : 25031007,
+				"UpgradeLevel" : 0,
+				"RelicTable" : {
+					"Table" : {106:{
+							"isUnlocked" : false,
+							"ethos" : {
+								"ethosList" : [
+									{
+										"ethosType" : 106,
+										"ethosKey" : "Relic",
+										"value" : 6
+									}
+								]
+							},
+							"statSpec" : {
+								"statList" : [
+									{
+										"statType" : 8,
+										"statKey" : "_tempConstructor",
+										"value" : 0.1
+									}
+								]
+							}
+						},109:{
+							"isUnlocked" : false,
+							"ethos" : {
+								"ethosList" : [
+									{
+										"ethosType" : 109,
+										"ethosKey" : "Relic",
+										"value" : 6
+									}
+								]
+							},
+							"statSpec" : {
+								"statList" : [
+									{
+										"statType" : 1,
+										"statKey" : "_tempConstructor",
+										"value" : 0.1
+									}
+								]
+							}
+						},112:{
+							"isUnlocked" : false,
+							"ethos" : {
+								"ethosList" : [
+									{
+										"ethosType" : 112,
+										"ethosKey" : "Relic",
+										"value" : 6
+									}
+								]
+							},
+							"statSpec" : {
+								"statList" : [
+									{
+										"statType" : 3,
+										"statKey" : "_tempConstructor",
+										"value" : 0.1
+									}
+								]
+							}
+						},115:{
+							"isUnlocked" : false,
+							"ethos" : {
+								"ethosList" : [
+									{
+										"ethosType" : 115,
+										"ethosKey" : "Relic",
+										"value" : 6
+									}
+								]
+							},
+							"statSpec" : {
+								"statList" : [
+									{
+										"statType" : 6,
+										"statKey" : "_tempConstructor",
+										"value" : 0.1
+									}
+								]
+							}
+						},118:{
+							"isUnlocked" : false,
+							"ethos" : {
+								"ethosList" : [
+									{
+										"ethosType" : 118,
+										"ethosKey" : "Relic",
+										"value" : 6
+									}
+								]
+							},
+							"statSpec" : {
+								"statList" : [
+									{
+										"statType" : 7,
+										"statKey" : "_tempConstructor",
+										"value" : 0.1
+									}
+								]
+							}
+						},121:{
+							"isUnlocked" : false,
+							"ethos" : {
+								"ethosList" : [
+									{
+										"ethosType" : 121,
+										"ethosKey" : "Relic",
+										"value" : 6
+									}
+								]
+							},
+							"statSpec" : {
+								"statList" : [
+									{
+										"statType" : 9,
+										"statKey" : "_tempConstructor",
+										"value" : 0.1
+									}
+								]
+							}
+						}
+					},
+					"CurrentRelicType" : 0
+				}
+			},26:{
+				"dataIndex" : 26031007,
+				"UpgradeLevel" : 0,
+				"RelicTable" : {
+					"Table" : {106:{
+							"isUnlocked" : false,
+							"ethos" : {
+								"ethosList" : [
+									{
+										"ethosType" : 106,
+										"ethosKey" : "Relic",
+										"value" : 6
+									}
+								]
+							},
+							"statSpec" : {
+								"statList" : [
+									{
+										"statType" : 8,
+										"statKey" : "_tempConstructor",
+										"value" : 0.1
+									}
+								]
+							}
+						},109:{
+							"isUnlocked" : false,
+							"ethos" : {
+								"ethosList" : [
+									{
+										"ethosType" : 109,
+										"ethosKey" : "Relic",
+										"value" : 6
+									}
+								]
+							},
+							"statSpec" : {
+								"statList" : [
+									{
+										"statType" : 1,
+										"statKey" : "_tempConstructor",
+										"value" : 0.1
+									}
+								]
+							}
+						},112:{
+							"isUnlocked" : false,
+							"ethos" : {
+								"ethosList" : [
+									{
+										"ethosType" : 112,
+										"ethosKey" : "Relic",
+										"value" : 6
+									}
+								]
+							},
+							"statSpec" : {
+								"statList" : [
+									{
+										"statType" : 3,
+										"statKey" : "_tempConstructor",
+										"value" : 0.1
+									}
+								]
+							}
+						},115:{
+							"isUnlocked" : false,
+							"ethos" : {
+								"ethosList" : [
+									{
+										"ethosType" : 115,
+										"ethosKey" : "Relic",
+										"value" : 6
+									}
+								]
+							},
+							"statSpec" : {
+								"statList" : [
+									{
+										"statType" : 6,
+										"statKey" : "_tempConstructor",
+										"value" : 0.1
+									}
+								]
+							}
+						},118:{
+							"isUnlocked" : false,
+							"ethos" : {
+								"ethosList" : [
+									{
+										"ethosType" : 118,
+										"ethosKey" : "Relic",
+										"value" : 6
+									}
+								]
+							},
+							"statSpec" : {
+								"statList" : [
+									{
+										"statType" : 7,
+										"statKey" : "_tempConstructor",
+										"value" : 0.1
+									}
+								]
+							}
+						},121:{
+							"isUnlocked" : false,
+							"ethos" : {
+								"ethosList" : [
+									{
+										"ethosType" : 121,
+										"ethosKey" : "Relic",
+										"value" : 6
+									}
+								]
+							},
+							"statSpec" : {
+								"statList" : [
+									{
+										"statType" : 9,
+										"statKey" : "_tempConstructor",
+										"value" : 0.1
+									}
+								]
+							}
+						}
+					},
+					"CurrentRelicType" : 0
+				}
+			}
+		}
+	},
+	"Knight.EquipmentEntity" : {
+		"__type" : "System.Collections.Generic.Dictionary`2[[Common.EquipSlotIndex, ProjectR.Common, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null],[Common.Equipments.EquipmentEntity, ProjectR.Common, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]],mscorlib",
+		"value" : {21:{
+				"dataIndex" : 21011001,
+				"UpgradeLevel" : 0,
+				"RelicTable" : {
+					"Table" : {106:{
+							"isUnlocked" : false,
+							"ethos" : {
+								"ethosList" : [
+									{
+										"ethosType" : 106,
+										"ethosKey" : "Relic",
+										"value" : 6
+									}
+								]
+							},
+							"statSpec" : {
+								"statList" : [
+									{
+										"statType" : 8,
+										"statKey" : "_tempConstructor",
+										"value" : 0.1
+									}
+								]
+							}
+						},109:{
+							"isUnlocked" : false,
+							"ethos" : {
+								"ethosList" : [
+									{
+										"ethosType" : 109,
+										"ethosKey" : "Relic",
+										"value" : 6
+									}
+								]
+							},
+							"statSpec" : {
+								"statList" : [
+									{
+										"statType" : 1,
+										"statKey" : "_tempConstructor",
+										"value" : 0.1
+									}
+								]
+							}
+						},112:{
+							"isUnlocked" : false,
+							"ethos" : {
+								"ethosList" : [
+									{
+										"ethosType" : 112,
+										"ethosKey" : "Relic",
+										"value" : 6
+									}
+								]
+							},
+							"statSpec" : {
+								"statList" : [
+									{
+										"statType" : 3,
+										"statKey" : "_tempConstructor",
+										"value" : 0.1
+									}
+								]
+							}
+						},115:{
+							"isUnlocked" : false,
+							"ethos" : {
+								"ethosList" : [
+									{
+										"ethosType" : 115,
+										"ethosKey" : "Relic",
+										"value" : 6
+									}
+								]
+							},
+							"statSpec" : {
+								"statList" : [
+									{
+										"statType" : 6,
+										"statKey" : "_tempConstructor",
+										"value" : 0.1
+									}
+								]
+							}
+						},118:{
+							"isUnlocked" : false,
+							"ethos" : {
+								"ethosList" : [
+									{
+										"ethosType" : 118,
+										"ethosKey" : "Relic",
+										"value" : 6
+									}
+								]
+							},
+							"statSpec" : {
+								"statList" : [
+									{
+										"statType" : 7,
+										"statKey" : "_tempConstructor",
+										"value" : 0.1
+									}
+								]
+							}
+						},121:{
+							"isUnlocked" : false,
+							"ethos" : {
+								"ethosList" : [
+									{
+										"ethosType" : 121,
+										"ethosKey" : "Relic",
+										"value" : 6
+									}
+								]
+							},
+							"statSpec" : {
+								"statList" : [
+									{
+										"statType" : 9,
+										"statKey" : "_tempConstructor",
+										"value" : 0.1
+									}
+								]
+							}
+						}
+					},
+					"CurrentRelicType" : 112
+				}
+			},22:{
+				"dataIndex" : 22011001,
+				"UpgradeLevel" : 0,
+				"RelicTable" : {
+					"Table" : {106:{
+							"isUnlocked" : false,
+							"ethos" : {
+								"ethosList" : [
+									{
+										"ethosType" : 106,
+										"ethosKey" : "Relic",
+										"value" : 6
+									}
+								]
+							},
+							"statSpec" : {
+								"statList" : [
+									{
+										"statType" : 8,
+										"statKey" : "_tempConstructor",
+										"value" : 0.1
+									}
+								]
+							}
+						},109:{
+							"isUnlocked" : false,
+							"ethos" : {
+								"ethosList" : [
+									{
+										"ethosType" : 109,
+										"ethosKey" : "Relic",
+										"value" : 6
+									}
+								]
+							},
+							"statSpec" : {
+								"statList" : [
+									{
+										"statType" : 1,
+										"statKey" : "_tempConstructor",
+										"value" : 0.1
+									}
+								]
+							}
+						},112:{
+							"isUnlocked" : false,
+							"ethos" : {
+								"ethosList" : [
+									{
+										"ethosType" : 112,
+										"ethosKey" : "Relic",
+										"value" : 6
+									}
+								]
+							},
+							"statSpec" : {
+								"statList" : [
+									{
+										"statType" : 3,
+										"statKey" : "_tempConstructor",
+										"value" : 0.1
+									}
+								]
+							}
+						},115:{
+							"isUnlocked" : false,
+							"ethos" : {
+								"ethosList" : [
+									{
+										"ethosType" : 115,
+										"ethosKey" : "Relic",
+										"value" : 6
+									}
+								]
+							},
+							"statSpec" : {
+								"statList" : [
+									{
+										"statType" : 6,
+										"statKey" : "_tempConstructor",
+										"value" : 0.1
+									}
+								]
+							}
+						},118:{
+							"isUnlocked" : false,
+							"ethos" : {
+								"ethosList" : [
+									{
+										"ethosType" : 118,
+										"ethosKey" : "Relic",
+										"value" : 6
+									}
+								]
+							},
+							"statSpec" : {
+								"statList" : [
+									{
+										"statType" : 7,
+										"statKey" : "_tempConstructor",
+										"value" : 0.1
+									}
+								]
+							}
+						},121:{
+							"isUnlocked" : false,
+							"ethos" : {
+								"ethosList" : [
+									{
+										"ethosType" : 121,
+										"ethosKey" : "Relic",
+										"value" : 6
+									}
+								]
+							},
+							"statSpec" : {
+								"statList" : [
+									{
+										"statType" : 9,
+										"statKey" : "_tempConstructor",
+										"value" : 0.1
+									}
+								]
+							}
+						}
+					},
+					"CurrentRelicType" : 0
+				}
+			},23:{
+				"dataIndex" : 23011001,
+				"UpgradeLevel" : 0,
+				"RelicTable" : {
+					"Table" : {106:{
+							"isUnlocked" : false,
+							"ethos" : {
+								"ethosList" : [
+									{
+										"ethosType" : 106,
+										"ethosKey" : "Relic",
+										"value" : 6
+									}
+								]
+							},
+							"statSpec" : {
+								"statList" : [
+									{
+										"statType" : 8,
+										"statKey" : "_tempConstructor",
+										"value" : 0.1
+									}
+								]
+							}
+						},109:{
+							"isUnlocked" : false,
+							"ethos" : {
+								"ethosList" : [
+									{
+										"ethosType" : 109,
+										"ethosKey" : "Relic",
+										"value" : 6
+									}
+								]
+							},
+							"statSpec" : {
+								"statList" : [
+									{
+										"statType" : 1,
+										"statKey" : "_tempConstructor",
+										"value" : 0.1
+									}
+								]
+							}
+						},112:{
+							"isUnlocked" : false,
+							"ethos" : {
+								"ethosList" : [
+									{
+										"ethosType" : 112,
+										"ethosKey" : "Relic",
+										"value" : 6
+									}
+								]
+							},
+							"statSpec" : {
+								"statList" : [
+									{
+										"statType" : 3,
+										"statKey" : "_tempConstructor",
+										"value" : 0.1
+									}
+								]
+							}
+						},115:{
+							"isUnlocked" : false,
+							"ethos" : {
+								"ethosList" : [
+									{
+										"ethosType" : 115,
+										"ethosKey" : "Relic",
+										"value" : 6
+									}
+								]
+							},
+							"statSpec" : {
+								"statList" : [
+									{
+										"statType" : 6,
+										"statKey" : "_tempConstructor",
+										"value" : 0.1
+									}
+								]
+							}
+						},118:{
+							"isUnlocked" : false,
+							"ethos" : {
+								"ethosList" : [
+									{
+										"ethosType" : 118,
+										"ethosKey" : "Relic",
+										"value" : 6
+									}
+								]
+							},
+							"statSpec" : {
+								"statList" : [
+									{
+										"statType" : 7,
+										"statKey" : "_tempConstructor",
+										"value" : 0.1
+									}
+								]
+							}
+						},121:{
+							"isUnlocked" : false,
+							"ethos" : {
+								"ethosList" : [
+									{
+										"ethosType" : 121,
+										"ethosKey" : "Relic",
+										"value" : 6
+									}
+								]
+							},
+							"statSpec" : {
+								"statList" : [
+									{
+										"statType" : 9,
+										"statKey" : "_tempConstructor",
+										"value" : 0.1
+									}
+								]
+							}
+						}
+					},
+					"CurrentRelicType" : 0
+				}
+			},24:{
+				"dataIndex" : 24011001,
+				"UpgradeLevel" : 0,
+				"RelicTable" : {
+					"Table" : {106:{
+							"isUnlocked" : false,
+							"ethos" : {
+								"ethosList" : [
+									{
+										"ethosType" : 106,
+										"ethosKey" : "Relic",
+										"value" : 6
+									}
+								]
+							},
+							"statSpec" : {
+								"statList" : [
+									{
+										"statType" : 8,
+										"statKey" : "_tempConstructor",
+										"value" : 0.1
+									}
+								]
+							}
+						},109:{
+							"isUnlocked" : false,
+							"ethos" : {
+								"ethosList" : [
+									{
+										"ethosType" : 109,
+										"ethosKey" : "Relic",
+										"value" : 6
+									}
+								]
+							},
+							"statSpec" : {
+								"statList" : [
+									{
+										"statType" : 1,
+										"statKey" : "_tempConstructor",
+										"value" : 0.1
+									}
+								]
+							}
+						},112:{
+							"isUnlocked" : false,
+							"ethos" : {
+								"ethosList" : [
+									{
+										"ethosType" : 112,
+										"ethosKey" : "Relic",
+										"value" : 6
+									}
+								]
+							},
+							"statSpec" : {
+								"statList" : [
+									{
+										"statType" : 3,
+										"statKey" : "_tempConstructor",
+										"value" : 0.1
+									}
+								]
+							}
+						},115:{
+							"isUnlocked" : false,
+							"ethos" : {
+								"ethosList" : [
+									{
+										"ethosType" : 115,
+										"ethosKey" : "Relic",
+										"value" : 6
+									}
+								]
+							},
+							"statSpec" : {
+								"statList" : [
+									{
+										"statType" : 6,
+										"statKey" : "_tempConstructor",
+										"value" : 0.1
+									}
+								]
+							}
+						},118:{
+							"isUnlocked" : false,
+							"ethos" : {
+								"ethosList" : [
+									{
+										"ethosType" : 118,
+										"ethosKey" : "Relic",
+										"value" : 6
+									}
+								]
+							},
+							"statSpec" : {
+								"statList" : [
+									{
+										"statType" : 7,
+										"statKey" : "_tempConstructor",
+										"value" : 0.1
+									}
+								]
+							}
+						},121:{
+							"isUnlocked" : false,
+							"ethos" : {
+								"ethosList" : [
+									{
+										"ethosType" : 121,
+										"ethosKey" : "Relic",
+										"value" : 6
+									}
+								]
+							},
+							"statSpec" : {
+								"statList" : [
+									{
+										"statType" : 9,
+										"statKey" : "_tempConstructor",
+										"value" : 0.1
+									}
+								]
+							}
+						}
+					},
+					"CurrentRelicType" : 0
+				}
+			},25:{
+				"dataIndex" : 25011001,
+				"UpgradeLevel" : 0,
+				"RelicTable" : {
+					"Table" : {106:{
+							"isUnlocked" : false,
+							"ethos" : {
+								"ethosList" : [
+									{
+										"ethosType" : 106,
+										"ethosKey" : "Relic",
+										"value" : 6
+									}
+								]
+							},
+							"statSpec" : {
+								"statList" : [
+									{
+										"statType" : 8,
+										"statKey" : "_tempConstructor",
+										"value" : 0.1
+									}
+								]
+							}
+						},109:{
+							"isUnlocked" : false,
+							"ethos" : {
+								"ethosList" : [
+									{
+										"ethosType" : 109,
+										"ethosKey" : "Relic",
+										"value" : 6
+									}
+								]
+							},
+							"statSpec" : {
+								"statList" : [
+									{
+										"statType" : 1,
+										"statKey" : "_tempConstructor",
+										"value" : 0.1
+									}
+								]
+							}
+						},112:{
+							"isUnlocked" : false,
+							"ethos" : {
+								"ethosList" : [
+									{
+										"ethosType" : 112,
+										"ethosKey" : "Relic",
+										"value" : 6
+									}
+								]
+							},
+							"statSpec" : {
+								"statList" : [
+									{
+										"statType" : 3,
+										"statKey" : "_tempConstructor",
+										"value" : 0.1
+									}
+								]
+							}
+						},115:{
+							"isUnlocked" : false,
+							"ethos" : {
+								"ethosList" : [
+									{
+										"ethosType" : 115,
+										"ethosKey" : "Relic",
+										"value" : 6
+									}
+								]
+							},
+							"statSpec" : {
+								"statList" : [
+									{
+										"statType" : 6,
+										"statKey" : "_tempConstructor",
+										"value" : 0.1
+									}
+								]
+							}
+						},118:{
+							"isUnlocked" : false,
+							"ethos" : {
+								"ethosList" : [
+									{
+										"ethosType" : 118,
+										"ethosKey" : "Relic",
+										"value" : 6
+									}
+								]
+							},
+							"statSpec" : {
+								"statList" : [
+									{
+										"statType" : 7,
+										"statKey" : "_tempConstructor",
+										"value" : 0.1
+									}
+								]
+							}
+						},121:{
+							"isUnlocked" : false,
+							"ethos" : {
+								"ethosList" : [
+									{
+										"ethosType" : 121,
+										"ethosKey" : "Relic",
+										"value" : 6
+									}
+								]
+							},
+							"statSpec" : {
+								"statList" : [
+									{
+										"statType" : 9,
+										"statKey" : "_tempConstructor",
+										"value" : 0.1
+									}
+								]
+							}
+						}
+					},
+					"CurrentRelicType" : 0
+				}
+			},26:{
+				"dataIndex" : 26011001,
+				"UpgradeLevel" : 0,
+				"RelicTable" : {
+					"Table" : {106:{
+							"isUnlocked" : false,
+							"ethos" : {
+								"ethosList" : [
+									{
+										"ethosType" : 106,
+										"ethosKey" : "Relic",
+										"value" : 6
+									}
+								]
+							},
+							"statSpec" : {
+								"statList" : [
+									{
+										"statType" : 8,
+										"statKey" : "_tempConstructor",
+										"value" : 0.1
+									}
+								]
+							}
+						},109:{
+							"isUnlocked" : false,
+							"ethos" : {
+								"ethosList" : [
+									{
+										"ethosType" : 109,
+										"ethosKey" : "Relic",
+										"value" : 6
+									}
+								]
+							},
+							"statSpec" : {
+								"statList" : [
+									{
+										"statType" : 1,
+										"statKey" : "_tempConstructor",
+										"value" : 0.1
+									}
+								]
+							}
+						},112:{
+							"isUnlocked" : false,
+							"ethos" : {
+								"ethosList" : [
+									{
+										"ethosType" : 112,
+										"ethosKey" : "Relic",
+										"value" : 6
+									}
+								]
+							},
+							"statSpec" : {
+								"statList" : [
+									{
+										"statType" : 3,
+										"statKey" : "_tempConstructor",
+										"value" : 0.1
+									}
+								]
+							}
+						},115:{
+							"isUnlocked" : false,
+							"ethos" : {
+								"ethosList" : [
+									{
+										"ethosType" : 115,
+										"ethosKey" : "Relic",
+										"value" : 6
+									}
+								]
+							},
+							"statSpec" : {
+								"statList" : [
+									{
+										"statType" : 6,
+										"statKey" : "_tempConstructor",
+										"value" : 0.1
+									}
+								]
+							}
+						},118:{
+							"isUnlocked" : false,
+							"ethos" : {
+								"ethosList" : [
+									{
+										"ethosType" : 118,
+										"ethosKey" : "Relic",
+										"value" : 6
+									}
+								]
+							},
+							"statSpec" : {
+								"statList" : [
+									{
+										"statType" : 7,
+										"statKey" : "_tempConstructor",
+										"value" : 0.1
+									}
+								]
+							}
+						},121:{
+							"isUnlocked" : false,
+							"ethos" : {
+								"ethosList" : [
+									{
+										"ethosType" : 121,
+										"ethosKey" : "Relic",
+										"value" : 6
+									}
+								]
+							},
+							"statSpec" : {
+								"statList" : [
+									{
+										"statType" : 9,
+										"statKey" : "_tempConstructor",
+										"value" : 0.1
+									}
+								]
+							}
+						}
+					},
+					"CurrentRelicType" : 0
+				}
+			}
+		}
+	},
 	"_FromPlaySaveFile" : {
 		"__type" : "string",
 		"value" : "Check"
@@ -7,7 +2331,7 @@
 		"__type" : "Serialization.SaveInfo,ProjectR.Core",
 		"value" : {
 			"filename" : "_playSaveFile",
-			"saveTime" : "2023.05.24.01.30.21"
+			"saveTime" : "2023.05.24.21.50.56"
 		}
 	}
 }

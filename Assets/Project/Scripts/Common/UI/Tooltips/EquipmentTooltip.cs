@@ -20,7 +20,7 @@ namespace Common.UI.Tooltips
             title.text = equipment.ItemName;
             statInfoList.ForEach(statInfoUI => statInfoUI.gameObject.SetActive(false));
             
-            equipment.ConstSpec.IterateOverStats(stat =>
+            equipment.ConstStatSpec.IterateOverStats(stat =>
             {
                 var statInfo = statInfoList.TryGetElement(info => info.StatType == stat.StatType);
         

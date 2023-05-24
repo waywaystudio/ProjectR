@@ -57,19 +57,21 @@ namespace Common.Editor
                 });
             }
             
-            if (member.Name == "EquipmentEntities")
+            if (member.Name == "EquipmentTable")
             {
                 attributes.Add(new ShowInInspectorAttribute());
-                attributes.Add(new ReadOnlyAttribute());
-                attributes.Add(new ListDrawerSettingsAttribute
-                {
-                    IsReadOnly = true,
-                });
+                attributes.Add(new ListDrawerSettingsAttribute());
             }
             
-            if (member.Name == "EquipmentsStatTable")
+            if (member.Name == "StatTable")
             {
                 attributes.Add(new TitleGroupAttribute("Equipment Stat Sum", "each by each"));
+                attributes.Add(new ShowInInspectorAttribute());
+            }
+            
+            if (member.Name == "EthosTable")
+            {
+                attributes.Add(new TitleGroupAttribute("Equipment Ethos Sum", "each by each"));
                 attributes.Add(new ShowInInspectorAttribute());
             }
         }

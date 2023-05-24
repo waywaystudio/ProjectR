@@ -16,35 +16,35 @@ MonoBehaviour:
   constEntity:
     classType: 1
     characterName: Garvin
-    defaultSpec:
+    defaultStatSpec:
       statList:
-      - statType: 1
-        statKey: ConstStatKey
-        value: 2000
-      - statType: 2
+      - statType: 2001
         statKey: ConstStatKey
         value: 100
-      - statType: 3
+      - statType: 2002
+        statKey: ConstStatKey
+        value: 100
+      - statType: 2003
         statKey: ConstStatKey
         value: 5
-      - statType: 5
+      - statType: 2005
         statKey: ConstStatKey
         value: 0
-      - statType: 8
+      - statType: 2008
         statKey: ConstStatKey
         value: 20
-      - statType: 9
+      - statType: 2009
         statKey: ConstStatKey
         value: 7
-      - statType: 11
+      - statType: 2010
         statKey: ConstStatKey
         value: 100
-      - statType: 12
+      - statType: 2011
         statKey: ConstStatKey
         value: 1
-      - statType: 13
+      - statType: 2012
         statKey: ConstStatKey
         value: 1
     defaultSkillList: 415dc600425dc600435dc600445dc600
   equipmentEntity:
-    initialEquipmentIndexList: 5196400191d84f01d11a5f01115d6e01519f7d0191e18c01
+    initialEquipmentIndexList: 399a400179dc4f01b91e5f01f9606e0139a37d0179e58c01

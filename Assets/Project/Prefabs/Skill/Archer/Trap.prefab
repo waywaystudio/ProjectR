@@ -116,14 +116,14 @@ MonoBehaviour:
   behaviourMask: 64
   ignorableMask: 3
   priority: 3
+  range: 4
+  angle: 360
+  animationKey: jump
   targetLayer:
     serializedVersion: 2
     m_Bits: 256
   description: Starts combat by attacking a target with a melee weapon.
-  animationKey: jump
   icon: {fileID: 21300000, guid: 2482dd41d4c9fcc44a20fb70153bb822, type: 3}
-  range: 4
-  angle: 360
 --- !u!114 &6662264705308858124
 MonoBehaviour:
   m_ObjectHideFlags: 0

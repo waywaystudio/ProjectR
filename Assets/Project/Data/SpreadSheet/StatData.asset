@@ -1,0 +1,42 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e3803a32e7c0acd459c13da1b52df878, type: 3}
+  m_Name: StatData
+  m_EditorClassIdentifier: 
+  Index: 20
+  list:
+  - id: 2000
+    name: Stats
+  - id: 2001
+    name: Power
+  - id: 2002
+    name: Health
+  - id: 2003
+    name: CriticalChance
+  - id: 2004
+    name: CriticalDamage
+  - id: 2005
+    name: Haste
+  - id: 2006
+    name: Mastery
+  - id: 2007
+    name: Retention
+  - id: 2008
+    name: Armor
+  - id: 2009
+    name: MoveSpeed
+  - id: 2010
+    name: MaxResource
+  - id: 2011
+    name: MinDamage
+  - id: 2012
+    name: MaxDamage

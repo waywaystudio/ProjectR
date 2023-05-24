@@ -16,7 +16,6 @@ namespace Databases.SheetData.EquipmentData
         {
 			[SerializeField] private Int32 id;
 			[SerializeField] private String name;
-			[SerializeField] private Int32 equipable;
 			[SerializeField] private Single minDamage;
 			[SerializeField] private Single maxDamage;
 			[SerializeField] private Single power;
@@ -24,7 +23,6 @@ namespace Databases.SheetData.EquipmentData
 
 			public Int32 ID => id;
 			public String Name => name;
-			public Int32 Equipable => equipable;
 			public Single MinDamage => minDamage;
 			public Single MaxDamage => maxDamage;
 			public Single Power => power;

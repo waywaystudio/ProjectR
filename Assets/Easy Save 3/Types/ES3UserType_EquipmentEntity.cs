@@ -1,10 +1,11 @@
 using System;
+using Common;
 using UnityEngine;
 
 namespace ES3Types
 {
 	[UnityEngine.Scripting.Preserve]
-	[ES3PropertiesAttribute("dataIndex", "DynamicSpec", "UpgradeLevel")]
+	[ES3PropertiesAttribute("dataIndex", "UpgradeLevel", "RelicTable")]
 	public class ES3UserType_EquipmentEntity : ES3ObjectType
 	{
 		public static ES3Type Instance = null;
@@ -17,8 +18,8 @@ namespace ES3Types
 			var instance = (Common.Equipments.EquipmentEntity)obj;
 			
 			writer.WritePrivateField("dataIndex", instance);
-			writer.WriteProperty("DynamicSpec", instance.DynamicSpec, ES3Internal.ES3TypeMgr.GetOrCreateES3Type(typeof(Common.Spec)));
 			writer.WriteProperty("UpgradeLevel", instance.UpgradeLevel, ES3Type_int.Instance);
+			writer.WriteProperty("RelicTable", instance.RelicTable, ES3Internal.ES3TypeMgr.GetOrCreateES3Type(typeof(RelicTable)));
 		}
 
 		protected override void ReadObject<T>(ES3Reader reader, object obj)
@@ -32,11 +33,11 @@ namespace ES3Types
 					case "dataIndex":
 					instance = (Common.Equipments.EquipmentEntity)reader.SetPrivateField("dataIndex", reader.Read<DataIndex>(), instance);
 					break;
-					case "DynamicSpec":
-						instance.DynamicSpec = reader.Read<Common.Spec>();
-						break;
 					case "UpgradeLevel":
 						instance.UpgradeLevel = reader.Read<System.Int32>(ES3Type_int.Instance);
+						break;
+					case "RelicTable":
+						instance.RelicTable = reader.Read<RelicTable>();
 						break;
 					default:
 						reader.Skip();

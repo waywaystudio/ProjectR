@@ -6,7 +6,7 @@ using Sirenix.OdinInspector.Editor;
 
 namespace Common.Editor
 {
-    public class StatDrawer : OdinAttributeProcessor<Stat>
+    public class StatEntityDrawer : OdinAttributeProcessor<StatEntity>
     {
         public override void ProcessSelfAttributes(InspectorProperty property, List<Attribute> attributes)
         {
@@ -38,7 +38,7 @@ namespace Common.Editor
         }
     }
     
-    public class SpecDrawer : OdinAttributeProcessor<Spec>
+    public class StatSpecDrawer : OdinAttributeProcessor<StatSpec>
     {
         public override void ProcessSelfAttributes(InspectorProperty property, List<Attribute> attributes)
         {

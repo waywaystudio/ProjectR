@@ -18,7 +18,7 @@ namespace Common.Characters
         public void Initialize()
         {
             StatTable.Clear();
-            StatTable.Add(characterData.StaticStatTable);
+            StatTable.RegisterTable(characterData.StaticStatTable);
             // Add More Static Specs and StatTable such as, PlayerCamp Buff
 
             Hp.StatTable       = StatTable;

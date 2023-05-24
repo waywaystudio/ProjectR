@@ -16,35 +16,35 @@ MonoBehaviour:
   constEntity:
     classType: 24
     characterName: Ives
-    defaultSpec:
+    defaultStatSpec:
       statList:
-      - statType: 1
+      - statType: 2001
         statKey: ConstStatKey
         value: 100
-      - statType: 2
+      - statType: 2002
         statKey: ConstStatKey
         value: 70
-      - statType: 3
+      - statType: 2003
         statKey: ConstStatKey
         value: 5
-      - statType: 5
+      - statType: 2005
         statKey: ConstStatKey
         value: 5
-      - statType: 8
+      - statType: 2008
         statKey: ConstStatKey
         value: 12
-      - statType: 9
+      - statType: 2009
         statKey: ConstStatKey
         value: 7
-      - statType: 11
+      - statType: 2010
         statKey: ConstStatKey
         value: 60
-      - statType: 12
+      - statType: 2011
         statKey: ConstStatKey
         value: 1
-      - statType: 13
+      - statType: 2012
         statKey: ConstStatKey
         value: 1
     defaultSkillList: 4f5dc600505dc600515dc600525dc600
   equipmentEntity:
-    initialEquipmentIndexList: 8d0b4101cd4d50010d905f014dd26e018d147e01cd568d01
+    initialEquipmentIndexList: 720f4101b2515001f2935f0132d66e0172187e01b25a8d01

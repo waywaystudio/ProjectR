@@ -6,7 +6,7 @@ namespace Character.Adventurers.Knight.StatusEffect
 {
     public class ArmorCrash : StatusEffectComponent
     {
-        [SerializeField] private Stat armorReduce = new(StatType.Armor, "ArmorCrashDebBuff", -50);
+        [SerializeField] private StatEntity armorReduce = new(StatType.Armor, "ArmorCrashDebBuff", -50);
 
         public override void Initialize(ICombatProvider provider)
         {

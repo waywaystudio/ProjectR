@@ -117,13 +117,12 @@ MonoBehaviour:
   priority: 3
   range: 0
   angle: 0
+  animationKey: liberation
   targetLayer:
     serializedVersion: 2
     m_Bits: 128
-  icon: {fileID: 21300000, guid: 40f7257cd353b9143b22df354bf239eb, type: 3}
   description: Starts combat by attacking a target with a melee weapon.
-  isRigid: 0
-  animationKey: liberation
+  icon: {fileID: 21300000, guid: 40f7257cd353b9143b22df354bf239eb, type: 3}
 --- !u!114 &4756535447479527187
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -51,7 +51,7 @@ public partial class Database
 
         sheetDataList.ForEach(x => x.Index = x.name.Replace("Data", "").ToEnum<DataIndex>());
         sheetDataList.Sort((dataA, dataB) => dataA.Index.CompareTo(dataB.Index));
-            
+        
         UnityEditor.AssetDatabase.Refresh();
     }
         
@@ -70,6 +70,7 @@ public partial class Database
         materialSpriteData.EditorSetUp();
     }
         
+    // ReSharper disable once UnusedMember.Local
     private void OpenSpreadSheetPanel() 
         => UnityEditor.EditorApplication.ExecuteMenuItem("Tools/UnityGoogleSheet");
         

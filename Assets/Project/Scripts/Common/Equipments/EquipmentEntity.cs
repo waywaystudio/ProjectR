@@ -7,23 +7,26 @@ namespace Common.Equipments
     public class EquipmentEntity
     {
         [SerializeField] private DataIndex dataIndex;
-        [SerializeField] private CombatClassType availableClassType;
         [SerializeField] private string itemName;
         [SerializeField] private Sprite icon;
-        [SerializeField] private Spec constSpec = new();
-
+        [SerializeField] private StatSpec constStatSpec = new();
+        
         public DataIndex DataIndex { get => dataIndex; set => dataIndex = value; }
-        public CombatClassType AvailableClassType { get => availableClassType; set => availableClassType = value; }
         public EquipType EquipType => (EquipType)dataIndex.GetCategory();
         public string ItemName { get => itemName; set => itemName = value; }
-        public string SerializeValue => $"{EquipType.ToString()}.{itemName}";
-        public int UpgradeLevel { get; set; }
         public Sprite Icon { get => icon; set => icon = value; }
-        public Spec DynamicSpec { get; set; } = new();
-        public Spec ConstSpec { get => constSpec; set => constSpec = value; }
-        public Spec Spec => constSpec + DynamicSpec;
-        // Vice Spec
+        public StatSpec ConstStatSpec { get => constStatSpec; set => constStatSpec = value; }
+        
+        /* Upgrade */
+        public int UpgradeLevel { get; set; }
+        public StatSpec UpgradeStatSpec { get; set; }
 
+
+        /* Relic */ 
+        public RelicTable RelicTable { get; set; } = new();
+        public EthosSpec RelicEthosSpec => RelicTable.RelicEthos;
+        public StatSpec RelicStatSpec => RelicTable.EnchantSpec;
+        public RelicType CurrentRelicType => RelicTable.CurrentRelicType;
 
         public EquipmentEntity() { }
         public EquipmentEntity(DataIndex dataIndex)
@@ -35,17 +38,25 @@ namespace Common.Equipments
         public void Load(DataIndex dataIndex)
         {
             SetEntity(dataIndex);
-            // Upgrade(UpgradeLevel);
+            ChangeRelic(CurrentRelicType);
+            Upgrade();
         }
 
-        public void SetEntity(DataIndex dataIndex)
+        public void ChangeRelic(RelicType type)
+        {
+            // if (!RelicTable.IsUnlocked(type)) return;
+            RelicTable.ChangeTo(type);
+        }
+
+        public void Upgrade()
+        {
+            
+        }
+        
+        
+        private void SetEntity(DataIndex dataIndex)
         {
             EquipmentUtility.ImportEquipment(dataIndex, this);
         }
-
-        // public void Upgrade()
-        // {
-        //     
-        // }
     }
 }

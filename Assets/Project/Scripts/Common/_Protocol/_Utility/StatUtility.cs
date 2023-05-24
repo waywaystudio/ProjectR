@@ -13,7 +13,6 @@ namespace Common
             StatType.Retention      => $"{value:F1}",
             StatType.Armor          => value.ToString("0"),
             StatType.MoveSpeed      => value.ToString("0"),
-            StatType.MaxHp          => value.ToString("0"),
             StatType.MaxResource    => value.ToString("0"),
             StatType.MinDamage      => value.ToString("0"),
             StatType.MaxDamage      => value.ToString("0"),

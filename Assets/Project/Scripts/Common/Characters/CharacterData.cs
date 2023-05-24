@@ -7,7 +7,7 @@ namespace Common.Characters
     /*
      * CharacterData 는 Prefab과 UI에서 사용하는 핵심 데이타.
      * 따라서 편의성 함수들이 존재 해야함.
-     */
+     * */
     public class CharacterData : ScriptableObject, ISavable, IEditable
     {
         [SerializeField] private DataIndex characterIndex;
@@ -16,14 +16,18 @@ namespace Common.Characters
 
         public DataIndex DataIndex => characterIndex;
         public CombatClassType ClassType => constEntity.ClassType;
+        public IEnumerable<DataIndex> SkillList => constEntity.DefaultSkillList;
+        
         public CharacterConstEntity ConstEntity => constEntity;
         public CharacterEquipmentEntity EquipmentEntity => equipmentEntity;
 
-        public List<DataIndex> SkillList => constEntity.DefaultSkillList;
         public StatTable StaticStatTable { get; set; } = new();
+        public EthosTable StaticEthosTable => equipmentEntity.EthosTable;
 
         public string GetStatTextValue(StatType type) => StaticStatTable.GetStatValue(type).ToStatUIValue(type);
+        
         public float GetStatValue(StatType     type) => StaticStatTable.GetStatValue(type);
+        
         public void Save()
         {
             equipmentEntity.Save(characterIndex.ToString());
@@ -34,8 +38,13 @@ namespace Common.Characters
             equipmentEntity.Load(characterIndex.ToString());
             
             StaticStatTable.Clear();
-            StaticStatTable.Add(ConstEntity.DefaultSpec);
-            StaticStatTable.Add(EquipmentEntity.EquipmentsStatTable);
+            StaticStatTable.Add(constEntity.DefaultStatSpec);
+            StaticStatTable.RegisterTable(equipmentEntity.StatTable);
+        }
+
+        public void ChangeEquipmentRelic(EquipSlotIndex slotType, RelicType relicType)
+        {
+            equipmentEntity.ChangeRelic(slotType, relicType);
         }
 
 

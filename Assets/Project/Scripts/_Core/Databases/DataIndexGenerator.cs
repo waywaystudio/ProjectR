@@ -39,7 +39,7 @@ public enum DataIndex
         private static void WriteIDCode()
         {
             var dataList = Database.SheetDataList;
-            var builder = new StringBuilder();
+            var builder  = new StringBuilder();
             
             builder.AppendLine("\tNone = 0,");
             builder.AppendLine("");

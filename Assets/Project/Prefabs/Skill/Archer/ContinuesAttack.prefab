@@ -118,14 +118,14 @@ MonoBehaviour:
   behaviourMask: 32
   ignorableMask: 3
   priority: 2
+  range: 30
+  angle: 6
+  animationKey: continuesAttack
   targetLayer:
     serializedVersion: 2
     m_Bits: 256
   description: Starts combat by attacking a target with a melee weapon.
-  animationKey: continuesAttack
   icon: {fileID: 21300000, guid: 126effccf14aace4fa7015d10c4ea912, type: 3}
-  range: 30
-  angle: 6
 --- !u!114 &7026212661829411919
 MonoBehaviour:
   m_ObjectHideFlags: 0

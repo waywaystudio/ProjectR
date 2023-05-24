@@ -49,6 +49,6 @@ MonoBehaviour:
   icon: {fileID: 21300000, guid: 8577a2b57b7035f478ff079c8bfb7699, type: 3}
   duration: 8
   armorReduce:
-    statType: 6
-    applyType: 2
+    statType: 2008
+    statKey: ArmorCrashDebBuff
     value: 50

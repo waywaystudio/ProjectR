@@ -5,7 +5,7 @@ namespace Common.Execution
     public class DamageExecutor : ExecuteComponent, IEditable
     {
         [SerializeField] private DataIndex actionCode;
-        [SerializeField] private Spec damageSpec;
+        [SerializeField] private StatSpec damageSpec;
 
         private const string DamageExecutorKey = "DamageExecutorKey"; 
 

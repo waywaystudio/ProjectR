@@ -152,12 +152,12 @@ MonoBehaviour:
   actionCode: 13000001
   damageSpec:
     statList:
-    - statType: 1
+    - statType: 2001
       statKey: DamageExecutorKey
       value: 15
-    - statType: 3
+    - statType: 2003
       statKey: DamageExecutorKey
       value: 0
-    - statType: 4
+    - statType: 2004
       statKey: DamageExecutorKey
       value: 0

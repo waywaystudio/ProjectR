@@ -16,35 +16,35 @@ MonoBehaviour:
   constEntity:
     classType: 6
     characterName: Vesta
-    defaultSpec:
+    defaultStatSpec:
       statList:
-      - statType: 1
+      - statType: 2001
         statKey: ConstStatKey
         value: 100
-      - statType: 2
+      - statType: 2002
         statKey: ConstStatKey
         value: 80
-      - statType: 3
+      - statType: 2003
         statKey: ConstStatKey
         value: 10
-      - statType: 5
+      - statType: 2005
         statKey: ConstStatKey
         value: 5
-      - statType: 8
+      - statType: 2008
         statKey: ConstStatKey
         value: 12
-      - statType: 9
+      - statType: 2009
         statKey: ConstStatKey
         value: 8
-      - statType: 11
+      - statType: 2010
         statKey: ConstStatKey
         value: 100
-      - statType: 12
+      - statType: 2011
         statKey: ConstStatKey
         value: 1
-      - statType: 13
+      - statType: 2012
         statKey: ConstStatKey
         value: 1
     defaultSkillList: 4b5dc6004c5dc6004d5dc6004e5dc600
   equipmentEntity:
-    initialEquipmentIndexList: 79e44001b9265001f9685f0139ab6e0179ed7d01b92f8d01
+    initialEquipmentIndexList: 5fe840019f2a5001df6c5f011faf6e015ff17d019f338d01

@@ -117,14 +117,14 @@ MonoBehaviour:
   behaviourMask: 32
   ignorableMask: 3
   priority: 4
+  range: 40
+  angle: 8
+  animationKey: aiming
   targetLayer:
     serializedVersion: 2
     m_Bits: 256
   description: Starts combat by attacking a target with a melee weapon.
-  animationKey: aiming
   icon: {fileID: 21300000, guid: 125357d743831a743b704a4022fac076, type: 3}
-  range: 40
-  angle: 8
 --- !u!114 &1092632227517157166
 MonoBehaviour:
   m_ObjectHideFlags: 0

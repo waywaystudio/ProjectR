@@ -125,7 +125,7 @@ MonoBehaviour:
   animationKey: casting
   targetLayer:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 128
   description: Starts combat by attacking a target with a melee weapon.
   icon: {fileID: 21300000, guid: fc4e83da78abc734b8dd9673f479ba4a, type: 3}
 --- !u!114 &1227390470127866362
@@ -144,13 +144,13 @@ MonoBehaviour:
   actionCode: 13000006
   damageSpec:
     statList:
-    - statType: 1
+    - statType: 2001
       statKey: DamageExecutorKey
       value: 36
-    - statType: 3
+    - statType: 2003
       statKey: DamageExecutorKey
       value: 0
-    - statType: 4
+    - statType: 2004
       statKey: DamageExecutorKey
       value: 0
 --- !u!114 &4534168677478532336

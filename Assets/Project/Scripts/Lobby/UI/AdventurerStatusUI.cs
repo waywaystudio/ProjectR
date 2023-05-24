@@ -47,7 +47,7 @@ namespace Lobby.UI
             });
             
             // Equipment Drawer
-            adventurerData.EquipmentEntity.EquipmentEntities.ForEach(equipment =>
+            adventurerData.EquipmentEntity.EquipmentTable.ForEach(equipment =>
             {
                 GetEquipmentUI(equipment.Key).SetEquipmentInfoUI(equipment.Value);
             });

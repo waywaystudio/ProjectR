@@ -116,14 +116,14 @@ MonoBehaviour:
   behaviourMask: 32
   ignorableMask: 3
   priority: 4
+  range: 0
+  angle: 0
+  animationKey: attack
   targetLayer:
     serializedVersion: 2
     m_Bits: 128
   description: Starts combat by attacking a target with a melee weapon.
-  animationKey: attack
   icon: {fileID: 21300000, guid: 66dd4d17749630548bd562332cf77491, type: 3}
-  range: 50
-  angle: 0
 --- !u!114 &8791721430062155317
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -142,8 +142,6 @@ MonoBehaviour:
     prefab: {fileID: 8333227002716821657, guid: ae083ec149c3daa4fb7146db6fd69715, type: 3}
     maxCount: 2
     syncObjectActivity: 1
-  prefabReference: {fileID: 8333227002716821657, guid: ae083ec149c3daa4fb7146db6fd69715, type: 3}
-  poolCapacity: 2
 --- !u!114 &2567593440413624352
 MonoBehaviour:
   m_ObjectHideFlags: 0

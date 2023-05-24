@@ -1,3 +1,5 @@
+using UnityEngine;
+
 namespace Common
 {
     public enum MaterialType
@@ -32,6 +34,17 @@ namespace Common
         public static DataIndex ConvertToDataIndex(this MaterialType materialType)
         {
             return (DataIndex)materialType;
+        }
+
+        public static MaterialType ConvertToMaterialType(this DataIndex dataIndex)
+        {
+            if (dataIndex.GetCategory() != DataIndex.Material)
+            {
+                Debug.LogError($"Can't Convert {dataIndex} to MaterialType. return None");
+                return MaterialType.None;
+            }
+
+            return (MaterialType)dataIndex;
         }
     }
 }

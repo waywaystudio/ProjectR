@@ -19,12 +19,15 @@ namespace Common.Editor
         
         public override void ProcessChildMemberAttributes(InspectorProperty parentProperty, MemberInfo member, List<Attribute> attributes)
         {
-            if (member.Name == "dataIndex")
+            if (member.Name == "icon")
             {
                 attributes.Add(new HideLabelAttribute());
-                attributes.Add(new VerticalGroupAttribute("EquipmentEntity/Entity"));
+                attributes.Add(new PropertyOrderAttribute(-1f));
+                attributes.Add(new HorizontalGroupAttribute("EquipmentEntity", 0.1f));
+                attributes.Add(new PreviewFieldAttribute(ObjectFieldAlignment.Center));
             }
-            if (member.Name == "availableClassType")
+            
+            if (member.Name == "dataIndex")
             {
                 attributes.Add(new HideLabelAttribute());
                 attributes.Add(new VerticalGroupAttribute("EquipmentEntity/Entity"));
@@ -34,19 +37,18 @@ namespace Common.Editor
                 attributes.Add(new HideLabelAttribute());
                 attributes.Add(new VerticalGroupAttribute("EquipmentEntity/Entity"));
             }
-            if (member.Name == "icon")
-            {
-                attributes.Add(new HideLabelAttribute());
-                attributes.Add(new PropertyOrderAttribute(-1f));
-                attributes.Add(new HorizontalGroupAttribute("EquipmentEntity", 0.15f));
-                attributes.Add(new PreviewFieldAttribute(ObjectFieldAlignment.Center));
-            }
             if (member.Name == "constSpec")
             {
                 attributes.Add(new HideLabelAttribute());
-                attributes.Add(new HorizontalGroupAttribute("EquipmentEntity", 0.5f));
+                attributes.Add(new VerticalGroupAttribute("EquipmentEntity/Entity"));
             }
             
+            if (member.Name == "RelicTable")
+            {
+                attributes.Add(new HideLabelAttribute());
+                attributes.Add(new ShowInInspectorAttribute());
+                attributes.Add(new HorizontalGroupAttribute("EquipmentEntity", 0.5f));
+            }
         }
     }
 }
