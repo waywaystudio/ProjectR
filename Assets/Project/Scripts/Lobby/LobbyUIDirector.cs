@@ -1,3 +1,4 @@
+using Lobby.UI.Forge;
 using UnityEngine;
 
 namespace Lobby
@@ -6,6 +7,19 @@ namespace Lobby
     {
         [SerializeField] private GameObject serializePanel;
         [SerializeField] private GameObject forgePanel;
+        
+        // SerializeManager
+        // BossSelectManager (MapManager)
+        [SerializeField] private ForgeUI forge;
+
+        public ForgeUI Forge => forge;
+
+
+        public void Initialize()
+        {
+            forge.Initialize();
+        }
+        
 
         public void DeActivePanels()
         {
@@ -21,8 +35,10 @@ namespace Lobby
 #if UNITY_EDITOR
         public void EditorSetUp()
         {
-            serializePanel = transform.Find("Serialize").gameObject;
-            forgePanel     = transform.Find("Forge").gameObject;
+            serializePanel =   transform.Find("Serialize").gameObject;
+            forgePanel     =   transform.Find("Forge").gameObject;
+
+            forge     ??= GetComponentInChildren<ForgeUI>();
         }
 #endif
     }

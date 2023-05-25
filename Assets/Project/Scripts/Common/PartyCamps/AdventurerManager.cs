@@ -10,10 +10,8 @@ namespace Common.PartyCamps
         [SerializeField] private List<CharacterData> characterDataList;
 
         public List<CharacterData> GetAllData() => characterDataList;
-        public CharacterData GetData(CombatClassType type) =>
-            characterDataList.TryGetElement(data => data.ClassType == type);
-        public CharacterData GetData(DataIndex type) =>
-            characterDataList.TryGetElement(data => data.DataIndex == type);
+        public CharacterData GetData(CombatClassType type) => characterDataList.TryGetElement(data => data.ClassType == type);
+        public CharacterData GetData(DataIndex type) => characterDataList.TryGetElement(data => data.DataIndex == type);
 
         public CharacterData GetNextData(CharacterData currentData) => characterDataList.GetNext(currentData);
         public CharacterData GetPreviousData(CharacterData currentData) => characterDataList.GetPrevious(currentData);

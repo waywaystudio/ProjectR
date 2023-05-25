@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using Common.Equipments;
 using Serialization;
 using UnityEngine;
 
@@ -24,9 +25,9 @@ namespace Common.Characters
         public StatTable StaticStatTable { get; set; } = new();
         public EthosTable StaticEthosTable => equipmentEntity.EthosTable;
 
-        public string GetStatTextValue(StatType type) => StaticStatTable.GetStatValue(type).ToStatUIValue(type);
-        
-        public float GetStatValue(StatType     type) => StaticStatTable.GetStatValue(type);
+        public string GetStatTextValue(StatType            type) => StaticStatTable.GetStatValue(type).ToStatUIValue(type);
+        public float GetStatValue(StatType                 type) => StaticStatTable.GetStatValue(type);
+        public EquipmentEntity GetEquipment(EquipSlotIndex slot) => EquipmentEntity.GetEquipment(slot);
         
         public void Save()
         {

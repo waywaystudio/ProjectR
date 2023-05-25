@@ -1234,6 +1234,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 4723975105097867993}
     - target: {fileID: -7836975085712377097, guid: 89b7f126af484b44fa7eba5693a04ec0, type: 3}
+      propertyPath: range
+      value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: -7836975085712377097, guid: 89b7f126af484b44fa7eba5693a04ec0, type: 3}
       propertyPath: colliding
       value: 
       objectReference: {fileID: 0}

@@ -18,7 +18,7 @@ namespace Lobby.Stage
             if (other.TryGetComponent(out Adventurer player) && player == LobbyDirector.Knight)
             {
                 // Add Event to Interaction;
-                LobbyDirector.InputDirector.InteractAction = interactEvent;
+                LobbyDirector.Input.InteractAction = interactEvent;
                 balloon.gameObject.SetActive(true);
             }
         }
@@ -28,8 +28,8 @@ namespace Lobby.Stage
             if (other.TryGetComponent(out Adventurer player) && player == LobbyDirector.Knight)
             {
                 // Remove Event to Interaction;
-                LobbyDirector.InputDirector.InteractAction = null;
-                LobbyDirector.UIDirector.DeActivePanels();
+                LobbyDirector.Input.InteractAction = null;
+                LobbyDirector.UI.DeActivePanels();
                 balloon.gameObject.SetActive(false);
             }
         }

@@ -4,30 +4,86 @@ using System.Linq;
 
 public static class EnumExtension
 {
-    public static T Next<T>(this T src) where T : struct
+    public static T Next<T>(this T source) where T : struct
     {
-        if (!typeof(T).IsEnum) throw new ArgumentException($"Argument {typeof(T).FullName} is not an Enum");
+        if (!typeof(T).IsEnum) 
+        {
+            throw new ArgumentException($"Argument {typeof(T).FullName} is not an Enum");
+        }
 
-        var arr = (T[])Enum.GetValues(src.GetType());
-        var j   = Array.IndexOf(arr, src) + 1;
-        return arr.Length ==j ? arr[0] : arr[j];
+        var arr = (T[])Enum.GetValues(source.GetType());
+
+        var nextIndex = Array.IndexOf(arr, source) + 1;
+        return nextIndex >= arr.Length ? arr[0] : arr[nextIndex];
+    }
+    
+    public static T NextExceptNone<T>(this T source) where T : struct
+    {
+        if (!typeof(T).IsEnum) 
+        {
+            throw new ArgumentException($"Argument {typeof(T).FullName} is not an Enum");
+        }
+
+        var arr = (T[])Enum.GetValues(source.GetType());
+
+        if (arr.Length < 2) 
+        {
+            return arr[0];
+        }
+    
+        var nextIndex = Array.IndexOf(arr, source) + 1;
+        return nextIndex >= arr.Length ? arr[1] : arr[nextIndex];
+    }
+
+    public static T PrevExceptNone<T>(this T source) where T : struct
+    {
+        if (!typeof(T).IsEnum) 
+        {
+            throw new ArgumentException($"Argument {typeof(T).FullName} is not an Enum");
+        }
+
+        var arr = (T[])Enum.GetValues(source.GetType());
+
+        if (arr.Length < 2) 
+        {
+            return arr[0];
+        }
+    
+        var prevIndex = Array.IndexOf(arr, source) - 1;
+        return prevIndex == 0 ? arr[^1] : arr[prevIndex];
     }
 
     public static T RandomEnum<T>(this T source) where T : Enum
     {
-        var random = new Random();
-        var values = Enum.GetValues(typeof(T)).Cast<T>().ToList();
-
-        // Exclude the None value if it exists
-        var noneValue = Enum.Parse(typeof(T), "None", true);
-        if (noneValue != null)
+        if (!typeof(T).IsEnum) 
         {
-            values.Remove((T)noneValue);
+            throw new ArgumentException($"Argument {typeof(T).FullName} is not an Enum");
+        }
+
+        var arr = (T[])Enum.GetValues(source.GetType());
+
+        var randomIndex = UnityEngine.Random.Range(0, arr.Length);
+        
+        return arr[randomIndex];
+    }
+    
+    public static T RandomEnumExceptNone<T>(this T source) where T : Enum
+    {
+        if (!typeof(T).IsEnum) 
+        {
+            throw new ArgumentException($"Argument {typeof(T).FullName} is not an Enum");
+        }
+
+        var arr = (T[])Enum.GetValues(source.GetType());
+
+        if (arr.Length < 2)
+        {
+            return arr[0];
         }
         
-        values.Remove((T)noneValue);
-
-        return values[random.Next(values.Count)];
+        var randomIndex = UnityEngine.Random.Range(1, arr.Length);
+        
+        return arr[randomIndex];
     }
 
     /// <summary>

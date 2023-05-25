@@ -66,7 +66,7 @@ namespace Common.Characters
         public void Test() => ChangeRelic(EquipSlotIndex.Weapon, RelicType.None.RandomEnum());
 
 
-        private EquipmentEntity GetEquipment(EquipSlotIndex slotIndex)
+        public EquipmentEntity GetEquipment(EquipSlotIndex slotIndex)
         {
             if (!EquipmentTable.TryGetValue(slotIndex, out var result))
             {

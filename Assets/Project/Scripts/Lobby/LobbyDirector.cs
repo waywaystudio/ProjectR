@@ -1,10 +1,13 @@
 using Character.Adventurers;
-using Lobby.UI;
+using Common;
+using Lobby.UI.Forge;
 using Singleton;
 using UnityEngine;
 
 namespace Lobby
 {
+    using UI;
+    
     public class LobbyDirector : MonoSingleton<LobbyDirector>, IEditable
     {
         [SerializeField] private LobbyCameraDirector cameraDirector;
@@ -12,12 +15,20 @@ namespace Lobby
         [SerializeField] private LobbyInputDirector inputDirector;
         [SerializeField] private LobbyUIDirector uiDirector;
 
-        public static LobbyCameraDirector CameraDirector => Instance.cameraDirector;
-        public static LobbyCastingDirector CastingDirector => Instance.castingDirector;
-        public static LobbyInputDirector InputDirector => Instance.inputDirector;
-        public static LobbyUIDirector UIDirector => Instance.uiDirector;
+        public static LobbyCameraDirector Camera => Instance.cameraDirector;
+        public static LobbyCastingDirector Casting => Instance.castingDirector;
+        public static LobbyInputDirector Input => Instance.inputDirector;
+        public static LobbyUIDirector UI => Instance.uiDirector;
 
+        /*
+         * Accessor
+         */
+        /* Casting */
         public static Adventurer Knight { get; set; }
+
+        /* UI */
+        public ForgeUI ForgeUI => UI.Forge;
+              
 
         // TODO. will be UIDirector
         [SerializeField] private SaveLoadFrame saveLoadFrame;
@@ -32,9 +43,10 @@ namespace Lobby
 
         protected override void Awake()
         {
-            castingDirector.Initialize();
+            castingDirector.Initialize(); // Casting Director First
             cameraDirector.Initialize(Knight.transform);
             inputDirector.Initialize(Knight);
+            uiDirector.Initialize();
         }
 
 

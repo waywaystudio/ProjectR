@@ -74,16 +74,6 @@ namespace Lobby.UI
             equipmentName.text = "Empty";
         }
 
-        private void Awake()
-        {
-            // if (Equipment == null 
-            //     // || Equipment.Info == null
-            //     )
-            // {
-            //     SetDefault();
-            // }
-        }
-
 
 #if UNITY_EDITOR
         public void EditorSetUp()
