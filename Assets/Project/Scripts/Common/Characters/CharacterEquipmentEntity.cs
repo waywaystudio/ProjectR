@@ -63,6 +63,21 @@ namespace Common.Characters
             EthosTable.Add(equipmentEntity.RelicEthosSpec);
         }
 
+        public int GetRelicPieceCount(RelicType relicType)
+        {
+            var result = 0;
+            
+            EquipmentTable.Values.ForEach(equipEntity =>
+            {
+                if (equipEntity.CurrentRelicType == relicType)
+                {
+                    result ++;
+                }
+            });
+
+            return result;
+        }
+
         public void Test() => ChangeRelic(EquipSlotIndex.Weapon, RelicType.None.RandomEnum());
 
 

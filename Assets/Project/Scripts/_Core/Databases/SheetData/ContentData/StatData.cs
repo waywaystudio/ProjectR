@@ -7,7 +7,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 
-namespace Databases.SheetData.GlobalData
+namespace Databases.SheetData.ContentData
 {    
     public partial class StatData : DataObject<StatData.Stat>
     {
@@ -24,15 +24,15 @@ namespace Databases.SheetData.GlobalData
         
 #region Editor Functions.
     #if UNITY_EDITOR
-        public readonly string SpreadSheetID = "1ql3syYiTkqAEe3caNCL2zhg2EMIivp9Q4MZACx2e6iY";
-        public readonly string SpreadSheetName = "GlobalData";
+        public readonly string SpreadSheetID = "1yO5sJqxMvySDiihls5pwiHQWoJGysrT7LBmL16HhHRM";
+        public readonly string SpreadSheetName = "ContentData";
         public readonly string WorkSheetName = "Stat";    
   
         private void LoadFromJson()
         {
     
             List = UnityGoogleSheet.Editor.Core.UgsEditorUtility
-                .LoadFromJson<Stat>("GlobalData"); 
+                .LoadFromJson<Stat>("ContentData"); 
         }
         
         private void LoadFromGoogleSpreadSheet()

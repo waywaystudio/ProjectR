@@ -36,6 +36,9 @@ public enum DataIndex
 	Boot = 26,
 	Trinket = 27,
 	Material = 28,
+	Potion = 29,
+	Vilestone = 30,
+	Relic = 31,
 
 	/* CombatClassData */
 	Knight = 12000001,
@@ -73,24 +76,24 @@ public enum DataIndex
 	Horror = 14000005,
 
 	/* BossData */
-	LoadStonehelm = 17105001,
-	Maelrift = 17107001,
-	Valtoria = 17106001,
-	Phantasmaraud = 17108001,
-	TimorusArcanis = 17110001,
-	GeneralGallant = 17109001,
-	Vortex = 17111001,
-	Vex = 17113001,
-	Vazrith = 17112001,
-	Isolde = 17114001,
-	Fracturemancer = 17116001,
-	Painbrush = 17115001,
-	EyeofHubris = 17117001,
-	Destinstringer = 17119001,
-	Luxspherion = 17118001,
-	DrRavencroft = 17120001,
-	Mortimus = 17122001,
-	LadySerenavaine = 17121001,
+	LoadStonehelm = 17050001,
+	Maelrift = 17070001,
+	Valtoria = 17060001,
+	Phantasmaraud = 17080001,
+	TimorusArcanis = 17100001,
+	GeneralGallant = 17090001,
+	Vortex = 17110001,
+	Vex = 17130001,
+	Vazrith = 17120001,
+	Isolde = 17140001,
+	Fracturemancer = 17160001,
+	Painbrush = 17150001,
+	EyeofHubris = 17170001,
+	Destinstringer = 17190001,
+	Luxspherion = 17180001,
+	DrRavencroft = 17200001,
+	Mortimus = 17220001,
+	LadySerenavaine = 17210001,
 
 	/* EthosData */
 	Vice = 1900,
@@ -282,6 +285,14 @@ public enum DataIndex
 	Viciousshard = 28081022,
 	Viciousstone = 28082023,
 	Viciouscrystal = 28083024,
+
+	/* RelicData */
+	Vowed = 31000006,
+	Valorous = 31000009,
+	Veterans = 31000012,
+	Vital = 31000015,
+	Verdicts = 31000018,
+	Votive = 31000021,
 
 	End = int.MaxValue
         

@@ -23,6 +23,7 @@ namespace Editor
                    HideAddButton = true,
                    HideRemoveButton = true,
                    IsReadOnly = true,
+                   NumberOfItemsPerPage = 32,
                 });
             }
 

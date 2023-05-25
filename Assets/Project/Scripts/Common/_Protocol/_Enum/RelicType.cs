@@ -2,20 +2,17 @@ namespace Common
 {
     public enum RelicType
     {
-        None = 0,
-        Vow = DataIndex.Fortitude,
-        Valor = DataIndex.Valor,
-        Veterans = DataIndex.Cunning,
-        Vital = DataIndex.Creativity,
-        Verdicts = DataIndex.Wisdom,
-        Votive = DataIndex.Benevolence,
+        None     = 0,
+        Vowed    = DataIndex.Vowed,
+        Valorous = DataIndex.Valorous,
+        Veterans = DataIndex.Veterans,
+        Vital    = DataIndex.Vital,
+        Verdicts = DataIndex.Verdicts,
+        Votive   = DataIndex.Votive,
     }
 
     public static class RelicExtension
     {
         public static DataIndex ConvertToDatIndex(this   RelicType relicType) => (DataIndex)relicType;
-        public static EthosType ConvertToVirtues(this    RelicType relicType) => (EthosType)relicType;
-        public static EthosType ConvertToDeficiency(this RelicType relicType) => (EthosType)(relicType - 1);
-        public static EthosType ConvertToExcess(this RelicType relicType) => (EthosType)(relicType + 1);
     }
 }

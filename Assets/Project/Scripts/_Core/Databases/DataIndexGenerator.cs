@@ -46,6 +46,7 @@ public enum DataIndex
             
             dataList.ForEach(x =>
             {
+                if (x.IsNullOrDestroyed()) return;
                 builder.AppendLine($"\t/* {x.name} */");
                 
                 x.KeyList.ForEach(y =>

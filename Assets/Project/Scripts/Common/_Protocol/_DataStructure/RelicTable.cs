@@ -32,8 +32,8 @@ namespace Common
         {
             Table = new Dictionary<RelicType, RelicEntity>
             {
-                { RelicType.Vow, new RelicEntity(RelicType.Vow, StatType.Armor) },
-                { RelicType.Valor, new RelicEntity(RelicType.Valor, StatType.Power) },
+                { RelicType.Vowed, new RelicEntity(RelicType.Vowed, StatType.Armor) },
+                { RelicType.Valorous, new RelicEntity(RelicType.Valorous, StatType.Power) },
                 { RelicType.Veterans, new RelicEntity(RelicType.Veterans, StatType.CriticalChance) },
                 { RelicType.Vital, new RelicEntity(RelicType.Vital, StatType.Mastery) },
                 { RelicType.Verdicts, new RelicEntity(RelicType.Verdicts, StatType.Retention) },
@@ -52,13 +52,13 @@ namespace Common
             public RelicEntity(RelicType type)
             {
                 isUnlocked = false;
-                ethos      = new EthosSpec(type.ConvertToExcess(), "Relic",6);
+                ethos      = new EthosSpec(EthosType.None, "Relic",0);
                 statSpec       = new StatSpec();
             }
             public RelicEntity(RelicType type, StatType stat)
             {
                 isUnlocked = false;
-                ethos      = new EthosSpec(type.ConvertToExcess(), "Relic",6);
+                ethos      = new EthosSpec(EthosType.None, "Relic",0);
                 statSpec   = new StatSpec();
                 statSpec.Add(stat, "Relic", 0.1f);
             }

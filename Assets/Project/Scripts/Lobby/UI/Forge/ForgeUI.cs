@@ -14,7 +14,7 @@ namespace Lobby.UI.Forge
         
         private CombatClassType focusAdventurer = CombatClassType.Knight;
         private EquipSlotIndex focusSlot = EquipSlotIndex.Weapon;
-        private RelicType focusRelic = RelicType.Vow;
+        private RelicType focusRelic = RelicType.Vowed;
         
         
         public CombatClassType FocusAdventurer
