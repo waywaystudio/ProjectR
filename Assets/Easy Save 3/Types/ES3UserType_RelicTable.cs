@@ -17,7 +17,7 @@ namespace ES3Types
 		{
 			var instance = (RelicTable)obj;
 			
-			writer.WriteProperty("Table", instance.Table, ES3Internal.ES3TypeMgr.GetOrCreateES3Type(typeof(System.Collections.Generic.Dictionary<Common.RelicType, RelicTable.RelicEntity>)));
+			writer.WriteProperty("Table", instance.Table, ES3Internal.ES3TypeMgr.GetOrCreateES3Type(typeof(System.Collections.Generic.Dictionary<Common.RelicType, RelicEntity>)));
 			writer.WritePrivateProperty("CurrentRelicType", instance);
 		}
 
@@ -30,7 +30,7 @@ namespace ES3Types
 				{
 					
 					case "Table":
-						instance.Table = reader.Read<System.Collections.Generic.Dictionary<Common.RelicType, RelicTable.RelicEntity>>();
+						instance.Table = reader.Read<System.Collections.Generic.Dictionary<Common.RelicType, RelicEntity>>();
 						break;
 					case "CurrentRelicType":
 					instance = (RelicTable)reader.SetPrivateProperty("CurrentRelicType", reader.Read<Common.RelicType>(), instance);

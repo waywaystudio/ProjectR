@@ -25,5 +25,15 @@ public static class DataIndexUtility
                        .Replace("&", "")
                        .ToPascalCase();
     }
+
+    public static int GetNumberOfDataIndex(this DataIndex indexer, int digit)
+    {
+        return ((int)indexer).GetNumberOfDigits(digit);
+    }
+    
+    public static int GetNumberFromDigitsToDestDigits(this DataIndex indexer, int startDigit, int endDigit)
+    {
+        return ((int)indexer).GetNumberOfFromToDestDigits(startDigit, endDigit);
+    }
 }
 

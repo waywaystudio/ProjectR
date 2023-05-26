@@ -3,7 +3,7 @@ using Common.PartyCamps;
 using TMPro;
 using UnityEngine;
 
-namespace Lobby.UI.Forge
+namespace Lobby.UI.Forge.Evolves
 {
     public class SetRelicDescription : MonoBehaviour, IEditable
     {

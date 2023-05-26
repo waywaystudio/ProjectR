@@ -1,22 +1,23 @@
 using Common;
+using Common.Equipments;
+using Common.PartyCamps;
 using GameEvents;
 using UnityEngine;
 
-namespace Lobby.UI.Forge
+namespace Lobby.UI
 {
     public class ForgeUI : MonoBehaviour, IEditable
     {
-        // AdventurerFrame
         [SerializeField] private GameEvent reloadForgeEvent;
+
+        // [SerializeField] private AdventurerFrame adventurerFrame;
+        // [SerializeField] private EvolveFrame evolveFrame; 
         // InventoryFrame
-        
-        [SerializeField] private EvolveFrame evolveFrame; 
         
         private CombatClassType focusAdventurer = CombatClassType.Knight;
         private EquipSlotIndex focusSlot = EquipSlotIndex.Weapon;
         private RelicType focusRelic = RelicType.Vowed;
-        
-        
+
         public CombatClassType FocusAdventurer
         {
             get => focusAdventurer;
@@ -26,7 +27,6 @@ namespace Lobby.UI.Forge
                 reloadForgeEvent.Invoke();
             }
         }
-        
         public EquipSlotIndex FocusSlot
         {
             get => focusSlot;
@@ -36,7 +36,6 @@ namespace Lobby.UI.Forge
                 reloadForgeEvent.Invoke();
             }
         }
-
         public RelicType FocusRelic
         {
             get => focusRelic;
@@ -47,19 +46,19 @@ namespace Lobby.UI.Forge
             }
         }
 
-
-        public void Initialize()
-        {
-            evolveFrame.Initialize();
-        }
-
+        public EquipmentEntity FocusEquipment => PartyCamp.Characters.GetAdventurerEquipment(FocusAdventurer, FocusSlot);
         
+        public void NextEquipmentSlot() => FocusSlot = FocusSlot.NextExceptNone();
+        public void PrevEquipmentSlot() => FocusSlot = FocusSlot.PrevExceptNone();
+        public void Conversion() => FocusEquipment.Conversion(FocusRelic);
+        public void Enchant() => FocusEquipment.Enchant(FocusRelic);
         
+
 
 #if UNITY_EDITOR
         public void EditorSetUp()
         {
-            evolveFrame ??= GetComponentInChildren<EvolveFrame>();
+            // evolveFrame ??= GetComponentInChildren<EvolveFrame>();
         }
 #endif
     }

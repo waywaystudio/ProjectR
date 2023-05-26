@@ -18,10 +18,8 @@ namespace Common.Characters
         public DataIndex DataIndex => characterIndex;
         public CombatClassType ClassType => constEntity.ClassType;
         public IEnumerable<DataIndex> SkillList => constEntity.DefaultSkillList;
-        
         public CharacterConstEntity ConstEntity => constEntity;
         public CharacterEquipmentEntity EquipmentEntity => equipmentEntity;
-
         public StatTable StaticStatTable { get; set; } = new();
         public EthosTable StaticEthosTable => equipmentEntity.EthosTable;
 

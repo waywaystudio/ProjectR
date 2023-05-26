@@ -16,4 +16,20 @@ namespace Common
         MinDamage = DataIndex.MinDamage,
         MaxDamage = DataIndex.MaxDamage,
     }
+
+    public static class StatExtension
+    {
+        public static bool IsPrimary(this StatType type)
+        {
+            return type is StatType.Power or StatType.Health or StatType.Armor;
+        }
+
+        public static bool IsSecondary(this StatType type)
+        {
+            return type is StatType.CriticalChance 
+                           or StatType.Haste 
+                           or StatType.Mastery 
+                           or StatType.Retention;
+        }
+    }
 }

@@ -16,6 +16,7 @@ namespace Common.Equipments
         public string ItemName { get => itemName; set => itemName = value; }
         public Sprite Icon { get => icon; set => icon = value; }
         public StatSpec ConstStatSpec { get => constStatSpec; set => constStatSpec = value; }
+        public int Tier => dataIndex.GetNumberOfDataIndex(4);
         
         /* Upgrade */
         public int UpgradeLevel { get; set; }
@@ -23,6 +24,7 @@ namespace Common.Equipments
 
 
         /* Relic */ 
+        [Sirenix.OdinInspector.ShowInInspector]
         public RelicTable RelicTable { get; set; } = new();
         public EthosSpec RelicEthosSpec => RelicTable.RelicEthos;
         public StatSpec RelicStatSpec => RelicTable.EnchantSpec;
@@ -52,6 +54,11 @@ namespace Common.Equipments
         {
             
         }
+
+        public void Enchant(RelicType    relicType) => RelicTable.Enchant(relicType, Tier, EquipType.ToString());
+        public void Conversion(RelicType relicType) => RelicTable.Conversion(relicType, Tier, EquipType.ToString());
+
+        public RelicEntity GetRelic(RelicType relicType) => RelicTable.GetRelic(relicType);
         
         
         private void SetEntity(DataIndex dataIndex)

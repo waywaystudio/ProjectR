@@ -1,3 +1,4 @@
+using Lobby.UI;
 using Lobby.UI.Forge;
 using UnityEngine;
 
@@ -17,7 +18,7 @@ namespace Lobby
 
         public void Initialize()
         {
-            forge.Initialize();
+            // forge.Initialize();
         }
         
 

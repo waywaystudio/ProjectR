@@ -47,7 +47,7 @@ namespace Common
         
         public void Clear() => ethosList.Clear();
         
-        public void IterateOverStats(Action<EthosEntity> action) => ethosList.ForEach(action.Invoke);
+        
         
         public int GetEthosValue(EthosType ethosType)
         {
@@ -56,6 +56,8 @@ namespace Common
             return ethos is not null ? ethos.Value : 0;
         }
         
+        public void IterateOverStats(Action<EthosEntity> action) => ethosList.ForEach(action.Invoke);
+        public void IterateOverStats(Action<EthosEntity, int> action) => ethosList.ForEach(action.Invoke);
         public static EthosSpec operator +(EthosSpec a, EthosSpec b)
         {
             var result = new EthosSpec();

@@ -12,6 +12,13 @@ namespace Common.UI
         public StatType StatType => statType;
 
 
+        public void SetInfoUI(StatType statType, string value)
+        {
+            this.statType = statType;
+            
+            SetValue(value);
+        }
+        
         public void SetValue(string value)
         {
             valueText.text = value;
@@ -19,6 +26,8 @@ namespace Common.UI
         
         public void SetValue(StatEntity stat)
         {
+            statType       = stat.StatType;
+            labelText.text = statType.ToString().DivideWords();
             valueText.text = stat.Value.ToStatUIValue(statType);
         }
 
@@ -26,9 +35,6 @@ namespace Common.UI
 #if UNITY_EDITOR
         public void EditorSetUp()
         {
-            if (gameObject.name != statType.ToString()) 
-                gameObject.name = statType.ToString();
-            
             labelText      = transform.Find("Label").GetComponent<TextMeshProUGUI>();
             valueText      = transform.Find("Value").GetComponent<TextMeshProUGUI>();
             labelText.text = statType.ToString();

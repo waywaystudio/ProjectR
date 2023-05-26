@@ -82,5 +82,15 @@ namespace Common
                 }
             }
         }
+
+        /// <summary>
+        /// Vice Stat Enchant of Equipment 
+        /// </summary>
+        public static void EnchantRelic(EthosType ethosType, int tier)
+        {
+        }
+            // relic Type에 따라서 필수 vice 1개 선택
+            // Random으로 2개를 선택. 이 과정에서 필수로 선택된 vice는 제외 // 따라서 반드시 총 3개의 vice가 있음.
+            // 3개의 Vice가 tier * 6 값을 나누어 먹음.
     }
 }

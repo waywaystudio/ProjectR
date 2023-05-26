@@ -21,7 +21,15 @@ namespace Common
         Glove = DataIndex.Glove,
         Bottom = DataIndex.Bottom,
         Boot = DataIndex.Boot,
+    }
+
+    public enum AccessorySlotIndex
+    {
+        None = 0,
         Trinket1 = DataIndex.Trinket * 10 + 1, // == 271,
         Trinket2 = DataIndex.Trinket * 10 + 2, // == 272,
+        Earring,
+        Ring,
+        ViceStone,
     }
 }

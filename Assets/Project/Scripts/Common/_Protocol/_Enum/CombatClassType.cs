@@ -3,8 +3,7 @@ using UnityEngine;
 
 namespace Common
 {
-    [Flags]
-    public enum CombatClassType
+    [Flags] public enum CombatClassType
     {
         None = 0,
         Knight = 1  << 0,
@@ -17,14 +16,22 @@ namespace Common
         Minion = 1  << 30,
         
         /* Preset */
-        Tank = Knight,
-        Melee = Warrior | Rogue,
-        Range = Ranger | Mage,
-        Heal = Priest,
-        Adventurer = Knight | Warrior | Rogue | Ranger | Mage | Priest,
-        Monster = Boss | Minion,
-        
         All = int.MaxValue
+    }
+
+    [Flags] public enum RoleType
+    {
+        Tank = CombatClassType.Knight,
+        Melee = CombatClassType.Warrior | CombatClassType.Rogue,
+        Range = CombatClassType.Ranger   | CombatClassType.Mage,
+        Heal = CombatClassType.Priest,
+        Adventurer = CombatClassType.Knight | 
+                     CombatClassType.Warrior | 
+                     CombatClassType.Rogue | 
+                     CombatClassType.Ranger | 
+                     CombatClassType.Mage | 
+                     CombatClassType.Priest,
+        Monster = CombatClassType.Boss      | CombatClassType.Minion,
     }
 
     public static class CombatClassTypeExtension
@@ -84,7 +91,7 @@ namespace Common
         {
             var typeAsNumber = (int)type;
 
-            return typeAsNumber is > 0 and <= (int)CombatClassType.Adventurer && IsPowerOfTwo(typeAsNumber);
+            return typeAsNumber is > 0 and <= 1 << 6 && IsPowerOfTwo(typeAsNumber);
         }
     }
 }

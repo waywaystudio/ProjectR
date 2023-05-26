@@ -3,11 +3,6 @@ namespace Common
     public enum EthosType
     {
         None            = DataIndex.None           ,
-        Vice            = DataIndex.Vice           ,
-        Virtue          = DataIndex.Virtue         ,
-        Deficiency      = DataIndex.Deficiency     ,
-        Mean            = DataIndex.Mean           ,
-        Excess          = DataIndex.Excess         ,
         Vacillation     = DataIndex.Vacillation    ,
         Fortitude       = DataIndex.Fortitude      ,
         Obstinacy       = DataIndex.Obstinacy      ,

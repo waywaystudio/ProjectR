@@ -34,22 +34,22 @@ namespace Common
         public void Remove(StatEntity stat) => statList.RemoveSafely(stat);
 
         public void Clear() => statList.Clear();
-        
-        public void IterateOverStats(Action<StatEntity> action) => statList.ForEach(action.Invoke);
-        
+
         public float GetStatValue(StatType statType)
         {
             var stat = statList.TryGetElement(element => element.StatType == statType);
 
             return stat is not null ? stat.Value : 0f;
         }
-
+        
+        public void IterateOverStats(Action<StatEntity>      action) => statList.ForEach(action.Invoke);
+        public void IterateOverStats(Action<StatEntity, int> action) => statList.ForEach(action.Invoke);
         public static StatSpec operator +(StatSpec a, StatSpec b)
         {
             var result = new StatSpec();
             
-            a.IterateOverStats(result.Add);
-            b.IterateOverStats(result.Add);
+            a?.IterateOverStats(result.Add);
+            b?.IterateOverStats(result.Add);
 
             return result;
         }

@@ -5,15 +5,14 @@ using UnityEngine;
 
 public class SandBox : MonoBehaviour
 {
-    public StatEntity StatA = new (StatType.CriticalChance, "SandBox1", 13);
-    public StatEntity StatB = new (StatType.CriticalChance, "SandBox2", 7); 
-    public StatEntity StatC;
-    
+    public RelicType relicType;
+    public int endDigit;
+
     public void ShowDebugMessage() => Debug.Log("Is In!");
 
     [Button]
     public void Debugger()
     {
-        
+        Debug.Log($"{relicType.CovertToVirtue().ToString()}");
     }
 }
