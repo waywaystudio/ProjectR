@@ -12,17 +12,17 @@ namespace Raid.UI
         [SerializeField] private Image dps;
         [SerializeField] private Image heal;
 
-        private void SetRoleIcon(CombatClassType role)
+        private void SetRoleIcon(CharacterMask role)
         {
             switch (role)
             {
-                case CombatClassType.Knight : tank.enabled = true;
+                case CharacterMask.Knight : tank.enabled = true;
                     return;
-                case CombatClassType.Rogue : dps.enabled = true;
+                case CharacterMask.Rogue : dps.enabled = true;
                     return;
-                case CombatClassType.Ranger : dps.enabled = true;
+                case CharacterMask.Ranger : dps.enabled = true;
                     return;
-                case CombatClassType.Priest : heal.enabled = true;
+                case CharacterMask.Priest : heal.enabled = true;
                     return;
                 default: Debug.LogError($"role is not exist. input : {role}");
                     return;

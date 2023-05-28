@@ -17,7 +17,7 @@ namespace Lobby.UI.Forge
         public void GetPreviousAdventurerInfo()
         {
             var focusAdventurer = LobbyDirector.UI.Forge.FocusAdventurer;
-            if (OnMoving || focusAdventurer == CombatClassType.Knight) return;
+            if (OnMoving || focusAdventurer == VenturerType.Knight) return;
             
             OnMoving = true;
             
@@ -33,7 +33,7 @@ namespace Lobby.UI.Forge
         public void GetNextAdventurerInfo()
         {
             var focusAdventurer = LobbyDirector.UI.Forge.FocusAdventurer;
-            if (OnMoving || focusAdventurer == CombatClassType.Ranger) return;
+            if (OnMoving || focusAdventurer == VenturerType.Ranger) return;
             
             OnMoving = true;
             
@@ -50,17 +50,17 @@ namespace Lobby.UI.Forge
         
         // TODO. temporary func.
         // 현재 AdventurerUI가 3개 뿐이며, 스크롤이동방식 때문에 .Next() 함수를 사용할 수 없음.
-        private CombatClassType GetNextAdventurer(CombatClassType currentClass) => currentClass switch
+        private VenturerType GetNextAdventurer(VenturerType currentClass) => currentClass switch
         {
-            CombatClassType.Knight => CombatClassType.Rogue,
-            CombatClassType.Rogue  => CombatClassType.Ranger,
-            _ => CombatClassType.None,
+            VenturerType.Knight => VenturerType.Rogue,
+            VenturerType.Rogue  => VenturerType.Ranger,
+            _                   => VenturerType.None,
         };
-        private CombatClassType GetPrevAdventurer(CombatClassType currentClass) => currentClass switch
+        private VenturerType GetPrevAdventurer(VenturerType currentClass) => currentClass switch
         {
-            CombatClassType.Ranger => CombatClassType.Rogue,
-            CombatClassType.Rogue  => CombatClassType.Knight,
-            _                      => CombatClassType.None,
+            VenturerType.Ranger => VenturerType.Rogue,
+            VenturerType.Rogue  => VenturerType.Knight,
+            _                   => VenturerType.None,
         };
         //
 

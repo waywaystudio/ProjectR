@@ -81,12 +81,12 @@ namespace Raid
             var enchantMaterialDropCount = Random.Range(5, 16);
             
             PartyCamp.Inventories.AddMaterial(MaterialType.VowedShard, themeMaterialDropCount);
-            PartyCamp.Inventories.AddMaterial(MaterialType.VerdictiveShard, upgradeMaterialDropCount);
-            PartyCamp.Inventories.AddMaterial(MaterialType.VotiveShard, enchantMaterialDropCount);
+            PartyCamp.Inventories.AddMaterial(MaterialType.VerityShard, upgradeMaterialDropCount);
+            PartyCamp.Inventories.AddMaterial(MaterialType.VenerationShard, enchantMaterialDropCount);
 
             sb.Append($"{MaterialType.VowedShard} {themeMaterialDropCount} Get!\n");
-            sb.Append($"{MaterialType.VerdictiveShard} {upgradeMaterialDropCount} Get!\n");
-            sb.Append($"{MaterialType.VotiveShard} {enchantMaterialDropCount} Get!\n");
+            sb.Append($"{MaterialType.VerityShard} {upgradeMaterialDropCount} Get!\n");
+            sb.Append($"{MaterialType.VenerationShard} {enchantMaterialDropCount} Get!\n");
             
             Debug.Log(sb.ToString());
         }

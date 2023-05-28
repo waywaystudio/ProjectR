@@ -12,9 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9d46965e7263ff84fae1242470b2f113, type: 3}
   m_Name: StatusEffectData
   m_EditorClassIdentifier: 
-  Index: 14
+  Index: 32
   list:
-  - id: 14000001
+  - id: 32000001
     name: ArmorCrash
     isBuff: 0
     targetLayer: enemy
@@ -22,7 +22,7 @@ MonoBehaviour:
     iconFileName: ArmorCrash Sprite
     valueList:
     - 0.1
-  - id: 14000002
+  - id: 32000002
     name: Bleed
     isBuff: 0
     targetLayer: enemy
@@ -31,7 +31,7 @@ MonoBehaviour:
     valueList:
     - 2
     - 4
-  - id: 14000003
+  - id: 32000003
     name: Drain
     isBuff: 1
     targetLayer: ally
@@ -39,7 +39,7 @@ MonoBehaviour:
     iconFileName: Drain Sprite
     valueList:
     - 0.25
-  - id: 14000004
+  - id: 32000004
     name: LivingBomb
     isBuff: 0
     targetLayer: enemy
@@ -48,7 +48,7 @@ MonoBehaviour:
     valueList:
     - 10
     - 50
-  - id: 14000005
+  - id: 32000005
     name: Horror
     isBuff: 0
     targetLayer: enemy

@@ -12,39 +12,39 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7b4303f492ee94242b6af21bbaf702f8, type: 3}
   m_Name: RogueData
   m_EditorClassIdentifier: 
-  characterIndex: 12000003
+  characterIndex: 21030803
   constEntity:
     classType: 4
     characterName: Vesta
     defaultStatSpec:
       statList:
-      - statType: 2001
+      - statType: 13010001
         statKey: ConstStatKey
         value: 100
-      - statType: 2002
+      - statType: 13010002
         statKey: ConstStatKey
         value: 80
-      - statType: 2003
-        statKey: ConstStatKey
-        value: 10
-      - statType: 2005
-        statKey: ConstStatKey
-        value: 5
-      - statType: 2008
+      - statType: 13010003
         statKey: ConstStatKey
         value: 12
-      - statType: 2009
+      - statType: 13010004
         statKey: ConstStatKey
-        value: 8
-      - statType: 2010
+        value: 1
+      - statType: 13010005
+        statKey: ConstStatKey
+        value: 1
+      - statType: 13020001
+        statKey: ConstStatKey
+        value: 10
+      - statType: 13020002
+        statKey: ConstStatKey
+        value: 5
+      - statType: 13030001
         statKey: ConstStatKey
         value: 100
-      - statType: 2011
+      - statType: 13030002
         statKey: ConstStatKey
-        value: 1
-      - statType: 2012
-        statKey: ConstStatKey
-        value: 1
-    defaultSkillList: 4b5dc6004c5dc6004d5dc6004e5dc600
+        value: 8
+    defaultSkillList: cb05d901cc05d901cd05d901ce05d901
   equipmentEntity:
-    initialEquipmentIndexList: 5fe840019f2a5001df6c5f011faf6e015ff17d019f338d01
+    initialEquipmentIndexList: 5f1572029f578102df9990021fdc9f025f1eaf029f60be02

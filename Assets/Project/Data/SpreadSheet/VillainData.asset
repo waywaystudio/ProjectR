@@ -9,12 +9,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 89232929c4941364880942bfe78344a5, type: 3}
-  m_Name: BossData
+  m_Script: {fileID: 11500000, guid: 142394713758ef143836822c9eb54474, type: 3}
+  m_Name: VillainData
   m_EditorClassIdentifier: 
-  Index: 17
+  Index: 22
   list:
-  - id: 17050001
+  - id: 22010101
     name: Load Stonehelm
     fullName: Load Stonehelm the Unyielding
     defaultDamage: 1
@@ -25,8 +25,8 @@ MonoBehaviour:
     critical: 5
     haste: 0
     armor: 50
-    defaultSkills: 495dc600465dc600475dc600
-  - id: 17070001
+    defaultSkills: c905d901c605d901c705d901
+  - id: 22010301
     name: Maelrift
     fullName: Maelrift, the Abyssal Mire
     defaultDamage: 1
@@ -37,8 +37,8 @@ MonoBehaviour:
     critical: 5
     haste: 0
     armor: 50
-    defaultSkills: 495dc600465dc600
-  - id: 17060001
+    defaultSkills: c905d901c605d901
+  - id: 22010201
     name: Valtoria
     fullName: Valtoria, the Mountain Warden
     defaultDamage: 1
@@ -49,8 +49,8 @@ MonoBehaviour:
     critical: 5
     haste: 0
     armor: 50
-    defaultSkills: 495dc600465dc600
-  - id: 17080001
+    defaultSkills: c905d901c605d901
+  - id: 22020401
     name: Phantasmaraud
     fullName: Phantasmaraud, the Unbridled Specters
     defaultDamage: 1
@@ -61,8 +61,8 @@ MonoBehaviour:
     critical: 5
     haste: 0
     armor: 50
-    defaultSkills: 495dc600465dc600
-  - id: 17100001
+    defaultSkills: c905d901c605d901
+  - id: 22020601
     name: Timorus Arcanis
     fullName: Timorus Arcanis, the Cowardly Spellweaver
     defaultDamage: 1
@@ -73,8 +73,8 @@ MonoBehaviour:
     critical: 5
     haste: 0
     armor: 50
-    defaultSkills: 495dc600465dc600
-  - id: 17090001
+    defaultSkills: c905d901c605d901
+  - id: 22020501
     name: General Gallant
     fullName: General Gallant
     defaultDamage: 1
@@ -85,8 +85,8 @@ MonoBehaviour:
     critical: 5
     haste: 0
     armor: 50
-    defaultSkills: 495dc600465dc600
-  - id: 17110001
+    defaultSkills: c905d901c605d901
+  - id: 22030701
     name: Vortex
     fullName: Vortex, the Vinion Overlord
     defaultDamage: 1
@@ -97,8 +97,8 @@ MonoBehaviour:
     critical: 5
     haste: 0
     armor: 50
-    defaultSkills: 495dc600465dc600
-  - id: 17130001
+    defaultSkills: c905d901c605d901
+  - id: 22030901
     name: Vex
     fullName: Vex, the Vinion Tide
     defaultDamage: 1
@@ -109,8 +109,8 @@ MonoBehaviour:
     critical: 5
     haste: 0
     armor: 50
-    defaultSkills: 495dc600465dc600
-  - id: 17120001
+    defaultSkills: c905d901c605d901
+  - id: 22030801
     name: Vazrith
     fullName: Vazrith, the Vinion Mastermind
     defaultDamage: 1
@@ -121,8 +121,8 @@ MonoBehaviour:
     critical: 5
     haste: 0
     armor: 50
-    defaultSkills: 495dc600465dc600
-  - id: 17140001
+    defaultSkills: c905d901c605d901
+  - id: 22041001
     name: Isolde
     fullName: Isolde, Shadow Weaver
     defaultDamage: 1
@@ -133,8 +133,8 @@ MonoBehaviour:
     critical: 5
     haste: 0
     armor: 50
-    defaultSkills: 495dc600465dc600
-  - id: 17160001
+    defaultSkills: c905d901c605d901
+  - id: 22041201
     name: Fracturemancer
     fullName: Fracturemancer, Shattercrafter
     defaultDamage: 1
@@ -145,8 +145,8 @@ MonoBehaviour:
     critical: 5
     haste: 0
     armor: 50
-    defaultSkills: 495dc600465dc600
-  - id: 17150001
+    defaultSkills: c905d901c605d901
+  - id: 22041101
     name: Painbrush
     fullName: Painbrush
     defaultDamage: 1
@@ -157,8 +157,8 @@ MonoBehaviour:
     critical: 5
     haste: 0
     armor: 50
-    defaultSkills: 495dc600465dc600
-  - id: 17170001
+    defaultSkills: c905d901c605d901
+  - id: 22051301
     name: Eye of Hubris
     fullName: Eye of Hubris, the Haughty Stare
     defaultDamage: 1
@@ -169,8 +169,8 @@ MonoBehaviour:
     critical: 5
     haste: 0
     armor: 50
-    defaultSkills: 495dc600465dc600
-  - id: 17190001
+    defaultSkills: c905d901c605d901
+  - id: 22051501
     name: Destinstringer
     fullName: Destinstringer, the Weaver of Inevitability
     defaultDamage: 1
@@ -181,8 +181,8 @@ MonoBehaviour:
     critical: 5
     haste: 0
     armor: 50
-    defaultSkills: 495dc600465dc600
-  - id: 17180001
+    defaultSkills: c905d901c605d901
+  - id: 22051401
     name: Luxspherion
     fullName: Luxspherion, the Radiant Gleam
     defaultDamage: 1
@@ -193,8 +193,8 @@ MonoBehaviour:
     critical: 5
     haste: 0
     armor: 50
-    defaultSkills: 495dc600465dc600
-  - id: 17200001
+    defaultSkills: c905d901c605d901
+  - id: 22061601
     name: Dr Ravencroft
     fullName: Dr. Ravencroft the Ravenous
     defaultDamage: 1
@@ -205,8 +205,8 @@ MonoBehaviour:
     critical: 5
     haste: 0
     armor: 50
-    defaultSkills: 495dc600465dc600
-  - id: 17220001
+    defaultSkills: c905d901c605d901
+  - id: 22061801
     name: Mortimus
     fullName: Mortimus the Indifferent
     defaultDamage: 1
@@ -217,8 +217,8 @@ MonoBehaviour:
     critical: 5
     haste: 0
     armor: 50
-    defaultSkills: 495dc600465dc600
-  - id: 17210001
+    defaultSkills: c905d901c605d901
+  - id: 22061701
     name: Lady Serenavaine
     fullName: Lady Serenavaine the Deceptive
     defaultDamage: 1
@@ -229,4 +229,4 @@ MonoBehaviour:
     critical: 5
     haste: 0
     armor: 50
-    defaultSkills: 495dc600465dc600
+    defaultSkills: c905d901c605d901

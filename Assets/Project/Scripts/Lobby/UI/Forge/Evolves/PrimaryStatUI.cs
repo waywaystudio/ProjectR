@@ -1,7 +1,6 @@
 using System.Collections.Generic;
 using Common;
 using Common.Equipments;
-using Common.PartyCamps;
 using Common.UI;
 using UnityEngine;
 
@@ -16,14 +15,11 @@ namespace Lobby.UI.Forge.Evolves
         {
             constStatUIList.ForEach(statUI => statUI.gameObject.activeSelf.OnTrue(() => statUI.gameObject.SetActive(false)));
             materialUIList.ForEach(materialUI => materialUI.gameObject.activeSelf.OnTrue(() => materialUI.gameObject.SetActive(false)));
-            
-            var adventurer             = LobbyDirector.UI.Forge.FocusAdventurer;
-            var slot                   = LobbyDirector.UI.Forge.FocusSlot;
-            var currentEquipmentEntity = PartyCamp.Characters.GetAdventurerEquipment(adventurer, slot);
-            var tier                   = currentEquipmentEntity.Tier;
+
+            var currentEquipmentEntity = LobbyDirector.UI.Forge.FocusEquipment;
             
             ReloadStat(currentEquipmentEntity);
-            ReloadMaterial(tier);
+            ReloadMaterial(currentEquipmentEntity);
         }
         
 
@@ -40,23 +36,18 @@ namespace Lobby.UI.Forge.Evolves
             });
         }
 
-        private void ReloadMaterial(int tier)
+        private void ReloadMaterial(EquipmentEntity equipEntity)
         {
-            if (materialUIList.Count < 1 || tier == 0)
-            {
-                return;
-            }
+            if (materialUIList.Count < 1) return;
 
-            var profitMaterialType = tier switch
+            var focusRelic = LobbyDirector.UI.Forge.FocusRelic;
+            var materialList = EquipmentUtility.RequiredMaterialsForUpgrade(focusRelic, equipEntity.UpgradeLevel);
+            
+            materialList.ForEach((ingredient, index) =>
             {
-                1 => MaterialType.ViciousShard,
-                2 => MaterialType.ViciousStone,
-                3 => MaterialType.ViciousCrystal,
-                _ => MaterialType.None,
-            };
-
-            materialUIList[0].gameObject.SetActive(true);
-            materialUIList[0].SetInfoUI(profitMaterialType, "5");
+                materialUIList[index].gameObject.SetActive(true);
+                materialUIList[index].SetInfoUI(ingredient);
+            });
         }
 
 #if UNITY_EDITOR

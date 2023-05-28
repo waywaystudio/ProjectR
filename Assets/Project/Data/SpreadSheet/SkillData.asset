@@ -12,9 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c78071e977ca3a24880bb8f40ed9001b, type: 3}
   m_Name: SkillData
   m_EditorClassIdentifier: 
-  Index: 13
+  Index: 31
   list:
-  - id: 13000001
+  - id: 31000001
     name: SwordAttack
     skillType: Instant
     completionValueList:
@@ -31,7 +31,7 @@ MonoBehaviour:
     statusEffect: 0
     iconFileName: SwordAttack Sprite
     description: Starts combat by attacking a target with a melee weapon.
-  - id: 13000002
+  - id: 31000002
     name: Bash
     skillType: Instant
     completionValueList:
@@ -45,10 +45,10 @@ MonoBehaviour:
     sortingType: None
     targetLayer: Monster
     targetParam: {x: 6, y: 90}
-    statusEffect: 14000001
+    statusEffect: 32000001
     iconFileName: Bash Sprite
     description: Starts combat by attacking a target with a melee weapon.
-  - id: 13000003
+  - id: 31000003
     name: UpperSlash
     skillType: Instant
     completionValueList:
@@ -62,10 +62,10 @@ MonoBehaviour:
     sortingType: None
     targetLayer: Monster
     targetParam: {x: 8, y: 90}
-    statusEffect: 14000002
+    statusEffect: 32000002
     iconFileName: UpperSlash Sprite
     description: Starts combat by attacking a target with a melee weapon.
-  - id: 13000004
+  - id: 31000004
     name: ThunderClap
     skillType: Instant
     completionValueList:
@@ -82,7 +82,7 @@ MonoBehaviour:
     statusEffect: 0
     iconFileName: ThunderClap Sprite
     description: Starts combat by attacking a target with a melee weapon.
-  - id: 13000005
+  - id: 31000005
     name: MightyGuard
     skillType: Instant
     completionValueList:
@@ -99,7 +99,7 @@ MonoBehaviour:
     statusEffect: 0
     iconFileName: MightyGuard Sprite
     description: Starts combat by attacking a target with a melee weapon.
-  - id: 13000006
+  - id: 31000006
     name: MoraggSpin
     skillType: Casting
     completionValueList:
@@ -116,7 +116,7 @@ MonoBehaviour:
     statusEffect: 0
     iconFileName: MoraggSpin Sprite
     description: Starts combat by attacking a target with a melee weapon.
-  - id: 13000007
+  - id: 31000007
     name: MoraggLivingBomb
     skillType: Instant
     completionValueList:
@@ -130,10 +130,10 @@ MonoBehaviour:
     sortingType: Random
     targetLayer: Adventurer
     targetParam: {x: 0, y: 0}
-    statusEffect: 14000004
+    statusEffect: 32000004
     iconFileName: MoraggLivingBomb Sprite
     description: Starts combat by attacking a target with a melee weapon.
-  - id: 13000008
+  - id: 31000008
     name: MoraggHowling
     skillType: Instant
     completionValueList:
@@ -147,10 +147,10 @@ MonoBehaviour:
     sortingType: None
     targetLayer: Adventurer
     targetParam: {x: 50, y: 360}
-    statusEffect: 14000005
+    statusEffect: 32000005
     iconFileName: MoraggHowling Sprite
     description: Starts combat by attacking a target with a melee weapon.
-  - id: 13000009
+  - id: 31000009
     name: MoraggCommonAttack
     skillType: Instant
     completionValueList:
@@ -167,7 +167,7 @@ MonoBehaviour:
     statusEffect: 0
     iconFileName: MoraggCommonAttack Sprite
     description: Starts combat by attacking a target with a melee weapon.
-  - id: 13000010
+  - id: 31000010
     name: PriestCommonHeal
     skillType: Casting
     completionValueList:
@@ -184,7 +184,7 @@ MonoBehaviour:
     statusEffect: 0
     iconFileName: PriestCommonHeal Sprite
     description: Starts combat by attacking a target with a melee weapon.
-  - id: 13000011
+  - id: 31000011
     name: ClawAttack
     skillType: Instant
     completionValueList:
@@ -201,7 +201,7 @@ MonoBehaviour:
     statusEffect: 0
     iconFileName: ClawAttack Sprite
     description: Starts combat by attacking a target with a melee weapon.
-  - id: 13000012
+  - id: 31000012
     name: PowerBeat
     skillType: Instant
     completionValueList:
@@ -218,7 +218,7 @@ MonoBehaviour:
     statusEffect: 0
     iconFileName: PowerBeat Sprite
     description: Starts combat by attacking a target with a melee weapon.
-  - id: 13000013
+  - id: 31000013
     name: Liberation
     skillType: Instant
     completionValueList:
@@ -235,7 +235,7 @@ MonoBehaviour:
     statusEffect: 0
     iconFileName: Liberation Sprite
     description: Starts combat by attacking a target with a melee weapon.
-  - id: 13000014
+  - id: 31000014
     name: Annihilation
     skillType: Instant
     completionValueList:
@@ -252,7 +252,7 @@ MonoBehaviour:
     statusEffect: 0
     iconFileName: Annihilation Sprite
     description: Starts combat by attacking a target with a melee weapon.
-  - id: 13000015
+  - id: 31000015
     name: ShotAttack
     skillType: Instant
     completionValueList:
@@ -269,7 +269,7 @@ MonoBehaviour:
     statusEffect: 0
     iconFileName: ShotAttack Sprite
     description: Starts combat by attacking a target with a melee weapon.
-  - id: 13000016
+  - id: 31000016
     name: ContinuesAttack
     skillType: Holding
     completionValueList:
@@ -286,8 +286,8 @@ MonoBehaviour:
     statusEffect: 0
     iconFileName: ContinuesAttack Sprite
     description: Starts combat by attacking a target with a melee weapon.
-  - id: 13000017
-    name: Trap
+  - id: 31000017
+    name: InstantTrap
     skillType: Instant
     completionValueList:
     - 50
@@ -301,9 +301,9 @@ MonoBehaviour:
     targetLayer: Monster
     targetParam: {x: 4, y: 360}
     statusEffect: 0
-    iconFileName: Trap Sprite
+    iconFileName: InstantTrap Sprite
     description: Starts combat by attacking a target with a melee weapon.
-  - id: 13000018
+  - id: 31000018
     name: AimShot
     skillType: Charging
     completionValueList:

@@ -8,14 +8,14 @@ namespace Common.Characters
     [Serializable]
     public class CharacterConstEntity
     {
-        [SerializeField]                                       private CombatClassType classType;
+        [SerializeField]                                       private CharacterMask classType;
         [SerializeField]                                       private string          characterName;
         [FormerlySerializedAs("defaultSpec")] [SerializeField] private StatSpec        defaultStatSpec;
         [SerializeField]                                       private List<DataIndex> defaultSkillList;
 
         private const string ConstStatKey = "ConstStatKey"; 
         
-        public CombatClassType ClassType => classType;
+        public CharacterMask ClassType => classType;
         public string CharacterName => characterName;
         public StatSpec DefaultStatSpec => defaultStatSpec;
         public List<DataIndex> DefaultSkillList => defaultSkillList;
@@ -32,8 +32,8 @@ namespace Common.Characters
 
             switch (dataIndex.GetCategory())
             {
-                case DataIndex.CombatClass: LoadAdventurerData(dataIndex); break;
-                case DataIndex.Boss: LoadMonsterData(dataIndex); break;
+                case DataIndex.Venturer: LoadAdventurerData(dataIndex); break;
+                case DataIndex.Villain:     LoadMonsterData(dataIndex); break;
                 default:
                 {
                     Debug.LogWarning($"DataIndex Error. Must be CombatClass or Boss. Input Category:{dataIndex.GetCategory()}");
@@ -49,7 +49,7 @@ namespace Common.Characters
             if (!Verify.IsNotNull(classData, $"Not Exist {dataIndex} in AdventurerData")) return;
             
 
-            classType     = classData.BaseRole.ToEnum<CombatClassType>();
+            classType     = classData.BaseRole.ToEnum<CharacterMask>();
             characterName = classData.CharacterName;
             
             // defaultSpec
@@ -72,7 +72,7 @@ namespace Common.Characters
 
             if (!Verify.IsNotNull(monsterData, $"Not Exist {dataIndex} in BossData")) return;
 
-            classType     = CombatClassType.Boss;
+            classType     = CharacterMask.Boss;
             characterName = monsterData.FullName;
             
             // defaultSpec

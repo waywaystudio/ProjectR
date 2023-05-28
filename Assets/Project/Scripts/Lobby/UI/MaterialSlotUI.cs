@@ -17,7 +17,7 @@ namespace Lobby.UI
         {
             MaterialType       = type;
             itemCountText.text = count.ToString();
-            itemImage.sprite   = Database.MaterialSpriteData.Get(type.ConvertToDataIndex());
+            itemImage.sprite   = Database.MaterialSpriteData.Get(type.ToDataIndex());
         }
 
 

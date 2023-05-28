@@ -9,15 +9,15 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c7a20a4b652ae1e4a8b2a152202017b8, type: 3}
-  m_Name: CombatClassData
+  m_Script: {fileID: 11500000, guid: 8e1fa429c76df5e42a3b2978a901862b, type: 3}
+  m_Name: VenturerData
   m_EditorClassIdentifier: 
-  Index: 12
+  Index: 21
   list:
-  - id: 12000001
+  - id: 21010201
     name: Knight
     characterName: Garvin
-    baseRole: Tank
+    baseRole: Knight
     defaultDamage: 1
     basePower: 100
     health: 100
@@ -26,12 +26,12 @@ MonoBehaviour:
     critical: 5
     haste: 0
     armor: 20
-    defaultSkills: 415dc600425dc600435dc600445dc600
-    initialEquipments: 399a400179dc4f01b91e5f01f9606e0139a37d0179e58c01
-  - id: 12000002
+    defaultSkills: c105d901c205d901c305d901c405d901
+    initialEquipments: 39c7710279098102b94b9002f98d9f0239d0ae027912be02
+  - id: 21020502
     name: Warrior
     characterName: Pavel
-    baseRole: Melee
+    baseRole: Warrior
     defaultDamage: 1
     basePower: 100
     health: 80
@@ -42,10 +42,10 @@ MonoBehaviour:
     armor: 15
     defaultSkills: 
     initialEquipments: 
-  - id: 12000003
+  - id: 21030803
     name: Rogue
     characterName: Vesta
-    baseRole: Melee
+    baseRole: Rogue
     defaultDamage: 1
     basePower: 100
     health: 80
@@ -54,12 +54,12 @@ MonoBehaviour:
     critical: 10
     haste: 5
     armor: 12
-    defaultSkills: 4b5dc6004c5dc6004d5dc6004e5dc600
-    initialEquipments: 5fe840019f2a5001df6c5f011faf6e015ff17d019f338d01
-  - id: 12000004
+    defaultSkills: cb05d901cc05d901cd05d901ce05d901
+    initialEquipments: 5f1572029f578102df9990021fdc9f025f1eaf029f60be02
+  - id: 21041104
     name: Ranger
     characterName: Ives
-    baseRole: Range
+    baseRole: Ranger
     defaultDamage: 1
     basePower: 100
     health: 70
@@ -68,12 +68,12 @@ MonoBehaviour:
     critical: 5
     haste: 5
     armor: 12
-    defaultSkills: 4f5dc600505dc600515dc600525dc600
-    initialEquipments: 720f4101b2515001f2935f0132d66e0172187e01b25a8d01
-  - id: 12000005
+    defaultSkills: cf05d901d005d901d105d901d205d901
+    initialEquipments: 723c7202b27e8102f2c090023203a0027245af02b287be02
+  - id: 21051405
     name: Mage
     characterName: Leah
-    baseRole: Range
+    baseRole: Mage
     defaultDamage: 1
     basePower: 100
     health: 60
@@ -84,10 +84,10 @@ MonoBehaviour:
     armor: 10
     defaultSkills: 
     initialEquipments: 
-  - id: 12000006
+  - id: 21061706
     name: Priest
     characterName: Clover
-    baseRole: Heal
+    baseRole: Priest
     defaultDamage: 1
     basePower: 100
     health: 60

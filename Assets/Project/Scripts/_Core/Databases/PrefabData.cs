@@ -97,7 +97,8 @@ namespace Databases
         {
             if (!Finder.TryGetObjectList(prefabPath, "", out List<GameObject> prefabs, true)) return;
             
-            // Exclude Prefab Name start "_". "_" is mean abstract prefab;
+            // Exclude Prefab Name start "_".
+            // "_" is mean abstract prefab;
             prefabs.RemoveNull();
             prefabs.RemoveAll(prefab => prefab.name.StartsWith("_"));
             
@@ -114,6 +115,9 @@ namespace Databases
             
             UnityEditor.AssetDatabase.Refresh();
         }
+
+        [Sirenix.OdinInspector.Button(ButtonSizes.Medium)]
+        public void ResetTable() => PrefabTable.Clear();
 #endif
     }
 }

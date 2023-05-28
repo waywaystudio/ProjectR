@@ -12,39 +12,39 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7b4303f492ee94242b6af21bbaf702f8, type: 3}
   m_Name: MaelriftData
   m_EditorClassIdentifier: 
-  characterIndex: 17070001
+  characterIndex: 22010301
   constEntity:
     classType: 536870912
     characterName: Maelrift, the Abyssal Mire
     defaultStatSpec:
       statList:
-      - statType: 2001
+      - statType: 13010001
         statKey: ConstStatKey
         value: 100
-      - statType: 2002
+      - statType: 13010002
         statKey: ConstStatKey
         value: 200
-      - statType: 2003
-        statKey: ConstStatKey
-        value: 5
-      - statType: 2005
-        statKey: ConstStatKey
-        value: 0
-      - statType: 2008
+      - statType: 13010003
         statKey: ConstStatKey
         value: 50
-      - statType: 2009
+      - statType: 13010004
         statKey: ConstStatKey
-        value: 7
-      - statType: 2010
+        value: 1
+      - statType: 13010005
+        statKey: ConstStatKey
+        value: 1
+      - statType: 13020001
+        statKey: ConstStatKey
+        value: 5
+      - statType: 13020002
+        statKey: ConstStatKey
+        value: 0
+      - statType: 13030001
         statKey: ConstStatKey
         value: 100
-      - statType: 2011
+      - statType: 13030002
         statKey: ConstStatKey
-        value: 1
-      - statType: 2012
-        statKey: ConstStatKey
-        value: 1
-    defaultSkillList: 495dc600465dc600
+        value: 7
+    defaultSkillList: c905d901c605d901
   equipmentEntity:
     initialEquipmentIndexList: 

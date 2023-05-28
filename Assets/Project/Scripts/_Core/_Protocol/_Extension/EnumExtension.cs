@@ -86,6 +86,18 @@ public static class EnumExtension
         return arr[randomIndex];
     }
 
+    public static T FindIndex<T>(this int digits) where T : Enum
+    {
+        foreach (T enumValue in Enum.GetValues(typeof(T)))
+        {
+            if (Convert.ToInt32(enumValue) % 100 == digits)
+                return enumValue;
+        }
+
+        UnityEngine.Debug.LogError($"No {typeof(T).Name} found with end digits {digits}");
+        return default;
+    }
+
     /// <summary>
     /// Includes an enumerated type and returns the new value
     /// </summary>

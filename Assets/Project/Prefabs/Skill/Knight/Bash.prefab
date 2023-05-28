@@ -112,7 +112,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 222a8f415f8434843b9aa37f3873ad23, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  actionCode: 13000002
+  actionCode: 31000002
   skillType: 1
   sortingType: 0
   behaviourMask: 32
@@ -151,16 +151,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   group: 1
-  actionCode: 13000002
+  actionCode: 31000002
   damageSpec:
     statList:
-    - statType: 2001
+    - statType: 13010001
       statKey: DamageExecutorKey
       value: 30
-    - statType: 2003
+    - statType: 13020001
       statKey: DamageExecutorKey
       value: 0
-    - statType: 2004
+    - statType: 13030003
       statKey: DamageExecutorKey
       value: 0
 --- !u!114 &4298641090789880137
@@ -176,7 +176,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   group: 1
-  actionCode: 14000001
+  actionCode: 32000001
   pool:
     prefab: {fileID: 8333227002716821657, guid: b8a0db4494b80d1418934391f99ec561, type: 3}
     maxCount: 8

@@ -45,7 +45,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0a027a224e152ab4fae81e6dbfbdb778, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  statusCode: 14000002
+  statusCode: 32000002
   type: 2
   icon: {fileID: 21300000, guid: a45b2bd5098294147a97c8fa8f2127e0, type: 3}
   duration: 12
@@ -63,12 +63,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   group: 1
-  actionCode: 14000002
+  actionCode: 32000002
   damageSpec:
     statList:
-    - statType: 2003
+    - statType: 13020001
       statKey: DamageExecutorKey
       value: 0
-    - statType: 2004
+    - statType: 13030003
       statKey: DamageExecutorKey
       value: 0

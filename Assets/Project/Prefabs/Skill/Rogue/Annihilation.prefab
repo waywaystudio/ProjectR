@@ -111,7 +111,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5ff8a4a2ca908f34d9171380b0f6b8df, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  actionCode: 13000014
+  actionCode: 31000014
   skillType: 1
   sortingType: 0
   behaviourMask: 64
@@ -150,16 +150,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   group: 1
-  actionCode: 13000014
+  actionCode: 31000014
   damageSpec:
     statList:
-    - statType: 2001
+    - statType: 13010001
       statKey: DamageExecutorKey
       value: 20
-    - statType: 2003
+    - statType: 13020001
       statKey: DamageExecutorKey
       value: 0
-    - statType: 2004
+    - statType: 13030003
       statKey: DamageExecutorKey
       value: 0
 --- !u!114 &2251123638706781214

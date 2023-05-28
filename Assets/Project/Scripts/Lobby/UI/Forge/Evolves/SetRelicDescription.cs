@@ -23,7 +23,7 @@ namespace Lobby.UI.Forge.Evolves
             CurrentRelicType = LobbyDirector.UI.Forge.FocusRelic;
             
             var targetRelicType = LobbyDirector.UI.Forge.FocusRelic;
-            var relic           = Database.RelicData(targetRelicType.ConvertToDatIndex());
+            var relic           = Database.RelicData(targetRelicType.ConvertToDataIndex());
             var descriptionText = setPiece switch
             {
                 2 => relic.Set2Desc,

@@ -12,7 +12,7 @@ namespace Common.Characters
     {
         [SerializeField] protected string characterName = string.Empty;
         [SerializeField] protected DataIndex characterID;
-        [SerializeField] protected CombatClassType role;
+        [SerializeField] protected CharacterMask role;
 
         [SerializeField] protected CharacterCombatStatus combatStatus;
         [SerializeField] protected AnimationModel animating;
@@ -32,7 +32,7 @@ namespace Common.Characters
          * Common Attribute
          */ 
         public DataIndex DataIndex => characterID;
-        public CombatClassType CombatClass => role;
+        public CharacterMask CombatClass => role;
         public string Name => characterName;
         public Vector3 Position => transform.position;
         public SearchingSystem Searching => searching;

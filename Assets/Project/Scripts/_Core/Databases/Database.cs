@@ -2,8 +2,8 @@ using System.Collections.Generic;
 using Databases;
 using Databases.Prefabs;
 using Databases.ResourceData;
-using CombatClass = Databases.SheetData.ContentData.CombatClassData.CombatClass;
-using Boss = Databases.SheetData.ContentData.BossData.Boss;
+using Venturer = Databases.SheetData.CharacterData.VenturerData.Venturer;
+using Villain = Databases.SheetData.CharacterData.VillainData.Villain;
 using Relic = Databases.SheetData.ContentData.RelicData.Relic;
 using Skill = Databases.SheetData.CombatData.SkillData.Skill;
 using StatusEffect = Databases.SheetData.CombatData.StatusEffectData.StatusEffect;
@@ -46,8 +46,8 @@ public partial class Database : MonoSingleton<Database>, IEditable
         }
     }
 
-    public static CombatClass CombatClassSheetData(DataIndex   dataIndex) => SheetDataTable[DataIndex.CombatClass].Get<CombatClass>(dataIndex);
-    public static Boss BossSheetData(DataIndex                 dataIndex) => SheetDataTable[DataIndex.Boss].Get<Boss>(dataIndex);
+    public static Venturer CombatClassSheetData(DataIndex      dataIndex) => SheetDataTable[DataIndex.Venturer].Get<Venturer>(dataIndex);
+    public static Villain BossSheetData(DataIndex              dataIndex) => SheetDataTable[DataIndex.Villain].Get<Villain>(dataIndex);
     public static Skill SkillSheetData(DataIndex               dataIndex) => SheetDataTable[DataIndex.Skill].Get<Skill>(dataIndex);
     public static StatusEffect StatusEffectSheetData(DataIndex dataIndex) => SheetDataTable[DataIndex.StatusEffect].Get<StatusEffect>(dataIndex);
     public static Weapon WeaponData(DataIndex                  dataIndex) => SheetDataTable[DataIndex.Weapon].Get<Weapon>(dataIndex);

@@ -16,19 +16,19 @@ namespace Common.Characters
         [SerializeField] private CharacterEquipmentEntity equipmentEntity;
 
         public DataIndex DataIndex => characterIndex;
-        public CombatClassType ClassType => constEntity.ClassType;
+        public VenturerType VenturerType => (VenturerType)characterIndex;
+        public CharacterMask ClassType => constEntity.ClassType;
         public IEnumerable<DataIndex> SkillList => constEntity.DefaultSkillList;
         public CharacterConstEntity ConstEntity => constEntity;
         public CharacterEquipmentEntity EquipmentEntity => equipmentEntity;
         public StatTable StaticStatTable { get; set; } = new();
         public EthosTable StaticEthosTable => equipmentEntity.EthosTable;
 
+        public int GetEthosValue(EthosType type) => StaticEthosTable.GetEthosValue(type);
+        public int GetRelicPieceCount(RelicType type) => EquipmentEntity.GetRelicPieceCount(type);
+        public float GetStatValue(StatType type) => StaticStatTable.GetStatValue(type);
         public string GetStatTextValue(StatType type) => StaticStatTable.GetStatValue(type).ToStatUIValue(type);
-        public float GetStatValue(StatType      type) => StaticStatTable.GetStatValue(type);
-        public int GetEthosValue(EthosType      type) => StaticEthosTable.GetEthosValue(type);
-        
         public EquipmentEntity GetEquipment(EquipSlotIndex slot) => EquipmentEntity.GetEquipment(slot);
-        public int GetRelicPieceCount(RelicType            type) => EquipmentEntity.GetRelicPieceCount(type);
         
         public void Save()
         {

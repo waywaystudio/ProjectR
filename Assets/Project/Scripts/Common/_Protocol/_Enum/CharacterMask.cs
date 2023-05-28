@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace Common
 {
-    [Flags] public enum CombatClassType
+    [Flags] public enum CharacterMask
     {
         None = 0,
         Knight = 1  << 0,
@@ -21,48 +21,48 @@ namespace Common
 
     [Flags] public enum RoleType
     {
-        Tank = CombatClassType.Knight,
-        Melee = CombatClassType.Warrior | CombatClassType.Rogue,
-        Range = CombatClassType.Ranger   | CombatClassType.Mage,
-        Heal = CombatClassType.Priest,
-        Adventurer = CombatClassType.Knight | 
-                     CombatClassType.Warrior | 
-                     CombatClassType.Rogue | 
-                     CombatClassType.Ranger | 
-                     CombatClassType.Mage | 
-                     CombatClassType.Priest,
-        Monster = CombatClassType.Boss      | CombatClassType.Minion,
+        Tank = CharacterMask.Knight,
+        Melee = CharacterMask.Warrior | CharacterMask.Rogue,
+        Range = CharacterMask.Ranger   | CharacterMask.Mage,
+        Heal = CharacterMask.Priest,
+        Adventurer = CharacterMask.Knight | 
+                     CharacterMask.Warrior | 
+                     CharacterMask.Rogue | 
+                     CharacterMask.Ranger | 
+                     CharacterMask.Mage | 
+                     CharacterMask.Priest,
+        Monster = CharacterMask.Boss      | CharacterMask.Minion,
     }
 
-    public static class CombatClassTypeExtension
+    public static class CharacterMaskExtension
     {
-        public static CombatClassType NextAdventurer(this CombatClassType type)
+        public static CharacterMask NextAdventurer(this CharacterMask type)
         {
             if (!IsSingleAdventurer(type))
             {
                 Debug.LogError($"{type} is not Adventurer Index, return None");
-                return CombatClassType.None;
+                return CharacterMask.None;
             }
             
             var shiftOrder = GetBitPosition((int)type);
 
             if (shiftOrder == 5) shiftOrder = -1;
 
-            return (CombatClassType)(1 << shiftOrder + 1);
+            return (CharacterMask)(1 << shiftOrder + 1);
         }
-        public static CombatClassType PrevAdventurer(this CombatClassType type)
+        public static CharacterMask PrevAdventurer(this CharacterMask type)
         {
             if (!IsSingleAdventurer(type))
             {
                 Debug.LogError($"{type} is not Adventurer Index, return None");
-                return CombatClassType.None;
+                return CharacterMask.None;
             }
             
             var shiftOrder = GetBitPosition((int)type);
 
             if (shiftOrder == 0) shiftOrder = 6;
 
-            return (CombatClassType)(1 << shiftOrder - 1);
+            return (CharacterMask)(1 << shiftOrder - 1);
         }
         
         private static int GetBitPosition(int value)
@@ -87,7 +87,7 @@ namespace Common
         {
             return value != 0 && (value & (value - 1)) == 0;
         }
-        public static bool IsSingleAdventurer(this CombatClassType type)
+        public static bool IsSingleAdventurer(this CharacterMask type)
         {
             var typeAsNumber = (int)type;
 

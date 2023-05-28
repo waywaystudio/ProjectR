@@ -1,4 +1,5 @@
 // ReSharper disable UnusedMember.Global
+
 public static class NumberExtension
 {
     public static string ToKmbt(this int number)
@@ -54,7 +55,6 @@ public static class NumberExtension
     {
         if (startDigit <= 0 || endDigit <= 0)
         {
-            // throw new ArgumentException("startDigit and endDigit must be greater than 0");
             UnityEngine.Debug.LogError($"startDigit and endDigit must be greater than 0. InputStart:{startDigit}, InputEnd:{endDigit}. return 0");
             return 0;
         }
@@ -64,17 +64,17 @@ public static class NumberExtension
             UnityEngine.Debug.LogError($"startDigit must be less than or equal to endDigit. InputStart:{startDigit}, InputEnd:{endDigit}. return 0");
             return 0;
         }
-
+        
         // Calculate the divisor to isolate the start digit.
         var startDivisor = (int)UnityEngine.Mathf.Pow(10, startDigit - 1);
-        var endDivisor = (int)UnityEngine.Mathf.Pow(10, endDigit);
+        var endDivisor = (int)UnityEngine.Mathf.Pow(10, endDigit - (startDigit - 1));
     
         // Remove the numbers to the right of the start digit.
         var result = original / startDivisor;
     
         // Keep only the numbers up to the end digit.
         result = result % endDivisor;
-    
+
         return result;
     }
 }

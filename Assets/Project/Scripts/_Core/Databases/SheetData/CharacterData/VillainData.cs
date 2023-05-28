@@ -7,12 +7,12 @@ using System.Collections.Generic;
 using UnityEngine;
 
 
-namespace Databases.SheetData.ContentData
+namespace Databases.SheetData.CharacterData
 {    
-    public partial class BossData : DataObject<BossData.Boss>
+    public partial class VillainData : DataObject<VillainData.Villain>
     {
         [Serializable]
-        public class Boss : IIdentifier
+        public class Villain : IIdentifier
         {
 			[SerializeField] private Int32 id;
 			[SerializeField] private String name;
@@ -44,21 +44,21 @@ namespace Databases.SheetData.ContentData
         
 #region Editor Functions.
     #if UNITY_EDITOR
-        public readonly string SpreadSheetID = "1yO5sJqxMvySDiihls5pwiHQWoJGysrT7LBmL16HhHRM";
-        public readonly string SpreadSheetName = "ContentData";
-        public readonly string WorkSheetName = "Boss";    
+        public readonly string SpreadSheetID = "1BNf_4jZonJqd1ocWNGQoQDKNGtS_vtVy7H5Lmr8PVt0";
+        public readonly string SpreadSheetName = "CharacterData";
+        public readonly string WorkSheetName = "Villain";    
   
         private void LoadFromJson()
         {
     
             List = UnityGoogleSheet.Editor.Core.UgsEditorUtility
-                .LoadFromJson<Boss>("ContentData"); 
+                .LoadFromJson<Villain>("CharacterData"); 
         }
         
         private void LoadFromGoogleSpreadSheet()
         {
             UnityGoogleSheet.Editor.Core.UgsExplorer
-                .ParseSpreadSheet(SpreadSheetID, "Boss");
+                .ParseSpreadSheet(SpreadSheetID, "Villain");
 
             LoadFromJson();
             UnityEditor.EditorUtility.SetDirty(this);

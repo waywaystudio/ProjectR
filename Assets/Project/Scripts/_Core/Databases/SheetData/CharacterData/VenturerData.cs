@@ -7,12 +7,12 @@ using System.Collections.Generic;
 using UnityEngine;
 
 
-namespace Databases.SheetData.ContentData
+namespace Databases.SheetData.CharacterData
 {    
-    public partial class CombatClassData : DataObject<CombatClassData.CombatClass>
+    public partial class VenturerData : DataObject<VenturerData.Venturer>
     {
         [Serializable]
-        public class CombatClass : IIdentifier
+        public class Venturer : IIdentifier
         {
 			[SerializeField] private Int32 id;
 			[SerializeField] private String name;
@@ -48,21 +48,21 @@ namespace Databases.SheetData.ContentData
         
 #region Editor Functions.
     #if UNITY_EDITOR
-        public readonly string SpreadSheetID = "1yO5sJqxMvySDiihls5pwiHQWoJGysrT7LBmL16HhHRM";
-        public readonly string SpreadSheetName = "ContentData";
-        public readonly string WorkSheetName = "CombatClass";    
+        public readonly string SpreadSheetID = "1BNf_4jZonJqd1ocWNGQoQDKNGtS_vtVy7H5Lmr8PVt0";
+        public readonly string SpreadSheetName = "CharacterData";
+        public readonly string WorkSheetName = "Venturer";    
   
         private void LoadFromJson()
         {
     
             List = UnityGoogleSheet.Editor.Core.UgsEditorUtility
-                .LoadFromJson<CombatClass>("ContentData"); 
+                .LoadFromJson<Venturer>("CharacterData"); 
         }
         
         private void LoadFromGoogleSpreadSheet()
         {
             UnityGoogleSheet.Editor.Core.UgsExplorer
-                .ParseSpreadSheet(SpreadSheetID, "CombatClass");
+                .ParseSpreadSheet(SpreadSheetID, "Venturer");
 
             LoadFromJson();
             UnityEditor.EditorUtility.SetDirty(this);

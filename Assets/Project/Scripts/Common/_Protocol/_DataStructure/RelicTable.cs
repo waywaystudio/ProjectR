@@ -137,12 +137,12 @@ namespace Common
         {
             Table = new Dictionary<RelicType, RelicEntity>
             {
-                { RelicType.Vowed, new RelicEntity(RelicType.Vowed, StatType.Armor) },
-                { RelicType.Valorous, new RelicEntity(RelicType.Valorous, StatType.Power) },
-                { RelicType.Veterans, new RelicEntity(RelicType.Veterans, StatType.CriticalChance) },
-                { RelicType.Vital, new RelicEntity(RelicType.Vital, StatType.Mastery) },
-                { RelicType.Verdicts, new RelicEntity(RelicType.Verdicts, StatType.Retention) },
-                { RelicType.Votive, new RelicEntity(RelicType.Votive, StatType.MoveSpeed) },
+                { RelicType.VowedRelic, new RelicEntity(RelicType.VowedRelic, StatType.Armor) },
+                { RelicType.ValiantRelic, new RelicEntity(RelicType.ValiantRelic, StatType.Power) },
+                { RelicType.VeteransRelic, new RelicEntity(RelicType.VeteransRelic, StatType.CriticalChance) },
+                { RelicType.VisionedRelic, new RelicEntity(RelicType.VisionedRelic, StatType.Mastery) },
+                { RelicType.VeritableRelic, new RelicEntity(RelicType.VeritableRelic, StatType.Retention) },
+                { RelicType.VenerableRelic, new RelicEntity(RelicType.VenerableRelic, StatType.MoveSpeed) },
             };
         }
     }

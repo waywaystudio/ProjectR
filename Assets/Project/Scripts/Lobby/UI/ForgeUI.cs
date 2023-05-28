@@ -14,11 +14,11 @@ namespace Lobby.UI
         // [SerializeField] private EvolveFrame evolveFrame; 
         // InventoryFrame
         
-        private CombatClassType focusAdventurer = CombatClassType.Knight;
+        private VenturerType focusAdventurer = VenturerType.Knight;
         private EquipSlotIndex focusSlot = EquipSlotIndex.Weapon;
-        private RelicType focusRelic = RelicType.Vowed;
+        private RelicType focusRelic = RelicType.VowedRelic;
 
-        public CombatClassType FocusAdventurer
+        public VenturerType FocusAdventurer
         {
             get => focusAdventurer;
             set

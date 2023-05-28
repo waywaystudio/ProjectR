@@ -12,39 +12,39 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7b4303f492ee94242b6af21bbaf702f8, type: 3}
   m_Name: RangerData
   m_EditorClassIdentifier: 
-  characterIndex: 12000004
+  characterIndex: 21041104
   constEntity:
     classType: 8
     characterName: Ives
     defaultStatSpec:
       statList:
-      - statType: 2001
+      - statType: 13010001
         statKey: ConstStatKey
         value: 100
-      - statType: 2002
+      - statType: 13010002
         statKey: ConstStatKey
         value: 70
-      - statType: 2003
-        statKey: ConstStatKey
-        value: 5
-      - statType: 2005
-        statKey: ConstStatKey
-        value: 5
-      - statType: 2008
+      - statType: 13010003
         statKey: ConstStatKey
         value: 12
-      - statType: 2009
+      - statType: 13010004
         statKey: ConstStatKey
-        value: 7
-      - statType: 2010
+        value: 1
+      - statType: 13010005
+        statKey: ConstStatKey
+        value: 1
+      - statType: 13020001
+        statKey: ConstStatKey
+        value: 5
+      - statType: 13020002
+        statKey: ConstStatKey
+        value: 5
+      - statType: 13030001
         statKey: ConstStatKey
         value: 60
-      - statType: 2011
+      - statType: 13030002
         statKey: ConstStatKey
-        value: 1
-      - statType: 2012
-        statKey: ConstStatKey
-        value: 1
-    defaultSkillList: 4f5dc600505dc600515dc600525dc600
+        value: 7
+    defaultSkillList: cf05d901d005d901d105d901d205d901
   equipmentEntity:
-    initialEquipmentIndexList: 720f4101b2515001f2935f0132d66e0172187e01b25a8d01
+    initialEquipmentIndexList: 723c7202b27e8102f2c090023203a0027245af02b287be02

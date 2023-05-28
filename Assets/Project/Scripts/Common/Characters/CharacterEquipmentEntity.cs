@@ -113,8 +113,8 @@ namespace Common.Characters
             
             switch (dataIndex.GetCategory())
             {
-                case DataIndex.CombatClass: LoadAdventurerData(dataIndex); break;
-                case DataIndex.Boss:        LoadMonsterData(dataIndex); break;
+                case DataIndex.Venturer: LoadAdventurerData(dataIndex); break;
+                case DataIndex.Villain:  LoadMonsterData(dataIndex); break;
                 default:
                 {
                     Debug.LogWarning($"DataIndex Error. Must be CombatClass or Boss. Input Category:{dataIndex.GetCategory()}");

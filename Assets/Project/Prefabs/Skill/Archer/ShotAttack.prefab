@@ -110,7 +110,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 137a7d7ba84d9104b81da06bb245af0b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  actionCode: 13000015
+  actionCode: 31000015
   skillType: 1
   sortingType: 0
   behaviourMask: 32
@@ -149,7 +149,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   group: 1
-  actionCode: 13000015
+  actionCode: 31000015
   muzzle: {fileID: 0}
   pool:
     prefab: {fileID: 68301466263117794, guid: 541d0ef7d87ec2b409401093e6f3ee17, type: 3}

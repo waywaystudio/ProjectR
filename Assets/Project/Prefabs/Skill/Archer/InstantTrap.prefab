@@ -75,7 +75,7 @@ GameObject:
   - component: {fileID: 6662264705308858124}
   - component: {fileID: 334648159840272248}
   m_Layer: 0
-  m_Name: Trap
+  m_Name: InstantTrap
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -110,7 +110,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ed8e277416f78ce4c9d130e48b91a170, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  actionCode: 13000017
+  actionCode: 31000017
   skillType: 1
   sortingType: 0
   behaviourMask: 64
@@ -151,7 +151,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   group: 1
-  actionCode: 13000017
+  actionCode: 31000017
   pool:
     prefab: {fileID: 3865230921314547483, guid: 0ef534f56b8b72d429ea96d8b8cb4887, type: 3}
     maxCount: 4

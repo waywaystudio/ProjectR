@@ -13,6 +13,8 @@ namespace Common.UI
         
         public MaterialType MaterialType => materialType;
 
+
+        public void SetInfoUI(Ingredient ingredient) => SetInfoUI(ingredient.MaterialType, ingredient.Count.ToString());
         public void SetInfoUI(MaterialType type, string value)
         {
             materialType         = type;

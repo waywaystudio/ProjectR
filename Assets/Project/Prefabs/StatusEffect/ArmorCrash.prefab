@@ -44,11 +44,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4f04333f695ab2d429533454fa8fadee, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  statusCode: 14000001
+  statusCode: 32000001
   type: 2
   icon: {fileID: 21300000, guid: 8577a2b57b7035f478ff079c8bfb7699, type: 3}
   duration: 8
   armorReduce:
-    statType: 2008
+    statType: 13010003
     statKey: ArmorCrashDebBuff
     value: 50

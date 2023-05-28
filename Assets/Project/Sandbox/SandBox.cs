@@ -1,18 +1,25 @@
-using System;
 using Common;
 using Sirenix.OdinInspector;
 using UnityEngine;
 
 public class SandBox : MonoBehaviour
 {
-    public RelicType relicType;
-    public int endDigit;
+    
+    public MaterialType MaterialType;
 
     public void ShowDebugMessage() => Debug.Log("Is In!");
 
     [Button]
     public void Debugger()
     {
-        Debug.Log($"{relicType.CovertToVirtue().ToString()}");
+        // Debug.Log($"{relicType.CovertToVirtue().ToString()}");
     }
+    
+    [Button]
+    public void GetNextTheme()
+    {
+        Debug.Log($"GetNextTheme : {MaterialType.GetNextTheme()}");
+    }
+    
+    
 }

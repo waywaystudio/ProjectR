@@ -3,26 +3,24 @@ namespace Common
     public enum RelicType
     {
         None     = 0,
-        Vowed    = DataIndex.Vowed,
-        Valorous = DataIndex.Valorous,
-        Veterans = DataIndex.Veterans,
-        Vital    = DataIndex.Vital,
-        Verdicts = DataIndex.Verdicts,
-        Votive   = DataIndex.Votive,
+        VowedRelic    = DataIndex.VowedRelic, // 14010001,
+        ValiantRelic = DataIndex.ValiantRelic, // 14020002,
+        VeteransRelic = DataIndex.VeteransRelic, // 14030003,
+        VisionedRelic    = DataIndex.VisionedRelic, // 14040004,
+        VeritableRelic = DataIndex.VeritableRelic, // 14050005,
+        VenerableRelic   = DataIndex.VenerableRelic, // 14060006,
     }
 
     public static class RelicExtension
     {
-        public static DataIndex ConvertToDatIndex(this RelicType relicType) => (DataIndex)relicType;
-        public static EthosType CovertToVirtue(this RelicType relicType)
+        public static DataIndex ConvertToDataIndex(this RelicType relicType) => (DataIndex)relicType;
+        public static int GetSubCategoryIndex(this RelicType type) => type.ConvertToDataIndex().GetSubCategoryBar();
+        public static ThemeType GetTheme(this RelicType type)
         {
-            // ex.31000006 to 6
-            var viceIndex = ((int)relicType).GetNumberOfFromToDestDigits(1, 2);
-            
-            // 19 * 100 + 6 = 1906
-            var ethosIndex = (EthosType)((int)DataIndex.Ethos * 100 + viceIndex);
+            var ethosGroupIndex = type.GetSubCategoryIndex();
+            var themeType = ethosGroupIndex.FindIndex<ThemeType>();
 
-            return ethosIndex;
+            return themeType;
         }
     }
 }

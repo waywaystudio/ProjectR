@@ -12,31 +12,29 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 713c5fb42811c7d44a3bba823163e955, type: 3}
   m_Name: StatData
   m_EditorClassIdentifier: 
-  Index: 20
+  Index: 13
   list:
-  - id: 2000
-    name: Stats
-  - id: 2001
+  - id: 13010001
     name: Power
-  - id: 2002
+  - id: 13010002
     name: Health
-  - id: 2003
-    name: CriticalChance
-  - id: 2004
-    name: CriticalDamage
-  - id: 2005
-    name: Haste
-  - id: 2006
-    name: Mastery
-  - id: 2007
-    name: Retention
-  - id: 2008
+  - id: 13010003
     name: Armor
-  - id: 2009
-    name: MoveSpeed
-  - id: 2010
-    name: MaxResource
-  - id: 2011
+  - id: 13010004
     name: MinDamage
-  - id: 2012
+  - id: 13010005
     name: MaxDamage
+  - id: 13020001
+    name: CriticalChance
+  - id: 13020002
+    name: Haste
+  - id: 13020003
+    name: Mastery
+  - id: 13020004
+    name: Retention
+  - id: 13030001
+    name: MaxResource
+  - id: 13030002
+    name: MoveSpeed
+  - id: 13030003
+    name: CriticalDamage

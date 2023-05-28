@@ -6,16 +6,16 @@
 	},
 	"Ranger.EquipmentEntity" : {
 		"__type" : "System.Collections.Generic.Dictionary`2[[Common.EquipSlotIndex, ProjectR.Common, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null],[Common.Equipments.EquipmentEntity, ProjectR.Common, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]],mscorlib",
-		"value" : {21:{
-				"dataIndex" : 21041010,
+		"value" : {41:{
+				"dataIndex" : 41041010,
 				"UpgradeLevel" : 0,
 				"RelicTable" : {
-					"Table" : {31000006:{
+					"Table" : {14010001:{
 							"isUnlocked" : false,
 							"statSpec" : {
 								"statList" : [
 									{
-										"statType" : 2008,
+										"statType" : 13010003,
 										"statKey" : "Relic",
 										"value" : 0.1
 									}
@@ -30,12 +30,12 @@
 									}
 								]
 							}
-						},31000009:{
+						},14020002:{
 							"isUnlocked" : false,
 							"statSpec" : {
 								"statList" : [
 									{
-										"statType" : 2001,
+										"statType" : 13010001,
 										"statKey" : "Relic",
 										"value" : 0.1
 									}
@@ -50,12 +50,12 @@
 									}
 								]
 							}
-						},31000012:{
+						},14030003:{
 							"isUnlocked" : false,
 							"statSpec" : {
 								"statList" : [
 									{
-										"statType" : 2003,
+										"statType" : 13020001,
 										"statKey" : "Relic",
 										"value" : 0.1
 									}
@@ -70,12 +70,12 @@
 									}
 								]
 							}
-						},31000015:{
+						},14040004:{
 							"isUnlocked" : false,
 							"statSpec" : {
 								"statList" : [
 									{
-										"statType" : 2006,
+										"statType" : 13020003,
 										"statKey" : "Relic",
 										"value" : 0.1
 									}
@@ -90,12 +90,12 @@
 									}
 								]
 							}
-						},31000018:{
+						},14050005:{
 							"isUnlocked" : false,
 							"statSpec" : {
 								"statList" : [
 									{
-										"statType" : 2007,
+										"statType" : 13020004,
 										"statKey" : "Relic",
 										"value" : 0.1
 									}
@@ -110,12 +110,12 @@
 									}
 								]
 							}
-						},31000021:{
+						},14060006:{
 							"isUnlocked" : false,
 							"statSpec" : {
 								"statList" : [
 									{
-										"statType" : 2009,
+										"statType" : 13030002,
 										"statKey" : "Relic",
 										"value" : 0.1
 									}
@@ -134,52 +134,16 @@
 					},
 					"CurrentRelicType" : 0
 				}
-			},22:{
-				"dataIndex" : 22041010,
+			},42:{
+				"dataIndex" : 42041010,
 				"UpgradeLevel" : 0,
 				"RelicTable" : {
-					"Table" : {31000006:{
+					"Table" : {14010001:{
 							"isUnlocked" : false,
 							"statSpec" : {
 								"statList" : [
 									{
-										"statType" : 2003,
-										"statKey" : "Head.Conversion",
-										"value" : 0.0116867125
-									},{
-										"statType" : 2006,
-										"statKey" : "Head.Conversion",
-										"value" : 0.0177364144
-									},{
-										"statType" : 2007,
-										"statKey" : "Head.Conversion",
-										"value" : 0.0127518252
-									}
-								]
-							},
-							"ethosSpec" : {
-								"ethosList" : [
-									{
-										"ethosType" : 1914,
-										"ethosKey" : "Head.Enchant",
-										"value" : 1
-									},{
-										"ethosType" : 1917,
-										"ethosKey" : "Head.Enchant",
-										"value" : 3
-									},{
-										"ethosType" : 1920,
-										"ethosKey" : "Head.Enchant",
-										"value" : 1
-									}
-								]
-							}
-						},31000009:{
-							"isUnlocked" : false,
-							"statSpec" : {
-								"statList" : [
-									{
-										"statType" : 2001,
+										"statType" : 13010003,
 										"statKey" : "Relic",
 										"value" : 0.1
 									}
@@ -194,12 +158,12 @@
 									}
 								]
 							}
-						},31000012:{
+						},14020002:{
 							"isUnlocked" : false,
 							"statSpec" : {
 								"statList" : [
 									{
-										"statType" : 2003,
+										"statType" : 13010001,
 										"statKey" : "Relic",
 										"value" : 0.1
 									}
@@ -214,12 +178,12 @@
 									}
 								]
 							}
-						},31000015:{
+						},14030003:{
 							"isUnlocked" : false,
 							"statSpec" : {
 								"statList" : [
 									{
-										"statType" : 2006,
+										"statType" : 13020001,
 										"statKey" : "Relic",
 										"value" : 0.1
 									}
@@ -234,12 +198,12 @@
 									}
 								]
 							}
-						},31000018:{
+						},14040004:{
 							"isUnlocked" : false,
 							"statSpec" : {
 								"statList" : [
 									{
-										"statType" : 2007,
+										"statType" : 13020003,
 										"statKey" : "Relic",
 										"value" : 0.1
 									}
@@ -254,12 +218,32 @@
 									}
 								]
 							}
-						},31000021:{
+						},14050005:{
 							"isUnlocked" : false,
 							"statSpec" : {
 								"statList" : [
 									{
-										"statType" : 2009,
+										"statType" : 13020004,
+										"statKey" : "Relic",
+										"value" : 0.1
+									}
+								]
+							},
+							"ethosSpec" : {
+								"ethosList" : [
+									{
+										"ethosType" : 0,
+										"ethosKey" : "Relic",
+										"value" : 0
+									}
+								]
+							}
+						},14060006:{
+							"isUnlocked" : false,
+							"statSpec" : {
+								"statList" : [
+									{
+										"statType" : 13030002,
 										"statKey" : "Relic",
 										"value" : 0.1
 									}
@@ -278,16 +262,16 @@
 					},
 					"CurrentRelicType" : 0
 				}
-			},23:{
-				"dataIndex" : 23041010,
+			},43:{
+				"dataIndex" : 43041010,
 				"UpgradeLevel" : 0,
 				"RelicTable" : {
-					"Table" : {31000006:{
+					"Table" : {14010001:{
 							"isUnlocked" : false,
 							"statSpec" : {
 								"statList" : [
 									{
-										"statType" : 2008,
+										"statType" : 13010003,
 										"statKey" : "Relic",
 										"value" : 0.1
 									}
@@ -302,12 +286,12 @@
 									}
 								]
 							}
-						},31000009:{
+						},14020002:{
 							"isUnlocked" : false,
 							"statSpec" : {
 								"statList" : [
 									{
-										"statType" : 2001,
+										"statType" : 13010001,
 										"statKey" : "Relic",
 										"value" : 0.1
 									}
@@ -322,12 +306,12 @@
 									}
 								]
 							}
-						},31000012:{
+						},14030003:{
 							"isUnlocked" : false,
 							"statSpec" : {
 								"statList" : [
 									{
-										"statType" : 2003,
+										"statType" : 13020001,
 										"statKey" : "Relic",
 										"value" : 0.1
 									}
@@ -342,12 +326,12 @@
 									}
 								]
 							}
-						},31000015:{
+						},14040004:{
 							"isUnlocked" : false,
 							"statSpec" : {
 								"statList" : [
 									{
-										"statType" : 2006,
+										"statType" : 13020003,
 										"statKey" : "Relic",
 										"value" : 0.1
 									}
@@ -362,12 +346,12 @@
 									}
 								]
 							}
-						},31000018:{
+						},14050005:{
 							"isUnlocked" : false,
 							"statSpec" : {
 								"statList" : [
 									{
-										"statType" : 2007,
+										"statType" : 13020004,
 										"statKey" : "Relic",
 										"value" : 0.1
 									}
@@ -382,12 +366,12 @@
 									}
 								]
 							}
-						},31000021:{
+						},14060006:{
 							"isUnlocked" : false,
 							"statSpec" : {
 								"statList" : [
 									{
-										"statType" : 2009,
+										"statType" : 13030002,
 										"statKey" : "Relic",
 										"value" : 0.1
 									}
@@ -406,16 +390,16 @@
 					},
 					"CurrentRelicType" : 0
 				}
-			},24:{
-				"dataIndex" : 24041010,
+			},44:{
+				"dataIndex" : 44041010,
 				"UpgradeLevel" : 0,
 				"RelicTable" : {
-					"Table" : {31000006:{
+					"Table" : {14010001:{
 							"isUnlocked" : false,
 							"statSpec" : {
 								"statList" : [
 									{
-										"statType" : 2008,
+										"statType" : 13010003,
 										"statKey" : "Relic",
 										"value" : 0.1
 									}
@@ -430,12 +414,12 @@
 									}
 								]
 							}
-						},31000009:{
+						},14020002:{
 							"isUnlocked" : false,
 							"statSpec" : {
 								"statList" : [
 									{
-										"statType" : 2001,
+										"statType" : 13010001,
 										"statKey" : "Relic",
 										"value" : 0.1
 									}
@@ -450,12 +434,12 @@
 									}
 								]
 							}
-						},31000012:{
+						},14030003:{
 							"isUnlocked" : false,
 							"statSpec" : {
 								"statList" : [
 									{
-										"statType" : 2003,
+										"statType" : 13020001,
 										"statKey" : "Relic",
 										"value" : 0.1
 									}
@@ -470,12 +454,12 @@
 									}
 								]
 							}
-						},31000015:{
+						},14040004:{
 							"isUnlocked" : false,
 							"statSpec" : {
 								"statList" : [
 									{
-										"statType" : 2006,
+										"statType" : 13020003,
 										"statKey" : "Relic",
 										"value" : 0.1
 									}
@@ -490,12 +474,12 @@
 									}
 								]
 							}
-						},31000018:{
+						},14050005:{
 							"isUnlocked" : false,
 							"statSpec" : {
 								"statList" : [
 									{
-										"statType" : 2007,
+										"statType" : 13020004,
 										"statKey" : "Relic",
 										"value" : 0.1
 									}
@@ -510,12 +494,12 @@
 									}
 								]
 							}
-						},31000021:{
+						},14060006:{
 							"isUnlocked" : false,
 							"statSpec" : {
 								"statList" : [
 									{
-										"statType" : 2009,
+										"statType" : 13030002,
 										"statKey" : "Relic",
 										"value" : 0.1
 									}
@@ -534,16 +518,16 @@
 					},
 					"CurrentRelicType" : 0
 				}
-			},25:{
-				"dataIndex" : 25041010,
+			},45:{
+				"dataIndex" : 45041010,
 				"UpgradeLevel" : 0,
 				"RelicTable" : {
-					"Table" : {31000006:{
+					"Table" : {14010001:{
 							"isUnlocked" : false,
 							"statSpec" : {
 								"statList" : [
 									{
-										"statType" : 2008,
+										"statType" : 13010003,
 										"statKey" : "Relic",
 										"value" : 0.1
 									}
@@ -558,12 +542,12 @@
 									}
 								]
 							}
-						},31000009:{
+						},14020002:{
 							"isUnlocked" : false,
 							"statSpec" : {
 								"statList" : [
 									{
-										"statType" : 2001,
+										"statType" : 13010001,
 										"statKey" : "Relic",
 										"value" : 0.1
 									}
@@ -578,12 +562,12 @@
 									}
 								]
 							}
-						},31000012:{
+						},14030003:{
 							"isUnlocked" : false,
 							"statSpec" : {
 								"statList" : [
 									{
-										"statType" : 2003,
+										"statType" : 13020001,
 										"statKey" : "Relic",
 										"value" : 0.1
 									}
@@ -598,12 +582,12 @@
 									}
 								]
 							}
-						},31000015:{
+						},14040004:{
 							"isUnlocked" : false,
 							"statSpec" : {
 								"statList" : [
 									{
-										"statType" : 2006,
+										"statType" : 13020003,
 										"statKey" : "Relic",
 										"value" : 0.1
 									}
@@ -618,12 +602,12 @@
 									}
 								]
 							}
-						},31000018:{
+						},14050005:{
 							"isUnlocked" : false,
 							"statSpec" : {
 								"statList" : [
 									{
-										"statType" : 2007,
+										"statType" : 13020004,
 										"statKey" : "Relic",
 										"value" : 0.1
 									}
@@ -638,12 +622,12 @@
 									}
 								]
 							}
-						},31000021:{
+						},14060006:{
 							"isUnlocked" : false,
 							"statSpec" : {
 								"statList" : [
 									{
-										"statType" : 2009,
+										"statType" : 13030002,
 										"statKey" : "Relic",
 										"value" : 0.1
 									}
@@ -662,16 +646,16 @@
 					},
 					"CurrentRelicType" : 0
 				}
-			},26:{
-				"dataIndex" : 26041010,
+			},46:{
+				"dataIndex" : 46041010,
 				"UpgradeLevel" : 0,
 				"RelicTable" : {
-					"Table" : {31000006:{
+					"Table" : {14010001:{
 							"isUnlocked" : false,
 							"statSpec" : {
 								"statList" : [
 									{
-										"statType" : 2008,
+										"statType" : 13010003,
 										"statKey" : "Relic",
 										"value" : 0.1
 									}
@@ -686,12 +670,12 @@
 									}
 								]
 							}
-						},31000009:{
+						},14020002:{
 							"isUnlocked" : false,
 							"statSpec" : {
 								"statList" : [
 									{
-										"statType" : 2001,
+										"statType" : 13010001,
 										"statKey" : "Relic",
 										"value" : 0.1
 									}
@@ -706,12 +690,12 @@
 									}
 								]
 							}
-						},31000012:{
+						},14030003:{
 							"isUnlocked" : false,
 							"statSpec" : {
 								"statList" : [
 									{
-										"statType" : 2003,
+										"statType" : 13020001,
 										"statKey" : "Relic",
 										"value" : 0.1
 									}
@@ -726,12 +710,12 @@
 									}
 								]
 							}
-						},31000015:{
+						},14040004:{
 							"isUnlocked" : false,
 							"statSpec" : {
 								"statList" : [
 									{
-										"statType" : 2006,
+										"statType" : 13020003,
 										"statKey" : "Relic",
 										"value" : 0.1
 									}
@@ -746,12 +730,12 @@
 									}
 								]
 							}
-						},31000018:{
+						},14050005:{
 							"isUnlocked" : false,
 							"statSpec" : {
 								"statList" : [
 									{
-										"statType" : 2007,
+										"statType" : 13020004,
 										"statKey" : "Relic",
 										"value" : 0.1
 									}
@@ -766,12 +750,12 @@
 									}
 								]
 							}
-						},31000021:{
+						},14060006:{
 							"isUnlocked" : false,
 							"statSpec" : {
 								"statList" : [
 									{
-										"statType" : 2009,
+										"statType" : 13030002,
 										"statKey" : "Relic",
 										"value" : 0.1
 									}
@@ -795,16 +779,16 @@
 	},
 	"Rogue.EquipmentEntity" : {
 		"__type" : "System.Collections.Generic.Dictionary`2[[Common.EquipSlotIndex, ProjectR.Common, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null],[Common.Equipments.EquipmentEntity, ProjectR.Common, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]],mscorlib",
-		"value" : {21:{
-				"dataIndex" : 21031007,
+		"value" : {41:{
+				"dataIndex" : 41031007,
 				"UpgradeLevel" : 0,
 				"RelicTable" : {
-					"Table" : {31000006:{
+					"Table" : {14010001:{
 							"isUnlocked" : false,
 							"statSpec" : {
 								"statList" : [
 									{
-										"statType" : 2008,
+										"statType" : 13010003,
 										"statKey" : "Relic",
 										"value" : 0.1
 									}
@@ -819,12 +803,12 @@
 									}
 								]
 							}
-						},31000009:{
+						},14020002:{
 							"isUnlocked" : false,
 							"statSpec" : {
 								"statList" : [
 									{
-										"statType" : 2001,
+										"statType" : 13010001,
 										"statKey" : "Relic",
 										"value" : 0.1
 									}
@@ -839,12 +823,12 @@
 									}
 								]
 							}
-						},31000012:{
+						},14030003:{
 							"isUnlocked" : false,
 							"statSpec" : {
 								"statList" : [
 									{
-										"statType" : 2003,
+										"statType" : 13020001,
 										"statKey" : "Relic",
 										"value" : 0.1
 									}
@@ -859,12 +843,12 @@
 									}
 								]
 							}
-						},31000015:{
+						},14040004:{
 							"isUnlocked" : false,
 							"statSpec" : {
 								"statList" : [
 									{
-										"statType" : 2006,
+										"statType" : 13020003,
 										"statKey" : "Relic",
 										"value" : 0.1
 									}
@@ -879,12 +863,12 @@
 									}
 								]
 							}
-						},31000018:{
+						},14050005:{
 							"isUnlocked" : false,
 							"statSpec" : {
 								"statList" : [
 									{
-										"statType" : 2007,
+										"statType" : 13020004,
 										"statKey" : "Relic",
 										"value" : 0.1
 									}
@@ -899,12 +883,12 @@
 									}
 								]
 							}
-						},31000021:{
+						},14060006:{
 							"isUnlocked" : false,
 							"statSpec" : {
 								"statList" : [
 									{
-										"statType" : 2009,
+										"statType" : 13030002,
 										"statKey" : "Relic",
 										"value" : 0.1
 									}
@@ -923,16 +907,16 @@
 					},
 					"CurrentRelicType" : 0
 				}
-			},22:{
-				"dataIndex" : 22031007,
+			},42:{
+				"dataIndex" : 42031007,
 				"UpgradeLevel" : 0,
 				"RelicTable" : {
-					"Table" : {31000006:{
+					"Table" : {14010001:{
 							"isUnlocked" : false,
 							"statSpec" : {
 								"statList" : [
 									{
-										"statType" : 2008,
+										"statType" : 13010003,
 										"statKey" : "Relic",
 										"value" : 0.1
 									}
@@ -947,12 +931,12 @@
 									}
 								]
 							}
-						},31000009:{
+						},14020002:{
 							"isUnlocked" : false,
 							"statSpec" : {
 								"statList" : [
 									{
-										"statType" : 2001,
+										"statType" : 13010001,
 										"statKey" : "Relic",
 										"value" : 0.1
 									}
@@ -967,12 +951,12 @@
 									}
 								]
 							}
-						},31000012:{
+						},14030003:{
 							"isUnlocked" : false,
 							"statSpec" : {
 								"statList" : [
 									{
-										"statType" : 2003,
+										"statType" : 13020001,
 										"statKey" : "Relic",
 										"value" : 0.1
 									}
@@ -987,12 +971,12 @@
 									}
 								]
 							}
-						},31000015:{
+						},14040004:{
 							"isUnlocked" : false,
 							"statSpec" : {
 								"statList" : [
 									{
-										"statType" : 2006,
+										"statType" : 13020003,
 										"statKey" : "Relic",
 										"value" : 0.1
 									}
@@ -1007,12 +991,12 @@
 									}
 								]
 							}
-						},31000018:{
+						},14050005:{
 							"isUnlocked" : false,
 							"statSpec" : {
 								"statList" : [
 									{
-										"statType" : 2007,
+										"statType" : 13020004,
 										"statKey" : "Relic",
 										"value" : 0.1
 									}
@@ -1027,12 +1011,12 @@
 									}
 								]
 							}
-						},31000021:{
+						},14060006:{
 							"isUnlocked" : false,
 							"statSpec" : {
 								"statList" : [
 									{
-										"statType" : 2009,
+										"statType" : 13030002,
 										"statKey" : "Relic",
 										"value" : 0.1
 									}
@@ -1051,16 +1035,16 @@
 					},
 					"CurrentRelicType" : 0
 				}
-			},23:{
-				"dataIndex" : 23031007,
+			},43:{
+				"dataIndex" : 43031007,
 				"UpgradeLevel" : 0,
 				"RelicTable" : {
-					"Table" : {31000006:{
+					"Table" : {14010001:{
 							"isUnlocked" : false,
 							"statSpec" : {
 								"statList" : [
 									{
-										"statType" : 2008,
+										"statType" : 13010003,
 										"statKey" : "Relic",
 										"value" : 0.1
 									}
@@ -1075,12 +1059,12 @@
 									}
 								]
 							}
-						},31000009:{
+						},14020002:{
 							"isUnlocked" : false,
 							"statSpec" : {
 								"statList" : [
 									{
-										"statType" : 2001,
+										"statType" : 13010001,
 										"statKey" : "Relic",
 										"value" : 0.1
 									}
@@ -1095,12 +1079,12 @@
 									}
 								]
 							}
-						},31000012:{
+						},14030003:{
 							"isUnlocked" : false,
 							"statSpec" : {
 								"statList" : [
 									{
-										"statType" : 2003,
+										"statType" : 13020001,
 										"statKey" : "Relic",
 										"value" : 0.1
 									}
@@ -1115,12 +1099,12 @@
 									}
 								]
 							}
-						},31000015:{
+						},14040004:{
 							"isUnlocked" : false,
 							"statSpec" : {
 								"statList" : [
 									{
-										"statType" : 2006,
+										"statType" : 13020003,
 										"statKey" : "Relic",
 										"value" : 0.1
 									}
@@ -1135,12 +1119,12 @@
 									}
 								]
 							}
-						},31000018:{
+						},14050005:{
 							"isUnlocked" : false,
 							"statSpec" : {
 								"statList" : [
 									{
-										"statType" : 2007,
+										"statType" : 13020004,
 										"statKey" : "Relic",
 										"value" : 0.1
 									}
@@ -1155,12 +1139,12 @@
 									}
 								]
 							}
-						},31000021:{
+						},14060006:{
 							"isUnlocked" : false,
 							"statSpec" : {
 								"statList" : [
 									{
-										"statType" : 2009,
+										"statType" : 13030002,
 										"statKey" : "Relic",
 										"value" : 0.1
 									}
@@ -1179,16 +1163,16 @@
 					},
 					"CurrentRelicType" : 0
 				}
-			},24:{
-				"dataIndex" : 24031007,
+			},44:{
+				"dataIndex" : 44031007,
 				"UpgradeLevel" : 0,
 				"RelicTable" : {
-					"Table" : {31000006:{
+					"Table" : {14010001:{
 							"isUnlocked" : false,
 							"statSpec" : {
 								"statList" : [
 									{
-										"statType" : 2008,
+										"statType" : 13010003,
 										"statKey" : "Relic",
 										"value" : 0.1
 									}
@@ -1203,12 +1187,12 @@
 									}
 								]
 							}
-						},31000009:{
+						},14020002:{
 							"isUnlocked" : false,
 							"statSpec" : {
 								"statList" : [
 									{
-										"statType" : 2001,
+										"statType" : 13010001,
 										"statKey" : "Relic",
 										"value" : 0.1
 									}
@@ -1223,12 +1207,12 @@
 									}
 								]
 							}
-						},31000012:{
+						},14030003:{
 							"isUnlocked" : false,
 							"statSpec" : {
 								"statList" : [
 									{
-										"statType" : 2003,
+										"statType" : 13020001,
 										"statKey" : "Relic",
 										"value" : 0.1
 									}
@@ -1243,12 +1227,12 @@
 									}
 								]
 							}
-						},31000015:{
+						},14040004:{
 							"isUnlocked" : false,
 							"statSpec" : {
 								"statList" : [
 									{
-										"statType" : 2006,
+										"statType" : 13020003,
 										"statKey" : "Relic",
 										"value" : 0.1
 									}
@@ -1263,12 +1247,12 @@
 									}
 								]
 							}
-						},31000018:{
+						},14050005:{
 							"isUnlocked" : false,
 							"statSpec" : {
 								"statList" : [
 									{
-										"statType" : 2007,
+										"statType" : 13020004,
 										"statKey" : "Relic",
 										"value" : 0.1
 									}
@@ -1283,12 +1267,12 @@
 									}
 								]
 							}
-						},31000021:{
+						},14060006:{
 							"isUnlocked" : false,
 							"statSpec" : {
 								"statList" : [
 									{
-										"statType" : 2009,
+										"statType" : 13030002,
 										"statKey" : "Relic",
 										"value" : 0.1
 									}
@@ -1307,16 +1291,16 @@
 					},
 					"CurrentRelicType" : 0
 				}
-			},25:{
-				"dataIndex" : 25031007,
+			},45:{
+				"dataIndex" : 45031007,
 				"UpgradeLevel" : 0,
 				"RelicTable" : {
-					"Table" : {31000006:{
+					"Table" : {14010001:{
 							"isUnlocked" : false,
 							"statSpec" : {
 								"statList" : [
 									{
-										"statType" : 2008,
+										"statType" : 13010003,
 										"statKey" : "Relic",
 										"value" : 0.1
 									}
@@ -1331,12 +1315,12 @@
 									}
 								]
 							}
-						},31000009:{
+						},14020002:{
 							"isUnlocked" : false,
 							"statSpec" : {
 								"statList" : [
 									{
-										"statType" : 2001,
+										"statType" : 13010001,
 										"statKey" : "Relic",
 										"value" : 0.1
 									}
@@ -1351,12 +1335,12 @@
 									}
 								]
 							}
-						},31000012:{
+						},14030003:{
 							"isUnlocked" : false,
 							"statSpec" : {
 								"statList" : [
 									{
-										"statType" : 2003,
+										"statType" : 13020001,
 										"statKey" : "Relic",
 										"value" : 0.1
 									}
@@ -1371,12 +1355,12 @@
 									}
 								]
 							}
-						},31000015:{
+						},14040004:{
 							"isUnlocked" : false,
 							"statSpec" : {
 								"statList" : [
 									{
-										"statType" : 2006,
+										"statType" : 13020003,
 										"statKey" : "Relic",
 										"value" : 0.1
 									}
@@ -1391,12 +1375,12 @@
 									}
 								]
 							}
-						},31000018:{
+						},14050005:{
 							"isUnlocked" : false,
 							"statSpec" : {
 								"statList" : [
 									{
-										"statType" : 2007,
+										"statType" : 13020004,
 										"statKey" : "Relic",
 										"value" : 0.1
 									}
@@ -1411,12 +1395,12 @@
 									}
 								]
 							}
-						},31000021:{
+						},14060006:{
 							"isUnlocked" : false,
 							"statSpec" : {
 								"statList" : [
 									{
-										"statType" : 2009,
+										"statType" : 13030002,
 										"statKey" : "Relic",
 										"value" : 0.1
 									}
@@ -1435,16 +1419,16 @@
 					},
 					"CurrentRelicType" : 0
 				}
-			},26:{
-				"dataIndex" : 26031007,
+			},46:{
+				"dataIndex" : 46031007,
 				"UpgradeLevel" : 0,
 				"RelicTable" : {
-					"Table" : {31000006:{
+					"Table" : {14010001:{
 							"isUnlocked" : false,
 							"statSpec" : {
 								"statList" : [
 									{
-										"statType" : 2008,
+										"statType" : 13010003,
 										"statKey" : "Relic",
 										"value" : 0.1
 									}
@@ -1459,12 +1443,12 @@
 									}
 								]
 							}
-						},31000009:{
+						},14020002:{
 							"isUnlocked" : false,
 							"statSpec" : {
 								"statList" : [
 									{
-										"statType" : 2001,
+										"statType" : 13010001,
 										"statKey" : "Relic",
 										"value" : 0.1
 									}
@@ -1479,12 +1463,12 @@
 									}
 								]
 							}
-						},31000012:{
+						},14030003:{
 							"isUnlocked" : false,
 							"statSpec" : {
 								"statList" : [
 									{
-										"statType" : 2003,
+										"statType" : 13020001,
 										"statKey" : "Relic",
 										"value" : 0.1
 									}
@@ -1499,12 +1483,12 @@
 									}
 								]
 							}
-						},31000015:{
+						},14040004:{
 							"isUnlocked" : false,
 							"statSpec" : {
 								"statList" : [
 									{
-										"statType" : 2006,
+										"statType" : 13020003,
 										"statKey" : "Relic",
 										"value" : 0.1
 									}
@@ -1519,12 +1503,12 @@
 									}
 								]
 							}
-						},31000018:{
+						},14050005:{
 							"isUnlocked" : false,
 							"statSpec" : {
 								"statList" : [
 									{
-										"statType" : 2007,
+										"statType" : 13020004,
 										"statKey" : "Relic",
 										"value" : 0.1
 									}
@@ -1539,12 +1523,12 @@
 									}
 								]
 							}
-						},31000021:{
+						},14060006:{
 							"isUnlocked" : false,
 							"statSpec" : {
 								"statList" : [
 									{
-										"statType" : 2009,
+										"statType" : 13030002,
 										"statKey" : "Relic",
 										"value" : 0.1
 									}
@@ -1568,52 +1552,16 @@
 	},
 	"Knight.EquipmentEntity" : {
 		"__type" : "System.Collections.Generic.Dictionary`2[[Common.EquipSlotIndex, ProjectR.Common, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null],[Common.Equipments.EquipmentEntity, ProjectR.Common, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]],mscorlib",
-		"value" : {21:{
-				"dataIndex" : 21011001,
+		"value" : {41:{
+				"dataIndex" : 41011001,
 				"UpgradeLevel" : 0,
 				"RelicTable" : {
-					"Table" : {31000006:{
+					"Table" : {14010001:{
 							"isUnlocked" : false,
 							"statSpec" : {
 								"statList" : [
 									{
-										"statType" : 2003,
-										"statKey" : "Weapon.Conversion",
-										"value" : 0.0103056049
-									},{
-										"statType" : 2005,
-										"statKey" : "Weapon.Conversion",
-										"value" : 0.014954444
-									},{
-										"statType" : 2006,
-										"statKey" : "Weapon.Conversion",
-										"value" : 0.0165054351
-									}
-								]
-							},
-							"ethosSpec" : {
-								"ethosList" : [
-									{
-										"ethosType" : 1908,
-										"ethosKey" : "Weapon.Enchant",
-										"value" : 2
-									},{
-										"ethosType" : 1911,
-										"ethosKey" : "Weapon.Enchant",
-										"value" : 3
-									},{
-										"ethosType" : 1922,
-										"ethosKey" : "Weapon.Enchant",
-										"value" : 3
-									}
-								]
-							}
-						},31000009:{
-							"isUnlocked" : false,
-							"statSpec" : {
-								"statList" : [
-									{
-										"statType" : 2001,
+										"statType" : 13010003,
 										"statKey" : "Relic",
 										"value" : 0.1
 									}
@@ -1628,12 +1576,12 @@
 									}
 								]
 							}
-						},31000012:{
+						},14020002:{
 							"isUnlocked" : false,
 							"statSpec" : {
 								"statList" : [
 									{
-										"statType" : 2003,
+										"statType" : 13010001,
 										"statKey" : "Relic",
 										"value" : 0.1
 									}
@@ -1648,12 +1596,12 @@
 									}
 								]
 							}
-						},31000015:{
+						},14030003:{
 							"isUnlocked" : false,
 							"statSpec" : {
 								"statList" : [
 									{
-										"statType" : 2006,
+										"statType" : 13020001,
 										"statKey" : "Relic",
 										"value" : 0.1
 									}
@@ -1668,12 +1616,12 @@
 									}
 								]
 							}
-						},31000018:{
+						},14040004:{
 							"isUnlocked" : false,
 							"statSpec" : {
 								"statList" : [
 									{
-										"statType" : 2007,
+										"statType" : 13020003,
 										"statKey" : "Relic",
 										"value" : 0.1
 									}
@@ -1688,12 +1636,32 @@
 									}
 								]
 							}
-						},31000021:{
+						},14050005:{
 							"isUnlocked" : false,
 							"statSpec" : {
 								"statList" : [
 									{
-										"statType" : 2009,
+										"statType" : 13020004,
+										"statKey" : "Relic",
+										"value" : 0.1
+									}
+								]
+							},
+							"ethosSpec" : {
+								"ethosList" : [
+									{
+										"ethosType" : 0,
+										"ethosKey" : "Relic",
+										"value" : 0
+									}
+								]
+							}
+						},14060006:{
+							"isUnlocked" : false,
+							"statSpec" : {
+								"statList" : [
+									{
+										"statType" : 13030002,
 										"statKey" : "Relic",
 										"value" : 0.1
 									}
@@ -1712,52 +1680,16 @@
 					},
 					"CurrentRelicType" : 0
 				}
-			},22:{
-				"dataIndex" : 22011001,
+			},42:{
+				"dataIndex" : 42011001,
 				"UpgradeLevel" : 0,
 				"RelicTable" : {
-					"Table" : {31000006:{
+					"Table" : {14010001:{
 							"isUnlocked" : false,
 							"statSpec" : {
 								"statList" : [
 									{
-										"statType" : 2003,
-										"statKey" : "Head.Conversion",
-										"value" : 0.0133357607
-									},{
-										"statType" : 2005,
-										"statKey" : "Head.Conversion",
-										"value" : 0.0155449137
-									},{
-										"statType" : 2006,
-										"statKey" : "Head.Conversion",
-										"value" : 0.0165380239
-									}
-								]
-							},
-							"ethosSpec" : {
-								"ethosList" : [
-									{
-										"ethosType" : 1908,
-										"ethosKey" : "Head.Enchant",
-										"value" : 3
-									},{
-										"ethosType" : 1920,
-										"ethosKey" : "Head.Enchant",
-										"value" : 1
-									},{
-										"ethosType" : 1922,
-										"ethosKey" : "Head.Enchant",
-										"value" : 2
-									}
-								]
-							}
-						},31000009:{
-							"isUnlocked" : false,
-							"statSpec" : {
-								"statList" : [
-									{
-										"statType" : 2001,
+										"statType" : 13010003,
 										"statKey" : "Relic",
 										"value" : 0.1
 									}
@@ -1772,12 +1704,12 @@
 									}
 								]
 							}
-						},31000012:{
+						},14020002:{
 							"isUnlocked" : false,
 							"statSpec" : {
 								"statList" : [
 									{
-										"statType" : 2003,
+										"statType" : 13010001,
 										"statKey" : "Relic",
 										"value" : 0.1
 									}
@@ -1792,12 +1724,12 @@
 									}
 								]
 							}
-						},31000015:{
+						},14030003:{
 							"isUnlocked" : false,
 							"statSpec" : {
 								"statList" : [
 									{
-										"statType" : 2006,
+										"statType" : 13020001,
 										"statKey" : "Relic",
 										"value" : 0.1
 									}
@@ -1812,12 +1744,12 @@
 									}
 								]
 							}
-						},31000018:{
+						},14040004:{
 							"isUnlocked" : false,
 							"statSpec" : {
 								"statList" : [
 									{
-										"statType" : 2007,
+										"statType" : 13020003,
 										"statKey" : "Relic",
 										"value" : 0.1
 									}
@@ -1832,12 +1764,32 @@
 									}
 								]
 							}
-						},31000021:{
+						},14050005:{
 							"isUnlocked" : false,
 							"statSpec" : {
 								"statList" : [
 									{
-										"statType" : 2009,
+										"statType" : 13020004,
+										"statKey" : "Relic",
+										"value" : 0.1
+									}
+								]
+							},
+							"ethosSpec" : {
+								"ethosList" : [
+									{
+										"ethosType" : 0,
+										"ethosKey" : "Relic",
+										"value" : 0
+									}
+								]
+							}
+						},14060006:{
+							"isUnlocked" : false,
+							"statSpec" : {
+								"statList" : [
+									{
+										"statType" : 13030002,
 										"statKey" : "Relic",
 										"value" : 0.1
 									}
@@ -1856,16 +1808,16 @@
 					},
 					"CurrentRelicType" : 0
 				}
-			},23:{
-				"dataIndex" : 23011001,
+			},43:{
+				"dataIndex" : 43011001,
 				"UpgradeLevel" : 0,
 				"RelicTable" : {
-					"Table" : {31000006:{
+					"Table" : {14010001:{
 							"isUnlocked" : false,
 							"statSpec" : {
 								"statList" : [
 									{
-										"statType" : 2008,
+										"statType" : 13010003,
 										"statKey" : "Relic",
 										"value" : 0.1
 									}
@@ -1880,12 +1832,12 @@
 									}
 								]
 							}
-						},31000009:{
+						},14020002:{
 							"isUnlocked" : false,
 							"statSpec" : {
 								"statList" : [
 									{
-										"statType" : 2001,
+										"statType" : 13010001,
 										"statKey" : "Relic",
 										"value" : 0.1
 									}
@@ -1900,12 +1852,12 @@
 									}
 								]
 							}
-						},31000012:{
+						},14030003:{
 							"isUnlocked" : false,
 							"statSpec" : {
 								"statList" : [
 									{
-										"statType" : 2003,
+										"statType" : 13020001,
 										"statKey" : "Relic",
 										"value" : 0.1
 									}
@@ -1920,12 +1872,12 @@
 									}
 								]
 							}
-						},31000015:{
+						},14040004:{
 							"isUnlocked" : false,
 							"statSpec" : {
 								"statList" : [
 									{
-										"statType" : 2006,
+										"statType" : 13020003,
 										"statKey" : "Relic",
 										"value" : 0.1
 									}
@@ -1940,12 +1892,12 @@
 									}
 								]
 							}
-						},31000018:{
+						},14050005:{
 							"isUnlocked" : false,
 							"statSpec" : {
 								"statList" : [
 									{
-										"statType" : 2007,
+										"statType" : 13020004,
 										"statKey" : "Relic",
 										"value" : 0.1
 									}
@@ -1960,12 +1912,12 @@
 									}
 								]
 							}
-						},31000021:{
+						},14060006:{
 							"isUnlocked" : false,
 							"statSpec" : {
 								"statList" : [
 									{
-										"statType" : 2009,
+										"statType" : 13030002,
 										"statKey" : "Relic",
 										"value" : 0.1
 									}
@@ -1984,16 +1936,16 @@
 					},
 					"CurrentRelicType" : 0
 				}
-			},24:{
-				"dataIndex" : 24011001,
+			},44:{
+				"dataIndex" : 44011001,
 				"UpgradeLevel" : 0,
 				"RelicTable" : {
-					"Table" : {31000006:{
+					"Table" : {14010001:{
 							"isUnlocked" : false,
 							"statSpec" : {
 								"statList" : [
 									{
-										"statType" : 2008,
+										"statType" : 13010003,
 										"statKey" : "Relic",
 										"value" : 0.1
 									}
@@ -2008,12 +1960,12 @@
 									}
 								]
 							}
-						},31000009:{
+						},14020002:{
 							"isUnlocked" : false,
 							"statSpec" : {
 								"statList" : [
 									{
-										"statType" : 2001,
+										"statType" : 13010001,
 										"statKey" : "Relic",
 										"value" : 0.1
 									}
@@ -2028,12 +1980,12 @@
 									}
 								]
 							}
-						},31000012:{
+						},14030003:{
 							"isUnlocked" : false,
 							"statSpec" : {
 								"statList" : [
 									{
-										"statType" : 2003,
+										"statType" : 13020001,
 										"statKey" : "Relic",
 										"value" : 0.1
 									}
@@ -2048,12 +2000,12 @@
 									}
 								]
 							}
-						},31000015:{
+						},14040004:{
 							"isUnlocked" : false,
 							"statSpec" : {
 								"statList" : [
 									{
-										"statType" : 2006,
+										"statType" : 13020003,
 										"statKey" : "Relic",
 										"value" : 0.1
 									}
@@ -2068,12 +2020,12 @@
 									}
 								]
 							}
-						},31000018:{
+						},14050005:{
 							"isUnlocked" : false,
 							"statSpec" : {
 								"statList" : [
 									{
-										"statType" : 2007,
+										"statType" : 13020004,
 										"statKey" : "Relic",
 										"value" : 0.1
 									}
@@ -2088,12 +2040,12 @@
 									}
 								]
 							}
-						},31000021:{
+						},14060006:{
 							"isUnlocked" : false,
 							"statSpec" : {
 								"statList" : [
 									{
-										"statType" : 2009,
+										"statType" : 13030002,
 										"statKey" : "Relic",
 										"value" : 0.1
 									}
@@ -2112,16 +2064,16 @@
 					},
 					"CurrentRelicType" : 0
 				}
-			},25:{
-				"dataIndex" : 25011001,
+			},45:{
+				"dataIndex" : 45011001,
 				"UpgradeLevel" : 0,
 				"RelicTable" : {
-					"Table" : {31000006:{
+					"Table" : {14010001:{
 							"isUnlocked" : false,
 							"statSpec" : {
 								"statList" : [
 									{
-										"statType" : 2008,
+										"statType" : 13010003,
 										"statKey" : "Relic",
 										"value" : 0.1
 									}
@@ -2136,12 +2088,12 @@
 									}
 								]
 							}
-						},31000009:{
+						},14020002:{
 							"isUnlocked" : false,
 							"statSpec" : {
 								"statList" : [
 									{
-										"statType" : 2001,
+										"statType" : 13010001,
 										"statKey" : "Relic",
 										"value" : 0.1
 									}
@@ -2156,12 +2108,12 @@
 									}
 								]
 							}
-						},31000012:{
+						},14030003:{
 							"isUnlocked" : false,
 							"statSpec" : {
 								"statList" : [
 									{
-										"statType" : 2003,
+										"statType" : 13020001,
 										"statKey" : "Relic",
 										"value" : 0.1
 									}
@@ -2176,12 +2128,12 @@
 									}
 								]
 							}
-						},31000015:{
+						},14040004:{
 							"isUnlocked" : false,
 							"statSpec" : {
 								"statList" : [
 									{
-										"statType" : 2006,
+										"statType" : 13020003,
 										"statKey" : "Relic",
 										"value" : 0.1
 									}
@@ -2196,12 +2148,12 @@
 									}
 								]
 							}
-						},31000018:{
+						},14050005:{
 							"isUnlocked" : false,
 							"statSpec" : {
 								"statList" : [
 									{
-										"statType" : 2007,
+										"statType" : 13020004,
 										"statKey" : "Relic",
 										"value" : 0.1
 									}
@@ -2216,12 +2168,12 @@
 									}
 								]
 							}
-						},31000021:{
+						},14060006:{
 							"isUnlocked" : false,
 							"statSpec" : {
 								"statList" : [
 									{
-										"statType" : 2009,
+										"statType" : 13030002,
 										"statKey" : "Relic",
 										"value" : 0.1
 									}
@@ -2240,16 +2192,16 @@
 					},
 					"CurrentRelicType" : 0
 				}
-			},26:{
-				"dataIndex" : 26011001,
+			},46:{
+				"dataIndex" : 46011001,
 				"UpgradeLevel" : 0,
 				"RelicTable" : {
-					"Table" : {31000006:{
+					"Table" : {14010001:{
 							"isUnlocked" : false,
 							"statSpec" : {
 								"statList" : [
 									{
-										"statType" : 2008,
+										"statType" : 13010003,
 										"statKey" : "Relic",
 										"value" : 0.1
 									}
@@ -2264,12 +2216,12 @@
 									}
 								]
 							}
-						},31000009:{
+						},14020002:{
 							"isUnlocked" : false,
 							"statSpec" : {
 								"statList" : [
 									{
-										"statType" : 2001,
+										"statType" : 13010001,
 										"statKey" : "Relic",
 										"value" : 0.1
 									}
@@ -2284,12 +2236,12 @@
 									}
 								]
 							}
-						},31000012:{
+						},14030003:{
 							"isUnlocked" : false,
 							"statSpec" : {
 								"statList" : [
 									{
-										"statType" : 2003,
+										"statType" : 13020001,
 										"statKey" : "Relic",
 										"value" : 0.1
 									}
@@ -2304,12 +2256,12 @@
 									}
 								]
 							}
-						},31000015:{
+						},14040004:{
 							"isUnlocked" : false,
 							"statSpec" : {
 								"statList" : [
 									{
-										"statType" : 2006,
+										"statType" : 13020003,
 										"statKey" : "Relic",
 										"value" : 0.1
 									}
@@ -2324,12 +2276,12 @@
 									}
 								]
 							}
-						},31000018:{
+						},14050005:{
 							"isUnlocked" : false,
 							"statSpec" : {
 								"statList" : [
 									{
-										"statType" : 2007,
+										"statType" : 13020004,
 										"statKey" : "Relic",
 										"value" : 0.1
 									}
@@ -2344,12 +2296,12 @@
 									}
 								]
 							}
-						},31000021:{
+						},14060006:{
 							"isUnlocked" : false,
 							"statSpec" : {
 								"statList" : [
 									{
-										"statType" : 2009,
+										"statType" : 13030002,
 										"statKey" : "Relic",
 										"value" : 0.1
 									}
@@ -2379,7 +2331,7 @@
 		"__type" : "Serialization.SaveInfo,ProjectR.Core",
 		"value" : {
 			"filename" : "_playSaveFile",
-			"saveTime" : "2023.05.27.01.17.43"
+			"saveTime" : "2023.05.29.01.14.35"
 		}
 	}
 }

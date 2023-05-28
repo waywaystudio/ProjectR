@@ -12,113 +12,113 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0362f26865729af46a633d35265bc912, type: 3}
   m_Name: WeaponData
   m_EditorClassIdentifier: 
-  Index: 21
+  Index: 41
   list:
-  - id: 21011001
+  - id: 41011001
     name: Guardian's Sword & Shield
     minDamage: 2
     maxDamage: 3
     power: 20
     iconFileName: Guardian's Sword & Shield Sprite
-  - id: 21012002
+  - id: 41012002
     name: Garvin's Sword
-    minDamage: 2
-    maxDamage: 3
-    power: 20
+    minDamage: 12
+    maxDamage: 15
+    power: 100
     iconFileName: Garvin's Sword Sprite
-  - id: 21013003
+  - id: 41013003
     name: Last Survivor
+    minDamage: 24
+    maxDamage: 28
+    power: 320
+    iconFileName: Last Survivor Sprite
+  - id: 41021004
+    name: Pathfinder Two Hand Swrod
     minDamage: 2
     maxDamage: 3
-    power: 20
-    iconFileName: Last Survivor Sprite
-  - id: 21021004
-    name: Pathfinder Two Hand Swrod
-    minDamage: 1
-    maxDamage: 2
     power: 20
     iconFileName: Pathfinder Two Hand Swrod Sprite
-  - id: 21022005
+  - id: 41022005
     name: Pavel's Greate Sword
-    minDamage: 1
-    maxDamage: 2
-    power: 20
+    minDamage: 12
+    maxDamage: 15
+    power: 100
     iconFileName: Pavel's Greate Sword Sprite
-  - id: 21023006
+  - id: 41023006
     name: Luna Embracer
-    minDamage: 1
-    maxDamage: 2
-    power: 12
+    minDamage: 24
+    maxDamage: 28
+    power: 320
     iconFileName: Luna Embracer Sprite
-  - id: 21031007
+  - id: 41031007
     name: Blacksmith's Dagger
-    minDamage: 1
+    minDamage: 2
     maxDamage: 3
-    power: 24
+    power: 20
     iconFileName: Blacksmith's Dagger Sprite
-  - id: 21032008
+  - id: 41032008
     name: Vesta's Dagger
-    minDamage: 1
-    maxDamage: 3
-    power: 24
+    minDamage: 12
+    maxDamage: 15
+    power: 100
     iconFileName: Vesta's Dagger Sprite
-  - id: 21033009
+  - id: 41033009
     name: Quiet Sting
-    minDamage: 1
-    maxDamage: 3
-    power: 24
+    minDamage: 24
+    maxDamage: 28
+    power: 320
     iconFileName: Quiet Sting Sprite
-  - id: 21041010
+  - id: 41041010
     name: Ranger's Bow
-    minDamage: 1
-    maxDamage: 5
-    power: 30
+    minDamage: 2
+    maxDamage: 3
+    power: 20
     iconFileName: Ranger's Bow Sprite
-  - id: 21042011
+  - id: 41042011
     name: Ives's Bow
-    minDamage: 1
-    maxDamage: 5
-    power: 9
+    minDamage: 12
+    maxDamage: 15
+    power: 100
     iconFileName: Ives's Bow Sprite
-  - id: 21043012
+  - id: 41043012
     name: Wind Seal
-    minDamage: 1
-    maxDamage: 5
-    power: 30
+    minDamage: 24
+    maxDamage: 28
+    power: 320
     iconFileName: Wind Seal Sprite
-  - id: 21051013
+  - id: 41051013
     name: Unnamed Staff
-    minDamage: 1
+    minDamage: 2
     maxDamage: 3
-    power: 24
+    power: 20
     iconFileName: Unnamed Staff Sprite
-  - id: 21052014
+  - id: 41052014
     name: Leah's Staff
-    minDamage: 1
-    maxDamage: 3
-    power: 24
+    minDamage: 12
+    maxDamage: 15
+    power: 100
     iconFileName: Leah's Staff Sprite
-  - id: 21053015
+  - id: 41053015
     name: First Dawn
-    minDamage: 1
-    maxDamage: 3
-    power: 24
+    minDamage: 24
+    maxDamage: 28
+    power: 320
     iconFileName: First Dawn Sprite
-  - id: 21061016
+  - id: 41061016
     name: Cleric's Orb
-    minDamage: 1
-    maxDamage: 5
-    power: 30
+    minDamage: 2
+    maxDamage: 3
+    power: 20
     iconFileName: Cleric's Orb Sprite
-  - id: 21062017
+  - id: 41062017
     name: Clover's Orb
-    minDamage: 1
-    maxDamage: 5
-    power: 30
+    minDamage: 12
+    maxDamage: 15
+    power: 100
     iconFileName: Clover's Orb Sprite
-  - id: 21063018
+  - id: 41063018
     name: Orb of Elysium
-    minDamage: 1
-    maxDamage: 5
-    power: 30
+    minDamage: 24
+    maxDamage: 28
+    power: 320
     iconFileName: Orb of Elysium Sprite
