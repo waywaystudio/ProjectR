@@ -5,132 +5,132 @@
 	},
 	"MaterialSerializeKey" : {
 		"__type" : "System.Collections.Generic.Dictionary`2[[Common.MaterialType, ProjectR.Common, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null],[System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]],mscorlib",
-		"value" : {28011001:13,28051013:8,28061016:12
+		"value" : {
 		}
 	},
 	"Knight.EquipmentEntity" : {
 		"__type" : "System.Collections.Generic.Dictionary`2[[Common.EquipSlotIndex, ProjectR.Common, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null],[Common.Equipments.EquipmentEntity, ProjectR.Common, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]],mscorlib",
-		"value" : {21:{
-				"dataIndex" : 21011001,
+		"value" : {41:{
+				"dataIndex" : 41011001,
 				"UpgradeLevel" : 0,
 				"RelicTable" : {
-					"Table" : {31000006:{
+					"Table" : {14010001:{
 							"isUnlocked" : false,
-							"ethos" : {
+							"statSpec" : {
+								"statList" : [
+									{
+										"statType" : 13010003,
+										"statKey" : "Relic",
+										"value" : 0.1
+									}
+								]
+							},
+							"ethosSpec" : {
 								"ethosList" : [
 									{
 										"ethosType" : 0,
 										"ethosKey" : "Relic",
 										"value" : 0
-									}
-								]
-							},
-							"statSpec" : {
-								"statList" : [
-									{
-										"statType" : 2008,
-										"statKey" : "Relic",
-										"value" : 0.1
 									}
 								]
 							}
-						},31000009:{
+						},14020002:{
 							"isUnlocked" : false,
-							"ethos" : {
+							"statSpec" : {
+								"statList" : [
+									{
+										"statType" : 13010001,
+										"statKey" : "Relic",
+										"value" : 0.1
+									}
+								]
+							},
+							"ethosSpec" : {
 								"ethosList" : [
 									{
 										"ethosType" : 0,
 										"ethosKey" : "Relic",
 										"value" : 0
-									}
-								]
-							},
-							"statSpec" : {
-								"statList" : [
-									{
-										"statType" : 2001,
-										"statKey" : "Relic",
-										"value" : 0.1
 									}
 								]
 							}
-						},31000012:{
+						},14030003:{
 							"isUnlocked" : false,
-							"ethos" : {
+							"statSpec" : {
+								"statList" : [
+									{
+										"statType" : 13020001,
+										"statKey" : "Relic",
+										"value" : 0.1
+									}
+								]
+							},
+							"ethosSpec" : {
 								"ethosList" : [
 									{
 										"ethosType" : 0,
 										"ethosKey" : "Relic",
 										"value" : 0
-									}
-								]
-							},
-							"statSpec" : {
-								"statList" : [
-									{
-										"statType" : 2003,
-										"statKey" : "Relic",
-										"value" : 0.1
 									}
 								]
 							}
-						},31000015:{
+						},14040004:{
 							"isUnlocked" : false,
-							"ethos" : {
+							"statSpec" : {
+								"statList" : [
+									{
+										"statType" : 13020003,
+										"statKey" : "Relic",
+										"value" : 0.1
+									}
+								]
+							},
+							"ethosSpec" : {
 								"ethosList" : [
 									{
 										"ethosType" : 0,
 										"ethosKey" : "Relic",
 										"value" : 0
-									}
-								]
-							},
-							"statSpec" : {
-								"statList" : [
-									{
-										"statType" : 2006,
-										"statKey" : "Relic",
-										"value" : 0.1
 									}
 								]
 							}
-						},31000018:{
+						},14050005:{
 							"isUnlocked" : false,
-							"ethos" : {
+							"statSpec" : {
+								"statList" : [
+									{
+										"statType" : 13020004,
+										"statKey" : "Relic",
+										"value" : 0.1
+									}
+								]
+							},
+							"ethosSpec" : {
 								"ethosList" : [
 									{
 										"ethosType" : 0,
 										"ethosKey" : "Relic",
 										"value" : 0
-									}
-								]
-							},
-							"statSpec" : {
-								"statList" : [
-									{
-										"statType" : 2007,
-										"statKey" : "Relic",
-										"value" : 0.1
 									}
 								]
 							}
-						},31000021:{
+						},14060006:{
 							"isUnlocked" : false,
-							"ethos" : {
+							"statSpec" : {
+								"statList" : [
+									{
+										"statType" : 13030002,
+										"statKey" : "Relic",
+										"value" : 0.1
+									}
+								]
+							},
+							"ethosSpec" : {
 								"ethosList" : [
 									{
 										"ethosType" : 0,
 										"ethosKey" : "Relic",
 										"value" : 0
-									}
-								]
-							},
-							"statSpec" : {
-								"statList" : [
-									{
-										"statType" : 2009,
-										"statKey" : "Relic",
-										"value" : 0.1
 									}
 								]
 							}
@@ -138,127 +138,127 @@
 					},
 					"CurrentRelicType" : 0
 				}
-			},22:{
-				"dataIndex" : 22011001,
+			},42:{
+				"dataIndex" : 42011001,
 				"UpgradeLevel" : 0,
 				"RelicTable" : {
-					"Table" : {31000006:{
+					"Table" : {14010001:{
 							"isUnlocked" : false,
-							"ethos" : {
+							"statSpec" : {
+								"statList" : [
+									{
+										"statType" : 13010003,
+										"statKey" : "Relic",
+										"value" : 0.1
+									}
+								]
+							},
+							"ethosSpec" : {
 								"ethosList" : [
 									{
 										"ethosType" : 0,
 										"ethosKey" : "Relic",
 										"value" : 0
-									}
-								]
-							},
-							"statSpec" : {
-								"statList" : [
-									{
-										"statType" : 2008,
-										"statKey" : "Relic",
-										"value" : 0.1
 									}
 								]
 							}
-						},31000009:{
+						},14020002:{
 							"isUnlocked" : false,
-							"ethos" : {
+							"statSpec" : {
+								"statList" : [
+									{
+										"statType" : 13010001,
+										"statKey" : "Relic",
+										"value" : 0.1
+									}
+								]
+							},
+							"ethosSpec" : {
 								"ethosList" : [
 									{
 										"ethosType" : 0,
 										"ethosKey" : "Relic",
 										"value" : 0
-									}
-								]
-							},
-							"statSpec" : {
-								"statList" : [
-									{
-										"statType" : 2001,
-										"statKey" : "Relic",
-										"value" : 0.1
 									}
 								]
 							}
-						},31000012:{
+						},14030003:{
 							"isUnlocked" : false,
-							"ethos" : {
+							"statSpec" : {
+								"statList" : [
+									{
+										"statType" : 13020001,
+										"statKey" : "Relic",
+										"value" : 0.1
+									}
+								]
+							},
+							"ethosSpec" : {
 								"ethosList" : [
 									{
 										"ethosType" : 0,
 										"ethosKey" : "Relic",
 										"value" : 0
-									}
-								]
-							},
-							"statSpec" : {
-								"statList" : [
-									{
-										"statType" : 2003,
-										"statKey" : "Relic",
-										"value" : 0.1
 									}
 								]
 							}
-						},31000015:{
+						},14040004:{
 							"isUnlocked" : false,
-							"ethos" : {
+							"statSpec" : {
+								"statList" : [
+									{
+										"statType" : 13020003,
+										"statKey" : "Relic",
+										"value" : 0.1
+									}
+								]
+							},
+							"ethosSpec" : {
 								"ethosList" : [
 									{
 										"ethosType" : 0,
 										"ethosKey" : "Relic",
 										"value" : 0
-									}
-								]
-							},
-							"statSpec" : {
-								"statList" : [
-									{
-										"statType" : 2006,
-										"statKey" : "Relic",
-										"value" : 0.1
 									}
 								]
 							}
-						},31000018:{
+						},14050005:{
 							"isUnlocked" : false,
-							"ethos" : {
+							"statSpec" : {
+								"statList" : [
+									{
+										"statType" : 13020004,
+										"statKey" : "Relic",
+										"value" : 0.1
+									}
+								]
+							},
+							"ethosSpec" : {
 								"ethosList" : [
 									{
 										"ethosType" : 0,
 										"ethosKey" : "Relic",
 										"value" : 0
-									}
-								]
-							},
-							"statSpec" : {
-								"statList" : [
-									{
-										"statType" : 2007,
-										"statKey" : "Relic",
-										"value" : 0.1
 									}
 								]
 							}
-						},31000021:{
+						},14060006:{
 							"isUnlocked" : false,
-							"ethos" : {
+							"statSpec" : {
+								"statList" : [
+									{
+										"statType" : 13030002,
+										"statKey" : "Relic",
+										"value" : 0.1
+									}
+								]
+							},
+							"ethosSpec" : {
 								"ethosList" : [
 									{
 										"ethosType" : 0,
 										"ethosKey" : "Relic",
 										"value" : 0
-									}
-								]
-							},
-							"statSpec" : {
-								"statList" : [
-									{
-										"statType" : 2009,
-										"statKey" : "Relic",
-										"value" : 0.1
 									}
 								]
 							}
@@ -266,127 +266,127 @@
 					},
 					"CurrentRelicType" : 0
 				}
-			},23:{
-				"dataIndex" : 23011001,
+			},43:{
+				"dataIndex" : 43011001,
 				"UpgradeLevel" : 0,
 				"RelicTable" : {
-					"Table" : {31000006:{
+					"Table" : {14010001:{
 							"isUnlocked" : false,
-							"ethos" : {
+							"statSpec" : {
+								"statList" : [
+									{
+										"statType" : 13010003,
+										"statKey" : "Relic",
+										"value" : 0.1
+									}
+								]
+							},
+							"ethosSpec" : {
 								"ethosList" : [
 									{
 										"ethosType" : 0,
 										"ethosKey" : "Relic",
 										"value" : 0
-									}
-								]
-							},
-							"statSpec" : {
-								"statList" : [
-									{
-										"statType" : 2008,
-										"statKey" : "Relic",
-										"value" : 0.1
 									}
 								]
 							}
-						},31000009:{
+						},14020002:{
 							"isUnlocked" : false,
-							"ethos" : {
+							"statSpec" : {
+								"statList" : [
+									{
+										"statType" : 13010001,
+										"statKey" : "Relic",
+										"value" : 0.1
+									}
+								]
+							},
+							"ethosSpec" : {
 								"ethosList" : [
 									{
 										"ethosType" : 0,
 										"ethosKey" : "Relic",
 										"value" : 0
-									}
-								]
-							},
-							"statSpec" : {
-								"statList" : [
-									{
-										"statType" : 2001,
-										"statKey" : "Relic",
-										"value" : 0.1
 									}
 								]
 							}
-						},31000012:{
+						},14030003:{
 							"isUnlocked" : false,
-							"ethos" : {
+							"statSpec" : {
+								"statList" : [
+									{
+										"statType" : 13020001,
+										"statKey" : "Relic",
+										"value" : 0.1
+									}
+								]
+							},
+							"ethosSpec" : {
 								"ethosList" : [
 									{
 										"ethosType" : 0,
 										"ethosKey" : "Relic",
 										"value" : 0
-									}
-								]
-							},
-							"statSpec" : {
-								"statList" : [
-									{
-										"statType" : 2003,
-										"statKey" : "Relic",
-										"value" : 0.1
 									}
 								]
 							}
-						},31000015:{
+						},14040004:{
 							"isUnlocked" : false,
-							"ethos" : {
+							"statSpec" : {
+								"statList" : [
+									{
+										"statType" : 13020003,
+										"statKey" : "Relic",
+										"value" : 0.1
+									}
+								]
+							},
+							"ethosSpec" : {
 								"ethosList" : [
 									{
 										"ethosType" : 0,
 										"ethosKey" : "Relic",
 										"value" : 0
-									}
-								]
-							},
-							"statSpec" : {
-								"statList" : [
-									{
-										"statType" : 2006,
-										"statKey" : "Relic",
-										"value" : 0.1
 									}
 								]
 							}
-						},31000018:{
+						},14050005:{
 							"isUnlocked" : false,
-							"ethos" : {
+							"statSpec" : {
+								"statList" : [
+									{
+										"statType" : 13020004,
+										"statKey" : "Relic",
+										"value" : 0.1
+									}
+								]
+							},
+							"ethosSpec" : {
 								"ethosList" : [
 									{
 										"ethosType" : 0,
 										"ethosKey" : "Relic",
 										"value" : 0
-									}
-								]
-							},
-							"statSpec" : {
-								"statList" : [
-									{
-										"statType" : 2007,
-										"statKey" : "Relic",
-										"value" : 0.1
 									}
 								]
 							}
-						},31000021:{
+						},14060006:{
 							"isUnlocked" : false,
-							"ethos" : {
+							"statSpec" : {
+								"statList" : [
+									{
+										"statType" : 13030002,
+										"statKey" : "Relic",
+										"value" : 0.1
+									}
+								]
+							},
+							"ethosSpec" : {
 								"ethosList" : [
 									{
 										"ethosType" : 0,
 										"ethosKey" : "Relic",
 										"value" : 0
-									}
-								]
-							},
-							"statSpec" : {
-								"statList" : [
-									{
-										"statType" : 2009,
-										"statKey" : "Relic",
-										"value" : 0.1
 									}
 								]
 							}
@@ -394,127 +394,127 @@
 					},
 					"CurrentRelicType" : 0
 				}
-			},24:{
-				"dataIndex" : 24011001,
+			},44:{
+				"dataIndex" : 44011001,
 				"UpgradeLevel" : 0,
 				"RelicTable" : {
-					"Table" : {31000006:{
+					"Table" : {14010001:{
 							"isUnlocked" : false,
-							"ethos" : {
+							"statSpec" : {
+								"statList" : [
+									{
+										"statType" : 13010003,
+										"statKey" : "Relic",
+										"value" : 0.1
+									}
+								]
+							},
+							"ethosSpec" : {
 								"ethosList" : [
 									{
 										"ethosType" : 0,
 										"ethosKey" : "Relic",
 										"value" : 0
-									}
-								]
-							},
-							"statSpec" : {
-								"statList" : [
-									{
-										"statType" : 2008,
-										"statKey" : "Relic",
-										"value" : 0.1
 									}
 								]
 							}
-						},31000009:{
+						},14020002:{
 							"isUnlocked" : false,
-							"ethos" : {
+							"statSpec" : {
+								"statList" : [
+									{
+										"statType" : 13010001,
+										"statKey" : "Relic",
+										"value" : 0.1
+									}
+								]
+							},
+							"ethosSpec" : {
 								"ethosList" : [
 									{
 										"ethosType" : 0,
 										"ethosKey" : "Relic",
 										"value" : 0
-									}
-								]
-							},
-							"statSpec" : {
-								"statList" : [
-									{
-										"statType" : 2001,
-										"statKey" : "Relic",
-										"value" : 0.1
 									}
 								]
 							}
-						},31000012:{
+						},14030003:{
 							"isUnlocked" : false,
-							"ethos" : {
+							"statSpec" : {
+								"statList" : [
+									{
+										"statType" : 13020001,
+										"statKey" : "Relic",
+										"value" : 0.1
+									}
+								]
+							},
+							"ethosSpec" : {
 								"ethosList" : [
 									{
 										"ethosType" : 0,
 										"ethosKey" : "Relic",
 										"value" : 0
-									}
-								]
-							},
-							"statSpec" : {
-								"statList" : [
-									{
-										"statType" : 2003,
-										"statKey" : "Relic",
-										"value" : 0.1
 									}
 								]
 							}
-						},31000015:{
+						},14040004:{
 							"isUnlocked" : false,
-							"ethos" : {
+							"statSpec" : {
+								"statList" : [
+									{
+										"statType" : 13020003,
+										"statKey" : "Relic",
+										"value" : 0.1
+									}
+								]
+							},
+							"ethosSpec" : {
 								"ethosList" : [
 									{
 										"ethosType" : 0,
 										"ethosKey" : "Relic",
 										"value" : 0
-									}
-								]
-							},
-							"statSpec" : {
-								"statList" : [
-									{
-										"statType" : 2006,
-										"statKey" : "Relic",
-										"value" : 0.1
 									}
 								]
 							}
-						},31000018:{
+						},14050005:{
 							"isUnlocked" : false,
-							"ethos" : {
+							"statSpec" : {
+								"statList" : [
+									{
+										"statType" : 13020004,
+										"statKey" : "Relic",
+										"value" : 0.1
+									}
+								]
+							},
+							"ethosSpec" : {
 								"ethosList" : [
 									{
 										"ethosType" : 0,
 										"ethosKey" : "Relic",
 										"value" : 0
-									}
-								]
-							},
-							"statSpec" : {
-								"statList" : [
-									{
-										"statType" : 2007,
-										"statKey" : "Relic",
-										"value" : 0.1
 									}
 								]
 							}
-						},31000021:{
+						},14060006:{
 							"isUnlocked" : false,
-							"ethos" : {
+							"statSpec" : {
+								"statList" : [
+									{
+										"statType" : 13030002,
+										"statKey" : "Relic",
+										"value" : 0.1
+									}
+								]
+							},
+							"ethosSpec" : {
 								"ethosList" : [
 									{
 										"ethosType" : 0,
 										"ethosKey" : "Relic",
 										"value" : 0
-									}
-								]
-							},
-							"statSpec" : {
-								"statList" : [
-									{
-										"statType" : 2009,
-										"statKey" : "Relic",
-										"value" : 0.1
 									}
 								]
 							}
@@ -522,127 +522,127 @@
 					},
 					"CurrentRelicType" : 0
 				}
-			},25:{
-				"dataIndex" : 25011001,
+			},45:{
+				"dataIndex" : 45011001,
 				"UpgradeLevel" : 0,
 				"RelicTable" : {
-					"Table" : {31000006:{
+					"Table" : {14010001:{
 							"isUnlocked" : false,
-							"ethos" : {
+							"statSpec" : {
+								"statList" : [
+									{
+										"statType" : 13010003,
+										"statKey" : "Relic",
+										"value" : 0.1
+									}
+								]
+							},
+							"ethosSpec" : {
 								"ethosList" : [
 									{
 										"ethosType" : 0,
 										"ethosKey" : "Relic",
 										"value" : 0
-									}
-								]
-							},
-							"statSpec" : {
-								"statList" : [
-									{
-										"statType" : 2008,
-										"statKey" : "Relic",
-										"value" : 0.1
 									}
 								]
 							}
-						},31000009:{
+						},14020002:{
 							"isUnlocked" : false,
-							"ethos" : {
+							"statSpec" : {
+								"statList" : [
+									{
+										"statType" : 13010001,
+										"statKey" : "Relic",
+										"value" : 0.1
+									}
+								]
+							},
+							"ethosSpec" : {
 								"ethosList" : [
 									{
 										"ethosType" : 0,
 										"ethosKey" : "Relic",
 										"value" : 0
-									}
-								]
-							},
-							"statSpec" : {
-								"statList" : [
-									{
-										"statType" : 2001,
-										"statKey" : "Relic",
-										"value" : 0.1
 									}
 								]
 							}
-						},31000012:{
+						},14030003:{
 							"isUnlocked" : false,
-							"ethos" : {
+							"statSpec" : {
+								"statList" : [
+									{
+										"statType" : 13020001,
+										"statKey" : "Relic",
+										"value" : 0.1
+									}
+								]
+							},
+							"ethosSpec" : {
 								"ethosList" : [
 									{
 										"ethosType" : 0,
 										"ethosKey" : "Relic",
 										"value" : 0
-									}
-								]
-							},
-							"statSpec" : {
-								"statList" : [
-									{
-										"statType" : 2003,
-										"statKey" : "Relic",
-										"value" : 0.1
 									}
 								]
 							}
-						},31000015:{
+						},14040004:{
 							"isUnlocked" : false,
-							"ethos" : {
+							"statSpec" : {
+								"statList" : [
+									{
+										"statType" : 13020003,
+										"statKey" : "Relic",
+										"value" : 0.1
+									}
+								]
+							},
+							"ethosSpec" : {
 								"ethosList" : [
 									{
 										"ethosType" : 0,
 										"ethosKey" : "Relic",
 										"value" : 0
-									}
-								]
-							},
-							"statSpec" : {
-								"statList" : [
-									{
-										"statType" : 2006,
-										"statKey" : "Relic",
-										"value" : 0.1
 									}
 								]
 							}
-						},31000018:{
+						},14050005:{
 							"isUnlocked" : false,
-							"ethos" : {
+							"statSpec" : {
+								"statList" : [
+									{
+										"statType" : 13020004,
+										"statKey" : "Relic",
+										"value" : 0.1
+									}
+								]
+							},
+							"ethosSpec" : {
 								"ethosList" : [
 									{
 										"ethosType" : 0,
 										"ethosKey" : "Relic",
 										"value" : 0
-									}
-								]
-							},
-							"statSpec" : {
-								"statList" : [
-									{
-										"statType" : 2007,
-										"statKey" : "Relic",
-										"value" : 0.1
 									}
 								]
 							}
-						},31000021:{
+						},14060006:{
 							"isUnlocked" : false,
-							"ethos" : {
+							"statSpec" : {
+								"statList" : [
+									{
+										"statType" : 13030002,
+										"statKey" : "Relic",
+										"value" : 0.1
+									}
+								]
+							},
+							"ethosSpec" : {
 								"ethosList" : [
 									{
 										"ethosType" : 0,
 										"ethosKey" : "Relic",
 										"value" : 0
-									}
-								]
-							},
-							"statSpec" : {
-								"statList" : [
-									{
-										"statType" : 2009,
-										"statKey" : "Relic",
-										"value" : 0.1
 									}
 								]
 							}
@@ -650,127 +650,127 @@
 					},
 					"CurrentRelicType" : 0
 				}
-			},26:{
-				"dataIndex" : 26011001,
+			},46:{
+				"dataIndex" : 46011001,
 				"UpgradeLevel" : 0,
 				"RelicTable" : {
-					"Table" : {31000006:{
+					"Table" : {14010001:{
 							"isUnlocked" : false,
-							"ethos" : {
+							"statSpec" : {
+								"statList" : [
+									{
+										"statType" : 13010003,
+										"statKey" : "Relic",
+										"value" : 0.1
+									}
+								]
+							},
+							"ethosSpec" : {
 								"ethosList" : [
 									{
 										"ethosType" : 0,
 										"ethosKey" : "Relic",
 										"value" : 0
-									}
-								]
-							},
-							"statSpec" : {
-								"statList" : [
-									{
-										"statType" : 2008,
-										"statKey" : "Relic",
-										"value" : 0.1
 									}
 								]
 							}
-						},31000009:{
+						},14020002:{
 							"isUnlocked" : false,
-							"ethos" : {
+							"statSpec" : {
+								"statList" : [
+									{
+										"statType" : 13010001,
+										"statKey" : "Relic",
+										"value" : 0.1
+									}
+								]
+							},
+							"ethosSpec" : {
 								"ethosList" : [
 									{
 										"ethosType" : 0,
 										"ethosKey" : "Relic",
 										"value" : 0
-									}
-								]
-							},
-							"statSpec" : {
-								"statList" : [
-									{
-										"statType" : 2001,
-										"statKey" : "Relic",
-										"value" : 0.1
 									}
 								]
 							}
-						},31000012:{
+						},14030003:{
 							"isUnlocked" : false,
-							"ethos" : {
+							"statSpec" : {
+								"statList" : [
+									{
+										"statType" : 13020001,
+										"statKey" : "Relic",
+										"value" : 0.1
+									}
+								]
+							},
+							"ethosSpec" : {
 								"ethosList" : [
 									{
 										"ethosType" : 0,
 										"ethosKey" : "Relic",
 										"value" : 0
-									}
-								]
-							},
-							"statSpec" : {
-								"statList" : [
-									{
-										"statType" : 2003,
-										"statKey" : "Relic",
-										"value" : 0.1
 									}
 								]
 							}
-						},31000015:{
+						},14040004:{
 							"isUnlocked" : false,
-							"ethos" : {
+							"statSpec" : {
+								"statList" : [
+									{
+										"statType" : 13020003,
+										"statKey" : "Relic",
+										"value" : 0.1
+									}
+								]
+							},
+							"ethosSpec" : {
 								"ethosList" : [
 									{
 										"ethosType" : 0,
 										"ethosKey" : "Relic",
 										"value" : 0
-									}
-								]
-							},
-							"statSpec" : {
-								"statList" : [
-									{
-										"statType" : 2006,
-										"statKey" : "Relic",
-										"value" : 0.1
 									}
 								]
 							}
-						},31000018:{
+						},14050005:{
 							"isUnlocked" : false,
-							"ethos" : {
+							"statSpec" : {
+								"statList" : [
+									{
+										"statType" : 13020004,
+										"statKey" : "Relic",
+										"value" : 0.1
+									}
+								]
+							},
+							"ethosSpec" : {
 								"ethosList" : [
 									{
 										"ethosType" : 0,
 										"ethosKey" : "Relic",
 										"value" : 0
-									}
-								]
-							},
-							"statSpec" : {
-								"statList" : [
-									{
-										"statType" : 2007,
-										"statKey" : "Relic",
-										"value" : 0.1
 									}
 								]
 							}
-						},31000021:{
+						},14060006:{
 							"isUnlocked" : false,
-							"ethos" : {
+							"statSpec" : {
+								"statList" : [
+									{
+										"statType" : 13030002,
+										"statKey" : "Relic",
+										"value" : 0.1
+									}
+								]
+							},
+							"ethosSpec" : {
 								"ethosList" : [
 									{
 										"ethosType" : 0,
 										"ethosKey" : "Relic",
 										"value" : 0
-									}
-								]
-							},
-							"statSpec" : {
-								"statList" : [
-									{
-										"statType" : 2009,
-										"statKey" : "Relic",
-										"value" : 0.1
 									}
 								]
 							}
@@ -783,127 +783,127 @@
 	},
 	"Rogue.EquipmentEntity" : {
 		"__type" : "System.Collections.Generic.Dictionary`2[[Common.EquipSlotIndex, ProjectR.Common, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null],[Common.Equipments.EquipmentEntity, ProjectR.Common, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]],mscorlib",
-		"value" : {21:{
-				"dataIndex" : 21031007,
+		"value" : {41:{
+				"dataIndex" : 41031007,
 				"UpgradeLevel" : 0,
 				"RelicTable" : {
-					"Table" : {31000006:{
+					"Table" : {14010001:{
 							"isUnlocked" : false,
-							"ethos" : {
+							"statSpec" : {
+								"statList" : [
+									{
+										"statType" : 13010003,
+										"statKey" : "Relic",
+										"value" : 0.1
+									}
+								]
+							},
+							"ethosSpec" : {
 								"ethosList" : [
 									{
 										"ethosType" : 0,
 										"ethosKey" : "Relic",
 										"value" : 0
-									}
-								]
-							},
-							"statSpec" : {
-								"statList" : [
-									{
-										"statType" : 2008,
-										"statKey" : "Relic",
-										"value" : 0.1
 									}
 								]
 							}
-						},31000009:{
+						},14020002:{
 							"isUnlocked" : false,
-							"ethos" : {
+							"statSpec" : {
+								"statList" : [
+									{
+										"statType" : 13010001,
+										"statKey" : "Relic",
+										"value" : 0.1
+									}
+								]
+							},
+							"ethosSpec" : {
 								"ethosList" : [
 									{
 										"ethosType" : 0,
 										"ethosKey" : "Relic",
 										"value" : 0
-									}
-								]
-							},
-							"statSpec" : {
-								"statList" : [
-									{
-										"statType" : 2001,
-										"statKey" : "Relic",
-										"value" : 0.1
 									}
 								]
 							}
-						},31000012:{
+						},14030003:{
 							"isUnlocked" : false,
-							"ethos" : {
+							"statSpec" : {
+								"statList" : [
+									{
+										"statType" : 13020001,
+										"statKey" : "Relic",
+										"value" : 0.1
+									}
+								]
+							},
+							"ethosSpec" : {
 								"ethosList" : [
 									{
 										"ethosType" : 0,
 										"ethosKey" : "Relic",
 										"value" : 0
-									}
-								]
-							},
-							"statSpec" : {
-								"statList" : [
-									{
-										"statType" : 2003,
-										"statKey" : "Relic",
-										"value" : 0.1
 									}
 								]
 							}
-						},31000015:{
+						},14040004:{
 							"isUnlocked" : false,
-							"ethos" : {
+							"statSpec" : {
+								"statList" : [
+									{
+										"statType" : 13020003,
+										"statKey" : "Relic",
+										"value" : 0.1
+									}
+								]
+							},
+							"ethosSpec" : {
 								"ethosList" : [
 									{
 										"ethosType" : 0,
 										"ethosKey" : "Relic",
 										"value" : 0
-									}
-								]
-							},
-							"statSpec" : {
-								"statList" : [
-									{
-										"statType" : 2006,
-										"statKey" : "Relic",
-										"value" : 0.1
 									}
 								]
 							}
-						},31000018:{
+						},14050005:{
 							"isUnlocked" : false,
-							"ethos" : {
+							"statSpec" : {
+								"statList" : [
+									{
+										"statType" : 13020004,
+										"statKey" : "Relic",
+										"value" : 0.1
+									}
+								]
+							},
+							"ethosSpec" : {
 								"ethosList" : [
 									{
 										"ethosType" : 0,
 										"ethosKey" : "Relic",
 										"value" : 0
-									}
-								]
-							},
-							"statSpec" : {
-								"statList" : [
-									{
-										"statType" : 2007,
-										"statKey" : "Relic",
-										"value" : 0.1
 									}
 								]
 							}
-						},31000021:{
+						},14060006:{
 							"isUnlocked" : false,
-							"ethos" : {
+							"statSpec" : {
+								"statList" : [
+									{
+										"statType" : 13030002,
+										"statKey" : "Relic",
+										"value" : 0.1
+									}
+								]
+							},
+							"ethosSpec" : {
 								"ethosList" : [
 									{
 										"ethosType" : 0,
 										"ethosKey" : "Relic",
 										"value" : 0
-									}
-								]
-							},
-							"statSpec" : {
-								"statList" : [
-									{
-										"statType" : 2009,
-										"statKey" : "Relic",
-										"value" : 0.1
 									}
 								]
 							}
@@ -911,127 +911,143 @@
 					},
 					"CurrentRelicType" : 0
 				}
-			},22:{
-				"dataIndex" : 22031007,
+			},42:{
+				"dataIndex" : 42031007,
 				"UpgradeLevel" : 0,
 				"RelicTable" : {
-					"Table" : {31000006:{
+					"Table" : {14010001:{
 							"isUnlocked" : false,
-							"ethos" : {
+							"statSpec" : {
+								"statList" : [
+									{
+										"statType" : 13010003,
+										"statKey" : "Relic",
+										"value" : 0.1
+									}
+								]
+							},
+							"ethosSpec" : {
 								"ethosList" : [
 									{
 										"ethosType" : 0,
 										"ethosKey" : "Relic",
 										"value" : 0
-									}
-								]
-							},
-							"statSpec" : {
-								"statList" : [
-									{
-										"statType" : 2008,
-										"statKey" : "Relic",
-										"value" : 0.1
 									}
 								]
 							}
-						},31000009:{
+						},14020002:{
 							"isUnlocked" : false,
-							"ethos" : {
+							"statSpec" : {
+								"statList" : [
+									{
+										"statType" : 13010001,
+										"statKey" : "Relic",
+										"value" : 0.1
+									}
+								]
+							},
+							"ethosSpec" : {
 								"ethosList" : [
 									{
 										"ethosType" : 0,
 										"ethosKey" : "Relic",
 										"value" : 0
-									}
-								]
-							},
-							"statSpec" : {
-								"statList" : [
-									{
-										"statType" : 2001,
-										"statKey" : "Relic",
-										"value" : 0.1
 									}
 								]
 							}
-						},31000012:{
+						},14030003:{
 							"isUnlocked" : false,
-							"ethos" : {
+							"statSpec" : {
+								"statList" : [
+									{
+										"statType" : 13020001,
+										"statKey" : "Relic",
+										"value" : 0.1
+									}
+								]
+							},
+							"ethosSpec" : {
 								"ethosList" : [
 									{
 										"ethosType" : 0,
 										"ethosKey" : "Relic",
 										"value" : 0
-									}
-								]
-							},
-							"statSpec" : {
-								"statList" : [
-									{
-										"statType" : 2003,
-										"statKey" : "Relic",
-										"value" : 0.1
 									}
 								]
 							}
-						},31000015:{
+						},14040004:{
 							"isUnlocked" : false,
-							"ethos" : {
-								"ethosList" : [
-									{
-										"ethosType" : 0,
-										"ethosKey" : "Relic",
-										"value" : 0
-									}
-								]
-							},
 							"statSpec" : {
 								"statList" : [
 									{
-										"statType" : 2006,
-										"statKey" : "Relic",
-										"value" : 0.1
+										"statType" : 13020001,
+										"statKey" : "Head.Conversion",
+										"value" : 0.0142712919
+									},{
+										"statType" : 13020002,
+										"statKey" : "Head.Conversion",
+										"value" : 0.0113657378
+									},{
+										"statType" : 13020003,
+										"statKey" : "Head.Conversion",
+										"value" : 0.01215855
+									}
+								]
+							},
+							"ethosSpec" : {
+								"ethosList" : [
+									{
+										"ethosType" : 12030107,
+										"ethosKey" : "Head.Enchant",
+										"value" : 2
+									},{
+										"ethosType" : 12050113,
+										"ethosKey" : "Head.Enchant",
+										"value" : 1
+									},{
+										"ethosType" : 12050315,
+										"ethosKey" : "Head.Enchant",
+										"value" : 3
 									}
 								]
 							}
-						},31000018:{
+						},14050005:{
 							"isUnlocked" : false,
-							"ethos" : {
+							"statSpec" : {
+								"statList" : [
+									{
+										"statType" : 13020004,
+										"statKey" : "Relic",
+										"value" : 0.1
+									}
+								]
+							},
+							"ethosSpec" : {
 								"ethosList" : [
 									{
 										"ethosType" : 0,
 										"ethosKey" : "Relic",
 										"value" : 0
-									}
-								]
-							},
-							"statSpec" : {
-								"statList" : [
-									{
-										"statType" : 2007,
-										"statKey" : "Relic",
-										"value" : 0.1
 									}
 								]
 							}
-						},31000021:{
+						},14060006:{
 							"isUnlocked" : false,
-							"ethos" : {
+							"statSpec" : {
+								"statList" : [
+									{
+										"statType" : 13030002,
+										"statKey" : "Relic",
+										"value" : 0.1
+									}
+								]
+							},
+							"ethosSpec" : {
 								"ethosList" : [
 									{
 										"ethosType" : 0,
 										"ethosKey" : "Relic",
 										"value" : 0
-									}
-								]
-							},
-							"statSpec" : {
-								"statList" : [
-									{
-										"statType" : 2009,
-										"statKey" : "Relic",
-										"value" : 0.1
 									}
 								]
 							}
@@ -1039,127 +1055,135 @@
 					},
 					"CurrentRelicType" : 0
 				}
-			},23:{
-				"dataIndex" : 23031007,
+			},43:{
+				"dataIndex" : 43031007,
 				"UpgradeLevel" : 0,
 				"RelicTable" : {
-					"Table" : {31000006:{
+					"Table" : {14010001:{
 							"isUnlocked" : false,
-							"ethos" : {
+							"statSpec" : {
+								"statList" : [
+									{
+										"statType" : 13010003,
+										"statKey" : "Relic",
+										"value" : 0.1
+									}
+								]
+							},
+							"ethosSpec" : {
 								"ethosList" : [
 									{
 										"ethosType" : 0,
 										"ethosKey" : "Relic",
 										"value" : 0
-									}
-								]
-							},
-							"statSpec" : {
-								"statList" : [
-									{
-										"statType" : 2008,
-										"statKey" : "Relic",
-										"value" : 0.1
 									}
 								]
 							}
-						},31000009:{
+						},14020002:{
 							"isUnlocked" : false,
-							"ethos" : {
+							"statSpec" : {
+								"statList" : [
+									{
+										"statType" : 13010001,
+										"statKey" : "Relic",
+										"value" : 0.1
+									}
+								]
+							},
+							"ethosSpec" : {
 								"ethosList" : [
 									{
 										"ethosType" : 0,
 										"ethosKey" : "Relic",
 										"value" : 0
-									}
-								]
-							},
-							"statSpec" : {
-								"statList" : [
-									{
-										"statType" : 2001,
-										"statKey" : "Relic",
-										"value" : 0.1
 									}
 								]
 							}
-						},31000012:{
+						},14030003:{
 							"isUnlocked" : false,
-							"ethos" : {
+							"statSpec" : {
+								"statList" : [
+									{
+										"statType" : 13020001,
+										"statKey" : "Top.Conversion",
+										"value" : 0.0193076152
+									},{
+										"statType" : 13020002,
+										"statKey" : "Top.Conversion",
+										"value" : 0.0199646968
+									},{
+										"statType" : 13020003,
+										"statKey" : "Top.Conversion",
+										"value" : 0.013038259
+									}
+								]
+							},
+							"ethosSpec" : {
 								"ethosList" : [
 									{
 										"ethosType" : 0,
 										"ethosKey" : "Relic",
 										"value" : 0
-									}
-								]
-							},
-							"statSpec" : {
-								"statList" : [
-									{
-										"statType" : 2003,
-										"statKey" : "Relic",
-										"value" : 0.1
 									}
 								]
 							}
-						},31000015:{
+						},14040004:{
 							"isUnlocked" : false,
-							"ethos" : {
+							"statSpec" : {
+								"statList" : [
+									{
+										"statType" : 13020003,
+										"statKey" : "Relic",
+										"value" : 0.1
+									}
+								]
+							},
+							"ethosSpec" : {
 								"ethosList" : [
 									{
 										"ethosType" : 0,
 										"ethosKey" : "Relic",
 										"value" : 0
-									}
-								]
-							},
-							"statSpec" : {
-								"statList" : [
-									{
-										"statType" : 2006,
-										"statKey" : "Relic",
-										"value" : 0.1
 									}
 								]
 							}
-						},31000018:{
+						},14050005:{
 							"isUnlocked" : false,
-							"ethos" : {
+							"statSpec" : {
+								"statList" : [
+									{
+										"statType" : 13020004,
+										"statKey" : "Relic",
+										"value" : 0.1
+									}
+								]
+							},
+							"ethosSpec" : {
 								"ethosList" : [
 									{
 										"ethosType" : 0,
 										"ethosKey" : "Relic",
 										"value" : 0
-									}
-								]
-							},
-							"statSpec" : {
-								"statList" : [
-									{
-										"statType" : 2007,
-										"statKey" : "Relic",
-										"value" : 0.1
 									}
 								]
 							}
-						},31000021:{
+						},14060006:{
 							"isUnlocked" : false,
-							"ethos" : {
+							"statSpec" : {
+								"statList" : [
+									{
+										"statType" : 13030002,
+										"statKey" : "Relic",
+										"value" : 0.1
+									}
+								]
+							},
+							"ethosSpec" : {
 								"ethosList" : [
 									{
 										"ethosType" : 0,
 										"ethosKey" : "Relic",
 										"value" : 0
-									}
-								]
-							},
-							"statSpec" : {
-								"statList" : [
-									{
-										"statType" : 2009,
-										"statKey" : "Relic",
-										"value" : 0.1
 									}
 								]
 							}
@@ -1167,127 +1191,127 @@
 					},
 					"CurrentRelicType" : 0
 				}
-			},24:{
-				"dataIndex" : 24031007,
+			},44:{
+				"dataIndex" : 44031007,
 				"UpgradeLevel" : 0,
 				"RelicTable" : {
-					"Table" : {31000006:{
+					"Table" : {14010001:{
 							"isUnlocked" : false,
-							"ethos" : {
+							"statSpec" : {
+								"statList" : [
+									{
+										"statType" : 13010003,
+										"statKey" : "Relic",
+										"value" : 0.1
+									}
+								]
+							},
+							"ethosSpec" : {
 								"ethosList" : [
 									{
 										"ethosType" : 0,
 										"ethosKey" : "Relic",
 										"value" : 0
-									}
-								]
-							},
-							"statSpec" : {
-								"statList" : [
-									{
-										"statType" : 2008,
-										"statKey" : "Relic",
-										"value" : 0.1
 									}
 								]
 							}
-						},31000009:{
+						},14020002:{
 							"isUnlocked" : false,
-							"ethos" : {
+							"statSpec" : {
+								"statList" : [
+									{
+										"statType" : 13010001,
+										"statKey" : "Relic",
+										"value" : 0.1
+									}
+								]
+							},
+							"ethosSpec" : {
 								"ethosList" : [
 									{
 										"ethosType" : 0,
 										"ethosKey" : "Relic",
 										"value" : 0
-									}
-								]
-							},
-							"statSpec" : {
-								"statList" : [
-									{
-										"statType" : 2001,
-										"statKey" : "Relic",
-										"value" : 0.1
 									}
 								]
 							}
-						},31000012:{
+						},14030003:{
 							"isUnlocked" : false,
-							"ethos" : {
+							"statSpec" : {
+								"statList" : [
+									{
+										"statType" : 13020001,
+										"statKey" : "Relic",
+										"value" : 0.1
+									}
+								]
+							},
+							"ethosSpec" : {
 								"ethosList" : [
 									{
 										"ethosType" : 0,
 										"ethosKey" : "Relic",
 										"value" : 0
-									}
-								]
-							},
-							"statSpec" : {
-								"statList" : [
-									{
-										"statType" : 2003,
-										"statKey" : "Relic",
-										"value" : 0.1
 									}
 								]
 							}
-						},31000015:{
+						},14040004:{
 							"isUnlocked" : false,
-							"ethos" : {
+							"statSpec" : {
+								"statList" : [
+									{
+										"statType" : 13020003,
+										"statKey" : "Relic",
+										"value" : 0.1
+									}
+								]
+							},
+							"ethosSpec" : {
 								"ethosList" : [
 									{
 										"ethosType" : 0,
 										"ethosKey" : "Relic",
 										"value" : 0
-									}
-								]
-							},
-							"statSpec" : {
-								"statList" : [
-									{
-										"statType" : 2006,
-										"statKey" : "Relic",
-										"value" : 0.1
 									}
 								]
 							}
-						},31000018:{
+						},14050005:{
 							"isUnlocked" : false,
-							"ethos" : {
+							"statSpec" : {
+								"statList" : [
+									{
+										"statType" : 13020004,
+										"statKey" : "Relic",
+										"value" : 0.1
+									}
+								]
+							},
+							"ethosSpec" : {
 								"ethosList" : [
 									{
 										"ethosType" : 0,
 										"ethosKey" : "Relic",
 										"value" : 0
-									}
-								]
-							},
-							"statSpec" : {
-								"statList" : [
-									{
-										"statType" : 2007,
-										"statKey" : "Relic",
-										"value" : 0.1
 									}
 								]
 							}
-						},31000021:{
+						},14060006:{
 							"isUnlocked" : false,
-							"ethos" : {
+							"statSpec" : {
+								"statList" : [
+									{
+										"statType" : 13030002,
+										"statKey" : "Relic",
+										"value" : 0.1
+									}
+								]
+							},
+							"ethosSpec" : {
 								"ethosList" : [
 									{
 										"ethosType" : 0,
 										"ethosKey" : "Relic",
 										"value" : 0
-									}
-								]
-							},
-							"statSpec" : {
-								"statList" : [
-									{
-										"statType" : 2009,
-										"statKey" : "Relic",
-										"value" : 0.1
 									}
 								]
 							}
@@ -1295,127 +1319,127 @@
 					},
 					"CurrentRelicType" : 0
 				}
-			},25:{
-				"dataIndex" : 25031007,
+			},45:{
+				"dataIndex" : 45031007,
 				"UpgradeLevel" : 0,
 				"RelicTable" : {
-					"Table" : {31000006:{
+					"Table" : {14010001:{
 							"isUnlocked" : false,
-							"ethos" : {
+							"statSpec" : {
+								"statList" : [
+									{
+										"statType" : 13010003,
+										"statKey" : "Relic",
+										"value" : 0.1
+									}
+								]
+							},
+							"ethosSpec" : {
 								"ethosList" : [
 									{
 										"ethosType" : 0,
 										"ethosKey" : "Relic",
 										"value" : 0
-									}
-								]
-							},
-							"statSpec" : {
-								"statList" : [
-									{
-										"statType" : 2008,
-										"statKey" : "Relic",
-										"value" : 0.1
 									}
 								]
 							}
-						},31000009:{
+						},14020002:{
 							"isUnlocked" : false,
-							"ethos" : {
+							"statSpec" : {
+								"statList" : [
+									{
+										"statType" : 13010001,
+										"statKey" : "Relic",
+										"value" : 0.1
+									}
+								]
+							},
+							"ethosSpec" : {
 								"ethosList" : [
 									{
 										"ethosType" : 0,
 										"ethosKey" : "Relic",
 										"value" : 0
-									}
-								]
-							},
-							"statSpec" : {
-								"statList" : [
-									{
-										"statType" : 2001,
-										"statKey" : "Relic",
-										"value" : 0.1
 									}
 								]
 							}
-						},31000012:{
+						},14030003:{
 							"isUnlocked" : false,
-							"ethos" : {
+							"statSpec" : {
+								"statList" : [
+									{
+										"statType" : 13020001,
+										"statKey" : "Relic",
+										"value" : 0.1
+									}
+								]
+							},
+							"ethosSpec" : {
 								"ethosList" : [
 									{
 										"ethosType" : 0,
 										"ethosKey" : "Relic",
 										"value" : 0
-									}
-								]
-							},
-							"statSpec" : {
-								"statList" : [
-									{
-										"statType" : 2003,
-										"statKey" : "Relic",
-										"value" : 0.1
 									}
 								]
 							}
-						},31000015:{
+						},14040004:{
 							"isUnlocked" : false,
-							"ethos" : {
+							"statSpec" : {
+								"statList" : [
+									{
+										"statType" : 13020003,
+										"statKey" : "Relic",
+										"value" : 0.1
+									}
+								]
+							},
+							"ethosSpec" : {
 								"ethosList" : [
 									{
 										"ethosType" : 0,
 										"ethosKey" : "Relic",
 										"value" : 0
-									}
-								]
-							},
-							"statSpec" : {
-								"statList" : [
-									{
-										"statType" : 2006,
-										"statKey" : "Relic",
-										"value" : 0.1
 									}
 								]
 							}
-						},31000018:{
+						},14050005:{
 							"isUnlocked" : false,
-							"ethos" : {
+							"statSpec" : {
+								"statList" : [
+									{
+										"statType" : 13020004,
+										"statKey" : "Relic",
+										"value" : 0.1
+									}
+								]
+							},
+							"ethosSpec" : {
 								"ethosList" : [
 									{
 										"ethosType" : 0,
 										"ethosKey" : "Relic",
 										"value" : 0
-									}
-								]
-							},
-							"statSpec" : {
-								"statList" : [
-									{
-										"statType" : 2007,
-										"statKey" : "Relic",
-										"value" : 0.1
 									}
 								]
 							}
-						},31000021:{
+						},14060006:{
 							"isUnlocked" : false,
-							"ethos" : {
+							"statSpec" : {
+								"statList" : [
+									{
+										"statType" : 13030002,
+										"statKey" : "Relic",
+										"value" : 0.1
+									}
+								]
+							},
+							"ethosSpec" : {
 								"ethosList" : [
 									{
 										"ethosType" : 0,
 										"ethosKey" : "Relic",
 										"value" : 0
-									}
-								]
-							},
-							"statSpec" : {
-								"statList" : [
-									{
-										"statType" : 2009,
-										"statKey" : "Relic",
-										"value" : 0.1
 									}
 								]
 							}
@@ -1423,127 +1447,127 @@
 					},
 					"CurrentRelicType" : 0
 				}
-			},26:{
-				"dataIndex" : 26031007,
+			},46:{
+				"dataIndex" : 46031007,
 				"UpgradeLevel" : 0,
 				"RelicTable" : {
-					"Table" : {31000006:{
+					"Table" : {14010001:{
 							"isUnlocked" : false,
-							"ethos" : {
+							"statSpec" : {
+								"statList" : [
+									{
+										"statType" : 13010003,
+										"statKey" : "Relic",
+										"value" : 0.1
+									}
+								]
+							},
+							"ethosSpec" : {
 								"ethosList" : [
 									{
 										"ethosType" : 0,
 										"ethosKey" : "Relic",
 										"value" : 0
-									}
-								]
-							},
-							"statSpec" : {
-								"statList" : [
-									{
-										"statType" : 2008,
-										"statKey" : "Relic",
-										"value" : 0.1
 									}
 								]
 							}
-						},31000009:{
+						},14020002:{
 							"isUnlocked" : false,
-							"ethos" : {
+							"statSpec" : {
+								"statList" : [
+									{
+										"statType" : 13010001,
+										"statKey" : "Relic",
+										"value" : 0.1
+									}
+								]
+							},
+							"ethosSpec" : {
 								"ethosList" : [
 									{
 										"ethosType" : 0,
 										"ethosKey" : "Relic",
 										"value" : 0
-									}
-								]
-							},
-							"statSpec" : {
-								"statList" : [
-									{
-										"statType" : 2001,
-										"statKey" : "Relic",
-										"value" : 0.1
 									}
 								]
 							}
-						},31000012:{
+						},14030003:{
 							"isUnlocked" : false,
-							"ethos" : {
+							"statSpec" : {
+								"statList" : [
+									{
+										"statType" : 13020001,
+										"statKey" : "Relic",
+										"value" : 0.1
+									}
+								]
+							},
+							"ethosSpec" : {
 								"ethosList" : [
 									{
 										"ethosType" : 0,
 										"ethosKey" : "Relic",
 										"value" : 0
-									}
-								]
-							},
-							"statSpec" : {
-								"statList" : [
-									{
-										"statType" : 2003,
-										"statKey" : "Relic",
-										"value" : 0.1
 									}
 								]
 							}
-						},31000015:{
+						},14040004:{
 							"isUnlocked" : false,
-							"ethos" : {
+							"statSpec" : {
+								"statList" : [
+									{
+										"statType" : 13020003,
+										"statKey" : "Relic",
+										"value" : 0.1
+									}
+								]
+							},
+							"ethosSpec" : {
 								"ethosList" : [
 									{
 										"ethosType" : 0,
 										"ethosKey" : "Relic",
 										"value" : 0
-									}
-								]
-							},
-							"statSpec" : {
-								"statList" : [
-									{
-										"statType" : 2006,
-										"statKey" : "Relic",
-										"value" : 0.1
 									}
 								]
 							}
-						},31000018:{
+						},14050005:{
 							"isUnlocked" : false,
-							"ethos" : {
+							"statSpec" : {
+								"statList" : [
+									{
+										"statType" : 13020004,
+										"statKey" : "Relic",
+										"value" : 0.1
+									}
+								]
+							},
+							"ethosSpec" : {
 								"ethosList" : [
 									{
 										"ethosType" : 0,
 										"ethosKey" : "Relic",
 										"value" : 0
-									}
-								]
-							},
-							"statSpec" : {
-								"statList" : [
-									{
-										"statType" : 2007,
-										"statKey" : "Relic",
-										"value" : 0.1
 									}
 								]
 							}
-						},31000021:{
+						},14060006:{
 							"isUnlocked" : false,
-							"ethos" : {
+							"statSpec" : {
+								"statList" : [
+									{
+										"statType" : 13030002,
+										"statKey" : "Relic",
+										"value" : 0.1
+									}
+								]
+							},
+							"ethosSpec" : {
 								"ethosList" : [
 									{
 										"ethosType" : 0,
 										"ethosKey" : "Relic",
 										"value" : 0
-									}
-								]
-							},
-							"statSpec" : {
-								"statList" : [
-									{
-										"statType" : 2009,
-										"statKey" : "Relic",
-										"value" : 0.1
 									}
 								]
 							}
@@ -1556,127 +1580,127 @@
 	},
 	"Ranger.EquipmentEntity" : {
 		"__type" : "System.Collections.Generic.Dictionary`2[[Common.EquipSlotIndex, ProjectR.Common, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null],[Common.Equipments.EquipmentEntity, ProjectR.Common, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]],mscorlib",
-		"value" : {21:{
-				"dataIndex" : 21041010,
+		"value" : {41:{
+				"dataIndex" : 41041010,
 				"UpgradeLevel" : 0,
 				"RelicTable" : {
-					"Table" : {31000006:{
+					"Table" : {14010001:{
 							"isUnlocked" : false,
-							"ethos" : {
+							"statSpec" : {
+								"statList" : [
+									{
+										"statType" : 13010003,
+										"statKey" : "Relic",
+										"value" : 0.1
+									}
+								]
+							},
+							"ethosSpec" : {
 								"ethosList" : [
 									{
 										"ethosType" : 0,
 										"ethosKey" : "Relic",
 										"value" : 0
-									}
-								]
-							},
-							"statSpec" : {
-								"statList" : [
-									{
-										"statType" : 2008,
-										"statKey" : "Relic",
-										"value" : 0.1
 									}
 								]
 							}
-						},31000009:{
+						},14020002:{
 							"isUnlocked" : false,
-							"ethos" : {
+							"statSpec" : {
+								"statList" : [
+									{
+										"statType" : 13010001,
+										"statKey" : "Relic",
+										"value" : 0.1
+									}
+								]
+							},
+							"ethosSpec" : {
 								"ethosList" : [
 									{
 										"ethosType" : 0,
 										"ethosKey" : "Relic",
 										"value" : 0
-									}
-								]
-							},
-							"statSpec" : {
-								"statList" : [
-									{
-										"statType" : 2001,
-										"statKey" : "Relic",
-										"value" : 0.1
 									}
 								]
 							}
-						},31000012:{
+						},14030003:{
 							"isUnlocked" : false,
-							"ethos" : {
+							"statSpec" : {
+								"statList" : [
+									{
+										"statType" : 13020001,
+										"statKey" : "Relic",
+										"value" : 0.1
+									}
+								]
+							},
+							"ethosSpec" : {
 								"ethosList" : [
 									{
 										"ethosType" : 0,
 										"ethosKey" : "Relic",
 										"value" : 0
-									}
-								]
-							},
-							"statSpec" : {
-								"statList" : [
-									{
-										"statType" : 2003,
-										"statKey" : "Relic",
-										"value" : 0.1
 									}
 								]
 							}
-						},31000015:{
+						},14040004:{
 							"isUnlocked" : false,
-							"ethos" : {
+							"statSpec" : {
+								"statList" : [
+									{
+										"statType" : 13020003,
+										"statKey" : "Relic",
+										"value" : 0.1
+									}
+								]
+							},
+							"ethosSpec" : {
 								"ethosList" : [
 									{
 										"ethosType" : 0,
 										"ethosKey" : "Relic",
 										"value" : 0
-									}
-								]
-							},
-							"statSpec" : {
-								"statList" : [
-									{
-										"statType" : 2006,
-										"statKey" : "Relic",
-										"value" : 0.1
 									}
 								]
 							}
-						},31000018:{
+						},14050005:{
 							"isUnlocked" : false,
-							"ethos" : {
+							"statSpec" : {
+								"statList" : [
+									{
+										"statType" : 13020004,
+										"statKey" : "Relic",
+										"value" : 0.1
+									}
+								]
+							},
+							"ethosSpec" : {
 								"ethosList" : [
 									{
 										"ethosType" : 0,
 										"ethosKey" : "Relic",
 										"value" : 0
-									}
-								]
-							},
-							"statSpec" : {
-								"statList" : [
-									{
-										"statType" : 2007,
-										"statKey" : "Relic",
-										"value" : 0.1
 									}
 								]
 							}
-						},31000021:{
+						},14060006:{
 							"isUnlocked" : false,
-							"ethos" : {
+							"statSpec" : {
+								"statList" : [
+									{
+										"statType" : 13030002,
+										"statKey" : "Relic",
+										"value" : 0.1
+									}
+								]
+							},
+							"ethosSpec" : {
 								"ethosList" : [
 									{
 										"ethosType" : 0,
 										"ethosKey" : "Relic",
 										"value" : 0
-									}
-								]
-							},
-							"statSpec" : {
-								"statList" : [
-									{
-										"statType" : 2009,
-										"statKey" : "Relic",
-										"value" : 0.1
 									}
 								]
 							}
@@ -1684,127 +1708,127 @@
 					},
 					"CurrentRelicType" : 0
 				}
-			},22:{
-				"dataIndex" : 22041010,
+			},42:{
+				"dataIndex" : 42041010,
 				"UpgradeLevel" : 0,
 				"RelicTable" : {
-					"Table" : {31000006:{
+					"Table" : {14010001:{
 							"isUnlocked" : false,
-							"ethos" : {
+							"statSpec" : {
+								"statList" : [
+									{
+										"statType" : 13010003,
+										"statKey" : "Relic",
+										"value" : 0.1
+									}
+								]
+							},
+							"ethosSpec" : {
 								"ethosList" : [
 									{
 										"ethosType" : 0,
 										"ethosKey" : "Relic",
 										"value" : 0
-									}
-								]
-							},
-							"statSpec" : {
-								"statList" : [
-									{
-										"statType" : 2008,
-										"statKey" : "Relic",
-										"value" : 0.1
 									}
 								]
 							}
-						},31000009:{
+						},14020002:{
 							"isUnlocked" : false,
-							"ethos" : {
+							"statSpec" : {
+								"statList" : [
+									{
+										"statType" : 13010001,
+										"statKey" : "Relic",
+										"value" : 0.1
+									}
+								]
+							},
+							"ethosSpec" : {
 								"ethosList" : [
 									{
 										"ethosType" : 0,
 										"ethosKey" : "Relic",
 										"value" : 0
-									}
-								]
-							},
-							"statSpec" : {
-								"statList" : [
-									{
-										"statType" : 2001,
-										"statKey" : "Relic",
-										"value" : 0.1
 									}
 								]
 							}
-						},31000012:{
+						},14030003:{
 							"isUnlocked" : false,
-							"ethos" : {
+							"statSpec" : {
+								"statList" : [
+									{
+										"statType" : 13020001,
+										"statKey" : "Relic",
+										"value" : 0.1
+									}
+								]
+							},
+							"ethosSpec" : {
 								"ethosList" : [
 									{
 										"ethosType" : 0,
 										"ethosKey" : "Relic",
 										"value" : 0
-									}
-								]
-							},
-							"statSpec" : {
-								"statList" : [
-									{
-										"statType" : 2003,
-										"statKey" : "Relic",
-										"value" : 0.1
 									}
 								]
 							}
-						},31000015:{
+						},14040004:{
 							"isUnlocked" : false,
-							"ethos" : {
+							"statSpec" : {
+								"statList" : [
+									{
+										"statType" : 13020003,
+										"statKey" : "Relic",
+										"value" : 0.1
+									}
+								]
+							},
+							"ethosSpec" : {
 								"ethosList" : [
 									{
 										"ethosType" : 0,
 										"ethosKey" : "Relic",
 										"value" : 0
-									}
-								]
-							},
-							"statSpec" : {
-								"statList" : [
-									{
-										"statType" : 2006,
-										"statKey" : "Relic",
-										"value" : 0.1
 									}
 								]
 							}
-						},31000018:{
+						},14050005:{
 							"isUnlocked" : false,
-							"ethos" : {
+							"statSpec" : {
+								"statList" : [
+									{
+										"statType" : 13020004,
+										"statKey" : "Relic",
+										"value" : 0.1
+									}
+								]
+							},
+							"ethosSpec" : {
 								"ethosList" : [
 									{
 										"ethosType" : 0,
 										"ethosKey" : "Relic",
 										"value" : 0
-									}
-								]
-							},
-							"statSpec" : {
-								"statList" : [
-									{
-										"statType" : 2007,
-										"statKey" : "Relic",
-										"value" : 0.1
 									}
 								]
 							}
-						},31000021:{
+						},14060006:{
 							"isUnlocked" : false,
-							"ethos" : {
+							"statSpec" : {
+								"statList" : [
+									{
+										"statType" : 13030002,
+										"statKey" : "Relic",
+										"value" : 0.1
+									}
+								]
+							},
+							"ethosSpec" : {
 								"ethosList" : [
 									{
 										"ethosType" : 0,
 										"ethosKey" : "Relic",
 										"value" : 0
-									}
-								]
-							},
-							"statSpec" : {
-								"statList" : [
-									{
-										"statType" : 2009,
-										"statKey" : "Relic",
-										"value" : 0.1
 									}
 								]
 							}
@@ -1812,127 +1836,127 @@
 					},
 					"CurrentRelicType" : 0
 				}
-			},23:{
-				"dataIndex" : 23041010,
+			},43:{
+				"dataIndex" : 43041010,
 				"UpgradeLevel" : 0,
 				"RelicTable" : {
-					"Table" : {31000006:{
+					"Table" : {14010001:{
 							"isUnlocked" : false,
-							"ethos" : {
+							"statSpec" : {
+								"statList" : [
+									{
+										"statType" : 13010003,
+										"statKey" : "Relic",
+										"value" : 0.1
+									}
+								]
+							},
+							"ethosSpec" : {
 								"ethosList" : [
 									{
 										"ethosType" : 0,
 										"ethosKey" : "Relic",
 										"value" : 0
-									}
-								]
-							},
-							"statSpec" : {
-								"statList" : [
-									{
-										"statType" : 2008,
-										"statKey" : "Relic",
-										"value" : 0.1
 									}
 								]
 							}
-						},31000009:{
+						},14020002:{
 							"isUnlocked" : false,
-							"ethos" : {
+							"statSpec" : {
+								"statList" : [
+									{
+										"statType" : 13010001,
+										"statKey" : "Relic",
+										"value" : 0.1
+									}
+								]
+							},
+							"ethosSpec" : {
 								"ethosList" : [
 									{
 										"ethosType" : 0,
 										"ethosKey" : "Relic",
 										"value" : 0
-									}
-								]
-							},
-							"statSpec" : {
-								"statList" : [
-									{
-										"statType" : 2001,
-										"statKey" : "Relic",
-										"value" : 0.1
 									}
 								]
 							}
-						},31000012:{
+						},14030003:{
 							"isUnlocked" : false,
-							"ethos" : {
+							"statSpec" : {
+								"statList" : [
+									{
+										"statType" : 13020001,
+										"statKey" : "Relic",
+										"value" : 0.1
+									}
+								]
+							},
+							"ethosSpec" : {
 								"ethosList" : [
 									{
 										"ethosType" : 0,
 										"ethosKey" : "Relic",
 										"value" : 0
-									}
-								]
-							},
-							"statSpec" : {
-								"statList" : [
-									{
-										"statType" : 2003,
-										"statKey" : "Relic",
-										"value" : 0.1
 									}
 								]
 							}
-						},31000015:{
+						},14040004:{
 							"isUnlocked" : false,
-							"ethos" : {
+							"statSpec" : {
+								"statList" : [
+									{
+										"statType" : 13020003,
+										"statKey" : "Relic",
+										"value" : 0.1
+									}
+								]
+							},
+							"ethosSpec" : {
 								"ethosList" : [
 									{
 										"ethosType" : 0,
 										"ethosKey" : "Relic",
 										"value" : 0
-									}
-								]
-							},
-							"statSpec" : {
-								"statList" : [
-									{
-										"statType" : 2006,
-										"statKey" : "Relic",
-										"value" : 0.1
 									}
 								]
 							}
-						},31000018:{
+						},14050005:{
 							"isUnlocked" : false,
-							"ethos" : {
+							"statSpec" : {
+								"statList" : [
+									{
+										"statType" : 13020004,
+										"statKey" : "Relic",
+										"value" : 0.1
+									}
+								]
+							},
+							"ethosSpec" : {
 								"ethosList" : [
 									{
 										"ethosType" : 0,
 										"ethosKey" : "Relic",
 										"value" : 0
-									}
-								]
-							},
-							"statSpec" : {
-								"statList" : [
-									{
-										"statType" : 2007,
-										"statKey" : "Relic",
-										"value" : 0.1
 									}
 								]
 							}
-						},31000021:{
+						},14060006:{
 							"isUnlocked" : false,
-							"ethos" : {
+							"statSpec" : {
+								"statList" : [
+									{
+										"statType" : 13030002,
+										"statKey" : "Relic",
+										"value" : 0.1
+									}
+								]
+							},
+							"ethosSpec" : {
 								"ethosList" : [
 									{
 										"ethosType" : 0,
 										"ethosKey" : "Relic",
 										"value" : 0
-									}
-								]
-							},
-							"statSpec" : {
-								"statList" : [
-									{
-										"statType" : 2009,
-										"statKey" : "Relic",
-										"value" : 0.1
 									}
 								]
 							}
@@ -1940,127 +1964,127 @@
 					},
 					"CurrentRelicType" : 0
 				}
-			},24:{
-				"dataIndex" : 24041010,
+			},44:{
+				"dataIndex" : 44041010,
 				"UpgradeLevel" : 0,
 				"RelicTable" : {
-					"Table" : {31000006:{
+					"Table" : {14010001:{
 							"isUnlocked" : false,
-							"ethos" : {
+							"statSpec" : {
+								"statList" : [
+									{
+										"statType" : 13010003,
+										"statKey" : "Relic",
+										"value" : 0.1
+									}
+								]
+							},
+							"ethosSpec" : {
 								"ethosList" : [
 									{
 										"ethosType" : 0,
 										"ethosKey" : "Relic",
 										"value" : 0
-									}
-								]
-							},
-							"statSpec" : {
-								"statList" : [
-									{
-										"statType" : 2008,
-										"statKey" : "Relic",
-										"value" : 0.1
 									}
 								]
 							}
-						},31000009:{
+						},14020002:{
 							"isUnlocked" : false,
-							"ethos" : {
+							"statSpec" : {
+								"statList" : [
+									{
+										"statType" : 13010001,
+										"statKey" : "Relic",
+										"value" : 0.1
+									}
+								]
+							},
+							"ethosSpec" : {
 								"ethosList" : [
 									{
 										"ethosType" : 0,
 										"ethosKey" : "Relic",
 										"value" : 0
-									}
-								]
-							},
-							"statSpec" : {
-								"statList" : [
-									{
-										"statType" : 2001,
-										"statKey" : "Relic",
-										"value" : 0.1
 									}
 								]
 							}
-						},31000012:{
+						},14030003:{
 							"isUnlocked" : false,
-							"ethos" : {
+							"statSpec" : {
+								"statList" : [
+									{
+										"statType" : 13020001,
+										"statKey" : "Relic",
+										"value" : 0.1
+									}
+								]
+							},
+							"ethosSpec" : {
 								"ethosList" : [
 									{
 										"ethosType" : 0,
 										"ethosKey" : "Relic",
 										"value" : 0
-									}
-								]
-							},
-							"statSpec" : {
-								"statList" : [
-									{
-										"statType" : 2003,
-										"statKey" : "Relic",
-										"value" : 0.1
 									}
 								]
 							}
-						},31000015:{
+						},14040004:{
 							"isUnlocked" : false,
-							"ethos" : {
+							"statSpec" : {
+								"statList" : [
+									{
+										"statType" : 13020003,
+										"statKey" : "Relic",
+										"value" : 0.1
+									}
+								]
+							},
+							"ethosSpec" : {
 								"ethosList" : [
 									{
 										"ethosType" : 0,
 										"ethosKey" : "Relic",
 										"value" : 0
-									}
-								]
-							},
-							"statSpec" : {
-								"statList" : [
-									{
-										"statType" : 2006,
-										"statKey" : "Relic",
-										"value" : 0.1
 									}
 								]
 							}
-						},31000018:{
+						},14050005:{
 							"isUnlocked" : false,
-							"ethos" : {
+							"statSpec" : {
+								"statList" : [
+									{
+										"statType" : 13020004,
+										"statKey" : "Relic",
+										"value" : 0.1
+									}
+								]
+							},
+							"ethosSpec" : {
 								"ethosList" : [
 									{
 										"ethosType" : 0,
 										"ethosKey" : "Relic",
 										"value" : 0
-									}
-								]
-							},
-							"statSpec" : {
-								"statList" : [
-									{
-										"statType" : 2007,
-										"statKey" : "Relic",
-										"value" : 0.1
 									}
 								]
 							}
-						},31000021:{
+						},14060006:{
 							"isUnlocked" : false,
-							"ethos" : {
+							"statSpec" : {
+								"statList" : [
+									{
+										"statType" : 13030002,
+										"statKey" : "Relic",
+										"value" : 0.1
+									}
+								]
+							},
+							"ethosSpec" : {
 								"ethosList" : [
 									{
 										"ethosType" : 0,
 										"ethosKey" : "Relic",
 										"value" : 0
-									}
-								]
-							},
-							"statSpec" : {
-								"statList" : [
-									{
-										"statType" : 2009,
-										"statKey" : "Relic",
-										"value" : 0.1
 									}
 								]
 							}
@@ -2068,127 +2092,127 @@
 					},
 					"CurrentRelicType" : 0
 				}
-			},25:{
-				"dataIndex" : 25041010,
+			},45:{
+				"dataIndex" : 45041010,
 				"UpgradeLevel" : 0,
 				"RelicTable" : {
-					"Table" : {31000006:{
+					"Table" : {14010001:{
 							"isUnlocked" : false,
-							"ethos" : {
+							"statSpec" : {
+								"statList" : [
+									{
+										"statType" : 13010003,
+										"statKey" : "Relic",
+										"value" : 0.1
+									}
+								]
+							},
+							"ethosSpec" : {
 								"ethosList" : [
 									{
 										"ethosType" : 0,
 										"ethosKey" : "Relic",
 										"value" : 0
-									}
-								]
-							},
-							"statSpec" : {
-								"statList" : [
-									{
-										"statType" : 2008,
-										"statKey" : "Relic",
-										"value" : 0.1
 									}
 								]
 							}
-						},31000009:{
+						},14020002:{
 							"isUnlocked" : false,
-							"ethos" : {
+							"statSpec" : {
+								"statList" : [
+									{
+										"statType" : 13010001,
+										"statKey" : "Relic",
+										"value" : 0.1
+									}
+								]
+							},
+							"ethosSpec" : {
 								"ethosList" : [
 									{
 										"ethosType" : 0,
 										"ethosKey" : "Relic",
 										"value" : 0
-									}
-								]
-							},
-							"statSpec" : {
-								"statList" : [
-									{
-										"statType" : 2001,
-										"statKey" : "Relic",
-										"value" : 0.1
 									}
 								]
 							}
-						},31000012:{
+						},14030003:{
 							"isUnlocked" : false,
-							"ethos" : {
+							"statSpec" : {
+								"statList" : [
+									{
+										"statType" : 13020001,
+										"statKey" : "Relic",
+										"value" : 0.1
+									}
+								]
+							},
+							"ethosSpec" : {
 								"ethosList" : [
 									{
 										"ethosType" : 0,
 										"ethosKey" : "Relic",
 										"value" : 0
-									}
-								]
-							},
-							"statSpec" : {
-								"statList" : [
-									{
-										"statType" : 2003,
-										"statKey" : "Relic",
-										"value" : 0.1
 									}
 								]
 							}
-						},31000015:{
+						},14040004:{
 							"isUnlocked" : false,
-							"ethos" : {
+							"statSpec" : {
+								"statList" : [
+									{
+										"statType" : 13020003,
+										"statKey" : "Relic",
+										"value" : 0.1
+									}
+								]
+							},
+							"ethosSpec" : {
 								"ethosList" : [
 									{
 										"ethosType" : 0,
 										"ethosKey" : "Relic",
 										"value" : 0
-									}
-								]
-							},
-							"statSpec" : {
-								"statList" : [
-									{
-										"statType" : 2006,
-										"statKey" : "Relic",
-										"value" : 0.1
 									}
 								]
 							}
-						},31000018:{
+						},14050005:{
 							"isUnlocked" : false,
-							"ethos" : {
+							"statSpec" : {
+								"statList" : [
+									{
+										"statType" : 13020004,
+										"statKey" : "Relic",
+										"value" : 0.1
+									}
+								]
+							},
+							"ethosSpec" : {
 								"ethosList" : [
 									{
 										"ethosType" : 0,
 										"ethosKey" : "Relic",
 										"value" : 0
-									}
-								]
-							},
-							"statSpec" : {
-								"statList" : [
-									{
-										"statType" : 2007,
-										"statKey" : "Relic",
-										"value" : 0.1
 									}
 								]
 							}
-						},31000021:{
+						},14060006:{
 							"isUnlocked" : false,
-							"ethos" : {
+							"statSpec" : {
+								"statList" : [
+									{
+										"statType" : 13030002,
+										"statKey" : "Relic",
+										"value" : 0.1
+									}
+								]
+							},
+							"ethosSpec" : {
 								"ethosList" : [
 									{
 										"ethosType" : 0,
 										"ethosKey" : "Relic",
 										"value" : 0
-									}
-								]
-							},
-							"statSpec" : {
-								"statList" : [
-									{
-										"statType" : 2009,
-										"statKey" : "Relic",
-										"value" : 0.1
 									}
 								]
 							}
@@ -2196,127 +2220,127 @@
 					},
 					"CurrentRelicType" : 0
 				}
-			},26:{
-				"dataIndex" : 26041010,
+			},46:{
+				"dataIndex" : 46041010,
 				"UpgradeLevel" : 0,
 				"RelicTable" : {
-					"Table" : {31000006:{
+					"Table" : {14010001:{
 							"isUnlocked" : false,
-							"ethos" : {
+							"statSpec" : {
+								"statList" : [
+									{
+										"statType" : 13010003,
+										"statKey" : "Relic",
+										"value" : 0.1
+									}
+								]
+							},
+							"ethosSpec" : {
 								"ethosList" : [
 									{
 										"ethosType" : 0,
 										"ethosKey" : "Relic",
 										"value" : 0
-									}
-								]
-							},
-							"statSpec" : {
-								"statList" : [
-									{
-										"statType" : 2008,
-										"statKey" : "Relic",
-										"value" : 0.1
 									}
 								]
 							}
-						},31000009:{
+						},14020002:{
 							"isUnlocked" : false,
-							"ethos" : {
+							"statSpec" : {
+								"statList" : [
+									{
+										"statType" : 13010001,
+										"statKey" : "Relic",
+										"value" : 0.1
+									}
+								]
+							},
+							"ethosSpec" : {
 								"ethosList" : [
 									{
 										"ethosType" : 0,
 										"ethosKey" : "Relic",
 										"value" : 0
-									}
-								]
-							},
-							"statSpec" : {
-								"statList" : [
-									{
-										"statType" : 2001,
-										"statKey" : "Relic",
-										"value" : 0.1
 									}
 								]
 							}
-						},31000012:{
+						},14030003:{
 							"isUnlocked" : false,
-							"ethos" : {
+							"statSpec" : {
+								"statList" : [
+									{
+										"statType" : 13020001,
+										"statKey" : "Relic",
+										"value" : 0.1
+									}
+								]
+							},
+							"ethosSpec" : {
 								"ethosList" : [
 									{
 										"ethosType" : 0,
 										"ethosKey" : "Relic",
 										"value" : 0
-									}
-								]
-							},
-							"statSpec" : {
-								"statList" : [
-									{
-										"statType" : 2003,
-										"statKey" : "Relic",
-										"value" : 0.1
 									}
 								]
 							}
-						},31000015:{
+						},14040004:{
 							"isUnlocked" : false,
-							"ethos" : {
+							"statSpec" : {
+								"statList" : [
+									{
+										"statType" : 13020003,
+										"statKey" : "Relic",
+										"value" : 0.1
+									}
+								]
+							},
+							"ethosSpec" : {
 								"ethosList" : [
 									{
 										"ethosType" : 0,
 										"ethosKey" : "Relic",
 										"value" : 0
-									}
-								]
-							},
-							"statSpec" : {
-								"statList" : [
-									{
-										"statType" : 2006,
-										"statKey" : "Relic",
-										"value" : 0.1
 									}
 								]
 							}
-						},31000018:{
+						},14050005:{
 							"isUnlocked" : false,
-							"ethos" : {
+							"statSpec" : {
+								"statList" : [
+									{
+										"statType" : 13020004,
+										"statKey" : "Relic",
+										"value" : 0.1
+									}
+								]
+							},
+							"ethosSpec" : {
 								"ethosList" : [
 									{
 										"ethosType" : 0,
 										"ethosKey" : "Relic",
 										"value" : 0
-									}
-								]
-							},
-							"statSpec" : {
-								"statList" : [
-									{
-										"statType" : 2007,
-										"statKey" : "Relic",
-										"value" : 0.1
 									}
 								]
 							}
-						},31000021:{
+						},14060006:{
 							"isUnlocked" : false,
-							"ethos" : {
+							"statSpec" : {
+								"statList" : [
+									{
+										"statType" : 13030002,
+										"statKey" : "Relic",
+										"value" : 0.1
+									}
+								]
+							},
+							"ethosSpec" : {
 								"ethosList" : [
 									{
 										"ethosType" : 0,
 										"ethosKey" : "Relic",
 										"value" : 0
-									}
-								]
-							},
-							"statSpec" : {
-								"statList" : [
-									{
-										"statType" : 2009,
-										"statKey" : "Relic",
-										"value" : 0.1
 									}
 								]
 							}
@@ -2331,7 +2355,7 @@
 		"__type" : "Serialization.SaveInfo,ProjectR.Core",
 		"value" : {
 			"filename" : "S",
-			"saveTime" : "2023.05.26.16.35.11"
+			"saveTime" : "2023.05.30.10.49.50"
 		}
 	}
 }
