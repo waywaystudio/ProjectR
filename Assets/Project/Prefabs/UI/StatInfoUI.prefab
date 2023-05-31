@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 8804597078999669352}
   - component: {fileID: 8804597078999669270}
   - component: {fileID: 8804597078999669271}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Label
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -68,8 +68,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: Power
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 7f340abb63f105c448f71fc5fe73d924, type: 2}
-  m_sharedMaterial: {fileID: -5016735741044500445, guid: 7f340abb63f105c448f71fc5fe73d924, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 89a3edf188936c24b8e8b5f16f4e9f2b, type: 2}
+  m_sharedMaterial: {fileID: -3393058621716916574, guid: 89a3edf188936c24b8e8b5f16f4e9f2b, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -93,8 +93,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 18
-  m_fontSizeBase: 18
+  m_fontSize: 16
+  m_fontSizeBase: 16
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -129,7 +129,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 20, y: 0, z: 0, w: 0}
+  m_margin: {x: 10, y: 0, z: 0, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
@@ -146,7 +146,7 @@ GameObject:
   - component: {fileID: 8804597079144330858}
   - component: {fileID: 8804597079144330856}
   - component: {fileID: 8804597079144330857}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Value
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -201,10 +201,10 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 250
+  m_text: 123
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 7f340abb63f105c448f71fc5fe73d924, type: 2}
-  m_sharedMaterial: {fileID: -5016735741044500445, guid: 7f340abb63f105c448f71fc5fe73d924, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 8aee6f7b083efa1458d68fb17b6e257c, type: 2}
+  m_sharedMaterial: {fileID: -8556313031559556794, guid: 8aee6f7b083efa1458d68fb17b6e257c, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -228,8 +228,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 22
-  m_fontSizeBase: 22
+  m_fontSize: 20
+  m_fontSizeBase: 20
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -264,7 +264,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 0, y: 0, z: 30, w: 0}
+  m_margin: {x: 0, y: 0, z: 10, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
@@ -280,7 +280,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8804597080653749083}
   - component: {fileID: 7142954872458231434}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: StatInfoUI
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -294,7 +294,7 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8804597080653749084}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0

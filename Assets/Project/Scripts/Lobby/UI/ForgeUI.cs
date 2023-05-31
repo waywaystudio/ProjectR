@@ -15,8 +15,8 @@ namespace Lobby.UI
         // InventoryFrame
         
         private VenturerType focusAdventurer = VenturerType.Knight;
-        private EquipSlotIndex focusSlot = EquipSlotIndex.Weapon;
-        private RelicType focusRelic = RelicType.VowedRelic;
+        private EquipmentSlotType focusSlot = EquipmentSlotType.Weapon;
+        // private RelicType focusRelic = RelicType.None;
 
         public VenturerType FocusAdventurer
         {
@@ -27,7 +27,7 @@ namespace Lobby.UI
                 reloadForgeEvent.Invoke();
             }
         }
-        public EquipSlotIndex FocusSlot
+        public EquipmentSlotType FocusSlot
         {
             get => focusSlot;
             set
@@ -36,22 +36,30 @@ namespace Lobby.UI
                 reloadForgeEvent.Invoke();
             }
         }
-        public RelicType FocusRelic
-        {
-            get => focusRelic;
-            set
-            {
-                focusRelic = value;
-                reloadForgeEvent.Invoke();
-            }
-        }
+        // public RelicType FocusRelic
+        // {
+        //     get => focusRelic;
+        //     set
+        //     {
+        //         focusRelic = value;
+        //         reloadForgeEvent.Invoke();
+        //     }
+        // }
 
         public EquipmentEntity FocusEquipment => PartyCamp.Characters.GetAdventurerEquipment(FocusAdventurer, FocusSlot);
         
         public void NextEquipmentSlot() => FocusSlot = FocusSlot.NextExceptNone();
         public void PrevEquipmentSlot() => FocusSlot = FocusSlot.PrevExceptNone();
-        public void Conversion() => FocusEquipment.Conversion(FocusRelic);
-        public void Enchant() => FocusEquipment.Enchant(FocusRelic);
+
+        public void Conversion()
+        {
+            // => FocusEquipment.Conversion(FocusRelic);
+        }
+
+        public void Enchant()
+        {
+            // => FocusEquipment.Enchant(FocusRelic);
+        }
         
 
 

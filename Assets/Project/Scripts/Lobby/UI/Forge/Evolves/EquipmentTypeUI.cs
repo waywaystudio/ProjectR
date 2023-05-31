@@ -8,7 +8,7 @@ namespace Lobby.UI.Forge.Evolves
     {
         [SerializeField] private TextMeshProUGUI equipmentTypeText;
 
-        private EquipSlotIndex CurrentSlot { get; set; } = EquipSlotIndex.None;
+        private EquipmentSlotType CurrentSlot { get; set; } = EquipmentSlotType.None;
 
         
         public void OnReloadForge()

@@ -8,11 +8,14 @@ namespace Common
         Top = DataIndex.Top,
         Glove = DataIndex.Glove,
         Bottom = DataIndex.Bottom,
-        Boot = DataIndex.Boot,
-        Trinket = DataIndex.Trinket,
+        // Trinket
+        // Earring,
+        // Ring,
+        // ViceStone,
+        // ...
     }
     
-    public enum EquipSlotIndex
+    public enum EquipmentSlotType
     {
         None = 0,
         Weapon = DataIndex.Weapon,
@@ -20,16 +23,5 @@ namespace Common
         Top = DataIndex.Top,
         Glove = DataIndex.Glove,
         Bottom = DataIndex.Bottom,
-        Boot = DataIndex.Boot,
-    }
-
-    public enum AccessorySlotIndex
-    {
-        None = 0,
-        Trinket1 = DataIndex.Trinket * 10 + 1, // == 271,
-        Trinket2 = DataIndex.Trinket * 10 + 2, // == 272,
-        Earring,
-        Ring,
-        ViceStone,
     }
 }

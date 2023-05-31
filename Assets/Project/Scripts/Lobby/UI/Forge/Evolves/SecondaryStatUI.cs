@@ -17,25 +17,25 @@ namespace Lobby.UI.Forge.Evolves
             dynamicStatUIList.ForEach(statUI => statUI.gameObject.activeSelf.OnTrue(() => statUI.gameObject.SetActive(false)));
             materialUIList.ForEach(materialUI => materialUI.gameObject.activeSelf.OnTrue(() => materialUI.gameObject.SetActive(false)));
             
-            var focusRelic = LobbyDirector.UI.Forge.FocusRelic;
+            // var focusRelic = LobbyDirector.UI.Forge.FocusRelic;
             var currentEquipmentEntity = LobbyDirector.UI.Forge.FocusEquipment;
             var tier                   = currentEquipmentEntity.Tier;
             
-            ReloadStat(focusRelic, currentEquipmentEntity);
+            ReloadStat(currentEquipmentEntity);
             ReloadMaterial(tier);
         }
         
-        private void ReloadStat(RelicType relicType, EquipmentEntity equipEntity)
+        private void ReloadStat(EquipmentEntity equipEntity)
         {
-            var equipmentSpec = equipEntity.GetRelic(relicType).StatSpec;
-
-            equipmentSpec?.IterateOverStats((stat, index) =>
-            {
-                if (dynamicStatUIList.Count < index) return;
-                
-                dynamicStatUIList[index].gameObject.SetActive(true);
-                dynamicStatUIList[index].SetValue(stat);
-            });
+            // var equipmentSpec = equipEntity.GetRelic(relicType).StatSpec;
+            //
+            // equipmentSpec?.IterateOverStats((stat, index) =>
+            // {
+            //     if (dynamicStatUIList.Count < index) return;
+            //     
+            //     dynamicStatUIList[index].gameObject.SetActive(true);
+            //     dynamicStatUIList[index].SetValue(stat);
+            // });
         }
 
         private void ReloadMaterial(int tier)
@@ -45,16 +45,16 @@ namespace Lobby.UI.Forge.Evolves
                 return;
             }
 
-            var profitMaterialType = tier switch
-            {
-                1 => MaterialType.VirtuousShard,
-                2 => MaterialType.VirtuousStone,
-                3 => MaterialType.VirtuousCrystal,
-                _ => MaterialType.None,
-            };
-
-            materialUIList[0].gameObject.SetActive(true);
-            materialUIList[0].SetInfoUI(profitMaterialType, "5");
+            // var profitMaterialType = tier switch
+            // {
+            //     1 => MaterialType.VirtuousShard,
+            //     2 => MaterialType.VirtuousStone,
+            //     3 => MaterialType.VirtuousCrystal,
+            //     _ => MaterialType.None,
+            // };
+            //
+            // materialUIList[0].gameObject.SetActive(true);
+            // materialUIList[0].SetInfoUI(profitMaterialType, "5");
         }
         
         

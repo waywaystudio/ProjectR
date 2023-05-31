@@ -14,111 +14,435 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Index: 42
   list:
-  - id: 42011001
+  - id: 42010101
     name: Guardian's Helmet
-    power: 5
-    health: 8
-    armor: 50
+    power:
+    - 10
+    - 20
+    - 30
+    - 40
+    - 50
+    - 60
+    health:
+    - 10
+    - 20
+    - 30
+    - 40
+    - 50
+    - 60
+    armor:
+    - 10
+    - 13
+    - 16
+    - 19
+    - 22
+    - 25
     iconFileName: Guardian's Helmet Sprite
-  - id: 42012002
+  - id: 42010202
     name: Garvin's Helmet
-    power: 5
-    health: 8
-    armor: 50
+    power:
+    - 70
+    - 80
+    - 90
+    - 100
+    - 110
+    - 120
+    health:
+    - 70
+    - 80
+    - 90
+    - 100
+    - 110
+    - 120
+    armor:
+    - 28
+    - 31
+    - 34
+    - 37
+    - 40
+    - 43
     iconFileName: Garvin's Helmet Sprite
-  - id: 42013003
+  - id: 42010303
     name: Helmet of Fate
-    power: 5
-    health: 8
-    armor: 50
+    power:
+    - 130
+    - 140
+    - 150
+    - 160
+    - 170
+    - 180
+    health:
+    - 130
+    - 140
+    - 150
+    - 160
+    - 170
+    - 180
+    armor:
+    - 46
+    - 49
+    - 52
+    - 55
+    - 58
+    - 61
     iconFileName: Helmet of Fate Sprite
-  - id: 42021004
+  - id: 42020104
     name: Pathfinder Helmet
-    power: 5
-    health: 8
-    armor: 50
+    power:
+    - 5
+    - 10
+    - 15
+    - 20
+    - 25
+    - 30
+    health:
+    - 8
+    - 16
+    - 24
+    - 32
+    - 40
+    - 48
+    armor:
+    - 10
+    - 12
+    - 14
+    - 16
+    - 18
+    - 20
     iconFileName: Pathfinder Helmet Sprite
-  - id: 42022005
+  - id: 42020205
     name: Pavel's Helmet
-    power: 5
-    health: 8
-    armor: 50
+    power:
+    - 35
+    - 40
+    - 45
+    - 50
+    - 55
+    - 60
+    health:
+    - 56
+    - 64
+    - 72
+    - 80
+    - 88
+    - 96
+    armor:
+    - 22
+    - 24
+    - 26
+    - 28
+    - 30
+    - 32
     iconFileName: Pavel's Helmet Sprite
-  - id: 42023006
+  - id: 42020306
     name: Helmet of Luna
-    power: 5
-    health: 8
-    armor: 50
+    power:
+    - 65
+    - 70
+    - 75
+    - 80
+    - 85
+    - 90
+    health:
+    - 104
+    - 112
+    - 117
+    - 122
+    - 127
+    - 132
+    armor:
+    - 34
+    - 36
+    - 38
+    - 40
+    - 42
+    - 44
     iconFileName: Helmet of Luna Sprite
-  - id: 42031007
+  - id: 42030107
     name: Blacksmith's Hood
-    power: 5
-    health: 8
-    armor: 50
+    power:
+    - 3
+    - 6
+    - 9
+    - 12
+    - 15
+    - 18
+    health:
+    - 5
+    - 10
+    - 15
+    - 20
+    - 25
+    - 30
+    armor:
+    - 10
+    - 12
+    - 13
+    - 15
+    - 17
+    - 19
     iconFileName: Blacksmith's Hood Sprite
-  - id: 42032008
+  - id: 42030208
     name: Vesta's Hood
-    power: 5
-    health: 8
-    armor: 50
+    power:
+    - 21
+    - 24
+    - 27
+    - 30
+    - 33
+    - 36
+    health:
+    - 35
+    - 40
+    - 45
+    - 50
+    - 55
+    - 60
+    armor:
+    - 20
+    - 22
+    - 24
+    - 25
+    - 27
+    - 29
     iconFileName: Vesta's Hood Sprite
-  - id: 42033009
+  - id: 42030309
     name: Hood of Quiet
-    power: 5
-    health: 8
-    armor: 50
+    power:
+    - 39
+    - 42
+    - 45
+    - 48
+    - 51
+    - 54
+    health:
+    - 65
+    - 70
+    - 73
+    - 76
+    - 79
+    - 82
+    armor:
+    - 30
+    - 32
+    - 34
+    - 36
+    - 37
+    - 39
     iconFileName: Hood of Quiet Sprite
-  - id: 42041010
+  - id: 42040110
     name: Ranger's Hood
-    power: 5
-    health: 8
-    armor: 50
+    power:
+    - 7
+    - 14
+    - 21
+    - 28
+    - 35
+    - 42
+    health:
+    - 7
+    - 14
+    - 21
+    - 28
+    - 35
+    - 42
+    armor:
+    - 10
+    - 12
+    - 13
+    - 15
+    - 16
+    - 18
     iconFileName: Ranger's Hood Sprite
-  - id: 42042011
+  - id: 42040211
     name: Ives's Hood
-    power: 5
-    health: 8
-    armor: 50
+    power:
+    - 49
+    - 56
+    - 63
+    - 70
+    - 77
+    - 84
+    health:
+    - 49
+    - 56
+    - 63
+    - 70
+    - 77
+    - 84
+    armor:
+    - 19
+    - 21
+    - 22
+    - 24
+    - 25
+    - 27
     iconFileName: Ives's Hood Sprite
-  - id: 42043012
+  - id: 42040312
     name: Hood of Wind
-    power: 5
-    health: 8
-    armor: 50
+    power:
+    - 91
+    - 98
+    - 105
+    - 112
+    - 119
+    - 126
+    health:
+    - 91
+    - 98
+    - 105
+    - 112
+    - 119
+    - 126
+    armor:
+    - 28
+    - 30
+    - 31
+    - 33
+    - 34
+    - 36
     iconFileName: Hood of Wind Sprite
-  - id: 42051013
+  - id: 42050113
     name: Unnamed Hat
-    power: 5
-    health: 8
-    armor: 50
+    power:
+    - 5
+    - 10
+    - 15
+    - 20
+    - 25
+    - 30
+    health:
+    - 5
+    - 10
+    - 15
+    - 20
+    - 25
+    - 30
+    armor:
+    - 10
+    - 11
+    - 13
+    - 14
+    - 16
+    - 17
     iconFileName: Unnamed Hat Sprite
-  - id: 42052014
+  - id: 42050214
     name: Leah's Hat
-    power: 5
-    health: 8
-    armor: 50
+    power:
+    - 35
+    - 40
+    - 45
+    - 50
+    - 55
+    - 60
+    health:
+    - 35
+    - 40
+    - 45
+    - 50
+    - 55
+    - 60
+    armor:
+    - 18
+    - 20
+    - 21
+    - 23
+    - 24
+    - 25
     iconFileName: Leah's Hat Sprite
-  - id: 42053015
+  - id: 42050315
     name: Hat of Dawn
-    power: 5
-    health: 8
-    armor: 50
+    power:
+    - 65
+    - 70
+    - 75
+    - 80
+    - 85
+    - 90
+    health:
+    - 65
+    - 70
+    - 75
+    - 80
+    - 85
+    - 90
+    armor:
+    - 27
+    - 28
+    - 30
+    - 31
+    - 32
+    - 34
     iconFileName: Hat of Dawn Sprite
-  - id: 42061016
+  - id: 42060116
     name: Cleric's Hood
-    power: 5
-    health: 8
-    armor: 50
+    power:
+    - 8
+    - 16
+    - 24
+    - 32
+    - 40
+    - 48
+    health:
+    - 9
+    - 18
+    - 27
+    - 36
+    - 45
+    - 54
+    armor:
+    - 10
+    - 12
+    - 13
+    - 15
+    - 16
+    - 18
     iconFileName: Cleric's Hood Sprite
-  - id: 42062017
+  - id: 42060217
     name: Clover's Hood
-    power: 5
-    health: 8
-    armor: 50
+    power:
+    - 56
+    - 64
+    - 72
+    - 80
+    - 88
+    - 96
+    health:
+    - 63
+    - 72
+    - 81
+    - 90
+    - 99
+    - 108
+    armor:
+    - 19
+    - 21
+    - 22
+    - 24
+    - 25
+    - 27
     iconFileName: Clover's Hood Sprite
-  - id: 42063018
+  - id: 42060318
     name: Hood of Elysium
-    power: 5
-    health: 8
-    armor: 50
+    power:
+    - 104
+    - 112
+    - 120
+    - 128
+    - 136
+    - 144
+    health:
+    - 117
+    - 126
+    - 134
+    - 142
+    - 150
+    - 158
+    armor:
+    - 28
+    - 30
+    - 31
+    - 33
+    - 34
+    - 36
     iconFileName: Hood of Elysium Sprite

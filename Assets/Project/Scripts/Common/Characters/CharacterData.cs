@@ -25,10 +25,9 @@ namespace Common.Characters
         public EthosTable StaticEthosTable => equipmentEntity.EthosTable;
 
         public int GetEthosValue(EthosType type) => StaticEthosTable.GetEthosValue(type);
-        public int GetRelicPieceCount(RelicType type) => EquipmentEntity.GetRelicPieceCount(type);
         public float GetStatValue(StatType type) => StaticStatTable.GetStatValue(type);
         public string GetStatTextValue(StatType type) => StaticStatTable.GetStatValue(type).ToStatUIValue(type);
-        public EquipmentEntity GetEquipment(EquipSlotIndex slot) => EquipmentEntity.GetEquipment(slot);
+        public EquipmentEntity GetEquipment(EquipmentSlotType slot) => EquipmentEntity.GetEquipment(slot);
         
         public void Save()
         {
@@ -42,11 +41,6 @@ namespace Common.Characters
             StaticStatTable.Clear();
             StaticStatTable.Add(constEntity.DefaultStatSpec);
             StaticStatTable.RegisterTable(equipmentEntity.StatTable);
-        }
-
-        public void ChangeEquipmentRelic(EquipSlotIndex slotType, RelicType relicType)
-        {
-            equipmentEntity.ChangeRelic(slotType, relicType);
         }
 
 

@@ -14,12 +14,12 @@ namespace Lobby.UI
 
         public DataIndex Category => category;
         
-        private readonly List<MaterialSlotUI> itemSlotList = new();
+        private readonly List<ViceMaterialSlotUI> itemSlotList = new();
 
 
         public void Reload()
         {
-            var materialTable = PartyCamp.Inventories.MaterialTable;
+            var materialTable = PartyCamp.Inventories.ViceMaterialTable;
             var arrayIndex    = 0;
             
             materialTable.ForEach(material =>
@@ -42,16 +42,16 @@ namespace Lobby.UI
                 gameObject.SetActive(false);
         }
         
-        public void AddInventorySlot(MaterialType material, int count)
+        public void AddInventorySlot(ViceMaterialType material, int count)
         {
             if (!gameObject.activeSelf)
                 gameObject.SetActive(true);
         
             var newSlot = Instantiate(slotPrefab, itemsHierarchy);
         
-            if (!newSlot.TryGetComponent(out MaterialSlotUI itemSlotBehaviour))
+            if (!newSlot.TryGetComponent(out ViceMaterialSlotUI itemSlotBehaviour))
             {
-                Debug.LogError($"Not Exist {typeof(MaterialSlotUI)} in {newSlot.name} Object");
+                Debug.LogError($"Not Exist {typeof(ViceMaterialSlotUI)} in {newSlot.name} Object");
                 return;
             }
 
@@ -61,9 +61,9 @@ namespace Lobby.UI
             DynamicContentSizeFitting();
         }
         
-        public void RemoveInventorySlot(MaterialType material)
+        public void RemoveInventorySlot(ViceMaterialType material)
         {
-            MaterialSlotUI targetSlot = null;
+            ViceMaterialSlotUI targetSlot = null;
             
             foreach (var itemSlot in itemSlotList)
             {
@@ -87,7 +87,7 @@ namespace Lobby.UI
 
         private void Awake()
         {
-            var materialTable = PartyCamp.Inventories.MaterialTable;
+            var materialTable = PartyCamp.Inventories.ViceMaterialTable;
             
             materialTable.ForEach(material => AddInventorySlot(material.Key, material.Value));
             

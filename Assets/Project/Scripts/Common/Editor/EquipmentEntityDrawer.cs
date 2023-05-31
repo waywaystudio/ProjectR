@@ -19,35 +19,30 @@ namespace Common.Editor
         
         public override void ProcessChildMemberAttributes(InspectorProperty parentProperty, MemberInfo member, List<Attribute> attributes)
         {
-            if (member.Name == "icon")
+            attributes.Add(new HideLabelAttribute());
+            
+            if (member.Name == "Icon")
             {
-                attributes.Add(new HideLabelAttribute());
+                attributes.Add(new ShowInInspectorAttribute());
                 attributes.Add(new PropertyOrderAttribute(-1f));
                 attributes.Add(new HorizontalGroupAttribute("EquipmentEntity", 0.1f));
                 attributes.Add(new PreviewFieldAttribute(ObjectFieldAlignment.Center));
             }
             
-            if (member.Name == "dataIndex")
+            if (member.Name == "DataIndex")
             {
-                attributes.Add(new HideLabelAttribute());
-                attributes.Add(new VerticalGroupAttribute("EquipmentEntity/Entity"));
-            }
-            if (member.Name == "itemName")
-            {
-                attributes.Add(new HideLabelAttribute());
-                attributes.Add(new VerticalGroupAttribute("EquipmentEntity/Entity"));
-            }
-            if (member.Name == "constSpec")
-            {
-                attributes.Add(new HideLabelAttribute());
-                attributes.Add(new VerticalGroupAttribute("EquipmentEntity/Entity"));
-            }
-            
-            if (member.Name == "RelicTable")
-            {
-                attributes.Add(new HideLabelAttribute());
                 attributes.Add(new ShowInInspectorAttribute());
-                attributes.Add(new HorizontalGroupAttribute("EquipmentEntity", 0.5f));
+                attributes.Add(new VerticalGroupAttribute("EquipmentEntity/Entity"));
+            }
+            if (member.Name == "ItemName")
+            {
+                attributes.Add(new ShowInInspectorAttribute());
+                attributes.Add(new VerticalGroupAttribute("EquipmentEntity/Entity"));
+            }
+            if (member.Name == "ConstStatSpec")
+            {
+                attributes.Add(new ShowInInspectorAttribute());
+                attributes.Add(new VerticalGroupAttribute("EquipmentEntity/Entity"));
             }
         }
     }

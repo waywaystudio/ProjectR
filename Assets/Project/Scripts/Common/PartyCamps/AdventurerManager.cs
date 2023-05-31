@@ -15,8 +15,7 @@ namespace Common.PartyCamps
         public CharacterData GetData(DataIndex type) => characterDataList.TryGetElement(data => data.DataIndex       == type);
         public CharacterData GetNextData(CharacterData currentData) => characterDataList.GetNext(currentData);
         public CharacterData GetPreviousData(CharacterData currentData) => characterDataList.GetPrevious(currentData);
-        public EquipmentEntity GetAdventurerEquipment(VenturerType adventurer, EquipSlotIndex slot) => GetData(adventurer).GetEquipment(slot);
-        public RelicEntity GetAdventurerEquipmentRelic(VenturerType adventurer, EquipSlotIndex slot, RelicType relicType) => GetData(adventurer).GetEquipment(slot).GetRelic(relicType);
+        public EquipmentEntity GetAdventurerEquipment(VenturerType adventurer, EquipmentSlotType slot) => GetData(adventurer).GetEquipment(slot);
 
         public void Save() => characterDataList.ForEach(data => data.Save());
         public void Load() => characterDataList.ForEach(data => data.Load());

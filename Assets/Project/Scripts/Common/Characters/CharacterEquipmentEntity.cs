@@ -11,10 +11,9 @@ namespace Common.Characters
     {
         [SerializeField] private List<DataIndex> initialEquipmentIndexList;
 
-        public Dictionary<EquipSlotIndex, EquipmentEntity> EquipmentTable { get; set; }
+        public Dictionary<EquipmentSlotType, EquipmentEntity> EquipmentTable { get; set; }
         public StatTable StatTable { get; set; } = new();
         public EthosTable EthosTable { get; set; } = new();
-
 
         public void Save(string providerName)
         {
@@ -27,7 +26,7 @@ namespace Common.Characters
         {
             var serializeKey = $"{providerName}.EquipmentEntity";
             
-            EquipmentTable = SaveManager.Load<Dictionary<EquipSlotIndex, EquipmentEntity>>(serializeKey);
+            EquipmentTable = SaveManager.Load<Dictionary<EquipmentSlotType, EquipmentEntity>>(serializeKey);
 
             if (EquipmentTable.IsNullOrEmpty())
             {
@@ -39,49 +38,11 @@ namespace Common.Characters
                 equipment.Load(equipment.DataIndex);
                 
                 StatTable.Add(equipment.ConstStatSpec);
-                StatTable.Add(equipment.UpgradeStatSpec);
-                StatTable.Add(equipment.RelicStatSpec);
-                
-                EthosTable.Add(equipment.RelicEthosSpec);
+                // EthosTable.Add(equipment.RelicEthosSpec);
             });
         }
 
-        public void ChangeRelic(EquipSlotIndex slotType, RelicType relicType)
-        {
-            if (!EquipmentTable.TryGetValue(slotType, out var equipmentEntity))
-            {
-                Debug.LogWarning($"Not Exist {slotType} in CharacterEquipmentEntity");
-                return;
-            }
-            
-            StatTable.Remove(equipmentEntity.RelicStatSpec);
-            EthosTable.Remove(equipmentEntity.RelicEthosSpec);
-            
-            equipmentEntity.ChangeRelic(relicType);
-            
-            StatTable.Add(equipmentEntity.RelicStatSpec);
-            EthosTable.Add(equipmentEntity.RelicEthosSpec);
-        }
-
-        public int GetRelicPieceCount(RelicType relicType)
-        {
-            var result = 0;
-            
-            EquipmentTable.Values.ForEach(equipEntity =>
-            {
-                if (equipEntity.CurrentRelicType == relicType)
-                {
-                    result ++;
-                }
-            });
-
-            return result;
-        }
-
-        public void Test() => ChangeRelic(EquipSlotIndex.Weapon, RelicType.None.RandomEnum());
-
-
-        public EquipmentEntity GetEquipment(EquipSlotIndex slotIndex)
+        public EquipmentEntity GetEquipment(EquipmentSlotType slotIndex)
         {
             if (!EquipmentTable.TryGetValue(slotIndex, out var result))
             {
@@ -91,17 +52,18 @@ namespace Common.Characters
 
             return result;
         }
+        
 
         private void EquipInitialEquipments()
         {
-            EquipmentTable = new Dictionary<EquipSlotIndex, EquipmentEntity>();
+            EquipmentTable = new Dictionary<EquipmentSlotType, EquipmentEntity>();
             
             initialEquipmentIndexList.ForEach(initialEquipmentIndex =>
             {
                 var instance       = new EquipmentEntity(initialEquipmentIndex);
                 var equipSlotIndex = initialEquipmentIndex.GetCategory();
 
-                EquipmentTable.Add((EquipSlotIndex)equipSlotIndex, instance);
+                EquipmentTable.Add((EquipmentSlotType)equipSlotIndex, instance);
             });
         }
         

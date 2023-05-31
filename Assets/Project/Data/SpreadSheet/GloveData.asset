@@ -14,111 +14,435 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Index: 44
   list:
-  - id: 44011001
+  - id: 44010101
     name: Guardian's HandGuard
-    power: 5
-    health: 10
-    armor: 50
+    power:
+    - 5
+    - 10
+    - 15
+    - 20
+    - 25
+    - 30
+    health:
+    - 8
+    - 16
+    - 24
+    - 32
+    - 40
+    - 48
+    armor:
+    - 10
+    - 13
+    - 15
+    - 18
+    - 20
+    - 23
     iconFileName: Guardian's HandGuard Sprite
-  - id: 44012002
+  - id: 44010202
     name: Garvin's HandGuard
-    power: 5
-    health: 10
-    armor: 50
+    power:
+    - 35
+    - 40
+    - 45
+    - 50
+    - 55
+    - 60
+    health:
+    - 56
+    - 64
+    - 72
+    - 80
+    - 88
+    - 96
+    armor:
+    - 25
+    - 28
+    - 30
+    - 33
+    - 35
+    - 38
     iconFileName: Garvin's HandGuard Sprite
-  - id: 44013003
+  - id: 44010303
     name: HandGuard of Fate
-    power: 5
-    health: 10
-    armor: 50
+    power:
+    - 65
+    - 70
+    - 75
+    - 80
+    - 85
+    - 90
+    health:
+    - 104
+    - 112
+    - 117
+    - 122
+    - 127
+    - 132
+    armor:
+    - 40
+    - 43
+    - 45
+    - 48
+    - 50
+    - 53
     iconFileName: HandGuard of Fate Sprite
-  - id: 44021004
+  - id: 44020104
     name: Pathfinder Gauntlet
-    power: 5
-    health: 10
-    armor: 50
+    power:
+    - 3
+    - 6
+    - 9
+    - 12
+    - 15
+    - 18
+    health:
+    - 6
+    - 12
+    - 18
+    - 24
+    - 30
+    - 36
+    armor:
+    - 10
+    - 12
+    - 13
+    - 15
+    - 17
+    - 19
     iconFileName: Pathfinder Gauntlet Sprite
-  - id: 44022005
+  - id: 44020205
     name: Pavel's Gauntlet
-    power: 5
-    health: 10
-    armor: 50
+    power:
+    - 21
+    - 24
+    - 27
+    - 30
+    - 33
+    - 36
+    health:
+    - 42
+    - 48
+    - 54
+    - 60
+    - 66
+    - 72
+    armor:
+    - 20
+    - 22
+    - 24
+    - 25
+    - 27
+    - 29
     iconFileName: Pavel's Gauntlet Sprite
-  - id: 44023006
+  - id: 44020306
     name: Gauntlet of Luna
-    power: 5
-    health: 10
-    armor: 50
+    power:
+    - 39
+    - 42
+    - 45
+    - 48
+    - 51
+    - 54
+    health:
+    - 78
+    - 84
+    - 87
+    - 90
+    - 93
+    - 96
+    armor:
+    - 30
+    - 32
+    - 34
+    - 36
+    - 37
+    - 39
     iconFileName: Gauntlet of Luna Sprite
-  - id: 44031007
+  - id: 44030107
     name: Blacksmith's Gloves
-    power: 5
-    health: 10
-    armor: 50
+    power:
+    - 4
+    - 8
+    - 12
+    - 16
+    - 20
+    - 24
+    health:
+    - 4
+    - 8
+    - 12
+    - 16
+    - 20
+    - 24
+    armor:
+    - 10
+    - 11
+    - 13
+    - 14
+    - 16
+    - 17
     iconFileName: Blacksmith's Gloves Sprite
-  - id: 44032008
+  - id: 44030208
     name: Vesta's Gloves
-    power: 5
-    health: 10
-    armor: 50
+    power:
+    - 28
+    - 32
+    - 36
+    - 40
+    - 44
+    - 48
+    health:
+    - 28
+    - 32
+    - 36
+    - 40
+    - 44
+    - 48
+    armor:
+    - 18
+    - 20
+    - 21
+    - 23
+    - 24
+    - 25
     iconFileName: Vesta's Gloves Sprite
-  - id: 44033009
+  - id: 44030309
     name: Gloves of Quiet
-    power: 5
-    health: 10
-    armor: 50
+    power:
+    - 52
+    - 56
+    - 60
+    - 64
+    - 68
+    - 72
+    health:
+    - 52
+    - 56
+    - 60
+    - 64
+    - 68
+    - 72
+    armor:
+    - 27
+    - 28
+    - 30
+    - 31
+    - 32
+    - 34
     iconFileName: Gloves of Quiet Sprite
-  - id: 44041010
+  - id: 44040110
     name: Ranger's Gloves
-    power: 5
-    health: 10
-    armor: 50
+    power:
+    - 3
+    - 6
+    - 9
+    - 12
+    - 15
+    - 18
+    health:
+    - 5
+    - 10
+    - 15
+    - 20
+    - 25
+    - 30
+    armor:
+    - 10
+    - 11
+    - 13
+    - 14
+    - 15
+    - 17
     iconFileName: Ranger's Gloves Sprite
-  - id: 44042011
+  - id: 44040211
     name: Ives's Gloves
-    power: 5
-    health: 10
-    armor: 50
+    power:
+    - 21
+    - 24
+    - 27
+    - 30
+    - 33
+    - 36
+    health:
+    - 35
+    - 40
+    - 45
+    - 50
+    - 55
+    - 60
+    armor:
+    - 18
+    - 19
+    - 20
+    - 22
+    - 23
+    - 24
     iconFileName: Ives's Gloves Sprite
-  - id: 44043012
+  - id: 44040312
     name: Gloves of Wind
-    power: 5
-    health: 10
-    armor: 50
+    power:
+    - 39
+    - 42
+    - 45
+    - 48
+    - 51
+    - 54
+    health:
+    - 65
+    - 70
+    - 73
+    - 76
+    - 79
+    - 82
+    armor:
+    - 26
+    - 27
+    - 28
+    - 30
+    - 31
+    - 32
     iconFileName: Gloves of Wind Sprite
-  - id: 44051013
+  - id: 44050113
     name: Unnamed Gloves
-    power: 5
-    health: 10
-    armor: 50
+    power:
+    - 2
+    - 4
+    - 6
+    - 8
+    - 10
+    - 12
+    health:
+    - 4
+    - 8
+    - 12
+    - 16
+    - 20
+    - 24
+    armor:
+    - 10
+    - 11
+    - 12
+    - 14
+    - 15
+    - 16
     iconFileName: Unnamed Gloves Sprite
-  - id: 44052014
+  - id: 44050214
     name: Leah's Gloves
-    power: 5
-    health: 10
-    armor: 50
+    power:
+    - 14
+    - 16
+    - 18
+    - 20
+    - 22
+    - 24
+    health:
+    - 28
+    - 32
+    - 36
+    - 40
+    - 44
+    - 48
+    armor:
+    - 17
+    - 18
+    - 20
+    - 21
+    - 22
+    - 23
     iconFileName: Leah's Gloves Sprite
-  - id: 44053015
+  - id: 44050315
     name: Gloves of Dawn
-    power: 5
-    health: 10
-    armor: 50
+    power:
+    - 26
+    - 28
+    - 30
+    - 32
+    - 34
+    - 36
+    health:
+    - 52
+    - 56
+    - 58
+    - 60
+    - 62
+    - 64
+    armor:
+    - 24
+    - 26
+    - 27
+    - 28
+    - 29
+    - 30
     iconFileName: Gloves of Dawn Sprite
-  - id: 44061016
+  - id: 44060116
     name: Cleric's Gloves
-    power: 5
-    health: 10
-    armor: 50
+    power:
+    - 3
+    - 6
+    - 9
+    - 12
+    - 15
+    - 18
+    health:
+    - 7
+    - 14
+    - 21
+    - 28
+    - 35
+    - 42
+    armor:
+    - 10
+    - 11
+    - 13
+    - 14
+    - 15
+    - 17
     iconFileName: Cleric's Gloves Sprite
-  - id: 44062017
+  - id: 44060217
     name: Clover's Gloves
-    power: 5
-    health: 10
-    armor: 50
+    power:
+    - 21
+    - 24
+    - 27
+    - 30
+    - 33
+    - 36
+    health:
+    - 49
+    - 56
+    - 63
+    - 70
+    - 77
+    - 84
+    armor:
+    - 18
+    - 19
+    - 20
+    - 22
+    - 23
+    - 24
     iconFileName: Clover's Gloves Sprite
-  - id: 44063018
+  - id: 44060318
     name: Gloves of Elysium
-    power: 5
-    health: 10
-    armor: 50
+    power:
+    - 39
+    - 42
+    - 45
+    - 48
+    - 51
+    - 54
+    health:
+    - 91
+    - 98
+    - 101
+    - 104
+    - 107
+    - 110
+    armor:
+    - 26
+    - 27
+    - 28
+    - 30
+    - 31
+    - 32
     iconFileName: Gloves of Elysium Sprite

@@ -16,16 +16,16 @@ namespace Databases.SheetData.EquipmentData
         {
 			[SerializeField] private Int32 id;
 			[SerializeField] private String name;
-			[SerializeField] private Single minDamage;
-			[SerializeField] private Single maxDamage;
-			[SerializeField] private Single power;
+			[SerializeField] private List<Single> minDamage;
+			[SerializeField] private List<Single> maxDamage;
+			[SerializeField] private List<Single> power;
 			[SerializeField] private String iconFileName;
 
 			public Int32 ID => id;
 			public String Name => name;
-			public Single MinDamage => minDamage;
-			public Single MaxDamage => maxDamage;
-			public Single Power => power;
+			public List<Single> MinDamage => minDamage;
+			public List<Single> MaxDamage => maxDamage;
+			public List<Single> Power => power;
 			public String IconFileName => iconFileName;
 
         }

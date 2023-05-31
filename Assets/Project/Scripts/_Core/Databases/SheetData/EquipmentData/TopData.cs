@@ -16,16 +16,16 @@ namespace Databases.SheetData.EquipmentData
         {
 			[SerializeField] private Int32 id;
 			[SerializeField] private String name;
-			[SerializeField] private Single power;
-			[SerializeField] private Single health;
-			[SerializeField] private Single armor;
+			[SerializeField] private List<Single> power;
+			[SerializeField] private List<Single> health;
+			[SerializeField] private List<Single> armor;
 			[SerializeField] private String iconFileName;
 
 			public Int32 ID => id;
 			public String Name => name;
-			public Single Power => power;
-			public Single Health => health;
-			public Single Armor => armor;
+			public List<Single> Power => power;
+			public List<Single> Health => health;
+			public List<Single> Armor => armor;
 			public String IconFileName => iconFileName;
 
         }

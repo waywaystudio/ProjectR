@@ -12,14 +12,14 @@ namespace Lobby.UI.Forge.Evolves
         {
             var adventurer = LobbyDirector.UI.Forge.FocusAdventurer;
             var slot       = LobbyDirector.UI.Forge.FocusSlot;
-            var relic = LobbyDirector.UI.Forge.FocusRelic;
+            // var relic = LobbyDirector.UI.Forge.FocusRelic;
 
             var targetCharacter = PartyCamp.Characters.GetData(adventurer);
             var targetEquipment      = targetCharacter.GetEquipment(slot);
 
             if (targetEquipment != null)
             {
-                var equipmentName = $"{relic} {targetEquipment.ItemName}";
+                var equipmentName = $"{targetEquipment.ItemName}";
                 titleTextMesh.text = equipmentName;
             }
             else

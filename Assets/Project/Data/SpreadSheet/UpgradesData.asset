@@ -1,0 +1,28 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8307584bd8a11f943b3d282c4fd3705b, type: 3}
+  m_Name: UpgradesData
+  m_EditorClassIdentifier: 
+  Index: 14
+  list:
+  - id: 14001801
+    name: UpgradeRequirement
+    maxLevel: 18
+    levelList: 00000000050000000a0000001400000028000000460000006400000096000000c80000002c0100009001000058020000e8030000dc050000d0070000c4090000a00f0000581b0000
+  - id: 14001802
+    name: ViceConduitAvailablePoints
+    maxLevel: 18
+    levelList: 0300000006000000090000000c0000000f0000001200000015000000180000001b0000001e0000002100000024000000270000002a0000002d000000300000003300000036000000
+  - id: 14001803
+    name: ViceConduitProgressRequirement
+    maxLevel: 18
+    levelList: 0300000004000000050000000600000007000000080000001e0000002100000024000000280000002d000000320000002c0100004a0100006801000090010000f401000058020000

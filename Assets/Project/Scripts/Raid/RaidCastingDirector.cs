@@ -80,13 +80,13 @@ namespace Raid
             var upgradeMaterialDropCount = Random.Range(5, 16);
             var enchantMaterialDropCount = Random.Range(5, 16);
             
-            PartyCamp.Inventories.AddMaterial(MaterialType.VowedShard, themeMaterialDropCount);
-            PartyCamp.Inventories.AddMaterial(MaterialType.VerityShard, upgradeMaterialDropCount);
-            PartyCamp.Inventories.AddMaterial(MaterialType.VenerationShard, enchantMaterialDropCount);
+            PartyCamp.Inventories.AddMaterial(ViceMaterialType.ShardOfApathy, themeMaterialDropCount);
+            PartyCamp.Inventories.AddMaterial(ViceMaterialType.StoneOfObsession, upgradeMaterialDropCount);
+            PartyCamp.Inventories.AddMaterial(ViceMaterialType.StoneOfReverie, enchantMaterialDropCount);
 
-            sb.Append($"{MaterialType.VowedShard} {themeMaterialDropCount} Get!\n");
-            sb.Append($"{MaterialType.VerityShard} {upgradeMaterialDropCount} Get!\n");
-            sb.Append($"{MaterialType.VenerationShard} {enchantMaterialDropCount} Get!\n");
+            sb.Append($"{ViceMaterialType.ShardOfApathy} {themeMaterialDropCount} Get!\n");
+            sb.Append($"{ViceMaterialType.StoneOfObsession} {upgradeMaterialDropCount} Get!\n");
+            sb.Append($"{ViceMaterialType.StoneOfReverie} {enchantMaterialDropCount} Get!\n");
             
             Debug.Log(sb.ToString());
         }

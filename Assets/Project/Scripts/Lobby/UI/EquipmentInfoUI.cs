@@ -10,12 +10,12 @@ namespace Lobby.UI
 {
     public class EquipmentInfoUI : MonoBehaviour, IEquipmentTooltip, IPointerClickHandler, IEditable
     {
-        [SerializeField] private EquipSlotIndex equipSlot;
+        [SerializeField] private EquipmentSlotType equipSlot;
         [SerializeField] private Image image;
         [SerializeField] private TextMeshProUGUI equipmentName;
         [SerializeField] private Sprite defaultSprite;
 
-        public EquipSlotIndex EquipSlot => equipSlot;
+        public EquipmentSlotType EquipSlot => equipSlot;
         
         // TODO. TEMP :: 추후에 이벤트 방식 or 시스템화를 통해서 Drawer Dependency 해제.
         private EquipmentTooltipDrawer tooltipDrawer;

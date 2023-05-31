@@ -25,7 +25,7 @@ namespace Lobby.UI.Forge.Evolves
 
         private void ReloadStat(EquipmentEntity equipEntity)
         {
-            var equipmentSpec = equipEntity.ConstStatSpec + equipEntity.UpgradeStatSpec;
+            var equipmentSpec = equipEntity.ConstStatSpec;
 
             equipmentSpec?.IterateOverStats((stat, index) =>
             {
@@ -40,14 +40,14 @@ namespace Lobby.UI.Forge.Evolves
         {
             if (materialUIList.Count < 1) return;
 
-            var focusRelic = LobbyDirector.UI.Forge.FocusRelic;
-            var materialList = EquipmentUtility.RequiredMaterialsForUpgrade(focusRelic, equipEntity.UpgradeLevel);
+            // var focusRelic = LobbyDirector.UI.Forge.FocusRelic;
+            // var materialList = EquipmentUtility.RequiredMaterialsForUpgrade(focusRelic, equipEntity.UpgradeLevel);
             
-            materialList.ForEach((ingredient, index) =>
-            {
-                materialUIList[index].gameObject.SetActive(true);
-                materialUIList[index].SetInfoUI(ingredient);
-            });
+            // materialList.ForEach((ingredient, index) =>
+            // {
+            //     materialUIList[index].gameObject.SetActive(true);
+            //     materialUIList[index].SetInfoUI(ingredient);
+            // });
         }
 
 #if UNITY_EDITOR

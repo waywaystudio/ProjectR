@@ -14,111 +14,435 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Index: 41
   list:
-  - id: 41011001
+  - id: 41010101
     name: Guardian's Sword & Shield
-    minDamage: 2
-    maxDamage: 3
-    power: 20
+    minDamage:
+    - 2
+    - 3
+    - 4
+    - 5
+    - 6
+    - 7
+    maxDamage:
+    - 3
+    - 4.5
+    - 6
+    - 7.5
+    - 9
+    - 10.5
+    power:
+    - 10
+    - 20
+    - 30
+    - 40
+    - 50
+    - 60
     iconFileName: Guardian's Sword & Shield Sprite
-  - id: 41012002
+  - id: 41010202
     name: Garvin's Sword
-    minDamage: 12
-    maxDamage: 15
-    power: 100
+    minDamage:
+    - 12
+    - 14
+    - 16
+    - 18
+    - 21
+    - 24
+    maxDamage:
+    - 18
+    - 21
+    - 24
+    - 27
+    - 31.5
+    - 36
+    power:
+    - 70
+    - 80
+    - 90
+    - 100
+    - 110
+    - 120
     iconFileName: Garvin's Sword Sprite
-  - id: 41013003
+  - id: 41010303
     name: Last Survivor
-    minDamage: 24
-    maxDamage: 28
-    power: 320
+    minDamage:
+    - 30
+    - 35
+    - 40
+    - 45
+    - 50
+    - 60
+    maxDamage:
+    - 45
+    - 52.5
+    - 60
+    - 67.5
+    - 75
+    - 90
+    power:
+    - 130
+    - 140
+    - 150
+    - 160
+    - 170
+    - 180
     iconFileName: Last Survivor Sprite
-  - id: 41021004
+  - id: 41020104
     name: Pathfinder Two Hand Swrod
-    minDamage: 2
-    maxDamage: 3
-    power: 20
+    minDamage:
+    - 3
+    - 4.5
+    - 6
+    - 7.5
+    - 9
+    - 10.5
+    maxDamage:
+    - 4.5
+    - 6.75
+    - 9
+    - 11.25
+    - 13.5
+    - 15.75
+    power:
+    - 40
+    - 80
+    - 120
+    - 160
+    - 200
+    - 240
     iconFileName: Pathfinder Two Hand Swrod Sprite
-  - id: 41022005
+  - id: 41020205
     name: Pavel's Greate Sword
-    minDamage: 12
-    maxDamage: 15
-    power: 100
+    minDamage:
+    - 18
+    - 21
+    - 24
+    - 27
+    - 31.5
+    - 36
+    maxDamage:
+    - 27
+    - 31.5
+    - 36
+    - 40.5
+    - 47.25
+    - 54
+    power:
+    - 280
+    - 320
+    - 360
+    - 400
+    - 440
+    - 480
     iconFileName: Pavel's Greate Sword Sprite
-  - id: 41023006
+  - id: 41020306
     name: Luna Embracer
-    minDamage: 24
-    maxDamage: 28
-    power: 320
+    minDamage:
+    - 45
+    - 52.5
+    - 60
+    - 67.5
+    - 75
+    - 90
+    maxDamage:
+    - 67.5
+    - 78.75
+    - 90
+    - 101.25
+    - 112.5
+    - 135
+    power:
+    - 520
+    - 560
+    - 600
+    - 640
+    - 680
+    - 720
     iconFileName: Luna Embracer Sprite
-  - id: 41031007
+  - id: 41030107
     name: Blacksmith's Dagger
-    minDamage: 2
-    maxDamage: 3
-    power: 20
+    minDamage:
+    - 2
+    - 3
+    - 4
+    - 5
+    - 6
+    - 7
+    maxDamage:
+    - 3
+    - 4.5
+    - 6
+    - 7.5
+    - 9
+    - 10.5
+    power:
+    - 50
+    - 100
+    - 150
+    - 200
+    - 250
+    - 300
     iconFileName: Blacksmith's Dagger Sprite
-  - id: 41032008
+  - id: 41030208
     name: Vesta's Dagger
-    minDamage: 12
-    maxDamage: 15
-    power: 100
+    minDamage:
+    - 12
+    - 14
+    - 16
+    - 18
+    - 21
+    - 24
+    maxDamage:
+    - 18
+    - 21
+    - 24
+    - 27
+    - 31.5
+    - 36
+    power:
+    - 350
+    - 400
+    - 450
+    - 500
+    - 550
+    - 600
     iconFileName: Vesta's Dagger Sprite
-  - id: 41033009
+  - id: 41030309
     name: Quiet Sting
-    minDamage: 24
-    maxDamage: 28
-    power: 320
+    minDamage:
+    - 30
+    - 35
+    - 40
+    - 45
+    - 50
+    - 60
+    maxDamage:
+    - 45
+    - 52.5
+    - 60
+    - 67.5
+    - 75
+    - 90
+    power:
+    - 650
+    - 700
+    - 750
+    - 800
+    - 850
+    - 900
     iconFileName: Quiet Sting Sprite
-  - id: 41041010
+  - id: 41040110
     name: Ranger's Bow
-    minDamage: 2
-    maxDamage: 3
-    power: 20
+    minDamage:
+    - 2.5
+    - 3.8
+    - 5
+    - 6.3
+    - 7.5
+    - 8.8
+    maxDamage:
+    - 3.75
+    - 5.625
+    - 7.5
+    - 9.375
+    - 11.25
+    - 13.125
+    power:
+    - 30
+    - 60
+    - 90
+    - 120
+    - 150
+    - 180
     iconFileName: Ranger's Bow Sprite
-  - id: 41042011
+  - id: 41040211
     name: Ives's Bow
-    minDamage: 12
-    maxDamage: 15
-    power: 100
+    minDamage:
+    - 15
+    - 17.5
+    - 20
+    - 22.5
+    - 26.3
+    - 30
+    maxDamage:
+    - 22.5
+    - 26.25
+    - 30
+    - 33.75
+    - 39.375
+    - 45
+    power:
+    - 210
+    - 240
+    - 270
+    - 300
+    - 330
+    - 360
     iconFileName: Ives's Bow Sprite
-  - id: 41043012
+  - id: 41040312
     name: Wind Seal
-    minDamage: 24
-    maxDamage: 28
-    power: 320
+    minDamage:
+    - 37.5
+    - 43.8
+    - 50
+    - 56.3
+    - 62.5
+    - 75
+    maxDamage:
+    - 56.25
+    - 65.625
+    - 75
+    - 84.375
+    - 93.75
+    - 112.5
+    power:
+    - 390
+    - 420
+    - 450
+    - 480
+    - 510
+    - 540
     iconFileName: Wind Seal Sprite
-  - id: 41051013
+  - id: 41050113
     name: Unnamed Staff
-    minDamage: 2
-    maxDamage: 3
-    power: 20
+    minDamage:
+    - 3
+    - 4.5
+    - 6
+    - 7.5
+    - 9
+    - 10.5
+    maxDamage:
+    - 4.5
+    - 6.75
+    - 9
+    - 11.25
+    - 13.5
+    - 15.75
+    power:
+    - 50
+    - 100
+    - 150
+    - 200
+    - 250
+    - 300
     iconFileName: Unnamed Staff Sprite
-  - id: 41052014
+  - id: 41050214
     name: Leah's Staff
-    minDamage: 12
-    maxDamage: 15
-    power: 100
+    minDamage:
+    - 18
+    - 21
+    - 24
+    - 27
+    - 31.5
+    - 36
+    maxDamage:
+    - 27
+    - 31.5
+    - 36
+    - 40.5
+    - 47.25
+    - 54
+    power:
+    - 350
+    - 400
+    - 450
+    - 500
+    - 550
+    - 600
     iconFileName: Leah's Staff Sprite
-  - id: 41053015
+  - id: 41050315
     name: First Dawn
-    minDamage: 24
-    maxDamage: 28
-    power: 320
+    minDamage:
+    - 45
+    - 52.5
+    - 60
+    - 67.5
+    - 75
+    - 90
+    maxDamage:
+    - 67.5
+    - 78.75
+    - 90
+    - 101.25
+    - 112.5
+    - 135
+    power:
+    - 650
+    - 700
+    - 750
+    - 800
+    - 850
+    - 900
     iconFileName: First Dawn Sprite
-  - id: 41061016
+  - id: 41060116
     name: Cleric's Orb
-    minDamage: 2
-    maxDamage: 3
-    power: 20
+    minDamage:
+    - 2
+    - 3
+    - 4
+    - 5
+    - 6
+    - 7
+    maxDamage:
+    - 3
+    - 4.5
+    - 6
+    - 7.5
+    - 9
+    - 10.5
+    power:
+    - 20
+    - 40
+    - 60
+    - 80
+    - 100
+    - 120
     iconFileName: Cleric's Orb Sprite
-  - id: 41062017
+  - id: 41060217
     name: Clover's Orb
-    minDamage: 12
-    maxDamage: 15
-    power: 100
+    minDamage:
+    - 12
+    - 14
+    - 16
+    - 18
+    - 21
+    - 24
+    maxDamage:
+    - 18
+    - 21
+    - 24
+    - 27
+    - 31.5
+    - 36
+    power:
+    - 140
+    - 160
+    - 180
+    - 200
+    - 220
+    - 240
     iconFileName: Clover's Orb Sprite
-  - id: 41063018
+  - id: 41060318
     name: Orb of Elysium
-    minDamage: 24
-    maxDamage: 28
-    power: 320
+    minDamage:
+    - 30
+    - 35
+    - 40
+    - 45
+    - 50
+    - 60
+    maxDamage:
+    - 45
+    - 52.5
+    - 60
+    - 67.5
+    - 75
+    - 90
+    power:
+    - 260
+    - 280
+    - 300
+    - 320
+    - 340
+    - 360
     iconFileName: Orb of Elysium Sprite

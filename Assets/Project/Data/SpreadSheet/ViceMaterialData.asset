@@ -1,0 +1,52 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d335a1d93cb69d44bac64d22e0878192, type: 3}
+  m_Name: ViceMaterialData
+  m_EditorClassIdentifier: 
+  Index: 51
+  list:
+  - id: 51010101
+    name: Shard Of Vacillation
+    iconFileName: Shard Of Vacillation Sprite
+  - id: 51010104
+    name: Shard Of Cowardice
+    iconFileName: Shard Of Cowardice Sprite
+  - id: 51020107
+    name: Shard Of Rash
+    iconFileName: Shard Of Rash Sprite
+  - id: 51020110
+    name: Shard Of Conventionality
+    iconFileName: Shard Of Conventionality Sprite
+  - id: 51030113
+    name: Shard Of Ignorance
+    iconFileName: Shard Of Ignorance Sprite
+  - id: 51030116
+    name: Shard Of Apathy
+    iconFileName: Shard Of Apathy Sprite
+  - id: 51040303
+    name: Stone Of Obstinacy
+    iconFileName: Stone Of Obstinacy Sprite
+  - id: 51040306
+    name: Stone Of Recklessness
+    iconFileName: Stone Of Recklessness Sprite
+  - id: 51050309
+    name: Stone Of Obsession
+    iconFileName: Stone Of Obsession Sprite
+  - id: 51050312
+    name: Stone Of Reverie
+    iconFileName: Stone Of Reverie Sprite
+  - id: 51060315
+    name: Stone Of Arrogance
+    iconFileName: Stone Of Arrogance Sprite
+  - id: 51060318
+    name: Stone Of Voracity
+    iconFileName: Stone Of Voracity Sprite

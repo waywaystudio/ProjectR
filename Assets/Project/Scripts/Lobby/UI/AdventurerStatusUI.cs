@@ -55,7 +55,7 @@ namespace Lobby.UI
 
 
         private StatInfoUI GetStat(StatType type) => statInfoList.TryGetElement(stat => stat.StatType == type);
-        private EquipmentInfoUI GetEquipmentUI(EquipSlotIndex type) => equipmentInfoList.TryGetElement(equip => equip.EquipSlot == type);
+        private EquipmentInfoUI GetEquipmentUI(EquipmentSlotType type) => equipmentInfoList.TryGetElement(equip => equip.EquipSlot == type);
 
         private void Awake()
         {

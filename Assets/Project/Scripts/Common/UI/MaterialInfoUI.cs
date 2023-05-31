@@ -6,21 +6,21 @@ namespace Common.UI
 {
     public class MaterialInfoUI : MonoBehaviour, IEditable
     {
-        [SerializeField] private MaterialType materialType;
+        [SerializeField] private ViceMaterialType materialType;
         [SerializeField] private Image materialImage;
         [SerializeField] private TextMeshProUGUI labelText;
         [SerializeField] private TextMeshProUGUI valueText;
         
-        public MaterialType MaterialType => materialType;
+        public ViceMaterialType ViceMaterialType => materialType;
 
 
         public void SetInfoUI(Ingredient ingredient) => SetInfoUI(ingredient.MaterialType, ingredient.Count.ToString());
-        public void SetInfoUI(MaterialType type, string value)
+        public void SetInfoUI(ViceMaterialType type, string value)
         {
             materialType         = type;
             labelText.text       = materialType.ToString().DivideWords();
             valueText.text       = value;
-            materialImage.sprite = materialType != MaterialType.None
+            materialImage.sprite = materialType != ViceMaterialType.None
                 ? Database.MaterialSpriteData.Get((DataIndex)materialType) 
                 : null;
         }
@@ -37,7 +37,7 @@ namespace Common.UI
             materialImage        = transform.Find("Image").GetComponent<Image>();
             labelText            = transform.Find("Label").GetComponent<TextMeshProUGUI>();
             valueText            = transform.Find("Value").GetComponent<TextMeshProUGUI>();
-            materialImage.sprite = materialType != MaterialType.None ? Database.MaterialSpriteData.Get((DataIndex)materialType) : null;
+            materialImage.sprite = materialType != ViceMaterialType.None ? Database.MaterialSpriteData.Get((DataIndex)materialType) : null;
             labelText.text       = materialType.ToString().DivideWords();
             valueText.text       = "##.#";
             
