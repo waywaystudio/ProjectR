@@ -8,18 +8,16 @@ namespace Lobby.UI.Forge.Evolves
 {
     public class PrimaryStatUI : MonoBehaviour, IEditable
     {
+        [SerializeField] private EquipmentSlotType slotType;
         [SerializeField] private List<StatInfoUI> constStatUIList;
-        [SerializeField] private List<MaterialInfoUI> materialUIList;
 
         public void OnReloadForge()
         {
             constStatUIList.ForEach(statUI => statUI.gameObject.activeSelf.OnTrue(() => statUI.gameObject.SetActive(false)));
-            materialUIList.ForEach(materialUI => materialUI.gameObject.activeSelf.OnTrue(() => materialUI.gameObject.SetActive(false)));
 
-            var currentEquipmentEntity = LobbyDirector.UI.Forge.FocusEquipment;
+            var equipmentEntity = LobbyDirector.UI.Forge.VenturerEquipment(slotType);
             
-            ReloadStat(currentEquipmentEntity);
-            ReloadMaterial(currentEquipmentEntity);
+            ReloadStat(equipmentEntity);
         }
         
 
@@ -36,25 +34,11 @@ namespace Lobby.UI.Forge.Evolves
             });
         }
 
-        private void ReloadMaterial(EquipmentEntity equipEntity)
-        {
-            if (materialUIList.Count < 1) return;
-
-            // var focusRelic = LobbyDirector.UI.Forge.FocusRelic;
-            // var materialList = EquipmentUtility.RequiredMaterialsForUpgrade(focusRelic, equipEntity.UpgradeLevel);
-            
-            // materialList.ForEach((ingredient, index) =>
-            // {
-            //     materialUIList[index].gameObject.SetActive(true);
-            //     materialUIList[index].SetInfoUI(ingredient);
-            // });
-        }
 
 #if UNITY_EDITOR
         public void EditorSetUp()
         {
             GetComponentsInChildren(constStatUIList);
-            GetComponentsInChildren(materialUIList);
         }
 #endif
     }

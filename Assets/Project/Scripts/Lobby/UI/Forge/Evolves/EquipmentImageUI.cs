@@ -1,3 +1,4 @@
+using Common;
 using Common.PartyCamps;
 using UnityEngine;
 using UnityEngine.UI;
@@ -7,18 +8,14 @@ namespace Lobby.UI.Forge.Evolves
     public class EquipmentImageUI : MonoBehaviour, IEditable
     {
         [SerializeField] private Image equipmentImage;
+        [SerializeField] private EquipmentSlotType slotType;
         [SerializeField] private Sprite defaultImage;
 
         public void OnReloadForge()
         {
             var adventurer = LobbyDirector.UI.Forge.FocusAdventurer;
-            var slot       = LobbyDirector.UI.Forge.FocusSlot;
-            
-            // TODO. Relic 별로 이미지가 다르다면 참조.
-            // var relic      = LobbyDirector.UI.Forge.FocusRelic;
-
-            var targetCharacter    = PartyCamp.Characters.GetData(adventurer);
-            var targetEquipment    = targetCharacter.GetEquipment(slot);
+            var targetCharacter = PartyCamp.Characters.GetData(adventurer);
+            var targetEquipment = targetCharacter.GetEquipment(slotType);
 
             if (targetEquipment.IsNullOrDestroyed())
             {

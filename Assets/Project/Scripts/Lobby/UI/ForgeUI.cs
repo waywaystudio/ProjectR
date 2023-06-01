@@ -1,4 +1,5 @@
 using Common;
+using Common.Characters;
 using Common.Equipments;
 using Common.PartyCamps;
 using GameEvents;
@@ -16,7 +17,6 @@ namespace Lobby.UI
         
         private VenturerType focusAdventurer = VenturerType.Knight;
         private EquipmentSlotType focusSlot = EquipmentSlotType.Weapon;
-        // private RelicType focusRelic = RelicType.None;
 
         public VenturerType FocusAdventurer
         {
@@ -36,20 +36,17 @@ namespace Lobby.UI
                 reloadForgeEvent.Invoke();
             }
         }
-        // public RelicType FocusRelic
-        // {
-        //     get => focusRelic;
-        //     set
-        //     {
-        //         focusRelic = value;
-        //         reloadForgeEvent.Invoke();
-        //     }
-        // }
 
+        public CharacterData FocusVenturerData => PartyCamp.Characters.GetData(FocusAdventurer);
         public EquipmentEntity FocusEquipment => PartyCamp.Characters.GetAdventurerEquipment(FocusAdventurer, FocusSlot);
         
         public void NextEquipmentSlot() => FocusSlot = FocusSlot.NextExceptNone();
         public void PrevEquipmentSlot() => FocusSlot = FocusSlot.PrevExceptNone();
+
+        public EquipmentEntity VenturerEquipment(EquipmentSlotType slot)
+        {
+            return PartyCamp.Characters.GetAdventurerEquipment(FocusAdventurer, slot);
+        }
 
         public void Conversion()
         {
@@ -67,6 +64,11 @@ namespace Lobby.UI
         public void EditorSetUp()
         {
             // evolveFrame ??= GetComponentInChildren<EvolveFrame>();
+        }
+
+        private void Test()
+        {
+            reloadForgeEvent.Invoke();
         }
 #endif
     }

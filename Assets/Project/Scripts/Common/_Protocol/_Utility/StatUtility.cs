@@ -7,7 +7,7 @@ namespace Common
             StatType.Power          => value.ToString("0"),
             StatType.Health         => value.ToString("0"),
             StatType.CriticalChance => $"{value:P1}",
-            StatType.CriticalDamage => $"{200 + value:F1}",
+            StatType.CriticalDamage => $"{200 + value:F1}%",
             StatType.Haste          => $"{value:P1}",
             StatType.Mastery        => $"{value:P1}",
             StatType.Retention      => $"{value:P1}",

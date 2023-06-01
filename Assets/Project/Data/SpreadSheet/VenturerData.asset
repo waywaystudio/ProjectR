@@ -23,7 +23,7 @@ MonoBehaviour:
     health: 100
     maxResource: 100
     moveSpeed: 7
-    critical: 5
+    critical: 0.05
     haste: 0
     armor: 20
     defaultSkills: c105d901c205d901c305d901c405d901
@@ -37,8 +37,8 @@ MonoBehaviour:
     health: 80
     maxResource: 100
     moveSpeed: 8
-    critical: 10
-    haste: 5
+    critical: 0.1
+    haste: 0.05
     armor: 15
     defaultSkills: 
     initialEquipments: 
@@ -51,8 +51,8 @@ MonoBehaviour:
     health: 80
     maxResource: 100
     moveSpeed: 8
-    critical: 10
-    haste: 5
+    critical: 0.1
+    haste: 0.05
     armor: 12
     defaultSkills: cb05d901cc05d901cd05d901ce05d901
     initialEquipments: db1172021b5481025b9690029bd89f02db1aaf02
@@ -65,8 +65,8 @@ MonoBehaviour:
     health: 70
     maxResource: 60
     moveSpeed: 7
-    critical: 5
-    haste: 5
+    critical: 0.05
+    haste: 0.05
     armor: 12
     defaultSkills: cf05d901d005d901d105d901d205d901
     initialEquipments: ee3872022e7b81026ebd9002aeff9f02ee41af02
@@ -79,8 +79,8 @@ MonoBehaviour:
     health: 60
     maxResource: 100
     moveSpeed: 7
-    critical: 5
-    haste: 5
+    critical: 0.05
+    haste: 0.05
     armor: 10
     defaultSkills: 
     initialEquipments: 
@@ -93,7 +93,7 @@ MonoBehaviour:
     health: 60
     maxResource: 100
     moveSpeed: 7
-    critical: 5
+    critical: 0.05
     haste: 0
     armor: 10
     defaultSkills: 
