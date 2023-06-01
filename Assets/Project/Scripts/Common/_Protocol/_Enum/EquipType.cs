@@ -24,4 +24,12 @@ namespace Common
         Glove = DataIndex.Glove,
         Bottom = DataIndex.Bottom,
     }
+
+    public enum EnchantType
+    {
+        None = 0,
+        PrimeEnchant = 1,
+        SubEnchant = 2,
+        ExtraEnchant = 3,
+    }
 }

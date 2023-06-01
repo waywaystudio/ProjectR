@@ -12,7 +12,7 @@ namespace Common
             entity.ItemName  = dataIndex.ToString().DivideWords();
             entity.Icon      = Database.EquipmentSpriteData.Get(dataIndex);
             entity.EquipType = (EquipType)dataIndex.GetCategory();
-            entity.Tier      = dataIndex.GetNumberOfDataIndex(4);
+            entity.Tier      = dataIndex.GetNumberOfDataIndex(3);
             
             Upgrade(entity.UpgradeLevel, entity);
         }

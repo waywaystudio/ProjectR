@@ -11,7 +11,7 @@ namespace Common.Equipments
         public Sprite Icon { get; set; }
         public StatSpec ConstStatSpec { get; set; } = new();
         public EquipType EquipType { get; set; } = EquipType.None;
-        public int Tier { get; set; }
+        public int Tier { get; set; } = 1;
         public int UpgradeLevel { get; set; } = 1;
         
         /* Ethos */
@@ -34,5 +34,14 @@ namespace Common.Equipments
         {
             EquipmentUtility.Upgrade(level, this);
         }
+
+        public EthosEntity GetEnchant(EnchantType enchantType) =>
+            enchantType switch
+            {
+                EnchantType.PrimeEnchant => PrimeVice,
+                EnchantType.SubEnchant   => SubVice,
+                EnchantType.ExtraEnchant => ExtraVice,
+                _                        => null
+            };
     }
 }

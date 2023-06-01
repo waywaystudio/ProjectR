@@ -9,12 +9,11 @@ namespace Common.PartyCamps
     {
         [SerializeField] private ViceMaterialInventory viceMaterialInventory;
 
-        // [Sirenix.OdinInspector.ShowInInspector]
         public Dictionary<ViceMaterialType, int> ViceMaterialTable => viceMaterialInventory.MaterialTable;
         
         // Material
         public int GetMaterialCount(ViceMaterialType type) => viceMaterialInventory.GetCount(type);
-        public void AddMaterial(ViceMaterialType     type, int count) => viceMaterialInventory.Add(type, count);
+        public void AddMaterial(ViceMaterialType type, int count) => viceMaterialInventory.Add(type, count);
         public void ConsumeMaterial(ViceMaterialType type, int count) => viceMaterialInventory.Consume(type, count);
 
 

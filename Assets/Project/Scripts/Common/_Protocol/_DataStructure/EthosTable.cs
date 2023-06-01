@@ -75,8 +75,8 @@ namespace Common
                 return result;
             }
 
-            var deficiency = GetEthosValue(ethosType - 101);
-            var excess     = GetEthosValue(ethosType + 101);
+            var deficiency = GetEthosValue(ethosType.PrevExceptNone());
+            var excess     = GetEthosValue(ethosType.NextExceptNone());
 
             return Mathf.Min(deficiency, excess);
         }

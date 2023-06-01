@@ -1,7 +1,14 @@
 // ReSharper disable UnusedMember.Global
 
+using UnityEngine;
+
 public static class NumberExtension
 {
+    private static readonly string[] Thousands = { "", "M", "MM", "MMM" };
+    private static readonly string[] Hundreds  = { "", "C", "CC", "CCC", "CD", "D", "DC", "DCC", "DCCC", "CM" };
+    private static readonly string[] Tens      = { "", "X", "XX", "XXX", "XL", "L", "LX", "LXX", "LXXX", "XC" };
+    private static readonly string[] Ones      = { "", "I", "II", "III", "IV", "V", "VI", "VII", "VIII", "IX" };
+    
     public static string ToKmbt(this int number)
     {
         return number switch
@@ -76,5 +83,22 @@ public static class NumberExtension
         result = result % endDivisor;
 
         return result;
+    }
+    
+    public static string ToRoman(this int number)
+    {
+        switch (number)
+        {
+            case 0: return "0";
+            case < 0:
+            case > 3999:
+                Debug.LogWarning($"Can't Convert {number} to Roman Number. return 0 as string");
+                return "0";
+            default:
+                return Thousands[number       / 1000] + 
+                       Hundreds[number % 1000 / 100]  + 
+                       Tens[number     % 100  / 10]   + 
+                       Ones[number            % 10];
+        }
     }
 }

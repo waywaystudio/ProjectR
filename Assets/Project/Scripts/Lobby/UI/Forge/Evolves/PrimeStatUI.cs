@@ -6,7 +6,7 @@ using UnityEngine;
 
 namespace Lobby.UI.Forge.Evolves
 {
-    public class PrimaryStatUI : MonoBehaviour, IEditable
+    public class PrimeStatUI : MonoBehaviour, IEditable
     {
         [SerializeField] private EquipmentSlotType slotType;
         [SerializeField] private List<StatInfoUI> constStatUIList;

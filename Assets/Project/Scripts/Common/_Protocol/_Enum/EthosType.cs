@@ -37,6 +37,28 @@ namespace Common
 
             return themeType;
         }
+
+        public static EthosType GetSameThemeDeficiency(this EthosType type)
+        {
+            if (type.IsDeficiency()) return type;
+            if (type.IsVirtue()) return type.PrevExceptNone();
+
+            return type.IsExcess() ? type.PrevExceptNone().PrevExceptNone() : EthosType.None;
+        }
+        public static EthosType GetSameThemeVirtue(this EthosType type)
+        {
+            if (type.IsVirtue()) return type;
+            if (type.IsDeficiency()) return type.NextExceptNone();
+
+            return type.IsExcess() ? type.PrevExceptNone() : EthosType.None;
+        }
+        public static EthosType GetSameThemeExcess(this EthosType type)
+        {
+            if (type.IsExcess()) return type;
+            if (type.IsDeficiency()) return type.NextExceptNone().NextExceptNone();
+
+            return type.IsVirtue() ? type.NextExceptNone() : EthosType.None;
+        }
         
         
         public static bool IsVice(this EthosType type) => GetGroupIndex(type)       != 2;

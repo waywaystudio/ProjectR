@@ -1,5 +1,4 @@
 using Common;
-using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -9,18 +8,30 @@ namespace Lobby.UI.Forge.Upgrades.VirtueInformation
     {
         [SerializeField] private EthosType viceType;
         [SerializeField] private int chargeLevel;
+        [SerializeField] private Color onColor = Color.red;
         [SerializeField] private Image circleImage;
-        [SerializeField] private TextMeshProUGUI levelTextMesh;
+
+        public int ChargeLevel { get => chargeLevel; set => chargeLevel = value; }
         
-        
+
+        public void OnNode()
+        {
+            circleImage.color = onColor;
+        }
+
+        public void OffNode()
+        {
+            circleImage.color = Color.white;
+        }
 
 
 #if UNITY_EDITOR
         public void EditorSetUp()
         {
             circleImage   = transform.Find("CircleFront").GetComponent<Image>();
-            levelTextMesh = GetComponentInChildren<TextMeshProUGUI>();
         }
+
+        public void EditorViceNodeSetUp(EthosType viceType) => this.viceType = viceType;
 #endif
     }
 }

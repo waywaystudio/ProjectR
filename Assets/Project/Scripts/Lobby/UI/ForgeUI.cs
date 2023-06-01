@@ -1,3 +1,4 @@
+using System;
 using Common;
 using Common.Characters;
 using Common.Equipments;
@@ -16,7 +17,6 @@ namespace Lobby.UI
         // InventoryFrame
         
         private VenturerType focusAdventurer = VenturerType.Knight;
-        private EquipmentSlotType focusSlot = EquipmentSlotType.Weapon;
 
         public VenturerType FocusAdventurer
         {
@@ -27,26 +27,15 @@ namespace Lobby.UI
                 reloadForgeEvent.Invoke();
             }
         }
-        public EquipmentSlotType FocusSlot
-        {
-            get => focusSlot;
-            set
-            {
-                focusSlot = value;
-                reloadForgeEvent.Invoke();
-            }
-        }
 
         public CharacterData FocusVenturerData => PartyCamp.Characters.GetData(FocusAdventurer);
-        public EquipmentEntity FocusEquipment => PartyCamp.Characters.GetAdventurerEquipment(FocusAdventurer, FocusSlot);
-        
-        public void NextEquipmentSlot() => FocusSlot = FocusSlot.NextExceptNone();
-        public void PrevEquipmentSlot() => FocusSlot = FocusSlot.PrevExceptNone();
 
         public EquipmentEntity VenturerEquipment(EquipmentSlotType slot)
         {
             return PartyCamp.Characters.GetAdventurerEquipment(FocusAdventurer, slot);
         }
+
+        public int VenturerEthosValue(EthosType type) => FocusVenturerData.GetEthosValue(type);
 
         public void Conversion()
         {
@@ -61,6 +50,11 @@ namespace Lobby.UI
 
 
 #if UNITY_EDITOR
+        private void Awake()
+        {
+            reloadForgeEvent.Invoke();
+        }
+
         public void EditorSetUp()
         {
             // evolveFrame ??= GetComponentInChildren<EvolveFrame>();
