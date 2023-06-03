@@ -36,9 +36,13 @@ namespace Common.Characters
             EquipmentTable.Values.ForEach(equipment =>
             {
                 equipment.Load(equipment.DataIndex);
+                equipment.Upgrade();
                 
                 StatTable.Add(equipment.ConstStatSpec);
-                // EthosTable.Add(equipment.RelicEthosSpec);
+                
+                EthosTable.Add(equipment.PrimeVice);
+                EthosTable.Add(equipment.SubVice);
+                EthosTable.Add(equipment.ExtraVice);
             });
         }
 

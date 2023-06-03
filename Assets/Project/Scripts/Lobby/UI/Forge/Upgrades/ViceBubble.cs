@@ -16,17 +16,17 @@ namespace Lobby.UI.Forge.Upgrades
         [SerializeField] private Color disableColor = new(1, 1, 1, 0.2f);
         [SerializeField] private UnityEvent OnClickEvent;
 
-        // private bool IsActive { get; set; }
         private bool IsOn { get; set; }
 
         public int Index => index;
+        public bool IsActive { get; set; }
 
         public void OnPointerDown(PointerEventData eventData)
         {
             OnClickEvent?.Invoke();
         }
 
-        public void TurnOnBubble()
+        public void TurnOn()
         {
             if (IsOn) return;
             
@@ -52,7 +52,7 @@ namespace Lobby.UI.Forge.Upgrades
             background.enabled = true;
             boarder.enabled    = true;
             bubble.enabled     = true;
-            // IsActive           = true;
+            IsActive           = true;
         }
 
         public void DeActive()
@@ -60,7 +60,7 @@ namespace Lobby.UI.Forge.Upgrades
             background.enabled = false;
             boarder.enabled    = false;
             bubble.enabled     = false;
-            // IsActive           = false;
+            IsActive           = false;
         }
 
 

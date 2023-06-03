@@ -15,14 +15,14 @@ namespace Common.Equipments
         public int UpgradeLevel { get; set; } = 1;
         
         /* Ethos */
-        public EthosEntity PrimeVice { get; set; } = null;
-        public EthosEntity SubVice { get; set; } = null;
-        public EthosEntity ExtraVice { get; set; } = null;
+        public EthosEntity PrimeVice { get; set; }
+        public EthosEntity SubVice { get; set; }
+        public EthosEntity ExtraVice { get; set; }
 
         public EquipmentEntity() { }
         public EquipmentEntity(DataIndex dataIndex)
         {
-            Load(dataIndex);
+            DataIndex = dataIndex;
         }
 
         public void Load(DataIndex dataIndex)
@@ -30,12 +30,15 @@ namespace Common.Equipments
             EquipmentUtility.LoadInstance(dataIndex, this);
         }
 
-        public void Upgrade(int level)
+        public void Upgrade()
         {
-            EquipmentUtility.Upgrade(level, this);
+            EquipmentUtility.Upgrade(this);
         }
 
-        public EthosEntity GetEnchant(EnchantType enchantType) =>
+        public void Enchant(EnchantType enchantType, EthosType viceType, int value) => GetEnchantedEthos(enchantType).SetEthos(viceType, value);
+        public void DisEnchant(EnchantType enchantType) => Enchant(enchantType, EthosType.None, 0);
+
+        public EthosEntity GetEnchantedEthos(EnchantType enchantType) =>
             enchantType switch
             {
                 EnchantType.PrimeEnchant => PrimeVice,

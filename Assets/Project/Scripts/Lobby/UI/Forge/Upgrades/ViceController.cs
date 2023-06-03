@@ -1,6 +1,7 @@
-using System;
 using System.Collections.Generic;
 using Common;
+using Common.Equipments;
+using Common.PartyCamps;
 using Sirenix.OdinInspector;
 using TMPro;
 using UnityEngine;
@@ -15,28 +16,110 @@ namespace Lobby.UI.Forge.Upgrades
         [SerializeField] private TextMeshProUGUI viceTextMesh;
         [SerializeField] private TextMeshProUGUI valueTextMesh;
 
+        private EquipmentEntity CurrentEquipment => LobbyDirector.UI.Forge.VenturerEquipment(slotType);
+
+        public void GetNextVice()
+        {
+            var currentVice = CurrentEquipment.GetEnchantedEthos(enchantType);
+            var nextVice = currentVice.EthosType.GetNextVice();
+            
+            // DisEnchant Current Vice;
+            CurrentEquipment.DisEnchant(enchantType);
+            
+            // Set Text
+            CurrentEquipment.Enchant(enchantType, nextVice, 0);
+            viceTextMesh.text  = nextVice.ToString();
+            valueTextMesh.text = "";
+        }
+
+        public void GetPrevVice()
+        {
+            var currentVice = CurrentEquipment.GetEnchantedEthos(enchantType);
+            var prevVice = currentVice.EthosType.GetPrevVice();
+            
+            // DisEnchant Current Vice;
+            CurrentEquipment.DisEnchant(enchantType);
+            
+            // Set Text
+            CurrentEquipment.Enchant(enchantType, prevVice, 0);
+            viceTextMesh.text  = prevVice.ToString();
+            valueTextMesh.text = "";
+        }
+
+        public void OnEthosValueChanged(int value)
+        {
+            
+        }
+
 
         [Button]
         public void OnEthosChanged()
         {
-            // Enable & Disable
-                // Tier, EnchantType에 따라서 12개의 버블 중 Active와 DeActive설정.
-            var equipment = LobbyDirector.UI.Forge.VenturerEquipment(slotType);
-            var tier = equipment.Tier;
-            var maxBubble = GetMaxBubble(tier);
+            var tier = CurrentEquipment.Tier;
+            var maxBubble = GetMaxBubble(tier); // Max Able to Active Bubble Count
+            var currentVice = CurrentEquipment.GetEnchantedEthos(enchantType);
+            var currentViceValue = currentVice.Value;
+            var targetMaterial = currentVice.EthosType.ConvertToViceMaterial();
+            var remainViceProgress = PartyCamp.Inventories.GetMaterialCount(targetMaterial);
             
+            // Bubble Setting
             viceBubbleList.ForEach((bubble, index) =>
             {
+                // ex.
+                // Able To Active 9
+                // Value 5
+                // Able to On 6
+                // Disable To On 3
+                if (index >= maxBubble)
+                {
+                    bubble.DeActive();
+                    return;
+                }
+
                 if (maxBubble > index)
                 {
                     bubble.Active();
-                    bubble.Disable();
+                    
+                    if (currentViceValue > index)
+                    {
+                        bubble.TurnOn();
+                    }
+                    else
+                    {
+                        bubble.Disable();
+                    }
                 }
-                else
-                    bubble.DeActive();
             });
             
+            // Set Title
+            var viceValue = 0;
+
+            if (CurrentEquipment.PrimeVice == null || CurrentEquipment.PrimeVice.EthosType == EthosType.None)
+            {
+                viceTextMesh.text  = "Not Enchanted";
+                valueTextMesh.text = "";
+                viceBubbleList.ForEach(bubble => bubble.DeActive());
+            }
+            else
+            {
+                viceTextMesh.text  = CurrentEquipment.PrimeVice.EthosType.ToString();
+                viceValue          = CurrentEquipment.PrimeVice.Value;
+                valueTextMesh.text = viceValue.ToRoman();
+            }
             
+            // Bubble Activity
+            viceBubbleList.ForEach((bubble, index) =>
+            {
+                if (viceValue > index) bubble.TurnOn();
+                else
+                {
+                    if (bubble.IsActive)
+                    {
+                        bubble.TurnOff();
+                    }
+                }
+            });
+
             // Inventory에서 Vice Material 남는 값 받아오기.
             // max 값 잡아주기
             // Tier Max & material Max
@@ -46,7 +129,7 @@ namespace Lobby.UI.Forge.Upgrades
         public void ChangeEthosValue(float barValue)
         {
             var equipment = LobbyDirector.UI.Forge.VenturerEquipment(slotType);
-            var ethosEntity = equipment.GetEnchant(enchantType);
+            var ethosEntity = equipment.GetEnchantedEthos(enchantType);
             
             ethosEntity.Value  = (int)barValue;
             valueTextMesh.text = ethosEntity.Value.ToRoman();
@@ -55,8 +138,6 @@ namespace Lobby.UI.Forge.Upgrades
 
         private int GetMaxBubble(int tier)
         {
-            Debug.Log($"{enchantType}, {tier}");
-            
             return enchantType switch
             {
                 EnchantType.None => 0,

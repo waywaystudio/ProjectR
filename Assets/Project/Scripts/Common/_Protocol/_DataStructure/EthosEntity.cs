@@ -31,6 +31,12 @@ namespace Common
             this.ethosKey  = ethosKey;
             this.value     = value;
         }
+
+        public void SetEthos(EthosType ethosType, int value)
+        {
+            this.ethosType = ethosType;
+            Value          = value;
+        }
     }
 }
 

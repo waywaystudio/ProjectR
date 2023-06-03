@@ -1,15 +1,14 @@
 using System;
 using System.Linq;
+using UnityEngine;
+
 // ReSharper disable UnusedMember.Global
 
 public static class EnumExtension
 {
     public static T Next<T>(this T source) where T : struct
     {
-        if (!typeof(T).IsEnum) 
-        {
-            throw new ArgumentException($"Argument {typeof(T).FullName} is not an Enum");
-        }
+        if (!EnumValidate<T>()) return default;
 
         var arr = (T[])Enum.GetValues(source.GetType());
 
@@ -19,10 +18,7 @@ public static class EnumExtension
     
     public static T NextExceptNone<T>(this T source) where T : struct
     {
-        if (!typeof(T).IsEnum) 
-        {
-            throw new ArgumentException($"Argument {typeof(T).FullName} is not an Enum");
-        }
+        if (!EnumValidate<T>()) return default;
 
         var arr = (T[])Enum.GetValues(source.GetType());
 
@@ -37,10 +33,7 @@ public static class EnumExtension
 
     public static T PrevExceptNone<T>(this T source) where T : struct
     {
-        if (!typeof(T).IsEnum) 
-        {
-            throw new ArgumentException($"Argument {typeof(T).FullName} is not an Enum");
-        }
+        if (!EnumValidate<T>()) return default;
 
         var arr = (T[])Enum.GetValues(source.GetType());
 
@@ -55,10 +48,7 @@ public static class EnumExtension
 
     public static T RandomEnum<T>(this T source) where T : Enum
     {
-        if (!typeof(T).IsEnum) 
-        {
-            throw new ArgumentException($"Argument {typeof(T).FullName} is not an Enum");
-        }
+        if (!EnumValidate<T>()) return default;
 
         var arr = (T[])Enum.GetValues(source.GetType());
 
@@ -69,10 +59,7 @@ public static class EnumExtension
     
     public static T RandomEnumExceptNone<T>(this T source) where T : Enum
     {
-        if (!typeof(T).IsEnum) 
-        {
-            throw new ArgumentException($"Argument {typeof(T).FullName} is not an Enum");
-        }
+        if (!EnumValidate<T>()) return default;
 
         var arr = (T[])Enum.GetValues(source.GetType());
 
@@ -96,6 +83,14 @@ public static class EnumExtension
 
         UnityEngine.Debug.LogError($"No {typeof(T).Name} found with end digits {digits}");
         return default;
+    }
+
+    public static void Iterator<T>(this T source, Action<T> action)
+    {
+        if (!EnumValidate<T>()) return;
+
+        var arr = (T[])Enum.GetValues(source.GetType());
+        arr.ForEach(action.Invoke);
     }
 
     /// <summary>
@@ -131,6 +126,14 @@ public static class EnumExtension
  
         // return the final value
         return (T)Enum.Parse(type, result.ToString());
+    }
+
+
+    private static bool EnumValidate<T>()
+    {
+        if (typeof(T).IsEnum) return true;
+        Debug.LogError($"Argument {typeof(T).FullName} is not an Enum");
+        return false;
     }
         
     private class Value

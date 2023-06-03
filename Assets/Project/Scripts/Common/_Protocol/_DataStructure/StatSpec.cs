@@ -24,6 +24,13 @@ namespace Common
         
         [SerializeField] private List<StatEntity> statList = new();
 
+        public void Change(StatType statType, float value)
+        {
+            var stat = statList.TryGetElement(element => element.StatType == statType);
+
+            stat.Value = value;
+        }
+
         public void Add(StatEntity stat) => statList.AddUniquely(stat);
         public void Add(StatType statType, string statKey, float value)
         {

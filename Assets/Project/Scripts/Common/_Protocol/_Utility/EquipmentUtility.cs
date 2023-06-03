@@ -1,4 +1,3 @@
-using System.Collections.Generic;
 using Common.Equipments;
 using UnityEngine;
 
@@ -13,22 +12,17 @@ namespace Common
             entity.Icon      = Database.EquipmentSpriteData.Get(dataIndex);
             entity.EquipType = (EquipType)dataIndex.GetCategory();
             entity.Tier      = dataIndex.GetNumberOfDataIndex(3);
-            
-            Upgrade(entity.UpgradeLevel, entity);
+            entity.PrimeVice ??= new EthosEntity(EthosType.None, entity.EquipType.ToString(), 0);
+            entity.SubVice ??= new EthosEntity(EthosType.None, entity.EquipType.ToString(), 0);
+            entity.ExtraVice ??= new EthosEntity(EthosType.None, entity.EquipType.ToString(), 0);
+
+            SpecInitialize(entity);
         }
-        
-        public static void Upgrade(int level, EquipmentEntity entity)
+
+        public static void SpecInitialize(EquipmentEntity entity)
         {
             var equipmentKey = entity.EquipType.ToString();
-
-            if (level is < 1 or > 18)
-            {
-                Debug.LogError($"Upgrade Level Error. Input:{level}");
-                return;
-            }
-
-            var arrayIndex = level - 1;
-            entity.ConstStatSpec.Clear();
+            var arrayIndex = 0;
             
             switch (entity.EquipType)
             {
@@ -85,78 +79,101 @@ namespace Common
             }
         }
         
-        public static void ImportEquipment(DataIndex dataIndex, EquipmentEntity entity)
+        public static void Upgrade(EquipmentEntity entity)
         {
-            entity.DataIndex = dataIndex;
-            entity.ItemName = dataIndex.ToString().DivideWords();
-            entity.Icon = Database.EquipmentSpriteData.Get(dataIndex);
+            if (entity.UpgradeLevel < 1)
+            {
+                Debug.LogError($"Upgrade Level Error. Input:{entity.UpgradeLevel}");
+                return;
+            }
+
+            if (entity.UpgradeLevel > 6)
+            {
+                Evolve(entity);
+                return;
+            }
+
+            var arrayIndex = entity.UpgradeLevel - 1;
+
+            entity.UpgradeLevel++;
+            
+            switch (entity.EquipType)
+            {
+                case EquipType.Weapon:
+                {
+                    var weaponData = Database.WeaponData(entity.DataIndex);
+
+                    entity.ConstStatSpec.Change(StatType.MinDamage, weaponData.MinDamage[arrayIndex]);
+                    entity.ConstStatSpec.Change(StatType.MaxDamage, weaponData.MaxDamage[arrayIndex]);
+                    entity.ConstStatSpec.Change(StatType.Power, weaponData.Power[arrayIndex]);
+                    break;
+                }
+                case EquipType.Head:
+                {
+                    var headData = Database.HeadData(entity.DataIndex);
+                    
+                    entity.ConstStatSpec.Change(StatType.Power, headData.Power[arrayIndex]);
+                    entity.ConstStatSpec.Change(StatType.Health, headData.Health[arrayIndex]);
+                    entity.ConstStatSpec.Change(StatType.Armor, headData.Armor[arrayIndex]);
+                    break;
+                }
+                case EquipType.Top:
+                {
+                    var topData = Database.TopData(entity.DataIndex);
+
+                    entity.ConstStatSpec.Change(StatType.Power, topData.Power[arrayIndex]);
+                    entity.ConstStatSpec.Change(StatType.Health, topData.Health[arrayIndex]);
+                    entity.ConstStatSpec.Change(StatType.Armor, topData.Armor[arrayIndex]);
+                    break;
+                }
+                case EquipType.Glove:
+                {
+                    var gloveData = Database.GloveData(entity.DataIndex);
+
+                    entity.ConstStatSpec.Change(StatType.Power, gloveData.Power[arrayIndex]);
+                    entity.ConstStatSpec.Change(StatType.Health, gloveData.Health[arrayIndex]);
+                    entity.ConstStatSpec.Change(StatType.Armor, gloveData.Armor[arrayIndex]);
+                    break;
+                }
+                case EquipType.Bottom:
+                {
+                    var bottomData = Database.BottomData(entity.DataIndex);
+
+                    entity.ConstStatSpec.Change(StatType.Power, bottomData.Power[arrayIndex]);
+                    entity.ConstStatSpec.Change(StatType.Health, bottomData.Health[arrayIndex]);
+                    entity.ConstStatSpec.Change(StatType.Armor, bottomData.Armor[arrayIndex]);
+                    break;
+                }
+                default:
+                {
+                    Debug.LogWarning($"Unvalidated DataIndex in. Input:{entity.DataIndex}");
+                    break;
+                }
+            }
         }
 
-        /// <summary>
-        /// Vice Stat Enchant of Equipment 
-        /// </summary>
-        public static void EnchantRelic(EthosType ethosType, int tier)
+        public static void Evolve(EquipmentEntity entity)
         {
-            // relic Type에 따라서 필수 vice 1개 선택
-            // Random으로 2개를 선택. 이 과정에서 필수로 선택된 vice는 제외 // 따라서 반드시 총 3개의 vice가 있음.
-            // 3개의 Vice가 tier * 6 값을 나누어 먹음.
-        }
+            var tier = entity.Tier;
+
+            if (tier >= 3)
+            {
+                Debug.LogWarning($"No more Evolve. Current Tier:{tier}");
+                return;
+            }
             
-        // TODO. MaterialType과 int를 가지고 있는 클래스가 필요할 듯 하다.
-        public static List<Ingredient> RequiredMaterialsForUpgrade(int toUpgrade)
-        {
-            var result = new List<Ingredient>();
-            // var tier = Mathf.Min(toUpgrade / 6 + 1, 3);
-            // var mod = toUpgrade % 6;
-            // // var themeIndex = relicType.GetTheme().GetThemeIndex(); // 01 ~ 06
-            // var main = (MaterialType)((int)DataIndex.Material * 1000000 + 1 * 10000 + tier);
-            // var sub = main.GetNextTheme();
-            // var extra = sub.GetNextTheme();
-            //
-            // switch (mod)
-            // {
-            //     case 0 :
-            //     {
-            //         result.Add(new Ingredient(main, 1)); 
-            //         break;
-            //     }
-            //     case 1:
-            //     {
-            //         result.Add(new Ingredient(main, 2));
-            //         result.Add(new Ingredient(sub, 1)); 
-            //         break;
-            //     }
-            //     case 2:
-            //     {
-            //         result.Add(new Ingredient(main, 3));
-            //         result.Add(new Ingredient(sub, 2)); 
-            //         result.Add(new Ingredient(extra, 1));
-            //         break;
-            //     }
-            //     case 3:
-            //     {
-            //         result.Add(new Ingredient(main, 4));
-            //         result.Add(new Ingredient(sub, 3)); 
-            //         result.Add(new Ingredient(extra, 2));
-            //         break;
-            //     }
-            //     case 4:
-            //     {
-            //         result.Add(new Ingredient(main, 5));
-            //         result.Add(new Ingredient(sub, 4)); 
-            //         result.Add(new Ingredient(extra, 3));
-            //         break;
-            //     }
-            //     case 5:
-            //     {
-            //         result.Add(new Ingredient(main, 6));
-            //         result.Add(new Ingredient(sub, 5)); 
-            //         result.Add(new Ingredient(extra, 4));
-            //         break;
-            //     }
-            // }
-        
-            return result;
+            entity.DataIndex    +=  101;
+            entity.Tier++;
+            entity.UpgradeLevel =   1;
+            entity.ItemName     =   entity.DataIndex.ToString().DivideWords();
+            entity.Icon         =   Database.EquipmentSpriteData.Get(entity.DataIndex);
+            
+            // entity.PrimeVice    ??= new EthosEntity(EthosType.None, entity.EquipType.ToString(), 0);
+            // entity.SubVice      ??= new EthosEntity(EthosType.None, entity.EquipType.ToString(), 0);
+            // entity.ExtraVice    ??= new EthosEntity(EthosType.None, entity.EquipType.ToString(), 0);
+            
+            Upgrade(entity);
+            Debug.Log($"Evolve To {entity.DataIndex.ToString()}");
         }
     }
 }

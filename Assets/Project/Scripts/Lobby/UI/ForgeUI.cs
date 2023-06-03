@@ -1,4 +1,3 @@
-using System;
 using Common;
 using Common.Characters;
 using Common.Equipments;
@@ -11,12 +10,9 @@ namespace Lobby.UI
     public class ForgeUI : MonoBehaviour, IEditable
     {
         [SerializeField] private GameEvent reloadForgeEvent;
-
-        // [SerializeField] private AdventurerFrame adventurerFrame;
-        // [SerializeField] private EvolveFrame evolveFrame; 
-        // InventoryFrame
         
         private VenturerType focusAdventurer = VenturerType.Knight;
+        public void Reload() => reloadForgeEvent.Invoke();
 
         public VenturerType FocusAdventurer
         {
@@ -50,7 +46,7 @@ namespace Lobby.UI
 
 
 #if UNITY_EDITOR
-        private void Awake()
+        private void Start()
         {
             reloadForgeEvent.Invoke();
         }

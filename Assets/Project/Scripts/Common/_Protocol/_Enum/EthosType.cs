@@ -1,3 +1,5 @@
+using System;
+
 namespace Common
 {
     public enum EthosType
@@ -59,8 +61,53 @@ namespace Common
 
             return type.IsVirtue() ? type.NextExceptNone() : EthosType.None;
         }
-        
-        
+
+        public static EthosType GetNextVice(this EthosType type)
+        {
+            while (true)
+            {
+                var nextEthos = type.NextExceptNone();
+
+                if (nextEthos.IsVice()) return nextEthos;
+                type = nextEthos;
+            }
+        }
+        public static EthosType GetPrevVice(this EthosType type)
+        {
+            while (true)
+            {
+                var prevEthos = type.PrevExceptNone();
+
+                if (prevEthos.IsVice()) return prevEthos;
+                type = prevEthos;
+            }
+        }
+
+        public static ViceMaterialType ConvertToViceMaterial(this EthosType viceType)
+        {
+            switch (viceType)
+            {
+                case EthosType.Vacillation:     return ViceMaterialType.ShardOfVacillation;
+                case EthosType.Obstinacy:       return ViceMaterialType.StoneOfObstinacy;
+                case EthosType.Cowardice:       return ViceMaterialType.ShardOfCowardice;
+                case EthosType.Recklessness:    return ViceMaterialType.StoneOfRecklessness;
+                case EthosType.Rash:            return ViceMaterialType.ShardOfRash;
+                case EthosType.Obsession:       return ViceMaterialType.StoneOfObsession;
+                case EthosType.Conventionality: return ViceMaterialType.ShardOfConventionality;
+                case EthosType.Reverie:         return ViceMaterialType.StoneOfReverie;
+                case EthosType.Ignorance:       return ViceMaterialType.ShardOfIgnorance;
+                case EthosType.Arrogance:       return ViceMaterialType.StoneOfArrogance;
+                case EthosType.Apathy:          return ViceMaterialType.ShardOfApathy;
+                case EthosType.Voracity:        return ViceMaterialType.StoneOfVoracity;
+                default:
+                {
+                    UnityEngine.Debug.LogError($"Only Vice Type can Convert To ViceMaterialType. Input:{viceType}");
+                    return ViceMaterialType.None;
+                }
+            }
+        }
+
+
         public static bool IsVice(this EthosType type) => GetGroupIndex(type)       != 2;
         public static bool IsVirtue(this EthosType type) => GetGroupIndex(type)     == 2;
         public static bool IsDeficiency(this EthosType type) => GetGroupIndex(type) == 1;

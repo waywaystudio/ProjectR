@@ -1080,7 +1080,6 @@ MonoBehaviour:
   - {fileID: 5281328021152548282}
   - {fileID: 5881798516998746709}
   - {fileID: 5328091495968535184}
-  slider: {fileID: 0}
   viceTextMesh: {fileID: 3685312221249232974}
   valueTextMesh: {fileID: 3685312222328044255}
 --- !u!114 &3685312221437311970
@@ -1747,7 +1746,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 3685312221891364991}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 6973562182624511849}
+        m_TargetAssemblyTypeName: Lobby.UI.Forge.Upgrades.ViceController, ProjectR.Lobby
+        m_MethodName: GetPrevVice
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &3685312221955693696
 GameObject:
   m_ObjectHideFlags: 0
@@ -2294,7 +2305,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 3685312222231191663}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 6973562182624511849}
+        m_TargetAssemblyTypeName: Lobby.UI.Forge.Upgrades.ViceController, ProjectR.Lobby
+        m_MethodName: GetNextVice
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &3685312222231191661
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2512,7 +2535,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0.5}
   m_AnchorMax: {x: 1, y: 0.5}
-  m_AnchoredPosition: {x: -5.7, y: -9.8}
+  m_AnchoredPosition: {x: -178.2, y: 62.4}
   m_SizeDelta: {x: 50, y: 30}
   m_Pivot: {x: 1, y: 0.5}
 --- !u!222 &3685312222328044240

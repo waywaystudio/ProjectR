@@ -11,6 +11,8 @@ namespace Common.PartyCamps.Inventories
         private const string MaterialSerializeKey = "MaterialSerializeKey";
 
         public DataIndex Category => category;
+        
+        [Sirenix.OdinInspector.ShowInInspector]
         public Dictionary<ViceMaterialType, int> MaterialTable { get; set; } = new();
         
         public void Add(ViceMaterialType type, int count)
