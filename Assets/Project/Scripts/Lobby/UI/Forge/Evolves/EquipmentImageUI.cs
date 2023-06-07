@@ -1,5 +1,4 @@
 using Common;
-using Common.PartyCamps;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -13,9 +12,9 @@ namespace Lobby.UI.Forge.Evolves
 
         public void OnReloadForge()
         {
-            var adventurer = LobbyDirector.UI.Forge.FocusAdventurer;
-            var targetCharacter = PartyCamp.Characters.GetData(adventurer);
-            var targetEquipment = targetCharacter.GetEquipment(slotType);
+            var targetEquipment = slotType == EquipmentSlotType.Weapon
+                ? LobbyDirector.UI.Forge.VenturerWeapon()
+                : LobbyDirector.UI.Forge.VenturerArmor();
 
             if (targetEquipment.IsNullOrDestroyed())
             {

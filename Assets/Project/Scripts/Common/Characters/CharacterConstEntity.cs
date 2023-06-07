@@ -8,10 +8,10 @@ namespace Common.Characters
     [Serializable]
     public class CharacterConstEntity
     {
-        [SerializeField]                                       private CharacterMask classType;
-        [SerializeField]                                       private string          characterName;
-        [FormerlySerializedAs("defaultSpec")] [SerializeField] private StatSpec        defaultStatSpec;
-        [SerializeField]                                       private List<DataIndex> defaultSkillList;
+        [SerializeField] private CharacterMask classType;
+        [SerializeField] private string characterName;
+        [SerializeField] private StatSpec defaultStatSpec;
+        [SerializeField] private List<DataIndex> defaultSkillList;
 
         private const string ConstStatKey = "ConstStatKey"; 
         

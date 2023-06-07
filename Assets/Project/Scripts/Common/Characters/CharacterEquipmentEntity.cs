@@ -1,5 +1,4 @@
 using System;
-using System.Collections.Generic;
 using Common.Equipments;
 using Serialization;
 using UnityEngine;
@@ -9,74 +8,43 @@ namespace Common.Characters
     [Serializable]
     public class CharacterEquipmentEntity
     {
-        [SerializeField] private List<DataIndex> initialEquipmentIndexList;
+        [SerializeField] private DataIndex initialWeapon;
+        [SerializeField] private DataIndex initialArmor;
 
-        public Dictionary<EquipmentSlotType, EquipmentEntity> EquipmentTable { get; set; }
+        [Sirenix.OdinInspector.ShowInInspector] public WeaponEntity WeaponEntity { get; set; }//  = new();
+        [Sirenix.OdinInspector.ShowInInspector] public ArmorEntity ArmorEntity { get; set; }//  = new();
+        
         public StatTable StatTable { get; set; } = new();
         public EthosTable EthosTable { get; set; } = new();
+        public IEquipment GetWeapon() => WeaponEntity;
+        public IEquipment GetArmor() => ArmorEntity;
 
         public void Save(string providerName)
         {
-            var serializeKey = $"{providerName}.EquipmentEntity";
-            
-            SaveManager.Save(serializeKey, EquipmentTable);
+            SaveManager.Save(SerializeKey(providerName, EquipmentSlotType.Weapon), WeaponEntity);
+            SaveManager.Save(SerializeKey(providerName, EquipmentSlotType.Top), ArmorEntity);
         }
 
         public void Load(string providerName)
         {
-            var serializeKey = $"{providerName}.EquipmentEntity";
+            WeaponEntity = SaveManager.Load(SerializeKey(providerName, EquipmentSlotType.Weapon),InitialWeapon(initialWeapon));
+            ArmorEntity    = SaveManager.Load(SerializeKey(providerName, EquipmentSlotType.Top),InitialArmor(initialArmor));
             
-            EquipmentTable = SaveManager.Load<Dictionary<EquipmentSlotType, EquipmentEntity>>(serializeKey);
-
-            if (EquipmentTable.IsNullOrEmpty())
-            {
-                EquipInitialEquipments();
-            }
+            WeaponEntity.Generate();
+            ArmorEntity.Generate();
             
-            EquipmentTable.Values.ForEach(equipment =>
-            {
-                equipment.Load(equipment.DataIndex);
-                equipment.Upgrade();
-                
-                StatTable.Add(equipment.ConstStatSpec);
-                
-                EthosTable.Add(equipment.PrimeVice);
-                EthosTable.Add(equipment.SubVice);
-                EthosTable.Add(equipment.ExtraVice);
-            });
-        }
-
-        public EquipmentEntity GetEquipment(EquipmentSlotType slotIndex)
-        {
-            if (!EquipmentTable.TryGetValue(slotIndex, out var result))
-            {
-                Debug.LogWarning($"Not Exist {slotIndex} in EquipmentTable");
-                return null;
-            }
-
-            return result;
+            StatTable.Add(WeaponEntity.StatSpec);
+            StatTable.Add(ArmorEntity.StatSpec);
         }
         
+        private string SerializeKey(string providerName, EquipmentSlotType slot) => $"{providerName}.{slot.ToString()}";
+        private WeaponEntity InitialWeapon(DataIndex dataIndex) => new (dataIndex);
+        private ArmorEntity InitialArmor(DataIndex dataIndex) => new (dataIndex);
 
-        private void EquipInitialEquipments()
-        {
-            EquipmentTable = new Dictionary<EquipmentSlotType, EquipmentEntity>();
-            
-            initialEquipmentIndexList.ForEach(initialEquipmentIndex =>
-            {
-                var instance       = new EquipmentEntity(initialEquipmentIndex);
-                var equipSlotIndex = initialEquipmentIndex.GetCategory();
-
-                EquipmentTable.Add((EquipmentSlotType)equipSlotIndex, instance);
-            });
-        }
-        
 
 #if UNITY_EDITOR
         public void EditorSetUpByDataIndex(DataIndex dataIndex)
         {
-            initialEquipmentIndexList.Clear();
-            
             switch (dataIndex.GetCategory())
             {
                 case DataIndex.Venturer: LoadAdventurerData(dataIndex); break;
@@ -94,21 +62,13 @@ namespace Common.Characters
             var classData = Database.CombatClassSheetData(dataIndex);
 
             if (!Verify.IsNotNull(classData, $"Not Exist {dataIndex} in AdventurerData")) return;
-
-            classData.InitialEquipments.ForEach(equipment =>
-            {
-                initialEquipmentIndexList.Add((DataIndex)equipment);
-            });
+            
+            initialWeapon = (DataIndex)classData.InitialEquipments[0];
+            initialArmor = (DataIndex)classData.InitialEquipments[2];
         }
         private void LoadMonsterData(DataIndex dataIndex)
         {
-            var monsterData = Database.BossSheetData(dataIndex);
-
-            if (!Verify.IsNotNull(monsterData, $"Not Exist {dataIndex} in BossData"))
-            {
-                
-            }
-            
+            // var monsterData = Database.BossSheetData(dataIndex);
             // TODO. 추후 기획에 Monster에 초기장비가 있다면 추가, 없다면 삭제.
             // monsterData.InitialEquipments.ForEach(equipment => initialEquipmentIndexList.Add((DataIndex)equipment));
         }

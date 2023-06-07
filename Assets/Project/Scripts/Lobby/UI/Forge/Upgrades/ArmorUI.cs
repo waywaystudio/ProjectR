@@ -8,7 +8,7 @@ namespace Lobby.UI.Forge.Upgrades
     {
         [SerializeField] private EquipmentSlotType slotType;
 
-        private EquipmentEntity Equipment => LobbyDirector.UI.Forge.VenturerEquipment(slotType);
+        private IEquipment Equipment => LobbyDirector.UI.Forge.VenturerArmor();
         
         public void Upgrade()
         {

@@ -1,67 +1,67 @@
 {
-	"MaterialSerializeKey" : {
-		"__type" : "System.Collections.Generic.Dictionary`2[[Common.ViceMaterialType, ProjectR.Common, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null],[System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]],mscorlib",
+	"GrowMaterialSerializeKey" : {
+		"__type" : "System.Collections.Generic.Dictionary`2[[Common.GrowMaterialType, ProjectR.Common, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null],[System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]],mscorlib",
 		"value" : {
 		}
 	},
-	"Ranger.EquipmentEntity" : {
-		"__type" : "System.Collections.Generic.Dictionary`2[[Common.EquipmentSlotType, ProjectR.Common, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null],[Common.Equipments.EquipmentEntity, ProjectR.Common, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]],mscorlib",
-		"value" : {41:{
-				"DataIndex" : 41040110,
-				"UpgradeLevel" : 2
-			},42:{
-				"DataIndex" : 42040110,
-				"UpgradeLevel" : 2
-			},43:{
-				"DataIndex" : 43040110,
-				"UpgradeLevel" : 2
-			},44:{
-				"DataIndex" : 44040110,
-				"UpgradeLevel" : 2
-			},45:{
-				"DataIndex" : 45040110,
-				"UpgradeLevel" : 2
-			}
+	"Warrior.Top" : {
+		"__type" : "Common.Equipments.ArmorEntity,ProjectR.Common",
+		"value" : {
 		}
 	},
-	"Rogue.EquipmentEntity" : {
-		"__type" : "System.Collections.Generic.Dictionary`2[[Common.EquipmentSlotType, ProjectR.Common, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null],[Common.Equipments.EquipmentEntity, ProjectR.Common, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]],mscorlib",
-		"value" : {41:{
-				"DataIndex" : 41030107,
-				"UpgradeLevel" : 2
-			},42:{
-				"DataIndex" : 42030107,
-				"UpgradeLevel" : 2
-			},43:{
-				"DataIndex" : 43030107,
-				"UpgradeLevel" : 2
-			},44:{
-				"DataIndex" : 44030107,
-				"UpgradeLevel" : 2
-			},45:{
-				"DataIndex" : 45030107,
-				"UpgradeLevel" : 2
-			}
+	"Warrior.Weapon" : {
+		"__type" : "Common.Equipments.WeaponEntity,ProjectR.Common",
+		"value" : {
 		}
 	},
-	"Knight.EquipmentEntity" : {
-		"__type" : "System.Collections.Generic.Dictionary`2[[Common.EquipmentSlotType, ProjectR.Common, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null],[Common.Equipments.EquipmentEntity, ProjectR.Common, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]],mscorlib",
-		"value" : {41:{
-				"DataIndex" : 41010101,
-				"UpgradeLevel" : 2
-			},42:{
-				"DataIndex" : 42010303,
-				"UpgradeLevel" : 7
-			},43:{
-				"DataIndex" : 43010101,
-				"UpgradeLevel" : 2
-			},44:{
-				"DataIndex" : 44010101,
-				"UpgradeLevel" : 2
-			},45:{
-				"DataIndex" : 45010101,
-				"UpgradeLevel" : 2
-			}
+	"Rogue.Top" : {
+		"__type" : "Common.Equipments.ArmorEntity,ProjectR.Common",
+		"value" : {
+		}
+	},
+	"Rogue.Weapon" : {
+		"__type" : "Common.Equipments.WeaponEntity,ProjectR.Common",
+		"value" : {
+		}
+	},
+	"Ranger.Top" : {
+		"__type" : "Common.Equipments.ArmorEntity,ProjectR.Common",
+		"value" : {
+		}
+	},
+	"Ranger.Weapon" : {
+		"__type" : "Common.Equipments.WeaponEntity,ProjectR.Common",
+		"value" : {
+		}
+	},
+	"Priest.Top" : {
+		"__type" : "Common.Equipments.ArmorEntity,ProjectR.Common",
+		"value" : {
+		}
+	},
+	"Priest.Weapon" : {
+		"__type" : "Common.Equipments.WeaponEntity,ProjectR.Common",
+		"value" : {
+		}
+	},
+	"Mage.Top" : {
+		"__type" : "Common.Equipments.ArmorEntity,ProjectR.Common",
+		"value" : {
+		}
+	},
+	"Mage.Weapon" : {
+		"__type" : "Common.Equipments.WeaponEntity,ProjectR.Common",
+		"value" : {
+		}
+	},
+	"Knight.Top" : {
+		"__type" : "Common.Equipments.ArmorEntity,ProjectR.Common",
+		"value" : {
+		}
+	},
+	"Knight.Weapon" : {
+		"__type" : "Common.Equipments.WeaponEntity,ProjectR.Common",
+		"value" : {
 		}
 	},
 	"_FromPlaySaveFile" : {
@@ -72,7 +72,7 @@
 		"__type" : "Serialization.SaveInfo,ProjectR.Core",
 		"value" : {
 			"filename" : "_playSaveFile",
-			"saveTime" : "2023.06.03.16.12.52"
+			"saveTime" : "2023.06.08.01.25.05"
 		}
 	}
 }

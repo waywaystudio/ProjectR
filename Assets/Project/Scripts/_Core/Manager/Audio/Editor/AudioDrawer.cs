@@ -22,7 +22,7 @@ namespace MainGame.Manager.Audio.Editor
             {
                 attributes.Add(new ListDrawerSettingsAttribute
                 {
-                    Expanded = true,
+                    ShowFoldout = true,
                     IsReadOnly = true
                 });
             }

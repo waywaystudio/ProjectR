@@ -7,12 +7,12 @@ namespace Common.Equipments
     public class EquipmentEntity
     {
         public DataIndex DataIndex { get; set; } = DataIndex.None;
-        public string ItemName { get; set; } = "None";
-        public Sprite Icon { get; set; }
-        public StatSpec ConstStatSpec { get; set; } = new();
         public EquipType EquipType { get; set; } = EquipType.None;
+        public string ItemName { get; set; } = "None";
         public int Tier { get; set; } = 1;
         public int UpgradeLevel { get; set; } = 1;
+        public Sprite Icon { get; set; }
+        public StatSpec ConstStatSpec { get; set; } = new();
         
         /* Ethos */
         public EthosEntity PrimeVice { get; set; }

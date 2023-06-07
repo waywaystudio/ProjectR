@@ -116,6 +116,7 @@ public static class Finder
                     var assetPath = AssetDatabase.GUIDToAssetPath(t);
                     
                     value.Add(AssetDatabase.LoadAssetAtPath(assetPath, typeof(T)) as T);
+                    value.RemoveNull();
                     stringBuilder.Append(assetPath);
                     stringBuilder.AppendLine();
                 }

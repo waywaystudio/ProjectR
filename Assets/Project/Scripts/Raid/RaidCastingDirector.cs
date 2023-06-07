@@ -4,7 +4,7 @@ using Character.Adventurers;
 using Character.Bosses;
 using Common;
 using Common.Characters;
-using Common.PartyCamps;
+using Common.Camps;
 using Serialization;
 using Sirenix.OdinInspector;
 using UnityEngine;
@@ -16,7 +16,7 @@ namespace Raid
         [SerializeField] private Transform adventurerHierarchy;
         [SerializeField] private Transform monsterHierarchy;
         [SerializeField] private Boss boss;
-        [SerializeField] private CharacterData bossData;
+        [SerializeField] private VillainData bossData;
         [SerializeField] private int dropItemCount;
 
         [ShowInInspector] public List<Adventurer> AdventurerList { get; } = new();
@@ -80,9 +80,9 @@ namespace Raid
             var upgradeMaterialDropCount = Random.Range(5, 16);
             var enchantMaterialDropCount = Random.Range(5, 16);
             
-            PartyCamp.Inventories.AddMaterial(ViceMaterialType.ShardOfApathy, themeMaterialDropCount);
-            PartyCamp.Inventories.AddMaterial(ViceMaterialType.StoneOfObsession, upgradeMaterialDropCount);
-            PartyCamp.Inventories.AddMaterial(ViceMaterialType.StoneOfReverie, enchantMaterialDropCount);
+            Camp.AddGrowMaterial(GrowMaterialType.ShardOfVicious, themeMaterialDropCount);
+            Camp.AddGrowMaterial(GrowMaterialType.StoneOfVicious , upgradeMaterialDropCount);
+            Camp.AddGrowMaterial(GrowMaterialType.CrystalOfPathfinder, enchantMaterialDropCount);
 
             sb.Append($"{ViceMaterialType.ShardOfApathy} {themeMaterialDropCount} Get!\n");
             sb.Append($"{ViceMaterialType.StoneOfObsession} {upgradeMaterialDropCount} Get!\n");

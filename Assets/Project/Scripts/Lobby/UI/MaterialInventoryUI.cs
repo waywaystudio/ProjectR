@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 using Common;
-using Common.PartyCamps;
+using Common.Camps;
 using UnityEngine;
 
 namespace Lobby.UI
@@ -19,27 +19,27 @@ namespace Lobby.UI
 
         public void Reload()
         {
-            var materialTable = PartyCamp.Inventories.ViceMaterialTable;
-            var arrayIndex    = 0;
-            
-            materialTable.ForEach(material =>
-            {
-                if (itemSlotList.Count > arrayIndex)
-                {
-                    itemSlotList[arrayIndex].SetItemUI(material.Key, material.Value);
-                }
-                else
-                {
-                    AddInventorySlot(material.Key, material.Value);
-                }
-                
-                arrayIndex++;
-            });
-
-            DynamicContentSizeFitting();
-            
-            if (itemSlotList.Count == 0) 
-                gameObject.SetActive(false);
+            // var materialTable = Camp.Inventories.ViceMaterialTable;
+            // var arrayIndex    = 0;
+            //
+            // materialTable.ForEach(material =>
+            // {
+            //     if (itemSlotList.Count > arrayIndex)
+            //     {
+            //         itemSlotList[arrayIndex].SetItemUI(material.Key, material.Value);
+            //     }
+            //     else
+            //     {
+            //         AddInventorySlot(material.Key, material.Value);
+            //     }
+            //     
+            //     arrayIndex++;
+            // });
+            //
+            // DynamicContentSizeFitting();
+            //
+            // if (itemSlotList.Count == 0) 
+            //     gameObject.SetActive(false);
         }
         
         public void AddInventorySlot(ViceMaterialType material, int count)
@@ -87,14 +87,14 @@ namespace Lobby.UI
 
         private void Awake()
         {
-            var materialTable = PartyCamp.Inventories.ViceMaterialTable;
-            
-            materialTable.ForEach(material => AddInventorySlot(material.Key, material.Value));
-            
-            DynamicContentSizeFitting();
-            
-            if (itemSlotList.Count == 0) 
-                gameObject.SetActive(false);
+            // var materialTable = Camp.Inventories.ViceMaterialTable;
+            //
+            // materialTable.ForEach(material => AddInventorySlot(material.Key, material.Value));
+            //
+            // DynamicContentSizeFitting();
+            //
+            // if (itemSlotList.Count == 0) 
+            //     gameObject.SetActive(false);
         }
 
         /* UI */

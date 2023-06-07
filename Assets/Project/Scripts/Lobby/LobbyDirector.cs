@@ -3,6 +3,7 @@ using Common;
 using Lobby.UI.Forge;
 using Singleton;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace Lobby
 {
@@ -32,12 +33,12 @@ namespace Lobby
 
         // TODO. will be UIDirector
         [SerializeField] private SaveLoadFrame saveLoadFrame;
-        [SerializeField] private AdventurerFrame adventurerFrame;
+        [FormerlySerializedAs("adventurerFrame")] [SerializeField] private OldAdventurerFrame oldAdventurerFrame;
         [SerializeField] private InventoryFrame inventoryFrame;
         [SerializeField] private BossSelectFrame bossSelectFrame;
 
         public static SaveLoadFrame SaveLoadFrame => Instance.saveLoadFrame;
-        public static AdventurerFrame AdventurerFrame => Instance.adventurerFrame;
+        public static OldAdventurerFrame OldAdventurerFrame => Instance.oldAdventurerFrame;
         public static InventoryFrame InventoryFrame => Instance.inventoryFrame;
         public static BossSelectFrame BossSelectFrame => Instance.bossSelectFrame;
 
@@ -59,7 +60,7 @@ namespace Lobby
             uiDirector      ??= GetComponentInChildren<LobbyUIDirector>();
             
             saveLoadFrame   ??= GetComponentInChildren<SaveLoadFrame>();
-            adventurerFrame ??= GetComponentInChildren<AdventurerFrame>();
+            oldAdventurerFrame ??= GetComponentInChildren<OldAdventurerFrame>();
             inventoryFrame  ??= GetComponentInChildren<InventoryFrame>();
         }
 #endif

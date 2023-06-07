@@ -102,8 +102,8 @@ namespace Editor
                 attributes.Add(new ShowInInspectorAttribute());
                 attributes.Add(new ListDrawerSettingsAttribute
                 {
-                    Expanded = true,
-                    IsReadOnly = true,
+                    ShowFoldout = true,
+                    IsReadOnly  = true,
                 });
                 attributes.Add(new PropertySpaceAttribute(0f, 15f));
             }
@@ -113,8 +113,8 @@ namespace Editor
                 attributes.Add(new ShowInPlayModeAttribute());
                 attributes.Add(new ListDrawerSettingsAttribute
                 {
-                    Expanded   = true,
-                    IsReadOnly = true,
+                    ShowFoldout = true,
+                    IsReadOnly  = true,
                 });
                 attributes.Add(new PropertySpaceAttribute(0f, 15f));
             }

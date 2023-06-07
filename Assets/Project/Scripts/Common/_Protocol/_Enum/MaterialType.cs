@@ -17,7 +17,7 @@ namespace Common
         StoneOfVoracity = DataIndex.StoneOfVoracity, // 51060318
     }
 
-    public enum GrowMaterial
+    public enum GrowMaterialType
     {
         None = 0,
         CrystalOfPathfinder = DataIndex.CrystalOfPathfinder, // 52000001

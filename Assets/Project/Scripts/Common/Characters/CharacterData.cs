@@ -1,51 +1,34 @@
 using System.Collections.Generic;
-using Common.Equipments;
 using Serialization;
 using UnityEngine;
 
 namespace Common.Characters
 {
-    /*
-     * CharacterData 는 Prefab과 UI에서 사용하는 핵심 데이타.
-     * 따라서 편의성 함수들이 존재 해야함.
-     * */
+    // TODO. VillainData 와 VenturerData는 ScriptableObject를 상속받고, CharacterData 는 ICharacterData로 Interface 어떨까;
     public class CharacterData : ScriptableObject, ISavable, IEditable
     {
-        [SerializeField] private DataIndex characterIndex;
-        [SerializeField] private CharacterConstEntity constEntity;
-        [SerializeField] private CharacterEquipmentEntity equipmentEntity;
+        [SerializeField] protected DataIndex characterIndex;
+        [SerializeField] protected CharacterConstEntity constEntity;
 
         public DataIndex DataIndex => characterIndex;
         public VenturerType VenturerType => (VenturerType)characterIndex;
-        public CharacterMask ClassType => constEntity.ClassType;
         public IEnumerable<DataIndex> SkillList => constEntity.DefaultSkillList;
-        public CharacterConstEntity ConstEntity => constEntity;
-        public CharacterEquipmentEntity EquipmentEntity => equipmentEntity;
-        public StatTable StaticStatTable { get; set; } = new();
-        public EthosTable StaticEthosTable => equipmentEntity.EthosTable;
+        public StatTable StaticStatTable { get; } = new();
+        
 
-        public int GetEthosValue(EthosType type) => StaticEthosTable.GetEthosValue(type);
         public float GetStatValue(StatType type) => StaticStatTable.GetStatValue(type);
         public string GetStatTextValue(StatType type) => StaticStatTable.GetStatValue(type).ToStatUIValue(type);
-        public EquipmentEntity GetEquipment(EquipmentSlotType slot) => EquipmentEntity.GetEquipment(slot);
-        
-        public void Save()
-        {
-            equipmentEntity.Save(characterIndex.ToString());
-        }
 
-        public void Load()
+        public virtual void Save() { }
+        public virtual void Load()
         {
-            equipmentEntity.Load(characterIndex.ToString());
-            
             StaticStatTable.Clear();
             StaticStatTable.Add(constEntity.DefaultStatSpec);
-            StaticStatTable.RegisterTable(equipmentEntity.StatTable);
         }
 
 
 #if UNITY_EDITOR
-        public void EditorSetUp()
+        public virtual void EditorSetUp()
         {
             if (!Verify.IsNotDefault(characterIndex, "", false))
             {
@@ -54,7 +37,6 @@ namespace Common.Characters
             }
             
             constEntity.EditorSetUpByDataIndex(characterIndex);
-            equipmentEntity.EditorSetUpByDataIndex(characterIndex);
         }
 #endif
     }

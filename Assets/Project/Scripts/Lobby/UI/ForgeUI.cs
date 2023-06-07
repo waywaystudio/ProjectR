@@ -1,7 +1,5 @@
 using Common;
 using Common.Characters;
-using Common.Equipments;
-using Common.PartyCamps;
 using GameEvents;
 using UnityEngine;
 
@@ -11,38 +9,24 @@ namespace Lobby.UI
     {
         [SerializeField] private GameEvent reloadForgeEvent;
         
-        private VenturerType focusAdventurer = VenturerType.Knight;
+        private VenturerType focusVenturer = VenturerType.Knight;
         public void Reload() => reloadForgeEvent.Invoke();
 
-        public VenturerType FocusAdventurer
+        public VenturerType FocusVenturer
         {
-            get => focusAdventurer;
+            get => focusVenturer;
             set
             {
-                focusAdventurer = value;
+                focusVenturer = value;
                 reloadForgeEvent.Invoke();
             }
         }
 
-        public CharacterData FocusVenturerData => PartyCamp.Characters.GetData(FocusAdventurer);
-
-        public EquipmentEntity VenturerEquipment(EquipmentSlotType slot)
-        {
-            return PartyCamp.Characters.GetAdventurerEquipment(FocusAdventurer, slot);
-        }
+        public VenturerData FocusVenturerData => Camp.GetData(FocusVenturer);
 
         public int VenturerEthosValue(EthosType type) => FocusVenturerData.GetEthosValue(type);
-
-        public void Conversion()
-        {
-            // => FocusEquipment.Conversion(FocusRelic);
-        }
-
-        public void Enchant()
-        {
-            // => FocusEquipment.Enchant(FocusRelic);
-        }
-        
+        public IEquipment VenturerWeapon() => Camp.GetVenturerWeapon(FocusVenturer);
+        public IEquipment VenturerArmor() => Camp.GetVenturerArmor(FocusVenturer);
 
 
 #if UNITY_EDITOR

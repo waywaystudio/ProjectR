@@ -1,5 +1,4 @@
 using Common;
-using Common.PartyCamps;
 using TMPro;
 using UnityEngine;
 
@@ -12,18 +11,18 @@ namespace Lobby.UI.Forge.Evolves
 
         public void OnReloadForge()
         {
-            var adventurer = LobbyDirector.UI.Forge.FocusAdventurer;
-            var targetCharacter = PartyCamp.Characters.GetData(adventurer);
-            var targetEquipment = targetCharacter.GetEquipment(slotType);
+            var targetEquipment = slotType == EquipmentSlotType.Weapon
+                ? LobbyDirector.UI.Forge.VenturerWeapon()
+                : LobbyDirector.UI.Forge.VenturerArmor();
 
             if (targetEquipment != null)
             {
-                var equipmentName = $"{targetEquipment.ItemName}";
+                var equipmentName = $"{targetEquipment.ItemName} {targetEquipment.Level}";
                 titleTextMesh.text = equipmentName;
             }
             else
             {
-                titleTextMesh.text = "UnEquip";
+                titleTextMesh.text = "UnEquipped";
             }
         }
 

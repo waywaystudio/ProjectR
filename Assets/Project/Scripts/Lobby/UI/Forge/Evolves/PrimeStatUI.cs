@@ -1,6 +1,5 @@
 using System.Collections.Generic;
 using Common;
-using Common.Equipments;
 using Common.UI;
 using UnityEngine;
 
@@ -15,15 +14,17 @@ namespace Lobby.UI.Forge.Evolves
         {
             constStatUIList.ForEach(statUI => statUI.gameObject.activeSelf.OnTrue(() => statUI.gameObject.SetActive(false)));
 
-            var equipmentEntity = LobbyDirector.UI.Forge.VenturerEquipment(slotType);
+            var targetEquipment = slotType == EquipmentSlotType.Weapon
+                ? LobbyDirector.UI.Forge.VenturerWeapon()
+                : LobbyDirector.UI.Forge.VenturerArmor();
             
-            ReloadStat(equipmentEntity);
+            ReloadStat(targetEquipment);
         }
         
 
-        private void ReloadStat(EquipmentEntity equipEntity)
+        private void ReloadStat(IEquipment equipEntity)
         {
-            var equipmentSpec = equipEntity.ConstStatSpec;
+            var equipmentSpec = equipEntity.StatSpec;
 
             equipmentSpec?.IterateOverStats((stat, index) =>
             {

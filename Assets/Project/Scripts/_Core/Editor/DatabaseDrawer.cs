@@ -19,7 +19,7 @@ namespace Editor
                 attributes.Add(new PropertySpaceAttribute(0, 20f));
                 attributes.Add(new ListDrawerSettingsAttribute
                 {
-                   Expanded = true,
+                   ShowFoldout = true,
                    HideAddButton = true,
                    HideRemoveButton = true,
                    IsReadOnly = true,
