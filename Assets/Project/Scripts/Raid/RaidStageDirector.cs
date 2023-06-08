@@ -1,15 +1,16 @@
 using System.Collections.Generic;
 using Raid.Stage;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace Raid
 {
     public class RaidStageDirector : MonoBehaviour, IEditable
     {
-        [SerializeField] private Transform bossSpawn;
+        [FormerlySerializedAs("bossSpawn")] [SerializeField] private Transform villainSpawnPosition;
         [SerializeField] private List<Transform> adventurerSpawnPositionList = new();
         
-        public Transform BossSpawn => bossSpawn;
+        public Transform VillainSpawnPosition => villainSpawnPosition;
 
         public Transform GetAdventurerPosition(int index)
         {
@@ -33,7 +34,7 @@ namespace Raid
                 switch (position.IconName)
                 {
                     case "Boss":
-                        bossSpawn = position.transform;
+                        villainSpawnPosition = position.transform;
                         break;
                     case "Adventurer":
                         adventurerSpawnPositionList.Add(position.transform);

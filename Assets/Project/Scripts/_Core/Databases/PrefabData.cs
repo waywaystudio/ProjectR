@@ -116,7 +116,7 @@ namespace Databases
             UnityEditor.AssetDatabase.Refresh();
         }
 
-        [Sirenix.OdinInspector.Button(ButtonSizes.Medium)]
+        [Button(ButtonSizes.Large)]
         public void ResetTable() => PrefabTable.Clear();
 #endif
     }

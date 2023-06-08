@@ -1,4 +1,4 @@
-using Character.Adventurers;
+using Character.Venturers;
 using Common;
 using Sirenix.OdinInspector;
 using UnityEngine;
@@ -9,12 +9,12 @@ namespace Raid.UI.FloatingTexts
     {
         [SerializeField] private Pool<FloatingTextUI> pool;
         
-        private Adventurer focusedAdventurer;
+        private VenturerBehaviour focusedAdventurer;
 
 
-        public void OnFocusingAdventurer(Adventurer focusAdventurer)
+        public void OnFocusingAdventurer(VenturerBehaviour focusAdventurer)
         {
-            Adventurer newFocusedAdventurer = null;
+            VenturerBehaviour newFocusedAdventurer = null;
             
             foreach (var adventurer in RaidDirector.AdventurerList)
             {

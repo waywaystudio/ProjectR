@@ -1,4 +1,4 @@
-using System;
+using UnityEngine;
 
 namespace Common
 {
@@ -112,6 +112,18 @@ namespace Common
         public static bool IsVirtue(this EthosType type) => GetGroupIndex(type)     == 2;
         public static bool IsDeficiency(this EthosType type) => GetGroupIndex(type) == 1;
         public static bool IsExcess(this EthosType type) => GetGroupIndex(type)     == 3;
-        
+
+        public static EthosType ConvertToEthosType(this DataIndex dataIndex)
+        {
+            if (dataIndex.GetCategory() != DataIndex.Villain)
+            {
+                Debug.LogWarning($"Only VillainCode can be converted. Input:{dataIndex.ToString()}");
+                return EthosType.None;
+            }
+
+            var groupIndex = dataIndex.GetGroupBar();
+
+            return groupIndex.FindIndex<EthosType>();
+        }
     }
 }

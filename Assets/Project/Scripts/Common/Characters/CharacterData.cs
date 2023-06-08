@@ -4,15 +4,17 @@ using UnityEngine;
 
 namespace Common.Characters
 {
-    // TODO. VillainData 와 VenturerData는 ScriptableObject를 상속받고, CharacterData 는 ICharacterData로 Interface 어떨까;
-    public class CharacterData : ScriptableObject, ISavable, IEditable
+    // TODO. CharacterData 는 ICharacterData로 Interface 어떨까;
+    public class CharacterData : ScriptableObject, ISavable, IDataIndexer, IEditable
     {
         [SerializeField] protected DataIndex characterIndex;
+        [SerializeField] protected CharacterMask mask;
         [SerializeField] protected CharacterConstEntity constEntity;
 
         public DataIndex DataIndex => characterIndex;
-        public VenturerType VenturerType => (VenturerType)characterIndex;
+        public CharacterMask CharacterMask => mask;
         public IEnumerable<DataIndex> SkillList => constEntity.DefaultSkillList;
+        public string Name => constEntity.CharacterName;
         public StatTable StaticStatTable { get; } = new();
         
 

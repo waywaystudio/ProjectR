@@ -1,5 +1,5 @@
 using System;
-using Character.Adventurers;
+using Character.Venturers;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.InputSystem;
@@ -15,7 +15,7 @@ namespace Lobby.Stage
 
         private void OnTriggerEnter(Collider other)
         {
-            if (other.TryGetComponent(out Adventurer player) && player == LobbyDirector.Knight)
+            if (other.TryGetComponent(out VenturerBehaviour player) && player == LobbyDirector.Knight)
             {
                 // Add Event to Interaction;
                 LobbyDirector.Input.InteractAction = interactEvent;
@@ -25,7 +25,7 @@ namespace Lobby.Stage
 
         private void OnTriggerExit(Collider other)
         {
-            if (other.TryGetComponent(out Adventurer player) && player == LobbyDirector.Knight)
+            if (other.TryGetComponent(out VenturerBehaviour player) && player == LobbyDirector.Knight)
             {
                 // Remove Event to Interaction;
                 LobbyDirector.Input.InteractAction = null;

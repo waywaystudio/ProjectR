@@ -1,5 +1,5 @@
 using Adventurers;
-using Character.Adventurers;
+using Character.Venturers;
 using GameEvents;
 using Manager;
 using Raid.Art;
@@ -11,7 +11,7 @@ namespace Raid
     public class AdventurerController : MonoBehaviour
     {
         // TODO. TEMP
-        [SerializeField] private Adventurer focusedAdventurer;
+        [SerializeField] private VenturerBehaviour focusedAdventurer;
         [SerializeField] private ToMoveProjector moveProjector;
         //
 
@@ -21,7 +21,7 @@ namespace Raid
         private Vector3 mouseDestination;
 
 
-        public void OnFocusChanged(Adventurer ab) => focusedAdventurer = ab;
+        public void OnFocusChanged(VenturerBehaviour ab) => focusedAdventurer = ab;
 
         /* GameEvent */
         public void CommandMode(InputAction.CallbackContext context)

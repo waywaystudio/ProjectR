@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using Adventurers;
-using Character.Adventurers;
-using Character.Bosses;
+using Character.Venturers;
+using Character.Villains;
 using Singleton;
 using UnityEngine;
 
@@ -21,12 +21,12 @@ namespace Raid
         public static RaidCastingDirector CastingDirector => Instance.castingDirector;
         public static RaidStageDirector StageDirector => Instance.stageDirector;
         public static RaidUIDirector UIDirector => Instance.uiDirector;
-        public static Adventurer FocusCharacter => Instance.focusCharacter;
-        public static Boss Boss => CastingDirector.Boss;
-        public static List<Adventurer> AdventurerList => CastingDirector.AdventurerList;
-        public static void ChangeFocusAdventurer(Adventurer ab) => Instance.adventurerFocusEvent.Invoke(ab);
+        public static VenturerBehaviour FocusCharacter => Instance.focusCharacter;
+        public static VillainBehaviour Boss => CastingDirector.Villain;
+        public static List<VenturerBehaviour> AdventurerList => CastingDirector.VenturerList;
+        public static void ChangeFocusAdventurer(VenturerBehaviour ab) => Instance.adventurerFocusEvent.Invoke(ab);
 
-        private Adventurer focusCharacter;
+        private VenturerBehaviour focusCharacter;
         
 
         public static void Initialize(List<DataIndex> adventurerEntry)
@@ -34,7 +34,7 @@ namespace Raid
             CastingDirector.Initialize(adventurerEntry);
             UIDirector.Initialize();
             
-            Instance.focusCharacter = CastingDirector.AdventurerList[0];
+            Instance.focusCharacter = CastingDirector.VenturerList[0];
             Instance.adventurerFocusEvent.Invoke(FocusCharacter);
         }
 

@@ -1,0 +1,51 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2d0695767208d8a41a3eb4b99e9f2b0d, type: 3}
+  m_Name: IsoldeData
+  m_EditorClassIdentifier: 
+  characterIndex: 22041001
+  mask: 536870912
+  constEntity:
+    classType: 536870912
+    characterName: Isolde, Shadow Weaver
+    defaultStatSpec:
+      statList:
+      - statType: 13010001
+        statKey: ConstStatKey
+        value: 100
+      - statType: 13010002
+        statKey: ConstStatKey
+        value: 200
+      - statType: 13010003
+        statKey: ConstStatKey
+        value: 50
+      - statType: 13010004
+        statKey: ConstStatKey
+        value: 1
+      - statType: 13010005
+        statKey: ConstStatKey
+        value: 1
+      - statType: 13020001
+        statKey: ConstStatKey
+        value: 5
+      - statType: 13020002
+        statKey: ConstStatKey
+        value: 0
+      - statType: 13030001
+        statKey: ConstStatKey
+        value: 100
+      - statType: 13030002
+        statKey: ConstStatKey
+        value: 7
+    defaultSkillList: c905d901c605d901
+  representEthos: 12040110
+  killCount: 0

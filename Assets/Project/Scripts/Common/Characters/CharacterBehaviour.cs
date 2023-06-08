@@ -10,10 +10,6 @@ namespace Common.Characters
 {
     public class CharacterBehaviour : MonoBehaviour, ICombatExecutor, ICharacterSystem, ICharacterAnimation, IEditable
     {
-        [SerializeField] protected string characterName = string.Empty;
-        [SerializeField] protected DataIndex characterID;
-        [SerializeField] protected CharacterMask role;
-
         [SerializeField] protected CharacterCombatStatus combatStatus;
         [SerializeField] protected AnimationModel animating;
         [SerializeField] protected Transform damageSpawn;
@@ -31,9 +27,9 @@ namespace Common.Characters
         /*
          * Common Attribute
          */ 
-        public DataIndex DataIndex => characterID;
-        public CharacterMask CombatClass => role;
-        public string Name => characterName;
+        public virtual DataIndex DataIndex => DataIndex.None;
+        public virtual CharacterMask CombatClass => CharacterMask.None;
+        public virtual string Name => "characterName";
         public Vector3 Position => transform.position;
         public SearchingSystem Searching => searching;
         public CollidingSystem Colliding => colliding;

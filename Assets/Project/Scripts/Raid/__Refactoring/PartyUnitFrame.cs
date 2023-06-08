@@ -1,5 +1,5 @@
 using Adventurers;
-using Character.Adventurers;
+using Character.Venturers;
 using Common;
 using DG.Tweening;
 using TMPro;
@@ -20,9 +20,9 @@ namespace Raid.UI
         private bool isInitialized;
 
         public ActionTable OnInitialize { get; } = new();
-        public Adventurer adventurer { get; private set; }
+        public VenturerBehaviour adventurer { get; private set; }
 
-        public void Initialize(Adventurer ab)
+        public void Initialize(VenturerBehaviour ab)
         {
             adventurer = ab;
             

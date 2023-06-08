@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 using Adventurers;
-using Character.Adventurers;
+using Character.Venturers;
 using Manager;
 using TMPro;
 using UnityEngine;
@@ -13,7 +13,7 @@ namespace Raid.UI.CommanderFrames.ActionBars.CommanderSkillBars
         [SerializeField] private TextMeshProUGUI hoyKey;
         [SerializeField] private BindingCode bindingCode;
 
-        private List<Adventurer> adventurersList;
+        private List<VenturerBehaviour> adventurersList;
         
         private string HotKey =>
             bindingCode switch
@@ -25,7 +25,7 @@ namespace Raid.UI.CommanderFrames.ActionBars.CommanderSkillBars
                 _ => "-",
             };
 
-        public void Initialize(List<Adventurer> adventurersList)
+        public void Initialize(List<VenturerBehaviour> adventurersList)
         {
             this.adventurersList = adventurersList;
             

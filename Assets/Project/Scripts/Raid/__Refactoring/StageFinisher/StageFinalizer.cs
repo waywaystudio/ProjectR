@@ -1,4 +1,4 @@
-using Character.Bosses;
+using Character.Villains;
 using SceneAdaption;
 using UnityEngine;
 
@@ -6,7 +6,7 @@ namespace Raid.UI.StageFinisher
 {
     public class StageFinalizer : MonoBehaviour
     {
-        public void Initialize(Boss bossBehaviour)
+        public void Initialize(VillainBehaviour bossBehaviour)
         {
             // bossBehaviour.CharacterBehaviour.
         }

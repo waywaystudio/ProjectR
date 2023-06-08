@@ -1,16 +1,15 @@
-using Serialization;
 using UnityEngine;
 
 namespace Common.Characters
 {
-    public class VenturerData : CharacterData, ISavable
+    public class VenturerData : CharacterData
     {
         [SerializeField] private CharacterEquipmentEntity equipmentEntity;
         
+        public VenturerType VenturerType => (VenturerType)characterIndex;
         public EthosTable StaticEthosTable => equipmentEntity.EthosTable;
         
         public int GetEthosValue(EthosType type) => StaticEthosTable.GetEthosValue(type);
-        
         public IEquipment GetWeapon() => equipmentEntity.GetWeapon();
         public IEquipment GetAmor() => equipmentEntity.GetArmor();
         

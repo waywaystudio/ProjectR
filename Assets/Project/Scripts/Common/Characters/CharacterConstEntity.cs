@@ -72,7 +72,7 @@ namespace Common.Characters
 
             if (!Verify.IsNotNull(monsterData, $"Not Exist {dataIndex} in BossData")) return;
 
-            classType     = CharacterMask.Boss;
+            classType     = CharacterMask.Villain;
             characterName = monsterData.FullName;
             
             // defaultSpec

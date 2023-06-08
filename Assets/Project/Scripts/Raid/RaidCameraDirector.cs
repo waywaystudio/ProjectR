@@ -1,6 +1,6 @@
 using Adventurers;
-using Character.Adventurers;
-using Character.Bosses;
+using Character.Venturers;
+using Character.Villains;
 using Cinemachine;
 using Manager;
 using UnityEngine;
@@ -22,8 +22,8 @@ namespace Raid
         }
 
         /* GameEvent */
-        public void FocusPlayer(Adventurer target) => Focusing(target.transform);
-        public void FocusMonster(Boss target) => Focusing(target.transform);
+        public void FocusPlayer(VenturerBehaviour target) => Focusing(target.transform);
+        public void FocusMonster(VillainBehaviour target) => Focusing(target.transform);
         public void StageCamera() => ChangeCamera(stageCamera);
 
         public void ChangeCamera(ICinemachineCamera cameraName)

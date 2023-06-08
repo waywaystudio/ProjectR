@@ -5,37 +5,69 @@ using UnityEngine;
 [Serializable]
 public class Table<TKey, TValue>
 {
-    [SerializeField] private List<TValue> list;
+    [SerializeField] private List<TKey> keyList = new();
+    [SerializeField] private List<TValue> valueList = new();
     
-    private Dictionary<TKey, TValue> map;
-    
-    public Table()
+    private Dictionary<TKey, TValue> map = new();
+    private Dictionary<TKey, TValue> Map
     {
-        list = new List<TValue>();
-        map  = new Dictionary<TKey, TValue>();
+        get
+        {
+            if (map.IsNullOrEmpty() || map.Count != keyList.Count)
+            {
+                map.Clear();
+                valueList.ForEach((value, index) => map.Add(keyList[index], value));
+            }
+
+            return map;
+        }
+    }
+    
+    public TValue this[TKey key]
+    {
+        get => Map.ContainsKey(key) 
+            ? Map[key] 
+            : throw new KeyNotFoundException();
+        set
+        {
+            if (Map.ContainsKey(key))
+            {
+                var index = keyList.IndexOf(key);
+                valueList[index] = value;
+            }
+            else
+            {
+                keyList.Add(key);
+                valueList.Add(value);
+            }
+
+            Map[key] = value;
+        }
     }
 
-    public int Count => list.Count;
+    public int Count => valueList.Count;
 
     public void Add(TKey key, TValue value)
     {
-        if (!map.ContainsKey(key))
-        {
-            map.Add(key, value);
-            list.Add(value);
-        }
-        else
-        {
-            throw new ArgumentException("Key already exists.");
-        }
+        if (map.ContainsKey(key)) return;
+        
+        map.Add(key, value);
+        keyList.Add(key);
+        valueList.Add(value);
     }
 
     public bool Remove(TKey key)
     {
         if (!map.ContainsKey(key)) return false;
-        map.Remove(key, out var value);
+        map.Remove(key);
         
-        return list.Remove(value);
+        var index = keyList.IndexOf(key);
+        if(index < 0) return false;
+        
+        keyList.RemoveAt(index);
+        valueList.RemoveAt(index);
+        
+        return true;
     }
 
     public bool TryGetValue(TKey key, out TValue value)
@@ -43,14 +75,35 @@ public class Table<TKey, TValue>
         return map.TryGetValue(key, out value);
     }
 
-    public void Iterate(Action<TValue> action)
-    {
-        foreach (var item in list) action?.Invoke(item);
-    }
+    public void Iterate(Action action) { foreach (var _ in valueList) action?.Invoke(); }
+    public void Iterate(Action<TValue> action)  { foreach (var item in valueList) action?.Invoke(item); }
+    public void KeyIterate(Action<TKey> action) { foreach (var item in keyList) action?.Invoke(item); }
 
     public void Clear()
     {
-        list.Clear();
+        keyList.Clear();
+        valueList.Clear();
         map.Clear();
+    }
+    
+    public void CreateTable(List<TValue> dataList, Func<TValue, TKey> keySelector)
+    {
+        Clear();
+
+        foreach (var data in dataList)
+        {
+            var key = keySelector(data);
+            Add(key, data);
+        }
+    }
+    public void CreateTable(IEnumerable<TValue> dataList, Func<TValue, TKey> keySelector)
+    {
+        Clear();
+
+        foreach (var data in dataList)
+        {
+            var key = keySelector(data);
+            Add(key, data);
+        }
     }
 }

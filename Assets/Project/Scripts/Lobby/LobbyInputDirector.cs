@@ -1,4 +1,4 @@
-using Character.Adventurers;
+using Character.Venturers;
 using Manager;
 using UnityEngine;
 using UnityEngine.Events;
@@ -8,11 +8,11 @@ namespace Lobby
 {
     public class LobbyInputDirector : MonoBehaviour
     {
-        private Adventurer focusedAdventurer;
+        private VenturerBehaviour focusedAdventurer;
 
         public UnityEvent<InputAction.CallbackContext> InteractAction { get; set; }
 
-        public void Initialize(Adventurer adventurer) => focusedAdventurer = adventurer;
+        public void Initialize(VenturerBehaviour adventurer) => focusedAdventurer = adventurer;
         
         public void Move(InputAction.CallbackContext context)
         {

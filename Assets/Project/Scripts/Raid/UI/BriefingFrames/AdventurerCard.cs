@@ -1,4 +1,4 @@
-using Character.Adventurers;
+using Character.Venturers;
 using Spine.Unity;
 using TMPro;
 using UnityEngine;
@@ -12,7 +12,7 @@ namespace Raid.UI.StageInitializer
         [SerializeField] private TextMeshProUGUI nameTextUI;
         [SerializeField] private SkeletonGraphic portrait;
 
-        private Adventurer currentAdventurer;
+        private VenturerBehaviour currentAdventurer;
 
         public DataIndex TargetAdventurerIndex => currentAdventurer.DataIndex; 
 

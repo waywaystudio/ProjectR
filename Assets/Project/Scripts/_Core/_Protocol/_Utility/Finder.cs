@@ -117,13 +117,13 @@ public static class Finder
                     
                     value.Add(AssetDatabase.LoadAssetAtPath(assetPath, typeof(T)) as T);
                     value.RemoveNull();
-                    stringBuilder.Append(assetPath);
+                    stringBuilder.Append($"<color=green>{assetPath}</color>");
                     stringBuilder.AppendLine();
                 }
             
                 if (showDebug)
                     Debug.Log($"{filter} Objects in Project List : \n" +
-                              $"<color=green>{stringBuilder}</color>");
+                              $"{stringBuilder}");
 
                 return true;
             }

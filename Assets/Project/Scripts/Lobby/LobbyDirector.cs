@@ -1,4 +1,4 @@
-using Character.Adventurers;
+using Character.Venturers;
 using Common;
 using Lobby.UI.Forge;
 using Singleton;
@@ -25,7 +25,7 @@ namespace Lobby
          * Accessor
          */
         /* Casting */
-        public static Adventurer Knight { get; set; }
+        public static VenturerBehaviour Knight { get; set; }
 
         /* UI */
         public ForgeUI ForgeUI => UI.Forge;

@@ -1,5 +1,5 @@
 using System.Collections.Generic;
-using Character.Bosses;
+using Character.Villains;
 using Common;
 using Common.Characters;
 using Common.Equipments;
@@ -29,7 +29,7 @@ namespace Lobby.UI
         {
             SetPortrait(bossCode);
 
-            if (!Database.BossPrefabData.Get(bossCode, out Boss bossBehaviour)) return;
+            if (!Database.BossPrefabData.Get(bossCode, out VillainBehaviour bossBehaviour)) return;
 
             var bossData = bossDataList.TryGetElement(bossData => bossData.DataIndex == bossCode);
 
@@ -56,27 +56,27 @@ namespace Lobby.UI
             });
             
             // SetDropItems
-            var dropItemList = bossBehaviour.DropItemTable;
-            
-            dropItemUIList.TrimAndDestroy(dropItemList.Count);
-
-            dropItemList.ForEach((itemObject, index) =>
-            {
-                // if (!itemObject.TryGetComponent(out Equipment dropItem)) return;
-                // if (dropItemUIList.Count > index)
-                // {
-                //     dropItemUIList[index].SetDropItemUI(dropItem);
-                // }
-                // else
-                // {
-                //     var dropItemUIObject = Instantiate(dropItemSlotPrefab, dropItemsInfoUIHierarchy);
-                //
-                //     if (!dropItemUIObject.TryGetComponent(out DropItemUI dropItemUIBehaviour)) return;
-                //     
-                //     dropItemUIBehaviour.SetDropItemUI(dropItem);
-                //     dropItemUIList.Add(dropItemUIBehaviour);
-                // }
-            });
+            // var dropItemList = bossBehaviour.DropItemTable;
+            //
+            // dropItemUIList.TrimAndDestroy(dropItemList.Count);
+            //
+            // dropItemList.ForEach((itemObject, index) =>
+            // {
+            //     // if (!itemObject.TryGetComponent(out Equipment dropItem)) return;
+            //     // if (dropItemUIList.Count > index)
+            //     // {
+            //     //     dropItemUIList[index].SetDropItemUI(dropItem);
+            //     // }
+            //     // else
+            //     // {
+            //     //     var dropItemUIObject = Instantiate(dropItemSlotPrefab, dropItemsInfoUIHierarchy);
+            //     //
+            //     //     if (!dropItemUIObject.TryGetComponent(out DropItemUI dropItemUIBehaviour)) return;
+            //     //     
+            //     //     dropItemUIBehaviour.SetDropItemUI(dropItem);
+            //     //     dropItemUIList.Add(dropItemUIBehaviour);
+            //     // }
+            // });
         }
 
         public void GetNextBoss()

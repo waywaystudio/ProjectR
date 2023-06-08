@@ -1,21 +1,37 @@
 using System;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace Common
 {
     [Serializable]
-    public struct Ingredient
+    public class Ingredient<T> where T : struct
     {
-        [SerializeField] private ViceMaterialType materialType;
-        [SerializeField] private int count;
+        [SerializeField] protected T type;
+        [SerializeField] protected int count;
 
-        public ViceMaterialType MaterialType => materialType;
+        public T Type => type;
         public int Count => count;
 
-        public Ingredient(ViceMaterialType materialType = ViceMaterialType.None, int count = 0)
+        public Ingredient()
         {
-            this.materialType = materialType;
-            this.count        = count;
+            type  = default;
+            count = 0;
+        }
+        public Ingredient(T type, int count)
+        {
+            this.type  = type;
+            this.count = count;
+        }
+    }
+    
+    [Serializable] public class ViceIngredient : Ingredient<ViceMaterialType> { }
+    [Serializable] public class GrowIngredient : Ingredient<GrowMaterialType>
+    {
+        public GrowIngredient(GrowMaterialType type, int count)
+        {
+            this.type  = type;
+            this.count = count;
         }
     }
 }

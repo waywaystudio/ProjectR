@@ -1,4 +1,4 @@
-using Character.Adventurers;
+using Character.Venturers;
 using UnityEngine;
 
 namespace Lobby
@@ -12,7 +12,7 @@ namespace Lobby
         {
             var knightIndex = DataIndex.Knight;
             
-            if (!Database.CombatClassPrefabData.Get<Adventurer>(knightIndex, out var adventurerPrefab)) return;
+            if (!Database.CombatClassPrefabData.Get<VenturerBehaviour>(knightIndex, out var adventurerPrefab)) return;
                 
             var profitPosition = knightSpawnTransform.position;
             var knight = Instantiate(adventurerPrefab, profitPosition, Quaternion.identity,

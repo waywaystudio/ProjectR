@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8648764177684554385}
   - component: {fileID: 675568408790210981}
+  - component: {fileID: 2047985583510383789}
   m_Layer: 0
   m_Name: Den
   m_TagString: Untagged
@@ -44,7 +45,36 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 635aebdd9791f5442b0bac3c7f00dbe1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  villainDataList:
-  - {fileID: 11400000, guid: 3037488550c46ba46b9fca2fa1e95609, type: 2}
-  - {fileID: 11400000, guid: 9cab293c136e3bd4782f97948bdfa49d, type: 2}
-  - {fileID: 0}
+  villainTable:
+    keyList: ad7a500121a25001e57950017152500195015001a951500185a25001f5d84f01497a5001bdd94f01e9a250010d52500131015001f901500159d94f01d1295001352a50016d295001
+    valueList:
+    - {fileID: 11400000, guid: a45e5a22cd0579c47a947c4afc8ce124, type: 2}
+    - {fileID: 11400000, guid: c6e7e9ae8e45b714c89905bc1c38dcc6, type: 2}
+    - {fileID: 11400000, guid: 8a7c04ef0bf9fa644992f14d920e4da8, type: 2}
+    - {fileID: 11400000, guid: 2a56ca450d682244c87a375cf6ea020a, type: 2}
+    - {fileID: 11400000, guid: 83ffe390e2617fe4a982a66c41f50845, type: 2}
+    - {fileID: 11400000, guid: 8d6cb37e1788e20459a0777f480bde5b, type: 2}
+    - {fileID: 11400000, guid: af3fcfbb071fd3840b0320b789900a57, type: 2}
+    - {fileID: 11400000, guid: 3037488550c46ba46b9fca2fa1e95609, type: 2}
+    - {fileID: 11400000, guid: fdf56fb89189a3441a658a24c57d5775, type: 2}
+    - {fileID: 11400000, guid: 9cab293c136e3bd4782f97948bdfa49d, type: 2}
+    - {fileID: 11400000, guid: 0846e7090b1fad14e8cc8dd64ab70c35, type: 2}
+    - {fileID: 11400000, guid: cbc97e698b76b6648ae6ce2cad9bd3aa, type: 2}
+    - {fileID: 11400000, guid: 64bed27d35a1f8c42aa0b98c0f7d0667, type: 2}
+    - {fileID: 11400000, guid: 511c95de5c14a4a4a82b47bce0e5091d, type: 2}
+    - {fileID: 11400000, guid: 56eaedd107ec5774193020add272ecf6, type: 2}
+    - {fileID: 11400000, guid: 8090b4087ef8c714f986741969aaa2aa, type: 2}
+    - {fileID: 11400000, guid: e35ea2d88eb72b940a23fd903c7ffd60, type: 2}
+    - {fileID: 11400000, guid: bd844c04868b6d647aba89d23912062f, type: 2}
+--- !u!114 &2047985583510383789
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 920907569746263085}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 34b474dc3830e3a4099f79dd6d06b3b9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

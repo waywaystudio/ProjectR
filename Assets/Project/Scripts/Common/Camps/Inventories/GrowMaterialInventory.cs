@@ -1,5 +1,3 @@
-using Sirenix.OdinInspector;
-
 namespace Common.Camps.Inventories
 {
     public class GrowMaterialInventory : Inventory<GrowMaterialType>
@@ -8,7 +6,6 @@ namespace Common.Camps.Inventories
 
 
 #if UNITY_EDITOR
-        [Button(ButtonSizes.Large, ButtonStyle.Box)]
         public void AddAll100Material()
         {
             GrowMaterialType.None.Iterator(viceType =>

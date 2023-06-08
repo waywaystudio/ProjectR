@@ -1,43 +1,39 @@
-using System.Collections.Generic;
-using Common.Characters;
+using Serialization;
 using Singleton;
 using UnityEngine;
+// ReSharper disable CheckNamespace
 
-namespace Common.Dens
+namespace Common
 {
-    public class Den : MonoSingleton<Den>, IEditable
+    using Characters;
+
+    public class Den : MonoSingleton<Den>, ISavable, IEditable
     {
-        [SerializeField] private List<VillainData> villainDataList;
+        [SerializeField] private Table<DataIndex, VillainData> villainTable = new();
 
-        private Dictionary<DataIndex, VillainData> villainTable;
-        private static Dictionary<DataIndex, VillainData> VillainTable
-        {
-            get
-            {
-                if (Instance.villainTable.IsNullOrEmpty())
-                {
-                    Instance.villainTable = new Dictionary<DataIndex, VillainData>();
-                    Instance.villainDataList.ForEach(boss => Instance.villainTable.Add(boss.DataIndex, boss));
-                }
-
-                return Instance.villainTable;
-            }
-        }
+        private static Table<DataIndex, VillainData> VillainTable => Instance.villainTable;
 
         public static VillainData GetVillainData(DataIndex dataIndex) => VillainTable[dataIndex];
 
-        public static void SetVillainDifficulty(DataIndex dataIndex, int difficulty)
+        public void Save() 
         {
-            var villainData = GetVillainData(dataIndex);
-            
+            villainTable.Iterate(data => data.Save());
+        }
+
+        public void Load()
+        {
+            villainTable.Iterate(data => data.Load());
         }
 
 
 #if UNITY_EDITOR
         public void EditorSetUp()
         {
-            Finder.TryGetObjectList(out villainDataList);
+            Finder.TryGetObjectList<VillainData>(out var villainDataList);
+            
+            villainTable.CreateTable(villainDataList, data => data.DataIndex);
         }
 #endif
+        
     }
 }

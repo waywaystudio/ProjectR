@@ -1,92 +1,125 @@
 using System.Collections.Generic;
 using System.Text;
-using Character.Adventurers;
-using Character.Bosses;
+using Character.Venturers;
+using Character.Villains;
 using Common;
-using Common.Characters;
-using Common.Camps;
-using Serialization;
-using Sirenix.OdinInspector;
 using UnityEngine;
 
 namespace Raid
 {
-    public class RaidCastingDirector : MonoBehaviour, ISavable
+    public class RaidCastingDirector : MonoBehaviour
     {
-        [SerializeField] private Transform adventurerHierarchy;
-        [SerializeField] private Transform monsterHierarchy;
-        [SerializeField] private Boss boss;
-        [SerializeField] private VillainData bossData;
-        [SerializeField] private int dropItemCount;
+        [SerializeField] private Transform venturerHierarchy;
+        [SerializeField] private Transform villainHierarchy;
+        [SerializeField] private DataIndex villainCode;
 
-        [ShowInInspector] public List<Adventurer> AdventurerList { get; } = new();
-        [ShowInInspector] public Boss Boss => boss;
+        public List<VenturerBehaviour> VenturerList { get; } = new();
+        public VillainBehaviour Villain { get; set; }
+        
 
-
-        public void Initialize(List<DataIndex> adventurerEntry)
+        public void Initialize(List<DataIndex> venturerEntry)
         {
-            if (adventurerEntry.IsNullOrEmpty())
+            if (venturerEntry.IsNullOrEmpty())
             {
-                Debug.Log($"Adventurer Not Existed. HasEntry ? : {!adventurerEntry.IsNullOrEmpty()}");
+                Debug.Log($"Adventurer Not Existed. HasEntry ? : {!venturerEntry.IsNullOrEmpty()}");
                 return;
             }
             
-            if (adventurerEntry.Count > 6)
+            if (venturerEntry.Count > 6)
             {
-                Debug.Log($"Adventurer Count Error. EntryCount : {adventurerEntry.Count}");
+                Debug.Log($"Adventurer Count Error. EntryCount : {venturerEntry.Count}");
                 return;
             }
 
-            adventurerEntry.ForEach((adventurerIndex, index) =>
+            SpawnVenturer(venturerEntry);
+            SpawnVillain(villainCode);
+        }
+
+
+        private void SpawnVenturer(IEnumerable<DataIndex> venturerEntry)
+        {
+            venturerEntry.ForEach((adventurerIndex, index) =>
             {
-                if (!Database.CombatClassPrefabData.Get<Adventurer>(adventurerIndex, out var adventurerPrefab)) return;
+                if (!Database.CombatClassPrefabData.Get<VenturerBehaviour>(adventurerIndex, out var adventurerPrefab)) return;
                 
                 var profitPosition   = RaidDirector.StageDirector.GetAdventurerPosition(index).position;
                 var adventurer = Instantiate(adventurerPrefab, profitPosition, Quaternion.identity,
-                    adventurerHierarchy);
+                                             venturerHierarchy);
 
                 adventurer.gameObject.SetActive(true);
-                AdventurerList.Add(adventurer);
+                VenturerList.Add(adventurer);
             });
             
-            Boss.ForceInitialize();
-            AdventurerList.ForEach(adventurer => adventurer.ForceInitialize());
+            VenturerList.ForEach(adventurer => adventurer.ForceInitialize());
+        }
 
-            Rewards();
+        private void SpawnVillain(DataIndex villainCode)
+        {
+            if (!Database.BossPrefabData.GetObject(villainCode, out var villainPrefab)) return;
+
+            var profitPosition   = RaidDirector.StageDirector.VillainSpawnPosition.position;
+            var villainObject = Instantiate(villainPrefab, profitPosition, Quaternion.identity, villainHierarchy);
+            var villainData = Den.GetVillainData(villainCode);
+            
+            villainObject.SetActive(true);
+
+            if (!villainObject.TryGetComponent(out VillainBehaviour villainBehaviour)) return;
+
+            Villain = villainBehaviour;
+            Villain.ForceInitialize();
+            Villain.DeadBehaviour.OnCompleted.Register("DropItems", () => GetReward(villainCode));
         }
         
-        public void Save() { }
-        public void Load()
+        private void GetReward(DataIndex villainCode)
         {
-            bossData.Load();
-        }
-
-        private void Rewards()
-        {
-            Boss.DeadBehaviour.OnCompleted.Register("DropItems", AddRewardItem);
-        }
-
-
-        private void AddRewardItem()
-        {
-            /*
-             * 보스 공략에 성공하면 인벤토리에 즉시 n개의 아이템이 들어오고,
-             * 드랍 아이템 정보창을 띄운다.
-             * 드랍 아이템 정보창은 정보로서의 역할만 수행할 뿐이다.
-             * 인벤토리에 제한이 있거나 즉시 분해 혹은 판매 기능을 추가하고 싶다면 시퀀스가 바뀌어야 한다.
-             */
-            var sb                       = new StringBuilder();
-            var themeMaterialDropCount   = Random.Range(5, 16);
-            var upgradeMaterialDropCount = Random.Range(5, 16);
-            var enchantMaterialDropCount = Random.Range(5, 16);
+            var data = Den.GetVillainData(villainCode);
             
-            Camp.AddGrowMaterial(GrowMaterialType.ShardOfVicious, themeMaterialDropCount);
-            Camp.AddGrowMaterial(GrowMaterialType.StoneOfVicious , upgradeMaterialDropCount);
-            Camp.AddGrowMaterial(GrowMaterialType.CrystalOfPathfinder, enchantMaterialDropCount);
+            var ethosType = data.RepresentEthos;
+            var difficulty = data.Difficulty;
+            var isFirstDefeatTry = data.KillCount == 0;
+            var shardOfViciousCount = 0;
+            var stoneOfViciousCount = 0;
+            var crystalOfPathfinderCount = 50;
+            var clearProgress = Random.Range(1, 2);                    // Den에서 받기.
+            var rewardMultiplier = Random.Range(1, 2) * clearProgress; // clearProgress로부터 계산.
 
-            sb.Append($"{ViceMaterialType.ShardOfApathy} {themeMaterialDropCount} Get!\n");
-            sb.Append($"{ViceMaterialType.StoneOfObsession} {upgradeMaterialDropCount} Get!\n");
-            sb.Append($"{ViceMaterialType.StoneOfReverie} {enchantMaterialDropCount} Get!\n");
+            if (ethosType.IsVirtue())
+            {
+                shardOfViciousCount = 2 ;
+                stoneOfViciousCount = 2 ;
+            }
+            else if (ethosType.IsDeficiency())
+            {
+                shardOfViciousCount = 3 ;
+                stoneOfViciousCount = 1 ;
+            }
+            else if (ethosType.IsExcess())
+            {
+                shardOfViciousCount = 1 ;
+                stoneOfViciousCount = 3 ;
+            }
+            
+            shardOfViciousCount      *= rewardMultiplier;
+            stoneOfViciousCount      *= rewardMultiplier;
+            crystalOfPathfinderCount *= rewardMultiplier;
+            
+            var sb = new StringBuilder();
+            
+            // 경험치만.
+            if (!isFirstDefeatTry)
+            {
+                Camp.AddGrowMaterial(GrowMaterialType.CrystalOfPathfinder, crystalOfPathfinderCount);
+                sb.Append($"{GrowMaterialType.CrystalOfPathfinder} {crystalOfPathfinderCount} Get!\n");
+                return;
+            }
+            
+            Camp.AddGrowMaterial(GrowMaterialType.ShardOfVicious, shardOfViciousCount);
+            Camp.AddGrowMaterial(GrowMaterialType.StoneOfVicious , stoneOfViciousCount);
+            Camp.AddGrowMaterial(GrowMaterialType.CrystalOfPathfinder, crystalOfPathfinderCount);
+
+            sb.Append($"{GrowMaterialType.ShardOfVicious} {shardOfViciousCount} Get!\n");
+            sb.Append($"{GrowMaterialType.StoneOfVicious} {stoneOfViciousCount} Get!\n");
+            sb.Append($"{GrowMaterialType.CrystalOfPathfinder} {crystalOfPathfinderCount} Get!\n");
             
             Debug.Log(sb.ToString());
         }

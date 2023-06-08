@@ -1,15 +1,39 @@
+using Serialization;
+using UnityEngine;
+
 namespace Common.Characters
 {
     public class VillainData : CharacterData
     {
-        // private DifficultyLevel difficulty;
+        [SerializeField] private EthosType representEthos;
+        [SerializeField] private int killCount;
         
-        public void SetDifficulty(int difficulty)
+        public DifficultyType Difficulty { get; set; } = DifficultyType.Normal;
+        public EthosType RepresentEthos => representEthos;
+        public int KillCount => killCount;
+
+        public override void Save()
         {
-            // Create DifficultyType? or Level?
-            // CharacterCombatStatus를 Venturer 와 Villain으로 나눈 후,
-            // Villain.CombatStatus.Initialize에서 Difficulty를 통한 초기 값 설정.
-            // Villain의 Difficulty는 단순한 StatSpec뿐만 아니라 드랍 아이템, 사용 스킬 등이 달리질 수 있다. 
+            base.Save();
+            
+            SaveManager.Save($"{characterIndex.ToString()}.KillCount", killCount);
         }
+        public override void Load()
+        {
+            base.Load();
+            
+            killCount = SaveManager.Load($"{characterIndex.ToString()}.KillCount",0);
+        }
+
+
+#if UNITY_EDITOR
+        public override void EditorSetUp()
+        {
+            base.EditorSetUp();
+
+            mask           = CharacterMask.Villain;
+            representEthos = characterIndex.ConvertToEthosType();
+        }
+#endif
     }
 }

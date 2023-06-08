@@ -14,7 +14,7 @@ namespace Common.UI
         public ViceMaterialType ViceMaterialType => materialType;
 
 
-        public void SetInfoUI(Ingredient ingredient) => SetInfoUI(ingredient.MaterialType, ingredient.Count.ToString());
+        public void SetInfoUI(ViceIngredient viceIngredient) => SetInfoUI(viceIngredient.Type, viceIngredient.Count.ToString());
         public void SetInfoUI(ViceMaterialType type, string value)
         {
             materialType         = type;

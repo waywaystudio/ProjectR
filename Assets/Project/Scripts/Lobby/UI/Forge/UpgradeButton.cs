@@ -28,7 +28,7 @@ namespace Lobby.UI.Forge
         }
 
         private int HoldCount => Camp.GetGrowMaterialCount(MaterialType);
-        private bool IsAbleToUpgrade => HoldCount >= RequireCount;
+        private bool IsAbleToUpgrade => HoldCount >= RequireCount && TargetEquipment?.Level < 6;
 
         public void Upgrade()
         {

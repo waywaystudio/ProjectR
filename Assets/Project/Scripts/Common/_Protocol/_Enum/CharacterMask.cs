@@ -12,8 +12,8 @@ namespace Common
         Ranger = 1  << 3,
         Mage = 1    << 4,
         Priest = 1  << 5,
-        Boss = 1    << 29,
-        Minion = 1  << 30,
+        Villain = 1    << 29,
+        Vinion = 1  << 30,
         
         /* Preset */
         All = int.MaxValue
@@ -31,7 +31,7 @@ namespace Common
                      CharacterMask.Ranger | 
                      CharacterMask.Mage | 
                      CharacterMask.Priest,
-        Monster = CharacterMask.Boss      | CharacterMask.Minion,
+        Monster = CharacterMask.Villain      | CharacterMask.Vinion,
     }
 
     public static class CharacterMaskExtension
