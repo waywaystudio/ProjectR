@@ -9,7 +9,7 @@ namespace Lobby.UI.Forge
 
         public void OnSelected()
         {
-            LobbyDirector.UI.Forge.FocusVenturer = venturer;
+            LobbyDirector.Forge.FocusVenturer = venturer;
         }
     }
 }

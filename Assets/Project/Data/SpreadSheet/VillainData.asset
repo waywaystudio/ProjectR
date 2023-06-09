@@ -16,7 +16,15 @@ MonoBehaviour:
   list:
   - id: 22010101
     name: Load Stonehelm
-    fullName: Load Stonehelm the Unyielding
+    fullName: Load Stonehelm
+    subName: the Unyielding
+    backgroundNarrative: "Hewn from the heart of an ageless mountain, Lord Stonehelm,
+      the Granite Guardian, is a towering stone golem that stands as an unyielding
+      sentinel of Obstinacy. Its headless form is a testament to the singular focus
+      and determination it embodies. In place of a traditional head, two glowing,
+      rune-etched eyes are affixed to the front of its massive, boulder-like torso.
+      Lord Stonehelm\u2019s body is composed of the most resilient granite, each
+      slab and stone meticulously arranged to create a formidable and imposing figure."
     defaultDamage: 1
     power: 100
     health: 200
@@ -26,9 +34,17 @@ MonoBehaviour:
     haste: 0
     armor: 50
     defaultSkills: c905d901c605d901c705d901
+    iconFileName: Load Stonehelm Sprite
   - id: 22010301
     name: Maelrift
-    fullName: Maelrift, the Abyssal Mire
+    fullName: Maelrift
+    subName: the Abyssal Mire
+    backgroundNarrative: Emerging from the dark depths of a black pond, Maelrift,
+      the Abyssal Mire, is a water elemental that embodies the essence of Vacillation.
+      Its ever-changing form is composed of murky water and an eerie, shadowy mist
+      that seems to constantly swirl and undulate around its body. Maelrift's eyes
+      are like two glowing orbs of deep blue, piercing through the darkness of the
+      black pond.
     defaultDamage: 1
     power: 100
     health: 200
@@ -38,9 +54,24 @@ MonoBehaviour:
     haste: 0
     armor: 50
     defaultSkills: c905d901c605d901
+    iconFileName: Maelrift Sprite
   - id: 22010201
     name: Valtoria
-    fullName: Valtoria, the Mountain Warden
+    fullName: Valtoria
+    subName: the Mountain Warden
+    backgroundNarrative: "Rising above the realm of Fortitude, Valtoria, the Mountain
+      Warden, is a formidable tree elemental that stands as a living symbol of strength
+      and endurance. Its majestic form embodies the unyielding resolve of the mountains
+      and the adaptability of the ever-changing forest. Valtoria\u2019s body is composed
+      of intertwining roots, branches, and vines that shape its towering, humanoid
+      figure. Its limbs are strong and sturdy like the trunks of ancient trees, and
+      its body is covered in a mix of thick bark and verdant foliage. The tree elemental's
+      eyes glow with an inner light, reflecting the untamed power of nature coursing
+      through its being. Within the dark fantasy world, Valtoria, the Mountain Warden,
+      guards the secrets of the wilderness, challenging any who dare to confront
+      it. As the final boss of the Fortitude realm, the tree elemental represents
+      both the unbreakable spirit of the mountains and the resilience of the wild,
+      offering a formidable trial for those who seek to prove their mettle."
     defaultDamage: 1
     power: 100
     health: 200
@@ -50,9 +81,16 @@ MonoBehaviour:
     haste: 0
     armor: 50
     defaultSkills: c905d901c605d901
+    iconFileName: Valtoria Sprite
   - id: 22020401
     name: Phantasmaraud
-    fullName: Phantasmaraud, the Unbridled Specters
+    fullName: Phantasmaraud
+    subName: the Unbridled Specters
+    backgroundNarrative: The Reckless Phantoms are a pack of spector soldiers who
+      embody the spirit of recklessness. They were once brave warriors who threw
+      caution to the wind, charging into battle with no regard for their own safety.
+      In death, their souls were bound to the battlefield, forever cursed to relive
+      their final, reckless moments.
     defaultDamage: 1
     power: 100
     health: 200
@@ -62,9 +100,15 @@ MonoBehaviour:
     haste: 0
     armor: 50
     defaultSkills: c905d901c605d901
+    iconFileName: Phantasmaraud Sprite
   - id: 22020601
     name: Timorus Arcanis
-    fullName: Timorus Arcanis, the Cowardly Spellweaver
+    fullName: Timorus Arcanis
+    subName: the Cowardly Spellweaver
+    backgroundNarrative: The Craven Conjurer is an undead emperal wizard who epitomizes
+      the essence of cowardice. Once a powerful and influential figure in his mortal
+      life, this emperor relied on deceit and manipulation to maintain his power,
+      ultimately turning to dark magic to escape the consequences of his actions.
     defaultDamage: 1
     power: 100
     health: 200
@@ -74,9 +118,16 @@ MonoBehaviour:
     haste: 0
     armor: 50
     defaultSkills: c905d901c605d901
+    iconFileName: Timorus Arcanis Sprite
   - id: 22020501
     name: General Gallant
-    fullName: General Gallant
+    fullName: Gallant
+    subName: General
+    backgroundNarrative: The Gallant is a legendary general who embodies the true
+      spirit of valor. Renowned for his bravery, strength, and unwavering loyalty,
+      this fearless leader inspired countless soldiers and led his army to numerous
+      victories. Even in the face of insurmountable odds, his courage never wavered,
+      and he fought until his dying breath.
     defaultDamage: 1
     power: 100
     health: 200
@@ -86,9 +137,16 @@ MonoBehaviour:
     haste: 0
     armor: 50
     defaultSkills: c905d901c605d901
+    iconFileName: General Gallant Sprite
   - id: 22030701
     name: Vortex
-    fullName: Vortex, the Vinion Overlord
+    fullName: Vortex
+    subName: the Vinion Overlord
+    backgroundNarrative: Vortex, the Vinion Overlord, embodies the theme of Obsession
+      within the realm of Cunning. As the leader of the Vinions, Vortex commands
+      a quartet of mighty Vinions, each armed with an array of devastating weaponry.
+      These four elite Vinions act in unison, their movements perfectly synchronized,
+      allowing them to execute complex and deadly strategies against their foes.
     defaultDamage: 1
     power: 100
     health: 200
@@ -98,9 +156,16 @@ MonoBehaviour:
     haste: 0
     armor: 50
     defaultSkills: c905d901c605d901
+    iconFileName: Vortex Sprite
   - id: 22030901
     name: Vex
-    fullName: Vex, the Vinion Tide
+    fullName: Vex
+    subName: Vinion Tide
+    backgroundNarrative: Swarmlord Vex, the Vinion Tide, represents the theme of
+      Rash within the realm of Cunning. As the master of countless Vinions, Vex commands
+      a seemingly endless swarm of these small, agile creatures. This massive horde
+      moves as a single entity, engulfing everything in its path, and leaving destruction
+      in its wake.
     defaultDamage: 1
     power: 100
     health: 200
@@ -110,9 +175,16 @@ MonoBehaviour:
     haste: 0
     armor: 50
     defaultSkills: c905d901c605d901
+    iconFileName: Vex Sprite
   - id: 22030801
     name: Vazrith
-    fullName: Vazrith, the Vinion Mastermind
+    fullName: Vazrith
+    subName: the Vinion Mastermind
+    backgroundNarrative: Shadowseer Vazrith, the Vinion Mastermind, is the embodiment
+      of Cunning within the realm of Vinions. Vazrith is a single, massive Vinion,
+      whose body is composed of countless smaller Vinions fused together. This formidable
+      creature possesses the ability to spawn smaller Vinions at will, commanding
+      them with its superior intellect and strategic genius.
     defaultDamage: 1
     power: 100
     health: 200
@@ -122,9 +194,16 @@ MonoBehaviour:
     haste: 0
     armor: 50
     defaultSkills: c905d901c605d901
+    iconFileName: Vazrith Sprite
   - id: 22041001
     name: Isolde
-    fullName: Isolde, Shadow Weaver
+    fullName: Isolde
+    subName: Shadow Weaver
+    backgroundNarrative: Dreamweaver Isolde is a Reverie-themed Vilewhisper boss,
+      embodying the essence of dreams, illusions, and the subconscious. She appears
+      as a stunningly beautiful woman with flowing, silvery hair and eyes that seem
+      to contain an entire universe within them. Her presence is both captivating
+      and mysterious, drawing in those who find themselves lost in her gaze.
     defaultDamage: 1
     power: 100
     health: 200
@@ -134,9 +213,16 @@ MonoBehaviour:
     haste: 0
     armor: 50
     defaultSkills: c905d901c605d901
+    iconFileName: Isolde Sprite
   - id: 22041201
     name: Fracturemancer
-    fullName: Fracturemancer, Shattercrafter
+    fullName: Fracturemancer
+    subName: Shattercrafter
+    backgroundNarrative: Shattercrafter is a grotesque and twisted Vilewhisper boss
+      that appears as a fusion of shattered glass and malformed flesh. It moves with
+      an unnerving grace, its razor-sharp edges glinting menacingly in the dim light.
+      The creature thrives in environments where conformity and order are paramount,
+      causing chaos and destruction in its wake.
     defaultDamage: 1
     power: 100
     health: 200
@@ -146,9 +232,17 @@ MonoBehaviour:
     haste: 0
     armor: 50
     defaultSkills: c905d901c605d901
+    iconFileName: Fracturemancer Sprite
   - id: 22041101
     name: Painbrush
     fullName: Painbrush
+    subName: blood Drawer
+    backgroundNarrative: Painbrush is a grotesque and twisted Vilewhisper boss that
+      has been tainted by the darkest aspects of creativity. Its body resembles a
+      humanoid figure, but its arms and hands have transformed into a myriad of nightmarish
+      artistic tools, such as serrated brushes and blades. Its skin appears to be
+      made of dark, ink-like substance that constantly drips and flows, creating
+      a sense of unease and terror.
     defaultDamage: 1
     power: 100
     health: 200
@@ -158,9 +252,21 @@ MonoBehaviour:
     haste: 0
     armor: 50
     defaultSkills: c905d901c605d901
+    iconFileName: Painbrush Sprite
   - id: 22051301
     name: Eye of Hubris
-    fullName: Eye of Hubris, the Haughty Stare
+    fullName: Eye of Hubris
+    subName: the Haughty Stare
+    backgroundNarrative: The Eye of Hubris is a grotesque, spider-like creature,
+      a horrifying amalgamation of Visieyes and an enormous arachnid host. Its body
+      is covered in countless glowing eyes, each exhibiting a disturbing sense of
+      self-importance and arrogance. The creature skitters across the battlefield,
+      using its multitude of eyes to assess its surroundings and predict its enemies'
+      movements with unnerving precision. It spins shadowy webs to entrap its foes,
+      and its multiple eyes fire focused beams of dark energy, striking down those
+      who dare challenge its perceived superiority. The Eye of Hubris' overconfidence
+      is ultimately its weakness, as it tends to underestimate its opponents, leaving
+      openings for a well-prepared counterattack.
     defaultDamage: 1
     power: 100
     health: 200
@@ -170,9 +276,21 @@ MonoBehaviour:
     haste: 0
     armor: 50
     defaultSkills: c905d901c605d901
+    iconFileName: Eye of Hubris Sprite
   - id: 22051501
     name: Destinstringer
-    fullName: Destinstringer, the Weaver of Inevitability
+    fullName: Destinstringer
+    subName: the Weaver of Inevitability
+    backgroundNarrative: The Puppeteer of Fates is a sinister octopus-like creature,
+      born from the fusion of Visieyes and a massive cephalopod host. This vilespawn
+      possesses a multitude of tentacles, each ending in a cluster of malevolent
+      eyes. Its eyes are known to possess the power to control the minds of the weak-willed,
+      turning them into unwitting pawns in its malicious schemes. The Puppeteer of
+      Fates lurks in the darkest depths, orchestrating events from the shadows and
+      manipulating its victims like puppets on strings. Its weakness lies in its
+      reliance on its mind-controlled minions; if they are freed from its influence,
+      the Puppeteer of Fates becomes significantly more vulnerable and easier to
+      defeat.
     defaultDamage: 1
     power: 100
     health: 200
@@ -182,9 +300,22 @@ MonoBehaviour:
     haste: 0
     armor: 50
     defaultSkills: c905d901c605d901
+    iconFileName: Destinstringer Sprite
   - id: 22051401
     name: Luxspherion
-    fullName: Luxspherion, the Radiant Gleam
+    fullName: Luxspherion
+    subName: the Radiant Gleam
+    backgroundNarrative: The Orb of Illumination is the epitome of Wisdom among the
+      Visieyes vilespawn. A massive, perfect sphere composed entirely of countless
+      glowing eyes, this formidable creature hovers ominously above the ground, emitting
+      a captivating aura of knowledge and enlightenment. Each eye serves as a window
+      into the vast depths of wisdom contained within the Orb, and it uses this knowledge
+      to outwit and outmaneuver its adversaries. The Orb of Illumination projects
+      powerful beams of blinding light from its myriad eyes, overwhelming its enemies
+      with a relentless barrage of dazzling energy. Its weakness is its need to constantly
+      gather information; if its enemies can find a way to obscure their actions
+      and intentions, they can momentarily disorient the Orb, creating an opportunity
+      to strike.
     defaultDamage: 1
     power: 100
     health: 200
@@ -194,9 +325,15 @@ MonoBehaviour:
     haste: 0
     armor: 50
     defaultSkills: c905d901c605d901
+    iconFileName: Luxspherion Sprite
   - id: 22061601
     name: Dr Ravencroft
-    fullName: Dr. Ravencroft the Ravenous
+    fullName: Dr. Ravencroft
+    subName: the Ravenous
+    backgroundNarrative: A towering figure cloaked in dark, tattered robes, wearing
+      a crow-faced mask. Dr. Ravencroft the Ravenous wields a twisted, rune-inscribed
+      staff that emanates a malevolent energy, infecting those who come too close
+      with insatiable hunger and uncontrollable cravings.
     defaultDamage: 1
     power: 100
     health: 200
@@ -206,9 +343,15 @@ MonoBehaviour:
     haste: 0
     armor: 50
     defaultSkills: c905d901c605d901
+    iconFileName: Dr Ravencroft Sprite
   - id: 22061801
     name: Mortimus
-    fullName: Mortimus the Indifferent
+    fullName: Mortimus
+    subName: the Indifferent
+    backgroundNarrative: A gaunt, pale figure garbed in a tattered shroud, Mortimus
+      the Indifferent commands an army of the undead. With a wave of his bony hand,
+      he can raise fallen soldiers to do his bidding or sap the will to fight from
+      the living, turning them into apathetic husks.
     defaultDamage: 1
     power: 100
     health: 200
@@ -218,9 +361,16 @@ MonoBehaviour:
     haste: 0
     armor: 50
     defaultSkills: c905d901c605d901
+    iconFileName: Mortimus Sprite
   - id: 22061701
     name: Lady Serenavaine
-    fullName: Lady Serenavaine the Deceptive
+    fullName: Lady Serenavaine
+    subName: the Deceptive
+    backgroundNarrative: A captivatingly beautiful and elegant vampire, Lady Serenavaine
+      the Deceptive exudes an aura of benevolence that lures in unsuspecting victims.
+      Her velvet voice and graceful demeanor mask her true intentions, as she drains
+      the life force of those who fall under her spell, all the while convincing
+      them they are receiving a gift.
     defaultDamage: 1
     power: 100
     health: 200
@@ -230,3 +380,4 @@ MonoBehaviour:
     haste: 0
     armor: 50
     defaultSkills: c905d901c605d901
+    iconFileName: Lady Serenavaine Sprite

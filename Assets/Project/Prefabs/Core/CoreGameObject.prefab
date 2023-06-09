@@ -348,7 +348,9 @@ Canvas:
   m_OverrideSorting: 0
   m_OverridePixelPerfect: 0
   m_SortingBucketNormalizedSize: 0
+  m_VertexColorAlwaysGammaSpace: 0
   m_AdditionalShaderChannelsFlag: 25
+  m_UpdateRectTransformForStandalone: 0
   m_SortingLayerID: 0
   m_SortingOrder: 1
   m_TargetDisplay: 0
@@ -706,6 +708,7 @@ MonoBehaviour:
   equipmentSpriteData: {fileID: 11400000, guid: 3cd7c6de439171b44add7428acdf70a4, type: 2}
   spellSpriteData: {fileID: 11400000, guid: da9eb427853c5994e8929573f1bc2e4d, type: 2}
   materialSpriteData: {fileID: 11400000, guid: 467221ced1c2ec14d9bb26f6bcbbd81b, type: 2}
+  villainSpriteData: {fileID: 11400000, guid: 115eebfaccbafcc47b875c1646e5d80c, type: 2}
   idCodePath: Assets/Project/Scripts/_Core/_Protocol/_Enum
   dataScriptPath: Assets/Project/Scripts/_Core/Databases/SheetData
   dataObjectPath: Assets/Project/Data/SpreadSheet
@@ -714,6 +717,7 @@ PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
+    serializedVersion: 3
     m_TransformParent: {fileID: 2714927515206354961}
     m_Modifications:
     - target: {fileID: 8537629438182176250, guid: c1d278458835a2244b7829638480a896, type: 3}
@@ -765,6 +769,9 @@ PrefabInstance:
       value: Audio
       objectReference: {fileID: 0}
     m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c1d278458835a2244b7829638480a896, type: 3}
 --- !u!4 &5859175841367211944 stripped
 Transform:
@@ -787,6 +794,7 @@ PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
+    serializedVersion: 3
     m_TransformParent: {fileID: 2714927515206354961}
     m_Modifications:
     - target: {fileID: 4280993930481250890, guid: e6f3e228809f51f418fa25d4fa063293, type: 3}
@@ -838,6 +846,9 @@ PrefabInstance:
       value: Input
       objectReference: {fileID: 0}
     m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e6f3e228809f51f418fa25d4fa063293, type: 3}
 --- !u!114 &985764908713922730 stripped
 MonoBehaviour:

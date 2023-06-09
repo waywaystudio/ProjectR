@@ -1,26 +1,24 @@
-using Lobby.UI;
-using Lobby.UI.Forge;
 using UnityEngine;
 
 namespace Lobby
 {
+    using UI;
+    
     public class LobbyUIDirector : MonoBehaviour, IEditable
     {
         [SerializeField] private GameObject serializePanel;
         [SerializeField] private GameObject forgePanel;
-        
-        // SerializeManager
-        // BossSelectManager (MapManager)
+        [SerializeField] private GameObject refineryPanel;
+        [SerializeField] private GameObject worldMapPanel;
+        [SerializeField] private SaveLoadUI saveLoad;
         [SerializeField] private ForgeUI forge;
+        [SerializeField] private WorldMapUI worldMap;
 
+        public SaveLoadUI SaveLoadUI => saveLoad;
         public ForgeUI Forge => forge;
+        // public RefineryUI
+        public WorldMapUI WorldMap => worldMap;
 
-
-        public void Initialize()
-        {
-            // forge.Initialize();
-        }
-        
 
         public void DeActivePanels()
         {
@@ -28,18 +26,24 @@ namespace Lobby
             forgePanel.SetActive(false);
         }
 
-        public void ToggleSerializePanel() => TogglePanel(serializePanel);
+        public void ToggleSaveLoadPanel() => TogglePanel(serializePanel);
         public void ToggleForgePanel() => TogglePanel(forgePanel);
+        public void ToggleRefineryPanel() => TogglePanel(refineryPanel);
+        public void ToggleWorldMapPanel() => TogglePanel(worldMapPanel);
         
-        public void TogglePanel(GameObject panel) { panel.SetActive(!panel.activeSelf); }
+        public static void TogglePanel(GameObject panel) { panel.SetActive(!panel.activeSelf); }
 
 #if UNITY_EDITOR
         public void EditorSetUp()
         {
-            serializePanel =   transform.Find("Serialize").gameObject;
-            forgePanel     =   transform.Find("Forge").gameObject;
+            serializePanel = transform.Find("Save&LoadManager").gameObject;
+            forgePanel     = transform.Find("Forge").gameObject;
+            refineryPanel  = transform.Find("Refinery").gameObject;
+            worldMapPanel  = transform.Find("WorldMap").gameObject;
 
-            forge     ??= GetComponentInChildren<ForgeUI>();
+            saveLoad ??= GetComponentInChildren<SaveLoadUI>();
+            forge    ??= GetComponentInChildren<ForgeUI>();
+            worldMap ??= GetComponentInChildren<WorldMapUI>();
         }
 #endif
     }

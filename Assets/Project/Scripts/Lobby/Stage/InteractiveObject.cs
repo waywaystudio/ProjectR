@@ -29,7 +29,7 @@ namespace Lobby.Stage
             {
                 // Remove Event to Interaction;
                 LobbyDirector.Input.InteractAction = null;
-                LobbyDirector.UI.DeActivePanels();
+                LobbyDirector.DeActivePanels();
                 balloon.gameObject.SetActive(false);
             }
         }

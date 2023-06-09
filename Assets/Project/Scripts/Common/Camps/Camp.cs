@@ -24,6 +24,7 @@ namespace Common
         public static VenturerData GetData(DataIndex type) => VenturerTable[type];
         public static IEquipment GetVenturerWeapon(VenturerType adventurer) => GetData(adventurer).GetWeapon();
         public static IEquipment GetVenturerArmor(VenturerType adventurer) => GetData(adventurer).GetAmor();
+        public static bool GetVenturerPrefab(VenturerType type, out GameObject prefab) => Database.CombatClassPrefabData.GetObject((DataIndex)type, out prefab);
 
         /*
          * Inventory
@@ -34,6 +35,19 @@ namespace Common
         public static void AddGrowMaterials(IEnumerable<GrowIngredient> ingredients) 
             => ingredients.ForEach(ingredient => AddGrowMaterial(ingredient.Type, ingredient.Count));
         public static void ConsumeGrowMaterial(GrowMaterialType type, int count) => GrowMaterialInventory.Consume(type, count);
+        
+        /*
+         * Stage Initializer
+         */
+        public static List<VenturerType> Challengers { get; set; } = new ()
+        {
+            VenturerType.Knight,
+            VenturerType.Warrior,
+            VenturerType.Rogue,
+            VenturerType.Ranger,
+            VenturerType.Mage,
+            VenturerType.Priest,
+        };
 
 
         public void Save()

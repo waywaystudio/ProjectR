@@ -16,6 +16,7 @@ namespace Character.Villains
         public override DataIndex DataIndex => data.DataIndex;
         public override CharacterMask CombatClass => data.CharacterMask;
         public override string Name => data.Name;
+        public override CharacterData Data => data;
 
         public BossPhase CurrentPhase { get; set; }
         
@@ -40,7 +41,11 @@ namespace Character.Villains
         {
             base.EditorSetUp();
 
+            Debug.Log($"{name}Data");
+            Finder.TryGetObject($"{name}Data", out data);
+            
             phaseTable ??= GetComponent<VillainPhaseTable>();
+            combatStatus.EditorSetUp();
         }
 #endif
     }

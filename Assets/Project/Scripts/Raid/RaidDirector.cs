@@ -27,11 +27,14 @@ namespace Raid
         public static void ChangeFocusAdventurer(VenturerBehaviour ab) => Instance.adventurerFocusEvent.Invoke(ab);
 
         private VenturerBehaviour focusCharacter;
-        
 
-        public static void Initialize(List<DataIndex> adventurerEntry)
+        
+        /*
+         * Raid Start
+         */ 
+        public static void Initialize()
         {
-            CastingDirector.Initialize(adventurerEntry);
+            CastingDirector.Initialize();
             UIDirector.Initialize();
             
             Instance.focusCharacter = CastingDirector.VenturerList[0];

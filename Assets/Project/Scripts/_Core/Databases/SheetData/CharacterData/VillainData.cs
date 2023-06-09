@@ -17,6 +17,8 @@ namespace Databases.SheetData.CharacterData
 			[SerializeField] private Int32 id;
 			[SerializeField] private String name;
 			[SerializeField] private String fullName;
+			[SerializeField] private String subName;
+			[SerializeField] private String backgroundNarrative;
 			[SerializeField] private Single defaultDamage;
 			[SerializeField] private Single power;
 			[SerializeField] private Single health;
@@ -26,10 +28,13 @@ namespace Databases.SheetData.CharacterData
 			[SerializeField] private Single haste;
 			[SerializeField] private Single armor;
 			[SerializeField] private List<Int32> defaultSkills;
+			[SerializeField] private String iconFileName;
 
 			public Int32 ID => id;
 			public String Name => name;
 			public String FullName => fullName;
+			public String SubName => subName;
+			public String BackgroundNarrative => backgroundNarrative;
 			public Single DefaultDamage => defaultDamage;
 			public Single Power => power;
 			public Single Health => health;
@@ -39,6 +44,7 @@ namespace Databases.SheetData.CharacterData
 			public Single Haste => haste;
 			public Single Armor => armor;
 			public List<Int32> DefaultSkills => defaultSkills;
+			public String IconFileName => iconFileName;
 
         }
         

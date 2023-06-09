@@ -1,0 +1,53 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 035db33658f20cb46bdd3d3b90e522ac, type: 3}
+  m_Name: VillainSpriteData
+  m_EditorClassIdentifier: 
+  searchingTargetPath: Assets/Project/Graphics/Icon/Villains
+  dataObjectParamName: IconFileName
+  resourceList:
+  - DataIndex: 22010101
+    Resource: {fileID: 21300000, guid: 22c2a72b70c8f9e40b2fd0ec430ad95b, type: 3}
+  - DataIndex: 22010301
+    Resource: {fileID: 21300000, guid: f14b2bf1675a55242bdddece8d1f1719, type: 3}
+  - DataIndex: 22010201
+    Resource: {fileID: 21300000, guid: 5785258f0c6d2324c9bd1f59bc725eca, type: 3}
+  - DataIndex: 22020401
+    Resource: {fileID: 21300000, guid: aa38f288b6c1108439182e8f9eaac3d0, type: 3}
+  - DataIndex: 22020601
+    Resource: {fileID: 21300000, guid: cc42c4ab36fd1a94a94c8098631c0c08, type: 3}
+  - DataIndex: 22020501
+    Resource: {fileID: 21300000, guid: 4f0e86baf46d5b440b7915974edc8376, type: 3}
+  - DataIndex: 22030701
+    Resource: {fileID: 21300000, guid: ca5f2d405b91da046bfac0f3481b6e70, type: 3}
+  - DataIndex: 22030901
+    Resource: {fileID: 21300000, guid: 0ecbc690845d97340acf47acf0effc0a, type: 3}
+  - DataIndex: 22030801
+    Resource: {fileID: 21300000, guid: 062d2ee606166d946b33aa98d35bb853, type: 3}
+  - DataIndex: 22041001
+    Resource: {fileID: 21300000, guid: d89853c420de67e4bbfbc8ba3a9e1545, type: 3}
+  - DataIndex: 22041201
+    Resource: {fileID: 21300000, guid: fbd442829b287d94786d6e2fe6712c88, type: 3}
+  - DataIndex: 22041101
+    Resource: {fileID: 21300000, guid: a80296150a244d9408c65bd59b558117, type: 3}
+  - DataIndex: 22051301
+    Resource: {fileID: 21300000, guid: bd2d2c5fdb07bc34f9e1abe696bb07a1, type: 3}
+  - DataIndex: 22051501
+    Resource: {fileID: 21300000, guid: 26afbe246b5ea6642be7bbb1ec0441ba, type: 3}
+  - DataIndex: 22051401
+    Resource: {fileID: 21300000, guid: eabc460cecdd2454784caf615b49c398, type: 3}
+  - DataIndex: 22061601
+    Resource: {fileID: 21300000, guid: bee7e4bf4baab3546826b91be678d69d, type: 3}
+  - DataIndex: 22061801
+    Resource: {fileID: 21300000, guid: 7772e748f8da2fe4fbb47efe9a954238, type: 3}
+  - DataIndex: 22061701
+    Resource: {fileID: 21300000, guid: 821f77df46132ab46a52d74ea37d69fe, type: 3}

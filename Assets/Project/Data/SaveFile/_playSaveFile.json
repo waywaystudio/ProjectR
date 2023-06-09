@@ -1,7 +1,79 @@
 {
+	"Vortex.KillCount" : {
+		"__type" : "int",
+		"value" : 0
+	},
+	"Vex.KillCount" : {
+		"__type" : "int",
+		"value" : 0
+	},
+	"Vazrith.KillCount" : {
+		"__type" : "int",
+		"value" : 0
+	},
+	"Valtoria.KillCount" : {
+		"__type" : "int",
+		"value" : 0
+	},
+	"TimorusArcanis.KillCount" : {
+		"__type" : "int",
+		"value" : 0
+	},
+	"Phantasmaraud.KillCount" : {
+		"__type" : "int",
+		"value" : 0
+	},
+	"Painbrush.KillCount" : {
+		"__type" : "int",
+		"value" : 0
+	},
+	"Mortimus.KillCount" : {
+		"__type" : "int",
+		"value" : 0
+	},
+	"Maelrift.KillCount" : {
+		"__type" : "int",
+		"value" : 0
+	},
+	"Luxspherion.KillCount" : {
+		"__type" : "int",
+		"value" : 0
+	},
+	"LoadStonehelm.KillCount" : {
+		"__type" : "int",
+		"value" : 0
+	},
+	"LadySerenavaine.KillCount" : {
+		"__type" : "int",
+		"value" : 0
+	},
+	"Isolde.KillCount" : {
+		"__type" : "int",
+		"value" : 0
+	},
+	"GeneralGallant.KillCount" : {
+		"__type" : "int",
+		"value" : 0
+	},
+	"Fracturemancer.KillCount" : {
+		"__type" : "int",
+		"value" : 0
+	},
+	"EyeofHubris.KillCount" : {
+		"__type" : "int",
+		"value" : 0
+	},
+	"DrRavencroft.KillCount" : {
+		"__type" : "int",
+		"value" : 0
+	},
+	"Destinstringer.KillCount" : {
+		"__type" : "int",
+		"value" : 0
+	},
 	"GrowMaterialSerializeKey" : {
 		"__type" : "System.Collections.Generic.Dictionary`2[[Common.GrowMaterialType, ProjectR.Common, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null],[System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]],mscorlib",
-		"value" : {52000001:500,52000102:355,52000303:355
+		"value" : {
 		}
 	},
 	"Warrior.Top" : {
@@ -78,14 +150,14 @@
 		"__type" : "Common.Equipments.ArmorEntity,ProjectR.Common",
 		"value" : {
 			"DataIndex" : 43010101,
-			"Level" : 6
+			"Level" : 1
 		}
 	},
 	"Knight.Weapon" : {
 		"__type" : "Common.Equipments.WeaponEntity,ProjectR.Common",
 		"value" : {
 			"DataIndex" : 41010101,
-			"Level" : 6
+			"Level" : 1
 		}
 	},
 	"_FromPlaySaveFile" : {
@@ -96,7 +168,7 @@
 		"__type" : "Serialization.SaveInfo,ProjectR.Core",
 		"value" : {
 			"filename" : "_playSaveFile",
-			"saveTime" : "2023.06.08.23.24.21"
+			"saveTime" : "2023.06.10.02.20.33"
 		}
 	}
 }

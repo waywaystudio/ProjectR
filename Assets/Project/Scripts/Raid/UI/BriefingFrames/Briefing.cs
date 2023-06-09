@@ -10,15 +10,8 @@ namespace Raid.UI.BriefingFrames
 
         public void LetsStart()
         {
-            var adventurerEntry = new List<DataIndex>();
+            RaidDirector.Initialize();
             
-            adventurerCardList.ForEach(card =>
-            {
-                if (card.TargetAdventurerIndex != DataIndex.None)
-                    adventurerEntry.Add(card.TargetAdventurerIndex);
-            });
-
-            RaidDirector.Initialize(adventurerEntry);
             gameObject.SetActive(false);
         }
 

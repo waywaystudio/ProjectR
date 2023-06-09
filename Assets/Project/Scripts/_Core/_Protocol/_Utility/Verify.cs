@@ -21,7 +21,7 @@ public static class Verify
         if (!showLog) return false;
         
         Debug.LogError(messageWhenNull == "" 
-            ? "Value is Null." 
+            ? $"{typeof(T).FullName} Value is Null." 
             : messageWhenNull);
         
         return false;
@@ -81,5 +81,17 @@ public static class Verify
             : message);
 
         return true;
+    }
+    
+    public static bool IsTrue(bool condition, string messageWhenNull = "", bool showLog = true)
+    {
+        if (condition) return true;
+        if (!showLog) return false;
+        
+        Debug.LogError(messageWhenNull == "" 
+                           ? "Is False." 
+                           : messageWhenNull);
+        
+        return false;
     }
 }

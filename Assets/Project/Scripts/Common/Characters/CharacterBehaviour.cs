@@ -26,10 +26,11 @@ namespace Common.Characters
 
         /*
          * Common Attribute
-         */ 
+         */
         public virtual DataIndex DataIndex => DataIndex.None;
         public virtual CharacterMask CombatClass => CharacterMask.None;
         public virtual string Name => "characterName";
+        public virtual CharacterData Data { get; set; }
         public Vector3 Position => transform.position;
         public SearchingSystem Searching => searching;
         public CollidingSystem Colliding => colliding;

@@ -17,49 +17,45 @@ namespace Raid
         public VillainBehaviour Villain { get; set; }
         
 
-        public void Initialize(List<DataIndex> venturerEntry)
+        public void Initialize()
         {
-            if (venturerEntry.IsNullOrEmpty())
-            {
-                Debug.Log($"Adventurer Not Existed. HasEntry ? : {!venturerEntry.IsNullOrEmpty()}");
-                return;
-            }
-            
-            if (venturerEntry.Count > 6)
-            {
-                Debug.Log($"Adventurer Count Error. EntryCount : {venturerEntry.Count}");
-                return;
-            }
+            var challengers = Camp.Challengers;
+            var villain = Den.StageVillain;
 
-            SpawnVenturer(venturerEntry);
-            SpawnVillain(villainCode);
+            if (!Verify.IsNotNull(challengers) || 
+                !Verify.IsTrue(challengers.Count < 7) ||
+                !Verify.IsNotDefault(villain)) return;
+
+            SpawnVenturer(challengers);
+            SpawnVillain(villain);
         }
 
 
-        private void SpawnVenturer(IEnumerable<DataIndex> venturerEntry)
+        private void SpawnVenturer(IEnumerable<VenturerType> venturerEntry)
         {
             venturerEntry.ForEach((adventurerIndex, index) =>
             {
-                if (!Database.CombatClassPrefabData.Get<VenturerBehaviour>(adventurerIndex, out var adventurerPrefab)) return;
-                
-                var profitPosition   = RaidDirector.StageDirector.GetAdventurerPosition(index).position;
-                var adventurer = Instantiate(adventurerPrefab, profitPosition, Quaternion.identity,
-                                             venturerHierarchy);
+                if (!Camp.GetVenturerPrefab(adventurerIndex, out var adventurerPrefab)) return;
 
-                adventurer.gameObject.SetActive(true);
-                VenturerList.Add(adventurer);
+                var profitPosition   = RaidDirector.StageDirector.GetAdventurerPosition(index).position;
+                var adventurer = Instantiate(adventurerPrefab, profitPosition, Quaternion.identity, venturerHierarchy);
+                adventurer.SetActive(true);
+
+                if (!adventurer.TryGetComponent(out VenturerBehaviour vb)) return;
+
+                VenturerList.Add(vb);
             });
             
             VenturerList.ForEach(adventurer => adventurer.ForceInitialize());
         }
 
-        private void SpawnVillain(DataIndex villainCode)
+        private void SpawnVillain(VillainType villainIndex)
         {
-            if (!Database.BossPrefabData.GetObject(villainCode, out var villainPrefab)) return;
+            if (!Den.GetVillainPrefab(villainIndex, out var villainPrefab)) return;
 
             var profitPosition   = RaidDirector.StageDirector.VillainSpawnPosition.position;
             var villainObject = Instantiate(villainPrefab, profitPosition, Quaternion.identity, villainHierarchy);
-            var villainData = Den.GetVillainData(villainCode);
+            var villainData = Den.GetVillainData(villainIndex);
             
             villainObject.SetActive(true);
 
@@ -67,10 +63,10 @@ namespace Raid
 
             Villain = villainBehaviour;
             Villain.ForceInitialize();
-            Villain.DeadBehaviour.OnCompleted.Register("DropItems", () => GetReward(villainCode));
+            Villain.DeadBehaviour.OnCompleted.Register("DropItems", () => GetReward(villainIndex));
         }
         
-        private void GetReward(DataIndex villainCode)
+        private void GetReward(VillainType villainCode)
         {
             var data = Den.GetVillainData(villainCode);
             

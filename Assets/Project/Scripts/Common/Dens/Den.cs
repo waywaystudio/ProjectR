@@ -11,9 +11,12 @@ namespace Common
     {
         [SerializeField] private Table<DataIndex, VillainData> villainTable = new();
 
+        public static VillainType StageVillain { get; set; } = VillainType.LoadStonehelm;
         private static Table<DataIndex, VillainData> VillainTable => Instance.villainTable;
 
         public static VillainData GetVillainData(DataIndex dataIndex) => VillainTable[dataIndex];
+        public static VillainData GetVillainData(VillainType villainIndex) => VillainTable[(DataIndex)villainIndex];
+        public static bool GetVillainPrefab(VillainType type, out GameObject prefab) => Database.BossPrefabData.GetObject((DataIndex)type, out prefab);
 
         public void Save() 
         {

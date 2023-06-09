@@ -24,6 +24,5 @@ namespace Common
         DrRavencroft = DataIndex.DrRavencroft, // 22061601
         Mortimus = DataIndex.Mortimus, // 22061801
         LadySerenavaine = DataIndex.LadySerenavaine, // 22061701
-    
     }
 }

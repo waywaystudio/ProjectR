@@ -273,16 +273,16 @@ public enum DataIndex
 
 	/* ViceMaterialData */
 	ShardOfVacillation = 51010101,
-	ShardOfCowardice = 51010104,
-	ShardOfRash = 51020107,
-	ShardOfConventionality = 51020110,
-	ShardOfIgnorance = 51030113,
-	ShardOfApathy = 51030116,
-	StoneOfObstinacy = 51040303,
-	StoneOfRecklessness = 51040306,
-	StoneOfObsession = 51050309,
-	StoneOfReverie = 51050312,
-	StoneOfArrogance = 51060315,
+	ShardOfCowardice = 51020104,
+	ShardOfRash = 51030107,
+	ShardOfConventionality = 51040110,
+	ShardOfIgnorance = 51050113,
+	ShardOfApathy = 51060116,
+	StoneOfObstinacy = 51010303,
+	StoneOfRecklessness = 51020306,
+	StoneOfObsession = 51030309,
+	StoneOfReverie = 51040312,
+	StoneOfArrogance = 51050315,
 	StoneOfVoracity = 51060318,
 
 	/* GrowMaterialData */

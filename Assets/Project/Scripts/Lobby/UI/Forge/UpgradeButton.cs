@@ -10,8 +10,8 @@ namespace Lobby.UI.Forge
         [SerializeField] private EquipmentSlotType type;
 
         private IEquipment TargetEquipment => type == EquipmentSlotType.Weapon
-            ? LobbyDirector.UI.Forge.VenturerWeapon()
-            : LobbyDirector.UI.Forge.VenturerArmor();
+            ? LobbyDirector.Forge.VenturerWeapon()
+            : LobbyDirector.Forge.VenturerArmor();
         private GrowMaterialType MaterialType =>
             type == EquipmentSlotType.Weapon
                 ? GrowMaterialType.ShardOfVicious

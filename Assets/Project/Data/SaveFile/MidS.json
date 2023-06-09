@@ -1,0 +1,174 @@
+{
+	"_FromPlaySaveFile" : {
+		"__type" : "string",
+		"value" : "Check"
+	},
+	"Destinstringer.KillCount" : {
+		"__type" : "int",
+		"value" : 0
+	},
+	"DrRavencroft.KillCount" : {
+		"__type" : "int",
+		"value" : 0
+	},
+	"EyeofHubris.KillCount" : {
+		"__type" : "int",
+		"value" : 0
+	},
+	"Fracturemancer.KillCount" : {
+		"__type" : "int",
+		"value" : 0
+	},
+	"GeneralGallant.KillCount" : {
+		"__type" : "int",
+		"value" : 0
+	},
+	"Isolde.KillCount" : {
+		"__type" : "int",
+		"value" : 0
+	},
+	"LadySerenavaine.KillCount" : {
+		"__type" : "int",
+		"value" : 0
+	},
+	"LoadStonehelm.KillCount" : {
+		"__type" : "int",
+		"value" : 0
+	},
+	"Luxspherion.KillCount" : {
+		"__type" : "int",
+		"value" : 0
+	},
+	"Maelrift.KillCount" : {
+		"__type" : "int",
+		"value" : 0
+	},
+	"Mortimus.KillCount" : {
+		"__type" : "int",
+		"value" : 0
+	},
+	"Painbrush.KillCount" : {
+		"__type" : "int",
+		"value" : 0
+	},
+	"Phantasmaraud.KillCount" : {
+		"__type" : "int",
+		"value" : 0
+	},
+	"TimorusArcanis.KillCount" : {
+		"__type" : "int",
+		"value" : 0
+	},
+	"Valtoria.KillCount" : {
+		"__type" : "int",
+		"value" : 0
+	},
+	"Vazrith.KillCount" : {
+		"__type" : "int",
+		"value" : 0
+	},
+	"Vex.KillCount" : {
+		"__type" : "int",
+		"value" : 0
+	},
+	"Vortex.KillCount" : {
+		"__type" : "int",
+		"value" : 0
+	},
+	"Knight.Weapon" : {
+		"__type" : "Common.Equipments.WeaponEntity,ProjectR.Common",
+		"value" : {
+			"DataIndex" : 41010101,
+			"Level" : 6
+		}
+	},
+	"Knight.Top" : {
+		"__type" : "Common.Equipments.ArmorEntity,ProjectR.Common",
+		"value" : {
+			"DataIndex" : 43010101,
+			"Level" : 6
+		}
+	},
+	"Mage.Weapon" : {
+		"__type" : "Common.Equipments.WeaponEntity,ProjectR.Common",
+		"value" : {
+			"DataIndex" : 41050113,
+			"Level" : 1
+		}
+	},
+	"Mage.Top" : {
+		"__type" : "Common.Equipments.ArmorEntity,ProjectR.Common",
+		"value" : {
+			"DataIndex" : 43050113,
+			"Level" : 1
+		}
+	},
+	"Priest.Weapon" : {
+		"__type" : "Common.Equipments.WeaponEntity,ProjectR.Common",
+		"value" : {
+			"DataIndex" : 41060116,
+			"Level" : 1
+		}
+	},
+	"Priest.Top" : {
+		"__type" : "Common.Equipments.ArmorEntity,ProjectR.Common",
+		"value" : {
+			"DataIndex" : 43060116,
+			"Level" : 1
+		}
+	},
+	"Ranger.Weapon" : {
+		"__type" : "Common.Equipments.WeaponEntity,ProjectR.Common",
+		"value" : {
+			"DataIndex" : 41040110,
+			"Level" : 1
+		}
+	},
+	"Ranger.Top" : {
+		"__type" : "Common.Equipments.ArmorEntity,ProjectR.Common",
+		"value" : {
+			"DataIndex" : 43040110,
+			"Level" : 1
+		}
+	},
+	"Rogue.Weapon" : {
+		"__type" : "Common.Equipments.WeaponEntity,ProjectR.Common",
+		"value" : {
+			"DataIndex" : 41030107,
+			"Level" : 6
+		}
+	},
+	"Rogue.Top" : {
+		"__type" : "Common.Equipments.ArmorEntity,ProjectR.Common",
+		"value" : {
+			"DataIndex" : 43030107,
+			"Level" : 6
+		}
+	},
+	"Warrior.Weapon" : {
+		"__type" : "Common.Equipments.WeaponEntity,ProjectR.Common",
+		"value" : {
+			"DataIndex" : 41020104,
+			"Level" : 1
+		}
+	},
+	"Warrior.Top" : {
+		"__type" : "Common.Equipments.ArmorEntity,ProjectR.Common",
+		"value" : {
+			"DataIndex" : 43020104,
+			"Level" : 1
+		}
+	},
+	"GrowMaterialSerializeKey" : {
+		"__type" : "System.Collections.Generic.Dictionary`2[[Common.GrowMaterialType, ProjectR.Common, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null],[System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]],mscorlib",
+		"value" : {52000001:950,52000102:613,52000303:611
+		}
+	},
+	"_SaveInfo" : {
+		"__type" : "Serialization.SaveInfo,ProjectR.Core",
+		"value" : {
+			"filename" : "MidS",
+			"saveTime" : "2023.06.09.21.25.35"
+		}
+	}
+}
