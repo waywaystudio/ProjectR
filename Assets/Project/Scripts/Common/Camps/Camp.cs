@@ -11,6 +11,7 @@ namespace Common
     
     public class Camp : MonoSingleton<Camp>, ISavable, IEditable
     {
+        [SerializeField] private List<VenturerType> challengers;
         [SerializeField] private Table<DataIndex, VenturerData> venturerTable = new();
 
         private readonly GrowMaterialInventory growMaterialInventory = new();
@@ -39,15 +40,7 @@ namespace Common
         /*
          * Stage Initializer
          */
-        public static List<VenturerType> Challengers { get; set; } = new ()
-        {
-            VenturerType.Knight,
-            VenturerType.Warrior,
-            VenturerType.Rogue,
-            VenturerType.Ranger,
-            VenturerType.Mage,
-            VenturerType.Priest,
-        };
+        public static List<VenturerType> Challengers => Instance.challengers;
 
 
         public void Save()
@@ -65,6 +58,16 @@ namespace Common
 #if UNITY_EDITOR
         public void EditorSetUp()
         {
+            challengers.Clear();
+            challengers.AddRange(new List<VenturerType>
+            {
+                VenturerType.Knight, 
+                VenturerType.Warrior, 
+                VenturerType.Rogue, 
+                VenturerType.Ranger, 
+                VenturerType.Mage, 
+                VenturerType.Priest
+            });
             Finder.TryGetObjectList<VenturerData>(out var venturerDataList);
             
             venturerTable.CreateTable(venturerDataList, data => data.DataIndex);

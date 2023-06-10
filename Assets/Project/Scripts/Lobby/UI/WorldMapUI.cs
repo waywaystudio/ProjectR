@@ -1,5 +1,4 @@
 using Common;
-using Common.Characters;
 using GameEvents;
 using UnityEngine;
 
@@ -8,7 +7,7 @@ namespace Lobby.UI
     public class WorldMapUI : MonoBehaviour, IEditable
     {
         [SerializeField] private GameEvent onFocusVillainUIChanged;
-        [SerializeField] private GameObject challengeGroup;
+        [SerializeField] private GameEvent onDifficultyChanged;
 
         public VillainType FocusVillain
         {
@@ -20,21 +19,31 @@ namespace Lobby.UI
             }
         }
 
-        public VillainData FocusVillainData => Den.GetVillainData(FocusVillain);
-
-        public void OnFocusVillainUIChanged()
+        public DifficultyType Difficulty
         {
-            if (!challengeGroup.activeSelf)
+            get => Den.Difficulty;
+            set
             {
-                challengeGroup.SetActive(true);
+                Den.Difficulty = value;
+                onDifficultyChanged.Invoke();
             }
+        }
+
+        public void NextDifficulty()
+        {
+            Difficulty = Difficulty.NextExceptNone();
+        }
+
+        public void PrevDifficulty()
+        {
+            Difficulty = Difficulty.PrevExceptNone();
         }
         
 
 #if UNITY_EDITOR
         public void EditorSetUp()
         {
-            challengeGroup = transform.Find("Contents").Find("ChallengeGroup").gameObject;
+            
         }
 #endif
     }

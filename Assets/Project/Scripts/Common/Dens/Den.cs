@@ -12,6 +12,8 @@ namespace Common
         [SerializeField] private Table<DataIndex, VillainData> villainTable = new();
 
         public static VillainType StageVillain { get; set; } = VillainType.LoadStonehelm;
+        public static DifficultyType Difficulty { get; set; } = DifficultyType.Normal;
+        public static int MythicLevel { get; set; } = 0;
         private static Table<DataIndex, VillainData> VillainTable => Instance.villainTable;
 
         public static VillainData GetVillainData(DataIndex dataIndex) => VillainTable[dataIndex];

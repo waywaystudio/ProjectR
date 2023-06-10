@@ -6,6 +6,5 @@ namespace Common
         Normal = 1,
         Hard = 2,
         Mythic = 3,
-        MythicPlus = 10,
     }
 }

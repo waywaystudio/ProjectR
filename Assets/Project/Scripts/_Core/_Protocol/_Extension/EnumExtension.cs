@@ -43,7 +43,7 @@ public static class EnumExtension
         }
     
         var prevIndex = Array.IndexOf(arr, source) - 1;
-        return prevIndex == 0 ? arr[^1] : arr[prevIndex];
+        return prevIndex <= 0 ? arr[^1] : arr[prevIndex];
     }
 
     public static T RandomEnum<T>(this T source) where T : Enum

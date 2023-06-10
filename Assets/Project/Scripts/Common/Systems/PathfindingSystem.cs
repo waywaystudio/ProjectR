@@ -8,7 +8,6 @@ namespace Common.Systems
     public class PathfindingSystem : MonoBehaviour
     {
         [SerializeField] private float moveSpeed;
-        [SerializeField] private float raycastThreshHold = 2f;
         [SerializeField] private float knockBackDuration = 1f;
         [SerializeField] private Transform rootTransform;
         [SerializeField] private Seeker agent;
@@ -21,7 +20,7 @@ namespace Common.Systems
         public bool CanMove { get => aiMove.canMove; set => aiMove.canMove = value; }
         public Vector3 Direction => rootTransform.forward;
 
-        private Vector3 rootPosition => rootTransform.position;
+        private Vector3 RootPosition => rootTransform.position;
 
 
         public void Move(Vector3 destination, Action callback)
@@ -35,7 +34,7 @@ namespace Common.Systems
                 aiMove.Callback += callback;
             }
 
-            agent.StartPath(rootPosition, destination);
+            agent.StartPath(RootPosition, destination);
         }
 
         public void RotateToTarget(Vector3 lookTarget)
@@ -53,67 +52,27 @@ namespace Common.Systems
         }
         
         // ------------------------------------------
-        public void Jump(Vector3 direction, float availableDistance, float jumpPower = 2.4f, float duration = 0.77f)
+        public void Jump(Vector3 direction, float distance, float jumpPower = 2.4f, float duration = 0.77f)
         {
-            var normalDirection = direction.normalized;
-            var actualDistance  = availableDistance;
-            
-            if (Physics.Raycast(rootPosition, normalDirection, out var hitInfo, availableDistance + 2f, environmentLayer))
-            {
-                actualDistance = hitInfo.distance - raycastThreshHold;
-            }
+            var jumpDestination = PathfindingUtility.GetReachableStraightPosition(RootPosition, direction, distance);
 
-            rootTransform.DOJump(rootPosition + normalDirection * actualDistance, jumpPower, 1, duration)
+            rootTransform.DOJump(jumpDestination, jumpPower, 1, duration)
                          .SetEase(Ease.InSine);
         }
-        
 
         public void Dash(Vector3 direction, float distance, Action callback)
         {
-            var normalDirection = direction.normalized;
-            var actualDistance = distance;
-            
-            if (Physics.Raycast(rootPosition, normalDirection, out var hitInfo, distance + 2f, environmentLayer))
-            {
-                actualDistance = hitInfo.distance - raycastThreshHold;
-            }
+            var dashDestination = PathfindingUtility.GetReachableStraightPosition(RootPosition, direction, distance);
 
-            rootTransform.DOMove(rootPosition + normalDirection * actualDistance, 0.15f).OnComplete(() => callback?.Invoke());
-        }
-
-        public void Teleport(Vector3 direction, float distance, Action callback)
-        {
-            var normalDirection   = direction.normalized;
-            var targetDestination = rootPosition + normalDirection * distance;
-
-            if (!PathfindingUtility.IsPathPossible(rootPosition, targetDestination))
-            {
-                if (Physics.Raycast(rootPosition, normalDirection, out var hitInfo, distance + 2f, environmentLayer))
-                {
-                    distance          = hitInfo.distance - raycastThreshHold;
-                    targetDestination = rootPosition     + normalDirection * distance;
-                }
-                else
-                {
-                    targetDestination = PathfindingUtility.GetNearestSafePathNode(rootTransform.position, targetDestination);
-                }
-            }
-
-            aiMove.Teleport(targetDestination);
-            callback?.Invoke();
+            rootTransform.DOMove(dashDestination, 0.15f).OnComplete(() => callback?.Invoke());
         }
 
         public void KnockBack(Vector3 from, float distance, Action callback)
         {
-            var knockBackDirection = (rootPosition - from).normalized;
-            var knockBackDestination = rootPosition + knockBackDirection * distance;
+            var knockBackDirection = RootPosition - from;
+            var knockBackDestination = PathfindingUtility.GetReachableStraightPosition(RootPosition, knockBackDirection, distance);
 
-            if (Physics.Raycast(rootPosition, knockBackDestination, out var hitInfo, distance, environmentLayer))
-            {
-                distance = hitInfo.distance - raycastThreshHold;
-            }
-
-            rootTransform.DOMove(rootPosition + knockBackDirection * distance, knockBackDuration)
+            rootTransform.DOMove(knockBackDestination, knockBackDuration)
                          .OnComplete(() => callback?.Invoke());
         }
 

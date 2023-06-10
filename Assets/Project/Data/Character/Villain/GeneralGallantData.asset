@@ -16,7 +16,7 @@ MonoBehaviour:
   mask: 536870912
   constEntity:
     classType: 536870912
-    characterName: General Gallant
+    characterName: Gallant
     defaultStatSpec:
       statList:
       - statType: 13010001
@@ -47,5 +47,12 @@ MonoBehaviour:
         statKey: ConstStatKey
         value: 7
     defaultSkillList: c905d901c605d901
+  fullName: Gallant
+  subName: General
+  description: The Gallant is a legendary general who embodies the true spirit of
+    valor. Renowned for his bravery, strength, and unwavering loyalty, this fearless
+    leader inspired countless soldiers and led his army to numerous victories. Even
+    in the face of insurmountable odds, his courage never wavered, and he fought
+    until his dying breath.
   representEthos: 12020205
   killCount: 0

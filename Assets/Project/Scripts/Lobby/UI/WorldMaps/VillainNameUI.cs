@@ -11,15 +11,13 @@ namespace Lobby.UI.WorldMaps
 
         public void OnFocusVillainUIChanged()
         {
-            // Not targeted
-            if (LobbyDirector.WorldMap.FocusVillain != VillainType.None)
-            {
-                var villain = LobbyDirector.WorldMap.FocusVillain;
-                var data = Den.GetVillainData(villain);
+            if (LobbyDirector.WorldMap.FocusVillain == VillainType.None) return;
+            
+            var villain = LobbyDirector.WorldMap.FocusVillain;
+            var data = Den.GetVillainData(villain);
 
-                titleTextMesh.text    = data.FullName;
-                subTitleTextMesh.text = data.SubName;
-            }
+            titleTextMesh.text    = data.FullName;
+            subTitleTextMesh.text = data.SubName;
         }
 
 

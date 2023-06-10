@@ -16,7 +16,7 @@ MonoBehaviour:
   mask: 536870912
   constEntity:
     classType: 536870912
-    characterName: Mortimus the Indifferent
+    characterName: Mortimus
     defaultStatSpec:
       statList:
       - statType: 13010001
@@ -47,5 +47,11 @@ MonoBehaviour:
         statKey: ConstStatKey
         value: 7
     defaultSkillList: c905d901c605d901
+  fullName: Mortimus
+  subName: the Indifferent
+  description: A gaunt, pale figure garbed in a tattered shroud, Mortimus the Indifferent
+    commands an army of the undead. With a wave of his bony hand, he can raise fallen
+    soldiers to do his bidding or sap the will to fight from the living, turning
+    them into apathetic husks.
   representEthos: 12060318
   killCount: 0

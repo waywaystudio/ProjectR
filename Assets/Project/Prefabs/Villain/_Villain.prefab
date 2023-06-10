@@ -219,6 +219,7 @@ Transform:
   - {fileID: 3744010700442847974}
   - {fileID: 7681027685326874348}
   - {fileID: 3744010699814045015}
+  - {fileID: 6782141761680153026}
   - {fileID: 3941785278225685870}
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -250,7 +251,6 @@ MonoBehaviour:
   pathfinding: {fileID: 4103633887526501528}
   data: {fileID: 0}
   phaseTable: {fileID: 814105544417408393}
-  dropTable: {fileID: 0}
 --- !u!114 &814105544417408393
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -677,7 +677,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 9
-  raycastThreshHold: 2
   knockBackDuration: 0.35
   rootTransform: {fileID: 3744010700067239340}
   agent: {fileID: 5352250712032112386}
@@ -1105,7 +1104,7 @@ GameObject:
   - component: {fileID: 855232010076595029}
   - component: {fileID: 3954843388123077938}
   m_Layer: 8
-  m_Name: Phase
+  m_Name: PhaseTable
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1118,13 +1117,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8615205136865817359}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 7543387085409907241}
-  m_RootOrder: 2
+  m_Father: {fileID: 3744010700067239340}
+  m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &855232010076595029
 MonoBehaviour:
@@ -1229,7 +1228,6 @@ Transform:
   m_Children:
   - {fileID: 7973989698085111680}
   - {fileID: 6073805884846720106}
-  - {fileID: 6782141761680153026}
   - {fileID: 2035227460828127721}
   m_Father: {fileID: 3744010700067239340}
   m_RootOrder: 0

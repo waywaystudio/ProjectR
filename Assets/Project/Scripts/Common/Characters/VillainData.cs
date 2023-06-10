@@ -47,6 +47,8 @@ namespace Common.Characters
             fullName    = data.FullName;
             subName     = data.SubName;
             description = data.BackgroundNarrative;
+            
+            UnityEditor.EditorUtility.SetDirty(this);
         }
 #endif
     }

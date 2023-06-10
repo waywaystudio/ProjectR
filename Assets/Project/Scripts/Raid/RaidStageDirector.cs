@@ -1,43 +1,44 @@
 using System.Collections.Generic;
 using Raid.Stage;
 using UnityEngine;
-using UnityEngine.Serialization;
 
 namespace Raid
 {
     public class RaidStageDirector : MonoBehaviour, IEditable
     {
-        [FormerlySerializedAs("bossSpawn")] [SerializeField] private Transform villainSpawnPosition;
-        [SerializeField] private List<Transform> adventurerSpawnPositionList = new();
+        [SerializeField] private Transform villainSpawnPosition;
+        [SerializeField] private List<Transform> VenturerSpawnPositionList = new();
         
         public Transform VillainSpawnPosition => villainSpawnPosition;
 
         public Transform GetAdventurerPosition(int index)
         {
-            if (adventurerSpawnPositionList.Count <= index)
+            if (VenturerSpawnPositionList.Count <= index)
             {
-                Debug.LogWarning($"Require More Adventurer Spawn Position. Limit:{adventurerSpawnPositionList.Count}, Input:{index}");
+                Debug.LogWarning($"Require More Adventurer Spawn Position. Limit:{VenturerSpawnPositionList.Count}, Input:{index}");
                 return null;
             }
 
-            return adventurerSpawnPositionList[index];
+            return VenturerSpawnPositionList[index];
         }
 
 
 #if UNITY_EDITOR
         public void EditorSetUp()
         {
+            VenturerSpawnPositionList.Clear();
+            
             var spawnPositionList = GetComponentsInChildren<SpawnTransform>();
             
             spawnPositionList.ForEach(position =>
             {
                 switch (position.IconName)
                 {
-                    case "Boss":
+                    case "Villain":
                         villainSpawnPosition = position.transform;
                         break;
-                    case "Adventurer":
-                        adventurerSpawnPositionList.Add(position.transform);
+                    case "Venturer":
+                        VenturerSpawnPositionList.Add(position.transform);
                         break;
                 }
             });

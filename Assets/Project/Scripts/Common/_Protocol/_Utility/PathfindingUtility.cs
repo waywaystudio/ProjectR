@@ -1,7 +1,7 @@
 using Pathfinding;
 using UnityEngine;
 
-namespace Common.Systems
+namespace Common
 {
     public static class PathfindingUtility
     {
@@ -73,6 +73,50 @@ namespace Common.Systems
             }
 
             return true;
+        }
+        
+        public static bool IsGround(Vector3 position, out Vector3 groundPosition)
+        {
+            var ray = new Ray(new Vector3(position.x, 100f, position.z), Vector3.down);
+
+            if (Physics.Raycast(ray, out var hit, 100f * 2, LayerMask.GetMask("Ground")))
+            {
+                groundPosition = hit.point;
+                return true;
+            }
+
+            groundPosition = Vector3.positiveInfinity;
+            return false;
+        }
+
+        public static Vector3 GetReachableStraightPosition(Vector3 root, Vector3 direction, float distance)
+        {
+            // 1. 땅이 있어야 하고.
+            // 2. 캐릭터로부터 원하는 지점에 Raycast를 쐈을 때, 충돌하는 것이 없어야 함.
+            if (distance < 0) return root;
+            
+            var normalDirection = direction.normalized;
+
+            while (distance > 0)
+            {
+                var targetPosition = root + normalDirection * distance;
+                var noObstacle = !Physics.Raycast(root, normalDirection, out _, distance, LayerMask.GetMask("Environment"));
+                var isGround = IsGround(targetPosition, out var groundPosition);
+
+                if (noObstacle && isGround)
+                {
+                    return groundPosition;
+                }
+                
+                distance -= 1.0f;
+
+                if (distance < 0f)
+                {
+                    return root;
+                }
+            }
+
+            return root;
         }
     }
 }

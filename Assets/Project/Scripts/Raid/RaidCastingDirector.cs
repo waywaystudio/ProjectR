@@ -11,7 +11,6 @@ namespace Raid
     {
         [SerializeField] private Transform venturerHierarchy;
         [SerializeField] private Transform villainHierarchy;
-        [SerializeField] private DataIndex villainCode;
 
         public List<VenturerBehaviour> VenturerList { get; } = new();
         public VillainBehaviour Villain { get; set; }
@@ -55,7 +54,6 @@ namespace Raid
 
             var profitPosition   = RaidDirector.StageDirector.VillainSpawnPosition.position;
             var villainObject = Instantiate(villainPrefab, profitPosition, Quaternion.identity, villainHierarchy);
-            var villainData = Den.GetVillainData(villainIndex);
             
             villainObject.SetActive(true);
 

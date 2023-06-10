@@ -41,7 +41,6 @@ namespace Character.Villains
         {
             base.EditorSetUp();
 
-            Debug.Log($"{name}Data");
             Finder.TryGetObject($"{name}Data", out data);
             
             phaseTable ??= GetComponent<VillainPhaseTable>();

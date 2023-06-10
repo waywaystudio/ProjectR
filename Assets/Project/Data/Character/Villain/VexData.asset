@@ -16,7 +16,7 @@ MonoBehaviour:
   mask: 536870912
   constEntity:
     classType: 536870912
-    characterName: Vex, the Vinion Tide
+    characterName: Vex
     defaultStatSpec:
       statList:
       - statType: 13010001
@@ -47,5 +47,12 @@ MonoBehaviour:
         statKey: ConstStatKey
         value: 7
     defaultSkillList: c905d901c605d901
+  fullName: Vex
+  subName: Vinion Tide
+  description: Swarmlord Vex, the Vinion Tide, represents the theme of Rash within
+    the realm of Cunning. As the master of countless Vinions, Vex commands a seemingly
+    endless swarm of these small, agile creatures. This massive horde moves as a
+    single entity, engulfing everything in its path, and leaving destruction in its
+    wake.
   representEthos: 12030309
   killCount: 0

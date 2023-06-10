@@ -19,7 +19,12 @@ namespace Common.Characters
         {
             StatTable.Clear();
             StatTable.RegisterTable(characterData.StaticStatTable);
-            // Add More Static Specs and StatTable such as, PlayerCamp Buff
+            // Add More Specs and StatTable such as, PlayerCamp Buff
+            
+            // Villain Difficulty
+            // Power, Health, Haste, - CombatStatus
+            // SkillSet, - SkillBehaviour
+            // Drop Item, - CastingDirector 
 
             Hp.StatTable       = StatTable;
             Resource.StatTable = StatTable;
