@@ -1,9 +1,10 @@
 using System.Collections.Generic;
+using Common;
 using Serialization;
 using Sirenix.OdinInspector;
 using UnityEngine;
 
-namespace Common.Camps.Inventories
+namespace Camps.Inventories
 {
     public class ViceMaterialInventory : MonoBehaviour, ISavable
     {

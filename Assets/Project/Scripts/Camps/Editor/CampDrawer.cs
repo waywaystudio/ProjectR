@@ -4,7 +4,7 @@ using System.Reflection;
 using Sirenix.OdinInspector;
 using Sirenix.OdinInspector.Editor;
 
-namespace Common.Editor
+namespace Camps.Editor
 {
     public class CampDrawer : OdinAttributeProcessor<Camp>
     {

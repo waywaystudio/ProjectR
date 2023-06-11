@@ -60,7 +60,7 @@ namespace Common.Execution
                 entity.Value                       -= taker.DynamicStatEntry.Hp.Value;
                 entity.IsFinishedAttack            =  true;
              
-                Debug.Log($"{taker.Name} dead by {Executor.Provider.Name}'s {actionCode}");
+                Debug.Log($"{taker.Name} dead by {Executor.Provider.Name}'s {actionCode}'s {entity.Value}");
                 taker.Dead();
             }
             

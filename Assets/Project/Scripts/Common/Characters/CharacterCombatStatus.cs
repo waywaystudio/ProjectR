@@ -2,10 +2,8 @@ using UnityEngine;
 
 namespace Common.Characters
 {
-    public class CharacterCombatStatus : MonoBehaviour, IDynamicStatEntry, IEditable
+    public class CharacterCombatStatus : MonoBehaviour, IDynamicStatEntry
     {
-        [SerializeField] private CharacterData characterData;
-
         public AliveValue Alive { get; } = new();
         public HpValue Hp { get; } = new();
         public ResourceValue Resource { get; } = new();
@@ -17,30 +15,14 @@ namespace Common.Characters
 
         public void Initialize()
         {
-            StatTable.Clear();
-            StatTable.RegisterTable(characterData.StaticStatTable);
-            // Add More Specs and StatTable such as, PlayerCamp Buff
-            
-            // Villain Difficulty
-            // Power, Health, Haste, - CombatStatus
-            // SkillSet, - SkillBehaviour
-            // Drop Item, - CastingDirector 
-
             Hp.StatTable       = StatTable;
             Resource.StatTable = StatTable;
             Shield.StatTable   = StatTable;
             Alive.Value        = true;
+            
             Hp.Value           = StatTable.Health * 10f;
             Resource.Value     = StatTable.MaxResource;
             Shield.Value       = 0;
         }
-
-
-#if UNITY_EDITOR
-        public void EditorSetUp()
-        {
-            characterData.EditorSetUp();
-        }
-#endif
     }
 }

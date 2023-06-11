@@ -80,10 +80,6 @@ namespace Common.Characters
         public ActionTable<IStatusEffect> OnDeBuffTaken { get; } = new();
         public ActionTable<IStatusEffect> OnBuffProvided { get; } = new();
         public ActionTable<IStatusEffect> OnBuffTaken { get; } = new();
-        
-
-
-        public virtual void ForceInitialize() { }
 
         
         private void OnEnable()

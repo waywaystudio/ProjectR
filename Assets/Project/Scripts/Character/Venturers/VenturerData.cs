@@ -1,6 +1,8 @@
+using Common;
+using Common.Characters;
 using UnityEngine;
 
-namespace Common.Characters
+namespace Character.Venturers
 {
     public class VenturerData : CharacterData
     {

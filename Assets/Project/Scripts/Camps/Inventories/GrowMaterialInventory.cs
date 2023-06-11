@@ -1,4 +1,6 @@
-namespace Common.Camps.Inventories
+using Common;
+
+namespace Camps.Inventories
 {
     public class GrowMaterialInventory : Inventory<GrowMaterialType>
     {

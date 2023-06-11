@@ -1,12 +1,11 @@
 using System;
 using System.Collections.Generic;
 using System.Reflection;
-using Common.Camps;
-using Common.Camps.Inventories;
+using Camps.Inventories;
 using Sirenix.OdinInspector;
 using Sirenix.OdinInspector.Editor;
 
-namespace Common.Editor
+namespace Camps.Editor
 {
     public class InventoryDrawer<T0, T1> : OdinAttributeProcessor<T0> where T0 : Inventory<T1>
     {

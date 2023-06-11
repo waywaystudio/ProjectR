@@ -1,4 +1,3 @@
-using Common;
 using TMPro;
 using UnityEngine;
 
@@ -12,6 +11,8 @@ namespace Lobby.UI.WorldMaps
         {
             difficultyTextMesh.text = Den.Difficulty.ToString();
         }
+
+        private void OnEnable() => OnDifficultyChanged();
 
 
 #if UNITY_EDITOR

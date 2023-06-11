@@ -17,7 +17,6 @@ namespace Serialization
         private const string InfoKey = "_SaveInfo";
         private const string Extension = "json";
 
-        [Sirenix.OdinInspector.ShowInInspector]
         public static List<SaveInfo> SaveInfoList => Instance.saveInfoList;
         
 

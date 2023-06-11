@@ -1,4 +1,3 @@
-using System;
 using Common;
 using SceneAdaption;
 using UnityEngine;
@@ -19,7 +18,6 @@ namespace Lobby.UI.WorldMaps
 
         public void OnFocusVillainUIChanged()
         {
-            // Not targeted
             if (FocusVillain != VillainType.None)
             {
                 SetEnable(true);

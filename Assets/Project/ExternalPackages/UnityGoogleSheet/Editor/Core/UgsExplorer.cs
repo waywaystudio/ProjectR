@@ -134,7 +134,7 @@ namespace UnityGoogleSheet.Editor.Core
                 case "DriveFileDataList":
                     attributes.Add(new ListDrawerSettingsAttribute
                     {
-                        Expanded = true,
+                        ShowFoldout = true,
                         NumberOfItemsPerPage = 30,
                         IsReadOnly = true
                     });

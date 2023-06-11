@@ -7,6 +7,7 @@ namespace Character.Villains
     public class VillainBehaviour : CharacterBehaviour
     {
         [SerializeField] private VillainData data;
+        [SerializeField] private VillainDifficultyTable difficultyTable;
         [SerializeField] private VillainPhaseTable phaseTable;
         
         
@@ -19,10 +20,13 @@ namespace Character.Villains
         public override CharacterData Data => data;
 
         public BossPhase CurrentPhase { get; set; }
-        
-        // TODO. Temp
-        public override void ForceInitialize()
+
+        public void ForceInitialize(DifficultyType difficulty, int level)
         {
+            StatTable.Clear();
+            StatTable.RegisterTable(data.StaticStatTable);
+            StatTable.Add(difficultyTable.GetDifficultySpec(difficulty, level));
+            
             combatStatus.Initialize();
         }
 
@@ -42,9 +46,10 @@ namespace Character.Villains
             base.EditorSetUp();
 
             Finder.TryGetObject($"{name}Data", out data);
-            
-            phaseTable ??= GetComponent<VillainPhaseTable>();
-            combatStatus.EditorSetUp();
+
+            difficultyTable ??= GetComponentInChildren<VillainDifficultyTable>();
+            phaseTable      ??= GetComponentInChildren<VillainPhaseTable>();
+            data.EditorSetUp();
         }
 #endif
     }

@@ -1,7 +1,9 @@
+using Common;
+using Common.Characters;
 using Serialization;
 using UnityEngine;
 
-namespace Common.Characters
+namespace Character.Villains
 {
     public class VillainData : CharacterData
     {
@@ -10,15 +12,13 @@ namespace Common.Characters
         [SerializeField] private string description;
         [SerializeField] private EthosType representEthos;
         [SerializeField] private int killCount;
-        
-        public VillainType VillainType => (VillainType)characterIndex;
-        public DifficultyType Difficulty { get; set; } = DifficultyType.Normal;
+
         public EthosType RepresentEthos => representEthos;
         public string FullName => fullName;
         public string SubName => subName;
         public string Description => description;
-        public int KillCount => killCount;
-        
+        public int KillCount { get => killCount; set => killCount = value; }
+
 
         public override void Save()
         {

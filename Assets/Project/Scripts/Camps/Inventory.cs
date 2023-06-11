@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using Serialization;
 
-namespace Common.Camps
+namespace Camps
 {
     public abstract class Inventory<T> : ISavable
     {

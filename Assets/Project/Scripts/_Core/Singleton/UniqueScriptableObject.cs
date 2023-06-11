@@ -19,7 +19,7 @@ namespace Singleton
             {
                 if (instance is not null) return instance;
 
-                var typeObjects = Resources.FindObjectsOfTypeAll<T>();
+                var typeObjects = Resources.LoadAll<T>("");
 
                 switch (typeObjects.Length)
                 {

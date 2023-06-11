@@ -217,6 +217,7 @@ Transform:
   m_Children:
   - {fileID: 7543387085409907241}
   - {fileID: 3744010700442847974}
+  - {fileID: 6223393909608460540}
   - {fileID: 7681027685326874348}
   - {fileID: 3744010699814045015}
   - {fileID: 6782141761680153026}
@@ -250,6 +251,7 @@ MonoBehaviour:
   colliding: {fileID: 2790317631836767718}
   pathfinding: {fileID: 4103633887526501528}
   data: {fileID: 0}
+  difficultyTable: {fileID: 7806359906630571811}
   phaseTable: {fileID: 814105544417408393}
 --- !u!114 &814105544417408393
 MonoBehaviour:
@@ -488,6 +490,91 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: de170aedc8a6e27468da3e3bb6b91d3c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &5089009410231379900
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6223393909608460540}
+  - component: {fileID: 7806359906630571811}
+  m_Layer: 8
+  m_Name: DifficultyTable
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6223393909608460540
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5089009410231379900}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 3744010700067239340}
+  m_RootOrder: -1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &7806359906630571811
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5089009410231379900}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 57b0807483a66aa4f85ec31efc383941, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hardStatEntityList:
+  - statType: 13010001
+    statKey: 
+    value: 100
+  - statType: 13010002
+    statKey: 
+    value: 100
+  - statType: 13010003
+    statKey: 
+    value: 50
+  - statType: 13020001
+    statKey: 
+    value: 0.05
+  - statType: 13010004
+    statKey: 
+    value: 10
+  - statType: 13010005
+    statKey: 
+    value: 15
+  mythicStatEntityList:
+  - statType: 13010001
+    statKey: 
+    value: 1000
+  - statType: 13010002
+    statKey: 
+    value: 2000
+  - statType: 13010003
+    statKey: 
+    value: 100
+  - statType: 13020001
+    statKey: 
+    value: 0.2
+  - statType: 13020002
+    statKey: 
+    value: 0.2
+  - statType: 13010004
+    statKey: 
+    value: 20
+  - statType: 13010005
+    statKey: 
+    value: 30
 --- !u!1 &5090585004971612446
 GameObject:
   m_ObjectHideFlags: 0

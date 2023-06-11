@@ -88,6 +88,12 @@
 			"Level" : 1
 		}
 	},
+	"challengers" : {
+		"__type" : "System.Collections.Generic.List`1[[Common.VenturerType, ProjectR.Common, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]],mscorlib",
+		"value" : [
+			21010201,21020502,21030803,21041104
+		]
+	},
 	"Vortex.KillCount" : {
 		"__type" : "int",
 		"value" : 0
@@ -168,7 +174,7 @@
 		"__type" : "Serialization.SaveInfo,ProjectR.Core",
 		"value" : {
 			"filename" : "_playSaveFile",
-			"saveTime" : "2023.06.10.23.49.04"
+			"saveTime" : "2023.06.12.01.07.10"
 		}
 	}
 }

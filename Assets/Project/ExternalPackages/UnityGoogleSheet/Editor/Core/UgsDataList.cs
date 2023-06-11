@@ -82,9 +82,9 @@ namespace UnityGoogleSheet.Editor.Core
                     attributes.Add(new SearchableAttribute());
                     attributes.Add(new ListDrawerSettingsAttribute
                     {
-                        Expanded = true,
-                        IsReadOnly = true,
-                        HideAddButton = true,
+                        ShowFoldout      = true,
+                        IsReadOnly       = true,
+                        HideAddButton    = true,
                         HideRemoveButton = true,
                     });
                     attributes.Add(new PropertySpaceAttribute(0f, 20f));
@@ -95,7 +95,7 @@ namespace UnityGoogleSheet.Editor.Core
                     attributes.Add(new SearchableAttribute());
                     attributes.Add(new ListDrawerSettingsAttribute
                     {
-                        Expanded = true,
+                        ShowFoldout = true,
                         IsReadOnly = true,
                         HideAddButton = true,
                         HideRemoveButton = true,

@@ -19,8 +19,11 @@ namespace Character.Venturers
         public bool IsPlayer { get; set; }
 
         // TODO. Temp
-        public override void ForceInitialize()
+        public void ForceInitialize()
         {
+            StatTable.Clear();
+            StatTable.RegisterTable(data.StaticStatTable);
+            
             combatStatus.Initialize();
         }
 
@@ -37,6 +40,7 @@ namespace Character.Venturers
             base.EditorSetUp();
             
             modChanger ??= GetComponent<VenturerModChanger>();
+            data.EditorSetUp();
         }
 #endif
     }

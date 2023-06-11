@@ -25,7 +25,7 @@ namespace Common.Editor
             
             if (member.Name == "statKey")
             {
-                attributes.Add(new DisplayAsStringAttribute());
+                // attributes.Add(new DisplayAsStringAttribute());
                 attributes.Add(new HorizontalGroupAttribute("StatValue", 0.3f));
                 attributes.Add(new HideLabelAttribute());
             }
@@ -54,8 +54,8 @@ namespace Common.Editor
                 attributes.Add(new LabelTextAttribute("Spec"));
                 attributes.Add(new ListDrawerSettingsAttribute
                 {
-                    IsReadOnly = true,
                     ShowFoldout = true,
+                    IsReadOnly = true,
                 });
             }
         }
