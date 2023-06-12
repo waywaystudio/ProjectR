@@ -1,15 +1,16 @@
 using System;
 using System.Collections.Generic;
 using UnityEngine;
+// ReSharper disable InconsistentNaming
 
 [Serializable]
 public class Table<TKey, TValue>
 {
-    [SerializeField] private List<TKey> keyList = new();
-    [SerializeField] private List<TValue> valueList = new();
+    [SerializeField] protected List<TKey> keyList = new();
+    [SerializeField] protected List<TValue> valueList = new();
     
     private Dictionary<TKey, TValue> map = new();
-    private Dictionary<TKey, TValue> Map
+    protected Dictionary<TKey, TValue> Map
     {
         get
         {
@@ -27,7 +28,7 @@ public class Table<TKey, TValue>
     {
         get => Map.ContainsKey(key) 
             ? Map[key] 
-            : throw new KeyNotFoundException();
+            : default;
         set
         {
             if (Map.ContainsKey(key))
@@ -106,4 +107,9 @@ public class Table<TKey, TValue>
             Add(key, data);
         }
     }
+    
+    
+#if UNITY_EDITOR
+    [SerializeField] private bool hideKey;
+#endif
 }

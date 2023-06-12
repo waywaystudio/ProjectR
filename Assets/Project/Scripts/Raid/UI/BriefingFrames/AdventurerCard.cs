@@ -19,7 +19,7 @@ namespace Raid.UI.StageInitializer
 
         public void SetCardUI(DataIndex adventurerCode)
         {
-            if (!Database.CombatClassPrefabData.GetObject(adventurerCode, out var abAdventurerObject)) return;
+            if (!Database.VenturerPrefabData.GetObject(adventurerCode, out var abAdventurerObject)) return;
             if (!abAdventurerObject.TryGetComponent(out currentAdventurer)) return;
 
             headerTextUI.text          = currentAdventurer.CombatClass.ToString();

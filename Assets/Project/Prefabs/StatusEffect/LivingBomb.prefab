@@ -51,7 +51,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   statusCode: 32000004
   type: 2
-  icon: {fileID: 21300000, guid: 66dd4d17749630548bd562332cf77491, type: 3}
+  icon: {fileID: 0}
   duration: 5
   collidingSystem: {fileID: 4459061243654905774}
   interval: 2
@@ -131,6 +131,7 @@ PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
+    serializedVersion: 3
     m_TransformParent: {fileID: 2402494755454563105}
     m_Modifications:
     - target: {fileID: 4027286352141989457, guid: f201fadaeb091cf47a052170ce7683da, type: 3}
@@ -182,6 +183,9 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f201fadaeb091cf47a052170ce7683da, type: 3}
 --- !u!4 &2840183091458945906 stripped
 Transform:

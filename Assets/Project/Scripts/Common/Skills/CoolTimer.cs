@@ -32,7 +32,7 @@ namespace Common.Skills
 
         private void Awake()
         {
-            if (!TryGetComponent(out IConditionalSequence sequence))
+            if (!TryGetComponent(out IOldConditionalSequence sequence))
             {
                 Debug.LogError("Require SKillComponent");
                 return;

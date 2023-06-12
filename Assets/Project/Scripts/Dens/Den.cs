@@ -18,7 +18,7 @@ public class Den : MonoSingleton<Den>, ISavable, IEditable
 
     public static VillainData GetVillainData(DataIndex dataIndex) => VillainTable[dataIndex];
     public static VillainData GetVillainData(VillainType villainIndex) => VillainTable[(DataIndex)villainIndex];
-    public static bool GetVillainPrefab(VillainType type, out GameObject prefab) => Database.BossPrefabData.GetObject((DataIndex)type, out prefab);
+    public static bool GetVillainPrefab(VillainType type, out GameObject prefab) => Database.VillainPrefabData.GetObject((DataIndex)type, out prefab);
 
     public static void Spawn(VillainType villainIndex, Vector3 position, Transform hierarchy, out VillainBehaviour vb)
     {

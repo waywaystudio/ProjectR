@@ -7,7 +7,7 @@ using Random = UnityEngine.Random;
 
 namespace Raid.UI.FloatingTexts
 {
-    public class FloatingTextUI : MonoBehaviour, IEndSection
+    public class FloatingTextUI : MonoBehaviour, IOldEndSection
     {
         [ColorPalette("Fall"), SerializeField] private Color normalColor;
         [ColorPalette("Fall"), SerializeField] private Color criticalColor;
@@ -22,8 +22,8 @@ namespace Raid.UI.FloatingTexts
         private Vector3 randomPivot;
         private Camera mainCamera;
         private CombatEntity currentEntity;
-        private Sequence normalDamageEffect;
-        private Sequence criticalDamageEffect;
+        private DG.Tweening.Sequence normalDamageEffect;
+        private DG.Tweening.Sequence criticalDamageEffect;
 
         public ActionTable OnEnded { get; } = new();
         

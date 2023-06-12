@@ -1,6 +1,6 @@
 namespace Databases.Prefabs
 {
-    public class CombatClassPrefabData : PrefabData
+    public class VenturerPrefabData : PrefabData
     {
         
     }

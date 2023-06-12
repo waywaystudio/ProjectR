@@ -24,8 +24,8 @@ public partial class Database : MonoSingleton<Database>, IEditable
     
     [SerializeField] private SkillPrefabData skillPrefabData;
     [SerializeField] private StatusEffectPrefabData statusEffectPrefabData;
-    [SerializeField] private CombatClassPrefabData combatClassPrefabData;
-    [SerializeField] private BossPrefabData bossPrefabData;
+    [SerializeField] private VenturerPrefabData venturerPrefabData;
+    [SerializeField] private VillainPrefabData villainPrefabData;
 
     [SerializeField] private SpriteData equipmentSpriteData;
     [SerializeField] private SpriteData spellSpriteData;
@@ -59,8 +59,8 @@ public partial class Database : MonoSingleton<Database>, IEditable
         
     public static SkillPrefabData SkillPrefabData => Instance.skillPrefabData;
     public static StatusEffectPrefabData StatusEffectPrefabData => Instance.statusEffectPrefabData;
-    public static CombatClassPrefabData CombatClassPrefabData => Instance.combatClassPrefabData;
-    public static BossPrefabData BossPrefabData => Instance.bossPrefabData;
+    public static VenturerPrefabData VenturerPrefabData => Instance.venturerPrefabData;
+    public static VillainPrefabData VillainPrefabData => Instance.villainPrefabData;
 
     public static SpriteData EquipmentSpriteData => Instance.equipmentSpriteData;
     public static SpriteData SpellSpriteData => Instance.spellSpriteData;

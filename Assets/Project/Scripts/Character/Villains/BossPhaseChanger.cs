@@ -2,7 +2,7 @@ using BehaviorDesigner.Runtime.Tasks;
 
 namespace Character.Villains
 {
-    [TaskCategory("Character/Boss/PhaseChanger")]
+    [TaskCategory("Character/Villain")]
     public class BossPhaseChanger : Action
     {
         private VillainBehaviour boss;

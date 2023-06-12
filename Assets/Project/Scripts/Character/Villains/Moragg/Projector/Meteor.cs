@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace Character.Villains.Moragg.Projector
 {
-    public class Meteor : TrapComponent, IProjectorSequence
+    public class Meteor : TrapComponent, IOldProjectorSequence
     {
         public Vector2 SizeVector => new (radius * 2f, radius * 2f);
         public float CastingTime => ProlongTime;

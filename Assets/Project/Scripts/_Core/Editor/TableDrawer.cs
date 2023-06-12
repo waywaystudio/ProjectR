@@ -17,6 +17,7 @@ namespace Editor
         {
             if (member.Name == "keyList")
             {
+                attributes.Add(new HideIfAttribute("hideKey"));
                 attributes.Add(new DisplayAsStringAttribute());
                 attributes.Add(new HorizontalGroupAttribute("Main", 0.3f));
                 attributes.Add(new ListDrawerSettingsAttribute()

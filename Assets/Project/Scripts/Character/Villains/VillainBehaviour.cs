@@ -19,7 +19,7 @@ namespace Character.Villains
         public override string Name => data.Name;
         public override CharacterData Data => data;
 
-        public BossPhase CurrentPhase { get; set; }
+        public VillainPhase CurrentPhase { get; set; }
 
         public void ForceInitialize(DifficultyType difficulty, int level)
         {
@@ -34,7 +34,9 @@ namespace Character.Villains
         protected void Start()
         {
             CurrentPhase = phaseTable.GetStartPhase();
-            CurrentPhase.Activate();
+            
+            if (!CurrentPhase.IsNullOrDestroyed())
+                CurrentPhase.Activate();
         }
 
         private void Update() { Animating.Flip(transform.forward); }

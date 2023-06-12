@@ -6,11 +6,11 @@ namespace Character.Villains
 {
     public class VillainPhaseTable : MonoBehaviour, IEditable
     {
-        [SerializeField] private List<BossPhase> phaseList;
+        [SerializeField] private List<VillainPhase> phaseList;
 
-        public BossPhase GetStartPhase()
+        public VillainPhase GetStartPhase()
         {
-            BossPhase result = null;
+            VillainPhase result = null;
             
             foreach (var phase in phaseList)
             {
@@ -29,7 +29,7 @@ namespace Character.Villains
             return result;
         }
         
-        public BossPhase GetPhase(int index)
+        public VillainPhase GetPhase(int index)
         {
             foreach (var phase in phaseList)
             {
@@ -39,9 +39,9 @@ namespace Character.Villains
             return null;
         }
 
-        public List<BossPhase> GetPhaseList(BossPhaseMask mask)
+        public List<VillainPhase> GetPhaseList(VillainPhaseMask mask)
         {
-            var result = new List<BossPhase>();
+            var result = new List<VillainPhase>();
             
             foreach (var phase in phaseList)
             {

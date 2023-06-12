@@ -68,6 +68,15 @@ public class ActionTable<T> : ActionTableCore<Action<T>>
     {
         foreach (var item in otherTable) TryAdd(item.Key, item.Value.Invoke);
     }
+    
+    /// <summary>
+    /// otherTable을 참조 방식 등록.
+    /// otherTable의 내용이 변경되면, 변경된 내용을 포함하여 실행한다.
+    /// </summary>
+    public void Register(string key, ActionTable<T> otherTable)
+    {
+        TryAdd(key, otherTable.Invoke);
+    }
 
     public void Invoke(T value)
     {

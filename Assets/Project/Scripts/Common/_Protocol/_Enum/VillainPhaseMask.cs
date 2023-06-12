@@ -3,7 +3,7 @@ using System;
 namespace Common
 {
     [Flags] 
-    public enum BossPhaseMask
+    public enum VillainPhaseMask
     {
         None = 0,
         

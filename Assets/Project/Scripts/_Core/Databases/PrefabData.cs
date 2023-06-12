@@ -8,40 +8,13 @@ namespace Databases
     {
         [FolderPath]
         [SerializeField] protected string prefabPath;
-        [SerializeField] protected List<GameObject> prefabList = new();
+        [SerializeField] protected Table<DataIndex, GameObject> table;
 
-        private Dictionary<DataIndex, GameObject> prefabTable = new();
-        
-        [ShowInInspector]
-        private Dictionary<DataIndex, GameObject> PrefabTable
-        {
-            get
-            {
-                if (prefabTable.IsNullOrEmpty() || prefabList.Count != prefabTable.Count)
-                {
-                    prefabTable = new Dictionary<DataIndex, GameObject>();
-                    prefabList.ForEach(prefab =>
-                    {
-                        if (prefab.IsNullOrEmpty()) return;
-                        if (!prefab.TryGetComponent(out IDataIndexer indexer)) return;
-                        
-                        prefabTable.TryAdd(indexer.DataIndex, prefab);
-                    });
-                }
-
-                return prefabTable;
-            }
-        }
-        
-        
         public bool GetObject(DataIndex index, out GameObject prefab)
         {
-            if (!PrefabTable.TryGetValue(index, out prefab))
-            {
-                Debug.LogError($"Not Exist Prefab. Input:{index}");
-            }
-
-            return prefab != null;
+            prefab = table[index];
+            
+            return prefab.HasObject(); 
         }
 
         public bool Gets(List<DataIndex> index, out List<GameObject> prefabs)
@@ -60,23 +33,21 @@ namespace Databases
             return !prefabs.IsNullOrEmpty();
         }
 
-        public List<GameObject> GetAll() => prefabList;
-        
         public bool Get<T>(DataIndex index, out T component) where T : MonoBehaviour
         {
-            if (!PrefabTable.TryGetValue(index, out var prefab))
+            if (!GetObject(index, out var result))
             {
                 Debug.LogError($"Not Exist Prefab. Input:{index}");
                 component = null;
                 return false;
             }
 
-            return prefab.TryGetComponent(out component);
+            return result.TryGetComponent(out component);
         }
 
         public T Get<T>(DataIndex index) where T : MonoBehaviour
         {
-            if (!PrefabTable.TryGetValue(index, out var prefab))
+            if (!GetObject(index, out var prefab))
             {
                 Debug.LogError($"Not Exist Prefab. Input:{index}");
                 return null;
@@ -97,19 +68,19 @@ namespace Databases
         {
             if (!Finder.TryGetObjectList(prefabPath, "", out List<GameObject> prefabs, true)) return;
             
+            table.Clear();
+
             // Exclude Prefab Name start "_".
             // "_" is mean abstract prefab;
             prefabs.RemoveNull();
             prefabs.RemoveAll(prefab => prefab.name.StartsWith("_"));
-            
-            prefabList.Clear();
-            prefabList.AddRange(prefabs);
-            
-            PrefabTable.Values.ForEach(prefab =>
+            prefabs.ForEach(prefab =>
             {
-                if (!prefab.TryGetComponent(out IEditable setter)) return;
-                
+                if (!prefab.TryGetComponent(out IDataIndexer indexer) || 
+                    !prefab.TryGetComponent(out IEditable setter)) return;
+
                 setter.EditorSetUp();
+                table.Add(indexer.DataIndex, prefab);
                 UnityEditor.EditorUtility.SetDirty(prefab);
             });
             
@@ -117,7 +88,7 @@ namespace Databases
         }
 
         [Button(ButtonSizes.Large)]
-        public void ResetTable() => PrefabTable.Clear();
+        public void ResetTable() => table.Clear();
 #endif
     }
 }

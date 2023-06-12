@@ -91,7 +91,7 @@ namespace Common.Characters.Behaviours
         }
         
 
-        private bool IsAble(IConditionalSequence skill)
+        private bool IsAble(IOldConditionalSequence skill)
         {
             return CanOverrideToCurrent
                    && IsSkillEnded 

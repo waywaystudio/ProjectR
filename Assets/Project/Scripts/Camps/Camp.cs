@@ -24,7 +24,7 @@ public class Camp : MonoSingleton<Camp>, ISavable, IEditable
     public static VenturerData GetData(DataIndex type) => VenturerTable[type];
     public static IEquipment GetVenturerWeapon(VenturerType adventurer) => GetData(adventurer).GetWeapon();
     public static IEquipment GetVenturerArmor(VenturerType adventurer) => GetData(adventurer).GetAmor();
-    public static bool GetVenturerPrefab(VenturerType type, out GameObject prefab) => Database.CombatClassPrefabData.GetObject((DataIndex)type, out prefab);
+    public static bool GetVenturerPrefab(VenturerType type, out GameObject prefab) => Database.VenturerPrefabData.GetObject((DataIndex)type, out prefab);
 
     public static void Spawn(VenturerType venturer, Vector3 position, Transform hierarchy, out VenturerBehaviour vb)
     {

@@ -19,7 +19,7 @@ namespace Common.Projectiles
     
     /// Completion Focus
     // Bounce, Yoyo, 
-    public class ProjectileComponent : MonoBehaviour, ISequence, IExecutable
+    public class ProjectileComponent : MonoBehaviour, IOldSequence, IExecutable
     {
         [SerializeField] protected CollidingSystem collidingSystem;
         [SerializeField] protected DataIndex projectileCode;

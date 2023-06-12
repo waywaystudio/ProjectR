@@ -90,7 +90,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f865738da60c3e442ae51953dc29c83c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  characterData: {fileID: 11400000, guid: 3037488550c46ba46b9fca2fa1e95609, type: 2}
 --- !u!114 &7091520792594993996
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -490,6 +489,37 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: de170aedc8a6e27468da3e3bb6b91d3c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &4893882757108334915
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6643467172092697958}
+  m_Layer: 8
+  m_Name: Phase1
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6643467172092697958
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4893882757108334915}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 6782141761680153026}
+  m_RootOrder: -1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &5089009410231379900
 GameObject:
   m_ObjectHideFlags: 0
@@ -1096,7 +1126,7 @@ MonoBehaviour:
         Gcd Ready","Instant":true}]},{"Type":"Character.Behavior.Actions.ActiveSkillBehavior","NodeData":{"Offset":"(150,100)"},"ID":10,"Name":"Active
         Skill Behavior","Instant":true},{"Type":"BehaviorDesigner.Runtime.Tasks.UntilSuccess","NodeData":{"Offset":"(300,100)"},"ID":11,"Name":"Until
         Success","Instant":true,"Children":[{"Type":"Character.Behavior.Actions.IsSkillFinished","NodeData":{"Offset":"(0,120)"},"ID":12,"Name":"Is
-        Skill Finished","Instant":true}]},{"Type":"Character.Bosses.BossPhaseChanger","NodeData":{"Offset":"(443.332642,99.9997559)"},"ID":13,"Name":"Boss
+        Skill Finished","Instant":true}]},{"Type":"Character.Villains.BossPhaseChanger","NodeData":{"Offset":"(440,100)"},"ID":13,"Name":"Boss
         Phase Changer","Instant":true}]}]}]}]}}'
       fieldSerializationData:
         typeName: []
@@ -1208,7 +1238,8 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 6643467172092697958}
   m_Father: {fileID: 3744010700067239340}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1478,7 +1509,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 108794988196255523, guid: 4ae3fbab6c1c1ed48bbe37492124f254, type: 3}
       propertyPath: uniqueID
-      value: 1749495976772133247
+      value: 4519359898963984922
       objectReference: {fileID: 0}
     - target: {fileID: 234500611213636336, guid: 4ae3fbab6c1c1ed48bbe37492124f254, type: 3}
       propertyPath: m_RootOrder

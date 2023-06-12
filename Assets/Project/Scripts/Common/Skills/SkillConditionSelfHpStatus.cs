@@ -13,7 +13,7 @@ namespace Common.Skills
         [SerializeField] private RatioConditionType availableCondition;
 
         private ICombatProvider provider;
-        private IConditionalSequence sequence;
+        private IOldConditionalSequence sequence;
         private float RemainHpRatio => provider.DynamicStatEntry.Hp.Value / provider.DynamicStatEntry.StatTable.MaxHp;
 
 

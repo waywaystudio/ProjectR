@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace Common.Characters.Behaviours
 {
-    public abstract class ActionBehaviour : MonoBehaviour, IConditionalSequence
+    public abstract class ActionBehaviour : MonoBehaviour, IOldConditionalSequence
     {
         private CharacterBehaviour cb;
         

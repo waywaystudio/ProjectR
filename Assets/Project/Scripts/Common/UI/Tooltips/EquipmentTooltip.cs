@@ -5,7 +5,7 @@ using UnityEngine;
 
 namespace Common.UI.Tooltips
 {
-    public class EquipmentTooltip : MonoBehaviour, IEndSection, IEditable
+    public class EquipmentTooltip : MonoBehaviour, IOldEndSection, IEditable
     {
         [SerializeField] private TextMeshProUGUI title;
         [SerializeField] private List<StatInfoUI> statInfoList;

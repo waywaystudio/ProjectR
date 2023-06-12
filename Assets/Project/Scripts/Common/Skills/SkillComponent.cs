@@ -6,7 +6,7 @@ using UnityEngine;
 
 namespace Common.Skills
 {
-    public abstract class SkillComponent : MonoBehaviour, IConditionalSequence, IExecutable, IDataIndexer, IEditable
+    public abstract class SkillComponent : MonoBehaviour, IOldConditionalSequence, IExecutable, IDataIndexer, IEditable
     {
         /* Common Attribution */
         [SerializeField] protected DataIndex actionCode;

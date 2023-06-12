@@ -5,10 +5,10 @@ namespace Character.Villains
 {
     public class SkillConditionPhaseMask : MonoBehaviour
     {
-        [SerializeField] private BossPhaseMask enableMask;
+        [SerializeField] private VillainPhaseMask enableMask;
         
         private VillainBehaviour boss;
-        private IConditionalSequence sequence;
+        private IOldConditionalSequence sequence;
 
         private void OnEnable()
         {

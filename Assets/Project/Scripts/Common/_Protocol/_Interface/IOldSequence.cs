@@ -1,14 +1,15 @@
 using System;
+using Sequences;
 using UnityEngine;
 
 namespace Common
 {
-    public interface IActiveSection { ActionTable OnActivated { get; }}
-    public interface ICancelSection { ActionTable OnCanceled { get; }}
-    public interface ICompleteSection { ActionTable OnCompleted { get; }}
-    public interface IEndSection { ActionTable OnEnded { get; }}
+    public interface IOldActiveSection { ActionTable OnActivated { get; }}
+    public interface IOldCancelSection { ActionTable OnCanceled { get; }}
+    public interface IOldCompleteSection { ActionTable OnCompleted { get; }}
+    public interface IOldEndSection { ActionTable OnEnded { get; }}
 
-    public interface ISequence : IActiveSection, ICancelSection, ICompleteSection, IEndSection
+    public interface IOldSequence : IOldActiveSection, IOldCancelSection, IOldCompleteSection, IOldEndSection
     {
         // ActionTable OnActivated { get; }
         // ActionTable OnCanceled { get; }
@@ -16,12 +17,12 @@ namespace Common
         // ActionTable OnEnded { get; }
     }
 
-    public interface IConditionalSequence : ISequence
+    public interface IOldConditionalSequence : IOldSequence
     {
         ConditionTable Conditions { get; }
     }
 
-    public interface IProjectorSequence : ISequence
+    public interface IOldProjectorSequence : IOldSequence
     {
         float CastingTime { get; }
         Vector2 SizeVector { get; }
@@ -32,7 +33,7 @@ namespace Common
         /// <summary>
         /// main에서 Action을 실행할 때, sub의 ActionTable을 참조한다. 
         /// </summary>
-        public static void CombineAsReference(this ISequence main, string key, ISequence sub)
+        public static void CombineAsReference(this IOldSequence main, string key, IOldSequence sub)
         {
             main.OnActivated.Register(key, sub.OnActivated);
             main.OnCanceled.Register(key, sub.OnCanceled);
@@ -43,7 +44,7 @@ namespace Common
         /// <summary>
         /// 결합 시점에 sub 시퀀스 ActionTable의 Action만 포함한다. 
         /// </summary>
-        public static void CombineAsValue(this ISequence main, ISequence sub)
+        public static void CombineAsValue(this IOldSequence main, IOldSequence sub)
         {
             main.OnActivated.Register(sub.OnActivated);
             main.OnCanceled.Register(sub.OnCanceled);
@@ -51,7 +52,7 @@ namespace Common
             main.OnEnded.Register(sub.OnEnded);
         }
 
-        public static void Clear(this ISequence sequence)
+        public static void Clear(this IOldSequence sequence)
         {
             sequence.OnActivated.Clear();
             sequence.OnCanceled.Clear();
@@ -59,7 +60,7 @@ namespace Common
             sequence.OnEnded.Clear();
         }
 
-        public static ActionTable ConvertSection(this ISequence sequence, SectionType sectionType)
+        public static ActionTable ConvertSection(this IOldSequence sequence, SectionType sectionType)
         {
             return sectionType switch
             {

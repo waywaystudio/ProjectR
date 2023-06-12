@@ -4,16 +4,16 @@ using UnityEngine.Events;
 
 namespace Character.Villains
 {
-    public abstract class BossPhase : MonoBehaviour
+    public abstract class VillainPhase : MonoBehaviour
     {
         [SerializeField] protected bool isLast;
         [SerializeField] protected int index;
-        [SerializeField] protected BossPhase nextPhase;
+        [SerializeField] protected VillainPhase nextPhase;
         [SerializeField] protected UnityEvent onActiveEvent;
         [SerializeField] protected UnityEvent onCompleteEvent;
         [SerializeField] protected UnityEvent onEndEvent;
 
-        private VillainBehaviour boss;
+        private VillainBehaviour villain;
 
         public ConditionTable Conditions { get; } = new();
         public ActionTable OnActivated { get; } = new();
@@ -21,13 +21,13 @@ namespace Character.Villains
         public ActionTable OnCompleted { get; } = new();
         public ActionTable OnEnded { get; } = new();
 
-        public BossPhaseMask PhaseFlag => (BossPhaseMask)(1 << index);
+        public VillainPhaseMask PhaseFlag => (VillainPhaseMask)(1 << index);
         public bool IsProgress { get; private set; }
         public bool IsEnd { get; private set; } = true;
         public bool IsLastPhase => isLast;
         public int Index => index;
-        public BossPhase NextPhase => nextPhase;
-        protected VillainBehaviour Boss => boss ??= GetComponentInParent<VillainBehaviour>();
+        public VillainPhase NextPhase => nextPhase;
+        protected VillainBehaviour Villain => villain ??= GetComponentInParent<VillainBehaviour>();
 
         public void TryToNextPhase()
         {
@@ -74,7 +74,7 @@ namespace Character.Villains
             IsEnd = true;
             
             nextPhase.Activate();
-            boss.CurrentPhase = nextPhase;
+            villain.CurrentPhase = nextPhase;
         }
     }
 }

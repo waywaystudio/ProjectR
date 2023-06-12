@@ -13,8 +13,10 @@ MonoBehaviour:
   m_Name: StatusEffectPrefabData
   m_EditorClassIdentifier: 
   prefabPath: Assets/Project/Prefabs/StatusEffect
-  prefabList:
-  - {fileID: 8333227002716821657, guid: b8a0db4494b80d1418934391f99ec561, type: 3}
-  - {fileID: 8333227002716821657, guid: 5d2fb8c7eb66cd742b1e14925d73c808, type: 3}
-  - {fileID: 8333227002716821657, guid: 8fc553f91fd8269428ac00700eee662d, type: 3}
-  - {fileID: 8333227002716821657, guid: ae083ec149c3daa4fb7146db6fd69715, type: 3}
+  table:
+    keyList: 0148e8010248e8010348e8010448e801
+    valueList:
+    - {fileID: 8333227002716821657, guid: b8a0db4494b80d1418934391f99ec561, type: 3}
+    - {fileID: 8333227002716821657, guid: 5d2fb8c7eb66cd742b1e14925d73c808, type: 3}
+    - {fileID: 8333227002716821657, guid: 8fc553f91fd8269428ac00700eee662d, type: 3}
+    - {fileID: 8333227002716821657, guid: ae083ec149c3daa4fb7146db6fd69715, type: 3}

@@ -6,7 +6,7 @@ using UnityEngine;
 
 namespace Common.Traps
 {
-    public abstract class TrapComponent : MonoBehaviour, ISequence, IExecutable, IEditable
+    public abstract class TrapComponent : MonoBehaviour, IOldSequence, IExecutable, IEditable
     {
         [SerializeField] private CollidingSystem collidingSystem;
         [SerializeField] protected DataIndex trapCode;

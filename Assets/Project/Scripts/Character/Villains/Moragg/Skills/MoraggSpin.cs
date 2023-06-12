@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace Character.Villains.Moragg.Skills
 {
-    public class MoraggSpin : SkillComponent, IProjectorSequence
+    public class MoraggSpin : SkillComponent, IOldProjectorSequence
     {
         public Vector2 SizeVector => new(range, 60);
         

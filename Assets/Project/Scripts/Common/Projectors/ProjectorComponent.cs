@@ -13,7 +13,7 @@ namespace Common.Projectors
 
         protected const float ProjectorDepth = 50f;
         protected static readonly int ProgressID = Shader.PropertyToID("_Progress");
-        protected IProjectorSequence ProjectorSequencer;
+        protected IOldProjectorSequence ProjectorSequencer;
         protected Func<float> CastingTime;
         protected Func<Vector2> SizeReference;
 

@@ -4,16 +4,16 @@ using UnityEngine;
 
 namespace Character.Villains.Moragg.Phase
 {
-    public class MoraggPhase1 : BossPhase
+    public class MoraggPhase1 : VillainPhase
     {
         [SerializeField] private float nextPhaseHpRatio;
 
-        private float HpRatio => Boss.DynamicStatEntry.Hp.Value / Boss.StatTable.MaxHp; 
+        private float HpRatio => Villain.DynamicStatEntry.Hp.Value / Villain.StatTable.MaxHp; 
         
         private void OnEnable()
         {
             Conditions.Register("HpRatio0.7f", () => HpRatio < nextPhaseHpRatio);
-            OnCompleted.Register("ToCenter", () => Boss.Run(Vector3.zero));
+            OnCompleted.Register("ToCenter", () => Villain.Run(Vector3.zero));
             OnCompleted.Register("WaitUntilArrived", () => StartCoroutine(WaitUntilArrived()));
         }
 
@@ -26,7 +26,7 @@ namespace Character.Villains.Moragg.Phase
 
         private IEnumerator WaitUntilArrived()
         {
-            yield return new WaitUntil(() => Boss.BehaviourMask == CharacterActionMask.Stop);
+            yield return new WaitUntil(() => Villain.BehaviourMask == CharacterActionMask.Stop);
             
             End();
         }

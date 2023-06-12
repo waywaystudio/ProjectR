@@ -12,7 +12,7 @@ namespace Lobby
         {
             var knightIndex = DataIndex.Knight;
             
-            if (!Database.CombatClassPrefabData.Get<VenturerBehaviour>(knightIndex, out var adventurerPrefab)) return;
+            if (!Database.VenturerPrefabData.Get<VenturerBehaviour>(knightIndex, out var adventurerPrefab)) return;
                 
             var profitPosition = knightSpawnTransform.position;
             var knight = Instantiate(adventurerPrefab, profitPosition, Quaternion.identity,
