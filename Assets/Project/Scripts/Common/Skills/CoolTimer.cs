@@ -38,7 +38,7 @@ namespace Common.Skills
                 return;
             }
 
-            sequence.Conditions.Register("IsCoolTimeReady", IsCoolTimeReady);
+            sequence.Conditions.Add("IsCoolTimeReady", IsCoolTimeReady);
             sequence.ConvertSection(startCoolingMoment).Register("StartCooling", StartCooling);
         }
 

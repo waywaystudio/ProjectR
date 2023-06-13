@@ -1,44 +1,78 @@
+using Cysharp.Threading.Tasks;
 using UnityEngine;
 
 namespace Common.Characters.Behaviours.CrowdControlEffect
 {
-    public class KnockBackBehaviour : ActionBehaviour
+    public class KnockBackBehaviour : MonoBehaviour, IActionBehaviour, IEditable
     {
-        public override CharacterActionMask BehaviourMask => CharacterActionMask.KnockBack;
-        public override CharacterActionMask IgnorableMask => CharacterActionMask.KnockBackIgnoreMask;
+        [SerializeField] private KnockBackSequencer sequencer;
+        
+        private CharacterBehaviour cb;
+        
+        public CharacterActionMask BehaviourMask => CharacterActionMask.KnockBack;
+        public CharacterActionMask IgnorableMask => CharacterActionMask.KnockBackIgnoreMask;
+        
+        private CharacterBehaviour Cb => cb ??= GetComponentInParent<CharacterBehaviour>();
+        private bool CanOverrideToCurrent => (IgnorableMask | Cb.BehaviourMask) == IgnorableMask;
+        
 
-        public ActionTable<Vector3, float> OnKnockBacking { get; } = new();
-        
-        protected bool IsAble => Conditions.IsAllTrue 
-                                 && CanOverrideToCurrent;
-        
-        
-        public void Active(Vector3 source, float distance)
+        public void KnockBack(Vector3 source, float distance, float duration)
         {
-            if (!IsAble) return;
+            if (!sequencer.IsAbleToActive) return;
             
-            RegisterBehaviour(Cb);
-
-            OnKnockBacking.Invoke(source, distance);
-            OnActivated.Invoke();
+            Cb.Pathfinding.SetKnockProperty(distance, duration);
+            sequencer.Activate(source);
+        }
         
+        public void Cancel() 
+            => sequencer.Cancel();
+
+        public void KnockBackRegisterActive()
+        {
+            if (Cb.CurrentBehaviour is not null && Cb.BehaviourMask != BehaviourMask)
+            {
+                Cb.CurrentBehaviour.Cancel();
+            }
+
+            Cb.CurrentBehaviour = this;
+        }
+
+        public void KnockBackRotateActive(Vector3 source)
+        {
             Cb.Rotate(source);
-            Cb.Animating.Hit();
-            
-            Cb.Pathfinding.KnockBack(source, distance, Complete);
         }
         
-        public override void Cancel()
+        public void KnockBackAnimationActive(Vector3 source)
         {
-            Cb.Stop();
-            OnCanceled.Invoke();
+            Cb.Animating.Hit();
         }
 
-        protected override void Complete()
+        public void KnockBackCancel() => Cb.Stop();
+        public void KnockBackComplete() => Cb.Stop();
+        
+        
+        private async UniTask AwaitKnockBack(Vector3 destination)
         {
-            Cb.Stop();
-            
-            OnCompleted.Invoke();
+            await Cb.Pathfinding.KnockBack(destination);
         }
+
+        private void Awake()
+        {
+            sequencer.Condition.Add("AbleToBehaviourOverride", () => CanOverrideToCurrent);
+            sequencer.ActiveSection.AddAwait("AwaitKnockBack", AwaitKnockBack);
+        }
+        
+        private void OnDestroy()
+        {
+            sequencer.Clear();
+        }
+
+
+#if UNITY_EDITOR
+        public void EditorSetUp()
+        {
+            sequencer = GetComponentInChildren<KnockBackSequencer>();
+        }
+#endif
     }
 }

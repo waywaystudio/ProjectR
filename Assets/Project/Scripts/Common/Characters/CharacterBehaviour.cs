@@ -1,25 +1,28 @@
 using Common.Animation;
-using Common.Characters.Behaviours;
-using Common.Characters.Behaviours.CrowdControlEffect;
-using Common.Characters.Behaviours.Movement;
 using Common.Skills;
 using Common.Systems;
 using UnityEngine;
 
 namespace Common.Characters
 {
+    using Behaviours;
+    using Behaviours.CrowdControlEffect;
+    using Behaviours.Movement;
+    
     public class CharacterBehaviour : MonoBehaviour, ICombatExecutor, ICharacterSystem, ICharacterAnimation, IEditable
     {
         [SerializeField] protected CharacterCombatStatus combatStatus;
         [SerializeField] protected AnimationModel animating;
         [SerializeField] protected Transform damageSpawn;
         [SerializeField] protected Transform statusEffectHierarchy;
+        
         [SerializeField] protected StopBehaviour stopBehaviour;
         [SerializeField] protected RunBehaviour runBehaviour;
         [SerializeField] protected StunBehaviour stunBehaviour;
         [SerializeField] protected KnockBackBehaviour knockBackBehaviour;
         [SerializeField] protected DeadBehaviour deadBehaviour;
         [SerializeField] protected SkillBehaviour skillBehaviour;
+        
         [SerializeField] protected SearchingSystem searching;
         [SerializeField] protected CollidingSystem colliding;
         [SerializeField] protected PathfindingSystem pathfinding;
@@ -42,19 +45,15 @@ namespace Common.Characters
          * Behaviour Attribute
          */
         public CharacterActionMask BehaviourMask => CurrentBehaviour is null ? CharacterActionMask.None : CurrentBehaviour.BehaviourMask;
-        public ActionBehaviour CurrentBehaviour { get; set; }
-        public StopBehaviour StopBehaviour => stopBehaviour;
-        public RunBehaviour RunBehaviour  => runBehaviour;
-        public StunBehaviour StunBehaviour => stunBehaviour;
-        public KnockBackBehaviour KnockBackBehaviour => knockBackBehaviour;
-        public DeadBehaviour DeadBehaviour => deadBehaviour;
-        
+        public IActionBehaviour CurrentBehaviour { get; set; }
+
         public void Rotate(Vector3 lookTarget) { Pathfinding.RotateToTarget(lookTarget); Animating.Flip(transform.forward); }
-        public void Stop() => stopBehaviour.Active();
-        public void Run(Vector3 destination) => runBehaviour.Active(destination);
-        public void Stun(float duration) => stunBehaviour.Active(duration);
-        public void KnockBack(Vector3 source, float distance) => knockBackBehaviour.Active(source, distance);
+        public void Stop() => stopBehaviour.Stop();
+        public void Run(Vector3 destination) => runBehaviour.Run(destination);
+        public void Stun(float duration) => stunBehaviour.Stun(duration);
+        public void KnockBack(Vector3 source, float distance, float duration) => knockBackBehaviour.KnockBack(source, distance, duration);
         public void Dead() => deadBehaviour.Dead();
+        public void AddReward(System.Action action) => deadBehaviour.AddReward("Reward", action);
         
         
         /* Skill Behaviour */

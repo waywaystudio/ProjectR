@@ -1,41 +1,73 @@
+using Cysharp.Threading.Tasks;
 using UnityEngine;
 
 namespace Common.Characters.Behaviours.Movement
 {
-    public class RunBehaviour : ActionBehaviour
+    public class RunBehaviour : MonoBehaviour, IActionBehaviour, IEditable
     {
-        public override CharacterActionMask BehaviourMask => CharacterActionMask.Run;
-        public override CharacterActionMask IgnorableMask => CharacterActionMask.RunIgnoreMask;
-
-        public ActionTable<Vector3> OnDeparting { get; } = new();
+        [SerializeField] private RunSequencer sequencer;
         
-        protected bool IsAble => Conditions.IsAllTrue 
-                                 && Cb.Pathfinding.CanMove 
-                                 && CanOverrideToCurrent;
+        private CharacterBehaviour cb;
+        
+        public CharacterActionMask BehaviourMask => CharacterActionMask.Run;
+        public CharacterActionMask IgnorableMask => CharacterActionMask.RunIgnoreMask;
 
-        public void Active(Vector3 destination)
+        private CharacterBehaviour Cb => cb ??= GetComponentInParent<CharacterBehaviour>();
+        private bool CanOverrideToCurrent => (IgnorableMask | Cb.BehaviourMask) == IgnorableMask;
+        
+
+        public void Run(Vector3 destination)
         {
-            if (!IsAble) return;
+            if (!sequencer.IsAbleToActive) return;
             
-            RegisterBehaviour(Cb);
-            
-            OnDeparting.Invoke(destination);
-            OnActivated.Invoke();
-        
-            Cb.Pathfinding.Move(destination, Complete);
+            sequencer.Activate(destination);
+        }
+
+        public void Cancel() 
+            => sequencer.Cancel();
+
+        public void RunRegisterActive()
+        {
+            if (cb.CurrentBehaviour is not null && cb.BehaviourMask != BehaviourMask)
+            {
+                cb.CurrentBehaviour.Cancel();
+            }
+
+            cb.CurrentBehaviour = this;
+        }
+
+        public void RunAnimationActive()
+        {
             Cb.Animating.Run();
         }
 
-        public override void Cancel()
-        {
-            Cb.Stop();
-            OnCanceled.Invoke();
-        }
+        public void RunCancel() => Cb.Stop();
+        public void RunComplete() => Cb.Stop();
         
-        protected override void Complete()
+        
+        private async UniTask AwaitMove(Vector3 destination)
         {
-            Cb.Stop();
-            OnCompleted.Invoke();
+            await Cb.Pathfinding.Move(destination);
         }
+
+        private void Awake()
+        {
+            sequencer.Condition.Add("CanMove", () => Cb.Pathfinding.CanMove);
+            sequencer.Condition.Add("AbleToBehaviourOverride", () => CanOverrideToCurrent);
+            sequencer.ActiveSection.AddAwait("RunMoveActive", AwaitMove);
+        }
+
+        private void OnDestroy()
+        {
+            sequencer.Clear();
+        }
+
+
+#if UNITY_EDITOR
+        public void EditorSetUp()
+        {
+            sequencer = GetComponentInChildren<RunSequencer>();
+        }
+#endif
     }
 }

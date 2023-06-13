@@ -49,7 +49,7 @@ namespace Raid
             var reward = Den.GetReward(villainIndex);
             
             Villain = vb;
-            Villain.DeadBehaviour.OnCompleted.Add("Reward", () =>
+            Villain.AddReward(() =>
             {
                 Den.GetVillainData(villainIndex).KillCount++;
                 Camp.AddGrowMaterials(reward);

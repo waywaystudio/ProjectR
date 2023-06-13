@@ -1,4 +1,5 @@
 using System;
+using Cysharp.Threading.Tasks;
 using DG.Tweening;
 using Pathfinding;
 using UnityEngine;
@@ -20,6 +21,9 @@ namespace Common.Systems
         public bool CanMove { get => aiMove.canMove; set => aiMove.canMove = value; }
         public Vector3 Direction => rootTransform.forward;
 
+        // TODO. KnockBack Property. 본래 Sequencer에서 해야하지만, 3 Parameter 만들기가 너무 귀찮아서 임시 방편.
+        private float KnockBackDistance { get; set; } = 1f;
+        private float KnockBackDuration { get; set; } = 1f;
         private Vector3 RootPosition => rootTransform.position;
 
 
@@ -35,6 +39,15 @@ namespace Common.Systems
             }
 
             agent.StartPath(RootPosition, destination);
+        }
+
+        public async UniTask Move(Vector3 destination)
+        {
+            aiMove.updateRotation = true;
+            aiMove.maxSpeed       = moveSpeed;
+            agent.StartPath(RootPosition, destination);
+
+            await UniTask.WaitUntil(() => IsReached);
         }
 
         public void RotateToTarget(Vector3 lookTarget)
@@ -74,6 +87,20 @@ namespace Common.Systems
 
             rootTransform.DOMove(knockBackDestination, knockBackDuration)
                          .OnComplete(() => callback?.Invoke());
+        }
+
+        public void SetKnockProperty(float distance, float duration)
+        {
+            KnockBackDistance = distance;
+            KnockBackDuration = duration;
+        }
+        
+        public async UniTask KnockBack(Vector3 source)
+        {
+            var knockBackDirection = RootPosition - source;
+            var knockBackDestination = PathfindingUtility.GetReachableStraightPosition(RootPosition, knockBackDirection, KnockBackDistance);
+
+            await rootTransform.DOMove(knockBackDestination, KnockBackDuration);
         }
 
         public void Quit()

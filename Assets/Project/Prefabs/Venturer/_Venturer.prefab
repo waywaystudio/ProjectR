@@ -696,6 +696,134 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   deBuffIcon: {fileID: 3409751285657943054}
   timer: {fileID: 506665227199301162}
+--- !u!1 &1734532088360589441
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6643381767068241014}
+  - component: {fileID: 1628842008569315107}
+  m_Layer: 7
+  m_Name: KnockBack
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6643381767068241014
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1734532088360589441}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1875765173890125298}
+  m_RootOrder: -1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1628842008569315107
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1734532088360589441}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 52a62357afa0ad04eafc57576b419b88, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  key: KnockBack
+  cancelSection:
+    persistantEvent:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 2876764487752019973}
+          m_TargetAssemblyTypeName: Common.Characters.Behaviours.CrowdControlEffect.KnockBackBehaviour,
+            ProjectR.Common
+          m_MethodName: KnockBackCancel
+          m_Mode: 0
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: 
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+  completeSection:
+    persistantEvent:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 2876764487752019973}
+          m_TargetAssemblyTypeName: Common.Characters.Behaviours.CrowdControlEffect.KnockBackBehaviour,
+            ProjectR.Common
+          m_MethodName: KnockBackComplete
+          m_Mode: 0
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: 
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+  endSection:
+    persistantEvent:
+      m_PersistentCalls:
+        m_Calls: []
+  EditorExtract:
+  - {fileID: 2511762329398228883}
+  activeSection:
+    persistantEvent:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 2876764487752019973}
+          m_TargetAssemblyTypeName: Common.Characters.Behaviours.CrowdControlEffect.KnockBackBehaviour,
+            ProjectR.Common
+          m_MethodName: KnockBackRegisterActive
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: 
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+        - m_Target: {fileID: 2876764487752019973}
+          m_TargetAssemblyTypeName: Common.Characters.Behaviours.CrowdControlEffect.KnockBackBehaviour,
+            ProjectR.Common
+          m_MethodName: KnockBackRotateActive
+          m_Mode: 0
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: 
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+        - m_Target: {fileID: 2876764487752019973}
+          m_TargetAssemblyTypeName: Common.Characters.Behaviours.CrowdControlEffect.KnockBackBehaviour,
+            ProjectR.Common
+          m_MethodName: KnockBackAnimationActive
+          m_Mode: 0
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: 
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
 --- !u!1 &2511762329398228883
 GameObject:
   m_ObjectHideFlags: 0
@@ -726,7 +854,10 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 6355047041312063745}
+  - {fileID: 6643381767068241014}
+  - {fileID: 5796419069969236764}
   m_Father: {fileID: 7417837823904446708}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -742,6 +873,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 100971ec1b076d041bcdbeabfca9ef89, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  sequencer: {fileID: 9203073332677223051}
 --- !u!114 &2876764487752019973
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -754,6 +886,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0374d05ee0e1fb04ca9b65115ad0dce6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  sequencer: {fileID: 1628842008569315107}
 --- !u!114 &2208965012742206995
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -766,6 +899,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f023e572eb6a80245b9add90975e85ba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  sequencer: {fileID: 4478331881609387638}
 --- !u!1 &2670999075844230442
 GameObject:
   m_ObjectHideFlags: 0
@@ -817,6 +951,223 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   symbol: {fileID: 7690976877373869994}
+--- !u!1 &2767781852979609311
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3480771904899468913}
+  - component: {fileID: 1388311224292992919}
+  m_Layer: 7
+  m_Name: Stop
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3480771904899468913
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2767781852979609311}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1672921741019928339}
+  m_RootOrder: -1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1388311224292992919
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2767781852979609311}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 52c9a8b0f77ba8c488df35dd0c85675b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  key: Stop
+  cancelSection:
+    persistantEvent:
+      m_PersistentCalls:
+        m_Calls: []
+  completeSection:
+    persistantEvent:
+      m_PersistentCalls:
+        m_Calls: []
+  endSection:
+    persistantEvent:
+      m_PersistentCalls:
+        m_Calls: []
+  EditorExtract:
+  - {fileID: 7011928896124794792}
+  activeSection:
+    persistantEvent:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 6955544167124820703}
+          m_TargetAssemblyTypeName: Common.Characters.Behaviours.Movement.StopBehaviour,
+            ProjectR.Common
+          m_MethodName: StopActive
+          m_Mode: 0
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: 
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+--- !u!1 &3149488973989888538
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5796419069969236764}
+  - component: {fileID: 9203073332677223051}
+  m_Layer: 7
+  m_Name: Stun
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5796419069969236764
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3149488973989888538}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1875765173890125298}
+  m_RootOrder: -1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &9203073332677223051
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3149488973989888538}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4e7a8d2df4036c47a432bdea71d4f80, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  key: Stun
+  cancelSection:
+    persistantEvent:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 8724533289813317877}
+          m_TargetAssemblyTypeName: Common.Characters.Behaviours.CrowdControlEffect.StunBehaviour,
+            ProjectR.Common
+          m_MethodName: StunCancel
+          m_Mode: 0
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: 
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+  completeSection:
+    persistantEvent:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 8724533289813317877}
+          m_TargetAssemblyTypeName: Common.Characters.Behaviours.CrowdControlEffect.StunBehaviour,
+            ProjectR.Common
+          m_MethodName: StunComplete
+          m_Mode: 0
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: 
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+  endSection:
+    persistantEvent:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 8724533289813317877}
+          m_TargetAssemblyTypeName: Common.Characters.Behaviours.CrowdControlEffect.StunBehaviour,
+            ProjectR.Common
+          m_MethodName: StunEnd
+          m_Mode: 0
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: 
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+  EditorExtract:
+  - {fileID: 2511762329398228883}
+  activeSection:
+    persistantEvent:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 8724533289813317877}
+          m_TargetAssemblyTypeName: Common.Characters.Behaviours.CrowdControlEffect.StunBehaviour,
+            ProjectR.Common
+          m_MethodName: StunRegisterActive
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: 
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+        - m_Target: {fileID: 8724533289813317877}
+          m_TargetAssemblyTypeName: Common.Characters.Behaviours.CrowdControlEffect.StunBehaviour,
+            ProjectR.Common
+          m_MethodName: StunAnimationActive
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: 
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+        - m_Target: {fileID: 8724533289813317877}
+          m_TargetAssemblyTypeName: Common.Characters.Behaviours.CrowdControlEffect.StunBehaviour,
+            ProjectR.Common
+          m_MethodName: StunSetDurationActive
+          m_Mode: 0
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: 
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
 --- !u!1 &3442606976834477159
 GameObject:
   m_ObjectHideFlags: 0
@@ -1344,7 +1695,7 @@ GameObject:
   - component: {fileID: 3744010700067239342}
   - component: {fileID: 2456180222565774952}
   m_Layer: 7
-  m_Name: _Adventurer
+  m_Name: _Venturer
   m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1383,9 +1734,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e79904d1d5fb8af439f9f0319719c714, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  characterName: Yoze
-  characterID: 0
-  role: 3
   combatStatus: {fileID: 0}
   animating: {fileID: 0}
   damageSpawn: {fileID: 7165625768315214134}
@@ -1399,6 +1747,7 @@ MonoBehaviour:
   searching: {fileID: 6370810151153497551}
   colliding: {fileID: 3894537213432791220}
   pathfinding: {fileID: 2767833712095737796}
+  data: {fileID: 0}
   modChanger: {fileID: 6397024410037532818}
 --- !u!114 &6397024410037532818
 MonoBehaviour:
@@ -1778,6 +2127,121 @@ MonoBehaviour:
   m_ChildScaleWidth: 0
   m_ChildScaleHeight: 0
   m_ReverseArrangement: 0
+--- !u!1 &4390694647182855477
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1151869428572556205}
+  - component: {fileID: 1329627194946003019}
+  m_Layer: 7
+  m_Name: Run
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1151869428572556205
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4390694647182855477}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1672921741019928339}
+  m_RootOrder: -1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1329627194946003019
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4390694647182855477}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f07dcffea0d0cd94cbafc196f822af88, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  key: Run
+  cancelSection:
+    persistantEvent:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 8453779767324287218}
+          m_TargetAssemblyTypeName: Common.Characters.Behaviours.Movement.RunBehaviour,
+            ProjectR.Common
+          m_MethodName: RunCancel
+          m_Mode: 0
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: 
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+  completeSection:
+    persistantEvent:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 8453779767324287218}
+          m_TargetAssemblyTypeName: Common.Characters.Behaviours.Movement.RunBehaviour,
+            ProjectR.Common
+          m_MethodName: RunComplete
+          m_Mode: 0
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: 
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+  endSection:
+    persistantEvent:
+      m_PersistentCalls:
+        m_Calls: []
+  EditorExtract:
+  - {fileID: 7011928896124794792}
+  activeSection:
+    persistantEvent:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 8453779767324287218}
+          m_TargetAssemblyTypeName: Common.Characters.Behaviours.Movement.RunBehaviour,
+            ProjectR.Common
+          m_MethodName: RunRegisterActive
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: 
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+        - m_Target: {fileID: 8453779767324287218}
+          m_TargetAssemblyTypeName: Common.Characters.Behaviours.Movement.RunBehaviour,
+            ProjectR.Common
+          m_MethodName: RunAnimationActive
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: 
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
 --- !u!1 &4390920342836237031
 GameObject:
   m_ObjectHideFlags: 0
@@ -2104,7 +2568,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 7
-  raycastThreshHold: 2
   knockBackDuration: 0.35
   rootTransform: {fileID: 3744010700067239340}
   agent: {fileID: 4715572446690749081}
@@ -2702,7 +3165,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f865738da60c3e442ae51953dc29c83c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  characterData: {fileID: 11400000, guid: 4b6ee5db37194934fb4593d4ce73e32e, type: 2}
 --- !u!1 &6188042393365916432
 GameObject:
   m_ObjectHideFlags: 0
@@ -2919,7 +3381,9 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 1151869428572556205}
+  - {fileID: 3480771904899468913}
   m_Father: {fileID: 7417837823904446708}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -2935,6 +3399,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1b6e649d21c669a45a8aa765a78ce211, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  sequencer: {fileID: 1329627194946003019}
 --- !u!114 &6955544167124820703
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2947,6 +3412,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: de170aedc8a6e27468da3e3bb6b91d3c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  sequencer: {fileID: 1388311224292992919}
 --- !u!1 &7504715503937997980
 GameObject:
   m_ObjectHideFlags: 0
@@ -3679,6 +4145,95 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   deBuffIcon: {fileID: 870006341388267611}
   timer: {fileID: 7043002667556341374}
+--- !u!1 &9100228311815023881
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6355047041312063745}
+  - component: {fileID: 4478331881609387638}
+  m_Layer: 8
+  m_Name: Dead
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6355047041312063745
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9100228311815023881}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1875765173890125298}
+  m_RootOrder: -1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &4478331881609387638
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9100228311815023881}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 23d5e162e0d8eac4188b28f8cd8db71d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  key: Dead
+  cancelSection:
+    persistantEvent:
+      m_PersistentCalls:
+        m_Calls: []
+  completeSection:
+    persistantEvent:
+      m_PersistentCalls:
+        m_Calls: []
+  endSection:
+    persistantEvent:
+      m_PersistentCalls:
+        m_Calls: []
+  EditorExtract:
+  - {fileID: 2511762329398228883}
+  activeSection:
+    persistantEvent:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 2208965012742206995}
+          m_TargetAssemblyTypeName: Common.Characters.Behaviours.CrowdControlEffect.DeadBehaviour,
+            ProjectR.Common
+          m_MethodName: DeadRegisterActive
+          m_Mode: 0
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: 
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+        - m_Target: {fileID: 2208965012742206995}
+          m_TargetAssemblyTypeName: Common.Characters.Behaviours.CrowdControlEffect.DeadBehaviour,
+            ProjectR.Common
+          m_MethodName: DeadQuitPathfindingActive
+          m_Mode: 0
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: 
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
 --- !u!1 &9206584074808134567
 GameObject:
   m_ObjectHideFlags: 0

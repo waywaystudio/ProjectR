@@ -316,7 +316,8 @@ namespace Spine.Unity.Editor {
 			string texturePath = AssetDatabase.GetAssetPath(texture.GetInstanceID());
 			TextureImporter t = (TextureImporter)TextureImporter.GetAtPath(texturePath);
 			t.spriteImportMode = SpriteImportMode.Multiple;
-			SpriteMetaData[] spriteSheet = t.spritesheet;
+			var spriteSheet = t.spritesheet;
+
 			List<SpriteMetaData> sprites = new List<SpriteMetaData>(spriteSheet);
 
 			List<AtlasRegion> regions = SpineAtlasAssetInspector.GetRegions(atlas);

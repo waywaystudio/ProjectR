@@ -7,16 +7,16 @@ namespace Character.Villains
     {
         [SerializeField] private VillainPhaseMask enableMask;
         
-        private VillainBehaviour boss;
+        private VillainBehaviour villain;
         private IOldConditionalSequence sequence;
 
         private void OnEnable()
         {
-            boss = GetComponentInParent<VillainBehaviour>();
+            villain = GetComponentInParent<VillainBehaviour>();
             
             TryGetComponent(out sequence);
             
-            sequence.Conditions.Register("ConditionSelfHpStatus", () => (enableMask | boss.CurrentPhase.PhaseFlag) == enableMask);
+            sequence.Conditions.Add("ConditionSelfHpStatus", () => (enableMask | villain.CurrentPhase.PhaseMask) == enableMask);
         }
     }
 }

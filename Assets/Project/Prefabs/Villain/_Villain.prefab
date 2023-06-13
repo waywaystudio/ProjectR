@@ -192,7 +192,6 @@ GameObject:
   m_Component:
   - component: {fileID: 3744010700067239340}
   - component: {fileID: 1194031104030257203}
-  - component: {fileID: 814105544417408393}
   - component: {fileID: 3744010700067239343}
   - component: {fileID: 3744010700067239342}
   m_Layer: 8
@@ -219,7 +218,6 @@ Transform:
   - {fileID: 6223393909608460540}
   - {fileID: 7681027685326874348}
   - {fileID: 3744010699814045015}
-  - {fileID: 6782141761680153026}
   - {fileID: 3941785278225685870}
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -251,22 +249,7 @@ MonoBehaviour:
   pathfinding: {fileID: 4103633887526501528}
   data: {fileID: 0}
   difficultyTable: {fileID: 7806359906630571811}
-  phaseTable: {fileID: 814105544417408393}
---- !u!114 &814105544417408393
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3744010700067239338}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f65535942020e3a4897eacc479d649ba, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  phaseList:
-  - {fileID: 855232010076595029}
-  - {fileID: 3954843388123077938}
+  phaseBehaviours: {fileID: 2534193094697240272}
 --- !u!54 &3744010700067239343
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -401,6 +384,95 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1 &3901007188857564205
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7386646724458993972}
+  - component: {fileID: 7608737487445437281}
+  m_Layer: 8
+  m_Name: Dead
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7386646724458993972
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3901007188857564205}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 7973989698085111680}
+  m_RootOrder: -1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &7608737487445437281
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3901007188857564205}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 23d5e162e0d8eac4188b28f8cd8db71d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  key: Dead
+  cancelSection:
+    persistantEvent:
+      m_PersistentCalls:
+        m_Calls: []
+  completeSection:
+    persistantEvent:
+      m_PersistentCalls:
+        m_Calls: []
+  endSection:
+    persistantEvent:
+      m_PersistentCalls:
+        m_Calls: []
+  EditorExtract:
+  - {fileID: 8523974462686112078}
+  activeSection:
+    persistantEvent:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 6434334268031144768}
+          m_TargetAssemblyTypeName: Common.Characters.Behaviours.CrowdControlEffect.DeadBehaviour,
+            ProjectR.Common
+          m_MethodName: DeadRegisterActive
+          m_Mode: 0
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: 
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+        - m_Target: {fileID: 6434334268031144768}
+          m_TargetAssemblyTypeName: Common.Characters.Behaviours.CrowdControlEffect.DeadBehaviour,
+            ProjectR.Common
+          m_MethodName: DeadQuitPathfindingActive
+          m_Mode: 0
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: 
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
 --- !u!1 &4162881639620210299
 GameObject:
   m_ObjectHideFlags: 0
@@ -461,7 +533,9 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 6392523915433659187}
+  - {fileID: 6106009446420012740}
   m_Father: {fileID: 7543387085409907241}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -477,6 +551,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1b6e649d21c669a45a8aa765a78ce211, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  sequencer: {fileID: 4241758203275795073}
 --- !u!114 &1507691392867818735
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -489,6 +564,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: de170aedc8a6e27468da3e3bb6b91d3c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  sequencer: {fileID: 242755034181318396}
 --- !u!1 &4893882757108334915
 GameObject:
   m_ObjectHideFlags: 0
@@ -498,6 +574,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6643467172092697958}
+  - component: {fileID: 7733819905501402043}
   m_Layer: 8
   m_Name: Phase1
   m_TagString: Untagged
@@ -520,6 +597,74 @@ Transform:
   m_Father: {fileID: 6782141761680153026}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &7733819905501402043
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4893882757108334915}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c900ae3c8f05c88469aa70d6f281debb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  key: Phase1
+  cancelSection:
+    persistantEvent:
+      m_PersistentCalls:
+        m_Calls: []
+  completeSection:
+    persistantEvent:
+      m_PersistentCalls:
+        m_Calls: []
+  endSection:
+    persistantEvent:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 3264795498149139108}
+          m_TargetAssemblyTypeName: UnityEngine.Behaviour, UnityEngine
+          m_MethodName: set_enabled
+          m_Mode: 6
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 1
+          m_CallState: 2
+  EditorExtract:
+  - {fileID: 8615205136865817359}
+  activeSection:
+    persistantEvent:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 3264795498149139108}
+          m_TargetAssemblyTypeName: UnityEngine.Behaviour, UnityEngine
+          m_MethodName: set_enabled
+          m_Mode: 6
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+        - m_Target: {fileID: 2534193094697240272}
+          m_TargetAssemblyTypeName: Character.Villains.PhaseBehaviours, ProjectR.Character
+          m_MethodName: Phase1ActiveRunToCenter
+          m_Mode: 0
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: 
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+  phaseMask: 2
 --- !u!1 &5089009410231379900
 GameObject:
   m_ObjectHideFlags: 0
@@ -745,6 +890,275 @@ MonoBehaviour:
   modelData: {fileID: 11400000, guid: dd2c087471eae1c4ebcc1497d3f3534e, type: 2}
   skeletonAnimation: {fileID: 9029805404877257833}
   eventNameList: 
+--- !u!1 &5376564143832143004
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7522733634081100492}
+  - component: {fileID: 2188325683635966297}
+  m_Layer: 8
+  m_Name: KnockBack
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7522733634081100492
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5376564143832143004}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 7973989698085111680}
+  m_RootOrder: -1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2188325683635966297
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5376564143832143004}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 52a62357afa0ad04eafc57576b419b88, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  key: KnockBack
+  cancelSection:
+    persistantEvent:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1583247103151659224}
+          m_TargetAssemblyTypeName: Common.Characters.Behaviours.CrowdControlEffect.KnockBackBehaviour,
+            ProjectR.Common
+          m_MethodName: KnockBackCancel
+          m_Mode: 0
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: 
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+  completeSection:
+    persistantEvent:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1583247103151659224}
+          m_TargetAssemblyTypeName: Common.Characters.Behaviours.CrowdControlEffect.KnockBackBehaviour,
+            ProjectR.Common
+          m_MethodName: KnockBackComplete
+          m_Mode: 0
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: 
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+  endSection:
+    persistantEvent:
+      m_PersistentCalls:
+        m_Calls: []
+  EditorExtract:
+  - {fileID: 8523974462686112078}
+  activeSection:
+    persistantEvent:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1583247103151659224}
+          m_TargetAssemblyTypeName: Common.Characters.Behaviours.CrowdControlEffect.KnockBackBehaviour,
+            ProjectR.Common
+          m_MethodName: KnockBackRegisterActive
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: 
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+        - m_Target: {fileID: 1583247103151659224}
+          m_TargetAssemblyTypeName: Common.Characters.Behaviours.CrowdControlEffect.KnockBackBehaviour,
+            ProjectR.Common
+          m_MethodName: KnockBackRotateActive
+          m_Mode: 0
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: 
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+        - m_Target: {fileID: 1583247103151659224}
+          m_TargetAssemblyTypeName: Common.Characters.Behaviours.CrowdControlEffect.KnockBackBehaviour,
+            ProjectR.Common
+          m_MethodName: KnockBackAnimationActive
+          m_Mode: 0
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: 
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+--- !u!1 &5542662401839507427
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4982428377058966078}
+  - component: {fileID: 7665179664670204763}
+  m_Layer: 7
+  m_Name: Stun
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4982428377058966078
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5542662401839507427}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 7973989698085111680}
+  m_RootOrder: -1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &7665179664670204763
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5542662401839507427}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4e7a8d2df4036c47a432bdea71d4f80, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  key: Stun
+  cancelSection:
+    persistantEvent:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 7632348093732071148}
+          m_TargetAssemblyTypeName: Common.Characters.Behaviours.CrowdControlEffect.StunBehaviour,
+            ProjectR.Common
+          m_MethodName: StunCancel
+          m_Mode: 0
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: 
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+  completeSection:
+    persistantEvent:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 7632348093732071148}
+          m_TargetAssemblyTypeName: Common.Characters.Behaviours.CrowdControlEffect.StunBehaviour,
+            ProjectR.Common
+          m_MethodName: StunComplete
+          m_Mode: 0
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: 
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+  endSection:
+    persistantEvent:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 7632348093732071148}
+          m_TargetAssemblyTypeName: Common.Characters.Behaviours.CrowdControlEffect.StunBehaviour,
+            ProjectR.Common
+          m_MethodName: StunEnd
+          m_Mode: 0
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: 
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+  EditorExtract:
+  - {fileID: 8523974462686112078}
+  activeSection:
+    persistantEvent:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 7632348093732071148}
+          m_TargetAssemblyTypeName: Common.Characters.Behaviours.CrowdControlEffect.StunBehaviour,
+            ProjectR.Common
+          m_MethodName: StunRegisterActive
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: 
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+        - m_Target: {fileID: 7632348093732071148}
+          m_TargetAssemblyTypeName: Common.Characters.Behaviours.CrowdControlEffect.StunBehaviour,
+            ProjectR.Common
+          m_MethodName: StunAnimationActive
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: 
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+        - m_Target: {fileID: 7632348093732071148}
+          m_TargetAssemblyTypeName: Common.Characters.Behaviours.CrowdControlEffect.StunBehaviour,
+            ProjectR.Common
+          m_MethodName: StunSetDurationActive
+          m_Mode: 0
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: 
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
 --- !u!1 &5820197252133641895
 GameObject:
   m_ObjectHideFlags: 0
@@ -989,6 +1403,121 @@ SphereCollider:
   serializedVersion: 3
   m_Radius: 100
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!1 &7339756403604838598
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6392523915433659187}
+  - component: {fileID: 4241758203275795073}
+  m_Layer: 8
+  m_Name: Run
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6392523915433659187
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7339756403604838598}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 6073805884846720106}
+  m_RootOrder: -1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &4241758203275795073
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7339756403604838598}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f07dcffea0d0cd94cbafc196f822af88, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  key: Run
+  cancelSection:
+    persistantEvent:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 6909245343629228222}
+          m_TargetAssemblyTypeName: Common.Characters.Behaviours.Movement.RunBehaviour,
+            ProjectR.Common
+          m_MethodName: RunCancel
+          m_Mode: 0
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: 
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+  completeSection:
+    persistantEvent:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 6909245343629228222}
+          m_TargetAssemblyTypeName: Common.Characters.Behaviours.Movement.RunBehaviour,
+            ProjectR.Common
+          m_MethodName: RunComplete
+          m_Mode: 0
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: 
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+  endSection:
+    persistantEvent:
+      m_PersistentCalls:
+        m_Calls: []
+  EditorExtract:
+  - {fileID: 4493104333478012827}
+  activeSection:
+    persistantEvent:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 6909245343629228222}
+          m_TargetAssemblyTypeName: Common.Characters.Behaviours.Movement.RunBehaviour,
+            ProjectR.Common
+          m_MethodName: RunRegisterActive
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: 
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+        - m_Target: {fileID: 6909245343629228222}
+          m_TargetAssemblyTypeName: Common.Characters.Behaviours.Movement.RunBehaviour,
+            ProjectR.Common
+          m_MethodName: RunAnimationActive
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: 
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
 --- !u!1 &7358179922413647357
 GameObject:
   m_ObjectHideFlags: 0
@@ -1139,6 +1668,70 @@ MonoBehaviour:
       Version: 1.7.4
   gizmoViewMode: 2
   showBehaviorDesignerGizmo: 1
+--- !u!1 &8156657133318594894
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 9136007778652007926}
+  - component: {fileID: 7219543607100830577}
+  m_Layer: 8
+  m_Name: Phase2
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &9136007778652007926
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8156657133318594894}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 6782141761680153026}
+  m_RootOrder: -1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &7219543607100830577
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8156657133318594894}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c900ae3c8f05c88469aa70d6f281debb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  key: Phase2
+  cancelSection:
+    persistantEvent:
+      m_PersistentCalls:
+        m_Calls: []
+  completeSection:
+    persistantEvent:
+      m_PersistentCalls:
+        m_Calls: []
+  endSection:
+    persistantEvent:
+      m_PersistentCalls:
+        m_Calls: []
+  EditorExtract:
+  - {fileID: 8615205136865817359}
+  activeSection:
+    persistantEvent:
+      m_PersistentCalls:
+        m_Calls: []
+  phaseMask: 4
 --- !u!1 &8523974462686112078
 GameObject:
   m_ObjectHideFlags: 0
@@ -1169,7 +1762,10 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 7386646724458993972}
+  - {fileID: 7522733634081100492}
+  - {fileID: 4982428377058966078}
   m_Father: {fileID: 7543387085409907241}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1185,6 +1781,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 100971ec1b076d041bcdbeabfca9ef89, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  sequencer: {fileID: 7665179664670204763}
 --- !u!114 &1583247103151659224
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1197,6 +1794,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0374d05ee0e1fb04ca9b65115ad0dce6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  sequencer: {fileID: 2188325683635966297}
 --- !u!114 &6434334268031144768
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1209,6 +1807,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f023e572eb6a80245b9add90975e85ba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  sequencer: {fileID: 7608737487445437281}
 --- !u!1 &8615205136865817359
 GameObject:
   m_ObjectHideFlags: 0
@@ -1218,10 +1817,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6782141761680153026}
-  - component: {fileID: 855232010076595029}
-  - component: {fileID: 3954843388123077938}
+  - component: {fileID: 2534193094697240272}
   m_Layer: 8
-  m_Name: PhaseTable
+  m_Name: Phase
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1240,10 +1838,11 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 6643467172092697958}
-  m_Father: {fileID: 3744010700067239340}
+  - {fileID: 9136007778652007926}
+  m_Father: {fileID: 7543387085409907241}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &855232010076595029
+--- !u!114 &2534193094697240272
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1252,70 +1851,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 8615205136865817359}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c4366eaf15f19ad42a53ce7b45238c88, type: 3}
+  m_Script: {fileID: 11500000, guid: c93dd7f6fcbe42c4a976df8a4f8394bb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isLast: 0
-  index: 1
-  nextPhase: {fileID: 3954843388123077938}
-  onActiveEvent:
-    m_PersistentCalls:
-      m_Calls: []
-  onCompleteEvent:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 3264795498149139108}
-        m_TargetAssemblyTypeName: UnityEngine.Behaviour, UnityEngine
-        m_MethodName: set_enabled
-        m_Mode: 6
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-  onEndEvent:
-    m_PersistentCalls:
-      m_Calls: []
-  nextPhaseHpRatio: 0.7
---- !u!114 &3954843388123077938
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8615205136865817359}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7f1b720dfb1450942a46379a91b8ab54, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  isLast: 1
-  index: 2
-  nextPhase: {fileID: 0}
-  onActiveEvent:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 3264795498149139108}
-        m_TargetAssemblyTypeName: UnityEngine.Behaviour, UnityEngine
-        m_MethodName: set_enabled
-        m_Mode: 6
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 1
-        m_CallState: 2
-  onCompleteEvent:
-    m_PersistentCalls:
-      m_Calls: []
-  onEndEvent:
-    m_PersistentCalls:
-      m_Calls: []
+  phase1Seq: {fileID: 7733819905501402043}
+  phase2Seq: {fileID: 7219543607100830577}
 --- !u!1 &9163881677564672601
 GameObject:
   m_ObjectHideFlags: 0
@@ -1346,10 +1886,87 @@ Transform:
   m_Children:
   - {fileID: 7973989698085111680}
   - {fileID: 6073805884846720106}
+  - {fileID: 6782141761680153026}
   - {fileID: 2035227460828127721}
   m_Father: {fileID: 3744010700067239340}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &9170726859701074183
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6106009446420012740}
+  - component: {fileID: 242755034181318396}
+  m_Layer: 8
+  m_Name: Stop
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6106009446420012740
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9170726859701074183}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 6073805884846720106}
+  m_RootOrder: -1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &242755034181318396
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9170726859701074183}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 52c9a8b0f77ba8c488df35dd0c85675b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  key: Stop
+  cancelSection:
+    persistantEvent:
+      m_PersistentCalls:
+        m_Calls: []
+  completeSection:
+    persistantEvent:
+      m_PersistentCalls:
+        m_Calls: []
+  endSection:
+    persistantEvent:
+      m_PersistentCalls:
+        m_Calls: []
+  EditorExtract:
+  - {fileID: 4493104333478012827}
+  activeSection:
+    persistantEvent:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1507691392867818735}
+          m_TargetAssemblyTypeName: Common.Characters.Behaviours.Movement.StopBehaviour,
+            ProjectR.Common
+          m_MethodName: StopActive
+          m_Mode: 0
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: 
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
 --- !u!1001 &606109883381454424
 PrefabInstance:
   m_ObjectHideFlags: 0

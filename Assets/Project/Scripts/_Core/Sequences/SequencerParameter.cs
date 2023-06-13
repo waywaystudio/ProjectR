@@ -4,65 +4,81 @@ using UnityEngine;
 
 namespace Sequences
 {
-    public class SequencerParameter<T> : MonoBehaviour
+    public class Sequencer<T> : SequencerCore, IEditable
     {
-        [SerializeField] private SectionParameter<T> activeSection;
-        [SerializeField] private Section completeSection;
-        [SerializeField] private Section endSection;
-        [SerializeField] private Section cancelSection;
+        [SerializeField] private ActiveSection<T> activeSection;
         
-        private CancellationTokenSource cts;
+        public ActiveSection<T> ActiveSection => activeSection;
 
         public void Activate(T value)
         {
+            if (Condition.HasFalse) return;
+            
             StartAction(value).Forget();
         }
-        
-        public void Cancel()
+
+        public void Clear()
         {
-            if (cts == null) return;
+            ActiveSection.Clear();
             
-            cts.Cancel();
-            cancelSection.Invoke();
-            endSection.Invoke();
+            Condition.Clear();
+            Cancellation.Clear();
+            Complete.Clear();
+            End.Clear();
         }
         
-        
-        private async UniTaskVoid StartAction(T value)
-        {
-            SectionInitialize();
-            
-            cts = new CancellationTokenSource();
-            
-            try
-            {
-                await RunSequence(value, cts.Token);
-            }
-            finally
-            {
-                cts.Dispose();
-                cts = null;
-            }
-        }
-
-        private async UniTask RunSequence(T value, CancellationToken cancellationToken)
-        {
-            activeSection.Invoke(value, cancellationToken).Forget();
-            await UniTask.WaitUntil(() => activeSection.IsDone, cancellationToken: cancellationToken);
-
-            completeSection.Invoke(cancellationToken).Forget();
-            await UniTask.WaitUntil(() => completeSection.IsDone, cancellationToken: cancellationToken);
-
-            endSection.Invoke(cancellationToken).Forget();
-            await UniTask.WaitUntil(() => endSection.IsDone, cancellationToken: cancellationToken);
-        }
 
         private void SectionInitialize()
         {
+            IsDone = false;
+            
             activeSection.Initialize();
             completeSection.Initialize();
             endSection.Initialize();
             cancelSection.Initialize();
         }
+
+        private async UniTaskVoid StartAction(T value)
+        {
+            SectionInitialize();
+            
+            Cts = new CancellationTokenSource();
+            
+            try
+            {
+                await RunSequence(value, Cts.Token);
+            }
+            finally
+            {
+                IsDone = true;
+                Cts.Dispose();
+                Cts = null;
+            }
+            
+            IsDone = true;
+        }
+
+        private async UniTask RunSequence(T value, CancellationToken cancellationToken)
+        {
+            await activeSection.Invoke(value, cancellationToken);
+            await completeSection.Invoke(cancellationToken);
+            await endSection.Invoke(cancellationToken);
+        }
+        
+        
+#if UNITY_EDITOR
+        public void EditorSetUp()
+        {
+            EditorExtract.ForEach(AssignPersistantEvent);
+        }
+        
+        private void AssignPersistantEvent(GameObject targetObject)
+        {
+            AddPersistantEvent(targetObject, "Active", activeSection);
+            AddPersistantEvent(targetObject, "Cancel", cancelSection);
+            AddPersistantEvent(targetObject, "Complete", completeSection);
+            AddPersistantEvent(targetObject, "End", endSection);
+        }
+#endif
     }
 }

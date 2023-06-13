@@ -20,10 +20,14 @@ namespace Editor
 
         public override void ProcessChildMemberAttributes(InspectorProperty parentProperty, MemberInfo member, List<Attribute> attributes)
         {
+            if (member.Name.Contains("Editor"))
+            {
+                attributes.Add(new BoxGroupAttribute("Editor Only Groups", false));
+                attributes.Add(new PropertyOrderAttribute(100f));
+            }
+            
             if (member.Name == "EditorSetUp")
             {
-                attributes.Add(CommonHorizontalGroup);
-                attributes.Add(new PropertyOrderAttribute(0f));
                 attributes.Add(new ButtonAttribute(ButtonSizes.Large)
                 {
                     Icon = SdfIconType.Save,
@@ -32,11 +36,9 @@ namespace Editor
             
             if (member.Name == "ShowDataBase")
             {
-                attributes.Add(CommonHorizontalGroup);
-                attributes.Add(new PropertyOrderAttribute(1f));
                 attributes.Add(new ButtonAttribute(ButtonSizes.Large)
                 {
-                    Icon = SdfIconType.ClipboardData,
+                    Icon    = SdfIconType.ClipboardData,
                 });
             }
             
@@ -46,7 +48,6 @@ namespace Editor
                 attributes.Add(new ButtonAttribute(ButtonSizes.Large)
                 {
                     Icon = SdfIconType.QuestionCircle,
-                    Stretch = false,
                 });
             }
         }

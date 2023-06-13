@@ -8,6 +8,7 @@ namespace Common.Execution
          * 각 CC별로 Component를 만드는 방법도 있겠으나, 일단은 합쳐서 만들어본다. */
         [SerializeField] private CharacterActionMask ccMask;
         [SerializeField] private float knockBackDistance;
+        [SerializeField] private float knockBackDuration = 0.5f;
         [SerializeField] private float stunDuration;
 
 
@@ -23,7 +24,7 @@ namespace Common.Execution
                 taker.Stun(stunDuration * instantMultiplier);
             
             if (CrowdControlHas(CharacterActionMask.KnockBack))
-                taker.KnockBack(transform.position, knockBackDistance * instantMultiplier);
+                taker.KnockBack(transform.position, knockBackDistance * instantMultiplier, knockBackDuration);
         }
 
         private bool CrowdControlHas(CharacterActionMask cc) => (ccMask | cc) == ccMask;

@@ -35,7 +35,6 @@ public class Den : MonoSingleton<Den>, ISavable, IEditable
         var level = MythicLevel;
 
         vb.ForceInitialize(difficulty, level);
-        vb.DeadBehaviour.OnCompleted.Register("DropItems", () => GetReward(villainIndex));
     }
 
     public void Save() 

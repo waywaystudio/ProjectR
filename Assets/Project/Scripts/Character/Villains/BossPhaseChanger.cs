@@ -5,16 +5,17 @@ namespace Character.Villains
     [TaskCategory("Character/Villain")]
     public class BossPhaseChanger : Action
     {
-        private VillainBehaviour boss;
+        private VillainBehaviour villain;
         
         public override void OnAwake()
         {
-            boss = gameObject.GetComponentInParent<VillainBehaviour>();
+            villain = gameObject.GetComponentInParent<VillainBehaviour>();
         }
         
         public override TaskStatus OnUpdate()
         {
-            boss.CurrentPhase.TryToNextPhase();
+            villain.CheckPhaseBehaviour();
+                // CurrentPhase.TryToNextPhase();
 
             return TaskStatus.Failure;
         }

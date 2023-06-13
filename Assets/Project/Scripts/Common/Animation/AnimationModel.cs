@@ -1,4 +1,5 @@
 using System;
+using Cysharp.Threading.Tasks;
 using Spine;
 using Spine.Unity;
 using UnityEngine;
@@ -27,11 +28,14 @@ namespace Common.Animation
         public void Dead(Action callback = null) => PlayOnce("dead", 0f, callback);
         public virtual void Stun() => PlayLoop("stun");
         public void Hit() => PlayLoop("hit");
+        
+        public async UniTask DeadAwait(Action callback = null) => await PlayOnceAwait("dead", 0f, callback);
 
-        public void PlayOnce(string animationKey, float timeScale = 0f, Action callback = null) 
-            => Play(animationKey, 0, false, timeScale, callback);
-        public void PlayLoop(string animationKey, float timeScale = 0f, Action callback = null) 
-            => Play(animationKey, 0, true, timeScale, callback);
+        public void PlayOnce(string animationKey, float timeScale = 0f, Action callback = null) => Play(animationKey, 0, false, timeScale, callback);
+        public void PlayLoop(string animationKey, float timeScale = 0f, Action callback = null) => Play(animationKey, 0, true, timeScale, callback);
+        
+        public async UniTask PlayOnceAwait(string animationKey, float timeScale = 0f, Action callback = null) => await PlayAwait(animationKey, 0, false, timeScale);
+        
 
         public void Play(string animationKey, int layer, bool loop, float timeScale, Action callback)
         {
@@ -41,11 +45,7 @@ namespace Common.Animation
                 return;
             }
 
-            if (currentEntry != null)
-            {
-                Canceled();
-            }
-
+            if (currentEntry != null) Canceled();
             if (callback != null)
             {
                 completeActionBuffer =  null;
@@ -69,12 +69,50 @@ namespace Common.Animation
             }
 
             // Handle Callback
-            if (callback != null)
-            {
+            if (callback != null) 
                 currentEntry.Complete += completeActionBuffer.Invoke;
-            }   
             
             TargetAnimation = target;
+        }
+        
+        public async UniTask PlayAwait(string animationKey, int layer, bool loop, float timeScale, Action callback = null)
+        {
+            if (!modelData.TryGetAnimation(animationKey, out var target))
+            {
+                Debug.LogError($"Not Exist Animation Key {animationKey}");
+                return;
+            }
+
+            if (currentEntry != null) Canceled();
+            if (callback != null)
+            {
+                completeActionBuffer =  null;
+                completeActionBuffer += _ => callback.Invoke();
+            }
+
+            if (IsSameAnimation(target, layer, loop)) return;
+            if (HasTransition(target, layer, loop, callback)) return;
+
+            currentEntry = State.SetAnimation(layer, target, loop);
+
+            // TODO. Animation과 가속도 관계를 잡아보자.
+            if (timeScale != 0f)
+            {
+                var originalDuration = target.Duration;
+                var toStaticValue = originalDuration / timeScale;
+            
+                State.TimeScale       *= toStaticValue;
+                currentEntry.Complete += _ => State.TimeScale = 1f;
+                // state.TimeScale /= toStaticValue;
+            }
+            
+            // Handle Callback
+            if (callback != null) 
+                currentEntry.Complete += completeActionBuffer.Invoke;
+
+            TargetAnimation = target;
+
+            await UniTask.WaitUntil(() => currentEntry.IsComplete);
         }
 
         public void Canceled()

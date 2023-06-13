@@ -1,62 +1,95 @@
+using Cysharp.Threading.Tasks;
 using UnityEngine;
 
 namespace Common.Characters.Behaviours.CrowdControlEffect
 {
-    public class StunBehaviour : ActionBehaviour
+    public class StunBehaviour : MonoBehaviour, IActionBehaviour, IEditable
     {
-        public override CharacterActionMask BehaviourMask => CharacterActionMask.Stun;
-        public override CharacterActionMask IgnorableMask => CharacterActionMask.StunIgnoreMask;
-
-        public FloatEvent RemainStunTime { get; } = new();
-        public ActionTable<float> OnStunning { get; } = new();
+        [SerializeField] private StunSequencer sequencer;
         
-        protected bool IsAble => Conditions.IsAllTrue 
-                                 && CanOverrideToCurrent;
+        private CharacterBehaviour cb;
+        
+        public CharacterActionMask BehaviourMask => CharacterActionMask.Stun;
+        public CharacterActionMask IgnorableMask => CharacterActionMask.StunIgnoreMask;
+        public FloatEvent RemainStunTime { get; } = new();
+        
+        private CharacterBehaviour Cb => cb ??= GetComponentInParent<CharacterBehaviour>();
+        private bool CanOverrideToCurrent => (IgnorableMask | Cb.BehaviourMask) == IgnorableMask;
+        
 
-
-        public void Active(float duration)
+        public void Stun(float duration)
         {
-            if (!IsAble) return;
+            if (!sequencer.IsAbleToActive) return;
             
-            RegisterBehaviour(Cb);
-            
-            OnStunning.Invoke(duration);
-            OnActivated.Invoke();
-            Cb.Animating.Stun();
+            sequencer.Activate(duration);
+        }
 
-            enabled              = true;
+        public void Cancel() 
+            => sequencer.Cancel();
+
+        public void StunRegisterActive()
+        {
+            if (cb.CurrentBehaviour is not null && cb.BehaviourMask != BehaviourMask)
+            {
+                cb.CurrentBehaviour.Cancel();
+            }
+
+            cb.CurrentBehaviour = this;
+        }
+        
+        public void StunAnimationActive()
+        {
+            Cb.Animating.Stun();
+        }
+        
+        public void StunSetDurationActive(float duration)
+        {
             RemainStunTime.Value = duration;
         }
 
-        public override void Cancel()
+        public void StunCancel()
         {
-            enabled              = false;
-            RemainStunTime.Value = 0f;
-
             Cb.Stop();
-            OnCanceled.Invoke();
         }
 
-        protected override void Complete()
+        public void StunComplete()
         {
-            enabled              = false;
-            RemainStunTime.Value = 0f;
-            
             Cb.Stop();
-            OnCompleted.Invoke();
+        }
+
+        public void StunEnd()
+        {
+            RemainStunTime.Value = 0f;
         }
 
 
-        private void Update()
+        private async UniTask AwaitCoolTime()
         {
-            if (RemainStunTime.Value > 0f)
+            while (RemainStunTime.Value > 0)
             {
                 RemainStunTime.Value -= Time.deltaTime;
-            }
-            else
-            {
-                Complete();
+
+                await UniTask.Yield();
             }
         }
+        
+        private void Awake()
+        {
+            sequencer.Condition.Add("AbleToBehaviourOverride", () => CanOverrideToCurrent);
+            sequencer.ActiveSection.AddAwait("AwaitCoolTime", AwaitCoolTime);
+        }
+        
+        private void OnDestroy()
+        {
+            sequencer.Clear();
+        }
+
+
+#if UNITY_EDITOR
+        public void EditorSetUp()
+        {
+            sequencer = GetComponentInChildren<StunSequencer>();
+        }
+#endif
     }
 }

@@ -19,8 +19,6 @@ public abstract class ActionTableCore<T> : Dictionary<string, T>
 
 public class ActionTable : ActionTableCore<Action>
 {
-    public Dictionary<string, Action> SampleTable;
-    
     public ActionTable() { }
     public ActionTable(int capacity) : base(capacity) { }
     
@@ -53,8 +51,8 @@ public class ActionTable : ActionTableCore<Action>
     
 public class ActionTable<T> : ActionTableCore<Action<T>>
 {
-    public ActionTable(){}
-    public ActionTable(int capacity) : base(capacity) {}
+    public ActionTable() { }
+    public ActionTable(int capacity) : base(capacity) { }
 
     public override void Register(string key, Action action) => TryAdd(key, _ => action());
     public void Register(string key, Action<T> action) => TryAdd(key, action);

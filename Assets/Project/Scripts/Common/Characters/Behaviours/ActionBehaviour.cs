@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace Common.Characters.Behaviours
 {
-    public abstract class ActionBehaviour : MonoBehaviour, IOldConditionalSequence
+    public abstract class ActionBehaviour : MonoBehaviour, IOldConditionalSequence, IActionBehaviour
     {
         private CharacterBehaviour cb;
         
@@ -28,8 +28,7 @@ namespace Common.Characters.Behaviours
             {
                 cb.CurrentBehaviour.Cancel();
             }
-                
-            
+
             cb.CurrentBehaviour = this;
         }
 

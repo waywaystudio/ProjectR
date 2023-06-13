@@ -8,9 +8,8 @@ namespace Character.Villains
     {
         [SerializeField] private VillainData data;
         [SerializeField] private VillainDifficultyTable difficultyTable;
-        [SerializeField] private VillainPhaseTable phaseTable;
-        
-        
+        [SerializeField] private PhaseBehaviours phaseBehaviours;
+
         /*
          * Common Attribute
          */ 
@@ -19,7 +18,11 @@ namespace Character.Villains
         public override string Name => data.Name;
         public override CharacterData Data => data;
 
-        public VillainPhase CurrentPhase { get; set; }
+        /*
+         * Phase
+         */
+        public PhaseSequencer CurrentPhase => phaseBehaviours.CurrentPhase;
+        public void CheckPhaseBehaviour() => phaseBehaviours.CheckPhaseBehaviour();
 
         public void ForceInitialize(DifficultyType difficulty, int level)
         {
@@ -28,18 +31,14 @@ namespace Character.Villains
             StatTable.Add(difficultyTable.GetDifficultySpec(difficulty, level));
             
             combatStatus.Initialize();
+            phaseBehaviours.Initialize(this);
         }
 
 
-        protected void Start()
+        private void Update()
         {
-            CurrentPhase = phaseTable.GetStartPhase();
-            
-            if (!CurrentPhase.IsNullOrDestroyed())
-                CurrentPhase.Activate();
+            Animating.Flip(transform.forward);
         }
-
-        private void Update() { Animating.Flip(transform.forward); }
         
         
 #if UNITY_EDITOR
@@ -50,7 +49,7 @@ namespace Character.Villains
             Finder.TryGetObject($"{name}Data", out data);
 
             difficultyTable ??= GetComponentInChildren<VillainDifficultyTable>();
-            phaseTable      ??= GetComponentInChildren<VillainPhaseTable>();
+            phaseBehaviours ??= GetComponentInChildren<PhaseBehaviours>();
             data.EditorSetUp();
         }
 #endif

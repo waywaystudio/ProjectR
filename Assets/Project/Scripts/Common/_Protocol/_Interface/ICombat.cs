@@ -69,7 +69,7 @@ namespace Common
         void Rotate(Vector3 lookTarget);
         void Stop();
         void Stun(float duration);
-        void KnockBack(Vector3 source, float distance);
+        void KnockBack(Vector3 source, float distance, float duration);
         void Dead();
     }
 

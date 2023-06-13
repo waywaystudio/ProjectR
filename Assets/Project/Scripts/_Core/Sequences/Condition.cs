@@ -10,13 +10,13 @@ namespace Sequences
         public bool IsAllTrue => ConditionTable.IsAllTrue;
         public bool HasFalse => ConditionTable.HasFalse;
         
-        public void Add(string key, Func<bool> action) => ConditionTable.Register(key, action);
+        public void Add(string key, Func<bool> action) => ConditionTable.Add(key, action);
         public void Add(ConditionTable conditionTable)
         {
-            conditionTable.ForEach(condition => ConditionTable.TryAdd(condition.Key, condition.Value));
+            // conditionTable.ForEach(condition => ConditionTable.Add(condition.Key, condition.Value));
         }
 
-        public void Remove(string key) => ConditionTable.Unregister(key);
+        public void Remove(string key) => ConditionTable.Remove(key);
         public void Clear() => ConditionTable.Clear();
     }
 }

@@ -26,10 +26,10 @@ namespace Common.Skills
             switch (availableCondition)
             {
                 case RatioConditionType.More:
-                    sequence.Conditions.Register("ConditionSelfHpStatus", () => RemainHpRatio >= availableRatio);
+                    sequence.Conditions.Add("ConditionSelfHpStatus", () => RemainHpRatio >= availableRatio);
                     break;
                 case RatioConditionType.Less:
-                    sequence.Conditions.Register("ConditionSelfHpStatus", () => RemainHpRatio <= availableRatio);
+                    sequence.Conditions.Add("ConditionSelfHpStatus", () => RemainHpRatio <= availableRatio);
                     break;
                 case RatioConditionType.None:
                 default:
