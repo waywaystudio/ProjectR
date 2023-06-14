@@ -32,14 +32,14 @@ namespace Common.Skills
 
         private void Awake()
         {
-            if (!TryGetComponent(out IOldConditionalSequence sequence))
+            if (!TryGetComponent(out ISequencer sequence))
             {
                 Debug.LogError("Require SKillComponent");
                 return;
             }
 
-            sequence.Conditions.Add("IsCoolTimeReady", IsCoolTimeReady);
-            sequence.ConvertSection(startCoolingMoment).Register("StartCooling", StartCooling);
+            sequence.Condition.Add("IsCoolTimeReady", IsCoolTimeReady);
+            // sequence.ConvertSection(startCoolingMoment).Register("StartCooling", StartCooling);
         }
 
         private void Update()

@@ -72,7 +72,6 @@ GameObject:
   m_Component:
   - component: {fileID: 234500611213636336}
   - component: {fileID: 8592763601916381546}
-  - component: {fileID: 6662264705308858124}
   - component: {fileID: 334648159840272248}
   m_Layer: 0
   m_Name: InstantTrap
@@ -113,31 +112,81 @@ MonoBehaviour:
   actionCode: 31000017
   skillType: 1
   sortingType: 0
+  coolTimeSection: 1
   behaviourMask: 64
   ignorableMask: 3
   priority: 3
   range: 4
   angle: 360
   animationKey: jump
+  description: Starts combat by attacking a target with a melee weapon.
   targetLayer:
     serializedVersion: 2
     m_Bits: 256
-  description: Starts combat by attacking a target with a melee weapon.
   icon: {fileID: 21300000, guid: 2482dd41d4c9fcc44a20fb70153bb822, type: 3}
---- !u!114 &6662264705308858124
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8380361914805468174}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c558f34805c58af41b9759b2ae5634bd, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  startCoolingMoment: 1
-  coolTime: 15
+  sequencer:
+    sequenceKey: Skill
+    activeSection:
+      persistantEvent:
+        m_PersistentCalls:
+          m_Calls:
+          - m_Target: {fileID: 8592763601916381546}
+            m_TargetAssemblyTypeName: Common.Skills.SkillComponent, ProjectR.Common
+            m_MethodName: SkillAnimationActive
+            m_Mode: 0
+            m_Arguments:
+              m_ObjectArgument: {fileID: 0}
+              m_ObjectArgumentAssemblyTypeName: 
+              m_IntArgument: 0
+              m_FloatArgument: 0
+              m_StringArgument: 
+              m_BoolArgument: 0
+            m_CallState: 2
+          - m_Target: {fileID: 8592763601916381546}
+            m_TargetAssemblyTypeName: Common.Skills.SkillComponent, ProjectR.Common
+            m_MethodName: SkillPathfindingStopActive
+            m_Mode: 0
+            m_Arguments:
+              m_ObjectArgument: {fileID: 0}
+              m_ObjectArgumentAssemblyTypeName: 
+              m_IntArgument: 0
+              m_FloatArgument: 0
+              m_StringArgument: 
+              m_BoolArgument: 0
+            m_CallState: 2
+    cancelSection:
+      persistantEvent:
+        m_PersistentCalls:
+          m_Calls: []
+    completeSection:
+      persistantEvent:
+        m_PersistentCalls:
+          m_Calls: []
+    endSection:
+      persistantEvent:
+        m_PersistentCalls:
+          m_Calls: []
+    EditorExtract:
+    - {fileID: 8380361914805468174}
+    activeParamSection:
+      persistantEvent:
+        m_PersistentCalls:
+          m_Calls:
+          - m_Target: {fileID: 8592763601916381546}
+            m_TargetAssemblyTypeName: Common.Skills.SkillComponent, ProjectR.Common
+            m_MethodName: SkillRotateActiveParam
+            m_Mode: 0
+            m_Arguments:
+              m_ObjectArgument: {fileID: 0}
+              m_ObjectArgumentAssemblyTypeName: 
+              m_IntArgument: 0
+              m_FloatArgument: 0
+              m_StringArgument: 
+              m_BoolArgument: 0
+            m_CallState: 2
+  executor: {fileID: 0}
+  CoolTimer:
+    timer: 15
 --- !u!114 &334648159840272248
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -150,6 +199,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f43f38c71544bb74da15b508119a64d9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  type: 0
   group: 1
   actionCode: 31000017
   pool:

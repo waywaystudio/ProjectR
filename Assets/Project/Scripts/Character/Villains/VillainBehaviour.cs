@@ -16,7 +16,6 @@ namespace Character.Villains
         public override DataIndex DataIndex => data.DataIndex;
         public override CharacterMask CombatClass => data.CharacterMask;
         public override string Name => data.Name;
-        public override CharacterData Data => data;
 
         /*
          * Phase

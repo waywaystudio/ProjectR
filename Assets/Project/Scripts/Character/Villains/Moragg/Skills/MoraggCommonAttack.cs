@@ -8,7 +8,7 @@ namespace Character.Villains.Moragg.Skills
         {
             if (MainTarget is null) return;
             
-            ExecutionTable.Execute(MainTarget);
+            Execute(MainTarget);
         }
 
         protected override void Initialize()

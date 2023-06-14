@@ -4,16 +4,20 @@ using Common.Execution;
 using Sequences;
 using Sirenix.OdinInspector;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace Common.Skills
 {
     public abstract class SkillComponent : MonoBehaviour, IExecutable, ISequencer<Vector3>, IDataIndexer, IEditable
                                            // , IOldConditionalSequence
     {
+        
+        
         /* Common Attribution */
         [SerializeField] protected DataIndex actionCode;
         [SerializeField] protected SkillType skillType;
         [SerializeField] protected SortingType sortingType;
+        [SerializeField] protected SectionType coolTimeSection;
         [SerializeField] protected CharacterActionMask behaviourMask = CharacterActionMask.Skill;
         [SerializeField] protected CharacterActionMask ignorableMask = CharacterActionMask.SkillIgnoreMask;
         [SerializeField] protected int priority;
@@ -21,6 +25,7 @@ namespace Common.Skills
         [SerializeField] protected float angle;
         [SerializeField] protected string animationKey;
         [SerializeField] private string description;
+        [SerializeField] protected AwaitCoolTimer coolTimer = new();
         [SerializeField] protected LayerMask targetLayer;
         [SerializeField] private Sprite icon;
         
@@ -40,6 +45,18 @@ namespace Common.Skills
         /* Sequence */
         [SerializeField] private SkillSequencer sequencer;
         public Sequencer<Vector3> Sequencer => sequencer;
+
+        public ConditionTable Condition => Sequencer.Condition;
+        public Section<Vector3> ActiveParamSection => Sequencer.ActiveParamSection;
+        public Section Activation => Sequencer.Activation;
+        public Section Cancellation => Sequencer.Cancellation;
+        
+        // public Section Complete => Sequencer.Activation;
+        // public Section End => Sequencer.Cancellation;
+        private Section complete;
+        private Section end;
+        Section ISequencer.Complete => complete;
+        Section ISequencer.End => end;
         
         // public ConditionTable Conditions { get; } = new();
         [ShowInInspector] public ActionTable OnActivated { get; } = new();
@@ -60,27 +77,23 @@ namespace Common.Skills
         public void Remove(ExecuteComponent exe) => executor.Remove(exe);
         public void Clear() => executor.Clear();
 
-        public void RegisterExecution()
-        {
-            // Type에 따라서, - 예를 들어 OnComplete
-            // executor.RegisterTrigger(OnCompleted, );  
-        }
-        
         public ExecutionTable ExecutionTable { get; } = new();
-        
+
+        /* Progress */
+        public AwaitCoolTimer CoolTimer => coolTimer;
         
         public float CastingTime { get; set; }
         public virtual ICombatTaker MainTarget =>
             Cb.Searching.GetMainTarget(targetLayer, Cb.transform.position, sortingType);
-        
 
         private CharacterBehaviour cb;
         public CharacterBehaviour Cb => cb ??= GetComponentInParent<CharacterBehaviour>();
         
         
         protected bool AbleToRelease => SkillType is not (SkillType.Instant or SkillType.Casting) && IsProgress;
-        protected bool IsProgress { get; set; }
-        
+        protected bool IsProgress 
+            // => !ActiveParamSection.IsDone; 
+            { get; set; }
 
         protected abstract void Initialize();
         
@@ -92,13 +105,24 @@ namespace Common.Skills
         {
             IsProgress = true;
             IsEnded    = false;
-            
-            PlayAnimation();
-            
-            Cb.Rotate(targetPosition);
-            Cb.Pathfinding.Stop();
-         
+
             OnActivated.Invoke();
+            sequencer.Activate(targetPosition);
+        }
+
+        public void SkillAnimationActive()
+        {
+            PlayAnimation();
+        }
+        
+        public void SkillPathfindingStopActive()
+        {
+            Cb.Pathfinding.Stop();
+        }
+
+        public void SkillRotateActiveParam(Vector3 targetPosition)
+        {
+            Cb.Rotate(targetPosition);
         }
 
         /// <summary>
@@ -152,7 +176,6 @@ namespace Common.Skills
         /// </summary>
         protected void Dispose()
         {
-            // Conditions.Clear();
             OnActivated.Clear();
             OnCanceled.Clear();
             OnCompleted.Clear();
@@ -186,8 +209,16 @@ namespace Common.Skills
         {
             Initialize();
             
+            Condition.Add("IsCoolTimeReady", () => coolTimer.IsReady);
+            coolTimer.Register(sequencer, coolTimeSection);
         }
-        protected void OnDisable() => Dispose();
+
+        protected void OnDisable()
+        {
+            Dispose();
+            
+            sequencer.Clear();
+        }
 
 
 #if UNITY_EDITOR
@@ -211,6 +242,9 @@ namespace Common.Skills
             {
                 coolTimeModule.EditorSetUp();
             }
+
+            coolTimer.Timer = skillData.CoolTime;
+            sequencer.AssignPersistantEvents();
         }
         
         // ReSharper disable once UnusedMember.Local
@@ -221,5 +255,6 @@ namespace Common.Skills
             UnityEditor.EditorUtility.OpenPropertyEditor(skillData);
         }
 #endif
+        
     }
 }

@@ -73,7 +73,6 @@ GameObject:
   - component: {fileID: 234500611213636336}
   - component: {fileID: -7836975085712377097}
   - component: {fileID: 8791721430062155317}
-  - component: {fileID: 2567593440413624352}
   m_Layer: 0
   m_Name: MoraggLivingBomb
   m_TagString: Untagged
@@ -113,17 +112,81 @@ MonoBehaviour:
   actionCode: 31000007
   skillType: 1
   sortingType: 8
+  coolTimeSection: 1
   behaviourMask: 32
   ignorableMask: 3
   priority: 4
   range: 0
   angle: 0
   animationKey: attack
+  description: Starts combat by attacking a target with a melee weapon.
+  coolTimer:
+    timer: 20
   targetLayer:
     serializedVersion: 2
     m_Bits: 128
-  description: Starts combat by attacking a target with a melee weapon.
   icon: {fileID: 21300000, guid: 66dd4d17749630548bd562332cf77491, type: 3}
+  sequencer:
+    sequenceKey: Skill
+    activeSection:
+      persistantEvent:
+        m_PersistentCalls:
+          m_Calls:
+          - m_Target: {fileID: -7836975085712377097}
+            m_TargetAssemblyTypeName: Common.Skills.SkillComponent, ProjectR.Common
+            m_MethodName: SkillAnimationActive
+            m_Mode: 0
+            m_Arguments:
+              m_ObjectArgument: {fileID: 0}
+              m_ObjectArgumentAssemblyTypeName: 
+              m_IntArgument: 0
+              m_FloatArgument: 0
+              m_StringArgument: 
+              m_BoolArgument: 0
+            m_CallState: 2
+          - m_Target: {fileID: -7836975085712377097}
+            m_TargetAssemblyTypeName: Common.Skills.SkillComponent, ProjectR.Common
+            m_MethodName: SkillPathfindingStopActive
+            m_Mode: 0
+            m_Arguments:
+              m_ObjectArgument: {fileID: 0}
+              m_ObjectArgumentAssemblyTypeName: 
+              m_IntArgument: 0
+              m_FloatArgument: 0
+              m_StringArgument: 
+              m_BoolArgument: 0
+            m_CallState: 2
+    cancelSection:
+      persistantEvent:
+        m_PersistentCalls:
+          m_Calls: []
+    completeSection:
+      persistantEvent:
+        m_PersistentCalls:
+          m_Calls: []
+    endSection:
+      persistantEvent:
+        m_PersistentCalls:
+          m_Calls: []
+    EditorExtract:
+    - {fileID: 8380361914805468174}
+    activeParamSection:
+      persistantEvent:
+        m_PersistentCalls:
+          m_Calls:
+          - m_Target: {fileID: -7836975085712377097}
+            m_TargetAssemblyTypeName: Common.Skills.SkillComponent, ProjectR.Common
+            m_MethodName: SkillRotateActiveParam
+            m_Mode: 0
+            m_Arguments:
+              m_ObjectArgument: {fileID: 0}
+              m_ObjectArgumentAssemblyTypeName: 
+              m_IntArgument: 0
+              m_FloatArgument: 0
+              m_StringArgument: 
+              m_BoolArgument: 0
+            m_CallState: 2
+  executor: {fileID: 0}
 --- !u!114 &8791721430062155317
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -136,23 +199,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 714e87efbca5f5e47a36249aecf0b6f2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  type: 0
   group: 1
   actionCode: 32000004
   pool:
     prefab: {fileID: 8333227002716821657, guid: ae083ec149c3daa4fb7146db6fd69715, type: 3}
     maxCount: 2
     syncObjectActivity: 1
---- !u!114 &2567593440413624352
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8380361914805468174}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c558f34805c58af41b9759b2ae5634bd, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  startCoolingMoment: 0
-  coolTime: 20

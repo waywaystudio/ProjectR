@@ -5,15 +5,9 @@ namespace Common.Skills
 {
     public class SkillExecutor : MonoBehaviour, IEditable
     {
-        [SerializeField] private string trigger;
         [SerializeField] private Table<ExecuteGroup, Executions> table;
         
         public Table<ExecuteGroup, Executions> Table => table;
-
-        public void RegisterTrigger(ActionTable actionTable, ICombatTaker taker)
-        {
-            actionTable.Register("Execution", () => Execute(taker));
-        }
 
         public void Execute(ICombatTaker taker) => Execute(ExecuteGroup.Group1, taker);
         public void Execute(ExecuteGroup group, ICombatTaker taker)

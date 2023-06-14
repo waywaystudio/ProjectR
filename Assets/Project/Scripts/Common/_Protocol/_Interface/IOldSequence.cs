@@ -65,10 +65,10 @@ namespace Common
             return sectionType switch
             {
                 SectionType.None => throw new ArgumentOutOfRangeException(nameof(sectionType), sectionType, null),
-                SectionType.OnActivated => sequence.OnActivated,
-                SectionType.OnCanceled => sequence.OnCanceled,
-                SectionType.OnCompleted => sequence.OnCompleted,
-                SectionType.OnEnded     => sequence.OnEnded,
+                SectionType.Activation => sequence.OnActivated,
+                SectionType.Cancel => sequence.OnCanceled,
+                SectionType.Complete => sequence.OnCompleted,
+                SectionType.End     => sequence.OnEnded,
                 _                       => throw new ArgumentOutOfRangeException(nameof(sectionType), sectionType, null)
             };
         }

@@ -10,9 +10,12 @@ namespace Character.Villains.Moragg.Skills
         
         public override void Execution()
         {
+            Debug.Log("Execution In");
+            
             if (!TryGetTakersInSphere(this, out var takerList)) return;
             
             takerList.ForEach(ExecutionTable.Execute);
+            Cb.Animating.PlayOnce("attack", 0f, Complete);
         }
         
 
@@ -23,15 +26,14 @@ namespace Character.Villains.Moragg.Skills
 
         protected override void Initialize()
         {
-            OnCompleted.Register("MoraggSpinAttack", Execution);
-            OnCompleted.Register("PlayEndCastingAnimation", PlayEndCastingAnimation);
+            OnCompleted.Register("EndCallback", End);
+            // OnCompleted.Register("MoraggSpinAttack", Execution);
+            // OnCompleted.Register("PlayEndCastingAnimation", PlayEndCastingAnimation);
         }
 
         private void PlayEndCastingAnimation()
         {
             Cb.Animating.PlayOnce("attack", 0f, End);
         }
-
-        
     }
 }

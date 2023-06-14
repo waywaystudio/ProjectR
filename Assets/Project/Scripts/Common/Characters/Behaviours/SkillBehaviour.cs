@@ -7,7 +7,7 @@ namespace Common.Characters.Behaviours
 {
     public class SkillBehaviour : MonoBehaviour, IActionBehaviour, IEditable
     {
-        [SerializeField] private AwaitTimer globalCoolTimer = new(1.2f);
+        [SerializeField] private AwaitTimer globalCoolTimer = new();
         
         // SerializationData로 부터, 캐릭터 혹은 몬스터의 스킬을 받아와야 한다.
         // 캐릭터는 스킬이 변경되었을 가능성이 있고, 보스나 미니언은 사실상 거의 없다고 본다.
@@ -20,7 +20,7 @@ namespace Common.Characters.Behaviours
         public CharacterActionMask BehaviourMask =>Current ? Current.BehaviourMask : CharacterActionMask.Skill;
         public CharacterActionMask IgnorableMask =>Current ? Current.IgnorableMask : CharacterActionMask.SkillIgnoreMask;
         public Sequencer Sequencer => sequencer;
-        
+
         public bool IsGlobalCoolTimeReady => globalCoolTimer.IsReady;
         public bool IsSkillEnded => Current.IsNullOrEmpty() || Current.IsEnded;
         
@@ -37,7 +37,6 @@ namespace Common.Characters.Behaviours
         public void Active(DataIndex actionCode, Vector3 targetPosition)
         {
             if (!sequencer.IsAbleToActive) return;
-
             if (!skillTable.TryGetValue(actionCode, out var skill))
             {
                 Debug.Log($"Input :{actionCode}. TableCount:{skillTable.Count}");
@@ -106,6 +105,12 @@ namespace Common.Characters.Behaviours
 
         private void Awake()
         {
+            globalCoolTimer.Timer = 1.2f;
+            globalCoolTimer.Action += () =>
+            {
+                Debug.Log($"Current frame:{Time.frameCount}. Name:{name}. Instance:{GetInstanceID()}");
+            };
+            
             skillTable.Iterate(skill => skill.OnEnded.Register("BehaviourUnregister", () => Current = null));
             
             sequencer.Condition.Add("CanOverrideToCurrent", () => CanOverrideToCurrent);

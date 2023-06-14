@@ -35,11 +35,13 @@ namespace Common.Characters.UI.ActionBars
             coolDownFiller.ProgressImage.enabled = false;
             
             if (Cb.IsNullOrDestroyed()) return;
-            if (Cb.GetSkill(actionCode).TryGetComponent(out CoolTimer coolTime))
-            {
-                coolDownFiller.ProgressImage.enabled = true;
-                coolDownFiller.Register(coolTime.RemainCoolTime, coolTime.CoolTime);
-            }
+            
+            var coolTimer = Cb.GetSkill(actionCode).CoolTimer;
+
+            if (coolTimer.Timer == 0f) return;
+            
+            coolDownFiller.ProgressImage.enabled = true;
+            coolDownFiller.Register(coolTimer.RemainTimer, coolTimer.Timer);
         }
 
         private void OnDisable()

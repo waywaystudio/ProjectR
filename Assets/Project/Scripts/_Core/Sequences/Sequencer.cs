@@ -10,7 +10,7 @@ using UnityEngine;
 namespace Sequences
 {
     [Serializable]
-    public abstract class SequencerCore
+    public abstract class SequencerCore : ISequencer
     {
         [SerializeField] protected string sequenceKey;
         [SerializeField] protected ConditionTable conditionTable = new();
@@ -160,7 +160,7 @@ namespace Sequences
     
 
     [Serializable]
-    public class Sequencer<T> : SequencerCore
+    public class Sequencer<T> : SequencerCore, ISequencer<T>
     {
         [SerializeField] private Section<T> activeParamSection;
         

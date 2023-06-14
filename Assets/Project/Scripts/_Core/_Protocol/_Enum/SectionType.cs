@@ -1,16 +1,8 @@
 public enum SectionType
 {
     None = 0,
-    OnActivated = 1,
-    OnCanceled = 2,
-    OnCompletion = 3,
-    OnCompleted = 4,
-    OnEnded = 5,
-}
-
-public enum ActivationType
-{
-    None = 0,
-    Parameterless,
-    Vector3,
+    Activation = 1,
+    Cancel = 2,
+    Complete = 3,
+    End = 5
 }

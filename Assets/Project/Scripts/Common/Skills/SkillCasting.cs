@@ -27,7 +27,7 @@ namespace Common.Skills
         private void StopProcessing()
         {
             Progress.Value = 0f;
-            enabled               = false;
+            enabled        = false;
         }
 
         private void Awake()
@@ -43,10 +43,10 @@ namespace Common.Skills
             }
 
             Cb       = skill.Cb;
-            complete = skill.Complete;
+            complete = skill.Execution;
             
             skill.OnActivated.Register("StartProcessing", () => StartProcessing(Cb.StatTable.Haste));
-            skill.OnCanceled.Register("CancelProcessing", StopProcessing);
+            // skill.OnCanceled.Register("CancelProcessing", StopProcessing);
             skill.OnEnded.Register("StopProcessing", StopProcessing);
             skill.CastingTime = castingTime;
         }

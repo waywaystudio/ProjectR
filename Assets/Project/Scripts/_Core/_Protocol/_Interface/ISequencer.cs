@@ -2,10 +2,20 @@ using Sequences;
 
 public interface ISequencer
 {
-    Sequencer Sequencer { get; }
+    ConditionTable Condition { get; }
+    Section Activation { get; }
+    Section Cancellation { get; }
+    Section Complete { get; }
+    Section End { get; }
 }
 
-public interface ISequencer<T>
+public interface ISequencer<T> : ISequencer
 {
-    Sequencer<T> Sequencer { get; }
+    Section<T> ActiveParamSection { get; }
+    
+    // + ConditionTable Condition { get; }
+    // + Section Activation { get; }
+    // + Section Cancellation { get; }
+    // + Section Complete { get; }
+    // + Section End { get; }
 }
