@@ -1,18 +1,45 @@
+using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace Common.Execution
 {
     public abstract class ExecuteComponent : MonoBehaviour
     {
+        [SerializeField] protected ExecuteType type;
         [SerializeField] protected ExecuteGroup group = ExecuteGroup.Group1;
 
         private IExecutable executor;
-        
-        public ExecuteGroup Group => group;
-        protected IExecutable Executor => executor ??= GetComponent<IExecutable>();
 
-        public abstract void Execution(ICombatTaker taker, float instantMultiplier = 1.0f);
+        public ExecuteType Type => type;
+        public ExecuteGroup Group => group;
+
+        protected IExecutable Executor 
+            => executor 
+            ??= GetComponent<IExecutable>() // TODO. 추후에 Parent 구조로 모두 변경.
+            ?? GetComponentInParent<IExecutable>();
+
+        public abstract void Execution(ICombatTaker taker);
         public virtual void Execution(Vector3 trapPosition) { }
+    }
+
+    [Serializable] 
+    public class Executions
+    {
+        public List<ExecuteComponent> ExecutionList;
+
+        public Executions()
+        {
+            ExecutionList = new List<ExecuteComponent>();
+        }
+        public Executions(ExecuteComponent component)
+        {
+            ExecutionList = new List<ExecuteComponent> { component };
+        }
+
+        public void Add(ExecuteComponent exe) => ExecutionList.AddUniquely(exe);
+        public void Remove(ExecuteComponent exe) => ExecutionList.RemoveSafely(exe);
+        public void Clear() => ExecutionList.Clear();
     }
 }
 

@@ -14,6 +14,7 @@ namespace Common.Characters.UI.ActionBars
             GetComponentsInChildren(false, slotList);
 
             var cb                = GetComponentInParent<CharacterBehaviour>();
+            var skills = cb.SkillBehaviour.SkillIndexList;
             var defaultBindingKey = new List<BindingCode>
             {
                 BindingCode.Q, 
@@ -22,16 +23,12 @@ namespace Common.Characters.UI.ActionBars
                 BindingCode.R
             };
 
-            var skillListIndex = new List<DataIndex>
+            slotList.ForEach((slot, index) =>
             {
-                cb.SkillBehaviour.SkillList[0].DataIndex,
-                cb.SkillBehaviour.SkillList[1].DataIndex,
-                cb.SkillBehaviour.SkillList[2].DataIndex,
-                cb.SkillBehaviour.SkillList[3].DataIndex,
-            };
-
-            slotList.ForEach((slot, index) => 
-                slot.EditorPersonalSetUp(defaultBindingKey[index], skillListIndex[index]));
+                if (skills.Count <= index) return;
+                
+                slot.EditorPersonalSetUp(defaultBindingKey[index], skills[index]);
+            });
         }
 #endif
     }

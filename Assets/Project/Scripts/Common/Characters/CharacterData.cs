@@ -39,6 +39,7 @@ namespace Common.Characters
             }
             
             constEntity.EditorSetUpByDataIndex(characterIndex);
+            mask = constEntity.ClassType;
         }
 #endif
     }

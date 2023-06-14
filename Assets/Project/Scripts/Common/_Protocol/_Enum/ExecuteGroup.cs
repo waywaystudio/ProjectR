@@ -15,4 +15,16 @@ namespace Common
         Group7 = 7,
         Group8 = 8,
     }
+
+    public enum ExecuteType
+    {
+        None = 0,
+        Damage,
+        DeBuff,
+        Buff,
+        Projectile,
+        Trap,
+        CrowdControl,
+        
+    }
 }

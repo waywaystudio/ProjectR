@@ -45,6 +45,12 @@ namespace Editor
     
     public class SequencerDrawer : OdinAttributeProcessor<Sequencer>
     {
+        public override void ProcessSelfAttributes(InspectorProperty property, List<Attribute> attributes)
+        {
+            attributes.Add(new HideLabelAttribute());
+            attributes.Add(new HideReferenceObjectPickerAttribute());
+        }
+
         public override void ProcessChildMemberAttributes(InspectorProperty parentProperty, MemberInfo member, List<Attribute> attributes)
         {
             if (member.Name == "key")
@@ -87,6 +93,12 @@ namespace Editor
     
     public class SequencerDrawer<T0, T1> : OdinAttributeProcessor<T0> where T0 : Sequencer<T1>
     {
+        public override void ProcessSelfAttributes(InspectorProperty property, List<Attribute> attributes)
+        {
+            attributes.Add(new HideLabelAttribute());
+            attributes.Add(new HideReferenceObjectPickerAttribute());
+        }
+        
         public override void ProcessChildMemberAttributes(InspectorProperty parentProperty, MemberInfo member, List<Attribute> attributes)
         {
             if (member.Name == "key")

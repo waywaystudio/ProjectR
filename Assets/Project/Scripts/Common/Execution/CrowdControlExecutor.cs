@@ -12,7 +12,7 @@ namespace Common.Execution
         [SerializeField] private float stunDuration;
 
 
-        public override void Execution(ICombatTaker taker, float instantMultiplier = 1f)
+        public override void Execution(ICombatTaker taker)
         {
             if (CrowdControlHas(CharacterActionMask.Dead))
             {
@@ -21,10 +21,10 @@ namespace Common.Execution
             }
                 
             if (CrowdControlHas(CharacterActionMask.Stun))
-                taker.Stun(stunDuration * instantMultiplier);
+                taker.Stun(stunDuration);
             
             if (CrowdControlHas(CharacterActionMask.KnockBack))
-                taker.KnockBack(transform.position, knockBackDistance * instantMultiplier, knockBackDuration);
+                taker.KnockBack(transform.position, knockBackDistance, knockBackDuration);
         }
 
         private bool CrowdControlHas(CharacterActionMask cc) => (ccMask | cc) == ccMask;

@@ -47,20 +47,18 @@ namespace Common.Execution
             } 
         }
 
-        public void Execute(ICombatTaker taker) => Execute(taker, 1f);
-        public void Execute(ICombatTaker taker, float instantMultiplier)
+        public void Execute(ICombatTaker taker)
         {
             foreach (var exrList in Table)
             {
                 foreach (var exr in exrList.Value)
                 {
-                    exr.Execution(taker, instantMultiplier);
+                    exr.Execution(taker);
                 }
             }  
         }
 
-        public void Execute(ExecuteGroup key, ICombatTaker taker) => Execute(key, taker, 1f);
-        public void Execute(ExecuteGroup key, ICombatTaker taker, float instantMultiplier)
+        public void Execute(ExecuteGroup key, ICombatTaker taker)
         {
             foreach (var exrList in Table)
             {
@@ -68,7 +66,7 @@ namespace Common.Execution
                 
                 foreach (var exr in exrList.Value)
                 {
-                    exr.Execution(taker, instantMultiplier);
+                    exr.Execution(taker);
                 }
             }
         }

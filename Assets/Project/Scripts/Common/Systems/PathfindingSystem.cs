@@ -9,7 +9,6 @@ namespace Common.Systems
     public class PathfindingSystem : MonoBehaviour
     {
         [SerializeField] private float moveSpeed;
-        [SerializeField] private float knockBackDuration = 1f;
         [SerializeField] private Transform rootTransform;
         [SerializeField] private Seeker agent;
         [SerializeField] private AIMove aiMove;
@@ -80,12 +79,12 @@ namespace Common.Systems
             rootTransform.DOMove(dashDestination, 0.15f).OnComplete(() => callback?.Invoke());
         }
 
-        public void KnockBack(Vector3 from, float distance, Action callback)
+        public void KnockBack(Vector3 from, float distance, float duration, Action callback)
         {
             var knockBackDirection = RootPosition - from;
             var knockBackDestination = PathfindingUtility.GetReachableStraightPosition(RootPosition, knockBackDirection, distance);
 
-            rootTransform.DOMove(knockBackDestination, knockBackDuration)
+            rootTransform.DOMove(knockBackDestination, duration)
                          .OnComplete(() => callback?.Invoke());
         }
 

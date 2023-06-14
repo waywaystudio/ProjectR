@@ -34,7 +34,7 @@ namespace Editor
                 });
             }
             
-            if (member.Name == "ShowDataBase")
+            if (member.Name == "EditorOpenDataBase")
             {
                 attributes.Add(new ButtonAttribute(ButtonSizes.Large)
                 {

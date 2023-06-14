@@ -2,7 +2,7 @@ using Common;
 using Common.Skills;
 using UnityEngine;
 
-namespace Character.Venturers.Hunter.Skills
+namespace Character.Venturers.Ranger.Skills
 {
     public class Trap : SkillComponent
     {

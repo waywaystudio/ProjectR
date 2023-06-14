@@ -8,7 +8,7 @@ namespace Common.Execution
         [SerializeField] protected DataIndex actionCode;
         [SerializeField] private Pool<StatusEffectComponent> pool;
 
-        public override void Execution(ICombatTaker taker, float instantMultiplier = 1f)
+        public override void Execution(ICombatTaker taker)
         {
             if (!taker.DynamicStatEntry.Alive.Value) return;
 

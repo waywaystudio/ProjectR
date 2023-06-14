@@ -6,9 +6,7 @@ using UnityEngine;
 namespace Common.Characters
 {
     using Behaviours;
-    using Behaviours.CrowdControlEffect;
-    using Behaviours.Movement;
-    
+
     public class CharacterBehaviour : MonoBehaviour, ICombatExecutor, ICharacterSystem, ICharacterAnimation, IEditable
     {
         [SerializeField] protected CharacterCombatStatus combatStatus;
@@ -31,7 +29,7 @@ namespace Common.Characters
          * Common Attribute
          */
         public virtual DataIndex DataIndex => DataIndex.None;
-        public virtual CharacterMask CombatClass => CharacterMask.None;
+        public virtual CharacterMask CombatClass => CharacterMask.Mage;
         public virtual string Name => "characterName";
         public virtual CharacterData Data { get; set; }
         public Vector3 Position => transform.position;
@@ -59,6 +57,7 @@ namespace Common.Characters
         /* Skill Behaviour */
         public SkillComponent GetSkill(DataIndex actionCode) => skillBehaviour.GetSkill(actionCode);
         public SkillBehaviour SkillBehaviour => skillBehaviour;
+        // public DataIndex[] SkillList => SkillBehaviour.SkillList;
         
         public void ExecuteSkill(DataIndex actionCode, Vector3 targetPosition) => skillBehaviour.Active(actionCode, targetPosition);
         public void CancelSkill() => skillBehaviour.Cancel();

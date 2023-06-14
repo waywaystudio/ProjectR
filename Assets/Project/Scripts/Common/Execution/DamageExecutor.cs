@@ -1,4 +1,5 @@
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 namespace Common.Execution
 {
@@ -7,9 +8,9 @@ namespace Common.Execution
         [SerializeField] private DataIndex actionCode;
         [SerializeField] private StatSpec damageSpec;
 
-        private const string DamageExecutorKey = "DamageExecutorKey"; 
+        public const string DamageExecutorKey = "DamageExecutorKey";
 
-        public override void Execution(ICombatTaker taker, float instantMultiplier = 1f)
+        public override void Execution(ICombatTaker taker)
         {
             if (!taker.DynamicStatEntry.Alive.Value) return;
 
@@ -70,9 +71,18 @@ namespace Common.Execution
             taker.OnDamageTaken.Invoke(entity);
         }
 
+        public void ModifySpec(StatType statType, float value)
+        {
+            damageSpec.Change(statType, value);
+        }
+
 
         private void OnEnable() { Executor?.ExecutionTable.Add(this); }
         private void OnDisable() { Executor?.ExecutionTable.Remove(this); }
+        private void Reset()
+        {
+            type = ExecuteType.Damage;
+        }
 
 
 #if UNITY_EDITOR

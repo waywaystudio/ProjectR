@@ -1,116 +1,131 @@
 using System.Collections.Generic;
 using Common.Skills;
+using Sequences;
 using UnityEngine;
 
 namespace Common.Characters.Behaviours
 {
-    public class SkillBehaviour : ActionBehaviour, IEditable
+    public class SkillBehaviour : MonoBehaviour, IActionBehaviour, IEditable
     {
-        [SerializeField] private List<SkillComponent> skillList = new();
+        [SerializeField] private AwaitTimer globalCoolTimer = new(1.2f);
+        
+        // SerializationData로 부터, 캐릭터 혹은 몬스터의 스킬을 받아와야 한다.
+        // 캐릭터는 스킬이 변경되었을 가능성이 있고, 보스나 미니언은 사실상 거의 없다고 본다.
+        // SerializeField는 유지할 예정이며, 캐릭터의 경우만 Load하는 함수를 짜서 변경할 수 있으니,
+        // 일단은 현재 상태 안에서 구현
+        [SerializeField] private Table<DataIndex, SkillComponent> skillTable = new();
+        [SerializeField] private Sequencer sequencer;
 
-        public override CharacterActionMask BehaviourMask =>
-            Current ? Current.BehaviourMask : CharacterActionMask.Skill;
-        public override CharacterActionMask IgnorableMask => 
-            Current ? Current.IgnorableMask : CharacterActionMask.SkillIgnoreMask;
-
-        public SkillComponent Current { get; set; }
-        public ActionTable OnReleased { get; } = new();
-        public List<SkillComponent> SkillList => skillList;
+        public List<DataIndex> SkillIndexList => skillTable.KeyList;
+        public CharacterActionMask BehaviourMask =>Current ? Current.BehaviourMask : CharacterActionMask.Skill;
+        public CharacterActionMask IgnorableMask =>Current ? Current.IgnorableMask : CharacterActionMask.SkillIgnoreMask;
+        public Sequencer Sequencer => sequencer;
+        
+        public bool IsGlobalCoolTimeReady => globalCoolTimer.IsReady;
         public bool IsSkillEnded => Current.IsNullOrEmpty() || Current.IsEnded;
         
 
-        public SkillComponent GetSkill(DataIndex actionCode)
-        {
-            return skillList.Find(item => item.DataIndex == actionCode);
-        }
+        public SkillComponent Current { get; set; }
+
+        private bool CanOverrideToCurrent => (IgnorableMask | Cb.BehaviourMask) == IgnorableMask;
+        private CharacterBehaviour cb;
+        private CharacterBehaviour Cb => cb ??= GetComponentInParent<CharacterBehaviour>();
+        
+
+        public SkillComponent GetSkill(DataIndex actionCode) => skillTable[actionCode];
 
         public void Active(DataIndex actionCode, Vector3 targetPosition)
         {
-            SkillComponent skill = null;
-            
-            foreach (var item in skillList)
-            {
-                if (item.DataIndex != actionCode) continue;
-                
-                skill = item;
-                break;
-            }
+            if (!sequencer.IsAbleToActive) return;
 
-            if (skill.IsNullOrEmpty())
+            if (!skillTable.TryGetValue(actionCode, out var skill))
             {
-                Debug.LogError($"Can't Find {actionCode} skill in {Cb.Name}'s SkillList");
+                Debug.Log($"Input :{actionCode}. TableCount:{skillTable.Count}");
                 return;
             }
 
-            Active(skill, targetPosition);
-        }
-
-        public void Active(SkillComponent skill, Vector3 targetPosition)
-        {
-            if (!IsAble(skill)) return;
+            if (!skill.Sequencer.IsAbleToActive) return;
             
-            RegisterBehaviour(Cb);
+            sequencer.Active();
             
             Current = skill;
             Current.Activate(targetPosition);
-
-            OnActivated.Invoke();
         }
 
-        public override void Cancel()
+        public void Cancel()
         {
             if (Current.IsNullOrEmpty()) return;
             
-            OnCanceled.Invoke();
-            Current.Cancel();
+            sequencer.Cancel();
         }
-
+        
         public void Release()
         {
             if (Current.IsNullOrEmpty()) return;
             
             Current.Release();
-            OnReleased.Invoke();
+        }
+
+        public void SkillBehaviourRegisterActive()
+        {
+            if (Cb.CurrentBehaviour is not null && Cb.BehaviourMask != BehaviourMask)
+            {
+                Cb.CurrentBehaviour.Cancel();
+            }
+
+            Cb.CurrentBehaviour = this;
+        }
+        
+        public void SkillBehaviourGlobalCoolTimeActive()
+        {
+            globalCoolTimer.Play();
+        }
+
+        public void SkillBehaviourCancel()
+        {
+            Current.Cancel();
         }
 
         public bool TryGetMostPrioritySkill(out SkillComponent skill)
         {
             SkillComponent result = null;
             
-            foreach (var skillComponent in SkillList)
+            skillTable.Iterate(skill =>
             {
-                if (skillComponent.Conditions.HasFalse) continue;
-                if (result is null || result.Priority < skillComponent.Priority)
+                if (!skill.Sequencer.IsAbleToActive) return;
+                if (result is null || result.Priority < skill.Priority)
                 {
-                    result = skillComponent;
+                    result = skill;
                 }
-            }
+            });
 
             skill = result;
             return skill is not null;
         }
-        
 
-        private bool IsAble(IOldConditionalSequence skill)
+
+        private void Awake()
         {
-            return CanOverrideToCurrent
-                   && IsSkillEnded 
-                   && Conditions.IsAllTrue 
-                   && skill.Conditions.IsAllTrue;
-        }
-        
-        private void OnEnable()
-        {
-            skillList.ForEach(skill => skill.OnEnded.Register("BehaviourUnregister", () => Current = null));
+            skillTable.Iterate(skill => skill.OnEnded.Register("BehaviourUnregister", () => Current = null));
+            
+            sequencer.Condition.Add("CanOverrideToCurrent", () => CanOverrideToCurrent);
+            sequencer.Condition.Add("IsSkillEnded", () => IsSkillEnded);
+            sequencer.Condition.Add("GlobalCoolTimeReady", () => globalCoolTimer.IsReady);
         }
 
-        private void OnDisable() => Dispose();
+        private void OnDestroy()
+        {
+            sequencer.Clear();
+        }
 
 
 #if UNITY_EDITOR
         public void EditorSetUp()
         {
-            GetComponentsInChildren(false, skillList);
+            var preLoadedSkillList = GetComponentsInChildren<SkillComponent>();
+            
+            skillTable.CreateTable(preLoadedSkillList, skill => skill.DataIndex);
+            sequencer.AssignPersistantEvents();
         }
 #endif
     }

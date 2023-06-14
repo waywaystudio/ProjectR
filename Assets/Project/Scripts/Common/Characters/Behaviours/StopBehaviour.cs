@@ -1,35 +1,31 @@
+using Sequences;
 using UnityEngine;
 
-namespace Common.Characters.Behaviours.Movement
+namespace Common.Characters.Behaviours
 {
     public class StopBehaviour : MonoBehaviour, IActionBehaviour, IEditable
     {
-        [SerializeField] private StopSequencer sequencer;
-        
+        [SerializeField] private Sequencer sequencer;
+
         private CharacterBehaviour cb;
 
         public CharacterActionMask BehaviourMask => CharacterActionMask.Stop;
-        public CharacterActionMask IgnorableMask => CharacterActionMask.None;
         
         private CharacterBehaviour Cb => cb ??= GetComponentInParent<CharacterBehaviour>();
 
 
         public void Stop() => sequencer.Active();
         public void Cancel() => sequencer.Cancel();
-                                // Cancellation.Invoke();
-        
-        public void StopActive()
-        {
-            Cb.Pathfinding.Stop();
-            Cb.Animating.Idle();
-            Cb.CurrentBehaviour = this;
-        }
+
+        public void StopPathfindingActive() => Cb.Pathfinding.Stop();
+        public void StopAnimationActive() => Cb.Animating.Idle();
+        public void StopRegisterActive() => Cb.CurrentBehaviour = this;
         
 
 #if UNITY_EDITOR
         public void EditorSetUp()
         {
-            sequencer = GetComponentInChildren<StopSequencer>();
+            sequencer.AssignPersistantEvents();
         }
 #endif
     }

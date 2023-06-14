@@ -1,20 +1,26 @@
 using BehaviorDesigner.Runtime.Tasks;
-using Common.Skills;
+using Common.Characters.Behaviours;
+using UnityEngine;
 
-namespace Character.Behavior.Actions
+namespace Common.Behavior.Actions
 {
     [TaskIcon("{SkinColor}SelectorIcon.png"), TaskCategory("Character/Combat")]
     public class IsGcdReady : Action
     {
-        private CoolTimer coolTimer;
+        private SkillBehaviour sb;
         
         public override void OnAwake()
         {
-            TryGetComponent(out coolTimer);
+            TryGetComponent(out sb);
+            
+            if (sb.IsNullOrDestroyed())
+            {
+                Debug.LogError("Not Exist SkillBehaviour for Global CoolTimer");
+            }
         }
         
-        public override TaskStatus OnUpdate() => coolTimer.RemainCoolTime.Value != 0f
-            ? TaskStatus.Failure
-            : TaskStatus.Success;
+        public override TaskStatus OnUpdate() => sb.IsGlobalCoolTimeReady
+            ? TaskStatus.Success
+            : TaskStatus.Failure;
     }
 }

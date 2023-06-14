@@ -124,6 +124,8 @@ public class AwaitTable<T>
         awaitTable.Clear();
         actionTable.Clear();
     }
+    
+    public bool IsNullOrEmpty() => awaitTable.IsNullOrEmpty();
 }
 
 /*

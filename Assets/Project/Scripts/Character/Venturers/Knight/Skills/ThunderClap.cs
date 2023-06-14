@@ -8,7 +8,7 @@ namespace Character.Venturers.Knight.Skills
         {
             if (!TryGetTakersInSphere(this, out var takerList)) return;
         
-            takerList.ForEach(ExecutionTable.Execute);
+            takerList.ForEach(Execute);
         }
 
         protected override void Initialize()
@@ -21,7 +21,7 @@ namespace Character.Venturers.Knight.Skills
         {
             var direction = Cb.transform.forward;
             
-            Cb.Pathfinding.Jump(direction, 11f, 2.4f, 0.77f);
+            Cb.Pathfinding.Jump(direction, 11f);
         }
     }
 }

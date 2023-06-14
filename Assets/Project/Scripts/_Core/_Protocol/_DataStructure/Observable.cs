@@ -49,6 +49,7 @@ public class FloatEvent : Observable<float>
     }
 
     public FloatEvent() : this(0f, float.PositiveInfinity) { }
+    public FloatEvent(float coolTime) : this(0f, coolTime) { }
     public FloatEvent(float min, float max)
     {
         value = 0f;

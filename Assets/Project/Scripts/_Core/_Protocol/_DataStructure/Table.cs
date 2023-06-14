@@ -9,6 +9,8 @@ public class Table<TKey, TValue>
     [SerializeField] protected List<TKey> keyList = new();
     [SerializeField] protected List<TValue> valueList = new();
     
+    public List<TKey> KeyList => keyList;
+    
     private Dictionary<TKey, TValue> map = new();
     protected Dictionary<TKey, TValue> Map
     {
@@ -50,17 +52,17 @@ public class Table<TKey, TValue>
 
     public void Add(TKey key, TValue value)
     {
-        if (map.ContainsKey(key)) return;
+        if (Map.ContainsKey(key)) return;
         
-        map.Add(key, value);
+        Map.Add(key, value);
         keyList.Add(key);
         valueList.Add(value);
     }
 
     public bool Remove(TKey key)
     {
-        if (!map.ContainsKey(key)) return false;
-        map.Remove(key);
+        if (!Map.ContainsKey(key)) return false;
+        Map.Remove(key);
         
         var index = keyList.IndexOf(key);
         if(index < 0) return false;
@@ -73,18 +75,19 @@ public class Table<TKey, TValue>
 
     public bool TryGetValue(TKey key, out TValue value)
     {
-        return map.TryGetValue(key, out value);
+        return Map.TryGetValue(key, out value);
     }
 
     public void Iterate(Action action) { foreach (var _ in valueList) action?.Invoke(); }
     public void Iterate(Action<TValue> action)  { foreach (var item in valueList) action?.Invoke(item); }
     public void KeyIterate(Action<TKey> action) { foreach (var item in keyList) action?.Invoke(item); }
+    
 
     public void Clear()
     {
         keyList.Clear();
         valueList.Clear();
-        map.Clear();
+        Map.Clear();
     }
     
     public void CreateTable(List<TValue> dataList, Func<TValue, TKey> keySelector)
@@ -107,6 +110,8 @@ public class Table<TKey, TValue>
             Add(key, data);
         }
     }
+
+    public bool ContainKey(TKey key) => Map.ContainsKey(key);
     
     
 #if UNITY_EDITOR

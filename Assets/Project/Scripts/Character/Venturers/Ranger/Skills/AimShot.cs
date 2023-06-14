@@ -1,6 +1,6 @@
 using Common.Skills;
 
-namespace Character.Venturers.Hunter.Skills
+namespace Character.Venturers.Ranger.Skills
 {
     public class AimShot : SkillComponent
     {

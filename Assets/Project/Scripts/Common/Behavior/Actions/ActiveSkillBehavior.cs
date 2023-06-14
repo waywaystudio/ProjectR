@@ -18,7 +18,7 @@ namespace Character.Behavior.Actions
             if (!ab.TryGetMostPrioritySkill(out var skill)) return TaskStatus.Failure;
             if (skill.MainTarget is null) return TaskStatus.Failure;
 
-            ab.Active(skill, skill.MainTarget.gameObject.transform.position);
+            ab.Active(skill.DataIndex, skill.MainTarget.gameObject.transform.position);
                 
             return TaskStatus.Success;
         }

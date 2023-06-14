@@ -1,20 +1,21 @@
 using System;
 using Cysharp.Threading.Tasks;
+using Sequences;
 using UnityEngine;
 
-namespace Common.Characters.Behaviours.CrowdControlEffect
+namespace Common.Characters.Behaviours
 {
     public class DeadBehaviour : MonoBehaviour, IActionBehaviour, IEditable
     {
-        [SerializeField] private DeadSequencer sequencer;
+        [SerializeField] private Sequencer sequencer;
         
         private CharacterBehaviour cb;
         
         public CharacterActionMask BehaviourMask => CharacterActionMask.Dead;
-        public CharacterActionMask IgnorableMask => CharacterActionMask.DeadIgnoreMask;
         
         private CharacterBehaviour Cb => cb ??= GetComponentInParent<CharacterBehaviour>();
-        private bool CanOverrideToCurrent => (IgnorableMask | Cb.BehaviourMask) == IgnorableMask;
+        private bool CanOverrideToCurrent 
+            => (CharacterActionMask.DeadIgnoreMask | Cb.BehaviourMask) == CharacterActionMask.DeadIgnoreMask;
         
 
         public void Dead()
@@ -57,7 +58,7 @@ namespace Common.Characters.Behaviours.CrowdControlEffect
         private void Awake()
         {
             sequencer.Condition.Add("AbleToBehaviourOverride", () => CanOverrideToCurrent);
-            sequencer.ActiveSection.AddAwait("DeadAnimation", DeadAnimationActive);
+            sequencer.Activation.AddAwait("DeadAnimation", DeadAnimationActive);
         }
         
         private void OnDestroy()
@@ -69,7 +70,7 @@ namespace Common.Characters.Behaviours.CrowdControlEffect
 #if UNITY_EDITOR
         public void EditorSetUp()
         {
-            sequencer = GetComponentInChildren<DeadSequencer>();
+            sequencer.AssignPersistantEvents();
         }
 #endif
     }

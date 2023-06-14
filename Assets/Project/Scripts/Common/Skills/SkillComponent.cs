@@ -1,12 +1,14 @@
 using System.Collections.Generic;
 using Common.Characters;
 using Common.Execution;
+using Sequences;
 using Sirenix.OdinInspector;
 using UnityEngine;
 
 namespace Common.Skills
 {
-    public abstract class SkillComponent : MonoBehaviour, IOldConditionalSequence, IExecutable, IDataIndexer, IEditable
+    public abstract class SkillComponent : MonoBehaviour, IExecutable, ISequencer<Vector3>, IDataIndexer, IEditable
+                                           // , IOldConditionalSequence
     {
         /* Common Attribution */
         [SerializeField] protected DataIndex actionCode;
@@ -18,23 +20,10 @@ namespace Common.Skills
         [SerializeField] protected float range;
         [SerializeField] protected float angle;
         [SerializeField] protected string animationKey;
-        [SerializeField] protected LayerMask targetLayer;
         [SerializeField] private string description;
+        [SerializeField] protected LayerMask targetLayer;
         [SerializeField] private Sprite icon;
         
-
-        private CharacterBehaviour cb;
-
-        /* Sequence */
-        public ConditionTable Conditions { get; } = new();
-        [ShowInInspector] public ActionTable OnActivated { get; } = new();
-        [ShowInInspector] public ActionTable OnCanceled { get; } = new();
-        [ShowInInspector] public ActionTable OnCompleted { get; } = new();
-        [ShowInInspector] public ActionTable OnEnded { get; } = new();
-        [ShowInInspector] public bool IsEnded { get; set; } = true;
-        
-        public ExecutionTable ExecutionTable { get; } = new();
-
         public DataIndex DataIndex => actionCode;
         public ICombatProvider Provider => Cb;
         public SkillType SkillType => skillType;
@@ -44,15 +33,54 @@ namespace Common.Skills
         public float Range => range;
         public float Angle => angle;
         public string Description => description;
-        public float CastingTime { get; set; }
         public LayerMask TargetLayer => targetLayer;
         public Sprite Icon => icon;
+        
+        
+        /* Sequence */
+        [SerializeField] private SkillSequencer sequencer;
+        public Sequencer<Vector3> Sequencer => sequencer;
+        
+        // public ConditionTable Conditions { get; } = new();
+        [ShowInInspector] public ActionTable OnActivated { get; } = new();
+        [ShowInInspector] public ActionTable OnCanceled { get; } = new();
+        [ShowInInspector] public ActionTable OnCompleted { get; } = new();
+        [ShowInInspector] public ActionTable OnEnded { get; } = new();
+        [ShowInInspector] public bool IsEnded { get; set; } = true;
+        
+
+        /* Execution */
+        [SerializeField] protected SkillExecutor executor;
+        
+        public void Execute(ICombatTaker taker) => executor.Execute(taker);
+        public void Execute(ExecuteGroup group, ICombatTaker taker) => executor.Execute(group, taker);
+        public void Execute(Vector3 position) => executor.Execute(position);
+        public void Execute(ExecuteGroup group, Vector3 position) => executor.Execute(group, position);
+        public void AddExecution(ExecuteComponent exe) => executor.Add(exe);
+        public void Remove(ExecuteComponent exe) => executor.Remove(exe);
+        public void Clear() => executor.Clear();
+
+        public void RegisterExecution()
+        {
+            // Type에 따라서, - 예를 들어 OnComplete
+            // executor.RegisterTrigger(OnCompleted, );  
+        }
+        
+        public ExecutionTable ExecutionTable { get; } = new();
+        
+        
+        public float CastingTime { get; set; }
         public virtual ICombatTaker MainTarget =>
             Cb.Searching.GetMainTarget(targetLayer, Cb.transform.position, sortingType);
+        
+
+        private CharacterBehaviour cb;
         public CharacterBehaviour Cb => cb ??= GetComponentInParent<CharacterBehaviour>();
+        
         
         protected bool AbleToRelease => SkillType is not (SkillType.Instant or SkillType.Casting) && IsProgress;
         protected bool IsProgress { get; set; }
+        
 
         protected abstract void Initialize();
         
@@ -91,7 +119,7 @@ namespace Common.Skills
         }
 
         /// <summary>
-        /// 버튼을 띌 때 호출되며 차징, 홀딩 스킬에 유효.
+        /// 버튼을 띌 때 호출되며 차징, 홀딩 및 차징 스킬에 유효.
         /// </summary>
         public void Release()
         {
@@ -124,7 +152,7 @@ namespace Common.Skills
         /// </summary>
         protected void Dispose()
         {
-            Conditions.Clear();
+            // Conditions.Clear();
             OnActivated.Clear();
             OnCanceled.Clear();
             OnCompleted.Clear();
@@ -154,13 +182,19 @@ namespace Common.Skills
                 targetLayer, out takerList);
         }
 
-        protected void OnEnable() => Initialize();
+        protected void OnEnable()
+        {
+            Initialize();
+            
+        }
         protected void OnDisable() => Dispose();
 
 
 #if UNITY_EDITOR
         public virtual void EditorSetUp()
         {
+            executor = GetComponentInChildren<SkillExecutor>();
+            
             var skillData = Database.SkillSheetData(actionCode);
 
             skillType    = skillData.SkillType.ToEnum<SkillType>();
@@ -180,7 +214,7 @@ namespace Common.Skills
         }
         
         // ReSharper disable once UnusedMember.Local
-        private void ShowDataBase()
+        private void EditorOpenDataBase()
         {
             var skillData = Database.SheetDataTable[DataIndex.Skill];
 

@@ -1,19 +1,20 @@
 using Cysharp.Threading.Tasks;
+using Sequences;
 using UnityEngine;
 
-namespace Common.Characters.Behaviours.Movement
+namespace Common.Characters.Behaviours
 {
     public class RunBehaviour : MonoBehaviour, IActionBehaviour, IEditable
     {
-        [SerializeField] private RunSequencer sequencer;
+        [SerializeField] private Sequencer<Vector3> sequencer;
         
         private CharacterBehaviour cb;
         
         public CharacterActionMask BehaviourMask => CharacterActionMask.Run;
-        public CharacterActionMask IgnorableMask => CharacterActionMask.RunIgnoreMask;
 
         private CharacterBehaviour Cb => cb ??= GetComponentInParent<CharacterBehaviour>();
-        private bool CanOverrideToCurrent => (IgnorableMask | Cb.BehaviourMask) == IgnorableMask;
+        private bool CanOverrideToCurrent 
+            => (CharacterActionMask.RunIgnoreMask | Cb.BehaviourMask) == CharacterActionMask.RunIgnoreMask;
         
 
         public void Run(Vector3 destination)
@@ -54,7 +55,7 @@ namespace Common.Characters.Behaviours.Movement
         {
             sequencer.Condition.Add("CanMove", () => Cb.Pathfinding.CanMove);
             sequencer.Condition.Add("AbleToBehaviourOverride", () => CanOverrideToCurrent);
-            sequencer.ActiveSection.AddAwait("RunMoveActive", AwaitMove);
+            sequencer.ActiveParamSection.AddAwait("RunMoveActive", AwaitMove);
         }
 
         private void OnDestroy()
@@ -66,7 +67,7 @@ namespace Common.Characters.Behaviours.Movement
 #if UNITY_EDITOR
         public void EditorSetUp()
         {
-            sequencer = GetComponentInChildren<RunSequencer>();
+            sequencer.AssignPersistantEvents();
         }
 #endif
     }

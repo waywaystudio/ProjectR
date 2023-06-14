@@ -1,19 +1,20 @@
 using Cysharp.Threading.Tasks;
+using Sequences;
 using UnityEngine;
 
-namespace Common.Characters.Behaviours.CrowdControlEffect
+namespace Common.Characters.Behaviours
 {
     public class KnockBackBehaviour : MonoBehaviour, IActionBehaviour, IEditable
     {
-        [SerializeField] private KnockBackSequencer sequencer;
+        [SerializeField] private Sequencer<Vector3> sequencer;
         
         private CharacterBehaviour cb;
         
         public CharacterActionMask BehaviourMask => CharacterActionMask.KnockBack;
-        public CharacterActionMask IgnorableMask => CharacterActionMask.KnockBackIgnoreMask;
         
         private CharacterBehaviour Cb => cb ??= GetComponentInParent<CharacterBehaviour>();
-        private bool CanOverrideToCurrent => (IgnorableMask | Cb.BehaviourMask) == IgnorableMask;
+        private bool CanOverrideToCurrent 
+            => (CharacterActionMask.KnockBackIgnoreMask | Cb.BehaviourMask) == CharacterActionMask.KnockBackIgnoreMask;
         
 
         public void KnockBack(Vector3 source, float distance, float duration)
@@ -26,6 +27,11 @@ namespace Common.Characters.Behaviours.CrowdControlEffect
         
         public void Cancel() 
             => sequencer.Cancel();
+        
+        public void KnockBackRotateActiveParam(Vector3 source)
+        {
+            Cb.Rotate(source);
+        }
 
         public void KnockBackRegisterActive()
         {
@@ -36,13 +42,8 @@ namespace Common.Characters.Behaviours.CrowdControlEffect
 
             Cb.CurrentBehaviour = this;
         }
-
-        public void KnockBackRotateActive(Vector3 source)
-        {
-            Cb.Rotate(source);
-        }
         
-        public void KnockBackAnimationActive(Vector3 source)
+        public void KnockBackAnimationActive()
         {
             Cb.Animating.Hit();
         }
@@ -59,7 +60,7 @@ namespace Common.Characters.Behaviours.CrowdControlEffect
         private void Awake()
         {
             sequencer.Condition.Add("AbleToBehaviourOverride", () => CanOverrideToCurrent);
-            sequencer.ActiveSection.AddAwait("AwaitKnockBack", AwaitKnockBack);
+            sequencer.ActiveParamSection.AddAwait("AwaitKnockBack", AwaitKnockBack);
         }
         
         private void OnDestroy()
@@ -71,7 +72,7 @@ namespace Common.Characters.Behaviours.CrowdControlEffect
 #if UNITY_EDITOR
         public void EditorSetUp()
         {
-            sequencer = GetComponentInChildren<KnockBackSequencer>();
+            sequencer.AssignPersistantEvents();
         }
 #endif
     }

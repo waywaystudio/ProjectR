@@ -1,20 +1,21 @@
 using Cysharp.Threading.Tasks;
+using Sequences;
 using UnityEngine;
 
-namespace Common.Characters.Behaviours.CrowdControlEffect
+namespace Common.Characters.Behaviours
 {
     public class StunBehaviour : MonoBehaviour, IActionBehaviour, IEditable
     {
-        [SerializeField] private StunSequencer sequencer;
+        [SerializeField] private Sequencer<float> sequencer;
         
         private CharacterBehaviour cb;
         
         public CharacterActionMask BehaviourMask => CharacterActionMask.Stun;
-        public CharacterActionMask IgnorableMask => CharacterActionMask.StunIgnoreMask;
         public FloatEvent RemainStunTime { get; } = new();
         
         private CharacterBehaviour Cb => cb ??= GetComponentInParent<CharacterBehaviour>();
-        private bool CanOverrideToCurrent => (IgnorableMask | Cb.BehaviourMask) == IgnorableMask;
+        private bool CanOverrideToCurrent 
+            => (CharacterActionMask.StunIgnoreMask | Cb.BehaviourMask) == CharacterActionMask.StunIgnoreMask;
         
 
         public void Stun(float duration)
@@ -42,7 +43,7 @@ namespace Common.Characters.Behaviours.CrowdControlEffect
             Cb.Animating.Stun();
         }
         
-        public void StunSetDurationActive(float duration)
+        public void StunSetDurationActiveParam(float duration)
         {
             RemainStunTime.Value = duration;
         }
@@ -76,7 +77,7 @@ namespace Common.Characters.Behaviours.CrowdControlEffect
         private void Awake()
         {
             sequencer.Condition.Add("AbleToBehaviourOverride", () => CanOverrideToCurrent);
-            sequencer.ActiveSection.AddAwait("AwaitCoolTime", AwaitCoolTime);
+            sequencer.ActiveParamSection.AddAwait("AwaitCoolTime", AwaitCoolTime);
         }
         
         private void OnDestroy()
@@ -88,7 +89,7 @@ namespace Common.Characters.Behaviours.CrowdControlEffect
 #if UNITY_EDITOR
         public void EditorSetUp()
         {
-            sequencer = GetComponentInChildren<StunSequencer>();
+            sequencer.AssignPersistantEvents();
         }
 #endif
     }

@@ -14,7 +14,7 @@ namespace Common.Execution
             pool.Get().Activate(position);
         }
         
-        public override void Execution(ICombatTaker taker, float instantMultiplier = 1)
+        public override void Execution(ICombatTaker taker)
         {
             pool.Get().Activate(taker.Position);
         }

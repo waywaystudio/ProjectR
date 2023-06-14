@@ -31,7 +31,6 @@ namespace Character.Villains
             StatTable.Add(difficultyTable.GetDifficultySpec(difficulty, level));
             
             combatStatus.Initialize();
-            phaseBehaviours.Initialize(this);
         }
 
 
@@ -46,11 +45,14 @@ namespace Character.Villains
         {
             base.EditorSetUp();
 
-            Finder.TryGetObject($"{name}Data", out data);
+            if (Finder.TryGetObject($"{name}Data", out data))
+            {
+                data.EditorSetUp();
+            }
 
             difficultyTable ??= GetComponentInChildren<VillainDifficultyTable>();
             phaseBehaviours ??= GetComponentInChildren<PhaseBehaviours>();
-            data.EditorSetUp();
+            SkillBehaviour.EditorSetUp();
         }
 #endif
     }

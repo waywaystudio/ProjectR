@@ -12,7 +12,7 @@ namespace Common.Execution
 
         private Vector3 MuzzlePosition => muzzle ? muzzle.position : transform.position + new Vector3(0, 3, 0);
         
-        public override void Execution(ICombatTaker taker, float instantMultiplier = 1f)
+        public override void Execution(ICombatTaker taker)
         {
             var projectile          = pool.Get();
             var projectileTransform = projectile.transform;
