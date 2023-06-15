@@ -66,4 +66,20 @@ namespace Editor
             }
         }
     }
+    
+    [AttributeUsage(AttributeTargets.Field | AttributeTargets.Property | AttributeTargets.Method)]
+    public class ShowInPlayModeAndInspectorAttribute : ShowInInspectorAttribute
+    {
+    }
+
+    public class ShowInPlayModeAndInspectorAttributeDrawer : OdinAttributeDrawer<ShowInPlayModeAndInspectorAttribute>
+    {
+        protected override void DrawPropertyLayout(GUIContent label)
+        {
+            if (EditorApplication.isPlaying)
+            {
+                CallNextDrawer(label);
+            }
+        }
+    }
 }

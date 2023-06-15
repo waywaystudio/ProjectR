@@ -430,6 +430,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sequencer:
     sequenceKey: Dead
+    sectionTable:
+      keyList: 0100000002000000
+      valueList:
+      - persistantEvent:
+          m_PersistentCalls:
+            m_Calls: []
+        sectionType: 1
+      - persistantEvent:
+          m_PersistentCalls:
+            m_Calls: []
+        sectionType: 2
+      hideKey: 1
     activeSection:
       persistantEvent:
         m_PersistentCalls:
@@ -776,6 +788,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sequencer:
     sequenceKey: KnockBack
+    sectionTable:
+      keyList: 
+      valueList: []
+      hideKey: 0
     activeSection:
       persistantEvent:
         m_PersistentCalls:
@@ -909,6 +925,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sequencer:
     sequenceKey: Stun
+    sectionTable:
+      keyList: 
+      valueList: []
+      hideKey: 0
     activeSection:
       persistantEvent:
         m_PersistentCalls:
@@ -1298,6 +1318,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sequencer:
     sequenceKey: Run
+    sectionTable:
+      keyList: 
+      valueList: []
+      hideKey: 0
     activeSection:
       persistantEvent:
         m_PersistentCalls:
@@ -1480,14 +1504,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   globalCoolTimer:
-    timer: 0
+    timer: 1.5
   skillTable:
-    keyList: c905d901
+    keyList: c905d901c605d901
     valueList:
     - {fileID: 1144377022904457136}
+    - {fileID: 4442699525421009715}
     hideKey: 1
   sequencer:
     sequenceKey: SkillBehaviour
+    sectionTable:
+      keyList: 
+      valueList: []
+      hideKey: 0
     activeSection:
       persistantEvent:
         m_PersistentCalls:
@@ -1575,9 +1604,9 @@ MonoBehaviour:
       variableStartIndex: 
       JSONSerialization: '{"EntryTask":{"Type":"BehaviorDesigner.Runtime.Tasks.EntryTask","NodeData":{"Offset":"(502,122)"},"ID":0,"Name":"Entry","Instant":true},"RootTask":{"Type":"BehaviorDesigner.Runtime.Tasks.Repeater","NodeData":{"Offset":"(2.00003052,100.697365)"},"ID":1,"Name":"Repeater","Instant":true,"SharedIntcount":{"Type":"BehaviorDesigner.Runtime.SharedInt","Name":null,"Int32mValue":0},"SharedBoolrepeatForever":{"Type":"BehaviorDesigner.Runtime.SharedBool","Name":null,"BooleanmValue":true},"SharedBoolendOnFailure":{"Type":"BehaviorDesigner.Runtime.SharedBool","Name":null,"BooleanmValue":false},"Children":[{"Type":"BehaviorDesigner.Runtime.Tasks.SelectorEvaluator","NodeData":{"Offset":"(4.142853,97.30384)"},"ID":2,"Name":"Selector
         Evaluator","Instant":true,"AbortTypeabortType":"None","Children":[{"Type":"BehaviorDesigner.Runtime.Tasks.Inverter","NodeData":{"Offset":"(-153.287872,115.252747)"},"ID":3,"Name":"Inverter","Instant":true,"Children":[{"Type":"Character.Behavior.Actions.IsAlive","NodeData":{"Offset":"(0,100)"},"ID":4,"Name":"Is
-        Alive","Instant":true}]},{"Type":"BehaviorDesigner.Runtime.Tasks.Cooldown","NodeData":{"Offset":"(141.666656,120)"},"ID":5,"Name":"Cooldown","Instant":true,"SharedFloatduration":{"Type":"BehaviorDesigner.Runtime.SharedFloat","Name":null,"SinglemValue":0.2},"Children":[{"Type":"BehaviorDesigner.Runtime.Tasks.Sequence","NodeData":{"Offset":"(2.861023E-05,99.99999)"},"ID":6,"Name":"Sequence","Instant":true,"AbortTypeabortType":"None","Children":[{"Type":"Character.Behavior.Actions.PositioningBehavior","NodeData":{"Offset":"(-150,101.778458)"},"ID":7,"Name":"Positioning
-        Behavior","Instant":true},{"Type":"BehaviorDesigner.Runtime.Tasks.UntilSuccess","NodeData":{"Offset":"(0,101.778458)"},"ID":8,"Name":"Until
-        Success","Instant":true,"Children":[{"Type":"Common.Behavior.Actions.IsGcdReady","NodeData":{"Offset":"(0,120)"},"ID":9,"Name":"Is
+        Alive","Instant":true}]},{"Type":"BehaviorDesigner.Runtime.Tasks.Cooldown","NodeData":{"Offset":"(141.666656,120)"},"ID":5,"Name":"Cooldown","Instant":true,"SharedFloatduration":{"Type":"BehaviorDesigner.Runtime.SharedFloat","Name":null,"SinglemValue":0.2},"Children":[{"Type":"BehaviorDesigner.Runtime.Tasks.Sequence","NodeData":{"Offset":"(2.861023E-05,99.99999)"},"ID":6,"Name":"Sequence","Instant":true,"AbortTypeabortType":"None","Children":[{"Type":"Character.Behavior.Actions.PositioningBehavior","NodeData":{"Offset":"(-180,100)"},"ID":7,"Name":"Positioning
+        Behavior","Instant":true},{"Type":"BehaviorDesigner.Runtime.Tasks.UntilSuccess","NodeData":{"Offset":"(-44.8936157,101.778458)"},"ID":8,"Name":"Until
+        Success","Instant":true,"Children":[{"Type":"Common.Behavior.Actions.IsGcdReady","NodeData":{"Offset":"(4.46813965,124.893555)"},"ID":9,"Name":"Is
         Gcd Ready","Instant":true}]},{"Type":"Character.Behavior.Actions.ActiveSkillBehavior","NodeData":{"Offset":"(150,101.778458)"},"ID":10,"Name":"Active
         Skill Behavior","Instant":true},{"Type":"BehaviorDesigner.Runtime.Tasks.UntilSuccess","NodeData":{"Offset":"(300,101.778458)"},"ID":11,"Name":"Until
         Success","Instant":true,"Children":[{"Type":"Character.Behavior.Actions.IsSkillFinished","NodeData":{"Offset":"(0,120)"},"ID":12,"Name":"Is
@@ -1640,6 +1669,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   phase1:
     sequenceKey: Phase1
+    sectionTable:
+      keyList: 
+      valueList: []
+      hideKey: 0
     activeSection:
       persistantEvent:
         m_PersistentCalls:
@@ -1697,6 +1730,10 @@ MonoBehaviour:
     phaseMask: 2
   phase2:
     sequenceKey: Phase2
+    sectionTable:
+      keyList: 
+      valueList: []
+      hideKey: 0
     activeSection:
       persistantEvent:
         m_PersistentCalls:
@@ -1799,6 +1836,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sequencer:
     sequenceKey: Stop
+    sectionTable:
+      keyList: 
+      valueList: []
+      hideKey: 0
     activeSection:
       persistantEvent:
         m_PersistentCalls:
@@ -1968,7 +2009,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -6687176528768826702, guid: 4ae3fbab6c1c1ed48bbe37492124f254, type: 3}
       propertyPath: angle
-      value: 60
+      value: 360
       objectReference: {fileID: 0}
     - target: {fileID: -6687176528768826702, guid: 4ae3fbab6c1c1ed48bbe37492124f254, type: 3}
       propertyPath: model
@@ -1976,7 +2017,7 @@ PrefabInstance:
       objectReference: {fileID: 4723975105097867993}
     - target: {fileID: -6687176528768826702, guid: 4ae3fbab6c1c1ed48bbe37492124f254, type: 3}
       propertyPath: range
-      value: 8
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: -6687176528768826702, guid: 4ae3fbab6c1c1ed48bbe37492124f254, type: 3}
       propertyPath: damage
@@ -1996,7 +2037,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -6687176528768826702, guid: 4ae3fbab6c1c1ed48bbe37492124f254, type: 3}
       propertyPath: sortingType
-      value: 7
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -6687176528768826702, guid: 4ae3fbab6c1c1ed48bbe37492124f254, type: 3}
+      propertyPath: coolTimer.timer
+      value: 12
       objectReference: {fileID: 0}
     - target: {fileID: -6687176528768826702, guid: 4ae3fbab6c1c1ed48bbe37492124f254, type: 3}
       propertyPath: targetLayer.m_Bits
@@ -2076,7 +2121,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8380361914805468174, guid: 4ae3fbab6c1c1ed48bbe37492124f254, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -2088,6 +2133,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 234500611213636336, guid: 4ae3fbab6c1c1ed48bbe37492124f254, type: 3}
   m_PrefabInstance: {fileID: 2203882884427909505}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &4442699525421009715 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: -6687176528768826702, guid: 4ae3fbab6c1c1ed48bbe37492124f254, type: 3}
+  m_PrefabInstance: {fileID: 2203882884427909505}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c984734517cb97a43b37c35ce611e625, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &3180717023739871247
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2117,12 +2173,8 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 0}
     - target: {fileID: -6645754418306525249, guid: a357f5398beb58044b7041950abebf09, type: 3}
-      propertyPath: animationKey
-      value: holding
-      objectReference: {fileID: 0}
-    - target: {fileID: 159349165042510227, guid: a357f5398beb58044b7041950abebf09, type: 3}
-      propertyPath: power.value
-      value: 10
+      propertyPath: coolTimer.timer
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 234500611213636336, guid: a357f5398beb58044b7041950abebf09, type: 3}
       propertyPath: m_RootOrder

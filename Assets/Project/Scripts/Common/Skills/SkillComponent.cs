@@ -11,8 +11,6 @@ namespace Common.Skills
     public abstract class SkillComponent : MonoBehaviour, IExecutable, ISequencer<Vector3>, IDataIndexer, IEditable
                                            // , IOldConditionalSequence
     {
-        
-        
         /* Common Attribution */
         [SerializeField] protected DataIndex actionCode;
         [SerializeField] protected SkillType skillType;
@@ -25,7 +23,7 @@ namespace Common.Skills
         [SerializeField] protected float angle;
         [SerializeField] protected string animationKey;
         [SerializeField] private string description;
-        [SerializeField] protected AwaitCoolTimer coolTimer = new();
+        [SerializeField] protected AwaitCoolTimer coolTimer;
         [SerializeField] protected LayerMask targetLayer;
         [SerializeField] private Sprite icon;
         
@@ -47,16 +45,16 @@ namespace Common.Skills
         public Sequencer<Vector3> Sequencer => sequencer;
 
         public ConditionTable Condition => Sequencer.Condition;
-        public Section<Vector3> ActiveParamSection => Sequencer.ActiveParamSection;
-        public Section Activation => Sequencer.Activation;
-        public Section Cancellation => Sequencer.Cancellation;
+        public OldSection<Vector3> ActiveParamSection => Sequencer.ActiveParamSection;
+        public OldSection ActiveSection => Sequencer.ActiveSection;
+        public OldSection CancelSection => Sequencer.CancelSection;
         
         // public Section Complete => Sequencer.Activation;
         // public Section End => Sequencer.Cancellation;
-        private Section complete;
-        private Section end;
-        Section ISequencer.Complete => complete;
-        Section ISequencer.End => end;
+        private OldSection complete;
+        private OldSection end;
+        OldSection ISequencer.CompleteSection => complete;
+        OldSection ISequencer.EndSection => end;
         
         // public ConditionTable Conditions { get; } = new();
         [ShowInInspector] public ActionTable OnActivated { get; } = new();
@@ -107,7 +105,7 @@ namespace Common.Skills
             IsEnded    = false;
 
             OnActivated.Invoke();
-            sequencer.Activate(targetPosition);
+            sequencer.ActivateSequence(targetPosition);
         }
 
         public void SkillAnimationActive()
@@ -208,7 +206,7 @@ namespace Common.Skills
         protected void OnEnable()
         {
             Initialize();
-            
+
             Condition.Add("IsCoolTimeReady", () => coolTimer.IsReady);
             coolTimer.Register(sequencer, coolTimeSection);
         }

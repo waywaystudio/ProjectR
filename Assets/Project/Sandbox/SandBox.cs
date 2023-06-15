@@ -9,6 +9,6 @@ public class SandBox : MonoBehaviour
     {
         var sequencer = GetComponent<Sequencer>();
 
-        sequencer.Active();
+        sequencer.ActiveSequence();
     }
 }

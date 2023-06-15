@@ -19,7 +19,7 @@ namespace Character.Villains
         {
             if (CurrentPhase is null || !CurrentPhase.IsAbleToActive) return;
             
-            CurrentPhase.Active();
+            CurrentPhase.ActiveSequence();
             CurrentPhase = phase2;
         }
 
@@ -44,7 +44,7 @@ namespace Character.Villains
             CurrentPhase = phase1;
             
             phase1.Condition.Add("HpRatio", Phase1ConditionHpRatio);
-            phase1.Activation.AddAwait("WaitUntilArrived", WaitUntilArrived);
+            phase1.ActiveSection.AddAwait("WaitUntilArrived", WaitUntilArrived);
         }
 
 

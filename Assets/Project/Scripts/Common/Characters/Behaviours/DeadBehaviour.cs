@@ -22,7 +22,7 @@ namespace Common.Characters.Behaviours
         {
             if (!sequencer.IsAbleToActive) return;
 
-            sequencer.Active();
+            sequencer.ActiveSequence();
         }
         
         public void Cancel() 
@@ -31,7 +31,7 @@ namespace Common.Characters.Behaviours
         // TODO. 여기가 맞나;
         public void AddReward(string key, Action action)
         {
-            sequencer.Complete.Add(key, action);
+            sequencer.CompleteSection.Add(key, action);
         }
         
         public void DeadRegisterActive()
@@ -58,7 +58,7 @@ namespace Common.Characters.Behaviours
         private void Awake()
         {
             sequencer.Condition.Add("AbleToBehaviourOverride", () => CanOverrideToCurrent);
-            sequencer.Activation.AddAwait("DeadAnimation", DeadAnimationActive);
+            sequencer.ActiveSection.AddAwait("DeadAnimation", DeadAnimationActive);
         }
         
         private void OnDestroy()

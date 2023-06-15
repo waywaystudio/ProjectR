@@ -62,6 +62,103 @@ Transform:
   m_Father: {fileID: 234500611213636336}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &4368397061377193857
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1885034772558921964}
+  - component: {fileID: 8233487645124630922}
+  - component: {fileID: 3244318504341696082}
+  - component: {fileID: 3639184817798833425}
+  m_Layer: 0
+  m_Name: Execution
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1885034772558921964
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4368397061377193857}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 234500611213636336}
+  m_RootOrder: -1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &8233487645124630922
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4368397061377193857}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7cb67e0d4b0f0014c80282718ad1c364, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  table:
+    keyList: 01000000
+    valueList:
+    - ExecutionList:
+      - {fileID: 3244318504341696082}
+      - {fileID: 3639184817798833425}
+    hideKey: 0
+--- !u!114 &3244318504341696082
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4368397061377193857}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 910d8bb983b570146b7c330bb9a77e89, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  type: 1
+  group: 1
+  actionCode: 31000006
+  damageSpec:
+    statList:
+    - statType: 13010001
+      statKey: DamageExecutorKey
+      value: 36
+    - statType: 13020001
+      statKey: DamageExecutorKey
+      value: 0
+    - statType: 13030003
+      statKey: DamageExecutorKey
+      value: 0
+--- !u!114 &3639184817798833425
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4368397061377193857}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 761ddaaeeb9330044ad04eb47dd52a13, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  type: 6
+  group: 1
+  ccMask: 8
+  knockBackDistance: 8
+  knockBackDuration: 0.5
+  stunDuration: 0
 --- !u!1 &8380361914805468174
 GameObject:
   m_ObjectHideFlags: 0
@@ -72,8 +169,6 @@ GameObject:
   m_Component:
   - component: {fileID: 234500611213636336}
   - component: {fileID: -6687176528768826702}
-  - component: {fileID: 1227390470127866362}
-  - component: {fileID: 4534168677478532336}
   - component: {fileID: 4337732494131428132}
   - component: {fileID: 9194407360501435687}
   m_Layer: 0
@@ -96,10 +191,11 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 7800130978877418470}
-  - {fileID: 5853087751410363707}
+  - {fileID: 1885034772558921964}
   - {fileID: 7221708945386366489}
+  - {fileID: 5853087751410363707}
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &-6687176528768826702
 MonoBehaviour:
@@ -190,51 +286,7 @@ MonoBehaviour:
               m_StringArgument: 
               m_BoolArgument: 0
             m_CallState: 2
-  executor: {fileID: 0}
---- !u!114 &1227390470127866362
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8380361914805468174}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 910d8bb983b570146b7c330bb9a77e89, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  type: 1
-  group: 1
-  actionCode: 31000006
-  damageSpec:
-    statList:
-    - statType: 13010001
-      statKey: DamageExecutorKey
-      value: 36
-    - statType: 13020001
-      statKey: DamageExecutorKey
-      value: 0
-    - statType: 13030003
-      statKey: DamageExecutorKey
-      value: 0
---- !u!114 &4534168677478532336
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8380361914805468174}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 761ddaaeeb9330044ad04eb47dd52a13, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  type: 6
-  group: 1
-  ccMask: 8
-  knockBackDistance: 8
-  knockBackDuration: 0.5
-  stunDuration: 0
+  executor: {fileID: 8233487645124630922}
 --- !u!114 &4337732494131428132
 MonoBehaviour:
   m_ObjectHideFlags: 0

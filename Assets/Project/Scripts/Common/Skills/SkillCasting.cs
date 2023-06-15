@@ -46,7 +46,6 @@ namespace Common.Skills
             complete = skill.Execution;
             
             skill.OnActivated.Register("StartProcessing", () => StartProcessing(Cb.StatTable.Haste));
-            // skill.OnCanceled.Register("CancelProcessing", StopProcessing);
             skill.OnEnded.Register("StopProcessing", StopProcessing);
             skill.CastingTime = castingTime;
         }

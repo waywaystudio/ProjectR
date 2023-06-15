@@ -9,16 +9,23 @@ namespace Common
     [Serializable] 
     public class AwaitCoolTimer : AwaitTimer
     {
+        public AwaitCoolTimer() : this(0f) { }
+        public AwaitCoolTimer(float timer)
+        {
+            this.timer  = timer;
+            RemainTimer = new FloatEvent();
+        }
+        
         public void Register(ISequencer sequencer, SectionType sectionType)
         {
             if (sectionType == SectionType.None) return;
             
             var section = sectionType switch
             {
-                SectionType.Activation => sequencer.Activation,
-                SectionType.Cancel     => sequencer.Cancellation,
-                SectionType.Complete     => sequencer.Complete,
-                SectionType.End     => sequencer.End,
+                SectionType.Activation => sequencer.ActiveSection,
+                SectionType.Cancel     => sequencer.CancelSection,
+                SectionType.Complete     => sequencer.CompleteSection,
+                SectionType.End     => sequencer.EndSection,
                 _ => null,
             };
             
@@ -29,16 +36,14 @@ namespace Common
     [Serializable]
     public class AwaitTimer
     {
-        [SerializeField] private float timer;
+        [SerializeField] protected float timer;
 
-        public Action Action;
-
-        public bool IsReady => RemainTime <= 0f;
+        public bool IsReady => 
+            !isRunning; 
+            // RemainTime <= 0f;
         public float Timer { get => timer; set => timer = value;}
         public float RemainTime => RemainTimer.Value;
-        
-        [Sirenix.OdinInspector.ShowInInspector]
-        public FloatEvent RemainTimer { get; }
+        public FloatEvent RemainTimer { get; set; }
 
         private bool isPaused;
         private CancellationTokenSource cts;
@@ -61,7 +66,8 @@ namespace Common
 
         public async UniTask PlayAwait()
         {
-            cts = new CancellationTokenSource();
+            cts               = new CancellationTokenSource();
+            RemainTimer.Value = timer;
             
             try
             {
@@ -77,29 +83,41 @@ namespace Common
         {
             cts?.Cancel();
             
-            RemainTimer.Value = timer;
+            isRunning         = false;
+            RemainTimer.Value = 0f;
         }
 
         public void Pause() => isPaused = true;
         public void Resume() => isPaused = false;
-        
+
+        private bool isRunning;
 
         private async UniTask AwaitCoolTime(Action callback, CancellationTokenSource cts)
         {
+            if (isRunning)
+            {
+                Debug.Log("Already Running in");
+                return;
+            }
+            
+            isRunning = true;
+            
             while (RemainTimer.Value > 0f)
             {
                 if (!isPaused)
                 {
-                    Action?.Invoke();
                     RemainTimer.Value -= Time.deltaTime;
+
+                    if (RemainTimer.Value <= 0)
+                    {
+                        callback?.Invoke();
+                        Stop();
+                        break;
+                    }
                 }
 
                 await UniTask.Yield(PlayerLoopTiming.Update, cts.Token);
             }
-
-            RemainTimer.Value = 0f;
-            
-            callback?.Invoke();
         }
     }
 }

@@ -10,11 +10,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 291626802760447148, guid: bd355e30ab3d37740ab682aad07a91b5, type: 3}
       propertyPath: skillTable.keyList.Array.size
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 291626802760447148, guid: bd355e30ab3d37740ab682aad07a91b5, type: 3}
       propertyPath: skillTable.valueList.Array.size
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 291626802760447148, guid: bd355e30ab3d37740ab682aad07a91b5, type: 3}
       propertyPath: skillTable.keyList.Array.data[0]
@@ -48,10 +48,18 @@ PrefabInstance:
       propertyPath: skillTable.valueList.Array.data[3]
       value: 
       objectReference: {fileID: 753621691833560613}
+    - target: {fileID: 1144377022904457136, guid: bd355e30ab3d37740ab682aad07a91b5, type: 3}
+      propertyPath: coolTimeSection
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1194031104030257203, guid: bd355e30ab3d37740ab682aad07a91b5, type: 3}
       propertyPath: data
       value: 
       objectReference: {fileID: 11400000, guid: 3037488550c46ba46b9fca2fa1e95609, type: 2}
+    - target: {fileID: 2497100265669063333, guid: bd355e30ab3d37740ab682aad07a91b5, type: 3}
+      propertyPath: castingTime
+      value: 2.5
+      objectReference: {fileID: 0}
     - target: {fileID: 2965052365408092262, guid: bd355e30ab3d37740ab682aad07a91b5, type: 3}
       propertyPath: m_IsActive
       value: 0
@@ -104,6 +112,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4442699525421009715, guid: bd355e30ab3d37740ab682aad07a91b5, type: 3}
+      propertyPath: angle
+      value: 60
+      objectReference: {fileID: 0}
+    - target: {fileID: 4442699525421009715, guid: bd355e30ab3d37740ab682aad07a91b5, type: 3}
+      propertyPath: range
+      value: 24
+      objectReference: {fileID: 0}
     - target: {fileID: 5800618702141835074, guid: bd355e30ab3d37740ab682aad07a91b5, type: 3}
       propertyPath: m_Mesh
       value: 
@@ -114,7 +130,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7699120219021817231, guid: bd355e30ab3d37740ab682aad07a91b5, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8945366538634865238, guid: bd355e30ab3d37740ab682aad07a91b5, type: 3}
       propertyPath: m_IsActive

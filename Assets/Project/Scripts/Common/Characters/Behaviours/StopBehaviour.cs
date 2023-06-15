@@ -14,7 +14,7 @@ namespace Common.Characters.Behaviours
         private CharacterBehaviour Cb => cb ??= GetComponentInParent<CharacterBehaviour>();
 
 
-        public void Stop() => sequencer.Active();
+        public void Stop() => sequencer.ActiveSequence();
         public void Cancel() => sequencer.Cancel();
 
         public void StopPathfindingActive() => Cb.Pathfinding.Stop();

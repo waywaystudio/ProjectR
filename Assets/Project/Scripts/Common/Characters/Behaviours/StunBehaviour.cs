@@ -22,7 +22,7 @@ namespace Common.Characters.Behaviours
         {
             if (!sequencer.IsAbleToActive) return;
             
-            sequencer.Activate(duration);
+            sequencer.ActivateSequence(duration);
         }
 
         public void Cancel() 

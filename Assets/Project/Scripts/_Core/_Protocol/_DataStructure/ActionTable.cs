@@ -42,7 +42,7 @@ public class ActionTable : ActionTableCore<Action>
         foreach (var item in otherTable) TryAdd(item.Key, item.Value);
     }
 
-    public void Invoke()  
+    public virtual void Invoke()  
     {
         foreach (var action in Values) action?.Invoke();
     }
@@ -76,7 +76,7 @@ public class ActionTable<T> : ActionTableCore<Action<T>>
         TryAdd(key, otherTable.Invoke);
     }
 
-    public void Invoke(T value)
+    public virtual void Invoke(T value)
     {
         foreach (var action in Values) action?.Invoke(value);
     }
@@ -107,7 +107,7 @@ public class ActionTable<T0, T1> : ActionTableCore<Action<T0, T1>>
         foreach (var item in otherTable) TryAdd(item.Key, item.Value.Invoke);
     }
 
-    public void Invoke(T0 value0, T1 value1)
+    public virtual void Invoke(T0 value0, T1 value1)
     {
         foreach (var action in Values) action?.Invoke(value0, value1);
     }

@@ -22,7 +22,7 @@ namespace Common.Characters.Behaviours
             if (!sequencer.IsAbleToActive) return;
             
             Cb.Pathfinding.SetKnockProperty(distance, duration);
-            sequencer.Activate(source);
+            sequencer.ActivateSequence(source);
         }
         
         public void Cancel() 

@@ -8,11 +8,6 @@ namespace Common.Characters.Behaviours
     public class SkillBehaviour : MonoBehaviour, IActionBehaviour, IEditable
     {
         [SerializeField] private AwaitTimer globalCoolTimer = new();
-        
-        // SerializationData로 부터, 캐릭터 혹은 몬스터의 스킬을 받아와야 한다.
-        // 캐릭터는 스킬이 변경되었을 가능성이 있고, 보스나 미니언은 사실상 거의 없다고 본다.
-        // SerializeField는 유지할 예정이며, 캐릭터의 경우만 Load하는 함수를 짜서 변경할 수 있으니,
-        // 일단은 현재 상태 안에서 구현
         [SerializeField] private Table<DataIndex, SkillComponent> skillTable = new();
         [SerializeField] private Sequencer sequencer;
 
@@ -45,7 +40,7 @@ namespace Common.Characters.Behaviours
 
             if (!skill.Sequencer.IsAbleToActive) return;
             
-            sequencer.Active();
+            sequencer.ActiveSequence();
             
             Current = skill;
             Current.Activate(targetPosition);
@@ -105,12 +100,8 @@ namespace Common.Characters.Behaviours
 
         private void Awake()
         {
-            globalCoolTimer.Timer = 1.2f;
-            globalCoolTimer.Action += () =>
-            {
-                Debug.Log($"Current frame:{Time.frameCount}. Name:{name}. Instance:{GetInstanceID()}");
-            };
-            
+            globalCoolTimer       = new AwaitTimer();
+            globalCoolTimer.Timer = 1.5f;
             skillTable.Iterate(skill => skill.OnEnded.Register("BehaviourUnregister", () => Current = null));
             
             sequencer.Condition.Add("CanOverrideToCurrent", () => CanOverrideToCurrent);

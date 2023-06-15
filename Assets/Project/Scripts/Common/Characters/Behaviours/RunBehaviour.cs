@@ -21,7 +21,7 @@ namespace Common.Characters.Behaviours
         {
             if (!sequencer.IsAbleToActive) return;
             
-            sequencer.Activate(destination);
+            sequencer.ActivateSequence(destination);
         }
 
         public void Cancel() 

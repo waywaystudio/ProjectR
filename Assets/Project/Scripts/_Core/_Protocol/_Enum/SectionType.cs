@@ -4,5 +4,6 @@ public enum SectionType
     Activation = 1,
     Cancel = 2,
     Complete = 3,
-    End = 5
+    End = 4,
+    VariantParam = 5,
 }

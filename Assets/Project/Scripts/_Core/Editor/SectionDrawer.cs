@@ -7,7 +7,7 @@ using Sirenix.OdinInspector.Editor;
 
 namespace Editor
 {
-    public class SectionDrawer : OdinAttributeProcessor<Section>
+    public class OldSectionDrawer : OdinAttributeProcessor<OldSection>
     {
         public override void ProcessSelfAttributes(InspectorProperty property, List<Attribute> attributes)
         {
@@ -25,7 +25,32 @@ namespace Editor
         }
     }
     
-    public class SectionParameterDrawer<T0, T1> : OdinAttributeProcessor<T0> where T0 : Section<T1>
+    public class SectionDrawer : OdinAttributeProcessor<Section>
+    {
+        public override void ProcessSelfAttributes(InspectorProperty property, List<Attribute> attributes)
+        {
+            attributes.Add(new HideReferenceObjectPickerAttribute());
+            attributes.Add(new HideLabelAttribute());
+        }
+
+        public override void ProcessChildMemberAttributes(InspectorProperty parentProperty, MemberInfo member, List<Attribute> attributes)
+        {
+            if (member.Name == "sectionType")
+            {
+                attributes.Add(new HideLabelAttribute());
+                attributes.Add(new PropertyOrderAttribute(-1));
+                attributes.Add(new DisplayAsStringAttribute());
+            }
+            
+            if (member.Name == "ActionTable")
+            {
+                attributes.Add(new ShowInPlayModeAndInspectorAttribute());
+                attributes.Add(new HideLabelAttribute());
+            }
+        }
+    }
+    
+    public class SectionParameterDrawer<T0, T1> : OdinAttributeProcessor<T0> where T0 : OldSection<T1>
     {
         public override void ProcessSelfAttributes(InspectorProperty property, List<Attribute> attributes)
         {
@@ -53,11 +78,6 @@ namespace Editor
 
         public override void ProcessChildMemberAttributes(InspectorProperty parentProperty, MemberInfo member, List<Attribute> attributes)
         {
-            if (member.Name == "key")
-            {
-                attributes.Add(new ShowInInspectorAttribute());
-            }
-            
             if (member.Name == "conditionTable")
             {
                 attributes.Add(new PropertyOrderAttribute(10f));
@@ -68,25 +88,25 @@ namespace Editor
             if (member.Name == "activeSection")
             {
                 attributes.Add(new PropertyOrderAttribute(12f));
-                attributes.Add(new FoldoutGroupAttribute("Active", true));
+                attributes.Add(new FoldoutGroupAttribute("Active"));
             }
             
             if (member.Name == "cancelSection")
             {
                 attributes.Add(new PropertyOrderAttribute(13f));
-                attributes.Add(new FoldoutGroupAttribute("Cancel", true));
+                attributes.Add(new FoldoutGroupAttribute("Cancel"));
             }
             
             if (member.Name == "completeSection")
             {
                 attributes.Add(new PropertyOrderAttribute(14f));
-                attributes.Add(new FoldoutGroupAttribute("Complete", true));
+                attributes.Add(new FoldoutGroupAttribute("Complete"));
             }
             
             if (member.Name == "endSection")
             {
                 attributes.Add(new PropertyOrderAttribute(15f));
-                attributes.Add(new FoldoutGroupAttribute("End", true));
+                attributes.Add(new FoldoutGroupAttribute("End"));
             }
         }
     }
@@ -113,28 +133,34 @@ namespace Editor
                 attributes.Add(new FoldoutGroupAttribute("Condition", true));
             }
             
+            if (member.Name == "activeParamSection")
+            {
+                attributes.Add(new PropertyOrderAttribute(11f));
+                attributes.Add(new FoldoutGroupAttribute("ActiveParameter"));
+            }
+            
             if (member.Name == "activeSection")
             {
                 attributes.Add(new PropertyOrderAttribute(12f));
-                attributes.Add(new FoldoutGroupAttribute("Active", true));
+                attributes.Add(new FoldoutGroupAttribute("Active"));
             }
             
             if (member.Name == "cancelSection")
             {
                 attributes.Add(new PropertyOrderAttribute(13f));
-                attributes.Add(new FoldoutGroupAttribute("Cancel", true));
+                attributes.Add(new FoldoutGroupAttribute("Cancel"));
             }
             
             if (member.Name == "completeSection")
             {
                 attributes.Add(new PropertyOrderAttribute(14f));
-                attributes.Add(new FoldoutGroupAttribute("Complete", true));
+                attributes.Add(new FoldoutGroupAttribute("Complete"));
             }
             
             if (member.Name == "endSection")
             {
                 attributes.Add(new PropertyOrderAttribute(15f));
-                attributes.Add(new FoldoutGroupAttribute("End", true));
+                attributes.Add(new FoldoutGroupAttribute("End"));
             }
         }
     }

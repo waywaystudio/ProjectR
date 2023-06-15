@@ -194,7 +194,7 @@ Transform:
   - {fileID: 7221708945386366489}
   - {fileID: 5853087751410363707}
   m_Father: {fileID: 0}
-  m_RootOrder: -1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &-6645754418306525249
 MonoBehaviour:
@@ -211,7 +211,7 @@ MonoBehaviour:
   actionCode: 31000009
   skillType: 1
   sortingType: 7
-  coolTimeSection: 0
+  coolTimeSection: 1
   behaviourMask: 32
   ignorableMask: 3
   priority: 1
@@ -220,7 +220,7 @@ MonoBehaviour:
   animationKey: attack
   description: Starts combat by attacking a target with a melee weapon.
   coolTimer:
-    timer: 0
+    timer: 3
   targetLayer:
     serializedVersion: 2
     m_Bits: 128

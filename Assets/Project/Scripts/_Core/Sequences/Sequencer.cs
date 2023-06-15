@@ -14,28 +14,55 @@ namespace Sequences
     {
         [SerializeField] protected string sequenceKey;
         [SerializeField] protected ConditionTable conditionTable = new();
-        [SerializeField] protected Section activeSection = new();
-        [SerializeField] protected Section cancelSection = new();
-        [SerializeField] protected Section completeSection = new();
-        [SerializeField] protected Section endSection = new();
+        // [SerializeField] protected SectionTable sectionTable = new();
         
+        [SerializeField] protected OldSection activeSection = new();
+        [SerializeField] protected OldSection cancelSection = new();
+        [SerializeField] protected OldSection completeSection = new();
+        [SerializeField] protected OldSection endSection = new();
+        // 
+
         protected CancellationTokenSource Cts;
         
         public bool IsAbleToActive => conditionTable == null || conditionTable.IsAllTrue;
         public bool IsDone { get; protected set; }
+        
+        public ConditionTable Condition => conditionTable;
+        public OldSection ActiveSection => activeSection;
+        public OldSection CancelSection => cancelSection;
+        public OldSection CompleteSection => completeSection;
+        public OldSection EndSection => endSection;
 
-        public void Cancel()
+        public async UniTaskVoid ActiveAwait() => await ActiveSection.Invoke();
+        
+        public void Active(CancellationToken token = default) => activeSection.Invoke(token);
+        
+        public void Cancel(CancellationToken token = default)
         {
             Cts?.Cancel();
-            cancelSection.Invoke();
-            endSection.Invoke();
+            cancelSection.Invoke(token);
+            End();
+        }
+        
+        public void Complete(CancellationToken token = default)
+        {
+            completeSection.Invoke(token);
+            End();
         }
 
-        public ConditionTable Condition => conditionTable;
-        public Section Activation => activeSection;
-        public Section Cancellation => cancelSection;
-        public Section Complete => completeSection;
-        public Section End => endSection;
+        public void End() => endSection.Invoke();
+        
+        
+        
+        public void Add(SectionType sectionType, string key, Action action)
+        {
+            
+        }
+        
+        public void Remove(SectionType sectionType, string key, Action action)
+        {
+            
+        }
 
 
 #if UNITY_EDITOR
@@ -45,7 +72,7 @@ namespace Sequences
         /// EditorExtract에 있는 게임오브젝트에서 Key..methodKey() 방식으로 되어 있는 함수를 자동으로 UnityEvent에 할당한다.
         /// </summary>
         /// <param name="methodKey">ex.Active, Cancel or End and so on</param>
-        protected void AddPersistantEvent(GameObject targetObject, string methodKey, Section section)
+        protected void AddPersistantEvent(GameObject targetObject, string methodKey, OldSection section)
         {
             var behaviours = targetObject.GetComponents<MonoBehaviour>();
 
@@ -71,7 +98,7 @@ namespace Sequences
         /// EditorExtract에 있는 게임오브젝트에서 Key..methodKey() 방식으로 되어 있는 함수를 자동으로 UnityEvent<T>에 할당한다.
         /// </summary>
         /// <param name="methodKey">ex.Active, Cancel or End and so on</param>
-        protected void AddPersistantEvent<T>(GameObject targetObject, string methodKey, Section<T> section)
+        protected void AddPersistantEvent<T>(GameObject targetObject, string methodKey, OldSection<T> section)
         {
             var behaviours = targetObject.GetComponents<MonoBehaviour>();
 
@@ -98,7 +125,7 @@ namespace Sequences
     [Serializable]
     public class Sequencer : SequencerCore
     {
-        public void Active()
+        public void ActiveSequence()
         {
             StartSequence().Forget();
         }
@@ -107,10 +134,10 @@ namespace Sequences
         {
             Condition.Clear();
             
-            Activation.Clear();
-            Cancellation.Clear();
-            Complete.Clear();
-            End.Clear();
+            ActiveSection.Clear();
+            CancelSection.Clear();
+            CompleteSection.Clear();
+            EndSection.Clear();
         }
 
 
@@ -162,11 +189,22 @@ namespace Sequences
     [Serializable]
     public class Sequencer<T> : SequencerCore, ISequencer<T>
     {
-        [SerializeField] private Section<T> activeParamSection;
+        [SerializeField] private OldSection<T> activeParamSection;
         
-        public Section<T> ActiveParamSection => activeParamSection;
+        public OldSection<T> ActiveParamSection => activeParamSection;
 
-        public void Activate(T value)
+        public void Active(T value, CancellationToken token = default)
+        {
+            activeParamSection.Invoke(value, token);
+        }
+        
+        public async UniTaskVoid ActiveAwait(T value, CancellationToken token = default)
+        {
+            await activeParamSection.Invoke(value, token);
+        }
+        
+
+        public void ActivateSequence(T value)
         {
             if (Condition.HasFalse) return;
             
@@ -177,11 +215,11 @@ namespace Sequences
         {
             ActiveParamSection.Clear();
             
-            Activation.Clear();
+            ActiveSection.Clear();
             Condition.Clear();
-            Cancellation.Clear();
-            Complete.Clear();
-            End.Clear();
+            CancelSection.Clear();
+            CompleteSection.Clear();
+            EndSection.Clear();
         }
 
 

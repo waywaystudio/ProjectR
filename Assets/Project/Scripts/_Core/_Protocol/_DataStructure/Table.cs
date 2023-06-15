@@ -52,7 +52,11 @@ public class Table<TKey, TValue>
 
     public void Add(TKey key, TValue value)
     {
-        if (Map.ContainsKey(key)) return;
+        if (Map.ContainsKey(key))
+        {
+            Debug.LogWarning($"Table Already Has Key:{key}");
+            return;
+        }
         
         Map.Add(key, value);
         keyList.Add(key);
