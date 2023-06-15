@@ -13,7 +13,7 @@ namespace Character.Venturers.Knight.Skills
 
         protected override void Initialize()
         {
-            OnCompleted.Register("EndCallback", End);
+            // OnCompleted.Register("EndCallback", End);
         }
     }
 }

@@ -13,23 +13,22 @@ namespace Common
         public AwaitCoolTimer(float timer)
         {
             this.timer  = timer;
-            RemainTimer = new FloatEvent();
         }
         
         public void Register(ISequencer sequencer, SectionType sectionType)
         {
             if (sectionType == SectionType.None) return;
             
-            var section = sectionType switch
+            var action = sectionType switch
             {
-                SectionType.Activation => sequencer.ActiveSection,
-                SectionType.Cancel     => sequencer.CancelSection,
-                SectionType.Complete     => sequencer.CompleteSection,
-                SectionType.End     => sequencer.EndSection,
-                _ => null,
+                SectionType.Activation => sequencer.ActiveAction,
+                SectionType.Cancel     => sequencer.CancelAction,
+                SectionType.Complete   => sequencer.CompleteAction,
+                SectionType.End        => sequencer.EndAction,
+                _                      => null,
             };
             
-            section?.Add("CoolTimer", Play);
+            action?.Add("CoolTimer", Play);
         }
     }
     
@@ -38,45 +37,37 @@ namespace Common
     {
         [SerializeField] protected float timer;
 
-        public bool IsReady => 
-            !isRunning; 
-            // RemainTime <= 0f;
+        public bool IsReady => !isRunning;
         public float Timer { get => timer; set => timer = value;}
         public float RemainTime => RemainTimer.Value;
-        public FloatEvent RemainTimer { get; set; }
+        public FloatEvent RemainTimer { get; private set; } = new();
 
         private bool isPaused;
+        private bool isRunning;
+        private Action endCallback;
         private CancellationTokenSource cts;
 
         public AwaitTimer() : this(0f) { }
-        public AwaitTimer(float timer)
+        public AwaitTimer(Action endCallback) : this(0f, endCallback) { }
+        public AwaitTimer(float timer, Action endCallback = null)
         {
-            this.timer  = timer;
-            RemainTimer = new FloatEvent();
+            this.timer       = timer;
+            this.endCallback = endCallback;
         }
+        
 
         public void Play() => Play(null);
-        public void Play(Action callback)
+        public void Play(Action callback) => Play(timer, callback);
+        public void Play(float duration) => Play(duration, null);
+        public void Play(float duration, Action callback)
         {
-            cts               = new CancellationTokenSource();
+            cts = new CancellationTokenSource();
+            
+            timer             = duration;
+            endCallback       = callback;
             RemainTimer.Value = timer;
             
-            AwaitCoolTime(callback, cts).Forget();
-        }
-
-        public async UniTask PlayAwait()
-        {
-            cts               = new CancellationTokenSource();
-            RemainTimer.Value = timer;
-            
-            try
-            {
-                await AwaitCoolTime(null, cts);
-            }
-            finally
-            {
-                cts?.Dispose();
-            }
+            AwaitCoolTime(cts).Forget();
         }
 
         public void Stop()
@@ -90,15 +81,22 @@ namespace Common
         public void Pause() => isPaused = true;
         public void Resume() => isPaused = false;
 
-        private bool isRunning;
+        public void AddListener(Action action) => RemainTimer.AddListener(action);
+        public void AddListener(Action<float> action) => RemainTimer.AddListener(action);
+        public void AddListener(string key, Action action) => RemainTimer.AddListener(key, action);
+        public void AddListener(string key, Action<float> action) => RemainTimer.AddListener(key, action);
+        public void RemoveListener(string key) => RemainTimer.RemoveListener(key);
+        
 
-        private async UniTask AwaitCoolTime(Action callback, CancellationTokenSource cts)
+        private async UniTask AwaitCoolTime(CancellationTokenSource cts)
         {
             if (isRunning)
             {
                 Debug.Log("Already Running in");
                 return;
             }
+
+            if (timer == 0.0f) return;
             
             isRunning = true;
             
@@ -110,14 +108,15 @@ namespace Common
 
                     if (RemainTimer.Value <= 0)
                     {
-                        callback?.Invoke();
-                        Stop();
+                        endCallback?.Invoke();
                         break;
                     }
                 }
 
                 await UniTask.Yield(PlayerLoopTiming.Update, cts.Token);
             }
+            
+            Stop();
         }
     }
 }

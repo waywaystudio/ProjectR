@@ -1,17 +1,15 @@
 using Cysharp.Threading.Tasks;
-using Sequences;
 using UnityEngine;
 
 namespace Common.Characters.Behaviours
 {
-    public class KnockBackBehaviour : MonoBehaviour, IActionBehaviour, IEditable
+    public class KnockBackBehaviour : MonoBehaviour, IActionBehaviour
     {
-        [SerializeField] private Sequencer<Vector3> sequencer;
-        
-        private CharacterBehaviour cb;
+        [SerializeField] private Sequencer<Vector3> sequencer;        
         
         public CharacterActionMask BehaviourMask => CharacterActionMask.KnockBack;
         
+        private CharacterBehaviour cb;
         private CharacterBehaviour Cb => cb ??= GetComponentInParent<CharacterBehaviour>();
         private bool CanOverrideToCurrent 
             => (CharacterActionMask.KnockBackIgnoreMask | Cb.BehaviourMask) == CharacterActionMask.KnockBackIgnoreMask;
@@ -20,60 +18,33 @@ namespace Common.Characters.Behaviours
         public void KnockBack(Vector3 source, float distance, float duration)
         {
             if (!sequencer.IsAbleToActive) return;
-            
-            Cb.Pathfinding.SetKnockProperty(distance, duration);
-            sequencer.ActivateSequence(source);
-        }
-        
-        public void Cancel() 
-            => sequencer.Cancel();
-        
-        public void KnockBackRotateActiveParam(Vector3 source)
-        {
-            Cb.Rotate(source);
-        }
 
-        public void KnockBackRegisterActive()
-        {
-            if (Cb.CurrentBehaviour is not null && Cb.BehaviourMask != BehaviourMask)
-            {
-                Cb.CurrentBehaviour.Cancel();
-            }
-
-            Cb.CurrentBehaviour = this;
+            Cb.Pathfinding.KnockBack(source, distance, duration, sequencer.Complete);
+            sequencer.Active(source);
         }
         
-        public void KnockBackAnimationActive()
-        {
-            Cb.Animating.Hit();
-        }
+        public void Cancel() => sequencer.Cancel();
 
-        public void KnockBackCancel() => Cb.Stop();
-        public void KnockBackComplete() => Cb.Stop();
-        
-        
-        private async UniTask AwaitKnockBack(Vector3 destination)
-        {
-            await Cb.Pathfinding.KnockBack(destination);
-        }
 
-        private void Awake()
+        private void OnEnable()
         {
             sequencer.Condition.Add("AbleToBehaviourOverride", () => CanOverrideToCurrent);
-            sequencer.ActiveParamSection.AddAwait("AwaitKnockBack", AwaitKnockBack);
+            sequencer.ActiveParamAction.Add("Rotate", Cb.Rotate);
+            sequencer.ActiveAction.Add("CommonKnockBackAction", () =>
+            {
+                if (cb.CurrentBehaviour is not null && cb.BehaviourMask != BehaviourMask)
+                    cb.CurrentBehaviour.Cancel();
+
+                cb.CurrentBehaviour = this;
+                Cb.Animating.Hit();
+            });
+            
+            sequencer.EndAction.Add("Stop", Cb.Stop);
         }
-        
-        private void OnDestroy()
+
+        private void OnDisable()
         {
             sequencer.Clear();
         }
-
-
-#if UNITY_EDITOR
-        public void EditorSetUp()
-        {
-            sequencer.AssignPersistantEvents();
-        }
-#endif
     }
 }

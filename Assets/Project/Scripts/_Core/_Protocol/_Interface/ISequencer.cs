@@ -1,21 +1,33 @@
-using Sequences;
+using UnityEngine;
 
 public interface ISequencer
 {
     ConditionTable Condition { get; }
-    OldSection ActiveSection { get; }
-    OldSection CancelSection { get; }
-    OldSection CompleteSection { get; }
-    OldSection EndSection { get; }
+    ActionTable ActiveAction { get; }
+    ActionTable CancelAction { get; }
+    ActionTable CompleteAction { get; }
+    ActionTable EndAction { get; }
 }
 
 public interface ISequencer<T> : ISequencer
 {
-    OldSection<T> ActiveParamSection { get; }
+    // + ConditionTable Condition
+    // + ActionTable ActiveAction
+    // + ActionTable CancelAction
+    // + ActionTable CompleteAction
+    // + ActionTable EndAction
     
-    // + ConditionTable Condition { get; }
-    // + Section Activation { get; }
-    // + Section Cancellation { get; }
-    // + Section Complete { get; }
-    // + Section End { get; }
+    ActionTable<T> ActiveParamAction { get; }
+}
+
+public interface IProjectorSequence : ISequencer
+{
+    // + ConditionTable Condition
+    // + ActionTable ActiveAction
+    // + ActionTable CancelAction
+    // + ActionTable CompleteAction
+    // + ActionTable EndAction
+    
+    float CastingTime { get; }
+    Vector2 SizeVector { get; }
 }

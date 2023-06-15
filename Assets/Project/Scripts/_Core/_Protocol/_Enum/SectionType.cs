@@ -5,5 +5,4 @@ public enum SectionType
     Cancel = 2,
     Complete = 3,
     End = 4,
-    VariantParam = 5,
 }

@@ -1,5 +1,82 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &1234280139362883297
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8762994625914345649}
+  - component: {fileID: 7183624796026737691}
+  - component: {fileID: 372894161616476412}
+  m_Layer: 0
+  m_Name: Execution
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8762994625914345649
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1234280139362883297}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 234500611213636336}
+  m_RootOrder: -1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &7183624796026737691
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1234280139362883297}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7cb67e0d4b0f0014c80282718ad1c364, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  table:
+    keyList: 01000000
+    valueList:
+    - ExecutionList:
+      - {fileID: 372894161616476412}
+    hideKey: 1
+--- !u!114 &372894161616476412
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1234280139362883297}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 910d8bb983b570146b7c330bb9a77e89, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  type: 1
+  group: 1
+  actionCode: 31000011
+  damageSpec:
+    statList:
+    - statType: 13010001
+      statKey: DamageExecutorKey
+      value: 14
+    - statType: 13020001
+      statKey: DamageExecutorKey
+      value: 0
+    - statType: 13030003
+      statKey: DamageExecutorKey
+      value: 0
 --- !u!1 &2546753074928525639
 GameObject:
   m_ObjectHideFlags: 0
@@ -73,7 +150,6 @@ GameObject:
   - component: {fileID: 234500611213636336}
   - component: {fileID: 3573146375285310108}
   - component: {fileID: 8442636931341427777}
-  - component: {fileID: 8304402273095567445}
   m_Layer: 0
   m_Name: ClawAttack
   m_TagString: Untagged
@@ -93,10 +169,11 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 5853087751410363707}
+  - {fileID: 8762994625914345649}
   - {fileID: 7221708945386366489}
+  - {fileID: 5853087751410363707}
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &3573146375285310108
 MonoBehaviour:
@@ -127,103 +204,8 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 256
   icon: {fileID: 21300000, guid: f77c1bbaa2a2a9543a6a657f87a256f9, type: 3}
-  sequencer:
-    sequenceKey: Skill
-    activeSection:
-      persistantEvent:
-        m_PersistentCalls:
-          m_Calls:
-          - m_Target: {fileID: 3573146375285310108}
-            m_TargetAssemblyTypeName: Common.Skills.SkillComponent, ProjectR.Common
-            m_MethodName: SkillAnimationActive
-            m_Mode: 0
-            m_Arguments:
-              m_ObjectArgument: {fileID: 0}
-              m_ObjectArgumentAssemblyTypeName: 
-              m_IntArgument: 0
-              m_FloatArgument: 0
-              m_StringArgument: 
-              m_BoolArgument: 0
-            m_CallState: 2
-          - m_Target: {fileID: 3573146375285310108}
-            m_TargetAssemblyTypeName: Common.Skills.SkillComponent, ProjectR.Common
-            m_MethodName: SkillPathfindingStopActive
-            m_Mode: 0
-            m_Arguments:
-              m_ObjectArgument: {fileID: 0}
-              m_ObjectArgumentAssemblyTypeName: 
-              m_IntArgument: 0
-              m_FloatArgument: 0
-              m_StringArgument: 
-              m_BoolArgument: 0
-            m_CallState: 2
-    cancelSection:
-      persistantEvent:
-        m_PersistentCalls:
-          m_Calls:
-          - m_Target: {fileID: 3573146375285310108}
-            m_TargetAssemblyTypeName: Common.Skills.SkillComponent, ProjectR.Common
-            m_MethodName: SkillCancel
-            m_Mode: 0
-            m_Arguments:
-              m_ObjectArgument: {fileID: 0}
-              m_ObjectArgumentAssemblyTypeName: 
-              m_IntArgument: 0
-              m_FloatArgument: 0
-              m_StringArgument: 
-              m_BoolArgument: 0
-            m_CallState: 2
-    completeSection:
-      persistantEvent:
-        m_PersistentCalls:
-          m_Calls:
-          - m_Target: {fileID: 3573146375285310108}
-            m_TargetAssemblyTypeName: Common.Skills.SkillComponent, ProjectR.Common
-            m_MethodName: SkillComplete
-            m_Mode: 0
-            m_Arguments:
-              m_ObjectArgument: {fileID: 0}
-              m_ObjectArgumentAssemblyTypeName: 
-              m_IntArgument: 0
-              m_FloatArgument: 0
-              m_StringArgument: 
-              m_BoolArgument: 0
-            m_CallState: 2
-    endSection:
-      persistantEvent:
-        m_PersistentCalls:
-          m_Calls:
-          - m_Target: {fileID: 3573146375285310108}
-            m_TargetAssemblyTypeName: Common.Skills.SkillComponent, ProjectR.Common
-            m_MethodName: SkillEnd
-            m_Mode: 0
-            m_Arguments:
-              m_ObjectArgument: {fileID: 0}
-              m_ObjectArgumentAssemblyTypeName: 
-              m_IntArgument: 0
-              m_FloatArgument: 0
-              m_StringArgument: 
-              m_BoolArgument: 0
-            m_CallState: 2
-    EditorExtract:
-    - {fileID: 8380361914805468174}
-    activeParamSection:
-      persistantEvent:
-        m_PersistentCalls:
-          m_Calls:
-          - m_Target: {fileID: 3573146375285310108}
-            m_TargetAssemblyTypeName: Common.Skills.SkillComponent, ProjectR.Common
-            m_MethodName: SkillRotateActiveParam
-            m_Mode: 0
-            m_Arguments:
-              m_ObjectArgument: {fileID: 0}
-              m_ObjectArgumentAssemblyTypeName: 
-              m_IntArgument: 0
-              m_FloatArgument: 0
-              m_StringArgument: 
-              m_BoolArgument: 0
-            m_CallState: 2
-  executor: {fileID: 0}
+  sequencer: {}
+  executor: {fileID: 7183624796026737691}
 --- !u!114 &8442636931341427777
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -236,29 +218,3 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 53c1327179b64ee489b48e7d271d4020, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &8304402273095567445
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8380361914805468174}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 910d8bb983b570146b7c330bb9a77e89, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  type: 0
-  group: 1
-  actionCode: 31000011
-  damageSpec:
-    statList:
-    - statType: 13010001
-      statKey: DamageExecutorKey
-      value: 14
-    - statType: 13020001
-      statKey: DamageExecutorKey
-      value: 0
-    - statType: 13030003
-      statKey: DamageExecutorKey
-      value: 0

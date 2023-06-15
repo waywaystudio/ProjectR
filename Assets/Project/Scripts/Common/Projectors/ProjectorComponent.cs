@@ -13,7 +13,7 @@ namespace Common.Projectors
 
         protected const float ProjectorDepth = 50f;
         protected static readonly int ProgressID = Shader.PropertyToID("_Progress");
-        protected IOldProjectorSequence ProjectorSequencer;
+        protected IProjectorSequence ProjectorSequencer;
         protected Func<float> CastingTime;
         protected Func<Vector2> SizeReference;
 
@@ -69,10 +69,10 @@ namespace Common.Projectors
             CastingTime   += () => ProjectorSequencer.CastingTime;
             SizeReference += () => ProjectorSequencer.SizeVector;
 
-            ProjectorSequencer.OnActivated.Register("Projector", Activate);
-            ProjectorSequencer.OnCanceled.Register("Projector", Cancel);
-            ProjectorSequencer.OnCompleted.Register("Projector", Complete);
-            ProjectorSequencer.OnEnded.Register("Projector", End);
+            ProjectorSequencer.ActiveAction.Register("Projector", Activate);
+            ProjectorSequencer.CancelAction.Register("Projector", Cancel);
+            ProjectorSequencer.CompleteAction.Register("Projector", Complete);
+            ProjectorSequencer.EndAction.Register("Projector", End);
 
             Initialize();
         }

@@ -1,10 +1,9 @@
-using Common;
 using Common.Skills;
 using UnityEngine;
 
 namespace Character.Villains.Moragg.Skills
 {
-    public class MoraggSpin : SkillComponent, IOldProjectorSequence
+    public class MoraggSpin : SkillComponent, IProjectorSequence
     {
         public Vector2 SizeVector => new(range, 60);
         
@@ -15,7 +14,7 @@ namespace Character.Villains.Moragg.Skills
                 takerList.ForEach(Execute);
             }
 
-            Cb.Animating.PlayOnce("attack", 0f, Complete);
+            Cb.Animating.PlayOnce("attack", 0f, Sequencer.Complete);
         }
         
 
@@ -26,7 +25,7 @@ namespace Character.Villains.Moragg.Skills
 
         protected override void Initialize()
         {
-            OnCompleted.Register("EndCallback", End);
+            // OnCompleted.Register("EndCallback", End);
         }
     }
 }

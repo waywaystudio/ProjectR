@@ -1,5 +1,4 @@
 using System;
-using Sequences;
 using UnityEngine;
 
 namespace Common
@@ -21,7 +20,7 @@ namespace Common
     {
         ConditionTable Conditions { get; }
     }
-
+    
     public interface IOldProjectorSequence : IOldSequence
     {
         float CastingTime { get; }

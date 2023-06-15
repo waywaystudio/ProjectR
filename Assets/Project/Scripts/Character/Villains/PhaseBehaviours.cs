@@ -1,10 +1,9 @@
 using Common;
-using Cysharp.Threading.Tasks;
 using UnityEngine;
 
 namespace Character.Villains
 {
-    public class PhaseBehaviours : MonoBehaviour, IEditable
+    public class PhaseBehaviours : MonoBehaviour
     {
         [SerializeField] private PhaseSequencer phase1;
         [SerializeField] private PhaseSequencer phase2;
@@ -19,41 +18,27 @@ namespace Character.Villains
         {
             if (CurrentPhase is null || !CurrentPhase.IsAbleToActive) return;
             
-            CurrentPhase.ActiveSequence();
+            CurrentPhase.Active();
             CurrentPhase = phase2;
         }
 
-        public void Phase1ActiveRunToCenter()
-        {
-            Vb.Run(Vector3.zero);
-        }
-        
-        
-        private bool Phase1ConditionHpRatio()
-        {
-            var hpRatio = Vb.DynamicStatEntry.Hp.Value / Vb.StatTable.MaxHp;
 
-            return hpRatio < 0.7f;
-        }
+        private void Awake() => CurrentPhase = phase1;
 
-        private async UniTask WaitUntilArrived() 
-            => await UniTask.WaitUntil(() => Vb.BehaviourMask == CharacterActionMask.Stop);
-
-        private void Awake()
+        private void OnEnable()
         {
-            CurrentPhase = phase1;
+            phase1.Initialize();
+            phase1.Condition.Add("HpRatio", () => Vb.DynamicStatEntry.Hp.Value / Vb.StatTable.MaxHp < 0.7f);
+            phase1.ActiveAction.Add("RunToCenter", () => Vb.Run(Vector3.zero));
+            phase1.AddCompleteTrigger(() => Vb.transform.position == Vector3.zero || Vb.BehaviourMask == CharacterActionMask.Stop);
             
-            phase1.Condition.Add("HpRatio", Phase1ConditionHpRatio);
-            phase1.ActiveSection.AddAwait("WaitUntilArrived", WaitUntilArrived);
+            phase2.Initialize();
         }
 
-
-#if UNITY_EDITOR
-        public void EditorSetUp()
+        private void OnDisable()
         {
-            phase1.AssignPersistantEvents();
-            phase2.AssignPersistantEvents();
+            phase1.Clear();
+            phase2.Clear();
         }
-#endif
     }
 }

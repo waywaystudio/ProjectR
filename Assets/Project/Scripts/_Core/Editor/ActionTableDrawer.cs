@@ -1,7 +1,6 @@
 using System;
 using System.Collections.Generic;
 using System.Reflection;
-using Sirenix.OdinInspector;
 using Sirenix.OdinInspector.Editor;
 
 namespace Editor
@@ -20,6 +19,17 @@ namespace Editor
         public override void ProcessChildMemberAttributes(InspectorProperty parentProperty, MemberInfo member, List<Attribute> attributes)
         {
             
+        }
+    }
+    
+    public class ConditionTableDrawer : OdinAttributeProcessor<ConditionTable> 
+    {
+        public override void ProcessChildMemberAttributes(InspectorProperty parentProperty, MemberInfo member, List<Attribute> attributes)
+        {
+            if (member.Name == "table")
+            {
+                attributes.Add(new ShowInPlayModeAndInspectorAttribute());
+            }
         }
     }
 }

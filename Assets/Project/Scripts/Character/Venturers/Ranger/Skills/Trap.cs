@@ -16,9 +16,9 @@ namespace Character.Venturers.Ranger.Skills
 
         protected override void Initialize()
         {
-            OnActivated.Register("Jump", Jump);
-            OnActivated.Register("Execution", Execution);
-            OnCompleted.Register("EndCallback", End);
+            // OnActivated.Register("Jump", Jump);
+            // OnActivated.Register("Execution", Execution);
+            // OnCompleted.Register("EndCallback", End);
         }
 
         private void Jump()

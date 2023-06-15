@@ -428,64 +428,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f023e572eb6a80245b9add90975e85ba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sequencer:
-    sequenceKey: Dead
-    sectionTable:
-      keyList: 0100000002000000
-      valueList:
-      - persistantEvent:
-          m_PersistentCalls:
-            m_Calls: []
-        sectionType: 1
-      - persistantEvent:
-          m_PersistentCalls:
-            m_Calls: []
-        sectionType: 2
-      hideKey: 1
-    activeSection:
-      persistantEvent:
-        m_PersistentCalls:
-          m_Calls:
-          - m_Target: {fileID: 6087375476017618533}
-            m_TargetAssemblyTypeName: Common.Characters.Behaviours.DeadBehaviour,
-              ProjectR.Common
-            m_MethodName: DeadRegisterActive
-            m_Mode: 0
-            m_Arguments:
-              m_ObjectArgument: {fileID: 0}
-              m_ObjectArgumentAssemblyTypeName: 
-              m_IntArgument: 0
-              m_FloatArgument: 0
-              m_StringArgument: 
-              m_BoolArgument: 0
-            m_CallState: 2
-          - m_Target: {fileID: 6087375476017618533}
-            m_TargetAssemblyTypeName: Common.Characters.Behaviours.DeadBehaviour,
-              ProjectR.Common
-            m_MethodName: DeadQuitPathfindingActive
-            m_Mode: 0
-            m_Arguments:
-              m_ObjectArgument: {fileID: 0}
-              m_ObjectArgumentAssemblyTypeName: 
-              m_IntArgument: 0
-              m_FloatArgument: 0
-              m_StringArgument: 
-              m_BoolArgument: 0
-            m_CallState: 2
-    cancelSection:
-      persistantEvent:
-        m_PersistentCalls:
-          m_Calls: []
-    completeSection:
-      persistantEvent:
-        m_PersistentCalls:
-          m_Calls: []
-    endSection:
-      persistantEvent:
-        m_PersistentCalls:
-          m_Calls: []
-    EditorExtract:
-    - {fileID: 3901007188857564205}
 --- !u!1 &4162881639620210299
 GameObject:
   m_ObjectHideFlags: 0
@@ -786,99 +728,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0374d05ee0e1fb04ca9b65115ad0dce6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sequencer:
-    sequenceKey: KnockBack
-    sectionTable:
-      keyList: 
-      valueList: []
-      hideKey: 0
-    activeSection:
-      persistantEvent:
-        m_PersistentCalls:
-          m_Calls:
-          - m_Target: {fileID: 7788934450060550173}
-            m_TargetAssemblyTypeName: Common.Characters.Behaviours.KnockBackBehaviour,
-              ProjectR.Common
-            m_MethodName: KnockBackRegisterActive
-            m_Mode: 0
-            m_Arguments:
-              m_ObjectArgument: {fileID: 0}
-              m_ObjectArgumentAssemblyTypeName: 
-              m_IntArgument: 0
-              m_FloatArgument: 0
-              m_StringArgument: 
-              m_BoolArgument: 0
-            m_CallState: 2
-          - m_Target: {fileID: 7788934450060550173}
-            m_TargetAssemblyTypeName: Common.Characters.Behaviours.KnockBackBehaviour,
-              ProjectR.Common
-            m_MethodName: KnockBackAnimationActive
-            m_Mode: 0
-            m_Arguments:
-              m_ObjectArgument: {fileID: 0}
-              m_ObjectArgumentAssemblyTypeName: 
-              m_IntArgument: 0
-              m_FloatArgument: 0
-              m_StringArgument: 
-              m_BoolArgument: 0
-            m_CallState: 2
-    cancelSection:
-      persistantEvent:
-        m_PersistentCalls:
-          m_Calls:
-          - m_Target: {fileID: 7788934450060550173}
-            m_TargetAssemblyTypeName: Common.Characters.Behaviours.KnockBackBehaviour,
-              ProjectR.Common
-            m_MethodName: KnockBackCancel
-            m_Mode: 0
-            m_Arguments:
-              m_ObjectArgument: {fileID: 0}
-              m_ObjectArgumentAssemblyTypeName: 
-              m_IntArgument: 0
-              m_FloatArgument: 0
-              m_StringArgument: 
-              m_BoolArgument: 0
-            m_CallState: 2
-    completeSection:
-      persistantEvent:
-        m_PersistentCalls:
-          m_Calls:
-          - m_Target: {fileID: 7788934450060550173}
-            m_TargetAssemblyTypeName: Common.Characters.Behaviours.KnockBackBehaviour,
-              ProjectR.Common
-            m_MethodName: KnockBackComplete
-            m_Mode: 0
-            m_Arguments:
-              m_ObjectArgument: {fileID: 0}
-              m_ObjectArgumentAssemblyTypeName: 
-              m_IntArgument: 0
-              m_FloatArgument: 0
-              m_StringArgument: 
-              m_BoolArgument: 0
-            m_CallState: 2
-    endSection:
-      persistantEvent:
-        m_PersistentCalls:
-          m_Calls: []
-    EditorExtract:
-    - {fileID: 5376564143832143004}
-    activeParamSection:
-      persistantEvent:
-        m_PersistentCalls:
-          m_Calls:
-          - m_Target: {fileID: 7788934450060550173}
-            m_TargetAssemblyTypeName: Common.Characters.Behaviours.KnockBackBehaviour,
-              ProjectR.Common
-            m_MethodName: KnockBackRotateActiveParam
-            m_Mode: 0
-            m_Arguments:
-              m_ObjectArgument: {fileID: 0}
-              m_ObjectArgumentAssemblyTypeName: 
-              m_IntArgument: 0
-              m_FloatArgument: 0
-              m_StringArgument: 
-              m_BoolArgument: 0
-            m_CallState: 2
 --- !u!1 &5542662401839507427
 GameObject:
   m_ObjectHideFlags: 0
@@ -923,112 +772,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 100971ec1b076d041bcdbeabfca9ef89, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sequencer:
-    sequenceKey: Stun
-    sectionTable:
-      keyList: 
-      valueList: []
-      hideKey: 0
-    activeSection:
-      persistantEvent:
-        m_PersistentCalls:
-          m_Calls:
-          - m_Target: {fileID: 1824685703367635282}
-            m_TargetAssemblyTypeName: Common.Characters.Behaviours.StunBehaviour,
-              ProjectR.Common
-            m_MethodName: StunRegisterActive
-            m_Mode: 0
-            m_Arguments:
-              m_ObjectArgument: {fileID: 0}
-              m_ObjectArgumentAssemblyTypeName: 
-              m_IntArgument: 0
-              m_FloatArgument: 0
-              m_StringArgument: 
-              m_BoolArgument: 0
-            m_CallState: 2
-          - m_Target: {fileID: 1824685703367635282}
-            m_TargetAssemblyTypeName: Common.Characters.Behaviours.StunBehaviour,
-              ProjectR.Common
-            m_MethodName: StunAnimationActive
-            m_Mode: 0
-            m_Arguments:
-              m_ObjectArgument: {fileID: 0}
-              m_ObjectArgumentAssemblyTypeName: 
-              m_IntArgument: 0
-              m_FloatArgument: 0
-              m_StringArgument: 
-              m_BoolArgument: 0
-            m_CallState: 2
-    cancelSection:
-      persistantEvent:
-        m_PersistentCalls:
-          m_Calls:
-          - m_Target: {fileID: 1824685703367635282}
-            m_TargetAssemblyTypeName: Common.Characters.Behaviours.StunBehaviour,
-              ProjectR.Common
-            m_MethodName: StunCancel
-            m_Mode: 0
-            m_Arguments:
-              m_ObjectArgument: {fileID: 0}
-              m_ObjectArgumentAssemblyTypeName: 
-              m_IntArgument: 0
-              m_FloatArgument: 0
-              m_StringArgument: 
-              m_BoolArgument: 0
-            m_CallState: 2
-    completeSection:
-      persistantEvent:
-        m_PersistentCalls:
-          m_Calls:
-          - m_Target: {fileID: 1824685703367635282}
-            m_TargetAssemblyTypeName: Common.Characters.Behaviours.StunBehaviour,
-              ProjectR.Common
-            m_MethodName: StunComplete
-            m_Mode: 0
-            m_Arguments:
-              m_ObjectArgument: {fileID: 0}
-              m_ObjectArgumentAssemblyTypeName: 
-              m_IntArgument: 0
-              m_FloatArgument: 0
-              m_StringArgument: 
-              m_BoolArgument: 0
-            m_CallState: 2
-    endSection:
-      persistantEvent:
-        m_PersistentCalls:
-          m_Calls:
-          - m_Target: {fileID: 1824685703367635282}
-            m_TargetAssemblyTypeName: Common.Characters.Behaviours.StunBehaviour,
-              ProjectR.Common
-            m_MethodName: StunEnd
-            m_Mode: 0
-            m_Arguments:
-              m_ObjectArgument: {fileID: 0}
-              m_ObjectArgumentAssemblyTypeName: 
-              m_IntArgument: 0
-              m_FloatArgument: 0
-              m_StringArgument: 
-              m_BoolArgument: 0
-            m_CallState: 2
-    EditorExtract:
-    - {fileID: 5542662401839507427}
-    activeParamSection:
-      persistantEvent:
-        m_PersistentCalls:
-          m_Calls:
-          - m_Target: {fileID: 1824685703367635282}
-            m_TargetAssemblyTypeName: Common.Characters.Behaviours.StunBehaviour,
-              ProjectR.Common
-            m_MethodName: StunSetDurationActiveParam
-            m_Mode: 0
-            m_Arguments:
-              m_ObjectArgument: {fileID: 0}
-              m_ObjectArgumentAssemblyTypeName: 
-              m_IntArgument: 0
-              m_FloatArgument: 0
-              m_StringArgument: 
-              m_BoolArgument: 0
-            m_CallState: 2
 --- !u!1 &5820197252133641895
 GameObject:
   m_ObjectHideFlags: 0
@@ -1316,112 +1059,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1b6e649d21c669a45a8aa765a78ce211, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sequencer:
-    sequenceKey: Run
-    sectionTable:
-      keyList: 
-      valueList: []
-      hideKey: 0
-    activeSection:
-      persistantEvent:
-        m_PersistentCalls:
-          m_Calls:
-          - m_Target: {fileID: 7156159016913352143}
-            m_TargetAssemblyTypeName: Common.Characters.Behaviours.Movement.RunBehaviour,
-              ProjectR.Common
-            m_MethodName: RunRegisterActive
-            m_Mode: 1
-            m_Arguments:
-              m_ObjectArgument: {fileID: 0}
-              m_ObjectArgumentAssemblyTypeName: 
-              m_IntArgument: 0
-              m_FloatArgument: 0
-              m_StringArgument: 
-              m_BoolArgument: 0
-            m_CallState: 2
-          - m_Target: {fileID: 7156159016913352143}
-            m_TargetAssemblyTypeName: Common.Characters.Behaviours.Movement.RunBehaviour,
-              ProjectR.Common
-            m_MethodName: RunAnimationActive
-            m_Mode: 1
-            m_Arguments:
-              m_ObjectArgument: {fileID: 0}
-              m_ObjectArgumentAssemblyTypeName: 
-              m_IntArgument: 0
-              m_FloatArgument: 0
-              m_StringArgument: 
-              m_BoolArgument: 0
-            m_CallState: 2
-    cancelSection:
-      persistantEvent:
-        m_PersistentCalls:
-          m_Calls:
-          - m_Target: {fileID: 7156159016913352143}
-            m_TargetAssemblyTypeName: Common.Characters.Behaviours.Movement.RunBehaviour,
-              ProjectR.Common
-            m_MethodName: RunCancel
-            m_Mode: 0
-            m_Arguments:
-              m_ObjectArgument: {fileID: 0}
-              m_ObjectArgumentAssemblyTypeName: 
-              m_IntArgument: 0
-              m_FloatArgument: 0
-              m_StringArgument: 
-              m_BoolArgument: 0
-            m_CallState: 2
-    completeSection:
-      persistantEvent:
-        m_PersistentCalls:
-          m_Calls:
-          - m_Target: {fileID: 7156159016913352143}
-            m_TargetAssemblyTypeName: Common.Characters.Behaviours.Movement.RunBehaviour,
-              ProjectR.Common
-            m_MethodName: RunComplete
-            m_Mode: 0
-            m_Arguments:
-              m_ObjectArgument: {fileID: 0}
-              m_ObjectArgumentAssemblyTypeName: 
-              m_IntArgument: 0
-              m_FloatArgument: 0
-              m_StringArgument: 
-              m_BoolArgument: 0
-            m_CallState: 2
-    endSection:
-      persistantEvent:
-        m_PersistentCalls:
-          m_Calls: []
-    EditorExtract:
-    - {fileID: 7339756403604838598}
-    activeParamSection:
-      persistantEvent:
-        m_PersistentCalls:
-          m_Calls:
-          - m_Target: {fileID: 7156159016913352143}
-            m_TargetAssemblyTypeName: Common.Characters.Behaviours.Movement.RunBehaviour,
-              ProjectR.Common
-            m_MethodName: RunRegisterActive
-            m_Mode: 1
-            m_Arguments:
-              m_ObjectArgument: {fileID: 0}
-              m_ObjectArgumentAssemblyTypeName: 
-              m_IntArgument: 0
-              m_FloatArgument: 0
-              m_StringArgument: 
-              m_BoolArgument: 0
-            m_CallState: 2
-          - m_Target: {fileID: 7156159016913352143}
-            m_TargetAssemblyTypeName: Common.Characters.Behaviours.Movement.RunBehaviour,
-              ProjectR.Common
-            m_MethodName: RunAnimationActive
-            m_Mode: 1
-            m_Arguments:
-              m_ObjectArgument: {fileID: 0}
-              m_ObjectArgumentAssemblyTypeName: 
-              m_IntArgument: 0
-              m_FloatArgument: 0
-              m_StringArgument: 
-              m_BoolArgument: 0
-            m_CallState: 2
 --- !u!1 &7358179922413647357
 GameObject:
   m_ObjectHideFlags: 0
@@ -1511,69 +1148,6 @@ MonoBehaviour:
     - {fileID: 1144377022904457136}
     - {fileID: 4442699525421009715}
     hideKey: 1
-  sequencer:
-    sequenceKey: SkillBehaviour
-    sectionTable:
-      keyList: 
-      valueList: []
-      hideKey: 0
-    activeSection:
-      persistantEvent:
-        m_PersistentCalls:
-          m_Calls:
-          - m_Target: {fileID: 291626802760447148}
-            m_TargetAssemblyTypeName: Common.Characters.Behaviours.SkillBehaviour,
-              ProjectR.Common
-            m_MethodName: SkillBehaviourRegisterActive
-            m_Mode: 0
-            m_Arguments:
-              m_ObjectArgument: {fileID: 0}
-              m_ObjectArgumentAssemblyTypeName: 
-              m_IntArgument: 0
-              m_FloatArgument: 0
-              m_StringArgument: 
-              m_BoolArgument: 0
-            m_CallState: 2
-          - m_Target: {fileID: 291626802760447148}
-            m_TargetAssemblyTypeName: Common.Characters.Behaviours.SkillBehaviour,
-              ProjectR.Common
-            m_MethodName: SkillBehaviourGlobalCoolTimeActive
-            m_Mode: 0
-            m_Arguments:
-              m_ObjectArgument: {fileID: 0}
-              m_ObjectArgumentAssemblyTypeName: 
-              m_IntArgument: 0
-              m_FloatArgument: 0
-              m_StringArgument: 
-              m_BoolArgument: 0
-            m_CallState: 2
-    cancelSection:
-      persistantEvent:
-        m_PersistentCalls:
-          m_Calls:
-          - m_Target: {fileID: 291626802760447148}
-            m_TargetAssemblyTypeName: Common.Characters.Behaviours.SkillBehaviour,
-              ProjectR.Common
-            m_MethodName: SkillBehaviourCancel
-            m_Mode: 0
-            m_Arguments:
-              m_ObjectArgument: {fileID: 0}
-              m_ObjectArgumentAssemblyTypeName: 
-              m_IntArgument: 0
-              m_FloatArgument: 0
-              m_StringArgument: 
-              m_BoolArgument: 0
-            m_CallState: 2
-    completeSection:
-      persistantEvent:
-        m_PersistentCalls:
-          m_Calls: []
-    endSection:
-      persistantEvent:
-        m_PersistentCalls:
-          m_Calls: []
-    EditorExtract:
-    - {fileID: 7838767061474648301}
 --- !u!114 &3264795498149139108
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1668,89 +1242,44 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   phase1:
-    sequenceKey: Phase1
-    sectionTable:
-      keyList: 
-      valueList: []
-      hideKey: 0
-    activeSection:
-      persistantEvent:
-        m_PersistentCalls:
-          m_Calls:
-          - m_Target: {fileID: 2534193094697240272}
-            m_TargetAssemblyTypeName: Character.Villains.PhaseBehaviours, ProjectR.Character
-            m_MethodName: Phase1ActiveRunToCenter
-            m_Mode: 0
-            m_Arguments:
-              m_ObjectArgument: {fileID: 0}
-              m_ObjectArgumentAssemblyTypeName: 
-              m_IntArgument: 0
-              m_FloatArgument: 0
-              m_StringArgument: 
-              m_BoolArgument: 0
-            m_CallState: 2
-          - m_Target: {fileID: 3264795498149139108}
-            m_TargetAssemblyTypeName: UnityEngine.Behaviour, UnityEngine
-            m_MethodName: set_enabled
-            m_Mode: 6
-            m_Arguments:
-              m_ObjectArgument: {fileID: 0}
-              m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-              m_IntArgument: 0
-              m_FloatArgument: 0
-              m_StringArgument: 
-              m_BoolArgument: 0
-            m_CallState: 2
-    cancelSection:
-      persistantEvent:
-        m_PersistentCalls:
-          m_Calls: []
-    completeSection:
-      persistantEvent:
-        m_PersistentCalls:
-          m_Calls: []
-    endSection:
-      persistantEvent:
-        m_PersistentCalls:
-          m_Calls:
-          - m_Target: {fileID: 3264795498149139108}
-            m_TargetAssemblyTypeName: UnityEngine.Behaviour, UnityEngine
-            m_MethodName: set_enabled
-            m_Mode: 6
-            m_Arguments:
-              m_ObjectArgument: {fileID: 0}
-              m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-              m_IntArgument: 0
-              m_FloatArgument: 0
-              m_StringArgument: 
-              m_BoolArgument: 1
-            m_CallState: 2
-    EditorExtract:
-    - {fileID: 8615205136865817359}
+    persistantActiveEvent:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 3264795498149139108}
+          m_TargetAssemblyTypeName: UnityEngine.Behaviour, UnityEngine
+          m_MethodName: set_enabled
+          m_Mode: 6
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+    persistantCompleteEvent:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 3264795498149139108}
+          m_TargetAssemblyTypeName: UnityEngine.Behaviour, UnityEngine
+          m_MethodName: set_enabled
+          m_Mode: 6
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 1
+          m_CallState: 2
     phaseMask: 2
   phase2:
-    sequenceKey: Phase2
-    sectionTable:
-      keyList: 
-      valueList: []
-      hideKey: 0
-    activeSection:
-      persistantEvent:
-        m_PersistentCalls:
-          m_Calls: []
-    cancelSection:
-      persistantEvent:
-        m_PersistentCalls:
-          m_Calls: []
-    completeSection:
-      persistantEvent:
-        m_PersistentCalls:
-          m_Calls: []
-    endSection:
-      persistantEvent:
-        m_PersistentCalls:
-          m_Calls: []
-    EditorExtract: []
+    persistantActiveEvent:
+      m_PersistentCalls:
+        m_Calls: []
+    persistantCompleteEvent:
+      m_PersistentCalls:
+        m_Calls: []
     phaseMask: 4
 --- !u!1 &9163881677564672601
 GameObject:
@@ -1834,69 +1363,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: de170aedc8a6e27468da3e3bb6b91d3c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sequencer:
-    sequenceKey: Stop
-    sectionTable:
-      keyList: 
-      valueList: []
-      hideKey: 0
-    activeSection:
-      persistantEvent:
-        m_PersistentCalls:
-          m_Calls:
-          - m_Target: {fileID: 3298283690089901991}
-            m_TargetAssemblyTypeName: Common.Characters.Behaviours.Movement.StopBehaviour,
-              ProjectR.Common
-            m_MethodName: StopPathfindingActive
-            m_Mode: 0
-            m_Arguments:
-              m_ObjectArgument: {fileID: 0}
-              m_ObjectArgumentAssemblyTypeName: 
-              m_IntArgument: 0
-              m_FloatArgument: 0
-              m_StringArgument: 
-              m_BoolArgument: 0
-            m_CallState: 2
-          - m_Target: {fileID: 3298283690089901991}
-            m_TargetAssemblyTypeName: Common.Characters.Behaviours.Movement.StopBehaviour,
-              ProjectR.Common
-            m_MethodName: StopAnimationActive
-            m_Mode: 0
-            m_Arguments:
-              m_ObjectArgument: {fileID: 0}
-              m_ObjectArgumentAssemblyTypeName: 
-              m_IntArgument: 0
-              m_FloatArgument: 0
-              m_StringArgument: 
-              m_BoolArgument: 0
-            m_CallState: 2
-          - m_Target: {fileID: 3298283690089901991}
-            m_TargetAssemblyTypeName: Common.Characters.Behaviours.Movement.StopBehaviour,
-              ProjectR.Common
-            m_MethodName: StopRegisterActive
-            m_Mode: 0
-            m_Arguments:
-              m_ObjectArgument: {fileID: 0}
-              m_ObjectArgumentAssemblyTypeName: 
-              m_IntArgument: 0
-              m_FloatArgument: 0
-              m_StringArgument: 
-              m_BoolArgument: 0
-            m_CallState: 2
-    cancelSection:
-      persistantEvent:
-        m_PersistentCalls:
-          m_Calls: []
-    completeSection:
-      persistantEvent:
-        m_PersistentCalls:
-          m_Calls: []
-    endSection:
-      persistantEvent:
-        m_PersistentCalls:
-          m_Calls: []
-    EditorExtract:
-    - {fileID: 9170726859701074183}
 --- !u!1001 &606109883381454424
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2123,7 +1589,8 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 940916222046907975, guid: 4ae3fbab6c1c1ed48bbe37492124f254, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []

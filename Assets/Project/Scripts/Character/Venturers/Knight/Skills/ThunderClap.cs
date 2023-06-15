@@ -13,8 +13,8 @@ namespace Character.Venturers.Knight.Skills
 
         protected override void Initialize()
         {
-            OnActivated.Register("Jump", Jump);
-            OnCompleted.Register("EndCallback", End);
+            Sequencer.ActiveAction.Add("Jump", Jump);
+            // OnCompleted.Register("EndCallback", End);
         }
 
         private void Jump()

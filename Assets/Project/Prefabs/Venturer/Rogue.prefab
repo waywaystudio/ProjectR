@@ -550,10 +550,6 @@ PrefabInstance:
       value: -150
       objectReference: {fileID: 0}
     - target: {fileID: 7971064793264385864, guid: a3acb303f8f3ed24c8afb44fa3d18ccf, type: 3}
-      propertyPath: skillTable.hideKey
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7971064793264385864, guid: a3acb303f8f3ed24c8afb44fa3d18ccf, type: 3}
       propertyPath: skillList.Array.size
       value: 4
       objectReference: {fileID: 0}
@@ -573,30 +569,6 @@ PrefabInstance:
       propertyPath: skillList.Array.data[3]
       value: 
       objectReference: {fileID: 3246204844080293775}
-    - target: {fileID: 7971064793264385864, guid: a3acb303f8f3ed24c8afb44fa3d18ccf, type: 3}
-      propertyPath: skillTable.keyList.Array.size
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 7971064793264385864, guid: a3acb303f8f3ed24c8afb44fa3d18ccf, type: 3}
-      propertyPath: skillTable.valueList.Array.size
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 7971064793264385864, guid: a3acb303f8f3ed24c8afb44fa3d18ccf, type: 3}
-      propertyPath: skillTable.keyList.Array.data[0]
-      value: 31000011
-      objectReference: {fileID: 0}
-    - target: {fileID: 7971064793264385864, guid: a3acb303f8f3ed24c8afb44fa3d18ccf, type: 3}
-      propertyPath: skillTable.keyList.Array.data[1]
-      value: 31000012
-      objectReference: {fileID: 0}
-    - target: {fileID: 7971064793264385864, guid: a3acb303f8f3ed24c8afb44fa3d18ccf, type: 3}
-      propertyPath: skillTable.keyList.Array.data[2]
-      value: 31000013
-      objectReference: {fileID: 0}
-    - target: {fileID: 7971064793264385864, guid: a3acb303f8f3ed24c8afb44fa3d18ccf, type: 3}
-      propertyPath: skillTable.keyList.Array.data[3]
-      value: 31000014
-      objectReference: {fileID: 0}
     - target: {fileID: 7971064793264385864, guid: a3acb303f8f3ed24c8afb44fa3d18ccf, type: 3}
       propertyPath: skillTable.valueList.Array.data[0]
       value: 

@@ -22,8 +22,8 @@ namespace Common.Skills
         {
             if (!TryGetComponent(out SkillComponent skill)) return;
 
-            skill.OnActivated.Register("RegisterHitEvent", () => RegisterHitEvent(skill.Execution));
-            skill.OnEnded.Register("ReleaseHit", UnregisterHitEvent);
+            skill.Sequencer.ActiveAction.Add("RegisterHitEvent", () => RegisterHitEvent(skill.Execution));
+            skill.Sequencer.EndAction.Add("ReleaseHit", UnregisterHitEvent);
         }
     }
 }

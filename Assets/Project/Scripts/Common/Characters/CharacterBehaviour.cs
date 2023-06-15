@@ -1,3 +1,4 @@
+// using BehaviorDesigner.Runtime;
 using Common.Animation;
 using Common.Skills;
 using Common.Systems;
@@ -20,7 +21,8 @@ namespace Common.Characters
         [SerializeField] protected KnockBackBehaviour knockBackBehaviour;
         [SerializeField] protected DeadBehaviour deadBehaviour;
         [SerializeField] protected SkillBehaviour skillBehaviour;
-        
+
+        // [SerializeField] protected BehaviorTree behaviorTree;
         [SerializeField] protected SearchingSystem searching;
         [SerializeField] protected CollidingSystem colliding;
         [SerializeField] protected PathfindingSystem pathfinding;
@@ -33,6 +35,7 @@ namespace Common.Characters
         public virtual string Name => "characterName";
         public virtual CharacterData Data { get; set; }
         public Vector3 Position => transform.position;
+        // public BehaviorTree BehaviorTree => behaviorTree;
         public SearchingSystem Searching => searching;
         public CollidingSystem Colliding => colliding;
         public PathfindingSystem Pathfinding => pathfinding;
@@ -57,8 +60,6 @@ namespace Common.Characters
         /* Skill Behaviour */
         public SkillComponent GetSkill(DataIndex actionCode) => skillBehaviour.GetSkill(actionCode);
         public SkillBehaviour SkillBehaviour => skillBehaviour;
-        // public DataIndex[] SkillList => SkillBehaviour.SkillList;
-        
         public void ExecuteSkill(DataIndex actionCode, Vector3 targetPosition) => skillBehaviour.Active(actionCode, targetPosition);
         public void CancelSkill() => skillBehaviour.Cancel();
         public void ReleaseSkill() => skillBehaviour.Release();

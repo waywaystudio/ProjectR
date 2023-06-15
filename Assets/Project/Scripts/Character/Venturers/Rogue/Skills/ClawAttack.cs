@@ -8,12 +8,12 @@ namespace Character.Venturers.Rogue.Skills
         {
             if (!TryGetTakersInSphere(this, out var takerList)) return;
         
-            takerList.ForEach(ExecutionTable.Execute);
+            takerList.ForEach(Execute);
         }
 
         protected override void Initialize()
         {
-            OnCompleted.Register("EndCallback", End);
+            // OnCompleted.Register("EndCallback", End);
         }
     }
 }

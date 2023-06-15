@@ -1,13 +1,12 @@
 using System.Collections.Generic;
 using Common.Skills;
-using Sequences;
 using UnityEngine;
 
 namespace Common.Characters.Behaviours
 {
     public class SkillBehaviour : MonoBehaviour, IActionBehaviour, IEditable
     {
-        [SerializeField] private AwaitTimer globalCoolTimer = new();
+        [SerializeField] private AwaitTimer globalCoolTimer;
         [SerializeField] private Table<DataIndex, SkillComponent> skillTable = new();
         [SerializeField] private Sequencer sequencer;
 
@@ -40,7 +39,7 @@ namespace Common.Characters.Behaviours
 
             if (!skill.Sequencer.IsAbleToActive) return;
             
-            sequencer.ActiveSequence();
+            sequencer.Active();
             
             Current = skill;
             Current.Activate(targetPosition);
@@ -60,26 +59,6 @@ namespace Common.Characters.Behaviours
             Current.Release();
         }
 
-        public void SkillBehaviourRegisterActive()
-        {
-            if (Cb.CurrentBehaviour is not null && Cb.BehaviourMask != BehaviourMask)
-            {
-                Cb.CurrentBehaviour.Cancel();
-            }
-
-            Cb.CurrentBehaviour = this;
-        }
-        
-        public void SkillBehaviourGlobalCoolTimeActive()
-        {
-            globalCoolTimer.Play();
-        }
-
-        public void SkillBehaviourCancel()
-        {
-            Current.Cancel();
-        }
-
         public bool TryGetMostPrioritySkill(out SkillComponent skill)
         {
             SkillComponent result = null;
@@ -96,20 +75,30 @@ namespace Common.Characters.Behaviours
             skill = result;
             return skill is not null;
         }
+        
 
-
-        private void Awake()
+        private void OnEnable()
         {
-            globalCoolTimer       = new AwaitTimer();
-            globalCoolTimer.Timer = 1.5f;
-            skillTable.Iterate(skill => skill.OnEnded.Register("BehaviourUnregister", () => Current = null));
+            skillTable.Iterate(skill => skill.Sequencer.EndAction.Add("BehaviourUnregister", () => Current = null));
             
             sequencer.Condition.Add("CanOverrideToCurrent", () => CanOverrideToCurrent);
             sequencer.Condition.Add("IsSkillEnded", () => IsSkillEnded);
             sequencer.Condition.Add("GlobalCoolTimeReady", () => globalCoolTimer.IsReady);
+
+            sequencer.ActiveAction.Add("CommonStunAction", () =>
+            {
+                if (cb.CurrentBehaviour is not null && cb.BehaviourMask != BehaviourMask)
+                    cb.CurrentBehaviour.Cancel();
+
+                cb.CurrentBehaviour = this;
+                globalCoolTimer.Play();
+            });
+
+            sequencer.CancelAction.Add("CurrentSkillCancel", () => Current.Cancel());
+            sequencer.EndAction.Add("Stop", Cb.Stop);
         }
 
-        private void OnDestroy()
+        private void OnDisable()
         {
             sequencer.Clear();
         }
@@ -121,7 +110,6 @@ namespace Common.Characters.Behaviours
             var preLoadedSkillList = GetComponentsInChildren<SkillComponent>();
             
             skillTable.CreateTable(preLoadedSkillList, skill => skill.DataIndex);
-            sequencer.AssignPersistantEvents();
         }
 #endif
     }

@@ -5,7 +5,6 @@ using UnityEngine;
 [Serializable]
 public class ConditionTable
 {
-    [Sirenix.OdinInspector.ShowInInspector]
     private Dictionary<string, Func<bool>> table = new();
 
     public void Add(string key, Func<bool> predicate)

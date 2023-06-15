@@ -45,8 +45,8 @@ namespace Common.Skills
             Cb       = skill.Cb;
             complete = skill.Execution;
             
-            skill.OnActivated.Register("StartProcessing", () => StartProcessing(Cb.StatTable.Haste));
-            skill.OnEnded.Register("StopProcessing", StopProcessing);
+            skill.Sequencer.ActiveAction.Add("StartProcessing", () => StartProcessing(Cb.StatTable.Haste));
+            skill.Sequencer.EndAction.Add("StopProcessing", StopProcessing);
             skill.CastingTime = castingTime;
         }
 

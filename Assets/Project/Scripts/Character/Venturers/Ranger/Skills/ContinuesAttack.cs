@@ -1,6 +1,6 @@
 using Common.Skills;
 
-namespace Character.Venturers.Hunter.Skills
+namespace Character.Venturers.Ranger.Skills
 {
     public class ContinuesAttack : SkillComponent
     {
@@ -12,7 +12,7 @@ namespace Character.Venturers.Hunter.Skills
 
         protected override void Initialize()
         {
-            OnCompleted.Register("EndCallback", End);
+            // OnCompleted.Register("EndCallback", End);
         }
 
         protected override void PlayAnimation()

@@ -13,8 +13,8 @@ namespace Character.Villains.Moragg.Skills
 
         protected override void Initialize()
         {
-            OnCompleted.Register("MoraggLivingBomb", Execution);
-            OnCompleted.Register("EndCallback", End);
+            Sequencer.CompleteAction.Add("MoraggLivingBomb", Execution);
+            // OnCompleted.Register("EndCallback", End);
         }
     }
 }

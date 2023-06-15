@@ -1,5 +1,4 @@
 using System;
-using Sequences;
 using UnityEngine;
 
 namespace Common.Skills

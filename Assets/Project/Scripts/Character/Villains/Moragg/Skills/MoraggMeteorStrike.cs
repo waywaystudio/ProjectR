@@ -23,11 +23,10 @@ namespace Character.Villains.Moragg.Skills
 
         protected override void Initialize()
         {
-            OnActivated.Register("Execution", Execution);
-            OnCanceled.Register("StopExecution", StopMeteor);
-            
-            OnCompleted.Register("EndCallback", End);
-            OnCompleted.Register("StopExecution", StopMeteor);
+            // OnActivated.Register("Execution", Execution);
+            // OnCanceled.Register("StopExecution", StopMeteor);
+            // OnCompleted.Register("EndCallback", End);
+            // OnCompleted.Register("StopExecution", StopMeteor);
         }
         
         protected override void PlayAnimation()

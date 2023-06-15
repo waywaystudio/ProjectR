@@ -1,73 +1,11 @@
 using System;
 using System.Collections.Generic;
 using System.Reflection;
-using Sequences;
 using Sirenix.OdinInspector;
 using Sirenix.OdinInspector.Editor;
 
 namespace Editor
 {
-    public class OldSectionDrawer : OdinAttributeProcessor<OldSection>
-    {
-        public override void ProcessSelfAttributes(InspectorProperty property, List<Attribute> attributes)
-        {
-            attributes.Add(new HideReferenceObjectPickerAttribute());
-            attributes.Add(new HideLabelAttribute());
-        }
-
-        public override void ProcessChildMemberAttributes(InspectorProperty parentProperty, MemberInfo member, List<Attribute> attributes)
-        {
-            if (member.Name == "AwaitEvent")
-            {
-                attributes.Add(new HideLabelAttribute());
-                attributes.Add(new ShowInInspectorAttribute());
-            }
-        }
-    }
-    
-    public class SectionDrawer : OdinAttributeProcessor<Section>
-    {
-        public override void ProcessSelfAttributes(InspectorProperty property, List<Attribute> attributes)
-        {
-            attributes.Add(new HideReferenceObjectPickerAttribute());
-            attributes.Add(new HideLabelAttribute());
-        }
-
-        public override void ProcessChildMemberAttributes(InspectorProperty parentProperty, MemberInfo member, List<Attribute> attributes)
-        {
-            if (member.Name == "sectionType")
-            {
-                attributes.Add(new HideLabelAttribute());
-                attributes.Add(new PropertyOrderAttribute(-1));
-                attributes.Add(new DisplayAsStringAttribute());
-            }
-            
-            if (member.Name == "ActionTable")
-            {
-                attributes.Add(new ShowInPlayModeAndInspectorAttribute());
-                attributes.Add(new HideLabelAttribute());
-            }
-        }
-    }
-    
-    public class SectionParameterDrawer<T0, T1> : OdinAttributeProcessor<T0> where T0 : OldSection<T1>
-    {
-        public override void ProcessSelfAttributes(InspectorProperty property, List<Attribute> attributes)
-        {
-            attributes.Add(new HideReferenceObjectPickerAttribute());
-            attributes.Add(new HideLabelAttribute());
-        }
-
-        public override void ProcessChildMemberAttributes(InspectorProperty parentProperty, MemberInfo member, List<Attribute> attributes)
-        {
-            if (member.Name == "AwaitEvent")
-            {
-                attributes.Add(new HideLabelAttribute());
-                attributes.Add(new ShowInInspectorAttribute());
-            }
-        }
-    }
-    
     public class SequencerDrawer : OdinAttributeProcessor<Sequencer>
     {
         public override void ProcessSelfAttributes(InspectorProperty property, List<Attribute> attributes)

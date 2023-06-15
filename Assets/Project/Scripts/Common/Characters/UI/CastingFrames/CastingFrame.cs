@@ -26,9 +26,8 @@ namespace Common.Characters.UI.CastingFrames
             
             castingObject.gameObject.SetActive(true);
             castingBar.Register(process.Progress, process.CastingTime);
-            
-            currentSkill.OnCompleted.Register("HideCastingUI", Hide);
-            currentSkill.OnCanceled.Register("HideCastingUI", Hide);
+
+            currentSkill.Sequencer.EndAction.Add("HideCastingUI", Hide);
         }
         
         private void Hide()
@@ -38,12 +37,12 @@ namespace Common.Characters.UI.CastingFrames
 
         private void OnEnable()
         {
-            Cb.SkillBehaviour.Sequencer.ActiveSection.Add("ShowCastingUI", Show);
+            Cb.SkillBehaviour.Sequencer.ActiveAction.Add("ShowCastingUI", Show);
         }
 
         private void OnDisable()
         {
-            Cb.SkillBehaviour.Sequencer.ActiveSection.Remove("ShowCastingUI");
+            Cb.SkillBehaviour.Sequencer.ActiveAction.Remove("ShowCastingUI");
         }
     }
 }

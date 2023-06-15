@@ -1,11 +1,10 @@
 using System;
 using Cysharp.Threading.Tasks;
-using Sequences;
 using UnityEngine;
 
 namespace Common.Characters.Behaviours
 {
-    public class DeadBehaviour : MonoBehaviour, IActionBehaviour, IEditable
+    public class DeadBehaviour : MonoBehaviour, IActionBehaviour
     {
         [SerializeField] private Sequencer sequencer;
         
@@ -22,56 +21,35 @@ namespace Common.Characters.Behaviours
         {
             if (!sequencer.IsAbleToActive) return;
 
-            sequencer.ActiveSequence();
+            sequencer.Active();
         }
         
-        public void Cancel() 
-            => sequencer.Cancel();
+        public void Cancel() => sequencer.Cancel();
 
         // TODO. 여기가 맞나;
         public void AddReward(string key, Action action)
         {
-            sequencer.CompleteSection.Add(key, action);
-        }
-        
-        public void DeadRegisterActive()
-        {
-            if (Cb.CurrentBehaviour is not null && Cb.BehaviourMask != BehaviourMask)
-            {
-                Cb.CurrentBehaviour.Cancel();
-            }
-
-            Cb.CurrentBehaviour = this;
+            sequencer.CompleteAction.Add(key, action);
         }
 
-        public void DeadQuitPathfindingActive()
-        {
-            Cb.Pathfinding.Quit();
-        }
-        
-        
-        private async UniTask DeadAnimationActive()
-        {
-            await Cb.Animating.DeadAwait();
-        }
 
-        private void Awake()
+        private void OnEnable()
         {
             sequencer.Condition.Add("AbleToBehaviourOverride", () => CanOverrideToCurrent);
-            sequencer.ActiveSection.AddAwait("DeadAnimation", DeadAnimationActive);
+            sequencer.ActiveAction.Add("CommonStunAction", () =>
+            {
+                if (cb.CurrentBehaviour is not null && cb.BehaviourMask != BehaviourMask)
+                    cb.CurrentBehaviour.Cancel();
+
+                cb.CurrentBehaviour = this;
+                Cb.Animating.Dead(sequencer.Complete);
+                Cb.Pathfinding.Quit();
+            });
         }
-        
-        private void OnDestroy()
+
+        private void OnDisable()
         {
             sequencer.Clear();
         }
-
-
-#if UNITY_EDITOR
-        public void EditorSetUp()
-        {
-            sequencer.AssignPersistantEvents();
-        }
-#endif
     }
 }

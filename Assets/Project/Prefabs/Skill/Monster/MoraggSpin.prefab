@@ -195,7 +195,7 @@ Transform:
   - {fileID: 7221708945386366489}
   - {fileID: 5853087751410363707}
   m_Father: {fileID: 0}
-  m_RootOrder: -1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &-6687176528768826702
 MonoBehaviour:
@@ -226,66 +226,6 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 128
   icon: {fileID: 21300000, guid: fc4e83da78abc734b8dd9673f479ba4a, type: 3}
-  sequencer:
-    sequenceKey: Skill
-    activeSection:
-      persistantEvent:
-        m_PersistentCalls:
-          m_Calls:
-          - m_Target: {fileID: -6687176528768826702}
-            m_TargetAssemblyTypeName: Common.Skills.SkillComponent, ProjectR.Common
-            m_MethodName: SkillAnimationActive
-            m_Mode: 0
-            m_Arguments:
-              m_ObjectArgument: {fileID: 0}
-              m_ObjectArgumentAssemblyTypeName: 
-              m_IntArgument: 0
-              m_FloatArgument: 0
-              m_StringArgument: 
-              m_BoolArgument: 0
-            m_CallState: 2
-          - m_Target: {fileID: -6687176528768826702}
-            m_TargetAssemblyTypeName: Common.Skills.SkillComponent, ProjectR.Common
-            m_MethodName: SkillPathfindingStopActive
-            m_Mode: 0
-            m_Arguments:
-              m_ObjectArgument: {fileID: 0}
-              m_ObjectArgumentAssemblyTypeName: 
-              m_IntArgument: 0
-              m_FloatArgument: 0
-              m_StringArgument: 
-              m_BoolArgument: 0
-            m_CallState: 2
-    cancelSection:
-      persistantEvent:
-        m_PersistentCalls:
-          m_Calls: []
-    completeSection:
-      persistantEvent:
-        m_PersistentCalls:
-          m_Calls: []
-    endSection:
-      persistantEvent:
-        m_PersistentCalls:
-          m_Calls: []
-    EditorExtract:
-    - {fileID: 8380361914805468174}
-    activeParamSection:
-      persistantEvent:
-        m_PersistentCalls:
-          m_Calls:
-          - m_Target: {fileID: -6687176528768826702}
-            m_TargetAssemblyTypeName: Common.Skills.SkillComponent, ProjectR.Common
-            m_MethodName: SkillRotateActiveParam
-            m_Mode: 0
-            m_Arguments:
-              m_ObjectArgument: {fileID: 0}
-              m_ObjectArgumentAssemblyTypeName: 
-              m_IntArgument: 0
-              m_FloatArgument: 0
-              m_StringArgument: 
-              m_BoolArgument: 0
-            m_CallState: 2
   executor: {fileID: 8233487645124630922}
 --- !u!114 &4337732494131428132
 MonoBehaviour:

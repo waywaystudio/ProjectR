@@ -1,15 +1,12 @@
 using System.Collections.Generic;
 using Common.Characters;
 using Common.Execution;
-using Sequences;
 using Sirenix.OdinInspector;
 using UnityEngine;
-using UnityEngine.Serialization;
 
 namespace Common.Skills
 {
     public abstract class SkillComponent : MonoBehaviour, IExecutable, ISequencer<Vector3>, IDataIndexer, IEditable
-                                           // , IOldConditionalSequence
     {
         /* Common Attribution */
         [SerializeField] protected DataIndex actionCode;
@@ -45,22 +42,12 @@ namespace Common.Skills
         public Sequencer<Vector3> Sequencer => sequencer;
 
         public ConditionTable Condition => Sequencer.Condition;
-        public OldSection<Vector3> ActiveParamSection => Sequencer.ActiveParamSection;
-        public OldSection ActiveSection => Sequencer.ActiveSection;
-        public OldSection CancelSection => Sequencer.CancelSection;
+        public ActionTable<Vector3> ActiveParamAction => Sequencer.ActiveParamAction;
+        public ActionTable ActiveAction => Sequencer.ActiveAction;
+        public ActionTable CancelAction => Sequencer.CancelAction;
+        public ActionTable CompleteAction => Sequencer.CompleteAction;
+        public ActionTable EndAction => Sequencer.EndAction;
         
-        // public Section Complete => Sequencer.Activation;
-        // public Section End => Sequencer.Cancellation;
-        private OldSection complete;
-        private OldSection end;
-        OldSection ISequencer.CompleteSection => complete;
-        OldSection ISequencer.EndSection => end;
-        
-        // public ConditionTable Conditions { get; } = new();
-        [ShowInInspector] public ActionTable OnActivated { get; } = new();
-        [ShowInInspector] public ActionTable OnCanceled { get; } = new();
-        [ShowInInspector] public ActionTable OnCompleted { get; } = new();
-        [ShowInInspector] public ActionTable OnEnded { get; } = new();
         [ShowInInspector] public bool IsEnded { get; set; } = true;
         
 
@@ -101,26 +88,7 @@ namespace Common.Skills
         /// </summary>
         public void Activate(Vector3 targetPosition)
         {
-            IsProgress = true;
-            IsEnded    = false;
-
-            OnActivated.Invoke();
-            sequencer.ActivateSequence(targetPosition);
-        }
-
-        public void SkillAnimationActive()
-        {
-            PlayAnimation();
-        }
-        
-        public void SkillPathfindingStopActive()
-        {
-            Cb.Pathfinding.Stop();
-        }
-
-        public void SkillRotateActiveParam(Vector3 targetPosition)
-        {
-            Cb.Rotate(targetPosition);
+            sequencer.Active(targetPosition);
         }
 
         /// <summary>
@@ -134,10 +102,7 @@ namespace Common.Skills
         /// </summary>
         public void Cancel()
         {
-            IsProgress = false;
-
-            OnCanceled.Invoke();
-            End();
+            Sequencer.Cancel();
         }
 
         /// <summary>
@@ -145,45 +110,13 @@ namespace Common.Skills
         /// </summary>
         public void Release()
         {
-            AbleToRelease.OnTrue(Complete);
+            AbleToRelease.OnTrue(Sequencer.CompleteAction.Invoke);
         }
-
-        /// <summary>
-        /// 기술을 성공적으로 만료시 호출
-        /// </summary>
-        public void Complete()
-        {
-            IsProgress = false;
-
-            OnCompleted.Invoke();
-        }
-
-        /// <summary>
-        /// 만료시 호출 (성공 실패 무관)
-        /// </summary>
-        protected void End()
-        {
-            IsEnded = true;
-                
-            Cb.Stop();
-            OnEnded.Invoke();
-        }
-
-        /// <summary>
-        /// 씬 종료 혹은 SkillSequence GameObject가 꺼질 때 호출.
-        /// </summary>
-        protected void Dispose()
-        {
-            OnActivated.Clear();
-            OnCanceled.Clear();
-            OnCompleted.Clear();
-            OnEnded.Clear();
-            ExecutionTable.Clear();
-        }
+        
 
         protected virtual void PlayAnimation()
         {
-            Cb.Animating.PlayOnce(animationKey, 0f, Complete);
+            Cb.Animating.PlayOnce(animationKey, 0f, Sequencer.Complete);
         }
 
         protected bool TryGetTakersInSphere(SkillComponent skill, out List<ICombatTaker> takerList) 
@@ -203,19 +136,33 @@ namespace Common.Skills
                 targetLayer, out takerList);
         }
 
+
         protected void OnEnable()
         {
             Initialize();
-
-            Condition.Add("IsCoolTimeReady", () => coolTimer.IsReady);
             coolTimer.Register(sequencer, coolTimeSection);
+            
+            Sequencer.Condition.Add("IsCoolTimeReady", () => coolTimer.IsReady);
+            Sequencer.ActiveParamAction.Add("CharacterRotate", Cb.Rotate);
+            Sequencer.ActiveAction.Add("SkillCommonAction", () =>
+            {
+                Cb.Pathfinding.Stop();
+                PlayAnimation();
+                IsProgress = true;
+                IsEnded    = false;
+            });
+            Sequencer.EndAction.Add("SkillEndAction", () =>
+            {
+                IsProgress = false;
+                IsEnded    = true;
+                Cb.Stop();
+            });
         }
 
         protected void OnDisable()
         {
-            Dispose();
-            
-            sequencer.Clear();
+            Sequencer.Clear();
+            ExecutionTable.Clear();
         }
 
 
@@ -242,7 +189,6 @@ namespace Common.Skills
             }
 
             coolTimer.Timer = skillData.CoolTime;
-            sequencer.AssignPersistantEvents();
         }
         
         // ReSharper disable once UnusedMember.Local
@@ -253,6 +199,5 @@ namespace Common.Skills
             UnityEditor.EditorUtility.OpenPropertyEditor(skillData);
         }
 #endif
-        
     }
 }

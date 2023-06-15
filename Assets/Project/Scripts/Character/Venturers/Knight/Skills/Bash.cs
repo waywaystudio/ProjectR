@@ -14,7 +14,7 @@ namespace Character.Venturers.Knight.Skills
         
         protected override void Initialize()
         {
-            OnCompleted.Register("EndCallback", End);
+            // Sequencer.CompleteAction.Add("EndCallback", End);
         }
     }
 }

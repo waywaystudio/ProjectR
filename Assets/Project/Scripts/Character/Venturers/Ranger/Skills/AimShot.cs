@@ -16,8 +16,8 @@ namespace Character.Venturers.Ranger.Skills
 
         protected override void Initialize()
         {
-            OnCompleted.Register("Execution", Execution);
-            OnCompleted.Register("PlayEndChargingAnimation", PlayEndChargingAnimation);
+            // OnCompleted.Register("Execution", Execution);
+            // OnCompleted.Register("PlayEndChargingAnimation", PlayEndChargingAnimation);
         }
         
         protected override void PlayAnimation()
@@ -27,7 +27,7 @@ namespace Character.Venturers.Ranger.Skills
 
         private void PlayEndChargingAnimation()
         {
-            Cb.Animating.PlayOnce("heavyAttack", 0f, End);
+            Cb.Animating.PlayOnce("heavyAttack", 0f, Sequencer.End);
         }
     }
 }
