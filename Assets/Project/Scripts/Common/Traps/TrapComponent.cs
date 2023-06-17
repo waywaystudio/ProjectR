@@ -1,13 +1,16 @@
 using System.Collections.Generic;
 using Common.Execution;
+using Common.Skills;
 using Common.Systems;
 using DG.Tweening;
 using UnityEngine;
 
 namespace Common.Traps
 {
-    public abstract class TrapComponent : MonoBehaviour, IOldSequence, IExecutable, IEditable
+    public abstract class TrapComponent : MonoBehaviour, IActionSender, ISections, IEditable
     {
+        [SerializeField] protected Executor executor;
+        [SerializeField] protected TrapSequencer sequencer;
         [SerializeField] private CollidingSystem collidingSystem;
         [SerializeField] protected DataIndex trapCode;
         [SerializeField] protected float delayTime;
@@ -15,16 +18,20 @@ namespace Common.Traps
         [SerializeField] protected LayerMask targetLayer;
 
         public ICombatProvider Provider { get; protected set; }
-        public DataIndex ActionCode => trapCode;
+        public DataIndex DataIndex => trapCode;
         public float Radius => radius;
         public LayerMask TargetLayer => targetLayer;
         public float ProlongTime { get; set; }
-
-        public ActionTable OnActivated { get; } = new();
-        public ActionTable OnCanceled { get; } = new();
-        public ActionTable OnCompleted { get; } = new();
-        public ActionTable OnEnded { get; } = new();
-        public ExecutionTable ExecutionTable { get; } = new();
+        
+        // public SkillExecutor Executor => executor;
+        public TrapSequencer TrapSequencer => sequencer;
+        public ActionTable<Vector3> ActiveParamAction => TrapSequencer.ActiveParamAction;
+        public ConditionTable Condition => TrapSequencer.Condition;
+        public ActionTable ActiveAction => TrapSequencer.ActiveAction;
+        public ActionTable CancelAction => TrapSequencer.CancelAction;
+        public ActionTable CompleteAction => TrapSequencer.CompleteAction;
+        public ActionTable EndAction => TrapSequencer.EndAction;
+        public ActionTable ExecuteAction { get; } = new();
         
         
         /// <summary>
@@ -34,6 +41,7 @@ namespace Common.Traps
         public virtual void Initialize(ICombatProvider provider)
         {
             Provider = provider;
+            sequencer.EndAction.Add("TrapObjectActiveFalse", () => gameObject.SetActive(false));
         }
         
         /// <summary>
@@ -50,11 +58,11 @@ namespace Common.Traps
 
             if (delayTime != 0f)
             {
-                DOVirtual.DelayedCall(delayTime, OnActivated.Invoke);
+                DOVirtual.DelayedCall(delayTime, () => sequencer.Active(position));
             }
             else
             {
-                OnActivated.Invoke();
+                sequencer.Active(position);
             }
         }
 
@@ -63,42 +71,19 @@ namespace Common.Traps
         /// 데미지, 상태이상 부여 등을 실제 수행하는 함수
         /// </summary>
         public abstract void Execution();
-        
+
         /// <summary>
         /// 해제 시 호출. (만료 아님)
         /// </summary>
-        public void Cancel()
-        {
-            OnCanceled.Invoke();
-            
-            End();
-        }
-        
-        /// <summary>
-        /// 성공적으로 만료시 호출
-        /// </summary>
-        public void Complete()
-        {
-            OnCompleted.Invoke();
+        public void Cancel() => sequencer.Cancel();
 
-            End();
-        }
-        
-        /// <summary>
-        /// 만료시 호출 (성공 실패와 무관)
-        /// </summary>
-        protected void End()
-        {
-            gameObject.SetActive(false);
-            OnEnded.Invoke();
-        }
-        
+
         /// <summary>
         /// Scene이 종료되거나, 설정된 Pool 개수를 넘어서 생성된 상태이상효과가 만료될 때 호출
         /// </summary>
         public void Dispose()
         {
-            this.Clear();
+            sequencer.Clear();
             
             Destroy(gameObject);
         }
@@ -115,6 +100,8 @@ namespace Common.Traps
 #if UNITY_EDITOR
         public void EditorSetUp()
         {
+            executor = GetComponentInChildren<Executor>();
+            
             if (collidingSystem.IsNullOrDestroyed())
             {
                 GameObject o;

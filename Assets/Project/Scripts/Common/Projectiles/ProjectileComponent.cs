@@ -1,41 +1,26 @@
 using Common.Execution;
 using Common.Systems;
-using Sirenix.OdinInspector;
 using UnityEngine;
 
 namespace Common.Projectiles
 {
-    
-    /// Trajectory Focus
-    // Instant
-    // Parabola
-    
-    /// Destination Focus
-    // Direction
-    // Position
-    
-    /// Execution Focus
-    // Damage, Heal, Status, Trap
-    
-    /// Completion Focus
-    // Bounce, Yoyo, 
-    public class ProjectileComponent : MonoBehaviour, IOldSequence, IExecutable
+    public class ProjectileComponent : MonoBehaviour, ISections, IActionSender, IEditable
     {
+        [SerializeField] protected Executor executor;
+        [SerializeField] protected Sequencer sequencer;
         [SerializeField] protected CollidingSystem collidingSystem;
         [SerializeField] protected DataIndex projectileCode;
         [SerializeField] protected LayerMask targetLayer;
-        // [SerializeField] protected float radius;
         
-        public DataIndex ActionCode => projectileCode;
-        public LayerMask TargetLayer => targetLayer;
         public ICombatProvider Provider { get; protected set; }
-
-        public ActionTable OnActivated { get; } = new();
-        public ActionTable OnCanceled { get; } = new();
-        [ShowInInspector]
-        public ActionTable OnCompleted { get; } = new();
-        public ActionTable OnEnded { get; } = new();
-        public ExecutionTable ExecutionTable { get; } = new();
+        public DataIndex DataIndex => projectileCode;
+        public LayerMask TargetLayer => targetLayer;
+        public Sequencer Sequencer => sequencer;
+        public ConditionTable Condition => sequencer.Condition;
+        public ActionTable ActiveAction => sequencer.ActiveAction;
+        public ActionTable CancelAction => sequencer.CancelAction;
+        public ActionTable CompleteAction => sequencer.CompleteAction;
+        public ActionTable EndAction => sequencer.EndAction;
 
         /// <summary>
         /// Create Pooling에서 호출
@@ -44,6 +29,8 @@ namespace Common.Projectiles
         public virtual void Initialize(ICombatProvider provider)
         {
             Provider = provider;
+            
+            sequencer.EndAction.Add("ProjectileObjectActiveFalse", () => gameObject.SetActive(false));
         }
         
         /// <summary>
@@ -52,7 +39,7 @@ namespace Common.Projectiles
         public void Activate()
         {
             gameObject.SetActive(true);
-            OnActivated.Invoke();
+            sequencer.Active();
         }
 
         /// <summary>
@@ -61,50 +48,28 @@ namespace Common.Projectiles
         /// </summary>
         public virtual void Execution() { }
 
+
         /// <summary>
         /// 해제 시 호출. (만료 아님)
         /// </summary>
-        public void Cancel()
-        {
-            OnCanceled.Invoke();
-            
-            End();
-        }
+        public void Cancel() => sequencer.Cancel();
 
-        /// <summary>
-        /// 성공적으로 만료시 호출
-        /// </summary>
-        public virtual void Complete()
-        {
-            OnCompleted.Invoke();
-
-            End();
-        }
-
-        /// <summary>
-        /// 만료시 호출 (성공 실패와 무관)
-        /// </summary>
-        public void End()
-        {
-            gameObject.SetActive(false);
-            OnEnded.Invoke();
-        }
-        
         /// <summary>
         /// Scene이 종료되거나, 설정된 Pool 개수를 넘어서 생성된 상태이상효과가 만료될 때 호출
         /// </summary>
         public void Dispose()
         {
-            this.Clear();
+            sequencer.Clear();
             
             Destroy(gameObject);
         }
 
-        // protected bool TryGetTakerInSphere(out List<ICombatTaker> takerList)
-        //     => collidingSystem.TryGetTakersInSphere(transform.position, 
-        //         radius, 
-        //         360f, 
-        //         targetLayer, 
-        //         out takerList);
+
+#if UNITY_EDITOR
+        public void EditorSetUp()
+        {
+            executor = GetComponentInChildren<Executor>();
+        }
+#endif
     }
 }

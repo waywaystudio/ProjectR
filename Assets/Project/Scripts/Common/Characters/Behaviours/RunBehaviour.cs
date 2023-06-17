@@ -1,4 +1,3 @@
-using Cysharp.Threading.Tasks;
 using UnityEngine;
 
 namespace Common.Characters.Behaviours
@@ -7,41 +6,35 @@ namespace Common.Characters.Behaviours
     {
         [SerializeField] private Sequencer<Vector3> sequencer;
 
-        public CharacterActionMask BehaviourMask => CharacterActionMask.Run;
-        public Sequencer<Vector3> Sequencer => sequencer;
+        public ActionMask BehaviourMask => ActionMask.Run;
+        public SequenceBuilder<Vector3> SequenceBuilder { get; } = new();
+        public SequenceInvoker<Vector3> SequenceInvoker { get; } = new();
 
         private CharacterBehaviour cb;
         private CharacterBehaviour Cb => cb ??= GetComponentInParent<CharacterBehaviour>();
-        private bool CanOverrideToCurrent 
-            => (CharacterActionMask.RunIgnoreMask | Cb.BehaviourMask) == CharacterActionMask.RunIgnoreMask;
         
 
         public void Run(Vector3 destination)
         {
-            if (!sequencer.IsAbleToActive) return;
+            if (!SequenceInvoker.IsAbleToActive) return;
             
-            sequencer.Active(destination);
+            SequenceInvoker.Active(destination);
         }
 
-        public void Cancel() => sequencer.Cancel();
+        public void Cancel() => SequenceInvoker.Cancel();
         
 
         private void OnEnable()
         {
-            sequencer.Condition.Add("AbleToBehaviourOverride", () => CanOverrideToCurrent);
-            sequencer.Condition.Add("CanMove", () => Cb.Pathfinding.CanMove);
-            
-            sequencer.ActiveParamAction.Add("CommonRunAction", destination => Cb.Pathfinding.Move(destination, sequencer.Complete));
-            sequencer.ActiveAction.Add("CommonRunAction", () =>
-            {
-                if (cb.CurrentBehaviour is not null && cb.BehaviourMask != BehaviourMask)
-                    cb.CurrentBehaviour.Cancel();
-
-                cb.CurrentBehaviour = this;
-                Cb.Animating.Run();
-            });
-            
-            sequencer.EndAction.Add("Stop", Cb.Stop);
+            SequenceInvoker.Initialize(sequencer);
+            SequenceBuilder.Initialize(sequencer)
+                           .AddCondition("AbleToBehaviourOverride", () => BehaviourMask.CanOverride(Cb.BehaviourMask))
+                           .AddCondition("CanMove", () => Cb.Pathfinding.CanMove)
+                           .AddActiveParam("RunPathfinding", destination => Cb.Pathfinding.Move(destination, sequencer.Complete))
+                           .AddActive("CancelPreviousBehaviour", () => cb.CurrentBehaviour?.TryToCancel(this))
+                           .AddActive("SetCurrentBehaviour", () => cb.CurrentBehaviour = this)
+                           .AddActive("PlayAnimation", Cb.Animating.Run)
+                           .AddEnd("Stop", Cb.Stop);
         }
 
         private void OnDisable()

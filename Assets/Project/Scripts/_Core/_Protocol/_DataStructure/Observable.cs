@@ -21,10 +21,10 @@ public class Observable<T>
     public virtual void AddListener(Action action) => AddListener(action.ToString(), _ => action());
     public virtual void AddListener(string key, Action action) => AddListener(key, _ => action());
     public virtual void AddListener(Action<T> action) => AddListener(action.ToString(), action);
-    public virtual void AddListener(string key, Action<T> action) => OnValueChanged.Register(key, action);
+    public virtual void AddListener(string key, Action<T> action) => OnValueChanged.Add(key, action);
 
     public void RemoveListener(Action action) => RemoveListener(action.ToString());
-    public void RemoveListener(string key) => OnValueChanged.Unregister(key);
+    public void RemoveListener(string key) => OnValueChanged.Remove(key);
 }
 
 public class FloatEvent : Observable<float>

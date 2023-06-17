@@ -11,9 +11,9 @@ namespace Character.Venturers.Knight.StatusEffect
         public override void Initialize(ICombatProvider provider)
         {
             base.Initialize(provider);
-            
-            OnActivated.Register("StatTableRegister", () => Taker.StatTable.Add(armorReduce));
-            OnCompleted.Register("Return", () => Taker.StatTable.Remove(armorReduce));
+
+            sequencer.ActiveAction.Add("StatTableRegister", () => Taker.StatTable.Add(armorReduce));
+            sequencer.CompleteAction.Add("Return", () => Taker.StatTable.Remove(armorReduce));
         }
 
 
@@ -25,7 +25,7 @@ namespace Character.Venturers.Knight.StatusEffect
             }
             else
             {
-                Complete();
+                sequencer.Complete();
             }
         }
     }

@@ -7,16 +7,16 @@ namespace Character.Venturers.Rogue.Skills
     {
         public override ICombatTaker MainTarget => Cb.Searching.GetSelf();
 
-        public override void Execution()
-        {
-            if (MainTarget is null) return;
-            
-            ExecutionTable.Execute(MainTarget);
-        }
+        public override void Execution() => ExecuteAction.Invoke();
 
-        protected override void Initialize()
+        protected override void AddSkillSequencer()
         {
-            // OnCompleted.Register("EndCallback", End);
+            ExecuteAction.Add("CommonExecution", () =>
+            {
+                if (MainTarget is null) return;
+
+                executor.Execute(MainTarget);
+            });
         }
     }
 }

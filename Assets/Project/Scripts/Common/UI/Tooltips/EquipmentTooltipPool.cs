@@ -20,7 +20,7 @@ namespace Common.UI.Tooltips
 
         private void ToolTipInitialize(EquipmentTooltip tooltip)
         {
-            tooltip.OnEnded.Register("ReleasePool", () => pool.Release(tooltip));
+            tooltip.OnEnded.Add("ReleasePool", () => pool.Release(tooltip));
         }
 
         private void Awake()

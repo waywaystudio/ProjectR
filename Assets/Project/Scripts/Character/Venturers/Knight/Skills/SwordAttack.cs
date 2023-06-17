@@ -4,17 +4,18 @@ namespace Character.Venturers.Knight.Skills
 {
     public class SwordAttack : SkillComponent
     {
-        public override void Execution()
+        public override void Execution() => ExecuteAction.Invoke();
+        
+        protected override void AddSkillSequencer()
         {
-            if (!TryGetTakersInSphere(this, out var takerList)) return;
+            AddAnimationEvent();
+            
+            ExecuteAction.Add("CommonExecution", () =>
+            {
+                if (!TryGetTakersInSphere(this, out var takerList)) return;
         
-            takerList.ForEach(Execute);
-        }
-        
-        
-        protected override void Initialize()
-        {
-            // OnCompleted.Register("EndCallback", End);
+                takerList.ForEach(executor.Execute);
+            });
         }
     }
 }

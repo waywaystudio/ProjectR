@@ -62,6 +62,76 @@ Transform:
   m_Father: {fileID: 234500611213636336}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &5830406025805540406
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7237127450332605719}
+  - component: {fileID: 7359642551097767388}
+  - component: {fileID: 8602584536155784044}
+  m_Layer: 0
+  m_Name: Execution
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7237127450332605719
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5830406025805540406}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 234500611213636336}
+  m_RootOrder: -1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &7359642551097767388
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5830406025805540406}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7cb67e0d4b0f0014c80282718ad1c364, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  table:
+    keyList: 01000000
+    valueList:
+    - ExecutionList:
+      - {fileID: 8602584536155784044}
+    hideKey: 1
+--- !u!114 &8602584536155784044
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5830406025805540406}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3d3639c99a56c6c458f64d2325bb8e07, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  group: 1
+  actionCode: 31000016
+  muzzle: {fileID: 0}
+  pool:
+    prefab: {fileID: 68301466263117794, guid: 58eeb49f3ebbf29468558a20029bdcc1, type: 3}
+    maxCount: 32
+    syncObjectActivity: 1
 --- !u!1 &8380361914805468174
 GameObject:
   m_ObjectHideFlags: 0
@@ -72,9 +142,6 @@ GameObject:
   m_Component:
   - component: {fileID: 234500611213636336}
   - component: {fileID: 1969757264514801073}
-  - component: {fileID: 7026212661829411919}
-  - component: {fileID: -8763696094305446789}
-  - component: {fileID: 5024528528447478869}
   m_Layer: 0
   m_Name: ContinuesAttack
   m_TagString: Untagged
@@ -94,8 +161,9 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 5853087751410363707}
+  - {fileID: 7237127450332605719}
   - {fileID: 7221708945386366489}
+  - {fileID: 5853087751410363707}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -111,10 +179,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a553ce759cc84bb4c92f409971455d23, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  executor: {fileID: 7359642551097767388}
   actionCode: 31000016
   skillType: 4
   sortingType: 0
-  coolTimeSection: 4
   behaviourMask: 32
   ignorableMask: 3
   priority: 2
@@ -122,115 +190,13 @@ MonoBehaviour:
   angle: 6
   animationKey: continuesAttack
   description: Starts combat by attacking a target with a melee weapon.
+  coolTimer:
+    coolTime: 12
+    invokeSection: 3
+  castTimer:
+    castingTime: 2
+    callbackSection: 3
   targetLayer:
     serializedVersion: 2
     m_Bits: 256
   icon: {fileID: 21300000, guid: 126effccf14aace4fa7015d10c4ea912, type: 3}
-  sequencer:
-    sequenceKey: Skill
-    activeSection:
-      persistantEvent:
-        m_PersistentCalls:
-          m_Calls:
-          - m_Target: {fileID: 1969757264514801073}
-            m_TargetAssemblyTypeName: Common.Skills.SkillComponent, ProjectR.Common
-            m_MethodName: SkillAnimationActive
-            m_Mode: 0
-            m_Arguments:
-              m_ObjectArgument: {fileID: 0}
-              m_ObjectArgumentAssemblyTypeName: 
-              m_IntArgument: 0
-              m_FloatArgument: 0
-              m_StringArgument: 
-              m_BoolArgument: 0
-            m_CallState: 2
-          - m_Target: {fileID: 1969757264514801073}
-            m_TargetAssemblyTypeName: Common.Skills.SkillComponent, ProjectR.Common
-            m_MethodName: SkillPathfindingStopActive
-            m_Mode: 0
-            m_Arguments:
-              m_ObjectArgument: {fileID: 0}
-              m_ObjectArgumentAssemblyTypeName: 
-              m_IntArgument: 0
-              m_FloatArgument: 0
-              m_StringArgument: 
-              m_BoolArgument: 0
-            m_CallState: 2
-    cancelSection:
-      persistantEvent:
-        m_PersistentCalls:
-          m_Calls: []
-    completeSection:
-      persistantEvent:
-        m_PersistentCalls:
-          m_Calls: []
-    endSection:
-      persistantEvent:
-        m_PersistentCalls:
-          m_Calls: []
-    EditorExtract:
-    - {fileID: 8380361914805468174}
-    activeParamSection:
-      persistantEvent:
-        m_PersistentCalls:
-          m_Calls:
-          - m_Target: {fileID: 1969757264514801073}
-            m_TargetAssemblyTypeName: Common.Skills.SkillComponent, ProjectR.Common
-            m_MethodName: SkillRotateActiveParam
-            m_Mode: 0
-            m_Arguments:
-              m_ObjectArgument: {fileID: 0}
-              m_ObjectArgumentAssemblyTypeName: 
-              m_IntArgument: 0
-              m_FloatArgument: 0
-              m_StringArgument: 
-              m_BoolArgument: 0
-            m_CallState: 2
-  executor: {fileID: 0}
-  CoolTimer:
-    timer: 12
---- !u!114 &7026212661829411919
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8380361914805468174}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 53c1327179b64ee489b48e7d271d4020, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &-8763696094305446789
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8380361914805468174}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3d3639c99a56c6c458f64d2325bb8e07, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  type: 0
-  group: 1
-  actionCode: 31000016
-  muzzle: {fileID: 0}
-  pool:
-    prefab: {fileID: 68301466263117794, guid: 58eeb49f3ebbf29468558a20029bdcc1, type: 3}
-    maxCount: 32
-    syncObjectActivity: 1
---- !u!114 &5024528528447478869
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8380361914805468174}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 374f53e3f9533cd45a16b6bd11192841, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  castingTime: 2

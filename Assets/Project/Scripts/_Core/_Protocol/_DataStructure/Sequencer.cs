@@ -1,32 +1,39 @@
 using System;
 
 [Serializable]
-public class Sequencer : ISequencer
+public class Sequencer : ISections
 {
     public bool IsAbleToActive => Condition == null || Condition.IsAllTrue;
+    public bool IsActive { get; private set; }
+    public bool IsEnd { get; private set; } = true;
 
     public ConditionTable Condition { get; } = new();
+    public WaitTrigger CompleteTrigger { get; set; }
+    
     public ActionTable ActiveAction { get; } = new();
     public ActionTable CancelAction { get; } = new();
     public ActionTable CompleteAction { get; } = new();
     public ActionTable EndAction { get; } = new();
     
-    private WaitTrigger CompleteTrigger { get; set; }
-    
 
     public void Active()
     {
+        IsEnd    = false;
+        IsActive = true;
+        
         ActiveAction.Invoke();
         CompleteTrigger?.Pull();
     }
-
+    
     public void AddCompleteTrigger(Func<bool> condition)
     {
         CompleteTrigger = new WaitTrigger(Complete, condition);
     }
-
+    
     public void Cancel()
     {
+        IsActive = false;
+        
         CancelAction.Invoke();
         CompleteTrigger?.Cancel();
         End();
@@ -34,12 +41,16 @@ public class Sequencer : ISequencer
         
     public void Complete()
     {
+        IsActive = false;
+        
         CompleteAction.Invoke();
         End();
     }
-
+    
     public void End()
     {
+        IsEnd = true;
+        
         EndAction.Invoke();
         CompleteTrigger?.Dispose();
     }
@@ -56,7 +67,7 @@ public class Sequencer : ISequencer
 }
 
 [Serializable]
-public class Sequencer<T> : Sequencer, ISequencer<T>
+public class Sequencer<T> : Sequencer, IParamSection<T>
 {
     public ActionTable<T> ActiveParamAction { get; } = new();
 
@@ -69,10 +80,12 @@ public class Sequencer<T> : Sequencer, ISequencer<T>
     public new void Clear()
     {
         ActiveParamAction.Clear();
+        
         Condition.Clear();
         ActiveAction.Clear();
         CancelAction.Clear();
         CompleteAction.Clear();
         EndAction.Clear();
+        CompleteTrigger?.Dispose();
     }
 }

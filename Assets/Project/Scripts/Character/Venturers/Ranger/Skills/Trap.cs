@@ -4,21 +4,22 @@ using UnityEngine;
 
 namespace Character.Venturers.Ranger.Skills
 {
-    public class Trap : SkillComponent
+    public class InstantTrap : SkillComponent
     {
         public override ICombatTaker MainTarget => Cb.Searching.GetSelf();
-        
-        public override void Execution()
-        {
-            ExecutionTable.Execute(MainTarget);
-        }
+
+        public override void Execution() => ExecuteAction.Invoke();
         
 
-        protected override void Initialize()
+        protected override void AddSkillSequencer()
         {
-            // OnActivated.Register("Jump", Jump);
-            // OnActivated.Register("Execution", Execution);
-            // OnCompleted.Register("EndCallback", End);
+            sequencer.ActiveAction.Add("InstantTrapCommonActivation", () => 
+            {
+                Jump();
+                Execution();
+            });
+            
+            ExecuteAction.Add("DropInstantTrap", () => executor.Execute(MainTarget));
         }
 
         private void Jump()

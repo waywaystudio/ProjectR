@@ -73,7 +73,7 @@ GameObject:
   - component: {fileID: 1885034772558921964}
   - component: {fileID: 8233487645124630922}
   - component: {fileID: 3244318504341696082}
-  - component: {fileID: 3639184817798833425}
+  - component: {fileID: 8316319877334196769}
   m_Layer: 0
   m_Name: Execution
   m_TagString: Untagged
@@ -113,8 +113,8 @@ MonoBehaviour:
     valueList:
     - ExecutionList:
       - {fileID: 3244318504341696082}
-      - {fileID: 3639184817798833425}
-    hideKey: 0
+      - {fileID: 8316319877334196769}
+    hideKey: 1
 --- !u!114 &3244318504341696082
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -127,7 +127,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 910d8bb983b570146b7c330bb9a77e89, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  type: 1
   group: 1
   actionCode: 31000006
   damageSpec:
@@ -141,7 +140,7 @@ MonoBehaviour:
     - statType: 13030003
       statKey: DamageExecutorKey
       value: 0
---- !u!114 &3639184817798833425
+--- !u!114 &8316319877334196769
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -150,15 +149,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 4368397061377193857}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 761ddaaeeb9330044ad04eb47dd52a13, type: 3}
+  m_Script: {fileID: 11500000, guid: 7f44f8a45d453de40a35fbc4fc072cb9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  type: 6
   group: 1
-  ccMask: 8
-  knockBackDistance: 8
-  knockBackDuration: 0.5
-  stunDuration: 0
+  knockBackDistance: 10
+  knockBackDuration: 0.3
 --- !u!1 &8380361914805468174
 GameObject:
   m_ObjectHideFlags: 0
@@ -169,7 +165,6 @@ GameObject:
   m_Component:
   - component: {fileID: 234500611213636336}
   - component: {fileID: -6687176528768826702}
-  - component: {fileID: 4337732494131428132}
   - component: {fileID: 9194407360501435687}
   m_Layer: 0
   m_Name: MoraggSpin
@@ -209,10 +204,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c984734517cb97a43b37c35ce611e625, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  executor: {fileID: 8233487645124630922}
   actionCode: 31000006
   skillType: 2
   sortingType: 0
-  coolTimeSection: 3
   behaviourMask: 32
   ignorableMask: 3
   priority: 2
@@ -221,25 +216,15 @@ MonoBehaviour:
   animationKey: casting
   description: Starts combat by attacking a target with a melee weapon.
   coolTimer:
-    timer: 12
+    coolTime: 12
+    invokeSection: 3
+  castTimer:
+    castingTime: 3
+    callbackSection: 5
   targetLayer:
     serializedVersion: 2
     m_Bits: 128
   icon: {fileID: 21300000, guid: fc4e83da78abc734b8dd9673f479ba4a, type: 3}
-  executor: {fileID: 8233487645124630922}
---- !u!114 &4337732494131428132
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8380361914805468174}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 374f53e3f9533cd45a16b6bd11192841, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  castingTime: 1.5
 --- !u!114 &9194407360501435687
 MonoBehaviour:
   m_ObjectHideFlags: 0

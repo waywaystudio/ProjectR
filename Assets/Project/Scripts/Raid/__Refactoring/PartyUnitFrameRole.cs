@@ -33,7 +33,7 @@ namespace Raid.UI
         {
             unitFrame ??= GetComponentInParent<PartyUnitFrame>();
             
-            unitFrame.OnInitialize.Register("SetRoleIcon", 
+            unitFrame.OnInitialize.Add("SetRoleIcon", 
                 () => SetRoleIcon(unitFrame.adventurer.CombatClass));
             
             if (tank.enabled) tank.enabled = false;
@@ -43,7 +43,7 @@ namespace Raid.UI
 
         private void OnDestroy()
         {
-            unitFrame.OnInitialize.Unregister("SetRoleIcon");
+            unitFrame.OnInitialize.Remove("SetRoleIcon");
         }
 
 #if UNITY_EDITOR

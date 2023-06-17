@@ -1,4 +1,3 @@
-using Cysharp.Threading.Tasks;
 using UnityEngine;
 
 namespace Common.Characters.Behaviours
@@ -7,39 +6,35 @@ namespace Common.Characters.Behaviours
     {
         [SerializeField] private Sequencer<Vector3> sequencer;        
         
-        public CharacterActionMask BehaviourMask => CharacterActionMask.KnockBack;
-        
+        public ActionMask BehaviourMask => ActionMask.KnockBack;
+        public SequenceBuilder<Vector3> SequenceBuilder { get; } = new();
+        public SequenceInvoker<Vector3> SequenceInvoker { get; } = new();
+
         private CharacterBehaviour cb;
         private CharacterBehaviour Cb => cb ??= GetComponentInParent<CharacterBehaviour>();
-        private bool CanOverrideToCurrent 
-            => (CharacterActionMask.KnockBackIgnoreMask | Cb.BehaviourMask) == CharacterActionMask.KnockBackIgnoreMask;
         
 
         public void KnockBack(Vector3 source, float distance, float duration)
         {
-            if (!sequencer.IsAbleToActive) return;
+            if (!SequenceInvoker.IsAbleToActive) return;
 
-            Cb.Pathfinding.KnockBack(source, distance, duration, sequencer.Complete);
-            sequencer.Active(source);
+            Cb.Pathfinding.KnockBack(source, distance, duration, SequenceInvoker.Complete);
+            SequenceInvoker.Active(source);
         }
         
-        public void Cancel() => sequencer.Cancel();
+        public void Cancel() => SequenceInvoker.Cancel();
 
 
         private void OnEnable()
         {
-            sequencer.Condition.Add("AbleToBehaviourOverride", () => CanOverrideToCurrent);
-            sequencer.ActiveParamAction.Add("Rotate", Cb.Rotate);
-            sequencer.ActiveAction.Add("CommonKnockBackAction", () =>
-            {
-                if (cb.CurrentBehaviour is not null && cb.BehaviourMask != BehaviourMask)
-                    cb.CurrentBehaviour.Cancel();
-
-                cb.CurrentBehaviour = this;
-                Cb.Animating.Hit();
-            });
-            
-            sequencer.EndAction.Add("Stop", Cb.Stop);
+            SequenceInvoker.Initialize(sequencer);
+            SequenceBuilder.Initialize(sequencer)
+                           .AddCondition("AbleToBehaviourOverride", () => BehaviourMask.CanOverride(Cb.BehaviourMask))
+                           .AddActiveParam("Rotate", Cb.Rotate)
+                           .AddActive("CancelPreviousBehaviour", () => cb.CurrentBehaviour?.TryToCancel(this))
+                           .AddActive("SetCurrentBehaviour", () => cb.CurrentBehaviour = this)
+                           .AddActive("PlayAnimation", Cb.Animating.Hit)
+                           .AddEnd("Stop", Cb.Stop);
         }
 
         private void OnDisable()

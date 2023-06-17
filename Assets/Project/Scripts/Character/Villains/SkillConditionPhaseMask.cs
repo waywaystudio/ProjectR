@@ -8,15 +8,15 @@ namespace Character.Villains
         [SerializeField] private VillainPhaseMask enableMask;
         
         private VillainBehaviour villain;
-        private ISequencer sequence;
+        private ISequencer skill;
 
         private void OnEnable()
         {
             villain = GetComponentInParent<VillainBehaviour>();
             
-            TryGetComponent(out sequence);
+            TryGetComponent(out skill);
             
-            sequence.Condition.Add("ConditionSelfHpStatus", () => (enableMask | villain.CurrentPhase.PhaseMask) == enableMask);
+            skill.Sequencer.Condition.Add("ConditionSelfHpStatus", () => (enableMask | villain.CurrentPhase.PhaseMask) == enableMask);
         }
     }
 }

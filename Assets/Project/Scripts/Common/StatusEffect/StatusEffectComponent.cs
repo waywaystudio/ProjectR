@@ -1,10 +1,14 @@
 using Common.Execution;
+using Common.Skills;
 using UnityEngine;
 
 namespace Common.StatusEffect
 {
-    public abstract class StatusEffectComponent : MonoBehaviour, IOldSequence, IExecutable, IStatusEffect, IEditable
+    public abstract class StatusEffectComponent : MonoBehaviour, ISections<ICombatTaker>, IStatusEffect, IEditable
     {
+        [SerializeField] protected Executor executor;
+        [SerializeField] protected StatusEffectSequencer sequencer;
+        
         [SerializeField] protected DataIndex statusCode;
         [SerializeField] protected StatusEffectType type;
         [SerializeField] protected Sprite icon;
@@ -16,13 +20,17 @@ namespace Common.StatusEffect
         public float Duration => duration;
         public FloatEvent ProgressTime { get; } = new();
         
-        public ActionTable OnActivated { get; } = new();
-        public ActionTable OnCanceled { get; } = new();
-        public ActionTable OnCompleted { get; } = new();
-        public ActionTable OnEnded { get; } = new();
-        public ExecutionTable ExecutionTable { get; } = new();
+        public StatusEffectSequencer Sequencer => sequencer;
+        public ActionTable<ICombatTaker> ActiveParamAction => Sequencer.ActiveParamAction;
+        public ConditionTable Condition => Sequencer.Condition;
+        public ActionTable ActiveAction => Sequencer.ActiveAction;
+        public ActionTable CancelAction => Sequencer.CancelAction;
+        public ActionTable CompleteAction => Sequencer.CompleteAction;
+        public ActionTable EndAction => Sequencer.EndAction;
+        public ActionTable ExecuteAction => Sequencer.ExecuteAction;
 
         protected ICombatTaker Taker { get; set; }
+        
 
         /// <summary>
         /// Scene 시작과 함께 한 번 호출.
@@ -31,8 +39,18 @@ namespace Common.StatusEffect
         public virtual void Initialize(ICombatProvider provider)
         {
             Provider = provider;
-            
             ProgressTime.SetClamp(0f, Mathf.Min(duration * 1.5f, 3600));
+            
+            sequencer.EndAction.Add("CommonStatusEffectEndAction", () => 
+            {
+                var targetTable = type == StatusEffectType.Buff
+                    ? Taker.DynamicStatEntry.BuffTable
+                    : Taker.DynamicStatEntry.DeBuffTable;
+            
+                targetTable.Unregister(this);
+                enabled = false;
+                gameObject.SetActive(false);
+            });
         }
 
         /// <summary>
@@ -45,7 +63,7 @@ namespace Common.StatusEffect
             ProgressTime.Value = duration;
 
             gameObject.SetActive(true);
-            OnActivated.Invoke();
+            sequencer.Active(taker);
         }
 
         /// <summary>
@@ -57,47 +75,17 @@ namespace Common.StatusEffect
         }
 
         /// <summary>
-        /// 해제 시 호출. (만료 아님)
+        /// 해제 시 호출 == Dispel. (만료 아님)
         /// </summary>
-        public void Dispel()
-        {
-            OnCanceled.Invoke();
-            
-            End();
-        }
+        public void Cancel() => sequencer.Cancel();
 
-        /// <summary>
-        /// 성공적으로 만료시 호출
-        /// </summary>
-        protected void Complete()
-        {
-            OnCompleted.Invoke();
 
-            End();
-        }
-
-        /// <summary>
-        /// 만료시 호출 (성공 실패와 무관)
-        /// </summary>
-        protected void End()
-        {
-            var targetTable = type == StatusEffectType.Buff
-                ? Taker.DynamicStatEntry.BuffTable
-                : Taker.DynamicStatEntry.DeBuffTable;
-            
-            targetTable.Unregister(this);
-
-            OnEnded.Invoke();
-            enabled = false;
-            gameObject.SetActive(false);
-        }
-        
         /// <summary>
         /// Scene이 종료되거나, 설정된 Pool 개수를 넘어서 생성된 상태이상효과가 만료될 때 호출
         /// </summary>
         public virtual void Dispose()
         {
-            this.Clear();
+            sequencer.Clear();
             
             Destroy(gameObject);
         }
@@ -106,6 +94,8 @@ namespace Common.StatusEffect
 #if UNITY_EDITOR
         public virtual void EditorSetUp()
         {
+            executor = GetComponentInChildren<Executor>();
+            
             var statusEffectData = Database.StatusEffectSheetData(DataIndex);
 
             icon     = Database.SpellSpriteData.Get(DataIndex);

@@ -28,16 +28,9 @@ namespace Common.Animation
         public void Dead(Action callback = null) => PlayOnce("dead", 0f, callback);
         public virtual void Stun() => PlayLoop("stun");
         public void Hit() => PlayLoop("hit");
-        
-        public async UniTask DeadAwait(Action callback = null) => await PlayOnceAwait("dead", 0f, callback);
-
         public void PlayOnce(string animationKey, float timeScale = 0f, Action callback = null) => Play(animationKey, 0, false, timeScale, callback);
         public void PlayLoop(string animationKey, float timeScale = 0f, Action callback = null) => Play(animationKey, 0, true, timeScale, callback);
-        
-        public async UniTask PlayOnceAwait(string animationKey, float timeScale = 0f, Action callback = null) 
-            => await PlayAwait(animationKey, 0, false, timeScale, callback);
-        public async UniTask PlayLoopAwait(string animationKey, float timeScale = 0f, Action callback = null) 
-            => await PlayAwait(animationKey, 0, true, timeScale, callback);
+
         
 
         public void Play(string animationKey, int layer, bool loop, float timeScale, Action callback)

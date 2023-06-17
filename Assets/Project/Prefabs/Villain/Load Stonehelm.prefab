@@ -10,11 +10,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 291626802760447148, guid: bd355e30ab3d37740ab682aad07a91b5, type: 3}
       propertyPath: skillTable.keyList.Array.size
-      value: 2
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 291626802760447148, guid: bd355e30ab3d37740ab682aad07a91b5, type: 3}
       propertyPath: skillTable.valueList.Array.size
-      value: 2
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 291626802760447148, guid: bd355e30ab3d37740ab682aad07a91b5, type: 3}
       propertyPath: skillTable.keyList.Array.data[0]
@@ -66,7 +66,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2965052365408092262, guid: bd355e30ab3d37740ab682aad07a91b5, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3549678227108967763, guid: bd355e30ab3d37740ab682aad07a91b5, type: 3}
+      propertyPath: enableMask
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 3744010700067239338, guid: bd355e30ab3d37740ab682aad07a91b5, type: 3}
       propertyPath: m_Name
@@ -116,6 +120,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4353515852124255580, guid: bd355e30ab3d37740ab682aad07a91b5, type: 3}
+      propertyPath: priority
+      value: 4
+      objectReference: {fileID: 0}
     - target: {fileID: 4442699525421009715, guid: bd355e30ab3d37740ab682aad07a91b5, type: 3}
       propertyPath: angle
       value: 60
@@ -123,6 +131,10 @@ PrefabInstance:
     - target: {fileID: 4442699525421009715, guid: bd355e30ab3d37740ab682aad07a91b5, type: 3}
       propertyPath: range
       value: 24
+      objectReference: {fileID: 0}
+    - target: {fileID: 4442699525421009715, guid: bd355e30ab3d37740ab682aad07a91b5, type: 3}
+      propertyPath: castTimer.castingTime
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 5800618702141835074, guid: bd355e30ab3d37740ab682aad07a91b5, type: 3}
       propertyPath: m_Mesh
@@ -138,7 +150,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8945366538634865238, guid: bd355e30ab3d37740ab682aad07a91b5, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

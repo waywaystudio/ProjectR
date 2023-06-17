@@ -32,13 +32,13 @@ namespace Character.Venturers.Knight.StatusEffect
                 }
                 else
                 {
-                    ExecutionTable.Execute(Taker);
+                    executor.Execute(Taker);
                     tickBuffer = hasteWeight;
                 }
             }
             else
             {
-                Complete();
+                sequencer.Complete();
             }
         }
     }

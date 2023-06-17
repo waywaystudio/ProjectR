@@ -4,16 +4,18 @@ namespace Character.Venturers.Knight.Skills
 {
     public class UpperSlash : SkillComponent
     {
-        public override void Execution()
-        {
-            if (!TryGetTakersInSphere(this, out var takerList)) return;
-        
-            takerList.ForEach(Execute);
-        }
+        public override void Execution() => ExecuteAction.Invoke();
 
-        protected override void Initialize()
+        protected override void AddSkillSequencer()
         {
-            // OnCompleted.Register("EndCallback", End);
+            AddAnimationEvent();
+            
+            ExecuteAction.Add("CommonExecution", () =>
+            {
+                if (!TryGetTakersInSphere(this, out var takerList)) return;
+        
+                takerList.ForEach(executor.Execute);
+            });
         }
     }
 }

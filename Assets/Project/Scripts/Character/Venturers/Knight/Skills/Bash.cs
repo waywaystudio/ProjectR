@@ -1,20 +1,21 @@
 using Common.Skills;
-// SkillMechanicEntity;
 
 namespace Character.Venturers.Knight.Skills
 {
     public class Bash : SkillComponent
     {
-        public override void Execution()
-        {
-            if (!TryGetTakersInSphere(this, out var takerList)) return;
+        public override void Execution() => ExecuteAction.Invoke();
         
-            takerList.ForEach(Execute);
-        }
-        
-        protected override void Initialize()
+        protected override void AddSkillSequencer()
         {
-            // Sequencer.CompleteAction.Add("EndCallback", End);
+            AddAnimationEvent();
+            
+            ExecuteAction.Add("CommonExecution", () =>
+            {
+                if (!TryGetTakersInSphere(this, out var takerList)) return;
+        
+                takerList.ForEach(executor.Execute);
+            });
         }
     }
 }

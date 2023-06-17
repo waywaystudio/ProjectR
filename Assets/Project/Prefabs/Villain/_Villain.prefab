@@ -1788,6 +1788,10 @@ PrefabInstance:
       propertyPath: sortingType
       value: 8
       objectReference: {fileID: 0}
+    - target: {fileID: 6990209160415545652, guid: bc97391f2869fab429f090747d781a5f, type: 3}
+      propertyPath: castTimer.callbackSection
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 8380361914805468174, guid: bc97391f2869fab429f090747d781a5f, type: 3}
       propertyPath: m_Name
       value: MoraggMeteorStrike

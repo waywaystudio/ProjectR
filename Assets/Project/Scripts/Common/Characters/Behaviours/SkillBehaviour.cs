@@ -7,21 +7,18 @@ namespace Common.Characters.Behaviours
     public class SkillBehaviour : MonoBehaviour, IActionBehaviour, IEditable
     {
         [SerializeField] private AwaitTimer globalCoolTimer;
-        [SerializeField] private Table<DataIndex, SkillComponent> skillTable = new();
+        [SerializeField] private Table<DataIndex, SkillComponent> skillTable;
         [SerializeField] private Sequencer sequencer;
 
         public List<DataIndex> SkillIndexList => skillTable.KeyList;
-        public CharacterActionMask BehaviourMask =>Current ? Current.BehaviourMask : CharacterActionMask.Skill;
-        public CharacterActionMask IgnorableMask =>Current ? Current.IgnorableMask : CharacterActionMask.SkillIgnoreMask;
-        public Sequencer Sequencer => sequencer;
-
+        public ActionMask BehaviourMask =>Current ? Current.BehaviourMask : ActionMask.Skill;
+        public SequenceBuilder SequenceBuilder { get; } = new();
+        public SequenceInvoker SequenceInvoker { get; } = new();
+        
         public bool IsGlobalCoolTimeReady => globalCoolTimer.IsReady;
         public bool IsSkillEnded => Current.IsNullOrEmpty() || Current.IsEnded;
-        
-
         public SkillComponent Current { get; set; }
-
-        private bool CanOverrideToCurrent => (IgnorableMask | Cb.BehaviourMask) == IgnorableMask;
+        
         private CharacterBehaviour cb;
         private CharacterBehaviour Cb => cb ??= GetComponentInParent<CharacterBehaviour>();
         
@@ -30,26 +27,26 @@ namespace Common.Characters.Behaviours
 
         public void Active(DataIndex actionCode, Vector3 targetPosition)
         {
-            if (!sequencer.IsAbleToActive) return;
+            if (!SequenceInvoker.IsAbleToActive) return;
             if (!skillTable.TryGetValue(actionCode, out var skill))
             {
                 Debug.Log($"Input :{actionCode}. TableCount:{skillTable.Count}");
                 return;
             }
 
-            if (!skill.Sequencer.IsAbleToActive) return;
-            
-            sequencer.Active();
+            if (!skill.SkillSequencer.IsAbleToActive) return;
             
             Current = skill;
-            Current.Activate(targetPosition);
+            
+            SequenceInvoker.Active();
+            Current.Active(targetPosition);
         }
 
         public void Cancel()
         {
             if (Current.IsNullOrEmpty()) return;
             
-            sequencer.Cancel();
+            SequenceInvoker.Cancel();
         }
         
         public void Release()
@@ -65,7 +62,7 @@ namespace Common.Characters.Behaviours
             
             skillTable.Iterate(skill =>
             {
-                if (!skill.Sequencer.IsAbleToActive) return;
+                if (!skill.SkillSequencer.IsAbleToActive) return;
                 if (result is null || result.Priority < skill.Priority)
                 {
                     result = skill;
@@ -79,28 +76,24 @@ namespace Common.Characters.Behaviours
 
         private void OnEnable()
         {
-            skillTable.Iterate(skill => skill.Sequencer.EndAction.Add("BehaviourUnregister", () => Current = null));
+            skillTable.Iterate(skill => skill.SkillSequencer.EndAction.Add("BehaviourUnregister", () => Current = null));
             
-            sequencer.Condition.Add("CanOverrideToCurrent", () => CanOverrideToCurrent);
-            sequencer.Condition.Add("IsSkillEnded", () => IsSkillEnded);
-            sequencer.Condition.Add("GlobalCoolTimeReady", () => globalCoolTimer.IsReady);
-
-            sequencer.ActiveAction.Add("CommonStunAction", () =>
-            {
-                if (cb.CurrentBehaviour is not null && cb.BehaviourMask != BehaviourMask)
-                    cb.CurrentBehaviour.Cancel();
-
-                cb.CurrentBehaviour = this;
-                globalCoolTimer.Play();
-            });
-
-            sequencer.CancelAction.Add("CurrentSkillCancel", () => Current.Cancel());
-            sequencer.EndAction.Add("Stop", Cb.Stop);
+            SequenceInvoker.Initialize(sequencer);
+            SequenceBuilder.Initialize(sequencer)
+                           .AddCondition("AbleToBehaviourOverride", () => BehaviourMask.CanOverride(Cb.BehaviourMask))
+                           .AddCondition("IsSkillEnded", () => IsSkillEnded)
+                           .AddCondition("GlobalCoolTimeReady", () => globalCoolTimer.IsReady)
+                           .AddActive("CancelPreviousBehaviour", () => cb.CurrentBehaviour?.TryToCancel(this))
+                           .AddActive("SetCurrentBehaviour", () => cb.CurrentBehaviour = this)
+                           .AddActive("PlayGlobalCoolTimer", globalCoolTimer.Play)
+                           .AddCancel("CurrentSkillCancel", () => Current.Cancel())
+                           .AddEnd("Stop", Cb.Stop);
         }
 
         private void OnDisable()
         {
             sequencer.Clear();
+            globalCoolTimer.Dispose();
         }
 
 

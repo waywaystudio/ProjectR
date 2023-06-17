@@ -1,4 +1,3 @@
-// using BehaviorDesigner.Runtime;
 using Common.Animation;
 using Common.Skills;
 using Common.Systems;
@@ -22,7 +21,6 @@ namespace Common.Characters
         [SerializeField] protected DeadBehaviour deadBehaviour;
         [SerializeField] protected SkillBehaviour skillBehaviour;
 
-        // [SerializeField] protected BehaviorTree behaviorTree;
         [SerializeField] protected SearchingSystem searching;
         [SerializeField] protected CollidingSystem colliding;
         [SerializeField] protected PathfindingSystem pathfinding;
@@ -35,7 +33,6 @@ namespace Common.Characters
         public virtual string Name => "characterName";
         public virtual CharacterData Data { get; set; }
         public Vector3 Position => transform.position;
-        // public BehaviorTree BehaviorTree => behaviorTree;
         public SearchingSystem Searching => searching;
         public CollidingSystem Colliding => colliding;
         public PathfindingSystem Pathfinding => pathfinding;
@@ -45,7 +42,7 @@ namespace Common.Characters
         /*
          * Behaviour Attribute
          */
-        public CharacterActionMask BehaviourMask => CurrentBehaviour is null ? CharacterActionMask.None : CurrentBehaviour.BehaviourMask;
+        public ActionMask BehaviourMask => CurrentBehaviour is null ? ActionMask.None : CurrentBehaviour.BehaviourMask;
         public IActionBehaviour CurrentBehaviour { get; set; }
 
         public void Rotate(Vector3 lookTarget) { Pathfinding.RotateToTarget(lookTarget); Animating.Flip(transform.forward); }
@@ -83,14 +80,14 @@ namespace Common.Characters
         
         private void OnEnable()
         {
-            OnDeBuffTaken.Register("RegisterTable", combatStatus.DeBuffTable.Register);
-            OnBuffTaken.Register("RegisterTable", combatStatus.BuffTable.Register);
+            OnDeBuffTaken.Add("RegisterTable", combatStatus.DeBuffTable.Register);
+            OnBuffTaken.Add("RegisterTable", combatStatus.BuffTable.Register);
         }
 
         private void OnDisable()
         {
-            OnDeBuffTaken.Unregister("RegisterTable");
-            OnBuffTaken.Unregister("RegisterTable");
+            OnDeBuffTaken.Remove("RegisterTable");
+            OnBuffTaken.Remove("RegisterTable");
         }
 
 

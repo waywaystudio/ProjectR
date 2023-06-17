@@ -47,6 +47,23 @@ public class WaitTrigger
 
 public class TimeTrigger
 {
+    private float timeTick;
+    private readonly float delaySecond;
+    private readonly ActionTable<float> onValueChanged;
+    private readonly Action onComplete;
+    private CancellationTokenSource cts;
+
+    public float TimeTick
+    {
+        get => timeTick;
+        set
+        {
+            timeTick = value;
+            onValueChanged.Invoke(timeTick);
+        }
+    }
+    
+    public TimeTrigger() : this(null, 0f) { }
     public TimeTrigger(Action onComplete, float delaySecond)
     {
         this.onComplete  = onComplete;
@@ -54,11 +71,6 @@ public class TimeTrigger
 
         onValueChanged = new ActionTable<float>();
     }
-
-    private readonly float delaySecond;
-    private readonly ActionTable<float> onValueChanged;
-    private readonly Action onComplete;
-    private CancellationTokenSource cts;
     
     public void Pull()
     {
@@ -74,7 +86,7 @@ public class TimeTrigger
     }
 
     public void AddListener(string key, Action<float> action) => onValueChanged.Add(key, action);
-    public void RemoveListener(string key) => onValueChanged.Unregister(key);
+    public void RemoveListener(string key) => onValueChanged.Remove(key);
     
 
     private async UniTaskVoid Fire(CancellationToken cancellationToken)

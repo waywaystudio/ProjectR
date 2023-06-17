@@ -1,34 +1,41 @@
 using System.Collections.Generic;
 using Common.Characters;
 using Common.Execution;
-using Sirenix.OdinInspector;
 using UnityEngine;
 
 namespace Common.Skills
 {
-    public abstract class SkillComponent : MonoBehaviour, IExecutable, ISequencer<Vector3>, IDataIndexer, IEditable
+    public abstract class SkillComponent : MonoBehaviour, ISequencer, IActionSender, IEditable
     {
-        /* Common Attribution */
+        [SerializeField] protected Executor executor;
+        [SerializeField] protected SkillSequencer sequencer;
+        
         [SerializeField] protected DataIndex actionCode;
         [SerializeField] protected SkillType skillType;
         [SerializeField] protected SortingType sortingType;
-        [SerializeField] protected SectionType coolTimeSection;
-        [SerializeField] protected CharacterActionMask behaviourMask = CharacterActionMask.Skill;
-        [SerializeField] protected CharacterActionMask ignorableMask = CharacterActionMask.SkillIgnoreMask;
+        [SerializeField] protected ActionMask behaviourMask = ActionMask.Skill;
+        [SerializeField] protected ActionMask ignorableMask = ActionMask.SkillIgnoreMask;
         [SerializeField] protected int priority;
         [SerializeField] protected float range;
         [SerializeField] protected float angle;
-        [SerializeField] protected string animationKey;
-        [SerializeField] private string description;
-        [SerializeField] protected AwaitCoolTimer coolTimer;
-        [SerializeField] protected LayerMask targetLayer;
-        [SerializeField] private Sprite icon;
         
+        [SerializeField] protected string animationKey;
+        [SerializeField] protected string description;
+        [SerializeField] protected CoolTimer coolTimer;
+        [SerializeField] protected CastTimer castTimer;
+        [SerializeField] protected LayerMask targetLayer;
+        [SerializeField] protected Sprite icon;
+        
+        private CharacterBehaviour cb;
+        private readonly Sequencer<Vector3> mainSequencer = new();
+        private readonly SequenceBuilder<Vector3> builder = new();
+
+
         public DataIndex DataIndex => actionCode;
         public ICombatProvider Provider => Cb;
         public SkillType SkillType => skillType;
-        public CharacterActionMask BehaviourMask => behaviourMask;
-        public CharacterActionMask IgnorableMask => ignorableMask;
+        public ActionMask BehaviourMask => behaviourMask;
+        public ActionMask IgnorableMask => ignorableMask;
         public int Priority => priority;
         public float Range => range;
         public float Angle => angle;
@@ -36,73 +43,55 @@ namespace Common.Skills
         public LayerMask TargetLayer => targetLayer;
         public Sprite Icon => icon;
         
+        // TODO. IProjectorSequence 작업 시 변경. range, angle을 sizeVector2로 치환 시도 해보자. 
+        [SerializeField] protected Vector2 sizeVector;
+        public Vector2 SizeVector => sizeVector;
+        // 
         
         /* Sequence */
-        [SerializeField] private SkillSequencer sequencer;
-        public Sequencer<Vector3> Sequencer => sequencer;
-
-        public ConditionTable Condition => Sequencer.Condition;
-        public ActionTable<Vector3> ActiveParamAction => Sequencer.ActiveParamAction;
-        public ActionTable ActiveAction => Sequencer.ActiveAction;
-        public ActionTable CancelAction => Sequencer.CancelAction;
-        public ActionTable CompleteAction => Sequencer.CompleteAction;
-        public ActionTable EndAction => Sequencer.EndAction;
+        public Sequencer Sequencer => sequencer;
+        public SkillSequencer SkillSequencer => sequencer;
         
-        [ShowInInspector] public bool IsEnded { get; set; } = true;
+        // public ActionTable<Vector3> ActiveParamAction => SkillSequencer.ActiveParamAction;
+        public ConditionTable Condition => SkillSequencer.Condition;
+        public ActionTable ActiveAction => SkillSequencer.ActiveAction;
+        public ActionTable CancelAction => SkillSequencer.CancelAction;
+        public ActionTable CompleteAction => SkillSequencer.CompleteAction;
+        public ActionTable EndAction => SkillSequencer.EndAction;
         
-
-        /* Execution */
-        [SerializeField] protected SkillExecutor executor;
-        
-        public void Execute(ICombatTaker taker) => executor.Execute(taker);
-        public void Execute(ExecuteGroup group, ICombatTaker taker) => executor.Execute(group, taker);
-        public void Execute(Vector3 position) => executor.Execute(position);
-        public void Execute(ExecuteGroup group, Vector3 position) => executor.Execute(group, position);
-        public void AddExecution(ExecuteComponent exe) => executor.Add(exe);
-        public void Remove(ExecuteComponent exe) => executor.Remove(exe);
-        public void Clear() => executor.Clear();
-
-        public ExecutionTable ExecutionTable { get; } = new();
+        public ActionTable ExecuteAction { get; } = new();
 
         /* Progress */
-        public AwaitCoolTimer CoolTimer => coolTimer;
+        public CoolTimer CoolTimer => coolTimer;
+        public CastTimer CastTimer => castTimer;
         
-        public float CastingTime { get; set; }
+        // TODO. Will be Multiply Character Haste Weight
+        public float CoolWeightTime => CoolTimer.CoolTime;
+        public float CastWeightTime => CastTimer.CastingTime;
         public virtual ICombatTaker MainTarget =>
             Cb.Searching.GetMainTarget(targetLayer, Cb.transform.position, sortingType);
 
-        private CharacterBehaviour cb;
         public CharacterBehaviour Cb => cb ??= GetComponentInParent<CharacterBehaviour>();
-        
-        
-        protected bool AbleToRelease => SkillType is not (SkillType.Instant or SkillType.Casting) && IsProgress;
-        protected bool IsProgress 
-            // => !ActiveParamSection.IsDone; 
-            { get; set; }
 
-        protected abstract void Initialize();
-        
+        public bool IsEnded => sequencer == null || sequencer.IsEnd;
+        protected bool AbleToRelease => SkillType is not (SkillType.Instant or SkillType.Casting) && IsActive;
+        protected bool IsActive => sequencer == null || sequencer.IsActive;
+
 
         /// <summary>
         /// 스킬 사용시 호출.
         /// </summary>
-        public void Activate(Vector3 targetPosition)
+        public void Active(Vector3 targetPosition)
         {
             sequencer.Active(targetPosition);
         }
-
-        /// <summary>
-        /// 스킬의 가동범위로 부터 대상을 받아서
-        /// 데미지, 상태이상 부여 등을 실제 수행하는 함수
-        /// </summary>
-        public abstract void Execution();
 
         /// <summary>
         /// 플레이어가 시전 중 이동하거나 cc를 받아 기술 취소 시 호출. 
         /// </summary>
         public void Cancel()
         {
-            Sequencer.Cancel();
+            SkillSequencer.Cancel();
         }
 
         /// <summary>
@@ -110,15 +99,31 @@ namespace Common.Skills
         /// </summary>
         public void Release()
         {
-            AbleToRelease.OnTrue(Sequencer.CompleteAction.Invoke);
-        }
-        
+            if (!AbleToRelease) return;
 
+            var callbackSection = CastTimer.CallbackSection.GetSkillAction(this);
+
+            callbackSection?.Invoke();
+        }
+
+        /// <summary>
+        /// 스킬의 가동범위로 부터 대상을 받아서
+        /// 데미지, 상태이상 부여 등을 실제 수행하는 함수
+        /// </summary>
+        public virtual void Execution() { } // => ExecuteAction.Invoke();
+        
+        /// <summary>
+        /// 스킬 별 각자의 시퀀스 적용 함수
+        /// </summary>
+        protected virtual void AddSkillSequencer() { }
+        
+        
         protected virtual void PlayAnimation()
         {
-            Cb.Animating.PlayOnce(animationKey, 0f, Sequencer.Complete);
+            Cb.Animating.PlayOnce(animationKey, 0f, SkillSequencer.Complete);
         }
 
+        // Utility 
         protected bool TryGetTakersInSphere(SkillComponent skill, out List<ICombatTaker> takerList) 
             => (takerList =  Cb.Colliding.GetTakersInSphereType(
                 skill.Cb.transform.position,
@@ -135,41 +140,82 @@ namespace Common.Skills
                 providerTransform.forward, range, 16,
                 targetLayer, out takerList);
         }
+        
+        protected void AddAnimationEvent()
+        {
+            SkillSequencer.ActiveAction
+                     .Add("RegisterHitEvent", () => Cb.Animating.OnHit.Add("SkillHit", Execution));
+            
+            SkillSequencer.EndAction
+                     .Add("ReleaseHit", () => Cb.Animating.OnHit.Remove("SkillHit"));
+        }
+        //
 
+        private void Awake()
+        {
+            builder.Initialize(mainSequencer);
+        }
 
         protected void OnEnable()
         {
-            Initialize();
-            coolTimer.Register(sequencer, coolTimeSection);
+            AddSkillSequencer();
             
-            Sequencer.Condition.Add("IsCoolTimeReady", () => coolTimer.IsReady);
-            Sequencer.ActiveParamAction.Add("CharacterRotate", Cb.Rotate);
-            Sequencer.ActiveAction.Add("SkillCommonAction", () =>
+            // builder.AddActive("PlaySkillAnimation", PlayAnimation)
+            //        .AddActive("AddCastTimerCallback", () => 
+            //        { 
+            //            var callbackSection = CastTimer.CallbackSection.GetSkillAction(this);
+            //            castTimer.Play(CastWeightTime, callbackSection);
+            //        })
+            //        .AddActive("StopPathfinding", Cb.Pathfinding.Stop)
+            //        .AddEnd("StopCastTimer", castTimer.Stop)
+            //        .AddEnd("MoveStop", Cb.Stop)
+            //        .Build();
+            
+            if (coolTimer.InvokeSection != SectionType.None)
             {
-                Cb.Pathfinding.Stop();
+                SkillSequencer.Condition.Add("IsCoolTimeReady", () => coolTimer.IsReady);
+
+                var targetSection = coolTimer.InvokeSection switch
+                {
+                    SectionType.Active => SkillSequencer.ActiveAction,
+                    SectionType.Complete   => SkillSequencer.CompleteAction,
+                    SectionType.End        => SkillSequencer.EndAction,
+                    SectionType.Execute    => ExecuteAction,
+                    _                      => null,
+                };
+                
+                targetSection?.Add("ActiveCoolTime", () => coolTimer.Play(CoolWeightTime));
+            }
+
+            SkillSequencer.ActiveParamAction.Add("CharacterRotate", Cb.Rotate);
+            SkillSequencer.ActiveAction.Add("SkillCommonAction", () =>
+            {
                 PlayAnimation();
-                IsProgress = true;
-                IsEnded    = false;
+
+                var callbackSection = CastTimer.CallbackSection.GetSkillAction(this);
+                castTimer.Play(CastWeightTime, callbackSection);
+                Cb.Pathfinding.Stop();
             });
-            Sequencer.EndAction.Add("SkillEndAction", () =>
+            
+            SkillSequencer.EndAction.Add("SkillEndAction", () =>
             {
-                IsProgress = false;
-                IsEnded    = true;
+                castTimer.Stop();
                 Cb.Stop();
             });
         }
 
         protected void OnDisable()
         {
-            Sequencer.Clear();
-            ExecutionTable.Clear();
+            SkillSequencer.Clear();
+            coolTimer.Dispose();
+            castTimer.Dispose();
         }
 
 
 #if UNITY_EDITOR
         public virtual void EditorSetUp()
         {
-            executor = GetComponentInChildren<SkillExecutor>();
+            executor = GetComponentInChildren<Executor>();
             
             var skillData = Database.SkillSheetData(actionCode);
 
@@ -183,12 +229,8 @@ namespace Common.Skills
             targetLayer  = LayerMask.GetMask(skillData.TargetLayer);
             icon         = Database.SpellSpriteData.Get(actionCode);
 
-            if (TryGetComponent(out CoolTimer coolTimeModule))
-            {
-                coolTimeModule.EditorSetUp();
-            }
-
-            coolTimer.Timer = skillData.CoolTime;
+            coolTimer.CoolTime = skillData.CoolTime;
+            castTimer.CastingTime = skillData.ProcessTime;
         }
         
         // ReSharper disable once UnusedMember.Local

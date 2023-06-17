@@ -4,30 +4,26 @@ using UnityEngine;
 
 namespace Character.Villains.Moragg.Projector
 {
-    public class Meteor : TrapComponent, IProjectorSequence
+    public class Meteor : TrapComponent, IProjectorSections
     {
         public Vector2 SizeVector => new (radius * 2f, radius * 2f);
-        public float CastingTime => ProlongTime;
+        public float CastWeightTime => ProlongTime;
         
         public override void Initialize(ICombatProvider provider)
         {
             base.Initialize(provider);
             
-            OnCompleted.Register("Execution", Execution);
-        }
-        
-        public override void Execution()
-        {
-            if (TryGetTakerInSphere(out var takerList))
+            sequencer.CompleteAction.Add("Execute", Execution);
+            
+            ExecuteAction.Add("MeteorExecution", () =>
             {
-                takerList.ForEach(ExecutionTable.Execute);
-            }
+                if (TryGetTakerInSphere(out var takerList))
+                {
+                    takerList.ForEach(executor.Execute);
+                }
+            });
         }
 
-        public ConditionTable Condition { get; }
-        public ActionTable ActiveAction { get; }
-        public ActionTable CancelAction { get; }
-        public ActionTable CompleteAction { get; }
-        public ActionTable EndAction { get; }
+        public override void Execution() => ExecuteAction.Invoke();
     }
 }

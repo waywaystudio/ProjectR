@@ -38,10 +38,10 @@ namespace Common.Characters.UI.ActionBars
             
             var coolTimer = Cb.GetSkill(actionCode).CoolTimer;
 
-            if (coolTimer.Timer == 0f) return;
+            if (coolTimer.CoolTime == 0f) return;
             
             coolDownFiller.ProgressImage.enabled = true;
-            coolDownFiller.Register(coolTimer.RemainTimer, coolTimer.Timer);
+            coolDownFiller.Register(coolTimer.EventTimer, coolTimer.CoolTime);
         }
 
         private void OnDisable()

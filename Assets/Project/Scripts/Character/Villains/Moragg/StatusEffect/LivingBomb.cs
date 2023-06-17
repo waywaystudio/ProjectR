@@ -5,7 +5,7 @@ using UnityEngine;
 
 namespace Character.Villains.Moragg.StatusEffect
 {
-    public class LivingBomb : StatusEffectComponent, IOldProjectorSequence
+    public class LivingBomb : StatusEffectComponent, IProjectorSections
     {
         [SerializeField] private CollidingSystem collidingSystem;
         [SerializeField] private float interval;
@@ -15,8 +15,8 @@ namespace Character.Villains.Moragg.StatusEffect
         private float hasteWeight;
         private float tickBuffer;
 
-        // public FloatEvent Progress => ProgressTime;
-        public float CastingTime => Duration;
+        public FloatEvent Progress => ProgressTime;
+        public float CastWeightTime => Duration;
         public Vector2 SizeVector => new (radius * 2f, radius * 2f);
         
 
@@ -24,13 +24,8 @@ namespace Character.Villains.Moragg.StatusEffect
         {
             base.Initialize(provider);
 
-            OnActivated.Register("SetHasteWeight", SetHasteWeight);
-            OnCompleted.Register("Bomb", Bomb);
-        }
-        
-        public override void Dispose()
-        {
-            Destroy(gameObject);
+            sequencer.ActiveAction.Add("SetHasteWeight", SetHasteWeight);
+            sequencer.CompleteAction.Add("Bomb", Bomb);
         }
 
 
@@ -45,7 +40,7 @@ namespace Character.Villains.Moragg.StatusEffect
                 out var takerList
             );
 
-            takerList.ForEach(ExecutionTable.Execute);
+            takerList.ForEach(taker => executor.Execute(ExecuteGroup.Group2, taker));
         }
         
         private void SetHasteWeight() => hasteWeight = tickBuffer = 
@@ -62,13 +57,13 @@ namespace Character.Villains.Moragg.StatusEffect
                 }
                 else
                 {
-                    ExecutionTable.Execute(ExecuteGroup.Group1, Taker);
+                    executor.Execute(ExecuteGroup.Group1, Taker);
                     tickBuffer = hasteWeight;
                 }
             }
             else
             {
-                Complete();
+                sequencer.Complete();
             }
         }
     }

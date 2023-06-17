@@ -11,10 +11,9 @@ namespace Character.Venturers.Knight.StatusEffect
         public override void Initialize(ICombatProvider provider)
         {
             base.Initialize(provider);
-            
-            OnActivated.Register("DrainBuff",() => Provider.OnDamageProvided.Register("DrainBuff", DrainHp));
-            OnCanceled.Register("Dispel", () => Provider.OnDamageProvided.Unregister("DrainBuff"));
-            OnCompleted.Register("Return", () => Provider.OnDamageProvided.Unregister("DrainBuff"));
+
+            sequencer.ActiveAction.Add("DrainBuff",() => Provider.OnDamageProvided.Add("DrainBuff", DrainHp));
+            sequencer.EndAction.Add("Return", () => Provider.OnDamageProvided.Remove("DrainBuff"));
         }
 
 
@@ -31,7 +30,7 @@ namespace Character.Venturers.Knight.StatusEffect
             }
             else
             {
-                Complete();
+                sequencer.Complete();
             }
         }
 

@@ -16,7 +16,7 @@ namespace Common.Execution
         {
             var projectile          = pool.Get();
             var projectileTransform = projectile.transform;
-            var direction           = Executor.Provider.gameObject.transform.forward;
+            var direction           = Origin.Provider.gameObject.transform.forward;
             
             projectileTransform.SetParent(null, true);
             projectileTransform.LookAt(projectileTransform.position + direction);
@@ -28,8 +28,8 @@ namespace Common.Execution
         private void CreateProjectile(ProjectileComponent projectile)
         {
             projectile.transform.position = MuzzlePosition;
-            projectile.Initialize(Executor.Provider);
-            projectile.OnEnded.Register("ReturnToPool",() =>
+            projectile.Initialize(Origin.Provider);
+            projectile.Sequencer.EndAction.Add("ReturnToPool",() =>
             {
                 projectile.transform.position = MuzzlePosition;
                 projectile.transform.SetParent(transform, true);
@@ -41,13 +41,11 @@ namespace Common.Execution
         private void OnEnable()
         {
             pool.Initialize(CreateProjectile, transform);
-            Executor?.ExecutionTable.Add(this);
         }
 
         private void OnDisable()
         {
             pool.Clear();
-            Executor?.ExecutionTable.Remove(this);
         }
     }
 }

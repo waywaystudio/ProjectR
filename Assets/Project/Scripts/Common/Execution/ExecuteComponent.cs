@@ -6,18 +6,12 @@ namespace Common.Execution
 {
     public abstract class ExecuteComponent : MonoBehaviour
     {
-        [SerializeField] protected ExecuteType type;
         [SerializeField] protected ExecuteGroup group = ExecuteGroup.Group1;
 
-        private IExecutable executor;
-
-        public ExecuteType Type => type;
+        private IOriginalProvider origin;
         public ExecuteGroup Group => group;
 
-        protected IExecutable Executor 
-            => executor 
-            ??= GetComponent<IExecutable>() // TODO. 추후에 Parent 구조로 모두 변경.
-            ?? GetComponentInParent<IExecutable>();
+        protected IOriginalProvider Origin => origin ??= GetComponentInParent<IOriginalProvider>();
 
         public abstract void Execution(ICombatTaker taker);
         public virtual void Execution(Vector3 trapPosition) { }

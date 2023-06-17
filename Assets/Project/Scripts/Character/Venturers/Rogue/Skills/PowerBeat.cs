@@ -4,16 +4,18 @@ namespace Character.Venturers.Rogue.Skills
 {
     public class PowerBeat : SkillComponent
     {
-        public override void Execution()
-        {
-            if (!TryGetTakersInSphere(this, out var takerList)) return;
-        
-            takerList.ForEach(ExecutionTable.Execute);
-        }
+        public override void Execution() => ExecuteAction.Invoke();
 
-        protected override void Initialize()
+        protected override void AddSkillSequencer()
         {
-            // OnCompleted.Register("EndCallback", End);
+            AddAnimationEvent();
+            
+            ExecuteAction.Add("CommonExecution", () =>
+            {
+                if (!TryGetTakersInSphere(this, out var takerList)) return;
+        
+                takerList.ForEach(executor.Execute);
+            });
         }
     }
 }

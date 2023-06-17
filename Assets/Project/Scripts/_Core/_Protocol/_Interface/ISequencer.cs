@@ -2,6 +2,16 @@ using UnityEngine;
 
 public interface ISequencer
 {
+    Sequencer Sequencer { get; }
+}
+
+public interface ISequencer<T>
+{
+    Sequencer<T> Sequencer { get; }
+}
+
+public interface ISections
+{
     ConditionTable Condition { get; }
     ActionTable ActiveAction { get; }
     ActionTable CancelAction { get; }
@@ -9,7 +19,12 @@ public interface ISequencer
     ActionTable EndAction { get; }
 }
 
-public interface ISequencer<T> : ISequencer
+public interface IParamSection<T>
+{
+    ActionTable<T> ActiveParamAction { get; }
+}
+
+public interface ISections<T> : ISections
 {
     // + ConditionTable Condition
     // + ActionTable ActiveAction
@@ -20,7 +35,7 @@ public interface ISequencer<T> : ISequencer
     ActionTable<T> ActiveParamAction { get; }
 }
 
-public interface IProjectorSequence : ISequencer
+public interface IProjectorSections : ISections
 {
     // + ConditionTable Condition
     // + ActionTable ActiveAction
@@ -28,6 +43,6 @@ public interface IProjectorSequence : ISequencer
     // + ActionTable CompleteAction
     // + ActionTable EndAction
     
-    float CastingTime { get; }
+    float CastWeightTime { get; }
     Vector2 SizeVector { get; }
 }

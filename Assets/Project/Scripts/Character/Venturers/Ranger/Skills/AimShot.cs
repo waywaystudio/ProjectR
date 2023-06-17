@@ -4,20 +4,13 @@ namespace Character.Venturers.Ranger.Skills
 {
     public class AimShot : SkillComponent
     {
-        public override void Execution()
-        {
-            // TODO. 현재 Test상 HitScan 방식이어서 이렇고, Projectile로 바뀌면 교체해야 함.
-            ExecutionTable.Execute(null);
-            
-            // if (!TryGetTakersByRayCast(out var takerList)) return;
-            // takerList.ForEach(ExecutionTable.Execute);
-        }
+        public override void Execution() => ExecuteAction.Invoke();
         
 
-        protected override void Initialize()
+        protected override void AddSkillSequencer()
         {
-            // OnCompleted.Register("Execution", Execution);
-            // OnCompleted.Register("PlayEndChargingAnimation", PlayEndChargingAnimation);
+            ExecuteAction.Add("PlayEndChargingAnimation", PlayEndChargingAnimation);
+            ExecuteAction.Add("AimShotExecute", () => executor.Execute(null));
         }
         
         protected override void PlayAnimation()
@@ -27,7 +20,7 @@ namespace Character.Venturers.Ranger.Skills
 
         private void PlayEndChargingAnimation()
         {
-            Cb.Animating.PlayOnce("heavyAttack", 0f, Sequencer.End);
+            Cb.Animating.PlayOnce("heavyAttack", 0f, SkillSequencer.Complete);
         }
     }
 }

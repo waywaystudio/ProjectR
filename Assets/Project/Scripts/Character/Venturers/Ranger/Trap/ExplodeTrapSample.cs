@@ -1,7 +1,7 @@
 using Common;
 using Common.Traps;
 
-namespace Character.Venturers.Hunter.Trap
+namespace Character.Venturers.Ranger.Trap
 {
     public class ExplodeTrapSample : TrapComponent
     {
@@ -9,15 +9,17 @@ namespace Character.Venturers.Hunter.Trap
         {
             base.Initialize(provider);
             
-            OnCompleted.Register("Execution", Execution);
+            sequencer.CompleteAction.Add("Execute", Execution);
+            
+            ExecuteAction.Add("MeteorExecution", () =>
+            {
+                if (TryGetTakerInSphere(out var takerList))
+                {
+                    takerList.ForEach(executor.Execute);
+                }
+            });
         }
         
-        public override void Execution()
-        {
-            if (TryGetTakerInSphere(out var takerList))
-            {
-                takerList.ForEach(ExecutionTable.Execute);
-            }
-        }
+        public override void Execution() => ExecuteAction.Invoke();
     }
 }

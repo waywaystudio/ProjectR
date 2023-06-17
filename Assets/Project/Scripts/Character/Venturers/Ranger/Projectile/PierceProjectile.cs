@@ -2,7 +2,7 @@ using Common;
 using Common.Projectiles;
 using UnityEngine;
 
-namespace Character.Venturers.Hunter.Projectile
+namespace Character.Venturers.Ranger.Projectile
 {
     [RequireComponent(typeof(SphereCollider))]
     public class PierceProjectile : ProjectileComponent
@@ -17,31 +17,25 @@ namespace Character.Venturers.Hunter.Projectile
         public override void Initialize(ICombatProvider provider)
         {
             base.Initialize(provider);
-            
-            OnActivated.Register("CollidingTriggerOn", () => triggerCollider.enabled = true);
-            OnActivated.Register("ResetPierceCount", () => pierceCount = 0);
-            OnEnded.Register("CollidingTriggerOff", () => triggerCollider.enabled    = false);
+
+            sequencer.ActiveAction.Add("CollidingTriggerOn", () => triggerCollider.enabled = true);
+            sequencer.ActiveAction.Add("ResetPierceCount", () => pierceCount               = 0);
+            sequencer.EndAction.Add("CollidingTriggerOff", () => triggerCollider.enabled = false);
         }
 
         public override void Execution()
         {
             if (piercedTaker is not null && pierceCount <= maxPierceCount)
             {
-                ExecutionTable.Execute(piercedTaker);
+                executor.Execute(piercedTaker);
 
                 if (++pierceCount > maxPierceCount)
                 {
-                    Complete();
+                    sequencer.Complete();
                 }
             }
         }
 
-        public override void Complete()
-        {
-            OnCompleted.Invoke();
-
-            End();
-        }
 
         private void OnTriggerEnter(Collider other)
         {

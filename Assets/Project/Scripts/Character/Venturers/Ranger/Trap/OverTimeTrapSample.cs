@@ -1,15 +1,23 @@
+using Common;
 using Common.Traps;
 
-namespace Character.Venturers.Hunter.Trap
+namespace Character.Venturers.Ranger.Trap
 {
     public class OverTimeTrapSample : TrapComponent
     {
-        public override void Execution()
+        public override void Initialize(ICombatProvider provider)
         {
-            if (TryGetTakerInSphere(out var takerList))
+            base.Initialize(provider);
+            
+            ExecuteAction.Add("OverTimeTrapExecution", () =>
             {
-                takerList.ForEach(ExecutionTable.Execute);
-            }
+                if (TryGetTakerInSphere(out var takerList))
+                {
+                    takerList.ForEach(executor.Execute);
+                }
+            });
         }
+
+        public override void Execution() => ExecuteAction.Invoke();
     }
 }

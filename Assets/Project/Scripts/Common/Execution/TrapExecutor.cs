@@ -22,8 +22,8 @@ namespace Common.Execution
 
         private void CreateTrap(TrapComponent trap)
         {
-            trap.Initialize(Executor.Provider);
-            trap.OnEnded.Register("ReturnToPool",() =>
+            trap.Initialize(Origin.Provider);
+            trap.TrapSequencer.EndAction.Add("ReturnToPool",() =>
             {
                 trap.transform.position = Vector3.zero;
                 trap.transform.SetParent(transform, false);
@@ -38,13 +38,11 @@ namespace Common.Execution
                 null,
                 null,
                 trap => trap.Dispose());
-            Executor?.ExecutionTable.Add(this);
         }
 
         private void OnDisable()
         {
             pool.Clear();
-            Executor?.ExecutionTable.Remove(this);
         }
     }
 }

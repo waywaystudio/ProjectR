@@ -4,46 +4,47 @@ namespace Common.Characters.Behaviours
 {
     public class StunBehaviour : MonoBehaviour, IActionBehaviour
     {
-        [SerializeField] private Sequencer<float> sequencer;
+        [SerializeField] private Sequencer<float> sequencer = new();
 
-        public CharacterActionMask BehaviourMask => CharacterActionMask.Stun;
+        public ActionMask BehaviourMask => ActionMask.Stun;
+        public SequenceBuilder<float> SequenceBuilder { get; } = new();
+        public SequenceInvoker<float> SequenceInvoker { get; } = new();
 
         private CharacterBehaviour cb;
         private CharacterBehaviour Cb => cb ??= GetComponentInParent<CharacterBehaviour>();
         private AwaitTimer Timer { get; } = new();
-        private bool CanOverrideToCurrent 
-            => (CharacterActionMask.StunIgnoreMask | Cb.BehaviourMask) == CharacterActionMask.StunIgnoreMask;
         
 
         public void Stun(float duration)
         {
-            if (!sequencer.IsAbleToActive) return;
+            if (!SequenceInvoker.IsAbleToActive) return;
             
-            sequencer.Active(duration);
+            SequenceInvoker.Active(duration);
         }
 
-        public void Cancel() => sequencer.Cancel();
+        public void Cancel()
+        {
+            SequenceInvoker.Cancel();
+            Timer.Stop();
+        }
 
 
         private void OnEnable()
         {
-            sequencer.Condition.Add("AbleToBehaviourOverride", () => CanOverrideToCurrent);
-            sequencer.ActiveParamAction.Add("CommonStunAction", duration => Timer.Play(duration, sequencer.Complete));
-            sequencer.ActiveAction.Add("CommonStunAction", () =>
-            {
-                if (cb.CurrentBehaviour is not null && cb.BehaviourMask != BehaviourMask)
-                    cb.CurrentBehaviour.Cancel();
-
-                cb.CurrentBehaviour = this;
-                Cb.Animating.Stun();
-            });
-            
-            sequencer.EndAction.Add("Stop", Cb.Stop);
+            SequenceInvoker.Initialize(sequencer);
+            SequenceBuilder.Initialize(sequencer)
+                           .AddCondition("AbleToBehaviourOverride", () => BehaviourMask.CanOverride(Cb.BehaviourMask))
+                           .AddActiveParam("PlayStunTimer", duration => Timer.Play(duration, sequencer.Complete))
+                           .AddActive("CancelPreviousBehaviour", () => cb.CurrentBehaviour?.TryToCancel(this))
+                           .AddActive("SetCurrentBehaviour", () => cb.CurrentBehaviour = this)
+                           .AddActive("PlayAnimation", Cb.Animating.Stun)
+                           .AddEnd("Stop", Cb.Stop);
         }
 
         private void OnDisable()
         {
             sequencer.Clear();
+            Timer.Dispose();
         }
     }
 }

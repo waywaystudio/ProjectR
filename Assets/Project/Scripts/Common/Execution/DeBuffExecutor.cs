@@ -13,7 +13,7 @@ namespace Common.Execution
             if (!taker.DynamicStatEntry.Alive.Value) return;
 
             var targetTable = taker.DynamicStatEntry.DeBuffTable;
-            var tableKey    = new StatusEffectTable.StatusEffectKey(Executor.Provider, actionCode);
+            var tableKey    = new StatusEffectTable.StatusEffectKey(Origin.Provider, actionCode);
 
             if (targetTable.TryGetValue(tableKey, out var value))
             {
@@ -34,8 +34,8 @@ namespace Common.Execution
         
         private void CreateStatusEffect(StatusEffectComponent statusEffect)
         {
-            statusEffect.Initialize(Executor.Provider);
-            statusEffect.OnEnded.Register("ReturnToPool", () =>
+            statusEffect.Initialize(Origin.Provider);
+            statusEffect.Sequencer.EndAction.Add("ReturnToPool", () =>
             {
                 statusEffect.transform.SetParent(transform, false);
                 pool.Release(statusEffect);
@@ -45,13 +45,11 @@ namespace Common.Execution
         private void OnEnable()
         {
             pool.Initialize(CreateStatusEffect, transform);
-            Executor?.ExecutionTable.Add(this);
         }
 
         private void OnDisable()
         {
             pool.Clear();
-            Executor?.ExecutionTable.Remove(this);
         }
 
 

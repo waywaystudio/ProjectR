@@ -14,19 +14,16 @@ namespace Character.Villains.Moragg.Skills
         [SerializeField] private int sampleSize = 30;
         
         private Coroutine meteorRoutine;
-        
-        public override void Execution()
-        {
-            meteorRoutine = StartCoroutine(StartMeteor());
-        }
+
+        public override void Execution() => ExecuteAction.Invoke();
         
 
-        protected override void Initialize()
+        protected override void AddSkillSequencer()
         {
-            // OnActivated.Register("Execution", Execution);
-            // OnCanceled.Register("StopExecution", StopMeteor);
-            // OnCompleted.Register("EndCallback", End);
-            // OnCompleted.Register("StopExecution", StopMeteor);
+            sequencer.ActiveAction.Add("DirectExecuteMeteorStrike", Execution);
+            sequencer.EndAction.Add("StopExecution", StopMeteor);
+            
+            ExecuteAction.Add("StartMeteor", () => meteorRoutine = StartCoroutine(StartMeteor()));
         }
         
         protected override void PlayAnimation()
@@ -45,7 +42,7 @@ namespace Character.Villains.Moragg.Skills
 
             foreach (var destination in destinationList)
             {
-                ExecutionTable.Execute(destination);
+                executor.Execute(destination);
 
                 yield return new WaitForSeconds(0.2f);
             }

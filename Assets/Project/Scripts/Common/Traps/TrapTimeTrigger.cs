@@ -27,9 +27,8 @@ namespace Common.Traps
         {
             TryGetComponent(out trapComponent);
 
-            trapComponent.OnActivated.Register("TimeTriggerOn", StartProgress);
-            trapComponent.OnCanceled.Register("TimeTriggerOff", StopProgress);
-            trapComponent.OnEnded.Register("TimeTriggerOff", StopProgress);
+            trapComponent.TrapSequencer.ActiveAction.Add("TimeTriggerOn", StartProgress);
+            trapComponent.TrapSequencer.EndAction.Add("TimeTriggerOff", StopProgress);
             trapComponent.ProlongTime = prolongTimer;
         }
 
@@ -41,8 +40,7 @@ namespace Common.Traps
             }
             else
             {
-                trapComponent.Complete();
-                StopProgress();
+                trapComponent.TrapSequencer.Complete();
             }
         }
 

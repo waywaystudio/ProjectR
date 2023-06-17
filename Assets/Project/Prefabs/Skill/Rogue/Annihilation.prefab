@@ -62,7 +62,7 @@ Transform:
   m_Father: {fileID: 234500611213636336}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &8380361914805468174
+--- !u!1 &5479193929862894508
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -70,179 +70,56 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 234500611213636336}
-  - component: {fileID: 8477215023932391136}
-  - component: {fileID: 3593202701851022441}
-  - component: {fileID: 6521987290522668136}
+  - component: {fileID: 8678614848540904044}
+  - component: {fileID: 5116972700558106367}
+  - component: {fileID: 4233275165740141765}
   m_Layer: 0
-  m_Name: Annihilation
+  m_Name: Execution
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &234500611213636336
+--- !u!4 &8678614848540904044
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8380361914805468174}
+  m_GameObject: {fileID: 5479193929862894508}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 5853087751410363707}
-  - {fileID: 7221708945386366489}
-  m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_Children: []
+  m_Father: {fileID: 234500611213636336}
+  m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &8477215023932391136
+--- !u!114 &5116972700558106367
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8380361914805468174}
+  m_GameObject: {fileID: 5479193929862894508}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5ff8a4a2ca908f34d9171380b0f6b8df, type: 3}
+  m_Script: {fileID: 11500000, guid: 7cb67e0d4b0f0014c80282718ad1c364, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  actionCode: 31000014
-  skillType: 1
-  sortingType: 0
-  coolTimeSection: 1
-  behaviourMask: 64
-  ignorableMask: 3
-  priority: 4
-  range: 12
-  angle: 360
-  animationKey: annihilation
-  description: Starts combat by attacking a target with a melee weapon.
-  coolTimer:
-    timer: 18
-  targetLayer:
-    serializedVersion: 2
-    m_Bits: 256
-  icon: {fileID: 21300000, guid: b7a86745c554af74487fb5e5106421a1, type: 3}
-  sequencer:
-    sequenceKey: Skill
-    activeSection:
-      persistantEvent:
-        m_PersistentCalls:
-          m_Calls:
-          - m_Target: {fileID: 8477215023932391136}
-            m_TargetAssemblyTypeName: Common.Skills.SkillComponent, ProjectR.Common
-            m_MethodName: SkillAnimationActive
-            m_Mode: 0
-            m_Arguments:
-              m_ObjectArgument: {fileID: 0}
-              m_ObjectArgumentAssemblyTypeName: 
-              m_IntArgument: 0
-              m_FloatArgument: 0
-              m_StringArgument: 
-              m_BoolArgument: 0
-            m_CallState: 2
-          - m_Target: {fileID: 8477215023932391136}
-            m_TargetAssemblyTypeName: Common.Skills.SkillComponent, ProjectR.Common
-            m_MethodName: SkillPathfindingStopActive
-            m_Mode: 0
-            m_Arguments:
-              m_ObjectArgument: {fileID: 0}
-              m_ObjectArgumentAssemblyTypeName: 
-              m_IntArgument: 0
-              m_FloatArgument: 0
-              m_StringArgument: 
-              m_BoolArgument: 0
-            m_CallState: 2
-    cancelSection:
-      persistantEvent:
-        m_PersistentCalls:
-          m_Calls:
-          - m_Target: {fileID: 8477215023932391136}
-            m_TargetAssemblyTypeName: Common.Skills.SkillComponent, ProjectR.Common
-            m_MethodName: SkillCancel
-            m_Mode: 0
-            m_Arguments:
-              m_ObjectArgument: {fileID: 0}
-              m_ObjectArgumentAssemblyTypeName: 
-              m_IntArgument: 0
-              m_FloatArgument: 0
-              m_StringArgument: 
-              m_BoolArgument: 0
-            m_CallState: 2
-    completeSection:
-      persistantEvent:
-        m_PersistentCalls:
-          m_Calls:
-          - m_Target: {fileID: 8477215023932391136}
-            m_TargetAssemblyTypeName: Common.Skills.SkillComponent, ProjectR.Common
-            m_MethodName: SkillComplete
-            m_Mode: 0
-            m_Arguments:
-              m_ObjectArgument: {fileID: 0}
-              m_ObjectArgumentAssemblyTypeName: 
-              m_IntArgument: 0
-              m_FloatArgument: 0
-              m_StringArgument: 
-              m_BoolArgument: 0
-            m_CallState: 2
-    endSection:
-      persistantEvent:
-        m_PersistentCalls:
-          m_Calls:
-          - m_Target: {fileID: 8477215023932391136}
-            m_TargetAssemblyTypeName: Common.Skills.SkillComponent, ProjectR.Common
-            m_MethodName: SkillEnd
-            m_Mode: 0
-            m_Arguments:
-              m_ObjectArgument: {fileID: 0}
-              m_ObjectArgumentAssemblyTypeName: 
-              m_IntArgument: 0
-              m_FloatArgument: 0
-              m_StringArgument: 
-              m_BoolArgument: 0
-            m_CallState: 2
-    EditorExtract:
-    - {fileID: 8380361914805468174}
-    activeParamSection:
-      persistantEvent:
-        m_PersistentCalls:
-          m_Calls:
-          - m_Target: {fileID: 8477215023932391136}
-            m_TargetAssemblyTypeName: Common.Skills.SkillComponent, ProjectR.Common
-            m_MethodName: SkillRotateActiveParam
-            m_Mode: 0
-            m_Arguments:
-              m_ObjectArgument: {fileID: 0}
-              m_ObjectArgumentAssemblyTypeName: 
-              m_IntArgument: 0
-              m_FloatArgument: 0
-              m_StringArgument: 
-              m_BoolArgument: 0
-            m_CallState: 2
-  executor: {fileID: 0}
---- !u!114 &3593202701851022441
+  table:
+    keyList: 01000000
+    valueList:
+    - ExecutionList:
+      - {fileID: 4233275165740141765}
+    hideKey: 1
+--- !u!114 &4233275165740141765
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8380361914805468174}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 53c1327179b64ee489b48e7d271d4020, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &6521987290522668136
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8380361914805468174}
+  m_GameObject: {fileID: 5479193929862894508}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 910d8bb983b570146b7c330bb9a77e89, type: 3}
@@ -262,3 +139,70 @@ MonoBehaviour:
     - statType: 13030003
       statKey: DamageExecutorKey
       value: 0
+--- !u!1 &8380361914805468174
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 234500611213636336}
+  - component: {fileID: 8477215023932391136}
+  m_Layer: 0
+  m_Name: Annihilation
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &234500611213636336
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8380361914805468174}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 8678614848540904044}
+  - {fileID: 7221708945386366489}
+  - {fileID: 5853087751410363707}
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &8477215023932391136
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8380361914805468174}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5ff8a4a2ca908f34d9171380b0f6b8df, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  executor: {fileID: 5116972700558106367}
+  actionCode: 31000014
+  skillType: 1
+  sortingType: 0
+  behaviourMask: 64
+  ignorableMask: 3
+  priority: 4
+  range: 12
+  angle: 360
+  animationKey: annihilation
+  description: Starts combat by attacking a target with a melee weapon.
+  coolTimer:
+    coolTime: 18
+    invokeSection: 1
+  castTimer:
+    castingTime: 0
+  targetLayer:
+    serializedVersion: 2
+    m_Bits: 256
+  icon: {fileID: 21300000, guid: b7a86745c554af74487fb5e5106421a1, type: 3}

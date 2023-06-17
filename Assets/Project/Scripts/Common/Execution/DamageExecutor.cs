@@ -15,7 +15,7 @@ namespace Common.Execution
             if (!taker.DynamicStatEntry.Alive.Value) return;
 
             var entity        = new CombatEntity(taker);
-            var providerTable = Executor.Provider.StatTable;
+            var providerTable = Origin.Provider.StatTable;
 
             // Damage Creator
             var weaponAverage = Random.Range(providerTable.MinWeaponValue, providerTable.MaxWeaponValue);
@@ -61,27 +61,14 @@ namespace Common.Execution
                 entity.Value                       -= taker.DynamicStatEntry.Hp.Value;
                 entity.IsFinishedAttack            =  true;
              
-                Debug.Log($"{taker.Name} dead by {Executor.Provider.Name}'s {actionCode}'s {entity.Value}");
+                Debug.Log($"{taker.Name} dead by {Origin.Provider.Name}'s {actionCode}'s {entity.Value}");
                 taker.Dead();
             }
             
             taker.DynamicStatEntry.Hp.Value -= damageAmount;
 
-            Executor.Provider.OnDamageProvided.Invoke(entity);
+            Origin.Provider.OnDamageProvided.Invoke(entity);
             taker.OnDamageTaken.Invoke(entity);
-        }
-
-        public void ModifySpec(StatType statType, float value)
-        {
-            damageSpec.Change(statType, value);
-        }
-
-
-        private void OnEnable() { Executor?.ExecutionTable.Add(this); }
-        private void OnDisable() { Executor?.ExecutionTable.Remove(this); }
-        private void Reset()
-        {
-            type = ExecuteType.Damage;
         }
 
 

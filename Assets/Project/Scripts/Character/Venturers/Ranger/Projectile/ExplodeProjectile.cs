@@ -3,7 +3,7 @@ using Common;
 using Common.Projectiles;
 using UnityEngine;
 
-namespace Character.Venturers.Hunter.Projectile
+namespace Character.Venturers.Ranger.Projectile
 {
     [RequireComponent(typeof(SphereCollider))]
     public class ExplodeProjectile : ProjectileComponent
@@ -15,26 +15,19 @@ namespace Character.Venturers.Hunter.Projectile
         {
             base.Initialize(provider);
             
-            OnActivated.Register("CollidingTriggerOn", () => triggerCollider.enabled = true);
-            OnCompleted.Register("ExplodeExecution", Execution);
-            OnEnded.Register("CollidingTriggerOff", () => triggerCollider.enabled    = false);
+            sequencer.ActiveAction.Add("CollidingTriggerOn", () => triggerCollider.enabled = true);
+            sequencer.CompleteAction.Add("ExplodeExecution", Execution);
+            sequencer.EndAction.Add("CollidingTriggerOff", () => triggerCollider.enabled = false);
         }
 
         public override void Execution()
         {
             if (!TryGetTakerInSphere(out var takerList)) return;
 
-            takerList.ForEach(ExecutionTable.Execute);
+            takerList.ForEach(executor.Execute);
         }
 
-        public override void Complete()
-        {
-            OnCompleted.Invoke();
 
-            End();
-        }
-        
-        
         private bool TryGetTakerInSphere(out List<ICombatTaker> takerList)
             => collidingSystem.TryGetTakersInSphere(transform.position, 
                 radius, 
@@ -46,7 +39,7 @@ namespace Character.Venturers.Hunter.Projectile
         {
             if (other.gameObject.TryGetComponent(out ICombatTaker _) && other.gameObject.IsInLayerMask(targetLayer))
             {
-                Complete();
+                sequencer.Complete();
             }
         }
     }

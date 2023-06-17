@@ -108,14 +108,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7cb67e0d4b0f0014c80282718ad1c364, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  trigger: 
   table:
     keyList: 01000000
     valueList:
     - ExecutionList:
       - {fileID: 8641787742417917460}
       - {fileID: 6363665988819638875}
-    hideKey: 0
+    hideKey: 1
 --- !u!114 &8641787742417917460
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -171,7 +170,6 @@ GameObject:
   m_Component:
   - component: {fileID: 234500611213636336}
   - component: {fileID: 9094432963895350988}
-  - component: {fileID: 7007700515099946099}
   m_Layer: 0
   m_Name: UpperSlash
   m_TagString: Untagged
@@ -209,10 +207,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a4fad5fa044eb484489ab877718b568a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  executor: {fileID: 6955138490551235359}
   actionCode: 31000003
   skillType: 1
   sortingType: 0
-  coolTimeSection: 1
+  coolTimeActiveSection: 1
   behaviourMask: 32
   ignorableMask: 3
   priority: 3
@@ -221,81 +220,11 @@ MonoBehaviour:
   animationKey: upperSlash
   description: Starts combat by attacking a target with a melee weapon.
   coolTimer:
-    timer: 7
+    coolTime: 7
+    invokeSection: 1
+  castTimer:
+    castingTime: 0
   targetLayer:
     serializedVersion: 2
     m_Bits: 256
   icon: {fileID: 21300000, guid: 5bb14a259eefff541a510382c2530229, type: 3}
-  sequencer:
-    sequenceKey: Skill
-    activeSection:
-      persistantEvent:
-        m_PersistentCalls:
-          m_Calls:
-          - m_Target: {fileID: 9094432963895350988}
-            m_TargetAssemblyTypeName: Common.Skills.SkillComponent, ProjectR.Common
-            m_MethodName: SkillAnimationActive
-            m_Mode: 0
-            m_Arguments:
-              m_ObjectArgument: {fileID: 0}
-              m_ObjectArgumentAssemblyTypeName: 
-              m_IntArgument: 0
-              m_FloatArgument: 0
-              m_StringArgument: 
-              m_BoolArgument: 0
-            m_CallState: 2
-          - m_Target: {fileID: 9094432963895350988}
-            m_TargetAssemblyTypeName: Common.Skills.SkillComponent, ProjectR.Common
-            m_MethodName: SkillPathfindingStopActive
-            m_Mode: 0
-            m_Arguments:
-              m_ObjectArgument: {fileID: 0}
-              m_ObjectArgumentAssemblyTypeName: 
-              m_IntArgument: 0
-              m_FloatArgument: 0
-              m_StringArgument: 
-              m_BoolArgument: 0
-            m_CallState: 2
-    cancelSection:
-      persistantEvent:
-        m_PersistentCalls:
-          m_Calls: []
-    completeSection:
-      persistantEvent:
-        m_PersistentCalls:
-          m_Calls: []
-    endSection:
-      persistantEvent:
-        m_PersistentCalls:
-          m_Calls: []
-    EditorExtract:
-    - {fileID: 8380361914805468174}
-    activeParamSection:
-      persistantEvent:
-        m_PersistentCalls:
-          m_Calls:
-          - m_Target: {fileID: 9094432963895350988}
-            m_TargetAssemblyTypeName: Common.Skills.SkillComponent, ProjectR.Common
-            m_MethodName: SkillRotateActiveParam
-            m_Mode: 0
-            m_Arguments:
-              m_ObjectArgument: {fileID: 0}
-              m_ObjectArgumentAssemblyTypeName: 
-              m_IntArgument: 0
-              m_FloatArgument: 0
-              m_StringArgument: 
-              m_BoolArgument: 0
-            m_CallState: 2
-  executor: {fileID: 6955138490551235359}
---- !u!114 &7007700515099946099
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8380361914805468174}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 53c1327179b64ee489b48e7d271d4020, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 

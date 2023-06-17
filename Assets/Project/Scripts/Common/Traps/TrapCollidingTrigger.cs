@@ -15,7 +15,7 @@ namespace Common.Traps
         {
             if (other.gameObject.TryGetComponent(out ICombatTaker _) && other.gameObject.IsInLayerMask(targetLayer))
             {
-                trapComponent.Complete();
+                trapComponent.TrapSequencer.Complete();
             }
         }
 
@@ -27,10 +27,15 @@ namespace Common.Traps
             triggerCollider        ??= GetComponent<SphereCollider>();
             triggerCollider.radius =   trapComponent.Radius;
             
-            trapComponent.OnActivated.Register("CollidingTriggerOn", 
-                () => triggerCollider.IsNullOrDestroyed().OnFalse(() => triggerCollider.enabled  = true));
-            trapComponent.OnEnded.Register("CollidingTriggerOff", 
-                () => triggerCollider.IsNullOrDestroyed().OnFalse(() => triggerCollider.enabled = false));
+            trapComponent.TrapSequencer
+                         .ActiveAction
+                         .Add("CollidingTriggerOn", () => triggerCollider.IsNullOrDestroyed()
+                                                                         .OnFalse(() => triggerCollider.enabled  = true));
+            
+            trapComponent.TrapSequencer
+                         .EndAction
+                         .Add("CollidingTriggerOff", () => triggerCollider.IsNullOrDestroyed()
+                                                                          .OnFalse(() => triggerCollider.enabled = false));
         }
 
 

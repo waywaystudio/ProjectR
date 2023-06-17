@@ -3,29 +3,30 @@ using UnityEngine;
 
 namespace Character.Villains.Moragg.Skills
 {
-    public class MoraggSpin : SkillComponent, IProjectorSequence
+    public class MoraggSpin : SkillComponent, IProjectorSections
     {
-        public Vector2 SizeVector => new(range, 60);
+        public new Vector2 SizeVector => new(range, 60);
         
-        public override void Execution()
-        {
-            if (TryGetTakersInSphere(this, out var takerList))
-            {
-                takerList.ForEach(Execute);
-            }
-
-            Cb.Animating.PlayOnce("attack", 0f, Sequencer.Complete);
-        }
-        
+        public override void Execution() => ExecuteAction.Invoke();
 
         protected override void PlayAnimation()
         {
             Cb.Animating.PlayLoop(animationKey);
         }
 
-        protected override void Initialize()
+        protected override void AddSkillSequencer()
         {
-            // OnCompleted.Register("EndCallback", End);
+            
+            
+            ExecuteAction.Add("CommonExecution", () =>
+            {
+                if (TryGetTakersInSphere(this, out var takerList))
+                {
+                    takerList.ForEach(executor.Execute);
+                }
+        
+                Cb.Animating.PlayOnce("attack", 0f, SkillSequencer.Complete);
+            });
         }
     }
 }

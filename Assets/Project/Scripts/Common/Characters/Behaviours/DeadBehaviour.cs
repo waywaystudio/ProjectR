@@ -7,44 +7,40 @@ namespace Common.Characters.Behaviours
     public class DeadBehaviour : MonoBehaviour, IActionBehaviour
     {
         [SerializeField] private Sequencer sequencer;
+
+        public ActionMask BehaviourMask => ActionMask.Dead;
+        public SequenceBuilder SequenceBuilder { get; } = new();
+        public SequenceInvoker SequenceInvoker { get; } = new();
         
         private CharacterBehaviour cb;
-        
-        public CharacterActionMask BehaviourMask => CharacterActionMask.Dead;
-        
         private CharacterBehaviour Cb => cb ??= GetComponentInParent<CharacterBehaviour>();
-        private bool CanOverrideToCurrent 
-            => (CharacterActionMask.DeadIgnoreMask | Cb.BehaviourMask) == CharacterActionMask.DeadIgnoreMask;
         
 
         public void Dead()
         {
-            if (!sequencer.IsAbleToActive) return;
+            if (!SequenceInvoker.IsAbleToActive) return;
 
-            sequencer.Active();
+            SequenceInvoker.Active();
         }
-        
-        public void Cancel() => sequencer.Cancel();
+
+        public void Cancel() => SequenceInvoker.Cancel();
 
         // TODO. 여기가 맞나;
         public void AddReward(string key, Action action)
         {
-            sequencer.CompleteAction.Add(key, action);
+            SequenceBuilder.AddComplete(key, action);
         }
 
 
         private void OnEnable()
         {
-            sequencer.Condition.Add("AbleToBehaviourOverride", () => CanOverrideToCurrent);
-            sequencer.ActiveAction.Add("CommonStunAction", () =>
-            {
-                if (cb.CurrentBehaviour is not null && cb.BehaviourMask != BehaviourMask)
-                    cb.CurrentBehaviour.Cancel();
-
-                cb.CurrentBehaviour = this;
-                Cb.Animating.Dead(sequencer.Complete);
-                Cb.Pathfinding.Quit();
-            });
+            SequenceInvoker.Initialize(sequencer);
+            SequenceBuilder.Initialize(sequencer)
+                           .AddCondition("AbleToBehaviourOverride", () => BehaviourMask.CanOverride(Cb.BehaviourMask))
+                           .AddActive("CancelPreviousBehaviour", () => cb.CurrentBehaviour?.TryToCancel(this))
+                           .AddActive("SetCurrentBehaviour", () => cb.CurrentBehaviour = this)
+                           .AddActive("PlayAnimation", () => Cb.Animating.Dead(SequenceInvoker.Complete))
+                           .AddActive("Cb.Pathfinding.Quit", Cb.Pathfinding.Quit);
         }
 
         private void OnDisable()

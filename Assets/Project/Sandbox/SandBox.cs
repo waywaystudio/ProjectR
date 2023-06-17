@@ -1,4 +1,5 @@
 using System;
+using Common;
 using Sirenix.OdinInspector;
 using UnityEngine;
 
@@ -8,19 +9,19 @@ public class SandBox : MonoBehaviour
     public bool BooleanToggle;
     
     [Button]
-    public void Debugger()
+    public void CoolDebugger()
     {
-        var waitTrigger = new WaitTrigger(Log, () => BooleanToggle);
+        // var coolTImer = new CoolTimer(TestSecond, Log);
         
-        waitTrigger.Pull();
+        // coolTImer.Play();
     }
     
     [Button]
-    public void TimeDebugger()
+    public void CastDebugger()
     {
-        var timeTrigger = new TimeTrigger(Log, TestSecond);
+        // var castTImer = new CastTimer(TestSecond, Log);
         
-        timeTrigger.Pull();
+        // castTImer.Play();
     }
 
     public void Log() => Debug.Log(DateTime.Now);

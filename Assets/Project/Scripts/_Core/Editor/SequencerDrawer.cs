@@ -16,33 +16,42 @@ namespace Editor
 
         public override void ProcessChildMemberAttributes(InspectorProperty parentProperty, MemberInfo member, List<Attribute> attributes)
         {
-            if (member.Name == "conditionTable")
+            if (member.Name == "Condition")
             {
+                attributes.Add(new ShowInInspectorAttribute());
                 attributes.Add(new PropertyOrderAttribute(10f));
                 attributes.Add(new HideLabelAttribute());
                 attributes.Add(new FoldoutGroupAttribute("Condition", true));
             }
-            
-            if (member.Name == "activeSection")
+
+            if (member.Name == "ActiveAction")
             {
+                attributes.Add(new ShowInInspectorAttribute());
+                attributes.Add(new HideLabelAttribute());
                 attributes.Add(new PropertyOrderAttribute(12f));
                 attributes.Add(new FoldoutGroupAttribute("Active"));
             }
             
-            if (member.Name == "cancelSection")
+            if (member.Name == "CancelAction")
             {
+                attributes.Add(new ShowInInspectorAttribute());
+                attributes.Add(new HideLabelAttribute());
                 attributes.Add(new PropertyOrderAttribute(13f));
                 attributes.Add(new FoldoutGroupAttribute("Cancel"));
             }
             
-            if (member.Name == "completeSection")
+            if (member.Name == "CompleteAction")
             {
+                attributes.Add(new ShowInInspectorAttribute());
+                attributes.Add(new HideLabelAttribute());
                 attributes.Add(new PropertyOrderAttribute(14f));
                 attributes.Add(new FoldoutGroupAttribute("Complete"));
             }
             
-            if (member.Name == "endSection")
+            if (member.Name == "EndAction")
             {
+                attributes.Add(new ShowInInspectorAttribute());
+                attributes.Add(new HideLabelAttribute());
                 attributes.Add(new PropertyOrderAttribute(15f));
                 attributes.Add(new FoldoutGroupAttribute("End"));
             }
@@ -53,50 +62,57 @@ namespace Editor
     {
         public override void ProcessSelfAttributes(InspectorProperty property, List<Attribute> attributes)
         {
+            attributes.Add(new ShowInInspectorAttribute());
             attributes.Add(new HideLabelAttribute());
             attributes.Add(new HideReferenceObjectPickerAttribute());
         }
         
         public override void ProcessChildMemberAttributes(InspectorProperty parentProperty, MemberInfo member, List<Attribute> attributes)
         {
-            if (member.Name == "key")
+            if (member.Name == "Condition")
             {
                 attributes.Add(new ShowInInspectorAttribute());
-            }
-            
-            if (member.Name == "conditionTable")
-            {
                 attributes.Add(new PropertyOrderAttribute(10f));
                 attributes.Add(new HideLabelAttribute());
                 attributes.Add(new FoldoutGroupAttribute("Condition", true));
             }
             
-            if (member.Name == "activeParamSection")
+            if (member.Name == "ActiveParamAction")
             {
+                attributes.Add(new ShowInInspectorAttribute());
+                attributes.Add(new HideLabelAttribute());
                 attributes.Add(new PropertyOrderAttribute(11f));
                 attributes.Add(new FoldoutGroupAttribute("ActiveParameter"));
             }
             
-            if (member.Name == "activeSection")
+            if (member.Name == "ActiveAction")
             {
+                attributes.Add(new ShowInInspectorAttribute());
+                attributes.Add(new HideLabelAttribute());
                 attributes.Add(new PropertyOrderAttribute(12f));
                 attributes.Add(new FoldoutGroupAttribute("Active"));
             }
             
-            if (member.Name == "cancelSection")
+            if (member.Name == "CancelAction")
             {
+                attributes.Add(new ShowInInspectorAttribute());
+                attributes.Add(new HideLabelAttribute());
                 attributes.Add(new PropertyOrderAttribute(13f));
                 attributes.Add(new FoldoutGroupAttribute("Cancel"));
             }
             
-            if (member.Name == "completeSection")
+            if (member.Name == "CompleteAction")
             {
+                attributes.Add(new ShowInInspectorAttribute());
+                attributes.Add(new HideLabelAttribute());
                 attributes.Add(new PropertyOrderAttribute(14f));
                 attributes.Add(new FoldoutGroupAttribute("Complete"));
             }
             
-            if (member.Name == "endSection")
+            if (member.Name == "EndAction")
             {
+                attributes.Add(new ShowInInspectorAttribute());
+                attributes.Add(new HideLabelAttribute());
                 attributes.Add(new PropertyOrderAttribute(15f));
                 attributes.Add(new FoldoutGroupAttribute("End"));
             }

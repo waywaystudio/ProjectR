@@ -1,9 +1,8 @@
-using Common.Execution;
 using UnityEngine;
 
-namespace Common.Skills
+namespace Common.Execution
 {
-    public class SkillExecutor : MonoBehaviour, IEditable
+    public class Executor : MonoBehaviour, IEditable
     {
         [SerializeField] private Table<ExecuteGroup, Executions> table;
         
