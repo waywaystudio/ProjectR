@@ -23,7 +23,7 @@ namespace Common.Execution
         private void CreateTrap(TrapComponent trap)
         {
             trap.Initialize(Origin.Provider);
-            trap.TrapSequencer.EndAction.Add("ReturnToPool",() =>
+            trap.SequenceBuilder.AddEnd("ReturnToPool",() =>
             {
                 trap.transform.position = Vector3.zero;
                 trap.transform.SetParent(transform, false);

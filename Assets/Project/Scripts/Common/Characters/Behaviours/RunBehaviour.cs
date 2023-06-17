@@ -30,7 +30,7 @@ namespace Common.Characters.Behaviours
             SequenceBuilder.Initialize(sequencer)
                            .AddCondition("AbleToBehaviourOverride", () => BehaviourMask.CanOverride(Cb.BehaviourMask))
                            .AddCondition("CanMove", () => Cb.Pathfinding.CanMove)
-                           .AddActiveParam("RunPathfinding", destination => Cb.Pathfinding.Move(destination, sequencer.Complete))
+                           .AddActiveParam("RunPathfinding", destination => Cb.Pathfinding.Move(destination, SequenceInvoker.Complete))
                            .AddActive("CancelPreviousBehaviour", () => cb.CurrentBehaviour?.TryToCancel(this))
                            .AddActive("SetCurrentBehaviour", () => cb.CurrentBehaviour = this)
                            .AddActive("PlayAnimation", Cb.Animating.Run)

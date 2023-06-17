@@ -1,13 +1,13 @@
 using Common.Execution;
-using Common.Skills;
 using UnityEngine;
 
 namespace Common.StatusEffect
 {
-    public abstract class StatusEffectComponent : MonoBehaviour, ISections<ICombatTaker>, IStatusEffect, IEditable
+    public abstract class StatusEffectComponent : MonoBehaviour, IStatusEffect, IEditable
+                                                  , ISections<ICombatTaker>
     {
         [SerializeField] protected Executor executor;
-        [SerializeField] protected StatusEffectSequencer sequencer;
+        [SerializeField] private StatusEffectSequencer sequencer;
         
         [SerializeField] protected DataIndex statusCode;
         [SerializeField] protected StatusEffectType type;
@@ -19,15 +19,16 @@ namespace Common.StatusEffect
         public Sprite Icon => icon;
         public float Duration => duration;
         public FloatEvent ProgressTime { get; } = new();
+        public StatusEffectSequenceBuilder SequenceBuilder { get; } = new();
+        public StatusEffectSequenceInvoker SequenceInvoker { get; } = new();
         
-        public StatusEffectSequencer Sequencer => sequencer;
-        public ActionTable<ICombatTaker> ActiveParamAction => Sequencer.ActiveParamAction;
-        public ConditionTable Condition => Sequencer.Condition;
-        public ActionTable ActiveAction => Sequencer.ActiveAction;
-        public ActionTable CancelAction => Sequencer.CancelAction;
-        public ActionTable CompleteAction => Sequencer.CompleteAction;
-        public ActionTable EndAction => Sequencer.EndAction;
-        public ActionTable ExecuteAction => Sequencer.ExecuteAction;
+        public ActionTable<ICombatTaker> ActiveParamAction => sequencer.ActiveParamAction;
+        public ConditionTable Condition => sequencer.Condition;
+        public ActionTable ActiveAction => sequencer.ActiveAction;
+        public ActionTable CancelAction => sequencer.CancelAction;
+        public ActionTable CompleteAction => sequencer.CompleteAction;
+        public ActionTable EndAction => sequencer.EndAction;
+        public ActionTable ExecuteAction => sequencer.ExecuteAction;
 
         protected ICombatTaker Taker { get; set; }
         
@@ -40,17 +41,12 @@ namespace Common.StatusEffect
         {
             Provider = provider;
             ProgressTime.SetClamp(0f, Mathf.Min(duration * 1.5f, 3600));
-            
-            sequencer.EndAction.Add("CommonStatusEffectEndAction", () => 
-            {
-                var targetTable = type == StatusEffectType.Buff
-                    ? Taker.DynamicStatEntry.BuffTable
-                    : Taker.DynamicStatEntry.DeBuffTable;
-            
-                targetTable.Unregister(this);
-                enabled = false;
-                gameObject.SetActive(false);
-            });
+
+            SequenceInvoker.Initialize(sequencer);
+            SequenceBuilder.Initialize(sequencer)
+                           .AddEnd("UnregisterTable", UnregisterTable)
+                           .AddEnd("DisableComponent", () => enabled = false)
+                           .AddEnd("DeActiveGameObject", () => gameObject.SetActive(false));
         }
 
         /// <summary>
@@ -63,7 +59,7 @@ namespace Common.StatusEffect
             ProgressTime.Value = duration;
 
             gameObject.SetActive(true);
-            sequencer.Active(taker);
+            SequenceInvoker.Active(taker);
         }
 
         /// <summary>
@@ -77,7 +73,7 @@ namespace Common.StatusEffect
         /// <summary>
         /// 해제 시 호출 == Dispel. (만료 아님)
         /// </summary>
-        public void Cancel() => sequencer.Cancel();
+        public void Cancel() => SequenceInvoker.Cancel();
 
 
         /// <summary>
@@ -88,6 +84,16 @@ namespace Common.StatusEffect
             sequencer.Clear();
             
             Destroy(gameObject);
+        }
+
+
+        private void UnregisterTable()
+        {
+            var targetTable = type == StatusEffectType.Buff
+                ? Taker.DynamicStatEntry.BuffTable
+                : Taker.DynamicStatEntry.DeBuffTable;
+
+            targetTable.Unregister(this);
         }
 
 

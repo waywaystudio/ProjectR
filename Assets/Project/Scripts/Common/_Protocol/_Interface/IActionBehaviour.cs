@@ -1,5 +1,3 @@
-using Common.Characters;
-
 namespace Common
 {
     public interface IActionBehaviour

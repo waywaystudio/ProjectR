@@ -6,21 +6,30 @@ using UnityEngine.Events;
 namespace Character.Villains
 {
     [Serializable]
-    public class PhaseSequencer : Sequencer
+    public class PhaseSequencer
     {
+        [SerializeField] private Sequencer sequencer;
         [SerializeField] private UnityEvent persistantActiveEvent;
         [SerializeField] private UnityEvent persistantCompleteEvent;
         [SerializeField] private VillainPhaseMask phaseMask;
+
+        public SequenceBuilder SequenceBuilder { get; } = new();
+        public SequenceInvoker SequenceInvoker { get; } = new();
 
         public VillainPhaseMask PhaseMask => phaseMask;
 
         public void Initialize()
         {
-            if (persistantActiveEvent.GetPersistentEventCount() != 0)
-                ActiveAction.Add("PersistantEvent", persistantActiveEvent.Invoke);
+            SequenceInvoker.Initialize(sequencer);
+            SequenceBuilder.Initialize(sequencer);
+
+            if (persistantActiveEvent.GetPersistentEventCount() != 0) 
+                SequenceBuilder.AddActive("PersistantEvent", persistantActiveEvent.Invoke);
             
             if (persistantCompleteEvent.GetPersistentEventCount() != 0)
-                CompleteAction.Add("PersistantEvent", persistantCompleteEvent.Invoke);
+                SequenceBuilder.AddComplete("PersistantEvent", persistantCompleteEvent.Invoke);
         }
+
+        public void Clear() => sequencer.Clear();
     }
 }

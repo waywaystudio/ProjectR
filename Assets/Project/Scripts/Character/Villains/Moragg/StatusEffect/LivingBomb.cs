@@ -24,8 +24,8 @@ namespace Character.Villains.Moragg.StatusEffect
         {
             base.Initialize(provider);
 
-            sequencer.ActiveAction.Add("SetHasteWeight", SetHasteWeight);
-            sequencer.CompleteAction.Add("Bomb", Bomb);
+            SequenceBuilder.AddActive("SetHasteWeight", SetHasteWeight)
+                           .AddComplete("Bomb", Bomb);
         }
 
 
@@ -63,7 +63,7 @@ namespace Character.Villains.Moragg.StatusEffect
             }
             else
             {
-                sequencer.Complete();
+                SequenceInvoker.Complete();
             }
         }
     }

@@ -1,6 +1,5 @@
 using System.Collections.Generic;
 using Common.Execution;
-using Common.Skills;
 using Common.Systems;
 using DG.Tweening;
 using UnityEngine;
@@ -10,12 +9,15 @@ namespace Common.Traps
     public abstract class TrapComponent : MonoBehaviour, IActionSender, ISections, IEditable
     {
         [SerializeField] protected Executor executor;
-        [SerializeField] protected TrapSequencer sequencer;
+        [SerializeField] private TrapSequencer sequencer;
         [SerializeField] private CollidingSystem collidingSystem;
         [SerializeField] protected DataIndex trapCode;
         [SerializeField] protected float delayTime;
         [SerializeField] protected float radius;
         [SerializeField] protected LayerMask targetLayer;
+
+        private readonly TrapSequenceBuilder sequenceBuilder = new();
+        private readonly TrapSequenceInvoker sequenceInvoker = new();
 
         public ICombatProvider Provider { get; protected set; }
         public DataIndex DataIndex => trapCode;
@@ -24,14 +26,36 @@ namespace Common.Traps
         public float ProlongTime { get; set; }
         
         // public SkillExecutor Executor => executor;
-        public TrapSequencer TrapSequencer => sequencer;
-        public ActionTable<Vector3> ActiveParamAction => TrapSequencer.ActiveParamAction;
-        public ConditionTable Condition => TrapSequencer.Condition;
-        public ActionTable ActiveAction => TrapSequencer.ActiveAction;
-        public ActionTable CancelAction => TrapSequencer.CancelAction;
-        public ActionTable CompleteAction => TrapSequencer.CompleteAction;
-        public ActionTable EndAction => TrapSequencer.EndAction;
-        public ActionTable ExecuteAction { get; } = new();
+        // public TrapSequencer TrapSequencer => sequencer;
+        public TrapSequenceBuilder SequenceBuilder
+        {
+            get
+            {
+                if (!sequenceBuilder.IsInitialized) 
+                    sequenceBuilder.Initialize(sequencer);
+                
+                return sequenceBuilder;
+            }
+        }
+
+        public TrapSequenceInvoker SequenceInvoker
+        {
+            get
+            {
+                if (!sequenceInvoker.IsInitialized) 
+                    sequenceInvoker.Initialize(sequencer);
+                
+                return sequenceInvoker;
+            }
+        }
+
+        public ActionTable<Vector3> ActiveParamAction => sequencer.ActiveParamAction;
+        public ConditionTable Condition => sequencer.Condition;
+        public ActionTable ActiveAction => sequencer.ActiveAction;
+        public ActionTable CancelAction => sequencer.CancelAction;
+        public ActionTable CompleteAction => sequencer.CompleteAction;
+        public ActionTable EndAction => sequencer.EndAction;
+        public ActionTable ExecuteAction => sequencer.ExecuteAction;
         
         
         /// <summary>
@@ -41,7 +65,10 @@ namespace Common.Traps
         public virtual void Initialize(ICombatProvider provider)
         {
             Provider = provider;
-            sequencer.EndAction.Add("TrapObjectActiveFalse", () => gameObject.SetActive(false));
+            
+            SequenceInvoker.Initialize(sequencer);
+            SequenceBuilder.Initialize(sequencer)
+                           .AddEnd("TrapObjectActiveFalse", () => gameObject.SetActive(false));
         }
         
         /// <summary>
@@ -58,11 +85,11 @@ namespace Common.Traps
 
             if (delayTime != 0f)
             {
-                DOVirtual.DelayedCall(delayTime, () => sequencer.Active(position));
+                DOVirtual.DelayedCall(delayTime, () => SequenceInvoker.Active(position));
             }
             else
             {
-                sequencer.Active(position);
+                SequenceInvoker.Active(position);
             }
         }
 
@@ -75,7 +102,7 @@ namespace Common.Traps
         /// <summary>
         /// 해제 시 호출. (만료 아님)
         /// </summary>
-        public void Cancel() => sequencer.Cancel();
+        public void Cancel() => SequenceInvoker.Cancel();
 
 
         /// <summary>

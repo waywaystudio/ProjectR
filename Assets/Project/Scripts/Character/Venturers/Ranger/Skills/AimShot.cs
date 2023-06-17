@@ -20,7 +20,7 @@ namespace Character.Venturers.Ranger.Skills
 
         private void PlayEndChargingAnimation()
         {
-            Cb.Animating.PlayOnce("heavyAttack", 0f, SkillSequencer.Complete);
+            Cb.Animating.PlayOnce("heavyAttack", 0f, SequenceInvoker.Complete);
         }
     }
 }

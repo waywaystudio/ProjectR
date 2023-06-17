@@ -70,7 +70,7 @@ public class Sequencer : ISections
 public class Sequencer<T> : Sequencer, IParamSection<T>
 {
     public ActionTable<T> ActiveParamAction { get; } = new();
-
+    
     public void Active(T value)
     {
         ActiveParamAction.Invoke(value);

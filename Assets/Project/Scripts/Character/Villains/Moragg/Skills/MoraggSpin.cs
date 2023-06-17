@@ -16,8 +16,6 @@ namespace Character.Villains.Moragg.Skills
 
         protected override void AddSkillSequencer()
         {
-            
-            
             ExecuteAction.Add("CommonExecution", () =>
             {
                 if (TryGetTakersInSphere(this, out var takerList))
@@ -25,7 +23,7 @@ namespace Character.Villains.Moragg.Skills
                     takerList.ForEach(executor.Execute);
                 }
         
-                Cb.Animating.PlayOnce("attack", 0f, SkillSequencer.Complete);
+                Cb.Animating.PlayOnce("attack", 0f, SequenceInvoker.Complete);
             });
         }
     }

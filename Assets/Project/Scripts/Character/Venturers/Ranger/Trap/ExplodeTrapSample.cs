@@ -8,16 +8,14 @@ namespace Character.Venturers.Ranger.Trap
         public override void Initialize(ICombatProvider provider)
         {
             base.Initialize(provider);
-            
-            sequencer.CompleteAction.Add("Execute", Execution);
-            
-            ExecuteAction.Add("MeteorExecution", () =>
-            {
-                if (TryGetTakerInSphere(out var takerList))
-                {
-                    takerList.ForEach(executor.Execute);
-                }
-            });
+
+
+            SequenceBuilder.AddExecution("MeteorExecution", () =>
+                           {
+                               if (TryGetTakerInSphere(out var takerList)) 
+                                   takerList.ForEach(executor.Execute);
+                           })
+                           .AddComplete("Execute", Execution);
         }
         
         public override void Execution() => ExecuteAction.Invoke();

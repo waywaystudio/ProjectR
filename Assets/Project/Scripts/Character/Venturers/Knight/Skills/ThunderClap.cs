@@ -9,9 +9,9 @@ namespace Character.Venturers.Knight.Skills
         protected override void AddSkillSequencer()
         {
             AddAnimationEvent();
-            
-            SkillSequencer.ActiveAction.Add("Jump", Jump);
-            
+
+            SequenceBuilder.AddActive("Jump", Jump);
+
             ExecuteAction.Add("CommonExecution", () =>
             {
                 if (!TryGetTakersInSphere(this, out var takerList)) return;

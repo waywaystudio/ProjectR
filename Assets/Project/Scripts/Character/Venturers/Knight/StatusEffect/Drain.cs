@@ -12,8 +12,8 @@ namespace Character.Venturers.Knight.StatusEffect
         {
             base.Initialize(provider);
 
-            sequencer.ActiveAction.Add("DrainBuff",() => Provider.OnDamageProvided.Add("DrainBuff", DrainHp));
-            sequencer.EndAction.Add("Return", () => Provider.OnDamageProvided.Remove("DrainBuff"));
+            SequenceBuilder.AddActive("DrainBuff", () => Provider.OnDamageProvided.Add("DrainBuff", DrainHp))
+                           .AddEnd("Return", () => Provider.OnDamageProvided.Remove("DrainBuff"));
         }
 
 
@@ -30,7 +30,7 @@ namespace Character.Venturers.Knight.StatusEffect
             }
             else
             {
-                sequencer.Complete();
+                SequenceInvoker.Complete();
             }
         }
 

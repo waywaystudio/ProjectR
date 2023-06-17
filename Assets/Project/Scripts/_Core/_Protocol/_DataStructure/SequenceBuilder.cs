@@ -2,25 +2,31 @@ using System;
 
 public class SequenceBuilder
 {
-    private Sequencer sequencer;
+    protected Sequencer Sequencer;
 
     public SequenceBuilder Initialize(Sequencer sequencer)
     {
-        this.sequencer = sequencer;
+        this.Sequencer = sequencer;
         return this;
     }
     
-    public Sequencer Build() => sequencer;
+    public Sequencer Build() => Sequencer;
 
     public SequenceBuilder AddCondition(string key, Func<bool> condition)
     {
-        sequencer.Condition.Add(key, condition);
+        Sequencer.Condition.Add(key, condition);
         return this;
     }
     
     public SequenceBuilder RemoveCondition(string key)
     {
-        sequencer.Condition.Remove(key);
+        Sequencer.Condition.Remove(key);
+        return this;
+    }
+    
+    public SequenceBuilder AddTrigger(Func<bool> condition)
+    {
+        Sequencer.AddCompleteTrigger(condition);
         return this;
     }
     
@@ -33,68 +39,77 @@ public class SequenceBuilder
     public SequenceBuilder RemoveComplete(string key) => Remove(SectionType.Complete, key);
     public SequenceBuilder RemoveEnd(string key) => Remove(SectionType.End, key);
     
-    private SequenceBuilder Add(SectionType type, string key, Action action)
+    protected SequenceBuilder Add(SectionType type, string key, Action action)
     {
         GetActionTable(type).Add(key, action);
         return this;
     }
     
-    private SequenceBuilder Remove(SectionType type, string key)
+    protected SequenceBuilder Remove(SectionType type, string key)
     {
         GetActionTable(type).Remove(key);
         return this;
     }
 
-    private ActionTable GetActionTable(SectionType type) => type switch
+    protected ActionTable GetActionTable(SectionType type) => type switch
     {
 
-        SectionType.Active => sequencer.ActiveAction,
-        SectionType.Cancel     => sequencer.CancelAction,
-        SectionType.Complete   => sequencer.CompleteAction,
-        SectionType.End        => sequencer.EndAction,
+        SectionType.Active => Sequencer.ActiveAction,
+        SectionType.Cancel     => Sequencer.CancelAction,
+        SectionType.Complete   => Sequencer.CompleteAction,
+        SectionType.End        => Sequencer.EndAction,
         _                      => null,
     };
 }
 
 public class SequenceBuilder<T>
 {
-    private Sequencer<T> sequencer;
+    public bool IsInitialized;
+    protected Sequencer<T> Sequencer;
 
     public SequenceBuilder<T> Initialize(Sequencer<T> sequencer)
     {
-        this.sequencer = sequencer;
+        IsInitialized = true;
+        Sequencer     = sequencer;
+        
         return this;
     }
     
-    public Sequencer<T> Build() => sequencer;
+    public Sequencer<T> Build() => Sequencer;
 
     public SequenceBuilder<T> AddCondition(string key, Func<bool> condition)
     {
-        sequencer.Condition.Add(key, condition);
+        Sequencer.Condition.Add(key, condition);  
         return this;
     }
     
     public SequenceBuilder<T> RemoveCondition(string key)
     {
-        sequencer.Condition.Remove(key);
+        Sequencer.Condition.Remove(key);
+        return this;
+    }
+    
+    public SequenceBuilder<T> AddTrigger(Func<bool> condition)
+    {
+        Sequencer.AddCompleteTrigger(condition);
         return this;
     }
 
     public SequenceBuilder<T> AddActiveParam(string key, Action action)
     {
-        sequencer.ActiveParamAction.Add(key, action);
+        Sequencer.ActiveParamAction.Add(key, action);
         return this;
     }
 
     public SequenceBuilder<T> AddActiveParam(string key, Action<T> action)
     {
-        sequencer.ActiveParamAction.Add(key, action);
+        Sequencer.ActiveParamAction.Add(key, action);
         return this;
     }
     
     public SequenceBuilder<T> RemoveActiveParam(string key)
     {
-        sequencer.ActiveParamAction.Remove(key);
+        Sequencer.ActiveParamAction.Remove(key);
         return this;
     }
     
@@ -108,23 +123,51 @@ public class SequenceBuilder<T>
     public SequenceBuilder<T> RemoveEnd(string key) => Remove(SectionType.End, key);
     
     
-    private SequenceBuilder<T> Add(SectionType type, string key, Action action)
+    public SequenceBuilder<T> Add(SectionType type, string key, Action action)
     {
         GetActionTable(type).Add(key, action);
         return this;
     }
-    private SequenceBuilder<T> Remove(SectionType type, string key)
+    protected SequenceBuilder<T> Remove(SectionType type, string key)
     {
         GetActionTable(type).Remove(key);
         return this;
     }
 
-    private ActionTable GetActionTable(SectionType type) => type switch
+    protected virtual ActionTable GetActionTable(SectionType type) => type switch
     {
-        SectionType.Active   => sequencer.ActiveAction,
-        SectionType.Cancel   => sequencer.CancelAction,
-        SectionType.Complete => sequencer.CompleteAction,
-        SectionType.End      => sequencer.EndAction,
+        SectionType.Active   => Sequencer.ActiveAction,
+        SectionType.Cancel   => Sequencer.CancelAction,
+        SectionType.Complete => Sequencer.CompleteAction,
+        SectionType.End      => Sequencer.EndAction,
         _                    => null,
     };
+
+    protected void TryAdd(SectionType type, string key, Action action)
+    {
+        switch (type)
+        {
+            case SectionType.Active:
+            {
+                Sequencer.ActiveAction.Add(key, action);
+                break;
+            }
+            case SectionType.Cancel:
+            {
+                Sequencer.CancelAction.Add(key, action);
+                break;
+            }
+            case SectionType.Complete:
+            {
+                Sequencer.CompleteAction.Add(key, action);
+                break;
+            }
+            case SectionType.End:
+            {
+                Sequencer.EndAction.Add(key, action);
+                break;
+            }
+            default: break;
+        }
+    }
 }

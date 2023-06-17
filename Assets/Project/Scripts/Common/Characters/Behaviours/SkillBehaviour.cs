@@ -34,7 +34,7 @@ namespace Common.Characters.Behaviours
                 return;
             }
 
-            if (!skill.SkillSequencer.IsAbleToActive) return;
+            if (!skill.SequenceInvoker.IsAbleToActive) return;
             
             Current = skill;
             
@@ -62,7 +62,7 @@ namespace Common.Characters.Behaviours
             
             skillTable.Iterate(skill =>
             {
-                if (!skill.SkillSequencer.IsAbleToActive) return;
+                if (!skill.SequenceInvoker.IsAbleToActive) return;
                 if (result is null || result.Priority < skill.Priority)
                 {
                     result = skill;
@@ -76,8 +76,14 @@ namespace Common.Characters.Behaviours
 
         private void OnEnable()
         {
-            skillTable.Iterate(skill => skill.SkillSequencer.EndAction.Add("BehaviourUnregister", () => Current = null));
-            
+            skillTable.Iterate(skill =>
+            {
+                skill.Initialize();
+                skill.SequenceBuilder
+                     .AddEnd("BehaviourUnregister", () => Current = null);
+                     //.AddActive("SetCurrentSkill", () => Current  = skill);
+            });
+
             SequenceInvoker.Initialize(sequencer);
             SequenceBuilder.Initialize(sequencer)
                            .AddCondition("AbleToBehaviourOverride", () => BehaviourMask.CanOverride(Cb.BehaviourMask))
@@ -92,6 +98,8 @@ namespace Common.Characters.Behaviours
 
         private void OnDisable()
         {
+            skillTable.Iterate(skill => { skill.Dispose(); });
+
             sequencer.Clear();
             globalCoolTimer.Dispose();
         }

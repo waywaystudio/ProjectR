@@ -5,7 +5,8 @@ using UnityEngine;
 
 namespace Common.Skills
 {
-    public abstract class SkillComponent : MonoBehaviour, ISequencer, IActionSender, IEditable
+    public abstract class SkillComponent : MonoBehaviour, IActionSender, IEditable
+    // , ISequencer 
     {
         [SerializeField] protected Executor executor;
         [SerializeField] protected SkillSequencer sequencer;
@@ -18,7 +19,6 @@ namespace Common.Skills
         [SerializeField] protected int priority;
         [SerializeField] protected float range;
         [SerializeField] protected float angle;
-        
         [SerializeField] protected string animationKey;
         [SerializeField] protected string description;
         [SerializeField] protected CoolTimer coolTimer;
@@ -27,9 +27,7 @@ namespace Common.Skills
         [SerializeField] protected Sprite icon;
         
         private CharacterBehaviour cb;
-        private readonly Sequencer<Vector3> mainSequencer = new();
-        private readonly SequenceBuilder<Vector3> builder = new();
-
+        private bool isInitialized; // TODO. OnEnable, Disable 삭제 문제가 없어지면 같이 삭제
 
         public DataIndex DataIndex => actionCode;
         public ICombatProvider Provider => Cb;
@@ -49,17 +47,15 @@ namespace Common.Skills
         // 
         
         /* Sequence */
-        public Sequencer Sequencer => sequencer;
-        public SkillSequencer SkillSequencer => sequencer;
-        
-        // public ActionTable<Vector3> ActiveParamAction => SkillSequencer.ActiveParamAction;
-        public ConditionTable Condition => SkillSequencer.Condition;
-        public ActionTable ActiveAction => SkillSequencer.ActiveAction;
-        public ActionTable CancelAction => SkillSequencer.CancelAction;
-        public ActionTable CompleteAction => SkillSequencer.CompleteAction;
-        public ActionTable EndAction => SkillSequencer.EndAction;
-        
+        public ConditionTable Condition => sequencer.Condition;
+        public ActionTable ActiveAction => sequencer.ActiveAction;
+        public ActionTable CancelAction => sequencer.CancelAction;
+        public ActionTable CompleteAction => sequencer.CompleteAction;
+        public ActionTable EndAction => sequencer.EndAction;
         public ActionTable ExecuteAction { get; } = new();
+        
+        public SkillSequenceBuilder SequenceBuilder { get; } = new();
+        public SkillSequenceInvoker SequenceInvoker { get; } = new();
 
         /* Progress */
         public CoolTimer CoolTimer => coolTimer;
@@ -73,9 +69,9 @@ namespace Common.Skills
 
         public CharacterBehaviour Cb => cb ??= GetComponentInParent<CharacterBehaviour>();
 
-        public bool IsEnded => sequencer == null || sequencer.IsEnd;
+        public bool IsEnded => sequencer == null || SequenceInvoker.IsEnd;
         protected bool AbleToRelease => SkillType is not (SkillType.Instant or SkillType.Casting) && IsActive;
-        protected bool IsActive => sequencer == null || sequencer.IsActive;
+        protected bool IsActive => sequencer == null || SequenceInvoker.IsActive;
 
 
         /// <summary>
@@ -83,7 +79,7 @@ namespace Common.Skills
         /// </summary>
         public void Active(Vector3 targetPosition)
         {
-            sequencer.Active(targetPosition);
+            SequenceInvoker.Active(targetPosition);
         }
 
         /// <summary>
@@ -91,7 +87,7 @@ namespace Common.Skills
         /// </summary>
         public void Cancel()
         {
-            SkillSequencer.Cancel();
+            SequenceInvoker.Cancel();
         }
 
         /// <summary>
@@ -101,9 +97,7 @@ namespace Common.Skills
         {
             if (!AbleToRelease) return;
 
-            var callbackSection = CastTimer.CallbackSection.GetSkillAction(this);
-
-            callbackSection?.Invoke();
+            CastTimer.CallbackSection.GetInvokeAction(this)?.Invoke();
         }
 
         /// <summary>
@@ -111,6 +105,41 @@ namespace Common.Skills
         /// 데미지, 상태이상 부여 등을 실제 수행하는 함수
         /// </summary>
         public virtual void Execution() { } // => ExecuteAction.Invoke();
+        
+        public virtual void Initialize()
+        {
+            if (isInitialized) return;
+            
+            SequenceInvoker.Initialize(sequencer);
+            SequenceBuilder.Initialize(sequencer);
+
+            if (coolTimer.InvokeSection != SectionType.None)
+            {
+                SequenceBuilder.AddCondition("IsCoolTimeReady", () => coolTimer.IsReady)
+                               .Add(coolTimer.InvokeSection, "ActiveCoolTime", () => coolTimer.Play(CoolWeightTime));
+            }
+
+            SequenceBuilder.AddActiveParam("CharacterRotate", Cb.Rotate)
+                           .AddActive("PlayAnimation", PlayAnimation)
+                           .AddActive("SkillCasting", 
+                                      () => castTimer.Play(CastWeightTime, CastTimer.CallbackSection.GetInvokeAction(this)))
+                           .AddActive("StopPathfinding", Cb.Pathfinding.Stop)
+                           .AddEnd("StopCastTimer", castTimer.Stop)
+                           .AddEnd("CharacterStop", Cb.Stop);
+            
+            AddSkillSequencer();
+            isInitialized = true;
+        }
+
+        public virtual void Dispose()
+        {
+            sequencer.Clear();
+            
+            // SkillSequencer.Clear();
+            coolTimer.Dispose();
+            castTimer.Dispose();
+        } 
+        
         
         /// <summary>
         /// 스킬 별 각자의 시퀀스 적용 함수
@@ -120,7 +149,7 @@ namespace Common.Skills
         
         protected virtual void PlayAnimation()
         {
-            Cb.Animating.PlayOnce(animationKey, 0f, SkillSequencer.Complete);
+            Cb.Animating.PlayOnce(animationKey, 0f, SequenceInvoker.Complete);
         }
 
         // Utility 
@@ -143,72 +172,8 @@ namespace Common.Skills
         
         protected void AddAnimationEvent()
         {
-            SkillSequencer.ActiveAction
-                     .Add("RegisterHitEvent", () => Cb.Animating.OnHit.Add("SkillHit", Execution));
-            
-            SkillSequencer.EndAction
-                     .Add("ReleaseHit", () => Cb.Animating.OnHit.Remove("SkillHit"));
-        }
-        //
-
-        private void Awake()
-        {
-            builder.Initialize(mainSequencer);
-        }
-
-        protected void OnEnable()
-        {
-            AddSkillSequencer();
-            
-            // builder.AddActive("PlaySkillAnimation", PlayAnimation)
-            //        .AddActive("AddCastTimerCallback", () => 
-            //        { 
-            //            var callbackSection = CastTimer.CallbackSection.GetSkillAction(this);
-            //            castTimer.Play(CastWeightTime, callbackSection);
-            //        })
-            //        .AddActive("StopPathfinding", Cb.Pathfinding.Stop)
-            //        .AddEnd("StopCastTimer", castTimer.Stop)
-            //        .AddEnd("MoveStop", Cb.Stop)
-            //        .Build();
-            
-            if (coolTimer.InvokeSection != SectionType.None)
-            {
-                SkillSequencer.Condition.Add("IsCoolTimeReady", () => coolTimer.IsReady);
-
-                var targetSection = coolTimer.InvokeSection switch
-                {
-                    SectionType.Active => SkillSequencer.ActiveAction,
-                    SectionType.Complete   => SkillSequencer.CompleteAction,
-                    SectionType.End        => SkillSequencer.EndAction,
-                    SectionType.Execute    => ExecuteAction,
-                    _                      => null,
-                };
-                
-                targetSection?.Add("ActiveCoolTime", () => coolTimer.Play(CoolWeightTime));
-            }
-
-            SkillSequencer.ActiveParamAction.Add("CharacterRotate", Cb.Rotate);
-            SkillSequencer.ActiveAction.Add("SkillCommonAction", () =>
-            {
-                PlayAnimation();
-
-                var callbackSection = CastTimer.CallbackSection.GetSkillAction(this);
-                castTimer.Play(CastWeightTime, callbackSection);
-                Cb.Pathfinding.Stop();
-            });
-            
-            SkillSequencer.EndAction.Add("SkillEndAction", () =>
-            {
-                castTimer.Stop();
-                Cb.Stop();
-            });
-        }
-
-        protected void OnDisable()
-        {
-            SkillSequencer.Clear();
-            coolTimer.Dispose();
-            castTimer.Dispose();
+            SequenceBuilder.AddActive("RegisterHitEvent", () => Cb.Animating.OnHit.Add("SkillHit", Execution))
+                           .AddEnd("ReleaseHit", () => Cb.Animating.OnHit.Remove("SkillHit"));
         }
 
 

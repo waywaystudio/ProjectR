@@ -7,4 +7,7 @@ public enum SectionType
     End = 4,
     Execute = 5,
     ActiveParam = 6,
+    Release = 7,
+    Override = 8,
+    
 }

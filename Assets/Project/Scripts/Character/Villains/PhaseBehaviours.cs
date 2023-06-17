@@ -16,9 +16,9 @@ namespace Character.Villains
 
         public void CheckPhaseBehaviour()
         {
-            if (CurrentPhase is null || !CurrentPhase.IsAbleToActive) return;
+            if (CurrentPhase is null || !CurrentPhase.SequenceInvoker.IsAbleToActive) return;
             
-            CurrentPhase.Active();
+            CurrentPhase.SequenceInvoker.Active();
             CurrentPhase = phase2;
         }
 
@@ -28,9 +28,10 @@ namespace Character.Villains
         private void OnEnable()
         {
             phase1.Initialize();
-            phase1.Condition.Add("HpRatio", () => Vb.DynamicStatEntry.Hp.Value / Vb.StatTable.MaxHp < 0.7f);
-            phase1.ActiveAction.Add("RunToCenter", () => Vb.Run(Vector3.zero));
-            phase1.AddCompleteTrigger(() => Vb.transform.position == Vector3.zero || Vb.BehaviourMask == ActionMask.Stop);
+            phase1.SequenceBuilder
+                  .AddCondition("HpRatio", () => Vb.DynamicStatEntry.Hp.Value / Vb.StatTable.MaxHp < 0.7f)
+                  .AddActive("RunToCenter", () => Vb.Run(Vector3.zero))
+                  .AddTrigger(() => Vb.transform.position == Vector3.zero || Vb.BehaviourMask == ActionMask.Stop);
             
             phase2.Initialize();
         }

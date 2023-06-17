@@ -2,34 +2,34 @@ using System;
 
 public class SequenceInvoker
 {
-    private Sequencer sequencer;
+    protected Sequencer Sequencer;
     
-    public bool IsAbleToActive => sequencer.Condition == null || sequencer.Condition.IsAllTrue;
+    public bool IsAbleToActive => Sequencer.Condition == null || Sequencer.Condition.IsAllTrue;
     public bool IsActive { get; private set; }
     public bool IsEnd { get; private set; } = true;
 
-    public void Initialize(Sequencer sequencer) => this.sequencer = sequencer;
+    public void Initialize(Sequencer sequencer) => this.Sequencer = sequencer;
 
     public void Active()
     {
         IsEnd    = false;
         IsActive = true;
         
-        sequencer.ActiveAction.Invoke();
-        sequencer.CompleteTrigger?.Pull();
+        Sequencer.ActiveAction.Invoke();
+        Sequencer.CompleteTrigger?.Pull();
     }
 
     public void AddCompleteTrigger(Func<bool> condition)
     {
-        sequencer.CompleteTrigger = new WaitTrigger(Complete, condition);
+        Sequencer.CompleteTrigger = new WaitTrigger(Complete, condition);
     }
 
     public void Cancel()
     {
         IsActive = false;
         
-        sequencer.CancelAction.Invoke();
-        sequencer.CompleteTrigger?.Cancel();
+        Sequencer.CancelAction.Invoke();
+        Sequencer.CompleteTrigger?.Cancel();
         End();
     }
         
@@ -37,7 +37,7 @@ public class SequenceInvoker
     {
         IsActive = false;
         
-        sequencer.CompleteAction.Invoke();
+        Sequencer.CompleteAction.Invoke();
         End();
     }
 
@@ -45,20 +45,25 @@ public class SequenceInvoker
     {
         IsEnd = true;
         
-        sequencer.EndAction.Invoke();
-        sequencer.CompleteTrigger?.Dispose();
+        Sequencer.EndAction.Invoke();
+        Sequencer.CompleteTrigger?.Dispose();
     }
 }
 
 public class SequenceInvoker<T>
 {
-    private Sequencer<T> sequencer;
+    public bool IsInitialized;
+    protected Sequencer<T> Sequencer;
     
-    public bool IsAbleToActive => sequencer.Condition == null || sequencer.Condition.IsAllTrue;
+    public bool IsAbleToActive => Sequencer.Condition == null || Sequencer.Condition.IsAllTrue;
     public bool IsActive { get; private set; }
     public bool IsEnd { get; private set; } = true;
-    
-    public void Initialize(Sequencer<T> sequencer) => this.sequencer = sequencer;
+
+    public void Initialize(Sequencer<T> sequencer)
+    {
+        IsInitialized = true;
+        Sequencer     = sequencer;
+    }
 
     public void Active(T value)
     {
@@ -66,22 +71,22 @@ public class SequenceInvoker<T>
         IsActive = true;
         
         // Active 가 ActiveParam보다 우선되게 설정. RunBehaviour 참조.
-        sequencer.ActiveAction.Invoke();
-        sequencer.ActiveParamAction.Invoke(value);
-        sequencer.CompleteTrigger?.Pull();
+        Sequencer.ActiveAction.Invoke();
+        Sequencer.ActiveParamAction.Invoke(value);
+        Sequencer.CompleteTrigger?.Pull();
     }
 
     public void AddCompleteTrigger(Func<bool> condition)
     {
-        sequencer.CompleteTrigger = new WaitTrigger(Complete, condition);
+        Sequencer.CompleteTrigger = new WaitTrigger(Complete, condition);
     }
 
     public void Cancel()
     {
         IsActive = false;
         
-        sequencer.CancelAction.Invoke();
-        sequencer.CompleteTrigger?.Cancel();
+        Sequencer.CancelAction.Invoke();
+        Sequencer.CompleteTrigger?.Cancel();
         End();
     }
         
@@ -89,7 +94,7 @@ public class SequenceInvoker<T>
     {
         IsActive = false;
         
-        sequencer.CompleteAction.Invoke();
+        Sequencer.CompleteAction.Invoke();
         End();
     }
 
@@ -97,7 +102,7 @@ public class SequenceInvoker<T>
     {
         IsEnd = true;
         
-        sequencer.EndAction.Invoke();
-        sequencer.CompleteTrigger?.Dispose();
+        Sequencer.EndAction.Invoke();
+        Sequencer.CompleteTrigger?.Dispose();
     }
 }

@@ -30,8 +30,9 @@ namespace Common.Traps
             Progress.Value = interval;
             enabled        = false;
 
-            trapComponent.TrapSequencer.ActiveAction.Add("OverTimeOn", OverTimeOn);
-            trapComponent.TrapSequencer.EndAction.Add("OverTimeOff", OverTimeOff);
+            trapComponent.SequenceBuilder
+                         .AddActive("OverTimeOn", OverTimeOn)
+                         .AddEnd("OverTimeOff", OverTimeOff);
         }
 
         private void Update()

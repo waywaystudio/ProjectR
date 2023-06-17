@@ -38,7 +38,7 @@ namespace Character.Venturers.Knight.StatusEffect
             }
             else
             {
-                sequencer.Complete();
+                SequenceInvoker.Complete();
             }
         }
     }

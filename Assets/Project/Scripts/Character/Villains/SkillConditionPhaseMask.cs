@@ -1,4 +1,5 @@
 using Common;
+using Common.Skills;
 using UnityEngine;
 
 namespace Character.Villains
@@ -8,15 +9,17 @@ namespace Character.Villains
         [SerializeField] private VillainPhaseMask enableMask;
         
         private VillainBehaviour villain;
-        private ISequencer skill;
+        private SkillComponent skill;
 
         private void OnEnable()
         {
             villain = GetComponentInParent<VillainBehaviour>();
             
             TryGetComponent(out skill);
-            
-            skill.Sequencer.Condition.Add("ConditionSelfHpStatus", () => (enableMask | villain.CurrentPhase.PhaseMask) == enableMask);
+
+            skill.Initialize();
+            skill.SequenceBuilder
+                 .AddCondition("ConditionSelfHpStatus", () => (enableMask | villain.CurrentPhase.PhaseMask) == enableMask);
         }
     }
 }
