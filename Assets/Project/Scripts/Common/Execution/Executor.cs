@@ -1,8 +1,10 @@
+using System;
 using UnityEngine;
 
 namespace Common.Execution
 {
-    public class Executor : MonoBehaviour, IEditable
+    [Serializable]
+    public class Executor
     {
         [SerializeField] private Table<ExecuteGroup, Executions> table;
         
@@ -43,9 +45,9 @@ namespace Common.Execution
 
 
 #if UNITY_EDITOR
-        public void EditorSetUp()
+        public void EditorGetExecutions(GameObject parent)
         {
-            var executes = GetComponents<ExecuteComponent>();
+            var executes = parent.GetComponentsInChildren<ExecuteComponent>();
             
             table.Clear();
             
@@ -53,9 +55,7 @@ namespace Common.Execution
             {
                 if (!table.ContainsKey(exe.Group))
                 {
-                    var executions = new Executions(exe);
-                    
-                    table.Add(exe.Group, executions);
+                    table.Add(exe.Group, new Executions(exe));
                 }
                 else
                 {

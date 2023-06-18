@@ -34,12 +34,12 @@ namespace Common.Characters.Behaviours
                 return;
             }
 
-            if (!skill.SequenceInvoker.IsAbleToActive) return;
+            if (!skill.SkillInvoker.IsAbleToActive) return;
             
             Current = skill;
             
             SequenceInvoker.Active();
-            Current.Active(targetPosition);
+            Current.SkillInvoker.Active(targetPosition);
         }
 
         public void Cancel()
@@ -53,7 +53,7 @@ namespace Common.Characters.Behaviours
         {
             if (Current.IsNullOrEmpty()) return;
             
-            Current.Release();
+            Current.SkillInvoker.Release();
         }
 
         public bool TryGetMostPrioritySkill(out SkillComponent skill)
@@ -62,7 +62,7 @@ namespace Common.Characters.Behaviours
             
             skillTable.Iterate(skill =>
             {
-                if (!skill.SequenceInvoker.IsAbleToActive) return;
+                if (!skill.SkillInvoker.IsAbleToActive) return;
                 if (result is null || result.Priority < skill.Priority)
                 {
                     result = skill;
@@ -92,7 +92,7 @@ namespace Common.Characters.Behaviours
                            .Add(SectionType.Active,"CancelPreviousBehaviour", () => cb.CurrentBehaviour?.TryToCancel(this))
                            .Add(SectionType.Active,"SetCurrentBehaviour", () => cb.CurrentBehaviour = this)
                            .Add(SectionType.Active,"PlayGlobalCoolTimer", globalCoolTimer.Play)
-                           .Add(SectionType.Cancel,"CurrentSkillCancel", () => Current.Cancel())
+                           .Add(SectionType.Cancel,"CurrentSkillCancel", () => Current.SkillInvoker.Cancel())
                            .Add(SectionType.End,"Stop", Cb.Stop);
         }
 

@@ -8,8 +8,8 @@ namespace Character.Venturers.Ranger.Trap
         public override void Initialize(ICombatProvider provider)
         {
             base.Initialize(provider);
-            
-            ExecuteAction.Add("OverTimeTrapExecution", () =>
+
+            SequenceBuilder.Add(SectionType.Execute, "OverTimeTrapExecution", () =>
             {
                 if (TryGetTakerInSphere(out var takerList))
                 {
@@ -18,6 +18,6 @@ namespace Character.Venturers.Ranger.Trap
             });
         }
 
-        public override void Execution() => ExecuteAction.Invoke();
+        public override void Execution() => SequenceInvoker.Execute();
     }
 }

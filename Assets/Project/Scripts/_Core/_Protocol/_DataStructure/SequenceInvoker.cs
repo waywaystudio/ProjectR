@@ -19,7 +19,6 @@ public class SequenceInvoker
         IsActive = true;
         
         Sequencer[SectionType.Active].Invoke();
-        // Sequencer.ActiveAction.Invoke();
         Sequencer.CompleteTrigger?.Pull();
     }
 
@@ -28,7 +27,6 @@ public class SequenceInvoker
         IsActive = false;
         
         Sequencer[SectionType.Cancel].Invoke();
-        // Sequencer.CancelAction.Invoke();
         Sequencer.CompleteTrigger?.Cancel();
         End();
     }
@@ -38,7 +36,6 @@ public class SequenceInvoker
         IsActive = false;
         
         Sequencer[SectionType.Complete].Invoke();
-        // Sequencer.CompleteAction.Invoke();
         End();
     }
 
@@ -47,7 +44,6 @@ public class SequenceInvoker
         IsEnd = true;
         
         Sequencer[SectionType.End].Invoke();
-        // Sequencer.EndAction.Invoke();
         Sequencer.CompleteTrigger?.Dispose();
     }
 }
@@ -60,6 +56,7 @@ public class SequenceInvoker<T>
     public bool IsAbleToActive => Sequencer.Condition == null || Sequencer.Condition.IsAllTrue;
     public bool IsActive { get; private set; }
     public bool IsEnd { get; private set; } = true;
+    
 
     public void Initialize(Sequencer<T> sequencer)
     {
@@ -74,7 +71,6 @@ public class SequenceInvoker<T>
         
         // Active 가 ActiveParam보다 우선되게 설정. RunBehaviour 참조.
         Sequencer[SectionType.Active].Invoke();
-        // Sequencer.ActiveAction.Invoke();
         Sequencer.ActiveParamAction.Invoke(value);
         Sequencer.CompleteTrigger?.Pull();
     }
@@ -84,7 +80,6 @@ public class SequenceInvoker<T>
         IsActive = false;
         
         Sequencer[SectionType.Cancel].Invoke();
-        // Sequencer.CancelAction.Invoke();
         Sequencer.CompleteTrigger?.Cancel();
         End();
     }
@@ -94,7 +89,6 @@ public class SequenceInvoker<T>
         IsActive = false;
         
         Sequencer[SectionType.Complete].Invoke();
-        // Sequencer.CompleteAction.Invoke();
         End();
     }
 
@@ -103,7 +97,6 @@ public class SequenceInvoker<T>
         IsEnd = true;
         
         Sequencer[SectionType.End].Invoke();
-        // Sequencer.EndAction.Invoke();
         Sequencer.CompleteTrigger?.Dispose();
     }
 }

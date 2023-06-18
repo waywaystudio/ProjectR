@@ -17,10 +17,10 @@ namespace Character.Venturers.Ranger.Projectile
         public override void Initialize(ICombatProvider provider)
         {
             base.Initialize(provider);
-
-            sequencer.ActiveAction.Add("CollidingTriggerOn", () => triggerCollider.enabled = true);
-            sequencer.ActiveAction.Add("ResetPierceCount", () => pierceCount               = 0);
-            sequencer.EndAction.Add("CollidingTriggerOff", () => triggerCollider.enabled = false);
+            
+            SequenceBuilder.Add(SectionType.Active, "CollidingTriggerOn", () => triggerCollider.enabled = true)
+                           .Add(SectionType.Active, "ResetPierceCount", () => pierceCount = 0)
+                           .Add(SectionType.End, "CollidingTriggerOff", () => triggerCollider.enabled = false);
         }
 
         public override void Execution()
@@ -31,7 +31,7 @@ namespace Character.Venturers.Ranger.Projectile
 
                 if (++pierceCount > maxPierceCount)
                 {
-                    sequencer.Complete();
+                    SequenceInvoker.Complete();
                 }
             }
         }

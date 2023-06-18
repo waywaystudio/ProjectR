@@ -4,26 +4,24 @@ namespace Character.Venturers.Knight.Skills
 {
     public class ThunderClap : SkillComponent
     {
-        public override void Execution() => ExecuteAction.Invoke();
-
-        protected override void AddSkillSequencer()
+        public override void Initialize()
         {
-            AddAnimationEvent();
+            base.Initialize();
+            
+            // AddAnimationEvent();
 
-            SequenceBuilder.Add(SectionType.Active,"Jump", Jump);
+            SequenceBuilder.Add(SectionType.Active, "Jump", Jump)
+                           .Add(SectionType.Execute, "CommonExecution", () =>
+                           {
+                               if (!TryGetTakersInSphere(this, out var takerList)) return;
 
-            ExecuteAction.Add("CommonExecution", () =>
-            {
-                if (!TryGetTakersInSphere(this, out var takerList)) return;
-        
-                takerList.ForEach(executor.Execute);
-            });
+                               takerList.ForEach(executor.Execute);
+                           });
         }
 
         private void Jump()
         {
             var direction = Cb.transform.forward;
-            
             Cb.Pathfinding.Jump(direction, 11f);
         }
     }

@@ -4,23 +4,22 @@ namespace Character.Venturers.Ranger.Skills
 {
     public class AimShot : SkillComponent
     {
-        public override void Execution() => ExecuteAction.Invoke();
-        
-
-        protected override void AddSkillSequencer()
+        public override void Initialize()
         {
-            ExecuteAction.Add("PlayEndChargingAnimation", PlayEndChargingAnimation);
-            ExecuteAction.Add("AimShotExecute", () => executor.Execute(null));
+            base.Initialize();
+            
+            SequenceBuilder.Add(SectionType.Execute, "PlayEndChargingAnimation", PlayEndChargingAnimation)
+                           .Add(SectionType.Execute, "AimShotExecute", () => executor.Execute(null));
         }
         
-        protected override void PlayAnimation()
-        {
-            Cb.Animating.PlayOnce(animationKey);
-        }
+        // protected override void PlayAnimation()
+        // {
+        //     Cb.Animating.PlayOnce(animationKey);
+        // }
 
         private void PlayEndChargingAnimation()
         {
-            Cb.Animating.PlayOnce("heavyAttack", 0f, SequenceInvoker.Complete);
+            Cb.Animating.PlayOnce("heavyAttack", 0f, SkillInvoker.Complete);
         }
     }
 }

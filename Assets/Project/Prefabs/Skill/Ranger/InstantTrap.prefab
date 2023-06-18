@@ -71,7 +71,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6698420302125497801}
-  - component: {fileID: 5816633006006475579}
   - component: {fileID: 2387067369055841418}
   m_Layer: 0
   m_Name: Execution
@@ -95,24 +94,6 @@ Transform:
   m_Father: {fileID: 234500611213636336}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &5816633006006475579
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6666958965938236995}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7cb67e0d4b0f0014c80282718ad1c364, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  table:
-    keyList: 01000000
-    valueList:
-    - ExecutionList:
-      - {fileID: 2387067369055841418}
-    hideKey: 1
 --- !u!114 &2387067369055841418
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -178,23 +159,37 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ed8e277416f78ce4c9d130e48b91a170, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  executor: {fileID: 5816633006006475579}
-  actionCode: 31000017
+  executor:
+    table:
+      keyList: 01000000
+      valueList:
+      - ExecutionList:
+        - {fileID: 2387067369055841418}
+      hideKey: 0
+  animationTrait:
+    animationKey: jump
+    timeScale: 0
+    isLoop: 0
+    hasEvent: 0
+    skillType: 1
+    callbackSection: 3
   skillType: 1
+  animationKey: jump
+  actionCode: 31000017
   sortingType: 0
   behaviourMask: 64
-  ignorableMask: 3
   priority: 3
   range: 4
   angle: 360
-  animationKey: jump
   description: Starts combat by attacking a target with a melee weapon.
   coolTimer:
     coolTime: 15
     invokeSection: 1
   castTimer:
     castingTime: 0
+    callbackSection: 0
   targetLayer:
     serializedVersion: 2
     m_Bits: 256
   icon: {fileID: 21300000, guid: 2482dd41d4c9fcc44a20fb70153bb822, type: 3}
+  sizeVector: {x: 0, y: 0}

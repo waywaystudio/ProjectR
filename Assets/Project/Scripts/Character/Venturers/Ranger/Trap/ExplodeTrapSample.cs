@@ -18,6 +18,6 @@ namespace Character.Venturers.Ranger.Trap
                            .Add(SectionType.Complete,"Execute", Execution);
         }
         
-        public override void Execution() => ExecuteAction.Invoke();
+        public override void Execution() => SequenceInvoker.Execute();
     }
 }

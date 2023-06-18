@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace Character.Villains.Moragg.Projector
 {
-    public class Meteor : TrapComponent, IProjectorSections
+    public class Meteor : TrapComponent, IProjectorSequencer
     {
         public Vector2 SizeVector => new (radius * 2f, radius * 2f);
         public float CastWeightTime => ProlongTime;
@@ -23,6 +23,6 @@ namespace Character.Villains.Moragg.Projector
                            .Add(SectionType.Complete,"Execute", Execution);
         }
 
-        public override void Execution() => ExecuteAction.Invoke();
+        public override void Execution() => SequenceInvoker.Execute();
     }
 }

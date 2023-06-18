@@ -71,7 +71,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7237127450332605719}
-  - component: {fileID: 7359642551097767388}
   - component: {fileID: 8602584536155784044}
   m_Layer: 0
   m_Name: Execution
@@ -95,24 +94,6 @@ Transform:
   m_Father: {fileID: 234500611213636336}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &7359642551097767388
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5830406025805540406}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7cb67e0d4b0f0014c80282718ad1c364, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  table:
-    keyList: 01000000
-    valueList:
-    - ExecutionList:
-      - {fileID: 8602584536155784044}
-    hideKey: 1
 --- !u!114 &8602584536155784044
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -179,24 +160,37 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a553ce759cc84bb4c92f409971455d23, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  executor: {fileID: 7359642551097767388}
-  actionCode: 31000016
+  executor:
+    table:
+      keyList: 01000000
+      valueList:
+      - ExecutionList:
+        - {fileID: 8602584536155784044}
+      hideKey: 0
+  animationTrait:
+    animationKey: continuesAttack
+    timeScale: 0
+    isLoop: 1
+    hasEvent: 1
+    skillType: 4
+    callbackSection: 0
   skillType: 4
+  animationKey: continuesAttack
+  actionCode: 31000016
   sortingType: 0
   behaviourMask: 32
-  ignorableMask: 3
   priority: 2
   range: 30
   angle: 6
-  animationKey: continuesAttack
   description: Starts combat by attacking a target with a melee weapon.
   coolTimer:
     coolTime: 12
     invokeSection: 3
   castTimer:
-    castingTime: 2
+    castingTime: 4
     callbackSection: 3
   targetLayer:
     serializedVersion: 2
     m_Bits: 256
   icon: {fileID: 21300000, guid: 126effccf14aace4fa7015d10c4ea912, type: 3}
+  sizeVector: {x: 0, y: 0}

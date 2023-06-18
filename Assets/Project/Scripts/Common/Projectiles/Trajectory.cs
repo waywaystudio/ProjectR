@@ -49,7 +49,7 @@ namespace Common.Projectiles
                               .DOMove(destination, duration)
                               .SetEase(tweenType)
                               .OnUpdate(() => projectile.LookAt(destination))
-                              .OnComplete(() => projectileComponent.Sequencer.End());
+                              .OnComplete(() => projectileComponent.SequenceInvoker.End());
         }
 
         private void Parabola()
@@ -67,9 +67,11 @@ namespace Common.Projectiles
             TryGetComponent(out projectileComponent);
 
             projectile  = projectileComponent.transform;
-            
-            projectileComponent.Sequencer.ActiveAction.Add("Trajectory", Flying);
-            projectileComponent.Sequencer.EndAction.Add("Trajectory", Stop);
+
+            // Require Builder
+            projectileComponent.SequenceBuilder
+                               .Add(SectionType.Active, "Trajectory", Flying)
+                               .Add(SectionType.End, "Trajectory", Stop);
         }
     }
 }

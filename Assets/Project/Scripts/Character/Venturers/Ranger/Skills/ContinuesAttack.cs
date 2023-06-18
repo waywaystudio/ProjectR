@@ -4,18 +4,18 @@ namespace Character.Venturers.Ranger.Skills
 {
     public class ContinuesAttack : SkillComponent
     {
-        public override void Execution() => ExecuteAction.Invoke();
-
-        protected override void AddSkillSequencer()
+        public override void Initialize()
         {
-            AddAnimationEvent();
+            base.Initialize();
             
-            ExecuteAction.Add("ShotAttackExecution", () => executor.Execute(null));
+            // AddAnimationEvent();
+
+            SequenceBuilder.Add(SectionType.Execute, "ShotAttackExecution", () => executor.Execute(null));
         }
 
-        protected override void PlayAnimation()
-        {
-            Cb.Animating.PlayLoop(animationKey);
-        }
+        // protected override void PlayAnimation()
+        // {
+        //     Cb.Animating.PlayLoop(animationKey);
+        // }
     }
 }

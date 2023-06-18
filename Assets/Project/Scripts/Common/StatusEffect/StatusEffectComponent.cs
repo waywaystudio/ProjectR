@@ -3,11 +3,10 @@ using UnityEngine;
 
 namespace Common.StatusEffect
 {
-    public abstract class StatusEffectComponent : MonoBehaviour, IStatusEffect, IEditable
-                                                  , ISections<ICombatTaker>
+    public abstract class StatusEffectComponent : MonoBehaviour, IStatusEffect, IHasSequencer, IEditable
     {
         [SerializeField] protected Executor executor;
-        [SerializeField] private StatusEffectSequencer sequencer;
+        [SerializeField] private Sequencer<ICombatTaker> sequencer;
         
         [SerializeField] protected DataIndex statusCode;
         [SerializeField] protected StatusEffectType type;
@@ -19,17 +18,10 @@ namespace Common.StatusEffect
         public Sprite Icon => icon;
         public float Duration => duration;
         public FloatEvent ProgressTime { get; } = new();
-        public StatusEffectSequenceBuilder SequenceBuilder { get; } = new();
-        public StatusEffectSequenceInvoker SequenceInvoker { get; } = new();
+        public Sequencer Sequencer => sequencer;
         
-        public ActionTable<ICombatTaker> ActiveParamAction => sequencer.ActiveParamAction;
-        public ConditionTable Condition => sequencer.Condition;
-        public ActionTable ActiveAction => sequencer.ActiveAction;
-        public ActionTable CancelAction => sequencer.CancelAction;
-        public ActionTable CompleteAction => sequencer.CompleteAction;
-        public ActionTable EndAction => sequencer.EndAction;
-        public ActionTable ExecuteAction => sequencer.ExecuteAction;
-
+        protected SequenceBuilder<ICombatTaker> SequenceBuilder { get; private set; }
+        protected StatusEffectSequenceInvoker SequenceInvoker { get; private set; }
         protected ICombatTaker Taker { get; set; }
         
 
@@ -42,9 +34,10 @@ namespace Common.StatusEffect
             Provider = provider;
             ProgressTime.SetClamp(0f, Mathf.Min(duration * 1.5f, 3600));
 
-            SequenceInvoker.Initialize(sequencer);
-            SequenceBuilder.Initialize(sequencer)
-                           .Add(SectionType.End,"UnregisterTable", UnregisterTable)
+            SequenceInvoker = new StatusEffectSequenceInvoker(sequencer);
+            SequenceBuilder = new SequenceBuilder<ICombatTaker>(sequencer);
+
+            SequenceBuilder.Add(SectionType.End,"UnregisterTable", UnregisterTable)
                            .Add(SectionType.End,"DisableComponent", () => enabled = false)
                            .Add(SectionType.End,"DeActiveGameObject", () => gameObject.SetActive(false));
         }
@@ -79,7 +72,7 @@ namespace Common.StatusEffect
         /// <summary>
         /// Scene이 종료되거나, 설정된 Pool 개수를 넘어서 생성된 상태이상효과가 만료될 때 호출
         /// </summary>
-        public virtual void Dispose()
+        public void Dispose()
         {
             sequencer.Clear();
             
@@ -100,7 +93,7 @@ namespace Common.StatusEffect
 #if UNITY_EDITOR
         public virtual void EditorSetUp()
         {
-            executor = GetComponentInChildren<Executor>();
+            executor.EditorGetExecutions(gameObject);
             
             var statusEffectData = Database.StatusEffectSheetData(DataIndex);
 

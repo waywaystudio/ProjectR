@@ -8,16 +8,11 @@ namespace Common.Projectors
         
         protected override void Initialize()
         {
-            // sizeVector.x = range
-            // sizeVector.y = angle
             var sizeVector = SizeReference.Invoke();
             var range      = sizeVector.x * 2f;
 
             projector.size               =  new Vector3(range, range, ProjectorDepth);
             colliderTransform.localScale =  new Vector3(sizeVector.x, sizeVector.x, sizeVector.x);
-            
-            ResetMaterial();
-            OffObject();
         }
         
         protected override void OnObject()

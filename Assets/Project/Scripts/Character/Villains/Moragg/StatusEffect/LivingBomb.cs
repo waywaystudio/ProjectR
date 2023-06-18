@@ -5,7 +5,7 @@ using UnityEngine;
 
 namespace Character.Villains.Moragg.StatusEffect
 {
-    public class LivingBomb : StatusEffectComponent, IProjectorSections
+    public class LivingBomb : StatusEffectComponent, IProjectorSequencer
     {
         [SerializeField] private CollidingSystem collidingSystem;
         [SerializeField] private float interval;

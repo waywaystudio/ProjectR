@@ -14,10 +14,10 @@ namespace Character.Venturers.Ranger.Projectile
         public override void Initialize(ICombatProvider provider)
         {
             base.Initialize(provider);
-            
-            sequencer.ActiveAction.Add("CollidingTriggerOn", () => triggerCollider.enabled = true);
-            sequencer.CompleteAction.Add("ExplodeExecution", Execution);
-            sequencer.EndAction.Add("CollidingTriggerOff", () => triggerCollider.enabled = false);
+
+            SequenceBuilder.Add(SectionType.Active, "CollidingTriggerOn", () => triggerCollider.enabled = true)
+                           .Add(SectionType.Complete, "ExplodeExecution", Execution)
+                           .Add(SectionType.End, "CollidingTriggerOff", () => triggerCollider.enabled = false);
         }
 
         public override void Execution()
@@ -39,7 +39,7 @@ namespace Character.Venturers.Ranger.Projectile
         {
             if (other.gameObject.TryGetComponent(out ICombatTaker _) && other.gameObject.IsInLayerMask(targetLayer))
             {
-                sequencer.Complete();
+                SequenceInvoker.Complete();
             }
         }
     }

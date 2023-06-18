@@ -4,18 +4,17 @@ namespace Character.Villains.Moragg.Skills
 {
     public class MoraggLivingBomb : SkillComponent
     {
-        public override void Execution() => ExecuteAction.Invoke();
-
-        protected override void AddSkillSequencer()
+        public override void Initialize()
         {
-            ExecuteAction.Add("CommonExecution", () =>
-            {
-                if (MainTarget is null) return;
-
-                executor.Execute(MainTarget);
-            });
-
-            SequenceBuilder.Add(SectionType.Complete,"MoraggLivingBomb", Execution);
+            base.Initialize();
+            
+            SequenceBuilder.Add(SectionType.Complete,"MoraggLivingBomb", SkillInvoker.Execute)
+                           .Add(SectionType.Execute, "CommonExecution", () =>
+                           {
+                               if (MainTarget is null) return;
+                               
+                               executor.Execute(MainTarget);
+                           });
         }
     }
 }

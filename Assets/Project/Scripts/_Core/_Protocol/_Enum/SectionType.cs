@@ -8,4 +8,5 @@ public enum SectionType
     Execute = 5,
     Release = 6,
     Override = 7,
+    Condition = 8,
 }

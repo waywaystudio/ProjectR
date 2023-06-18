@@ -71,7 +71,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7159094201746934258}
-  - component: {fileID: 3804061087640633198}
   - component: {fileID: 6979266354357937840}
   - component: {fileID: 2481512623508416614}
   m_Layer: 0
@@ -96,25 +95,6 @@ Transform:
   m_Father: {fileID: 234500611213636336}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &3804061087640633198
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5551057226818405960}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7cb67e0d4b0f0014c80282718ad1c364, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  table:
-    keyList: 01000000
-    valueList:
-    - ExecutionList:
-      - {fileID: 6979266354357937840}
-      - {fileID: 2481512623508416614}
-    hideKey: 1
 --- !u!114 &6979266354357937840
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -127,7 +107,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 910d8bb983b570146b7c330bb9a77e89, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  type: 1
   group: 1
   actionCode: 31000009
   damageSpec:
@@ -153,7 +132,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 714e87efbca5f5e47a36249aecf0b6f2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  type: 2
   group: 1
   actionCode: 32000001
   pool:
@@ -207,23 +185,38 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e84f23e793470374a995f2cd805ab8e5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  executor: {fileID: 3804061087640633198}
-  actionCode: 31000009
+  executor:
+    table:
+      keyList: 01000000
+      valueList:
+      - ExecutionList:
+        - {fileID: 6979266354357937840}
+        - {fileID: 2481512623508416614}
+      hideKey: 0
+  animationTrait:
+    animationKey: attack
+    timeScale: 0
+    isLoop: 0
+    hasEvent: 1
+    skillType: 1
+    callbackSection: 3
   skillType: 1
+  animationKey: attack
+  actionCode: 31000009
   sortingType: 7
   behaviourMask: 32
-  ignorableMask: 3
   priority: 1
   range: 6
   angle: 360
-  animationKey: attack
   description: Starts combat by attacking a target with a melee weapon.
   coolTimer:
     coolTime: 0
     invokeSection: 0
   castTimer:
     castingTime: 0
+    callbackSection: 0
   targetLayer:
     serializedVersion: 2
     m_Bits: 128
   icon: {fileID: 21300000, guid: 5a5b5e460d0775b42a594af04292f7c3, type: 3}
+  sizeVector: {x: 0, y: 0}

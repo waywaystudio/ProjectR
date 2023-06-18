@@ -27,6 +27,7 @@ namespace Common.Traps
         {
             TryGetComponent(out trapComponent);
 
+            // Require Builder
             trapComponent.ProlongTime = prolongTimer;
             trapComponent.SequenceBuilder
                          .Add(SectionType.Active,"TimeTriggerOn", StartProgress)

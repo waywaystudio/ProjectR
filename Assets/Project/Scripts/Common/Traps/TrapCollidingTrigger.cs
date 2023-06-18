@@ -27,6 +27,7 @@ namespace Common.Traps
             triggerCollider        ??= GetComponent<SphereCollider>();
             triggerCollider.radius =   trapComponent.Radius;
 
+            // Require Builder
             trapComponent.SequenceBuilder
                          .Add(SectionType.Active,"CollidingTriggerOn",
                               () => triggerCollider.IsNullOrDestroyed().OnFalse(() => triggerCollider.enabled = true))

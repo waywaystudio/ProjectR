@@ -35,11 +35,11 @@ namespace Common.Execution
         private void CreateStatusEffect(StatusEffectComponent statusEffect)
         {
             statusEffect.Initialize(Origin.Provider);
-            statusEffect.SequenceBuilder.Add(SectionType.End, "ReturnToPool",() =>
-            {
-                statusEffect.transform.SetParent(transform, false);
-                pool.Release(statusEffect);
-            });
+
+            var builder = new SequenceBuilder(statusEffect.Sequencer);
+
+            builder.Add(SectionType.End, "ReturnTransform", () => statusEffect.transform.SetParent(transform, false))
+                   .Add(SectionType.End, "ReleasePool", () => pool.Release(statusEffect));
         }
 
         private void OnEnable()

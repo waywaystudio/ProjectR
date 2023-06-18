@@ -8,28 +8,27 @@ namespace Character.Villains.Moragg.Skills
 {
     public class MoraggMeteorStrike : SkillComponent
     {
+        [SerializeField] private VillainPhaseMask enableMask;
         [SerializeField] private int radius = 20;
         [SerializeField] private int minDistance = 10;
         [SerializeField] private int maxPoints = 10;
         [SerializeField] private int sampleSize = 30;
         
         private Coroutine meteorRoutine;
-
-        public override void Execution() => ExecuteAction.Invoke();
         
 
-        protected override void AddSkillSequencer()
+        public override void Initialize()
         {
-            sequencer.ActiveAction.Add("DirectExecuteMeteorStrike", Execution);
-            sequencer.EndAction.Add("StopExecution", StopMeteor);
+            base.Initialize();
             
-            ExecuteAction.Add("StartMeteor", () => meteorRoutine = StartCoroutine(StartMeteor()));
+            var villain = GetComponentInParent<VillainBehaviour>();
+            
+            SequenceBuilder.AddCondition("ConditionSelfHpStatus", () => (enableMask | villain.CurrentPhase.PhaseMask) == enableMask)
+                           .Add(SectionType.Active, "DirectExecuteMeteorStrike", SkillInvoker.Execute)
+                           .Add(SectionType.Execute, "StartMeteor", () => meteorRoutine = StartCoroutine(StartMeteor()))
+                           .Add(SectionType.End, "StopExecution", StopMeteor);
         }
-        
-        protected override void PlayAnimation()
-        {
-            Cb.Animating.PlayLoop(animationKey);
-        }
+
 
         private IEnumerator StartMeteor()
         {

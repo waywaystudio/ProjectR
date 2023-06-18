@@ -109,26 +109,40 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 137a7d7ba84d9104b81da06bb245af0b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  executor: {fileID: 4496764231124210033}
-  actionCode: 31000015
+  executor:
+    table:
+      keyList: 01000000
+      valueList:
+      - ExecutionList:
+        - {fileID: 6640065934772434048}
+      hideKey: 0
+  animationTrait:
+    animationKey: shotAttack
+    timeScale: 0
+    isLoop: 0
+    hasEvent: 1
+    skillType: 1
+    callbackSection: 3
   skillType: 1
+  animationKey: shotAttack
+  actionCode: 31000015
   sortingType: 0
   behaviourMask: 32
-  ignorableMask: 3
   priority: 1
   range: 30
   angle: 6
-  animationKey: shotAttack
   description: Starts combat by attacking a target with a melee weapon.
   coolTimer:
     coolTime: 0
     invokeSection: 0
   castTimer:
     castingTime: 0
+    callbackSection: 0
   targetLayer:
     serializedVersion: 2
     m_Bits: 256
   icon: {fileID: 21300000, guid: d67f720bb3783db43b6682b93885e2b5, type: 3}
+  sizeVector: {x: 0, y: 0}
 --- !u!1 &9030367168287305613
 GameObject:
   m_ObjectHideFlags: 0
@@ -138,7 +152,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2308180223112419512}
-  - component: {fileID: 4496764231124210033}
   - component: {fileID: 6640065934772434048}
   m_Layer: 0
   m_Name: Execution
@@ -162,24 +175,6 @@ Transform:
   m_Father: {fileID: 234500611213636336}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &4496764231124210033
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9030367168287305613}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7cb67e0d4b0f0014c80282718ad1c364, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  table:
-    keyList: 01000000
-    valueList:
-    - ExecutionList:
-      - {fileID: 6640065934772434048}
-    hideKey: 1
 --- !u!114 &6640065934772434048
 MonoBehaviour:
   m_ObjectHideFlags: 0

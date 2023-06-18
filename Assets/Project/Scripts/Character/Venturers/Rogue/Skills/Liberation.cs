@@ -7,11 +7,11 @@ namespace Character.Venturers.Rogue.Skills
     {
         public override ICombatTaker MainTarget => Cb.Searching.GetSelf();
 
-        public override void Execution() => ExecuteAction.Invoke();
-
-        protected override void AddSkillSequencer()
+        public override void Initialize()
         {
-            ExecuteAction.Add("CommonExecution", () =>
+            base.Initialize();
+            
+            SequenceBuilder.Add(SectionType.Execute, "CommonExecution", () =>
             {
                 if (MainTarget is null) return;
 

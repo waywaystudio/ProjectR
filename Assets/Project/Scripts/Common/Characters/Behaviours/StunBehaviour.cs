@@ -7,7 +7,6 @@ namespace Common.Characters.Behaviours
         [SerializeField] private Sequencer<float> sequencer = new();
 
         public ActionMask BehaviourMask => ActionMask.Stun;
-        public SequenceBuilder<float> SequenceBuilder { get; } = new();
         public SequenceInvoker<float> SequenceInvoker { get; } = new();
 
         private CharacterBehaviour cb;
@@ -32,13 +31,15 @@ namespace Common.Characters.Behaviours
         private void OnEnable()
         {
             SequenceInvoker.Initialize(sequencer);
-            SequenceBuilder.Initialize(sequencer)
-                           .AddCondition("AbleToBehaviourOverride", () => BehaviourMask.CanOverride(Cb.BehaviourMask))
-                           .AddActiveParam("PlayStunTimer", duration => Timer.Play(duration, SequenceInvoker.Complete))
-                           .Add(SectionType.Active,"CancelPreviousBehaviour", () => cb.CurrentBehaviour?.TryToCancel(this))
-                           .Add(SectionType.Active,"SetCurrentBehaviour", () => cb.CurrentBehaviour = this)
-                           .Add(SectionType.Active,"PlayAnimation", Cb.Animating.Stun)
-                           .Add(SectionType.End,"Stop", Cb.Stop);
+            
+            var builder = new SequenceBuilder<float>(sequencer);
+            
+            builder.AddCondition("AbleToBehaviourOverride", () => BehaviourMask.CanOverride(Cb.BehaviourMask))
+                   .AddActiveParam("PlayStunTimer", duration => Timer.Play(duration, SequenceInvoker.Complete))
+                   .Add(SectionType.Active,"CancelPreviousBehaviour", () => cb.CurrentBehaviour?.TryToCancel(this))
+                   .Add(SectionType.Active,"SetCurrentBehaviour", () => cb.CurrentBehaviour = this)
+                   .Add(SectionType.Active,"PlayAnimation", Cb.Animating.Stun)
+                   .Add(SectionType.End,"Stop", Cb.Stop);
         }
 
         private void OnDisable()

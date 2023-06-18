@@ -6,58 +6,30 @@ using UnityEngine;
 
 namespace Common.Traps
 {
-    public abstract class TrapComponent : MonoBehaviour, IActionSender, ISections, IEditable
+    public abstract class TrapComponent : MonoBehaviour, IActionSender, IEditable
+    // ISections, 
     {
         [SerializeField] protected Executor executor;
-        [SerializeField] private TrapSequencer sequencer;
+        [SerializeField] private Sequencer<Vector3> sequencer;
         [SerializeField] private CollidingSystem collidingSystem;
         [SerializeField] protected DataIndex trapCode;
         [SerializeField] protected float delayTime;
         [SerializeField] protected float radius;
         [SerializeField] protected LayerMask targetLayer;
 
-        private readonly TrapSequenceBuilder sequenceBuilder = new();
-        private readonly TrapSequenceInvoker sequenceInvoker = new();
+        private SequenceBuilder<Vector3> sequenceBuilder;
+        private TrapSequenceInvoker sequenceInvoker;
 
         public ICombatProvider Provider { get; protected set; }
         public DataIndex DataIndex => trapCode;
         public float Radius => radius;
         public LayerMask TargetLayer => targetLayer;
         public float ProlongTime { get; set; }
-        
-        // public SkillExecutor Executor => executor;
-        // public TrapSequencer TrapSequencer => sequencer;
-        public TrapSequenceBuilder SequenceBuilder
-        {
-            get
-            {
-                if (!sequenceBuilder.IsInitialized) 
-                    sequenceBuilder.Initialize(sequencer);
-                
-                return sequenceBuilder;
-            }
-        }
+        public Sequencer Sequencer => sequencer;
+        public SequenceBuilder<Vector3> SequenceBuilder => sequenceBuilder ??= new SequenceBuilder<Vector3>(sequencer);
+        public TrapSequenceInvoker SequenceInvoker => sequenceInvoker ??= new TrapSequenceInvoker(sequencer);
 
-        public TrapSequenceInvoker SequenceInvoker
-        {
-            get
-            {
-                if (!sequenceInvoker.IsInitialized) 
-                    sequenceInvoker.Initialize(sequencer);
-                
-                return sequenceInvoker;
-            }
-        }
 
-        public ActionTable<Vector3> ActiveParamAction => sequencer.ActiveParamAction;
-        public ConditionTable Condition => sequencer.Condition;
-        public ActionTable ActiveAction => sequencer.ActiveAction;
-        public ActionTable CancelAction => sequencer.CancelAction;
-        public ActionTable CompleteAction => sequencer.CompleteAction;
-        public ActionTable EndAction => sequencer.EndAction;
-        public ActionTable ExecuteAction => sequencer.ExecuteAction;
-        
-        
         /// <summary>
         /// Create Pool 에서 호출
         /// 보통 SkillSequence에 Execution 부터 호출 됨.
@@ -65,10 +37,7 @@ namespace Common.Traps
         public virtual void Initialize(ICombatProvider provider)
         {
             Provider = provider;
-            
-            SequenceInvoker.Initialize(sequencer);
-            SequenceBuilder.Initialize(sequencer)
-                           .Add(SectionType.End,"TrapObjectActiveFalse", () => gameObject.SetActive(false));
+            SequenceBuilder.Add(SectionType.End,"TrapObjectActiveFalse", () => gameObject.SetActive(false));
         }
         
         /// <summary>
@@ -104,7 +73,6 @@ namespace Common.Traps
         /// </summary>
         public void Cancel() => SequenceInvoker.Cancel();
 
-
         /// <summary>
         /// Scene이 종료되거나, 설정된 Pool 개수를 넘어서 생성된 상태이상효과가 만료될 때 호출
         /// </summary>
@@ -127,7 +95,7 @@ namespace Common.Traps
 #if UNITY_EDITOR
         public void EditorSetUp()
         {
-            executor = GetComponentInChildren<Executor>();
+            executor.EditorGetExecutions(gameObject);
             
             if (collidingSystem.IsNullOrDestroyed())
             {

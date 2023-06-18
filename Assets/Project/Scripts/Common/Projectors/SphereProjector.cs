@@ -12,9 +12,6 @@ namespace Common.Projectors
 
             projector.size          = new Vector3(sizeVector.x, sizeVector.y, ProjectorDepth);
             obstacleCollider.radius = sizeVector.x * 0.5f;
-            
-            ResetMaterial();
-            DecalObject.SetActive(false);
         }
     }
 }

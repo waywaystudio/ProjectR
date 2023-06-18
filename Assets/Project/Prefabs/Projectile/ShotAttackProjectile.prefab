@@ -49,7 +49,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c74c1809e76c79546b9fc5bfde86dfd3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  executor: {fileID: 2011547491014374389}
+  executor:
+    table:
+      keyList: 01000000
+      valueList:
+      - ExecutionList:
+        - {fileID: 4348888035237348426}
+      hideKey: 0
   collidingSystem: {fileID: 5072753418977620396}
   projectileCode: 31000015
   targetLayer:
@@ -116,7 +122,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2131664567955149614}
-  - component: {fileID: 2011547491014374389}
   - component: {fileID: 4348888035237348426}
   m_Layer: 9
   m_Name: Executor
@@ -140,24 +145,6 @@ Transform:
   m_Father: {fileID: 601654701044516039}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &2011547491014374389
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4061326640017754467}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7cb67e0d4b0f0014c80282718ad1c364, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  table:
-    keyList: 01000000
-    valueList:
-    - ExecutionList:
-      - {fileID: 4348888035237348426}
-    hideKey: 0
 --- !u!114 &4348888035237348426
 MonoBehaviour:
   m_ObjectHideFlags: 0

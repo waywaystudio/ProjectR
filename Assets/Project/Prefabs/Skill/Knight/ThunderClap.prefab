@@ -9,7 +9,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 131288121319167150}
-  - component: {fileID: 2020754200422181057}
   - component: {fileID: 5055668066617022475}
   m_Layer: 0
   m_Name: Execution
@@ -33,24 +32,6 @@ Transform:
   m_Father: {fileID: 234500611213636336}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &2020754200422181057
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 730327169682739204}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7cb67e0d4b0f0014c80282718ad1c364, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  table:
-    keyList: 01000000
-    valueList:
-    - ExecutionList:
-      - {fileID: 5055668066617022475}
-    hideKey: 1
 --- !u!114 &5055668066617022475
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -63,7 +44,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 910d8bb983b570146b7c330bb9a77e89, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  type: 1
   group: 1
   actionCode: 31000004
   damageSpec:
@@ -186,24 +166,37 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e5260454706fa734bab3383d26168896, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  executor: {fileID: 2020754200422181057}
-  actionCode: 31000004
+  executor:
+    table:
+      keyList: 01000000
+      valueList:
+      - ExecutionList:
+        - {fileID: 5055668066617022475}
+      hideKey: 0
+  animationTrait:
+    animationKey: thunderClap
+    timeScale: 0
+    isLoop: 0
+    hasEvent: 1
+    skillType: 1
+    callbackSection: 3
   skillType: 1
+  animationKey: thunderClap
+  actionCode: 31000004
   sortingType: 0
-  coolTimeActiveSection: 1
   behaviourMask: 64
-  ignorableMask: 3
   priority: 4
   range: 15
   angle: 360
-  animationKey: thunderClap
   description: Starts combat by attacking a target with a melee weapon.
   coolTimer:
     coolTime: 8
     invokeSection: 1
   castTimer:
     castingTime: 0
+    callbackSection: 0
   targetLayer:
     serializedVersion: 2
     m_Bits: 256
   icon: {fileID: 21300000, guid: 68ac4a9cd0f808b4e82a25a73bacce7e, type: 3}
+  sizeVector: {x: 0, y: 0}

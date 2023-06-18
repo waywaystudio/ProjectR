@@ -4,13 +4,13 @@ namespace Character.Villains.Moragg.Skills
 {
     public class MoraggCommonAttack : SkillComponent
     {
-        public override void Execution() => ExecuteAction.Invoke();
-
-        protected override void AddSkillSequencer()
+        public override void Initialize()
         {
-            AddAnimationEvent();
+            base.Initialize();
             
-            ExecuteAction.Add("CommonExecution", () =>
+            // AddAnimationEvent();
+            
+            SequenceBuilder.Add(SectionType.Execute, "CommonExecution", () =>
             {
                 if (MainTarget is null) return;
 

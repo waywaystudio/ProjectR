@@ -51,6 +51,7 @@ MonoBehaviour:
   m_EndAngleFade: 180
   m_UVScale: {x: 1, y: 1}
   m_UVBias: {x: 0, y: 0}
+  m_DecalLayerMask: 1
   m_ScaleMode: 0
   m_Offset: {x: 0, y: 0, z: 0}
   m_Size: {x: 2, y: 2, z: 50}
@@ -64,6 +65,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5451648222737240506}
+  - component: {fileID: 2705439130084842381}
   m_Layer: 0
   m_Name: ArcProjector60
   m_TagString: Untagged
@@ -88,6 +90,22 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2705439130084842381
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5451648222737240496}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 66eb6ca4b6a3e9345b1c27aa66c4441c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  materialReference: {fileID: 2100000, guid: 2092dced32dbaf44581c2734edec3e94, type: 2}
+  projector: {fileID: 5451648222217753388}
+  easeType: 1
+  colliderTransform: {fileID: 2297089615312432373}
 --- !u!1 &6415419560734306728
 GameObject:
   m_ObjectHideFlags: 0
@@ -247,9 +265,17 @@ MeshCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6415419560734306728}
   m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
   m_IsTrigger: 0
+  m_ProvidesContacts: 0
   m_Enabled: 1
-  serializedVersion: 4
+  serializedVersion: 5
   m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: 4300000, guid: 4b79e9c0668c7fa4cac02ead20520037, type: 2}
@@ -266,6 +292,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   version: 1
-  uniqueID: 3333321052049957295
+  uniqueID: 7004244986331485437
   updateError: 1
   checkTime: 0.2

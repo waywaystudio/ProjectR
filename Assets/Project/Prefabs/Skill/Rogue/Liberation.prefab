@@ -40,7 +40,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3825667067954805488}
-  - component: {fileID: 8168428835036218923}
   m_Layer: 0
   m_Name: Execution
   m_TagString: Untagged
@@ -63,22 +62,6 @@ Transform:
   m_Father: {fileID: 234500611213636336}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &8168428835036218923
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3764441546519258497}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7cb67e0d4b0f0014c80282718ad1c364, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  table:
-    keyList: 
-    valueList: []
-    hideKey: 0
 --- !u!1 &3872987185641846972
 GameObject:
   m_ObjectHideFlags: 0
@@ -157,23 +140,35 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ec952cc3b4dcb35468b67f38113e6b58, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  executor: {fileID: 8168428835036218923}
-  actionCode: 31000013
+  executor:
+    table:
+      keyList: 
+      valueList: []
+      hideKey: 0
+  animationTrait:
+    animationKey: liberation
+    timeScale: 0
+    isLoop: 0
+    hasEvent: 0
+    skillType: 1
+    callbackSection: 3
   skillType: 1
+  animationKey: liberation
+  actionCode: 31000013
   sortingType: 0
   behaviourMask: 32
-  ignorableMask: 3
   priority: 3
   range: 0
   angle: 0
-  animationKey: liberation
   description: Starts combat by attacking a target with a melee weapon.
   coolTimer:
     coolTime: 12
     invokeSection: 1
   castTimer:
     castingTime: 0
+    callbackSection: 0
   targetLayer:
     serializedVersion: 2
     m_Bits: 128
   icon: {fileID: 21300000, guid: 40f7257cd353b9143b22df354bf239eb, type: 3}
+  sizeVector: {x: 0, y: 0}

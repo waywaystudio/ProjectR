@@ -7,7 +7,6 @@ namespace Common.Characters.Behaviours
         [SerializeField] private Sequencer<Vector3> sequencer;
 
         public ActionMask BehaviourMask => ActionMask.Run;
-        public SequenceBuilder<Vector3> SequenceBuilder { get; } = new();
         public SequenceInvoker<Vector3> SequenceInvoker { get; } = new();
 
         private CharacterBehaviour cb;
@@ -27,14 +26,16 @@ namespace Common.Characters.Behaviours
         private void OnEnable()
         {
             SequenceInvoker.Initialize(sequencer);
-            SequenceBuilder.Initialize(sequencer)
-                           .AddCondition("AbleToBehaviourOverride", () => BehaviourMask.CanOverride(Cb.BehaviourMask))
-                           .AddCondition("CanMove", () => Cb.Pathfinding.CanMove)
-                           .AddActiveParam("RunPathfinding", destination => Cb.Pathfinding.Move(destination, SequenceInvoker.Complete))
-                           .Add(SectionType.Active, "CancelPreviousBehaviour", () => cb.CurrentBehaviour?.TryToCancel(this))
-                           .Add(SectionType.Active, "SetCurrentBehaviour", () => cb.CurrentBehaviour = this)
-                           .Add(SectionType.Active, "PlayAnimation", Cb.Animating.Run)
-                           .Add(SectionType.End,"Stop", Cb.Stop);
+            
+            var builder = new SequenceBuilder<Vector3>(sequencer);
+            
+            builder.AddCondition("AbleToBehaviourOverride", () => BehaviourMask.CanOverride(Cb.BehaviourMask))
+                   .AddCondition("CanMove", () => Cb.Pathfinding.CanMove)
+                   .AddActiveParam("RunPathfinding", destination => Cb.Pathfinding.Move(destination, SequenceInvoker.Complete))
+                   .Add(SectionType.Active, "CancelPreviousBehaviour", () => cb.CurrentBehaviour?.TryToCancel(this))
+                   .Add(SectionType.Active, "SetCurrentBehaviour", () => cb.CurrentBehaviour = this)
+                   .Add(SectionType.Active, "PlayAnimation", Cb.Animating.Run)
+                   .Add(SectionType.End,"Stop", Cb.Stop);
         }
 
         private void OnDisable()

@@ -71,7 +71,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2695695518543699158}
-  - component: {fileID: 6955138490551235359}
   - component: {fileID: 8641787742417917460}
   - component: {fileID: 6363665988819638875}
   m_Layer: 0
@@ -96,25 +95,6 @@ Transform:
   m_Father: {fileID: 234500611213636336}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &6955138490551235359
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7609752248324995338}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7cb67e0d4b0f0014c80282718ad1c364, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  table:
-    keyList: 01000000
-    valueList:
-    - ExecutionList:
-      - {fileID: 8641787742417917460}
-      - {fileID: 6363665988819638875}
-    hideKey: 1
 --- !u!114 &8641787742417917460
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -127,7 +107,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 910d8bb983b570146b7c330bb9a77e89, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  type: 1
   group: 1
   actionCode: 31000003
   damageSpec:
@@ -153,7 +132,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 714e87efbca5f5e47a36249aecf0b6f2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  type: 2
   group: 1
   actionCode: 32000002
   pool:
@@ -207,24 +185,38 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a4fad5fa044eb484489ab877718b568a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  executor: {fileID: 6955138490551235359}
-  actionCode: 31000003
+  executor:
+    table:
+      keyList: 01000000
+      valueList:
+      - ExecutionList:
+        - {fileID: 8641787742417917460}
+        - {fileID: 6363665988819638875}
+      hideKey: 0
+  animationTrait:
+    animationKey: upperSlash
+    timeScale: 0
+    isLoop: 0
+    hasEvent: 1
+    skillType: 1
+    callbackSection: 3
   skillType: 1
+  animationKey: upperSlash
+  actionCode: 31000003
   sortingType: 0
-  coolTimeActiveSection: 1
   behaviourMask: 32
-  ignorableMask: 3
   priority: 3
   range: 8
   angle: 90
-  animationKey: upperSlash
   description: Starts combat by attacking a target with a melee weapon.
   coolTimer:
     coolTime: 7
     invokeSection: 1
   castTimer:
     castingTime: 0
+    callbackSection: 0
   targetLayer:
     serializedVersion: 2
     m_Bits: 256
   icon: {fileID: 21300000, guid: 5bb14a259eefff541a510382c2530229, type: 3}
+  sizeVector: {x: 0, y: 0}

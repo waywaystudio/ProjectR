@@ -30,6 +30,7 @@ namespace Common.Traps
             Progress.Value = interval;
             enabled        = false;
 
+            // Require Builder - Sequencer and create new Builder
             trapComponent.SequenceBuilder
                          .Add(SectionType.Active,"OverTimeOn", OverTimeOn)
                          .Add(SectionType.End,"OverTimeOff", OverTimeOff);
@@ -43,6 +44,7 @@ namespace Common.Traps
             }
             else
             {
+                // Require Invoker
                 trapComponent.Execution();
                 Progress.Value = 0f;
             }

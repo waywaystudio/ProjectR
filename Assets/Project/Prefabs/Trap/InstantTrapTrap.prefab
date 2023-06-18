@@ -9,7 +9,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 9197623837587761534}
-  - component: {fileID: 5926480809187874595}
   - component: {fileID: 9167835184449150322}
   m_Layer: 0
   m_Name: Execution
@@ -33,24 +32,6 @@ Transform:
   m_Father: {fileID: 426966613292769704}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &5926480809187874595
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1110421117582400199}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7cb67e0d4b0f0014c80282718ad1c364, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  table:
-    keyList: 01000000
-    valueList:
-    - ExecutionList:
-      - {fileID: 9167835184449150322}
-    hideKey: 1
 --- !u!114 &9167835184449150322
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -123,7 +104,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6045000cf0995e743bb9f518bb7f3f27, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  executor: {fileID: 5926480809187874595}
+  executor:
+    table:
+      keyList: 01000000
+      valueList:
+      - ExecutionList:
+        - {fileID: 9167835184449150322}
+      hideKey: 0
   collidingSystem: {fileID: 8771204470701334892}
   trapCode: 0
   delayTime: 2

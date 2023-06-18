@@ -29,7 +29,7 @@ namespace Common.Execution
         {
             projectile.transform.position = MuzzlePosition;
             projectile.Initialize(Origin.Provider);
-            projectile.Sequencer.EndAction.Add("ReturnToPool",() =>
+            projectile.SequenceBuilder.Add(SectionType.End,"ReturnToPool",() =>
             {
                 projectile.transform.position = MuzzlePosition;
                 projectile.transform.SetParent(transform, true);
