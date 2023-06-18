@@ -9,7 +9,7 @@ namespace Common.Skills
     // , ISequencer 
     {
         [SerializeField] protected Executor executor;
-        [SerializeField] protected SkillSequencer sequencer;
+        [SerializeField] protected Sequencer<Vector3> sequencer;
         
         [SerializeField] protected DataIndex actionCode;
         [SerializeField] protected SkillType skillType;
@@ -54,7 +54,7 @@ namespace Common.Skills
         public ActionTable EndAction => sequencer.EndAction;
         public ActionTable ExecuteAction { get; } = new();
         
-        public SkillSequenceBuilder SequenceBuilder { get; } = new();
+        public SequenceBuilder<Vector3> SequenceBuilder { get; } = new();
         public SkillSequenceInvoker SequenceInvoker { get; } = new();
 
         /* Progress */
@@ -120,12 +120,12 @@ namespace Common.Skills
             }
 
             SequenceBuilder.AddActiveParam("CharacterRotate", Cb.Rotate)
-                           .AddActive("PlayAnimation", PlayAnimation)
-                           .AddActive("SkillCasting", 
+                           .Add(SectionType.Active,"PlayAnimation", PlayAnimation)
+                           .Add(SectionType.Active,"SkillCasting", 
                                       () => castTimer.Play(CastWeightTime, CastTimer.CallbackSection.GetInvokeAction(this)))
-                           .AddActive("StopPathfinding", Cb.Pathfinding.Stop)
-                           .AddEnd("StopCastTimer", castTimer.Stop)
-                           .AddEnd("CharacterStop", Cb.Stop);
+                           .Add(SectionType.Active, "StopPathfinding", Cb.Pathfinding.Stop)
+                           .Add(SectionType.End,"StopCastTimer", castTimer.Stop)
+                           .Add(SectionType.End,"CharacterStop", Cb.Stop);
             
             AddSkillSequencer();
             isInitialized = true;
@@ -172,8 +172,8 @@ namespace Common.Skills
         
         protected void AddAnimationEvent()
         {
-            SequenceBuilder.AddActive("RegisterHitEvent", () => Cb.Animating.OnHit.Add("SkillHit", Execution))
-                           .AddEnd("ReleaseHit", () => Cb.Animating.OnHit.Remove("SkillHit"));
+            SequenceBuilder.Add(SectionType.Active,"RegisterHitEvent", () => Cb.Animating.OnHit.Add("SkillHit", Execution))
+                           .Add(SectionType.End,"ReleaseHit", () => Cb.Animating.OnHit.Remove("SkillHit"));
         }
 
 

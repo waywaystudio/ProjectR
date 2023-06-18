@@ -35,10 +35,10 @@ namespace Common.Characters.Behaviours
             SequenceBuilder.Initialize(sequencer)
                            .AddCondition("AbleToBehaviourOverride", () => BehaviourMask.CanOverride(Cb.BehaviourMask))
                            .AddActiveParam("PlayStunTimer", duration => Timer.Play(duration, SequenceInvoker.Complete))
-                           .AddActive("CancelPreviousBehaviour", () => cb.CurrentBehaviour?.TryToCancel(this))
-                           .AddActive("SetCurrentBehaviour", () => cb.CurrentBehaviour = this)
-                           .AddActive("PlayAnimation", Cb.Animating.Stun)
-                           .AddEnd("Stop", Cb.Stop);
+                           .Add(SectionType.Active,"CancelPreviousBehaviour", () => cb.CurrentBehaviour?.TryToCancel(this))
+                           .Add(SectionType.Active,"SetCurrentBehaviour", () => cb.CurrentBehaviour = this)
+                           .Add(SectionType.Active,"PlayAnimation", Cb.Animating.Stun)
+                           .Add(SectionType.End,"Stop", Cb.Stop);
         }
 
         private void OnDisable()

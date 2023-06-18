@@ -1,20 +1,35 @@
 using System;
 
+using SectionTable = Table<SectionType, Section>;
+
 [Serializable]
 public class Sequencer : ISections
 {
     public bool IsAbleToActive => Condition == null || Condition.IsAllTrue;
     public bool IsActive { get; private set; }
     public bool IsEnd { get; private set; } = true;
-
-    public ConditionTable Condition { get; } = new();
-    public WaitTrigger CompleteTrigger { get; set; }
-    
     public ActionTable ActiveAction { get; } = new();
     public ActionTable CancelAction { get; } = new();
     public ActionTable CompleteAction { get; } = new();
     public ActionTable EndAction { get; } = new();
-    
+
+    public ConditionTable Condition { get; } = new();
+    public WaitTrigger CompleteTrigger { get; set; }
+
+    public SectionTable Table { get; set; } = new();
+    public ActionTable this[SectionType key]
+    {
+        get
+        {
+            if (!Table.ContainsKey(key))
+            {
+                Table.Add(key, new Section(key));
+            }
+
+            return Table[key].ActionTable;
+        }
+    }
+
 
     public void Active()
     {
@@ -24,12 +39,7 @@ public class Sequencer : ISections
         ActiveAction.Invoke();
         CompleteTrigger?.Pull();
     }
-    
-    public void AddCompleteTrigger(Func<bool> condition)
-    {
-        CompleteTrigger = new WaitTrigger(Complete, condition);
-    }
-    
+
     public void Cancel()
     {
         IsActive = false;
@@ -58,11 +68,13 @@ public class Sequencer : ISections
     public void Clear()
     {
         Condition.Clear();
+        CompleteTrigger?.Dispose();
+        
+        Table.Clear();
         ActiveAction.Clear();
         CancelAction.Clear();
         CompleteAction.Clear();
         EndAction.Clear();
-        CompleteTrigger?.Dispose();
     }
 }
 
@@ -70,7 +82,7 @@ public class Sequencer : ISections
 public class Sequencer<T> : Sequencer, IParamSection<T>
 {
     public ActionTable<T> ActiveParamAction { get; } = new();
-    
+
     public void Active(T value)
     {
         ActiveParamAction.Invoke(value);
@@ -80,12 +92,13 @@ public class Sequencer<T> : Sequencer, IParamSection<T>
     public new void Clear()
     {
         ActiveParamAction.Clear();
-        
         Condition.Clear();
+        CompleteTrigger?.Dispose();
+        
+        Table.Clear();
         ActiveAction.Clear();
         CancelAction.Clear();
         CompleteAction.Clear();
         EndAction.Clear();
-        CompleteTrigger?.Dispose();
     }
 }

@@ -33,6 +33,7 @@ namespace Editor
             if (member.Name == "valueList")
             {
                 attributes.Add(new HorizontalGroupAttribute("Main"));
+                attributes.Add(new HideReferenceObjectPickerAttribute());
                 attributes.Add(new ListDrawerSettingsAttribute()
                 {
                     ShowFoldout          = true,

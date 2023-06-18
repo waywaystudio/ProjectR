@@ -10,6 +10,7 @@ public class Table<TKey, TValue>
     [SerializeField] protected List<TValue> valueList = new();
     
     public List<TKey> KeyList => keyList;
+    public List<TValue> ValueList => valueList;
     
     private Dictionary<TKey, TValue> map = new();
     protected Dictionary<TKey, TValue> Map
@@ -115,7 +116,7 @@ public class Table<TKey, TValue>
         }
     }
 
-    public bool ContainKey(TKey key) => Map.ContainsKey(key);
+    public bool ContainsKey(TKey key) => Map.ContainsKey(key);
     
     
 #if UNITY_EDITOR

@@ -32,6 +32,15 @@ namespace Editor
                 attributes.Add(new FoldoutGroupAttribute("Active"));
             }
             
+            if (member.Name == "Table")
+            {
+                attributes.Add(new ShowInInspectorAttribute());
+                attributes.Add(new HideLabelAttribute());
+                attributes.Add(new HideReferenceObjectPickerAttribute());
+                attributes.Add(new PropertyOrderAttribute(13f));
+                // attributes.Add(new FoldoutGroupAttribute("Cancel"));
+            }
+            
             if (member.Name == "CancelAction")
             {
                 attributes.Add(new ShowInInspectorAttribute());
@@ -83,6 +92,15 @@ namespace Editor
                 attributes.Add(new HideLabelAttribute());
                 attributes.Add(new PropertyOrderAttribute(11f));
                 attributes.Add(new FoldoutGroupAttribute("ActiveParameter"));
+            }
+            
+            if (member.Name == "Table")
+            {
+                attributes.Add(new ShowInInspectorAttribute());
+                attributes.Add(new HideLabelAttribute());
+                attributes.Add(new HideReferenceObjectPickerAttribute());
+                attributes.Add(new PropertyOrderAttribute(13f));
+                // attributes.Add(new FoldoutGroupAttribute("Cancel"));
             }
             
             if (member.Name == "ActiveAction")

@@ -34,7 +34,7 @@ namespace Common.Execution
 
         public void Remove(ExecuteComponent exe)
         {
-            if (!Table.ContainKey(exe.Group)) return;
+            if (!Table.ContainsKey(exe.Group)) return;
             
             table[exe.Group].Remove(exe);
         }
@@ -51,7 +51,7 @@ namespace Common.Execution
             
             executes.ForEach(exe =>
             {
-                if (!table.ContainKey(exe.Group))
+                if (!table.ContainsKey(exe.Group))
                 {
                     var executions = new Executions(exe);
                     

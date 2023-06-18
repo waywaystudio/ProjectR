@@ -68,7 +68,7 @@ namespace Common.Traps
             
             SequenceInvoker.Initialize(sequencer);
             SequenceBuilder.Initialize(sequencer)
-                           .AddEnd("TrapObjectActiveFalse", () => gameObject.SetActive(false));
+                           .Add(SectionType.End,"TrapObjectActiveFalse", () => gameObject.SetActive(false));
         }
         
         /// <summary>

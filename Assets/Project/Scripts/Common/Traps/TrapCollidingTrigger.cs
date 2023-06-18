@@ -28,10 +28,10 @@ namespace Common.Traps
             triggerCollider.radius =   trapComponent.Radius;
 
             trapComponent.SequenceBuilder
-                         .AddActive("CollidingTriggerOn",
-                                    () => triggerCollider.IsNullOrDestroyed().OnFalse(() => triggerCollider.enabled = true))
-                         .AddEnd("CollidingTriggerOff", 
-                                 () => triggerCollider.IsNullOrDestroyed().OnFalse(() => triggerCollider.enabled = false));
+                         .Add(SectionType.Active,"CollidingTriggerOn",
+                              () => triggerCollider.IsNullOrDestroyed().OnFalse(() => triggerCollider.enabled = true))
+                         .Add(SectionType.End,"CollidingTriggerOff", 
+                              () => triggerCollider.IsNullOrDestroyed().OnFalse(() => triggerCollider.enabled = false));
         }
 
 

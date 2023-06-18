@@ -12,8 +12,8 @@ namespace Character.Venturers.Knight.StatusEffect
         {
             base.Initialize(provider);
 
-            SequenceBuilder.AddActive("StatTableRegister", () => Taker.StatTable.Add(armorReduce))
-                           .AddComplete("Return", () => Taker.StatTable.Remove(armorReduce));
+            SequenceBuilder.Add(SectionType.Active,"StatTableRegister", () => Taker.StatTable.Add(armorReduce))
+                           .Add(SectionType.Complete,"Return", () => Taker.StatTable.Remove(armorReduce));
         }
 
 

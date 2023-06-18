@@ -5,10 +5,10 @@ using Cysharp.Threading.Tasks;
 
 public class WaitTrigger
 {
-    public WaitTrigger(Action onComplete, Func<bool> condition)
+    public WaitTrigger(Func<bool> condition, Action onComplete)
     {
-        this.onComplete = onComplete;
         this.condition  = condition;
+        this.onComplete = onComplete;
     }
 
     private CancellationTokenSource cts; 

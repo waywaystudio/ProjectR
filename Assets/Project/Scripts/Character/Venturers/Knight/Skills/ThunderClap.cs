@@ -10,7 +10,7 @@ namespace Character.Venturers.Knight.Skills
         {
             AddAnimationEvent();
 
-            SequenceBuilder.AddActive("Jump", Jump);
+            SequenceBuilder.Add(SectionType.Active,"Jump", Jump);
 
             ExecuteAction.Add("CommonExecution", () =>
             {

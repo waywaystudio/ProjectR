@@ -15,7 +15,7 @@ namespace Character.Villains.Moragg.Skills
                 executor.Execute(MainTarget);
             });
 
-            SequenceBuilder.AddComplete("MoraggLivingBomb", Execution);
+            SequenceBuilder.Add(SectionType.Complete,"MoraggLivingBomb", Execution);
         }
     }
 }

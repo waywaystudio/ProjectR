@@ -31,8 +31,8 @@ namespace Common.Traps
             enabled        = false;
 
             trapComponent.SequenceBuilder
-                         .AddActive("OverTimeOn", OverTimeOn)
-                         .AddEnd("OverTimeOff", OverTimeOff);
+                         .Add(SectionType.Active,"OverTimeOn", OverTimeOn)
+                         .Add(SectionType.End,"OverTimeOff", OverTimeOff);
         }
 
         private void Update()

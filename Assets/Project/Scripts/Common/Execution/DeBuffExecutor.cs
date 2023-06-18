@@ -35,7 +35,7 @@ namespace Common.Execution
         private void CreateStatusEffect(StatusEffectComponent statusEffect)
         {
             statusEffect.Initialize(Origin.Provider);
-            statusEffect.SequenceBuilder.AddEnd("ReturnToPool",() =>
+            statusEffect.SequenceBuilder.Add(SectionType.End, "ReturnToPool",() =>
             {
                 statusEffect.transform.SetParent(transform, false);
                 pool.Release(statusEffect);

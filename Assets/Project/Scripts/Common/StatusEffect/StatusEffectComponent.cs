@@ -44,9 +44,9 @@ namespace Common.StatusEffect
 
             SequenceInvoker.Initialize(sequencer);
             SequenceBuilder.Initialize(sequencer)
-                           .AddEnd("UnregisterTable", UnregisterTable)
-                           .AddEnd("DisableComponent", () => enabled = false)
-                           .AddEnd("DeActiveGameObject", () => gameObject.SetActive(false));
+                           .Add(SectionType.End,"UnregisterTable", UnregisterTable)
+                           .Add(SectionType.End,"DisableComponent", () => enabled = false)
+                           .Add(SectionType.End,"DeActiveGameObject", () => gameObject.SetActive(false));
         }
 
         /// <summary>

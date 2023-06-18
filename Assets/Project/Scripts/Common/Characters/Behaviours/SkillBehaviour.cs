@@ -80,7 +80,7 @@ namespace Common.Characters.Behaviours
             {
                 skill.Initialize();
                 skill.SequenceBuilder
-                     .AddEnd("BehaviourUnregister", () => Current = null);
+                     .Add(SectionType.End,"BehaviourUnregister", () => Current = null);
                      //.AddActive("SetCurrentSkill", () => Current  = skill);
             });
 
@@ -89,11 +89,11 @@ namespace Common.Characters.Behaviours
                            .AddCondition("AbleToBehaviourOverride", () => BehaviourMask.CanOverride(Cb.BehaviourMask))
                            .AddCondition("IsSkillEnded", () => IsSkillEnded)
                            .AddCondition("GlobalCoolTimeReady", () => globalCoolTimer.IsReady)
-                           .AddActive("CancelPreviousBehaviour", () => cb.CurrentBehaviour?.TryToCancel(this))
-                           .AddActive("SetCurrentBehaviour", () => cb.CurrentBehaviour = this)
-                           .AddActive("PlayGlobalCoolTimer", globalCoolTimer.Play)
-                           .AddCancel("CurrentSkillCancel", () => Current.Cancel())
-                           .AddEnd("Stop", Cb.Stop);
+                           .Add(SectionType.Active,"CancelPreviousBehaviour", () => cb.CurrentBehaviour?.TryToCancel(this))
+                           .Add(SectionType.Active,"SetCurrentBehaviour", () => cb.CurrentBehaviour = this)
+                           .Add(SectionType.Active,"PlayGlobalCoolTimer", globalCoolTimer.Play)
+                           .Add(SectionType.Cancel,"CurrentSkillCancel", () => Current.Cancel())
+                           .Add(SectionType.End,"Stop", Cb.Stop);
         }
 
         private void OnDisable()

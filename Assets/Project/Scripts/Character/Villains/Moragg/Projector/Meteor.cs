@@ -13,14 +13,14 @@ namespace Character.Villains.Moragg.Projector
         {
             base.Initialize(provider);
 
-            SequenceBuilder.AddExecution("MeteorExecution", () =>
+            SequenceBuilder.Add(SectionType.Execute,"MeteorExecution", () =>
                            {
                                if (TryGetTakerInSphere(out var takerList))
                                {
                                    takerList.ForEach(executor.Execute);
                                }
                            })
-                           .AddComplete("Execute", Execution);
+                           .Add(SectionType.Complete,"Execute", Execution);
         }
 
         public override void Execution() => ExecuteAction.Invoke();

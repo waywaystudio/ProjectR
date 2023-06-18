@@ -26,7 +26,7 @@ namespace Common.Characters.UI.CastingFrames
             castingObject.gameObject.SetActive(true);
             castingBar.Register(currentSkill.CastTimer.EventTimer, currentSkill.CastTimer.CastingTime);
 
-            currentSkill.SequenceBuilder.AddEnd("HideCastingUI", Hide);
+            currentSkill.SequenceBuilder.Add(SectionType.End,"HideCastingUI", Hide);
         }
         
         private void Hide()
