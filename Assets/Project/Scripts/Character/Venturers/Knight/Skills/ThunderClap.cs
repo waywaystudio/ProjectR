@@ -1,4 +1,5 @@
 using Common.Skills;
+using UnityEngine;
 
 namespace Character.Venturers.Knight.Skills
 {
@@ -8,13 +9,12 @@ namespace Character.Venturers.Knight.Skills
         {
             base.Initialize();
 
-            SequenceBuilder.Add(SectionType.Active, "Jump", Jump)
+            SequenceBuilder.AddActiveParam("Jump", Jump)
                            .Add(SectionType.Execute, "CommonExecution", () => detector.GetTakers()?.ForEach(executor.Execute));
         }
 
-        private void Jump()
+        private void Jump(Vector3 direction)
         {
-            var direction = Cb.transform.forward;
             Cb.Pathfinding.Jump(direction, 11f);
         }
     }

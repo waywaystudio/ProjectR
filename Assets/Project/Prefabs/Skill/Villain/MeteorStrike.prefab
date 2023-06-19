@@ -62,7 +62,7 @@ Transform:
   m_Father: {fileID: 234500611213636336}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &8370098958501431919
+--- !u!1 &6416584808773501554
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -70,22 +70,22 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 1912179416135756309}
-  - component: {fileID: 1188216186287851098}
+  - component: {fileID: 7498427149043567896}
+  - component: {fileID: 3211000053568049609}
   m_Layer: 0
-  m_Name: Execution
+  m_Name: ExecutionModule
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &1912179416135756309
+--- !u!4 &7498427149043567896
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8370098958501431919}
+  m_GameObject: {fileID: 6416584808773501554}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
@@ -94,23 +94,23 @@ Transform:
   m_Father: {fileID: 234500611213636336}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1188216186287851098
+--- !u!114 &3211000053568049609
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8370098958501431919}
+  m_GameObject: {fileID: 6416584808773501554}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 714e87efbca5f5e47a36249aecf0b6f2, type: 3}
+  m_Script: {fileID: 11500000, guid: f43f38c71544bb74da15b508119a64d9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   group: 1
-  actionCode: 32000004
+  actionCode: 31000008
   pool:
-    prefab: {fileID: 8333227002716821657, guid: ae083ec149c3daa4fb7146db6fd69715, type: 3}
-    maxCount: 2
+    prefab: {fileID: 3865230921314547483, guid: 9cf6115b552997a478910cf9d8071967, type: 3}
+    maxCount: 20
     syncObjectActivity: 1
 --- !u!1 &8380361914805468174
 GameObject:
@@ -121,9 +121,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 234500611213636336}
-  - component: {fileID: -7836975085712377097}
+  - component: {fileID: 6990209160415545652}
   m_Layer: 0
-  m_Name: MoraggLivingBomb
+  m_Name: MeteorStrike
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -141,13 +141,13 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 1912179416135756309}
+  - {fileID: 7498427149043567896}
   - {fileID: 7221708945386366489}
   - {fileID: 5853087751410363707}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &-7836975085712377097
+--- !u!114 &6990209160415545652
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -156,48 +156,43 @@ MonoBehaviour:
   m_GameObject: {fileID: 8380361914805468174}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0b41bb0c3dbbd114882a16e954f7deac, type: 3}
+  m_Script: {fileID: 11500000, guid: 873605c82d9e0a745aa47c75c970d0f8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sortingType: 8
-  range: 0
-  angle: 0
-  targetLayer:
-    serializedVersion: 2
-    m_Bits: 128
-  sizeVector: {x: 0, y: 0}
+  actionCode: 31222203
+  behaviourMask: 32
+  priority: 3
   executor:
     table:
       keyList: 01000000
       valueList:
       - ExecutionList:
-        - {fileID: 1188216186287851098}
+        - {fileID: 3211000053568049609}
       hideKey: 0
   detector:
     targetType: 1
-    sortingType: 8
+    sortingType: 0
     maxBufferCount: 32
-    range: 0
-    angle: 0
+    sizeVector: {x: 50, y: 360}
     targetLayer:
       serializedVersion: 2
       m_Bits: 128
-    sizeVector: {x: 0, y: 0}
   animationTrait:
     animationKey: attack
-    timeScale: 0
-    isLoop: 0
+    isLoop: 1
     hasEvent: 0
-    skillType: 1
-    callbackSection: 3
+    skillType: 2
+    callbackSection: 0
   coolTimer:
-    coolTime: 20
+    coolTime: 30
     invokeSection: 1
   castTimer:
-    castingTime: 0
-    callbackSection: 0
-  actionCode: 31000007
-  behaviourMask: 32
-  priority: 4
+    castingTime: 3
+    callbackSection: 3
   description: Starts combat by attacking a target with a melee weapon.
-  icon: {fileID: 21300000, guid: 66dd4d17749630548bd562332cf77491, type: 3}
+  icon: {fileID: 21300000, guid: 507e212ba6f235743b8c7248828105e4, type: 3}
+  enableMask: 2
+  radius: 20
+  minDistance: 8
+  maxPoints: 10
+  sampleSize: 16

@@ -4,9 +4,9 @@ using Common;
 using Common.Skills;
 using UnityEngine;
 
-namespace Character.Villains.Moragg.Skills
+namespace Character.Villains.Commons.Skills
 {
-    public class MoraggMeteorStrike : SkillComponent
+    public class MeteorStrike : SkillComponent
     {
         [SerializeField] private VillainPhaseMask enableMask;
         [SerializeField] private int radius = 20;
@@ -22,7 +22,7 @@ namespace Character.Villains.Moragg.Skills
             base.Initialize();
             
             var villain = GetComponentInParent<VillainBehaviour>();
-            
+
             SequenceBuilder.AddCondition("ConditionSelfHpStatus", () => (enableMask | villain.CurrentPhase.PhaseMask) == enableMask)
                            .Add(SectionType.Active, "DirectExecuteMeteorStrike", SkillInvoker.Execute)
                            .Add(SectionType.Execute, "StartMeteor", () => meteorRoutine = StartCoroutine(StartMeteor()))

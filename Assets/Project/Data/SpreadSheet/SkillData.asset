@@ -14,309 +14,417 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Index: 31
   list:
-  - id: 31000001
+  - id: 31210101
     name: SwordAttack
+    behaviourMask: Skill
+    priority: 1
+    detectorType: Circle
+    sortingType: None
+    targetParam: {x: 6, y: 135}
+    targetLayer: Monster
+    animationKey: swordAttack
+    isLoop: 0
+    hasEvent: 1
     skillType: Instant
+    animationCallback: Complete
+    coolTime: 0
+    coolTimeInvoker: None
+    castTime: 0
+    castCallback: None
     completionValueList:
     - 15
-    processTime: 0
-    coolTime: 0
     cost: 0
-    basePriority: 1
-    animationKey: swordAttack
-    isRigid: 0
-    sortingType: None
-    targetLayer: Monster
-    targetParam: {x: 6, y: 135}
     statusEffect: 0
     iconFileName: SwordAttack Sprite
     description: Starts combat by attacking a target with a melee weapon.
-  - id: 31000002
+  - id: 31210102
     name: Bash
+    behaviourMask: Skill
+    priority: 2
+    detectorType: Circle
+    sortingType: None
+    targetParam: {x: 6, y: 90}
+    targetLayer: Monster
+    animationKey: bash
+    isLoop: 0
+    hasEvent: 1
     skillType: Instant
+    animationCallback: Complete
+    coolTime: 5
+    coolTimeInvoker: Active
+    castTime: 0
+    castCallback: None
     completionValueList:
     - 30
-    processTime: 0
-    coolTime: 5
     cost: 0
-    basePriority: 2
-    animationKey: bash
-    isRigid: 0
-    sortingType: None
-    targetLayer: Monster
-    targetParam: {x: 6, y: 90}
     statusEffect: 32000001
     iconFileName: Bash Sprite
     description: Starts combat by attacking a target with a melee weapon.
-  - id: 31000003
+  - id: 31210103
     name: UpperSlash
+    behaviourMask: Skill
+    priority: 3
+    detectorType: Circle
+    sortingType: None
+    targetParam: {x: 8, y: 90}
+    targetLayer: Monster
+    animationKey: upperSlash
+    isLoop: 0
+    hasEvent: 1
     skillType: Instant
+    animationCallback: Complete
+    coolTime: 7
+    coolTimeInvoker: Active
+    castTime: 0
+    castCallback: None
     completionValueList:
     - 48
-    processTime: 0
-    coolTime: 7
     cost: 0
-    basePriority: 3
-    animationKey: upperSlash
-    isRigid: 0
-    sortingType: None
-    targetLayer: Monster
-    targetParam: {x: 8, y: 90}
     statusEffect: 32000002
     iconFileName: UpperSlash Sprite
     description: Starts combat by attacking a target with a melee weapon.
-  - id: 31000004
+  - id: 31210104
     name: ThunderClap
+    behaviourMask: RigidSkill
+    priority: 4
+    detectorType: Circle
+    sortingType: None
+    targetParam: {x: 15, y: 360}
+    targetLayer: Monster
+    animationKey: thunderClap
+    isLoop: 0
+    hasEvent: 1
     skillType: Instant
+    animationCallback: Complete
+    coolTime: 8
+    coolTimeInvoker: Active
+    castTime: 0
+    castCallback: None
     completionValueList:
     - 15
-    processTime: 0
-    coolTime: 8
     cost: 0
-    basePriority: 4
-    animationKey: thunderClap
-    isRigid: 1
-    sortingType: None
-    targetLayer: Monster
-    targetParam: {x: 15, y: 360}
     statusEffect: 0
     iconFileName: ThunderClap Sprite
     description: Starts combat by attacking a target with a melee weapon.
-  - id: 31000005
+  - id: 31210105
     name: MightyGuard
+    behaviourMask: Skill
+    priority: 0
+    detectorType: Circle
+    sortingType: None
+    targetParam: {x: 0, y: 0}
+    targetLayer: Monster
+    animationKey: mightyGuard
+    isLoop: 0
+    hasEvent: 1
     skillType: Instant
+    animationCallback: Complete
+    coolTime: 5
+    coolTimeInvoker: Active
+    castTime: 0
+    castCallback: None
     completionValueList:
     - 8
-    processTime: 0
-    coolTime: 5
     cost: 0
-    basePriority: 0
-    animationKey: mightyGuard
-    isRigid: 0
-    sortingType: None
-    targetLayer: Monster
-    targetParam: {x: 0, y: 0}
     statusEffect: 0
     iconFileName: MightyGuard Sprite
     description: Starts combat by attacking a target with a melee weapon.
-  - id: 31000006
-    name: MoraggSpin
-    skillType: Casting
-    completionValueList:
-    - 36
-    processTime: 3
-    coolTime: 12
-    cost: 0
-    basePriority: 2
-    animationKey: casting
-    isRigid: 0
-    sortingType: None
-    targetLayer: Adventurer
-    targetParam: {x: 4, y: 360}
-    statusEffect: 0
-    iconFileName: MoraggSpin Sprite
-    description: Starts combat by attacking a target with a melee weapon.
-  - id: 31000007
-    name: MoraggLivingBomb
-    skillType: Instant
-    completionValueList:
-    - 0
-    processTime: 0
-    coolTime: 20
-    cost: 0
-    basePriority: 4
-    animationKey: attack
-    isRigid: 0
-    sortingType: Random
-    targetLayer: Adventurer
-    targetParam: {x: 0, y: 0}
-    statusEffect: 32000004
-    iconFileName: MoraggLivingBomb Sprite
-    description: Starts combat by attacking a target with a melee weapon.
-  - id: 31000008
-    name: MoraggHowling
-    skillType: Instant
-    completionValueList:
-    - 0
-    processTime: 0
-    coolTime: 30
-    cost: 0
-    basePriority: 3
-    animationKey: attack
-    isRigid: 0
-    sortingType: None
-    targetLayer: Adventurer
-    targetParam: {x: 50, y: 360}
-    statusEffect: 32000005
-    iconFileName: MoraggHowling Sprite
-    description: Starts combat by attacking a target with a melee weapon.
-  - id: 31000009
-    name: MoraggCommonAttack
-    skillType: Instant
-    completionValueList:
-    - 20
-    processTime: 0
-    coolTime: 0
-    cost: 0
-    basePriority: 1
-    animationKey: attack
-    isRigid: 0
-    sortingType: CombatClass
-    targetLayer: Adventurer
-    targetParam: {x: 6, y: 360}
-    statusEffect: 0
-    iconFileName: MoraggCommonAttack Sprite
-    description: Starts combat by attacking a target with a melee weapon.
-  - id: 31000010
+  - id: 31210601
     name: PriestCommonHeal
+    behaviourMask: Skill
+    priority: 1
+    detectorType: Circle
+    sortingType: HpRatioAscending
+    targetParam: {x: 5, y: 25}
+    targetLayer: Adventurer
+    animationKey: casting
+    isLoop: 0
+    hasEvent: 1
     skillType: Casting
+    animationCallback: None
+    coolTime: 0
+    coolTimeInvoker: None
+    castTime: 1.5
+    castCallback: None
     completionValueList:
     - 15
-    processTime: 1.5
-    coolTime: 0
     cost: 0
-    basePriority: 1
-    animationKey: casting
-    isRigid: 0
-    sortingType: HpRatioAscending
-    targetLayer: Adventurer
-    targetParam: {x: 5, y: 25}
     statusEffect: 0
     iconFileName: PriestCommonHeal Sprite
     description: Starts combat by attacking a target with a melee weapon.
-  - id: 31000011
+  - id: 31210301
     name: ClawAttack
+    behaviourMask: Skill
+    priority: 1
+    detectorType: Circle
+    sortingType: None
+    targetParam: {x: 6, y: 90}
+    targetLayer: Monster
+    animationKey: clawAttack
+    isLoop: 0
+    hasEvent: 1
     skillType: Instant
+    animationCallback: Complete
+    coolTime: 0
+    coolTimeInvoker: None
+    castTime: 0
+    castCallback: None
     completionValueList:
     - 14
-    processTime: 0
-    coolTime: 0
     cost: 0
-    basePriority: 1
-    animationKey: clawAttack
-    isRigid: 0
-    sortingType: None
-    targetLayer: Monster
-    targetParam: {x: 6, y: 90}
     statusEffect: 0
     iconFileName: ClawAttack Sprite
     description: Starts combat by attacking a target with a melee weapon.
-  - id: 31000012
+  - id: 31210302
     name: PowerBeat
+    behaviourMask: Skill
+    priority: 2
+    detectorType: Circle
+    sortingType: None
+    targetParam: {x: 7, y: 90}
+    targetLayer: Monster
+    animationKey: powerBeat
+    isLoop: 0
+    hasEvent: 1
     skillType: Instant
+    animationCallback: Complete
+    coolTime: 6
+    coolTimeInvoker: Active
+    castTime: 0
+    castCallback: None
     completionValueList:
     - 12
-    processTime: 0
-    coolTime: 6
     cost: 0
-    basePriority: 2
-    animationKey: powerBeat
-    isRigid: 0
-    sortingType: None
-    targetLayer: Monster
-    targetParam: {x: 7, y: 90}
     statusEffect: 0
     iconFileName: PowerBeat Sprite
     description: Starts combat by attacking a target with a melee weapon.
-  - id: 31000013
+  - id: 31210303
     name: Liberation
+    behaviourMask: Skill
+    priority: 3
+    detectorType: Self
+    sortingType: None
+    targetParam: {x: 0, y: 0}
+    targetLayer: Adventurer
+    animationKey: liberation
+    isLoop: 0
+    hasEvent: 0
     skillType: Instant
+    animationCallback: Complete
+    coolTime: 12
+    coolTimeInvoker: Active
+    castTime: 0
+    castCallback: None
     completionValueList:
     - 0
-    processTime: 0
-    coolTime: 12
     cost: 0
-    basePriority: 3
-    animationKey: liberation
-    isRigid: 0
-    sortingType: None
-    targetLayer: Adventurer
-    targetParam: {x: 0, y: 0}
     statusEffect: 0
     iconFileName: Liberation Sprite
     description: Starts combat by attacking a target with a melee weapon.
-  - id: 31000014
+  - id: 31210304
     name: Annihilation
+    behaviourMask: RigidSkill
+    priority: 4
+    detectorType: Circle
+    sortingType: None
+    targetParam: {x: 12, y: 360}
+    targetLayer: Monster
+    animationKey: annihilation
+    isLoop: 0
+    hasEvent: 1
     skillType: Instant
+    animationCallback: Complete
+    coolTime: 18
+    coolTimeInvoker: Active
+    castTime: 0
+    castCallback: None
     completionValueList:
     - 20
-    processTime: 0
-    coolTime: 18
     cost: 0
-    basePriority: 4
-    animationKey: annihilation
-    isRigid: 1
-    sortingType: None
-    targetLayer: Monster
-    targetParam: {x: 12, y: 360}
     statusEffect: 0
     iconFileName: Annihilation Sprite
     description: Starts combat by attacking a target with a melee weapon.
-  - id: 31000015
+  - id: 31210401
     name: ShotAttack
+    behaviourMask: Skill
+    priority: 1
+    detectorType: Circle
+    sortingType: None
+    targetParam: {x: 30, y: 6}
+    targetLayer: Monster
+    animationKey: shotAttack
+    isLoop: 0
+    hasEvent: 1
     skillType: Instant
+    animationCallback: Complete
+    coolTime: 0
+    coolTimeInvoker: None
+    castTime: 0
+    castCallback: None
     completionValueList:
     - 9
-    processTime: 0
-    coolTime: 0
     cost: 0
-    basePriority: 1
-    animationKey: shotAttack
-    isRigid: 0
-    sortingType: None
-    targetLayer: Monster
-    targetParam: {x: 30, y: 6}
     statusEffect: 0
     iconFileName: ShotAttack Sprite
     description: Starts combat by attacking a target with a melee weapon.
-  - id: 31000016
+  - id: 31210402
     name: ContinuesAttack
+    behaviourMask: Skill
+    priority: 2
+    detectorType: Circle
+    sortingType: None
+    targetParam: {x: 30, y: 6}
+    targetLayer: Monster
+    animationKey: continuesAttack
+    isLoop: 1
+    hasEvent: 1
     skillType: Holding
+    animationCallback: None
+    coolTime: 12
+    coolTimeInvoker: Complete
+    castTime: 2
+    castCallback: Complete
     completionValueList:
     - 4
-    processTime: 4
-    coolTime: 12
     cost: 0
-    basePriority: 2
-    animationKey: continuesAttack
-    isRigid: 0
-    sortingType: None
-    targetLayer: Monster
-    targetParam: {x: 30, y: 6}
     statusEffect: 0
     iconFileName: ContinuesAttack Sprite
     description: Starts combat by attacking a target with a melee weapon.
-  - id: 31000017
+  - id: 31210403
     name: InstantTrap
+    behaviourMask: RigidSkill
+    priority: 3
+    detectorType: Self
+    sortingType: None
+    targetParam: {x: 4, y: 360}
+    targetLayer: Monster
+    animationKey: jump
+    isLoop: 0
+    hasEvent: 0
     skillType: Instant
+    animationCallback: Complete
+    coolTime: 15
+    coolTimeInvoker: Active
+    castTime: 0
+    castCallback: None
     completionValueList:
     - 50
-    processTime: 0
-    coolTime: 15
     cost: 0
-    basePriority: 3
-    animationKey: jump
-    isRigid: 1
-    sortingType: None
-    targetLayer: Monster
-    targetParam: {x: 4, y: 360}
     statusEffect: 0
     iconFileName: InstantTrap Sprite
     description: Starts combat by attacking a target with a melee weapon.
-  - id: 31000018
+  - id: 31210404
     name: AimShot
+    behaviourMask: Skill
+    priority: 4
+    detectorType: Circle
+    sortingType: None
+    targetParam: {x: 40, y: 8}
+    targetLayer: Monster
+    animationKey: aiming
+    isLoop: 0
+    hasEvent: 0
     skillType: Charging
+    animationCallback: None
+    coolTime: 18
+    coolTimeInvoker: End
+    castTime: 3
+    castCallback: Execute
     completionValueList:
     - 50
-    processTime: 3
-    coolTime: 18
     cost: 0
-    basePriority: 4
-    animationKey: aiming
-    isRigid: 0
-    sortingType: None
-    targetLayer: Monster
-    targetParam: {x: 40, y: 8}
     statusEffect: 0
     iconFileName: AimShot Sprite
+    description: Starts combat by attacking a target with a melee weapon.
+  - id: 31222201
+    name: ShockWave
+    behaviourMask: Skill
+    priority: 2
+    detectorType: Circle
+    sortingType: None
+    targetParam: {x: 18, y: 60}
+    targetLayer: Adventurer
+    animationKey: casting
+    isLoop: 1
+    hasEvent: 0
+    skillType: Casting
+    animationCallback: None
+    coolTime: 12
+    coolTimeInvoker: Complete
+    castTime: 2
+    castCallback: Execute
+    completionValueList:
+    - 36
+    cost: 0
+    statusEffect: 0
+    iconFileName: ShockWave Sprite
+    description: Starts combat by attacking a target with a melee weapon.
+  - id: 31222202
+    name: LivingBomb
+    behaviourMask: Skill
+    priority: 4
+    detectorType: Circle
+    sortingType: Random
+    targetParam: {x: 50, y: 0}
+    targetLayer: Adventurer
+    animationKey: attack
+    isLoop: 0
+    hasEvent: 0
+    skillType: Instant
+    animationCallback: Complete
+    coolTime: 20
+    coolTimeInvoker: Active
+    castTime: 0
+    castCallback: None
+    completionValueList:
+    - 0
+    cost: 0
+    statusEffect: 32000004
+    iconFileName: LivingBomb Sprite
+    description: Starts combat by attacking a target with a melee weapon.
+  - id: 31222203
+    name: MeteorStrike
+    behaviourMask: Skill
+    priority: 3
+    detectorType: Circle
+    sortingType: None
+    targetParam: {x: 50, y: 360}
+    targetLayer: Adventurer
+    animationKey: attack
+    isLoop: 1
+    hasEvent: 0
+    skillType: Casting
+    animationCallback: None
+    coolTime: 30
+    coolTimeInvoker: Active
+    castTime: 3
+    castCallback: Complete
+    completionValueList:
+    - 0
+    cost: 0
+    statusEffect: 0
+    iconFileName: MeteorStrike Sprite
+    description: Starts combat by attacking a target with a melee weapon.
+  - id: 31222204
+    name: VillainCommonAttack
+    behaviourMask: Skill
+    priority: 1
+    detectorType: Circle
+    sortingType: CombatClass
+    targetParam: {x: 6, y: 360}
+    targetLayer: Adventurer
+    animationKey: attack
+    isLoop: 0
+    hasEvent: 1
+    skillType: Instant
+    animationCallback: Complete
+    coolTime: 0
+    coolTimeInvoker: None
+    castTime: 0
+    castCallback: None
+    completionValueList:
+    - 20
+    cost: 0
+    statusEffect: 0
+    iconFileName: VillainCommonAttack Sprite
     description: Starts combat by attacking a target with a melee weapon.

@@ -33,6 +33,9 @@ namespace Common.Execution
             // Armor Calculation : CombatFormula
             var armorReduceRate = CombatFormula.ArmorReduce(taker.StatTable.Armor);
             
+            // Global Generic Damage Adder
+            // => 
+            
             damageAmount *= 1.0f - armorReduceRate;
             entity.Value =  damageAmount;
             
@@ -66,9 +69,9 @@ namespace Common.Execution
             }
             
             taker.DynamicStatEntry.Hp.Value -= damageAmount;
+            taker.OnDamageTaken.Invoke(entity);
 
             Origin.Provider.OnDamageProvided.Invoke(entity);
-            taker.OnDamageTaken.Invoke(entity);
         }
 
 

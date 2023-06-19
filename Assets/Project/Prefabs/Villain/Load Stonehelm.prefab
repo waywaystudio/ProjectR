@@ -9,6 +9,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 291626802760447148, guid: bd355e30ab3d37740ab682aad07a91b5, type: 3}
+      propertyPath: globalCoolTimer.timer
+      value: 1.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 291626802760447148, guid: bd355e30ab3d37740ab682aad07a91b5, type: 3}
       propertyPath: skillTable.keyList.Array.size
       value: 4
       objectReference: {fileID: 0}
@@ -18,19 +22,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 291626802760447148, guid: bd355e30ab3d37740ab682aad07a91b5, type: 3}
       propertyPath: skillTable.keyList.Array.data[0]
-      value: 31000009
+      value: 31222204
       objectReference: {fileID: 0}
     - target: {fileID: 291626802760447148, guid: bd355e30ab3d37740ab682aad07a91b5, type: 3}
       propertyPath: skillTable.keyList.Array.data[1]
-      value: 31000006
+      value: 31222201
       objectReference: {fileID: 0}
     - target: {fileID: 291626802760447148, guid: bd355e30ab3d37740ab682aad07a91b5, type: 3}
       propertyPath: skillTable.keyList.Array.data[2]
-      value: 31000007
+      value: 31222202
       objectReference: {fileID: 0}
     - target: {fileID: 291626802760447148, guid: bd355e30ab3d37740ab682aad07a91b5, type: 3}
       propertyPath: skillTable.keyList.Array.data[3]
-      value: 31000008
+      value: 31222203
       objectReference: {fileID: 0}
     - target: {fileID: 291626802760447148, guid: bd355e30ab3d37740ab682aad07a91b5, type: 3}
       propertyPath: skillTable.valueList.Array.data[0]
@@ -52,6 +56,10 @@ PrefabInstance:
       propertyPath: coolTimeSection
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1144377022904457136, guid: bd355e30ab3d37740ab682aad07a91b5, type: 3}
+      propertyPath: coolTimer.coolTime
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1194031104030257203, guid: bd355e30ab3d37740ab682aad07a91b5, type: 3}
       propertyPath: data
       value: 
@@ -63,6 +71,10 @@ PrefabInstance:
     - target: {fileID: 2497100265669063333, guid: bd355e30ab3d37740ab682aad07a91b5, type: 3}
       propertyPath: castingTime
       value: 2.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2965052365408092262, guid: bd355e30ab3d37740ab682aad07a91b5, type: 3}
+      propertyPath: m_Name
+      value: MeteorStrike
       objectReference: {fileID: 0}
     - target: {fileID: 2965052365408092262, guid: bd355e30ab3d37740ab682aad07a91b5, type: 3}
       propertyPath: m_IsActive
@@ -117,8 +129,16 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4353515852124255580, guid: bd355e30ab3d37740ab682aad07a91b5, type: 3}
-      propertyPath: priority
-      value: 4
+      propertyPath: radius
+      value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 4353515852124255580, guid: bd355e30ab3d37740ab682aad07a91b5, type: 3}
+      propertyPath: detector.sortingType
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4353515852124255580, guid: bd355e30ab3d37740ab682aad07a91b5, type: 3}
+      propertyPath: castTimer.castingTime
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 4442699525421009715, guid: bd355e30ab3d37740ab682aad07a91b5, type: 3}
       propertyPath: angle
@@ -137,12 +157,24 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 0}
     - target: {fileID: 6370670999301307393, guid: bd355e30ab3d37740ab682aad07a91b5, type: 3}
+      propertyPath: m_Name
+      value: VillainCommonAttack
+      objectReference: {fileID: 0}
+    - target: {fileID: 6370670999301307393, guid: bd355e30ab3d37740ab682aad07a91b5, type: 3}
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7699120219021817231, guid: bd355e30ab3d37740ab682aad07a91b5, type: 3}
+      propertyPath: m_Name
+      value: ShockWave
+      objectReference: {fileID: 0}
+    - target: {fileID: 7699120219021817231, guid: bd355e30ab3d37740ab682aad07a91b5, type: 3}
       propertyPath: m_IsActive
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8945366538634865238, guid: bd355e30ab3d37740ab682aad07a91b5, type: 3}
+      propertyPath: m_Name
+      value: LivingBomb
       objectReference: {fileID: 0}
     - target: {fileID: 8945366538634865238, guid: bd355e30ab3d37740ab682aad07a91b5, type: 3}
       propertyPath: m_IsActive

@@ -1,8 +1,8 @@
 using Common.Skills;
 
-namespace Character.Villains.Moragg.Skills
+namespace Character.Villains.Commons.Skills
 {
-    public class MoraggLivingBomb : SkillComponent
+    public class LivingBomb : SkillComponent
     {
         public override void Initialize()
         {

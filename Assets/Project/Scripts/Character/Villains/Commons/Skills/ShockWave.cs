@@ -1,18 +1,18 @@
 using Common.Skills;
 using UnityEngine;
 
-namespace Character.Villains.Moragg.Skills
+namespace Character.Villains.Commons.Skills
 {
-    public class MoraggSpin : SkillComponent, IProjectorSequencer
+    public class ShockWave : SkillComponent, IProjectorSequencer
     {
-        public Vector2 SizeVector => new(Range, 60);
+        public Vector2 SizeVector => new(Range, Angle);
 
         public override void Initialize()
         {
             base.Initialize();
             
             SequenceBuilder.Add(SectionType.Execute, "PlayOnceCompleteAnimation",() => Cb.Animating.PlayOnce("attack", 0f, SkillInvoker.Complete))
-                           .Add(SectionType.Execute, "CommonExecution", () => executor.Execute(MainTarget));
+                           .Add(SectionType.Execute, "CommonExecution", () => detector.GetTakers()?.ForEach(executor.Execute));
         }
     }
 }

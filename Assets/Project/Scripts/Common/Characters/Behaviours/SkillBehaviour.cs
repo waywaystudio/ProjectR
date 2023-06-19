@@ -28,33 +28,18 @@ namespace Common.Characters.Behaviours
         public void Active(DataIndex actionCode, Vector3 targetPosition)
         {
             if (!SequenceInvoker.IsAbleToActive) return;
-            if (!skillTable.TryGetValue(actionCode, out var skill))
-            {
-                Debug.Log($"Input :{actionCode}. TableCount:{skillTable.Count}");
-                return;
-            }
+
+            var skill = skillTable[actionCode];
 
             if (!skill.SkillInvoker.IsAbleToActive) return;
             
             Current = skill;
-            
             SequenceInvoker.Active();
             Current.SkillInvoker.Active(targetPosition);
         }
 
-        public void Cancel()
-        {
-            if (Current.IsNullOrEmpty()) return;
-            
-            SequenceInvoker.Cancel();
-        }
-        
-        public void Release()
-        {
-            if (Current.IsNullOrEmpty()) return;
-            
-            Current.SkillInvoker.Release();
-        }
+        public void Cancel() => (Current is not null).OnTrue(Current!.SkillInvoker.Cancel);
+        public void Release() => (Current is not null).OnTrue(Current!.SkillInvoker.Release);
 
         public bool TryGetMostPrioritySkill(out SkillComponent skill)
         {
@@ -76,24 +61,25 @@ namespace Common.Characters.Behaviours
 
         private void OnEnable()
         {
-            skillTable.Iterate(skill =>
-            {
-                skill.Initialize();
-                skill.SequenceBuilder
-                     .Add(SectionType.End,"BehaviourUnregister", () => Current = null);
-                     //.AddActive("SetCurrentSkill", () => Current  = skill);
-            });
-
+            // Current = skill;
+            
             SequenceInvoker.Initialize(sequencer);
             SequenceBuilder.Initialize(sequencer)
                            .AddCondition("AbleToBehaviourOverride", () => BehaviourMask.CanOverride(Cb.BehaviourMask))
                            .AddCondition("IsSkillEnded", () => IsSkillEnded)
                            .AddCondition("GlobalCoolTimeReady", () => globalCoolTimer.IsReady)
-                           .Add(SectionType.Active,"CancelPreviousBehaviour", () => cb.CurrentBehaviour?.TryToCancel(this))
+                           .Add(SectionType.Active,"CancelPreviousBehaviour", () => cb.CurrentBehaviour?.TryToOverride(this))
                            .Add(SectionType.Active,"SetCurrentBehaviour", () => cb.CurrentBehaviour = this)
                            .Add(SectionType.Active,"PlayGlobalCoolTimer", globalCoolTimer.Play)
                            .Add(SectionType.Cancel,"CurrentSkillCancel", () => Current.SkillInvoker.Cancel())
                            .Add(SectionType.End,"Stop", Cb.Stop);
+            
+            skillTable.Iterate(skill =>
+            {
+                skill.Initialize();
+                skill.SequenceBuilder
+                     .Add(SectionType.End, "BehaviourUnregister", () => Current = null);
+            });
         }
 
         private void OnDisable()

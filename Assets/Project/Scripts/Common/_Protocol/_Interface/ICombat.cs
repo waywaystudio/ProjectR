@@ -41,6 +41,9 @@ namespace Common
 
     public interface ICombatProvider : ICombatEntity, IObjectName
     {
+        // + string Name { get; }
+        // + GameObject gameObject { get; }
+        // + Vector3 Position { get; }
         // + StatTable StatTable { get; }
         // + IDynamicStatEntry DynamicStatEntry { get; }
         // + string Name { get; }

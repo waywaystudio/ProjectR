@@ -19,7 +19,6 @@ namespace Common.Characters
             Resource.StatTable = StatTable;
             Shield.StatTable   = StatTable;
             Alive.Value        = true;
-            
             Hp.Value           = StatTable.Health * 10f;
             Resource.Value     = StatTable.MaxResource;
             Shield.Value       = 0;

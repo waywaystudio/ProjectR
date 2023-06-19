@@ -108,7 +108,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   group: 1
-  actionCode: 31000002
+  actionCode: 31210102
   damageSpec:
     statList:
     - statType: 13010001
@@ -185,13 +185,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 222a8f415f8434843b9aa37f3873ad23, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sortingType: 0
-  range: 6
-  angle: 90
-  targetLayer:
-    serializedVersion: 2
-    m_Bits: 256
-  sizeVector: {x: 0, y: 0}
+  actionCode: 31210102
+  behaviourMask: 32
+  priority: 2
   executor:
     table:
       keyList: 01000000
@@ -204,15 +200,12 @@ MonoBehaviour:
     targetType: 1
     sortingType: 0
     maxBufferCount: 32
-    range: 6
-    angle: 90
+    sizeVector: {x: 6, y: 90}
     targetLayer:
       serializedVersion: 2
       m_Bits: 256
-    sizeVector: {x: 0, y: 0}
   animationTrait:
     animationKey: bash
-    timeScale: 0
     isLoop: 0
     hasEvent: 1
     skillType: 1
@@ -223,8 +216,5 @@ MonoBehaviour:
   castTimer:
     castingTime: 0
     callbackSection: 0
-  actionCode: 31000002
-  behaviourMask: 32
-  priority: 2
   description: Starts combat by attacking a target with a melee weapon.
   icon: {fileID: 21300000, guid: 8f65b4f511f4d784a8f0bef07957cfbd, type: 3}

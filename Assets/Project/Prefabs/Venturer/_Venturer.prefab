@@ -1879,8 +1879,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 100971ec1b076d041bcdbeabfca9ef89, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sequencer:
-    sequenceKey: Stun
 --- !u!1 &4586929172752689801
 GameObject:
   m_ObjectHideFlags: 0
@@ -2335,8 +2333,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0374d05ee0e1fb04ca9b65115ad0dce6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sequencer:
-    sequenceKey: KnockBack
 --- !u!1 &5142661999218288646
 GameObject:
   m_ObjectHideFlags: 0
@@ -2986,8 +2982,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: de170aedc8a6e27468da3e3bb6b91d3c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sequencer:
-    sequenceKey: Stop
 --- !u!1 &6512560074854632170
 GameObject:
   m_ObjectHideFlags: 0
@@ -3084,8 +3078,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f023e572eb6a80245b9add90975e85ba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sequencer:
-    sequenceKey: Dead
 --- !u!1 &7504715503937997980
 GameObject:
   m_ObjectHideFlags: 0
@@ -3242,15 +3234,13 @@ MonoBehaviour:
   globalCoolTimer:
     timer: 1.5
   skillTable:
-    keyList: cb05d901cc05d901cd05d901ce05d901
+    keyList: 3d3bdc013e3bdc013f3bdc01403bdc01
     valueList:
     - {fileID: 0}
     - {fileID: 0}
     - {fileID: 0}
     - {fileID: 0}
     hideKey: 1
-  sequencer:
-    sequenceKey: SkillBehaviour
 --- !u!114 &3682180189469010492
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3581,8 +3571,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1b6e649d21c669a45a8aa765a78ce211, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sequencer:
-    sequenceKey: Run
 --- !u!1 &8220216556235393295
 GameObject:
   m_ObjectHideFlags: 0

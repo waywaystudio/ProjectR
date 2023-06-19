@@ -13,16 +13,17 @@ namespace Common.Systems
         [SerializeField] private TargetingType targetType = TargetingType.Circle;
         [SerializeField] private SortingType sortingType;
         [SerializeField] private int maxBufferCount = 32;
-        [SerializeField] private float range;
-        [SerializeField] private float angle;
-        [SerializeField] private LayerMask targetLayer;
         [SerializeField] private Vector2 sizeVector;
+        [SerializeField] private LayerMask targetLayer;
 
         private Collider[] colliderBuffers = new Collider[32];
         private RaycastHit[] rayBuffers = new RaycastHit[32];
         private CharacterBehaviour character;
 
-        public float Range => range;
+        public float Range => sizeVector.x;
+        public float Angle => sizeVector.y;
+        public float Width => sizeVector.x;
+        public float Height => sizeVector.y;
 
         public void Initialize(CharacterBehaviour character)
         {
@@ -57,8 +58,8 @@ namespace Common.Systems
         {
             var takerList = GetTakersInSphereType(
                 character.transform.position,
-                range,
-                angle,
+                Range,
+                Angle,
                 targetLayer);
 
             return takerList;
@@ -92,9 +93,9 @@ namespace Common.Systems
         public void SetUpAsSkill(DataIndex dataIndex)
         {
             var skillData = Database.SkillSheetData(dataIndex);
-            
-            range       = skillData.TargetParam.x;
-            angle       = skillData.TargetParam.y;
+
+            targetType  = skillData.DetectorType.ToEnum<TargetingType>();
+            sizeVector  = skillData.TargetParam;
             sortingType = skillData.SortingType.ToEnum<SortingType>();
             targetLayer = LayerMask.GetMask(skillData.TargetLayer);
         }

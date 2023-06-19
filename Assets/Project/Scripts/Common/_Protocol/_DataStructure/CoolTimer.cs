@@ -8,11 +8,11 @@ namespace Common
     [Serializable] 
     public class CoolTimer
     {
-        [SerializeField] private float coolTime;
-        [SerializeField] private SectionType invokeSection;
+        [SerializeField] protected float coolTime;
+        [SerializeField] protected SectionType invokeSection;
         
         public bool IsReady => !isRunning;
-        public float CoolTime { get => coolTime; set => coolTime = value;}
+        public float CoolTime => coolTime;
         public SectionType InvokeSection => invokeSection;
         public FloatEvent EventTimer { get; private set; } = new();
 

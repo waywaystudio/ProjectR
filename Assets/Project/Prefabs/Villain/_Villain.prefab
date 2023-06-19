@@ -1143,11 +1143,11 @@ MonoBehaviour:
   globalCoolTimer:
     timer: 1.5
   skillTable:
-    keyList: c905d901c605d901
+    keyList: bc69dc01b969dc01
     valueList:
     - {fileID: 1144377022904457136}
     - {fileID: 4442699525421009715}
-    hideKey: 1
+    hideKey: 0
 --- !u!114 &3264795498149139108
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1390,6 +1390,10 @@ PrefabInstance:
     - target: {fileID: -7836975085712377097, guid: 89b7f126af484b44fa7eba5693a04ec0, type: 3}
       propertyPath: searching
       value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: -7836975085712377097, guid: 89b7f126af484b44fa7eba5693a04ec0, type: 3}
+      propertyPath: detector.range
+      value: 30
       objectReference: {fileID: 0}
     - target: {fileID: 234500611213636336, guid: 89b7f126af484b44fa7eba5693a04ec0, type: 3}
       propertyPath: m_RootOrder
@@ -1777,8 +1781,16 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6990209160415545652, guid: bc97391f2869fab429f090747d781a5f, type: 3}
+      propertyPath: priority
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 6990209160415545652, guid: bc97391f2869fab429f090747d781a5f, type: 3}
       propertyPath: maxPoints
       value: 14
+      objectReference: {fileID: 0}
+    - target: {fileID: 6990209160415545652, guid: bc97391f2869fab429f090747d781a5f, type: 3}
+      propertyPath: enableMask
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 6990209160415545652, guid: bc97391f2869fab429f090747d781a5f, type: 3}
       propertyPath: minDistance
@@ -1787,6 +1799,10 @@ PrefabInstance:
     - target: {fileID: 6990209160415545652, guid: bc97391f2869fab429f090747d781a5f, type: 3}
       propertyPath: sortingType
       value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 6990209160415545652, guid: bc97391f2869fab429f090747d781a5f, type: 3}
+      propertyPath: animationTrait.skillType
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 6990209160415545652, guid: bc97391f2869fab429f090747d781a5f, type: 3}
       propertyPath: castTimer.callbackSection

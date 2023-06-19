@@ -8,8 +8,8 @@ namespace Common
     [Serializable] 
     public class CastTimer
     {
-        [SerializeField] private float castingTime;
-        [SerializeField] private SectionType callbackSection;
+        [SerializeField] protected float castingTime;
+        [SerializeField] protected SectionType callbackSection;
 
         public float CastingTime { get => castingTime; set => castingTime = value;}
         public SectionType CallbackSection => callbackSection;

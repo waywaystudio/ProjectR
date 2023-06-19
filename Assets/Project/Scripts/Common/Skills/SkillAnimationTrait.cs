@@ -7,15 +7,13 @@ namespace Common.Skills
     public class SkillAnimationTrait
     {
         [SerializeField] private string animationKey;
-        [SerializeField] private float timeScale;
         [SerializeField] private bool isLoop;
         [SerializeField] private bool hasEvent;
         [SerializeField] private SkillType skillType;
         [SerializeField] private SectionType callbackSection = SectionType.Complete;
 
-        public string Key { get => animationKey; set => animationKey = value; }
-        public float TimeScale { get => timeScale; set => timeScale = value; }
-        public SkillType SkillType { get => skillType; set => skillType = value; }
+        public SkillType SkillType => skillType;
+        public float TimeScale { get; private set; } = 0f;
 
         public void Initialize(SkillComponent skill)
         {
@@ -24,7 +22,7 @@ namespace Common.Skills
             
             skill.SequenceBuilder
                  .Add(SectionType.Active,"PlayAnimation",
-                      () => animator.Play(animationKey, 0, isLoop, timeScale, callback));
+                      () => animator.Play(animationKey, 0, isLoop, TimeScale, callback));
 
             if (hasEvent)
             {
@@ -33,5 +31,19 @@ namespace Common.Skills
                      .Add(SectionType.End,"ReleaseHit", () => animator.OnHit.Remove("SkillHit"));
             }
         }
+        
+
+#if UNITY_EDITOR
+        public void SetUpFromSkill(DataIndex dataIndex)
+        {
+            var skillData = Database.SkillSheetData(dataIndex);
+            
+            animationKey    = skillData.AnimationKey;
+            isLoop          = skillData.IsLoop;
+            hasEvent        = skillData.HasEvent;
+            skillType       = skillData.SkillType.ToEnum<SkillType>();
+            callbackSection = skillData.AnimationCallback.ToEnum<SectionType>();
+        }
+#endif
     }
 }

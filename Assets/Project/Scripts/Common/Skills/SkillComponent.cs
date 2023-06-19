@@ -5,17 +5,17 @@ using UnityEngine;
 
 namespace Common.Skills
 {
-    public abstract class SkillComponent : MonoBehaviour, IActionSender, IHasSequencer, IEditable
+    public abstract class SkillComponent : MonoBehaviour, IActionSender, IActionBehaviour, IHasSequencer, IEditable
     {
+        [SerializeField] protected DataIndex actionCode;
+        [SerializeField] protected ActionMask behaviourMask = ActionMask.Skill;
+        [SerializeField] protected int priority;
         [SerializeField] protected Executor executor;
         [SerializeField] protected Detector detector;
         [SerializeField] protected Sequencer<Vector3> sequencer;
         [SerializeField] protected SkillAnimationTrait animationTrait;
-        [SerializeField] protected CoolTimer coolTimer;
-        [SerializeField] protected CastTimer castTimer;
-        [SerializeField] protected DataIndex actionCode;
-        [SerializeField] protected ActionMask behaviourMask = ActionMask.Skill;
-        [SerializeField] protected int priority;
+        [SerializeField] protected SkillCoolTimer coolTimer;
+        [SerializeField] protected SkillCastTimer castTimer;
         [SerializeField] protected string description;
         [SerializeField] protected Sprite icon;
         
@@ -24,17 +24,17 @@ namespace Common.Skills
         public DataIndex DataIndex => actionCode;
         public ICombatProvider Provider => Cb;
         public ActionMask BehaviourMask => behaviourMask;
+        public ICombatTaker MainTarget => detector.GetMainTarget();
         public int Priority => priority;
         public string Description => description;
-        public Sprite Icon => icon;
         public float Range => detector.Range;
-        public ICombatTaker MainTarget => detector.GetMainTarget();
-        
+        public float Angle => detector.Angle;
+        public Sprite Icon => icon;
         public Sequencer Sequencer => sequencer;
         public SequenceBuilder<Vector3> SequenceBuilder { get; private set; }
         public SkillSequenceInvoker SkillInvoker { get; private set; }
-        public CoolTimer CoolTimer => coolTimer;
-        public CastTimer CastTimer => castTimer;
+        public SkillCoolTimer CoolTimer => coolTimer;
+        public SkillCastTimer CastTimer => castTimer;
 
         // TODO. Will be Multiply Character Haste Weight
         public float CoolWeightTime => CoolTimer.CoolTime;
@@ -53,27 +53,22 @@ namespace Common.Skills
 
             detector.Initialize(Cb);
             animationTrait.Initialize(this);
-
-            if (coolTimer.InvokeSection != SectionType.None)
-            {
-                SequenceBuilder.AddCondition("IsCoolTimeReady", () => coolTimer.IsReady)
-                               .Add(coolTimer.InvokeSection, "ActiveCoolTime", () => coolTimer.Play(CoolWeightTime));
-            }
+            coolTimer.Initialize(this);
+            castTimer.Initialize(this);
 
             SequenceBuilder.AddActiveParam("CharacterRotate", Cb.Rotate)
-                           .Add(SectionType.Active,"SkillCasting",
-                                () => castTimer.Play(CastWeightTime, CastTimer.CallbackSection.GetInvokeAction(this)))
                            .Add(SectionType.Active, "StopPathfinding", Cb.Pathfinding.Stop)
-                           .Add(SectionType.End,"StopCastTimer", castTimer.Stop)
                            .Add(SectionType.End,"CharacterStop", Cb.Stop)
                            .Add(SectionType.Release, "ReleaseAction", () =>
                            {
-                               if (AbleToRelease) CastTimer.CallbackSection.GetInvokeAction(this)?.Invoke();
+                               if (AbleToRelease) 
+                                   CastTimer.CallbackSection.GetInvokeAction(this)?.Invoke();
                            });
-                
         }
 
-        public void Dispose()
+        public void Cancel() => SkillInvoker.Cancel();
+
+        public virtual void Dispose()
         {
             sequencer.Clear();
             coolTimer.Dispose();
@@ -86,16 +81,16 @@ namespace Common.Skills
         {
             executor.EditorGetExecutions(gameObject);
             detector.SetUpAsSkill(actionCode);
+            coolTimer.SetUpAsSkill(actionCode);
+            castTimer.SetUpFromSkill(actionCode);
+            animationTrait.SetUpFromSkill(actionCode);
             
             var skillData = Database.SkillSheetData(actionCode);
 
-            animationTrait.SkillType = skillData.SkillType.ToEnum<SkillType>();
-            animationTrait.Key       = skillData.AnimationKey;
-            priority                 = skillData.BasePriority;
-            description              = skillData.Description;
-            coolTimer.CoolTime       = skillData.CoolTime;
-            castTimer.CastingTime    = skillData.ProcessTime;
-            icon                     = Database.SpellSpriteData.Get(actionCode);
+            behaviourMask = skillData.BehaviourMask.ToEnum<ActionMask>();
+            priority      = skillData.Priority;
+            description   = skillData.Description;
+            icon          = Database.SpellSpriteData.Get(actionCode);
         }
         
         // ReSharper disable once UnusedMember.Local

@@ -10,7 +10,7 @@ namespace Common
         // 뭔지 잘 모르겠으면 아래 함수를 삭제하고, 각 ActionBehaviour 에서 아래 형태로 구현하자.
         // if (cb.CurrentBehaviour is not null && cb.CurrentBehaviour.BehaviourMask != BehaviourMask) 
         // cb.CurrentBehaviour.Cancel();
-        void TryToCancel(IActionBehaviour targetActionBehaviour)
+        void TryToOverride(IActionBehaviour targetActionBehaviour)
         {
             if (BehaviourMask != ActionMask.None && BehaviourMask != targetActionBehaviour.BehaviourMask) 
                 Cancel();

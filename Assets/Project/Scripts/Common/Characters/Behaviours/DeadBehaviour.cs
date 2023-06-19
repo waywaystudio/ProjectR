@@ -37,7 +37,7 @@ namespace Common.Characters.Behaviours
             SequenceInvoker.Initialize(sequencer);
             SequenceBuilder.Initialize(sequencer)
                            .AddCondition("AbleToBehaviourOverride", () => BehaviourMask.CanOverride(Cb.BehaviourMask))
-                           .Add(SectionType.Active,"CancelPreviousBehaviour", () => cb.CurrentBehaviour?.TryToCancel(this))
+                           .Add(SectionType.Active,"CancelPreviousBehaviour", () => cb.CurrentBehaviour?.TryToOverride(this))
                            .Add(SectionType.Active,"SetCurrentBehaviour", () => cb.CurrentBehaviour = this)
                            .Add(SectionType.Active,"PlayAnimation", () => Cb.Animating.Dead(SequenceInvoker.Complete))
                            .Add(SectionType.Active,"Cb.Pathfinding.Quit", Cb.Pathfinding.Quit);

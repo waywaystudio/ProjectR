@@ -166,13 +166,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3b88c14bc1c3a884388e896981093552, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sortingType: 0
-  range: 6
-  angle: 90
-  targetLayer:
-    serializedVersion: 2
-    m_Bits: 256
-  sizeVector: {x: 0, y: 0}
+  actionCode: 31210301
+  behaviourMask: 32
+  priority: 1
   executor:
     table:
       keyList: 01000000
@@ -184,15 +180,12 @@ MonoBehaviour:
     targetType: 1
     sortingType: 0
     maxBufferCount: 32
-    range: 6
-    angle: 90
+    sizeVector: {x: 6, y: 90}
     targetLayer:
       serializedVersion: 2
       m_Bits: 256
-    sizeVector: {x: 0, y: 0}
   animationTrait:
     animationKey: clawAttack
-    timeScale: 0
     isLoop: 0
     hasEvent: 1
     skillType: 1
@@ -203,8 +196,5 @@ MonoBehaviour:
   castTimer:
     castingTime: 0
     callbackSection: 0
-  actionCode: 31000011
-  behaviourMask: 32
-  priority: 1
   description: Starts combat by attacking a target with a melee weapon.
   icon: {fileID: 21300000, guid: f77c1bbaa2a2a9543a6a657f87a256f9, type: 3}

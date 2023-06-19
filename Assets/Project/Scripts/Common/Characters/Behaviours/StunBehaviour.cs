@@ -36,7 +36,7 @@ namespace Common.Characters.Behaviours
             
             builder.AddCondition("AbleToBehaviourOverride", () => BehaviourMask.CanOverride(Cb.BehaviourMask))
                    .AddActiveParam("PlayStunTimer", duration => Timer.Play(duration, SequenceInvoker.Complete))
-                   .Add(SectionType.Active,"CancelPreviousBehaviour", () => cb.CurrentBehaviour?.TryToCancel(this))
+                   .Add(SectionType.Active,"CancelPreviousBehaviour", () => cb.CurrentBehaviour?.TryToOverride(this))
                    .Add(SectionType.Active,"SetCurrentBehaviour", () => cb.CurrentBehaviour = this)
                    .Add(SectionType.Active,"PlayAnimation", Cb.Animating.Stun)
                    .Add(SectionType.End,"Stop", Cb.Stop);

@@ -31,7 +31,7 @@ namespace Common.Characters
         public virtual DataIndex DataIndex => DataIndex.None;
         public virtual CharacterMask CombatClass => CharacterMask.Mage;
         public virtual string Name => "characterName";
-        public virtual CharacterData Data { get; set; }
+        public CharacterData Data { get; set; }
         public Vector3 Position => transform.position;
         public SearchingSystem Searching => searching;
         public CollidingSystem Colliding => colliding;
@@ -68,6 +68,8 @@ namespace Common.Characters
         public StatTable StatTable => DynamicStatEntry.StatTable;
         public Transform StatusEffectHierarchy => statusEffectHierarchy;
 
+        public CombatMultiplier DamageMultiplier { get; } = new();
+        // public CombatMultiplier HealMultiplier;
         public ActionTable<CombatEntity> OnDamageProvided { get; } = new();
         public ActionTable<CombatEntity> OnDamageTaken { get; } = new();
         public ActionTable<CombatEntity> OnHealProvided { get; } = new();
