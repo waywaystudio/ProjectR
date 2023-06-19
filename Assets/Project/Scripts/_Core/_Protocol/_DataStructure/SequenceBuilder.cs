@@ -65,6 +65,12 @@ public class SequenceBuilder<T>
         return this;
     }
     
+    public SequenceBuilder<T> AddExecution(string key, Action action)
+    {
+        Sequencer[SectionType.Execute].Add(key, action);
+        return this;
+    }
+    
     public SequenceBuilder<T> RemoveActiveParam(string key) { Sequencer.ActiveParamAction.Remove(key); return this; }
     public SequenceBuilder<T> RemoveCondition(string key) { Sequencer.Condition.Remove(key); return this; }
     public SequenceBuilder<T> RemoveTrigger() { Sequencer.CompleteTrigger = null; return this; }

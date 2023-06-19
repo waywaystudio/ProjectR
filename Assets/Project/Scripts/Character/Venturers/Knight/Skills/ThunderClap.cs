@@ -7,16 +7,9 @@ namespace Character.Venturers.Knight.Skills
         public override void Initialize()
         {
             base.Initialize();
-            
-            // AddAnimationEvent();
 
             SequenceBuilder.Add(SectionType.Active, "Jump", Jump)
-                           .Add(SectionType.Execute, "CommonExecution", () =>
-                           {
-                               if (!TryGetTakersInSphere(this, out var takerList)) return;
-
-                               takerList.ForEach(executor.Execute);
-                           });
+                           .Add(SectionType.Execute, "CommonExecution", () => detector.GetTakers()?.ForEach(executor.Execute));
         }
 
         private void Jump()

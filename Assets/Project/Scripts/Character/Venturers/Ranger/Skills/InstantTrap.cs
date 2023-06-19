@@ -5,8 +5,6 @@ namespace Character.Venturers.Ranger.Skills
 {
     public class InstantTrap : SkillComponent
     {
-        public override ICombatTaker MainTarget => Cb.Searching.GetSelf();
-
         public override void Initialize()
         {
             base.Initialize();

@@ -8,14 +8,8 @@ namespace Character.Villains.Moragg.Skills
         {
             base.Initialize();
             
-            // AddAnimationEvent();
-            
-            SequenceBuilder.Add(SectionType.Execute, "CommonExecution", () =>
-            {
-                if (MainTarget is null) return;
-
-                executor.Execute(MainTarget);
-            });
+            SequenceBuilder.Add(SectionType.Execute, "CommonExecution", 
+                                () => detector.GetTakers()?.ForEach(executor.Execute));
         }
     }
 }

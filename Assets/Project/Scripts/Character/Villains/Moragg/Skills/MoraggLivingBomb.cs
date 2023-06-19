@@ -9,12 +9,7 @@ namespace Character.Villains.Moragg.Skills
             base.Initialize();
             
             SequenceBuilder.Add(SectionType.Complete,"MoraggLivingBomb", SkillInvoker.Execute)
-                           .Add(SectionType.Execute, "CommonExecution", () =>
-                           {
-                               if (MainTarget is null) return;
-                               
-                               executor.Execute(MainTarget);
-                           });
+                           .Add(SectionType.Execute, "CommonExecution", () => executor.Execute(MainTarget));
         }
     }
 }

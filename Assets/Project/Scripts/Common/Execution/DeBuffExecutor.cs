@@ -10,7 +10,7 @@ namespace Common.Execution
 
         public override void Execution(ICombatTaker taker)
         {
-            if (!taker.DynamicStatEntry.Alive.Value) return;
+            if (taker == null || !taker.DynamicStatEntry.Alive.Value) return;
 
             var targetTable = taker.DynamicStatEntry.DeBuffTable;
             var tableKey    = new StatusEffectTable.StatusEffectKey(Origin.Provider, actionCode);

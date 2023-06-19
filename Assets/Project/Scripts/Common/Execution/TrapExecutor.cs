@@ -16,6 +16,8 @@ namespace Common.Execution
         
         public override void Execution(ICombatTaker taker)
         {
+            if (taker == null) return;
+            
             pool.Get().Activate(taker.Position);
         }
         

@@ -8,7 +8,7 @@ namespace Common.Execution
         
         public override void Execution(ICombatTaker taker)
         {
-            taker.Stun(stunDuration);
+            taker?.Stun(stunDuration);
         }
     }
 }

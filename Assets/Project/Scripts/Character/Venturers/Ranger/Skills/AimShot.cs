@@ -12,10 +12,6 @@ namespace Character.Venturers.Ranger.Skills
                            .Add(SectionType.Execute, "AimShotExecute", () => executor.Execute(null));
         }
         
-        // protected override void PlayAnimation()
-        // {
-        //     Cb.Animating.PlayOnce(animationKey);
-        // }
 
         private void PlayEndChargingAnimation()
         {

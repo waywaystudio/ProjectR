@@ -8,8 +8,6 @@ namespace Character.Venturers.Ranger.Skills
         {
             base.Initialize();
             
-            // AddAnimationEvent();
-            
             SequenceBuilder.Add(SectionType.Execute, "ShotAttackExecution", () => executor.Execute(null));
         }
     }

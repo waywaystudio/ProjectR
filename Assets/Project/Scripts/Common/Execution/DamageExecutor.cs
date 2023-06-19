@@ -12,7 +12,7 @@ namespace Common.Execution
 
         public override void Execution(ICombatTaker taker)
         {
-            if (!taker.DynamicStatEntry.Alive.Value) return;
+            if (taker == null || !taker.DynamicStatEntry.Alive.Value) return;
 
             var entity        = new CombatEntity(taker);
             var providerTable = Origin.Provider.StatTable;

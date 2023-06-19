@@ -166,6 +166,16 @@ MonoBehaviour:
       - ExecutionList:
         - {fileID: 3211000053568049609}
       hideKey: 0
+  detector:
+    targetType: 1
+    sortingType: 8
+    maxBufferCount: 32
+    range: 50
+    angle: 360
+    targetLayer:
+      serializedVersion: 2
+      m_Bits: 128
+    sizeVector: {x: 0, y: 0}
   animationTrait:
     animationKey: attack
     timeScale: 0
@@ -173,26 +183,17 @@ MonoBehaviour:
     hasEvent: 0
     skillType: 1
     callbackSection: 0
-  skillType: 1
-  animationKey: attack
-  actionCode: 31000008
-  sortingType: 0
-  behaviourMask: 32
-  priority: 3
-  range: 50
-  angle: 360
-  description: Starts combat by attacking a target with a melee weapon.
   coolTimer:
     coolTime: 30
     invokeSection: 1
   castTimer:
     castingTime: 0
     callbackSection: 5
-  targetLayer:
-    serializedVersion: 2
-    m_Bits: 128
+  actionCode: 31000008
+  behaviourMask: 32
+  priority: 3
+  description: Starts combat by attacking a target with a melee weapon.
   icon: {fileID: 0}
-  sizeVector: {x: 0, y: 0}
   enableMask: 4
   radius: 20
   minDistance: 8

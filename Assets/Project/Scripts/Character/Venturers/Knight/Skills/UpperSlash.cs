@@ -8,14 +8,8 @@ namespace Character.Venturers.Knight.Skills
         {
             base.Initialize();
             
-            // AddAnimationEvent();
-            
-            SequenceBuilder.Add(SectionType.Execute, "CommonExecution", () =>
-            {
-                if (!TryGetTakersInSphere(this, out var takerList)) return;
-
-                takerList.ForEach(executor.Execute);
-            });
+            SequenceBuilder.Add(SectionType.Execute, "CommonExecution", 
+                                () => detector.GetTakers()?.ForEach(executor.Execute));
         }
     }
 }

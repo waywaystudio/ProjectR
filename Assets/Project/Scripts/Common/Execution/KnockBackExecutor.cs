@@ -9,7 +9,7 @@ namespace Common.Execution
         
         public override void Execution(ICombatTaker taker)
         {
-            taker.KnockBack(transform.position, knockBackDistance, knockBackDuration);
+            taker?.KnockBack(transform.position, knockBackDistance, knockBackDuration);
         }
     }
 }
