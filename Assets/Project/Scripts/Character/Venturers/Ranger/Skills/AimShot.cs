@@ -13,10 +13,11 @@ namespace Character.Venturers.Ranger.Skills
         public override void Initialize()
         {
             base.Initialize();
-            
-            SequenceBuilder.Add(SectionType.Execute, "PlayEndChargingAnimation", PlayEndChargingAnimation)
+
+            SequenceBuilder.Add(SectionType.Active, "Tracking", () => PlayTracking().Forget())
+                           .Add(SectionType.Execute, "PlayEndChargingAnimation", PlayEndChargingAnimation)
                            .Add(SectionType.Execute, "AimShotExecute", () => executor.Execute(null))
-                           .Add(SectionType.Active, "Tracking", () => PlayTracking().Forget())
+                           .Add(SectionType.Execute, "InsureActiveCoolTime", () => CoolTimer.Play(CoolWeightTime))
                            .Add(SectionType.End, "StopTracking", StopTracking);
         }
         

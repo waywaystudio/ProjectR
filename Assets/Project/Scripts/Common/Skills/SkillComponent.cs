@@ -42,7 +42,7 @@ namespace Common.Skills
         public CharacterBehaviour Cb => cb ??= GetComponentInParent<CharacterBehaviour>();
 
         public bool IsEnded => sequencer == null || SkillInvoker.IsEnd;
-        protected bool AbleToRelease => animationTrait.SkillType is not (SkillType.Instant or SkillType.Casting) && IsActive;
+        public bool AbleToRelease => animationTrait.SkillType is not (SkillType.Instant or SkillType.Casting) && IsActive;
         protected bool IsActive => sequencer == null || SkillInvoker.IsActive;
 
 
@@ -61,7 +61,7 @@ namespace Common.Skills
                            .Add(SectionType.End,"CharacterStop", Cb.Stop)
                            .Add(SectionType.Release, "ReleaseAction", () =>
                            {
-                               if (AbleToRelease) 
+                               if (AbleToRelease && SkillInvoker.IsAbleToActive) 
                                    CastTimer.CallbackSection.GetInvokeAction(this)?.Invoke();
                            });
         }

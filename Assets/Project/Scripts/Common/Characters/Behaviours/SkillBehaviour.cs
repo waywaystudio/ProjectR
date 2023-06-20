@@ -38,8 +38,19 @@ namespace Common.Characters.Behaviours
             Current.SkillInvoker.Active(targetPosition);
         }
 
-        public void Cancel() => (Current is not null).OnTrue(Current!.SkillInvoker.Cancel);
-        public void Release() => (Current is not null).OnTrue(Current!.SkillInvoker.Release);
+        public void Cancel()
+        {
+            if (Current.IsNullOrDestroyed()) return;
+
+            Current.SkillInvoker.Cancel();
+        }
+
+        public void Release()
+        {
+            if (Current.IsNullOrDestroyed()) return;
+
+            Current.SkillInvoker.Release();
+        }
 
         public bool TryGetMostPrioritySkill(out SkillComponent skill)
         {
@@ -61,8 +72,6 @@ namespace Common.Characters.Behaviours
 
         private void OnEnable()
         {
-            // Current = skill;
-            
             SequenceInvoker.Initialize(sequencer);
             SequenceBuilder.Initialize(sequencer)
                            .AddCondition("AbleToBehaviourOverride", () => BehaviourMask.CanOverride(Cb.BehaviourMask))

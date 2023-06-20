@@ -3,15 +3,18 @@ using Common.Systems;
 
 namespace Common
 {
-    public interface ICharacterSystem : ICharacterAnimation
+    public interface ICharacterSystem
     {
         SearchingSystem Searching { get; }
         CollidingSystem Colliding { get; }
         PathfindingSystem Pathfinding { get; }
     }
 
-    public interface ICharacterAnimation
+    public interface IAnimator
     {
-        AnimationModel Animating { get; }
+        void Idle();
+        void Run();
+        void Dead();
+        void Play(string animationKey, float timeScale, System.Action callback);
     }
 }

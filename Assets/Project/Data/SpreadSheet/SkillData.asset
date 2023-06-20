@@ -327,7 +327,7 @@ MonoBehaviour:
     skillType: Charging
     animationCallback: None
     coolTime: 18
-    coolTimeInvoker: End
+    coolTimeInvoker: Complete
     castTime: 3
     castCallback: Execute
     completionValueList:

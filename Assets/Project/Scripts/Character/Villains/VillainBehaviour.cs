@@ -1,4 +1,5 @@
 using Common;
+using Common.Animation;
 using Common.Characters;
 using UnityEngine;
 
@@ -10,12 +11,14 @@ namespace Character.Villains
         [SerializeField] private VillainDifficultyTable difficultyTable;
         [SerializeField] private PhaseBehaviours phaseBehaviours;
 
+
         /*
          * Common Attribute
          */ 
         public override DataIndex DataIndex => data.DataIndex;
         public override CharacterMask CombatClass => data.CharacterMask;
         public override string Name => data.Name;
+
 
         /*
          * Phase

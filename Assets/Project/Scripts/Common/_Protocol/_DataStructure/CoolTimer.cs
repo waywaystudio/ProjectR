@@ -35,18 +35,18 @@ namespace Common
             
             AwaitCoolTime(callback, cts).Forget();
         }
-
-        public void Stop()
-        {
-            cts?.Cancel();
-
-            isRunning = false;
-        }
-
+        
         public void Dispose()
         {
             cts?.Cancel();
             cts = null;
+        }
+
+        private void Stop()
+        {
+            cts?.Cancel();
+
+            isRunning = false;
         }
 
         public void AddListener(string key, Action<float> action) => EventTimer.AddListener(key, action);

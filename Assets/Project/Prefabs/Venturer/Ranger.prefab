@@ -133,6 +133,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1364404895503189817, guid: 77f48656fdbb3294f977bd874f773874, type: 3}
+      propertyPath: actionCode
+      value: 31210404
+      objectReference: {fileID: 0}
     - target: {fileID: 8380361914805468174, guid: 77f48656fdbb3294f977bd874f773874, type: 3}
       propertyPath: m_Name
       value: AimShot

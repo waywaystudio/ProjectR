@@ -1,5 +1,4 @@
 using System;
-using Cysharp.Threading.Tasks;
 using Spine;
 using Spine.Unity;
 using UnityEngine;
@@ -71,52 +70,9 @@ namespace Common.Animation
             TargetAnimation = target;
         }
         
-        public async UniTask PlayAwait(string animationKey, int layer, bool loop, float timeScale, Action callback = null)
-        {
-            if (!modelData.TryGetAnimation(animationKey, out var target))
-            {
-                Debug.LogError($"Not Exist Animation Key {animationKey}");
-                return;
-            }
+        
 
-            if (currentEntry != null) Canceled();
-            if (callback != null)
-            {
-                completeActionBuffer =  null;
-                completeActionBuffer += _ => callback.Invoke();
-            }
-
-            if (IsSameAnimation(target, layer, loop)) return;
-            if (HasTransition(target, layer, loop, callback)) return;
-
-            currentEntry = State.SetAnimation(layer, target, loop);
-
-            // TODO. Animation과 가속도 관계를 잡아보자.
-            if (timeScale != 0f)
-            {
-                var originalDuration = target.Duration;
-                var toStaticValue = originalDuration / timeScale;
-            
-                State.TimeScale       *= toStaticValue;
-                currentEntry.Complete += _ => State.TimeScale = 1f;
-                // state.TimeScale /= toStaticValue;
-            }
-            
-            // Handle Callback
-            if (callback != null) 
-                currentEntry.Complete += completeActionBuffer.Invoke;
-
-            TargetAnimation = target;
-
-            await UniTask.WaitUntil(() => currentEntry.IsComplete);
-        }
-
-        public void Canceled()
-        {
-            if (currentEntry == null || completeActionBuffer == null) return;
-
-            currentEntry.Complete -= completeActionBuffer.Invoke;
-        }
+        
 
         public void Flip(Vector3 direction)
         {
@@ -128,7 +84,13 @@ namespace Common.Animation
                 _ => skeletonAnimation.Skeleton.ScaleX
             };
         }
+        
+        private void Canceled()
+        {
+            if (currentEntry == null || completeActionBuffer == null) return;
 
+            currentEntry.Complete -= completeActionBuffer.Invoke;
+        }
 
         protected void EventHandler(TrackEntry trackEntry, Event e)
         {

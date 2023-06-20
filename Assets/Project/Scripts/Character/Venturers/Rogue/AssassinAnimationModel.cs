@@ -1,6 +1,6 @@
 using Common.Animation;
 
-namespace Adventurers.Rogue
+namespace Character.Venturers.Rogue
 {
     public class AssassinAnimationModel : AnimationModel
     {

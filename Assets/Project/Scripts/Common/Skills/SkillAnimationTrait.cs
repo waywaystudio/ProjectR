@@ -20,9 +20,21 @@ namespace Common.Skills
             var animator = skill.Cb.Animating;
             var callback = callbackSection.GetInvokeAction(skill);
             
-            skill.SequenceBuilder
-                 .Add(SectionType.Active,"PlayAnimation",
-                      () => animator.Play(animationKey, 0, isLoop, TimeScale, callback));
+            // TODO.Converting...
+            if (skill.DataIndex == DataIndex.VillainCommonAttack)
+            {
+                var animationTable = skill.Cb.AnimationTable;
+
+                skill.SequenceBuilder
+                     // .Add(SectionType.Active, "PlayAnimatorAnimation", () => animationTable.Play("Attack", 2f, callback))
+                     .Add(SectionType.Active, "PlayAnimation", () => animator.Play(animationKey, 0, isLoop, TimeScale, callback));
+            }
+            else
+            {
+                skill.SequenceBuilder
+                     .Add(SectionType.Active,"PlayAnimation",
+                          () => animator.Play(animationKey, 0, isLoop, TimeScale, callback));
+            }
 
             if (hasEvent)
             {
