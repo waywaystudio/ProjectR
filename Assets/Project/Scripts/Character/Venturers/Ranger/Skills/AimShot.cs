@@ -31,7 +31,7 @@ namespace Character.Venturers.Ranger.Skills
 
         private void PlayEndChargingAnimation()
         {
-            Cb.Animating.PlayOnce("heavyAttack", 0f, SkillInvoker.Complete);
+            Cb.Animating.Play("heavyAttack", 0f, SkillInvoker.Complete);
         }
 
         private async UniTaskVoid PlayTracking()

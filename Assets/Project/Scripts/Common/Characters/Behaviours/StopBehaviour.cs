@@ -29,7 +29,7 @@ namespace Common.Characters.Behaviours
             SequenceBuilder.Initialize(sequencer)
                            .Add(SectionType.Active,"Cb.Pathfinding.Stop", Cb.Pathfinding.Stop)
                            .Add(SectionType.Active,"SetCurrentBehaviour", () => cb.CurrentBehaviour = this)
-                           .Add(SectionType.Active,"PlayAnimation", Cb.Animating.Idle);
+                           .Add(SectionType.Active,"PlayAnimation", Cb.Animating.Stop);
         }
 
         private void OnDisable()

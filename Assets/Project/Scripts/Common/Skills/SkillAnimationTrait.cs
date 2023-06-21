@@ -21,26 +21,23 @@ namespace Common.Skills
             var callback = callbackSection.GetInvokeAction(skill);
             
             // TODO.Converting...
-            if (skill.DataIndex == DataIndex.VillainCommonAttack)
+            if (skill.Cb.CombatClass == CharacterMask.Villain)
             {
-                var animationTable = skill.Cb.AnimationTable;
-
                 skill.SequenceBuilder
-                     // .Add(SectionType.Active, "PlayAnimatorAnimation", () => animationTable.Play("Attack", 2f, callback))
-                     .Add(SectionType.Active, "PlayAnimation", () => animator.Play(animationKey, 0, isLoop, TimeScale, callback));
+                     .Add(SectionType.Active, "PlayAnimator", () => animator.Play(animationKey, 1f, callback));
             }
             else
             {
                 skill.SequenceBuilder
                      .Add(SectionType.Active,"PlayAnimation",
-                          () => animator.Play(animationKey, 0, isLoop, TimeScale, callback));
+                          () => animator.Play(animationKey, TimeScale, callback));
             }
 
             if (hasEvent)
             {
                 skill.SequenceBuilder
-                     .Add(SectionType.Active,"RegisterHitEvent", () => animator.OnHit.Add("SkillHit", skill.SkillInvoker.Execute))        
-                     .Add(SectionType.End,"ReleaseHit", () => animator.OnHit.Remove("SkillHit"));
+                     .Add(SectionType.Active,"RegisterHitEvent", () => animator.OnHitEventTable.Add("SkillHit", skill.SkillInvoker.Execute))        
+                     .Add(SectionType.End,"ReleaseHit", () => animator.OnHitEventTable.Remove("SkillHit"));
             }
         }
         

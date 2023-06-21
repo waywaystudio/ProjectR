@@ -11,8 +11,11 @@ namespace Character.Villains.Commons.Skills
         {
             base.Initialize();
             
-            SequenceBuilder.Add(SectionType.Execute, "PlayOnceCompleteAnimation",() => Cb.Animating.PlayOnce("attack", 0f, SkillInvoker.Complete))
-                           .Add(SectionType.Execute, "CommonExecution", () => detector.GetTakers()?.ForEach(executor.Execute));
+            var animationTable = Cb.AnimationTable;
+            
+            SequenceBuilder.Add(SectionType.Execute, "CommonExecution", () => detector.GetTakers()?.ForEach(executor.Execute))
+                           // .Add(SectionType.Execute, "PlayOnceCompleteAnimation",() => Cb.Animating.PlayOnce("attack", 0f, SkillInvoker.Complete))
+                           .Add(SectionType.Execute, "PlayAnimatorOnceCompleteAnimation", () => animationTable.Play("Attack", 1f, SkillInvoker.Complete));
         }
     }
 }

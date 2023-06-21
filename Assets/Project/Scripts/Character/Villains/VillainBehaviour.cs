@@ -18,6 +18,8 @@ namespace Character.Villains
         public override DataIndex DataIndex => data.DataIndex;
         public override CharacterMask CombatClass => data.CharacterMask;
         public override string Name => data.Name;
+        // public override IAnimator Animating => animationTable;
+        
 
 
         /*
@@ -38,7 +40,20 @@ namespace Character.Villains
 
         private void Update()
         {
-            Animating.Flip(transform.forward);
+            if (Animating is AnimationModel animationModel)
+            {
+                animationModel.Flip(transform.forward);
+            }
+            else
+            {
+                if (searching.AdventurerList.Count > 0 &&
+                    searching.AdventurerList[0].DynamicStatEntry.Alive.Value &&
+                    BehaviourMask is ActionMask.Stop or ActionMask.Skill)
+                {
+                    Debug.Log("Rotate!!!");
+                    Rotate(searching.AdventurerList[0].gameObject.transform.position);
+                }
+            }
         }
         
         

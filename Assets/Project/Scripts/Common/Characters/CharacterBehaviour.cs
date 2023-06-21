@@ -9,7 +9,7 @@ namespace Common.Characters
 
     public class CharacterBehaviour : MonoBehaviour, ICombatExecutor, ICharacterSystem, IEditable
     {
-        [SerializeField] private CharacterAnimation animationTable;
+        [SerializeField] protected CharacterAnimation animationTable;
         [SerializeField] protected CharacterCombatStatus combatStatus;
         [SerializeField] protected AnimationModel animating;
         [SerializeField] protected Transform damageSpawn;
@@ -37,41 +37,31 @@ namespace Common.Characters
         public SearchingSystem Searching => searching;
         public CollidingSystem Colliding => colliding;
         public PathfindingSystem Pathfinding => pathfinding;
-        public AnimationModel Animating => animating;
+        // public AnimationModel Animating => animating;
+        public virtual IAnimator Animating => animating;
         public Transform DamageSpawn => damageSpawn;
 
         /*
          * Behaviour Attribute
          */
+        [Sirenix.OdinInspector.ShowInInspector]
         public ActionMask BehaviourMask => CurrentBehaviour is null ? ActionMask.None : CurrentBehaviour.BehaviourMask;
         public IActionBehaviour CurrentBehaviour { get; set; }
         public CharacterAnimation AnimationTable => animationTable;
 
-        public void Rotate(Vector3 lookTarget)
+        public virtual void Rotate(Vector3 lookTarget)
         {
-            Pathfinding.RotateToTarget(lookTarget); 
-            Animating.Flip(transform.forward);
+            Pathfinding.RotateToTarget(lookTarget);
         }
 
         public void Stop()
         {
             stopBehaviour.Stop();
-            
-            if (animationTable is not null)
-            {
-                animationTable.Stop();
-            }
         }
 
         public void Run(Vector3 destination)
         {
             runBehaviour.Run(destination);
-            
-            if (animationTable is not null)
-            {
-                if (animationTable.CurrentKey != "Run")
-                    animationTable.Run();
-            }
         }
 
         public void Stun(float duration)
@@ -87,11 +77,6 @@ namespace Common.Characters
         public void Dead()
         {
             deadBehaviour.Dead();
-            
-            if (animationTable is not null)
-            {
-                animationTable.Dead();
-            }
         }
         
         public void AddReward(System.Action action) => deadBehaviour.AddReward("Reward", action);

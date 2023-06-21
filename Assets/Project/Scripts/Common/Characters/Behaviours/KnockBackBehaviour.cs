@@ -34,7 +34,7 @@ namespace Common.Characters.Behaviours
                    .AddActiveParam("Rotate", Cb.Rotate)
                    .Add(SectionType.Active,"CancelPreviousBehaviour", () => cb.CurrentBehaviour?.TryToOverride(this))
                    .Add(SectionType.Active,"SetCurrentBehaviour", () => cb.CurrentBehaviour = this)
-                   .Add(SectionType.Active,"PlayAnimation", Cb.Animating.Hit)
+                   // .Add(SectionType.Active,"PlayAnimation", Cb.Animating.Hit)
                    .Add(SectionType.End,"Stop", Cb.Stop);
         }
 

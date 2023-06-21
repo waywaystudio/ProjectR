@@ -9,7 +9,7 @@ namespace Common.Animation
     using SpineState = Spine.AnimationState;
     using Event = Spine.Event;
     
-    public class AnimationModel : MonoBehaviour, IEditable
+    public class AnimationModel : MonoBehaviour, IAnimator, IEditable
     {
         [SerializeField] protected AnimationModelData modelData;
         [SerializeField] private SkeletonAnimation skeletonAnimation;
@@ -19,19 +19,19 @@ namespace Common.Animation
         private Action<TrackEntry> completeActionBuffer;
         private TrackEntry currentEntry;
 
-        public ActionTable OnHit { get; } = new();
+        public ActionTable OnHitEventTable { get; } = new();
         private SpineAnimation TargetAnimation { get; set; }
     
         public void Idle() { State.TimeScale = 1f; PlayLoop("idle"); }
+        public void Stop() => Idle();
         public void Run() => PlayLoop("run");
-        public void Dead(Action callback = null) => PlayOnce("dead", 0f, callback);
         public virtual void Stun() => PlayLoop("stun");
         public void Hit() => PlayLoop("hit");
         public void PlayOnce(string animationKey, float timeScale = 0f, Action callback = null) => Play(animationKey, 0, false, timeScale, callback);
         public void PlayLoop(string animationKey, float timeScale = 0f, Action callback = null) => Play(animationKey, 0, true, timeScale, callback);
 
-        
 
+        public void Play(string animationKey, float timeScale, Action callback) => Play(animationKey, 0, false, 1f, callback);
         public void Play(string animationKey, int layer, bool loop, float timeScale, Action callback)
         {
             if (!modelData.TryGetAnimation(animationKey, out var target))
@@ -96,7 +96,7 @@ namespace Common.Animation
         {
             switch (e.Data.Name)
             {
-                case "attack" :   OnHit.Invoke(); return;
+                case "attack" :   OnHitEventTable.Invoke(); return;
                 case "footstep" : return;
                 case "hit" :      return;
                 case "get_hit" :  return;

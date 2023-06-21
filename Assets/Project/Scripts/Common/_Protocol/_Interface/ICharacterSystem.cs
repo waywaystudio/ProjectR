@@ -12,9 +12,10 @@ namespace Common
 
     public interface IAnimator
     {
+        ActionTable OnHitEventTable { get; }
         void Idle();
+        void Stop();
         void Run();
-        void Dead();
         void Play(string animationKey, float timeScale, System.Action callback);
     }
 }

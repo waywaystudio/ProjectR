@@ -7,7 +7,7 @@ namespace Character.Villains.Commons.Skills
         public override void Initialize()
         {
             base.Initialize();
-            
+
             SequenceBuilder.Add(SectionType.Execute, "CommonExecution", () => executor.Execute(MainTarget));
         }
     }

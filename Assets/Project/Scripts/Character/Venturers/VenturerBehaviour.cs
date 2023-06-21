@@ -1,4 +1,5 @@
 using Common;
+using Common.Animation;
 using Common.Characters;
 using UnityEngine;
 
@@ -17,6 +18,19 @@ namespace Character.Venturers
         public override string Name => data.Name;
         
         public bool IsPlayer { get; set; }
+        
+        /*
+         * Behaviours
+         */
+        public override void Rotate(Vector3 lookTarget)
+        {
+            Pathfinding.RotateToTarget(lookTarget);
+
+            if (Animating is AnimationModel animationModel)
+            {
+                animationModel.Flip(transform.forward);
+            }
+        }
 
         // TODO. Temp
         public void ForceInitialize()
@@ -30,7 +44,12 @@ namespace Character.Venturers
 
         private void Update()
         {
-            Animating.Flip(transform.forward);
+            if (Animating is AnimationModel animationModel)
+            {
+                animationModel.Flip(transform.forward);
+            }
+            
+            // Animating.Flip(transform.forward);
         }
 
 

@@ -1,69 +1,80 @@
 using System;
+using System.Collections.Generic;
 using Sirenix.OdinInspector;
 using UnityEngine;
 
 namespace Common.Animation
 {
-    public class CharacterAnimation : MonoBehaviour
+    public class CharacterAnimation : MonoBehaviour, IAnimator, IEditable
     {
         [SerializeField] private Animator animator;
-        [SerializeField] private AnimationBridge bridge;
+        [SerializeField] private List<string> stateList;
         
         private static readonly int RunHash = Animator.StringToHash("Run");
         private static readonly int IdleHash = Animator.StringToHash("Idle");
         private static readonly int DieBackHash = Animator.StringToHash("DieBack");
         private static readonly int AttackHash = Animator.StringToHash("Attack");
+        private static readonly int Charging1 = Animator.StringToHash("Charging");
         private Action Callback { get; set; }
+        private float originalSpeed = 1f;
+        private static readonly int WalkHash = Animator.StringToHash("Walk");
 
-        public ActionTable OnHitActionTable { get; } = new();
+        public ActionTable OnHitEventTable { get; } = new();
         public string CurrentKey { get; private set; }
 
-        public void Stop() => Idle();
         [Button]
         public void Idle()
         {
+            // if (CurrentKey == "Idle") return;
+
             animator.SetTrigger(IdleHash);
             CurrentKey     = "Idle";
-            animator.speed = 1f;
-            Callback       = null;
+            // animator.speed = originalSpeed;
+            // Callback       = null;
+        }
+
+        public void Stop()
+        {
+            Idle();
+            // Idle();
+            // CurrentKey     = string.Empty;
+            // animator.speed = originalSpeed;
+            // Callback       = null;
         }
 
         [Button]
         public void Run()
         {
+            if (CurrentKey == "Run") return;
+
             CurrentKey = "Run";
-            animator.SetTrigger(RunHash);
+            animator.SetTrigger(WalkHash);
         }
         
-        [Button]
-        public void Dead()
-        {
-            CurrentKey = "Dead";
-            animator.SetTrigger(DieBackHash);
-        }
-
-        [Button]
-        public void Attack()
-        {
-            CurrentKey = "Attack";
-            animator.SetTrigger(AttackHash);
-        }
 
         public void Stun() { }
         public void Hit() { }
-        public void Play(string key, float animatorSpeed, Action callback)
+        public void Play(string key) => Play(key, 1f, null);
+        public void Play(string key, float multiplier, Action callback)
         {
-            CurrentKey = key;
-            animator.SetTrigger(AttackHash);
+            if (CurrentKey == "Stop")
+            {
+                animator.ResetTrigger(IdleHash);
+                // Stop();
+            }
             
-            animator.speed = animatorSpeed;
+            CurrentKey = key;
+            animator.SetTrigger(Animator.StringToHash(key));
+
+            originalSpeed  = animator.speed;
+            animator.speed = originalSpeed * multiplier;
             Callback       = callback;
         }
 
         public void OnHit()
         {
             Debug.Log("OnHit In");
-            OnHitActionTable.Invoke();
+            OnHitEventTable.Invoke();
         }
 
         public void BridgeCallback1()
@@ -84,6 +95,7 @@ namespace Common.Animation
         /* Register In Runtime */
         public void AnimationCallback()
         {
+            Debug.Log("Animation Callback In");
             Callback?.Invoke();
         }
         
@@ -97,12 +109,20 @@ namespace Common.Animation
                 
                 var callback = new AnimationEvent
                 {
-                    time = clip.length, 
+                    time = clip.length * 0.9f, 
                     functionName = "AnimationCallback",
                 };
-
+            
                 clip.AddEvent(callback);
             });
         }
+        
+
+#if UNITY_EDITOR
+        public void EditorSetUp()
+        {
+            
+        }
+#endif
     }
 }

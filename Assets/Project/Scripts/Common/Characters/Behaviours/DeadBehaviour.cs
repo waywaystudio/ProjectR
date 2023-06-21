@@ -39,7 +39,7 @@ namespace Common.Characters.Behaviours
                            .AddCondition("AbleToBehaviourOverride", () => BehaviourMask.CanOverride(Cb.BehaviourMask))
                            .Add(SectionType.Active,"CancelPreviousBehaviour", () => cb.CurrentBehaviour?.TryToOverride(this))
                            .Add(SectionType.Active,"SetCurrentBehaviour", () => cb.CurrentBehaviour = this)
-                           .Add(SectionType.Active,"PlayAnimation", () => Cb.Animating.Dead(SequenceInvoker.Complete))
+                           .Add(SectionType.Active,"PlayAnimation", () => Cb.Animating.Play("Dead", 1f, SequenceInvoker.Complete))
                            .Add(SectionType.Active,"Cb.Pathfinding.Quit", Cb.Pathfinding.Quit);
         }
 
