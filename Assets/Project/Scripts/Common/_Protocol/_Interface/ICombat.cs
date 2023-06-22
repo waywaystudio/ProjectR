@@ -1,3 +1,5 @@
+using Common.Characters.Behaviours;
+using Common.StatusEffects;
 using UnityEngine;
 // ReSharper disable InconsistentNaming
 
@@ -21,22 +23,11 @@ namespace Common
         // + DataIndex ActionCode { get; }
     }
 
-    public interface IStatusEffect : IActionSender
-    {
-        // + ICombatProvider Provider { get; }
-        // + DataIndex ActionCode { get; }
-
-        float Duration { get; }
-        FloatEvent ProgressTime { get; }
-        Sprite Icon { get; }
-
-        void Overriding();
-    }
-
     public interface ICombatEntity
     {
         StatTable StatTable { get; }
         IDynamicStatEntry DynamicStatEntry { get; }
+        ActionMask BehaviourMask { get; }
     }
 
     public interface ICombatProvider : ICombatEntity, IObjectName
@@ -50,8 +41,6 @@ namespace Common
 
         ActionTable<CombatEntity> OnDamageProvided { get; }
         ActionTable<CombatEntity> OnHealProvided { get; }
-        ActionTable<IStatusEffect> OnDeBuffProvided { get; }
-        ActionTable<IStatusEffect> OnBuffProvided { get; }
     }
     
     public interface ICombatTaker : ICombatEntity, IObjectName
@@ -64,10 +53,14 @@ namespace Common
         Transform DamageSpawn { get; }
         Transform StatusEffectHierarchy { get; }
         
+        StopBehaviour StopBehaviour { get; }
+        RunBehaviour RunBehaviour { get; }
+        StunBehaviour StunBehaviour { get; }
+        KnockBackBehaviour KnockBackBehaviour { get; }
+        DeadBehaviour DeadBehaviour { get; }
+        SkillBehaviour SkillBehaviour { get; }
         ActionTable<CombatEntity> OnDamageTaken { get; }
         ActionTable<CombatEntity> OnHealTaken { get; }
-        ActionTable<IStatusEffect> OnDeBuffTaken { get; }
-        ActionTable<IStatusEffect> OnBuffTaken { get; }
 
         void Run(Vector3 destination);
         void Rotate(Vector3 lookTarget);
@@ -75,6 +68,8 @@ namespace Common
         void Stun(float duration);
         void KnockBack(Vector3 source, float distance, float duration);
         void Dead();
+        void TakeStatusEffect(StatusEffect effect);
+        void DispelStatusEffect(StatusEffect effect);
     }
 
     public interface ICombatExecutor : ICombatProvider, ICombatTaker, IDataIndexer

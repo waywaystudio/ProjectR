@@ -1,3 +1,4 @@
+using System;
 using Sirenix.OdinInspector;
 using Spine;
 using Spine.Unity;
@@ -114,5 +115,12 @@ namespace Common.Animation
             EditorUtility.SetDirty(this);
 #endif
         }
+        
+
+        private void Awake()
+        {
+            ApplySkinChanges();
+        }
+        
     }
 }

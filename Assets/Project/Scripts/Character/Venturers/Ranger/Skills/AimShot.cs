@@ -31,7 +31,7 @@ namespace Character.Venturers.Ranger.Skills
 
         private void PlayEndChargingAnimation()
         {
-            Cb.Animating.PlayOnce("heavyAttack", 0f, SkillInvoker.Complete);
+            Cb.Animating.PlayOnce("AimHoldFire", 0f, SkillInvoker.Complete);
         }
 
         private async UniTaskVoid PlayTracking()
@@ -53,7 +53,10 @@ namespace Character.Venturers.Ranger.Skills
 
             while (true)
             {
-                var takerPosition = detector.GetMainTarget().Position;
+                var mainTarget = detector.GetMainTarget();
+                var takerPosition = mainTarget is not null
+                    ? mainTarget.Position
+                    : Cb.transform.forward * Range;
 
                 venturer.Rotate(takerPosition);
                 await UniTask.Delay(100, DelayType.DeltaTime, PlayerLoopTiming.Update, cts.Token);

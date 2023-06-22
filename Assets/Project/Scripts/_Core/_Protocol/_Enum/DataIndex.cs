@@ -150,6 +150,8 @@ public enum DataIndex
 	UpperSlash = 31210103,
 	ThunderClap = 31210104,
 	MightyGuard = 31210105,
+	ShieldUp = 31210106,
+	Taunt = 31210107,
 	PriestCommonHeal = 31210601,
 	ClawAttack = 31210301,
 	PowerBeat = 31210302,

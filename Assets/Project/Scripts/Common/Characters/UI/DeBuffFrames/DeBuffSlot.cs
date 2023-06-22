@@ -1,3 +1,4 @@
+using Common.StatusEffects;
 using UnityEngine;
 
 namespace Common.Characters.UI.DeBuffFrames
@@ -8,7 +9,7 @@ namespace Common.Characters.UI.DeBuffFrames
 
         public bool IsRegistered => gameObject.activeSelf;
 
-        public void Register(IStatusEffect effect)
+        public void Register(StatusEffect effect)
         {
             gameObject.SetActive(true);
             symbol.Register(effect);

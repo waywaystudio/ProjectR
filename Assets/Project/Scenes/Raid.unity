@@ -1257,7 +1257,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 287093695}
   m_LocalRotation: {x: 0.38268343, y: 0, z: 0, w: 0.92387956}
-  m_LocalPosition: {x: 0, y: 20, z: -20}
+  m_LocalPosition: {x: 0, y: 45, z: -45}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -1342,7 +1342,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh51188
+  m_Name: pb_Mesh128612
   serializedVersion: 11
   m_SubMeshes:
   - serializedVersion: 2
@@ -4125,7 +4125,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_BindingMode: 4
-  m_FollowOffset: {x: 0, y: 15, z: -15}
+  m_FollowOffset: {x: 0, y: 30, z: -30}
   m_XDamping: 1
   m_YDamping: 0.5
   m_ZDamping: 0.5
@@ -18617,7 +18617,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1448534715}
   m_LocalRotation: {x: 0.38268343, y: -0, z: -0, w: 0.92387956}
-  m_LocalPosition: {x: 0, y: 20, z: -20}
+  m_LocalPosition: {x: 0, y: 45, z: -45}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -23331,23 +23331,27 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5512553880677135783, guid: 86afa9f987c2e264f813cf565a9db0d0, type: 3}
       propertyPath: challengers.Array.size
-      value: 3
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 5512553880677135783, guid: 86afa9f987c2e264f813cf565a9db0d0, type: 3}
       propertyPath: challengers.Array.data[1]
-      value: 21030803
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5512553880677135783, guid: 86afa9f987c2e264f813cf565a9db0d0, type: 3}
       propertyPath: challengers.Array.data[2]
-      value: 21041104
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5512553880677135783, guid: 86afa9f987c2e264f813cf565a9db0d0, type: 3}
       propertyPath: challengers.Array.data[3]
-      value: 21061706
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5512553880677135783, guid: 86afa9f987c2e264f813cf565a9db0d0, type: 3}
       propertyPath: challengers.Array.data[4]
-      value: 21061706
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5512553880677135783, guid: 86afa9f987c2e264f813cf565a9db0d0, type: 3}
+      propertyPath: challengers.Array.data[5]
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5512553880677135783, guid: 86afa9f987c2e264f813cf565a9db0d0, type: 3}
       propertyPath: characterDataList.Array.size

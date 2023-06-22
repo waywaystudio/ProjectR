@@ -1,0 +1,115 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1001 &2059694439651599720
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 31372662744709662, guid: cda7ba107a955b24cba549bb4331fac6, type: 3}
+      propertyPath: m_Name
+      value: MageAnimation
+      objectReference: {fileID: 0}
+    - target: {fileID: 517243171829503790, guid: cda7ba107a955b24cba549bb4331fac6, type: 3}
+      propertyPath: Arm
+      value: 31
+      objectReference: {fileID: 0}
+    - target: {fileID: 517243171829503790, guid: cda7ba107a955b24cba549bb4331fac6, type: 3}
+      propertyPath: Bow
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 517243171829503790, guid: cda7ba107a955b24cba549bb4331fac6, type: 3}
+      propertyPath: Job
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 517243171829503790, guid: cda7ba107a955b24cba549bb4331fac6, type: 3}
+      propertyPath: Face
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 517243171829503790, guid: cda7ba107a955b24cba549bb4331fac6, type: 3}
+      propertyPath: Feet
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 517243171829503790, guid: cda7ba107a955b24cba549bb4331fac6, type: 3}
+      propertyPath: Hair
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 517243171829503790, guid: cda7ba107a955b24cba549bb4331fac6, type: 3}
+      propertyPath: Armor
+      value: 31
+      objectReference: {fileID: 0}
+    - target: {fileID: 517243171829503790, guid: cda7ba107a955b24cba549bb4331fac6, type: 3}
+      propertyPath: Staff
+      value: 13
+      objectReference: {fileID: 0}
+    - target: {fileID: 517243171829503790, guid: cda7ba107a955b24cba549bb4331fac6, type: 3}
+      propertyPath: Helmet
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 517243171829503790, guid: cda7ba107a955b24cba549bb4331fac6, type: 3}
+      propertyPath: Quiver
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 517243171829503790, guid: cda7ba107a955b24cba549bb4331fac6, type: 3}
+      propertyPath: Shield
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 517243171829503790, guid: cda7ba107a955b24cba549bb4331fac6, type: 3}
+      propertyPath: Shoulder
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 978258811399340691, guid: cda7ba107a955b24cba549bb4331fac6, type: 3}
+      propertyPath: m_RootOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 978258811399340691, guid: cda7ba107a955b24cba549bb4331fac6, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 978258811399340691, guid: cda7ba107a955b24cba549bb4331fac6, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 978258811399340691, guid: cda7ba107a955b24cba549bb4331fac6, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 978258811399340691, guid: cda7ba107a955b24cba549bb4331fac6, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 978258811399340691, guid: cda7ba107a955b24cba549bb4331fac6, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 978258811399340691, guid: cda7ba107a955b24cba549bb4331fac6, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 978258811399340691, guid: cda7ba107a955b24cba549bb4331fac6, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 978258811399340691, guid: cda7ba107a955b24cba549bb4331fac6, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 978258811399340691, guid: cda7ba107a955b24cba549bb4331fac6, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 978258811399340691, guid: cda7ba107a955b24cba549bb4331fac6, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1636494037268292674, guid: cda7ba107a955b24cba549bb4331fac6, type: 3}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: cda7ba107a955b24cba549bb4331fac6, type: 3}

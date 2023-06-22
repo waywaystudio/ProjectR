@@ -7,7 +7,8 @@ namespace Common.Characters.Behaviours
         [SerializeField] private Sequencer<float> sequencer = new();
 
         public ActionMask BehaviourMask => ActionMask.Stun;
-        public SequenceInvoker<float> SequenceInvoker { get; } = new();
+        public SequenceBuilder<float> Builder { get; private set; }
+        public SequenceInvoker<float> SequenceInvoker { get; private set; }
 
         private CharacterBehaviour cb;
         private CharacterBehaviour Cb => cb ??= GetComponentInParent<CharacterBehaviour>();
@@ -30,11 +31,10 @@ namespace Common.Characters.Behaviours
 
         private void OnEnable()
         {
-            SequenceInvoker.Initialize(sequencer);
-            
-            var builder = new SequenceBuilder<float>(sequencer);
-            
-            builder.AddCondition("AbleToBehaviourOverride", () => BehaviourMask.CanOverride(Cb.BehaviourMask))
+            Builder         = new SequenceBuilder<float>(sequencer);
+            SequenceInvoker = new SequenceInvoker<float>(sequencer);
+
+            Builder.AddCondition("AbleToBehaviourOverride", () => BehaviourMask.CanOverride(Cb.BehaviourMask))
                    .AddActiveParam("PlayStunTimer", duration => Timer.Play(duration, SequenceInvoker.Complete))
                    .Add(SectionType.Active,"CancelPreviousBehaviour", () => cb.CurrentBehaviour?.TryToOverride(this))
                    .Add(SectionType.Active,"SetCurrentBehaviour", () => cb.CurrentBehaviour = this)

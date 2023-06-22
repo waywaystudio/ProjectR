@@ -22,7 +22,12 @@ namespace Raid
         }
 
         /* GameEvent */
-        public void FocusPlayer(VenturerBehaviour target) => Focusing(target.transform);
+        public void FocusPlayer(VenturerBehaviour target)
+        {
+            if (target.IsNullOrDestroyed()) return;
+            
+            Focusing(target.transform);
+        }
         public void FocusMonster(VillainBehaviour target) => Focusing(target.transform);
         public void StageCamera() => ChangeCamera(stageCamera);
 

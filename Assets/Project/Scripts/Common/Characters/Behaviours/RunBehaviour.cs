@@ -7,7 +7,8 @@ namespace Common.Characters.Behaviours
         [SerializeField] private Sequencer<Vector3> sequencer;
 
         public ActionMask BehaviourMask => ActionMask.Run;
-        public SequenceInvoker<Vector3> SequenceInvoker { get; } = new();
+        public SequenceBuilder<Vector3> Builder { get; private set; }
+        public SequenceInvoker<Vector3> SequenceInvoker { get; private set; }
 
         private CharacterBehaviour cb;
         private CharacterBehaviour Cb => cb ??= GetComponentInParent<CharacterBehaviour>();
@@ -25,11 +26,10 @@ namespace Common.Characters.Behaviours
 
         private void OnEnable()
         {
-            SequenceInvoker.Initialize(sequencer);
-            
-            var builder = new SequenceBuilder<Vector3>(sequencer);
-            
-            builder.AddCondition("AbleToBehaviourOverride", () => BehaviourMask.CanOverride(Cb.BehaviourMask))
+            Builder         = new SequenceBuilder<Vector3>(sequencer);
+            SequenceInvoker = new SequenceInvoker<Vector3>(sequencer);
+
+            Builder.AddCondition("AbleToBehaviourOverride", () => BehaviourMask.CanOverride(Cb.BehaviourMask))
                    .AddCondition("CanMove", () => Cb.Pathfinding.CanMove)
                    .AddActiveParam("RunPathfinding", destination => Cb.Pathfinding.Move(destination, SequenceInvoker.Complete))
                    .Add(SectionType.Active, "CancelPreviousBehaviour", () => cb.CurrentBehaviour?.TryToOverride(this))

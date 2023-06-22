@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using Common.Skills;
 using UnityEngine;
@@ -24,6 +25,7 @@ namespace Common.Characters.Behaviours
         
 
         public SkillComponent GetSkill(DataIndex actionCode) => skillTable[actionCode];
+
 
         public void Active(DataIndex actionCode, Vector3 targetPosition)
         {
@@ -69,7 +71,7 @@ namespace Common.Characters.Behaviours
             return skill is not null;
         }
         
-
+        
         private void OnEnable()
         {
             SequenceInvoker.Initialize(sequencer);

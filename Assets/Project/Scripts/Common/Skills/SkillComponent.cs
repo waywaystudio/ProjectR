@@ -16,6 +16,7 @@ namespace Common.Skills
         [SerializeField] protected SkillAnimationTrait animationTrait;
         [SerializeField] protected SkillCoolTimer coolTimer;
         [SerializeField] protected SkillCastTimer castTimer;
+        [SerializeField] protected SkillCost cost;
         [SerializeField] protected string description;
         [SerializeField] protected Sprite icon;
         
@@ -26,6 +27,7 @@ namespace Common.Skills
         public ActionMask BehaviourMask => behaviourMask;
         public ICombatTaker MainTarget => detector.GetMainTarget();
         public int Priority => priority;
+        public float Cost => cost.Value;
         public string Description => description;
         public float Range => detector.Range;
         public float Angle => detector.Angle;
@@ -55,13 +57,14 @@ namespace Common.Skills
             animationTrait.Initialize(this);
             coolTimer.Initialize(this);
             castTimer.Initialize(this);
+            cost.Initialize(this);
 
             SequenceBuilder.AddActiveParam("CharacterRotate", Cb.Rotate)
                            .Add(SectionType.Active, "StopPathfinding", Cb.Pathfinding.Stop)
                            .Add(SectionType.End,"CharacterStop", Cb.Stop)
                            .Add(SectionType.Release, "ReleaseAction", () =>
                            {
-                               if (AbleToRelease && SkillInvoker.IsAbleToActive) 
+                               if (AbleToRelease && SkillInvoker.IsActive) 
                                    CastTimer.CallbackSection.GetInvokeAction(this)?.Invoke();
                            });
         }
@@ -83,6 +86,7 @@ namespace Common.Skills
             detector.SetUpAsSkill(actionCode);
             coolTimer.SetUpAsSkill(actionCode);
             castTimer.SetUpFromSkill(actionCode);
+            cost.SetUpFromSkill(actionCode);
             animationTrait.SetUpFromSkill(actionCode);
             
             var skillData = Database.SkillSheetData(actionCode);

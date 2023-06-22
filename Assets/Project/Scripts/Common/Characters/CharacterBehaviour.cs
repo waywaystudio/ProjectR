@@ -1,5 +1,6 @@
 using Common.Animation;
 using Common.Skills;
+using Common.StatusEffects;
 using Common.Systems;
 using UnityEngine;
 
@@ -38,12 +39,19 @@ namespace Common.Characters
         public PathfindingSystem Pathfinding => pathfinding;
         public AnimationModel Animating => animating;
         public Transform DamageSpawn => damageSpawn;
+        public SkillBehaviour SkillBehaviour => skillBehaviour;
 
         /*
          * Behaviour Attribute
          */
         public ActionMask BehaviourMask => CurrentBehaviour is null ? ActionMask.None : CurrentBehaviour.BehaviourMask;
         public IActionBehaviour CurrentBehaviour { get; set; }
+        public StopBehaviour StopBehaviour => stopBehaviour;
+        public RunBehaviour RunBehaviour => runBehaviour;
+        public StunBehaviour StunBehaviour => stunBehaviour;
+        public KnockBackBehaviour KnockBackBehaviour => knockBackBehaviour;
+        public DeadBehaviour DeadBehaviour => deadBehaviour;
+        
 
         public void Rotate(Vector3 lookTarget) { Pathfinding.RotateToTarget(lookTarget); Animating.Flip(transform.forward); }
         public void Stop() => stopBehaviour.Stop();
@@ -56,7 +64,6 @@ namespace Common.Characters
         
         /* Skill Behaviour */
         public SkillComponent GetSkill(DataIndex actionCode) => skillBehaviour.GetSkill(actionCode);
-        public SkillBehaviour SkillBehaviour => skillBehaviour;
         public void ExecuteSkill(DataIndex actionCode, Vector3 targetPosition) => skillBehaviour.Active(actionCode, targetPosition);
         public void CancelSkill() => skillBehaviour.Cancel();
         public void ReleaseSkill() => skillBehaviour.Release();
@@ -74,24 +81,10 @@ namespace Common.Characters
         public ActionTable<CombatEntity> OnDamageTaken { get; } = new();
         public ActionTable<CombatEntity> OnHealProvided { get; } = new();
         public ActionTable<CombatEntity> OnHealTaken { get; } = new();
-        public ActionTable<IStatusEffect> OnDeBuffProvided { get; } = new();
-        public ActionTable<IStatusEffect> OnDeBuffTaken { get; } = new();
-        public ActionTable<IStatusEffect> OnBuffProvided { get; } = new();
-        public ActionTable<IStatusEffect> OnBuffTaken { get; } = new();
 
+        public void TakeStatusEffect(StatusEffect effect) => DynamicStatEntry.StatusEffectTable.Add(effect);
+        public void DispelStatusEffect(StatusEffect effect) => DynamicStatEntry.StatusEffectTable.Remove(effect);
         
-        private void OnEnable()
-        {
-            OnDeBuffTaken.Add("RegisterTable", combatStatus.DeBuffTable.Register);
-            OnBuffTaken.Add("RegisterTable", combatStatus.BuffTable.Register);
-        }
-
-        private void OnDisable()
-        {
-            OnDeBuffTaken.Remove("RegisterTable");
-            OnBuffTaken.Remove("RegisterTable");
-        }
-
 
 #if UNITY_EDITOR
         public virtual void EditorSetUp()

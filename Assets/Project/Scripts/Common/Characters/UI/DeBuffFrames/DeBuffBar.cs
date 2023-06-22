@@ -20,11 +20,11 @@ namespace Common.Characters.UI.DeBuffFrames
         {
             slotList.ForEach(slot => slot.Unregister());
             
-            Cb.DynamicStatEntry.DeBuffTable.ForEach(effect =>
+            Cb.DynamicStatEntry.StatusEffectTable.Iterator(effect =>
             {
                 if (!TryGetEmptySlot(out var slot)) return;
 
-                slot.Register(effect.Value);
+                slot.Register(effect);
             });
         }
 
@@ -32,14 +32,14 @@ namespace Common.Characters.UI.DeBuffFrames
         {
             UpdateDeBuffUI();
             
-            Cb.DynamicStatEntry.DeBuffTable.AddListener(UpdateDeBuffUI);
+            Cb.DynamicStatEntry.StatusEffectTable.AddListener(UpdateDeBuffUI);
         }
 
         private void OnDisable()
         {
             slotList.ForEach(slot => slot.Unregister());
             
-            Cb.DynamicStatEntry.DeBuffTable.RemoveListener(UpdateDeBuffUI);
+            Cb.DynamicStatEntry.StatusEffectTable.RemoveListener(UpdateDeBuffUI);
         }
 
 

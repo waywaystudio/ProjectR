@@ -1,0 +1,223 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1001 &2059694439651599720
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 31372662744709662, guid: cda7ba107a955b24cba549bb4331fac6, type: 3}
+      propertyPath: m_Name
+      value: WarriorAnimation
+      objectReference: {fileID: 0}
+    - target: {fileID: 517243171829503790, guid: cda7ba107a955b24cba549bb4331fac6, type: 3}
+      propertyPath: Arm
+      value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 517243171829503790, guid: cda7ba107a955b24cba549bb4331fac6, type: 3}
+      propertyPath: Job
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 517243171829503790, guid: cda7ba107a955b24cba549bb4331fac6, type: 3}
+      propertyPath: Face
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 517243171829503790, guid: cda7ba107a955b24cba549bb4331fac6, type: 3}
+      propertyPath: Feet
+      value: 21
+      objectReference: {fileID: 0}
+    - target: {fileID: 517243171829503790, guid: cda7ba107a955b24cba549bb4331fac6, type: 3}
+      propertyPath: Hair
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 517243171829503790, guid: cda7ba107a955b24cba549bb4331fac6, type: 3}
+      propertyPath: Armor
+      value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 517243171829503790, guid: cda7ba107a955b24cba549bb4331fac6, type: 3}
+      propertyPath: Melee
+      value: 13
+      objectReference: {fileID: 0}
+    - target: {fileID: 517243171829503790, guid: cda7ba107a955b24cba549bb4331fac6, type: 3}
+      propertyPath: Helmet
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 517243171829503790, guid: cda7ba107a955b24cba549bb4331fac6, type: 3}
+      propertyPath: Shield
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 517243171829503790, guid: cda7ba107a955b24cba549bb4331fac6, type: 3}
+      propertyPath: Shoulder
+      value: 21
+      objectReference: {fileID: 0}
+    - target: {fileID: 978258811399340691, guid: cda7ba107a955b24cba549bb4331fac6, type: 3}
+      propertyPath: m_RootOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 978258811399340691, guid: cda7ba107a955b24cba549bb4331fac6, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 978258811399340691, guid: cda7ba107a955b24cba549bb4331fac6, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 978258811399340691, guid: cda7ba107a955b24cba549bb4331fac6, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 978258811399340691, guid: cda7ba107a955b24cba549bb4331fac6, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 978258811399340691, guid: cda7ba107a955b24cba549bb4331fac6, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 978258811399340691, guid: cda7ba107a955b24cba549bb4331fac6, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 978258811399340691, guid: cda7ba107a955b24cba549bb4331fac6, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 978258811399340691, guid: cda7ba107a955b24cba549bb4331fac6, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 978258811399340691, guid: cda7ba107a955b24cba549bb4331fac6, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 978258811399340691, guid: cda7ba107a955b24cba549bb4331fac6, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1636494037268292674, guid: cda7ba107a955b24cba549bb4331fac6, type: 3}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 4351840573462125936, guid: cda7ba107a955b24cba549bb4331fac6, type: 3}
+      propertyPath: keyList.Array.size
+      value: 28
+      objectReference: {fileID: 0}
+    - target: {fileID: 4351840573462125936, guid: cda7ba107a955b24cba549bb4331fac6, type: 3}
+      propertyPath: keyList.Array.data[0]
+      value: Attack1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4351840573462125936, guid: cda7ba107a955b24cba549bb4331fac6, type: 3}
+      propertyPath: keyList.Array.data[1]
+      value: Attack2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4351840573462125936, guid: cda7ba107a955b24cba549bb4331fac6, type: 3}
+      propertyPath: keyList.Array.data[2]
+      value: Attack 1 DUELIST
+      objectReference: {fileID: 0}
+    - target: {fileID: 4351840573462125936, guid: cda7ba107a955b24cba549bb4331fac6, type: 3}
+      propertyPath: keyList.Array.data[3]
+      value: Attack 2 DUELIST
+      objectReference: {fileID: 0}
+    - target: {fileID: 4351840573462125936, guid: cda7ba107a955b24cba549bb4331fac6, type: 3}
+      propertyPath: keyList.Array.data[4]
+      value: Attack 3 DUELIST
+      objectReference: {fileID: 0}
+    - target: {fileID: 4351840573462125936, guid: cda7ba107a955b24cba549bb4331fac6, type: 3}
+      propertyPath: keyList.Array.data[5]
+      value: Idle
+      objectReference: {fileID: 0}
+    - target: {fileID: 4351840573462125936, guid: cda7ba107a955b24cba549bb4331fac6, type: 3}
+      propertyPath: keyList.Array.data[6]
+      value: Idle ARCHER
+      objectReference: {fileID: 0}
+    - target: {fileID: 4351840573462125936, guid: cda7ba107a955b24cba549bb4331fac6, type: 3}
+      propertyPath: keyList.Array.data[7]
+      value: Walk
+      objectReference: {fileID: 0}
+    - target: {fileID: 4351840573462125936, guid: cda7ba107a955b24cba549bb4331fac6, type: 3}
+      propertyPath: keyList.Array.data[8]
+      value: Run
+      objectReference: {fileID: 0}
+    - target: {fileID: 4351840573462125936, guid: cda7ba107a955b24cba549bb4331fac6, type: 3}
+      propertyPath: keyList.Array.data[9]
+      value: Run ARCHER
+      objectReference: {fileID: 0}
+    - target: {fileID: 4351840573462125936, guid: cda7ba107a955b24cba549bb4331fac6, type: 3}
+      propertyPath: keyList.Array.data[10]
+      value: Run DUELIST
+      objectReference: {fileID: 0}
+    - target: {fileID: 4351840573462125936, guid: cda7ba107a955b24cba549bb4331fac6, type: 3}
+      propertyPath: keyList.Array.data[11]
+      value: Jump
+      objectReference: {fileID: 0}
+    - target: {fileID: 4351840573462125936, guid: cda7ba107a955b24cba549bb4331fac6, type: 3}
+      propertyPath: keyList.Array.data[12]
+      value: Jump1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4351840573462125936, guid: cda7ba107a955b24cba549bb4331fac6, type: 3}
+      propertyPath: keyList.Array.data[13]
+      value: Jump1 ARCHER
+      objectReference: {fileID: 0}
+    - target: {fileID: 4351840573462125936, guid: cda7ba107a955b24cba549bb4331fac6, type: 3}
+      propertyPath: keyList.Array.data[14]
+      value: Jump2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4351840573462125936, guid: cda7ba107a955b24cba549bb4331fac6, type: 3}
+      propertyPath: keyList.Array.data[15]
+      value: Jump3
+      objectReference: {fileID: 0}
+    - target: {fileID: 4351840573462125936, guid: cda7ba107a955b24cba549bb4331fac6, type: 3}
+      propertyPath: keyList.Array.data[16]
+      value: Jump3 ARCHER
+      objectReference: {fileID: 0}
+    - target: {fileID: 4351840573462125936, guid: cda7ba107a955b24cba549bb4331fac6, type: 3}
+      propertyPath: keyList.Array.data[17]
+      value: Buff
+      objectReference: {fileID: 0}
+    - target: {fileID: 4351840573462125936, guid: cda7ba107a955b24cba549bb4331fac6, type: 3}
+      propertyPath: keyList.Array.data[18]
+      value: Hurt
+      objectReference: {fileID: 0}
+    - target: {fileID: 4351840573462125936, guid: cda7ba107a955b24cba549bb4331fac6, type: 3}
+      propertyPath: keyList.Array.data[19]
+      value: Defence
+      objectReference: {fileID: 0}
+    - target: {fileID: 4351840573462125936, guid: cda7ba107a955b24cba549bb4331fac6, type: 3}
+      propertyPath: keyList.Array.data[20]
+      value: Death
+      objectReference: {fileID: 0}
+    - target: {fileID: 4351840573462125936, guid: cda7ba107a955b24cba549bb4331fac6, type: 3}
+      propertyPath: keyList.Array.data[21]
+      value: Shoot1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4351840573462125936, guid: cda7ba107a955b24cba549bb4331fac6, type: 3}
+      propertyPath: keyList.Array.data[22]
+      value: Shoot2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4351840573462125936, guid: cda7ba107a955b24cba549bb4331fac6, type: 3}
+      propertyPath: keyList.Array.data[23]
+      value: Shoot3
+      objectReference: {fileID: 0}
+    - target: {fileID: 4351840573462125936, guid: cda7ba107a955b24cba549bb4331fac6, type: 3}
+      propertyPath: keyList.Array.data[24]
+      value: Cast1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4351840573462125936, guid: cda7ba107a955b24cba549bb4331fac6, type: 3}
+      propertyPath: keyList.Array.data[25]
+      value: Cast2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4351840573462125936, guid: cda7ba107a955b24cba549bb4331fac6, type: 3}
+      propertyPath: keyList.Array.data[26]
+      value: Cast3
+      objectReference: {fileID: 0}
+    - target: {fileID: 4351840573462125936, guid: cda7ba107a955b24cba549bb4331fac6, type: 3}
+      propertyPath: keyList.Array.data[27]
+      value: Fly
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: cda7ba107a955b24cba549bb4331fac6, type: 3}

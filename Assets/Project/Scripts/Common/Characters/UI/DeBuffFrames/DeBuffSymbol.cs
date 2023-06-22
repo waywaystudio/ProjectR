@@ -1,3 +1,4 @@
+using Common.StatusEffects;
 using Sirenix.OdinInspector;
 using TMPro;
 using UnityEngine;
@@ -11,10 +12,10 @@ namespace Common.Characters.UI.DeBuffFrames
         [SerializeField] private TextMeshProUGUI timer;
         
         [ShowInInspector]
-        private IStatusEffect effect;
+        private StatusEffect effect;
 
 
-        public void Register(IStatusEffect effect)
+        public void Register(StatusEffect effect)
         {
             this.effect = effect;
             this.effect.ProgressTime.RemoveListener("UpdateDeBuffSymbolTimer");

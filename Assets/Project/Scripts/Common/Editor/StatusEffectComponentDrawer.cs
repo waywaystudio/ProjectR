@@ -1,13 +1,13 @@
 using System;
 using System.Collections.Generic;
 using System.Reflection;
-using Common.StatusEffect;
+using Common.StatusEffects;
 using Sirenix.OdinInspector;
 using Sirenix.OdinInspector.Editor;
 
 namespace Common.Editor
 {
-    public class StatusEffectComponentDrawer : OdinAttributeProcessor<StatusEffectComponent>
+    public class StatusEffectComponentDrawer : OdinAttributeProcessor<StatusEffect>
     {
         public override void ProcessChildMemberAttributes(InspectorProperty parentProperty, MemberInfo member, List<Attribute> attributes)
         {

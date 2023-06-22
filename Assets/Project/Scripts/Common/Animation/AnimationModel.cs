@@ -96,10 +96,11 @@ namespace Common.Animation
         {
             switch (e.Data.Name)
             {
-                case "attack" :   OnHit.Invoke(); return;
-                case "footstep" : return;
-                case "hit" :      return;
-                case "get_hit" :  return;
+                case "attack" :     OnHit.Invoke(); return;
+                case "footstep" :   return;
+                case "hit" :        return;
+                case "get_hit" :    return;
+                case "OnHit" : OnHit.Invoke(); return;
                 default:
                 {
                     Debug.LogWarning($"Unknown animation event key in. input:{e.Data.Name}");

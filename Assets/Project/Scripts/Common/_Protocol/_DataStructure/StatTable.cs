@@ -52,6 +52,13 @@ namespace Common
             
             Table[stat.StatType].Remove(stat);
         }
+        public void Remove(StatType type, string key)
+        {
+            // if (stat == null) return;
+            if (!Table.ContainsKey(type)) return;
+            
+            Table[type].Remove(key);
+        }
 
         public void Clear() => Table.Clear();
 
@@ -91,6 +98,16 @@ namespace Common
                 stat.OnValueChanged -= Calculate;
                 table.TryRemove(key);
                 Calculate(stat);
+            }
+            
+            public void Remove(string key)
+            {
+                if (!table.ContainsKey(key)) return;
+                
+                table[key].OnValueChanged -= Calculate;
+                table.TryRemove(key);
+                Value = 0f;
+                table.Values.ForEach(statValue => Value += statValue.Value);
             }
             
 

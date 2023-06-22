@@ -1,0 +1,54 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 84f978e06becd664396e8641cc7d3033, type: 3}
+  m_Name: VenturerAnimationModelData
+  m_EditorClassIdentifier: 
+  animationList:
+  - Asset: {fileID: 11400000, guid: 7c6680dde7bb9a04387654e965ca21ab, type: 2}
+  - Asset: {fileID: 11400000, guid: 936bb1189b736d643a5127e5fdba30a5, type: 2}
+  - Asset: {fileID: 11400000, guid: 901f31bd2a7f5b641a2486431262e569, type: 2}
+  - Asset: {fileID: 11400000, guid: b16216f0c97190e459ae3dc20d47fadb, type: 2}
+  - Asset: {fileID: 11400000, guid: 35ace131fd960c34792a554de6660119, type: 2}
+  - Asset: {fileID: 11400000, guid: 00654779720ceee4d97f0fb0afb50b70, type: 2}
+  - Asset: {fileID: 11400000, guid: b688f9c3cbb58b045a4e90ebd7f5b4a6, type: 2}
+  - Asset: {fileID: 11400000, guid: 68668b9bf11c58f4a96419100ada6ee3, type: 2}
+  - Asset: {fileID: 11400000, guid: 4004095e4d3cc8245af9a3aa45cd4ef2, type: 2}
+  - Asset: {fileID: 11400000, guid: 501ba93eb43fd1b4b8285c343e2a1c30, type: 2}
+  - Asset: {fileID: 11400000, guid: a7f4b775b29096247a7167dc57ae9a60, type: 2}
+  - Asset: {fileID: 11400000, guid: 608a3360522b0c74da316a3a618a17e0, type: 2}
+  - Asset: {fileID: 11400000, guid: 083130586ced6b645af50ebe1729b99f, type: 2}
+  - Asset: {fileID: 11400000, guid: 236980c6cf2b4d3468215de074fb71a3, type: 2}
+  - Asset: {fileID: 11400000, guid: 84c82a4749f8bba4fa213ee49179d4ab, type: 2}
+  - Asset: {fileID: 11400000, guid: 339096551c10c5f489f334019fcee3ef, type: 2}
+  - Asset: {fileID: 11400000, guid: 5fbb25fccfe62f24aae6a554b5a94794, type: 2}
+  - Asset: {fileID: 11400000, guid: edd4eaf0d4ff2b84b9bbcaba46a84d6e, type: 2}
+  - Asset: {fileID: 11400000, guid: 873b65caf6c612241883cdc365c0d21b, type: 2}
+  - Asset: {fileID: 11400000, guid: 5f7b81b3cc9b6f24bbe2796e02b08c77, type: 2}
+  - Asset: {fileID: 11400000, guid: c07d45ca5d26c7a4795dac043501b272, type: 2}
+  - Asset: {fileID: 11400000, guid: cece5a2b21618b44bba80cefc5038266, type: 2}
+  - Asset: {fileID: 11400000, guid: 10a73e43dcbb4874c8c8a46790fb31d5, type: 2}
+  - Asset: {fileID: 11400000, guid: 643c2e58d6516b244aeede23cf13d6ed, type: 2}
+  - Asset: {fileID: 11400000, guid: 73a18c90b6127974da69a211b12ee647, type: 2}
+  - Asset: {fileID: 11400000, guid: a3b452147aa81ba46999a41de9fb3e2b, type: 2}
+  - Asset: {fileID: 11400000, guid: 0d338ecd4f5f5f947862e90ed19ae5f6, type: 2}
+  - Asset: {fileID: 11400000, guid: 23e172f99ebd6c945895d42077103ef8, type: 2}
+  - Asset: {fileID: 11400000, guid: 3906ab823bfa14b44a031315e7e9ba90, type: 2}
+  - Asset: {fileID: 11400000, guid: b025a7702aa902c4088ebf75513de58c, type: 2}
+  - Asset: {fileID: 11400000, guid: 9e61d8d4428d0e94391a9f70d6e58921, type: 2}
+  - Asset: {fileID: 11400000, guid: 1e6b5b28850b1fe4aa1a134bbe45e666, type: 2}
+  - Asset: {fileID: 11400000, guid: 2e57eacea9dd4c946950e75a8256d3e1, type: 2}
+  - Asset: {fileID: 11400000, guid: 3c62be4dcd86c4344b44212a3589dea8, type: 2}
+  - Asset: {fileID: 11400000, guid: e0d5eb670b550d94981e74ce7f7b0826, type: 2}
+  - Asset: {fileID: 11400000, guid: cda51fcc10f670844993d55d859801d2, type: 2}
+  - Asset: {fileID: 11400000, guid: 4a716dbc19bf8d141a435a9be5242bc9, type: 2}
+  transitionIndexList: []
+  referenceDirectory: Assets/Project/Graphics/Spine/VenturerMaster/ReferenceAssets

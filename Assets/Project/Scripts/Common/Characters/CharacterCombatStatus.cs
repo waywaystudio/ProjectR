@@ -9,9 +9,7 @@ namespace Common.Characters
         public ResourceValue Resource { get; } = new();
         public ShieldValue Shield { get; } = new();
         public StatTable StatTable { get; } = new();
-        public StatusEffectTable DeBuffTable { get; } = new();
-        public StatusEffectTable BuffTable { get; } = new();
-        
+        public StatusEffectTable StatusEffectTable { get; } = new();
 
         public void Initialize()
         {

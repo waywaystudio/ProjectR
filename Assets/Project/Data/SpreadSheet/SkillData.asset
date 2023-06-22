@@ -22,7 +22,7 @@ MonoBehaviour:
     sortingType: None
     targetParam: {x: 6, y: 135}
     targetLayer: Monster
-    animationKey: swordAttack
+    animationKey: Cast2
     isLoop: 0
     hasEvent: 1
     skillType: Instant
@@ -33,19 +33,19 @@ MonoBehaviour:
     castCallback: None
     completionValueList:
     - 15
-    cost: 0
+    cost: -8
     statusEffect: 0
     iconFileName: SwordAttack Sprite
     description: Starts combat by attacking a target with a melee weapon.
   - id: 31210102
     name: Bash
     behaviourMask: Skill
-    priority: 2
+    priority: 6
     detectorType: Circle
     sortingType: None
     targetParam: {x: 6, y: 90}
     targetLayer: Monster
-    animationKey: bash
+    animationKey: Cast1
     isLoop: 0
     hasEvent: 1
     skillType: Instant
@@ -56,7 +56,7 @@ MonoBehaviour:
     castCallback: None
     completionValueList:
     - 30
-    cost: 0
+    cost: -20
     statusEffect: 32000001
     iconFileName: Bash Sprite
     description: Starts combat by attacking a target with a melee weapon.
@@ -68,7 +68,7 @@ MonoBehaviour:
     sortingType: None
     targetParam: {x: 8, y: 90}
     targetLayer: Monster
-    animationKey: upperSlash
+    animationKey: Cast1
     isLoop: 0
     hasEvent: 1
     skillType: Instant
@@ -91,7 +91,7 @@ MonoBehaviour:
     sortingType: None
     targetParam: {x: 15, y: 360}
     targetLayer: Monster
-    animationKey: thunderClap
+    animationKey: JumpFullCyle
     isLoop: 0
     hasEvent: 1
     skillType: Instant
@@ -114,7 +114,7 @@ MonoBehaviour:
     sortingType: None
     targetParam: {x: 0, y: 0}
     targetLayer: Monster
-    animationKey: mightyGuard
+    animationKey: Buff
     isLoop: 0
     hasEvent: 1
     skillType: Instant
@@ -128,6 +128,52 @@ MonoBehaviour:
     cost: 0
     statusEffect: 0
     iconFileName: MightyGuard Sprite
+    description: Starts combat by attacking a target with a melee weapon.
+  - id: 31210106
+    name: ShieldUp
+    behaviourMask: RigidSkill
+    priority: 5
+    detectorType: Self
+    sortingType: None
+    targetParam: {x: 0, y: 0}
+    targetLayer: Adventure
+    animationKey: Defence
+    isLoop: 1
+    hasEvent: 0
+    skillType: Holding
+    animationCallback: None
+    coolTime: 8
+    coolTimeInvoker: Active
+    castTime: 3
+    castCallback: Execute
+    completionValueList:
+    - 0
+    cost: 10
+    statusEffect: 0
+    iconFileName: ShieldUp Sprite
+    description: Starts combat by attacking a target with a melee weapon.
+  - id: 31210107
+    name: Taunt
+    behaviourMask: RigidSkill
+    priority: 10
+    detectorType: Circle
+    sortingType: None
+    targetParam: {x: 100, y: 360}
+    targetLayer: Monster
+    animationKey: Buff
+    isLoop: 0
+    hasEvent: 1
+    skillType: Instant
+    animationCallback: Complete
+    coolTime: 60
+    coolTimeInvoker: Active
+    castTime: 0
+    castCallback: None
+    completionValueList:
+    - 0
+    cost: -50
+    statusEffect: 0
+    iconFileName: Taunt Sprite
     description: Starts combat by attacking a target with a melee weapon.
   - id: 31210601
     name: PriestCommonHeal

@@ -50,8 +50,9 @@ public class SequenceInvoker
 
 public class SequenceInvoker<T>
 {
-    public bool IsInitialized;
     protected Sequencer<T> Sequencer;
+    
+    public SequenceInvoker(Sequencer<T> sequencer) => Sequencer = sequencer;
     
     public bool IsAbleToActive => Sequencer.Condition == null || Sequencer.Condition.IsAllTrue;
     public bool IsActive { get; private set; }
@@ -60,8 +61,7 @@ public class SequenceInvoker<T>
 
     public void Initialize(Sequencer<T> sequencer)
     {
-        IsInitialized = true;
-        Sequencer     = sequencer;
+        Sequencer = sequencer;
     }
 
     public void Active(T value)

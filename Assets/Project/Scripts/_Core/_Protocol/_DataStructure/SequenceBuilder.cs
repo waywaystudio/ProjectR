@@ -39,21 +39,14 @@ public class SequenceBuilder
 public class SequenceBuilder<T>
 {
     public bool IsInitialized;
-    protected Sequencer<T> Sequencer;
+    protected readonly Sequencer<T> Sequencer;
     
     // public SequenceBuilder() { }
     public SequenceBuilder(IHasSequencer<T> holder) => Sequencer = holder?.Sequencer;
     public SequenceBuilder(Sequencer<T> holder) => Sequencer = holder;
 
     public Sequencer<T> Build() => Sequencer;
-    public SequenceBuilder<T> Initialize(Sequencer<T> sequencer)
-    {
-        IsInitialized = true;
-        Sequencer     = sequencer;
-        
-        return this;
-    }
-    
+
     public SequenceBuilder<T> AddActiveParam(string key, Action<T> action) { Sequencer.ActiveParamAction.Add(key, action); return this; }
     public SequenceBuilder<T> AddActiveParam(string key, Action action) { Sequencer.ActiveParamAction.Add(key, action); return this; }
     public SequenceBuilder<T> AddCondition(string key, Func<bool> condition) { Sequencer.Condition.Add(key, condition); return this; }
