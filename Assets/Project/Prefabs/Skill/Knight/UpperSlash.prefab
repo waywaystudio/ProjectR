@@ -171,7 +171,7 @@ Transform:
   - {fileID: 7221708945386366489}
   - {fileID: 5853087751410363707}
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &9094432963895350988
 MonoBehaviour:
@@ -205,7 +205,7 @@ MonoBehaviour:
       serializedVersion: 2
       m_Bits: 256
   animationTrait:
-    animationKey: upperSlash
+    animationKey: Cast1
     isLoop: 0
     hasEvent: 1
     skillType: 1
@@ -216,5 +216,8 @@ MonoBehaviour:
   castTimer:
     castingTime: 0
     callbackSection: 0
+  cost:
+    cost: 0
+    paySection: 0
   description: Starts combat by attacking a target with a melee weapon.
   icon: {fileID: 21300000, guid: 5bb14a259eefff541a510382c2530229, type: 3}

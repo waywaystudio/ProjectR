@@ -185,19 +185,19 @@ MonoBehaviour:
       serializedVersion: 2
       m_Bits: 256
   animationTrait:
-    animationKey: swordAttack
+    animationKey: Cast2
     isLoop: 0
     hasEvent: 1
     skillType: 1
     callbackSection: 3
   coolTimer:
-    coolTime: 0
+    coolTime: 1
     invokeSection: 0
   castTimer:
     castingTime: 0
     callbackSection: 0
   cost:
-    value: -8
-    paySection: 0
+    cost: -8
+    paySection: 5
   description: Starts combat by attacking a target with a melee weapon.
   icon: {fileID: 21300000, guid: 951b905eda8f8424fb1debd28c69ac92, type: 3}

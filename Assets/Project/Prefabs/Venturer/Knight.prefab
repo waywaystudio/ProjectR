@@ -52,14 +52,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 1416249181191727617, guid: 92753f0d57f468940b4a9165e8fd78c0, type: 3}
-      propertyPath: animationTrait.animationKey
-      value: Cast1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6638601734450639617, guid: 92753f0d57f468940b4a9165e8fd78c0, type: 3}
-      propertyPath: damage.value
-      value: 30
-      objectReference: {fileID: 0}
     - target: {fileID: 8380361914805468174, guid: 92753f0d57f468940b4a9165e8fd78c0, type: 3}
       propertyPath: m_Name
       value: Bash
@@ -1185,25 +1177,9 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 6638601734450639617, guid: ff38093493464f743863b7f84ec06ba6, type: 3}
-      propertyPath: damage.value
-      value: 48
-      objectReference: {fileID: 0}
     - target: {fileID: 8380361914805468174, guid: ff38093493464f743863b7f84ec06ba6, type: 3}
       propertyPath: m_Name
       value: UpperSlash
-      objectReference: {fileID: 0}
-    - target: {fileID: 9094432963895350988, guid: ff38093493464f743863b7f84ec06ba6, type: 3}
-      propertyPath: damage
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 9094432963895350988, guid: ff38093493464f743863b7f84ec06ba6, type: 3}
-      propertyPath: coolTime
-      value: 7
-      objectReference: {fileID: 0}
-    - target: {fileID: 9094432963895350988, guid: ff38093493464f743863b7f84ec06ba6, type: 3}
-      propertyPath: animationTrait.animationKey
-      value: Cast1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -1276,30 +1252,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 234500611213636336, guid: a6b7daf7957313445bc04e7b5b6bf076, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8222266004232503022, guid: a6b7daf7957313445bc04e7b5b6bf076, type: 3}
-      propertyPath: cost
-      value: 20
-      objectReference: {fileID: 0}
-    - target: {fileID: 8222266004232503022, guid: a6b7daf7957313445bc04e7b5b6bf076, type: 3}
-      propertyPath: cost.value
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8222266004232503022, guid: a6b7daf7957313445bc04e7b5b6bf076, type: 3}
-      propertyPath: behaviourMask
-      value: 32
-      objectReference: {fileID: 0}
-    - target: {fileID: 8222266004232503022, guid: a6b7daf7957313445bc04e7b5b6bf076, type: 3}
-      propertyPath: detector.targetLayer.m_Bits
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8222266004232503022, guid: a6b7daf7957313445bc04e7b5b6bf076, type: 3}
-      propertyPath: executor.table.keyList.Array.size
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8222266004232503022, guid: a6b7daf7957313445bc04e7b5b6bf076, type: 3}
-      propertyPath: executor.table.valueList.Array.size
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8380361914805468174, guid: a6b7daf7957313445bc04e7b5b6bf076, type: 3}
@@ -1378,42 +1330,6 @@ PrefabInstance:
     - target: {fileID: 234500611213636336, guid: 2087c7b1b7ea94c4d951fbb90e78849a, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4087849359829221962, guid: 2087c7b1b7ea94c4d951fbb90e78849a, type: 3}
-      propertyPath: cost
-      value: -8
-      objectReference: {fileID: 0}
-    - target: {fileID: 4087849359829221962, guid: 2087c7b1b7ea94c4d951fbb90e78849a, type: 3}
-      propertyPath: cost.cost
-      value: -8
-      objectReference: {fileID: 0}
-    - target: {fileID: 4087849359829221962, guid: 2087c7b1b7ea94c4d951fbb90e78849a, type: 3}
-      propertyPath: cost.value
-      value: 8
-      objectReference: {fileID: 0}
-    - target: {fileID: 4087849359829221962, guid: 2087c7b1b7ea94c4d951fbb90e78849a, type: 3}
-      propertyPath: cost.paySection
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 4087849359829221962, guid: 2087c7b1b7ea94c4d951fbb90e78849a, type: 3}
-      propertyPath: coolTimer.coolTime
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4087849359829221962, guid: 2087c7b1b7ea94c4d951fbb90e78849a, type: 3}
-      propertyPath: animationTrait.animationKey
-      value: Cast2
-      objectReference: {fileID: 0}
-    - target: {fileID: 5599725317313904969, guid: 2087c7b1b7ea94c4d951fbb90e78849a, type: 3}
-      propertyPath: damage.value
-      value: 15
-      objectReference: {fileID: 0}
-    - target: {fileID: 7701289761117660496, guid: 2087c7b1b7ea94c4d951fbb90e78849a, type: 3}
-      propertyPath: power.value
-      value: 15
-      objectReference: {fileID: 0}
-    - target: {fileID: 7701289761117660496, guid: 2087c7b1b7ea94c4d951fbb90e78849a, type: 3}
-      propertyPath: damage.value
-      value: 15
       objectReference: {fileID: 0}
     - target: {fileID: 8380361914805468174, guid: 2087c7b1b7ea94c4d951fbb90e78849a, type: 3}
       propertyPath: m_Name
