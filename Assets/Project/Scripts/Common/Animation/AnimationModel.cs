@@ -23,10 +23,10 @@ namespace Common.Animation
         private SpineAnimation TargetAnimation { get; set; }
     
         public void Idle() { State.TimeScale = 1f; PlayLoop("idle"); }
-        public void Run() => PlayLoop("run");
-        public void Dead(Action callback = null) => PlayOnce("dead", 0f, callback);
+        public virtual void Run() => PlayLoop("run");
+        public virtual void Dead(Action callback = null) => PlayOnce("dead", 0f, callback);
         public virtual void Stun() => PlayLoop("stun");
-        public void Hit() => PlayLoop("hit");
+        public virtual void Hit() => PlayLoop("hit");
         public void PlayOnce(string animationKey, float timeScale = 0f, Action callback = null) => Play(animationKey, 0, false, timeScale, callback);
         public void PlayLoop(string animationKey, float timeScale = 0f, Action callback = null) => Play(animationKey, 0, true, timeScale, callback);
 

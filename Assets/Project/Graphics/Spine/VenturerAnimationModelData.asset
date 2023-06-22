@@ -1,0 +1,45 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 84f978e06becd664396e8641cc7d3033, type: 3}
+  m_Name: VenturerAnimationModelData
+  m_EditorClassIdentifier: 
+  animationList:
+  - Asset: {fileID: 11400000, guid: 0ad3667a1d7195348904cbfda06949ac, type: 2}
+  - Asset: {fileID: 11400000, guid: 871c77bb041922549b4f24c7d5856179, type: 2}
+  - Asset: {fileID: 11400000, guid: 59dec438f6b7f594b8e5c0e3b34f11c1, type: 2}
+  - Asset: {fileID: 11400000, guid: d9bbbadd10c76154b96a542108fcca27, type: 2}
+  - Asset: {fileID: 11400000, guid: 1e73fd2c37c41244e867a1f5d4eff3bf, type: 2}
+  - Asset: {fileID: 11400000, guid: d18eb80b84d67fd4c873f15423b49df4, type: 2}
+  - Asset: {fileID: 11400000, guid: b90226370d6bad34c8e60fb0cfe7830e, type: 2}
+  - Asset: {fileID: 11400000, guid: e65727bb9660efb40a7c87ac3c2fea8e, type: 2}
+  - Asset: {fileID: 11400000, guid: 0b434f760741f6748882572f9ac460b6, type: 2}
+  - Asset: {fileID: 11400000, guid: 87d380b5c822d3040be787ab60c7b99c, type: 2}
+  - Asset: {fileID: 11400000, guid: 16f33baabfbc9474a8955b43072bbdf9, type: 2}
+  - Asset: {fileID: 11400000, guid: 1d2f9a662a1859c4382c5cfd52c467c6, type: 2}
+  - Asset: {fileID: 11400000, guid: 83a82b8002d3e674cb3881ccb9bdd8b4, type: 2}
+  - Asset: {fileID: 11400000, guid: 45f24118de64d364c82e4d63aa58d308, type: 2}
+  - Asset: {fileID: 11400000, guid: 7f0897402a0b2594a99da0750b31561c, type: 2}
+  - Asset: {fileID: 11400000, guid: 515bb030f191e4743ba50c39343497b7, type: 2}
+  - Asset: {fileID: 11400000, guid: d65a4cbe883948948b33a2916d0f8c5c, type: 2}
+  - Asset: {fileID: 11400000, guid: a5c113aa128396e43a1d543db5de509b, type: 2}
+  - Asset: {fileID: 11400000, guid: 80b6198129cbd414d8522e837da95861, type: 2}
+  - Asset: {fileID: 11400000, guid: 96b3beb2c4caaf443ae92eb14aa9f649, type: 2}
+  - Asset: {fileID: 11400000, guid: 0fd3dfa31babe264bbb4ed8d6da46d27, type: 2}
+  - Asset: {fileID: 11400000, guid: 79f5fb5b569ae3d4d9bd3f2822d1ba78, type: 2}
+  - Asset: {fileID: 11400000, guid: 1a8611a5b16a0a34a9475de7bb03eb3c, type: 2}
+  - Asset: {fileID: 11400000, guid: 574ebd9fb21ce9540a8aa0832200e0c9, type: 2}
+  - Asset: {fileID: 11400000, guid: 95dc68ba9112fe64999a93b00f1215cf, type: 2}
+  - Asset: {fileID: 11400000, guid: a40f2f5a12393744aa38f4660af652f0, type: 2}
+  - Asset: {fileID: 11400000, guid: e452517a895edf6488ab2fe5927040b0, type: 2}
+  - Asset: {fileID: 11400000, guid: 5331fa016d09a6f4b942659a61b17729, type: 2}
+  transitionIndexList: []
+  referenceDirectory: Assets/FantaziaCharacterEditor/SpineSkeletonData4/ReferenceAssets
