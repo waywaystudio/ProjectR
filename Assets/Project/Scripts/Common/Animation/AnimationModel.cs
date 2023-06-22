@@ -22,7 +22,7 @@ namespace Common.Animation
         public ActionTable OnHit { get; } = new();
         private SpineAnimation TargetAnimation { get; set; }
     
-        public void Idle() { State.TimeScale = 1f; PlayLoop("idle"); }
+        public virtual void Idle() { State.TimeScale = 1f; PlayLoop("idle"); }
         public virtual void Run() => PlayLoop("run");
         public virtual void Dead(Action callback = null) => PlayOnce("dead", 0f, callback);
         public virtual void Stun() => PlayLoop("stun");
