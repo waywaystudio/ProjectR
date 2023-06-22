@@ -52,6 +52,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1416249181191727617, guid: 92753f0d57f468940b4a9165e8fd78c0, type: 3}
+      propertyPath: animationTrait.animationKey
+      value: Defence
+      objectReference: {fileID: 0}
     - target: {fileID: 6638601734450639617, guid: 92753f0d57f468940b4a9165e8fd78c0, type: 3}
       propertyPath: damage.value
       value: 30
@@ -214,6 +218,10 @@ PrefabInstance:
     - target: {fileID: 5452852995274357231, guid: a00acb9f0e0a6be44845333325089953, type: 3}
       propertyPath: disableActionMask
       value: 166
+      objectReference: {fileID: 0}
+    - target: {fileID: 5452852995274357231, guid: a00acb9f0e0a6be44845333325089953, type: 3}
+      propertyPath: animationTrait.animationKey
+      value: Jump
       objectReference: {fileID: 0}
     - target: {fileID: 6638601734450639617, guid: a00acb9f0e0a6be44845333325089953, type: 3}
       propertyPath: damage.value
@@ -1227,6 +1235,10 @@ PrefabInstance:
       propertyPath: coolTime
       value: 7
       objectReference: {fileID: 0}
+    - target: {fileID: 9094432963895350988, guid: ff38093493464f743863b7f84ec06ba6, type: 3}
+      propertyPath: animationTrait.animationKey
+      value: Attack2
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1303,6 +1315,10 @@ PrefabInstance:
     - target: {fileID: 4087849359829221962, guid: 2087c7b1b7ea94c4d951fbb90e78849a, type: 3}
       propertyPath: coolTimer.coolTime
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4087849359829221962, guid: 2087c7b1b7ea94c4d951fbb90e78849a, type: 3}
+      propertyPath: animationTrait.animationKey
+      value: Attack1
       objectReference: {fileID: 0}
     - target: {fileID: 5599725317313904969, guid: 2087c7b1b7ea94c4d951fbb90e78849a, type: 3}
       propertyPath: damage.value
