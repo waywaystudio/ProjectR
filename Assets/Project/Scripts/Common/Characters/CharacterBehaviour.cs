@@ -9,7 +9,6 @@ namespace Common.Characters
 
     public class CharacterBehaviour : MonoBehaviour, ICombatExecutor, ICharacterSystem, IEditable
     {
-        [SerializeField] private CharacterAnimation animationTable;
         [SerializeField] protected CharacterCombatStatus combatStatus;
         [SerializeField] protected AnimationModel animating;
         [SerializeField] protected Transform damageSpawn;
@@ -45,55 +44,13 @@ namespace Common.Characters
          */
         public ActionMask BehaviourMask => CurrentBehaviour is null ? ActionMask.None : CurrentBehaviour.BehaviourMask;
         public IActionBehaviour CurrentBehaviour { get; set; }
-        public CharacterAnimation AnimationTable => animationTable;
 
-        public void Rotate(Vector3 lookTarget)
-        {
-            Pathfinding.RotateToTarget(lookTarget); 
-            Animating.Flip(transform.forward);
-        }
-
-        public void Stop()
-        {
-            stopBehaviour.Stop();
-            
-            if (animationTable is not null)
-            {
-                animationTable.Stop();
-            }
-        }
-
-        public void Run(Vector3 destination)
-        {
-            runBehaviour.Run(destination);
-            
-            if (animationTable is not null)
-            {
-                if (animationTable.CurrentKey != "Run")
-                    animationTable.Run();
-            }
-        }
-
-        public void Stun(float duration)
-        {
-            stunBehaviour.Stun(duration);
-        }
-
-        public void KnockBack(Vector3 source, float distance, float duration)
-        {
-            knockBackBehaviour.KnockBack(source, distance, duration);
-        }
-
-        public void Dead()
-        {
-            deadBehaviour.Dead();
-            
-            if (animationTable is not null)
-            {
-                animationTable.Dead();
-            }
-        }
-        
+        public void Rotate(Vector3 lookTarget) { Pathfinding.RotateToTarget(lookTarget); Animating.Flip(transform.forward); }
+        public void Stop() => stopBehaviour.Stop();
+        public void Run(Vector3 destination) => runBehaviour.Run(destination);
+        public void Stun(float duration) => stunBehaviour.Stun(duration);
+        public void KnockBack(Vector3 source, float distance, float duration) => knockBackBehaviour.KnockBack(source, distance, duration);
+        public void Dead() => deadBehaviour.Dead();
         public void AddReward(System.Action action) => deadBehaviour.AddReward("Reward", action);
         
         

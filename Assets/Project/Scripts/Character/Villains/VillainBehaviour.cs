@@ -1,5 +1,4 @@
 using Common;
-using Common.Animation;
 using Common.Characters;
 using UnityEngine;
 
