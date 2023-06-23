@@ -799,10 +799,6 @@ PrefabInstance:
       value: 21010201
       objectReference: {fileID: 0}
     - target: {fileID: 6884540845200242600, guid: a3acb303f8f3ed24c8afb44fa3d18ccf, type: 3}
-      propertyPath: combatStatus
-      value: 
-      objectReference: {fileID: 199560196790107862}
-    - target: {fileID: 6884540845200242600, guid: a3acb303f8f3ed24c8afb44fa3d18ccf, type: 3}
       propertyPath: characterName
       value: Garvin
       objectReference: {fileID: 0}
@@ -962,17 +958,6 @@ PrefabInstance:
       addedObject: {fileID: 5102525275739614400}
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a3acb303f8f3ed24c8afb44fa3d18ccf, type: 3}
---- !u!114 &199560196790107862 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 4968826710418206697, guid: a3acb303f8f3ed24c8afb44fa3d18ccf, type: 3}
-  m_PrefabInstance: {fileID: 5057590073391321407}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f865738da60c3e442ae51953dc29c83c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &7160064012819233583 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 2696955962189539856, guid: a3acb303f8f3ed24c8afb44fa3d18ccf, type: 3}
