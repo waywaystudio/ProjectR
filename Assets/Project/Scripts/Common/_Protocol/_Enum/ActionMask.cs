@@ -13,6 +13,7 @@ namespace Common
         Stun = 1       << 4,
         Skill = 1      << 5,
         RigidSkill = 1 << 6,
+        Draw = 1 << 7,
 
         SkillIgnoreMask = None      | Stop | Run,
 
@@ -40,6 +41,11 @@ namespace Common
                                                    ActionMask.Run  | 
                                                    ActionMask.Skill;
             
+            const ActionMask drawIgnoreMask = ActionMask.None | 
+                                                   ActionMask.Stop | 
+                                                   ActionMask.Run  | 
+                                                   ActionMask.Skill;
+            
             const ActionMask stunIgnoreMask = ActionMask.None | 
                                               ActionMask.Stop | 
                                               ActionMask.Run  | 
@@ -60,6 +66,7 @@ namespace Common
                 ActionMask.Run        => (runIgnoreMask       | target) == runIgnoreMask,
                 ActionMask.Dead       => (deadIgnoreMask      | target) == deadIgnoreMask,
                 ActionMask.KnockBack  => (knockBackIgnoreMask | target) == knockBackIgnoreMask,
+                ActionMask.Draw       => (drawIgnoreMask      | target) == drawIgnoreMask,
                 ActionMask.Stun       => (stunIgnoreMask      | target) == stunIgnoreMask,
                 ActionMask.Skill      => (skillIgnoreMask     | target) == skillIgnoreMask,
                 ActionMask.RigidSkill => (skillIgnoreMask     | target) == skillIgnoreMask,

@@ -57,8 +57,10 @@ namespace Common
         RunBehaviour RunBehaviour { get; }
         StunBehaviour StunBehaviour { get; }
         KnockBackBehaviour KnockBackBehaviour { get; }
+        DrawBehaviour DrawBehaviour { get; }
         DeadBehaviour DeadBehaviour { get; }
         SkillBehaviour SkillBehaviour { get; }
+        
         ActionTable<CombatEntity> OnDamageTaken { get; }
         ActionTable<CombatEntity> OnHealTaken { get; }
 
@@ -67,6 +69,7 @@ namespace Common
         void Stop();
         void Stun(float duration);
         void KnockBack(Vector3 source, float distance, float duration);
+        void Draw(Vector3 source, float duration);
         void Dead();
         void TakeStatusEffect(StatusEffect effect);
         void DispelStatusEffect(StatusEffect effect);

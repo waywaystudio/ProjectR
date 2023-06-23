@@ -10,6 +10,7 @@ namespace Common.Skills
         [SerializeField] private SectionType paySection;
 
         public float Value => cost;
+        public ConditionTable PayCondition { get; set; } = new();
 
         public void Initialize(SkillComponent skill)
         {
@@ -17,7 +18,16 @@ namespace Common.Skills
             
             skill.SequenceBuilder
                  .AddCondition("CheckCost", () => resourceRef.Value >= Value)
-                 .Add(paySection, "payCost", () => resourceRef.Value -= Value);
+                 .Add(paySection, "payCost", () => PayCost(resourceRef));
+        }
+
+
+        private void PayCost(ResourceValue resourceValue)
+        {
+            if (PayCondition.IsAllTrue)
+            {
+                resourceValue.Value -= Value;
+            }
         }
 
 

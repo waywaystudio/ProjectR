@@ -1321,6 +1321,7 @@ MonoBehaviour:
   runBehaviour: {fileID: 4539512539281695210}
   stunBehaviour: {fileID: 8981921231789077568}
   knockBackBehaviour: {fileID: 2545583809255777751}
+  drawBehaviour: {fileID: 6742287290873079761}
   deadBehaviour: {fileID: 5774851040486193953}
   skillBehaviour: {fileID: 7971064793264385864}
   searching: {fileID: 6370810151153497551}
@@ -2015,6 +2016,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 8921452021000365171}
+  - {fileID: 7153276368875740743}
   - {fileID: 529150085758367883}
   - {fileID: 3846313945300386497}
   - {fileID: 1624951780573892674}
@@ -2287,7 +2289,7 @@ MonoBehaviour:
   collidesWith: -1
   wallAvoidForce: 1
   wallAvoidFalloff: 1
-  priority: 0.5
+  priority: 1
   debug: 0
 --- !u!1 &4890306370703980239
 GameObject:
@@ -3034,6 +3036,50 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hpBar: {fileID: 2406948543114428047}
+--- !u!1 &6557156242247361859
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7153276368875740743}
+  - component: {fileID: 6742287290873079761}
+  m_Layer: 7
+  m_Name: Draw
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7153276368875740743
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6557156242247361859}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 7417837823904446708}
+  m_RootOrder: -1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &6742287290873079761
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6557156242247361859}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 580bd9a6882361449a8eafee46b69aef, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &6588047589983900291
 GameObject:
   m_ObjectHideFlags: 0

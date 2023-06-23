@@ -8,8 +8,6 @@ namespace Character.Venturers.Knight.Skills
 {
     public class ShieldUp : SkillComponent
     {
-        // Aim Shot이랑 그나마 구조가 비슷하다.
-        // 버프를 획득해야하기 때문에, 버프쪽 구조를 작성해야 한다.
         private CancellationTokenSource cts;
 
         public override void Initialize()
@@ -46,6 +44,8 @@ namespace Character.Venturers.Knight.Skills
         private async UniTaskVoid ConsumeResource()
         {
             cts = new CancellationTokenSource();
+            
+            await UniTask.Delay(500, false, PlayerLoopTiming.Update, cts.Token);
 
             while (true)
             {
@@ -54,6 +54,7 @@ namespace Character.Venturers.Knight.Skills
                 if (Cb.DynamicStatEntry.Resource.Value <= 0 || !SkillInvoker.IsActive)
                 {
                     Debug.Log("ShieldUp End");
+                    Cancel();
                     return;
                 }
 

@@ -2,11 +2,11 @@ using UnityEngine;
 
 namespace Common.Characters.Behaviours
 {
-    public class KnockBackBehaviour : MonoBehaviour, IActionBehaviour
+    public class DrawBehaviour : MonoBehaviour, IActionBehaviour
     {
         [SerializeField] private Sequencer<Vector3> sequencer;        
         
-        public ActionMask BehaviourMask => ActionMask.KnockBack;
+        public ActionMask BehaviourMask => ActionMask.Draw;
         public SequenceBuilder<Vector3> Builder { get; private set; }
         public SequenceInvoker<Vector3> Invoker { get; private set; }
 
@@ -14,11 +14,11 @@ namespace Common.Characters.Behaviours
         private CharacterBehaviour Cb => cb ??= GetComponentInParent<CharacterBehaviour>();
         
 
-        public void KnockBack(Vector3 source, float distance, float duration)
+        public void Draw(Vector3 source, float duration)
         {
             if (!Invoker.IsAbleToActive) return;
 
-            Cb.Pathfinding.KnockBack(source, distance, duration, Invoker.Complete);
+            Cb.Pathfinding.Draw(source, duration, Invoker.Complete);
             Invoker.Active(source);
         }
         

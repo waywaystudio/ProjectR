@@ -27,7 +27,7 @@ namespace Common.Skills
         public ActionMask BehaviourMask => behaviourMask;
         public ICombatTaker MainTarget => detector.GetMainTarget();
         public int Priority => priority;
-        public float Cost => cost.Value;
+        public SkillCost Cost => cost;
         public string Description => description;
         public float Range => detector.Range;
         public float Angle => detector.Angle;

@@ -1,7 +1,7 @@
 {
 	"GrowMaterialSerializeKey" : {
 		"__type" : "System.Collections.Generic.Dictionary`2[[Common.GrowMaterialType, ProjectR.Common, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null],[System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]],mscorlib",
-		"value" : {
+		"value" : {52000102:3,52000303:1,52000001:50
 		}
 	},
 	"Warrior.Top" : {
@@ -91,7 +91,7 @@
 	"challengers" : {
 		"__type" : "System.Collections.Generic.List`1[[Common.VenturerType, ProjectR.Common, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]],mscorlib",
 		"value" : [
-			21010201,0,0,0,0,0
+			21010201,21030803,0,0,0,0
 		]
 	},
 	"Vortex.KillCount" : {
@@ -136,7 +136,7 @@
 	},
 	"LoadStonehelm.KillCount" : {
 		"__type" : "int",
-		"value" : 0
+		"value" : 1
 	},
 	"LadySerenavaine.KillCount" : {
 		"__type" : "int",
@@ -174,7 +174,7 @@
 		"__type" : "Serialization.SaveInfo,ProjectR.Core",
 		"value" : {
 			"filename" : "_playSaveFile",
-			"saveTime" : "2023.06.23.02.22.13"
+			"saveTime" : "2023.06.23.16.44.16"
 		}
 	}
 }

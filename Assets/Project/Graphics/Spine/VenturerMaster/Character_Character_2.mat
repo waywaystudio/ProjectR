@@ -16,7 +16,7 @@ Material:
   - _TIMESETTINGS_LINEAR_DEFAULT
   - _UBERFADING_NONE
   m_InvalidKeywords:
-  - _STRAIGHT_ALPHA_INPUT
+  - _ALPHABLEND_ON
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
@@ -145,7 +145,6 @@ Material:
     - _CustomFadeAlpha: 1
     - _CustomFadeNoiseFactor: 0
     - _CustomFadeSmoothness: 2
-    - _Cutoff: 0.1
     - _DirectionalAlphaFadeFade: 0
     - _DirectionalAlphaFadeInvert: 0
     - _DirectionalAlphaFadeNoiseFactor: 0.2
@@ -162,7 +161,6 @@ Material:
     - _DirectionalGlowFadeNoiseFactor: 0.2
     - _DirectionalGlowFadeRotation: 0
     - _DirectionalGlowFadeWidth: 0.1
-    - _DoubleSidedLighting: 0
     - _EnableAddColor: 0
     - _EnableAddHue: 0
     - _EnableAlphaTint: 0
@@ -257,7 +255,6 @@ Material:
     - _InnerOutlineDistortionToggle: 0
     - _InnerOutlineFade: 1
     - _InnerOutlineWidth: 0.02
-    - _LightAffectsAdditive: 0
     - _MetalContrast: 2
     - _MetalFade: 1
     - _MetalHighlightContrast: 2
@@ -281,7 +278,6 @@ Material:
     - _RainbowNoiseFactor: 0.2
     - _RainbowSaturation: 1
     - _RainbowSpeed: 1
-    - _ReceiveShadows: 0
     - _RecolorFade: 1
     - _RectHeight: 100
     - _RectWidth: 100
@@ -331,9 +327,6 @@ Material:
     - _SquishFlip: 0
     - _SquishSquish: 0.1
     - _SquishStretch: 0.1
-    - _StencilComp: 0
-    - _StencilRef: 1
-    - _StraightAlphaInput: 1
     - _StrongTintContrast: 0
     - _StrongTintFade: 1
     - _TimeFPS: 5

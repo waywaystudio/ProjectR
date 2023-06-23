@@ -52,6 +52,14 @@ PrefabInstance:
       propertyPath: skillTable.valueList.Array.data[3]
       value: 
       objectReference: {fileID: 753621691833560613}
+    - target: {fileID: 1015440509575629860, guid: bd355e30ab3d37740ab682aad07a91b5, type: 3}
+      propertyPath: locked
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1015440509575629860, guid: bd355e30ab3d37740ab682aad07a91b5, type: 3}
+      propertyPath: lockWhenNotMoving
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1144377022904457136, guid: bd355e30ab3d37740ab682aad07a91b5, type: 3}
       propertyPath: coolTimeSection
       value: 0

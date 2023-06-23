@@ -88,19 +88,18 @@ namespace Common.Systems
                          .OnComplete(() => callback?.Invoke());
         }
 
-        public void SetKnockProperty(float distance, float duration)
+        public void Draw(Vector3 dest, float duration, Action callback)
         {
-            KnockBackDistance = distance;
-            KnockBackDuration = duration;
+            var drawDirection = dest - RootPosition;
+            var drawDistance = Vector3.Distance(dest, RootPosition) * 0.9f;
+            
+            var drawDestination = PathfindingUtility.GetReachableStraightPosition(RootPosition, drawDirection, drawDistance);
+            
+            rootTransform.DOMove(drawDestination, duration)
+                         .OnComplete(() => callback?.Invoke());
         }
-        
-        public async UniTask KnockBack(Vector3 source)
-        {
-            var knockBackDirection = RootPosition - source;
-            var knockBackDestination = PathfindingUtility.GetReachableStraightPosition(RootPosition, knockBackDirection, KnockBackDistance);
 
-            await rootTransform.DOMove(knockBackDestination, KnockBackDuration);
-        }
+  
 
         public void Quit()
         {

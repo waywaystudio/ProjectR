@@ -19,6 +19,7 @@ namespace Common.Characters
         [SerializeField] protected RunBehaviour runBehaviour;
         [SerializeField] protected StunBehaviour stunBehaviour;
         [SerializeField] protected KnockBackBehaviour knockBackBehaviour;
+        [SerializeField] protected DrawBehaviour drawBehaviour;
         [SerializeField] protected DeadBehaviour deadBehaviour;
         [SerializeField] protected SkillBehaviour skillBehaviour;
 
@@ -50,6 +51,7 @@ namespace Common.Characters
         public RunBehaviour RunBehaviour => runBehaviour;
         public StunBehaviour StunBehaviour => stunBehaviour;
         public KnockBackBehaviour KnockBackBehaviour => knockBackBehaviour;
+        public DrawBehaviour DrawBehaviour => drawBehaviour;
         public DeadBehaviour DeadBehaviour => deadBehaviour;
         
 
@@ -58,6 +60,7 @@ namespace Common.Characters
         public void Run(Vector3 destination) => runBehaviour.Run(destination);
         public void Stun(float duration) => stunBehaviour.Stun(duration);
         public void KnockBack(Vector3 source, float distance, float duration) => knockBackBehaviour.KnockBack(source, distance, duration);
+        public void Draw(Vector3 source, float duration) => DrawBehaviour.Draw(source, duration);
         public void Dead() => deadBehaviour.Dead();
         public void AddReward(System.Action action) => deadBehaviour.AddReward("Reward", action);
         
@@ -95,6 +98,7 @@ namespace Common.Characters
             runBehaviour       ??= GetComponentInChildren<RunBehaviour>();
             stunBehaviour      ??= GetComponentInChildren<StunBehaviour>();
             knockBackBehaviour ??= GetComponentInChildren<KnockBackBehaviour>();
+            drawBehaviour      ??= GetComponentInChildren<DrawBehaviour>();
             deadBehaviour      ??= GetComponentInChildren<DeadBehaviour>();
             searching          ??= GetComponentInChildren<SearchingSystem>();
             colliding          ??= GetComponentInChildren<CollidingSystem>();
