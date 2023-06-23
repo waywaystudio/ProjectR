@@ -55,7 +55,7 @@ public class SequenceInvoker<T>
     public SequenceInvoker(Sequencer<T> sequencer) => Sequencer = sequencer;
     
     public bool IsAbleToActive => Sequencer.Condition == null || Sequencer.Condition.IsAllTrue;
-    public bool IsActive { get; private set; }
+    public bool IsActive { get; set; }
     public bool IsEnd { get; private set; } = true;
     
 

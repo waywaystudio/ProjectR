@@ -22,7 +22,7 @@ MonoBehaviour:
     sortingType: None
     targetParam: {x: 6, y: 135}
     targetLayer: Monster
-    animationKey: Cast2
+    animationKey: AttackOneHand
     isLoop: 0
     hasEvent: 1
     skillType: Instant
@@ -34,6 +34,7 @@ MonoBehaviour:
     completionValueList:
     - 15
     cost: -8
+    paySection: Execute
     statusEffect: 0
     iconFileName: SwordAttack Sprite
     description: Starts combat by attacking a target with a melee weapon.
@@ -45,7 +46,7 @@ MonoBehaviour:
     sortingType: None
     targetParam: {x: 6, y: 90}
     targetLayer: Monster
-    animationKey: Cast1
+    animationKey: AttackOffHandInstant
     isLoop: 0
     hasEvent: 1
     skillType: Instant
@@ -57,6 +58,7 @@ MonoBehaviour:
     completionValueList:
     - 30
     cost: -20
+    paySection: Execute
     statusEffect: 32000001
     iconFileName: Bash Sprite
     description: Starts combat by attacking a target with a melee weapon.
@@ -80,6 +82,7 @@ MonoBehaviour:
     completionValueList:
     - 48
     cost: 0
+    paySection: 
     statusEffect: 32000002
     iconFileName: UpperSlash Sprite
     description: Starts combat by attacking a target with a melee weapon.
@@ -103,6 +106,7 @@ MonoBehaviour:
     completionValueList:
     - 15
     cost: 0
+    paySection: 
     statusEffect: 0
     iconFileName: ThunderClap Sprite
     description: Starts combat by attacking a target with a melee weapon.
@@ -126,6 +130,7 @@ MonoBehaviour:
     completionValueList:
     - 8
     cost: 0
+    paySection: 
     statusEffect: 0
     iconFileName: MightyGuard Sprite
     description: Starts combat by attacking a target with a melee weapon.
@@ -149,6 +154,7 @@ MonoBehaviour:
     completionValueList:
     - 0
     cost: 10
+    paySection: Active
     statusEffect: 0
     iconFileName: ShieldUp Sprite
     description: Starts combat by attacking a target with a melee weapon.
@@ -172,8 +178,105 @@ MonoBehaviour:
     completionValueList:
     - 0
     cost: -50
+    paySection: Active
     statusEffect: 0
     iconFileName: Taunt Sprite
+    description: Starts combat by attacking a target with a melee weapon.
+  - id: 31210201
+    name: Smash
+    behaviourMask: Skill
+    priority: 2
+    detectorType: Circle
+    sortingType: None
+    targetParam: {x: 7, y: 135}
+    targetLayer: Monster
+    animationKey: AttackSlashMiddle
+    isLoop: 0
+    hasEvent: 1
+    skillType: Instant
+    animationCallback: Complete
+    coolTime: 1
+    coolTimeInvoker: Active
+    castTime: 0
+    castCallback: None
+    completionValueList:
+    - 0
+    cost: -8
+    paySection: Execute
+    statusEffect: 0
+    iconFileName: Smash Sprite
+    description: Starts combat by attacking a target with a melee weapon.
+  - id: 31210202
+    name: LeapAttack
+    behaviourMask: RigidSkill
+    priority: 1
+    detectorType: Circle
+    sortingType: None
+    targetParam: {x: 15, y: 360}
+    targetLayer: Monster
+    animationKey: AttackSlashHeavy
+    isLoop: 0
+    hasEvent: 1
+    skillType: Instant
+    animationCallback: Complete
+    coolTime: 8
+    coolTimeInvoker: Active
+    castTime: 0
+    castCallback: None
+    completionValueList:
+    - 0
+    cost: -8
+    paySection: Execute
+    statusEffect: 0
+    iconFileName: LeapAttack Sprite
+    description: Starts combat by attacking a target with a melee weapon.
+  - id: 31210203
+    name: Deathblow
+    behaviourMask: Skill
+    priority: 3
+    detectorType: Circle
+    sortingType: None
+    targetParam: {x: 12, y: 135}
+    targetLayer: Monster
+    animationKey: AttackSlashHold
+    isLoop: 1
+    hasEvent: 0
+    skillType: Holding
+    animationCallback: None
+    coolTime: 6
+    coolTimeInvoker: Complete
+    castTime: 3
+    castCallback: Execute
+    completionValueList:
+    - 0
+    cost: -30
+    paySection: Execute
+    statusEffect: 0
+    iconFileName: Deathblow Sprite
+    description: Starts combat by attacking a target with a melee weapon.
+  - id: 31210204
+    name: WarriorsFury
+    behaviourMask: RigidSkill
+    priority: 10
+    detectorType: Self
+    sortingType: None
+    targetParam: {x: 0, y: 0}
+    targetLayer: Adventure
+    animationKey: Buff
+    isLoop: 0
+    hasEvent: 1
+    skillType: Instant
+    animationCallback: Complete
+    coolTime: 0
+    coolTimeInvoker: Active
+    castTime: 0
+    castCallback: None
+    completionValueList:
+    - 0
+    cost: 100
+    paySection: Active
+    statusEffect: 0
+    iconFileName: WarriorsFury Sprite
     description: Starts combat by attacking a target with a melee weapon.
   - id: 31210601
     name: PriestCommonHeal
@@ -195,6 +298,7 @@ MonoBehaviour:
     completionValueList:
     - 15
     cost: 0
+    paySection: 
     statusEffect: 0
     iconFileName: PriestCommonHeal Sprite
     description: Starts combat by attacking a target with a melee weapon.
@@ -218,6 +322,7 @@ MonoBehaviour:
     completionValueList:
     - 14
     cost: 0
+    paySection: 
     statusEffect: 0
     iconFileName: ClawAttack Sprite
     description: Starts combat by attacking a target with a melee weapon.
@@ -241,6 +346,7 @@ MonoBehaviour:
     completionValueList:
     - 12
     cost: 0
+    paySection: 
     statusEffect: 0
     iconFileName: PowerBeat Sprite
     description: Starts combat by attacking a target with a melee weapon.
@@ -264,6 +370,7 @@ MonoBehaviour:
     completionValueList:
     - 0
     cost: 0
+    paySection: 
     statusEffect: 0
     iconFileName: Liberation Sprite
     description: Starts combat by attacking a target with a melee weapon.
@@ -287,6 +394,7 @@ MonoBehaviour:
     completionValueList:
     - 20
     cost: 0
+    paySection: 
     statusEffect: 0
     iconFileName: Annihilation Sprite
     description: Starts combat by attacking a target with a melee weapon.
@@ -310,6 +418,7 @@ MonoBehaviour:
     completionValueList:
     - 9
     cost: 0
+    paySection: 
     statusEffect: 0
     iconFileName: ShotAttack Sprite
     description: Starts combat by attacking a target with a melee weapon.
@@ -333,6 +442,7 @@ MonoBehaviour:
     completionValueList:
     - 4
     cost: 0
+    paySection: 
     statusEffect: 0
     iconFileName: ContinuesAttack Sprite
     description: Starts combat by attacking a target with a melee weapon.
@@ -356,6 +466,7 @@ MonoBehaviour:
     completionValueList:
     - 50
     cost: 0
+    paySection: 
     statusEffect: 0
     iconFileName: InstantTrap Sprite
     description: Starts combat by attacking a target with a melee weapon.
@@ -379,6 +490,7 @@ MonoBehaviour:
     completionValueList:
     - 50
     cost: 0
+    paySection: 
     statusEffect: 0
     iconFileName: AimShot Sprite
     description: Starts combat by attacking a target with a melee weapon.
@@ -402,6 +514,7 @@ MonoBehaviour:
     completionValueList:
     - 36
     cost: 0
+    paySection: 
     statusEffect: 0
     iconFileName: ShockWave Sprite
     description: Starts combat by attacking a target with a melee weapon.
@@ -425,6 +538,7 @@ MonoBehaviour:
     completionValueList:
     - 0
     cost: 0
+    paySection: 
     statusEffect: 32000004
     iconFileName: LivingBomb Sprite
     description: Starts combat by attacking a target with a melee weapon.
@@ -448,6 +562,7 @@ MonoBehaviour:
     completionValueList:
     - 0
     cost: 0
+    paySection: 
     statusEffect: 0
     iconFileName: MeteorStrike Sprite
     description: Starts combat by attacking a target with a melee weapon.
@@ -471,6 +586,7 @@ MonoBehaviour:
     completionValueList:
     - 20
     cost: 0
+    paySection: 
     statusEffect: 0
     iconFileName: VillainCommonAttack Sprite
     description: Starts combat by attacking a target with a melee weapon.

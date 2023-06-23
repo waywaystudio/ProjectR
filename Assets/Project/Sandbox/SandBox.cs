@@ -5,15 +5,16 @@ using UnityEngine;
 
 public class SandBox : MonoBehaviour
 {
-    public float TestSecond;
-    public bool BooleanToggle;
+    public float StandardValue;
+    public float Haste;
+    // public bool BooleanToggle;
     
     [Button]
     public void CoolDebugger()
     {
-        // var coolTImer = new CoolTimer(TestSecond, Log);
-        
-        // coolTImer.Play();
+        var hasteValue = CombatFormula.GetHasteValue(Haste);
+        Debug.Log($"Decrease : StandardValue * Haste = {StandardValue * hasteValue}");
+        Debug.Log($"Increase : StandardValue * 1 + Haste = {StandardValue * (1.0f + hasteValue)}");
     }
     
     [Button]

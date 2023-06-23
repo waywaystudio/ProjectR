@@ -5,10 +5,10 @@ namespace Common
     public static class CombatFormula
     {
         /// <summary>
-        /// Haste Additional Value, for reduce Casting Time, BuffTick
+        /// Haste Additional Value, for reduce Casting Time, BuffTick, Some kind of "Duration" decrease
         /// </summary>
         /// <returns>usually less than 1.0f value</returns>
-        public static float GetHasteValue(float haste) => 100f * (1f / (100 * (1f + haste * 0.01f)));
+        public static float GetHasteValue(float haste) => 100f * (1f / (100 * (1f + haste)));
         
         /// <summary>
         /// Reduce Damage by Armor

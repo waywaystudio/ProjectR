@@ -24,12 +24,11 @@ namespace Common.Animation
     
         public virtual void Idle() { State.TimeScale = 1f; PlayLoop("idle"); }
         public virtual void Run() => PlayLoop("run");
-        public virtual void Dead(Action callback = null) => PlayOnce("dead", 0f, callback);
+        public virtual void Dead(Action callback = null) => PlayOnce("dead", 1f, callback);
         public virtual void Stun() => PlayLoop("stun");
         public virtual void Hit() => PlayLoop("hit");
-        public void PlayOnce(string animationKey, float timeScale = 0f, Action callback = null) => Play(animationKey, 0, false, timeScale, callback);
-        public void PlayLoop(string animationKey, float timeScale = 0f, Action callback = null) => Play(animationKey, 0, true, timeScale, callback);
-
+        public void PlayOnce(string animationKey, float timeScale = 1f, Action callback = null) => Play(animationKey, 0, false, timeScale, callback);
+        public void PlayLoop(string animationKey, float timeScale = 1f, Action callback = null) => Play(animationKey, 0, true, timeScale, callback);
         
 
         public void Play(string animationKey, int layer, bool loop, float timeScale, Action callback)
@@ -50,29 +49,17 @@ namespace Common.Animation
             if (IsSameAnimation(target, layer, loop)) return;
             if (HasTransition(target, layer, loop, callback)) return;
 
-            currentEntry = State.SetAnimation(layer, target, loop);
-
-            // TODO. Animation과 가속도 관계를 잡아보자.
-            if (timeScale != 0f)
-            {
-                var originalDuration = target.Duration;
-                var toStaticValue = originalDuration / timeScale;
-            
-                State.TimeScale  *= toStaticValue;
-                currentEntry.Complete += _ => State.TimeScale = 1f;
-                // state.TimeScale /= toStaticValue;
-            }
+            currentEntry           = State.SetAnimation(layer, target, loop);
+            currentEntry.TimeScale = timeScale;
 
             // Handle Callback
-            if (callback != null) 
-                currentEntry.Complete += completeActionBuffer.Invoke;
-            
+            if (callback != null)
+            {
+                currentEntry.Complete += completeActionBuffer.Invoke;   
+            }
+
             TargetAnimation = target;
         }
-        
-        
-
-        
 
         public void Flip(Vector3 direction)
         {
@@ -84,6 +71,7 @@ namespace Common.Animation
                 _ => skeletonAnimation.Skeleton.ScaleX
             };
         }
+        
         
         private void Canceled()
         {

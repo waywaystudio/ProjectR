@@ -33,6 +33,7 @@ namespace Databases.SheetData.CombatData
 			[SerializeField] private String castCallback;
 			[SerializeField] private List<Single> completionValueList;
 			[SerializeField] private Single cost;
+			[SerializeField] private String paySection;
 			[SerializeField] private Int32 statusEffect;
 			[SerializeField] private String iconFileName;
 			[SerializeField] private String description;
@@ -56,6 +57,7 @@ namespace Databases.SheetData.CombatData
 			public String CastCallback => castCallback;
 			public List<Single> CompletionValueList => completionValueList;
 			public Single Cost => cost;
+			public String PaySection => paySection;
 			public Int32 StatusEffect => statusEffect;
 			public String IconFileName => iconFileName;
 			public String Description => description;

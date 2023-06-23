@@ -11,7 +11,6 @@ namespace Common
         [SerializeField] protected float timer;
 
         public bool IsReady => !isRunning;
-        public float Timer { get => timer; set => timer = value;}
         public FloatEvent EventTimer { get; private set; } = new();
 
         protected Action EndCallback;

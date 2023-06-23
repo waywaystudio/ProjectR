@@ -12,7 +12,7 @@ namespace Common.Characters.Behaviours
 
         private CharacterBehaviour cb;
         private CharacterBehaviour Cb => cb ??= GetComponentInParent<CharacterBehaviour>();
-        private AwaitTimer Timer { get; } = new();
+        private CastTimer Timer { get; } = new();
         
 
         public void Stun(float duration)

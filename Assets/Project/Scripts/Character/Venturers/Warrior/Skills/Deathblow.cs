@@ -4,35 +4,39 @@ using Cysharp.Threading.Tasks;
 using Manager;
 using UnityEngine;
 
-namespace Character.Venturers.Ranger.Skills
+namespace Character.Venturers.Warrior.Skills
 {
-    public class AimShot : SkillComponent
+    public class Deathblow : SkillComponent
     {
         private CancellationTokenSource cts;
         
         public override void Initialize()
         {
             base.Initialize();
+            
+            cost.PayCondition.Add("HasTarget", HasTarget);
 
-            SequenceBuilder.Add(SectionType.Active, "Tracking", () => PlayTracking().Forget())
+            SequenceBuilder.Add(SectionType.Active, "TargetTracking", () => PlayTracking().Forget())
                            .Add(SectionType.Execute, "PlayEndChargingAnimation", PlayEndChargingAnimation)
-                           .Add(SectionType.Execute, "AimShotExecute", () => executor.Execute(null))
+                           .Add(SectionType.Execute, "SetIsActiveTrue", () => SkillInvoker.IsActive = false)
+                           .Add(SectionType.Execute, "DeathblowExecute", () => detector.GetTakers()?.ForEach(executor.Execute))
                            .Add(SectionType.End, "StopTracking", StopTracking);
         }
         
-        public override void Dispose()
-        {
-            base.Dispose();
-
-            StopTracking();
-        }
         
-
         private void PlayEndChargingAnimation()
         {
-            Cb.Animating.PlayOnce("AimHoldFire", 0f, SkillInvoker.Complete);
+            Cb.Animating.PlayOnce("AttackSlashHoldFire", 1f + Haste, SkillInvoker.Complete);
         }
+        
+        private bool HasTarget()
+        {
+            var takers = detector.GetTakers();
 
+            return !takers.IsNullOrEmpty() 
+                   && takers[0].DynamicStatEntry.Alive.Value;
+        }
+        
         private async UniTaskVoid PlayTracking()
         {
             if (Cb is not VenturerBehaviour venturer) return;

@@ -9,17 +9,20 @@ namespace Common
     public class CoolTimer
     {
         [SerializeField] protected float coolTime;
-        [SerializeField] protected SectionType invokeSection;
-        
-        public bool IsReady => !isRunning;
-        public float CoolTime => coolTime;
-        public SectionType InvokeSection => invokeSection;
+
         public FloatEvent EventTimer { get; private set; } = new();
+        public bool IsReady => !isRunning;
+        public float CoolTime => coolTime * (Retriever is not null 
+            ? CombatFormula.GetHasteValue(Retriever.Invoke()) 
+            : 1f);
 
         private bool isRunning;
         private CancellationTokenSource cts;
+        private Func<float> Retriever { get; set; }
+
+        public void SetRetriever(Func<float> hasteRetriever) => Retriever = hasteRetriever;
         
-        public void Play() => Play(coolTime);
+        public void Play() => Play(CoolTime);
         public void Play(float duration) => Play(duration, null);
         public void Play(float duration, Action callback)
         {
@@ -41,6 +44,10 @@ namespace Common
             cts?.Cancel();
             cts = null;
         }
+        
+        public void AddListener(string key, Action<float> action) => EventTimer.AddListener(key, action);
+        public void RemoveListener(string key) => EventTimer.RemoveListener(key);
+        
 
         private void Stop()
         {
@@ -48,10 +55,6 @@ namespace Common
 
             isRunning = false;
         }
-
-        public void AddListener(string key, Action<float> action) => EventTimer.AddListener(key, action);
-        public void RemoveListener(string key) => EventTimer.RemoveListener(key);
-        
 
         private async UniTask AwaitCoolTime(Action callback, CancellationTokenSource cts)
         {

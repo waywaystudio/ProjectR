@@ -1,10 +1,15 @@
 using System;
+using UnityEngine;
 
 namespace Common.Skills
 {
     [Serializable]
     public class SkillCoolTimer : CoolTimer
     {
+        [SerializeField] protected SectionType invokeSection;
+        
+        public SectionType InvokeSection => invokeSection;
+        
         public void Initialize(SkillComponent skill)
         {
             if (InvokeSection == SectionType.None) return;

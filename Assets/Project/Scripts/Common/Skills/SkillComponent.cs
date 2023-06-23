@@ -29,6 +29,7 @@ namespace Common.Skills
         public int Priority => priority;
         public SkillCost Cost => cost;
         public string Description => description;
+        public float Haste => Cb.StatTable.Haste;
         public float Range => detector.Range;
         public float Angle => detector.Angle;
         public Sprite Icon => icon;
@@ -64,7 +65,7 @@ namespace Common.Skills
                            .Add(SectionType.End,"CharacterStop", Cb.Stop)
                            .Add(SectionType.Release, "ReleaseAction", () =>
                            {
-                               if (AbleToRelease && SkillInvoker.IsActive) 
+                               if (AbleToRelease) 
                                    CastTimer.CallbackSection.GetInvokeAction(this)?.Invoke();
                            });
         }

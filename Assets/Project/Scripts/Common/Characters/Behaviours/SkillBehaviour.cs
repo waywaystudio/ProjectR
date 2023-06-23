@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using Common.Skills;
 using UnityEngine;
@@ -7,7 +6,7 @@ namespace Common.Characters.Behaviours
 {
     public class SkillBehaviour : MonoBehaviour, IActionBehaviour, IEditable
     {
-        [SerializeField] private AwaitTimer globalCoolTimer;
+        [SerializeField] private CoolTimer globalCoolTimer;
         [SerializeField] private Table<DataIndex, SkillComponent> skillTable;
         [SerializeField] private Sequencer sequencer;
 
@@ -85,6 +84,7 @@ namespace Common.Characters.Behaviours
                            .Add(SectionType.Cancel,"CurrentSkillCancel", () => Current.SkillInvoker.Cancel())
                            .Add(SectionType.End,"Stop", Cb.Stop);
             
+            globalCoolTimer.SetRetriever(() => Cb.StatTable.Haste);
             skillTable.Iterate(skill =>
             {
                 skill.Initialize();

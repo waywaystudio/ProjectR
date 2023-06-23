@@ -14,6 +14,8 @@ namespace Common.Skills
 
         public void Initialize(SkillComponent skill)
         {
+            if (paySection == SectionType.None) return;
+            
             var resourceRef = skill.Cb.DynamicStatEntry.Resource;
             
             skill.SequenceBuilder
@@ -36,7 +38,8 @@ namespace Common.Skills
         {
             var skillData = Database.SkillSheetData(dataIndex);
             
-            cost = skillData.Cost;
+            cost       = skillData.Cost;
+            paySection = skillData.PaySection.ToEnum<SectionType>();
         }
 #endif
     }

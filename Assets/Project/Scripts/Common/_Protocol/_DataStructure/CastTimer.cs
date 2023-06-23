@@ -9,17 +9,19 @@ namespace Common
     public class CastTimer
     {
         [SerializeField] protected float castingTime;
-        [SerializeField] protected SectionType callbackSection;
 
-        public float CastingTime { get => castingTime; set => castingTime = value;}
-        public SectionType CallbackSection => callbackSection;
+        public float CastingTime => castingTime * (Retriever is not null 
+            ? CombatFormula.GetHasteValue(Retriever.Invoke()) 
+            : 1f);
+        
         public FloatEvent EventTimer { get; private set; } = new();
 
         private Action endCallback;
         private bool isRunning;
         private CancellationTokenSource cts;
+        private Func<float> Retriever { get; set; }
     
-        public void Play() => Play(castingTime);
+        public void Play() => Play(CastingTime);
         public void Play(float duration) => Play(duration, endCallback);
         public void Play(float duration, Action callback)
         {

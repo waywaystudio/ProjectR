@@ -13,12 +13,19 @@ namespace Common.Skills
         [SerializeField] private SectionType callbackSection = SectionType.Complete;
 
         public SkillType SkillType => skillType;
-        public float TimeScale { get; private set; } = 0f;
+        public float TimeScale => HasteRetriever is null 
+            ? 1f 
+            : HasteRetriever.Invoke();
+        
+        private Func<float> HasteRetriever  { get; set; }
+        
 
         public void Initialize(SkillComponent skill)
         {
             var animator = skill.Cb.Animating;
             var callback = callbackSection.GetInvokeAction(skill);
+
+            HasteRetriever += () => 1.0f + skill.Haste;
             
             skill.SequenceBuilder
                  .Add(SectionType.Active,"PlayAnimation",

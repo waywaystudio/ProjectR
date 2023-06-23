@@ -1,10 +1,15 @@
 using System;
+using UnityEngine;
 
 namespace Common.Skills
 {
     [Serializable]
     public class SkillCastTimer : CastTimer
     {
+        [SerializeField] protected SectionType callbackSection;
+        
+        public SectionType CallbackSection => callbackSection;
+        
         public void Initialize(SkillComponent skill)
         {
             skill.SequenceBuilder

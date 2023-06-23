@@ -12,6 +12,7 @@ namespace Character.Venturers.Knight.Skills
             SequenceBuilder.AddActiveParam("Jump", Jump)
                            .Add(SectionType.Execute, "CommonExecution", () => detector.GetTakers()?.ForEach(executor.Execute));
         }
+        
 
         private void Jump(Vector3 direction)
         {

@@ -1,8 +1,8 @@
 using Common.Skills;
 
-namespace Character.Venturers.Knight.Skills
+namespace Character.Venturers.Warrior.Skills
 {
-    public class SwordAttack : SkillComponent
+    public class Smash : SkillComponent
     {
         public override void Initialize()
         {
@@ -24,4 +24,3 @@ namespace Character.Venturers.Knight.Skills
         }
     }
 }
-
