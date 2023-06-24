@@ -273,10 +273,106 @@ MonoBehaviour:
     castCallback: None
     completionValueList:
     - 0
-    cost: 100
-    paySection: Active
+    cost: 0
+    paySection: None
     statusEffect: 0
     iconFileName: WarriorsFury Sprite
+    description: Starts combat by attacking a target with a melee weapon.
+  - id: 31210205
+    name: BloodSmash
+    behaviourMask: Skill
+    priority: 3
+    detectorType: Circle
+    sortingType: None
+    targetParam: {x: 8, y: 180}
+    targetLayer: Monster
+    animationKey: AttackSlashMiddle
+    isLoop: 0
+    hasEvent: 1
+    skillType: Instant
+    animationCallback: Complete
+    coolTime: 1
+    coolTimeInvoker: Active
+    castTime: 0
+    castCallback: None
+    completionValueList:
+    - 0
+    cost: 0
+    paySection: None
+    statusEffect: 0
+    iconFileName: BloodSmash Sprite
+    description: Starts combat by attacking a target with a melee weapon.
+  - id: 31210206
+    name: RapidCharge
+    behaviourMask: Skill
+    priority: 2
+    detectorType: Circle
+    sortingType: None
+    targetParam: {x: 15, y: 360}
+    targetLayer: Monster
+    animationKey: Run DUELIST
+    isLoop: 1
+    hasEvent: 0
+    skillType: Instant
+    animationCallback: None
+    coolTime: 4
+    coolTimeInvoker: Active
+    castTime: 0
+    castCallback: None
+    completionValueList:
+    - 0
+    cost: 0
+    paySection: None
+    statusEffect: 0
+    iconFileName: RapidCharge Sprite
+    description: Starts combat by attacking a target with a melee weapon.
+  - id: 31210207
+    name: Exploitation
+    behaviourMask: Skill
+    priority: 3
+    detectorType: Circle
+    sortingType: None
+    targetParam: {x: 8, y: 180}
+    targetLayer: Monster
+    animationKey: AttackSlashMiddle
+    isLoop: 0
+    hasEvent: 1
+    skillType: Instant
+    animationCallback: Complete
+    coolTime: 1
+    coolTimeInvoker: Active
+    castTime: 0
+    castCallback: None
+    completionValueList:
+    - 0
+    cost: 0
+    paySection: None
+    statusEffect: 0
+    iconFileName: Exploitation Sprite
+    description: Starts combat by attacking a target with a melee weapon.
+  - id: 31210208
+    name: Finisher
+    behaviourMask: Skill
+    priority: 1
+    detectorType: Circle
+    sortingType: None
+    targetParam: {x: 12, y: 360}
+    targetLayer: Monster
+    animationKey: AttackSlashHeavy
+    isLoop: 0
+    hasEvent: 1
+    skillType: Instant
+    animationCallback: Complete
+    coolTime: 4
+    coolTimeInvoker: Active
+    castTime: 0
+    castCallback: None
+    completionValueList:
+    - 0
+    cost: 0
+    paySection: None
+    statusEffect: 0
+    iconFileName: Finisher Sprite
     description: Starts combat by attacking a target with a melee weapon.
   - id: 31210601
     name: PriestCommonHeal

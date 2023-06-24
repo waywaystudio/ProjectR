@@ -24,6 +24,7 @@ namespace Common.Systems
         public float Angle => sizeVector.y;
         public float Width => sizeVector.x;
         public float Height => sizeVector.y;
+        
 
         public void Initialize(CharacterBehaviour character)
         {
@@ -37,7 +38,7 @@ namespace Common.Systems
         {
             return targetType switch
             {
-                TargetingType.Circle => GetTakersInCircleRange(),
+                TargetingType.Circle => GetTakersInCircleRange(sizeVector.x),
                 TargetingType.Self   => GetSelf(),
                 _                    => throw new ArgumentOutOfRangeException()
             };
@@ -51,20 +52,21 @@ namespace Common.Systems
                 _                  => character.Searching.GetMainTarget(targetLayer, character.transform.position, sortingType),
             };
         }
-        
 
-        private List<ICombatTaker> GetSelf() => new() { character };
-        private List<ICombatTaker> GetTakersInCircleRange()
+        public List<ICombatTaker> GetTakersInCircleRange(float radius) => GetTakersInCircleRange(radius, Angle);
+        public List<ICombatTaker> GetTakersInCircleRange(float radius, float angle)
         {
             var takerList = GetTakersInSphereType(
                 character.transform.position,
-                Range,
-                Angle,
+                radius,
+                angle,
                 targetLayer);
 
             return takerList;
         }
+        
 
+        private List<ICombatTaker> GetSelf() => new() { character };
         private List<ICombatTaker> GetTakersInSphereType(Vector3 center, float radius, float angle, LayerMask layer)
         {
             if (Physics.OverlapSphereNonAlloc(center, radius, colliderBuffers, layer) == 0) return null;

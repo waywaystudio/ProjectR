@@ -1,14 +1,16 @@
 using System;
+using Common.Characters;
 using Cysharp.Threading.Tasks;
 using DG.Tweening;
 using Pathfinding;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace Common.Systems
 {
     public class PathfindingSystem : MonoBehaviour
     {
-        [SerializeField] private float moveSpeed;
+        [FormerlySerializedAs("moveSpeed")] [SerializeField] private float defaultSpeed;
         [SerializeField] private Transform rootTransform;
         [SerializeField] private Seeker agent;
         [SerializeField] private AIMove aiMove;
@@ -20,16 +22,16 @@ namespace Common.Systems
         public bool CanMove { get => aiMove.canMove; set => aiMove.canMove = value; }
         public Vector3 Direction => rootTransform.forward;
 
-        // TODO. KnockBack Property. 본래 Sequencer에서 해야하지만, 3 Parameter 만들기가 너무 귀찮아서 임시 방편.
-        private float KnockBackDistance { get; set; } = 1f;
-        private float KnockBackDuration { get; set; } = 1f;
         private Vector3 RootPosition => rootTransform.position;
+        private Func<float> SpeedRetriever { get; set; }
 
 
         public void Move(Vector3 destination, Action callback)
         {
             aiMove.updateRotation = true;
-            aiMove.maxSpeed       = moveSpeed;
+            aiMove.maxSpeed       = SpeedRetriever is not null 
+                ? SpeedRetriever.Invoke() 
+                : defaultSpeed;
 
             if (callback != null)
             {
@@ -38,15 +40,6 @@ namespace Common.Systems
             }
 
             agent.StartPath(RootPosition, destination);
-        }
-
-        public async UniTask Move(Vector3 destination)
-        {
-            aiMove.updateRotation = true;
-            aiMove.maxSpeed       = moveSpeed;
-            agent.StartPath(RootPosition, destination);
-
-            await UniTask.WaitUntil(() => IsReached);
         }
 
         public void RotateToTarget(Vector3 lookTarget)
@@ -99,8 +92,6 @@ namespace Common.Systems
                          .OnComplete(() => callback?.Invoke());
         }
 
-  
-
         public void Quit()
         {
             Stop();
@@ -109,5 +100,13 @@ namespace Common.Systems
 
         public void TraverseToNonObstacle() => agent.graphMask = GraphMask.FromGraphName("Non Obstacle Graph");
         public void TraverseToDefault() => agent.graphMask = GraphMask.FromGraphName("Default Grid Graph");
+
+
+        private void Awake()
+        {
+            var cb = GetComponentInParent<CharacterBehaviour>();
+
+            SpeedRetriever = () => cb.StatTable.MoveSpeed;
+        }
     }
 }

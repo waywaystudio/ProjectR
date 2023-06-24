@@ -7,14 +7,34 @@ namespace Common.Characters.UI.ActionBars
     {
         [SerializeField] private List<SkillActionSlot> slotList = new();
 
+        private CharacterBehaviour cb;
+        public CharacterBehaviour Cb => cb ??= GetComponentInParent<CharacterBehaviour>();
+
+
+        private void UpdateSlotList()
+        {
+            var skills = Cb.SkillBehaviour.SkillIndexList;
+            
+            slotList.ForEach((slot, index) =>
+            {
+                if (skills.Count <= index) return;
+                
+                slot.UpdateSlot(skills[index]);
+            });
+        }
+
+        private void Awake()
+        {
+            Cb.SkillBehaviour.OnSkillChanged.Add("UpdateSkillActionBar", UpdateSlotList);
+        }
+
 
 #if UNITY_EDITOR
         public void EditorSetUp()
         {
             GetComponentsInChildren(false, slotList);
 
-            var cb                = GetComponentInParent<CharacterBehaviour>();
-            var skills = cb.SkillBehaviour.SkillIndexList;
+            var skills = Cb.SkillBehaviour.SkillIndexList;
             var defaultBindingKey = new List<BindingCode>
             {
                 BindingCode.Q, 

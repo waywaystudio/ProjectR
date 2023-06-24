@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace Character.Venturers.Knight.StatusEffects
 {
-    public class Drain : Common.StatusEffects.StatusEffect
+    public class Drain : StatusEffect
     {
         [SerializeField] private float drainPercentage;
 

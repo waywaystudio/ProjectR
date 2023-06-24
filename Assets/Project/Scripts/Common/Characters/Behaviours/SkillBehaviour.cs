@@ -18,7 +18,8 @@ namespace Common.Characters.Behaviours
         public bool IsGlobalCoolTimeReady => globalCoolTimer.IsReady;
         public bool IsSkillEnded => Current.IsNullOrEmpty() || Current.IsEnded;
         public SkillComponent Current { get; set; }
-        
+        public ActionTable OnSkillChanged { get; set; } = new();
+
         private CharacterBehaviour cb;
         private CharacterBehaviour Cb => cb ??= GetComponentInParent<CharacterBehaviour>();
         
@@ -69,6 +70,13 @@ namespace Common.Characters.Behaviours
             skill = result;
             return skill is not null;
         }
+
+        public void ChangeSkill(DataIndex originSkill, DataIndex toSkill)
+        {
+            skillTable.SwapOrder(originSkill, toSkill);
+            
+            OnSkillChanged.Invoke();
+        }
         
         
         private void OnEnable()
@@ -105,8 +113,12 @@ namespace Common.Characters.Behaviours
 #if UNITY_EDITOR
         public void EditorSetUp()
         {
-            var preLoadedSkillList = GetComponentsInChildren<SkillComponent>();
+            var preLoadedSkillList = new List<SkillComponent>();
             
+            GetComponentsInChildren(preLoadedSkillList);
+            
+            // preLoadedSkillList.Trim(4);
+
             skillTable.CreateTable(preLoadedSkillList, skill => skill.DataIndex);
         }
 #endif

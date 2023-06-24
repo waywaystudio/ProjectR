@@ -9,6 +9,7 @@ namespace Common.Execution
         [SerializeField] private StatSpec damageSpec;
 
         public const string DamageExecutorKey = "DamageExecutorKey";
+        public StatSpec DamageSpec => damageSpec;
 
         public override void Execution(ICombatTaker taker)
         {

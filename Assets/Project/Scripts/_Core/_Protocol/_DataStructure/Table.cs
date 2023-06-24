@@ -118,6 +118,18 @@ public class Table<TKey, TValue>
 
     public bool ContainsKey(TKey key) => Map.ContainsKey(key);
     
+    public void SwapOrder(TKey key1, TKey key2)
+    {
+        var index1 = keyList.IndexOf(key1);
+        var index2 = keyList.IndexOf(key2);
+
+        // Swap keys
+        (keyList[index1], keyList[index2]) = (keyList[index2], keyList[index1]);
+
+        // Swap values
+        (valueList[index1], valueList[index2]) = (valueList[index2], valueList[index1]);
+    }
+    
     
 #if UNITY_EDITOR
     [SerializeField] private bool hideKey;

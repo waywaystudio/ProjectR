@@ -19,6 +19,12 @@ namespace Common.Characters.UI.ActionBars
                 BindingCode.R => "R",
                 _             => "-",
             };
+
+
+        public void UpdateSlot(DataIndex dataIndex)
+        {
+            symbol.UpdateSymbol(dataIndex);
+        }
         
 
         private void Awake()

@@ -88,6 +88,10 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 3716562276717750227, guid: bd355e30ab3d37740ab682aad07a91b5, type: 3}
+      propertyPath: damageSpec.statList.Array.data[0].value
+      value: 3600
+      objectReference: {fileID: 0}
     - target: {fileID: 3744010700067239338, guid: bd355e30ab3d37740ab682aad07a91b5, type: 3}
       propertyPath: m_Name
       value: Load Stonehelm

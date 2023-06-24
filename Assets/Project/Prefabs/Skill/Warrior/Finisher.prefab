@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7679244583707568947}
-  - component: {fileID: 1760830664133795729}
+  - component: {fileID: 3263926489268022469}
   m_Layer: 0
   m_Name: Execution
   m_TagString: Untagged
@@ -32,7 +32,7 @@ Transform:
   m_Father: {fileID: 234500611213636336}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1760830664133795729
+--- !u!114 &3263926489268022469
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -45,15 +45,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   group: 1
-  actionCode: 31210202
+  actionCode: 31210208
   damageSpec:
     statList:
     - statType: 13010001
       statKey: DamageExecutorKey
-      value: 120
+      value: 500
     - statType: 13020001
       statKey: DamageExecutorKey
-      value: 0
+      value: 0.5
     - statType: 13030003
       statKey: DamageExecutorKey
       value: 0
@@ -128,9 +128,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 234500611213636336}
-  - component: {fileID: 4663019404327712857}
+  - component: {fileID: 8979131138480939997}
   m_Layer: 0
-  m_Name: Deathblow
+  m_Name: Finisher
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -152,9 +152,9 @@ Transform:
   - {fileID: 7221708945386366489}
   - {fileID: 5853087751410363707}
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &4663019404327712857
+--- !u!114 &8979131138480939997
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -163,41 +163,42 @@ MonoBehaviour:
   m_GameObject: {fileID: 8380361914805468174}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 56ce9443a7c3f47468741d830dca685a, type: 3}
+  m_Script: {fileID: 11500000, guid: 04ae142a47946f04aa110b7de8fc6b4b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  actionCode: 31210203
+  actionCode: 31210208
   behaviourMask: 32
-  priority: 3
+  priority: 1
   executor:
     table:
       keyList: 01000000
       valueList:
       - ExecutionList:
-        - {fileID: 1760830664133795729}
+        - {fileID: 3263926489268022469}
       hideKey: 0
   detector:
     targetType: 1
     sortingType: 0
     maxBufferCount: 32
-    sizeVector: {x: 12, y: 135}
+    sizeVector: {x: 12, y: 360}
     targetLayer:
       serializedVersion: 2
       m_Bits: 256
   animationTrait:
-    animationKey: AttackSlashHold
-    isLoop: 1
-    hasEvent: 0
-    skillType: 4
-    callbackSection: 0
+    animationKey: AttackSlashHeavy
+    isLoop: 0
+    hasEvent: 1
+    skillType: 1
+    callbackSection: 3
   coolTimer:
-    coolTime: 6
-    invokeSection: 5
+    coolTime: 4
+    invokeSection: 1
   castTimer:
-    castingTime: 3
-    callbackSection: 5
+    castingTime: 0
+    callbackSection: 0
   cost:
-    cost: -30
-    paySection: 5
+    cost: 0
+    paySection: 0
   description: Starts combat by attacking a target with a melee weapon.
-  icon: {fileID: 21300000, guid: 07ac76d34f3f63441876ebdc34bd48a5, type: 3}
+  icon: {fileID: 21300000, guid: 5511c04d452ffbe4d87c4ab17ca8e94c, type: 3}
+  remainBonusMultiplier: 10

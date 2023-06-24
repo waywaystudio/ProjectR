@@ -38,10 +38,8 @@ public class SequenceBuilder
 
 public class SequenceBuilder<T>
 {
-    public bool IsInitialized;
     protected readonly Sequencer<T> Sequencer;
-    
-    // public SequenceBuilder() { }
+
     public SequenceBuilder(IHasSequencer<T> holder) => Sequencer = holder?.Sequencer;
     public SequenceBuilder(Sequencer<T> holder) => Sequencer = holder;
 

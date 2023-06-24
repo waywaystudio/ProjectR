@@ -9,6 +9,7 @@ namespace Character.Venturers.Warrior.Skills
     public class WarriorsFury : SkillComponent
     {
         [SerializeField] private float additionalHaste = 0.4f;
+        [SerializeField] private float resourceConsumePerSecond = 10f;
         
         private CancellationTokenSource cts;
         
@@ -33,6 +34,12 @@ namespace Character.Venturers.Warrior.Skills
             Cb.StatTable.Add(new StatEntity(StatType.Haste, "WarriorsFury", additionalHaste));
             
             // 몇몇 스킬 변화?
+            var sb = Cb.SkillBehaviour;
+            
+            sb.ChangeSkill(DataIndex.Smash, DataIndex.BloodSmash);
+            sb.ChangeSkill(DataIndex.LeapAttack, DataIndex.RapidCharge);
+            sb.ChangeSkill(DataIndex.Deathblow, DataIndex.Exploitation);
+            sb.ChangeSkill(DataIndex.WarriorsFury, DataIndex.Finisher);
             
 
             // 기절, 넉백 면역
@@ -46,6 +53,12 @@ namespace Character.Venturers.Warrior.Skills
             Cb.StatTable.Remove(StatType.Haste, "WarriorsFury");
             
             // 변화된 스킬 원상복구
+            var sb = Cb.SkillBehaviour;
+            
+            sb.ChangeSkill(DataIndex.BloodSmash, DataIndex.Smash);
+            sb.ChangeSkill(DataIndex.RapidCharge, DataIndex.LeapAttack);
+            sb.ChangeSkill(DataIndex.Exploitation, DataIndex.Deathblow);
+            sb.ChangeSkill(DataIndex.Finisher, DataIndex.WarriorsFury);
             
             // 기절, 넉백 면역 해제
             Cb.KnockBackBehaviour.Builder.RemoveCondition("ImmuneByWarriorsFury");
@@ -58,7 +71,7 @@ namespace Character.Venturers.Warrior.Skills
 
             while (true)
             {
-                Cb.DynamicStatEntry.Resource.Value -= Time.deltaTime * 10f;
+                Cb.DynamicStatEntry.Resource.Value -= Time.deltaTime * resourceConsumePerSecond;
 
                 if (Cb.DynamicStatEntry.Resource.Value <= 0)
                 {

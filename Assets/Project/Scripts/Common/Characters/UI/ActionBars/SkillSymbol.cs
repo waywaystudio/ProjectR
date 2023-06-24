@@ -1,4 +1,3 @@
-using Common.Skills;
 using Common.UI;
 using Manager;
 using UnityEngine;
@@ -27,6 +26,20 @@ namespace Common.Characters.UI.ActionBars
         public void ReleaseAction(InputAction.CallbackContext callbackContext)
         {
             Cb.ReleaseSkill();
+        }
+
+        public void UpdateSymbol(DataIndex dataIndex)
+        {
+            if (dataIndex == actionCode) return;
+
+            actionCode = dataIndex;
+            var targetSkill = Cb.GetSkill(actionCode);
+            if (targetSkill.IsNullOrEmpty()) return;
+
+            actionIcon.sprite = targetSkill.Icon;
+            
+            var coolTimer = targetSkill.CoolTimer;
+            coolDownFiller.Register(coolTimer.EventTimer, coolTimer.CoolTime);
         }
 
 
@@ -64,7 +77,7 @@ namespace Common.Characters.UI.ActionBars
             var targetSkill = Cb.GetSkill(actionCode);
             if (targetSkill.IsNullOrEmpty()) return;
 
-            actionIcon.sprite = Cb.GetSkill(actionCode).Icon;
+            actionIcon.sprite = targetSkill.Icon;
         }
 
         public void EditorPersonalSetUp(DataIndex actionCode)
