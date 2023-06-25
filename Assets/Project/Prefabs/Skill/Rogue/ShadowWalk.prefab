@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8762994625914345649}
   - component: {fileID: 372894161616476412}
+  - component: {fileID: 2716384769286663166}
   m_Layer: 0
   m_Name: Execution
   m_TagString: Untagged
@@ -57,6 +58,25 @@ MonoBehaviour:
     - statType: 13030003
       statKey: DamageExecutorKey
       value: 0
+--- !u!114 &2716384769286663166
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1234280139362883297}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9ec3ef791109677438b7278f263c0f3a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  group: 2
+  actionCode: 31210307
+  master: {fileID: 11400000, guid: 6c8a7e02452c13f40ad1090c2e41c7f9, type: 2}
+  pool:
+    prefab: {fileID: 3865230921314547483, guid: 109596a9e5d27c54f8df8bcd6b566d51, type: 3}
+    maxCount: 8
+    syncObjectActivity: 1
 --- !u!1 &2546753074928525639
 GameObject:
   m_ObjectHideFlags: 0
@@ -171,10 +191,12 @@ MonoBehaviour:
   priority: 1
   executor:
     table:
-      keyList: 01000000
+      keyList: 0100000002000000
       valueList:
       - ExecutionList:
         - {fileID: 372894161616476412}
+      - ExecutionList:
+        - {fileID: 2716384769286663166}
       hideKey: 0
   detector:
     targetType: 1
@@ -202,3 +224,4 @@ MonoBehaviour:
     paySection: 0
   description: Starts combat by attacking a target with a melee weapon.
   icon: {fileID: 21300000, guid: 2eea35714f0f7eb478765108977c5a11, type: 3}
+  phantomMaster: {fileID: 0}

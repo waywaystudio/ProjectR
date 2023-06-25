@@ -10,7 +10,7 @@ using Sirenix.OdinInspector.Editor;
 
 public class BillboardProtocol : MonoBehaviour
 {
-    private Vector3 angleCache = new (45, 0, 0);
+    private readonly Vector3 angleCache = new (45, 0, 0);
     
     private void Awake()
     {

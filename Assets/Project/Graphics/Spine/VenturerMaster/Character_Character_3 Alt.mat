@@ -12,17 +12,21 @@ Material:
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
   m_ValidKeywords:
+  - _ENABLEFROZEN_ON
   - _SHADERSPACE_UV
   - _TIMESETTINGS_LINEAR_DEFAULT
   - _UBERFADING_NONE
   m_InvalidKeywords:
-  - _ALPHABLEND_ON
+  - _CELPRIMARYMODE_SINGLE
+  - _TEXTUREBLENDINGMODE_MULTIPLY
+  - _UNITYSHADOWMODE_NONE
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
   m_CustomRenderQueue: -1
   stringTagMap: {}
-  disabledShaderPasses: []
+  disabledShaderPasses:
+  - SRPDEFAULTUNLIT
   m_LockedProperties: 
   m_SavedProperties:
     serializedVersion: 3
@@ -31,11 +35,31 @@ Material:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
+    - _BaseMap:
+        m_Texture: {fileID: 2800000, guid: c42909dc46e28fd4b9beb8df69430795, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _BumpMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     - _CamouflageShaderMask:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
+    - _CelCurveTexture:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _CelStepTexture:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     - _CustomFadeFadeMask:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _EmissionMap:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
@@ -112,12 +136,15 @@ Material:
     - _AddHueFade: 1
     - _AddHueSaturation: 1
     - _AddHueSpeed: 1
+    - _AllowAlphaOverflow: 0
+    - _AlphaClip: 0
     - _AlphaCutoff: 0.5
     - _AlphaTintFade: 1
     - _AlphaTintMinAlpha: 0.05
     - _AlphaTintPower: 1
     - _BlackTintFade: 1
     - _BlackTintPower: 2
+    - _Blend: 0
     - _Brightness: 1
     - _BurnEdgeNoiseFactor: 0.5
     - _BurnFade: 1
@@ -126,6 +153,9 @@ Material:
     - _BurnRadius: 5
     - _BurnSwirlFactor: 1
     - _BurnWidth: 0.1
+    - _CameraDistanceFadeClose: 0
+    - _CameraDistanceFadeFar: 10
+    - _CameraDistanceImpact: 0
     - _CamouflageAnimated: 0
     - _CamouflageContrast: 1
     - _CamouflageDensityA: 0.4
@@ -133,6 +163,9 @@ Material:
     - _CamouflageFade: 1
     - _CamouflageSmoothnessA: 0.2
     - _CamouflageSmoothnessB: 0.2
+    - _CelExtraEnabled: 0
+    - _CelNumSteps: 3
+    - _CelPrimaryMode: 1
     - _CheckerboardDarken: 0.5
     - _CheckerboardTiling: 1
     - _ColorReplaceBias: 1
@@ -142,13 +175,18 @@ Material:
     - _ColorReplaceHueTolerance: 1
     - _ColorReplaceSaturationTolerance: 1
     - _Contrast: 1
+    - _Cull: 2
     - _CustomFadeAlpha: 1
     - _CustomFadeNoiseFactor: 0
     - _CustomFadeSmoothness: 2
-    - _DirectionalAlphaFadeFade: 0
+    - _Cutoff: 0.5
+    - _Depth: 100
+    - _DirectionPitch: 0
+    - _DirectionYaw: 0
+    - _DirectionalAlphaFadeFade: 5.79
     - _DirectionalAlphaFadeInvert: 0
     - _DirectionalAlphaFadeNoiseFactor: 0.2
-    - _DirectionalAlphaFadeRotation: 0
+    - _DirectionalAlphaFadeRotation: 64
     - _DirectionalAlphaFadeWidth: 0.2
     - _DirectionalDistortionFade: 0
     - _DirectionalDistortionInvert: 0
@@ -161,6 +199,7 @@ Material:
     - _DirectionalGlowFadeNoiseFactor: 0.2
     - _DirectionalGlowFadeRotation: 0
     - _DirectionalGlowFadeWidth: 0.1
+    - _DstBlend: 0
     - _EnableAddColor: 0
     - _EnableAddHue: 0
     - _EnableAlphaTint: 0
@@ -176,7 +215,7 @@ Material:
     - _EnableDirectionalDistortion: 0
     - _EnableDirectionalGlowFade: 0
     - _EnableFlame: 0
-    - _EnableFrozen: 0
+    - _EnableFrozen: 1
     - _EnableFullAlphaDissolve: 0
     - _EnableFullDistortion: 0
     - _EnableFullGlowDissolve: 0
@@ -211,27 +250,40 @@ Material:
     - _EnableUVScroll: 0
     - _EnableVibrate: 0
     - _EnableWind: 0
+    - _Exponent: 1
     - _FlameBrightness: 10
     - _FlameNoiseFactor: 2.5
     - _FlameNoiseHeightFactor: 1.5
     - _FlameRadius: 0.2
     - _FlameSmooth: 2
+    - _FlatRimEdgeSmoothness: 0.5
+    - _FlatRimLightAlign: 0
+    - _FlatRimSize: 0.5
+    - _FlatSpecularEdgeSmoothness: 0
+    - _FlatSpecularSize: 0.1
+    - _Flatness: 1
+    - _FlatnessExtra: 1
     - _FrozenContrast: 2
     - _FrozenFade: 1
     - _FrozenHighlightContrast: 2
     - _FrozenHighlightDensity: 1
     - _FrozenSnowContrast: 1
     - _FrozenSnowDensity: 0.25
-    - _FullAlphaDissolveFade: 0.5
+    - _FullAlphaDissolveFade: 1
     - _FullAlphaDissolveWidth: 0.5
     - _FullDistortionFade: 1
     - _FullFade: 1
-    - _FullGlowDissolveFade: 0.5
+    - _FullGlowDissolveFade: 1
     - _FullGlowDissolveWidth: 0.5
     - _GlitchBrightness: 4
     - _GlitchFade: 1
     - _GlitchHueSpeed: 1
     - _GlitchMaskMin: 0.4
+    - _GradientAngle: 0
+    - _GradientCenterX: 0
+    - _GradientCenterY: 0
+    - _GradientEnabled: 0
+    - _GradientSize: 10
     - _HalftoneFade: 1
     - _HalftoneFadeWidth: 1.5
     - _HalftoneInvert: 0
@@ -255,14 +307,25 @@ Material:
     - _InnerOutlineDistortionToggle: 0
     - _InnerOutlineFade: 1
     - _InnerOutlineWidth: 0.02
+    - _Intensity: 1
+    - _LightContribution: 0
+    - _LightFalloffSize: 0
+    - _LightmapDirectionPitch: 0
+    - _LightmapDirectionYaw: 0
     - _MetalContrast: 2
     - _MetalFade: 1
     - _MetalHighlightContrast: 2
     - _MetalHighlightDensity: 1
+    - _NoiseIntensity: 0
     - _NormalIntensity: 1
     - _OuterOutlineDistortionToggle: 0
     - _OuterOutlineFade: 1
     - _OuterOutlineWidth: 0.04
+    - _OutlineDepthOffset: 0
+    - _OutlineEnabled: 0
+    - _OutlineScale: 1
+    - _OutlineWidth: 1
+    - _OverrideLightmapDir: 0
     - _PixelateFade: 1
     - _PixelatePixelDensity: 16
     - _PixelsPerUnit: 100
@@ -271,6 +334,7 @@ Material:
     - _PoisonNoiseBrightness: 1
     - _PoisonRecolorFactor: 0.5
     - _PoisonShiftSpeed: 0.2
+    - _QueueOffset: 0
     - _RainbowBrightness: 2
     - _RainbowContrast: 1
     - _RainbowDensity: 0.5
@@ -281,9 +345,14 @@ Material:
     - _RecolorFade: 1
     - _RectHeight: 100
     - _RectWidth: 100
+    - _RimEnabled: 0
     - _Saturation: 1
     - _ScreenWidthUnits: 10
+    - _SelfShadingSize: 0.5
+    - _SelfShadingSizeExtra: 0.6
     - _ShaderSpace: 0
+    - _ShadowEdgeSize: 0.05
+    - _ShadowEdgeSizeExtra: 0.05
     - _ShiftHueFade: 1
     - _ShiftHueSpeed: 0.5
     - _ShineContrast: 2
@@ -317,6 +386,7 @@ Material:
     - _SourceGlowDissolveInvert: 0
     - _SourceGlowDissolveNoiseFactor: 0.2
     - _SourceGlowDissolveWidth: 0.1
+    - _SpecularEnabled: 0
     - _SplitToningBalance: 1
     - _SplitToningContrast: 1
     - _SplitToningFade: 1
@@ -327,8 +397,12 @@ Material:
     - _SquishFlip: 0
     - _SquishSquish: 0.1
     - _SquishStretch: 0.1
+    - _SrcBlend: 1
     - _StrongTintContrast: 0
     - _StrongTintFade: 1
+    - _Surface: 0
+    - _TextureBlendingMode: 0
+    - _TextureImpact: 1
     - _TimeFPS: 5
     - _TimeFrequency: 2
     - _TimeRange: 0.5
@@ -340,6 +414,13 @@ Material:
     - _UberFading: 0
     - _UberNoiseFactor: 0.2
     - _UberWidth: 0.3
+    - _UnityShadowMode: 0
+    - _UnityShadowOcclusion: 0
+    - _UnityShadowPower: 0.2
+    - _UnityShadowSharpness: 1
+    - _UvFadeX: 0.1
+    - _UvFadeY: 0.1
+    - _VertexColorsEnabled: 0
     - _VibrateFade: 1
     - _VibrateFrequency: 100
     - _VibrateOffset: 0.04
@@ -352,10 +433,12 @@ Material:
     - _WindSquishFactor: 0.3
     - _WindSquishWindFactor: 0
     - _WindXPosition: 0
+    - _ZWrite: 1
     m_Colors:
     - _AddColorColor: {r: 4, g: 0, b: 0, a: 0}
     - _AlphaTintColor: {r: 23.96863, g: 1.254902, b: 23.96863, a: 0}
-    - _BlackTintColor: {r: 1, g: 0, b: 0, a: 0}
+    - _BaseColor: {r: 1, g: 1, b: 1, a: 1}
+    - _BlackTintColor: {r: 0, g: 0, b: 0, a: 0}
     - _BurnEdgeColor: {r: 11.98431, g: 1.129412, b: 0.1254902, a: 0}
     - _BurnEdgeNoiseScale: {r: 0.3, g: 0.3, b: 0, a: 0}
     - _BurnInsideColor: {r: 0.75, g: 0.5625, b: 0.525, a: 0}
@@ -371,9 +454,18 @@ Material:
     - _CamouflageDistortionScale: {r: 0.5, g: 0.5, b: 0, a: 0}
     - _CamouflageNoiseScaleA: {r: 0.25, g: 0.25, b: 0, a: 0}
     - _CamouflageNoiseScaleB: {r: 0.25, g: 0.25, b: 0, a: 0}
+    - _Color: {r: 0.5, g: 0.5, b: 0.5, a: 1}
+    - _Color1: {r: 0, g: 0.7, b: 0.74, a: 0}
+    - _Color2: {r: 0.96999997, g: 0.67, b: 0.50999993, a: 0}
+    - _ColorDim: {r: 1, g: 1, b: 1, a: 1}
+    - _ColorDimCurve: {r: 0.85023, g: 0.85034, b: 0.8504499, a: 0.85056}
+    - _ColorDimExtra: {r: 0.85023, g: 0.85034, b: 0.8504499, a: 0.85056}
+    - _ColorDimSteps: {r: 0.85023, g: 0.85034, b: 0.8504499, a: 0.85056}
+    - _ColorGradient: {r: 0.85023, g: 0.85034, b: 0.85045, a: 0.85056}
     - _ColorReplaceColor: {r: 1, g: 0, b: 0, a: 0}
     - _ColorReplaceTargetColor: {r: 0, g: 0, b: 0, a: 0}
     - _CustomFadeNoiseScale: {r: 1, g: 1, b: 0, a: 0}
+    - _Direction: {r: 0, g: 1, b: 0, a: 0}
     - _DirectionalAlphaFadeNoiseScale: {r: 0.3, g: 0.3, b: 0, a: 0}
     - _DirectionalDistortionDistortion: {r: 0, g: 0.1, b: 0, a: 0}
     - _DirectionalDistortionDistortionScale: {r: 1, g: 1, b: 0, a: 0}
@@ -383,15 +475,17 @@ Material:
     - _EmissionColor: {r: 1, g: 1, b: 1, a: 1}
     - _FlameNoiseScale: {r: 1.2, g: 0.8, b: 0, a: 0}
     - _FlameSpeed: {r: 0, g: -0.5, b: 0, a: 0}
-    - _FrozenHighlightColor: {r: 1.797647, g: 4.604501, b: 5.992157, a: 1}
+    - _FlatRimColor: {r: 1, g: 1, b: 1, a: 1}
+    - _FlatSpecularColor: {r: 0.85023, g: 0.85034, b: 0.85045, a: 0.85056}
+    - _FrozenHighlightColor: {r: 0.6792453, g: 0.39409044, b: 0.43543354, a: 1}
     - _FrozenHighlightDistortion: {r: 0.5, g: 0.5, b: 0, a: 0}
     - _FrozenHighlightDistortionScale: {r: 0.2, g: 0.2, b: 0, a: 0}
     - _FrozenHighlightDistortionSpeed: {r: -0.05, g: -0.05, b: 0, a: 0}
     - _FrozenHighlightScale: {r: 0.2, g: 0.2, b: 0, a: 0}
     - _FrozenHighlightSpeed: {r: 0.1, g: 0.1, b: 0, a: 0}
-    - _FrozenSnowColor: {r: 1.123529, g: 1.373203, b: 1.498039, a: 0}
+    - _FrozenSnowColor: {r: 0.15574934, g: 0.17816967, b: 0.18867919, a: 0}
     - _FrozenSnowScale: {r: 0.1, g: 0.1, b: 0, a: 0}
-    - _FrozenTint: {r: 1.819608, g: 4.611765, b: 5.992157, a: 0}
+    - _FrozenTint: {r: 0, g: 0, b: 0, a: 0}
     - _FullAlphaDissolveNoiseScale: {r: 0.1, g: 0.1, b: 0, a: 0}
     - _FullDistortionDistortion: {r: 0.2, g: 0.2, b: 0, a: 0}
     - _FullDistortionNoiseScale: {r: 0.5, g: 0.5, b: 0, a: 0}
@@ -413,6 +507,7 @@ Material:
     - _InnerOutlineDistortionIntensity: {r: 0.01, g: 0.01, b: 0, a: 0}
     - _InnerOutlineNoiseScale: {r: 4, g: 4, b: 0, a: 0}
     - _InnerOutlineNoiseSpeed: {r: 0, g: 0.1, b: 0, a: 0}
+    - _LightmapDirection: {r: 0, g: 1, b: 0, a: 0}
     - _MetalColor: {r: 5.992157, g: 3.639216, b: 0.3137255, a: 1}
     - _MetalHighlightColor: {r: 5.992157, g: 3.796078, b: 0.6588235, a: 1}
     - _MetalNoiseDistortion: {r: 0.5, g: 0.5, b: 0, a: 0}
@@ -424,7 +519,8 @@ Material:
     - _OuterOutlineDistortionIntensity: {r: 0.01, g: 0.01, b: 0, a: 0}
     - _OuterOutlineNoiseScale: {r: 4, g: 4, b: 0, a: 0}
     - _OuterOutlineNoiseSpeed: {r: 0, g: 0.1, b: 0, a: 0}
-    - _PoisonColor: {r: 0.3137255, g: 2.996078, b: 0.3137255, a: 0}
+    - _OutlineColor: {r: 1, g: 1, b: 1, a: 1}
+    - _PoisonColor: {r: 0.8301887, g: 0.081026636, b: 0, a: 0}
     - _PoisonNoiseScale: {r: 0.2, g: 0.2, b: 0, a: 0}
     - _PoisonNoiseSpeed: {r: 0, g: -0.2, b: 0, a: 0}
     - _RainbowCenter: {r: 0, g: 0, b: 0, a: 0}
@@ -460,4 +556,5 @@ Material:
     - _UVScrollSpeed: {r: 0.2, g: 0, b: 0, a: 0}
     - _UberNoiseScale: {r: 0.2, g: 0.2, b: 0, a: 0}
     - _UberPosition: {r: 0, g: 0, b: 0, a: 0}
+    - _UnityShadowColor: {r: 0.85023, g: 0.85034, b: 0.8504499, a: 0.85056}
   m_BuildTextureStacks: []

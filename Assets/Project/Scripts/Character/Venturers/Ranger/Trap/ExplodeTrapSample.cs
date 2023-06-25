@@ -9,7 +9,6 @@ namespace Character.Venturers.Ranger.Trap
         {
             base.Initialize(provider);
 
-
             SequenceBuilder.Add(SectionType.Execute,"MeteorExecution", () =>
                            {
                                if (TryGetTakerInSphere(out var takerList)) 

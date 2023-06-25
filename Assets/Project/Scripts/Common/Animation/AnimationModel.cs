@@ -67,7 +67,7 @@ namespace Common.Animation
             skeletonAnimation.Skeleton.ScaleX = direction.x switch
             {
                 // 정남북에서 덜덜이 방지
-                < 0.05f => -1.0f,
+                < -0.05f => -1.0f,
                 > 0.05f => 1.0f,
                 _ => skeletonAnimation.Skeleton.ScaleX
             };

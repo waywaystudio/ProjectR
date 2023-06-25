@@ -5,7 +5,7 @@ namespace Common.Execution
 {
     public class TrapExecutor : ExecuteComponent
     {
-        [SerializeField] protected DataIndex actionCode;
+        [SerializeField] private DataIndex actionCode;
         [SerializeField] private Pool<TrapComponent> pool;
         
 

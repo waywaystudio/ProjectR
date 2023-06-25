@@ -1,3 +1,4 @@
+using Common;
 using Common.Skills;
 using UnityEngine;
 
@@ -5,13 +6,14 @@ namespace Character.Venturers.Rogue.Skills
 {
     public class ShadowWalk : SkillComponent
     {
+        [SerializeField] private PhantomMaster phantomMaster;
+        
         public override void Initialize()
         {
             base.Initialize();
 
-            // AddCondition, is there any Rogue Dummy
             SequenceBuilder.AddActiveParam("TeleportPathfinding", Teleport);
-            //.Add(SectionType.Execute, "CommonExecution",() => detector.GetTakers()?.ForEach(executor.Execute));
+            //.Add(SectionType.Complete, "CreatePhantom", CreatePhantom);
         }
 
 
@@ -34,6 +36,12 @@ namespace Character.Venturers.Rogue.Skills
             }
 
             Cb.Pathfinding.Teleport(direction, actualDistance);
+            CreatePhantom();
+        }
+        
+        private void CreatePhantom()
+        {
+            executor.Execute(ExecuteGroup.Group2, Cb.transform.position);
         }
 
         private bool HasTarget()
@@ -43,5 +51,15 @@ namespace Character.Venturers.Rogue.Skills
             return !takers.IsNullOrEmpty() 
                    && takers[0].DynamicStatEntry.Alive.Value;
         }
+
+
+#if UNITY_EDITOR
+        public override void EditorSetUp()
+        {
+            base.EditorSetUp();
+
+            phantomMaster = GetComponentInParent<PhantomMaster>();
+        }
+#endif
     }
 }

@@ -7,11 +7,10 @@ using UnityEngine;
 namespace Common.Traps
 {
     public abstract class TrapComponent : MonoBehaviour, IActionSender, IEditable
-    // ISections, 
     {
         [SerializeField] protected Executor executor;
-        [SerializeField] private Sequencer<Vector3> sequencer;
-        [SerializeField] private CollidingSystem collidingSystem;
+        [SerializeField] protected Sequencer<Vector3> sequencer;
+        [SerializeField] protected CollidingSystem collidingSystem;
         [SerializeField] protected DataIndex trapCode;
         [SerializeField] protected float delayTime;
         [SerializeField] protected float radius;
@@ -23,8 +22,8 @@ namespace Common.Traps
         public ICombatProvider Provider { get; protected set; }
         public DataIndex DataIndex => trapCode;
         public float Radius => radius;
-        public LayerMask TargetLayer => targetLayer;
         public float ProlongTime { get; set; }
+        public LayerMask TargetLayer => targetLayer;
         public Sequencer Sequencer => sequencer;
         public SequenceBuilder<Vector3> SequenceBuilder => sequenceBuilder ??= new SequenceBuilder<Vector3>(sequencer);
         public TrapSequenceInvoker SequenceInvoker => sequenceInvoker ??= new TrapSequenceInvoker(sequencer);
@@ -37,6 +36,7 @@ namespace Common.Traps
         public virtual void Initialize(ICombatProvider provider)
         {
             Provider = provider;
+            
             SequenceBuilder.Add(SectionType.End,"TrapObjectActiveFalse", () => gameObject.SetActive(false));
         }
         

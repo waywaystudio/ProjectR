@@ -20,6 +20,7 @@ namespace Character.Venturers.Rogue.Skills
 
             SequenceBuilder.AddActiveParam("DashMovement", Dashing)
                            .Add(SectionType.Active, "CheckColliding", () => Colliding().Forget())
+                           .Add(SectionType.Active, "CreatePhantom", CreatePhantom)
                            .Add(SectionType.End, "StopCheckColliding", StopChecking);
         }
 
@@ -30,6 +31,11 @@ namespace Character.Venturers.Rogue.Skills
             var direction = (targetPosition - playerPosition).normalized;
             
             Cb.Pathfinding.Dash(direction, Range, 0.28f, SkillInvoker.Complete);
+        }
+
+        private void CreatePhantom()
+        {
+            executor.Execute(ExecuteGroup.Group2, Cb.transform.position);
         }
 
         private bool HasTarget()

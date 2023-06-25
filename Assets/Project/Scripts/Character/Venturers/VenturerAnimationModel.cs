@@ -1,7 +1,5 @@
 using System;
-using System.Collections.Generic;
 using Common.Animation;
-using UnityEngine;
 
 namespace Character.Venturers
 {

@@ -221,19 +221,22 @@ namespace SoCreator
             area.height = InternalGUI.SearchBarHeight;
             GUI.BeginGroup(area, EditorStyles.toolbar);
             {
-                area.x += 2;
-                area.y += 2;
-                area.width -= InternalGUI.SearchBarEndStyle.fixedWidth + 4;
+                area.x     += 2;
+                area.y     += 2;
+                area.width -= 104; 
+                    // InternalGUI.SearchBarEndStyle.fixedWidth + 4;
 
                 GUI.SetNextControlName("SearchFilter");
                 EditorGUI.BeginChangeCheck();
-                var searchText = GUI.TextField(area, m_SearchText, InternalGUI.SearchBarStyle);
+                var searchText = "Search"; 
+                    // GUI.TextField(area, m_SearchText, InternalGUI.SearchBarStyle);
                 if (EditorGUI.EndChangeCheck())
                     _onSearchTextChanged(searchText);
                 EditorGUI.FocusTextInControl("SearchFilter");
 
-                area.x = area.xMax;
-                area.width = InternalGUI.SearchBarEndStyle.fixedWidth;
+                area.x     = area.xMax;
+                area.width = 300; 
+                    // InternalGUI.SearchBarEndStyle.fixedWidth;
                 if (HasSearchText)
                 {
                     if (GUI.Button(area, "", InternalGUI.SearchBarCancelStyle))

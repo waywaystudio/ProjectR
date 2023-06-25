@@ -24,6 +24,17 @@ namespace Common.Execution
             projectile.Activate();
         }
         
+        public override void Execution(Vector3 targetPosition)
+        {
+            var projectile = pool.Get();
+            var projectileTransform = projectile.transform;
+            
+            projectileTransform.SetParent(null, true);
+            projectileTransform.LookAt(targetPosition);
+            
+            projectile.Activate();
+        }
+        
 
         private void CreateProjectile(ProjectileComponent projectile)
         {

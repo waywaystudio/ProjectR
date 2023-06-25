@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8762994625914345649}
   - component: {fileID: 372894161616476412}
+  - component: {fileID: 8450002102728186695}
   m_Layer: 0
   m_Name: Execution
   m_TagString: Untagged
@@ -57,6 +58,25 @@ MonoBehaviour:
     - statType: 13030003
       statKey: DamageExecutorKey
       value: 0
+--- !u!114 &8450002102728186695
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1234280139362883297}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9ec3ef791109677438b7278f263c0f3a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  group: 2
+  actionCode: 31210305
+  master: {fileID: 11400000, guid: 6c8a7e02452c13f40ad1090c2e41c7f9, type: 2}
+  pool:
+    prefab: {fileID: 3865230921314547483, guid: 109596a9e5d27c54f8df8bcd6b566d51, type: 3}
+    maxCount: 8
+    syncObjectActivity: 1
 --- !u!1 &2546753074928525639
 GameObject:
   m_ObjectHideFlags: 0
@@ -152,7 +172,7 @@ Transform:
   - {fileID: 7221708945386366489}
   - {fileID: 5853087751410363707}
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &-6320411617643193093
 MonoBehaviour:
@@ -171,10 +191,12 @@ MonoBehaviour:
   priority: 5
   executor:
     table:
-      keyList: 01000000
+      keyList: 0100000002000000
       valueList:
       - ExecutionList:
         - {fileID: 372894161616476412}
+      - ExecutionList:
+        - {fileID: 8450002102728186695}
       hideKey: 0
   detector:
     targetType: 1
@@ -186,12 +208,13 @@ MonoBehaviour:
       m_Bits: 256
   animationTrait:
     animationKey: Dash
-    isLoop: 0
+    isLoop: 1
     hasEvent: 0
+    timeScale: 1
     skillType: 1
     callbackSection: 3
   coolTimer:
-    coolTime: 2
+    coolTime: 8
     invokeSection: 1
   castTimer:
     castingTime: 0

@@ -1,3 +1,5 @@
+#define SO_CREATOR
+
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -8,14 +10,15 @@ using UnityEditor.ProjectWindowCallback;
 using UnityEditor.ShortcutManagement;
 using UnityEngine;
 using Assembly = System.Reflection.Assembly;
-using Object = UnityEngine.Object;
+
 
 namespace SoCreator
 {
     public static class SoCreator
     {
-        private static Texture2D s_ScriptableObjectIcon = (EditorGUIUtility.IconContent("ScriptableObject Icon").image as Texture2D);
-
+        private static Texture2D     s_ScriptableObjectIcon = (EditorGUIUtility.IconContent("ScriptableObject Icon").image as Texture2D);
+        private static HashSet<Type> s_ValidSet;
+        
         // =======================================================================
         private class DoCreateFile : EndNameEditAction
         {
@@ -36,6 +39,8 @@ namespace SoCreator
             private void _create(string pathName)
             {
                 var so = ScriptableObject.CreateInstance(ObjectType);
+                while (AssetDatabase.GetMainAssetTypeAtPath(pathName + ".asset") != null)
+                    pathName = ObjectNames.GetUniqueName(new[] { pathName }, pathName);
                 
                 AssetDatabase.CreateAsset(so, Path.ChangeExtension(pathName, ".asset"));
                 ProjectWindowUtil.ShowCreatedAsset(so);
@@ -49,28 +54,16 @@ namespace SoCreator
         }
 
         // =======================================================================
-        [Shortcut("SoCreator/Create Scriptable Object using Type paths", KeyCode.I, ShortcutModifiers.Shift)]
-        public static void CreateScriptableObjectToPath(ShortcutArguments sa)
-        {
-            CreateScriptableObject(true, true);
-        }
-        
-        [Shortcut("SoCreator/Create Scriptable Object", KeyCode.I, ShortcutModifiers.Shift | ShortcutModifiers.Action)]
-        public static void CreateScriptableObject(ShortcutArguments sa)
-        {
-            CreateScriptableObject(true, false);
-        }
-        
-        [MenuItem("Assets/Create/Scriptable Object", false, -1000)]
+        [MenuItem("Assets/Create/Scriptable Object #i", false, -1000)]
         public static void CreateScriptableObject(MenuCommand menuCommand)
         {
-            CreateScriptableObject(false, false);
+            var isHotkey = GetGUIEvent()?.keyCode != KeyCode.None;
+            CreateScriptableObject(isHotkey, isHotkey);
         }
         
         public static void CreateScriptableObject(bool ignoreShift, bool forcePath)
         {
-            var allAssemblies = // ignoreShift == false && 
-                                GetGUIEvent()?.shift == true;
+            var allAssemblies = (ignoreShift == false && GetGUIEvent()?.shift == true);
 
             var types = GetSoTypes(allAssemblies, type => type.IsAbstract == false && type.IsGenericTypeDefinition == false);
 
@@ -80,13 +73,17 @@ namespace SoCreator
                 return;
             }
             
-            var showNamespace  = EditorPrefs.GetBool(SettingsProvider.k_ShowNamespace);
-            var keepSearchText = EditorPrefs.GetBool(SettingsProvider.k_KeepSearchText);
-            var wndWidth       = (float)EditorPrefs.GetInt(SettingsProvider.k_Width);
-            var wndMaxItems    =  EditorPrefs.GetInt(SettingsProvider.k_MaxItems);
+            var showNamespace     = EditorPrefs.GetBool(SettingsProvider.k_ShowNamespace);
+            var keepSearchText    = EditorPrefs.GetBool(SettingsProvider.k_KeepSearchText);
+            var wndWidth          = (float)EditorPrefs.GetInt(SettingsProvider.k_Width);
+            var wndMaxItems       = EditorPrefs.GetInt(SettingsProvider.k_MaxItems);
+            
             PickerWindow.Show(picked =>
                               {
                                   var pickedType   = (Type)picked;
+                                  if (pickedType == null)
+                                      return;
+                                  
                                   var doCreateFile = ScriptableObject.CreateInstance<DoCreateFile>();
                                   var path = pickedType.Name;
                                   
@@ -102,7 +99,6 @@ namespace SoCreator
                                   }
                                   
                                   doCreateFile.ObjectType = pickedType;
-                                  
                                   ProjectWindowUtil.StartNameEditingIfProjectWindowExists(
                                       0,
                                       doCreateFile,
@@ -123,8 +119,6 @@ namespace SoCreator
         
         public static List<Type> GetSoTypes(bool allAssemblies, Predicate<Type> filter)
         {
-            var showNamespace  = EditorPrefs.GetBool(SettingsProvider.k_ShowNamespace);
-            var keepSearchText = EditorPrefs.GetBool(SettingsProvider.k_KeepSearchText);
             var mainAssambly   = AppDomain.CurrentDomain.GetAssemblies().FirstOrDefault(n => n.GetName().Name == "Assembly-CSharp");
             var onlyMain       = !EditorPrefs.GetBool(SettingsProvider.k_AllAssemblies);
             var additional     = SettingsProvider.s_Assemblies
@@ -137,12 +131,22 @@ namespace SoCreator
             if (allAssemblies)
                 onlyMain = false;
             
+            var requireMonoScript = SettingsProvider.s_RequireMonoScript.Get<bool>();
+            if (requireMonoScript && s_ValidSet == null)
+                s_ValidSet = new HashSet<Type>(AssetDatabase
+                                              .FindAssets("t:MonoScript")
+                                              .Select(n=> AssetDatabase.LoadAssetAtPath<MonoScript>(AssetDatabase.GUIDToAssetPath(n)).GetClass())
+                                              .Where(n => typeof(ScriptableObject).IsAssignableFrom(n)));
+            
             var types = TypeCache.GetTypesDerivedFrom<ScriptableObject>()
                                  .Where(type =>
                                  {
                                      if (filter(type) == false)
                                          return false;
 
+                                     if (requireMonoScript && s_ValidSet.Contains(type) == false)
+                                         return false;
+                                     
                                      var vibilityAttribute = type.GetCustomAttribute<SoCreateAttribute>();
                                      
                                      if (vibilityAttribute == null)
@@ -204,7 +208,38 @@ namespace SoCreator
             {
                 var path = SettingsProvider.s_TypeFolders.FirstOrDefault(typePath => isDerivedFrom(marker, typePath.Type));
                 if (path != null)
+                {
+                    if (SettingsProvider.s_IgnoreSubTypeFolder.Get<bool>() && IsSubPathOf())
+                        return string.Empty;
+                    
                     return AssetDatabase.GetAssetPath(path.Path);
+
+                    // -----------------------------------------------------------------------
+                    bool IsSubPathOf()
+                    {
+                        try
+                        {
+                            var getActiveFolderPath = typeof(ProjectWindowUtil).GetMethod("GetActiveFolderPath", BindingFlags.Static | BindingFlags.NonPublic);
+                            var projPath            = (string)getActiveFolderPath.Invoke(null, null);
+                            var pathDir             = new DirectoryInfo(AssetDatabase.GetAssetPath(path.Path));
+                            var projDir             = new DirectoryInfo(projPath);
+                            
+                            while (projDir.Parent != null)
+                            {
+                                if (projDir.Parent.FullName == pathDir.FullName)
+                                    return true;
+                                
+                                projDir = projDir.Parent;
+                            }
+                        }
+                        catch
+                        {
+                            // ignored
+                        }
+
+                        return false;
+                    }
+                }
             }
             
             return string.Empty;
