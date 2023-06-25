@@ -304,7 +304,7 @@ MonoBehaviour:
     description: Starts combat by attacking a target with a melee weapon.
   - id: 31210206
     name: RapidCharge
-    behaviourMask: Skill
+    behaviourMask: RigidSkill
     priority: 2
     detectorType: Circle
     sortingType: None
@@ -493,6 +493,102 @@ MonoBehaviour:
     paySection: 
     statusEffect: 0
     iconFileName: Annihilation Sprite
+    description: Starts combat by attacking a target with a melee weapon.
+  - id: 31210305
+    name: DoubleStab
+    behaviourMask: Skill
+    priority: 2
+    detectorType: Circle
+    sortingType: None
+    targetParam: {x: 5, y: 135}
+    targetLayer: Monster
+    animationKey: AttackDuelFastStabTwice
+    isLoop: 0
+    hasEvent: 1
+    skillType: Instant
+    animationCallback: Complete
+    coolTime: 1
+    coolTimeInvoker: Active
+    castTime: 0
+    castCallback: None
+    completionValueList:
+    - 0
+    cost: -5
+    paySection: Execute
+    statusEffect: 0
+    iconFileName: DoubleStab Sprite
+    description: Starts combat by attacking a target with a melee weapon.
+  - id: 31210306
+    name: PhantomStrike
+    behaviourMask: RigidSkill
+    priority: 5
+    detectorType: Circle
+    sortingType: None
+    targetParam: {x: 10, y: 180}
+    targetLayer: Monster
+    animationKey: Dash
+    isLoop: 1
+    hasEvent: 0
+    skillType: Instant
+    animationCallback: Complete
+    coolTime: 8
+    coolTimeInvoker: Active
+    castTime: 0
+    castCallback: None
+    completionValueList:
+    - 0
+    cost: -15
+    paySection: None
+    statusEffect: 0
+    iconFileName: PhantomStrike Sprite
+    description: Starts combat by attacking a target with a melee weapon.
+  - id: 31210307
+    name: ShadowWalk
+    behaviourMask: Skill
+    priority: 1
+    detectorType: Circle
+    sortingType: None
+    targetParam: {x: 12, y: 360}
+    targetLayer: Monster
+    animationKey: JumpReady
+    isLoop: 0
+    hasEvent: 0
+    skillType: Instant
+    animationCallback: Complete
+    coolTime: 10
+    coolTimeInvoker: Active
+    castTime: 0
+    castCallback: None
+    completionValueList:
+    - 0
+    cost: 0
+    paySection: None
+    statusEffect: 0
+    iconFileName: ShadowWalk Sprite
+    description: Starts combat by attacking a target with a melee weapon.
+  - id: 31210308
+    name: MarkOfDeath
+    behaviourMask: Skill
+    priority: 10
+    detectorType: Circle
+    sortingType: None
+    targetParam: {x: 12, y: 360}
+    targetLayer: Monster
+    animationKey: AttackDuelStab
+    isLoop: 0
+    hasEvent: 1
+    skillType: Instant
+    animationCallback: Complete
+    coolTime: 1
+    coolTimeInvoker: Active
+    castTime: 0
+    castCallback: None
+    completionValueList:
+    - 0
+    cost: 50
+    paySection: Active
+    statusEffect: 0
+    iconFileName: MarkOfDeath Sprite
     description: Starts combat by attacking a target with a melee weapon.
   - id: 31210401
     name: ShotAttack

@@ -24,7 +24,7 @@ namespace Character.Venturers.Warrior.Skills
                     : Vector3.zero;
 
             var playerPosition = Cb.transform.position;
-            var direction = destination - playerPosition;
+            var direction = (destination - playerPosition).normalized;
             var actualDistance = Vector3.Distance(destination, playerPosition);
 
             if (actualDistance > Range)

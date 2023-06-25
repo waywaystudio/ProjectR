@@ -9,13 +9,14 @@ namespace Common.Skills
         [SerializeField] private string animationKey;
         [SerializeField] private bool isLoop;
         [SerializeField] private bool hasEvent;
+        [SerializeField] private float timeScale = 1.0f;
         [SerializeField] private SkillType skillType;
         [SerializeField] private SectionType callbackSection = SectionType.Complete;
 
         public SkillType SkillType => skillType;
         public float TimeScale => HasteRetriever is null 
-            ? 1f 
-            : HasteRetriever.Invoke();
+            ? timeScale 
+            : timeScale * HasteRetriever.Invoke();
         
         private Func<float> HasteRetriever  { get; set; }
         

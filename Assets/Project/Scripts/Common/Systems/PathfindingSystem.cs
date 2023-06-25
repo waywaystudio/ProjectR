@@ -65,11 +65,18 @@ namespace Common.Systems
                          .SetEase(Ease.InSine);
         }
 
-        public void Dash(Vector3 direction, float distance, Action callback)
+        public void Teleport(Vector3 direction, float distance)
+        {
+            var destination = PathfindingUtility.GetReachableTeleportPosition(RootPosition, direction, distance);
+
+            aiMove.Teleport(destination);
+        }
+
+        public void Dash(Vector3 direction, float distance, float duration, Action callback)
         {
             var dashDestination = PathfindingUtility.GetReachableStraightPosition(RootPosition, direction, distance);
 
-            rootTransform.DOMove(dashDestination, 0.15f).OnComplete(() => callback?.Invoke());
+            rootTransform.DOMove(dashDestination, duration).OnComplete(() => callback?.Invoke());
         }
 
         public void KnockBack(Vector3 from, float distance, float duration, Action callback)

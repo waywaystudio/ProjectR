@@ -37,6 +37,7 @@ namespace Common.Characters.Behaviours
             
             Current = skill;
             SequenceInvoker.Active();
+            Cb.Rotate(targetPosition);
             Current.SkillInvoker.Active(targetPosition);
         }
 

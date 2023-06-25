@@ -60,8 +60,7 @@ namespace Common.Skills
             castTimer.Initialize(this);
             cost.Initialize(this);
 
-            SequenceBuilder.AddActiveParam("CharacterRotate", Cb.Rotate)
-                           .Add(SectionType.Active, "StopPathfinding", Cb.Pathfinding.Stop)
+            SequenceBuilder.Add(SectionType.Active, "StopPathfinding", Cb.Pathfinding.Stop)
                            .Add(SectionType.End,"CharacterStop", Cb.Stop)
                            .Add(SectionType.Release, "ReleaseAction", () =>
                            {

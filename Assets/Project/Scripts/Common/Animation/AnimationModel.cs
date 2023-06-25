@@ -27,6 +27,7 @@ namespace Common.Animation
         public virtual void Dead(Action callback = null) => PlayOnce("dead", 1f, callback);
         public virtual void Stun() => PlayLoop("stun");
         public virtual void Hit() => PlayLoop("hit");
+        
         public void PlayOnce(string animationKey, float timeScale = 1f, Action callback = null) => Play(animationKey, 0, false, timeScale, callback);
         public void PlayLoop(string animationKey, float timeScale = 1f, Action callback = null) => Play(animationKey, 0, true, timeScale, callback);
         
@@ -153,3 +154,8 @@ namespace Common.Animation
 #endif
     }
 }
+
+/* Annotation
+ * Reverse : CurrentEntry.Reverse = true
+ * 뭔가 이상한 부분이 많아서 사용 금지
+ */
