@@ -32,7 +32,7 @@ namespace Character.Venturers.Rogue
 
             model.OnHit.Add("SkillHit", () =>
             {
-                var takerList = GetTakersInSphereType(trapPosition, 8f, 135f, targetLayer);
+                var takerList = GetTakersInSphereType(trapPosition, 5f, 135f, targetLayer);
                 
                 takerList?.ForEach(taker => executor.Execute(ExecuteGroup.Group1, taker));
             });

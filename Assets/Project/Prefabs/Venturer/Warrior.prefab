@@ -56,6 +56,10 @@ PrefabInstance:
       propertyPath: damageSpec.statList.Array.data[0].value
       value: 700
       objectReference: {fileID: 0}
+    - target: {fileID: 3263926489268022469, guid: 15a877e84ffd8e14687a3e6601019b57, type: 3}
+      propertyPath: damageSpec.statList.Array.data[1].value
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8380361914805468174, guid: 15a877e84ffd8e14687a3e6601019b57, type: 3}
       propertyPath: m_Name
       value: Finisher
