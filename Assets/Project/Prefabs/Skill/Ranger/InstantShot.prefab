@@ -95,7 +95,7 @@ Transform:
   - {fileID: 7221708945386366489}
   - {fileID: 5853087751410363707}
   m_Father: {fileID: 0}
-  m_RootOrder: -1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &671937298815967466
 MonoBehaviour:
@@ -114,10 +114,12 @@ MonoBehaviour:
   priority: 5
   executor:
     table:
-      keyList: 01000000
+      keyList: 0100000002000000
       valueList:
       - ExecutionList:
         - {fileID: 6640065934772434048}
+      - ExecutionList:
+        - {fileID: 2107891145619366331}
       hideKey: 0
   detector:
     targetType: 1
@@ -128,7 +130,7 @@ MonoBehaviour:
       serializedVersion: 2
       m_Bits: 256
   animationTrait:
-    animationKey: ShootVeryFast
+    animationKey: AimHoldFire
     isLoop: 0
     hasEvent: 1
     timeScale: 1
@@ -155,6 +157,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2308180223112419512}
   - component: {fileID: 6640065934772434048}
+  - component: {fileID: 2107891145619366331}
   m_Layer: 0
   m_Name: Execution
   m_TagString: Untagged
@@ -195,4 +198,22 @@ MonoBehaviour:
   pool:
     prefab: {fileID: 68301466263117794, guid: 541d0ef7d87ec2b409401093e6f3ee17, type: 3}
     maxCount: 12
+    syncObjectActivity: 1
+--- !u!114 &2107891145619366331
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9030367168287305613}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 714e87efbca5f5e47a36249aecf0b6f2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  group: 2
+  actionCode: 32210004
+  pool:
+    prefab: {fileID: 8333227002716821657, guid: 7602a8be24b2fa04695636e805b8fc16, type: 3}
+    maxCount: 4
     syncObjectActivity: 1

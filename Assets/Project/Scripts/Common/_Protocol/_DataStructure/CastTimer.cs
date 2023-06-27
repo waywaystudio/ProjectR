@@ -10,9 +10,15 @@ namespace Common
     {
         [SerializeField] protected float castingTime;
 
-        public float CastingTime => castingTime * (Retriever is not null 
-            ? CombatFormula.GetHasteValue(Retriever.Invoke()) 
-            : 1f);
+        public float OriginalCastingTime => castingTime;
+        public float CastingTime
+        {
+            get =>
+                castingTime * (Retriever is not null 
+                    ? CombatFormula.GetHasteValue(Retriever.Invoke()) 
+                    : 1f);
+            set => castingTime = value;
+        }
         
         public FloatEvent EventTimer { get; private set; } = new();
 
@@ -25,14 +31,11 @@ namespace Common
         public void Play(float duration) => Play(duration, endCallback);
         public void Play(float duration, Action callback)
         {
-            if (duration == 0) return;
-        
-            cts = new CancellationTokenSource();
-
+            cts              = new CancellationTokenSource();
             castingTime      = duration;
             EventTimer.Value = 0f;
             endCallback      = callback;
-        
+
             AwaitCoolTime(cts).Forget();
         }
 
@@ -69,13 +72,13 @@ namespace Common
 
                 if (EventTimer.Value >= castingTime)
                 {
-                    endCallback?.Invoke();
                     break;
                 }
 
                 await UniTask.Yield(cts.Token);
             }
 
+            endCallback?.Invoke();
             Stop();
         }
     }

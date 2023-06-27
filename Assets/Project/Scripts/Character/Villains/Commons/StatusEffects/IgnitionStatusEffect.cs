@@ -5,7 +5,7 @@ using UnityEngine;
 
 namespace Character.Villains.Commons.StatusEffects
 {
-    public class LivingBomb : StatusEffect, IProjectorSequencer
+    public class IgnitionStatusEffect : StatusEffect, IProjectorSequencer
     {
         [SerializeField] private CollidingSystem collidingSystem;
         [SerializeField] private float interval;

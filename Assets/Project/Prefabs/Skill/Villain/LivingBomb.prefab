@@ -107,7 +107,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   group: 1
-  actionCode: 32000004
+  actionCode: 32220001
   pool:
     prefab: {fileID: 8333227002716821657, guid: ae083ec149c3daa4fb7146db6fd69715, type: 3}
     maxCount: 2
@@ -181,6 +181,7 @@ MonoBehaviour:
     animationKey: attack
     isLoop: 0
     hasEvent: 0
+    timeScale: 1
     skillType: 1
     callbackSection: 3
   coolTimer:
@@ -189,5 +190,8 @@ MonoBehaviour:
   castTimer:
     castingTime: 0
     callbackSection: 0
+  cost:
+    cost: 0
+    paySection: 0
   description: Starts combat by attacking a target with a melee weapon.
   icon: {fileID: 21300000, guid: 66dd4d17749630548bd562332cf77491, type: 3}

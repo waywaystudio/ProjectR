@@ -15,12 +15,10 @@ namespace Common.StatusEffects
 
         public ICombatProvider Provider { get; protected set; }
         public DataIndex DataIndex => statusCode;
-        public Sprite Icon => icon;
-        public float Duration => duration;
         public FloatEvent ProgressTime { get; } = new();
         public Sequencer Sequencer => sequencer;
-        public SequenceInvoker<ICombatTaker> Invoker { get; set; }
-        public StatusEffectKey Key { get; set; }
+        public Sprite Icon => icon;
+        public float Duration => duration;
 
         protected SequenceBuilder<ICombatTaker> SequenceBuilder { get; private set; }
         protected StatusEffectSequenceInvoker SequenceInvoker { get; private set; }
@@ -34,18 +32,18 @@ namespace Common.StatusEffects
         public virtual void Initialize(ICombatProvider provider)
         {
             Provider = provider;
-            Key      = new StatusEffectKey(this);
             ProgressTime.SetClamp(0f, Mathf.Min(duration * 1.5f, 3600));
 
             SequenceInvoker = new StatusEffectSequenceInvoker(sequencer);
             SequenceBuilder = new SequenceBuilder<ICombatTaker>(sequencer);
 
-            SequenceBuilder.Add(SectionType.Active, "SetAbleToTrue", () => enabled = true)
+            SequenceBuilder.Add(SectionType.Active, "SetAbleToTrue", () => enabled              = true)
                            .Add(SectionType.Active, "SetProgressTime", () => ProgressTime.Value = duration)
                            .Add(SectionType.Active, "SetObjectActive", () => gameObject.SetActive(true))
-                           .Add(SectionType.End,"UnregisterTable", UnregisterTable)
-                           .Add(SectionType.End,"DisableComponent", () => enabled = false)
-                           .Add(SectionType.End,"DeActiveGameObject", () => gameObject.SetActive(false));
+                           .Add(SectionType.Active, "AddStatusEffectTable", AddTable)
+                           .Add(SectionType.End, "DisableComponent", () => enabled = false)
+                           .Add(SectionType.End, "DeActiveGameObject", () => gameObject.SetActive(false))
+                           .Add(SectionType.End, "UnregisterTable", RemoveTable);
         }
 
         /// <summary>
@@ -69,14 +67,11 @@ namespace Common.StatusEffects
         /// <summary>
         /// 해제 시 호출 == Dispel. (만료 아님)
         /// </summary>
-        public void Dispel() => SequenceInvoker.Cancel();
+        public virtual void Dispel() => SequenceInvoker.Cancel();
 
 
-        private void UnregisterTable()
-        {
-            Taker.DynamicStatEntry.StatusEffectTable.Remove(this);
-        }
-
+        private void AddTable() => Taker.DynamicStatEntry.StatusEffectTable.Add(DataIndex, this);
+        private void RemoveTable() => Taker.DynamicStatEntry.StatusEffectTable.Remove(DataIndex);
         private void OnDestroy()
         {
             sequencer.Clear();

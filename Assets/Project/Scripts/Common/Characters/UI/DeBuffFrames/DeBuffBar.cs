@@ -20,7 +20,7 @@ namespace Common.Characters.UI.DeBuffFrames
         {
             slotList.ForEach(slot => slot.Unregister());
             
-            Cb.DynamicStatEntry.StatusEffectTable.Iterator(effect =>
+            Cb.DynamicStatEntry.StatusEffectTable.Iterate(effect =>
             {
                 if (!TryGetEmptySlot(out var slot)) return;
 

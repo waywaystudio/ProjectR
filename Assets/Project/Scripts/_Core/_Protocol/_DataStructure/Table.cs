@@ -51,11 +51,10 @@ public class Table<TKey, TValue>
 
     public int Count => valueList.Count;
 
-    public void Add(TKey key, TValue value)
+    public virtual void Add(TKey key, TValue value)
     {
         if (Map.ContainsKey(key))
         {
-            Debug.LogWarning($"Table Already Has Key:{key}");
             return;
         }
         
@@ -64,7 +63,7 @@ public class Table<TKey, TValue>
         valueList.Add(value);
     }
 
-    public bool Remove(TKey key)
+    public virtual bool Remove(TKey key)
     {
         if (!Map.ContainsKey(key)) return false;
         Map.Remove(key);

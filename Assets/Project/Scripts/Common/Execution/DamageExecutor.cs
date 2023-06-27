@@ -15,7 +15,7 @@ namespace Common.Execution
         {
             if (taker == null || !taker.DynamicStatEntry.Alive.Value) return;
 
-            var entity        = new CombatEntity(taker);
+            var entity        = new CombatEntity(actionCode, taker);
             var providerTable = Origin.Provider.StatTable;
 
             // Damage Creator

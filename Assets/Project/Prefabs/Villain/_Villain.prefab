@@ -237,7 +237,7 @@ MonoBehaviour:
   combatStatus: {fileID: 8378235592642627811}
   animating: {fileID: 1831805134633722541}
   damageSpawn: {fileID: 6740709097111906073}
-  statusEffectHierarchy: {fileID: 3744010700067239340}
+  statusEffectHierarchy: {fileID: 7681027685326874348}
   stopBehaviour: {fileID: 3298283690089901991}
   runBehaviour: {fileID: 7156159016913352143}
   stunBehaviour: {fileID: 1824685703367635282}
@@ -821,7 +821,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b4e841defa0727248a0aa0ed3a51250d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 9
+  defaultSpeed: 9
   rootTransform: {fileID: 3744010700067239340}
   agent: {fileID: 5352250712032112386}
   aiMove: {fileID: 7464979735002361491}

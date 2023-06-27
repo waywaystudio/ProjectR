@@ -95,7 +95,7 @@ Transform:
   - {fileID: 7221708945386366489}
   - {fileID: 5853087751410363707}
   m_Father: {fileID: 0}
-  m_RootOrder: -1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &3008013076941583783
 MonoBehaviour:
@@ -114,10 +114,12 @@ MonoBehaviour:
   priority: 3
   executor:
     table:
-      keyList: 01000000
+      keyList: 0100000002000000
       valueList:
       - ExecutionList:
         - {fileID: 1364404895503189817}
+      - ExecutionList:
+        - {fileID: 3357007055880375684}
       hideKey: 0
   detector:
     targetType: 1
@@ -155,6 +157,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1999865382634407815}
   - component: {fileID: 1364404895503189817}
+  - component: {fileID: 3357007055880375684}
   m_Layer: 0
   m_Name: Execution
   m_TagString: Untagged
@@ -194,5 +197,23 @@ MonoBehaviour:
   muzzle: {fileID: 0}
   pool:
     prefab: {fileID: 68301466263117794, guid: 614519c2858722748860125352e5a59e, type: 3}
+    maxCount: 4
+    syncObjectActivity: 1
+--- !u!114 &3357007055880375684
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9200880587379613382}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 714e87efbca5f5e47a36249aecf0b6f2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  group: 2
+  actionCode: 32210004
+  pool:
+    prefab: {fileID: 8333227002716821657, guid: 7602a8be24b2fa04695636e805b8fc16, type: 3}
     maxCount: 4
     syncObjectActivity: 1

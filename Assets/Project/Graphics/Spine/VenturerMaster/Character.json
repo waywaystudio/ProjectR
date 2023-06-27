@@ -1,12 +1,12 @@
 {
 "skeleton": {
-	"hash": "ObKysHouQOE",
+	"hash": "fd///VIlWLM",
 	"spine": "4.1.23",
 	"x": -160.19,
 	"y": -14.57,
 	"width": 304.45,
 	"height": 381.59,
-	"images": "C:/Project/ProjectR++/Assets/FantaziaCharacterEditor/SpineSkeletonData4/images/",
+	"images": "../images/",
 	"audio": "C:/Project/ProjectR++/Assets/FantaziaCharacterEditor/SpineProjectFile"
 },
 "bones": [
@@ -24929,15 +24929,6 @@
 		]
 	},
 	"ShootVeryFast": {
-		"slots": {
-			"ARROW": {
-				"attachment": [
-					{},
-					{ "time": 0.1667 },
-					{ "time": 0.7333 }
-				]
-			}
-		},
 		"bones": {
 			"ARROW": {
 				"rotate": [
@@ -24988,11 +24979,6 @@
 						"curve": [ 0.483, 28.25, 0.65, 7.91, 0.483, -17.77, 0.65, -7.81 ]
 					},
 					{ "time": 0.7333, "x": 7.91, "y": -7.81 }
-				],
-				"scale": [
-					{ "curve": "stepped" },
-					{ "time": 0.1333, "curve": "stepped" },
-					{ "time": 0.4 }
 				]
 			},
 			"ARM B1": {
@@ -25142,11 +25128,6 @@
 						"curve": [ 0.67, 49.28, 0.709, 12.88 ]
 					},
 					{ "time": 0.7333, "value": 12.88 }
-				],
-				"translate": [
-					{ "curve": "stepped" },
-					{ "time": 0.1333, "curve": "stepped" },
-					{ "time": 0.7333 }
 				]
 			},
 			"SHOULDER A": {
@@ -25408,12 +25389,6 @@
 			},
 			{
 				"time": 0.1667,
-				"offsets": [
-					{ "slot": "WEAPON", "offset": 1 }
-				]
-			},
-			{
-				"time": 0.7333,
 				"offsets": [
 					{ "slot": "WEAPON", "offset": 1 }
 				]

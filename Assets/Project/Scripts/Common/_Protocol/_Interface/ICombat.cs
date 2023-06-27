@@ -38,6 +38,7 @@ namespace Common
         // + StatTable StatTable { get; }
         // + IDynamicStatEntry DynamicStatEntry { get; }
         // + string Name { get; }
+        SkillBehaviour SkillBehaviour { get; }
 
         ActionTable<CombatEntity> OnDamageProvided { get; }
         ActionTable<CombatEntity> OnHealProvided { get; }
@@ -59,7 +60,7 @@ namespace Common
         KnockBackBehaviour KnockBackBehaviour { get; }
         DrawBehaviour DrawBehaviour { get; }
         DeadBehaviour DeadBehaviour { get; }
-        SkillBehaviour SkillBehaviour { get; }
+        
         
         ActionTable<CombatEntity> OnDamageTaken { get; }
         ActionTable<CombatEntity> OnHealTaken { get; }
@@ -72,7 +73,7 @@ namespace Common
         void Draw(Vector3 source, float duration);
         void Dead();
         void TakeStatusEffect(StatusEffect effect);
-        void DispelStatusEffect(StatusEffect effect);
+        void DispelStatusEffect(DataIndex effectIndex);
     }
 
     public interface ICombatExecutor : ICombatProvider, ICombatTaker, IDataIndexer

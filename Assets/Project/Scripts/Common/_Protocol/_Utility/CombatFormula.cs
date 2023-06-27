@@ -26,8 +26,8 @@ namespace Common
         public static bool IsCritical(float criticalChance)
         {
             // 100% 크리티컬 구현
-            var mustCritical = criticalChance > 100f;
-            return mustCritical || Random.Range(0f, 100f) < criticalChance;
+            var mustCritical = criticalChance >= 1f;
+            return mustCritical || Random.Range(0f, 1f) < criticalChance;
         }
     }
 }

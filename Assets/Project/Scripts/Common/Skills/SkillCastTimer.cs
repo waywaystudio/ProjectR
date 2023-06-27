@@ -18,6 +18,7 @@ namespace Common.Skills
         }
 
 
+#if UNITY_EDITOR
         public void SetUpFromSkill(DataIndex dataIndex)
         {
             var skillData = Database.SkillSheetData(dataIndex);
@@ -25,5 +26,6 @@ namespace Common.Skills
             castingTime     = skillData.CastTime;
             callbackSection = skillData.CastCallback.ToEnum<SectionType>();
         }
+#endif
     }
 }

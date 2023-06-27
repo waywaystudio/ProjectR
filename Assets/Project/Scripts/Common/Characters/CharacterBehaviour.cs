@@ -85,8 +85,8 @@ namespace Common.Characters
         public ActionTable<CombatEntity> OnHealProvided { get; } = new();
         public ActionTable<CombatEntity> OnHealTaken { get; } = new();
 
-        public void TakeStatusEffect(StatusEffect effect) => DynamicStatEntry.StatusEffectTable.Add(effect);
-        public void DispelStatusEffect(StatusEffect effect) => DynamicStatEntry.StatusEffectTable.Remove(effect);
+        public void TakeStatusEffect(StatusEffect effect) => DynamicStatEntry.StatusEffectTable[effect.DataIndex].Activate(this);
+        public void DispelStatusEffect(DataIndex effectIndex) => DynamicStatEntry.StatusEffectTable[effectIndex]?.Dispel();
         
 
 #if UNITY_EDITOR

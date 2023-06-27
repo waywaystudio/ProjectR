@@ -14,44 +14,71 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Index: 32
   list:
-  - id: 32000001
-    name: ArmorCrash
+  - id: 32210001
+    name: ArmorCrashStatusEffect
     isBuff: 0
     targetLayer: enemy
     duration: 8
-    iconFileName: ArmorCrash Sprite
+    iconFileName: ArmorCrashStatusEffect Sprite
     valueList:
     - 0.1
-  - id: 32000002
-    name: Bleed
+  - id: 32210002
+    name: BleedStatusEffect
     isBuff: 0
     targetLayer: enemy
     duration: 12
-    iconFileName: Bleed Sprite
+    iconFileName: BleedStatusEffect Sprite
     valueList:
     - 2
     - 4
-  - id: 32000003
-    name: Drain
+  - id: 32210003
+    name: DrainStatusEffect
     isBuff: 1
     targetLayer: ally
     duration: 10
-    iconFileName: Drain Sprite
+    iconFileName: DrainStatusEffect Sprite
     valueList:
     - 0.25
-  - id: 32000004
-    name: Ignition
+  - id: 32210004
+    name: AdrenalinStatusEffect
+    isBuff: 1
+    targetLayer: ally
+    duration: 0
+    iconFileName: AdrenalinStatusEffect Sprite
+    valueList:
+    - 0
+    - 0
+  - id: 32210005
+    name: HuntersEcstasyStatusEffect
+    isBuff: 1
+    targetLayer: ally
+    duration: 0
+    iconFileName: HuntersEcstasyStatusEffect Sprite
+    valueList:
+    - 0
+  - id: 32210006
+    name: ArcaneArrowStatusEffect
+    isBuff: 0
+    targetLayer: enemy
+    duration: 12
+    iconFileName: ArcaneArrowStatusEffect Sprite
+    valueList:
+    - 0
+  - id: 32220001
+    name: IgnitionStatusEffect
     isBuff: 0
     targetLayer: enemy
     duration: 5
-    iconFileName: Ignition Sprite
+    iconFileName: IgnitionStatusEffect Sprite
     valueList:
     - 10
     - 50
-  - id: 32000005
-    name: Horror
+  - id: 32220002
+    name: HorrorStatusEffect
     isBuff: 0
     targetLayer: enemy
     duration: 3
-    iconFileName: Horror Sprite
-    valueList: []
+    iconFileName: HorrorStatusEffect Sprite
+    valueList:
+    - 0
+    - 0

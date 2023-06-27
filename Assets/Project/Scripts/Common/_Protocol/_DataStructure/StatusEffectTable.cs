@@ -1,48 +1,43 @@
 using System;
-using System.Collections.Generic;
 using Common.StatusEffects;
 
 namespace Common
 {
-    public class StatusEffectTable
+    public class StatusEffectTable : Table<DataIndex, StatusEffect>
     {
-        private readonly Dictionary<StatusEffectKey, StatusEffect> table = new();
         private event Action OnEffectChanged;
-
+        
         public void AddListener(Action action) => OnEffectChanged += action;
         public void RemoveListener(Action action) => OnEffectChanged -= action;
-
-        public void Add(StatusEffect statusEffect)
+        
+        public override void Add(DataIndex key, StatusEffect statusEffect)
         {
-            if (!table.ContainsKey(statusEffect.Key))
-            {
-                table.Add(statusEffect.Key, statusEffect);
-                OnEffectChanged?.Invoke();
-            }
-            else
-            {
-                table[statusEffect.Key] = statusEffect;
-            }
-        }
-
-        public void Remove(StatusEffect effect)
-        {
-            if (table.ContainsKey(effect.Key))
-            {
-                table.Remove(effect.Key);
-            }
-
+            base.Add(key, statusEffect);
+            
             OnEffectChanged?.Invoke();
         }
-
-        public void Iterator(Action<StatusEffect> action)
+        
+        public override bool Remove(DataIndex effectIndex)
         {
-            foreach (var statusEffect in table.Values) action?.Invoke(statusEffect);
+            var result = base.Remove(effectIndex);
+            
+            OnEffectChanged?.Invoke();
+
+            return result;
         }
 
-        public bool TryGetValue(StatusEffectKey key, out StatusEffect value)
+        public bool TryGetEffect<T>(DataIndex key, out T effect) where T : StatusEffect
         {
-            return table.TryGetValue(key, out value);
+            if (Map.TryGetValue(key, out var value))
+            {
+                var result = value as T;
+
+                effect = result;
+                return true;
+            }
+
+            effect = null;
+            return false;
         }
     }
 }

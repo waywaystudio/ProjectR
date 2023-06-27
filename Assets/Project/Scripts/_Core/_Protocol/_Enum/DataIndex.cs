@@ -181,11 +181,14 @@ public enum DataIndex
 	VillainCommonAttack = 31222204,
 
 	/* StatusEffectData */
-	ArmorCrash = 32000001,
-	Bleed = 32000002,
-	Drain = 32000003,
-	Ignition = 32000004,
-	Horror = 32000005,
+	ArmorCrashStatusEffect = 32210001,
+	BleedStatusEffect = 32210002,
+	DrainStatusEffect = 32210003,
+	AdrenalinStatusEffect = 32210004,
+	HuntersEcstasyStatusEffect = 32210005,
+	ArcaneArrowStatusEffect = 32210006,
+	IgnitionStatusEffect = 32220001,
+	HorrorStatusEffect = 32220002,
 
 	/* WeaponData */
 	GuardiansSwordShield = 41010101,

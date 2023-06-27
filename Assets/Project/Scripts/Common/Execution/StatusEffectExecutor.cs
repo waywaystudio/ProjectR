@@ -13,9 +13,8 @@ namespace Common.Execution
             if (taker == null || !taker.DynamicStatEntry.Alive.Value) return;
 
             var targetTable = taker.DynamicStatEntry.StatusEffectTable;
-            var tableKey    = new StatusEffectKey(Origin.Provider, actionCode);
 
-            if (targetTable.TryGetValue(tableKey, out var value))
+            if (targetTable.TryGetValue(actionCode, out var value))
             {
                 value.Overriding();
             }
@@ -25,8 +24,6 @@ namespace Common.Execution
 
                 effect.transform.SetParent(taker.StatusEffectHierarchy, false);
                 effect.Activate(taker);
-                
-                taker.TakeStatusEffect(effect);
             }
         }
         

@@ -59,7 +59,7 @@ MonoBehaviour:
     - 30
     cost: -20
     paySection: Execute
-    statusEffect: 32000001
+    statusEffect: 32210001
     iconFileName: Bash Sprite
     description: Starts combat by attacking a target with a melee weapon.
   - id: 31210103
@@ -83,7 +83,7 @@ MonoBehaviour:
     - 48
     cost: 0
     paySection: 
-    statusEffect: 32000002
+    statusEffect: 32210002
     iconFileName: UpperSlash Sprite
     description: Starts combat by attacking a target with a melee weapon.
   - id: 31210104
@@ -670,7 +670,7 @@ MonoBehaviour:
     sortingType: None
     targetParam: {x: 40, y: 4}
     targetLayer: Monster
-    animationKey: AimHoldFire
+    animationKey: ShootVeryFast
     isLoop: 0
     hasEvent: 1
     skillType: Instant
@@ -779,7 +779,7 @@ MonoBehaviour:
     - 0
     cost: 0
     paySection: 
-    statusEffect: 32000004
+    statusEffect: 32220001
     iconFileName: LivingBomb Sprite
     description: Starts combat by attacking a target with a melee weapon.
   - id: 31222203

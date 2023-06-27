@@ -1,4 +1,5 @@
 using System.Threading;
+using Common;
 using Common.Skills;
 using Cysharp.Threading.Tasks;
 using Manager;
@@ -14,9 +15,11 @@ namespace Character.Venturers.Ranger.Skills
         {
             base.Initialize();
 
+            Provider.OnDamageProvided.Add("AddAdrenalinByAimShot", AddAdrenalin);
             SequenceBuilder.Add(SectionType.Active, "Tracking", () => PlayTracking().Forget())
-                           .Add(SectionType.Execute, "PlayEndChargingAnimation", PlayEndChargingAnimation)
-                           .Add(SectionType.Execute, "AimShotExecute", () => executor.Execute(null))
+                           .Add(SectionType.Execute, "PlayCastCompleteAnimation", PlayCastCompleteAnimation)
+                           .Add(SectionType.Execute, "TryConsumeEcstasy", TryConsumeEcstasy)
+                           .Add(SectionType.Execute, "FocusShotExecute", () => executor.Execute(null))
                            .Add(SectionType.End, "StopTracking", StopTracking);
         }
         
@@ -24,13 +27,35 @@ namespace Character.Venturers.Ranger.Skills
         {
             base.Dispose();
 
+            Provider.OnDamageProvided.Remove("AddAdrenalinByInstantShot");
             StopTracking();
         }
         
         
-        private void PlayEndChargingAnimation()
+        private void PlayCastCompleteAnimation()
         {
-            Cb.Animating.PlayOnce("AimHoldFire", 0f, SkillInvoker.Complete);
+            Cb.Animating.PlayOnce("AimHoldFire", 1f + Haste, SkillInvoker.Complete);
+        }
+
+        private void TryConsumeEcstasy()
+        {
+            Cb.DispelStatusEffect(DataIndex.HuntersEcstasyStatusEffect);
+        }
+        
+        private void AddAdrenalin(CombatEntity damageLog)
+        {
+            if (damageLog.CombatIndex != DataIndex) return;
+            if (damageLog.IsCritical)
+            {
+                executor.Execute(ExecuteGroup.Group2, Cb);
+            }
+            else
+            {
+                if (!Cb.DynamicStatEntry.StatusEffectTable
+                       .TryGetValue(DataIndex.AdrenalinStatusEffect, out var statusEffect)) return;
+                
+                statusEffect.Dispel();
+            }
         }
 
         private async UniTaskVoid PlayTracking()
