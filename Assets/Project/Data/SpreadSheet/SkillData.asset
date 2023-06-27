@@ -548,9 +548,9 @@ MonoBehaviour:
     priority: 1
     detectorType: Circle
     sortingType: None
-    targetParam: {x: 12, y: 360}
+    targetParam: {x: 9, y: 360}
     targetLayer: Monster
-    animationKey: JumpReady
+    animationKey: Landing
     isLoop: 0
     hasEvent: 0
     skillType: Instant
@@ -591,30 +591,6 @@ MonoBehaviour:
     iconFileName: MarkOfDeath Sprite
     description: Starts combat by attacking a target with a melee weapon.
   - id: 31210401
-    name: ShotAttack
-    behaviourMask: Skill
-    priority: 1
-    detectorType: Circle
-    sortingType: None
-    targetParam: {x: 30, y: 6}
-    targetLayer: Monster
-    animationKey: shotAttack
-    isLoop: 0
-    hasEvent: 1
-    skillType: Instant
-    animationCallback: Complete
-    coolTime: 0
-    coolTimeInvoker: None
-    castTime: 0
-    castCallback: None
-    completionValueList:
-    - 9
-    cost: 0
-    paySection: 
-    statusEffect: 0
-    iconFileName: ShotAttack Sprite
-    description: Starts combat by attacking a target with a melee weapon.
-  - id: 31210402
     name: ContinuesAttack
     behaviourMask: Skill
     priority: 2
@@ -638,7 +614,7 @@ MonoBehaviour:
     statusEffect: 0
     iconFileName: ContinuesAttack Sprite
     description: Starts combat by attacking a target with a melee weapon.
-  - id: 31210403
+  - id: 31210402
     name: InstantTrap
     behaviourMask: RigidSkill
     priority: 3
@@ -662,29 +638,101 @@ MonoBehaviour:
     statusEffect: 0
     iconFileName: InstantTrap Sprite
     description: Starts combat by attacking a target with a melee weapon.
-  - id: 31210404
+  - id: 31210403
     name: AimShot
     behaviourMask: Skill
-    priority: 4
+    priority: 3
     detectorType: Circle
     sortingType: None
-    targetParam: {x: 40, y: 8}
+    targetParam: {x: 40, y: 4}
     targetLayer: Monster
-    animationKey: aiming
-    isLoop: 0
+    animationKey: AimHold
+    isLoop: 1
     hasEvent: 0
-    skillType: Charging
+    skillType: Casting
     animationCallback: None
-    coolTime: 18
+    coolTime: 1
     coolTimeInvoker: Complete
-    castTime: 3
+    castTime: 1.5
     castCallback: Execute
     completionValueList:
     - 50
-    cost: 0
-    paySection: 
+    cost: 10
+    paySection: Execute
     statusEffect: 0
     iconFileName: AimShot Sprite
+    description: Starts combat by attacking a target with a melee weapon.
+  - id: 31210404
+    name: InstantShot
+    behaviourMask: Skill
+    priority: 5
+    detectorType: Circle
+    sortingType: None
+    targetParam: {x: 40, y: 4}
+    targetLayer: Monster
+    animationKey: AimHoldFire
+    isLoop: 0
+    hasEvent: 1
+    skillType: Instant
+    animationCallback: Complete
+    coolTime: 4
+    coolTimeInvoker: Active
+    castTime: 0
+    castCallback: None
+    completionValueList:
+    - 9
+    cost: 20
+    paySection: None
+    statusEffect: 0
+    iconFileName: InstantShot Sprite
+    description: Starts combat by attacking a target with a melee weapon.
+  - id: 31210405
+    name: FocusedStrike
+    behaviourMask: Skill
+    priority: 10
+    detectorType: Circle
+    sortingType: None
+    targetParam: {x: 40, y: 6}
+    targetLayer: Monster
+    animationKey: AimHold
+    isLoop: 1
+    hasEvent: 1
+    skillType: Casting
+    animationCallback: None
+    coolTime: 6
+    coolTimeInvoker: Complete
+    castTime: 2
+    castCallback: Execute
+    completionValueList:
+    - 0
+    cost: 20
+    paySection: Execute
+    statusEffect: 0
+    iconFileName: FocusedStrike Sprite
+    description: Starts combat by attacking a target with a melee weapon.
+  - id: 31210406
+    name: Reload
+    behaviourMask: Skill
+    priority: 1
+    detectorType: Self
+    sortingType: None
+    targetParam: {x: 0, y: 0}
+    targetLayer: Adventurer
+    animationKey: Reload
+    isLoop: 0
+    hasEvent: 0
+    skillType: Instant
+    animationCallback: Complete
+    coolTime: 6
+    coolTimeInvoker: Active
+    castTime: 0
+    castCallback: None
+    completionValueList:
+    - 0
+    cost: -60
+    paySection: None
+    statusEffect: 0
+    iconFileName: Reload Sprite
     description: Starts combat by attacking a target with a melee weapon.
   - id: 31222201
     name: ShockWave

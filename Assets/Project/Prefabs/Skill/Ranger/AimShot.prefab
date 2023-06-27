@@ -95,7 +95,7 @@ Transform:
   - {fileID: 7221708945386366489}
   - {fileID: 5853087751410363707}
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &3008013076941583783
 MonoBehaviour:
@@ -109,9 +109,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 394c513917a88cb46885b0b3a23e012d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  actionCode: 31210404
+  actionCode: 31210403
   behaviourMask: 32
-  priority: 4
+  priority: 3
   executor:
     table:
       keyList: 01000000
@@ -123,24 +123,28 @@ MonoBehaviour:
     targetType: 1
     sortingType: 0
     maxBufferCount: 32
-    sizeVector: {x: 40, y: 8}
+    sizeVector: {x: 40, y: 4}
     targetLayer:
       serializedVersion: 2
       m_Bits: 256
   animationTrait:
-    animationKey: aiming
-    isLoop: 0
+    animationKey: AimHold
+    isLoop: 1
     hasEvent: 0
-    skillType: 3
+    timeScale: 1
+    skillType: 2
     callbackSection: 0
   coolTimer:
-    coolTime: 18
+    coolTime: 1
     invokeSection: 3
   castTimer:
-    castingTime: 3
+    castingTime: 1.5
     callbackSection: 5
+  cost:
+    cost: 10
+    paySection: 5
   description: Starts combat by attacking a target with a melee weapon.
-  icon: {fileID: 21300000, guid: 125357d743831a743b704a4022fac076, type: 3}
+  icon: {fileID: 21300000, guid: 8bdd3baa98608324480cf1d7c146be36, type: 3}
 --- !u!1 &9200880587379613382
 GameObject:
   m_ObjectHideFlags: 0
@@ -186,7 +190,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   group: 1
-  actionCode: 31000018
+  actionCode: 31210403
   muzzle: {fileID: 0}
   pool:
     prefab: {fileID: 68301466263117794, guid: 614519c2858722748860125352e5a59e, type: 3}

@@ -5,6 +5,8 @@ public enum BindingCode
     Keyboard2,
     Keyboard3,
     Keyboard4,
+    Keyboard5,
+    Keyboard6,
     LeftMouse,
     RightMouse,
     LeftShift,

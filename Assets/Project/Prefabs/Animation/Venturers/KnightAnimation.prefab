@@ -12,10 +12,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: KnightAnimation
       objectReference: {fileID: 0}
-    - target: {fileID: 517243171829503790, guid: cda7ba107a955b24cba549bb4331fac6, type: 3}
-      propertyPath: Job
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 978258811399340691, guid: cda7ba107a955b24cba549bb4331fac6, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -62,30 +58,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1636494037268292674, guid: cda7ba107a955b24cba549bb4331fac6, type: 3}
       propertyPath: m_Mesh
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 4933293693679076565, guid: cda7ba107a955b24cba549bb4331fac6, type: 3}
-      propertyPath: m_Materials.Array.data[0]
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 4933293693679076565, guid: cda7ba107a955b24cba549bb4331fac6, type: 3}
-      propertyPath: m_Materials.Array.data[1]
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 4933293693679076565, guid: cda7ba107a955b24cba549bb4331fac6, type: 3}
-      propertyPath: m_Materials.Array.data[2]
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 4933293693679076565, guid: cda7ba107a955b24cba549bb4331fac6, type: 3}
-      propertyPath: m_Materials.Array.data[3]
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 4933293693679076565, guid: cda7ba107a955b24cba549bb4331fac6, type: 3}
-      propertyPath: m_Materials.Array.data[4]
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 4933293693679076565, guid: cda7ba107a955b24cba549bb4331fac6, type: 3}
-      propertyPath: m_Materials.Array.data[5]
       value: 
       objectReference: {fileID: 0}
     m_RemovedComponents: []

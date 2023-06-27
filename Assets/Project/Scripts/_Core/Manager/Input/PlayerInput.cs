@@ -64,6 +64,24 @@ public partial class @ProjectInput: IInputActionCollection2, IDisposable
                     ""initialStateCheck"": false
                 },
                 {
+                    ""name"": ""Keyboard5"",
+                    ""type"": ""Button"",
+                    ""id"": ""3e12abeb-6e03-43d1-8a58-e28399654bb9"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Keyboard6"",
+                    ""type"": ""Button"",
+                    ""id"": ""beed1237-4243-45f8-9748-5ce33a5599a7"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
                     ""name"": ""Q"",
                     ""type"": ""Button"",
                     ""id"": ""e12c27fb-6985-4994-92ba-59b4b78c69fa"",
@@ -366,6 +384,28 @@ public partial class @ProjectInput: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""groups"": ""PC"",
                     ""action"": ""G"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""11e02067-ed4c-493d-b191-3e8998f4cfd0"",
+                    ""path"": ""<Keyboard>/5"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""PC"",
+                    ""action"": ""Keyboard5"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""f316611f-33f5-44d2-835f-777ecc51b388"",
+                    ""path"": ""<Keyboard>/6"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""PC"",
+                    ""action"": ""Keyboard6"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -913,6 +953,8 @@ public partial class @ProjectInput: IInputActionCollection2, IDisposable
         m_Raid_Keyboard2 = m_Raid.FindAction("Keyboard2", throwIfNotFound: true);
         m_Raid_Keyboard3 = m_Raid.FindAction("Keyboard3", throwIfNotFound: true);
         m_Raid_Keyboard4 = m_Raid.FindAction("Keyboard4", throwIfNotFound: true);
+        m_Raid_Keyboard5 = m_Raid.FindAction("Keyboard5", throwIfNotFound: true);
+        m_Raid_Keyboard6 = m_Raid.FindAction("Keyboard6", throwIfNotFound: true);
         m_Raid_Q = m_Raid.FindAction("Q", throwIfNotFound: true);
         m_Raid_W = m_Raid.FindAction("W", throwIfNotFound: true);
         m_Raid_E = m_Raid.FindAction("E", throwIfNotFound: true);
@@ -1003,6 +1045,8 @@ public partial class @ProjectInput: IInputActionCollection2, IDisposable
     private readonly InputAction m_Raid_Keyboard2;
     private readonly InputAction m_Raid_Keyboard3;
     private readonly InputAction m_Raid_Keyboard4;
+    private readonly InputAction m_Raid_Keyboard5;
+    private readonly InputAction m_Raid_Keyboard6;
     private readonly InputAction m_Raid_Q;
     private readonly InputAction m_Raid_W;
     private readonly InputAction m_Raid_E;
@@ -1024,6 +1068,8 @@ public partial class @ProjectInput: IInputActionCollection2, IDisposable
         public InputAction @Keyboard2 => m_Wrapper.m_Raid_Keyboard2;
         public InputAction @Keyboard3 => m_Wrapper.m_Raid_Keyboard3;
         public InputAction @Keyboard4 => m_Wrapper.m_Raid_Keyboard4;
+        public InputAction @Keyboard5 => m_Wrapper.m_Raid_Keyboard5;
+        public InputAction @Keyboard6 => m_Wrapper.m_Raid_Keyboard6;
         public InputAction @Q => m_Wrapper.m_Raid_Q;
         public InputAction @W => m_Wrapper.m_Raid_W;
         public InputAction @E => m_Wrapper.m_Raid_E;
@@ -1058,6 +1104,12 @@ public partial class @ProjectInput: IInputActionCollection2, IDisposable
             @Keyboard4.started += instance.OnKeyboard4;
             @Keyboard4.performed += instance.OnKeyboard4;
             @Keyboard4.canceled += instance.OnKeyboard4;
+            @Keyboard5.started += instance.OnKeyboard5;
+            @Keyboard5.performed += instance.OnKeyboard5;
+            @Keyboard5.canceled += instance.OnKeyboard5;
+            @Keyboard6.started += instance.OnKeyboard6;
+            @Keyboard6.performed += instance.OnKeyboard6;
+            @Keyboard6.canceled += instance.OnKeyboard6;
             @Q.started += instance.OnQ;
             @Q.performed += instance.OnQ;
             @Q.canceled += instance.OnQ;
@@ -1113,6 +1165,12 @@ public partial class @ProjectInput: IInputActionCollection2, IDisposable
             @Keyboard4.started -= instance.OnKeyboard4;
             @Keyboard4.performed -= instance.OnKeyboard4;
             @Keyboard4.canceled -= instance.OnKeyboard4;
+            @Keyboard5.started -= instance.OnKeyboard5;
+            @Keyboard5.performed -= instance.OnKeyboard5;
+            @Keyboard5.canceled -= instance.OnKeyboard5;
+            @Keyboard6.started -= instance.OnKeyboard6;
+            @Keyboard6.performed -= instance.OnKeyboard6;
+            @Keyboard6.canceled -= instance.OnKeyboard6;
             @Q.started -= instance.OnQ;
             @Q.performed -= instance.OnQ;
             @Q.canceled -= instance.OnQ;
@@ -1302,6 +1360,8 @@ public partial class @ProjectInput: IInputActionCollection2, IDisposable
         void OnKeyboard2(InputAction.CallbackContext context);
         void OnKeyboard3(InputAction.CallbackContext context);
         void OnKeyboard4(InputAction.CallbackContext context);
+        void OnKeyboard5(InputAction.CallbackContext context);
+        void OnKeyboard6(InputAction.CallbackContext context);
         void OnQ(InputAction.CallbackContext context);
         void OnW(InputAction.CallbackContext context);
         void OnE(InputAction.CallbackContext context);

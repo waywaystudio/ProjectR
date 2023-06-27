@@ -66,6 +66,24 @@ namespace Raid
             if (RaidDirector.AdventurerList.Count > 2)
                 RaidDirector.ChangeFocusAdventurer(RaidDirector.AdventurerList[2]);
         }
+        
+        private void ToFourthAdventurer(InputAction.CallbackContext context)
+        {
+            if (RaidDirector.AdventurerList.Count > 3)
+                RaidDirector.ChangeFocusAdventurer(RaidDirector.AdventurerList[3]);
+        }
+        
+        private void ToFifthAdventurer(InputAction.CallbackContext context)
+        {
+            if (RaidDirector.AdventurerList.Count > 4) 
+                RaidDirector.ChangeFocusAdventurer(RaidDirector.AdventurerList[4]);
+        }
+        
+        private void ToSixthAdventurer(InputAction.CallbackContext context)
+        {
+            if (RaidDirector.AdventurerList.Count > 5)
+                RaidDirector.ChangeFocusAdventurer(RaidDirector.AdventurerList[5]);
+        }
 
 
         private void Register()
@@ -87,6 +105,15 @@ namespace Raid
             
             if (MainManager.Input.TryGetAction(BindingCode.Keyboard3, out var focusThird))
                 focusThird.started += ToThirdAdventurer;
+            
+            if (MainManager.Input.TryGetAction(BindingCode.Keyboard4, out var focusFourth))
+                focusFourth.started += ToFourthAdventurer;
+            
+            if (MainManager.Input.TryGetAction(BindingCode.Keyboard5, out var focusFifth))
+                focusFifth.started += ToFifthAdventurer;
+            
+            if (MainManager.Input.TryGetAction(BindingCode.Keyboard6, out var focusSixth))
+                focusSixth.started += ToSixthAdventurer;
         }
 
         private void Unregister()
@@ -110,6 +137,15 @@ namespace Raid
             
             if (MainManager.Input.TryGetAction(BindingCode.Keyboard3, out var focusThird))
                 focusThird.started -= ToThirdAdventurer;
+            
+            if (MainManager.Input.TryGetAction(BindingCode.Keyboard1, out var focusFourth))
+                focusFourth.started -= ToFourthAdventurer;
+            
+            if (MainManager.Input.TryGetAction(BindingCode.Keyboard2, out var focusFifth))
+                focusFifth.started -= ToFifthAdventurer;
+            
+            if (MainManager.Input.TryGetAction(BindingCode.Keyboard3, out var focusSixth))
+                focusSixth.started -= ToSixthAdventurer;
         }
 
         private void Start() => Register();

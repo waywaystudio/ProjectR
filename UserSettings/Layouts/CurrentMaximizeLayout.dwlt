@@ -24,7 +24,7 @@ MonoBehaviour:
   m_MinSize: {x: 400, y: 100}
   m_MaxSize: {x: 32384, y: 16192}
   vertical: 0
-  controlID: 12078
+  controlID: 46011
 --- !u!114 &2
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -147,7 +147,7 @@ MonoBehaviour:
   m_MinSize: {x: 300, y: 100}
   m_MaxSize: {x: 24288, y: 16192}
   vertical: 1
-  controlID: 12079
+  controlID: 46012
 --- !u!114 &4
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -172,7 +172,7 @@ MonoBehaviour:
   m_MinSize: {x: 200, y: 50}
   m_MaxSize: {x: 16192, y: 8096}
   vertical: 0
-  controlID: 12080
+  controlID: 46013
 --- !u!114 &5
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -262,9 +262,9 @@ MonoBehaviour:
   m_SceneHierarchy:
     m_TreeViewState:
       scrollPos: {x: 0, y: 0}
-      m_SelectedIDs: f47c0000
-      m_LastClickedID: 31988
-      m_ExpandedIDs: 04fbffff
+      m_SelectedIDs: 
+      m_LastClickedID: 0
+      m_ExpandedIDs: d8fafffff8faffffa2890000
       m_RenameOverlay:
         m_UserAcceptedRename: 0
         m_Name: 
@@ -313,7 +313,7 @@ MonoBehaviour:
   m_MinSize: {x: 300, y: 50}
   m_MaxSize: {x: 24288, y: 8096}
   vertical: 0
-  controlID: 12127
+  controlID: 46081
 --- !u!114 &9
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -729,7 +729,7 @@ MonoBehaviour:
   m_Position:
     m_Target: {x: -0.56627035, y: 1.1941149, z: 8.26404}
     speed: 2
-    m_Value: {x: -0.56627035, y: 1.1941149, z: 8.26404}
+    m_Value: {x: 0.35165846, y: 0.7443633, z: 1.3263116}
   m_RenderMode: 0
   m_CameraMode:
     drawMode: 0
@@ -777,11 +777,11 @@ MonoBehaviour:
   m_Rotation:
     m_Target: {x: 0.5770939, y: 0.022170812, z: -0.016096994, w: 0.8164458}
     speed: 2
-    m_Value: {x: -0.57709384, y: -0.02217081, z: 0.016096994, w: -0.8164458}
+    m_Value: {x: 0.5523426, y: 0.016412644, z: -0.011239563, w: 0.83337986}
   m_Size:
     m_Target: 3.4195144
     speed: 2
-    m_Value: 3.4195144
+    m_Value: 3.463881
   m_Ortho:
     m_Target: 0
     speed: 2
@@ -799,7 +799,7 @@ MonoBehaviour:
     m_FarClip: 10000
     m_DynamicClip: 1
     m_OcclusionCulling: 0
-  m_LastSceneViewRotation: {x: 0.5600301, y: 0.0038845025, z: -0.0029940775, w: 0.8286773}
+  m_LastSceneViewRotation: {x: 0.5770939, y: 0.022170812, z: -0.016096994, w: 0.8164458}
   m_LastSceneViewOrtho: 0
   m_ReplacementShader: {fileID: 0}
   m_ReplacementString: 
@@ -1018,7 +1018,7 @@ MonoBehaviour:
     m_OverlaysVisible: 1
   m_LockTracker:
     m_IsLocked: 0
-  m_LastSelectedObjectID: 57322
+  m_LastSelectedObjectID: -78358
 --- !u!114 &16
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -1090,7 +1090,7 @@ MonoBehaviour:
     m_SkipHidden: 0
     m_SearchArea: 1
     m_Folders:
-    - Assets/Project/Prefabs/Skill/Rogue
+    - Assets/Project/Prefabs/Venturer
     m_Globs: []
     m_OriginalText: 
     m_ImportLogFlags: 0
@@ -1098,16 +1098,16 @@ MonoBehaviour:
   m_ViewMode: 1
   m_StartGridSize: 16
   m_LastFolders:
-  - Assets/Project/Prefabs/Skill/Rogue
+  - Assets/Project/Prefabs/Venturer
   m_LastFoldersGridSize: 16
   m_LastProjectPath: C:\Project\ProjectR++
   m_LockTracker:
     m_IsLocked: 0
   m_FolderTreeState:
-    scrollPos: {x: 0, y: 493}
-    m_SelectedIDs: 14be0000
-    m_LastClickedID: 48660
-    m_ExpandedIDs: 00000000a4bd0000a6bd0000a8bd0000aabd0000acbd0000aebd0000b0bd0000b2bd0000b4bd0000b6bd000030be000000ca9a3b
+    scrollPos: {x: 0, y: 541}
+    m_SelectedIDs: 28be0000
+    m_LastClickedID: 48680
+    m_ExpandedIDs: 00000000acbd0000aebd0000b0bd0000b2bd0000b4bd0000b6bd0000b8bd0000babd0000bcbd0000bebd0000c0bd0000e6bd000030be0000c6d50000d6ef000000ca9a3b
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -1135,7 +1135,7 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: 
     m_LastClickedID: 0
-    m_ExpandedIDs: 00000000a4bd0000a6bd0000a8bd0000aabd0000acbd0000aebd0000b0bd0000b2bd0000b4bd0000b6bd000030be000000ca9a3b
+    m_ExpandedIDs: 00000000acbd0000aebd0000b0bd0000b2bd0000b4bd0000b6bd0000b8bd0000babd0000bcbd0000bebd0000c0bd0000e6bd000030be0000c6d50000d6ef000000ca9a3b
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -1160,8 +1160,8 @@ MonoBehaviour:
       m_Icon: {fileID: 0}
       m_ResourceFile: 
   m_ListAreaState:
-    m_SelectedInstanceIDs: f47c0000
-    m_LastClickedInstanceID: 31988
+    m_SelectedInstanceIDs: 
+    m_LastClickedInstanceID: 0
     m_HadKeyboardFocusLastEvent: 0
     m_ExpandedInstanceIDs: 80360100
     m_RenameOverlay:
@@ -1190,7 +1190,7 @@ MonoBehaviour:
     m_ScrollPosition: {x: 0, y: 0}
     m_GridSize: 16
   m_SkipHiddenPackages: 0
-  m_DirectoriesAreaWidth: 205
+  m_DirectoriesAreaWidth: 244
 --- !u!114 &18
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -1252,7 +1252,7 @@ MonoBehaviour:
     m_SaveData: []
     m_OverlaysVisible: 1
   m_SearchFilter:
-    m_NameFilter: MarkOfDea
+    m_NameFilter: Knight
     m_ClassNames: []
     m_AssetLabels: []
     m_AssetBundleNames: []
@@ -1264,7 +1264,7 @@ MonoBehaviour:
     m_Folders:
     - Assets/Project/Scripts/Character/Venturers/Ranger/Skills
     m_Globs: []
-    m_OriginalText: MarkOfDea
+    m_OriginalText: Knight
     m_ImportLogFlags: 0
     m_FilterByTypeIntersection: 0
   m_ViewMode: 1
@@ -1276,10 +1276,10 @@ MonoBehaviour:
   m_LockTracker:
     m_IsLocked: 1
   m_FolderTreeState:
-    scrollPos: {x: 0, y: 753}
-    m_SelectedIDs: 28d40000
-    m_LastClickedID: 54312
-    m_ExpandedIDs: 00000000a4bd0000a6bd0000a8bd0000aabd0000acbd0000aebd0000b0bd0000b2bd0000b4bd0000b6bd000030be000000ca9a3b
+    scrollPos: {x: 0, y: 925}
+    m_SelectedIDs: 3ebe0000
+    m_LastClickedID: 48702
+    m_ExpandedIDs: 00000000acbd0000aebd0000b0bd0000b2bd0000b4bd0000b6bd0000b8bd0000babd0000bcbd0000bebd0000c0bd0000e6bd000030be0000c6d50000d6ef000000ca9a3b
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -1307,7 +1307,7 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: 
     m_LastClickedID: 0
-    m_ExpandedIDs: 00000000a4bd0000a6bd0000a8bd0000aabd0000acbd0000aebd0000b0bd0000b2bd0000b4bd0000b6bd000030be000000ca9a3b
+    m_ExpandedIDs: 00000000acbd0000aebd0000b0bd0000b2bd0000b4bd0000b6bd0000b8bd0000babd0000bcbd0000bebd0000c0bd0000e6bd000030be0000c6d50000d6ef000000ca9a3b
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -1332,9 +1332,9 @@ MonoBehaviour:
       m_Icon: {fileID: 0}
       m_ResourceFile: 
   m_ListAreaState:
-    m_SelectedInstanceIDs: f47c0000
-    m_LastClickedInstanceID: 31988
-    m_HadKeyboardFocusLastEvent: 0
+    m_SelectedInstanceIDs: 
+    m_LastClickedInstanceID: 0
+    m_HadKeyboardFocusLastEvent: 1
     m_ExpandedInstanceIDs: c6230000d68100009ac5030084800000000000007e9a0000489d0200068400000eb800001aad0000007c00004c86000046820000408200005c0f01000a0f0100280f0100168c01001c8d0100
     m_RenameOverlay:
       m_UserAcceptedRename: 0

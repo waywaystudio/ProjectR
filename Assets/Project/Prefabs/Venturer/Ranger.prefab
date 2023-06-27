@@ -309,11 +309,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 671937298815967466, guid: f38e0dcb509b7c544ac74c7131e9ed9b, type: 3}
       propertyPath: animationTrait.animationKey
-      value: ShootFast
+      value: ShootVeryFast
       objectReference: {fileID: 0}
     - target: {fileID: 8380361914805468174, guid: f38e0dcb509b7c544ac74c7131e9ed9b, type: 3}
       propertyPath: m_Name
-      value: ShotAttack
+      value: InstantShot
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -348,18 +348,26 @@ PrefabInstance:
       propertyPath: actionCode
       value: 13000017
       objectReference: {fileID: 0}
+    - target: {fileID: 817947836457907915, guid: a3acb303f8f3ed24c8afb44fa3d18ccf, type: 3}
+      propertyPath: bindingCode
+      value: 11
+      objectReference: {fileID: 0}
     - target: {fileID: 1002022921544274789, guid: a3acb303f8f3ed24c8afb44fa3d18ccf, type: 3}
       propertyPath: actionCode
-      value: 31210402
+      value: 31210404
       objectReference: {fileID: 0}
     - target: {fileID: 1002022921544274789, guid: a3acb303f8f3ed24c8afb44fa3d18ccf, type: 3}
       propertyPath: actionIcon
       value: 
       objectReference: {fileID: 7769353189435137216}
+    - target: {fileID: 1025019122601041559, guid: a3acb303f8f3ed24c8afb44fa3d18ccf, type: 3}
+      propertyPath: bindingCode
+      value: 14
+      objectReference: {fileID: 0}
     - target: {fileID: 1197200158587525578, guid: a3acb303f8f3ed24c8afb44fa3d18ccf, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 21300000, guid: 2482dd41d4c9fcc44a20fb70153bb822, type: 3}
+      objectReference: {fileID: 21300000, guid: 126effccf14aace4fa7015d10c4ea912, type: 3}
     - target: {fileID: 1231135123321442866, guid: a3acb303f8f3ed24c8afb44fa3d18ccf, type: 3}
       propertyPath: m_AnchorMax.y
       value: 1
@@ -431,11 +439,15 @@ PrefabInstance:
     - target: {fileID: 1579097280238113144, guid: a3acb303f8f3ed24c8afb44fa3d18ccf, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 21300000, guid: d67f720bb3783db43b6682b93885e2b5, type: 3}
+      objectReference: {fileID: 21300000, guid: 8bdd3baa98608324480cf1d7c146be36, type: 3}
     - target: {fileID: 1871612117735600535, guid: a3acb303f8f3ed24c8afb44fa3d18ccf, type: 3}
       propertyPath: m_Sprite
       value: 
       objectReference: {fileID: 21300000, guid: 2482dd41d4c9fcc44a20fb70153bb822, type: 3}
+    - target: {fileID: 2056834963921313049, guid: a3acb303f8f3ed24c8afb44fa3d18ccf, type: 3}
+      propertyPath: bindingCode
+      value: 13
+      objectReference: {fileID: 0}
     - target: {fileID: 2079936948553825679, guid: a3acb303f8f3ed24c8afb44fa3d18ccf, type: 3}
       propertyPath: m_AnchorMax.y
       value: 1
@@ -454,7 +466,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2266547791025958082, guid: a3acb303f8f3ed24c8afb44fa3d18ccf, type: 3}
       propertyPath: actionCode
-      value: 31210404
+      value: 31210402
       objectReference: {fileID: 0}
     - target: {fileID: 2266547791025958082, guid: a3acb303f8f3ed24c8afb44fa3d18ccf, type: 3}
       propertyPath: actionIcon
@@ -462,12 +474,12 @@ PrefabInstance:
       objectReference: {fileID: 7160064012819233583}
     - target: {fileID: 2530082981901857982, guid: a3acb303f8f3ed24c8afb44fa3d18ccf, type: 3}
       propertyPath: actionCode
-      value: 31210401
+      value: 31210403
       objectReference: {fileID: 0}
     - target: {fileID: 2696955962189539856, guid: a3acb303f8f3ed24c8afb44fa3d18ccf, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 21300000, guid: 125357d743831a743b704a4022fac076, type: 3}
+      objectReference: {fileID: 21300000, guid: 2482dd41d4c9fcc44a20fb70153bb822, type: 3}
     - target: {fileID: 2773248305004417747, guid: a3acb303f8f3ed24c8afb44fa3d18ccf, type: 3}
       propertyPath: skillCodes.Array.data[0]
       value: 13000015
@@ -631,7 +643,7 @@ PrefabInstance:
     - target: {fileID: 3306313859355921919, guid: a3acb303f8f3ed24c8afb44fa3d18ccf, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 21300000, guid: 126effccf14aace4fa7015d10c4ea912, type: 3}
+      objectReference: {fileID: 21300000, guid: 4302851957bc5914280b50838ce03c48, type: 3}
     - target: {fileID: 3744010700067239338, guid: a3acb303f8f3ed24c8afb44fa3d18ccf, type: 3}
       propertyPath: m_Name
       value: Ranger
@@ -703,6 +715,10 @@ PrefabInstance:
     - target: {fileID: 4680990637010569688, guid: a3acb303f8f3ed24c8afb44fa3d18ccf, type: 3}
       propertyPath: actionCode
       value: 13000018
+      objectReference: {fileID: 0}
+    - target: {fileID: 4772417505375309394, guid: a3acb303f8f3ed24c8afb44fa3d18ccf, type: 3}
+      propertyPath: bindingCode
+      value: 12
       objectReference: {fileID: 0}
     - target: {fileID: 4968826710418206697, guid: a3acb303f8f3ed24c8afb44fa3d18ccf, type: 3}
       propertyPath: characterData
@@ -794,36 +810,36 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7971064793264385864, guid: a3acb303f8f3ed24c8afb44fa3d18ccf, type: 3}
       propertyPath: skillTable.keyList.Array.data[0]
-      value: 31210401
-      objectReference: {fileID: 0}
-    - target: {fileID: 7971064793264385864, guid: a3acb303f8f3ed24c8afb44fa3d18ccf, type: 3}
-      propertyPath: skillTable.keyList.Array.data[1]
-      value: 31210402
-      objectReference: {fileID: 0}
-    - target: {fileID: 7971064793264385864, guid: a3acb303f8f3ed24c8afb44fa3d18ccf, type: 3}
-      propertyPath: skillTable.keyList.Array.data[2]
       value: 31210403
       objectReference: {fileID: 0}
     - target: {fileID: 7971064793264385864, guid: a3acb303f8f3ed24c8afb44fa3d18ccf, type: 3}
-      propertyPath: skillTable.keyList.Array.data[3]
+      propertyPath: skillTable.keyList.Array.data[1]
       value: 31210404
+      objectReference: {fileID: 0}
+    - target: {fileID: 7971064793264385864, guid: a3acb303f8f3ed24c8afb44fa3d18ccf, type: 3}
+      propertyPath: skillTable.keyList.Array.data[2]
+      value: 31210401
+      objectReference: {fileID: 0}
+    - target: {fileID: 7971064793264385864, guid: a3acb303f8f3ed24c8afb44fa3d18ccf, type: 3}
+      propertyPath: skillTable.keyList.Array.data[3]
+      value: 31210402
       objectReference: {fileID: 0}
     - target: {fileID: 7971064793264385864, guid: a3acb303f8f3ed24c8afb44fa3d18ccf, type: 3}
       propertyPath: skillTable.valueList.Array.data[0]
       value: 
-      objectReference: {fileID: 5318536281141833730}
+      objectReference: {fileID: 788489154766220580}
     - target: {fileID: 7971064793264385864, guid: a3acb303f8f3ed24c8afb44fa3d18ccf, type: 3}
       propertyPath: skillTable.valueList.Array.data[1]
       value: 
-      objectReference: {fileID: 1761103197977588081}
+      objectReference: {fileID: 5318536281141833730}
     - target: {fileID: 7971064793264385864, guid: a3acb303f8f3ed24c8afb44fa3d18ccf, type: 3}
       propertyPath: skillTable.valueList.Array.data[2]
       value: 
-      objectReference: {fileID: 4306424560445645043}
+      objectReference: {fileID: 1761103197977588081}
     - target: {fileID: 7971064793264385864, guid: a3acb303f8f3ed24c8afb44fa3d18ccf, type: 3}
       propertyPath: skillTable.valueList.Array.data[3]
       value: 
-      objectReference: {fileID: 788489154766220580}
+      objectReference: {fileID: 4306424560445645043}
     - target: {fileID: 8577779482544988942, guid: a3acb303f8f3ed24c8afb44fa3d18ccf, type: 3}
       propertyPath: m_AnchorMax.y
       value: 1
@@ -842,7 +858,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9131972941759606595, guid: a3acb303f8f3ed24c8afb44fa3d18ccf, type: 3}
       propertyPath: actionCode
-      value: 31210403
+      value: 31210401
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -852,6 +868,9 @@ PrefabInstance:
       addedObject: {fileID: 3854464010021478474}
     - targetCorrespondingSourceObject: {fileID: 3975777049801717595, guid: a3acb303f8f3ed24c8afb44fa3d18ccf, type: 3}
       insertIndex: -1
+      addedObject: {fileID: 2309995115273497203}
+    - targetCorrespondingSourceObject: {fileID: 3975777049801717595, guid: a3acb303f8f3ed24c8afb44fa3d18ccf, type: 3}
+      insertIndex: -1
       addedObject: {fileID: 4890085559549993496}
     - targetCorrespondingSourceObject: {fileID: 3975777049801717595, guid: a3acb303f8f3ed24c8afb44fa3d18ccf, type: 3}
       insertIndex: -1
@@ -859,9 +878,6 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 3975777049801717595, guid: a3acb303f8f3ed24c8afb44fa3d18ccf, type: 3}
       insertIndex: -1
       addedObject: {fileID: 5745963904522034025}
-    - targetCorrespondingSourceObject: {fileID: 3975777049801717595, guid: a3acb303f8f3ed24c8afb44fa3d18ccf, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 2309995115273497203}
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a3acb303f8f3ed24c8afb44fa3d18ccf, type: 3}
 --- !u!114 &199560196790107862 stripped
@@ -974,6 +990,10 @@ PrefabInstance:
     - target: {fileID: 8592763601916381546, guid: 4f6ef69c46ead0944a759fe09405cd25, type: 3}
       propertyPath: isRigid
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8592763601916381546, guid: 4f6ef69c46ead0944a759fe09405cd25, type: 3}
+      propertyPath: actionCode
+      value: 31210402
       objectReference: {fileID: 0}
     - target: {fileID: 8592763601916381546, guid: 4f6ef69c46ead0944a759fe09405cd25, type: 3}
       propertyPath: disableActionMask

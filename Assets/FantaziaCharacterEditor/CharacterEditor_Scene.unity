@@ -439,7 +439,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d247ba06193faa74d9335f5481b2b56c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  skeletonDataAsset: {fileID: 11400000, guid: dec34299a1a4b0e429f36c4fe846d4b6, type: 2}
+  skeletonDataAsset: {fileID: 11400000, guid: 5d080d9a0fd90e642842c0b4d8dc2023, type: 2}
   initialSkinName: 0
   fixPrefabOverrideViaMeshFilter: 2
   initialFlipX: 0
@@ -487,19 +487,12 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 3812502d2e10dbd4db784942a6413ced, type: 2}
-  - {fileID: 2100000, guid: a3a8182e0e7226b4a945cbf63c97f9df, type: 2}
-  - {fileID: 2100000, guid: 3812502d2e10dbd4db784942a6413ced, type: 2}
-  - {fileID: 2100000, guid: 642287f3064161f418c9750c02bcac7e, type: 2}
-  - {fileID: 2100000, guid: a3a8182e0e7226b4a945cbf63c97f9df, type: 2}
-  - {fileID: 2100000, guid: 3812502d2e10dbd4db784942a6413ced, type: 2}
-  - {fileID: 2100000, guid: 642287f3064161f418c9750c02bcac7e, type: 2}
-  - {fileID: 2100000, guid: 3812502d2e10dbd4db784942a6413ced, type: 2}
-  - {fileID: 2100000, guid: a3a8182e0e7226b4a945cbf63c97f9df, type: 2}
-  - {fileID: 2100000, guid: 3812502d2e10dbd4db784942a6413ced, type: 2}
-  - {fileID: 2100000, guid: a3a8182e0e7226b4a945cbf63c97f9df, type: 2}
-  - {fileID: 2100000, guid: 3812502d2e10dbd4db784942a6413ced, type: 2}
-  - {fileID: 2100000, guid: a3a8182e0e7226b4a945cbf63c97f9df, type: 2}
+  - {fileID: 2100000, guid: 4373b9ea3ce428941968d772f2944478, type: 2}
+  - {fileID: 2100000, guid: a1dd870940c57a246a6bc05c974b09de, type: 2}
+  - {fileID: 2100000, guid: 4373b9ea3ce428941968d772f2944478, type: 2}
+  - {fileID: 2100000, guid: a1dd870940c57a246a6bc05c974b09de, type: 2}
+  - {fileID: 2100000, guid: 4373b9ea3ce428941968d772f2944478, type: 2}
+  - {fileID: 2100000, guid: a1dd870940c57a246a6bc05c974b09de, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -3380,7 +3373,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 1949549717}
   m_Direction: 2
   m_Value: 0
-  m_Size: 1
+  m_Size: 0.23282604
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
