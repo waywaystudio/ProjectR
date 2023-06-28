@@ -55,7 +55,7 @@ namespace Common.Editor
                 attributes.Add(new ListDrawerSettingsAttribute
                 {
                     ShowFoldout = true,
-                    IsReadOnly = true,
+                    // IsReadOnly = true,
                 });
             }
         }
