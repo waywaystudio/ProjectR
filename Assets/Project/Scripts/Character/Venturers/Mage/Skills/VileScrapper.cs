@@ -14,14 +14,5 @@ namespace Character.Venturers.Mage.Skills
             SequenceBuilder.Add(SectionType.Execute, "CommonExecution", 
                                 () => executor.Execute(null));
         }
-
-
-        // private bool HasTarget()
-        // {
-        //     var takers = detector.GetTakers();
-        //
-        //     return !takers.IsNullOrEmpty() 
-        //            && takers[0].DynamicStatEntry.Alive.Value;
-        // }
     }
 }

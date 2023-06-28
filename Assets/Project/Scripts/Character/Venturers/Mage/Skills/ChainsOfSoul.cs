@@ -41,7 +41,7 @@ namespace Character.Venturers.Mage.Skills
         }
         
         /// <summary>
-        /// 플레이거가 선택한 마우스가 사거리 밖일 경우, 사거리 내에서 가장 가까운 지점을 반환한다.
+        /// 플레이어가 선택한 마우스가 사거리 밖일 경우, 삼거리 내에서 가장 가까운 지점을 반환한다.
         /// </summary>
         private Vector3 ValidPosition(Vector3 targetPosition)
         {
