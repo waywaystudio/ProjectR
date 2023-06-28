@@ -6,7 +6,7 @@ namespace Common.Execution
     public class TrapExecutor : ExecuteComponent
     {
         [SerializeField] private DataIndex actionCode;
-        [SerializeField] private Pool<TrapComponent> pool;
+        [SerializeField] protected Pool<TrapComponent> pool;
         
 
         public override void Execution(Vector3 position)

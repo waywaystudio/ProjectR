@@ -13,15 +13,15 @@ namespace Character.Villains
         [SerializeField] private UnityEvent persistantCompleteEvent;
         [SerializeField] private VillainPhaseMask phaseMask;
 
-        public SequenceBuilder SequenceBuilder { get; } = new();
-        public SequenceInvoker SequenceInvoker { get; } = new();
+        public SequenceBuilder SequenceBuilder { get; private set; }
+        public SequenceInvoker SequenceInvoker { get; private set; }
 
         public VillainPhaseMask PhaseMask => phaseMask;
 
         public void Initialize()
         {
-            SequenceInvoker.Initialize(sequencer);
-            SequenceBuilder.Initialize(sequencer);
+            SequenceInvoker = new SequenceInvoker(sequencer);
+            SequenceBuilder = new SequenceBuilder(sequencer);
 
             if (persistantActiveEvent.GetPersistentEventCount() != 0) 
                 SequenceBuilder.Add(SectionType.Active,"PersistantEvent", persistantActiveEvent.Invoke);

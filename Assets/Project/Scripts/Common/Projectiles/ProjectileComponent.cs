@@ -1,3 +1,4 @@
+using System;
 using Common.Execution;
 using Common.Systems;
 using UnityEngine;
@@ -8,6 +9,7 @@ namespace Common.Projectiles
     {
         [SerializeField] protected Executor executor;
         [SerializeField] protected Sequencer sequencer;
+        [SerializeField] protected Trajectory trajectory;
         [SerializeField] protected CollidingSystem collidingSystem;
         [SerializeField] protected DataIndex projectileCode;
         [SerializeField] protected LayerMask targetLayer;
@@ -15,28 +17,9 @@ namespace Common.Projectiles
         public ICombatProvider Provider { get; protected set; }
         public DataIndex DataIndex => projectileCode;
         public LayerMask TargetLayer => targetLayer;
-        public Sequencer Sequencer => sequencer;
-        
-        // TODO. SequenceBuilder, Invoker가 Initialize 되기전에 호출되는 경우가 있음.
-        // 구조 전환과정에서 생기는 오류고, 모두 수정되면 간단하게 get, new(); 로 처리 
-        private readonly SequenceBuilder sequenceBuilder = new();
-        private readonly SequenceInvoker sequenceInvoker = new();
-        public SequenceBuilder SequenceBuilder
-        {
-            get
-            {
-                if (!sequenceBuilder.IsInitialized) sequenceBuilder.Initialize(sequencer);
-                return sequenceBuilder;
-            }
-        }
-        public SequenceInvoker SequenceInvoker
-        {
-            get
-            {
-                if (!sequenceInvoker.IsInitialized) sequenceInvoker.Initialize(sequencer);
-                return sequenceInvoker;
-            }
-        }
+
+        public SequenceBuilder SequenceBuilder { get; private set; }
+        public SequenceInvoker SequenceInvoker { get; private set; }
 
         /// <summary>
         /// Create Pooling에서 호출
@@ -46,9 +29,11 @@ namespace Common.Projectiles
         {
             Provider = provider;
 
-            SequenceInvoker.Initialize(sequencer);
-            SequenceBuilder.Initialize(sequencer)
-                           .Add(SectionType.End, "ProjectileObjectActiveFalse", () => gameObject.SetActive(false));
+            SequenceInvoker = new SequenceInvoker(sequencer);
+            SequenceBuilder = new SequenceBuilder(sequencer);
+            SequenceBuilder.Add(SectionType.End, "ProjectileObjectActiveFalse", () => gameObject.SetActive(false));
+            
+            trajectory.Initialize(this);
         }
         
         /// <summary>
@@ -75,11 +60,15 @@ namespace Common.Projectiles
         /// <summary>
         /// Scene이 종료되거나, 설정된 Pool 개수를 넘어서 생성된 상태이상효과가 만료될 때 호출
         /// </summary>
-        public void Dispose()
+        protected virtual void Dispose()
         {
             sequencer.Clear();
-            
-            Destroy(gameObject);
+        }
+        
+
+        private void OnDestroy()
+        {
+            Dispose();
         }
 
 

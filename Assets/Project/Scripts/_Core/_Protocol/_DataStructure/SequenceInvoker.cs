@@ -3,6 +3,8 @@ public class SequenceInvoker
     public bool IsInitialized;
     protected Sequencer Sequencer;
     
+    public SequenceInvoker(Sequencer sequencer) => Sequencer = sequencer;
+    
     public bool IsAbleToActive => Sequencer.Condition == null || Sequencer.Condition.IsAllTrue;
     public bool IsActive { get; private set; }
     public bool IsEnd { get; private set; } = true;

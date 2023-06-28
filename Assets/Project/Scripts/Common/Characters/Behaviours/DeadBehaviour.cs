@@ -9,8 +9,8 @@ namespace Common.Characters.Behaviours
         [SerializeField] private Sequencer sequencer;
 
         public ActionMask BehaviourMask => ActionMask.Dead;
-        public SequenceBuilder SequenceBuilder { get; } = new();
-        public SequenceInvoker SequenceInvoker { get; } = new();
+        public SequenceBuilder SequenceBuilder { get; private set; }
+        public SequenceInvoker SequenceInvoker { get; private set; }
         
         private CharacterBehaviour cb;
         private CharacterBehaviour Cb => cb ??= GetComponentInParent<CharacterBehaviour>();
@@ -34,9 +34,9 @@ namespace Common.Characters.Behaviours
 
         private void OnEnable()
         {
-            SequenceInvoker.Initialize(sequencer);
-            SequenceBuilder.Initialize(sequencer)
-                           .AddCondition("AbleToBehaviourOverride", () => BehaviourMask.CanOverride(Cb.BehaviourMask))
+            SequenceInvoker = new SequenceInvoker(sequencer);
+            SequenceBuilder = new SequenceBuilder(sequencer);
+            SequenceBuilder.AddCondition("AbleToBehaviourOverride", () => BehaviourMask.CanOverride(Cb.BehaviourMask))
                            .Add(SectionType.Active,"CancelPreviousBehaviour", () => cb.CurrentBehaviour?.TryToOverride(this))
                            .Add(SectionType.Active,"SetCurrentBehaviour", () => cb.CurrentBehaviour = this)
                            .Add(SectionType.Active,"PlayAnimation", () => Cb.Animating.Dead(SequenceInvoker.Complete))

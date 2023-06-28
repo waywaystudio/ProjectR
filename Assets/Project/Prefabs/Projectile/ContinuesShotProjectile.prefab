@@ -10,7 +10,6 @@ GameObject:
   m_Component:
   - component: {fileID: 601654701044516039}
   - component: {fileID: 4819646270435538067}
-  - component: {fileID: 4168170717895515227}
   - component: {fileID: -5250174752325060650}
   - component: {fileID: 7614138140208064161}
   m_Layer: 9
@@ -56,29 +55,18 @@ MonoBehaviour:
       - ExecutionList:
         - {fileID: 2130867067172153769}
       hideKey: 0
+  trajectory:
+    trajectoryType: 2
+    speed: 50
+    distance: 40
+    tweenType: 1
   collidingSystem: {fileID: 7614138140208064161}
-  projectileCode: 31000016
+  projectileCode: 31210401
   targetLayer:
     serializedVersion: 2
     m_Bits: 256
   triggerCollider: {fileID: -5250174752325060650}
   radius: 3
---- !u!114 &4168170717895515227
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 68301466263117794}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 794d58a422cebf348abe6f7140a36760, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  trajectoryType: 2
-  speed: 35
-  distance: 20
-  tweenType: 1
 --- !u!135 &-5250174752325060650
 SphereCollider:
   m_ObjectHideFlags: 0

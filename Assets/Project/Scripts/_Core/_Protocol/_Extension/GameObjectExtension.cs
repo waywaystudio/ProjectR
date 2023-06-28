@@ -80,7 +80,7 @@ public static class GameObjectExtension
 
     public static bool IsNullOrEmpty(this Component component)
     {
-        return Equals(component, null) || component.gameObject.activeSelf == false;
+        return Equals(null, component) || component.gameObject.activeSelf == false;
     }
 
     public static T GetOrAddComponent<T>(this GameObject gameObject) where T : MonoBehaviour

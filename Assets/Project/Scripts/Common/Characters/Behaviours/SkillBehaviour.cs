@@ -12,8 +12,8 @@ namespace Common.Characters.Behaviours
 
         public List<DataIndex> SkillIndexList => skillTable.KeyList;
         public ActionMask BehaviourMask =>Current ? Current.BehaviourMask : ActionMask.Skill;
-        public SequenceBuilder SequenceBuilder { get; } = new();
-        public SequenceInvoker SequenceInvoker { get; } = new();
+        public SequenceBuilder SequenceBuilder { get; private set; }
+        public SequenceInvoker SequenceInvoker { get; private set; }
         
         public bool IsGlobalCoolTimeReady => globalCoolTimer.IsReady;
         public bool IsSkillEnded => Current.IsNullOrEmpty() || Current.IsEnded;
@@ -82,9 +82,9 @@ namespace Common.Characters.Behaviours
         
         private void OnEnable()
         {
-            SequenceInvoker.Initialize(sequencer);
-            SequenceBuilder.Initialize(sequencer)
-                           .AddCondition("AbleToBehaviourOverride", () => BehaviourMask.CanOverride(Cb.BehaviourMask))
+            SequenceInvoker = new SequenceInvoker(sequencer);
+            SequenceBuilder = new SequenceBuilder(sequencer);
+            SequenceBuilder.AddCondition("AbleToBehaviourOverride", () => BehaviourMask.CanOverride(Cb.BehaviourMask))
                            .AddCondition("IsSkillEnded", () => IsSkillEnded)
                            .AddCondition("GlobalCoolTimeReady", () => globalCoolTimer.IsReady)
                            .Add(SectionType.Active,"CancelPreviousBehaviour", () => cb.CurrentBehaviour?.TryToOverride(this))
@@ -117,8 +117,6 @@ namespace Common.Characters.Behaviours
             var preLoadedSkillList = new List<SkillComponent>();
             
             GetComponentsInChildren(preLoadedSkillList);
-            
-            // preLoadedSkillList.Trim(4);
 
             skillTable.CreateTable(preLoadedSkillList, skill => skill.DataIndex);
         }

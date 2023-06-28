@@ -734,6 +734,102 @@ MonoBehaviour:
     statusEffect: 0
     iconFileName: Reload Sprite
     description: Starts combat by attacking a target with a melee weapon.
+  - id: 31210501
+    name: VileScrapper
+    behaviourMask: Skill
+    priority: 1
+    detectorType: Circle
+    sortingType: None
+    targetParam: {x: 40, y: 6}
+    targetLayer: Monster
+    animationKey: Cast1
+    isLoop: 0
+    hasEvent: 1
+    skillType: Instant
+    animationCallback: Complete
+    coolTime: 1
+    coolTimeInvoker: Active
+    castTime: 0
+    castCallback: None
+    completionValueList:
+    - 0
+    cost: -10
+    paySection: Active
+    statusEffect: 0
+    iconFileName: VileScrapper Sprite
+    description: Starts combat by attacking a target with a melee weapon.
+  - id: 31210502
+    name: VoidSphere
+    behaviourMask: Skill
+    priority: 5
+    detectorType: Circle
+    sortingType: None
+    targetParam: {x: 40, y: 6}
+    targetLayer: Monster
+    animationKey: CastHold
+    isLoop: 1
+    hasEvent: 0
+    skillType: Casting
+    animationCallback: None
+    coolTime: 1
+    coolTimeInvoker: Complete
+    castTime: 1.5
+    castCallback: Execute
+    completionValueList:
+    - 0
+    cost: 30
+    paySection: Active
+    statusEffect: 0
+    iconFileName: VoidSphere Sprite
+    description: Starts combat by attacking a target with a melee weapon.
+  - id: 31210503
+    name: Extraction
+    behaviourMask: Skill
+    priority: 8
+    detectorType: Circle
+    sortingType: None
+    targetParam: {x: 30, y: 10}
+    targetLayer: Monster
+    animationKey: ExtractHold
+    isLoop: 1
+    hasEvent: 0
+    skillType: Charging
+    animationCallback: None
+    coolTime: 10
+    coolTimeInvoker: Active
+    castTime: 3
+    castCallback: Execute
+    completionValueList:
+    - 0
+    cost: -50
+    paySection: Complete
+    statusEffect: 0
+    iconFileName: Extraction Sprite
+    description: Starts combat by attacking a target with a melee weapon.
+  - id: 31210504
+    name: ChainsOfSoul
+    behaviourMask: RigidSkill
+    priority: 5
+    detectorType: Circle
+    sortingType: None
+    targetParam: {x: 100, y: 12}
+    targetLayer: Monster
+    animationKey: Cast3
+    isLoop: 0
+    hasEvent: 1
+    skillType: Instant
+    animationCallback: Complete
+    coolTime: 8
+    coolTimeInvoker: Active
+    castTime: 0
+    castCallback: None
+    completionValueList:
+    - 0
+    cost: 50
+    paySection: Active
+    statusEffect: 0
+    iconFileName: ChainsOfSoul Sprite
+    description: Starts combat by attacking a target with a melee weapon.
   - id: 31222201
     name: ShockWave
     behaviourMask: Skill

@@ -54,10 +54,11 @@ namespace Common.Systems
         }
 
         public List<ICombatTaker> GetTakersInCircleRange(float radius) => GetTakersInCircleRange(radius, Angle);
-        public List<ICombatTaker> GetTakersInCircleRange(float radius, float angle)
+        public List<ICombatTaker> GetTakersInCircleRange(float radius, float angle) => GetTakersInCircleRange(character.transform.position, radius, angle);
+        public List<ICombatTaker> GetTakersInCircleRange(Vector3 center, float radius, float angle)
         {
             var takerList = GetTakersInSphereType(
-                character.transform.position,
+                center,
                 radius,
                 angle,
                 targetLayer);

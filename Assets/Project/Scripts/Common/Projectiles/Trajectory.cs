@@ -4,7 +4,8 @@ using UnityEngine;
 
 namespace Common.Projectiles
 {
-    public class Trajectory : MonoBehaviour
+    [Serializable]
+    public class Trajectory
     {
         private enum TrajectoryType { None, Instant, Straight, Parabola }
 
@@ -15,8 +16,16 @@ namespace Common.Projectiles
 
         private ProjectileComponent projectileComponent;
         private Tween trajectoryTween;
-        private Transform projectile;
-        private Vector3 Direction => projectile.forward;
+        private Vector3 Direction => projectileComponent.transform.forward;
+
+
+        public void Initialize(ProjectileComponent projectile)
+        {
+            projectileComponent = projectile;
+            projectileComponent.SequenceBuilder
+                               .Add(SectionType.Active, "Trajectory", Flying)
+                               .Add(SectionType.End, "Trajectory", Stop);
+        }
 
         public void Flying()
         {
@@ -33,23 +42,24 @@ namespace Common.Projectiles
 
         private void Instant()
         {
-            var projectilePosition = projectile.position;
+            var projectilePosition = projectileComponent.transform.position;
             var destination        = projectilePosition + Direction * distance;
             
-            projectile.SetPositionAndRotation(destination, Quaternion.LookRotation(Direction - projectilePosition));
+            projectileComponent.transform
+                               .SetPositionAndRotation(destination, Quaternion.LookRotation(Direction - projectilePosition));
         }
         
         private void Straight()
         {
-            var projectilePosition = projectile.position;
+            var projectilePosition = projectileComponent.transform.position;
             var destination        = projectilePosition + Direction * distance;
             var duration           = Vector3.Distance(projectilePosition, destination) / speed;
 
-            trajectoryTween = projectile
-                              .DOMove(destination, duration)
-                              .SetEase(tweenType)
-                              .OnUpdate(() => projectile.LookAt(destination))
-                              .OnComplete(() => projectileComponent.SequenceInvoker.End());
+            trajectoryTween = projectileComponent.transform
+                                                 .DOMove(destination, duration)
+                                                 .SetEase(tweenType)
+                                                 .OnUpdate(() => projectileComponent.transform.LookAt(destination))
+                                                 .OnComplete(() => projectileComponent.SequenceInvoker.End());
         }
 
         private void Parabola()
@@ -60,18 +70,6 @@ namespace Common.Projectiles
         private void Stop()
         {
             trajectoryTween?.Kill();
-        }
-
-        private void Awake()
-        {
-            TryGetComponent(out projectileComponent);
-
-            projectile  = projectileComponent.transform;
-
-            // Require Builder
-            projectileComponent.SequenceBuilder
-                               .Add(SectionType.Active, "Trajectory", Flying)
-                               .Add(SectionType.End, "Trajectory", Stop);
         }
     }
 }
