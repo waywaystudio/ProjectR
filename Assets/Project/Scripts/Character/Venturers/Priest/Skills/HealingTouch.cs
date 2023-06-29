@@ -27,8 +27,19 @@ namespace Character.Venturers.Priest.Skills
 
         private void ExecuteHealingTouch()
         {
+            var onRapture = Provider.DynamicStatEntry.StatusEffectTable.ContainsKey(DataIndex.LightWeaverStatusEffect);
+            
             var validTakerList = detector.GetTakersInCircleRange(predicatePosition, 6f, 360f);
-            validTakerList?.ForEach(taker => executor.Execute(taker));
+            
+            validTakerList?.ForEach(taker =>
+            {
+                executor.Execute(taker);
+
+                if (onRapture)
+                {
+                    executor.Execute(taker);
+                }
+            });
         }
         
         private bool HasTarget()

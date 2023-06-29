@@ -64,6 +64,30 @@ MonoBehaviour:
     iconFileName: ArcaneArrowStatusEffect Sprite
     valueList:
     - 0
+  - id: 32210007
+    name: InfusionStatusEffect
+    isBuff: 1
+    targetLayer: ally
+    duration: 10
+    iconFileName: InfusionStatusEffect Sprite
+    valueList:
+    - 3
+  - id: 32210008
+    name: LightWeaverStatusEffect
+    isBuff: 1
+    targetLayer: ally
+    duration: 0
+    iconFileName: LightWeaverStatusEffect Sprite
+    valueList:
+    - 0
+  - id: 32210009
+    name: DivineInfusionStatusEffect
+    isBuff: 1
+    targetLayer: ally
+    duration: 10
+    iconFileName: DivineInfusionStatusEffect Sprite
+    valueList:
+    - 0.2
   - id: 32220001
     name: IgnitionStatusEffect
     isBuff: 0

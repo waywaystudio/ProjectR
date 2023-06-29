@@ -36,12 +36,12 @@ namespace Common.Characters.UI.CastingFrames
 
         private void OnEnable()
         {
-            // Cb.SkillBehaviour.SequenceBuilder.AddActive("ShowCastingUI", Show);
+            Cb.SkillBehaviour.SequenceBuilder.Add(SectionType.Active,"ShowCastingUI", Show);
         }
 
         private void OnDisable()
         {
-            // Cb.SkillBehaviour.SequenceBuilder.RemoveActive("ShowCastingUI");
+            Cb.SkillBehaviour.SequenceBuilder.Remove(SectionType.Active, "ShowCastingUI");
         }
     }
 }

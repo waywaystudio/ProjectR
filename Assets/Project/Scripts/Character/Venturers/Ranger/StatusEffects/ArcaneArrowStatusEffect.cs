@@ -19,7 +19,7 @@ namespace Character.Venturers.Ranger.StatusEffects
             base.Initialize(provider);
 
             SequenceBuilder.Add(SectionType.Active, "Effectuate", () => Effectuate().Forget())
-                           .Add(SectionType.Cancel, "StopEffectuate", () => cts?.Cancel());
+                           .Add(SectionType.End, "StopEffectuate", () => cts?.Cancel());
         }
 
         public override void Overriding()

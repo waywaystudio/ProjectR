@@ -35,8 +35,6 @@ namespace Common.Execution
             // Dead Calculation
             var remainHp = taker.StatTable.MaxHp - taker.DynamicStatEntry.Hp.Value;
             
-            Debug.Log($"RemainHp:{remainHp}, healAmount:{healAmount}");
-            
             if (healAmount >= remainHp)
             {
                 taker.DynamicStatEntry.Hp.Value =  taker.StatTable.MaxHp;

@@ -15,7 +15,6 @@ namespace Character.Venturers.Priest.Skills
             SequenceBuilder
                 .AddActiveParam("SetTargetPosition", SetTargetPosition)
                 .Add(SectionType.Execute, "ExecuteRenew", ExecuteRenew);
-            // .Add(SectionType.Execute, "PlayCastCompleteAnimation", PlayCastCompleteAnimation);
         }
 
 
@@ -43,7 +42,7 @@ namespace Character.Venturers.Priest.Skills
                 nearestDistance = distance;
                 nearestTaker    = taker;
             });
-            
+
             executor.Execute(nearestTaker);
         }
         

@@ -53,7 +53,6 @@ namespace Character.Venturers.Knight.Skills
 
                 if (Cb.DynamicStatEntry.Resource.Value <= 0 || !SkillInvoker.IsActive)
                 {
-                    Debug.Log("ShieldUp End");
                     Cancel();
                     return;
                 }
