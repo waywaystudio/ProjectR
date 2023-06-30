@@ -1,6 +1,7 @@
 using Raid.UI.BossFrames;
 using Raid.UI.BriefingFrames;
 using Raid.UI.FloatingTexts;
+using Raid.UI.VenturerFrames;
 using UnityEngine;
 
 namespace Raid
@@ -11,6 +12,9 @@ namespace Raid
         
         // TODO. 추후에 bossFrame 한꺼번에 Initialize하기
         [SerializeField] private BossHpProgress bossHpProgress;
+        
+        // Venturer Frames
+        [SerializeField] private VenturerSkillBar skillBar;
 
         // Pool
         [SerializeField] private FloatingTextPool floatingTextPool;
@@ -19,6 +23,7 @@ namespace Raid
         public void Initialize()
         {
             bossHpProgress.Initialize();
+            skillBar.Initialize();
         }
 
 
@@ -26,7 +31,8 @@ namespace Raid
         public void EditorSetUp()
         {
             stageInitializer ??= GetComponentInChildren<Briefing>();
-            floatingTextPool   ??= GetComponentInChildren<FloatingTextPool>();
+            skillBar         ??= GetComponentInChildren<VenturerSkillBar>();
+            floatingTextPool ??= GetComponentInChildren<FloatingTextPool>();
         }
 #endif
     }

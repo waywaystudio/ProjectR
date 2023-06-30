@@ -41,6 +41,25 @@ namespace Common.UI
             
             SetFill();
         }
+
+        /// <summary>
+        /// 값의 역으로 채울때 필요한 함수
+        /// </summary>
+        public void RegisterReverse(FloatEvent progress, float constMax)
+        {
+            Unregister();
+            
+            Progress = progress;
+            Max = new FloatEvent(0, constMax)
+            {
+                Value = constMax
+            };
+            
+            Progress.AddListener(fillProgressionKey, SetReverseFill);
+            Max.AddListener(fillProgressionKey, SetReverseFill);
+            
+            SetReverseFill();
+        }
         
         public void Unregister()
         {
@@ -56,10 +75,17 @@ namespace Common.UI
             progressImage.DOFillAmount(clamp, fillTick).SetEase(easeType);
         }
 
+        private void SetReverseFill()
+        {
+            var reverseValue = Max.Value - Progress.Value;
+            var clamp = Mathf.Clamp01(reverseValue / Max.Value);
+            
+            progressImage.DOFillAmount(clamp, fillTick).SetEase(easeType);
+        }
+
         private void Awake()
         {
-            progressImage            ??= GetComponent<Image>();
-            progressImage.fillAmount =   0f;
+            progressImage ??= GetComponent<Image>();
         }
 
         private void OnDisable()

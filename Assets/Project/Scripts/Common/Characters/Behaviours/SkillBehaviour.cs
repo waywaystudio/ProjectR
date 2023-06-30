@@ -98,7 +98,8 @@ namespace Common.Characters.Behaviours
             {
                 skill.Initialize();
                 skill.SequenceBuilder
-                     .Add(SectionType.End, "BehaviourUnregister", () => Current = null);
+                     .Add(SectionType.End, "BehaviourUnregister", () => Current = null)
+                     .Add(SectionType.End, "SkillBehaviourEnd", SequenceInvoker.End);
             });
         }
 

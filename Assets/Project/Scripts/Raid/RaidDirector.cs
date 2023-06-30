@@ -4,7 +4,6 @@ using Character.Venturers;
 using Character.Villains;
 using Singleton;
 using UnityEngine;
-
 // ReSharper disable UnusedAutoPropertyAccessor.Global
 
 namespace Raid
@@ -15,20 +14,25 @@ namespace Raid
         [SerializeField] private RaidStageDirector stageDirector;
         [SerializeField] private RaidCastingDirector castingDirector;
         [SerializeField] private RaidUIDirector uiDirector;
-        
         [SerializeField] private GameEventAdventurer adventurerFocusEvent;
 
+        private VenturerBehaviour focusVenturer;
+        
         public static RaidCastingDirector CastingDirector => Instance.castingDirector;
         public static RaidStageDirector StageDirector => Instance.stageDirector;
         public static RaidUIDirector UIDirector => Instance.uiDirector;
-        public static VenturerBehaviour FocusCharacter => Instance.focusCharacter;
         public static VillainBehaviour Boss => CastingDirector.Villain;
-        public static List<VenturerBehaviour> AdventurerList => CastingDirector.VenturerList;
-        public static void ChangeFocusAdventurer(VenturerBehaviour ab) => Instance.adventurerFocusEvent.Invoke(ab);
+        public static List<VenturerBehaviour> VenturerList => CastingDirector.VenturerList;
+        public static VenturerBehaviour FocusVenturer
+        {
+            get => Instance.focusVenturer;
+            set
+            {
+                Instance.focusVenturer = value;
+                Instance.adventurerFocusEvent.Invoke(value);
+            }
+        }
 
-        private VenturerBehaviour focusCharacter;
-
-        
         /*
          * Raid Start
          */ 
@@ -37,19 +41,14 @@ namespace Raid
             CastingDirector.Initialize();
             UIDirector.Initialize();
             
-            Instance.focusCharacter = CastingDirector.VenturerList[0];
-            Instance.adventurerFocusEvent.Invoke(FocusCharacter);
+            FocusVenturer = CastingDirector.VenturerList[0];
         }
 
         
         protected override void Awake()
         {
             base.Awake();
-            
-            cameraDirector  ??= GetComponentInChildren<RaidCameraDirector>();
-            castingDirector ??= GetComponentInChildren<RaidCastingDirector>();
-            uiDirector      ??= GetComponentInChildren<RaidUIDirector>();
-            
+
             // TEMP
             uiDirector.gameObject.SetActive(true);
         }

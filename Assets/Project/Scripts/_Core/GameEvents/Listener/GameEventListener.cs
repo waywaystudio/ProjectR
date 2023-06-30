@@ -63,6 +63,30 @@ namespace GameEvents.Listener
         
         protected void OnEnable() => TargetEvent.Register(this);
         protected void OnDisable() => TargetEvent.Unregister(this);
+        
+        
+#if UNITY_EDITOR
+        private void AutoRegisterInEditor()
+        {
+            if (targetEvent == null)
+            {
+                response.ClearAllUnityEventInEditor();
+                return;
+            }
+            
+            var behaviours = GetComponents<MonoBehaviour>();
+
+            foreach (var behaviour in behaviours)
+            {
+                var method = behaviour.GetType().GetMethod(targetEvent.name,BindingFlags.Public | BindingFlags.Instance);
+
+                if (method == null) continue;
+                
+                response.ClearAllUnityEventInEditor();
+                response.AddPersistantListenerInEditor(behaviour, targetEvent.name);
+            }
+        }
+#endif
     }
 
     public class GameEventListener<T0, T1> : MonoBehaviour
@@ -85,20 +109,6 @@ namespace GameEvents.Listener
     {
         public override void ProcessChildMemberAttributes(InspectorProperty parentProperty, MemberInfo member, List<Attribute> attributes)
         {
-            if (member.Name == "AutoRegisterInEditor")
-            {
-                attributes.Add(new PropertyOrderAttribute(-1f));
-                attributes.Add(new ButtonAttribute
-                {
-                    Icon = SdfIconType.ArrowRepeat
-                });
-                attributes.Add(new HorizontalGroupAttribute
-                {
-                    GroupName = "EventField",
-                    Width = 0.1f,
-                });
-            }
-            
             if (member.Name == "targetEvent")
             {
                 attributes.Add(new HideLabelAttribute());
@@ -113,6 +123,20 @@ namespace GameEvents.Listener
                 attributes.Add(new PropertyRangeAttribute(0, 10));
                 attributes.Add(new HideLabelAttribute());
             }
+            
+            if (member.Name == "AutoRegisterInEditor")
+            {
+                attributes.Add(new PropertyOrderAttribute(-1f));
+                attributes.Add(new ButtonAttribute
+                {
+                    Icon = SdfIconType.ArrowRepeat
+                });
+                attributes.Add(new HorizontalGroupAttribute
+                {
+                    GroupName = "EventField",
+                    Width     = 0.1f,
+                });
+            }
         }
     }
     
@@ -120,10 +144,33 @@ namespace GameEvents.Listener
     {
         public override void ProcessChildMemberAttributes(InspectorProperty parentProperty, MemberInfo member, List<Attribute> attributes)
         {
+            if (member.Name == "targetEvent")
+            {
+                attributes.Add(new HideLabelAttribute());
+                attributes.Add(new HorizontalGroupAttribute
+                {
+                    GroupName = "EventField",
+                });
+            }
+            
             if (member.Name == "priority")
             {
                 attributes.Add(new PropertyRangeAttribute(0, 10));
                 attributes.Add(new HideLabelAttribute());
+            }
+            
+            if (member.Name == "AutoRegisterInEditor")
+            {
+                attributes.Add(new PropertyOrderAttribute(-1f));
+                attributes.Add(new ButtonAttribute
+                {
+                    Icon = SdfIconType.ArrowRepeat
+                });
+                attributes.Add(new HorizontalGroupAttribute
+                {
+                    GroupName = "EventField",
+                    Width     = 0.1f,
+                });
             }
         }
     }

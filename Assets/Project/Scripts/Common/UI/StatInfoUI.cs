@@ -27,7 +27,7 @@ namespace Common.UI
         public void SetValue(StatEntity stat)
         {
             statType       = stat.StatType;
-            labelText.text = statType.ToString().DivideWords();
+            labelText.text = statType.ToString().ToDivideWords();
             valueText.text = stat.Value.ToStatUIValue(statType);
         }
 

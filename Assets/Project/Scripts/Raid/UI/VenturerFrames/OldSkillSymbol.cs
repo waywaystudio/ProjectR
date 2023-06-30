@@ -1,12 +1,13 @@
+using Common.Characters;
 using Common.UI;
 using Manager;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
 
-namespace Common.Characters.UI.ActionBars
+namespace Raid.UI.VenturerFrames
 {
-    public class SkillSymbol : MonoBehaviour, IEditable
+    public class OldSkillSymbol : MonoBehaviour, IEditable
     {
         [SerializeField] private Image actionIcon;
         [SerializeField] private ImageFiller coolDownFiller;

@@ -32,7 +32,7 @@ namespace Character.Venturers.Mage.Skills
             var validPosition = ValidPosition(targetPosition);
             var collectableSoulShards = GetShardsInStage(validPosition);
 
-            if (collectableSoulShards.Count == 0) return;
+            if (collectableSoulShards.IsNullOrEmpty()) return;
             
             collectableSoulShards.ForEach(soulShard =>
             {

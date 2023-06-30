@@ -16,7 +16,7 @@ namespace Raid.UI.FloatingTexts
         {
             VenturerBehaviour newFocusedAdventurer = null;
             
-            foreach (var adventurer in RaidDirector.AdventurerList)
+            foreach (var adventurer in RaidDirector.VenturerList)
             {
                 if (adventurer != focusAdventurer) continue;
                 
@@ -61,7 +61,7 @@ namespace Raid.UI.FloatingTexts
                 return;
             }
             
-            RaidDirector.AdventurerList.ForEach(adventurer =>
+            RaidDirector.VenturerList.ForEach(adventurer =>
             {
                 adventurer.OnDamageProvided.Remove("DamageTextUI");
                 adventurer.OnDamageTaken.Remove("TakenDamageTextUI");
@@ -72,34 +72,34 @@ namespace Raid.UI.FloatingTexts
         #region TEMP
         [Button] private void TogglePlayer1()
         {
-            if (RaidDirector.AdventurerList.Count < 0) return;
+            if (RaidDirector.VenturerList.Count < 0) return;
             
-            RaidDirector.AdventurerList[0].OnDamageProvided.Add("DamageTextUI", ShowDamage);
-            RaidDirector.AdventurerList[0].OnDamageTaken.Add("TakenDamageTextUI", ShowDamage);
+            RaidDirector.VenturerList[0].OnDamageProvided.Add("DamageTextUI", ShowDamage);
+            RaidDirector.VenturerList[0].OnDamageTaken.Add("TakenDamageTextUI", ShowDamage);
         }
         
         [Button] private void TogglePlayer2()
         {
-            if (RaidDirector.AdventurerList.Count < 1) return;
+            if (RaidDirector.VenturerList.Count < 1) return;
             
-            RaidDirector.AdventurerList[1].OnDamageProvided.Add("DamageTextUI", ShowDamage);
-            RaidDirector.AdventurerList[1].OnDamageTaken.Add("TakenDamageTextUI", ShowDamage);
+            RaidDirector.VenturerList[1].OnDamageProvided.Add("DamageTextUI", ShowDamage);
+            RaidDirector.VenturerList[1].OnDamageTaken.Add("TakenDamageTextUI", ShowDamage);
         }
         
         [Button] private void TogglePlayer3()
         {
-            if (RaidDirector.AdventurerList.Count < 2) return;
+            if (RaidDirector.VenturerList.Count < 2) return;
             
-            RaidDirector.AdventurerList[2].OnDamageProvided.Add("DamageTextUI", ShowDamage);
-            RaidDirector.AdventurerList[2].OnDamageTaken.Add("TakenDamageTextUI", ShowDamage);
+            RaidDirector.VenturerList[2].OnDamageProvided.Add("DamageTextUI", ShowDamage);
+            RaidDirector.VenturerList[2].OnDamageTaken.Add("TakenDamageTextUI", ShowDamage);
         }
         
         [Button] private void TogglePlayer4()
         {
-            if (RaidDirector.AdventurerList.Count < 3) return;
+            if (RaidDirector.VenturerList.Count < 3) return;
             
-            RaidDirector.AdventurerList[3].OnDamageProvided.Add("DamageTextUI", ShowDamage);
-            RaidDirector.AdventurerList[3].OnDamageTaken.Add("TakenDamageTextUI", ShowDamage);
+            RaidDirector.VenturerList[3].OnDamageProvided.Add("DamageTextUI", ShowDamage);
+            RaidDirector.VenturerList[3].OnDamageTaken.Add("TakenDamageTextUI", ShowDamage);
         }
         #endregion
     }

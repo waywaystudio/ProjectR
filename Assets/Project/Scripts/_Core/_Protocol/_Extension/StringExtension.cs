@@ -82,7 +82,7 @@ public static class StringExtension
     /// <summary>
     /// Divide Word By Pascal Letter.
     /// </summary>
-    public static string DivideWords(this string original)
+    public static string ToDivideWords(this string original)
     {
         if (string.IsNullOrEmpty(original))
         {

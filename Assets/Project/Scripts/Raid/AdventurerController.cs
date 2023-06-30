@@ -51,38 +51,52 @@ namespace Raid
 
         private void ToFirstAdventurer(InputAction.CallbackContext context)
         {
-            if (RaidDirector.AdventurerList.Count > 0)
-                RaidDirector.ChangeFocusAdventurer(RaidDirector.AdventurerList[0]);
+            if (RaidDirector.VenturerList.Count > 0 && RaidDirector.VenturerList[0] != null)  
+            {
+                RaidDirector.FocusVenturer = RaidDirector.VenturerList[0];
+            }
         }
         
         private void ToSecondAdventurer(InputAction.CallbackContext context)
         {
-            if (RaidDirector.AdventurerList.Count > 1) 
-                RaidDirector.ChangeFocusAdventurer(RaidDirector.AdventurerList[1]);
+            if (RaidDirector.VenturerList.Count > 1 && RaidDirector.VenturerList[1] != null)
+            {
+                RaidDirector.FocusVenturer = RaidDirector.VenturerList[1];
+            }
         }
         
         private void ToThirdAdventurer(InputAction.CallbackContext context)
         {
-            if (RaidDirector.AdventurerList.Count > 2)
-                RaidDirector.ChangeFocusAdventurer(RaidDirector.AdventurerList[2]);
+            if (RaidDirector.VenturerList.Count > 2 && RaidDirector.VenturerList[2] != null)
+            {
+                RaidDirector.FocusVenturer = RaidDirector.VenturerList[2];
+            }
+                
         }
         
         private void ToFourthAdventurer(InputAction.CallbackContext context)
         {
-            if (RaidDirector.AdventurerList.Count > 3)
-                RaidDirector.ChangeFocusAdventurer(RaidDirector.AdventurerList[3]);
+            if (RaidDirector.VenturerList.Count > 3 && RaidDirector.VenturerList[3] != null)
+            {
+                RaidDirector.FocusVenturer = RaidDirector.VenturerList[3];
+            }
         }
         
         private void ToFifthAdventurer(InputAction.CallbackContext context)
         {
-            if (RaidDirector.AdventurerList.Count > 4) 
-                RaidDirector.ChangeFocusAdventurer(RaidDirector.AdventurerList[4]);
+            if (RaidDirector.VenturerList.Count > 4 && RaidDirector.VenturerList[4] != null)
+            {
+                RaidDirector.FocusVenturer = RaidDirector.VenturerList[4];
+            }
         }
         
         private void ToSixthAdventurer(InputAction.CallbackContext context)
         {
-            if (RaidDirector.AdventurerList.Count > 5)
-                RaidDirector.ChangeFocusAdventurer(RaidDirector.AdventurerList[5]);
+            if (RaidDirector.VenturerList.Count > 5 && RaidDirector.VenturerList[5] != null)
+            {
+                RaidDirector.FocusVenturer = RaidDirector.VenturerList[5];
+            }
+                
         }
 
 

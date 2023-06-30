@@ -29,7 +29,7 @@ namespace Common.UI
             labelText            = transform.Find("Label").GetComponent<TextMeshProUGUI>();
             valueText            = transform.Find("Value").GetComponent<TextMeshProUGUI>();
             materialImage.sprite = materialType != GrowMaterialType.None ? Database.MaterialSpriteData.Get((DataIndex)materialType) : null;
-            labelText.text       = materialType.ToString().DivideWords();
+            labelText.text       = materialType.ToString().ToDivideWords();
             valueText.text       = "##.#";
             
             UnityEditor.EditorUtility.SetDirty(this);

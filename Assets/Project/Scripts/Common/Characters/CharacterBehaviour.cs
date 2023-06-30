@@ -77,9 +77,6 @@ namespace Common.Characters
         public IDynamicStatEntry DynamicStatEntry => combatStatus ??= GetComponentInChildren<CharacterCombatStatus>();
         public StatTable StatTable => DynamicStatEntry.StatTable;
         public Transform StatusEffectHierarchy => statusEffectHierarchy;
-
-        // public CombatMultiplier DamageMultiplier { get; } = new();
-        // public CombatMultiplier HealMultiplier;
         public ActionTable<CombatEntity> OnDamageProvided { get; } = new();
         public ActionTable<CombatEntity> OnDamageTaken { get; } = new();
         public ActionTable<CombatEntity> OnHealProvided { get; } = new();

@@ -111,7 +111,7 @@ namespace Common
         public static void LoadInstance(DataIndex dataIndex, EquipmentEntity entity)
         {
             entity.DataIndex = dataIndex;
-            entity.ItemName  = dataIndex.ToString().DivideWords();
+            entity.ItemName  = dataIndex.ToString().ToDivideWords();
             entity.Icon      = Database.EquipmentSpriteData.Get(dataIndex);
             entity.EquipType = (EquipType)dataIndex.GetCategory();
             entity.Tier      = dataIndex.GetNumberOfDataIndex(3);
@@ -332,7 +332,7 @@ namespace Common
             entity.DataIndex    +=  101;
             entity.Tier++;
             entity.UpgradeLevel =   1;
-            entity.ItemName     =   entity.DataIndex.ToString().DivideWords();
+            entity.ItemName     =   entity.DataIndex.ToString().ToDivideWords();
             entity.Icon         =   Database.EquipmentSpriteData.Get(entity.DataIndex);
 
             switch (entity.Tier)
