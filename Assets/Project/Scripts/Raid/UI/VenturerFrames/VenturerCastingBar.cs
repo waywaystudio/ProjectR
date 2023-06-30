@@ -46,7 +46,7 @@ namespace Raid.UI.VenturerFrames
             progressObject.SetActive(true);
             skillNameObject.SetActive(true);
             progressBar.Register(currentSkill.CastTimer.EventTimer, currentSkill.CastTimer.CastingTime);
-            skillNameTextMesh.text = currentSkill.SkillName;
+            skillNameTextMesh.text = currentSkill.DataIndex.ToString().ToDivideWords();
         }
 
         private void HideCastingUI()

@@ -18,7 +18,6 @@ namespace Common.Skills
         [SerializeField] protected SkillCastTimer castTimer;
         [SerializeField] protected SkillCost cost;
         [SerializeField] protected string description;
-        [SerializeField] protected string skillName;
         [SerializeField] protected Sprite icon;
         
         private CharacterBehaviour cb;
@@ -30,7 +29,6 @@ namespace Common.Skills
         public int Priority => priority;
         public SkillCost Cost => cost;
         public string Description => description;
-        public string SkillName => skillName;
         public float Haste => Cb.StatTable.Haste;
         public float Range => detector.Range;
         public float Angle => detector.Angle;
@@ -98,7 +96,6 @@ namespace Common.Skills
             behaviourMask = skillData.BehaviourMask.ToEnum<ActionMask>();
             priority      = skillData.Priority;
             description   = skillData.Description;
-            skillName     = skillData.Name.ToDivideWords();
             icon          = Database.SpellSpriteData.Get(actionCode);
         }
         
