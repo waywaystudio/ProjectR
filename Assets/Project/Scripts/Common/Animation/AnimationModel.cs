@@ -144,8 +144,8 @@ namespace Common.Animation
         
         
 #if UNITY_EDITOR
-        [SpineEvent(dataField : "skAnimation", fallbackToTextField = true)]
-        [SerializeField] private string eventNameList;
+        // [SpineEvent(dataField : "skAnimation", fallbackToTextField = true)]
+        // [SerializeField] private string eventNameList;
 
         public virtual void EditorSetUp()
         {

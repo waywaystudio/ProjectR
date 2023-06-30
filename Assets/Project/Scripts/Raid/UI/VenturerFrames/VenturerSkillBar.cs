@@ -6,7 +6,7 @@ namespace Raid.UI.VenturerFrames
 {
     public class VenturerSkillBar : MonoBehaviour, IEditable
     {
-        [SerializeField] private List<VenturerSkillSlot> slotList = new();
+        [SerializeField] private List<VenturerSkillSlot> slotList;
 
         private static VenturerBehaviour FocusVenturer => RaidDirector.FocusVenturer;
 
@@ -26,6 +26,11 @@ namespace Raid.UI.VenturerFrames
         public void OnFocusVenturerChanged(VenturerBehaviour vb)
         {
             UpdateSlotList();
+        }
+
+        public void Dispose()
+        {
+            slotList?.ForEach(slot => slot.Dispose());
         }
 
 

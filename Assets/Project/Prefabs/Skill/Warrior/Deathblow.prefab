@@ -188,6 +188,7 @@ MonoBehaviour:
     animationKey: AttackSlashHold
     isLoop: 1
     hasEvent: 0
+    timeScale: 1
     skillType: 4
     callbackSection: 0
   coolTimer:
@@ -200,4 +201,5 @@ MonoBehaviour:
     cost: -30
     paySection: 5
   description: Starts combat by attacking a target with a melee weapon.
+  skillName: Deathblow
   icon: {fileID: 21300000, guid: 07ac76d34f3f63441876ebdc34bd48a5, type: 3}

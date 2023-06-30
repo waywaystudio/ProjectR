@@ -21,13 +21,13 @@ MonoBehaviour:
       statList:
       - statType: 13010001
         statKey: ConstStatKey
-        value: 100
+        value: 500
       - statType: 13010002
         statKey: ConstStatKey
-        value: 200
+        value: 2000
       - statType: 13010003
         statKey: ConstStatKey
-        value: 50
+        value: 0
       - statType: 13010004
         statKey: ConstStatKey
         value: 1
@@ -36,7 +36,7 @@ MonoBehaviour:
         value: 1
       - statType: 13020001
         statKey: ConstStatKey
-        value: 5
+        value: 0.05
       - statType: 13020002
         statKey: ConstStatKey
         value: 0
@@ -46,7 +46,7 @@ MonoBehaviour:
       - statType: 13030002
         statKey: ConstStatKey
         value: 7
-    defaultSkillList: c905d901c605d901
+    defaultSkillList: bc69dc01b969dc01ba69dc01bb69dc01
   fullName: Painbrush
   subName: blood Drawer
   description: Painbrush is a grotesque and twisted Vilewhisper boss that has been

@@ -9,28 +9,8 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 291626802760447148, guid: bd355e30ab3d37740ab682aad07a91b5, type: 3}
-      propertyPath: skillTable.keyList.Array.size
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 291626802760447148, guid: bd355e30ab3d37740ab682aad07a91b5, type: 3}
       propertyPath: skillTable.valueList.Array.size
       value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 291626802760447148, guid: bd355e30ab3d37740ab682aad07a91b5, type: 3}
-      propertyPath: skillTable.keyList.Array.data[0]
-      value: 31000009
-      objectReference: {fileID: 0}
-    - target: {fileID: 291626802760447148, guid: bd355e30ab3d37740ab682aad07a91b5, type: 3}
-      propertyPath: skillTable.keyList.Array.data[1]
-      value: 31000006
-      objectReference: {fileID: 0}
-    - target: {fileID: 291626802760447148, guid: bd355e30ab3d37740ab682aad07a91b5, type: 3}
-      propertyPath: skillTable.keyList.Array.data[2]
-      value: 31000007
-      objectReference: {fileID: 0}
-    - target: {fileID: 291626802760447148, guid: bd355e30ab3d37740ab682aad07a91b5, type: 3}
-      propertyPath: skillTable.keyList.Array.data[3]
-      value: 31000008
       objectReference: {fileID: 0}
     - target: {fileID: 291626802760447148, guid: bd355e30ab3d37740ab682aad07a91b5, type: 3}
       propertyPath: skillTable.valueList.Array.data[0]

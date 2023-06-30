@@ -353,6 +353,14 @@ PrefabInstance:
     m_TransformParent: {fileID: 8150643729164461668}
     m_Modifications:
     - target: {fileID: -3527779498232163589, guid: 30b4b959efd6bc942b2114109fea7ffa, type: 3}
+      propertyPath: priority
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: -3527779498232163589, guid: 30b4b959efd6bc942b2114109fea7ffa, type: 3}
+      propertyPath: coolTimer.coolTime
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: -3527779498232163589, guid: 30b4b959efd6bc942b2114109fea7ffa, type: 3}
       propertyPath: detector.sizeVector.x
       value: 100
       objectReference: {fileID: 0}
@@ -484,6 +492,10 @@ PrefabInstance:
     - target: {fileID: 234500611213636336, guid: f38e0dcb509b7c544ac74c7131e9ed9b, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 671937298815967466, guid: f38e0dcb509b7c544ac74c7131e9ed9b, type: 3}
+      propertyPath: priority
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 671937298815967466, guid: f38e0dcb509b7c544ac74c7131e9ed9b, type: 3}
       propertyPath: cost.cost

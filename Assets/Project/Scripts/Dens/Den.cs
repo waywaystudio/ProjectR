@@ -39,12 +39,12 @@ public class Den : MonoSingleton<Den>, ISavable, IEditable
 
     public void Save() 
     {
-        villainTable.Iterate(data => data.Save());
+        // villainTable.Iterate(data => data.Save());
     }
 
     public void Load()
     {
-        villainTable.Iterate(data => data.Load());
+        // villainTable.Iterate(data => data.Load());
     }
     
     

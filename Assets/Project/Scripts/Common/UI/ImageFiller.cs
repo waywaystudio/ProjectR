@@ -31,10 +31,7 @@ namespace Common.UI
             Unregister();
             
             Progress  = progress;
-            Max       = new FloatEvent(0, constMax)
-            {
-                Value = constMax
-            };
+            Max       = new FloatEvent(0, constMax) { Value = constMax };
 
             Progress.AddListener(fillProgressionKey, SetFill);
             Max.AddListener(fillProgressionKey, SetFill);
@@ -70,6 +67,12 @@ namespace Common.UI
 
         private void SetFill()
         {
+            if (Max.Value == 0.0f)
+            {
+                progressImage.fillAmount = 0f;
+                return;
+            }
+            
             var clamp = Mathf.Clamp01(Progress.Value / Max.Value);
 
             progressImage.DOFillAmount(clamp, fillTick).SetEase(easeType);

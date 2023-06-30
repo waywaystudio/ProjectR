@@ -1,4 +1,3 @@
-using Adventurers;
 using Character.Venturers;
 using GameEvents;
 using Manager;
@@ -15,7 +14,7 @@ namespace Raid
         [SerializeField] private ToMoveProjector moveProjector;
         //
 
-        [SerializeField] private GameEventAdventurer onFocusChanged;
+        [SerializeField] private GameEventVenturer onFocusChanged;
         [SerializeField] private GameEvent onCommandMode; 
 
         private Vector3 mouseDestination;

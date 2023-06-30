@@ -21,7 +21,7 @@ MonoBehaviour:
       statList:
       - statType: 13010001
         statKey: ConstStatKey
-        value: 1000
+        value: 100
       - statType: 13010002
         statKey: ConstStatKey
         value: 100
@@ -46,7 +46,7 @@ MonoBehaviour:
       - statType: 13030002
         statKey: ConstStatKey
         value: 7
-    defaultSkillList: c105d901c205d901c305d901c405d901
+    defaultSkillList: 753adc017a3adc01763adc017b3adc01
   equipmentEntity:
     initialWeapon: 41010101
     initialArmor: 43010101

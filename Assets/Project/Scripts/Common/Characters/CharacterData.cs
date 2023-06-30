@@ -13,7 +13,7 @@ namespace Common.Characters
 
         public DataIndex DataIndex => characterIndex;
         public CharacterMask CharacterMask => mask;
-        public IEnumerable<DataIndex> SkillList => constEntity.DefaultSkillList;
+        public List<DataIndex> SkillList => constEntity.DefaultSkillList;
         public string Name => constEntity.CharacterName;
         public StatTable StaticStatTable { get; } = new();
         

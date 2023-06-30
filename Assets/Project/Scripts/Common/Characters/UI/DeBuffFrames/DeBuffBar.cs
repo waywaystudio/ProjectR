@@ -32,14 +32,14 @@ namespace Common.Characters.UI.DeBuffFrames
         {
             UpdateDeBuffUI();
             
-            Cb.DynamicStatEntry.StatusEffectTable.AddListener(UpdateDeBuffUI);
+            // Cb.DynamicStatEntry.StatusEffectTable.AddListener(UpdateDeBuffUI);
         }
 
         private void OnDisable()
         {
             slotList.ForEach(slot => slot.Unregister());
             
-            Cb.DynamicStatEntry.StatusEffectTable.RemoveListener(UpdateDeBuffUI);
+            // Cb.DynamicStatEntry.StatusEffectTable.RemoveListener(UpdateDeBuffUI);
         }
 
 

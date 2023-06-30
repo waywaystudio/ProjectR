@@ -6,16 +6,14 @@ namespace Common
     public enum ActionMask
     {
         None = 0,
-        Stop = 1       << 0,
-        Run = 1        << 1,
-        Dead = 1       << 2,
-        KnockBack = 1  << 3,
-        Stun = 1       << 4,
-        Skill = 1      << 5,
+        Stop = 1      << 0,
+        Run = 1       << 1,
+        Dead = 1      << 2,
+        KnockBack = 1 << 3,
+        Stun = 1      << 4,
+        Skill = 1     << 5, 
         RigidSkill = 1 << 6,
-        Draw = 1 << 7,
-
-        SkillIgnoreMask = None      | Stop | Run,
+        Draw = 1      << 7,
 
         All = int.MaxValue
     }
@@ -42,9 +40,9 @@ namespace Common
                                                    ActionMask.Skill;
             
             const ActionMask drawIgnoreMask = ActionMask.None | 
-                                                   ActionMask.Stop | 
-                                                   ActionMask.Run  | 
-                                                   ActionMask.Skill;
+                                              ActionMask.Stop | 
+                                              ActionMask.Run  | 
+                                              ActionMask.Skill;
             
             const ActionMask stunIgnoreMask = ActionMask.None | 
                                               ActionMask.Stop | 
@@ -52,11 +50,12 @@ namespace Common
                                               ActionMask.Skill;
             
             const ActionMask deadIgnoreMask = ActionMask.None      | 
-                                              ActionMask.Run       | 
                                               ActionMask.Stop      | 
+                                              ActionMask.Run       | 
                                               ActionMask.Stun      | 
                                               ActionMask.KnockBack | 
                                               ActionMask.Skill     | 
+                                              ActionMask.Draw      |
                                               ActionMask.RigidSkill;
 
             return mask switch

@@ -49,6 +49,8 @@ namespace Character.Villains.Commons.Skills
 
         private void StopMeteor()
         {
+            if (meteorRoutine is null) return;
+            
             StopCoroutine(meteorRoutine);
         }
 

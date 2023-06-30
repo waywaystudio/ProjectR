@@ -65,6 +65,10 @@ PrefabInstance:
       value: Finisher
       objectReference: {fileID: 0}
     - target: {fileID: 8979131138480939997, guid: 15a877e84ffd8e14687a3e6601019b57, type: 3}
+      propertyPath: coolTimer.coolTime
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8979131138480939997, guid: 15a877e84ffd8e14687a3e6601019b57, type: 3}
       propertyPath: remainBonusMultiplier
       value: 2
       objectReference: {fileID: 0}
@@ -1469,7 +1473,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7857890816460160637, guid: 3a8fdd23b4f75534bbc06c239123daef, type: 3}
       propertyPath: priority
-      value: 1
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 7857890816460160637, guid: 3a8fdd23b4f75534bbc06c239123daef, type: 3}
       propertyPath: cost.cost
@@ -1482,6 +1486,10 @@ PrefabInstance:
     - target: {fileID: 7857890816460160637, guid: 3a8fdd23b4f75534bbc06c239123daef, type: 3}
       propertyPath: cost.paySection
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7857890816460160637, guid: 3a8fdd23b4f75534bbc06c239123daef, type: 3}
+      propertyPath: coolTimer.coolTime
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7857890816460160637, guid: 3a8fdd23b4f75534bbc06c239123daef, type: 3}
       propertyPath: detector.targetLayer.m_Bits
@@ -1579,6 +1587,10 @@ PrefabInstance:
     - target: {fileID: 2088250119245373302, guid: 9c188c7daac5dc94090531e987dc6982, type: 3}
       propertyPath: m_Name
       value: WarriorAnimation
+      objectReference: {fileID: 0}
+    - target: {fileID: 6492523947511916555, guid: 9c188c7daac5dc94090531e987dc6982, type: 3}
+      propertyPath: m_Mesh
+      value: 
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

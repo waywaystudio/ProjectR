@@ -1144,10 +1144,12 @@ MonoBehaviour:
   globalCoolTimer:
     coolTime: 1.5
   skillTable:
-    keyList: bc69dc01b969dc01
+    keyList: bc69dc01b969dc01ba69dc01bb69dc01
     valueList:
     - {fileID: 1144377022904457136}
     - {fileID: 4442699525421009715}
+    - {fileID: 1969248501984980143}
+    - {fileID: 4353515852124255580}
     hideKey: 0
 --- !u!114 &3264795498149139108
 MonoBehaviour:
@@ -1495,11 +1497,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8380361914805468174, guid: 89b7f126af484b44fa7eba5693a04ec0, type: 3}
       propertyPath: m_Name
-      value: MoraggLivingBomb
+      value: LivingBomb
       objectReference: {fileID: 0}
     - target: {fileID: 8380361914805468174, guid: 89b7f126af484b44fa7eba5693a04ec0, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -1511,6 +1513,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 234500611213636336, guid: 89b7f126af484b44fa7eba5693a04ec0, type: 3}
   m_PrefabInstance: {fileID: 606109883381454424}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1969248501984980143 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: -7836975085712377097, guid: 89b7f126af484b44fa7eba5693a04ec0, type: 3}
+  m_PrefabInstance: {fileID: 606109883381454424}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0b41bb0c3dbbd114882a16e954f7deac, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &2203882884427909505
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1625,7 +1638,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8380361914805468174, guid: 4ae3fbab6c1c1ed48bbe37492124f254, type: 3}
       propertyPath: m_Name
-      value: MoraggSpin
+      value: ShockWave
       objectReference: {fileID: 0}
     - target: {fileID: 8380361914805468174, guid: 4ae3fbab6c1c1ed48bbe37492124f254, type: 3}
       propertyPath: m_IsActive
@@ -1727,7 +1740,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8380361914805468174, guid: a357f5398beb58044b7041950abebf09, type: 3}
       propertyPath: m_Name
-      value: MoraggCommonAttack
+      value: VillainCommonAttack
       objectReference: {fileID: 0}
     - target: {fileID: 8380361914805468174, guid: a357f5398beb58044b7041950abebf09, type: 3}
       propertyPath: m_IsActive
@@ -1806,6 +1819,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3211000053568049609, guid: bc97391f2869fab429f090747d781a5f, type: 3}
+      propertyPath: actionCode
+      value: 31222203
+      objectReference: {fileID: 0}
     - target: {fileID: 3597284855680841089, guid: bc97391f2869fab429f090747d781a5f, type: 3}
       propertyPath: coolTime
       value: 6
@@ -1844,17 +1861,28 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8380361914805468174, guid: bc97391f2869fab429f090747d781a5f, type: 3}
       propertyPath: m_Name
-      value: MoraggMeteorStrike
+      value: MeteorStrike
       objectReference: {fileID: 0}
     - target: {fileID: 8380361914805468174, guid: bc97391f2869fab429f090747d781a5f, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bc97391f2869fab429f090747d781a5f, type: 3}
+--- !u!114 &4353515852124255580 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6990209160415545652, guid: bc97391f2869fab429f090747d781a5f, type: 3}
+  m_PrefabInstance: {fileID: 6730908541531847784}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 873605c82d9e0a745aa47c75c970d0f8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &6785201395137367704 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 234500611213636336, guid: bc97391f2869fab429f090747d781a5f, type: 3}

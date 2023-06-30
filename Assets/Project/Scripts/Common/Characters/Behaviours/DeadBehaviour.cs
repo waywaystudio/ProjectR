@@ -19,7 +19,7 @@ namespace Common.Characters.Behaviours
         public void Dead()
         {
             if (!SequenceInvoker.IsAbleToActive) return;
-
+            
             SequenceInvoker.Active();
         }
 

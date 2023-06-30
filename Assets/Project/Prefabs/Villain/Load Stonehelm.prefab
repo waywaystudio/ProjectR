@@ -90,7 +90,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3716562276717750227, guid: bd355e30ab3d37740ab682aad07a91b5, type: 3}
       propertyPath: damageSpec.statList.Array.data[0].value
-      value: 3600
+      value: 1000
       objectReference: {fileID: 0}
     - target: {fileID: 3744010700067239338, guid: bd355e30ab3d37740ab682aad07a91b5, type: 3}
       propertyPath: m_Name
@@ -163,6 +163,10 @@ PrefabInstance:
     - target: {fileID: 4442699525421009715, guid: bd355e30ab3d37740ab682aad07a91b5, type: 3}
       propertyPath: castTimer.castingTime
       value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5548285767553033919, guid: bd355e30ab3d37740ab682aad07a91b5, type: 3}
+      propertyPath: damageSpec.statList.Array.data[0].value
+      value: 150
       objectReference: {fileID: 0}
     - target: {fileID: 5800618702141835074, guid: bd355e30ab3d37740ab682aad07a91b5, type: 3}
       propertyPath: m_Mesh

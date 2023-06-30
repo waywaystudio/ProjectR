@@ -1,5 +1,4 @@
 using System.Collections.Generic;
-using Adventurers;
 using Character.Venturers;
 using Character.Villains;
 using Singleton;
@@ -14,7 +13,7 @@ namespace Raid
         [SerializeField] private RaidStageDirector stageDirector;
         [SerializeField] private RaidCastingDirector castingDirector;
         [SerializeField] private RaidUIDirector uiDirector;
-        [SerializeField] private GameEventAdventurer adventurerFocusEvent;
+        [SerializeField] private GameEventVenturer adventurerFocusEvent;
 
         private VenturerBehaviour focusVenturer;
         
@@ -44,13 +43,10 @@ namespace Raid
             FocusVenturer = CastingDirector.VenturerList[0];
         }
 
-        
-        protected override void Awake()
-        {
-            base.Awake();
 
-            // TEMP
-            uiDirector.gameObject.SetActive(true);
+        private void OnDisable()
+        {
+            uiDirector.Dispose();
         }
 
 

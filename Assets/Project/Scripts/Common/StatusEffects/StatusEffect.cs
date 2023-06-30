@@ -15,6 +15,7 @@ namespace Common.StatusEffects
 
         public ICombatProvider Provider { get; protected set; }
         public DataIndex DataIndex => statusCode;
+        public StatusEffectType Type => type;
         public FloatEvent ProgressTime { get; } = new();
         public Sequencer Sequencer => sequencer;
         public Sprite Icon => icon;

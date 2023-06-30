@@ -1,3 +1,4 @@
+using UnityEditor;
 using UnityEngine;
 
 namespace Singleton
@@ -37,7 +38,9 @@ namespace Singleton
                     {
                         var sb = new System.Text.StringBuilder();
 
-                        typeObjects.ForEach(uso => sb.Append($"{UnityEditor.AssetDatabase.GetAssetPath(uso)}\n"));
+#if UNITY_EDITOR
+                        typeObjects.ForEach(uso => sb.Append($"{AssetDatabase.GetAssetPath(uso)}\n"));
+#endif
                     
                         Debug.LogError($"More than 1 {typeof(T)} ScriptableObjects in Resources Folder"
                                        + $"Path List of multiple {typeof(T)} : {sb}");

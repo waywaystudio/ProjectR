@@ -41,7 +41,7 @@ namespace GameEvents
         
 #if UNITY_EDITOR
         #region - editor Functions & Attributes
-        [SerializeField] protected List<GameEventListener> subscriberList;
+        protected List<GameEventListener> SubscriberList;
 
         public void ShowListener()
         {
@@ -49,7 +49,7 @@ namespace GameEvents
             
             var subscriber = allOfListeners.Where(x => x.TargetEvent == this);
 
-            subscriberList = subscriber.OrderBy(x => x.Priority)
+            SubscriberList = subscriber.OrderBy(x => x.Priority)
                                        .ToList();
         }
 

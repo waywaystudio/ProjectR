@@ -26,14 +26,14 @@ MonoBehaviour:
       Lord Stonehelm\u2019s body is composed of the most resilient granite, each
       slab and stone meticulously arranged to create a formidable and imposing figure."
     defaultDamage: 1
-    power: 100
-    health: 200
+    power: 500
+    health: 2000
     maxResource: 100
     moveSpeed: 7
-    critical: 5
+    critical: 0.05
     haste: 0
-    armor: 50
-    defaultSkills: c905d901c605d901c705d901
+    armor: 0
+    defaultSkills: bc69dc01b969dc01ba69dc01bb69dc01
     iconFileName: Load Stonehelm Sprite
   - id: 22010301
     name: Maelrift
@@ -46,14 +46,14 @@ MonoBehaviour:
       are like two glowing orbs of deep blue, piercing through the darkness of the
       black pond.
     defaultDamage: 1
-    power: 100
-    health: 200
+    power: 500
+    health: 2000
     maxResource: 100
     moveSpeed: 7
-    critical: 5
+    critical: 0.05
     haste: 0
-    armor: 50
-    defaultSkills: c905d901c605d901
+    armor: 0
+    defaultSkills: bc69dc01b969dc01ba69dc01bb69dc01
     iconFileName: Maelrift Sprite
   - id: 22010201
     name: Valtoria
@@ -73,14 +73,14 @@ MonoBehaviour:
       both the unbreakable spirit of the mountains and the resilience of the wild,
       offering a formidable trial for those who seek to prove their mettle."
     defaultDamage: 1
-    power: 100
-    health: 200
+    power: 500
+    health: 2000
     maxResource: 100
     moveSpeed: 7
-    critical: 5
+    critical: 0.05
     haste: 0
-    armor: 50
-    defaultSkills: c905d901c605d901
+    armor: 0
+    defaultSkills: bc69dc01b969dc01ba69dc01bb69dc01
     iconFileName: Valtoria Sprite
   - id: 22020401
     name: Phantasmaraud
@@ -92,14 +92,14 @@ MonoBehaviour:
       In death, their souls were bound to the battlefield, forever cursed to relive
       their final, reckless moments.
     defaultDamage: 1
-    power: 100
-    health: 200
+    power: 500
+    health: 2000
     maxResource: 100
     moveSpeed: 7
-    critical: 5
+    critical: 0.05
     haste: 0
-    armor: 50
-    defaultSkills: c905d901c605d901
+    armor: 0
+    defaultSkills: bc69dc01b969dc01ba69dc01bb69dc01
     iconFileName: Phantasmaraud Sprite
   - id: 22020601
     name: Timorus Arcanis
@@ -110,14 +110,14 @@ MonoBehaviour:
       life, this emperor relied on deceit and manipulation to maintain his power,
       ultimately turning to dark magic to escape the consequences of his actions.
     defaultDamage: 1
-    power: 100
-    health: 200
+    power: 500
+    health: 2000
     maxResource: 100
     moveSpeed: 7
-    critical: 5
+    critical: 0.05
     haste: 0
-    armor: 50
-    defaultSkills: c905d901c605d901
+    armor: 0
+    defaultSkills: bc69dc01b969dc01ba69dc01bb69dc01
     iconFileName: Timorus Arcanis Sprite
   - id: 22020501
     name: General Gallant
@@ -129,14 +129,14 @@ MonoBehaviour:
       victories. Even in the face of insurmountable odds, his courage never wavered,
       and he fought until his dying breath.
     defaultDamage: 1
-    power: 100
-    health: 200
+    power: 500
+    health: 2000
     maxResource: 100
     moveSpeed: 7
-    critical: 5
+    critical: 0.05
     haste: 0
-    armor: 50
-    defaultSkills: c905d901c605d901
+    armor: 0
+    defaultSkills: bc69dc01b969dc01ba69dc01bb69dc01
     iconFileName: General Gallant Sprite
   - id: 22030701
     name: Vortex
@@ -148,14 +148,14 @@ MonoBehaviour:
       These four elite Vinions act in unison, their movements perfectly synchronized,
       allowing them to execute complex and deadly strategies against their foes.
     defaultDamage: 1
-    power: 100
-    health: 200
+    power: 500
+    health: 2000
     maxResource: 100
     moveSpeed: 7
-    critical: 5
+    critical: 0.05
     haste: 0
-    armor: 50
-    defaultSkills: c905d901c605d901
+    armor: 0
+    defaultSkills: bc69dc01b969dc01ba69dc01bb69dc01
     iconFileName: Vortex Sprite
   - id: 22030901
     name: Vex
@@ -167,14 +167,14 @@ MonoBehaviour:
       moves as a single entity, engulfing everything in its path, and leaving destruction
       in its wake.
     defaultDamage: 1
-    power: 100
-    health: 200
+    power: 500
+    health: 2000
     maxResource: 100
     moveSpeed: 7
-    critical: 5
+    critical: 0.05
     haste: 0
-    armor: 50
-    defaultSkills: c905d901c605d901
+    armor: 0
+    defaultSkills: bc69dc01b969dc01ba69dc01bb69dc01
     iconFileName: Vex Sprite
   - id: 22030801
     name: Vazrith
@@ -186,14 +186,14 @@ MonoBehaviour:
       creature possesses the ability to spawn smaller Vinions at will, commanding
       them with its superior intellect and strategic genius.
     defaultDamage: 1
-    power: 100
-    health: 200
+    power: 500
+    health: 2000
     maxResource: 100
     moveSpeed: 7
-    critical: 5
+    critical: 0.05
     haste: 0
-    armor: 50
-    defaultSkills: c905d901c605d901
+    armor: 0
+    defaultSkills: bc69dc01b969dc01ba69dc01bb69dc01
     iconFileName: Vazrith Sprite
   - id: 22041001
     name: Isolde
@@ -205,14 +205,14 @@ MonoBehaviour:
       to contain an entire universe within them. Her presence is both captivating
       and mysterious, drawing in those who find themselves lost in her gaze.
     defaultDamage: 1
-    power: 100
-    health: 200
+    power: 500
+    health: 2000
     maxResource: 100
     moveSpeed: 7
-    critical: 5
+    critical: 0.05
     haste: 0
-    armor: 50
-    defaultSkills: c905d901c605d901
+    armor: 0
+    defaultSkills: bc69dc01b969dc01ba69dc01bb69dc01
     iconFileName: Isolde Sprite
   - id: 22041201
     name: Fracturemancer
@@ -224,14 +224,14 @@ MonoBehaviour:
       The creature thrives in environments where conformity and order are paramount,
       causing chaos and destruction in its wake.
     defaultDamage: 1
-    power: 100
-    health: 200
+    power: 500
+    health: 2000
     maxResource: 100
     moveSpeed: 7
-    critical: 5
+    critical: 0.05
     haste: 0
-    armor: 50
-    defaultSkills: c905d901c605d901
+    armor: 0
+    defaultSkills: bc69dc01b969dc01ba69dc01bb69dc01
     iconFileName: Fracturemancer Sprite
   - id: 22041101
     name: Painbrush
@@ -244,14 +244,14 @@ MonoBehaviour:
       made of dark, ink-like substance that constantly drips and flows, creating
       a sense of unease and terror.
     defaultDamage: 1
-    power: 100
-    health: 200
+    power: 500
+    health: 2000
     maxResource: 100
     moveSpeed: 7
-    critical: 5
+    critical: 0.05
     haste: 0
-    armor: 50
-    defaultSkills: c905d901c605d901
+    armor: 0
+    defaultSkills: bc69dc01b969dc01ba69dc01bb69dc01
     iconFileName: Painbrush Sprite
   - id: 22051301
     name: Eye of Hubris
@@ -268,14 +268,14 @@ MonoBehaviour:
       is ultimately its weakness, as it tends to underestimate its opponents, leaving
       openings for a well-prepared counterattack.
     defaultDamage: 1
-    power: 100
-    health: 200
+    power: 500
+    health: 2000
     maxResource: 100
     moveSpeed: 7
-    critical: 5
+    critical: 0.05
     haste: 0
-    armor: 50
-    defaultSkills: c905d901c605d901
+    armor: 0
+    defaultSkills: bc69dc01b969dc01ba69dc01bb69dc01
     iconFileName: Eye of Hubris Sprite
   - id: 22051501
     name: Destinstringer
@@ -292,14 +292,14 @@ MonoBehaviour:
       the Puppeteer of Fates becomes significantly more vulnerable and easier to
       defeat.
     defaultDamage: 1
-    power: 100
-    health: 200
+    power: 500
+    health: 2000
     maxResource: 100
     moveSpeed: 7
-    critical: 5
+    critical: 0.05
     haste: 0
-    armor: 50
-    defaultSkills: c905d901c605d901
+    armor: 0
+    defaultSkills: bc69dc01b969dc01ba69dc01bb69dc01
     iconFileName: Destinstringer Sprite
   - id: 22051401
     name: Luxspherion
@@ -317,14 +317,14 @@ MonoBehaviour:
       and intentions, they can momentarily disorient the Orb, creating an opportunity
       to strike.
     defaultDamage: 1
-    power: 100
-    health: 200
+    power: 500
+    health: 2000
     maxResource: 100
     moveSpeed: 7
-    critical: 5
+    critical: 0.05
     haste: 0
-    armor: 50
-    defaultSkills: c905d901c605d901
+    armor: 0
+    defaultSkills: bc69dc01b969dc01ba69dc01bb69dc01
     iconFileName: Luxspherion Sprite
   - id: 22061601
     name: Dr Ravencroft
@@ -335,14 +335,14 @@ MonoBehaviour:
       staff that emanates a malevolent energy, infecting those who come too close
       with insatiable hunger and uncontrollable cravings.
     defaultDamage: 1
-    power: 100
-    health: 200
+    power: 500
+    health: 2000
     maxResource: 100
     moveSpeed: 7
-    critical: 5
+    critical: 0.05
     haste: 0
-    armor: 50
-    defaultSkills: c905d901c605d901
+    armor: 0
+    defaultSkills: bc69dc01b969dc01ba69dc01bb69dc01
     iconFileName: Dr Ravencroft Sprite
   - id: 22061801
     name: Mortimus
@@ -353,14 +353,14 @@ MonoBehaviour:
       he can raise fallen soldiers to do his bidding or sap the will to fight from
       the living, turning them into apathetic husks.
     defaultDamage: 1
-    power: 100
-    health: 200
+    power: 500
+    health: 2000
     maxResource: 100
     moveSpeed: 7
-    critical: 5
+    critical: 0.05
     haste: 0
-    armor: 50
-    defaultSkills: c905d901c605d901
+    armor: 0
+    defaultSkills: bc69dc01b969dc01ba69dc01bb69dc01
     iconFileName: Mortimus Sprite
   - id: 22061701
     name: Lady Serenavaine
@@ -372,12 +372,12 @@ MonoBehaviour:
       the life force of those who fall under her spell, all the while convincing
       them they are receiving a gift.
     defaultDamage: 1
-    power: 100
-    health: 200
+    power: 500
+    health: 2000
     maxResource: 100
     moveSpeed: 7
-    critical: 5
+    critical: 0.05
     haste: 0
-    armor: 50
-    defaultSkills: c905d901c605d901
+    armor: 0
+    defaultSkills: bc69dc01b969dc01ba69dc01bb69dc01
     iconFileName: Lady Serenavaine Sprite

@@ -5,25 +5,27 @@ namespace Common
 {
     public class StatusEffectTable : Table<DataIndex, StatusEffect>
     {
-        private event Action OnEffectChanged;
-        
-        public void AddListener(Action action) => OnEffectChanged += action;
-        public void RemoveListener(Action action) => OnEffectChanged -= action;
+        public ActionTable<StatusEffect> OnEffectAdded { get; } = new();
+        public ActionTable<StatusEffect> OnEffectRemoved { get; } = new();
+
+        // public void AddListener(string key, Action<StatusEffect> action) => OnEffectAdded.Add(key, action);
+        // public void RemoveListener(string key) => OnEffectAdded.Remove(key);
         
         public override void Add(DataIndex key, StatusEffect statusEffect)
         {
             base.Add(key, statusEffect);
             
-            OnEffectChanged?.Invoke();
+            OnEffectAdded?.Invoke(statusEffect);
         }
         
         public override bool Remove(DataIndex effectIndex)
         {
-            var result = base.Remove(effectIndex);
-            
-            OnEffectChanged?.Invoke();
+            if (!TryGetValue(effectIndex, out var effect)) return false;
 
-            return result;
+            OnEffectRemoved?.Invoke(effect);
+            base.Remove(effectIndex);
+
+            return true;
         }
 
         public bool TryGetEffect<T>(DataIndex key, out T effect) where T : StatusEffect

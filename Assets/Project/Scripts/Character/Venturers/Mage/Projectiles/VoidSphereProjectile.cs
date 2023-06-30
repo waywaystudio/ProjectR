@@ -15,6 +15,7 @@ namespace Character.Venturers.Mage.Projectiles
         [SerializeField] private SphereCollider triggerCollider;
         [SerializeField] private LayerMask trapLayer;
         [SerializeField] private float shardCollectableRadius;
+        [SerializeField] private float absorbPower = 50f;
 
         // [ShowInInspector]
         // private Collider[] colliderBuffers = new Collider[32];
@@ -106,7 +107,7 @@ namespace Character.Venturers.Mage.Projectiles
             if (!soul.isActiveAndEnabled) return;
             
             var currentPower = damageExecutor.DamageSpec.Power;
-            var absorbedPower = currentPower + 500f;
+            var absorbedPower = currentPower + absorbPower;
             
             damageExecutor.DamageSpec.Change(StatType.Power, absorbedPower);
             

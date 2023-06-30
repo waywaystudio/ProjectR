@@ -37,7 +37,8 @@ MonoBehaviour:
     paySection: Execute
     statusEffect: 0
     iconFileName: SwordAttack Sprite
-    description: Starts combat by attacking a target with a melee weapon.
+    description: "\uB300\uC0C1\uC744 \uACF5\uACA9\uD558\uC5EC \uC790\uC6D0\uC744
+      \uD68C\uBCF5\uD558\uB294 \uAE30\uBCF8 \uAE30\uC220"
   - id: 31210102
     name: Bash
     behaviourMask: Skill
@@ -61,7 +62,9 @@ MonoBehaviour:
     paySection: Execute
     statusEffect: 32210001
     iconFileName: Bash Sprite
-    description: Starts combat by attacking a target with a melee weapon.
+    description: "\uBC29\uD328\uB85C \uAC00\uACA9\uD558\uC5EC \uD53C\uD574\uB97C
+      \uC900\uB2E4. \uB300\uC0C1\uC774 \uACF5\uACA9 \uC911\uC77C \uB54C \uC0AC\uC6A9\uD558\uBA74
+      \uCD94\uAC00 \uD53C\uD574\uB97C \uC900\uB2E4."
   - id: 31210103
     name: UpperSlash
     behaviourMask: Skill
@@ -157,7 +160,8 @@ MonoBehaviour:
     paySection: Active
     statusEffect: 0
     iconFileName: ShieldUp Sprite
-    description: Starts combat by attacking a target with a melee weapon.
+    description: "\uBC29\uD328\uB97C \uB4E4\uC5B4 \uD53C\uD574\uB97C \uBC18\uAC10\uC2DC\uD0A8\uB2E4.
+      \uAE30\uC808\uACFC \uBC00\uCCD0\uB0B4\uB294 \uD6A8\uACFC\uC5D0 \uBA74\uC5ED"
   - id: 31210107
     name: Taunt
     behaviourMask: RigidSkill
@@ -181,7 +185,8 @@ MonoBehaviour:
     paySection: Active
     statusEffect: 0
     iconFileName: Taunt Sprite
-    description: Starts combat by attacking a target with a melee weapon.
+    description: "\uC8FC\uC704\uC5D0 \uBAA8\uB4E0 \uC801\uC744 \uB3C4\uBC1C\uD558\uC5EC
+      \uAE30\uC0AC \uADFC\uCC98\uB85C \uB04C\uC5B4\uB2F9\uAE34\uB2E4."
   - id: 31210201
     name: Smash
     behaviourMask: Skill
@@ -205,7 +210,8 @@ MonoBehaviour:
     paySection: Execute
     statusEffect: 0
     iconFileName: Smash Sprite
-    description: Starts combat by attacking a target with a melee weapon.
+    description: "\uB300\uC0C1\uC744 \uACF5\uACA9\uD558\uC5EC \uC790\uC6D0\uC744
+      \uD68C\uBCF5\uD558\uB294 \uAE30\uBCF8 \u3163\uC220"
   - id: 31210202
     name: LeapAttack
     behaviourMask: RigidSkill
@@ -229,7 +235,8 @@ MonoBehaviour:
     paySection: Execute
     statusEffect: 0
     iconFileName: LeapAttack Sprite
-    description: Starts combat by attacking a target with a melee weapon.
+    description: "\uBAA9\uD45C \uC9C0\uC810\uC73C\uB85C \uC810\uD504\uD558\uC5EC
+      \uACF5\uACA9\uD55C\uB2E4"
   - id: 31210203
     name: Deathblow
     behaviourMask: Skill
@@ -253,7 +260,8 @@ MonoBehaviour:
     paySection: Execute
     statusEffect: 0
     iconFileName: Deathblow Sprite
-    description: Starts combat by attacking a target with a melee weapon.
+    description: "\uAE30\uB825\uC744 \uBAA8\uC544 \uC804\uBC29\uC5D0 \uBAA8\uB4E0
+      \uC801\uC744 \uB0B4\uB824\uCE5C\uB2E4."
   - id: 31210204
     name: WarriorsFury
     behaviourMask: RigidSkill
@@ -277,7 +285,8 @@ MonoBehaviour:
     paySection: None
     statusEffect: 0
     iconFileName: WarriorsFury Sprite
-    description: Starts combat by attacking a target with a melee weapon.
+    description: "\uC790\uC6D0\uC744 \uBAA8\uB450 \uC18C\uBAA8\uD558\uC5EC \"\uBD84\uB178\"\uC0C1\uD0DC\uB85C
+      \uB3CC\uC785\uD55C\uB2E4"
   - id: 31210205
     name: BloodSmash
     behaviourMask: Skill
@@ -493,7 +502,8 @@ MonoBehaviour:
     paySection: Execute
     statusEffect: 0
     iconFileName: DoubleStab Sprite
-    description: Starts combat by attacking a target with a melee weapon.
+    description: "\uB300\uC0C1\uC744 \uBE60\uB974\uAC8C \uB450 \uBC88 \uACF5\uACA9\uD558\uACE0
+      \uC790\uC6D0\uC744 \uD68C\uBCF5\uD55C\uB2E4."
   - id: 31210306
     name: PhantomStrike
     behaviourMask: RigidSkill
@@ -517,7 +527,8 @@ MonoBehaviour:
     paySection: None
     statusEffect: 0
     iconFileName: PhantomStrike Sprite
-    description: Starts combat by attacking a target with a melee weapon.
+    description: "\uC804\uBC29\uC73C\uB85C \uB3CC\uC9C4\uD558\uACE0 \uC720\uB839\uC744
+      \uB0A8\uAE34\uB2E4."
   - id: 31210307
     name: ShadowWalk
     behaviourMask: Skill
@@ -541,7 +552,8 @@ MonoBehaviour:
     paySection: None
     statusEffect: 0
     iconFileName: ShadowWalk Sprite
-    description: Starts combat by attacking a target with a melee weapon.
+    description: "\uB300\uC0C1 \uC9C0\uC810\uC73C\uB85C \uC21C\uAC04\uC774\uB3D9
+      \uD55C \uD6C4 \uC720\uB839\uC744 \uB0A8\uAE34\uB2E4."
   - id: 31210308
     name: MarkOfDeath
     behaviourMask: Skill
@@ -565,7 +577,9 @@ MonoBehaviour:
     paySection: Active
     statusEffect: 0
     iconFileName: MarkOfDeath Sprite
-    description: Starts combat by attacking a target with a melee weapon.
+    description: "\uB300\uC0C1 \uC9C0\uC810\uC744 \uD5A5\uD574\uC11C \uD45C\uCC3D\uC744
+      \uB358\uC9C4\uB2E4. \uBAA8\uB4E0 \uC720\uB839\uC774 \uD50C\uB808\uC774\uC5B4\uC758
+      \uD589\uB3D9\uC744 \uBAA8\uBC29\uD55C\uB2E4"
   - id: 31210401
     name: ContinuesAttack
     behaviourMask: Skill
@@ -637,7 +651,9 @@ MonoBehaviour:
     paySection: Execute
     statusEffect: 0
     iconFileName: AimShot Sprite
-    description: Starts combat by attacking a target with a melee weapon.
+    description: "\uD65C \uC2DC\uC704\uB97C \uB2F9\uACA8 \uB300\uC0C1 \uC9C0\uC810\uC744
+      \uACF5\uACA9\uD55C\uB2E4. \uACF5\uACA9\uC774 \uCE58\uBA85\uD0C0\uB85C \uC801\uC911
+      \uC2DC \uC544\uB4DC\uB808\uB0A0\uB9B0 \uAC15\uD654\uD6A8\uACFC\uB97C \uD68D\uB4DD\uD55C\uB2E4."
   - id: 31210404
     name: InstantShot
     behaviourMask: Skill
@@ -661,7 +677,10 @@ MonoBehaviour:
     paySection: None
     statusEffect: 0
     iconFileName: InstantShot Sprite
-    description: Starts combat by attacking a target with a melee weapon.
+    description: "\uC989\uC2DC \uC0AC\uACA9\uD558\uC5EC \uC6D0\uAC70\uB9AC \uB300\uC0C1\uC5D0\uAC8C
+      \uD53C\uD574\uB97C \uC900\uB2E4. \uACF5\uACA9\uC774 \uCE58\uBA85\uD0C0\uB85C
+      \uC801\uC911 \uC2DC \uC544\uB4DC\uB808\uB0A0\uB9B0 \uAC15\uD654\uD6A8\uACFC\uB97C
+      \uD68D\uB4DD\uD55C\uB2E4."
   - id: 31210405
     name: FocusedStrike
     behaviourMask: Skill
@@ -685,7 +704,10 @@ MonoBehaviour:
     paySection: Execute
     statusEffect: 0
     iconFileName: FocusedStrike Sprite
-    description: Starts combat by attacking a target with a melee weapon.
+    description: "\uD560 \uC2DC\uC704\uB97C \uAE38\uAC8C \uB2F9\uACA8 \uB300\uC0C1
+      \uC9C0\uC810 \uACBD\uB85C\uC5D0 \uAC15\uB825\uD55C \uD53C\uD574\uB97C \uC900\uB2E4.
+      \uACF5\uACA9\uC774 \uCE58\uBA85\uD0C0\uB85C \uC801\uC911 \uC2DC \uC544\uB4DC\uB808\uB0A0\uB9B0
+      \uAC15\uD654\uD6A8\uACFC\uB97C \uD68D\uB4DD\uD55C\uB2E4."
   - id: 31210406
     name: Reload
     behaviourMask: Skill
@@ -709,7 +731,10 @@ MonoBehaviour:
     paySection: None
     statusEffect: 0
     iconFileName: Reload Sprite
-    description: Starts combat by attacking a target with a melee weapon.
+    description: "\uC8FC\uC704\uC5D0 \uBAA8\uB4E0 \uD654\uC0B4\uC744 \uC989\uC2DC
+      \uD68C\uC218\uD558\uC5EC \uC790\uC6D0\uC744 \uBAA8\uB450 \uD68C\uBCF5\uD55C\uB2E4.
+      \uB300\uC0C1\uC5D0\uAC8C \uBC16\uD600\uC788\uB294 \uB9C8\uBC95\uD654\uC0B4\uC758
+      \uAC1C\uC218\uC5D0 \uBE44\uB840\uD55C \uB370\uBBF8\uC9C0\uB97C \uC900\uB2E4."
   - id: 31210501
     name: VileScrapper
     behaviourMask: Skill
@@ -733,7 +758,8 @@ MonoBehaviour:
     paySection: Active
     statusEffect: 0
     iconFileName: VileScrapper Sprite
-    description: Starts combat by attacking a target with a melee weapon.
+    description: "\uC6D0\uAC70\uB9AC \uB300\uC0C1\uC5D0\uAC8C \uD53C\uD574\uB97C
+      \uC8FC\uACE0, \uB300\uC0C1\uC758 \uC601\uD63C\uC744 \uC870\uAC01\uB0B8\uB2E4."
   - id: 31210502
     name: VoidSphere
     behaviourMask: Skill
@@ -757,7 +783,10 @@ MonoBehaviour:
     paySection: Active
     statusEffect: 0
     iconFileName: VoidSphere Sprite
-    description: Starts combat by attacking a target with a melee weapon.
+    description: "\uCC9C\uCC9C\uD788 \uB098\uC544\uAC00\uB294 \uD22C\uC0AC\uCCB4\uB97C
+      \uBC1C\uC0AC\uD55C\uB2E4. \uC8FC\uC704\uC5D0 \uC601\uD63C\uC758 \uC870\uAC01\uC744
+      \uD761\uC218\uD558\uBA70, \uD761\uC218\uD55C \uC870\uAC01\uC5D0 \uBE44\uB840\uD558\uC5EC
+      \uB354 \uD070 \uD53C\uD574\uB97C \uC900\uB2E4."
   - id: 31210503
     name: Extraction
     behaviourMask: Skill
@@ -781,7 +810,8 @@ MonoBehaviour:
     paySection: Complete
     statusEffect: 0
     iconFileName: Extraction Sprite
-    description: Starts combat by attacking a target with a melee weapon.
+    description: "\uB300\uC0C1 \uC9C0\uC810\uC5D0 \uBAA8\uB4E0 \uC801\uC744 \uB3C4\uB824\uB0B4\uC5B4
+      \uC601\uD63C \uC870\uAC01\uC744 \uCD94\uCD9C\uD55C\uB2E4."
   - id: 31210504
     name: ChainsOfSoul
     behaviourMask: RigidSkill
@@ -805,7 +835,8 @@ MonoBehaviour:
     paySection: Active
     statusEffect: 0
     iconFileName: ChainsOfSoul Sprite
-    description: Starts combat by attacking a target with a melee weapon.
+    description: "\uC8FC\uC704\uC5D0 \uBAA8\uB4E0 \uC601\uD63C\uC758 \uC870\uAC01\uC744
+      \uD574\uB2F9 \uC9C0\uC810\uC73C\uB85C \uC62E\uAE34\uB2E4."
   - id: 31210601
     name: PriestCommonHeal
     behaviourMask: Skill
@@ -853,7 +884,8 @@ MonoBehaviour:
     paySection: None
     statusEffect: 0
     iconFileName: HealingTouch Sprite
-    description: Starts combat by attacking a target with a melee weapon.
+    description: "\uB300\uC0C1\uC758 \uCCB4\uB825\uC744 \uD68C\uBCF5\uD558\uACE0,
+      \uD50C\uB808\uC774\uC5B4\uC758 \uC790\uC6D0\uC744 \uD68C\uBCF5\uD55C\uB2E4."
   - id: 31210603
     name: Renew
     behaviourMask: Skill
@@ -877,7 +909,9 @@ MonoBehaviour:
     paySection: None
     statusEffect: 0
     iconFileName: Renew Sprite
-    description: Starts combat by attacking a target with a melee weapon.
+    description: "15\uCD08\uAC04 \uC720\uC9C0\uB418\uB294 \uAC15\uD654\uD6A8\uACFC\uB97C
+      \uAC78\uC5B4 \uB9E4 3\uCD08\uB9C8\uB2E4 \uB300\uC0C1\uC758 \uCCB4\uB825\uC744
+      \uD68C\uBCF5\uD558\uACE0 \uC774\uB3D9\uC18D\uB3C4\uB97C \uC99D\uAC00\uC2DC\uD0A8\uB2E4."
   - id: 31210604
     name: LightOfDawn
     behaviourMask: Skill
@@ -901,7 +935,7 @@ MonoBehaviour:
     paySection: None
     statusEffect: 0
     iconFileName: LightOfDawn Sprite
-    description: Starts combat by attacking a target with a melee weapon.
+    description: "\uBAA8\uB4E0 \uC544\uAD70\uC744 \uCE58\uC720\uD55C\uB2E4."
   - id: 31210605
     name: Rapture
     behaviourMask: Skill
@@ -925,7 +959,8 @@ MonoBehaviour:
     paySection: None
     statusEffect: 0
     iconFileName: Rapture Sprite
-    description: Starts combat by attacking a target with a melee weapon.
+    description: "\uB2E4\uC74C\uC5D0 \uC0AC\uC6A9\uD558\uB294 \uAE30\uC220\uC744
+      \uAC15\uD654\uD55C\uB2E4."
   - id: 31222201
     name: ShockWave
     behaviourMask: Skill

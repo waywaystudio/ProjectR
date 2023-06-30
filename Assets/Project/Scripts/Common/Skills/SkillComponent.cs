@@ -75,6 +75,8 @@ namespace Common.Skills
 
         public virtual void Dispose()
         {
+            SkillInvoker.End();
+            
             sequencer.Clear();
             coolTimer.Dispose();
             castTimer.Dispose();

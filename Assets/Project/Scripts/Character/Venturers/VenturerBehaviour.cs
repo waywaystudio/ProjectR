@@ -11,7 +11,8 @@ namespace Character.Venturers
 
         /*
          * Common Attribute
-         */ 
+         */
+        public VenturerType Type => data.VenturerType;
         public override DataIndex DataIndex => data.DataIndex;
         public override CharacterMask CombatClass => data.CharacterMask;
         public override string Name => data.Name;
