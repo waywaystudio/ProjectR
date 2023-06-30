@@ -17,8 +17,6 @@ namespace Character.Venturers.Mage.Projectiles
         [SerializeField] private float shardCollectableRadius;
         [SerializeField] private float absorbPower = 50f;
 
-        // [ShowInInspector]
-        // private Collider[] colliderBuffers = new Collider[32];
         private CancellationTokenSource cts;
         private float originalPower;
 
@@ -118,7 +116,5 @@ namespace Character.Venturers.Mage.Projectiles
         {
             damageExecutor.DamageSpec.Change(StatType.Power, originalPower);
         }
-        
-        
     }
 }

@@ -59,37 +59,5 @@ namespace SceneAdaption
             operation.allowSceneActivation = true;
             ListenerList.ForEach(listener => listener.SceneChanged());
         }
-        
-#if UNITY_EDITOR
-        #region EditorOnly
-        [SerializeField] private List<UnityEditor.SceneAsset> sceneAssetList;
-        
-        /// <summary>
-        /// For Editor Only Scene Translator
-        /// </summary>
-        /// <param name="sceneName">target SceneName</param>
-        [Sirenix.OdinInspector.Button]
-        public void LoadSceneEditorOnly(string sceneName)
-        {
-            if (!sceneNameList.Exists(x => x == sceneName))
-            {
-                Debug.LogError($"Not Exist <b>{sceneName}</b> in scene name list.");
-                return;
-            }
-
-            LoadSceneAsync(sceneName).Forget();
-        }
-        
-        [Sirenix.OdinInspector.Button]
-        private void AssignSceneNameList()
-        {
-            if (sceneNameList.IsNullOrEmpty()) 
-                sceneNameList = new List<string>();
-            
-            sceneNameList.Clear();
-            sceneAssetList.ForEach(x => sceneNameList.Add(x.name));
-        }
-        #endregion
-#endif
     }
 }

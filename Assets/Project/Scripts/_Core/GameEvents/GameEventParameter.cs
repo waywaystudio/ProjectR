@@ -32,9 +32,10 @@ namespace GameEvents
 
         public void Invoke(T0 value) => ListenerList.ForEach(x => x.Invoke(value));
         
+        
 #if UNITY_EDITOR
         #region - editor Functions :: Get Subscribers
-        [SerializeField] protected List<GameEventListener<T0>> subscriberList;
+        protected List<GameEventListener<T0>> SubscriberList;
 
         public void ShowListener()
         {
@@ -42,7 +43,7 @@ namespace GameEvents
             
             var subscriber = allOfListeners.Where(x => x.TargetEvent == this);
 
-            subscriberList = subscriber.OrderBy(x => x.Priority).ToList();
+            SubscriberList = subscriber.OrderBy(x => x.Priority).ToList();
                     
         }
         #endregion
@@ -78,7 +79,7 @@ namespace GameEvents
         
 #if UNITY_EDITOR
         #region - editor Functions :: Get Subscribers
-        [SerializeField] protected List<GameEventListener<T0, T1>> subscriberList;
+        protected List<GameEventListener<T0, T1>> SubscriberList;
 
         public void ShowListener()
         {
@@ -87,7 +88,7 @@ namespace GameEvents
             
             var subscriber = allOfListeners.Where(x => x.TargetEvent == this);
 
-            subscriberList = subscriber.OrderBy(x => x.Priority).ToList();
+            SubscriberList = subscriber.OrderBy(x => x.Priority).ToList();
         }
         #endregion
 #endif

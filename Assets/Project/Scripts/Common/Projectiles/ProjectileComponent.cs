@@ -6,11 +6,11 @@ namespace Common.Projectiles
 {
     public class ProjectileComponent : MonoBehaviour, IActionSender, IEditable
     {
+        [SerializeField] protected DataIndex projectileCode;
         [SerializeField] protected Executor executor;
         [SerializeField] protected Sequencer sequencer;
         [SerializeField] protected Trajectory trajectory;
         [SerializeField] protected CollidingSystem collidingSystem;
-        [SerializeField] protected DataIndex projectileCode;
         [SerializeField] protected LayerMask targetLayer;
         
         public ICombatProvider Provider { get; protected set; }
