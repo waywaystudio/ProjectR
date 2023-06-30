@@ -171,7 +171,7 @@ Transform:
   - {fileID: 7221708945386366489}
   - {fileID: 5853087751410363707}
   m_Father: {fileID: 0}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1416249181191727617
 MonoBehaviour:
@@ -208,6 +208,7 @@ MonoBehaviour:
     animationKey: AttackOffHandInstant
     isLoop: 0
     hasEvent: 1
+    timeScale: 1
     skillType: 1
     callbackSection: 3
   coolTimer:

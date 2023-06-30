@@ -1,5 +1,6 @@
 using System;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace Common.Skills
 {
@@ -9,14 +10,14 @@ namespace Common.Skills
         [SerializeField] private string animationKey;
         [SerializeField] private bool isLoop;
         [SerializeField] private bool hasEvent;
-        [SerializeField] private float timeScale = 1.0f;
+        [SerializeField] private float animationPlaySpeed = 1.0f;
         [SerializeField] private SkillType skillType;
         [SerializeField] private SectionType callbackSection = SectionType.Complete;
 
         public SkillType SkillType => skillType;
-        public float TimeScale => HasteRetriever is null 
-            ? timeScale 
-            : timeScale * HasteRetriever.Invoke();
+        public float AnimationPlaySpeed => HasteRetriever is null 
+            ? animationPlaySpeed 
+            : animationPlaySpeed * HasteRetriever.Invoke();
         
         private Func<float> HasteRetriever  { get; set; }
         
@@ -30,7 +31,7 @@ namespace Common.Skills
             
             skill.SequenceBuilder
                  .Add(SectionType.Active,"PlayAnimation",
-                      () => animator.Play(animationKey, 0, isLoop, TimeScale, callback));
+                      () => animator.Play(animationKey, 0, isLoop, AnimationPlaySpeed, callback));
 
             if (hasEvent)
             {

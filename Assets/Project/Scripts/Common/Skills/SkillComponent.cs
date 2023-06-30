@@ -5,22 +5,22 @@ using UnityEngine;
 
 namespace Common.Skills
 {
-    public abstract class SkillComponent : MonoBehaviour, IActionSender, IActionBehaviour, IHasSequencer, IEditable
+    public class SkillComponent : MonoBehaviour, IActionSender, IActionBehaviour, IHasSequencer, IEditable
     {
         [SerializeField] protected DataIndex actionCode;
         [SerializeField] protected ActionMask behaviourMask = ActionMask.Skill;
         [SerializeField] protected int priority;
         [SerializeField] protected Executor executor;
         [SerializeField] protected Detector detector;
-        [SerializeField] protected Sequencer<Vector3> sequencer;
         [SerializeField] protected SkillAnimationTrait animationTrait;
         [SerializeField] protected SkillCoolTimer coolTimer;
         [SerializeField] protected SkillCastTimer castTimer;
         [SerializeField] protected SkillCost cost;
-        [SerializeField] protected string description;
         [SerializeField] protected Sprite icon;
+        [SerializeField] protected string description;
         
         private CharacterBehaviour cb;
+        private readonly SkillSequencer sequencer = new();
 
         public DataIndex DataIndex => actionCode;
         public ICombatProvider Provider => Cb;
@@ -33,8 +33,8 @@ namespace Common.Skills
         public float Range => detector.Range;
         public float Angle => detector.Angle;
         public Sprite Icon => icon;
-        public Sequencer Sequencer => sequencer;
-        public SequenceBuilder<Vector3> SequenceBuilder { get; private set; }
+        public Sequencer Sequencer { get; } = new();
+        public SkillSequenceBuilder SequenceBuilder { get; private set; }
         public SkillSequenceInvoker SkillInvoker { get; private set; }
         public SkillCoolTimer CoolTimer => coolTimer;
         public SkillCastTimer CastTimer => castTimer;
@@ -44,22 +44,22 @@ namespace Common.Skills
         public float CastWeightTime => CastTimer.CastingTime;
         public CharacterBehaviour Cb => cb ??= GetComponentInParent<CharacterBehaviour>();
 
-        public bool IsEnded => sequencer == null || SkillInvoker.IsEnd;
+        public bool IsEnded => Sequencer == null || SkillInvoker.IsEnd;
         public bool AbleToRelease => animationTrait.SkillType is not (SkillType.Instant or SkillType.Casting) && IsActive;
-        protected bool IsActive => sequencer == null || SkillInvoker.IsActive;
+        protected bool IsActive => Sequencer == null || SkillInvoker.IsActive;
 
 
         public virtual void Initialize()
         {
             SkillInvoker    = new SkillSequenceInvoker(sequencer);
-            SequenceBuilder = new SequenceBuilder<Vector3>(sequencer);
-
+            SequenceBuilder = new SkillSequenceBuilder(sequencer);
+            
             detector.Initialize(Cb);
             animationTrait.Initialize(this);
             coolTimer.Initialize(this);
             castTimer.Initialize(this);
             cost.Initialize(this);
-
+            
             SequenceBuilder.Add(SectionType.Active, "StopPathfinding", Cb.Pathfinding.Stop)
                            .Add(SectionType.End,"CharacterStop", Cb.Stop)
                            .Add(SectionType.Release, "ReleaseAction", () =>

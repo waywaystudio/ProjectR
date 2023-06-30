@@ -12,8 +12,6 @@ namespace Common
 
         public FloatEvent EventTimer { get; private set; } = new();
         public bool IsReady => !isRunning;
-        
-        [Sirenix.OdinInspector.ShowInInspector]
         public float CoolTime => coolTime * (Retriever is not null 
             ? CombatFormula.GetHasteValue(Retriever.Invoke()) 
             : 1f);
