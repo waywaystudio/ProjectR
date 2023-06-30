@@ -2,7 +2,7 @@ using Common;
 using Common.Traps;
 using UnityEngine;
 
-namespace Character.Villains.Moragg.Projector
+namespace Character.Villains.Commons.Projector
 {
     public class Meteor : TrapComponent, IProjectorSequencer
     {

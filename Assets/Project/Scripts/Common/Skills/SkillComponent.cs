@@ -5,7 +5,7 @@ using UnityEngine;
 
 namespace Common.Skills
 {
-    public class SkillComponent : MonoBehaviour, IActionSender, IActionBehaviour, IHasSequencer, IEditable
+    public class SkillComponent : MonoBehaviour, IActionSender, IActionBehaviour, IHasSequencer
     {
         [SerializeField] protected DataIndex actionCode;
         [SerializeField] protected ActionMask behaviourMask = ActionMask.Skill;
@@ -25,7 +25,7 @@ namespace Common.Skills
         public DataIndex DataIndex => actionCode;
         public ICombatProvider Provider => Cb;
         public ActionMask BehaviourMask => behaviourMask;
-        public ICombatTaker MainTarget => detector.GetMainTarget();
+        public ICombatTaker MainTarget => detector?.GetMainTarget();
         public int Priority => priority;
         public SkillCost Cost => cost;
         public string Description => description;
@@ -81,31 +81,31 @@ namespace Common.Skills
         }
 
 
-#if UNITY_EDITOR
-        public virtual void EditorSetUp()
-        {
-            executor.EditorGetExecutions(gameObject);
-            detector.SetUpAsSkill(actionCode);
-            coolTimer.SetUpAsSkill(actionCode);
-            castTimer.SetUpFromSkill(actionCode);
-            cost.SetUpFromSkill(actionCode);
-            animationTrait.SetUpFromSkill(actionCode);
-            
-            var skillData = Database.SkillSheetData(actionCode);
 
-            behaviourMask = skillData.BehaviourMask.ToEnum<ActionMask>();
-            priority      = skillData.Priority;
-            description   = skillData.Description;
-            icon          = Database.SpellSpriteData.Get(actionCode);
+        public void EditorSetUp()
+        {
+            // executor.EditorGetExecutions(gameObject);
+            // detector.SetUpAsSkill(actionCode);
+            // coolTimer.SetUpAsSkill(actionCode);
+            // castTimer.SetUpFromSkill(actionCode);
+            // cost.SetUpFromSkill(actionCode);
+            // animationTrait.SetUpFromSkill(actionCode);
+            //
+            // var skillData = Database.SkillSheetData(actionCode);
+            //
+            // behaviourMask = skillData.BehaviourMask.ToEnum<ActionMask>();
+            // priority      = skillData.Priority;
+            // description   = skillData.Description;
+            // icon          = Database.SpellSpriteData.Get(actionCode);
         }
         
         // ReSharper disable once UnusedMember.Local
         private void EditorOpenDataBase()
         {
             var skillData = Database.SheetDataTable[DataIndex.Skill];
-
+#if UNITY_EDITOR
             UnityEditor.EditorUtility.OpenPropertyEditor(skillData);
-        }
 #endif
+        }
     }
 }

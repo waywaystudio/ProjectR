@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &2546753074928525639
+--- !u!1 &4813759787601699529
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,71 +8,8 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 5853087751410363707}
-  m_Layer: 0
-  m_Name: Priority
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &5853087751410363707
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2546753074928525639}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 234500611213636336}
-  m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &3872987185641846972
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 7221708945386366489}
-  m_Layer: 0
-  m_Name: Positioning
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &7221708945386366489
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3872987185641846972}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 234500611213636336}
-  m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &6825389547695362600
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 4701970391921295755}
-  - component: {fileID: 4441820880822073260}
-  - component: {fileID: 7011665086505658238}
+  - component: {fileID: 1974804535776436921}
+  - component: {fileID: 8714835023685632432}
   m_Layer: 0
   m_Name: Execution
   m_TagString: Untagged
@@ -80,28 +17,28 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &4701970391921295755
+--- !u!4 &1974804535776436921
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6825389547695362600}
+  m_GameObject: {fileID: 4813759787601699529}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 234500611213636336}
+  m_Father: {fileID: 2115494544860360377}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &4441820880822073260
+--- !u!114 &8714835023685632432
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6825389547695362600}
+  m_GameObject: {fileID: 4813759787601699529}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 910d8bb983b570146b7c330bb9a77e89, type: 3}
@@ -111,34 +48,13 @@ MonoBehaviour:
   actionCode: 31210102
   damageSpec:
     statList:
-    - statType: 13010001
-      statKey: DamageExecutorKey
-      value: 30
     - statType: 13020001
       statKey: DamageExecutorKey
       value: 0
     - statType: 13030003
       statKey: DamageExecutorKey
       value: 0
---- !u!114 &7011665086505658238
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6825389547695362600}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 714e87efbca5f5e47a36249aecf0b6f2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  group: 1
-  actionCode: 32000001
-  pool:
-    prefab: {fileID: 8333227002716821657, guid: b8a0db4494b80d1418934391f99ec561, type: 3}
-    maxCount: 8
-    syncObjectActivity: 1
---- !u!1 &8380361914805468174
+--- !u!1 &6898964570828026415
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -146,8 +62,8 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 234500611213636336}
-  - component: {fileID: 1416249181191727617}
+  - component: {fileID: 2115494544860360377}
+  - component: {fileID: 983550755931538648}
   m_Layer: 0
   m_Name: Bash
   m_TagString: Untagged
@@ -155,31 +71,29 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &234500611213636336
+--- !u!4 &2115494544860360377
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8380361914805468174}
+  m_GameObject: {fileID: 6898964570828026415}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 4701970391921295755}
-  - {fileID: 7221708945386366489}
-  - {fileID: 5853087751410363707}
+  - {fileID: 1974804535776436921}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1416249181191727617
+--- !u!114 &983550755931538648
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8380361914805468174}
+  m_GameObject: {fileID: 6898964570828026415}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 222a8f415f8434843b9aa37f3873ad23, type: 3}
@@ -187,15 +101,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   actionCode: 31210102
   behaviourMask: 32
-  priority: 2
+  priority: 6
   executor:
     table:
       keyList: 01000000
       valueList:
       - ExecutionList:
-        - {fileID: 4441820880822073260}
-        - {fileID: 7011665086505658238}
-      hideKey: 1
+        - {fileID: 8714835023685632432}
+      hideKey: 0
   detector:
     targetType: 1
     sortingType: 0
@@ -208,7 +121,7 @@ MonoBehaviour:
     animationKey: AttackOffHandInstant
     isLoop: 0
     hasEvent: 1
-    timeScale: 1
+    animationPlaySpeed: 1
     skillType: 1
     callbackSection: 3
   coolTimer:
@@ -218,8 +131,10 @@ MonoBehaviour:
     castingTime: 0
     callbackSection: 0
   cost:
-    cost: 5
+    cost: -20
     paySection: 5
-  description: Starts combat by attacking a target with a melee weapon.
   icon: {fileID: 21300000, guid: 8f65b4f511f4d784a8f0bef07957cfbd, type: 3}
+  description: "\uBC29\uD328\uB85C \uAC00\uACA9\uD558\uC5EC \uD53C\uD574\uB97C \uC900\uB2E4.
+    \uB300\uC0C1\uC774 \uACF5\uACA9 \uC911\uC77C \uB54C \uC0AC\uC6A9\uD558\uBA74
+    \uCD94\uAC00 \uD53C\uD574\uB97C \uC900\uB2E4."
   counterAttackBonus: 8

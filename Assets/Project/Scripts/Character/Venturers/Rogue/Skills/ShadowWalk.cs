@@ -51,15 +51,5 @@ namespace Character.Venturers.Rogue.Skills
             return !takers.IsNullOrEmpty() 
                    && takers[0].DynamicStatEntry.Alive.Value;
         }
-
-
-#if UNITY_EDITOR
-        public override void EditorSetUp()
-        {
-            base.EditorSetUp();
-
-            phantomMaster = GetComponentInParent<PhantomMaster>();
-        }
-#endif
     }
 }

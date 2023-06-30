@@ -2,7 +2,7 @@ using UnityEngine;
 
 namespace Common.Traps
 {
-    public class OverTimeExecutor : MonoBehaviour, IEditable
+    public class OverTimeExecutor : MonoBehaviour
     {
         [SerializeField] private float interval = 1f;
 
@@ -49,13 +49,5 @@ namespace Common.Traps
                 Progress.Value = 0f;
             }
         }
-
-
-#if UNITY_EDITOR
-        public void EditorSetUp()
-        {
-            // Get Interval from Database
-        }
-#endif
     }
 }

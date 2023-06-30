@@ -2,7 +2,7 @@ using UnityEngine;
 
 namespace Common.Traps
 {
-    public class TrapTimeTrigger : MonoBehaviour, IEditable
+    public class TrapTimeTrigger : MonoBehaviour
     {
         [SerializeField] protected float prolongTimer;
 
@@ -45,13 +45,5 @@ namespace Common.Traps
                 trapComponent.SequenceInvoker.Complete();
             }
         }
-
-
-#if UNITY_EDITOR
-        public void EditorSetUp()
-        {
-            // Get prolongTimer from Database
-        }
-#endif
     }
 }

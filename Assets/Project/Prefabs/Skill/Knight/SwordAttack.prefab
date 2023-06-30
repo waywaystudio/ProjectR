@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &1224905712507207556
+--- !u!1 &808457843033703461
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,8 +8,8 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 7679244583707568947}
-  - component: {fileID: 1760830664133795729}
+  - component: {fileID: 7677619079652815337}
+  - component: {fileID: 1272622193521783809}
   m_Layer: 0
   m_Name: Execution
   m_TagString: Untagged
@@ -17,28 +17,28 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &7679244583707568947
+--- !u!4 &7677619079652815337
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1224905712507207556}
+  m_GameObject: {fileID: 808457843033703461}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 234500611213636336}
+  m_Father: {fileID: 1754816964043732546}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1760830664133795729
+--- !u!114 &1272622193521783809
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1224905712507207556}
+  m_GameObject: {fileID: 808457843033703461}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 910d8bb983b570146b7c330bb9a77e89, type: 3}
@@ -48,16 +48,13 @@ MonoBehaviour:
   actionCode: 31210101
   damageSpec:
     statList:
-    - statType: 13010001
-      statKey: DamageExecutorKey
-      value: 15
     - statType: 13020001
       statKey: DamageExecutorKey
       value: 0
     - statType: 13030003
       statKey: DamageExecutorKey
       value: 0
---- !u!1 &2546753074928525639
+--- !u!1 &3193236069115059579
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -65,70 +62,8 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 5853087751410363707}
-  m_Layer: 0
-  m_Name: Priority
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &5853087751410363707
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2546753074928525639}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 234500611213636336}
-  m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &3872987185641846972
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 7221708945386366489}
-  m_Layer: 0
-  m_Name: Positioning
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &7221708945386366489
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3872987185641846972}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 234500611213636336}
-  m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &8380361914805468174
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 234500611213636336}
-  - component: {fileID: 4087849359829221962}
+  - component: {fileID: 1754816964043732546}
+  - component: {fileID: 8672788749705082290}
   m_Layer: 0
   m_Name: SwordAttack
   m_TagString: Untagged
@@ -136,31 +71,29 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &234500611213636336
+--- !u!4 &1754816964043732546
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8380361914805468174}
+  m_GameObject: {fileID: 3193236069115059579}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 7679244583707568947}
-  - {fileID: 7221708945386366489}
-  - {fileID: 5853087751410363707}
+  - {fileID: 7677619079652815337}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &4087849359829221962
+--- !u!114 &8672788749705082290
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8380361914805468174}
+  m_GameObject: {fileID: 3193236069115059579}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 31724da81794e8c4aa7f609d8633c69c, type: 3}
@@ -174,8 +107,8 @@ MonoBehaviour:
       keyList: 01000000
       valueList:
       - ExecutionList:
-        - {fileID: 1760830664133795729}
-      hideKey: 1
+        - {fileID: 1272622193521783809}
+      hideKey: 0
   detector:
     targetType: 1
     sortingType: 0
@@ -188,16 +121,18 @@ MonoBehaviour:
     animationKey: AttackOneHand
     isLoop: 0
     hasEvent: 1
+    animationPlaySpeed: 1
     skillType: 1
     callbackSection: 3
   coolTimer:
-    coolTime: 1
+    coolTime: 0
     invokeSection: 0
   castTimer:
     castingTime: 0
     callbackSection: 0
   cost:
-    cost: -5
+    cost: -8
     paySection: 5
-  description: Starts combat by attacking a target with a melee weapon.
   icon: {fileID: 21300000, guid: 951b905eda8f8424fb1debd28c69ac92, type: 3}
+  description: "\uB300\uC0C1\uC744 \uACF5\uACA9\uD558\uC5EC \uC790\uC6D0\uC744 \uD68C\uBCF5\uD558\uB294
+    \uAE30\uBCF8 \uAE30\uC220"

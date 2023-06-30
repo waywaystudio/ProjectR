@@ -128,9 +128,4 @@ public class Table<TKey, TValue>
         // Swap values
         (valueList[index1], valueList[index2]) = (valueList[index2], valueList[index1]);
     }
-    
-    
-#if UNITY_EDITOR
-    [SerializeField] private bool hideKey;
-#endif
 }

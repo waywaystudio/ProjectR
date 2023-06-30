@@ -1,12 +1,10 @@
 using System;
 
-using SectionTable = Table<SectionType, Section>;
-
 [Serializable] public class Sequencer
 {
     public ConditionTable Condition { get; } = new();
     public WaitTrigger CompleteTrigger { get; set; }
-    public SectionTable Table { get; set; } = new();
+    public Table<SectionType, Section> Table { get; set; } = new();
     public ActionTable this[SectionType key]
     {
         get
