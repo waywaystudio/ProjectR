@@ -47179,7 +47179,6 @@ MonoBehaviour:
     - {fileID: 1964608494}
     - {fileID: 322294643}
     - {fileID: 150704255}
-    hideKey: 0
 --- !u!114 &1301168308
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -59584,7 +59583,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1737851511}
   - component: {fileID: 1737851512}
-  - component: {fileID: 1737851513}
   m_Layer: 0
   m_Name: Casting
   m_TagString: Untagged
@@ -59624,18 +59622,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   venturerHierarchy: {fileID: 1771157842}
   villainHierarchy: {fileID: 21531010}
---- !u!114 &1737851513
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1737851510}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 34b474dc3830e3a4099f79dd6d06b3b9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1738377928
 GameObject:
   m_ObjectHideFlags: 0

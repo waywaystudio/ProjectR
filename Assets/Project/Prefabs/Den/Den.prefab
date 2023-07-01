@@ -66,7 +66,6 @@ MonoBehaviour:
     - {fileID: 11400000, guid: 8090b4087ef8c714f986741969aaa2aa, type: 2}
     - {fileID: 11400000, guid: e35ea2d88eb72b940a23fd903c7ffd60, type: 2}
     - {fileID: 11400000, guid: bd844c04868b6d647aba89d23912062f, type: 2}
-    hideKey: 0
 --- !u!114 &2047985583510383789
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -79,3 +78,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 34b474dc3830e3a4099f79dd6d06b3b9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  saveManager: {fileID: 11400000, guid: 5882c59f354562b479ecf04366a9baf2, type: 2}

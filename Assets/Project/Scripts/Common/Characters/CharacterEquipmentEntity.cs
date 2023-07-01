@@ -21,14 +21,17 @@ namespace Common.Characters
 
         public void Save(string providerName)
         {
-            SaveManager.Save(SerializeKey(providerName, EquipmentSlotType.Weapon), WeaponEntity);
-            SaveManager.Save(SerializeKey(providerName, EquipmentSlotType.Top), ArmorEntity);
+            Serializer.Save(SerializeKey(providerName, EquipmentSlotType.Weapon), WeaponEntity);
+            Serializer.Save(SerializeKey(providerName, EquipmentSlotType.Top), ArmorEntity);
+            
+            // SaveManager.Save(SerializeKey(providerName, EquipmentSlotType.Weapon), WeaponEntity);
+            // SaveManager.Save(SerializeKey(providerName, EquipmentSlotType.Top), ArmorEntity);
         }
 
         public void Load(string providerName)
         {
-            WeaponEntity = SaveManager.Load(SerializeKey(providerName, EquipmentSlotType.Weapon),InitialWeapon(initialWeapon));
-            ArmorEntity    = SaveManager.Load(SerializeKey(providerName, EquipmentSlotType.Top),InitialArmor(initialArmor));
+            WeaponEntity = Serializer.Load(SerializeKey(providerName, EquipmentSlotType.Weapon),InitialWeapon(initialWeapon));
+            ArmorEntity  = Serializer.Load(SerializeKey(providerName, EquipmentSlotType.Top),InitialArmor(initialArmor));
             
             WeaponEntity.Generate();
             ArmorEntity.Generate();

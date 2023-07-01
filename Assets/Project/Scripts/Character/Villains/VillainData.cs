@@ -24,13 +24,15 @@ namespace Character.Villains
         {
             base.Save();
             
-            SaveManager.Save($"{characterIndex.ToString()}.KillCount", killCount);
+            Serializer.Save($"{characterIndex.ToString()}.KillCount", killCount);
+            // SaveManager.Save($"{characterIndex.ToString()}.KillCount", killCount);
         }
         public override void Load()
         {
             base.Load();
             
-            killCount = SaveManager.Load($"{characterIndex.ToString()}.KillCount",0);
+            killCount = Serializer.Load($"{characterIndex.ToString()}.KillCount",0); 
+                // SaveManager.Load($"{characterIndex.ToString()}.KillCount",0);
         }
 
 

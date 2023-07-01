@@ -5,6 +5,8 @@ namespace Serialization
 {
     public class SaveListener : MonoBehaviour
     {
+        [SerializeField] private SaveManager saveManager;
+        
         private readonly List<ISavable> savableList = new();
 
         private List<ISavable> SavableList
@@ -24,13 +26,20 @@ namespace Serialization
         private void OnEnable()
         {
             Load();
-            SaveManager.Instance.AddListener(this);
+            saveManager.AddListener(this);
         }
         
         private void OnDisable()
         {
             Save();
-            SaveManager.Instance.RemoveListener(this);
+            saveManager.RemoveListener(this);
+        }
+
+        private void Reset()
+        {
+#if UNITY_EDITOR
+            Finder.TryGetObject(out saveManager);
+#endif
         }
     }
 }

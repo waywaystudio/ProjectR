@@ -58,14 +58,17 @@ public class Camp : MonoSingleton<Camp>, ISavable, IEditable
 
     public void Save()
     {
-        SaveManager.Save("challengers", challengers);
+        Serializer.Save("challengers", challengers);
+        // SaveManager.Save("challengers", challengers);
+        
         venturerTable.Iterate(venturer => venturer.Save()); 
         growMaterialInventory.Save();
     }
 
     public void Load()
     {
-        Challengers = SaveManager.Load("challengers", challengers);
+        Challengers = Serializer.Load("challengers", challengers);
+        // Challengers = SaveManager.Load("challengers", challengers);
         
         venturerTable.Iterate(venturer => venturer.Load());
         growMaterialInventory.Load();

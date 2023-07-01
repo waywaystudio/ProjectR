@@ -38,12 +38,14 @@ namespace Camps.Inventories
         
         public void Save()
         {
-            SaveManager.Save(MaterialSerializeKey, MaterialTable);
+            Serializer.Save(MaterialSerializeKey, MaterialTable);
+            // SaveManager.Save(MaterialSerializeKey, MaterialTable);
         }
         
         public void Load()
         {
-            MaterialTable = SaveManager.Load(MaterialSerializeKey, new Dictionary<ViceMaterialType, int>());
+            MaterialTable = Serializer.Load(MaterialSerializeKey, new Dictionary<ViceMaterialType, int>()); 
+                // SaveManager.Load(MaterialSerializeKey, new Dictionary<ViceMaterialType, int>());
         }
         
 

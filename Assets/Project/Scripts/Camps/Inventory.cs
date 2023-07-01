@@ -34,12 +34,14 @@ namespace Camps
         
         public void Save()
         {
-            SaveManager.Save(SerializeKey, Table);
+            Serializer.Save(SerializeKey, Table);
+            // SaveManager.Save(SerializeKey, Table);
         }
         
         public void Load()
         {
-            Table = SaveManager.Load(SerializeKey, new Dictionary<T, int>());
+            Table = Serializer.Load(SerializeKey, new Dictionary<T, int>()); 
+                // SaveManager.Load(SerializeKey, new Dictionary<T, int>());
         }
         
         

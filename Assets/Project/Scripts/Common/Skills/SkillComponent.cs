@@ -84,19 +84,19 @@ namespace Common.Skills
 
         public void EditorSetUp()
         {
-            // executor.EditorGetExecutions(gameObject);
-            // detector.SetUpAsSkill(actionCode);
-            // coolTimer.SetUpAsSkill(actionCode);
-            // castTimer.SetUpFromSkill(actionCode);
-            // cost.SetUpFromSkill(actionCode);
-            // animationTrait.SetUpFromSkill(actionCode);
-            //
-            // var skillData = Database.SkillSheetData(actionCode);
-            //
-            // behaviourMask = skillData.BehaviourMask.ToEnum<ActionMask>();
-            // priority      = skillData.Priority;
-            // description   = skillData.Description;
-            // icon          = Database.SpellSpriteData.Get(actionCode);
+            executor.EditorGetExecutions(gameObject);
+            detector.SetUpAsSkill(actionCode);
+            coolTimer.SetUpAsSkill(actionCode);
+            castTimer.SetUpFromSkill(actionCode);
+            cost.SetUpFromSkill(actionCode);
+            animationTrait.SetUpFromSkill(actionCode);
+            
+            var skillData = Database.SkillSheetData(actionCode);
+            
+            behaviourMask = skillData.BehaviourMask.ToEnum<ActionMask>();
+            priority      = skillData.Priority;
+            description   = skillData.Description;
+            icon          = Database.SpellSpriteData.Get(actionCode);
         }
         
         // ReSharper disable once UnusedMember.Local
