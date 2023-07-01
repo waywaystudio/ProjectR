@@ -30,8 +30,8 @@ namespace Common.UI
         {
             Unregister();
             
-            Progress  = progress;
-            Max       = new FloatEvent(0, constMax) { Value = constMax };
+            Progress = progress;
+            Max      = new FloatEvent(constMax);
 
             Progress.AddListener(fillProgressionKey, SetFill);
             Max.AddListener(fillProgressionKey, SetFill);
@@ -47,10 +47,7 @@ namespace Common.UI
             Unregister();
             
             Progress = progress;
-            Max = new FloatEvent(0, constMax)
-            {
-                Value = constMax
-            };
+            Max      = new FloatEvent(constMax);
             
             Progress.AddListener(fillProgressionKey, SetReverseFill);
             Max.AddListener(fillProgressionKey, SetReverseFill);

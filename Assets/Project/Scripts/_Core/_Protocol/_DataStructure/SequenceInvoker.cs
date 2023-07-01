@@ -1,7 +1,6 @@
 public class SequenceInvoker
 {
-    public bool IsInitialized;
-    protected Sequencer Sequencer;
+    protected readonly Sequencer Sequencer;
     
     public SequenceInvoker(Sequencer sequencer) => Sequencer = sequencer;
     
@@ -9,11 +8,6 @@ public class SequenceInvoker
     public bool IsActive { get; private set; }
     public bool IsEnd { get; private set; } = true;
 
-    public void Initialize(Sequencer sequencer)
-    {
-        IsInitialized = true;
-        Sequencer     = sequencer;
-    }
 
     public void Active()
     {
@@ -21,6 +15,13 @@ public class SequenceInvoker
         IsActive = true;
         
         Sequencer[SectionType.Active].Invoke();
+
+        // Handle Active Just once and than disappear Action.
+        if (Sequencer.Table.Remove(SectionType.ActiveOnce, out var onceAction))
+        {
+            onceAction.Invoke();
+        }
+
         Sequencer.CompleteTrigger?.Pull();
     }
 
@@ -52,19 +53,14 @@ public class SequenceInvoker
 
 public class SequenceInvoker<T>
 {
-    protected Sequencer<T> Sequencer;
+    protected readonly Sequencer<T> Sequencer;
     
     public SequenceInvoker(Sequencer<T> sequencer) => Sequencer = sequencer;
     
     public bool IsAbleToActive => Sequencer.Condition == null || Sequencer.Condition.IsAllTrue;
     public bool IsActive { get; set; }
     public bool IsEnd { get; private set; } = true;
-    
 
-    public void Initialize(Sequencer<T> sequencer)
-    {
-        Sequencer = sequencer;
-    }
 
     public void Active(T value)
     {
@@ -74,6 +70,13 @@ public class SequenceInvoker<T>
         // Active 가 ActiveParam보다 우선되게 설정. RunBehaviour 참조.
         Sequencer[SectionType.Active].Invoke();
         Sequencer.ActiveParamAction.Invoke(value);
+        
+        // Handle Active Just once and than disappear Action.
+        if (Sequencer.Table.Remove(SectionType.ActiveOnce, out var onceAction))
+        {
+            onceAction.Invoke();
+        }
+        
         Sequencer.CompleteTrigger?.Pull();
     }
 

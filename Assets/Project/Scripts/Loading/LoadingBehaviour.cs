@@ -6,6 +6,7 @@ namespace Loading
 {
     public class LoadingBehaviour : MonoBehaviour
     {
+        [SerializeField] private SceneManager sceneManager;
         [SerializeField] private List<GameObject> loadingEffectList = new ();
 
         private void Awake()
@@ -22,8 +23,7 @@ namespace Loading
 
         private void Start()
         {
-            SceneManager.LoadNextScene();
-            // MainManager.Scene.LoadNextScene();
+            sceneManager.LoadNextScene();
         }
 
         private void OnDisable()

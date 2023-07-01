@@ -7,8 +7,6 @@ public abstract class ActionTableCore<T>
 
     public void Remove(string key) => Table.TryRemove(key);
     public void Clear() => Table.Clear();
-    public void Iterator(Action<string, T> action) 
-        => Table.ForEach((item) => action.Invoke(item.Key, item.Value));
 }
 
 public class ActionTable : ActionTableCore<Action>

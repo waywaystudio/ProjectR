@@ -179,28 +179,9 @@ namespace Editor
     {
         public override void ProcessChildMemberAttributes(InspectorProperty parentProperty, MemberInfo member, List<Attribute> attributes)
         {
-            if (member.Name == "Save")
+            if (member.Name == "saveManager")
             {
-                attributes.Add(new ButtonAttribute
-                {
-                    Icon         = SdfIconType.Upload,
-                    Name         = "Manual Save",
-                    ButtonHeight = 24,
-                });
-                attributes.Add(new HorizontalGroupAttribute("SerializeEvents"));
-                attributes.Add(new PropertyOrderAttribute(-2f));
-            }
-
-            if (member.Name == "Load")
-            {
-                attributes.Add(new ButtonAttribute
-                {
-                    Icon         = SdfIconType.Download,
-                    Name         = "Manual Load",
-                    ButtonHeight = 24,
-                });
-                attributes.Add(new HorizontalGroupAttribute("SerializeEvents"));
-                attributes.Add(new PropertyOrderAttribute(-2f));
+                attributes.Add(new HideLabelAttribute());
             }
         }
     }

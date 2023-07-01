@@ -31,16 +31,19 @@ namespace Common.Characters
          * Common Attribute
          */
         public virtual DataIndex DataIndex => DataIndex.None;
-        public virtual CharacterMask CombatClass => CharacterMask.Mage;
+        public virtual CharacterMask CombatClass => Data.CharacterMask;
         public virtual string Name => "characterName";
         public CharacterData Data { get; set; }
         public Vector3 Position => transform.position;
+        public Transform DamageSpawn => damageSpawn;
+
+        /*
+         * Systems
+         */
         public SearchingSystem Searching => searching;
         public CollidingSystem Colliding => colliding;
         public PathfindingSystem Pathfinding => pathfinding;
         public AnimationModel Animating => animating;
-        public Transform DamageSpawn => damageSpawn;
-        public SkillBehaviour SkillBehaviour => skillBehaviour;
 
         /*
          * Behaviour Attribute
@@ -53,6 +56,7 @@ namespace Common.Characters
         public KnockBackBehaviour KnockBackBehaviour => knockBackBehaviour;
         public DrawBehaviour DrawBehaviour => drawBehaviour;
         public DeadBehaviour DeadBehaviour => deadBehaviour;
+        public SkillBehaviour SkillBehaviour => skillBehaviour;
         
 
         public void Rotate(Vector3 lookTarget) { Pathfinding.RotateToTarget(lookTarget); Animating.Flip(transform.forward); }

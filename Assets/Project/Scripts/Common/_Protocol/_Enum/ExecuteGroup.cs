@@ -25,6 +25,5 @@ namespace Common
         Projectile,
         Trap,
         CrowdControl,
-        
     }
 }

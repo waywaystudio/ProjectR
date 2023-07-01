@@ -601,6 +601,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a43e35a24be7e834d945f48332cf1929, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  sceneManager: {fileID: 11400000, guid: e9859cbf5565f0945a5b1d306fd94878, type: 2}
 --- !u!222 &6999556447552447065
 CanvasRenderer:
   m_ObjectHideFlags: 0

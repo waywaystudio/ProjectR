@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using Lobby.UI.SaveLoad;
 using Serialization;
 using Sirenix.OdinInspector;
 using UnityEngine;
@@ -7,6 +8,7 @@ namespace Lobby.UI
 {
     public class SaveLoadUI : MonoBehaviour
     {
+        [SerializeField] private SaveManager saveManager;
         [SerializeField] private GameObject saveInfoBoxPrefab;
         [SerializeField] private Transform saveInfoElementsHierarchy;
 
@@ -16,9 +18,9 @@ namespace Lobby.UI
         [ShowInInspector]
         public void Reload()
         {
-            infoBoxList.RemoveAll(box => box == null);
+            infoBoxList.RemoveAll(box => box is null);
             
-            var saveFileList = SaveManager.SaveInfoList;
+            var saveFileList = saveManager.SaveInfoList;
 
             saveFileList.ForEach((saveFile, index) => 
             {
@@ -45,7 +47,7 @@ namespace Lobby.UI
         
         private void Awake()
         {
-            var saveFileList = SaveManager.SaveInfoList;
+            var saveFileList = saveManager.SaveInfoList;
             
             saveFileList.ForEach(CreateNewSaveInfoBox);
         }

@@ -27,7 +27,7 @@ namespace GameEvents.Listener
 
 
 #if UNITY_EDITOR
-        private void AutoRegisterInEditor()
+        private void AutoRegister()
         {
             if (targetEvent == null)
             {
@@ -66,7 +66,7 @@ namespace GameEvents.Listener
         
         
 #if UNITY_EDITOR
-        private void AutoRegisterInEditor()
+        private void AutoRegister()
         {
             if (targetEvent == null)
             {
@@ -124,7 +124,7 @@ namespace GameEvents.Listener
                 attributes.Add(new HideLabelAttribute());
             }
             
-            if (member.Name == "AutoRegisterInEditor")
+            if (member.Name == "AutoRegister")
             {
                 attributes.Add(new PropertyOrderAttribute(-1f));
                 attributes.Add(new ButtonAttribute
@@ -159,7 +159,7 @@ namespace GameEvents.Listener
                 attributes.Add(new HideLabelAttribute());
             }
             
-            if (member.Name == "AutoRegisterInEditor")
+            if (member.Name == "AutoRegister")
             {
                 attributes.Add(new PropertyOrderAttribute(-1f));
                 attributes.Add(new ButtonAttribute

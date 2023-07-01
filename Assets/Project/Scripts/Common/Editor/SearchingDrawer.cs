@@ -11,17 +11,17 @@ namespace Common.Editor
     {
         public override void ProcessChildMemberAttributes(InspectorProperty parentProperty, MemberInfo member, List<Attribute> attributes)
         {
+            if (member.Name == "SearchedTable")
+            {
+                attributes.Add(new ShowInInspectorAttribute());
+            }
+            
             if (member.Name == "AdventurerList")
             {
                 attributes.Add(new ShowInInspectorAttribute());
             }
             
             if (member.Name == "MonsterList")
-            {
-                attributes.Add(new ShowInInspectorAttribute());
-            }
-
-            if (member.Name == "LookTarget")
             {
                 attributes.Add(new ShowInInspectorAttribute());
             }

@@ -1,39 +1,38 @@
 using System;
 using System.Collections.Generic;
 using Cysharp.Threading.Tasks;
-using Singleton;
 using UnityEngine;
 using UnitySceneManager = UnityEngine.SceneManagement.SceneManager;
 
 namespace SceneAdaption
 {
-    public class SceneManager : UniqueScriptableObject<SceneManager>
+    public class SceneManager : ScriptableObject
     {
         [SerializeField] private float loadingScenePreserveTimer = 2f;
         [SerializeField] private List<string> sceneNameList;
 
-        private static List<SceneListener> ListenerList { get; } = new();
+        private List<SceneListener> ListenerList { get; } = new();
         public static string NextScene { get; private set; }
 
         private AsyncOperation sceneChangeOperation;
         
         /* Preset */
-        public static void ToRaidScene() => LoadScene("Raid");
-        public static void ToLobbyScene() => LoadScene("Lobby");
+        public void ToRaidScene() => LoadScene("Raid");
+        public void ToLobbyScene() => LoadScene("Lobby");
 
 
-        public static void LoadNextScene()
+        public void LoadNextScene()
         {
             if (string.IsNullOrEmpty(NextScene))
                 NextScene = "Town";
 
-            LoadSceneAsync(NextScene, Instance.loadingScenePreserveTimer).Forget();
+            LoadSceneAsync(NextScene, loadingScenePreserveTimer).Forget();
             NextScene = null;
         }
 
-        public static void LoadScene(string sceneName)
+        public void LoadScene(string sceneName)
         {
-            if (!Instance.sceneNameList.Exists(x => x == sceneName))
+            if (!sceneNameList.Exists(x => x == sceneName))
             {
                 Debug.LogError($"Not Exist <b>{sceneName}</b> in scene name list.");
                 return;
@@ -43,11 +42,11 @@ namespace SceneAdaption
             LoadSceneAsync("Loading").Forget();
         }
 
-        public static void AddListener(SceneListener listener) => ListenerList.AddUniquely(listener);
-        public static void RemoveListener(SceneListener listener) => ListenerList.RemoveSafely(listener);
+        public void AddListener(SceneListener listener) => ListenerList.AddUniquely(listener);
+        public void RemoveListener(SceneListener listener) => ListenerList.RemoveSafely(listener);
 
         
-        private static async UniTask LoadSceneAsync(string sceneName, float delayTime = 0f)
+        private async UniTask LoadSceneAsync(string sceneName, float delayTime = 0f)
         {
             ListenerList.ForEach(listener => listener.SceneChanging());
             var operation = UnitySceneManager.LoadSceneAsync(sceneName);

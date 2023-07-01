@@ -4,10 +4,12 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace Lobby.UI
+namespace Lobby.UI.SaveLoad
 {
     public class SaveInfoBox : MonoBehaviour
     {
+        [SerializeField] private SceneManager sceneManager;
+        [SerializeField] private SaveManager saveManager;
         [SerializeField] private TextMeshProUGUI saveName;
         [SerializeField] private TextMeshProUGUI timeText;
         [SerializeField] private Button saveButton;
@@ -21,16 +23,14 @@ namespace Lobby.UI
             timeText.text = info.SaveTime;
             
             saveButton.onClick.RemoveAllListeners();
-            saveButton.onClick.AddListener(info.Save);
-            // saveButton.onClick.AddListener(Reload);
+            saveButton.onClick.AddListener(() => saveManager.SaveToFile(info.Filename));
             
             loadButton.onClick.RemoveAllListeners();
-            loadButton.onClick.AddListener(info.Load);
-            loadButton.onClick.AddListener(SceneManager.ToLobbyScene);
-            // loadButton.onClick.AddListener(Reload);
+            loadButton.onClick.AddListener(() => saveManager.LoadFromFile(info.Filename));
+            loadButton.onClick.AddListener(sceneManager.ToLobbyScene);
             
             deleteButton.onClick.RemoveAllListeners();
-            deleteButton.onClick.AddListener(info.Delete);
+            deleteButton.onClick.AddListener(() => saveManager.DeleteSaveFile(info.Filename));
             deleteButton.onClick.AddListener(Reload);
             deleteButton.onClick.AddListener(() => Destroy(gameObject));
         }

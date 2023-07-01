@@ -23,9 +23,6 @@ namespace Common.Characters
         {
             Serializer.Save(SerializeKey(providerName, EquipmentSlotType.Weapon), WeaponEntity);
             Serializer.Save(SerializeKey(providerName, EquipmentSlotType.Top), ArmorEntity);
-            
-            // SaveManager.Save(SerializeKey(providerName, EquipmentSlotType.Weapon), WeaponEntity);
-            // SaveManager.Save(SerializeKey(providerName, EquipmentSlotType.Top), ArmorEntity);
         }
 
         public void Load(string providerName)

@@ -5,7 +5,7 @@ using UnityEngine;
 
 namespace Common.Skills
 {
-    public class SkillComponent : MonoBehaviour, IActionSender, IActionBehaviour, IHasSequencer
+    public class SkillComponent : MonoBehaviour, IActionSender, IActionBehaviour, IHasSequencer, IEditable
     {
         [SerializeField] protected DataIndex actionCode;
         [SerializeField] protected ActionMask behaviourMask = ActionMask.Skill;
@@ -81,7 +81,7 @@ namespace Common.Skills
         }
 
 
-
+#if UNITY_EDITOR
         public void EditorSetUp()
         {
             executor.EditorGetExecutions(gameObject);
@@ -103,9 +103,9 @@ namespace Common.Skills
         private void EditorOpenDataBase()
         {
             var skillData = Database.SheetDataTable[DataIndex.Skill];
-#if UNITY_EDITOR
+
             UnityEditor.EditorUtility.OpenPropertyEditor(skillData);
-#endif
         }
+#endif
     }
 }

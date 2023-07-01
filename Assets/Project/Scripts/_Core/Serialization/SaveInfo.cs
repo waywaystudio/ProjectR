@@ -17,9 +17,5 @@ namespace Serialization
             this.filename = filename;
             saveTime      = DateTime.Now.ToString("yyyy.MM.dd.HH.mm.ss");
         }
-
-        public void Save() => SaveManager.Instance.SaveToFile(filename);
-        public void Load() => SaveManager.Instance.LoadFromFile(filename);
-        public void Delete() => SaveManager.Instance.DeleteSaveFile(filename);
     }
 }

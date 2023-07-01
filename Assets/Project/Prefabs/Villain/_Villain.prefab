@@ -102,6 +102,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: efaf969705ee123418a53e313e1db98d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  saveManager: {fileID: 11400000, guid: 5882c59f354562b479ecf04366a9baf2, type: 2}
 --- !u!1 &3662072772575818509
 GameObject:
   m_ObjectHideFlags: 0
@@ -684,7 +685,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   modelData: {fileID: 11400000, guid: dd2c087471eae1c4ebcc1497d3f3534e, type: 2}
   skeletonAnimation: {fileID: 9029805404877257833}
-  eventNameList: 
 --- !u!1 &5376564143832143004
 GameObject:
   m_ObjectHideFlags: 0
@@ -993,8 +993,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 079054a3d925aa34e9db343c1497c49b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  searchingRange: 50
+  searchingRange: 100
   searchingCollider: {fileID: 6770937178499672402}
+  venturerLayer:
+    serializedVersion: 2
+    m_Bits: 128
+  monsterLayer:
+    serializedVersion: 2
+    m_Bits: 256
+  searchedTable:
+    keyList:
+    - serializedVersion: 2
+      m_Bits: 1
+    valueList: []
 --- !u!135 &6770937178499672402
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -1150,7 +1161,6 @@ MonoBehaviour:
     - {fileID: 4442699525421009715}
     - {fileID: 1969248501984980143}
     - {fileID: 4353515852124255580}
-    hideKey: 0
 --- !u!114 &3264795498149139108
 MonoBehaviour:
   m_ObjectHideFlags: 0

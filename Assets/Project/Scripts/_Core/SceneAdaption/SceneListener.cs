@@ -5,6 +5,8 @@ namespace SceneAdaption
 {
     public class SceneListener : MonoBehaviour
     {
+        [SerializeField] private SceneManager sceneManager;
+        
         private readonly List<ISceneChangeHandler> handlerList = new();
         
         private List<ISceneChangeHandler> HandlerList
@@ -21,7 +23,7 @@ namespace SceneAdaption
         public void SceneChanged() => HandlerList.ForEach(handler => handler.OnChanged());
         
 
-        private void OnEnable() => SceneManager.AddListener(this);
-        private void OnDisable() => SceneManager.RemoveListener(this);
+        private void OnEnable() => sceneManager.AddListener(this);
+        private void OnDisable() => sceneManager.RemoveListener(this);
     }
 }

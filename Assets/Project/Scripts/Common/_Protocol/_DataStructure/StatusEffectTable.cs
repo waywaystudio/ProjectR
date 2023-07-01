@@ -7,10 +7,8 @@ namespace Common
     {
         public ActionTable<StatusEffect> OnEffectAdded { get; } = new();
         public ActionTable<StatusEffect> OnEffectRemoved { get; } = new();
-
-        // public void AddListener(string key, Action<StatusEffect> action) => OnEffectAdded.Add(key, action);
-        // public void RemoveListener(string key) => OnEffectAdded.Remove(key);
         
+
         public override void Add(DataIndex key, StatusEffect statusEffect)
         {
             base.Add(key, statusEffect);

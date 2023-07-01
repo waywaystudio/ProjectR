@@ -1,12 +1,11 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using Singleton;
 using UnityEngine;
 
 namespace Serialization
 {
-    public class SaveManager : UniqueScriptableObject<SaveManager>
+    public class SaveManager : ScriptableObject
     {
         private readonly List<SaveListener> listenerList = new();
         private readonly List<SaveInfo> saveInfoList = new();
@@ -17,21 +16,9 @@ namespace Serialization
         private const string InfoKey = "_SaveInfo";
         private const string Extension = "json";
 
-        public static List<SaveInfo> SaveInfoList => Instance.saveInfoList;
-        
-
-        /// <summary>
-        /// 특정 데이터를 저장하는 구현부에서 사용
-        /// </summary>
-        public static void Save<T>(string key, T value) => Save(key, value, PlaySavePath);
-
-        /// <summary>
-        /// 특정 데이터를 불러오는 구현부에서 사용
-        /// </summary>
-        public static T Load<T>(string key, T defaultValue = default) => Load(key, PlaySavePath, defaultValue);
+        public List<SaveInfo> SaveInfoList => saveInfoList;
 
 
-        // TODO.어떤 방식으로 호출할지 생각해보자..
         /// <summary>
         /// SerializeManager 사용 시에 반드시 호출되어야 함.
         /// </summary>
@@ -54,6 +41,7 @@ namespace Serialization
 
             SortByTimeStamp();
         }
+        
 
         /// <summary>
         /// 새로운 세이브 파일을 기초 값으로 생성 시도하며 이미 이름이 있다면 취소된다.
@@ -73,6 +61,7 @@ namespace Serialization
             return true;
         }
         
+        
         /// <summary>
         /// 새로운 세이브 파일을 현재 데이타 값으로 생성한다.
         /// </summary>
@@ -82,6 +71,7 @@ namespace Serialization
 
             SaveToFile(filename);
         }
+        
         
         /// <summary>
         /// 현재 데이터를 이미 생성된 세이브 파일에 덮어쓴다.
@@ -94,6 +84,7 @@ namespace Serialization
 
             TransferSaveInfo(PlaySaveName, existSaveFileName);
         }
+        
 
         /// <summary>
         /// 기존 세이브 파일로부터 현재 데이터를 갱신한다.
@@ -104,6 +95,7 @@ namespace Serialization
 
             LoadAll();
         }
+        
 
         /// <summary>
         /// 세이브 파일을 삭제한다.
@@ -122,6 +114,7 @@ namespace Serialization
             Refresh();
 #endif
         }
+        
 
         /// <summary>
         /// 세이브 파일 상태를 초기화 한다.
@@ -241,11 +234,11 @@ namespace Serialization
         private static void DeleteSaveFileDirectory(string directory) => ES3.DeleteDirectory(directory);
         #endregion
 
-        private static void Refresh()
+        private void Refresh()
         {
 #if UNITY_EDITOR
             UnityEditor.AssetDatabase.Refresh();
-            UnityEditor.EditorUtility.SetDirty(Instance);
+            UnityEditor.EditorUtility.SetDirty(this);
 #endif
         }
 #if UNITY_EDITOR

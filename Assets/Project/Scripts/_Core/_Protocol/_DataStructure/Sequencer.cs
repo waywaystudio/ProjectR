@@ -1,20 +1,21 @@
 using System;
 
-[Serializable] public class Sequencer
+[Serializable] 
+public class Sequencer
 {
     public ConditionTable Condition { get; } = new();
     public WaitTrigger CompleteTrigger { get; set; }
-    public Table<SectionType, Section> Table { get; set; } = new();
+    public Table<SectionType, ActionTable> Table { get; set; } = new();
     public ActionTable this[SectionType key]
     {
         get
         {
             if (!Table.ContainsKey(key))
             {
-                Table.Add(key, new Section(key));
+                Table.Add(key, new ActionTable());
             }
 
-            return Table[key].ActionTable;
+            return Table[key];
         }
     }
    
@@ -22,12 +23,12 @@ using System;
     {
         Condition.Clear();
         CompleteTrigger?.Dispose();
-        
         Table.Clear();
     }
 }
 
-[Serializable] public class Sequencer<T> : Sequencer
+[Serializable] 
+public class Sequencer<T> : Sequencer
 {
     public ActionTable<T> ActiveParamAction { get; } = new();
 
@@ -36,7 +37,6 @@ using System;
         ActiveParamAction.Clear();
         Condition.Clear();
         CompleteTrigger?.Dispose();
-        
         Table.Clear();
     }
 }

@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -6,23 +7,21 @@ namespace Common.Systems
     [RequireComponent(typeof(SphereCollider))]
     public class SearchingSystem : MonoBehaviour, IEditable
     {
-        [SerializeField] private float searchingRange = 50f;
+        [SerializeField] private float searchingRange = 100f;
         [SerializeField] private SphereCollider searchingCollider;
+        [SerializeField] private LayerMask targetLayerMask;
         
+        public Table<LayerMask, List<ICombatTaker>> SearchedTable { get; } = new();
+        
+        
+        [SerializeField] private LayerMask venturerLayer;
+        [SerializeField] private LayerMask monsterLayer;
         private const int MaxBufferCount = 32;
-        private LayerMask adventurerLayer;
-        private LayerMask monsterLayer;
-
         public List<ICombatTaker> AdventurerList { get; set; } = new(MaxBufferCount);
         public List<ICombatTaker> MonsterList { get; set; } = new(MaxBufferCount);
-        
-
         public ICombatTaker GetMainTarget(LayerMask targetLayerIndex, Vector3 rootPosition, SortingType sortingType = SortingType.None)
         {
-            (targetLayerIndex == adventurerLayer || targetLayerIndex == monsterLayer).OnFalse(() 
-                => Debug.LogWarning($"Layer must be Adventurer:{(int)adventurerLayer} or Monster:{(int)monsterLayer}. Input:{(int)targetLayerIndex}"));
-
-            if (targetLayerIndex == adventurerLayer && AdventurerList.HasElement())
+            if (targetLayerIndex == venturerLayer && AdventurerList.HasElement())
             {
                 AdventurerList.SortingFilter(rootPosition, sortingType);
                 
@@ -49,9 +48,6 @@ namespace Common.Systems
             return null;
         }
 
-        public ICombatTaker GetSelf() => GetComponentInParent<ICombatExecutor>();
-
-        // TODO. Adventurer를 Main에서 사용할 예정이라면, 씬이 변경될 때 해제해 주어야 하는 파트를 고려해야 한다.
         public void Clear()
         {
             AdventurerList.Clear();
@@ -60,37 +56,51 @@ namespace Common.Systems
 
 
         private static bool IsAbleToCombat(Component other, LayerMask layer, out ICombatTaker taker)
-            => other.TryGetComponent(out taker) && other.gameObject.IsInLayerMask(layer);
+        {
+            return other.TryGetComponent(out taker) && other.gameObject.IsInLayerMask(layer);
+        }
+
+        private void Awake()
+        {
+            // Create Table
+        }
 
         private void OnTriggerEnter(Collider other)
         {
-            if (IsAbleToCombat(other, adventurerLayer, out var adventurer))
+            if (IsAbleToCombat(other, venturerLayer, out var adventurer))
             {
+                if (!SearchedTable.ContainsKey(venturerLayer))
+                {
+                    SearchedTable.Add(venturerLayer, new List<ICombatTaker>());
+                }
+                
+                SearchedTable[venturerLayer].AddUniquely(adventurer);
                 AdventurerList.AddUniquely(adventurer);
             }
             else if (IsAbleToCombat(other, monsterLayer, out var monster))
             {
+                if (!SearchedTable.ContainsKey(monsterLayer))
+                {
+                    SearchedTable.Add(monsterLayer, new List<ICombatTaker>());
+                }
+                
+                SearchedTable[monsterLayer].AddUniquely(adventurer);
                 MonsterList.AddUniquely(monster);
             }
         }
+        
         private void OnTriggerExit(Collider other)
         {
-            if (IsAbleToCombat(other, adventurerLayer, out var adventurer))
+            if (IsAbleToCombat(other, venturerLayer, out var adventurer))
             {
+                SearchedTable[venturerLayer]?.RemoveSafely(adventurer);
                 AdventurerList.Remove(adventurer);
             }
             else if (IsAbleToCombat(other, monsterLayer, out var monster))
             {
+                SearchedTable[monsterLayer]?.RemoveSafely(monster);
                 MonsterList.Remove(monster);
             }
-        }
-        
-        private void Awake()
-        {
-            searchingCollider        ??= GetComponent<SphereCollider>();
-            searchingCollider.radius =   searchingRange;
-            adventurerLayer          =   LayerMask.GetMask("Adventurer");
-            monsterLayer             =   LayerMask.GetMask("Monster");
         }
 
 

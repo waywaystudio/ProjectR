@@ -1109,6 +1109,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6e6b0931b125f694b8e69b84938ae98f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  sceneManager: {fileID: 11400000, guid: e9859cbf5565f0945a5b1d306fd94878, type: 2}
   button: {fileID: 107155794}
 --- !u!114 &107155796
 MonoBehaviour:
@@ -8847,6 +8848,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ee0a39b76f681ed4ab03d31a43a3f9ac, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  saveManager: {fileID: 11400000, guid: 5882c59f354562b479ecf04366a9baf2, type: 2}
   saveInfoBoxPrefab: {fileID: 3197753386374567203, guid: 0557ff84fc6daed49b6da34c0f365705, type: 3}
   saveInfoElementsHierarchy: {fileID: 884560142}
 --- !u!1 &682916570
@@ -20175,7 +20177,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1255209701}
   m_HandleRect: {fileID: 1255209700}
   m_Direction: 2
-  m_Value: 0
+  m_Value: 1
   m_Size: 1
   m_NumberOfSteps: 0
   m_OnValueChanged:

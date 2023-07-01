@@ -999,7 +999,6 @@ MonoBehaviour:
     - {fileID: 0}
     - {fileID: 0}
     - {fileID: 0}
-    hideKey: 1
 --- !u!114 &3682180189469010492
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1138,8 +1137,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 079054a3d925aa34e9db343c1497c49b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  searchingRange: 50
+  searchingRange: 100
   searchingCollider: {fileID: 2164831663368211682}
+  venturerLayer:
+    serializedVersion: 2
+    m_Bits: 128
+  monsterLayer:
+    serializedVersion: 2
+    m_Bits: 256
 --- !u!135 &2164831663368211682
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -1159,7 +1164,7 @@ SphereCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Radius: 100
+  m_Radius: 50
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &1367723563157091856
 MonoBehaviour:

@@ -1,10 +1,11 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 // ReSharper disable InconsistentNaming
 
 [Serializable]
-public class Table<TKey, TValue>
+public class Table<TKey, TValue> : IEnumerable
 {
     [SerializeField] protected List<TKey> keyList = new();
     [SerializeField] protected List<TValue> valueList = new();
@@ -77,6 +78,19 @@ public class Table<TKey, TValue>
         return true;
     }
 
+    public bool Remove(TKey key, out TValue value)
+    {
+        if (!Map.Remove(key, out value)) return false;
+        
+        var index = keyList.IndexOf(key);
+        if(index < 0) return false;
+        
+        keyList.RemoveAt(index);
+        valueList.RemoveAt(index);
+
+        return true;
+    }
+
     public bool TryGetValue(TKey key, out TValue value)
     {
         return Map.TryGetValue(key, out value);
@@ -128,4 +142,6 @@ public class Table<TKey, TValue>
         // Swap values
         (valueList[index1], valueList[index2]) = (valueList[index2], valueList[index1]);
     }
+
+    public IEnumerator GetEnumerator() { throw new NotImplementedException(); }
 }

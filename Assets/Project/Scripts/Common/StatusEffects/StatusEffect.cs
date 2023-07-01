@@ -1,3 +1,4 @@
+using System;
 using Common.Execution;
 using UnityEngine;
 
@@ -32,9 +33,7 @@ namespace Common.StatusEffects
         /// </summary>
         public virtual void Initialize(ICombatProvider provider)
         {
-            Provider = provider;
-            ProgressTime.SetClamp(0f, Mathf.Min(duration * 1.5f, 3600));
-
+            Provider        = provider;
             SequenceInvoker = new StatusEffectSequenceInvoker(sequencer);
             SequenceBuilder = new SequenceBuilder<ICombatTaker>(sequencer);
 
@@ -62,7 +61,9 @@ namespace Common.StatusEffects
         /// </summary>
         public virtual void Overriding()
         {
-            ProgressTime.Value += duration;
+            var overrideValue = ProgressTime.Value + duration;
+            
+            ProgressTime.Value = Mathf.Clamp(overrideValue, 0, duration * 1.5f);
         }
 
         /// <summary>

@@ -7,6 +7,7 @@ namespace Lobby.UI.WorldMaps
 {
     public class ChallengeUI : MonoBehaviour
     {
+        [SerializeField] private SceneManager sceneManager;
         [SerializeField] private Button button;
         
         private static VillainType FocusVillain => LobbyDirector.WorldMap.FocusVillain;
@@ -26,7 +27,7 @@ namespace Lobby.UI.WorldMaps
         
         public void OnButtonClicked()
         {
-            SceneManager.ToRaidScene();
+            sceneManager.ToRaidScene();
         }
         
         
