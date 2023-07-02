@@ -139,7 +139,7 @@ MonoBehaviour:
     description: Starts combat by attacking a target with a melee weapon.
   - id: 31210106
     name: ShieldUp
-    behaviourMask: RigidSkill
+    behaviourMask: Skill
     priority: 5
     detectorType: Self
     sortingType: None
@@ -153,7 +153,7 @@ MonoBehaviour:
     coolTime: 8
     coolTimeInvoker: Active
     castTime: 3
-    castCallback: Execute
+    castCallback: Complete
     completionValueList:
     - 0
     cost: 10
