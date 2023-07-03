@@ -29,13 +29,14 @@ namespace Common.Characters.Behaviours
             Builder         = new SequenceBuilder<Vector3>(sequencer);
             SequenceInvoker = new SequenceInvoker<Vector3>(sequencer);
 
-            Builder.AddCondition("AbleToBehaviourOverride", () => BehaviourMask.CanOverride(Cb.BehaviourMask))
-                   .AddCondition("CanMove", () => Cb.Pathfinding.CanMove)
-                   .AddActiveParam("RunPathfinding", destination => Cb.Pathfinding.Move(destination, SequenceInvoker.Complete))
-                   .Add(SectionType.Active, "CancelPreviousBehaviour", () => cb.CurrentBehaviour?.TryToOverride(this))
-                   .Add(SectionType.Active, "SetCurrentBehaviour", () => cb.CurrentBehaviour = this)
-                   .Add(SectionType.Active, "PlayAnimation", Cb.Animating.Run)
-                   .Add(SectionType.End,"Stop", Cb.Stop);
+            Builder
+                .AddCondition("AbleToBehaviourOverride", () => BehaviourMask.CanOverride(Cb.BehaviourMask))
+                .AddCondition("CanMove", () => Cb.Pathfinding.CanMove)
+                .AddActiveParam("RunPathfinding", destination => Cb.Pathfinding.Move(destination, SequenceInvoker.Complete))
+                .Add(SectionType.Active, "PlayAnimation", Cb.Animating.Run)
+                .Add(SectionType.Active, "CancelPreviousBehaviour", () => cb.CurrentBehaviour?.TryToOverride(this))
+                .Add(SectionType.Active, "SetCurrentBehaviour", () => cb.CurrentBehaviour = this)
+                .Add(SectionType.End,"Stop", Cb.Stop);
         }
 
         private void OnDisable()

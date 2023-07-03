@@ -14,6 +14,26 @@ public static class LayerMaskExtension
     {
         return (mask.value & (1 << obj.layer)) > 0;
     }
+
+    public static int ToIndex(this LayerMask mask)
+    {
+        var maskValue = mask.value;
+        
+        // Check if the maskValue is not a power of 2
+        if (maskValue != 0 && (maskValue & (maskValue - 1)) != 0)
+        {
+            Debug.LogWarning("LayerMask is not a power of 2, cannot be converted to a valid layer index.");
+            return 0;
+        }
+        
+        var index = 0;
+        while ((maskValue >>= 1) > 0)
+        {
+            ++index;
+        }
+        
+        return index;
+    }
         
     /* In Project R */
     public static bool IsMonster(this GameObject obj) => obj.layer    == LayerMask.NameToLayer("Monster");

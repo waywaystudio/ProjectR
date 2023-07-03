@@ -10,7 +10,7 @@ namespace Common.Systems
 {
     public class PathfindingSystem : MonoBehaviour
     {
-        [FormerlySerializedAs("moveSpeed")] [SerializeField] private float defaultSpeed;
+        [SerializeField] private float defaultSpeed;
         [SerializeField] private Transform rootTransform;
         [SerializeField] private Seeker agent;
         [SerializeField] private AIMove aiMove;

@@ -1,5 +1,4 @@
 using System;
-using Cysharp.Threading.Tasks;
 using UnityEngine;
 
 namespace Common.Characters.Behaviours
@@ -37,8 +36,8 @@ namespace Common.Characters.Behaviours
             SequenceInvoker = new SequenceInvoker(sequencer);
             SequenceBuilder = new SequenceBuilder(sequencer);
             SequenceBuilder.AddCondition("AbleToBehaviourOverride", () => BehaviourMask.CanOverride(Cb.BehaviourMask))
-                           .Add(SectionType.Active,"CancelPreviousBehaviour", () => cb.CurrentBehaviour?.TryToOverride(this))
-                           .Add(SectionType.Active,"SetCurrentBehaviour", () => cb.CurrentBehaviour = this)
+                           .Add(SectionType.Active,"CancelPreviousBehaviour", () => Cb.CurrentBehaviour?.TryToOverride(this))
+                           .Add(SectionType.Active,"SetCurrentBehaviour", () => Cb.CurrentBehaviour = this)
                            .Add(SectionType.Active,"PlayAnimation", () => Cb.Animating.Dead(SequenceInvoker.Complete))
                            .Add(SectionType.Active,"Cb.Pathfinding.Quit", Cb.Pathfinding.Quit);
         }

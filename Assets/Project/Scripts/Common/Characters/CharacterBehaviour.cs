@@ -1,19 +1,21 @@
+using System.Collections.Generic;
 using Common.Animation;
 using Common.Skills;
 using Common.StatusEffects;
 using Common.Systems;
+using Common.TargetSystem;
 using UnityEngine;
 
 namespace Common.Characters
 {
     using Behaviours;
 
-    public class CharacterBehaviour : MonoBehaviour, ICombatExecutor, ICharacterSystem, IEditable
+    public class CharacterBehaviour : MonoBehaviour, ICombatExecutor, ICharacterSystem, ISearchable, IEditable
     {
         [SerializeField] protected CharacterCombatStatus combatStatus;
         [SerializeField] protected AnimationModel animating;
-        [SerializeField] protected Transform damageSpawn;
-        [SerializeField] protected Transform statusEffectHierarchy;
+        [SerializeField] protected SearchEngine searchEngine;
+        [SerializeField] protected PathfindingSystem pathfinding;
         
         [SerializeField] protected StopBehaviour stopBehaviour;
         [SerializeField] protected RunBehaviour runBehaviour;
@@ -23,9 +25,8 @@ namespace Common.Characters
         [SerializeField] protected DeadBehaviour deadBehaviour;
         [SerializeField] protected SkillBehaviour skillBehaviour;
 
-        [SerializeField] protected SearchingSystem searching;
-        [SerializeField] protected CollidingSystem colliding;
-        [SerializeField] protected PathfindingSystem pathfinding;
+        [SerializeField] protected Transform damageSpawn;
+        [SerializeField] protected Transform statusEffectHierarchy;
 
         /*
          * Common Attribute
@@ -36,14 +37,15 @@ namespace Common.Characters
         public CharacterData Data { get; set; }
         public Vector3 Position => transform.position;
         public Transform DamageSpawn => damageSpawn;
+        
 
         /*
          * Systems
          */
-        public SearchingSystem Searching => searching;
-        public CollidingSystem Colliding => colliding;
+        public Dictionary<int, List<GameObject>> SearchedTable => searchEngine.SearchedTable;
         public PathfindingSystem Pathfinding => pathfinding;
         public AnimationModel Animating => animating;
+        
 
         /*
          * Behaviour Attribute
@@ -57,7 +59,6 @@ namespace Common.Characters
         public DrawBehaviour DrawBehaviour => drawBehaviour;
         public DeadBehaviour DeadBehaviour => deadBehaviour;
         public SkillBehaviour SkillBehaviour => skillBehaviour;
-        
 
         public void Rotate(Vector3 lookTarget) { Pathfinding.RotateToTarget(lookTarget); Animating.Flip(transform.forward); }
         public void Stop() => stopBehaviour.Stop();
@@ -79,8 +80,13 @@ namespace Common.Characters
          * Combat Status
          */
         public IDynamicStatEntry DynamicStatEntry => combatStatus ??= GetComponentInChildren<CharacterCombatStatus>();
-        public StatTable StatTable => DynamicStatEntry.StatTable;
+        public AliveValue Alive => combatStatus.Alive;
+        public HpValue Hp => combatStatus.Hp;
+        public ResourceValue Resource => combatStatus.Resource;
+        public ShieldValue Shield => combatStatus.Shield;
+        public StatTable StatTable => combatStatus.StatTable;
         public Transform StatusEffectHierarchy => statusEffectHierarchy;
+        
         public ActionTable<CombatEntity> OnDamageProvided { get; } = new();
         public ActionTable<CombatEntity> OnDamageTaken { get; } = new();
         public ActionTable<CombatEntity> OnHealProvided { get; } = new();
@@ -101,8 +107,7 @@ namespace Common.Characters
             knockBackBehaviour ??= GetComponentInChildren<KnockBackBehaviour>();
             drawBehaviour      ??= GetComponentInChildren<DrawBehaviour>();
             deadBehaviour      ??= GetComponentInChildren<DeadBehaviour>();
-            searching          ??= GetComponentInChildren<SearchingSystem>();
-            colliding          ??= GetComponentInChildren<CollidingSystem>();
+            searchEngine       ??= GetComponentInChildren<SearchEngine>();
             pathfinding        ??= GetComponentInChildren<PathfindingSystem>();
             animating          ??= GetComponentInChildren<AnimationModel>();
         }

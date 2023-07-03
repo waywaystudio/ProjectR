@@ -26,8 +26,16 @@ namespace Common
     public interface ICombatEntity
     {
         StatTable StatTable { get; }
-        IDynamicStatEntry DynamicStatEntry { get; }
+        // AliveValue Alive { get; }
+        // HpValue Hp { get; }
+        // ResourceValue Resource { get; }
+        // ShieldValue Shield { get; }
+        // StatusEffectTable StatusEffectTable { get; }
+        
         ActionMask BehaviourMask { get; }
+        
+        IDynamicStatEntry DynamicStatEntry { get; }
+        // StatTable StatTable { get; }
     }
 
     public interface ICombatProvider : ICombatEntity, IObjectName

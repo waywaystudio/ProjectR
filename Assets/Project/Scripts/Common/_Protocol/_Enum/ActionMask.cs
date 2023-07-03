@@ -31,7 +31,8 @@ namespace Common
                                              ActionMask.Skill;
             
             const ActionMask skillIgnoreMask = ActionMask.None | 
-                                               ActionMask.Stop | 
+                                               ActionMask.Stop |
+                                               ActionMask.Skill |
                                                ActionMask.Run;
             
             const ActionMask knockBackIgnoreMask = ActionMask.None | 

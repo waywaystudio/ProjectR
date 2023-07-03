@@ -1,6 +1,7 @@
 using Common.Characters;
 using Common.Execution;
 using Common.Systems;
+using Common.TargetSystem;
 using UnityEngine;
 
 namespace Common.Skills
@@ -11,7 +12,7 @@ namespace Common.Skills
         [SerializeField] protected ActionMask behaviourMask = ActionMask.Skill;
         [SerializeField] protected int priority;
         [SerializeField] protected Executor executor;
-        [SerializeField] protected Detector detector;
+        [SerializeField] protected CombatTakerDetector detector;
         [SerializeField] protected SkillAnimationTrait animationTrait;
         [SerializeField] protected SkillCoolTimer coolTimer;
         [SerializeField] protected SkillCastTimer castTimer;
