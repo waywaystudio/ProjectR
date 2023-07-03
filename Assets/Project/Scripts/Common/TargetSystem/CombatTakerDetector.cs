@@ -54,6 +54,14 @@ namespace Common.TargetSystem
                 _                  => GetMainTarget(targetLayer),
             };
         }
+        
+        public bool HasTarget()
+        {
+            var takers = GetTakers();
+
+            return !takers.IsNullOrEmpty() 
+                   && takers[0].Alive.Value;
+        }
 
         public List<ICombatTaker> GetTakersInCircleRange(float radius) => GetTakersInCircleRange(radius, Angle);
         public List<ICombatTaker> GetTakersInCircleRange(float radius, float angle) => GetTakersInCircleRange(searchEngine.gameObject.transform.position, radius, angle);
@@ -105,7 +113,7 @@ namespace Common.TargetSystem
             
             foreach (var taker in combatTakerList)
             {
-                if (!taker.DynamicStatEntry.Alive.Value) continue;
+                if (!taker.Alive.Value) continue;
         
                 return taker;
             }

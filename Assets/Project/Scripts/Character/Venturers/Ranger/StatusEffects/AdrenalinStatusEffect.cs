@@ -6,26 +6,18 @@ namespace Character.Venturers.Ranger.StatusEffects
 {
     public class AdrenalinStatusEffect : StatusEffect
     {
-        [ShowInInspector]
-        private int stack;
-
         public override void Initialize(ICombatProvider provider)
         {
             base.Initialize(provider);
 
-            SequenceBuilder.Add(SectionType.Active, "AddStack", () => stack++);
+            Builder
+                .Add(SectionType.Override, "GetHuntersEcstasy", GetHuntersEcstasy);
         }
 
-        public override void Overriding()
-        {
-            // TODO.TEST
-            stack++;
-            
-            // Add Hunter's Ecstasy Effect
-            // Taker == Self
-            executor.Execute(Taker);
-
-            // Remove Adrenalin
+        
+        private void GetHuntersEcstasy()
+        {   
+            executor.ToTaker(Taker);
             Dispel();
         }
     }

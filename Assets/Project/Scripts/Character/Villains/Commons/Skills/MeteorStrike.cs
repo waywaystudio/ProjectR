@@ -23,8 +23,8 @@ namespace Character.Villains.Commons.Skills
             
             var villain = GetComponentInParent<VillainBehaviour>();
 
-            SequenceBuilder.AddCondition("ConditionSelfHpStatus", () => (enableMask | villain.CurrentPhase.PhaseMask) == enableMask)
-                           .Add(SectionType.Active, "DirectExecuteMeteorStrike", SkillInvoker.Execute)
+            Builder.AddCondition("ConditionSelfHpStatus", () => (enableMask | villain.CurrentPhase.PhaseMask) == enableMask)
+                           .Add(SectionType.Active, "DirectExecuteMeteorStrike", Invoker.Execute)
                            .Add(SectionType.Execute, "StartMeteor", () => meteorRoutine = StartCoroutine(StartMeteor()))
                            .Add(SectionType.End, "StopExecution", StopMeteor);
         }
@@ -41,7 +41,7 @@ namespace Character.Villains.Commons.Skills
 
             foreach (var destination in destinationList)
             {
-                executor.Execute(destination);
+                executor.ToPosition(destination);
 
                 yield return new WaitForSeconds(0.2f);
             }

@@ -25,5 +25,7 @@ public class Observable<T>
 
     public void RemoveListener(Action action) => RemoveListener(action.ToString());
     public void RemoveListener(string key) => OnValueChanged.Remove(key);
+
+    public void Clear() => OnValueChanged.Clear();
 }
 

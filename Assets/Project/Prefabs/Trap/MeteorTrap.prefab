@@ -49,12 +49,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   executor:
-    table:
+    takerExecutionTable:
       keyList: 01000000
       valueList:
-      - ExecutionList:
+      - List:
         - {fileID: 2659919103708223492}
-      hideKey: 0
+    fireExecutionTable:
+      keyList: 
+      valueList: []
   collidingSystem: {fileID: 8771204470701334892}
   trapCode: 0
   delayTime: 0

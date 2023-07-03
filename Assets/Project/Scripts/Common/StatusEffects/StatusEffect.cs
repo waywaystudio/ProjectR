@@ -1,4 +1,3 @@
-using System;
 using Common.Execution;
 using UnityEngine;
 
@@ -7,44 +6,40 @@ namespace Common.StatusEffects
     public abstract class StatusEffect : MonoBehaviour, IOriginalProvider, IHasSequencer, IEditable
     {
         [SerializeField] protected Executor executor;
-        [SerializeField] private Sequencer<ICombatTaker> sequencer;
-        
         [SerializeField] protected DataIndex statusCode;
         [SerializeField] protected StatusEffectType type;
         [SerializeField] protected Sprite icon;
         [SerializeField] protected float duration;
 
+        public float Duration => duration;
+        public FloatEvent ProgressTime { get; } = new();
         public ICombatProvider Provider { get; protected set; }
         public DataIndex DataIndex => statusCode;
         public StatusEffectType Type => type;
-        public FloatEvent ProgressTime { get; } = new();
-        public Sequencer Sequencer => sequencer;
+        public Sequencer Sequencer { get; } = new();
         public Sprite Icon => icon;
-        public float Duration => duration;
-
-        protected SequenceBuilder<ICombatTaker> SequenceBuilder { get; private set; }
-        protected StatusEffectSequenceInvoker SequenceInvoker { get; private set; }
+        public StatusEffectSequenceInvoker Invoker { get; private set; }
+        protected SequenceBuilder Builder { get; private set; }
         protected ICombatTaker Taker { get; set; }
         
 
         /// <summary>
         /// Scene 시작과 함께 한 번 호출.
-        /// 보통 SkillSequence에 StatusCompletion으로 부터 호출 됨.
+        /// 보통 SkillSequence에 StatusEffectExecutor로 부터 호출 됨.
         /// </summary>
         public virtual void Initialize(ICombatProvider provider)
         {
-            Provider        = provider;
-            SequenceInvoker = new StatusEffectSequenceInvoker(sequencer);
-            SequenceBuilder = new SequenceBuilder<ICombatTaker>(sequencer);
+            Provider = provider;
+            Invoker  = new StatusEffectSequenceInvoker(Sequencer);
+            Builder  = new SequenceBuilder(Sequencer);
 
-            SequenceBuilder.Add(SectionType.Active, "SetAbleToTrue", () => enabled              = true)
-                           .Add(SectionType.Active, "SetProgressTime", () => ProgressTime.Value = duration)
-                           .Add(SectionType.Active, "SetObjectActive", () => gameObject.SetActive(true))
-                           .Add(SectionType.Active, "AddStatusEffectTable", AddTable)
-                           .Add(SectionType.End, "DisableComponent", () => enabled = false)
-                           .Add(SectionType.End, "DeActiveGameObject", () => gameObject.SetActive(false))
-                           .Add(SectionType.End, "UnregisterTable", RemoveTable);
+            Builder
+                .Add(SectionType.Active, "ResetProgressTime", () => ProgressTime.Value = duration)
+                .Add(SectionType.Active, "AddStatusEffectTable", AddTable)
+                .Add(SectionType.Override, "ProlongDuration", ProlongDuration)
+                .Add(SectionType.End, "UnregisterTable", RemoveTable);
         }
+        
 
         /// <summary>
         /// 성공적으로 스킬 사용시 호출.
@@ -52,31 +47,29 @@ namespace Common.StatusEffects
         public void Activate(ICombatTaker taker)
         {
             Taker = taker;
-            
-            SequenceInvoker.Active(taker);
+            Invoker.Active();
         }
 
+
         /// <summary>
-        /// 이미 효과를 가진 경우 호출.
+        /// 해제 시 호출 == Dispel. (만료 아님)
         /// </summary>
-        public virtual void Overriding()
+        public void Dispel() => Invoker.Cancel();
+
+
+        private void AddTable() => Taker.StatusEffectTable.Add(DataIndex, this);
+        private void RemoveTable() => Taker.StatusEffectTable.Remove(DataIndex);
+
+        private void ProlongDuration()
         {
             var overrideValue = ProgressTime.Value + duration;
             
             ProgressTime.Value = Mathf.Clamp(overrideValue, 0, duration * 1.5f);
         }
-
-        /// <summary>
-        /// 해제 시 호출 == Dispel. (만료 아님)
-        /// </summary>
-        public virtual void Dispel() => SequenceInvoker.Cancel();
-
-
-        private void AddTable() => Taker.DynamicStatEntry.StatusEffectTable.Add(DataIndex, this);
-        private void RemoveTable() => Taker.DynamicStatEntry.StatusEffectTable.Remove(DataIndex);
+        
         private void OnDestroy()
         {
-            sequencer.Clear();
+            Sequencer.Clear();
         }
 
 

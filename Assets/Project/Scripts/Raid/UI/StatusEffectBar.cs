@@ -19,13 +19,13 @@ namespace Raid.UI
         {
             if (CurrentVenturer != null)
             {
-                var effectTable = CurrentVenturer.DynamicStatEntry.StatusEffectTable;
+                var effectTable = CurrentVenturer.StatusEffectTable;
                 
                 effectTable.OnEffectAdded.Remove("OnAddedUI");
                 effectTable.OnEffectRemoved.Remove("OnRemovedUI");
             }
 
-            var focusVenturerEffectTable = FocusVenturer.DynamicStatEntry.StatusEffectTable;
+            var focusVenturerEffectTable = FocusVenturer.StatusEffectTable;
             
             focusVenturerEffectTable.OnEffectAdded.Add("OnAddedUI", OnAdded);
             focusVenturerEffectTable.OnEffectRemoved.Add("OnRemovedUI", OnRemoved);
@@ -68,7 +68,7 @@ namespace Raid.UI
             buffList.ForEach(buffSlot => buffSlot.Unregister());
             deBuffList.ForEach(deBuffSlot => deBuffSlot.Unregister());
             
-            var focusVenturerEffectTable = FocusVenturer.DynamicStatEntry.StatusEffectTable;
+            var focusVenturerEffectTable = FocusVenturer.StatusEffectTable;
             
             focusVenturerEffectTable.Iterate(OnAdded);
         }

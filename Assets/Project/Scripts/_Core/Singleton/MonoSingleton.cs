@@ -46,6 +46,7 @@ namespace Singleton
         [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.BeforeSceneLoad)]
         private static void ResetSingleton()
         {
+            Debug.Log("ResetSingleton from RuntimeInitializeOnLoadMethod");
             instance = null;
         }
     }

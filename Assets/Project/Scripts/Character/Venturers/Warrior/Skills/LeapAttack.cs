@@ -9,8 +9,8 @@ namespace Character.Venturers.Warrior.Skills
         {
             base.Initialize();
 
-            SequenceBuilder.AddActiveParam("Jump", Jump)
-                           .Add(SectionType.Execute, "CommonExecution", () => detector.GetTakers()?.ForEach(executor.Execute));
+            Builder.AddActiveParam("Jump", Jump)
+                           .Add(SectionType.Execute, "CommonExecution", () => detector.GetTakers()?.ForEach(executor.ToTaker));
         }
         
 

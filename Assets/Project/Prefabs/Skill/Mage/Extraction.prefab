@@ -113,13 +113,16 @@ MonoBehaviour:
   behaviourMask: 32
   priority: 8
   executor:
-    table:
+    takerExecutionTable:
       keyList: 01000000
       valueList:
-      - ExecutionList:
+      - List:
         - {fileID: 7152022793498590089}
+    fireExecutionTable:
+      keyList: 01000000
+      valueList:
+      - List:
         - {fileID: 8474529466084270794}
-      hideKey: 0
   detector:
     targetType: 1
     sortingType: 0
@@ -131,22 +134,22 @@ MonoBehaviour:
   animationTrait:
     animationKey: ExtractHold
     isLoop: 1
-    hasEvent: 0
-    timeScale: 1
+    hasExecuteEvent: 0
+    animationPlaySpeed: 1
     skillType: 3
     callbackSection: 0
   coolTimer:
-    coolTime: 4
+    coolTime: 10
     invokeSection: 1
   castTimer:
     castingTime: 3
-    callbackSection: 5
+    callbackSection: 11
   cost:
     cost: -50
     paySection: 3
-  description: Starts combat by attacking a target with a melee weapon.
-  skillName: Extraction
   icon: {fileID: 21300000, guid: 938cff898c2f2504b8ae0fb8b55237c8, type: 3}
+  description: "\uB300\uC0C1 \uC9C0\uC810\uC5D0 \uBAA8\uB4E0 \uC801\uC744 \uB3C4\uB824\uB0B4\uC5B4
+    \uC601\uD63C \uC870\uAC01\uC744 \uCD94\uCD9C\uD55C\uB2E4."
 --- !u!1 &9030367168287305613
 GameObject:
   m_ObjectHideFlags: 0
@@ -218,7 +221,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   group: 1
-  actionCode: 31210503
   pool:
     prefab: {fileID: 3865230921314547483, guid: 36738ef24b91da94f88841488af3f3c0, type: 3}
     maxCount: 16

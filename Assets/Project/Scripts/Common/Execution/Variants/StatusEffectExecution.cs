@@ -1,22 +1,22 @@
 using Common.StatusEffects;
 using UnityEngine;
 
-namespace Common.Execution
+namespace Common.Execution.Variants
 {
-    public class StatusEffectExecutor : ExecuteComponent, IEditable
+    public class StatusEffectExecution : TakerExecution, IEditable
     {
         [SerializeField] protected DataIndex actionCode;
         [SerializeField] private Pool<StatusEffect> pool;
 
         public override void Execution(ICombatTaker taker)
         {
-            if (taker == null || !taker.DynamicStatEntry.Alive.Value) return;
+            if (taker == null || !taker.Alive.Value) return;
 
-            var targetTable = taker.DynamicStatEntry.StatusEffectTable;
+            var targetTable = taker.StatusEffectTable;
 
             if (targetTable.TryGetValue(actionCode, out var value))
             {
-                value.Overriding();
+                value.Invoker.Override();
             }
             else
             {

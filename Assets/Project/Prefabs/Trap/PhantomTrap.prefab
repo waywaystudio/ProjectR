@@ -71,7 +71,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   group: 2
-  actionCode: 31210308
   muzzle: {fileID: 0}
   pool:
     prefab: {fileID: 68301466263117794, guid: 468655043b06470428d29df2a5c8df9b, type: 3}
@@ -186,14 +185,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   executor:
-    table:
-      keyList: 0100000002000000
+    takerExecutionTable:
+      keyList: 01000000
       valueList:
-      - ExecutionList:
+      - List:
         - {fileID: 9167835184449150322}
-      - ExecutionList:
+    fireExecutionTable:
+      keyList: 02000000
+      valueList:
+      - List:
         - {fileID: 2127625922178048786}
-      hideKey: 0
   collidingSystem: {fileID: 7147311983136411963}
   trapCode: 31210306
   delayTime: 0
@@ -282,7 +283,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   modelData: {fileID: 11400000, guid: 9425102757636664ba5540251971aa4e, type: 2}
   skeletonAnimation: {fileID: 6718807046576084500}
-  eventNameList: 
 --- !u!114 &4463644359070032158
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -9,15 +9,22 @@ namespace Character.Venturers.Mage.Skills
         {
             base.Initialize();
 
-            SequenceBuilder.Add(SectionType.Execute, "ShotAttackExecution", () => executor.Execute(null))
+            Builder.Add(SectionType.Execute, "Fire", Fire)
                            .Add(SectionType.Execute, "PlayCastCompleteAnimation", PlayCastCompleteAnimation);
 
         }
         
         
+        private void Fire()
+        {
+            var forwardPosition = Provider.Position + Provider.Forward;
+
+            executor.ToPosition(forwardPosition);
+        }
+        
         private void PlayCastCompleteAnimation()
         {
-            Cb.Animating.PlayOnce("CastHoldFire", 1f + Haste, SkillInvoker.Complete);
+            Cb.Animating.PlayOnce("CastHoldFire", 1f + Haste, Invoker.Complete);
         }
     }
 }

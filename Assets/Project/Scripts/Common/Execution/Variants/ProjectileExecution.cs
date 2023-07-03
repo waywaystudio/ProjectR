@@ -1,36 +1,23 @@
 using Common.Projectiles;
 using UnityEngine;
 
-namespace Common.Execution
+namespace Common.Execution.Variants
 {
-    public class ProjectileExecutor : ExecuteComponent
+    public class ProjectileExecution : FireExecution
     {
-        [SerializeField] protected DataIndex actionCode;
         [SerializeField] private Transform muzzle;
         [SerializeField] private Pool<ProjectileComponent> pool;
-        
 
         private Vector3 MuzzlePosition => muzzle ? muzzle.position : transform.position + new Vector3(0, 3, 0);
-        
-        public override void Execution(ICombatTaker taker)
-        {
-            var projectile          = pool.Get();
-            var projectileTransform = projectile.transform;
-            var direction           = Origin.Provider.gameObject.transform.forward;
-            
-            projectileTransform.SetParent(null, true);
-            projectileTransform.LookAt(projectileTransform.position + direction);
-            
-            projectile.Activate();
-        }
+
         
         public override void Execution(Vector3 targetPosition)
         {
             var projectile = pool.Get();
             var projectileTransform = projectile.transform;
-            
+
             projectileTransform.SetParent(null, true);
-            projectileTransform.LookAt(targetPosition);
+            projectileTransform.LookAt(new Vector3(targetPosition.x, MuzzlePosition.y, targetPosition.z));
             
             projectile.Activate();
         }

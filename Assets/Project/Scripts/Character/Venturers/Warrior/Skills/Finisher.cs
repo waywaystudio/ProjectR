@@ -1,5 +1,6 @@
 using Common;
 using Common.Execution;
+using Common.Execution.Variants;
 using Common.Skills;
 using UnityEngine;
 
@@ -9,29 +10,30 @@ namespace Character.Venturers.Warrior.Skills
     {
         [SerializeField] private float remainBonusMultiplier = 1f;
         
-        private DamageExecutor damageExecutor;
+        private DamageExecution damageExecutor;
+        public StatSpec CombatSpec => damageExecutor.DamageSpec;
         
         public override void Initialize()
         {
             base.Initialize();
 
-            damageExecutor = GetComponentInChildren<DamageExecutor>();
+            damageExecutor = GetComponentInChildren<DamageExecution>();
             
-            SequenceBuilder.Add(SectionType.Execute, "CommonExecution", MultipliedDamageExecution);
+            Builder.Add(SectionType.Execute, "CommonExecution", MultipliedDamageExecution);
         }
 
 
         private void MultipliedDamageExecution()
         {
-            var remainResource = Cb.DynamicStatEntry.Resource.Value;
+            var remainResource = Cb.Resource.Value;
             var maxResource = Cb.StatTable.MaxResource;
-            var multiplier = 1.0f + ((remainResource / maxResource) * remainBonusMultiplier);
-            var originalPower = damageExecutor.DamageSpec.Power;
+            var multiplier = 1.0f + remainResource / maxResource * remainBonusMultiplier;
+            var originalPower = CombatSpec.Power;
             
-            damageExecutor.DamageSpec.Change(StatType.Power, originalPower * multiplier);
-            detector.GetTakers()?.ForEach(executor.Execute);
-            damageExecutor.DamageSpec.Change(StatType.Power, originalPower);
-            Cb.DynamicStatEntry.Resource.Value = 0f;
+            CombatSpec.Change(StatType.Power, originalPower * multiplier);
+            detector.GetTakers()?.ForEach(executor.ToTaker);
+            CombatSpec.Change(StatType.Power, originalPower);
+            Cb.Resource.Value = 0f;
         }
     }
 }

@@ -113,12 +113,14 @@ MonoBehaviour:
   behaviourMask: 32
   priority: 5
   executor:
-    table:
+    takerExecutionTable:
+      keyList: 
+      valueList: []
+    fireExecutionTable:
       keyList: 01000000
       valueList:
-      - ExecutionList:
+      - List:
         - {fileID: 6640065934772434048}
-      hideKey: 0
   detector:
     targetType: 1
     sortingType: 0
@@ -130,8 +132,8 @@ MonoBehaviour:
   animationTrait:
     animationKey: CastHold
     isLoop: 1
-    hasEvent: 0
-    timeScale: 1
+    hasExecuteEvent: 0
+    animationPlaySpeed: 1
     skillType: 2
     callbackSection: 0
   coolTimer:
@@ -139,13 +141,15 @@ MonoBehaviour:
     invokeSection: 3
   castTimer:
     castingTime: 1.5
-    callbackSection: 5
+    callbackSection: 11
   cost:
     cost: 30
     paySection: 1
-  description: Starts combat by attacking a target with a melee weapon.
-  skillName: VoidSphere
   icon: {fileID: 21300000, guid: 11e3e0ef66ad70540a8d2714af6cd7d3, type: 3}
+  description: "\uCC9C\uCC9C\uD788 \uB098\uC544\uAC00\uB294 \uD22C\uC0AC\uCCB4\uB97C
+    \uBC1C\uC0AC\uD55C\uB2E4. \uC8FC\uC704\uC5D0 \uC601\uD63C\uC758 \uC870\uAC01\uC744
+    \uD761\uC218\uD558\uBA70, \uD761\uC218\uD55C \uC870\uAC01\uC5D0 \uBE44\uB840\uD558\uC5EC
+    \uB354 \uD070 \uD53C\uD574\uB97C \uC900\uB2E4."
 --- !u!1 &9030367168287305613
 GameObject:
   m_ObjectHideFlags: 0
@@ -191,7 +195,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   group: 1
-  actionCode: 31210502
   muzzle: {fileID: 0}
   pool:
     prefab: {fileID: 68301466263117794, guid: 070714ff2172c2f45b9b19e8881530e5, type: 3}

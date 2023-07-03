@@ -16,10 +16,10 @@ namespace Character.Venturers.Ranger.Skills
             base.Initialize();
 
             Provider.OnDamageProvided.Add("AddAdrenalinByAimShot", AddAdrenalin);
-            SequenceBuilder.Add(SectionType.Active, "Tracking", () => PlayTracking().Forget())
+            Builder.Add(SectionType.Active, "Tracking", () => PlayTracking().Forget())
                            .Add(SectionType.Execute, "PlayCastCompleteAnimation", PlayCastCompleteAnimation)
                            .Add(SectionType.Execute, "TryConsumeEcstasy", TryConsumeEcstasy)
-                           .Add(SectionType.Execute, "FocusShotExecute", () => executor.Execute(null))
+                           .Add(SectionType.Execute, "Fire", Fire)
                            .Add(SectionType.End, "StopTracking", StopTracking);
         }
         
@@ -32,9 +32,16 @@ namespace Character.Venturers.Ranger.Skills
         }
         
         
+        private void Fire()
+        {
+            var forwardPosition = Provider.Position + Provider.Forward;
+
+            executor.ToPosition(forwardPosition);
+        }
+        
         private void PlayCastCompleteAnimation()
         {
-            Cb.Animating.PlayOnce("AimHoldFire", 1f + Haste, SkillInvoker.Complete);
+            Cb.Animating.PlayOnce("AimHoldFire", 1f + Haste, Invoker.Complete);
         }
 
         private void TryConsumeEcstasy()
@@ -47,11 +54,11 @@ namespace Character.Venturers.Ranger.Skills
             if (damageLog.CombatIndex != DataIndex) return;
             if (damageLog.IsCritical)
             {
-                executor.Execute(ExecuteGroup.Group2, Cb);
+                executor.ToTaker(Cb, ExecuteGroup.Group2);
             }
             else
             {
-                if (!Cb.DynamicStatEntry.StatusEffectTable
+                if (!Cb.StatusEffectTable
                        .TryGetValue(DataIndex.AdrenalinStatusEffect, out var statusEffect)) return;
                 
                 statusEffect.Dispel();

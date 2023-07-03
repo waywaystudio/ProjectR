@@ -12,7 +12,7 @@ namespace Raid.UI.VenturerFrames
 
         public void OnFocusVenturerChanged(VenturerBehaviour vb)
         {
-            var hpReference = vb.DynamicStatEntry.Hp;
+            var hpReference = vb.Hp;
             var maxHp = vb.StatTable.MaxHp;
 
             fillGlobe.Register(hpReference, maxHp);

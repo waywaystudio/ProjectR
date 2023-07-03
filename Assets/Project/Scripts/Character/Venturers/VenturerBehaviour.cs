@@ -16,18 +16,9 @@ namespace Character.Venturers
         public override DataIndex DataIndex => data.DataIndex;
         public override CharacterMask CombatClass => data.CharacterMask;
         public override string Name => data.Name;
+        public override CharacterData Data => data;
         
         public bool IsPlayer { get; set; }
-
-        // TODO. Temp
-        public void ForceInitialize()
-        {
-            StatTable.Clear();
-            StatTable.RegisterTable(data.StaticStatTable);
-            
-            combatStatus.Initialize();
-        }
-
 
         private void Update()
         {
@@ -40,8 +31,7 @@ namespace Character.Venturers
         {
             base.EditorSetUp();
             
-            modChanger ??= GetComponent<VenturerModChanger>();
-            data.EditorSetUp();
+            modChanger = GetComponent<VenturerModChanger>();
         }
 #endif
     }

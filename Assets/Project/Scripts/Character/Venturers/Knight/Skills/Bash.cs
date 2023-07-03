@@ -12,20 +12,27 @@ namespace Character.Venturers.Knight.Skills
         {
             base.Initialize();
 
-            SequenceBuilder.Add(SectionType.Execute, "CommonExecution", () => detector.GetTakers()?.ForEach(executor.Execute))
-                           .Add(SectionType.Execute,"BashTimingBonus", OnSuccess);
+            Builder
+                .Add(SectionType.Execute, "BashAttack", BashAttack)
+                .Add(SectionType.Execute,"BashTimingBonus", BashTimingBonus);
 
+        }
+
+
+        private void BashAttack()
+        {
+            detector.GetTakers()?.ForEach(executor.ToTaker);
         }
         
         // 대상이 Skill 시전 중에 Bash 타격 시 추가 자원 획득.
-        private void OnSuccess()
+        private void BashTimingBonus()
         {
             var mainTarget = detector.GetMainTarget();
 
             if (mainTarget is null) return;
             if (mainTarget.BehaviourMask == ActionMask.Skill)
             {
-                Cb.DynamicStatEntry.Resource.Value += counterAttackBonus;
+                Cb.Resource.Value += counterAttackBonus;
             }
         }
     }

@@ -33,6 +33,8 @@ namespace Raid
         {
             venturerEntry.ForEach((adventurerIndex, index) =>
             {
+                if (adventurerIndex == VenturerType.None) return;
+
                 var profitPosition   = RaidDirector.StageDirector.GetAdventurerPosition(index).position;
                 
                 Camp.Spawn(adventurerIndex, profitPosition, venturerHierarchy, out var vb);

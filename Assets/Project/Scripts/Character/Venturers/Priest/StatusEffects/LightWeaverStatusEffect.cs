@@ -14,13 +14,13 @@ namespace Character.Venturers.Priest.StatusEffects
         {
             base.Initialize(provider);
 
-            SequenceBuilder
-                .Add(SectionType.Active, "Effectuate", () => Effectuate().Forget())
-                .Add(SectionType.End, "StopEffectuate", () => cts?.Cancel());
+            Builder
+                .Add(SectionType.Active, "OvertimeExecution", () => OvertimeExecution().Forget())
+                .Add(SectionType.End, "Stop", Stop);
         }
         
         
-        private async UniTaskVoid Effectuate()
+        private async UniTaskVoid OvertimeExecution()
         {
             cts = new CancellationTokenSource();
 
@@ -31,7 +31,13 @@ namespace Character.Venturers.Priest.StatusEffects
                 await UniTask.Yield(cts.Token);
             }
             
-            SequenceInvoker.Complete();
+            Invoker.Complete();
+        }
+        
+        private void Stop()
+        {
+            cts?.Cancel();
+            cts = null;
         }
     }
 }

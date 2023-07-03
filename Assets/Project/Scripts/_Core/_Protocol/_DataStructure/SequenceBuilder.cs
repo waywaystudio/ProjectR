@@ -4,7 +4,6 @@ public class SequenceBuilder
 {
     protected readonly Sequencer Sequencer;
 
-    public SequenceBuilder() { }
     public SequenceBuilder(IHasSequencer holder) => Sequencer = holder?.Sequencer;
     public SequenceBuilder(Sequencer holder) => Sequencer = holder;
     
@@ -31,7 +30,6 @@ public class SequenceBuilder<T>
 {
     protected readonly Sequencer<T> Sequencer;
 
-    public SequenceBuilder(IHasSequencer<T> holder) => Sequencer = holder?.Sequencer;
     public SequenceBuilder(Sequencer<T> holder) => Sequencer = holder;
 
     public SequenceBuilder<T> AddActiveParam(string key, Action<T> action) { Sequencer.ActiveParamAction.Add(key, action); return this; }

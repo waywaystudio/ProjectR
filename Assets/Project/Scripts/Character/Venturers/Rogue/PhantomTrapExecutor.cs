@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace Character.Venturers.Rogue
 {
-    public class PhantomTrapExecutor : ExecuteComponent
+    public class PhantomTrapExecutor : FireExecution
     {
         [SerializeField] private DataIndex actionCode;
         [SerializeField] private PhantomMaster master;
@@ -16,12 +16,12 @@ namespace Character.Venturers.Rogue
             pool.Get().Activate(position);
         }
         
-        public override void Execution(ICombatTaker taker)
-        {
-            if (taker == null) return;
-            
-            pool.Get().Activate(taker.Position);
-        }
+        // public override void Execution(ICombatTaker taker)
+        // {
+        //     if (taker == null) return;
+        //     
+        //     pool.Get().Activate(taker.Position);
+        // }
         
 
         private void CreateTrap(PhantomTrap trap)

@@ -13,7 +13,7 @@ namespace Character.Venturers.Priest.Skills
             
             cost.PayCondition.Add("HasTarget", HasTarget);
 
-            SequenceBuilder
+            Builder
                 .AddActiveParam("SavePredicatePosition", TargetHealing)
                 .Add(SectionType.Execute, "PlayCastCompleteAnimation", PlayCastCompleteAnimation)
                 .Add(SectionType.Execute, "ExecuteHealingTouch",ExecuteHealingTouch);
@@ -22,22 +22,22 @@ namespace Character.Venturers.Priest.Skills
         
         private void PlayCastCompleteAnimation()
         {
-            Cb.Animating.PlayOnce("CastHoldFire", 1f + Haste, SkillInvoker.Complete);
+            Cb.Animating.PlayOnce("CastHoldFire", 1f + Haste, Invoker.Complete);
         }
 
         private void ExecuteHealingTouch()
         {
-            var onRapture = Provider.DynamicStatEntry.StatusEffectTable.ContainsKey(DataIndex.LightWeaverStatusEffect);
+            var onRapture = Provider.StatusEffectTable.ContainsKey(DataIndex.LightWeaverStatusEffect);
             
             var validTakerList = detector.GetTakersInCircleRange(predicatePosition, 6f, 360f);
             
             validTakerList?.ForEach(taker =>
             {
-                executor.Execute(taker);
+                executor.ToTaker(taker);
 
                 if (onRapture)
                 {
-                    executor.Execute(taker);
+                    executor.ToTaker(taker);
                 }
             });
         }
@@ -48,7 +48,7 @@ namespace Character.Venturers.Priest.Skills
             var takers = detector.GetTakersInCircleRange(predicatePosition, 6f, 360f);
 
             return !takers.IsNullOrEmpty() 
-                   && takers[0].DynamicStatEntry.Alive.Value;
+                   && takers[0].Alive.Value;
         }
 
         private void TargetHealing(Vector3 targetPosition)

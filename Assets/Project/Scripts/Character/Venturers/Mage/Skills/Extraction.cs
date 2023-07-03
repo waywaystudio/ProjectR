@@ -13,16 +13,16 @@ namespace Character.Venturers.Mage.Skills
         {
             base.Initialize();
 
-            SequenceBuilder.AddActiveParam("TargetTracking", targetPosition => ChannelingExtraction(targetPosition).Forget())
+            Builder.AddActiveParam("TargetTracking", targetPosition => ChannelingExtraction(targetPosition).Forget())
                            .Add(SectionType.Execute, "PlayEndChargingAnimation", PlayEndChargingAnimation)
-                           .Add(SectionType.Execute, "SetIsActiveTrue", () => SkillInvoker.IsActive = false)
+                           .Add(SectionType.Execute, "SetIsActiveTrue", () => Invoker.IsActive = false)
                            .Add(SectionType.End, "StopTracking", StopTracking);
         }
 
 
         private void PlayEndChargingAnimation()
         {
-            Cb.Animating.PlayOnce("ExtractHoldFire", 1f + Haste, SkillInvoker.Complete);
+            Cb.Animating.PlayOnce("ExtractHoldFire", 1f + Haste, Invoker.Complete);
         }
         
         private async UniTaskVoid ChannelingExtraction(Vector3 targetPosition)
@@ -38,7 +38,11 @@ namespace Character.Venturers.Mage.Skills
             while (true)
             {
                 var validTakerList = detector.GetTakersInCircleRange(validPosition, 6f, 360f);
-                validTakerList?.ForEach(taker => executor.Execute(taker));
+                validTakerList?.ForEach(taker =>
+                {
+                    executor.ToTaker(taker);
+                    executor.ToPosition(taker.Position);
+                });
                     
                 await UniTask.Delay(500, DelayType.DeltaTime, PlayerLoopTiming.Update, cts.Token);
             }

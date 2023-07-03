@@ -81,10 +81,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   executor:
-    table:
+    takerExecutionTable:
       keyList: 
       valueList: []
-      hideKey: 0
+    fireExecutionTable:
+      keyList: 
+      valueList: []
   collidingSystem: {fileID: 4372290773005115546}
   trapCode: 31210503
   delayTime: 0

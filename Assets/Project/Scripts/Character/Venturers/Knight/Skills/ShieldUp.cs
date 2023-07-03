@@ -8,23 +8,26 @@ namespace Character.Venturers.Knight.Skills
 {
     public class ShieldUp : SkillComponent
     {
+        [SerializeField] private float armorUpValue = 250f;
+        
         private CancellationTokenSource cts;
 
         public override void Initialize()
         {
             base.Initialize();
 
-            SequenceBuilder.Add(SectionType.Active, "ActiveBuff", AddEffect)
-                           .Add(SectionType.Active, "ConsumeResource", () => ConsumeResource().Forget())
-                           .Add(SectionType.End, "RemoveBuff", RemoveEffect)
-                           .Add(SectionType.End, "StopTask", StopTask);
+            Builder
+                .Add(SectionType.Active, "ActiveBuff", AddEffect)
+                .Add(SectionType.Active, "ConsumeResource", () => ConsumeResource().Forget())
+                .Add(SectionType.End, "RemoveBuff", RemoveEffect)
+                .Add(SectionType.End, "StopTask", StopTask);
         }
         
         
         private void AddEffect()
         {
             // 방어력++
-            Cb.StatTable.Add(new StatEntity(StatType.Armor, "WillOfKnight", 100));
+            Cb.StatTable.Add(new StatEntity(StatType.Armor, "WillOfKnight", armorUpValue));
             
             // 기절, 넉백 면역
             Cb.KnockBackBehaviour.Builder.AddCondition("ImmuneByWillOfKnight", () => false);
@@ -49,9 +52,9 @@ namespace Character.Venturers.Knight.Skills
 
             while (true)
             {
-                Cb.DynamicStatEntry.Resource.Value -= Time.deltaTime * 10f;
+                Cb.Resource.Value -= Time.deltaTime * 10f;
 
-                if (Cb.DynamicStatEntry.Resource.Value <= 0 || !SkillInvoker.IsActive)
+                if (Cb.Resource.Value <= 0 || !Invoker.IsActive)
                 {
                     Cancel();
                     return;
@@ -60,7 +63,11 @@ namespace Character.Venturers.Knight.Skills
                 await UniTask.Yield(cts.Token);
             }
         }
-        
-        private void StopTask() => cts?.Cancel();
+
+        private void StopTask()
+        {
+            cts?.Cancel();
+            cts = null;
+        }
     }
 }

@@ -77,10 +77,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   executor:
-    table:
+    takerExecutionTable:
       keyList: 
       valueList: []
-      hideKey: 0
+    fireExecutionTable:
+      keyList: 
+      valueList: []
   statusCode: 32210005
   type: 1
   icon: {fileID: 21300000, guid: b92e35feb4573f24284dc0522d82b2fe, type: 3}

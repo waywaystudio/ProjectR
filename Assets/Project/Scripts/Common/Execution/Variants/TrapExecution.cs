@@ -1,26 +1,17 @@
 using Common.Traps;
 using UnityEngine;
 
-namespace Common.Execution
+namespace Common.Execution.Variants
 {
-    public class TrapExecutor : ExecuteComponent
+    public class TrapExecution : FireExecution
     {
-        [SerializeField] private DataIndex actionCode;
         [SerializeField] protected Pool<TrapComponent> pool;
-        
 
         public override void Execution(Vector3 position)
         {
             pool.Get().Activate(position);
         }
-        
-        public override void Execution(ICombatTaker taker)
-        {
-            if (taker == null) return;
-            
-            pool.Get().Activate(taker.Position);
-        }
-        
+
 
         private void CreateTrap(TrapComponent trap)
         {

@@ -5,8 +5,11 @@ public enum SectionType
     Cancel = 2,
     Complete = 3,
     End = 4,
-    Execute = 5,
+    ActiveOnce = 5,
     Release = 6,
     Override = 7,
-    ActiveOnce = 8,
+    //
+    Execute = 11,
+    Execute2 = 12,
+    Execute3 = 13,
 }

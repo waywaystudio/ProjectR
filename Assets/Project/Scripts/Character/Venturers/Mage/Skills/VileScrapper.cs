@@ -8,11 +8,16 @@ namespace Character.Venturers.Mage.Skills
         public override void Initialize()
         {
             base.Initialize();
-            
-            // cost.PayCondition.Add("HasTarget", HasTarget);
 
-            SequenceBuilder.Add(SectionType.Execute, "CommonExecution", 
-                                () => executor.Execute(null));
+            Builder.Add(SectionType.Execute, "Fire", Fire);
+        }
+
+
+        private void Fire()
+        {
+            var forwardPosition = Provider.Position + Provider.Forward;
+
+            executor.ToPosition(forwardPosition);
         }
     }
 }

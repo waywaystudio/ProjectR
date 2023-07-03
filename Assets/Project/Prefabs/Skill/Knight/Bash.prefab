@@ -46,14 +46,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   group: 1
   actionCode: 31210102
-  damageSpec:
-    statList:
-    - statType: 13020001
-      statKey: DamageExecutorKey
-      value: 0
-    - statType: 13030003
-      statKey: DamageExecutorKey
-      value: 0
 --- !u!1 &6898964570828026415
 GameObject:
   m_ObjectHideFlags: 0
@@ -103,12 +95,14 @@ MonoBehaviour:
   behaviourMask: 32
   priority: 6
   executor:
-    table:
+    takerExecutionTable:
       keyList: 01000000
       valueList:
-      - ExecutionList:
+      - List:
         - {fileID: 8714835023685632432}
-      hideKey: 0
+    fireExecutionTable:
+      keyList: 
+      valueList: []
   detector:
     targetType: 1
     sortingType: 0
@@ -138,3 +132,8 @@ MonoBehaviour:
     \uB300\uC0C1\uC774 \uACF5\uACA9 \uC911\uC77C \uB54C \uC0AC\uC6A9\uD558\uBA74
     \uCD94\uAC00 \uD53C\uD574\uB97C \uC900\uB2E4."
   counterAttackBonus: 8
+  combatSpec:
+    statList:
+    - statType: 13010001
+      statKey: Bash
+      value: 300

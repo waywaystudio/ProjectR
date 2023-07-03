@@ -8,8 +8,13 @@ namespace Character.Venturers.Warrior.Skills
         {
             base.Initialize();
 
-            SequenceBuilder.Add(SectionType.Execute, "CommonExecution", 
-                                () => detector.GetTakers()?.ForEach(executor.Execute));
+            Builder.Add(SectionType.Execute, "BloodSmashAttack", BloodSmashAttack);
+        }
+
+
+        private void BloodSmashAttack()
+        {
+            detector.GetTakers()?.ForEach(executor.ToTaker);
         }
     }
 }

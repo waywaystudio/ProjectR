@@ -15,7 +15,7 @@ MonoBehaviour:
   Index: 31
   list:
   - id: 31210101
-    name: SwordAttack
+    name: Slash
     behaviourMask: Skill
     priority: 1
     detectorType: Circle
@@ -27,16 +27,16 @@ MonoBehaviour:
     hasEvent: 1
     skillType: Instant
     animationCallback: Complete
-    coolTime: 0
-    coolTimeInvoker: None
+    coolTime: 1.5
+    coolTimeInvoker: Active
     castTime: 0
     castCallback: None
     completionValueList:
-    - 15
+    - 100
     cost: -8
     paySection: Execute
     statusEffect: 0
-    iconFileName: SwordAttack Sprite
+    iconFileName: Slash Sprite
     description: "\uB300\uC0C1\uC744 \uACF5\uACA9\uD558\uC5EC \uC790\uC6D0\uC744
       \uD68C\uBCF5\uD558\uB294 \uAE30\uBCF8 \uAE30\uC220"
   - id: 31210102
@@ -200,7 +200,7 @@ MonoBehaviour:
     hasEvent: 1
     skillType: Instant
     animationCallback: Complete
-    coolTime: 1
+    coolTime: 0.8
     coolTimeInvoker: Active
     castTime: 0
     castCallback: None
@@ -270,12 +270,12 @@ MonoBehaviour:
     sortingType: None
     targetParam: {x: 0, y: 0}
     targetLayer: Adventure
-    animationKey: Buff
+    animationKey: None
     isLoop: 0
     hasEvent: 1
     skillType: Instant
     animationCallback: Complete
-    coolTime: 0
+    coolTime: 1
     coolTimeInvoker: Active
     castTime: 0
     castCallback: None
@@ -562,7 +562,7 @@ MonoBehaviour:
     sortingType: None
     targetParam: {x: 12, y: 360}
     targetLayer: Monster
-    animationKey: AttackDuelStab
+    animationKey: Cast2
     isLoop: 0
     hasEvent: 1
     skillType: Instant
@@ -667,14 +667,14 @@ MonoBehaviour:
     hasEvent: 1
     skillType: Instant
     animationCallback: Complete
-    coolTime: 4
+    coolTime: 1
     coolTimeInvoker: Active
     castTime: 0
     castCallback: None
     completionValueList:
     - 9
-    cost: 20
-    paySection: None
+    cost: 5
+    paySection: Active
     statusEffect: 0
     iconFileName: InstantShot Sprite
     description: "\uC989\uC2DC \uC0AC\uACA9\uD558\uC5EC \uC6D0\uAC70\uB9AC \uB300\uC0C1\uC5D0\uAC8C
@@ -712,13 +712,13 @@ MonoBehaviour:
     name: Reload
     behaviourMask: Skill
     priority: 1
-    detectorType: Self
+    detectorType: Circle
     sortingType: None
-    targetParam: {x: 0, y: 0}
-    targetLayer: Adventurer
+    targetParam: {x: 100, y: 360}
+    targetLayer: Monster
     animationKey: Reload
     isLoop: 0
-    hasEvent: 0
+    hasEvent: 1
     skillType: Instant
     animationCallback: Complete
     coolTime: 6
@@ -728,7 +728,7 @@ MonoBehaviour:
     completionValueList:
     - 0
     cost: -60
-    paySection: None
+    paySection: Active
     statusEffect: 0
     iconFileName: Reload Sprite
     description: "\uC8FC\uC704\uC5D0 \uBAA8\uB4E0 \uD654\uC0B4\uC744 \uC989\uC2DC
@@ -773,7 +773,7 @@ MonoBehaviour:
     hasEvent: 0
     skillType: Casting
     animationCallback: None
-    coolTime: 1
+    coolTime: 3
     coolTimeInvoker: Complete
     castTime: 1.5
     castCallback: Execute
@@ -807,7 +807,7 @@ MonoBehaviour:
     completionValueList:
     - 0
     cost: -50
-    paySection: Complete
+    paySection: Active
     statusEffect: 0
     iconFileName: Extraction Sprite
     description: "\uB300\uC0C1 \uC9C0\uC810\uC5D0 \uBAA8\uB4E0 \uC801\uC744 \uB3C4\uB824\uB0B4\uC5B4
@@ -825,13 +825,13 @@ MonoBehaviour:
     hasEvent: 1
     skillType: Instant
     animationCallback: Complete
-    coolTime: 8
+    coolTime: 16
     coolTimeInvoker: Active
     castTime: 0
     castCallback: None
     completionValueList:
     - 0
-    cost: 50
+    cost: 30
     paySection: Active
     statusEffect: 0
     iconFileName: ChainsOfSoul Sprite

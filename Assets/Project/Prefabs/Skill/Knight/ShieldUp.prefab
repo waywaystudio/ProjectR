@@ -49,7 +49,10 @@ MonoBehaviour:
   behaviourMask: 32
   priority: 5
   executor:
-    table:
+    takerExecutionTable:
+      keyList: 
+      valueList: []
+    fireExecutionTable:
       keyList: 
       valueList: []
   detector:
@@ -59,7 +62,7 @@ MonoBehaviour:
     sizeVector: {x: 0, y: 0}
     targetLayer:
       serializedVersion: 2
-      m_Bits: 128
+      m_Bits: 0
   animationTrait:
     animationKey: Defence
     isLoop: 1

@@ -1,10 +1,11 @@
 using Common;
 using Common.Execution;
+using Common.Execution.Variants;
 using UnityEngine;
 
 namespace Character.Venturers.Mage.Executions
 {
-    public class SoulShardExecutor : TrapExecutor
+    public class SoulShardExecution : TrapExecution
     {
         [SerializeField] private float probability = 1.0f;
 
@@ -17,15 +18,15 @@ namespace Character.Venturers.Mage.Executions
             }
         }
 
-        public override void Execution(ICombatTaker taker)
-        {
-            if (probability == 0.0f) return;
-            if (taker       == null) return;
-            
-            if (Random.value <= probability)
-            {
-                pool.Get().Activate(taker.Position);
-            }
-        }
+        // public override void Execution(ICombatTaker taker)
+        // {
+        //     if (probability == 0.0f) return;
+        //     if (taker       == null) return;
+        //     
+        //     if (Random.value <= probability)
+        //     {
+        //         pool.Get().Activate(taker.Position);
+        //     }
+        // }
     }
 }

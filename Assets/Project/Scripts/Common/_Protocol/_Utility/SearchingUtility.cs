@@ -24,8 +24,8 @@ namespace Common
         {
             original.Sort((x, y) =>
             {
-                var xHp = x.DynamicStatEntry.Hp.Value;
-                var yHp = y.DynamicStatEntry.Hp.Value;
+                var xHp = x.Hp.Value;
+                var yHp = y.Hp.Value;
 
                 return !isReverse 
                     ? xHp.CompareTo(yHp) 
@@ -37,8 +37,8 @@ namespace Common
         {
             original.Sort((x, y) =>
             {
-                var xHpRatio = x.DynamicStatEntry.Hp.Value / x.StatTable.MaxHp;
-                var yHpRatio = y.DynamicStatEntry.Hp.Value / y.StatTable.MaxHp;
+                var xHpRatio = x.Hp.Value / x.StatTable.MaxHp;
+                var yHpRatio = y.Hp.Value / y.StatTable.MaxHp;
 
                 return !isReverse 
                     ? xHpRatio.CompareTo(yHpRatio) 

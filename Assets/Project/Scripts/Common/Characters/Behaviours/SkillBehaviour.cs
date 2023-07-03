@@ -33,26 +33,26 @@ namespace Common.Characters.Behaviours
 
             var skill = skillTable[actionCode];
 
-            if (!skill.SkillInvoker.IsAbleToActive) return;
+            if (!skill.Invoker.IsAbleToActive) return;
             
             Current = skill;
             SequenceInvoker.Active();
             Cb.Rotate(targetPosition);
-            Current.SkillInvoker.Active(targetPosition);
+            Current.Invoker.Active(targetPosition);
         }
 
         public void Cancel()
         {
             if (Current.IsNullOrDestroyed()) return;
 
-            Current.SkillInvoker.Cancel();
+            Current.Invoker.Cancel();
         }
 
         public void Release()
         {
             if (Current.IsNullOrDestroyed()) return;
 
-            Current.SkillInvoker.Release();
+            Current.Invoker.Release();
         }
 
         public bool TryGetMostPrioritySkill(out SkillComponent skill)
@@ -61,7 +61,7 @@ namespace Common.Characters.Behaviours
             
             skillTable.Iterate(skill =>
             {
-                if (!skill.SkillInvoker.IsAbleToActive) return;
+                if (!skill.Invoker.IsAbleToActive) return;
                 if (result is null || result.Priority < skill.Priority)
                 {
                     result = skill;
@@ -90,14 +90,14 @@ namespace Common.Characters.Behaviours
                            .Add(SectionType.Active,"CancelPreviousBehaviour", () => cb.CurrentBehaviour?.TryToOverride(this))
                            .Add(SectionType.Active,"SetCurrentBehaviour", () => cb.CurrentBehaviour = this)
                            .Add(SectionType.Active,"PlayGlobalCoolTimer", globalCoolTimer.Play)
-                           .Add(SectionType.Cancel,"CurrentSkillCancel", () => Current.SkillInvoker.Cancel())
+                           .Add(SectionType.Cancel,"CurrentSkillCancel", () => Current.Invoker.Cancel())
                            .Add(SectionType.End,"Stop", Cb.Stop);
             
             globalCoolTimer.SetRetriever(() => Cb.StatTable.Haste);
             skillTable.Iterate(skill =>
             {
                 skill.Initialize();
-                skill.SequenceBuilder
+                skill.Builder
                      .Add(SectionType.End, "BehaviourUnregister", () => Current = null)
                      .Add(SectionType.End, "SkillBehaviourEnd", SequenceInvoker.End);
             });

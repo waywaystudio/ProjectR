@@ -170,12 +170,14 @@ MonoBehaviour:
   behaviourMask: 32
   priority: 3
   executor:
-    table:
+    takerExecutionTable:
       keyList: 01000000
       valueList:
-      - ExecutionList:
+      - List:
         - {fileID: 1760830664133795729}
-      hideKey: 0
+    fireExecutionTable:
+      keyList: 
+      valueList: []
   detector:
     targetType: 1
     sortingType: 0
@@ -185,9 +187,10 @@ MonoBehaviour:
       serializedVersion: 2
       m_Bits: 256
   animationTrait:
-    animationKey: AttackStab
+    animationKey: AttackSlashMiddle
     isLoop: 0
     hasEvent: 1
+    animationPlaySpeed: 1
     skillType: 1
     callbackSection: 3
   coolTimer:
@@ -199,5 +202,5 @@ MonoBehaviour:
   cost:
     cost: 0
     paySection: 0
-  description: Starts combat by attacking a target with a melee weapon.
   icon: {fileID: 21300000, guid: a8679ee308abc1043a6fac4e6bdb863d, type: 3}
+  description: Starts combat by attacking a target with a melee weapon.

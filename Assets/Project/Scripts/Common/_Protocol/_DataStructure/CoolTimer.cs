@@ -20,9 +20,17 @@ namespace Common
         private CancellationTokenSource cts;
         private Func<float> Retriever { get; set; }
 
+        public CoolTimer() { }
+        public CoolTimer(float coolTime, Func<float> retriever = null)
+        {
+            this.coolTime = coolTime;
+            Retriever     = retriever;
+        }
+
         public void SetRetriever(Func<float> hasteRetriever) => Retriever = hasteRetriever;
         
         public void Play() => Play(CoolTime);
+        public void Play(Action callback) => Play(CoolTime, callback);
         public void Play(float duration) => Play(duration, null);
         public void Play(float duration, Action callback)
         {

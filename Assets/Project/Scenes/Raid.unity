@@ -8828,7 +8828,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh155068
+  m_Name: pb_Mesh35150
   serializedVersion: 11
   m_SubMeshes:
   - serializedVersion: 2
@@ -61999,7 +61999,7 @@ Light:
   m_BounceIntensity: 1
   m_ColorTemperature: 6570
   m_UseColorTemperature: 0
-  m_BoundingSphereOverride: {x: 1.02e-43, y: 1.93e-43, z: 6.394e-42, w: 1.5784e-41}
+  m_BoundingSphereOverride: {x: 4.5904e-41, y: 7.6966054e-21, z: 4.5904e-41, w: 9.403955e-38}
   m_UseBoundingSphereOverride: 0
   m_UseViewFrustumForShadowCasterCull: 1
   m_ShadowRadius: 0
@@ -72265,32 +72265,12 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5512553880677135783, guid: 86afa9f987c2e264f813cf565a9db0d0, type: 3}
-      propertyPath: challengers.Array.size
-      value: 6
-      objectReference: {fileID: 0}
-    - target: {fileID: 5512553880677135783, guid: 86afa9f987c2e264f813cf565a9db0d0, type: 3}
       propertyPath: challengers.Array.data[0]
       value: 21010201
       objectReference: {fileID: 0}
     - target: {fileID: 5512553880677135783, guid: 86afa9f987c2e264f813cf565a9db0d0, type: 3}
       propertyPath: challengers.Array.data[1]
-      value: 21020502
-      objectReference: {fileID: 0}
-    - target: {fileID: 5512553880677135783, guid: 86afa9f987c2e264f813cf565a9db0d0, type: 3}
-      propertyPath: challengers.Array.data[2]
-      value: 21030803
-      objectReference: {fileID: 0}
-    - target: {fileID: 5512553880677135783, guid: 86afa9f987c2e264f813cf565a9db0d0, type: 3}
-      propertyPath: challengers.Array.data[3]
-      value: 21041104
-      objectReference: {fileID: 0}
-    - target: {fileID: 5512553880677135783, guid: 86afa9f987c2e264f813cf565a9db0d0, type: 3}
-      propertyPath: challengers.Array.data[4]
       value: 21051405
-      objectReference: {fileID: 0}
-    - target: {fileID: 5512553880677135783, guid: 86afa9f987c2e264f813cf565a9db0d0, type: 3}
-      propertyPath: challengers.Array.data[5]
-      value: 21061706
       objectReference: {fileID: 0}
     - target: {fileID: 5512553880677135783, guid: 86afa9f987c2e264f813cf565a9db0d0, type: 3}
       propertyPath: characterDataList.Array.size

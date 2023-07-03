@@ -1,11 +1,9 @@
 namespace Common.StatusEffects
 {
-    public class StatusEffectSequenceInvoker : SequenceInvoker<ICombatTaker>
+    public class StatusEffectSequenceInvoker : SequenceInvoker
     {
-        public StatusEffectSequenceInvoker(Sequencer<ICombatTaker> sequencer) : base(sequencer) { }
-        // => Sequencer = sequencer;
-        
-        public void Execute() => Sequencer[SectionType.Execute].Invoke();
-        public void Overriding() => Sequencer[SectionType.Override].Invoke();
+        public StatusEffectSequenceInvoker(Sequencer sequencer) : base(sequencer) { }
+
+        public void Override() => Sequencer[SectionType.Override]?.Invoke();
     }
 }

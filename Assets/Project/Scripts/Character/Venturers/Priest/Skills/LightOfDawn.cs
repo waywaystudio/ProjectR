@@ -9,7 +9,7 @@ namespace Character.Venturers.Priest.Skills
         {
             base.Initialize();
 
-            SequenceBuilder
+            Builder
                 .Add(SectionType.Execute, "PlayCastCompleteAnimation", PlayCastCompleteAnimation)
                 .Add(SectionType.Execute, "ExecuteLightOfDawn", ExecuteLightOfDawn);
         }
@@ -17,20 +17,20 @@ namespace Character.Venturers.Priest.Skills
         
         private void PlayCastCompleteAnimation()
         {
-            Cb.Animating.PlayOnce("CastHoldFire", 1f + Haste, SkillInvoker.Complete);
+            Cb.Animating.PlayOnce("CastHoldFire", 1f + Haste, Invoker.Complete);
         }
 
         private void ExecuteLightOfDawn()
         {
-            var onRapture = Provider.DynamicStatEntry.StatusEffectTable.ContainsKey(DataIndex.LightWeaverStatusEffect);
+            var onRapture = Provider.StatusEffectTable.ContainsKey(DataIndex.LightWeaverStatusEffect);
             
             detector.GetTakers()?.ForEach(taker =>
             {
-                executor.Execute(taker);
+                executor.ToTaker(taker);
 
                 if (onRapture)
                 {
-                    executor.Execute(taker);
+                    executor.ToTaker(taker);
                 }
             });
         }

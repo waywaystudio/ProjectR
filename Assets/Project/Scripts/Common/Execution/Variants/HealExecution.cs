@@ -1,18 +1,19 @@
 using UnityEngine;
 
-namespace Common.Execution
+namespace Common.Execution.Variants
 {
-    public class HealExecutor : ExecuteComponent, IEditable
+    public class HealExecution : TakerExecution, IEditable
     {
         [SerializeField] private DataIndex actionCode;
         [SerializeField] private StatSpec healSpec;
-        
+
         public const string HealExecutorKey = "HealExecutorKey";
         public StatSpec HealSpec => healSpec;
         
+        
         public override void Execution(ICombatTaker taker)
         {
-            if (taker == null || !taker.DynamicStatEntry.Alive.Value) return;
+            if (taker == null || !taker.Alive.Value) return;
 
             var entity        = new CombatEntity(actionCode, taker);
             var providerTable = Origin.Provider.StatTable;
@@ -33,16 +34,16 @@ namespace Common.Execution
             entity.Value =  healAmount;
 
             // Dead Calculation
-            var remainHp = taker.StatTable.MaxHp - taker.DynamicStatEntry.Hp.Value;
+            var remainHp = taker.StatTable.MaxHp - taker.Hp.Value;
             
             if (healAmount >= remainHp)
             {
-                taker.DynamicStatEntry.Hp.Value =  taker.StatTable.MaxHp;
-                entity.Value                    -= remainHp;
+                taker.Hp.Value =  taker.StatTable.MaxHp;
+                entity.Value   -= remainHp;
             }
             else
             {
-                taker.DynamicStatEntry.Hp.Value += healAmount;
+                taker.Hp.Value += healAmount;
             }
 
             taker.OnHealTaken.Invoke(entity);

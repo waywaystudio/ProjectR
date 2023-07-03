@@ -1,8 +1,8 @@
 using UnityEngine;
 
-namespace Common.Execution
+namespace Common.Execution.Variants
 {
-    public class KnockBackExecutor : ExecuteComponent
+    public class KnockBackExecution : TakerExecution
     {
         [SerializeField] private float knockBackDistance = 8f;
         [SerializeField] private float knockBackDuration = 0.3f;

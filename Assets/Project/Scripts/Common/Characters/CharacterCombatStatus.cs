@@ -2,7 +2,7 @@ using UnityEngine;
 
 namespace Common.Characters
 {
-    public class CharacterCombatStatus : MonoBehaviour, IDynamicStatEntry
+    public class CharacterCombatStatus : MonoBehaviour
     {
         public AliveValue Alive { get; } = new();
         public HpValue Hp { get; } = new();
@@ -22,6 +22,16 @@ namespace Common.Characters
             Hp.Value           = StatTable.Health * 10f;
             Resource.Value     = StatTable.MaxResource;
             Shield.Value       = 0;
+        }
+
+        public void Dispose()
+        {
+            Alive.Clear();
+            Hp.Clear();
+            Resource.Clear();
+            Shield.Clear();
+            StatTable.Clear();
+            StatusEffectTable.Clear();
         }
     }
 }

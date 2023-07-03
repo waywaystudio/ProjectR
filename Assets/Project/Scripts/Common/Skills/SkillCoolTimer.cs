@@ -14,7 +14,7 @@ namespace Common.Skills
         {
             if (InvokeSection == SectionType.None) return;
             
-            skill.SequenceBuilder
+            skill.Builder
                  .AddCondition("IsCoolTimeReady", () => IsReady)
                  .Add(InvokeSection, "ActiveCoolTime", () => Play(skill.CoolWeightTime));
         }

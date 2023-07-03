@@ -190,19 +190,21 @@ MonoBehaviour:
   behaviourMask: 32
   priority: 1
   executor:
-    table:
-      keyList: 0100000002000000
+    takerExecutionTable:
+      keyList: 01000000
       valueList:
-      - ExecutionList:
+      - List:
         - {fileID: 372894161616476412}
-      - ExecutionList:
+    fireExecutionTable:
+      keyList: 02000000
+      valueList:
+      - List:
         - {fileID: 2716384769286663166}
-      hideKey: 0
   detector:
     targetType: 1
     sortingType: 0
     maxBufferCount: 32
-    sizeVector: {x: 12, y: 360}
+    sizeVector: {x: 9, y: 360}
     targetLayer:
       serializedVersion: 2
       m_Bits: 256
@@ -210,11 +212,11 @@ MonoBehaviour:
     animationKey: Landing
     isLoop: 0
     hasEvent: 0
-    timeScale: 1
+    animationPlaySpeed: 1
     skillType: 1
     callbackSection: 3
   coolTimer:
-    coolTime: 2
+    coolTime: 10
     invokeSection: 1
   castTimer:
     castingTime: 0
@@ -222,6 +224,7 @@ MonoBehaviour:
   cost:
     cost: 0
     paySection: 0
-  description: Starts combat by attacking a target with a melee weapon.
   icon: {fileID: 21300000, guid: 2eea35714f0f7eb478765108977c5a11, type: 3}
+  description: "\uB300\uC0C1 \uC9C0\uC810\uC73C\uB85C \uC21C\uAC04\uC774\uB3D9 \uD55C
+    \uD6C4 \uC720\uB839\uC744 \uB0A8\uAE34\uB2E4."
   phantomMaster: {fileID: 0}

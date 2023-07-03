@@ -303,14 +303,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 1760830664133795729, guid: aa81b65d6df7f824b84c80e326be40fa, type: 3}
-      propertyPath: damageSpec.statList.Array.data[0].value
-      value: 50
-      objectReference: {fileID: 0}
-    - target: {fileID: 2894569648737266630, guid: aa81b65d6df7f824b84c80e326be40fa, type: 3}
-      propertyPath: coolTimer.coolTime
-      value: 0.5
-      objectReference: {fileID: 0}
     - target: {fileID: 8380361914805468174, guid: aa81b65d6df7f824b84c80e326be40fa, type: 3}
       propertyPath: m_Name
       value: Smash
@@ -437,10 +429,6 @@ PrefabInstance:
       propertyPath: actionCode
       value: 31210202
       objectReference: {fileID: 0}
-    - target: {fileID: 1002022921544274789, guid: a3acb303f8f3ed24c8afb44fa3d18ccf, type: 3}
-      propertyPath: actionIcon
-      value: 
-      objectReference: {fileID: 7769353189435137216}
     - target: {fileID: 1025019122601041559, guid: a3acb303f8f3ed24c8afb44fa3d18ccf, type: 3}
       propertyPath: bindingCode
       value: 14
@@ -549,10 +537,6 @@ PrefabInstance:
       propertyPath: actionCode
       value: 31210204
       objectReference: {fileID: 0}
-    - target: {fileID: 2266547791025958082, guid: a3acb303f8f3ed24c8afb44fa3d18ccf, type: 3}
-      propertyPath: actionIcon
-      value: 
-      objectReference: {fileID: 7160064012819233583}
     - target: {fileID: 2530082981901857982, guid: a3acb303f8f3ed24c8afb44fa3d18ccf, type: 3}
       propertyPath: actionCode
       value: 31210201
@@ -1229,28 +1213,6 @@ PrefabInstance:
       addedObject: {fileID: 896789683001751100}
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a3acb303f8f3ed24c8afb44fa3d18ccf, type: 3}
---- !u!114 &7160064012819233583 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 2696955962189539856, guid: a3acb303f8f3ed24c8afb44fa3d18ccf, type: 3}
-  m_PrefabInstance: {fileID: 5057590073391321407}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &7769353189435137216 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 3306313859355921919, guid: a3acb303f8f3ed24c8afb44fa3d18ccf, type: 3}
-  m_PrefabInstance: {fileID: 5057590073391321407}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!4 &8150643729164461668 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3975777049801717595, guid: a3acb303f8f3ed24c8afb44fa3d18ccf, type: 3}
@@ -1390,10 +1352,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 1760830664133795729, guid: 7093c77d337d93c45a8400cfde5db8d5, type: 3}
-      propertyPath: damageSpec.statList.Array.data[0].value
-      value: 200
-      objectReference: {fileID: 0}
     - target: {fileID: 8380361914805468174, guid: 7093c77d337d93c45a8400cfde5db8d5, type: 3}
       propertyPath: m_Name
       value: Deathblow
@@ -1469,38 +1427,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 234500611213636336, guid: 3a8fdd23b4f75534bbc06c239123daef, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7857890816460160637, guid: 3a8fdd23b4f75534bbc06c239123daef, type: 3}
-      propertyPath: priority
-      value: 10
-      objectReference: {fileID: 0}
-    - target: {fileID: 7857890816460160637, guid: 3a8fdd23b4f75534bbc06c239123daef, type: 3}
-      propertyPath: cost.cost
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7857890816460160637, guid: 3a8fdd23b4f75534bbc06c239123daef, type: 3}
-      propertyPath: additionalHaste
-      value: 0.8
-      objectReference: {fileID: 0}
-    - target: {fileID: 7857890816460160637, guid: 3a8fdd23b4f75534bbc06c239123daef, type: 3}
-      propertyPath: cost.paySection
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7857890816460160637, guid: 3a8fdd23b4f75534bbc06c239123daef, type: 3}
-      propertyPath: coolTimer.coolTime
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7857890816460160637, guid: 3a8fdd23b4f75534bbc06c239123daef, type: 3}
-      propertyPath: detector.targetLayer.m_Bits
-      value: 128
-      objectReference: {fileID: 0}
-    - target: {fileID: 7857890816460160637, guid: 3a8fdd23b4f75534bbc06c239123daef, type: 3}
-      propertyPath: executor.table.keyList.Array.size
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7857890816460160637, guid: 3a8fdd23b4f75534bbc06c239123daef, type: 3}
-      propertyPath: executor.table.valueList.Array.size
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8380361914805468174, guid: 3a8fdd23b4f75534bbc06c239123daef, type: 3}

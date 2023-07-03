@@ -15,7 +15,7 @@ namespace Character.Behavior.Actions
         
         public override TaskStatus OnUpdate()
         {
-            return provider.DynamicStatEntry.Alive.Value
+            return provider.Alive.Value
                 ? TaskStatus.Success
                 : TaskStatus.Failure;
         }

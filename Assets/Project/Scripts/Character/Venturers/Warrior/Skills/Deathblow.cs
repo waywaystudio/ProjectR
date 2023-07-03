@@ -14,29 +14,22 @@ namespace Character.Venturers.Warrior.Skills
         {
             base.Initialize();
             
-            cost.PayCondition.Add("HasTarget", HasTarget);
+            cost.PayCondition.Add("HasTarget", detector.HasTarget);
 
-            SequenceBuilder.Add(SectionType.Active, "TargetTracking", () => PlayTracking().Forget())
-                           .Add(SectionType.Execute, "PlayEndChargingAnimation", PlayEndChargingAnimation)
-                           .Add(SectionType.Execute, "SetIsActiveTrue", () => SkillInvoker.IsActive = false)
-                           .Add(SectionType.Execute, "DeathblowExecute", () => detector.GetTakers()?.ForEach(executor.Execute))
-                           .Add(SectionType.End, "StopTracking", StopTracking);
+            Builder
+                .Add(SectionType.Active, "TargetTracking", () => PlayTracking().Forget())
+                .Add(SectionType.Execute, "PlayEndChargingAnimation", PlayEndChargingAnimation)
+                .Add(SectionType.Execute, "SetInvokerIsActiveTrue", () => Invoker.IsActive = false)
+                .Add(SectionType.Execute, "DeathblowExecute", () => detector.GetTakers()?.ForEach(executor.ToTaker))
+                .Add(SectionType.End, "StopTracking", StopTracking);
         }
         
         
         private void PlayEndChargingAnimation()
         {
-            Cb.Animating.PlayOnce("AttackSlashHoldFire", 1f + Haste, SkillInvoker.Complete);
+            Cb.Animating.PlayOnce("AttackSlashHoldFire", 1f + Haste, Invoker.Complete);
         }
-        
-        private bool HasTarget()
-        {
-            var takers = detector.GetTakers();
 
-            return !takers.IsNullOrEmpty() 
-                   && takers[0].DynamicStatEntry.Alive.Value;
-        }
-        
         private async UniTaskVoid PlayTracking()
         {
             if (Cb is not VenturerBehaviour venturer) return;

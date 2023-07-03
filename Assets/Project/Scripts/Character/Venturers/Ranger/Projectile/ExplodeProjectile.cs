@@ -24,7 +24,7 @@ namespace Character.Venturers.Ranger.Projectile
         {
             if (!TryGetTakerInSphere(out var takerList)) return;
 
-            takerList.ForEach(executor.Execute);
+            takerList.ForEach(executor.ToTaker);
         }
 
 

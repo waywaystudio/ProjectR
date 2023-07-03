@@ -12,7 +12,7 @@ namespace Character.Venturers.Rogue.Skills
         {
             base.Initialize();
 
-            SequenceBuilder.AddActiveParam("TeleportPathfinding", Teleport);
+            Builder.AddActiveParam("TeleportPathfinding", Teleport);
         }
 
 
@@ -41,7 +41,7 @@ namespace Character.Venturers.Rogue.Skills
         
         private void CreatePhantom()
         {
-            executor.Execute(ExecuteGroup.Group2, Cb.transform.position);
+            executor.ToPosition(Cb.transform.position, ExecuteGroup.Group2);
         }
 
         private bool HasTarget()
@@ -49,7 +49,7 @@ namespace Character.Venturers.Rogue.Skills
             var takers = detector.GetTakers();
 
             return !takers.IsNullOrEmpty() 
-                   && takers[0].DynamicStatEntry.Alive.Value;
+                   && takers[0].Alive.Value;
         }
     }
 }

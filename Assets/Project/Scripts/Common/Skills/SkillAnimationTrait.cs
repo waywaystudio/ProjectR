@@ -9,7 +9,7 @@ namespace Common.Skills
     {
         [SerializeField] private string animationKey;
         [SerializeField] private bool isLoop;
-        [SerializeField] private bool hasEvent;
+        [FormerlySerializedAs("hasEvent")] [SerializeField] private bool hasExecuteEvent;
         [SerializeField] private float animationPlaySpeed = 1.0f;
         [SerializeField] private SkillType skillType;
         [SerializeField] private SectionType callbackSection = SectionType.Complete;
@@ -25,20 +25,33 @@ namespace Common.Skills
         public void Initialize(SkillComponent skill)
         {
             var animator = skill.Cb.Animating;
-            var callback = callbackSection.GetInvokeAction(skill);
 
             HasteRetriever += () => 1.0f + skill.Haste;
             
-            skill.SequenceBuilder
-                 .Add(SectionType.Active,"PlayAnimation",
-                      () => animator.Play(animationKey, 0, isLoop, AnimationPlaySpeed, callback));
+            skill.Builder
+                 .Add(SectionType.Active,"PlayAnimation",() => PlayAnimation(skill));
 
-            if (hasEvent)
+            if (hasExecuteEvent)
             {
-                skill.SequenceBuilder
-                     .Add(SectionType.Active,"RegisterHitEvent", () => animator.OnHit.Add("SkillHit", skill.SkillInvoker.Execute))        
+                skill.Builder
+                     .Add(SectionType.Active,"RegisterHitEvent", () => animator.OnHit.Add("SkillHit", skill.Invoker.Execute))        
                      .Add(SectionType.End,"ReleaseHit", () => animator.OnHit.Remove("SkillHit"));
             }
+        }
+
+
+        private void PlayAnimation(SkillComponent skill)
+        {
+            var animator = skill.Cb.Animating;
+            var callback = callbackSection.GetInvokeAction(skill);
+
+            if (animationKey == "None")
+            {
+                callback?.Invoke();
+                return;
+            }
+
+            animator.Play(animationKey, 0, isLoop, AnimationPlaySpeed, callback);
         }
         
 
@@ -49,7 +62,7 @@ namespace Common.Skills
             
             animationKey    = skillData.AnimationKey;
             isLoop          = skillData.IsLoop;
-            hasEvent        = skillData.HasEvent;
+            hasExecuteEvent        = skillData.HasEvent;
             skillType       = skillData.SkillType.ToEnum<SkillType>();
             callbackSection = skillData.AnimationCallback.ToEnum<SectionType>();
         }

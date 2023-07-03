@@ -34,8 +34,9 @@ namespace Common.Characters
         public virtual DataIndex DataIndex => DataIndex.None;
         public virtual CharacterMask CombatClass => Data.CharacterMask;
         public virtual string Name => "characterName";
-        public CharacterData Data { get; set; }
+        public virtual CharacterData Data { get; set; }
         public Vector3 Position => transform.position;
+        public Vector3 Forward => transform.forward;
         public Transform DamageSpawn => damageSpawn;
         
 
@@ -79,12 +80,12 @@ namespace Common.Characters
         /*
          * Combat Status
          */
-        public IDynamicStatEntry DynamicStatEntry => combatStatus ??= GetComponentInChildren<CharacterCombatStatus>();
         public AliveValue Alive => combatStatus.Alive;
         public HpValue Hp => combatStatus.Hp;
         public ResourceValue Resource => combatStatus.Resource;
         public ShieldValue Shield => combatStatus.Shield;
         public StatTable StatTable => combatStatus.StatTable;
+        public StatusEffectTable StatusEffectTable => combatStatus.StatusEffectTable;
         public Transform StatusEffectHierarchy => statusEffectHierarchy;
         
         public ActionTable<CombatEntity> OnDamageProvided { get; } = new();
@@ -92,24 +93,38 @@ namespace Common.Characters
         public ActionTable<CombatEntity> OnHealProvided { get; } = new();
         public ActionTable<CombatEntity> OnHealTaken { get; } = new();
 
-        public void TakeStatusEffect(StatusEffect effect) => DynamicStatEntry.StatusEffectTable[effect.DataIndex].Activate(this);
-        public void DispelStatusEffect(DataIndex effectIndex) => DynamicStatEntry.StatusEffectTable[effectIndex]?.Dispel();
+        public void TakeStatusEffect(StatusEffect effect) => StatusEffectTable[effect.DataIndex].Activate(this);
+        public void DispelStatusEffect(DataIndex effectIndex) => StatusEffectTable[effectIndex]?.Dispel();
+
+
+        public void Initialize()
+        {
+            StatTable.RegisterTable(Data.StaticStatTable);
+            combatStatus.Initialize();
+        }
+
+        public void Dispose()
+        {
+            combatStatus.Dispose();
+        }
         
 
 #if UNITY_EDITOR
         public virtual void EditorSetUp()
         {
-            combatStatus       ??= GetComponentInChildren<CharacterCombatStatus>();
-            skillBehaviour     ??= GetComponentInChildren<SkillBehaviour>();
-            stopBehaviour      ??= GetComponentInChildren<StopBehaviour>();
-            runBehaviour       ??= GetComponentInChildren<RunBehaviour>();
-            stunBehaviour      ??= GetComponentInChildren<StunBehaviour>();
-            knockBackBehaviour ??= GetComponentInChildren<KnockBackBehaviour>();
-            drawBehaviour      ??= GetComponentInChildren<DrawBehaviour>();
-            deadBehaviour      ??= GetComponentInChildren<DeadBehaviour>();
-            searchEngine       ??= GetComponentInChildren<SearchEngine>();
-            pathfinding        ??= GetComponentInChildren<PathfindingSystem>();
-            animating          ??= GetComponentInChildren<AnimationModel>();
+            combatStatus       = GetComponentInChildren<CharacterCombatStatus>();
+            skillBehaviour     = GetComponentInChildren<SkillBehaviour>();
+            stopBehaviour      = GetComponentInChildren<StopBehaviour>();
+            runBehaviour       = GetComponentInChildren<RunBehaviour>();
+            stunBehaviour      = GetComponentInChildren<StunBehaviour>();
+            knockBackBehaviour = GetComponentInChildren<KnockBackBehaviour>();
+            drawBehaviour      = GetComponentInChildren<DrawBehaviour>();
+            deadBehaviour      = GetComponentInChildren<DeadBehaviour>();
+            searchEngine       = GetComponentInChildren<SearchEngine>();
+            pathfinding        = GetComponentInChildren<PathfindingSystem>();
+            animating          = GetComponentInChildren<AnimationModel>();
+            
+            Data.EditorSetUp();
         }
 #endif
     }

@@ -95,7 +95,7 @@ Transform:
   - {fileID: 7221708945386366489}
   - {fileID: 5853087751410363707}
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &3008013076941583783
 MonoBehaviour:
@@ -113,14 +113,16 @@ MonoBehaviour:
   behaviourMask: 32
   priority: 3
   executor:
-    table:
-      keyList: 0100000002000000
+    takerExecutionTable:
+      keyList: 02000000
       valueList:
-      - ExecutionList:
-        - {fileID: 1364404895503189817}
-      - ExecutionList:
+      - List:
         - {fileID: 3357007055880375684}
-      hideKey: 0
+    fireExecutionTable:
+      keyList: 01000000
+      valueList:
+      - List:
+        - {fileID: 1364404895503189817}
   detector:
     targetType: 1
     sortingType: 0
@@ -132,8 +134,8 @@ MonoBehaviour:
   animationTrait:
     animationKey: AimHold
     isLoop: 1
-    hasEvent: 0
-    timeScale: 1
+    hasExecuteEvent: 0
+    animationPlaySpeed: 1
     skillType: 2
     callbackSection: 0
   coolTimer:
@@ -141,13 +143,14 @@ MonoBehaviour:
     invokeSection: 3
   castTimer:
     castingTime: 1.5
-    callbackSection: 5
+    callbackSection: 11
   cost:
     cost: 10
-    paySection: 5
-  description: Starts combat by attacking a target with a melee weapon.
-  skillName: Aim Shot
+    paySection: 11
   icon: {fileID: 21300000, guid: 8bdd3baa98608324480cf1d7c146be36, type: 3}
+  description: "\uD65C \uC2DC\uC704\uB97C \uB2F9\uACA8 \uB300\uC0C1 \uC9C0\uC810\uC744
+    \uACF5\uACA9\uD55C\uB2E4. \uACF5\uACA9\uC774 \uCE58\uBA85\uD0C0\uB85C \uC801\uC911
+    \uC2DC \uC544\uB4DC\uB808\uB0A0\uB9B0 \uAC15\uD654\uD6A8\uACFC\uB97C \uD68D\uB4DD\uD55C\uB2E4."
 --- !u!1 &9200880587379613382
 GameObject:
   m_ObjectHideFlags: 0
@@ -194,7 +197,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   group: 1
-  actionCode: 31210403
   muzzle: {fileID: 0}
   pool:
     prefab: {fileID: 68301466263117794, guid: 614519c2858722748860125352e5a59e, type: 3}

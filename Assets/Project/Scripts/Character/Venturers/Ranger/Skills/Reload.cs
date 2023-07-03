@@ -9,7 +9,7 @@ namespace Character.Venturers.Ranger.Skills
         {
             base.Initialize();
 
-            SequenceBuilder.Add(SectionType.Execute, "DamageByArrowsCount", CollectArrows);
+            Builder.Add(SectionType.Execute, "DamageByArrowsCount", CollectArrows);
         }
 
 
@@ -19,15 +19,14 @@ namespace Character.Venturers.Ranger.Skills
             
             takers?.ForEach(taker =>
             {
-                if (!taker.DynamicStatEntry
-                          .StatusEffectTable
+                if (!taker.StatusEffectTable
                           .TryGetEffect<ArcaneArrowStatusEffect>(DataIndex.ArcaneArrowStatusEffect, out var effect)) return;
 
                 var stack = effect.Stack;
 
                 for (var i = 0; i < stack; i++)
                 {
-                    executor.Execute(taker);
+                    executor.ToTaker(taker);
                 }
                 
                 effect.Dispel();

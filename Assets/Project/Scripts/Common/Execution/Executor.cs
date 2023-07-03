@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace Common.Execution
@@ -6,60 +7,76 @@ namespace Common.Execution
     [Serializable]
     public class Executor
     {
-        [SerializeField] private Table<ExecuteGroup, Executions> table;
-        
-        public Table<ExecuteGroup, Executions> Table => table;
+        [SerializeField] private Table<ExecuteGroup, TakerExecute> takerExecutionTable;
+        [SerializeField] private Table<ExecuteGroup, FireExecute> fireExecutionTable;
 
-        public void Execute(ICombatTaker taker) => Execute(ExecuteGroup.Group1, taker);
-        public void Execute(ExecuteGroup group, ICombatTaker taker)
+        /// <summary>
+        /// For Compact Action
+        /// </summary>
+        public void ToTaker(ICombatTaker taker) => ToTaker(taker, ExecuteGroup.Group1);
+        public void ToTaker(ICombatTaker taker, ExecuteGroup group)
         {
-            table[group]?.ExecutionList.ForEach(exe => exe.Execution(taker));
-        }
-        
-        public void Execute(Vector3 position) => Execute(ExecuteGroup.Group1, position);
-        public void Execute(ExecuteGroup group, Vector3 position)
-        {
-            table[group]?.ExecutionList.ForEach(exe => exe.Execution(position));
+            takerExecutionTable[group]?.List.ForEach(exe => exe.Execution(taker));
         }
         
-        public void Add(ExecuteComponent exe)
+        public void ToPosition(Vector3 position, ExecuteGroup group = ExecuteGroup.Group1)
         {
-            if (Table.TryGetValue(exe.Group, out var value))
-            {
-                value.Add(exe);
-            }
-            else
-            {
-                Table.Add(exe.Group, new Executions(exe));
-            }
+            fireExecutionTable[group]?.List.ForEach(exe => exe.Execution(position));
         }
 
-        public void Remove(ExecuteComponent exe)
+
+        [Serializable] private class CombatExecute<T>
         {
-            if (!Table.ContainsKey(exe.Group)) return;
-            
-            table[exe.Group].Remove(exe);
+            public List<T> List;
+
+            public CombatExecute() => List = new List<T>();
+            public CombatExecute(T component) => List = new List<T> { component };
+
+            public void Add(T exe) => List.AddUniquely(exe);
+            public void Remove(T exe) => List.RemoveSafely(exe);
+            public void Clear() => List.Clear();
         }
 
-        public void Clear() => Table.Clear();
+        [Serializable] private class TakerExecute : CombatExecute<TakerExecution>
+        {
+            public TakerExecute(TakerExecution component) => List = new List<TakerExecution> { component };
+        }
+        [Serializable] private class FireExecute : CombatExecute<FireExecution>
+        {
+            public FireExecute(FireExecution component) => List = new List<FireExecution> { component };
+        }
 
 
 #if UNITY_EDITOR
         public void EditorGetExecutions(GameObject parent)
         {
-            var executes = parent.GetComponentsInChildren<ExecuteComponent>();
+            var takerExecuteList = parent.GetComponentsInChildren<TakerExecution>();
+            var fireExecuteList = parent.GetComponentsInChildren<FireExecution>();
             
-            table.Clear();
+            takerExecutionTable.Clear();
+            fireExecutionTable.Clear();
             
-            executes.ForEach(exe =>
+            takerExecuteList.ForEach(exe =>
             {
-                if (!table.ContainsKey(exe.Group))
+                if (!takerExecutionTable.ContainsKey(exe.Group))
                 {
-                    table.Add(exe.Group, new Executions(exe));
+                    takerExecutionTable.Add(exe.Group, new TakerExecute(exe));
                 }
                 else
                 {
-                    table[exe.Group].ExecutionList.AddUniquely(exe);
+                    takerExecutionTable[exe.Group].List.AddUniquely(exe);
+                }
+            });
+            
+            fireExecuteList.ForEach(exe =>
+            {
+                if (!fireExecutionTable.ContainsKey(exe.Group))
+                {
+                    fireExecutionTable.Add(exe.Group, new FireExecute(exe));
+                }
+                else
+                {
+                    fireExecutionTable[exe.Group].List.AddUniquely(exe);
                 }
             });
         }

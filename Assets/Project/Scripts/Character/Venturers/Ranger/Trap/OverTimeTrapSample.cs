@@ -13,7 +13,7 @@ namespace Character.Venturers.Ranger.Trap
             {
                 if (TryGetTakerInSphere(out var takerList))
                 {
-                    takerList.ForEach(executor.Execute);
+                    takerList.ForEach(executor.ToTaker);
                 }
             });
         }

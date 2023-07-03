@@ -11,7 +11,7 @@ namespace Character.Venturers.Rogue.Skills
         {
             base.Initialize();
 
-            SequenceBuilder.AddActiveParam("PhantomAction", PhantomAction)
+            Builder.AddActiveParam("PhantomAction", PhantomAction)
                            .Add(SectionType.Execute, "Throw", Throw);
         }
 
@@ -23,7 +23,7 @@ namespace Character.Venturers.Rogue.Skills
 
         private void Throw()
         {
-            executor.Execute(null);
+            executor.ToTaker(null);
         }
     }
 }

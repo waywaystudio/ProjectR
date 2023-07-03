@@ -8,11 +8,11 @@ namespace Common
         public static Action GetInvokeAction(this SectionType type, SkillComponent skill) =>
             type switch
             {
-                SectionType.Cancel   => skill.SkillInvoker.Cancel,
-                SectionType.Complete => skill.SkillInvoker.Complete,
-                SectionType.End      => skill.SkillInvoker.End,
-                SectionType.Execute  => skill.SkillInvoker.Execute,
-                SectionType.Release  => skill.SkillInvoker.Release,
+                SectionType.Cancel   => skill.Invoker.Cancel,
+                SectionType.Complete => skill.Invoker.Complete,
+                SectionType.End      => skill.Invoker.End,
+                SectionType.Execute  => skill.Invoker.Execute,
+                SectionType.Release  => skill.Invoker.Release,
                 _                    => null,
             };
     }

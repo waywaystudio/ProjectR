@@ -18,7 +18,7 @@ namespace Character.Venturers.Ranger.StatusEffects
             if (!Verify.IsNotNull(FocusStrike, $"Not Exist FocusStrike in Skill List")) return;
 
             OriginalCastTime = FocusStrike.CastTimer.OriginalCastingTime;
-            SequenceBuilder
+            Builder
                 .Add(SectionType.Active, "EnforceFocusStrike", EnforceFocusStrike)
                 .Add(SectionType.End, "ResetFocusStrike", ResetFocusStrike);
         }

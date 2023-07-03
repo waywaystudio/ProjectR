@@ -10,6 +10,7 @@ namespace Common
         string Name { get; }
         GameObject gameObject { get; }
         Vector3 Position { get; }
+        Vector3 Forward { get; }
     }
     
     public interface IOriginalProvider
@@ -26,15 +27,15 @@ namespace Common
     public interface ICombatEntity
     {
         StatTable StatTable { get; }
-        // AliveValue Alive { get; }
-        // HpValue Hp { get; }
-        // ResourceValue Resource { get; }
-        // ShieldValue Shield { get; }
-        // StatusEffectTable StatusEffectTable { get; }
-        
+        AliveValue Alive { get; }
+        HpValue Hp { get; }
+        ResourceValue Resource { get; }
+        ShieldValue Shield { get; }
+        StatusEffectTable StatusEffectTable { get; }
+
         ActionMask BehaviourMask { get; }
         
-        IDynamicStatEntry DynamicStatEntry { get; }
+        // IDynamicStatEntry DynamicStatEntry { get; }
         // StatTable StatTable { get; }
     }
 
@@ -68,8 +69,6 @@ namespace Common
         KnockBackBehaviour KnockBackBehaviour { get; }
         DrawBehaviour DrawBehaviour { get; }
         DeadBehaviour DeadBehaviour { get; }
-        
-        
         ActionTable<CombatEntity> OnDamageTaken { get; }
         ActionTable<CombatEntity> OnHealTaken { get; }
 
@@ -86,21 +85,6 @@ namespace Common
 
     public interface ICombatExecutor : ICombatProvider, ICombatTaker, IDataIndexer
     {
-        // + DataIndex ActionCode { get; }
         
-        // + StatTable StatTable { get; }
-        // + IDynamicStatEntry DynamicStatEntry { get; }
-        // + string Name { get; }
-        // + RoleType Role { get; }
-        // + ICharacterAction CharacterAction { get; }
-        
-        // + ActionTable<CombatEntity> OnDamageProvided { get; }
-        // + ActionTable<CombatEntity> OnHealProvided { get; }
-        // + ActionTable<StatusEffectEntity> OnDeBuffProvided { get; }
-        // + ActionTable<StatusEffectEntity> OnBuffProvided { get; }
-        // + ActionTable<CombatEntity> OnDamageTaken { get; }
-        // + ActionTable<CombatEntity> OnHealTaken { get; }
-        // + ActionTable<StatusEffectEntity> OnDeBuffTaken { get; }
-        // + ActionTable<StatusEffectEntity> OnBuffTaken { get; }
     }
 }

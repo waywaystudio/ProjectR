@@ -21,9 +21,9 @@ namespace Character.Venturers.Priest.StatusEffects
         {
             base.Initialize(provider);
 
-            SequenceBuilder
+            Builder
                 .Add(SectionType.Active, "SetHasteWeightAndTickBuffer", SetHasteWeightAndTickBuffer)
-                .Add(SectionType.Active, "Effectuate", () => Effectuate().Forget())
+                .Add(SectionType.Active, "OvertimeExecution", () => OvertimeExecution().Forget())
                 .Add(SectionType.Active, "ProvideBuff", ProvideBuff)
                 .Add(SectionType.End, "StopEffectuate", () => cts?.Cancel())
                 .Add(SectionType.End, "RemoveBuffStat", EndBuff);
@@ -36,7 +36,7 @@ namespace Character.Venturers.Priest.StatusEffects
                 interval * CombatFormula.GetHasteValue(Provider.StatTable.Haste);
         }
 
-        private async UniTaskVoid Effectuate()
+        private async UniTaskVoid OvertimeExecution()
         {
             cts = new CancellationTokenSource();
 
@@ -49,21 +49,21 @@ namespace Character.Venturers.Priest.StatusEffects
                 }
                 else
                 {
-                    executor.Execute(Taker);
+                    executor.ToTaker(Taker);
                     tickBuffer = hasteWeight;
                 }
 
                 await UniTask.Yield(cts.Token);
             }
             
-            SequenceInvoker.Complete();
+            Invoker.Complete();
         }
 
         private void ProvideBuff()
         {
             Taker.StatTable.Add(speedUpStat);
 
-            if (Provider.DynamicStatEntry.StatusEffectTable.ContainsKey(DataIndex.LightWeaverStatusEffect))
+            if (Provider.StatusEffectTable.ContainsKey(DataIndex.LightWeaverStatusEffect))
             {
                 Taker.StatTable.Add(criticalChanceStat);
                 Taker.StatTable.Add(hasteStat);

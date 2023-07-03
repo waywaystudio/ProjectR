@@ -27,7 +27,8 @@ namespace Character.Venturers.Ranger.Projectile
         {
             if (piercedTaker is not null && pierceCount <= maxPierceCount)
             {
-                executor.Execute(piercedTaker);
+                executor.ToTaker(piercedTaker);
+                executor.ToPosition(piercedTaker.Position);
 
                 if (++pierceCount > maxPierceCount)
                 {

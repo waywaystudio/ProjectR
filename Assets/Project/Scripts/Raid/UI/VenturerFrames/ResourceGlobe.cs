@@ -12,7 +12,7 @@ namespace Raid.UI.VenturerFrames
 
         public void OnFocusVenturerChanged(VenturerBehaviour vb)
         {
-            var resourceReference = vb.DynamicStatEntry.Resource;
+            var resourceReference = vb.Resource;
             var maxResource = vb.StatTable.MaxResource;
 
             fillGlobe.Register(resourceReference, maxResource);

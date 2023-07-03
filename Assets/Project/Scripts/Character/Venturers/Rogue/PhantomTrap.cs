@@ -34,7 +34,7 @@ namespace Character.Venturers.Rogue
             {
                 var takerList = GetTakersInSphereType(trapPosition, 5f, 135f, targetLayer);
                 
-                takerList?.ForEach(taker => executor.Execute(ExecuteGroup.Group1, taker));
+                takerList?.ForEach(taker => executor.ToTaker(taker, ExecuteGroup.Group1));
             });
             model.Flip(direction);
             model.Play(doubleStabAnimationKey, 0, false, timeScale, () =>
@@ -53,7 +53,7 @@ namespace Character.Venturers.Rogue
 
             model.OnHit.Add("SkillHit", () =>
             {
-                executor.Execute(ExecuteGroup.Group2, targetPosition);
+                executor.ToPosition(targetPosition, ExecuteGroup.Group2);
             });
             model.Flip(direction);
             model.Play(throwAnimationKey, 0, false, timeScale, () =>

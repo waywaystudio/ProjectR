@@ -1,5 +1,7 @@
+using System.Threading;
 using Common;
 using Common.StatusEffects;
+using Cysharp.Threading.Tasks;
 using UnityEngine;
 
 namespace Character.Venturers.Knight.StatusEffects
@@ -7,7 +9,8 @@ namespace Character.Venturers.Knight.StatusEffects
     public class Bleed : StatusEffect
     {
         [SerializeField] protected float interval;
-        
+
+        private CancellationTokenSource cts;
         private float hasteWeight;
         private float tickBuffer;
 
@@ -15,15 +18,23 @@ namespace Character.Venturers.Knight.StatusEffects
         {
             base.Initialize(provider);
 
-            SequenceBuilder.Add(SectionType.Active, "SetHasteWeightAndTickBuffer", 
-                                () => hasteWeight = tickBuffer =
-                                    interval * CombatFormula.GetHasteValue(Provider.StatTable.Haste));
+            Builder
+                .Add(SectionType.Active, "SetHasteWeightAndTickBuffer", UpdateHasteWeight)
+                .Add(SectionType.Active, "OvertimeExecution", () => OvertimeExecution().Forget())
+                .Add(SectionType.End, "StopOverTimeExecution", Stop);
         }
 
 
-        private void Update()
+        private void UpdateHasteWeight()
         {
-            if (ProgressTime.Value > 0)
+            hasteWeight = tickBuffer = interval * CombatFormula.GetHasteValue(Provider.StatTable.Haste);
+        }
+
+        private async UniTaskVoid OvertimeExecution()
+        {
+            cts = new CancellationTokenSource();
+            
+            while (ProgressTime.Value > 0)
             {
                 if (tickBuffer > 0f)
                 {
@@ -32,14 +43,20 @@ namespace Character.Venturers.Knight.StatusEffects
                 }
                 else
                 {
-                    executor.Execute(Taker);
+                    executor.ToTaker(Taker);
                     tickBuffer = hasteWeight;
                 }
+
+                await UniTask.Yield(cts.Token);
             }
-            else
-            {
-                SequenceInvoker.Complete();
-            }
+            
+            Invoker.Complete();
+        }
+
+        private void Stop()
+        {
+            cts?.Cancel();
+            cts = null;
         }
     }
 }

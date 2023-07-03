@@ -13,8 +13,8 @@ namespace Character.Venturers.Rogue.Skills
             
             cost.PayCondition.Add("HasTarget", HasTarget);
 
-            SequenceBuilder.AddActiveParam("MasterDoubleStab",targetPosition => master.DoubleStab(targetPosition, 1f + Haste))
-                           .Add(SectionType.Execute, "CommonExecution", () => detector.GetTakers()?.ForEach(executor.Execute));
+            Builder.AddActiveParam("MasterDoubleStab",targetPosition => master.DoubleStab(targetPosition, 1f + Haste))
+                           .Add(SectionType.Execute, "CommonExecution", () => detector.GetTakers()?.ForEach(executor.ToTaker));
         }
 
 
@@ -23,7 +23,7 @@ namespace Character.Venturers.Rogue.Skills
             var takers = detector.GetTakers();
 
             return !takers.IsNullOrEmpty() 
-                   && takers[0].DynamicStatEntry.Alive.Value;
+                   && takers[0].Alive.Value;
         }
     }
 }

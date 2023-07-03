@@ -111,13 +111,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   executor:
-    table:
+    takerExecutionTable:
       keyList: 01000000
       valueList:
-      - ExecutionList:
+      - List:
         - {fileID: 7212516511690731986}
-      hideKey: 0
+    fireExecutionTable:
+      keyList: 
+      valueList: []
   statusCode: 32210008
   type: 1
   icon: {fileID: 21300000, guid: efb12c0400219424484955059baa562d, type: 3}
-  duration: 4
+  duration: 0

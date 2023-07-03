@@ -19,7 +19,7 @@ public class Sequencer
         }
     }
    
-    public void Clear()
+    public virtual void Clear()
     {
         Condition.Clear();
         CompleteTrigger?.Dispose();
@@ -32,11 +32,10 @@ public class Sequencer<T> : Sequencer
 {
     public ActionTable<T> ActiveParamAction { get; } = new();
 
-    public new void Clear()
+    public override void Clear()
     {
+        base.Clear();
+        
         ActiveParamAction.Clear();
-        Condition.Clear();
-        CompleteTrigger?.Dispose();
-        Table.Clear();
     }
 }

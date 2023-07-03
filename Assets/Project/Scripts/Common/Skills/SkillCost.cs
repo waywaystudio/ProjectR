@@ -16,9 +16,9 @@ namespace Common.Skills
         {
             if (paySection == SectionType.None) return;
             
-            var resourceRef = skill.Cb.DynamicStatEntry.Resource;
+            var resourceRef = skill.Cb.Resource;
             
-            skill.SequenceBuilder
+            skill.Builder
                  .AddCondition("CheckCost", () => resourceRef.Value >= Value)
                  .Add(paySection, "payCost", () => PayCost(resourceRef));
         }

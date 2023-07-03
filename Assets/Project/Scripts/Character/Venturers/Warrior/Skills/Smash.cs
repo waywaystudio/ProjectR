@@ -8,19 +8,15 @@ namespace Character.Venturers.Warrior.Skills
         {
             base.Initialize();
             
-            cost.PayCondition.Add("HasTarget", HasTarget);
+            cost.PayCondition.Add("HasTarget", detector.HasTarget);
 
-            SequenceBuilder.Add(SectionType.Execute, "CommonExecution", 
-                                () => detector.GetTakers()?.ForEach(executor.Execute));
+            Builder.Add(SectionType.Execute, "CommonExecution",SmashAttack);
         }
 
 
-        private bool HasTarget()
+        private void SmashAttack()
         {
-            var takers = detector.GetTakers();
-
-            return !takers.IsNullOrEmpty() 
-                   && takers[0].DynamicStatEntry.Alive.Value;
+            detector.GetTakers()?.ForEach(executor.ToTaker);
         }
     }
 }

@@ -12,7 +12,7 @@ namespace Character.Venturers.Ranger.Trap
             SequenceBuilder.Add(SectionType.Execute,"MeteorExecution", () =>
                            {
                                if (TryGetTakerInSphere(out var takerList)) 
-                                   takerList.ForEach(executor.Execute);
+                                   takerList.ForEach(executor.ToTaker);
                            })
                            .Add(SectionType.Complete,"Execute", Execution);
         }

@@ -16,20 +16,20 @@ namespace Raid.UI.BossFrames
         {
             var mb = RaidDirector.Boss;
             
-            hpImage.Register(mb.DynamicStatEntry.Hp, mb.StatTable.MaxHp);
+            hpImage.Register(mb.Hp, mb.StatTable.MaxHp);
             monsterName.text = mb.Name;
-            mb.DynamicStatEntry.Hp.AddListener("UI.BossFrames.BossHpProcess", ValueToText);
+            mb.Hp.AddListener("UI.BossFrames.BossHpProcess", ValueToText);
             
             ValueToText();
         }
 
         private void ValueToText()
         {
-            hpValueText.text = RaidDirector.Boss.DynamicStatEntry.Hp.Value.ToString("0");
+            hpValueText.text = RaidDirector.Boss.Hp.Value.ToString("0");
         }
         
 
-        [Button] public void MinusHp() => RaidDirector.Boss.DynamicStatEntry.Hp.Value -= 50f;
-        [Button] public void MinusResource() => RaidDirector.Boss.DynamicStatEntry.Resource.Value -= 8f;
+        [Button] public void MinusHp() => RaidDirector.Boss.Hp.Value -= 50f;
+        [Button] public void MinusResource() => RaidDirector.Boss.Resource.Value -= 8f;
     }
 }

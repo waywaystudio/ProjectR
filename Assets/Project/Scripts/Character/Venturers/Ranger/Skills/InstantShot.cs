@@ -10,9 +10,8 @@ namespace Character.Venturers.Ranger.Skills
             base.Initialize();
             
             Provider.OnDamageProvided.Add("AddAdrenalinByInstantShot", AddAdrenalin);
-            SequenceBuilder.Add(SectionType.Execute, "ShotAttackExecution", () => executor.Execute(null));
+            Builder.Add(SectionType.Execute, "Fire", Fire);
         }
-
 
         public override void Dispose()
         {
@@ -21,16 +20,24 @@ namespace Character.Venturers.Ranger.Skills
             Provider.OnDamageProvided.Remove("AddAdrenalinByInstantShot");
         }
 
+
+        private void Fire()
+        {
+            var forwardPosition = Provider.Position + Provider.Forward;
+
+            executor.ToPosition(forwardPosition);
+        }
+
         private void AddAdrenalin(CombatEntity damageLog)
         {
             if (damageLog.CombatIndex != DataIndex) return;
             if (damageLog.IsCritical)
             {
-                executor.Execute(ExecuteGroup.Group2, Cb);
+                executor.ToTaker(Cb, ExecuteGroup.Group2);
             }
             else
             {
-                if (!Cb.DynamicStatEntry.StatusEffectTable
+                if (!Cb.StatusEffectTable
                        .TryGetValue(DataIndex.AdrenalinStatusEffect, out var statusEffect)) return;
                 
                 statusEffect.Dispel();

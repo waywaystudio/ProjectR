@@ -189,13 +189,15 @@ MonoBehaviour:
   behaviourMask: 32
   priority: 1
   executor:
-    table:
+    takerExecutionTable:
       keyList: 01000000
       valueList:
-      - ExecutionList:
+      - List:
         - {fileID: 6979266354357937840}
         - {fileID: 2481512623508416614}
-      hideKey: 0
+    fireExecutionTable:
+      keyList: 
+      valueList: []
   detector:
     targetType: 1
     sortingType: 7
@@ -208,7 +210,7 @@ MonoBehaviour:
     animationKey: attack
     isLoop: 0
     hasEvent: 1
-    timeScale: 1
+    animationPlaySpeed: 1
     skillType: 1
     callbackSection: 3
   coolTimer:
@@ -220,6 +222,5 @@ MonoBehaviour:
   cost:
     cost: 0
     paySection: 0
-  description: Starts combat by attacking a target with a melee weapon.
-  skillName: 
   icon: {fileID: 21300000, guid: 5a5b5e460d0775b42a594af04292f7c3, type: 3}
+  description: Starts combat by attacking a target with a melee weapon.

@@ -8,8 +8,8 @@ namespace Character.Villains.Commons.Skills
         {
             base.Initialize();
             
-            SequenceBuilder.Add(SectionType.Complete,"MoraggLivingBomb", SkillInvoker.Execute)
-                           .Add(SectionType.Execute, "CommonExecution", () => executor.Execute(MainTarget));
+            Builder.Add(SectionType.Complete,"MoraggLivingBomb", Invoker.Execute)
+                           .Add(SectionType.Execute, "CommonExecution", () => executor.ToTaker(MainTarget));
         }
     }
 }

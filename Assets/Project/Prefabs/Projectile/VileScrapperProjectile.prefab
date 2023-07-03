@@ -48,21 +48,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c74c1809e76c79546b9fc5bfde86dfd3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  projectileCode: 31210501
   executor:
-    table:
+    takerExecutionTable:
       keyList: 01000000
       valueList:
-      - ExecutionList:
+      - List:
         - {fileID: 4348888035237348426}
+    fireExecutionTable:
+      keyList: 01000000
+      valueList:
+      - List:
         - {fileID: 4857367216726125719}
-      hideKey: 0
   trajectory:
     trajectoryType: 2
     speed: 40
     distance: 40
     tweenType: 1
   collidingSystem: {fileID: 5072753418977620396}
-  projectileCode: 31210501
   targetLayer:
     serializedVersion: 2
     m_Bits: 256
@@ -173,7 +176,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   group: 1
-  actionCode: 31210501
   pool:
     prefab: {fileID: 3865230921314547483, guid: 36738ef24b91da94f88841488af3f3c0, type: 3}
     maxCount: 16

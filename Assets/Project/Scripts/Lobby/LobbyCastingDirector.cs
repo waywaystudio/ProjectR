@@ -19,7 +19,7 @@ namespace Lobby
                                      adventurerObjectHierarchy);
             
             knight.gameObject.SetActive(true);
-            knight.ForceInitialize();
+            knight.Initialize();
 
             LobbyDirector.Knight = knight;
         }

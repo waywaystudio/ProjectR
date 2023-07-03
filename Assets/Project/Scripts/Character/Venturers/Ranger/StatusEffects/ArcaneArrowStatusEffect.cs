@@ -8,30 +8,28 @@ namespace Character.Venturers.Ranger.StatusEffects
 {
     public class ArcaneArrowStatusEffect : StatusEffect
     {
-        [Sirenix.OdinInspector.ShowInInspector]
-        private int stack = 1;
         private CancellationTokenSource cts;
 
-        public int Stack => stack;
+        public int Stack { get; private set; } = 1;
 
         public override void Initialize(ICombatProvider provider)
         {
             base.Initialize(provider);
 
-            SequenceBuilder.Add(SectionType.Active, "Effectuate", () => Effectuate().Forget())
-                           .Add(SectionType.End, "StopEffectuate", () => cts?.Cancel());
+            Builder
+                .Add(SectionType.Active, "Effectuate", () => OvertimeExecution().Forget())
+                .Add(SectionType.Override, "StackUp", StackUp)
+                .Add(SectionType.End, "Stop", Stop);
         }
+        
 
-        public override void Overriding()
+        private void StackUp()
         {
-            base.Overriding();
-
-            if (stack >= 6) return;
-            stack++;
+            if (Stack >= 6) return;
+            Stack++;
         }
 
-
-        private async UniTaskVoid Effectuate()
+        private async UniTaskVoid OvertimeExecution()
         {
             cts = new CancellationTokenSource();
             
@@ -47,7 +45,13 @@ namespace Character.Venturers.Ranger.StatusEffects
                 await UniTask.Yield(cts.Token);
             }
             
-            SequenceInvoker.Complete();
+            Invoker.Complete();
+        }
+        
+        private void Stop()
+        {
+            cts?.Cancel();
+            cts = null;
         }
     }
 }

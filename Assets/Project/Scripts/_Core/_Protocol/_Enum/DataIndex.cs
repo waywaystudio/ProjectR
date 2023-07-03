@@ -145,7 +145,7 @@ public enum DataIndex
 	LadySerenavaine = 22061701,
 
 	/* SkillData */
-	SwordAttack = 31210101,
+	Slash = 31210101,
 	Bash = 31210102,
 	UpperSlash = 31210103,
 	ThunderClap = 31210104,

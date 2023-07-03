@@ -1,8 +1,8 @@
 using UnityEngine;
 
-namespace Common.Execution
+namespace Common.Execution.Variants
 {
-    public class StunExecutor : ExecuteComponent
+    public class StunExecution : TakerExecution
     {
         [SerializeField] private float stunDuration;
         

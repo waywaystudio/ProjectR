@@ -15,9 +15,9 @@ namespace Character.Venturers.Warrior.Skills
         {
             base.Initialize();
 
-            SequenceBuilder.AddActiveParam("RigidMove", RigidMove)
+            Builder.AddActiveParam("RigidMove", RigidMove)
                            .Add(SectionType.Active, "CheckColliding", () => OnCollided().Forget())
-                           .Add(SectionType.Execute, "CommonExecution", () => detector.GetTakers()?.ForEach(executor.Execute))
+                           .Add(SectionType.Execute, "CommonExecution", () => detector.GetTakers()?.ForEach(executor.ToTaker))
                            .Add(SectionType.Execute, "PlayCollideAnimation", PlayCollideAnimation)
                            .Add(SectionType.Execute, "StopPathfinding", Cb.Pathfinding.Stop)
                            .Add(SectionType.Execute, "StopCharging", StopCharging)
@@ -34,9 +34,9 @@ namespace Character.Venturers.Warrior.Skills
             {
                 var takerListBuffer = detector.GetTakersInCircleRange(2f, 120);
                 
-                if (!takerListBuffer.IsNullOrEmpty() && takerListBuffer[0].DynamicStatEntry.Alive.Value)
+                if (!takerListBuffer.IsNullOrEmpty() && takerListBuffer[0].Alive.Value)
                 {
-                    SkillInvoker.Execute();
+                    Invoker.Execute();
                     return;
                 }
                 
@@ -61,12 +61,12 @@ namespace Character.Venturers.Warrior.Skills
                     ? detector.GetMainTarget().Position
                     : Vector3.zero;
             
-            Cb.Pathfinding.Move(destination, SkillInvoker.Complete);
+            Cb.Pathfinding.Move(destination, Invoker.Complete);
         }
         
         private void PlayCollideAnimation()
         {
-            Cb.Animating.PlayOnce("AttackDuelStab", 1f + Haste, SkillInvoker.Complete);
+            Cb.Animating.PlayOnce("AttackDuelStab", 1f + Haste, Invoker.Complete);
         }
 
         private void ChargingMovement()

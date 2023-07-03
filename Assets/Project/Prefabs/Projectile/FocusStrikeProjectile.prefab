@@ -48,21 +48,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c74c1809e76c79546b9fc5bfde86dfd3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  projectileCode: 31210405
   executor:
-    table:
+    takerExecutionTable:
       keyList: 01000000
       valueList:
-      - ExecutionList:
+      - List:
         - {fileID: 4025622706656194699}
         - {fileID: 2206581826918671191}
-      hideKey: 0
+    fireExecutionTable:
+      keyList: 
+      valueList: []
   trajectory:
     trajectoryType: 2
     speed: 50
     distance: 40
     tweenType: 1
   collidingSystem: {fileID: 5072753418977620396}
-  projectileCode: 31210405
   targetLayer:
     serializedVersion: 2
     m_Bits: 256

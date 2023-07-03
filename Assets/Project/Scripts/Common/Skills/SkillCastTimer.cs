@@ -12,7 +12,7 @@ namespace Common.Skills
         
         public void Initialize(SkillComponent skill)
         {
-            skill.SequenceBuilder
+            skill.Builder
                  .Add(SectionType.Active, "SkillCasting", () => Play(skill.CastWeightTime, CallbackSection.GetInvokeAction(skill)))
                  .Add(SectionType.End, "StopCastTimer", Stop);
         }

@@ -1,8 +1,8 @@
 using UnityEngine;
 
-namespace Common.Execution
+namespace Common.Execution.Variants
 {
-    public class DrawExecutor : ExecuteComponent
+    public class DrawExecution : TakerExecution
     {
         [SerializeField] private float drawDuration = 0.3f;
         

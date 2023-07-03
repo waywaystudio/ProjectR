@@ -12,7 +12,7 @@ namespace Character.Venturers.Priest.Skills
         {
             base.Initialize();
 
-            SequenceBuilder
+            Builder
                 .AddActiveParam("SetTargetPosition", SetTargetPosition)
                 .Add(SectionType.Execute, "ExecuteRenew", ExecuteRenew);
         }
@@ -43,7 +43,7 @@ namespace Character.Venturers.Priest.Skills
                 nearestTaker    = taker;
             });
 
-            executor.Execute(nearestTaker);
+            executor.ToTaker(nearestTaker);
         }
         
         private Vector3 ValidPosition(Vector3 targetPosition)

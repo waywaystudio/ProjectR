@@ -3,6 +3,7 @@ using System.Threading;
 using Character.Venturers.Mage.Traps;
 using Common;
 using Common.Execution;
+using Common.Execution.Variants;
 using Common.Projectiles;
 using Cysharp.Threading.Tasks;
 using UnityEngine;
@@ -11,7 +12,7 @@ namespace Character.Venturers.Mage.Projectiles
 {
     public class VoidSphereProjectile : ProjectileComponent
     {
-        [SerializeField] private DamageExecutor damageExecutor;
+        [SerializeField] private DamageExecution damageExecutor;
         [SerializeField] private SphereCollider triggerCollider;
         [SerializeField] private LayerMask trapLayer;
         [SerializeField] private float shardCollectableRadius;
@@ -46,9 +47,9 @@ namespace Character.Venturers.Mage.Projectiles
         {
             if (other.gameObject.TryGetComponent(out ICombatTaker taker) &&
                 other.gameObject.IsInLayerMask(targetLayer) &&
-                taker.DynamicStatEntry.Alive.Value)
+                taker.Alive.Value)
             {
-                executor.Execute(taker);
+                executor.ToTaker(taker);
                 SequenceInvoker.Complete();
             }
         }

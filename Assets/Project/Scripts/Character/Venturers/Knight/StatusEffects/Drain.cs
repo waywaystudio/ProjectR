@@ -1,5 +1,7 @@
+using System.Threading;
 using Common;
 using Common.StatusEffects;
+using Cysharp.Threading.Tasks;
 using UnityEngine;
 
 namespace Character.Venturers.Knight.StatusEffects
@@ -8,30 +10,43 @@ namespace Character.Venturers.Knight.StatusEffects
     {
         [SerializeField] private float drainPercentage;
 
+        private CancellationTokenSource cts;
+
         public override void Initialize(ICombatProvider provider)
         {
             base.Initialize(provider);
 
-            SequenceBuilder.Add(SectionType.Active,"DrainBuff", () => Provider.OnDamageProvided.Add("DrainBuff", DrainHp))
-                           .Add(SectionType.End,"Return", () => Provider.OnDamageProvided.Remove("DrainBuff"));
+            Builder
+                .Add(SectionType.Active,"DrainBuff", () => Provider.OnDamageProvided.Add("DrainBuff", DrainHp))
+                .Add(SectionType.Active, "OvertimeExecution", () => OvertimeExecution().Forget())
+                .Add(SectionType.End, "Stop", Stop)
+                .Add(SectionType.End,"Return", () => Provider.OnDamageProvided.Remove("DrainBuff"));
         }
 
 
         private void DrainHp(CombatEntity entity)
         {
-            Provider.DynamicStatEntry.Hp.Value += entity.Value * drainPercentage;
+            Provider.Hp.Value += entity.Value * drainPercentage;
         }
-        
-        private void Update()
+
+        private async UniTaskVoid OvertimeExecution()
         {
-            if (ProgressTime.Value > 0)
+            cts = new CancellationTokenSource();
+            
+            while (ProgressTime.Value > 0)
             {
                 ProgressTime.Value -= Time.deltaTime;
+
+                await UniTask.Yield(cts.Token);
             }
-            else
-            {
-                SequenceInvoker.Complete();
-            }
+            
+            Invoker.Complete();
+        }
+        
+        private void Stop()
+        {
+            cts?.Cancel();
+            cts = null;
         }
 
 

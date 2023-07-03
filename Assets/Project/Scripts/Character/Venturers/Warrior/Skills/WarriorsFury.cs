@@ -17,7 +17,7 @@ namespace Character.Venturers.Warrior.Skills
         {
             base.Initialize();
 
-            SequenceBuilder.AddCondition("FullResource", FullResource)
+            Builder.AddCondition("FullResource", FullResource)
                            .Add(SectionType.Active, "ActiveBuff", AddEffect)
                            .Add(SectionType.Active, "ConsumeResource", () => ConsumeResource().Forget());
         }
@@ -25,7 +25,7 @@ namespace Character.Venturers.Warrior.Skills
 
         private bool FullResource()
         {
-            return Cb.DynamicStatEntry.Resource.Value >= 100f;
+            return Cb.Resource.Value >= 100f;
         }
         
         private void AddEffect()
@@ -71,9 +71,9 @@ namespace Character.Venturers.Warrior.Skills
 
             while (true)
             {
-                Cb.DynamicStatEntry.Resource.Value -= Time.deltaTime * resourceConsumePerSecond;
+                Cb.Resource.Value -= Time.deltaTime * resourceConsumePerSecond;
 
-                if (Cb.DynamicStatEntry.Resource.Value <= 0)
+                if (Cb.Resource.Value <= 0)
                 {
                     RemoveEffect();
                     StopTask();

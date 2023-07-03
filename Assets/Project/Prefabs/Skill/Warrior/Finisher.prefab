@@ -152,7 +152,7 @@ Transform:
   - {fileID: 7221708945386366489}
   - {fileID: 5853087751410363707}
   m_Father: {fileID: 0}
-  m_RootOrder: -1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &8979131138480939997
 MonoBehaviour:
@@ -170,12 +170,14 @@ MonoBehaviour:
   behaviourMask: 32
   priority: 1
   executor:
-    table:
+    takerExecutionTable:
       keyList: 01000000
       valueList:
-      - ExecutionList:
+      - List:
         - {fileID: 3263926489268022469}
-      hideKey: 0
+    fireExecutionTable:
+      keyList: 
+      valueList: []
   detector:
     targetType: 1
     sortingType: 0
@@ -188,6 +190,7 @@ MonoBehaviour:
     animationKey: AttackSlashHeavy
     isLoop: 0
     hasEvent: 1
+    animationPlaySpeed: 1
     skillType: 1
     callbackSection: 3
   coolTimer:
@@ -199,6 +202,6 @@ MonoBehaviour:
   cost:
     cost: 0
     paySection: 0
-  description: Starts combat by attacking a target with a melee weapon.
   icon: {fileID: 21300000, guid: 5511c04d452ffbe4d87c4ab17ca8e94c, type: 3}
+  description: Starts combat by attacking a target with a melee weapon.
   remainBonusMultiplier: 10

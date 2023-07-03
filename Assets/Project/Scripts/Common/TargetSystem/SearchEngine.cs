@@ -48,7 +48,7 @@ namespace Common.TargetSystem
 #if UNITY_EDITOR
         public void EditorSetUp()
         {
-            searchingCollider        ??= GetComponent<SphereCollider>();
+            searchingCollider        = GetComponent<SphereCollider>();
             searchingCollider.radius =   searchingRange;
         }
 #endif

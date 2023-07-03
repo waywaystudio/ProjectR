@@ -8,7 +8,7 @@ namespace Character.Villains.Commons.Skills
         {
             base.Initialize();
             
-            SequenceBuilder.Add(SectionType.Execute, "CommonExecution", () => executor.Execute(MainTarget));
+            Builder.Add(SectionType.Execute, "CommonExecution", () => executor.ToTaker(MainTarget));
         }
     }
 }

@@ -17,7 +17,7 @@ namespace Character.Villains.Commons.Projector
                            {
                                if (TryGetTakerInSphere(out var takerList))
                                {
-                                   takerList.ForEach(executor.Execute);
+                                   takerList.ForEach(executor.ToTaker);
                                }
                            })
                            .Add(SectionType.Complete,"Execute", Execution);

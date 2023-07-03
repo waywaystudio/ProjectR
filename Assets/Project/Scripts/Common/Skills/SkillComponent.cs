@@ -1,6 +1,5 @@
 using Common.Characters;
 using Common.Execution;
-using Common.Systems;
 using Common.TargetSystem;
 using UnityEngine;
 
@@ -35,8 +34,8 @@ namespace Common.Skills
         public float Angle => detector.Angle;
         public Sprite Icon => icon;
         public Sequencer Sequencer { get; } = new();
-        public SkillSequenceBuilder SequenceBuilder { get; private set; }
-        public SkillSequenceInvoker SkillInvoker { get; private set; }
+        public SkillSequenceBuilder Builder { get; private set; }
+        public SkillSequenceInvoker Invoker { get; private set; }
         public SkillCoolTimer CoolTimer => coolTimer;
         public SkillCastTimer CastTimer => castTimer;
 
@@ -45,15 +44,15 @@ namespace Common.Skills
         public float CastWeightTime => CastTimer.CastingTime;
         public CharacterBehaviour Cb => cb ??= GetComponentInParent<CharacterBehaviour>();
 
-        public bool IsEnded => Sequencer == null || SkillInvoker.IsEnd;
+        public bool IsEnded => Sequencer == null || Invoker.IsEnd;
         public bool AbleToRelease => animationTrait.SkillType is not (SkillType.Instant or SkillType.Casting) && IsActive;
-        protected bool IsActive => Sequencer == null || SkillInvoker.IsActive;
+        protected bool IsActive => Sequencer == null || Invoker.IsActive;
 
 
         public virtual void Initialize()
         {
-            SkillInvoker    = new SkillSequenceInvoker(sequencer);
-            SequenceBuilder = new SkillSequenceBuilder(sequencer);
+            Invoker    = new SkillSequenceInvoker(sequencer);
+            Builder = new SkillSequenceBuilder(sequencer);
             
             detector.Initialize(Cb);
             animationTrait.Initialize(this);
@@ -61,20 +60,21 @@ namespace Common.Skills
             castTimer.Initialize(this);
             cost.Initialize(this);
             
-            SequenceBuilder.Add(SectionType.Active, "StopPathfinding", Cb.Pathfinding.Stop)
-                           .Add(SectionType.End,"CharacterStop", Cb.Stop)
-                           .Add(SectionType.Release, "ReleaseAction", () =>
-                           {
-                               if (AbleToRelease) 
-                                   CastTimer.CallbackSection.GetInvokeAction(this)?.Invoke();
-                           });
+            Builder
+                .Add(SectionType.Active, "StopPathfinding", Cb.Pathfinding.Stop)
+                .Add(SectionType.End,"CharacterStop", Cb.Stop)
+                .Add(SectionType.Release, "ReleaseAction", () =>
+                {
+                    if (AbleToRelease) 
+                        CastTimer.CallbackSection.GetInvokeAction(this)?.Invoke();
+                });
         }
 
-        public void Cancel() => SkillInvoker.Cancel();
+        public void Cancel() => Invoker.Cancel();
 
         public virtual void Dispose()
         {
-            SkillInvoker.End();
+            Invoker.End();
             
             sequencer.Clear();
             coolTimer.Dispose();

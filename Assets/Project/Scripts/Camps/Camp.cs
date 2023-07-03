@@ -37,7 +37,7 @@ public class Camp : MonoSingleton<Camp>, ISavable, IEditable
 
         if (!adventurer.TryGetComponent(out vb)) return;
         
-        vb.ForceInitialize();
+        vb.Initialize();
     }
 
     /*
@@ -59,7 +59,6 @@ public class Camp : MonoSingleton<Camp>, ISavable, IEditable
     public void Save()
     {
         Serializer.Save("challengers", challengers);
-        // SaveManager.Save("challengers", challengers);
         
         venturerTable.Iterate(venturer => venturer.Save()); 
         growMaterialInventory.Save();
@@ -68,7 +67,6 @@ public class Camp : MonoSingleton<Camp>, ISavable, IEditable
     public void Load()
     {
         Challengers = Serializer.Load("challengers", challengers);
-        // Challengers = SaveManager.Load("challengers", challengers);
         
         venturerTable.Iterate(venturer => venturer.Load());
         growMaterialInventory.Load();

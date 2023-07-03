@@ -129,18 +129,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 1364404895503189817, guid: 77f48656fdbb3294f977bd874f773874, type: 3}
-      propertyPath: actionCode
-      value: 31210404
-      objectReference: {fileID: 0}
-    - target: {fileID: 3008013076941583783, guid: 77f48656fdbb3294f977bd874f773874, type: 3}
-      propertyPath: coolTimer.invokeSection
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 3008013076941583783, guid: 77f48656fdbb3294f977bd874f773874, type: 3}
-      propertyPath: animationTrait.animationKey
-      value: AimHold
-      objectReference: {fileID: 0}
     - target: {fileID: 8380361914805468174, guid: 77f48656fdbb3294f977bd874f773874, type: 3}
       propertyPath: m_Name
       value: AimShot
@@ -263,26 +251,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 8150643729164461668}
     m_Modifications:
-    - target: {fileID: -3527779498232163589, guid: 30b4b959efd6bc942b2114109fea7ffa, type: 3}
-      propertyPath: priority
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: -3527779498232163589, guid: 30b4b959efd6bc942b2114109fea7ffa, type: 3}
-      propertyPath: coolTimer.coolTime
-      value: 7
-      objectReference: {fileID: 0}
-    - target: {fileID: -3527779498232163589, guid: 30b4b959efd6bc942b2114109fea7ffa, type: 3}
-      propertyPath: detector.sizeVector.x
-      value: 100
-      objectReference: {fileID: 0}
-    - target: {fileID: -3527779498232163589, guid: 30b4b959efd6bc942b2114109fea7ffa, type: 3}
-      propertyPath: detector.sizeVector.y
-      value: 360
-      objectReference: {fileID: 0}
-    - target: {fileID: -3527779498232163589, guid: 30b4b959efd6bc942b2114109fea7ffa, type: 3}
-      propertyPath: detector.targetLayer.m_Bits
-      value: 256
-      objectReference: {fileID: 0}
     - target: {fileID: 234500611213636336, guid: 30b4b959efd6bc942b2114109fea7ffa, type: 3}
       propertyPath: m_RootOrder
       value: -1
@@ -403,26 +371,6 @@ PrefabInstance:
     - target: {fileID: 234500611213636336, guid: f38e0dcb509b7c544ac74c7131e9ed9b, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 671937298815967466, guid: f38e0dcb509b7c544ac74c7131e9ed9b, type: 3}
-      propertyPath: priority
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 671937298815967466, guid: f38e0dcb509b7c544ac74c7131e9ed9b, type: 3}
-      propertyPath: cost.cost
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 671937298815967466, guid: f38e0dcb509b7c544ac74c7131e9ed9b, type: 3}
-      propertyPath: cost.paySection
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 671937298815967466, guid: f38e0dcb509b7c544ac74c7131e9ed9b, type: 3}
-      propertyPath: coolTimer.coolTime
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 671937298815967466, guid: f38e0dcb509b7c544ac74c7131e9ed9b, type: 3}
-      propertyPath: animationTrait.animationKey
-      value: ShootVeryFast
       objectReference: {fileID: 0}
     - target: {fileID: 8380361914805468174, guid: f38e0dcb509b7c544ac74c7131e9ed9b, type: 3}
       propertyPath: m_Name
