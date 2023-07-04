@@ -1,3 +1,4 @@
+using Common;
 using Common.Skills;
 using UnityEngine;
 
@@ -9,29 +10,31 @@ namespace Character.Venturers.Warrior.Skills
         {
             base.Initialize();
 
-            Builder.AddActiveParam("Jump", Jump)
-                           .Add(SectionType.Execute, "CommonExecution", () => detector.GetTakers()?.ForEach(executor.ToTaker));
+            Builder
+                .AddActiveParam("Jump", Jump)
+                .Add(SectionType.Execute, "ExecuteLeapAttack", ExecuteLeapAttack);
         }
-        
+
+
+        private void ExecuteLeapAttack()
+        {
+            detector.GetTakers()?.ForEach(executor.ToTaker);
+        }
 
         private void Jump(Vector3 targetPosition)
         {
             var venturer = GetComponentInParent<VenturerBehaviour>();
+            var playerPosition = Cb.transform.position;
             var destination = venturer.IsPlayer
-                ? targetPosition
+                ? TargetUtility.GetValidPosition(Cb.transform.position, Range, targetPosition)
                 : detector.GetMainTarget() is not null
                     ? detector.GetMainTarget().Position
                     : Vector3.zero;
 
-            var playerPosition = Cb.transform.position;
+            // var playerPosition = Cb.transform.position;
             var direction = (destination - playerPosition).normalized;
             var actualDistance = Vector3.Distance(destination, playerPosition);
 
-            if (actualDistance > Range)
-            {
-                actualDistance = Range;
-            }
-            
             Cb.Pathfinding.Jump(direction, actualDistance);
         }
     }

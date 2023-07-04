@@ -14,51 +14,28 @@ namespace Character.Venturers.Priest.Skills
 
             Builder
                 .AddActiveParam("SetTargetPosition", SetTargetPosition)
-                .Add(SectionType.Execute, "ExecuteRenew", ExecuteRenew);
+                .Add(SectionType.Execute, "ExecuteRenew", ExecuteRenew)
+                .Add(SectionType.Execute, "TryConsumeLightWeaver", TryConsumeLightWeaver);
         }
 
 
         private void SetTargetPosition(Vector3 targetPosition)
         {
-            predicatePosition = ValidPosition(targetPosition);
+            predicatePosition = TargetUtility.GetValidPosition(Cb.Position, Range, targetPosition);
         }
         
         private void ExecuteRenew()
         {
-            // Get Nearest Single Taker from Clicked Position
-            var validTakerList = detector.GetTakersInCircleRange(predicatePosition, 6f, 360f);
+            var nearestTarget = detector.GetNearestTarget(predicatePosition, 6f);
 
-            if (validTakerList.IsNullOrEmpty()) return;
+            if (nearestTarget is null) return;
 
-            ICombatTaker nearestTaker = null;
-            var nearestDistance = float.MaxValue;
-            
-            validTakerList.ForEach(taker =>
-            {
-                var distance = Vector3.Distance(taker.Position, Provider.Position);
-
-                if (!(distance < nearestDistance)) return;
-                
-                nearestDistance = distance;
-                nearestTaker    = taker;
-            });
-
-            executor.ToTaker(nearestTaker);
+            executor.ToTaker(nearestTarget);
         }
         
-        private Vector3 ValidPosition(Vector3 targetPosition)
+        private void TryConsumeLightWeaver()
         {
-            var playerPosition = Cb.transform.position;
-            
-            if (Vector3.Distance(playerPosition, targetPosition) <= Range)
-            {
-                return targetPosition;
-            }
-
-            var direction = (targetPosition - playerPosition).normalized;
-            var destination = playerPosition + direction * Range;
-
-            return destination;
+            Cb.DispelStatusEffect(DataIndex.LightWeaverStatusEffect);
         }
     }
 }

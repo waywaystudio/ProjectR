@@ -151,15 +151,15 @@ MonoBehaviour:
       keyList: 
       valueList: []
   detector:
-    targetType: 2
     sortingType: 0
     maxBufferCount: 32
-    sizeVector: {x: 0, y: 0}
+    sizeVector: {x: 0, y: 0, z: 0}
     targetLayer:
       serializedVersion: 2
       m_Bits: 0
   animationTrait:
     animationKey: None
+    castCompleteAnimationKey: 
     isLoop: 0
     hasExecuteEvent: 1
     animationPlaySpeed: 1

@@ -7,22 +7,24 @@ namespace Common.TargetSystem
     [Serializable]
     public class CombatTakerDetector
     {
-        private enum TargetingType { None = 0, Circle = 1, Self = 2,}
+        private enum TargetingType { None = 0, Circle = 1, Self = 2, Cone = 3, }
 
-        [SerializeField] private TargetingType targetType = TargetingType.Circle;
         [SerializeField] private SortingType sortingType;
         [SerializeField] private int maxBufferCount = 32;
-        [SerializeField] private Vector2 sizeVector;
+        [SerializeField] private Vector3 sizeVector;
         [SerializeField] private LayerMask targetLayer;
 
         private ICombatTaker self;
         private ISearchable searchEngine;
+        private TargetingType TargetType { get; set; } = TargetingType.None;
         private Collider[] buffers;
 
-        public float Range => sizeVector.x;
-        public float Angle => sizeVector.y;
-        public float Width => sizeVector.x;
-        public float Height => sizeVector.y;
+        public Vector3 SizeVector => sizeVector;
+        public float Distance => sizeVector.x;
+        public float Range => sizeVector.y;
+        public float Angle => sizeVector.z;
+        public float Width => sizeVector.y;
+        public float Height => sizeVector.z;
         
         
         public void Initialize(ISearchable searchEngine)
@@ -34,21 +36,24 @@ namespace Common.TargetSystem
 
             this.searchEngine = searchEngine;
             buffers           = new Collider[maxBufferCount];
+
+            SetTargetType();
         }
 
         public List<ICombatTaker> GetTakers()
         {
-            return targetType switch
+            return TargetType switch
             {
-                TargetingType.Circle => GetTakersInCircleRange(sizeVector.x),
+                TargetingType.Circle => GetTakersInCircleRange(sizeVector.y),
                 TargetingType.Self   => GetSelf(),
+                TargetingType.Cone   => GetTakersInAngle(sizeVector.y, sizeVector.z),
                 _                    => throw new ArgumentOutOfRangeException()
             };
         }
 
         public ICombatTaker GetMainTarget()
         {
-            return targetType switch
+            return TargetType switch
             {
                 TargetingType.Self => self,
                 _                  => GetMainTarget(targetLayer),
@@ -84,13 +89,34 @@ namespace Common.TargetSystem
             return takersInSphere?[0];
         }
         
+        
+        private void SetTargetType()
+        {
+            if (sizeVector is { x: 0.0f, y: 0.0f, z:0.0f })
+            {
+                TargetType = TargetingType.Self;
+            }
+            else if (sizeVector.y != 0.0f && Math.Abs(sizeVector.z - 360.0f) > 0.000001f)
+            {
+                TargetType = TargetingType.Cone;
+            }
+            else if (sizeVector.y != 0.0f && Math.Abs(sizeVector.z - 360.0f) <= 0.000001f)
+            {
+                TargetType = TargetingType.Circle;
+            }
+            else
+            {
+                TargetType = TargetingType.None;
+            }
+        }
 
         private List<ICombatTaker> GetSelf() => new() { self };
         private List<ICombatTaker> GetTakersInSphere(Vector3 center, float radius)
         {
             return TargetUtility.GetTargetsInSphere<ICombatTaker>(center, targetLayer, radius, buffers);
         }
-        
+
+        private List<ICombatTaker> GetTakersInAngle(float radius, float angle) => GetTakersInAngle(searchEngine.gameObject.transform.position, radius, angle);
         private List<ICombatTaker> GetTakersInAngle(Vector3 center, float radius, float angle)
         {
             var forward = searchEngine.gameObject.transform.forward;
@@ -127,7 +153,6 @@ namespace Common.TargetSystem
         {
             var skillData = Database.SkillSheetData(dataIndex);
 
-            targetType  = skillData.DetectorType.ToEnum<TargetingType>();
             sizeVector  = skillData.TargetParam;
             sortingType = skillData.SortingType.ToEnum<SortingType>();
             targetLayer = LayerMask.GetMask(skillData.TargetLayer);

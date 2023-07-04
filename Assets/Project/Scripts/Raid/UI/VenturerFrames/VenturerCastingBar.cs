@@ -41,7 +41,7 @@ namespace Raid.UI.VenturerFrames
             var currentSkill = FocusVenturer.SkillBehaviour.Current;
             
             if (currentSkill is null) return;
-            if (currentSkill.CastWeightTime == 0f) return;
+            if (currentSkill.CastingWeight == 0f) return;
             
             progressObject.SetActive(true);
             skillNameObject.SetActive(true);

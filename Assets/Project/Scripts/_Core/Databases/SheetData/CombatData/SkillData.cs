@@ -18,11 +18,11 @@ namespace Databases.SheetData.CombatData
 			[SerializeField] private String name;
 			[SerializeField] private String behaviourMask;
 			[SerializeField] private Int32 priority;
-			[SerializeField] private String detectorType;
 			[SerializeField] private String sortingType;
-			[SerializeField] private Vector2 targetParam;
+			[SerializeField] private Vector3 targetParam;
 			[SerializeField] private String targetLayer;
 			[SerializeField] private String animationKey;
+			[SerializeField] private String castCompleteKey;
 			[SerializeField] private Boolean isLoop;
 			[SerializeField] private Boolean hasEvent;
 			[SerializeField] private String skillType;
@@ -42,11 +42,11 @@ namespace Databases.SheetData.CombatData
 			public String Name => name;
 			public String BehaviourMask => behaviourMask;
 			public Int32 Priority => priority;
-			public String DetectorType => detectorType;
 			public String SortingType => sortingType;
-			public Vector2 TargetParam => targetParam;
+			public Vector3 TargetParam => targetParam;
 			public String TargetLayer => targetLayer;
 			public String AnimationKey => animationKey;
+			public String CastCompleteKey => castCompleteKey;
 			public Boolean IsLoop => isLoop;
 			public Boolean HasEvent => hasEvent;
 			public String SkillType => skillType;

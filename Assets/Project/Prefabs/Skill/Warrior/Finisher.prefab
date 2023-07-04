@@ -50,10 +50,10 @@ MonoBehaviour:
     statList:
     - statType: 13010001
       statKey: DamageExecutorKey
-      value: 500
+      value: 700
     - statType: 13020001
       statKey: DamageExecutorKey
-      value: 0.5
+      value: 1
     - statType: 13030003
       statKey: DamageExecutorKey
       value: 0
@@ -179,17 +179,17 @@ MonoBehaviour:
       keyList: 
       valueList: []
   detector:
-    targetType: 1
     sortingType: 0
     maxBufferCount: 32
-    sizeVector: {x: 12, y: 360}
+    sizeVector: {x: 0, y: 12, z: 360}
     targetLayer:
       serializedVersion: 2
       m_Bits: 256
   animationTrait:
     animationKey: AttackSlashHeavy
+    castCompleteAnimationKey: 
     isLoop: 0
-    hasEvent: 1
+    hasExecuteEvent: 1
     animationPlaySpeed: 1
     skillType: 1
     callbackSection: 3
@@ -204,4 +204,4 @@ MonoBehaviour:
     paySection: 0
   icon: {fileID: 21300000, guid: 5511c04d452ffbe4d87c4ab17ca8e94c, type: 3}
   description: Starts combat by attacking a target with a melee weapon.
-  remainBonusMultiplier: 10
+  remainBonusMultiplier: 2

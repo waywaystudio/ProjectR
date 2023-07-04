@@ -18,7 +18,7 @@ public class Sequencer
             return Table[key];
         }
     }
-   
+
     public virtual void Clear()
     {
         Condition.Clear();

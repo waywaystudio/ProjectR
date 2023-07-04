@@ -16,11 +16,11 @@ namespace Character.Venturers.Ranger.Skills
             base.Initialize();
 
             Provider.OnDamageProvided.Add("AddAdrenalinByAimShot", AddAdrenalin);
-            Builder.Add(SectionType.Active, "Tracking", () => PlayTracking().Forget())
-                           .Add(SectionType.Execute, "PlayCastCompleteAnimation", PlayCastCompleteAnimation)
-                           .Add(SectionType.Execute, "TryConsumeEcstasy", TryConsumeEcstasy)
-                           .Add(SectionType.Execute, "Fire", Fire)
-                           .Add(SectionType.End, "StopTracking", StopTracking);
+            Builder
+                .Add(SectionType.Active, "Tracking", () => PlayTracking().Forget())                           
+                .Add(SectionType.Execute, "TryConsumeEcstasy", TryConsumeEcstasy)
+                .Add(SectionType.Execute, "Fire", Fire)
+                .Add(SectionType.End, "StopTracking", StopTracking);
         }
         
         public override void Dispose()
@@ -37,11 +37,6 @@ namespace Character.Venturers.Ranger.Skills
             var forwardPosition = Provider.Position + Provider.Forward;
 
             executor.ToPosition(forwardPosition);
-        }
-        
-        private void PlayCastCompleteAnimation()
-        {
-            Cb.Animating.PlayOnce("AimHoldFire", 1f + Haste, Invoker.Complete);
         }
 
         private void TryConsumeEcstasy()
@@ -94,6 +89,10 @@ namespace Character.Venturers.Ranger.Skills
             }
         }
 
-        private void StopTracking() => cts?.Cancel();
+        private void StopTracking()
+        {
+            cts?.Cancel();
+            cts = null;
+        }
     }
 }

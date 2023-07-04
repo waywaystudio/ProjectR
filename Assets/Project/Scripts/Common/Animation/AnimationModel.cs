@@ -24,6 +24,7 @@ namespace Common.Animation
     
         public virtual void Idle() { State.TimeScale = 1f; PlayLoop("idle"); }
         public virtual void Run() => PlayLoop("run");
+        public virtual void Run(float animationSpeed) => PlayLoop("run", animationSpeed);
         public virtual void Dead(Action callback = null) => PlayOnce("dead", 1f, callback);
         public virtual void Stun() => PlayLoop("stun");
         public virtual void Hit() => PlayLoop("hit");

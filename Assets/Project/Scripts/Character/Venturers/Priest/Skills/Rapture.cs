@@ -1,5 +1,4 @@
 using Common.Skills;
-using UnityEngine;
 
 namespace Character.Venturers.Priest.Skills
 {

@@ -1,38 +1,33 @@
-using Common;
+using Common.Execution.Variants;
 using Common.Skills;
+using UnityEngine;
 
 namespace Character.Venturers.Priest.Skills
 {
     public class LightOfDawn : SkillComponent
     {
+        [SerializeField] private HealExecution healExecution;
+
+        public HealExecution HealExecution => healExecution;
+        
         public override void Initialize()
         {
             base.Initialize();
 
             Builder
-                .Add(SectionType.Execute, "PlayCastCompleteAnimation", PlayCastCompleteAnimation)
-                .Add(SectionType.Execute, "ExecuteLightOfDawn", ExecuteLightOfDawn);
+                .Add(SectionType.Execute, "ExecuteLightOfDawn", ExecuteLightOfDawn)
+                .Add(SectionType.Execute, "TryConsumeLightWeaver", TryConsumeLightWeaver);
         }
-        
-        
-        private void PlayCastCompleteAnimation()
-        {
-            Cb.Animating.PlayOnce("CastHoldFire", 1f + Haste, Invoker.Complete);
-        }
+
 
         private void ExecuteLightOfDawn()
         {
-            var onRapture = Provider.StatusEffectTable.ContainsKey(DataIndex.LightWeaverStatusEffect);
-            
-            detector.GetTakers()?.ForEach(taker =>
-            {
-                executor.ToTaker(taker);
-
-                if (onRapture)
-                {
-                    executor.ToTaker(taker);
-                }
-            });
+            detector.GetTakers()?.ForEach(taker => executor.ToTaker(taker));
+        }
+        
+        private void TryConsumeLightWeaver()
+        {
+            Cb.DispelStatusEffect(DataIndex.LightWeaverStatusEffect);
         }
     }
 }

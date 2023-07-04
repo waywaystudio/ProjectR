@@ -124,15 +124,15 @@ MonoBehaviour:
       - List:
         - {fileID: 6640065934772434048}
   detector:
-    targetType: 1
     sortingType: 0
     maxBufferCount: 32
-    sizeVector: {x: 40, y: 4}
+    sizeVector: {x: 0, y: 40, z: 4}
     targetLayer:
       serializedVersion: 2
       m_Bits: 256
   animationTrait:
     animationKey: ShootVeryFast
+    castCompleteAnimationKey: 
     isLoop: 0
     hasExecuteEvent: 1
     animationPlaySpeed: 1

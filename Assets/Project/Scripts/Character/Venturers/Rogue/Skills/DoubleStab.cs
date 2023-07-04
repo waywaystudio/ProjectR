@@ -11,19 +11,22 @@ namespace Character.Venturers.Rogue.Skills
         {
             base.Initialize();
             
-            cost.PayCondition.Add("HasTarget", HasTarget);
+            cost.PayCondition.Add("HasTarget", detector.HasTarget);
 
-            Builder.AddActiveParam("MasterDoubleStab",targetPosition => master.DoubleStab(targetPosition, 1f + Haste))
-                           .Add(SectionType.Execute, "CommonExecution", () => detector.GetTakers()?.ForEach(executor.ToTaker));
+            Builder
+                .AddActiveParam("PhantomsDoubleStab",PhantomsDoubleStab)
+                .Add(SectionType.Execute, "DoubleStabAttack", DoubleStabAttack);
         }
 
 
-        private bool HasTarget()
+        private void DoubleStabAttack()
         {
-            var takers = detector.GetTakers();
-
-            return !takers.IsNullOrEmpty() 
-                   && takers[0].Alive.Value;
+            detector.GetTakers()?.ForEach(executor.ToTaker);
+        }
+        
+        private void PhantomsDoubleStab(Vector3 targetPosition)
+        {
+            master.DoubleStab(targetPosition, 1f + Haste);
         }
     }
 }

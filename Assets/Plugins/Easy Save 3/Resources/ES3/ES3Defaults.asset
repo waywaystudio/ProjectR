@@ -34,6 +34,7 @@ MonoBehaviour:
     - ProjectR.Common
     - ProjectR.Core
     - AstarPathfindingProject
+    - DTT.AreaOfEffectRegions.Demo
     - ProjectR.Global.Audio.Editor
     - ProjectR.Core.Editor
     - ProjectR.Character
@@ -41,23 +42,32 @@ MonoBehaviour:
     - Assembly-CSharp
     - Cinemachine
     - spine-unity
+    - DTT.RuntimeUtilities.Runtime
     - PPv2URPConverters
     - AstarPathfindingProjectEditor
     - spine-unity-editor
     - spine-csharp
+    - DTT.PublishingTools.Editor
+    - DTT.EditorUtilities.Editor
     - ProjectR.Raid
     - UniTask.Linq
     - QcPrimitives
     - ProjectR.Camps.Editor
     - QcPrimitives.Editor
     - ProjectR.Camps
+    - DTT.AreaOfEffectRegions.Editor
+    - DTT.RuntimeUtilities.Demo
     - DOTween.Modules
     - ProjectR.Common.Editor
     - ES3.editor
     - ProjectR.Lobby
     - ShortCuts.Editor
     - PackageToolsEditor
+    - DTT.AreaOfEffectRegions.Tests.Runtime
+    - DTT.AreaOfEffectRegions.Runtime
     - UniTask.TextMeshPro
+    - DTT.EditorUtilities.Demo
+    - DTT.PublishingTools.Runtime
     - UniTask.Addressables
     - UniTask.Editor
     - ProjectR.Loading

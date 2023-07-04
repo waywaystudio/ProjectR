@@ -52,25 +52,9 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 3263926489268022469, guid: 15a877e84ffd8e14687a3e6601019b57, type: 3}
-      propertyPath: damageSpec.statList.Array.data[0].value
-      value: 700
-      objectReference: {fileID: 0}
-    - target: {fileID: 3263926489268022469, guid: 15a877e84ffd8e14687a3e6601019b57, type: 3}
-      propertyPath: damageSpec.statList.Array.data[1].value
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 8380361914805468174, guid: 15a877e84ffd8e14687a3e6601019b57, type: 3}
       propertyPath: m_Name
       value: Finisher
-      objectReference: {fileID: 0}
-    - target: {fileID: 8979131138480939997, guid: 15a877e84ffd8e14687a3e6601019b57, type: 3}
-      propertyPath: coolTimer.coolTime
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8979131138480939997, guid: 15a877e84ffd8e14687a3e6601019b57, type: 3}
-      propertyPath: remainBonusMultiplier
-      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -221,10 +205,6 @@ PrefabInstance:
     - target: {fileID: 234500611213636336, guid: b1ca4456428c7384c83298df96902db4, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1760830664133795729, guid: b1ca4456428c7384c83298df96902db4, type: 3}
-      propertyPath: damageSpec.statList.Array.data[0].value
-      value: 120
       objectReference: {fileID: 0}
     - target: {fileID: 8380361914805468174, guid: b1ca4456428c7384c83298df96902db4, type: 3}
       propertyPath: m_Name
@@ -379,10 +359,6 @@ PrefabInstance:
     - target: {fileID: 234500611213636336, guid: f92060855269e7944be371c8dde60ef1, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1760830664133795729, guid: f92060855269e7944be371c8dde60ef1, type: 3}
-      propertyPath: damageSpec.statList.Array.data[0].value
-      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 8380361914805468174, guid: f92060855269e7944be371c8dde60ef1, type: 3}
       propertyPath: m_Name

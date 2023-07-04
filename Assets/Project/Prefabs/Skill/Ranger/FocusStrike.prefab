@@ -95,7 +95,7 @@ Transform:
   - {fileID: 7221708945386366489}
   - {fileID: 5853087751410363707}
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &4699963658791511106
 MonoBehaviour:
@@ -124,17 +124,17 @@ MonoBehaviour:
       - List:
         - {fileID: 1364404895503189817}
   detector:
-    targetType: 1
     sortingType: 0
     maxBufferCount: 32
-    sizeVector: {x: 40, y: 6}
+    sizeVector: {x: 0, y: 40, z: 6}
     targetLayer:
       serializedVersion: 2
       m_Bits: 256
   animationTrait:
     animationKey: AimHold
+    castCompleteAnimationKey: AimHoldFire
     isLoop: 1
-    hasExecuteEvent: 1
+    hasExecuteEvent: 0
     animationPlaySpeed: 1
     skillType: 2
     callbackSection: 0

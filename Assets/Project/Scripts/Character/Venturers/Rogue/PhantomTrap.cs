@@ -1,4 +1,3 @@
-using System.Collections.Generic;
 using Common;
 using Common.Animation;
 using Common.Traps;
@@ -32,7 +31,8 @@ namespace Character.Venturers.Rogue
 
             model.OnHit.Add("SkillHit", () =>
             {
-                var takerList = GetTakersInSphereType(trapPosition, 5f, 135f, targetLayer);
+                var takerList = 
+                    TargetUtility.GetTargetsInAngle<ICombatTaker>(trapPosition, transform.forward, targetLayer, 5f, 135f, colliderBuffers);
                 
                 takerList?.ForEach(taker => executor.ToTaker(taker, ExecuteGroup.Group1));
             });
@@ -44,7 +44,7 @@ namespace Character.Venturers.Rogue
             });
         }
         
-        public void Throw(Vector3 targetPosition, float timeScale)
+        public void MarkOfDeath(Vector3 targetPosition, float timeScale)
         {
             var trapPosition = transform.position;
             var direction = (targetPosition - trapPosition).normalized;
@@ -61,38 +61,11 @@ namespace Character.Venturers.Rogue
                 Idle();
                 model.OnHit.Remove("SkillHit");
             });
-            // Projectile Fire
         }
         
-        public override void Execution()
-        {
-            
-        }
-
+        public override void Execution() { }
+        
 
         private void Idle() => model.Idle();
-
-        private List<ICombatTaker> GetTakersInSphereType(Vector3 center, float radius, float angle, LayerMask layer)
-        {
-            if (Physics.OverlapSphereNonAlloc(center, radius, colliderBuffers, layer) == 0) return null;
-        
-            var result = new List<ICombatTaker>();
-            
-            colliderBuffers.ForEach(collider =>
-            {
-                if (collider.IsNullOrEmpty() || !collider.TryGetComponent(out ICombatTaker taker)) return;
-                
-                if (Mathf.Abs(angle - 360.0f) > 0.000001f)
-                {
-                    var direction = (collider.transform.position - center).normalized;
-        
-                    if (Vector3.Angle(transform.forward, direction) > angle * 0.5f) return;
-                }
-                
-                result.Add(taker);
-            });
-        
-            return result;
-        }
     }
 }

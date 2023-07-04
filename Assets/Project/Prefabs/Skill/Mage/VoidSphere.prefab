@@ -122,22 +122,22 @@ MonoBehaviour:
       - List:
         - {fileID: 6640065934772434048}
   detector:
-    targetType: 1
     sortingType: 0
     maxBufferCount: 32
-    sizeVector: {x: 40, y: 6}
+    sizeVector: {x: 0, y: 40, z: 6}
     targetLayer:
       serializedVersion: 2
       m_Bits: 256
   animationTrait:
     animationKey: CastHold
+    castCompleteAnimationKey: CastHoldFire
     isLoop: 1
     hasExecuteEvent: 0
     animationPlaySpeed: 1
     skillType: 2
     callbackSection: 0
   coolTimer:
-    coolTime: 1
+    coolTime: 3
     invokeSection: 3
   castTimer:
     castingTime: 1.5

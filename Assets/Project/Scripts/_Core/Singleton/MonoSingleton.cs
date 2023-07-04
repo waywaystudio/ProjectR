@@ -30,6 +30,11 @@ namespace Singleton
         }
 
 
+        protected void SetInstanceNull()
+        {
+            instance = null;
+        }
+
         protected virtual void Awake()
         {
             instance = this as T;

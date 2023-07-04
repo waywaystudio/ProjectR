@@ -18,11 +18,11 @@ MonoBehaviour:
     name: Slash
     behaviourMask: Skill
     priority: 1
-    detectorType: Circle
     sortingType: None
-    targetParam: {x: 6, y: 135}
+    targetParam: {x: 0, y: 6, z: 135}
     targetLayer: Monster
     animationKey: AttackOneHand
+    castCompleteKey: 
     isLoop: 0
     hasEvent: 1
     skillType: Instant
@@ -43,11 +43,11 @@ MonoBehaviour:
     name: Bash
     behaviourMask: Skill
     priority: 6
-    detectorType: Circle
     sortingType: None
-    targetParam: {x: 6, y: 90}
+    targetParam: {x: 0, y: 6, z: 90}
     targetLayer: Monster
     animationKey: AttackOffHandInstant
+    castCompleteKey: 
     isLoop: 0
     hasEvent: 1
     skillType: Instant
@@ -69,11 +69,11 @@ MonoBehaviour:
     name: UpperSlash
     behaviourMask: Skill
     priority: 3
-    detectorType: Circle
     sortingType: None
-    targetParam: {x: 8, y: 90}
+    targetParam: {x: 0, y: 8, z: 90}
     targetLayer: Monster
     animationKey: Cast1
+    castCompleteKey: 
     isLoop: 0
     hasEvent: 1
     skillType: Instant
@@ -93,11 +93,11 @@ MonoBehaviour:
     name: ThunderClap
     behaviourMask: RigidSkill
     priority: 4
-    detectorType: Circle
     sortingType: None
-    targetParam: {x: 15, y: 360}
+    targetParam: {x: 0, y: 15, z: 360}
     targetLayer: Monster
     animationKey: JumpFullCyle
+    castCompleteKey: 
     isLoop: 0
     hasEvent: 1
     skillType: Instant
@@ -117,11 +117,11 @@ MonoBehaviour:
     name: MightyGuard
     behaviourMask: Skill
     priority: 0
-    detectorType: Circle
     sortingType: None
-    targetParam: {x: 0, y: 0}
+    targetParam: {x: 0, y: 0, z: 0}
     targetLayer: Monster
     animationKey: Buff
+    castCompleteKey: 
     isLoop: 0
     hasEvent: 1
     skillType: Instant
@@ -141,11 +141,11 @@ MonoBehaviour:
     name: ShieldUp
     behaviourMask: Skill
     priority: 5
-    detectorType: Self
     sortingType: None
-    targetParam: {x: 0, y: 0}
+    targetParam: {x: 0, y: 0, z: 0}
     targetLayer: Adventure
     animationKey: Defence
+    castCompleteKey: 
     isLoop: 1
     hasEvent: 0
     skillType: Holding
@@ -166,11 +166,11 @@ MonoBehaviour:
     name: Taunt
     behaviourMask: RigidSkill
     priority: 10
-    detectorType: Circle
     sortingType: None
-    targetParam: {x: 100, y: 360}
+    targetParam: {x: 0, y: 100, z: 360}
     targetLayer: Monster
     animationKey: Buff
+    castCompleteKey: 
     isLoop: 0
     hasEvent: 1
     skillType: Instant
@@ -191,11 +191,11 @@ MonoBehaviour:
     name: Smash
     behaviourMask: Skill
     priority: 2
-    detectorType: Circle
     sortingType: None
-    targetParam: {x: 7, y: 135}
+    targetParam: {x: 0, y: 7, z: 135}
     targetLayer: Monster
     animationKey: AttackSlashMiddle
+    castCompleteKey: 
     isLoop: 0
     hasEvent: 1
     skillType: Instant
@@ -216,11 +216,11 @@ MonoBehaviour:
     name: LeapAttack
     behaviourMask: RigidSkill
     priority: 1
-    detectorType: Circle
     sortingType: None
-    targetParam: {x: 15, y: 360}
+    targetParam: {x: 15, y: 8, z: 360}
     targetLayer: Monster
     animationKey: AttackSlashHeavy
+    castCompleteKey: 
     isLoop: 0
     hasEvent: 1
     skillType: Instant
@@ -241,11 +241,11 @@ MonoBehaviour:
     name: Deathblow
     behaviourMask: Skill
     priority: 3
-    detectorType: Circle
     sortingType: None
-    targetParam: {x: 12, y: 135}
+    targetParam: {x: 0, y: 12, z: 135}
     targetLayer: Monster
     animationKey: AttackSlashHold
+    castCompleteKey: AttackSlashHoldFire
     isLoop: 1
     hasEvent: 0
     skillType: Holding
@@ -266,11 +266,11 @@ MonoBehaviour:
     name: WarriorsFury
     behaviourMask: RigidSkill
     priority: 10
-    detectorType: Self
     sortingType: None
-    targetParam: {x: 0, y: 0}
+    targetParam: {x: 0, y: 0, z: 0}
     targetLayer: Adventure
     animationKey: None
+    castCompleteKey: 
     isLoop: 0
     hasEvent: 1
     skillType: Instant
@@ -291,11 +291,11 @@ MonoBehaviour:
     name: BloodSmash
     behaviourMask: Skill
     priority: 3
-    detectorType: Circle
     sortingType: None
-    targetParam: {x: 8, y: 180}
+    targetParam: {x: 0, y: 8, z: 180}
     targetLayer: Monster
     animationKey: AttackSlashMiddle
+    castCompleteKey: 
     isLoop: 0
     hasEvent: 1
     skillType: Instant
@@ -315,11 +315,11 @@ MonoBehaviour:
     name: RapidCharge
     behaviourMask: RigidSkill
     priority: 2
-    detectorType: Circle
     sortingType: None
-    targetParam: {x: 15, y: 360}
+    targetParam: {x: 15, y: 7, z: 360}
     targetLayer: Monster
     animationKey: Run DUELIST
+    castCompleteKey: 
     isLoop: 1
     hasEvent: 0
     skillType: Instant
@@ -339,11 +339,11 @@ MonoBehaviour:
     name: Exploitation
     behaviourMask: Skill
     priority: 3
-    detectorType: Circle
     sortingType: None
-    targetParam: {x: 8, y: 180}
+    targetParam: {x: 0, y: 8, z: 180}
     targetLayer: Monster
     animationKey: AttackSlashMiddle
+    castCompleteKey: 
     isLoop: 0
     hasEvent: 1
     skillType: Instant
@@ -363,11 +363,11 @@ MonoBehaviour:
     name: Finisher
     behaviourMask: Skill
     priority: 1
-    detectorType: Circle
     sortingType: None
-    targetParam: {x: 12, y: 360}
+    targetParam: {x: 0, y: 12, z: 360}
     targetLayer: Monster
     animationKey: AttackSlashHeavy
+    castCompleteKey: 
     isLoop: 0
     hasEvent: 1
     skillType: Instant
@@ -387,11 +387,11 @@ MonoBehaviour:
     name: ClawAttack
     behaviourMask: Skill
     priority: 1
-    detectorType: Circle
     sortingType: None
-    targetParam: {x: 6, y: 90}
+    targetParam: {x: 0, y: 6, z: 90}
     targetLayer: Monster
     animationKey: clawAttack
+    castCompleteKey: 
     isLoop: 0
     hasEvent: 1
     skillType: Instant
@@ -411,11 +411,11 @@ MonoBehaviour:
     name: PowerBeat
     behaviourMask: Skill
     priority: 2
-    detectorType: Circle
     sortingType: None
-    targetParam: {x: 7, y: 90}
+    targetParam: {x: 0, y: 7, z: 90}
     targetLayer: Monster
     animationKey: powerBeat
+    castCompleteKey: 
     isLoop: 0
     hasEvent: 1
     skillType: Instant
@@ -435,11 +435,11 @@ MonoBehaviour:
     name: Liberation
     behaviourMask: Skill
     priority: 3
-    detectorType: Self
     sortingType: None
-    targetParam: {x: 0, y: 0}
+    targetParam: {x: 0, y: 0, z: 0}
     targetLayer: Adventurer
     animationKey: liberation
+    castCompleteKey: 
     isLoop: 0
     hasEvent: 0
     skillType: Instant
@@ -459,11 +459,11 @@ MonoBehaviour:
     name: Annihilation
     behaviourMask: RigidSkill
     priority: 4
-    detectorType: Circle
     sortingType: None
-    targetParam: {x: 12, y: 360}
+    targetParam: {x: 0, y: 12, z: 360}
     targetLayer: Monster
     animationKey: annihilation
+    castCompleteKey: 
     isLoop: 0
     hasEvent: 1
     skillType: Instant
@@ -483,11 +483,11 @@ MonoBehaviour:
     name: DoubleStab
     behaviourMask: Skill
     priority: 2
-    detectorType: Circle
     sortingType: None
-    targetParam: {x: 5, y: 135}
+    targetParam: {x: 0, y: 5, z: 135}
     targetLayer: Monster
     animationKey: AttackDuelFastStabTwice
+    castCompleteKey: 
     isLoop: 0
     hasEvent: 1
     skillType: Instant
@@ -508,11 +508,11 @@ MonoBehaviour:
     name: PhantomStrike
     behaviourMask: RigidSkill
     priority: 5
-    detectorType: Circle
     sortingType: None
-    targetParam: {x: 10, y: 180}
+    targetParam: {x: 10, y: 4, z: 360}
     targetLayer: Monster
     animationKey: Dash
+    castCompleteKey: 
     isLoop: 1
     hasEvent: 0
     skillType: Instant
@@ -533,11 +533,11 @@ MonoBehaviour:
     name: ShadowWalk
     behaviourMask: Skill
     priority: 1
-    detectorType: Circle
     sortingType: None
-    targetParam: {x: 9, y: 360}
+    targetParam: {x: 10, y: 4, z: 360}
     targetLayer: Monster
     animationKey: Landing
+    castCompleteKey: 
     isLoop: 0
     hasEvent: 0
     skillType: Instant
@@ -558,11 +558,11 @@ MonoBehaviour:
     name: MarkOfDeath
     behaviourMask: Skill
     priority: 10
-    detectorType: Circle
     sortingType: None
-    targetParam: {x: 12, y: 360}
+    targetParam: {x: 15, y: 3, z: 360}
     targetLayer: Monster
     animationKey: Cast2
+    castCompleteKey: 
     isLoop: 0
     hasEvent: 1
     skillType: Instant
@@ -584,11 +584,11 @@ MonoBehaviour:
     name: ContinuesAttack
     behaviourMask: Skill
     priority: 2
-    detectorType: Circle
     sortingType: None
-    targetParam: {x: 30, y: 6}
+    targetParam: {x: 0, y: 30, z: 6}
     targetLayer: Monster
     animationKey: continuesAttack
+    castCompleteKey: 
     isLoop: 1
     hasEvent: 1
     skillType: Holding
@@ -608,11 +608,11 @@ MonoBehaviour:
     name: InstantTrap
     behaviourMask: RigidSkill
     priority: 3
-    detectorType: Self
     sortingType: None
-    targetParam: {x: 4, y: 360}
+    targetParam: {x: 0, y: 4, z: 360}
     targetLayer: Monster
     animationKey: jump
+    castCompleteKey: 
     isLoop: 0
     hasEvent: 0
     skillType: Instant
@@ -632,11 +632,11 @@ MonoBehaviour:
     name: AimShot
     behaviourMask: Skill
     priority: 3
-    detectorType: Circle
     sortingType: None
-    targetParam: {x: 40, y: 4}
+    targetParam: {x: 0, y: 40, z: 4}
     targetLayer: Monster
     animationKey: AimHold
+    castCompleteKey: AimHoldFire
     isLoop: 1
     hasEvent: 0
     skillType: Casting
@@ -658,11 +658,11 @@ MonoBehaviour:
     name: InstantShot
     behaviourMask: Skill
     priority: 5
-    detectorType: Circle
     sortingType: None
-    targetParam: {x: 40, y: 4}
+    targetParam: {x: 0, y: 40, z: 4}
     targetLayer: Monster
     animationKey: ShootVeryFast
+    castCompleteKey: 
     isLoop: 0
     hasEvent: 1
     skillType: Instant
@@ -685,13 +685,13 @@ MonoBehaviour:
     name: FocusedStrike
     behaviourMask: Skill
     priority: 10
-    detectorType: Circle
     sortingType: None
-    targetParam: {x: 40, y: 6}
+    targetParam: {x: 0, y: 40, z: 6}
     targetLayer: Monster
     animationKey: AimHold
+    castCompleteKey: AimHoldFire
     isLoop: 1
-    hasEvent: 1
+    hasEvent: 0
     skillType: Casting
     animationCallback: None
     coolTime: 6
@@ -712,11 +712,11 @@ MonoBehaviour:
     name: Reload
     behaviourMask: Skill
     priority: 1
-    detectorType: Circle
     sortingType: None
-    targetParam: {x: 100, y: 360}
+    targetParam: {x: 0, y: 100, z: 360}
     targetLayer: Monster
     animationKey: Reload
+    castCompleteKey: 
     isLoop: 0
     hasEvent: 1
     skillType: Instant
@@ -739,11 +739,11 @@ MonoBehaviour:
     name: VileScrapper
     behaviourMask: Skill
     priority: 1
-    detectorType: Circle
     sortingType: None
-    targetParam: {x: 40, y: 6}
+    targetParam: {x: 0, y: 40, z: 6}
     targetLayer: Monster
     animationKey: Cast2
+    castCompleteKey: 
     isLoop: 0
     hasEvent: 1
     skillType: Instant
@@ -764,11 +764,11 @@ MonoBehaviour:
     name: VoidSphere
     behaviourMask: Skill
     priority: 5
-    detectorType: Circle
     sortingType: None
-    targetParam: {x: 40, y: 6}
+    targetParam: {x: 0, y: 40, z: 6}
     targetLayer: Monster
     animationKey: CastHold
+    castCompleteKey: CastHoldFire
     isLoop: 1
     hasEvent: 0
     skillType: Casting
@@ -791,11 +791,11 @@ MonoBehaviour:
     name: Extraction
     behaviourMask: Skill
     priority: 8
-    detectorType: Circle
     sortingType: None
-    targetParam: {x: 30, y: 10}
+    targetParam: {x: 30, y: 8, z: 360}
     targetLayer: Monster
     animationKey: ExtractHold
+    castCompleteKey: ExtractHoldFire
     isLoop: 1
     hasEvent: 0
     skillType: Charging
@@ -816,11 +816,11 @@ MonoBehaviour:
     name: ChainsOfSoul
     behaviourMask: RigidSkill
     priority: 5
-    detectorType: Circle
     sortingType: None
-    targetParam: {x: 100, y: 12}
+    targetParam: {x: 100, y: 6, z: 360}
     targetLayer: Monster
     animationKey: Cast3
+    castCompleteKey: 
     isLoop: 0
     hasEvent: 1
     skillType: Instant
@@ -841,11 +841,11 @@ MonoBehaviour:
     name: PriestCommonHeal
     behaviourMask: Skill
     priority: 1
-    detectorType: Circle
     sortingType: HpRatioAscending
-    targetParam: {x: 5, y: 25}
+    targetParam: {x: 0, y: 5, z: 25}
     targetLayer: Adventurer
     animationKey: casting
+    castCompleteKey: 
     isLoop: 0
     hasEvent: 1
     skillType: Casting
@@ -865,11 +865,11 @@ MonoBehaviour:
     name: HealingTouch
     behaviourMask: Skill
     priority: 3
-    detectorType: Circle
     sortingType: HpRatioAscending
-    targetParam: {x: 30, y: 360}
+    targetParam: {x: 30, y: 6, z: 360}
     targetLayer: Adventurer
     animationKey: CastHold
+    castCompleteKey: CastHoldFire
     isLoop: 1
     hasEvent: 0
     skillType: Casting
@@ -877,11 +877,11 @@ MonoBehaviour:
     coolTime: 1
     coolTimeInvoker: Complete
     castTime: 1.5
-    castCallback: Complete
+    castCallback: Execute
     completionValueList:
     - 0
     cost: -2
-    paySection: None
+    paySection: Execute
     statusEffect: 0
     iconFileName: HealingTouch Sprite
     description: "\uB300\uC0C1\uC758 \uCCB4\uB825\uC744 \uD68C\uBCF5\uD558\uACE0,
@@ -890,11 +890,11 @@ MonoBehaviour:
     name: Renew
     behaviourMask: Skill
     priority: 4
-    detectorType: Circle
     sortingType: HpRatioAscending
-    targetParam: {x: 30, y: 360}
+    targetParam: {x: 30, y: 6, z: 360}
     targetLayer: Adventurer
     animationKey: Cast2
+    castCompleteKey: 
     isLoop: 0
     hasEvent: 1
     skillType: Instant
@@ -906,7 +906,7 @@ MonoBehaviour:
     completionValueList:
     - 0
     cost: -5
-    paySection: None
+    paySection: Execute
     statusEffect: 0
     iconFileName: Renew Sprite
     description: "15\uCD08\uAC04 \uC720\uC9C0\uB418\uB294 \uAC15\uD654\uD6A8\uACFC\uB97C
@@ -916,11 +916,11 @@ MonoBehaviour:
     name: LightOfDawn
     behaviourMask: Skill
     priority: 6
-    detectorType: Circle
     sortingType: None
-    targetParam: {x: 40, y: 360}
+    targetParam: {x: 0, y: 40, z: 360}
     targetLayer: Adventurer
     animationKey: CastHold
+    castCompleteKey: CastHoldFire
     isLoop: 1
     hasEvent: 0
     skillType: Casting
@@ -928,11 +928,11 @@ MonoBehaviour:
     coolTime: 14
     coolTimeInvoker: Complete
     castTime: 1.5
-    castCallback: Complete
+    castCallback: Execute
     completionValueList:
     - 0
     cost: -4
-    paySection: None
+    paySection: Execute
     statusEffect: 0
     iconFileName: LightOfDawn Sprite
     description: "\uBAA8\uB4E0 \uC544\uAD70\uC744 \uCE58\uC720\uD55C\uB2E4."
@@ -940,11 +940,11 @@ MonoBehaviour:
     name: Rapture
     behaviourMask: Skill
     priority: 10
-    detectorType: Self
     sortingType: None
-    targetParam: {x: 0, y: 0}
+    targetParam: {x: 0, y: 0, z: 0}
     targetLayer: Adventurer
     animationKey: Buff
+    castCompleteKey: 
     isLoop: 0
     hasEvent: 1
     skillType: Instant
@@ -956,7 +956,7 @@ MonoBehaviour:
     completionValueList:
     - 0
     cost: 20
-    paySection: None
+    paySection: Execute
     statusEffect: 0
     iconFileName: Rapture Sprite
     description: "\uB2E4\uC74C\uC5D0 \uC0AC\uC6A9\uD558\uB294 \uAE30\uC220\uC744
@@ -965,11 +965,11 @@ MonoBehaviour:
     name: ShockWave
     behaviourMask: Skill
     priority: 2
-    detectorType: Circle
     sortingType: None
-    targetParam: {x: 18, y: 60}
+    targetParam: {x: 0, y: 18, z: 60}
     targetLayer: Adventurer
     animationKey: casting
+    castCompleteKey: attack
     isLoop: 1
     hasEvent: 0
     skillType: Casting
@@ -981,7 +981,7 @@ MonoBehaviour:
     completionValueList:
     - 36
     cost: 0
-    paySection: 
+    paySection: None
     statusEffect: 0
     iconFileName: ShockWave Sprite
     description: Starts combat by attacking a target with a melee weapon.
@@ -989,11 +989,11 @@ MonoBehaviour:
     name: LivingBomb
     behaviourMask: Skill
     priority: 4
-    detectorType: Circle
     sortingType: Random
-    targetParam: {x: 50, y: 0}
+    targetParam: {x: 0, y: 50, z: 0}
     targetLayer: Adventurer
     animationKey: attack
+    castCompleteKey: 
     isLoop: 0
     hasEvent: 0
     skillType: Instant
@@ -1005,7 +1005,7 @@ MonoBehaviour:
     completionValueList:
     - 0
     cost: 0
-    paySection: 
+    paySection: None
     statusEffect: 32220001
     iconFileName: LivingBomb Sprite
     description: Starts combat by attacking a target with a melee weapon.
@@ -1013,11 +1013,11 @@ MonoBehaviour:
     name: MeteorStrike
     behaviourMask: Skill
     priority: 3
-    detectorType: Circle
     sortingType: None
-    targetParam: {x: 50, y: 360}
+    targetParam: {x: 0, y: 50, z: 360}
     targetLayer: Adventurer
     animationKey: attack
+    castCompleteKey: 
     isLoop: 1
     hasEvent: 0
     skillType: Casting
@@ -1029,7 +1029,7 @@ MonoBehaviour:
     completionValueList:
     - 0
     cost: 0
-    paySection: 
+    paySection: None
     statusEffect: 0
     iconFileName: MeteorStrike Sprite
     description: Starts combat by attacking a target with a melee weapon.
@@ -1037,11 +1037,11 @@ MonoBehaviour:
     name: VillainCommonAttack
     behaviourMask: Skill
     priority: 1
-    detectorType: Circle
     sortingType: CombatClass
-    targetParam: {x: 6, y: 360}
+    targetParam: {x: 0, y: 6, z: 360}
     targetLayer: Adventurer
     animationKey: attack
+    castCompleteKey: 
     isLoop: 0
     hasEvent: 1
     skillType: Instant
@@ -1053,7 +1053,7 @@ MonoBehaviour:
     completionValueList:
     - 20
     cost: 0
-    paySection: 
+    paySection: None
     statusEffect: 0
     iconFileName: VillainCommonAttack Sprite
     description: Starts combat by attacking a target with a melee weapon.

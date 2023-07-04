@@ -107,7 +107,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   group: 1
-  actionCode: 31222203
   pool:
     prefab: {fileID: 3865230921314547483, guid: 9cf6115b552997a478910cf9d8071967, type: 3}
     maxCount: 20
@@ -172,17 +171,17 @@ MonoBehaviour:
       - List:
         - {fileID: 3211000053568049609}
   detector:
-    targetType: 1
     sortingType: 0
     maxBufferCount: 32
-    sizeVector: {x: 50, y: 360}
+    sizeVector: {x: 0, y: 50, z: 360}
     targetLayer:
       serializedVersion: 2
       m_Bits: 128
   animationTrait:
     animationKey: attack
+    castCompleteAnimationKey: 
     isLoop: 1
-    hasEvent: 0
+    hasExecuteEvent: 0
     animationPlaySpeed: 1
     skillType: 2
     callbackSection: 0

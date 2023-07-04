@@ -2,7 +2,6 @@ using System;
 using System.Threading;
 using Common;
 using Common.StatusEffects;
-using Common.TargetSystem;
 using Cysharp.Threading.Tasks;
 using UnityEngine;
 
@@ -19,9 +18,8 @@ namespace Character.Villains.Commons.StatusEffects
         private float hasteWeight;
         private float tickBuffer;
 
-        
         public float CastWeightTime => Duration;
-        public Vector2 SizeVector => new (radius * 2f, radius * 2f);
+        public Vector3 SizeVector => new (radius, radius,radius);
         
 
         public override void Initialize(ICombatProvider provider)

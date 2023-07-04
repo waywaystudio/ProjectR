@@ -172,17 +172,17 @@ MonoBehaviour:
       - List:
         - {fileID: 1419814254346726504}
   detector:
-    targetType: 1
     sortingType: 0
     maxBufferCount: 32
-    sizeVector: {x: 12, y: 360}
+    sizeVector: {x: 15, y: 3, z: 360}
     targetLayer:
       serializedVersion: 2
       m_Bits: 256
   animationTrait:
     animationKey: Cast2
+    castCompleteAnimationKey: 
     isLoop: 0
-    hasEvent: 1
+    hasExecuteEvent: 1
     animationPlaySpeed: 1
     skillType: 1
     callbackSection: 3

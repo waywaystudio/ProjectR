@@ -25,7 +25,7 @@ namespace Character.Venturers.Rogue
             {
                 if (!phantom.gameObject.activeSelf) return;
 
-                phantom.Throw(targetPosition, haste);
+                phantom.MarkOfDeath(targetPosition, haste);
             });
         }
 

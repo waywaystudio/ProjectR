@@ -1,4 +1,5 @@
 using System.Threading;
+using Common;
 using Common.Skills;
 using Cysharp.Threading.Tasks;
 using UnityEngine;
@@ -13,25 +14,20 @@ namespace Character.Venturers.Mage.Skills
         {
             base.Initialize();
 
-            Builder.AddActiveParam("TargetTracking", targetPosition => ChannelingExtraction(targetPosition).Forget())
-                           .Add(SectionType.Execute, "PlayEndChargingAnimation", PlayEndChargingAnimation)
-                           .Add(SectionType.Execute, "SetIsActiveTrue", () => Invoker.IsActive = false)
-                           .Add(SectionType.End, "StopTracking", StopTracking);
+            Builder
+                .AddActiveParam("TargetTracking", targetPosition => ChannelingExtraction(targetPosition).Forget())
+                .Add(SectionType.Execute, "SetIsActiveTrue", () => Invoker.IsActive = false)
+                .Add(SectionType.End, "StopTracking", StopTracking);
         }
 
 
-        private void PlayEndChargingAnimation()
-        {
-            Cb.Animating.PlayOnce("ExtractHoldFire", 1f + Haste, Invoker.Complete);
-        }
-        
         private async UniTaskVoid ChannelingExtraction(Vector3 targetPosition)
         {
             if (Cb is not VenturerBehaviour venturer) return;
             
             cts = new CancellationTokenSource();
-            
-            var validPosition = ValidPosition(targetPosition);
+
+            var validPosition = TargetUtility.GetValidPosition(Cb.transform.position, Range, targetPosition);
                 
             venturer.Rotate(validPosition);
                 
@@ -48,21 +44,10 @@ namespace Character.Venturers.Mage.Skills
             }
         }
 
-        private void StopTracking() => cts?.Cancel();
-
-        private Vector3 ValidPosition(Vector3 targetPosition)
+        private void StopTracking()
         {
-            var playerPosition = Cb.transform.position;
-            
-            if (Vector3.Distance(playerPosition, targetPosition) <= Range)
-            {
-                return targetPosition;
-            }
-
-            var direction = (targetPosition - playerPosition).normalized;
-            var destination = playerPosition + direction * Range;
-
-            return destination;
+            cts?.Cancel();
+            cts = null;
         }
     }
 }

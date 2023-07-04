@@ -44,7 +44,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0777d029ed3dffa4692f417d4aba19ca, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Material: {fileID: 2100000, guid: 2092dced32dbaf44581c2734edec3e94, type: 2}
+  m_Material: {fileID: 2100000, guid: 443581ee016d3c44680f16e964eafebf, type: 2}
   m_DrawDistance: 1000
   m_FadeScale: 1
   m_StartAngleFade: 180
@@ -102,9 +102,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 66eb6ca4b6a3e9345b1c27aa66c4441c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  materialReference: {fileID: 2100000, guid: 2092dced32dbaf44581c2734edec3e94, type: 2}
+  isStaticProjector: 0
+  materialReference: {fileID: 2100000, guid: 443581ee016d3c44680f16e964eafebf, type: 2}
   projector: {fileID: 5451648222217753388}
   easeType: 1
+  backgroundColor: {r: 1, g: 1, b: 1, a: 1}
+  fillColor: {r: 1, g: 0, b: 0, a: 1}
   colliderTransform: {fileID: 2297089615312432373}
 --- !u!1 &6415419560734306728
 GameObject:

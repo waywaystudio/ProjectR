@@ -24,6 +24,7 @@ namespace Common.Systems
 
         private Vector3 RootPosition => rootTransform.position;
         private Func<float> SpeedRetriever { get; set; }
+        private Tween CurrentTween { get; set; }
 
 
         public void Move(Vector3 destination, Action callback)
@@ -61,8 +62,8 @@ namespace Common.Systems
         {
             var jumpDestination = PathfindingUtility.GetReachableStraightPosition(RootPosition, direction, distance);
 
-            rootTransform.DOJump(jumpDestination, jumpPower, 1, duration)
-                         .SetEase(Ease.InSine);
+            CurrentTween = rootTransform.DOJump(jumpDestination, jumpPower, 1, duration)
+                                        .SetEase(Ease.InSine);
         }
 
         public void Teleport(Vector3 direction, float distance)
@@ -76,7 +77,8 @@ namespace Common.Systems
         {
             var dashDestination = PathfindingUtility.GetReachableStraightPosition(RootPosition, direction, distance);
 
-            rootTransform.DOMove(dashDestination, duration).OnComplete(() => callback?.Invoke());
+            CurrentTween = rootTransform.DOMove(dashDestination, duration)
+                                        .OnComplete(() => callback?.Invoke());
         }
 
         public void KnockBack(Vector3 from, float distance, float duration, Action callback)
@@ -84,8 +86,8 @@ namespace Common.Systems
             var knockBackDirection = RootPosition - from;
             var knockBackDestination = PathfindingUtility.GetReachableStraightPosition(RootPosition, knockBackDirection, distance);
 
-            rootTransform.DOMove(knockBackDestination, duration)
-                         .OnComplete(() => callback?.Invoke());
+            CurrentTween = rootTransform.DOMove(knockBackDestination, duration)
+                                        .OnComplete(() => callback?.Invoke());
         }
 
         public void Draw(Vector3 dest, float duration, Action callback)
@@ -95,12 +97,21 @@ namespace Common.Systems
             
             var drawDestination = PathfindingUtility.GetReachableStraightPosition(RootPosition, drawDirection, drawDistance);
             
-            rootTransform.DOMove(drawDestination, duration)
-                         .OnComplete(() => callback?.Invoke());
+            CurrentTween = rootTransform.DOMove(drawDestination, duration)
+                                        .OnComplete(() => callback?.Invoke());
+        }
+        
+        public void Cancel()
+        {
+            if (CurrentTween == null) return;
+            
+            CurrentTween.Kill();
+            CurrentTween = null;
         }
 
         public void Quit()
         {
+            Cancel();
             Stop();
             enabled = false;
         }

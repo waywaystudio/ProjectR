@@ -1,6 +1,6 @@
 using System;
+using Common.Animation;
 using UnityEngine;
-using UnityEngine.Serialization;
 
 namespace Common.Skills
 {
@@ -8,8 +8,9 @@ namespace Common.Skills
     public class SkillAnimationTrait
     {
         [SerializeField] private string animationKey;
+        [SerializeField] private string castCompleteAnimationKey;
         [SerializeField] private bool isLoop;
-        [FormerlySerializedAs("hasEvent")] [SerializeField] private bool hasExecuteEvent;
+        [SerializeField] private bool hasExecuteEvent;
         [SerializeField] private float animationPlaySpeed = 1.0f;
         [SerializeField] private SkillType skillType;
         [SerializeField] private SectionType callbackSection = SectionType.Complete;
@@ -20,12 +21,12 @@ namespace Common.Skills
             : animationPlaySpeed * HasteRetriever.Invoke();
         
         private Func<float> HasteRetriever  { get; set; }
-        
+        private AnimationModel Model { get; set; }
+
 
         public void Initialize(SkillComponent skill)
         {
-            var animator = skill.Cb.Animating;
-
+            Model          =  skill.Cb.Animating;
             HasteRetriever += () => 1.0f + skill.Haste;
             
             skill.Builder
@@ -34,15 +35,20 @@ namespace Common.Skills
             if (hasExecuteEvent)
             {
                 skill.Builder
-                     .Add(SectionType.Active,"RegisterHitEvent", () => animator.OnHit.Add("SkillHit", skill.Invoker.Execute))        
-                     .Add(SectionType.End,"ReleaseHit", () => animator.OnHit.Remove("SkillHit"));
+                     .Add(SectionType.Active,"RegisterHitEvent", () => Model.OnHit.Add("SkillHit", skill.Invoker.Execute))        
+                     .Add(SectionType.End,"ReleaseHit", () => Model.OnHit.Remove("SkillHit"));
+            }
+
+            if (skillType is SkillType.Casting or SkillType.Charging or SkillType.Holding)
+            {
+                skill.Builder
+                     .Add(SectionType.Execute, "CastingCompleteAnimation",() => PlayCompleteCastingAnimation(skill));
             }
         }
 
 
         private void PlayAnimation(SkillComponent skill)
         {
-            var animator = skill.Cb.Animating;
             var callback = callbackSection.GetInvokeAction(skill);
 
             if (animationKey == "None")
@@ -51,7 +57,14 @@ namespace Common.Skills
                 return;
             }
 
-            animator.Play(animationKey, 0, isLoop, AnimationPlaySpeed, callback);
+            Model.Play(animationKey, 0, isLoop, AnimationPlaySpeed, callback);
+        }
+
+        private void PlayCompleteCastingAnimation(SkillComponent skill)
+        {
+            if (castCompleteAnimationKey == "") return;
+            
+            Model.PlayOnce(castCompleteAnimationKey, AnimationPlaySpeed, skill.Invoker.Complete);
         }
         
 
@@ -60,11 +73,12 @@ namespace Common.Skills
         {
             var skillData = Database.SkillSheetData(dataIndex);
             
-            animationKey    = skillData.AnimationKey;
-            isLoop          = skillData.IsLoop;
-            hasExecuteEvent        = skillData.HasEvent;
-            skillType       = skillData.SkillType.ToEnum<SkillType>();
-            callbackSection = skillData.AnimationCallback.ToEnum<SectionType>();
+            animationKey             = skillData.AnimationKey;
+            castCompleteAnimationKey = skillData.CastCompleteKey;
+            isLoop                   = skillData.IsLoop;
+            hasExecuteEvent          = skillData.HasEvent;
+            skillType                = skillData.SkillType.ToEnum<SkillType>();
+            callbackSection          = skillData.AnimationCallback.ToEnum<SectionType>();
         }
 #endif
     }

@@ -49,6 +49,13 @@ namespace Raid
             uiDirector.Dispose();
         }
 
+        [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.BeforeSceneLoad)]
+        private static void ResetSingleton()
+        {
+            if (!Instance.IsNullOrDestroyed())
+                Instance.SetInstanceNull();
+        }
+
 
 #if UNITY_EDITOR
         public void EditorSetUp()

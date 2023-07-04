@@ -122,28 +122,28 @@ MonoBehaviour:
       keyList: 
       valueList: []
   detector:
-    targetType: 1
     sortingType: 0
     maxBufferCount: 32
-    sizeVector: {x: 100, y: 12}
+    sizeVector: {x: 100, y: 6, z: 360}
     targetLayer:
       serializedVersion: 2
       m_Bits: 256
   animationTrait:
     animationKey: Cast3
+    castCompleteAnimationKey: 
     isLoop: 0
     hasExecuteEvent: 1
     animationPlaySpeed: 1
     skillType: 1
     callbackSection: 3
   coolTimer:
-    coolTime: 8
+    coolTime: 16
     invokeSection: 1
   castTimer:
     castingTime: 0
     callbackSection: 0
   cost:
-    cost: 10
+    cost: 30
     paySection: 1
   icon: {fileID: 21300000, guid: 41d09cd2fd1c66d40badd662289c33c5, type: 3}
   description: "\uC8FC\uC704\uC5D0 \uBAA8\uB4E0 \uC601\uD63C\uC758 \uC870\uAC01\uC744

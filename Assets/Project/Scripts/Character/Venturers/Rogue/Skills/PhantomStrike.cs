@@ -16,12 +16,14 @@ namespace Character.Venturers.Rogue.Skills
         {
             base.Initialize();
             
-            cost.PayCondition.Add("HasTarget", HasTarget);
+            cost.PayCondition.Add("HasTarget", detector.HasTarget);
 
-            Builder.AddActiveParam("DashMovement", Dashing)
-                           .Add(SectionType.Active, "CheckColliding", () => Colliding().Forget())
-                           .Add(SectionType.Active, "CreatePhantom", CreatePhantom)
-                           .Add(SectionType.End, "StopCheckColliding", StopChecking);
+            Builder
+                .AddActiveParam("DashMovement", Dashing)
+                .Add(SectionType.Active, "CheckColliding", () => Colliding().Forget())
+                .Add(SectionType.Active, "CreatePhantom", CreatePhantom)
+                .Add(SectionType.Cancel, "CancelTween", () => Cb.Pathfinding.Cancel())
+                .Add(SectionType.End, "StopTask", StopTask);
         }
 
 
@@ -29,21 +31,13 @@ namespace Character.Venturers.Rogue.Skills
         {
             var playerPosition = Cb.transform.position;
             var direction = (targetPosition - playerPosition).normalized;
-            
+
             Cb.Pathfinding.Dash(direction, Range, 0.28f, Invoker.Complete);
         }
 
         private void CreatePhantom()
         {
             executor.ToPosition(Cb.transform.position, ExecuteGroup.Group2);
-        }
-
-        private bool HasTarget()
-        {
-            var takers = detector.GetTakers();
-
-            return !takers.IsNullOrEmpty() 
-                   && takers[0].Alive.Value;
         }
 
         private async UniTaskVoid Colliding()
@@ -54,21 +48,25 @@ namespace Character.Venturers.Rogue.Skills
             {
                 var collidedTarget = detector.GetTakersInCircleRange(3f, 360);
 
-                if (collidedTarget.HasElement() && 
-                    collidedTarget[0].Alive.Value &&
-                    !takerListPerAction.Contains(collidedTarget[0]))
+                if (collidedTarget.HasElement())
                 {
-                    takerListPerAction.Add(collidedTarget[0]);
-                    executor.ToTaker(collidedTarget[0]);
+                    collidedTarget.ForEach(target =>
+                    {
+                        if (!target.Alive.Value || takerListPerAction.Contains(target)) return;
+                        
+                        takerListPerAction.Add(target);
+                        executor.ToTaker(target);
+                    });
                 }
-                
+
                 await UniTask.Yield(cts.Token);
             }
         }
 
-        private void StopChecking()
+        private void StopTask()
         {
             cts?.Cancel();
+            cts = null;
             takerListPerAction.Clear();
         }
     }

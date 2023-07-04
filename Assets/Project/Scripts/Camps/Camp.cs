@@ -58,7 +58,7 @@ public class Camp : MonoSingleton<Camp>, ISavable, IEditable
 
     public void Save()
     {
-        Serializer.Save("challengers", challengers);
+        // Serializer.Save("challengers", challengers);
         
         venturerTable.Iterate(venturer => venturer.Save()); 
         growMaterialInventory.Save();
@@ -66,10 +66,18 @@ public class Camp : MonoSingleton<Camp>, ISavable, IEditable
 
     public void Load()
     {
-        Challengers = Serializer.Load("challengers", challengers);
+        // Challengers = Serializer.Load("challengers", challengers);
         
         venturerTable.Iterate(venturer => venturer.Load());
         growMaterialInventory.Load();
+    }
+    
+    
+    [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.BeforeSceneLoad)]
+    private static void ResetSingleton()
+    {
+        if (!Instance.IsNullOrDestroyed())
+            Instance.SetInstanceNull();
     }
     
 #if UNITY_EDITOR

@@ -1,5 +1,4 @@
 using Common.Skills;
-using UnityEngine;
 
 namespace Character.Venturers.Mage.Skills
 {
@@ -9,9 +8,7 @@ namespace Character.Venturers.Mage.Skills
         {
             base.Initialize();
 
-            Builder.Add(SectionType.Execute, "Fire", Fire)
-                           .Add(SectionType.Execute, "PlayCastCompleteAnimation", PlayCastCompleteAnimation);
-
+            Builder.Add(SectionType.Execute, "Fire", Fire);
         }
         
         
@@ -20,11 +17,6 @@ namespace Character.Venturers.Mage.Skills
             var forwardPosition = Provider.Position + Provider.Forward;
 
             executor.ToPosition(forwardPosition);
-        }
-        
-        private void PlayCastCompleteAnimation()
-        {
-            Cb.Animating.PlayOnce("CastHoldFire", 1f + Haste, Invoker.Complete);
         }
     }
 }

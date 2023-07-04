@@ -52,21 +52,9 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 6644808226710964721, guid: 230c76609ab2a94438c1cf36cd88cbc0, type: 3}
-      propertyPath: healSpec.statList.Array.data[0].value
-      value: 300
-      objectReference: {fileID: 0}
     - target: {fileID: 8380361914805468174, guid: 230c76609ab2a94438c1cf36cd88cbc0, type: 3}
       propertyPath: m_Name
       value: LightOfDawn
-      objectReference: {fileID: 0}
-    - target: {fileID: 8921509456273517671, guid: 230c76609ab2a94438c1cf36cd88cbc0, type: 3}
-      propertyPath: cost.paySection
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 8921509456273517671, guid: 230c76609ab2a94438c1cf36cd88cbc0, type: 3}
-      propertyPath: coolTimer.invokeSection
-      value: 5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -109,10 +97,6 @@ PrefabInstance:
       propertyPath: actionCode
       value: 31210603
       objectReference: {fileID: 0}
-    - target: {fileID: 1002022921544274789, guid: a3acb303f8f3ed24c8afb44fa3d18ccf, type: 3}
-      propertyPath: actionIcon
-      value: 
-      objectReference: {fileID: 7769353189435137216}
     - target: {fileID: 1025019122601041559, guid: a3acb303f8f3ed24c8afb44fa3d18ccf, type: 3}
       propertyPath: bindingCode
       value: 14
@@ -221,10 +205,6 @@ PrefabInstance:
       propertyPath: actionCode
       value: 31210605
       objectReference: {fileID: 0}
-    - target: {fileID: 2266547791025958082, guid: a3acb303f8f3ed24c8afb44fa3d18ccf, type: 3}
-      propertyPath: actionIcon
-      value: 
-      objectReference: {fileID: 7160064012819233583}
     - target: {fileID: 2530082981901857982, guid: a3acb303f8f3ed24c8afb44fa3d18ccf, type: 3}
       propertyPath: actionCode
       value: 31210602
@@ -632,28 +612,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f865738da60c3e442ae51953dc29c83c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &7160064012819233583 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 2696955962189539856, guid: a3acb303f8f3ed24c8afb44fa3d18ccf, type: 3}
-  m_PrefabInstance: {fileID: 5057590073391321407}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &7769353189435137216 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 3306313859355921919, guid: a3acb303f8f3ed24c8afb44fa3d18ccf, type: 3}
-  m_PrefabInstance: {fileID: 5057590073391321407}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!4 &8150643729164461668 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3975777049801717595, guid: a3acb303f8f3ed24c8afb44fa3d18ccf, type: 3}
@@ -719,10 +677,6 @@ PrefabInstance:
     - target: {fileID: 8380361914805468174, guid: 16483b4c51548dc47a46f11f82c20fb1, type: 3}
       propertyPath: m_Name
       value: Renew
-      objectReference: {fileID: 0}
-    - target: {fileID: 8712023081402431253, guid: 16483b4c51548dc47a46f11f82c20fb1, type: 3}
-      propertyPath: cost.paySection
-      value: 5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -796,22 +750,6 @@ PrefabInstance:
     - target: {fileID: 234500611213636336, guid: 6528dec2b144b6a49824d4e67d6bd7b4, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4722194049015145637, guid: 6528dec2b144b6a49824d4e67d6bd7b4, type: 3}
-      propertyPath: cost.paySection
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 4722194049015145637, guid: 6528dec2b144b6a49824d4e67d6bd7b4, type: 3}
-      propertyPath: coolTimer.invokeSection
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 6644808226710964721, guid: 6528dec2b144b6a49824d4e67d6bd7b4, type: 3}
-      propertyPath: healSpec.statList.Array.data[0].value
-      value: 400
-      objectReference: {fileID: 0}
-    - target: {fileID: 6644808226710964721, guid: 6528dec2b144b6a49824d4e67d6bd7b4, type: 3}
-      propertyPath: healSpec.statList.Array.data[1].value
-      value: 0.3
       objectReference: {fileID: 0}
     - target: {fileID: 8380361914805468174, guid: 6528dec2b144b6a49824d4e67d6bd7b4, type: 3}
       propertyPath: m_Name

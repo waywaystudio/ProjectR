@@ -24,6 +24,32 @@ public class SequenceBuilder
         
         return this;
     }
+    
+    /// <summary>
+    /// mainSequencer에 Sequencer를 등록한다.
+    /// </summary>
+    public SequenceBuilder Register(string key, Sequencer mainSequencer)
+    {
+        mainSequencer[SectionType.Active].Add(key, () => Sequencer[SectionType.Active].Invoke());
+        mainSequencer[SectionType.Cancel].Add(key, () => Sequencer[SectionType.Cancel].Invoke());
+        mainSequencer[SectionType.Complete].Add(key, () => Sequencer[SectionType.Complete].Invoke());
+        mainSequencer[SectionType.End].Add(key, () => Sequencer[SectionType.End].Invoke());
+
+        return this;
+    }
+
+    /// <summary>
+    /// mainSequencer로 부터 Sequencer를 해제한다.
+    /// </summary>
+    public SequenceBuilder Unregister(string key, Sequencer mainSequencer)
+    {
+        mainSequencer[SectionType.Active].Remove(key);
+        mainSequencer[SectionType.Cancel].Remove(key);
+        mainSequencer[SectionType.Complete].Remove(key);
+        mainSequencer[SectionType.End].Remove(key);
+        
+        return this;
+    }
 }
 
 public class SequenceBuilder<T>

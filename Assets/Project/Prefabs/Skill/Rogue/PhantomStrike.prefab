@@ -172,7 +172,7 @@ Transform:
   - {fileID: 7221708945386366489}
   - {fileID: 5853087751410363707}
   m_Father: {fileID: 0}
-  m_RootOrder: -1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &-6320411617643193093
 MonoBehaviour:
@@ -201,17 +201,17 @@ MonoBehaviour:
       - List:
         - {fileID: 8450002102728186695}
   detector:
-    targetType: 1
     sortingType: 0
     maxBufferCount: 32
-    sizeVector: {x: 10, y: 180}
+    sizeVector: {x: 10, y: 4, z: 360}
     targetLayer:
       serializedVersion: 2
       m_Bits: 256
   animationTrait:
     animationKey: Dash
+    castCompleteAnimationKey: 
     isLoop: 1
-    hasEvent: 0
+    hasExecuteEvent: 0
     animationPlaySpeed: 1
     skillType: 1
     callbackSection: 3

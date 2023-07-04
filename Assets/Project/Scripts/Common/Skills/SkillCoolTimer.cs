@@ -16,7 +16,7 @@ namespace Common.Skills
             
             skill.Builder
                  .AddCondition("IsCoolTimeReady", () => IsReady)
-                 .Add(InvokeSection, "ActiveCoolTime", () => Play(skill.CoolWeightTime));
+                 .Add(InvokeSection, "ActiveCoolTime", () => Play(skill.CoolingWeight));
         }
         
 

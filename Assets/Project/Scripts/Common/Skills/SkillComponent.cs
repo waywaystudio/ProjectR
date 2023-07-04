@@ -5,7 +5,7 @@ using UnityEngine;
 
 namespace Common.Skills
 {
-    public class SkillComponent : MonoBehaviour, IActionSender, IActionBehaviour, IHasSequencer, IEditable
+    public class SkillComponent : MonoBehaviour, ISkill, IEditable
     {
         [SerializeField] protected DataIndex actionCode;
         [SerializeField] protected ActionMask behaviourMask = ActionMask.Skill;
@@ -33,15 +33,16 @@ namespace Common.Skills
         public float Range => detector.Range;
         public float Angle => detector.Angle;
         public Sprite Icon => icon;
-        public Sequencer Sequencer { get; } = new();
+
+        public Sequencer Sequencer => sequencer;
         public SkillSequenceBuilder Builder { get; private set; }
         public SkillSequenceInvoker Invoker { get; private set; }
         public SkillCoolTimer CoolTimer => coolTimer;
         public SkillCastTimer CastTimer => castTimer;
-
-        // TODO. Will be Multiply Character Haste Weight
-        public float CoolWeightTime => CoolTimer.CoolTime;
-        public float CastWeightTime => CastTimer.CastingTime;
+        public Vector3 SizeVector => detector.SizeVector;
+        public float CastingWeight => CastTimer.CastingTime;
+        public float CoolingWeight => CoolTimer.CoolTime;
+        
         public CharacterBehaviour Cb => cb ??= GetComponentInParent<CharacterBehaviour>();
 
         public bool IsEnded => Sequencer == null || Invoker.IsEnd;
@@ -51,7 +52,7 @@ namespace Common.Skills
 
         public virtual void Initialize()
         {
-            Invoker    = new SkillSequenceInvoker(sequencer);
+            Invoker = new SkillSequenceInvoker(sequencer);
             Builder = new SkillSequenceBuilder(sequencer);
             
             detector.Initialize(Cb);

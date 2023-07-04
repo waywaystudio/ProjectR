@@ -10,8 +10,8 @@ namespace Character.Venturers.Ranger.Skills
             base.Initialize();
 
             Provider.OnDamageProvided.Add("AddAdrenalinByAimShot", AddAdrenalin);
-            Builder.Add(SectionType.Execute, "Fire", Fire)
-                           .Add(SectionType.Execute, "PlayCastCompleteAnimation", PlayCastCompleteAnimation);
+            Builder
+                .Add(SectionType.Execute, "Fire", Fire);
 
         }
         
@@ -29,12 +29,7 @@ namespace Character.Venturers.Ranger.Skills
 
             executor.ToPosition(forwardPosition);
         }
-        
-        private void PlayCastCompleteAnimation()
-        {
-            Cb.Animating.PlayOnce("AimHoldFire", 1f + Haste, Invoker.Complete);
-        }
-        
+
         private void AddAdrenalin(CombatEntity damageLog)
         {
             if (damageLog.CombatIndex != DataIndex) return;

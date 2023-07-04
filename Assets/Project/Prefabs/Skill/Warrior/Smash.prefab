@@ -179,22 +179,22 @@ MonoBehaviour:
       keyList: 
       valueList: []
   detector:
-    targetType: 1
     sortingType: 0
     maxBufferCount: 32
-    sizeVector: {x: 7, y: 135}
+    sizeVector: {x: 0, y: 7, z: 135}
     targetLayer:
       serializedVersion: 2
       m_Bits: 256
   animationTrait:
     animationKey: AttackSlashMiddle
+    castCompleteAnimationKey: 
     isLoop: 0
-    hasEvent: 1
+    hasExecuteEvent: 1
     animationPlaySpeed: 1
     skillType: 1
     callbackSection: 3
   coolTimer:
-    coolTime: 1
+    coolTime: 0.8
     invokeSection: 1
   castTimer:
     castingTime: 0

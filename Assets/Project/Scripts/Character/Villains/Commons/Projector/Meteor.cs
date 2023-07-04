@@ -4,10 +4,10 @@ using UnityEngine;
 
 namespace Character.Villains.Commons.Projector
 {
-    public class Meteor : TrapComponent, IProjectorSequencer
+    public class Meteor : TrapComponent, IProjectionProvider
     {
-        public Vector2 SizeVector => new (radius * 2f, radius * 2f);
-        public float CastWeightTime => ProlongTime;
+        public Vector3 SizeVector => new (radius * 2f, radius * 2f, radius * 2f);
+        public float CastingWeight => ProlongTime;
         
         public override void Initialize(ICombatProvider provider)
         {

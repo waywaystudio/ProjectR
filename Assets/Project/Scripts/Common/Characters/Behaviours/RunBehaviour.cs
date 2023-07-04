@@ -8,7 +8,7 @@ namespace Common.Characters.Behaviours
 
         public ActionMask BehaviourMask => ActionMask.Run;
         public SequenceBuilder<Vector3> Builder { get; private set; }
-        public SequenceInvoker<Vector3> SequenceInvoker { get; private set; }
+        public SequenceInvoker<Vector3> Invoker { get; private set; }
 
         private CharacterBehaviour cb;
         private CharacterBehaviour Cb => cb ??= GetComponentInParent<CharacterBehaviour>();
@@ -16,26 +16,27 @@ namespace Common.Characters.Behaviours
 
         public void Run(Vector3 destination)
         {
-            if (!SequenceInvoker.IsAbleToActive) return;
+            if (!Invoker.IsAbleToActive) return;
             
-            SequenceInvoker.Active(destination);
+            Invoker.Active(destination);
         }
 
-        public void Cancel() => SequenceInvoker.Cancel();
+        public void Cancel() => Invoker.Cancel();
         
 
         private void OnEnable()
         {
-            Builder         = new SequenceBuilder<Vector3>(sequencer);
-            SequenceInvoker = new SequenceInvoker<Vector3>(sequencer);
+            Builder = new SequenceBuilder<Vector3>(sequencer);
+            Invoker = new SequenceInvoker<Vector3>(sequencer);
 
+            /* 순서 중요 */ 
             Builder
                 .AddCondition("AbleToBehaviourOverride", () => BehaviourMask.CanOverride(Cb.BehaviourMask))
                 .AddCondition("CanMove", () => Cb.Pathfinding.CanMove)
-                .AddActiveParam("RunPathfinding", destination => Cb.Pathfinding.Move(destination, SequenceInvoker.Complete))
-                .Add(SectionType.Active, "PlayAnimation", Cb.Animating.Run)
+                .AddActiveParam("RunPathfinding", destination => Cb.Pathfinding.Move(destination, Invoker.Complete))
                 .Add(SectionType.Active, "CancelPreviousBehaviour", () => cb.CurrentBehaviour?.TryToOverride(this))
                 .Add(SectionType.Active, "SetCurrentBehaviour", () => cb.CurrentBehaviour = this)
+                .Add(SectionType.Active, "PlayAnimation", () => Cb.Animating.Run(1.5f))
                 .Add(SectionType.End,"Stop", Cb.Stop);
         }
 

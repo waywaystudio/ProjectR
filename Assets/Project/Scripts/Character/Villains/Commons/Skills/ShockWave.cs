@@ -1,12 +1,9 @@
 using Common.Skills;
-using UnityEngine;
 
 namespace Character.Villains.Commons.Skills
 {
-    public class ShockWave : SkillComponent, IProjectorSequencer
+    public class ShockWave : SkillComponent
     {
-        public Vector2 SizeVector => new(Range, Angle);
-
         public override void Initialize()
         {
             base.Initialize();

@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Common.TargetSystem
+namespace Common
 {
     public static class TargetUtility
     {
@@ -20,12 +20,26 @@ namespace Common.TargetSystem
 
             return result;
         }
+
+
+        public static Vector3 GetValidPosition(Vector3 center, float range, Vector3 targetPosition)
+        {
+            if (Vector3.Distance(center, targetPosition) <= range)
+            {
+                return targetPosition;
+            }
+
+            var direction = (targetPosition - center).normalized;
+            var destination = center + direction * range;
+
+            return destination;
+        } 
         
         
         public static List<T> GetTargetsInSphere<T>(Vector3 center, LayerMask layer, float radius, Collider[] buffer) 
             => GetTargetsInAngle<T>(center, Vector3.zero, layer, radius, 360f, buffer);
-        
-        
+
+
         /// <summary>
         /// Detector와 같은 클래스에서 사용하기 위해 만들어졌다.
         /// 매 함수에 파라메타가 많기 때문에, 타 클래스에서 직접적으로 사용하기 보다는 Detector 클래서에서 사용하는 것을 권장 한다.

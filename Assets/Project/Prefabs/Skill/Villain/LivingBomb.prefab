@@ -172,17 +172,17 @@ MonoBehaviour:
       keyList: 
       valueList: []
   detector:
-    targetType: 1
     sortingType: 8
     maxBufferCount: 32
-    sizeVector: {x: 50, y: 0}
+    sizeVector: {x: 0, y: 50, z: 0}
     targetLayer:
       serializedVersion: 2
       m_Bits: 128
   animationTrait:
     animationKey: attack
+    castCompleteAnimationKey: 
     isLoop: 0
-    hasEvent: 0
+    hasExecuteEvent: 0
     animationPlaySpeed: 1
     skillType: 1
     callbackSection: 3

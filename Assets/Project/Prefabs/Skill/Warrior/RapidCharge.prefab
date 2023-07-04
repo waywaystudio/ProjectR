@@ -179,17 +179,17 @@ MonoBehaviour:
       keyList: 
       valueList: []
   detector:
-    targetType: 1
     sortingType: 0
     maxBufferCount: 32
-    sizeVector: {x: 15, y: 360}
+    sizeVector: {x: 15, y: 7, z: 360}
     targetLayer:
       serializedVersion: 2
       m_Bits: 256
   animationTrait:
     animationKey: Run DUELIST
+    castCompleteAnimationKey: 
     isLoop: 1
-    hasEvent: 0
+    hasExecuteEvent: 0
     animationPlaySpeed: 1
     skillType: 1
     callbackSection: 0

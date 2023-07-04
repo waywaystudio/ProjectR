@@ -112,10 +112,10 @@ MonoBehaviour:
     statList:
     - statType: 13010001
       statKey: HealExecutorKey
-      value: 100
+      value: 400
     - statType: 13020001
       statKey: HealExecutorKey
-      value: 0
+      value: 0.3
     - statType: 13030003
       statKey: HealExecutorKey
       value: 0
@@ -179,17 +179,17 @@ MonoBehaviour:
       keyList: 
       valueList: []
   detector:
-    targetType: 1
     sortingType: 5
     maxBufferCount: 32
-    sizeVector: {x: 30, y: 360}
+    sizeVector: {x: 30, y: 6, z: 360}
     targetLayer:
       serializedVersion: 2
       m_Bits: 128
   animationTrait:
     animationKey: CastHold
+    castCompleteAnimationKey: CastHoldFire
     isLoop: 1
-    hasEvent: 0
+    hasExecuteEvent: 0
     animationPlaySpeed: 1
     skillType: 2
     callbackSection: 0
@@ -198,10 +198,11 @@ MonoBehaviour:
     invokeSection: 3
   castTimer:
     castingTime: 1.5
-    callbackSection: 3
+    callbackSection: 11
   cost:
     cost: -2
-    paySection: 0
+    paySection: 11
   icon: {fileID: 21300000, guid: 4e927875f309f6843bf0f082225251ee, type: 3}
   description: "\uB300\uC0C1\uC758 \uCCB4\uB825\uC744 \uD68C\uBCF5\uD558\uACE0, \uD50C\uB808\uC774\uC5B4\uC758
     \uC790\uC6D0\uC744 \uD68C\uBCF5\uD55C\uB2E4."
+  healExecution: {fileID: 6644808226710964721}

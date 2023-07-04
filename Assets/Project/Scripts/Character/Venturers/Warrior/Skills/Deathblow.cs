@@ -18,17 +18,11 @@ namespace Character.Venturers.Warrior.Skills
 
             Builder
                 .Add(SectionType.Active, "TargetTracking", () => PlayTracking().Forget())
-                .Add(SectionType.Execute, "PlayEndChargingAnimation", PlayEndChargingAnimation)
                 .Add(SectionType.Execute, "SetInvokerIsActiveTrue", () => Invoker.IsActive = false)
                 .Add(SectionType.Execute, "DeathblowExecute", () => detector.GetTakers()?.ForEach(executor.ToTaker))
                 .Add(SectionType.End, "StopTracking", StopTracking);
         }
-        
-        
-        private void PlayEndChargingAnimation()
-        {
-            Cb.Animating.PlayOnce("AttackSlashHoldFire", 1f + Haste, Invoker.Complete);
-        }
+
 
         private async UniTaskVoid PlayTracking()
         {
@@ -59,6 +53,10 @@ namespace Character.Venturers.Warrior.Skills
             }
         }
 
-        private void StopTracking() => cts?.Cancel();
+        private void StopTracking()
+        {
+            cts?.Cancel();
+            cts = null;
+        }
     }
 }
