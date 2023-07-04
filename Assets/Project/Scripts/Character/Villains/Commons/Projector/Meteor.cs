@@ -6,7 +6,7 @@ namespace Character.Villains.Commons.Projector
 {
     public class Meteor : TrapComponent, IProjectionProvider
     {
-        public Vector3 SizeVector => new (radius * 2f, radius * 2f, radius * 2f);
+        public Vector3 SizeVector => new (radius, radius, 360f);
         public float CastingWeight => ProlongTime;
         
         public override void Initialize(ICombatProvider provider)

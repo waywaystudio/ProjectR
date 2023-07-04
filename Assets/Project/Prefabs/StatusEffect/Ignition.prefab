@@ -102,7 +102,6 @@ GameObject:
   m_Component:
   - component: {fileID: 2402494755454563105}
   - component: {fileID: 469541481524983097}
-  - component: {fileID: 4459061243654905774}
   m_Layer: 0
   m_Name: Ignition
   m_TagString: Untagged
@@ -155,25 +154,11 @@ MonoBehaviour:
   type: 2
   icon: {fileID: 21300000, guid: dbcc2f0afd22b094290ea51f39d74c61, type: 3}
   duration: 5
-  collidingSystem: {fileID: 4459061243654905774}
   interval: 2
   radius: 6
   adventurerLayer:
     serializedVersion: 2
     m_Bits: 128
---- !u!114 &4459061243654905774
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8333227002716821657}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 895c99e003cd3f54d96609fa1ca8c94b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  maxBufferCount: 16
 --- !u!1001 &1191642871573808416
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -229,6 +214,10 @@ PrefabInstance:
     - target: {fileID: 4027286352141989458, guid: f201fadaeb091cf47a052170ce7683da, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4856984262763367097, guid: f201fadaeb091cf47a052170ce7683da, type: 3}
+      propertyPath: isStaticProjector
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

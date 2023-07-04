@@ -102,7 +102,7 @@ Transform:
   - {fileID: 2956250794889403699}
   - {fileID: 7274096785378130124}
   m_Father: {fileID: 0}
-  m_RootOrder: -1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &4856984262763367097
 MonoBehaviour:
@@ -120,7 +120,7 @@ MonoBehaviour:
   materialReference: {fileID: 2100000, guid: 443581ee016d3c44680f16e964eafebf, type: 2}
   projector: {fileID: 7062586014429376110}
   easeType: 3
-  backgroundColor: {r: 1, g: 1, b: 1, a: 1}
+  backgroundColor: {r: 1, g: 1, b: 1, a: 0.5019608}
   fillColor: {r: 1, g: 0, b: 0, a: 1}
   obstacleCollider: {fileID: 2998071572755100239}
 --- !u!1 &8816030244132129195

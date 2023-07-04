@@ -7,19 +7,19 @@ using UnityEngine;
 
 namespace Character.Villains.Commons.StatusEffects
 {
-    public class IgnitionStatusEffect : StatusEffect, IProjectorSequencer
+    public class IgnitionStatusEffect : StatusEffect, IProjectionProvider
     {
         [SerializeField] private float interval;
         [SerializeField] private float radius = 6f;
         [SerializeField] private LayerMask adventurerLayer;
 
-        private readonly Collider[] buffers = new Collider[32];
+        private readonly Collider[] buffers = new Collider[16];
         private CancellationTokenSource cts;
         private float hasteWeight;
         private float tickBuffer;
 
-        public float CastWeightTime => Duration;
-        public Vector3 SizeVector => new (radius, radius,radius);
+        public float CastingWeight => Duration;
+        public Vector3 SizeVector => new (radius, radius,360f);
         
 
         public override void Initialize(ICombatProvider provider)

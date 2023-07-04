@@ -30,6 +30,7 @@ namespace Common.Skills
         public SkillCost Cost => cost;
         public string Description => description;
         public float Haste => Cb.StatTable.Haste;
+        public float Distance => detector.Distance;
         public float Range => detector.Range;
         public float Angle => detector.Angle;
         public Sprite Icon => icon;

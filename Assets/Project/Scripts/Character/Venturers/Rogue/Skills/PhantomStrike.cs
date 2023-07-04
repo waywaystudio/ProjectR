@@ -32,7 +32,7 @@ namespace Character.Venturers.Rogue.Skills
             var playerPosition = Cb.transform.position;
             var direction = (targetPosition - playerPosition).normalized;
 
-            Cb.Pathfinding.Dash(direction, Range, 0.28f, Invoker.Complete);
+            Cb.Pathfinding.Dash(direction, Distance, 0.28f, Invoker.Complete);
         }
 
         private void CreatePhantom()
@@ -46,7 +46,7 @@ namespace Character.Venturers.Rogue.Skills
 
             while (Invoker.IsActive)
             {
-                var collidedTarget = detector.GetTakersInCircleRange(3f, 360);
+                var collidedTarget = detector.GetTakersInCircleRange(Range, Angle);
 
                 if (collidedTarget.HasElement())
                 {

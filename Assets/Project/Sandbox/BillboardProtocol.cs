@@ -10,14 +10,11 @@ using Sirenix.OdinInspector.Editor;
 
 public class BillboardProtocol : MonoBehaviour
 {
-    private readonly Vector3 angleCache = new (45, 0, 0);
-    
+    [SerializeField] private Vector3 billboardAngle = new (45, 0, 0);
+
     private void Awake()
     {
-        if (Math.Abs(transform.eulerAngles.x - 45.0f) > 0.0001f)
-        {
-            SetAngle();
-        }
+        SetAngle();
     }
 
     private void Update()
@@ -27,7 +24,7 @@ public class BillboardProtocol : MonoBehaviour
         SetAngle();
     }
 
-    private void SetAngle() => transform.eulerAngles = angleCache;
+    private void SetAngle() => transform.eulerAngles = billboardAngle;
 }
 
 #if UNITY_EDITOR && ODIN_INSPECTOR
@@ -37,7 +34,7 @@ public class BillboardProtocolDrawer : OdinAttributeProcessor<BillboardProtocol>
     {
         if (member.Name == "SetAngle")
         {
-            attributes.Add(new ButtonAttribute());
+            attributes.Add(new ButtonAttribute(ButtonSizes.Large));
         }
     }
 }
