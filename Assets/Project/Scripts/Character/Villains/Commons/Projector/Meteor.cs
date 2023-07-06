@@ -13,14 +13,14 @@ namespace Character.Villains.Commons.Projector
         {
             base.Initialize(provider);
 
-            SequenceBuilder.Add(SectionType.Execute,"MeteorExecution", () =>
+            SequenceBuilder.Add(Section.Execute,"MeteorExecution", () =>
                            {
                                if (TryGetTakerInSphere(out var takerList))
                                {
                                    takerList.ForEach(executor.ToTaker);
                                }
                            })
-                           .Add(SectionType.Complete,"Execute", Execution);
+                           .Add(Section.Complete,"Execute", Execution);
         }
 
         public override void Execution() => SequenceInvoker.Execute();

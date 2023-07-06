@@ -14,10 +14,10 @@ public class SequenceInvoker
         IsEnd    = false;
         IsActive = true;
         
-        Sequencer[SectionType.Active].Invoke();
+        Sequencer[Section.Active].Invoke();
 
         // Handle Active Just once and than disappear Action.
-        if (Sequencer.Table.Remove(SectionType.ActiveOnce, out var onceAction))
+        if (Sequencer.Table.Remove(Section.ActiveOnce, out var onceAction))
         {
             onceAction.Invoke();
         }
@@ -29,7 +29,7 @@ public class SequenceInvoker
     {
         IsActive = false;
         
-        Sequencer[SectionType.Cancel].Invoke();
+        Sequencer[Section.Cancel].Invoke();
         Sequencer.CompleteTrigger?.Cancel();
         End();
     }
@@ -38,7 +38,7 @@ public class SequenceInvoker
     {
         IsActive = false;
         
-        Sequencer[SectionType.Complete].Invoke();
+        Sequencer[Section.Complete].Invoke();
         End();
     }
 
@@ -46,7 +46,7 @@ public class SequenceInvoker
     {
         IsEnd = true;
         
-        Sequencer[SectionType.End].Invoke();
+        Sequencer[Section.End].Invoke();
         Sequencer.CompleteTrigger?.Dispose();
     }
 }
@@ -68,11 +68,11 @@ public class SequenceInvoker<T>
         IsActive = true;
         
         // Active 가 ActiveParam보다 우선되게 설정. RunBehaviour 참조.
-        Sequencer[SectionType.Active].Invoke();
+        Sequencer[Section.Active].Invoke();
         Sequencer.ActiveParamAction.Invoke(value);
         
         // Handle Active Just once and than disappear Action.
-        if (Sequencer.Table.Remove(SectionType.ActiveOnce, out var onceAction))
+        if (Sequencer.Table.Remove(Section.ActiveOnce, out var onceAction))
         {
             onceAction.Invoke();
         }
@@ -84,7 +84,7 @@ public class SequenceInvoker<T>
     {
         IsActive = false;
         
-        Sequencer[SectionType.Cancel].Invoke();
+        Sequencer[Section.Cancel].Invoke();
         Sequencer.CompleteTrigger?.Cancel();
         End();
     }
@@ -93,7 +93,7 @@ public class SequenceInvoker<T>
     {
         IsActive = false;
         
-        Sequencer[SectionType.Complete].Invoke();
+        Sequencer[Section.Complete].Invoke();
         End();
     }
 
@@ -101,7 +101,7 @@ public class SequenceInvoker<T>
     {
         IsEnd = true;
         
-        Sequencer[SectionType.End].Invoke();
+        Sequencer[Section.End].Invoke();
         Sequencer.CompleteTrigger?.Dispose();
     }
 }

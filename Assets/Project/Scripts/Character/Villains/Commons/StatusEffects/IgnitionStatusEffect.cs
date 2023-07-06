@@ -27,10 +27,10 @@ namespace Character.Villains.Commons.StatusEffects
             base.Initialize(provider);
 
             Builder
-                .Add(SectionType.Active, "SetHasteWeight", SetHasteWeight)
-                .Add(SectionType.Active, "OvertimeExecution", () => OvertimeExecution().Forget())
-                .Add(SectionType.Complete, "Bomb", Bomb)
-                .Add(SectionType.End, "Stop", Stop);
+                .Add(Section.Active, "SetHasteWeight", SetHasteWeight)
+                .Add(Section.Active, "OvertimeExecution", () => OvertimeExecution().Forget())
+                .Add(Section.Complete, "Bomb", Bomb)
+                .Add(Section.End, "Stop", Stop);
         }
 
 

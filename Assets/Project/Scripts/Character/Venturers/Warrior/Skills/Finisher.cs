@@ -19,7 +19,7 @@ namespace Character.Venturers.Warrior.Skills
 
             damageExecutor = GetComponentInChildren<DamageExecution>();
             
-            Builder.Add(SectionType.Execute, "CommonExecution", MultipliedDamageExecution);
+            Builder.Add(Section.Execute, "CommonExecution", MultipliedDamageExecution);
         }
 
 

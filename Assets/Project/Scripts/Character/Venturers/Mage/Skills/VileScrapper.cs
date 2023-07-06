@@ -9,7 +9,7 @@ namespace Character.Venturers.Mage.Skills
         {
             base.Initialize();
 
-            Builder.Add(SectionType.Execute, "Fire", Fire);
+            Builder.Add(Section.Execute, "Fire", Fire);
         }
 
 

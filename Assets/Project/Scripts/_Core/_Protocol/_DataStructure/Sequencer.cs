@@ -5,8 +5,8 @@ public class Sequencer
 {
     public ConditionTable Condition { get; } = new();
     public WaitTrigger CompleteTrigger { get; set; }
-    public Table<SectionType, ActionTable> Table { get; set; } = new();
-    public ActionTable this[SectionType key]
+    public Table<Section, ActionTable> Table { get; set; } = new();
+    public ActionTable this[Section key]
     {
         get
         {

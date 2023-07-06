@@ -20,10 +20,10 @@ namespace Character.Venturers.Rogue.Skills
 
             Builder
                 .AddActiveParam("DashMovement", Dashing)
-                .Add(SectionType.Active, "CheckColliding", () => Colliding().Forget())
-                .Add(SectionType.Active, "CreatePhantom", CreatePhantom)
-                .Add(SectionType.Cancel, "CancelTween", () => Cb.Pathfinding.Cancel())
-                .Add(SectionType.End, "StopTask", StopTask);
+                .Add(Section.Active, "CheckColliding", () => Colliding().Forget())
+                .Add(Section.Active, "CreatePhantom", CreatePhantom)
+                .Add(Section.Cancel, "CancelTween", () => Cb.Pathfinding.Cancel())
+                .Add(Section.End, "StopTask", StopTask);
         }
 
 

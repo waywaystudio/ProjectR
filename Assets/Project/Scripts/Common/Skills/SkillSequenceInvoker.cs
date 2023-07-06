@@ -6,7 +6,7 @@ namespace Common.Skills
     {
         public SkillSequenceInvoker(Sequencer<Vector3> sequencer) : base(sequencer) { }
         
-        public void Execute() => Sequencer[SectionType.Execute].Invoke();
-        public void Release() => Sequencer[SectionType.Release].Invoke();
+        public void Execute() => Sequencer[Section.Execute].Invoke();
+        public void Release() => Sequencer[Section.Release].Invoke();
     }
 }

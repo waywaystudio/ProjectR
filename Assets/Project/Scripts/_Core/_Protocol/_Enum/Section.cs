@@ -1,4 +1,4 @@
-public enum SectionType
+public enum Section
 {
     None = 0,
     Active = 1,

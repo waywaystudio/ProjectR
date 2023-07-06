@@ -34,10 +34,10 @@ namespace Common.StatusEffects
             Builder  = new SequenceBuilder(Sequencer);
 
             Builder
-                .Add(SectionType.Active, "ResetProgressTime", () => ProgressTime.Value = duration)
-                .Add(SectionType.Active, "AddStatusEffectTable", AddTable)
-                .Add(SectionType.Override, "ProlongDuration", ProlongDuration)
-                .Add(SectionType.End, "UnregisterTable", RemoveTable);
+                .Add(Section.Active, "ResetProgressTime", () => ProgressTime.Value = duration)
+                .Add(Section.Active, "AddStatusEffectTable", AddTable)
+                .Add(Section.Override, "ProlongDuration", ProlongDuration)
+                .Add(Section.End, "UnregisterTable", RemoveTable);
         }
         
 

@@ -71,11 +71,11 @@ namespace Common.Projectors
             Invoker = new SequenceInvoker(Sequencer);
             Builder = new SequenceBuilder(Sequencer);
             Builder
-                .Add(SectionType.Active, "ActiveDecalObject", OnObject)
-                .Add(SectionType.Active, "ShaderProgression", PlayShader)
-                .Add(SectionType.Cancel, "CancelTween", CancelTween)
-                .Add(SectionType.End, "ResetMaterial", ResetMaterial)
-                .Add(SectionType.End, "DeActiveDecalObject", OffObject);
+                .Add(Section.Active, "ActiveDecalObject", OnObject)
+                .Add(Section.Active, "ShaderProgression", PlayShader)
+                .Add(Section.Cancel, "CancelTween", CancelTween)
+                .Add(Section.End, "ResetMaterial", ResetMaterial)
+                .Add(Section.End, "DeActiveDecalObject", OffObject);
 
             if (isStaticProjector)
             {

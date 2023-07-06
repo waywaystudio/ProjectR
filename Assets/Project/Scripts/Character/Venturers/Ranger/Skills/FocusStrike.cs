@@ -17,10 +17,10 @@ namespace Character.Venturers.Ranger.Skills
 
             Provider.OnDamageProvided.Add("AddAdrenalinByAimShot", AddAdrenalin);
             Builder
-                .Add(SectionType.Active, "Tracking", () => PlayTracking().Forget())                           
-                .Add(SectionType.Execute, "TryConsumeEcstasy", TryConsumeEcstasy)
-                .Add(SectionType.Execute, "Fire", Fire)
-                .Add(SectionType.End, "StopTracking", StopTracking);
+                .Add(Section.Active, "Tracking", () => PlayTracking().Forget())                           
+                .Add(Section.Execute, "TryConsumeEcstasy", TryConsumeEcstasy)
+                .Add(Section.Execute, "Fire", Fire)
+                .Add(Section.End, "StopTracking", StopTracking);
         }
         
         public override void Dispose()

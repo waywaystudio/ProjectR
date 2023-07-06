@@ -9,7 +9,7 @@ namespace Character.Venturers.Ranger.Skills
         {
             base.Initialize();
 
-            Builder.Add(SectionType.Execute, "DamageByArrowsCount", CollectArrows);
+            Builder.Add(Section.Execute, "DamageByArrowsCount", CollectArrows);
         }
 
 

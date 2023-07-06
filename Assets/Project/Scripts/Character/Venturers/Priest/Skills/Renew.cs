@@ -14,8 +14,8 @@ namespace Character.Venturers.Priest.Skills
 
             Builder
                 .AddActiveParam("SetTargetPosition", SetTargetPosition)
-                .Add(SectionType.Execute, "ExecuteRenew", ExecuteRenew)
-                .Add(SectionType.Execute, "TryConsumeLightWeaver", TryConsumeLightWeaver);
+                .Add(Section.Execute, "ExecuteRenew", ExecuteRenew)
+                .Add(Section.Execute, "TryConsumeLightWeaver", TryConsumeLightWeaver);
         }
 
 

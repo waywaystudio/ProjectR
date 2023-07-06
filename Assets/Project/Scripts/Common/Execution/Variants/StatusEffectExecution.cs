@@ -34,8 +34,8 @@ namespace Common.Execution.Variants
 
             var builder = new SequenceBuilder(statusEffect.Sequencer);
 
-            builder.Add(SectionType.End, "ReturnTransform", () => statusEffect.transform.SetParent(transform, false))
-                   .Add(SectionType.End, "ReleasePool", () => pool.Release(statusEffect));
+            builder.Add(Section.End, "ReturnTransform", () => statusEffect.transform.SetParent(transform, false))
+                   .Add(Section.End, "ReleasePool", () => pool.Release(statusEffect));
         }
 
         private void OnEnable()

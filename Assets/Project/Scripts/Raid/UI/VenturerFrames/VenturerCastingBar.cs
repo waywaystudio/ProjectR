@@ -21,15 +21,15 @@ namespace Raid.UI.VenturerFrames
             if (currentVenturer != null)
             {
                 currentVenturer.SkillBehaviour.SequenceBuilder
-                                .Remove(SectionType.Active, "ShowCastingUI")
-                                .Remove(SectionType.End, "HideCastingUI");
+                                .Remove(Section.Active, "ShowCastingUI")
+                                .Remove(Section.End, "HideCastingUI");
 
                 HideCastingUI();
             }
 
             FocusVenturer.SkillBehaviour.SequenceBuilder
-                         .Add(SectionType.Active, "ShowCastingUI", ShowCastingUI)
-                         .Add(SectionType.End, "HideCastingUI", HideCastingUI);
+                         .Add(Section.Active, "ShowCastingUI", ShowCastingUI)
+                         .Add(Section.End, "HideCastingUI", HideCastingUI);
 
             currentVenturer = FocusVenturer;
             ShowCastingUI();

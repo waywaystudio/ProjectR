@@ -63,9 +63,9 @@ namespace Common.Skills
             cost.Initialize(this);
             
             Builder
-                .Add(SectionType.Active, "StopPathfinding", Cb.Pathfinding.Stop)
-                .Add(SectionType.End,"CharacterStop", Cb.Stop)
-                .Add(SectionType.Release, "ReleaseAction", () =>
+                .Add(Section.Active, "StopPathfinding", Cb.Pathfinding.Stop)
+                .Add(Section.End,"CharacterStop", Cb.Stop)
+                .Add(Section.Release, "ReleaseAction", () =>
                 {
                     if (AbleToRelease) 
                         CastTimer.CallbackSection.GetInvokeAction(this)?.Invoke();

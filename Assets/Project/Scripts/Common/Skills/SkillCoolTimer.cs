@@ -6,13 +6,13 @@ namespace Common.Skills
     [Serializable]
     public class SkillCoolTimer : CoolTimer
     {
-        [SerializeField] protected SectionType invokeSection;
+        [SerializeField] protected Section invokeSection;
         
-        public SectionType InvokeSection => invokeSection;
+        public Section InvokeSection => invokeSection;
         
         public void Initialize(SkillComponent skill)
         {
-            if (InvokeSection == SectionType.None) return;
+            if (InvokeSection == Section.None) return;
             
             skill.Builder
                  .AddCondition("IsCoolTimeReady", () => IsReady)
@@ -26,7 +26,7 @@ namespace Common.Skills
             var skillData = Database.SkillSheetData(dataIndex);
             
             coolTime      = skillData.CoolTime;
-            invokeSection = skillData.CoolTimeInvoker.ToEnum<SectionType>();
+            invokeSection = skillData.CoolTimeInvoker.ToEnum<Section>();
         }
 #endif
     }

@@ -19,11 +19,11 @@ namespace Character.Venturers.Ranger.Fx
             var builder = new SequenceBuilder(projectile.Sequencer);
 
             builder
-                .Add(SectionType.Active, "PlayFlyingVfx", flyingParticle.Play)
-                .Add(SectionType.End, "StopFlyingVfx", flyingParticle.Stop)
+                .Add(Section.Active, "PlayFlyingVfx", flyingParticle.Play)
+                .Add(Section.End, "StopFlyingVfx", flyingParticle.Stop)
                 
                 // TEMP
-                .Add(SectionType.Execute, "PlayHitParticle", PlayHitParticle);
+                .Add(Section.Execute, "PlayHitParticle", PlayHitParticle);
         }
 
         private void CreateFlyingParticle(ParticleComponent particle)

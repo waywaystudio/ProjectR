@@ -11,7 +11,7 @@ namespace Character.Venturers.Ranger.StatusEffects
             base.Initialize(provider);
 
             Builder
-                .Add(SectionType.Override, "GetHuntersEcstasy", GetHuntersEcstasy);
+                .Add(Section.Override, "GetHuntersEcstasy", GetHuntersEcstasy);
         }
 
         

@@ -27,7 +27,7 @@ namespace Character.Venturers.Knight.Fx
             var builder = new SequenceBuilder(slash.Sequencer);
 
             builder
-                .Add(SectionType.Execute, "PlaySlashParticle", PlaySlashParticle);
+                .Add(Section.Execute, "PlaySlashParticle", PlaySlashParticle);
             // .Add(SectionType.End, "StopSlashParticle", StopSlashParticle);
         }
         

@@ -6,6 +6,6 @@ namespace Common.Traps
     {
         public TrapSequenceInvoker(Sequencer<Vector3> sequencer) : base(sequencer) { }
         
-        public void Execute() => Sequencer[SectionType.Execute].Invoke();
+        public void Execute() => Sequencer[Section.Execute].Invoke();
     }
 }

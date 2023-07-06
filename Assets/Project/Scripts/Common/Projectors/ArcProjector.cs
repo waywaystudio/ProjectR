@@ -11,8 +11,8 @@ namespace Common.Projectors
             base.Awake();
             
             Builder
-                .Add(SectionType.Active, "ActiveCollider", ActiveCollider)
-                .Add(SectionType.End, "DeActiveCollider", DeActiveCollider);
+                .Add(Section.Active, "ActiveCollider", ActiveCollider)
+                .Add(Section.End, "DeActiveCollider", DeActiveCollider);
         }
 
         private void ActiveCollider() => colliderTransform.gameObject.SetActive(true);

@@ -11,7 +11,7 @@ namespace Character.Venturers.Ranger.Skills
 
             Provider.OnDamageProvided.Add("AddAdrenalinByAimShot", AddAdrenalin);
             Builder
-                .Add(SectionType.Execute, "Fire", Fire);
+                .Add(Section.Execute, "Fire", Fire);
 
         }
         

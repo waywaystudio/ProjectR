@@ -24,7 +24,7 @@ namespace Character.Venturers.Knight.Fx
             var builder = new SequenceBuilder(bash.Sequencer);
 
             builder
-                .Add(SectionType.Extra, "PlaySlashParticle", PlayBashBonusParticle);
+                .Add(Section.Extra, "PlaySlashParticle", PlayBashBonusParticle);
             // .Add(SectionType.End, "StopSlashParticle", StopBashBonusParticle);
         }
         

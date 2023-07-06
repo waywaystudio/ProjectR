@@ -21,8 +21,8 @@ namespace Character.Venturers.Priest.Skills
 
             Builder
                 .AddActiveParam("SavePredicatePosition", TargetHealing)
-                .Add(SectionType.Execute, "ExecuteHealingTouch",ExecuteHealingTouch)
-                .Add(SectionType.Execute, "TryConsumeLightWeaver", TryConsumeLightWeaver);
+                .Add(Section.Execute, "ExecuteHealingTouch",ExecuteHealingTouch)
+                .Add(Section.Execute, "TryConsumeLightWeaver", TryConsumeLightWeaver);
         }
 
 

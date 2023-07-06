@@ -15,7 +15,7 @@ namespace Character.Venturers.Rogue.Skills
 
             Builder
                 .AddActiveParam("PhantomsDoubleStab",PhantomsDoubleStab)
-                .Add(SectionType.Execute, "DoubleStabAttack", DoubleStabAttack);
+                .Add(Section.Execute, "DoubleStabAttack", DoubleStabAttack);
         }
 
 

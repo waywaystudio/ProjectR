@@ -13,7 +13,7 @@ namespace Common.Skills
         [SerializeField] private bool hasExecuteEvent;
         [SerializeField] private float animationPlaySpeed = 1.0f;
         [SerializeField] private SkillType skillType;
-        [SerializeField] private SectionType callbackSection = SectionType.Complete;
+        [SerializeField] private Section callbackSection = Section.Complete;
 
         public SkillType SkillType => skillType;
         public float AnimationPlaySpeed => HasteRetriever is null 
@@ -30,19 +30,19 @@ namespace Common.Skills
             HasteRetriever += () => 1.0f + skill.Haste;
             
             skill.Builder
-                 .Add(SectionType.Active,"PlayAnimation",() => PlayAnimation(skill));
+                 .Add(Section.Active,"PlayAnimation",() => PlayAnimation(skill));
 
             if (hasExecuteEvent)
             {
                 skill.Builder
-                     .Add(SectionType.Active,"RegisterHitEvent", () => Model.OnHit.Add("SkillHit", skill.Invoker.Execute))        
-                     .Add(SectionType.End,"ReleaseHit", () => Model.OnHit.Remove("SkillHit"));
+                     .Add(Section.Active,"RegisterHitEvent", () => Model.OnHit.Add("SkillHit", skill.Invoker.Execute))        
+                     .Add(Section.End,"ReleaseHit", () => Model.OnHit.Remove("SkillHit"));
             }
 
             if (skillType is SkillType.Casting or SkillType.Charging or SkillType.Holding)
             {
                 skill.Builder
-                     .Add(SectionType.Execute, "CastingCompleteAnimation",() => PlayCompleteCastingAnimation(skill));
+                     .Add(Section.Execute, "CastingCompleteAnimation",() => PlayCompleteCastingAnimation(skill));
             }
         }
 
@@ -78,7 +78,7 @@ namespace Common.Skills
             isLoop                   = skillData.IsLoop;
             hasExecuteEvent          = skillData.HasEvent;
             skillType                = skillData.SkillType.ToEnum<SkillType>();
-            callbackSection          = skillData.AnimationCallback.ToEnum<SectionType>();
+            callbackSection          = skillData.AnimationCallback.ToEnum<Section>();
         }
 #endif
     }

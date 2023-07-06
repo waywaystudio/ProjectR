@@ -34,10 +34,10 @@ namespace Common.Characters.Behaviours
                 .AddCondition("AbleToBehaviourOverride", () => BehaviourMask.CanOverride(Cb.BehaviourMask))
                 .AddCondition("CanMove", () => Cb.Pathfinding.CanMove)
                 .AddActiveParam("RunPathfinding", destination => Cb.Pathfinding.Move(destination, Invoker.Complete))
-                .Add(SectionType.Active, "CancelPreviousBehaviour", () => cb.CurrentBehaviour?.TryToOverride(this))
-                .Add(SectionType.Active, "SetCurrentBehaviour", () => cb.CurrentBehaviour = this)
-                .Add(SectionType.Active, "PlayAnimation", () => Cb.Animating.Run(1.5f))
-                .Add(SectionType.End,"Stop", Cb.Stop);
+                .Add(Section.Active, "CancelPreviousBehaviour", () => cb.CurrentBehaviour?.TryToOverride(this))
+                .Add(Section.Active, "SetCurrentBehaviour", () => cb.CurrentBehaviour = this)
+                .Add(Section.Active, "PlayAnimation", () => Cb.Animating.Run(1.5f))
+                .Add(Section.End,"Stop", Cb.Stop);
         }
 
         private void OnDisable()

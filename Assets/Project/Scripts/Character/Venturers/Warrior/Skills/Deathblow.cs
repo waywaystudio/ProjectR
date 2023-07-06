@@ -17,10 +17,10 @@ namespace Character.Venturers.Warrior.Skills
             cost.PayCondition.Add("HasTarget", detector.HasTarget);
 
             Builder
-                .Add(SectionType.Active, "TargetTracking", () => PlayTracking().Forget())
-                .Add(SectionType.Execute, "SetInvokerIsActiveTrue", () => Invoker.IsActive = false)
-                .Add(SectionType.Execute, "DeathblowExecute", () => detector.GetTakers()?.ForEach(executor.ToTaker))
-                .Add(SectionType.End, "StopTracking", StopTracking);
+                .Add(Section.Active, "TargetTracking", () => PlayTracking().Forget())
+                .Add(Section.Execute, "SetInvokerIsActiveTrue", () => Invoker.IsActive = false)
+                .Add(Section.Execute, "DeathblowExecute", () => detector.GetTakers()?.ForEach(executor.ToTaker))
+                .Add(Section.End, "StopTracking", StopTracking);
         }
 
 

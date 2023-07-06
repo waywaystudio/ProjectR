@@ -28,8 +28,8 @@ namespace Character.Venturers.Rogue
         {
             trap.Initialize(Origin.Provider);
             trap.SequenceBuilder
-                .Add(SectionType.Active, "AddMaster", () => master.Add(trap))
-                .Add(SectionType.End,"ReturnToPool",() =>
+                .Add(Section.Active, "AddMaster", () => master.Add(trap))
+                .Add(Section.End,"ReturnToPool",() =>
                 {
                     trap.transform.position = Vector3.zero;
                     trap.transform.SetParent(transform, false);

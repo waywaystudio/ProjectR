@@ -4,6 +4,6 @@ namespace Common.Projectiles
     {
         public ProjectileSequenceInvoker(Sequencer sequencer) : base(sequencer) { }
 
-        public void Execute() => Sequencer[SectionType.Execute]?.Invoke();
+        public void Execute() => Sequencer[Section.Execute]?.Invoke();
     }
 }

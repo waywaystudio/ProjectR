@@ -30,8 +30,8 @@ namespace Common.Traps
             // Require Builder
             trapComponent.ProlongTime = prolongTimer;
             trapComponent.SequenceBuilder
-                         .Add(SectionType.Active,"TimeTriggerOn", StartProgress)
-                         .Add(SectionType.End,"TimeTriggerOff", StopProgress);
+                         .Add(Section.Active,"TimeTriggerOn", StartProgress)
+                         .Add(Section.End,"TimeTriggerOff", StopProgress);
         }
 
         private void Update()

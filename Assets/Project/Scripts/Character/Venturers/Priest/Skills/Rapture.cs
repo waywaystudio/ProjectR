@@ -10,7 +10,7 @@ namespace Character.Venturers.Priest.Skills
 
             Builder
                 .AddCondition("HasRaptureAlready", HasRaptureAlready)
-                .Add(SectionType.Execute, "ExecuteHealingTouch",ExecuteRapture);
+                .Add(Section.Execute, "ExecuteHealingTouch",ExecuteRapture);
         }
 
 

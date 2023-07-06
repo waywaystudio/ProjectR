@@ -18,9 +18,9 @@ namespace Character.Venturers.Knight.StatusEffects
             base.Initialize(provider);
 
             Builder
-                .Add(SectionType.Active,"ReduceArmorStat", ReduceArmorStat)
-                .Add(SectionType.Active, "OvertimeExecution", () => OvertimeExecution().Forget())
-                .Add(SectionType.End,"RemoveArmorReducer", RemoveArmorReducer);
+                .Add(Section.Active,"ReduceArmorStat", ReduceArmorStat)
+                .Add(Section.Active, "OvertimeExecution", () => OvertimeExecution().Forget())
+                .Add(Section.End,"RemoveArmorReducer", RemoveArmorReducer);
         }
 
 

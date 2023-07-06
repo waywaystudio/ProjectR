@@ -17,9 +17,9 @@ namespace Character.Venturers.Rogue
         {
             base.Initialize(provider);
 
-            SequenceBuilder.Add(SectionType.Active, "IdleAnimation", Idle)
-                           .Add(SectionType.Active, "RotateToIdentity", () => transform.rotation = Quaternion.identity)
-                           .Add(SectionType.End, "RemoveSkillHit", () => model.OnHit.Remove("SkillHit"));
+            SequenceBuilder.Add(Section.Active, "IdleAnimation", Idle)
+                           .Add(Section.Active, "RotateToIdentity", () => transform.rotation = Quaternion.identity)
+                           .Add(Section.End, "RemoveSkillHit", () => model.OnHit.Remove("SkillHit"));
         }
 
         public void DoubleStab(Vector3 targetPosition, float timeScale)

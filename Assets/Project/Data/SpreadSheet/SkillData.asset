@@ -642,7 +642,7 @@ MonoBehaviour:
     skillType: Casting
     animationCallback: None
     coolTime: 1
-    coolTimeInvoker: Complete
+    coolTimeInvoker: Execute
     castTime: 1.5
     castCallback: Execute
     completionValueList:
@@ -695,7 +695,7 @@ MonoBehaviour:
     skillType: Casting
     animationCallback: None
     coolTime: 6
-    coolTimeInvoker: Complete
+    coolTimeInvoker: Execute
     castTime: 2
     castCallback: Execute
     completionValueList:

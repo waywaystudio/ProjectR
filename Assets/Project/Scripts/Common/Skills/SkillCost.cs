@@ -7,14 +7,14 @@ namespace Common.Skills
     public class SkillCost
     {
         [SerializeField] private float cost;
-        [SerializeField] private SectionType paySection;
+        [SerializeField] private Section paySection;
 
         public float Value => cost;
         public ConditionTable PayCondition { get; set; } = new();
 
         public void Initialize(SkillComponent skill)
         {
-            if (paySection == SectionType.None) return;
+            if (paySection == Section.None) return;
             
             var resourceRef = skill.Cb.Resource;
             
@@ -39,7 +39,7 @@ namespace Common.Skills
             var skillData = Database.SkillSheetData(dataIndex);
             
             cost       = skillData.Cost;
-            paySection = skillData.PaySection.ToEnum<SectionType>();
+            paySection = skillData.PaySection.ToEnum<Section>();
         }
 #endif
     }

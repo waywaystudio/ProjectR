@@ -17,9 +17,9 @@ namespace Character.Venturers.Ranger.StatusEffects
             base.Initialize(provider);
 
             Builder
-                .Add(SectionType.Active, "Effectuate", () => OvertimeExecution().Forget())
-                .Add(SectionType.Override, "StackUp", StackUp)
-                .Add(SectionType.End, "Stop", Stop);
+                .Add(Section.Active, "Effectuate", () => OvertimeExecution().Forget())
+                .Add(Section.Override, "StackUp", StackUp)
+                .Add(Section.End, "Stop", Stop);
         }
         
 

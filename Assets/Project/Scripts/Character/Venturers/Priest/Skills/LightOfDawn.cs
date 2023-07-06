@@ -15,8 +15,8 @@ namespace Character.Venturers.Priest.Skills
             base.Initialize();
 
             Builder
-                .Add(SectionType.Execute, "ExecuteLightOfDawn", ExecuteLightOfDawn)
-                .Add(SectionType.Execute, "TryConsumeLightWeaver", TryConsumeLightWeaver);
+                .Add(Section.Execute, "ExecuteLightOfDawn", ExecuteLightOfDawn)
+                .Add(Section.Execute, "TryConsumeLightWeaver", TryConsumeLightWeaver);
         }
 
 

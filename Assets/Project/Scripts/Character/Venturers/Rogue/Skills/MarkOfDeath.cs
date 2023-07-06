@@ -15,7 +15,7 @@ namespace Character.Venturers.Rogue.Skills
 
             Builder
                 .AddActiveParam("PhantomsMarkOfDeath", PhantomsMarkOfDeath)
-                .Add(SectionType.Execute,"MarkOfDeathFire", MarkOfDeathFire);
+                .Add(Section.Execute,"MarkOfDeathFire", MarkOfDeathFire);
         }
 
 

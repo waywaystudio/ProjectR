@@ -19,8 +19,8 @@ namespace Character.Venturers.Ranger.StatusEffects
 
             OriginalCastTime = FocusStrike.CastTimer.OriginalCastingTime;
             Builder
-                .Add(SectionType.Active, "EnforceFocusStrike", EnforceFocusStrike)
-                .Add(SectionType.End, "ResetFocusStrike", ResetFocusStrike);
+                .Add(Section.Active, "EnforceFocusStrike", EnforceFocusStrike)
+                .Add(Section.End, "ResetFocusStrike", ResetFocusStrike);
         }
 
 

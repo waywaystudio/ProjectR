@@ -18,8 +18,8 @@ namespace Character.Venturers.Warrior.Skills
             base.Initialize();
 
             Builder.AddCondition("FullResource", FullResource)
-                           .Add(SectionType.Active, "ActiveBuff", AddEffect)
-                           .Add(SectionType.Active, "ConsumeResource", () => ConsumeResource().Forget());
+                           .Add(Section.Active, "ActiveBuff", AddEffect)
+                           .Add(Section.Active, "ConsumeResource", () => ConsumeResource().Forget());
         }
 
 

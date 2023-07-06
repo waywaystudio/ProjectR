@@ -24,10 +24,10 @@ namespace Character.Villains
             SequenceBuilder = new SequenceBuilder(sequencer);
 
             if (persistantActiveEvent.GetPersistentEventCount() != 0) 
-                SequenceBuilder.Add(SectionType.Active,"PersistantEvent", persistantActiveEvent.Invoke);
+                SequenceBuilder.Add(Section.Active,"PersistantEvent", persistantActiveEvent.Invoke);
             
             if (persistantCompleteEvent.GetPersistentEventCount() != 0)
-                SequenceBuilder.Add(SectionType.Complete,"PersistantEvent", persistantCompleteEvent.Invoke);
+                SequenceBuilder.Add(Section.Complete,"PersistantEvent", persistantCompleteEvent.Invoke);
         }
 
         public void Clear() => sequencer.Clear();

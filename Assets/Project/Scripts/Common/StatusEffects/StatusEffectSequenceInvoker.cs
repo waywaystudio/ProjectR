@@ -4,6 +4,6 @@ namespace Common.StatusEffects
     {
         public StatusEffectSequenceInvoker(Sequencer sequencer) : base(sequencer) { }
 
-        public void Override() => Sequencer[SectionType.Override]?.Invoke();
+        public void Override() => Sequencer[Section.Override]?.Invoke();
     }
 }

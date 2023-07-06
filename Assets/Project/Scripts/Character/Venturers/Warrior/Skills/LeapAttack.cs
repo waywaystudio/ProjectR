@@ -12,7 +12,7 @@ namespace Character.Venturers.Warrior.Skills
 
             Builder
                 .AddActiveParam("Jump", Jump)
-                .Add(SectionType.Execute, "ExecuteLeapAttack", ExecuteLeapAttack);
+                .Add(Section.Execute, "ExecuteLeapAttack", ExecuteLeapAttack);
         }
 
 

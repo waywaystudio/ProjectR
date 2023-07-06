@@ -32,7 +32,7 @@ namespace Common.Projectiles
             Invoker = new ProjectileSequenceInvoker(Sequencer);
             Builder = new SequenceBuilder(Sequencer);
             Builder
-                .Add(SectionType.End, "ProjectileObjectActiveFalse", () => gameObject.SetActive(false));
+                .Add(Section.End, "ProjectileObjectActiveFalse", () => gameObject.SetActive(false));
             
             trajectory.Initialize(this);
         }

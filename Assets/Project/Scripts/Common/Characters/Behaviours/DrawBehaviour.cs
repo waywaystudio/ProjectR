@@ -32,10 +32,10 @@ namespace Common.Characters.Behaviours
 
             Builder.AddCondition("AbleToBehaviourOverride", () => BehaviourMask.CanOverride(Cb.BehaviourMask))
                    .AddActiveParam("Rotate", Cb.Rotate)
-                   .Add(SectionType.Active,"CancelPreviousBehaviour", () => cb.CurrentBehaviour?.TryToOverride(this))
-                   .Add(SectionType.Active,"SetCurrentBehaviour", () => cb.CurrentBehaviour = this)
-                   .Add(SectionType.Active,"PlayAnimation", Cb.Animating.Hit)
-                   .Add(SectionType.End,"Stop", Cb.Stop);
+                   .Add(Section.Active,"CancelPreviousBehaviour", () => cb.CurrentBehaviour?.TryToOverride(this))
+                   .Add(Section.Active,"SetCurrentBehaviour", () => cb.CurrentBehaviour = this)
+                   .Add(Section.Active,"PlayAnimation", Cb.Animating.Hit)
+                   .Add(Section.End,"Stop", Cb.Stop);
         }
 
         private void OnDisable()

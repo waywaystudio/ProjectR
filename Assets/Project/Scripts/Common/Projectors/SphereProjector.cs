@@ -12,8 +12,8 @@ namespace Common.Projectors
 
             obstacleCollider.radius = Provider.SizeVector.y;
             Builder
-                .Add(SectionType.Active, "ActiveCollider", ActiveCollider)
-                .Add(SectionType.End, "DeActiveCollider", DeActiveCollider);
+                .Add(Section.Active, "ActiveCollider", ActiveCollider)
+                .Add(Section.End, "DeActiveCollider", DeActiveCollider);
         }
 
         private void ActiveCollider() => obstacleCollider.gameObject.SetActive(true);

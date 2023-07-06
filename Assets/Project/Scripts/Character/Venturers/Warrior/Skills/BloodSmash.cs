@@ -8,7 +8,7 @@ namespace Character.Venturers.Warrior.Skills
         {
             base.Initialize();
 
-            Builder.Add(SectionType.Execute, "BloodSmashAttack", BloodSmashAttack);
+            Builder.Add(Section.Execute, "BloodSmashAttack", BloodSmashAttack);
         }
 
 

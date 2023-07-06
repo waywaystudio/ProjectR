@@ -16,7 +16,7 @@ namespace Common.Execution.Variants
         private void CreateTrap(TrapComponent trap)
         {
             trap.Initialize(Origin.Provider);
-            trap.SequenceBuilder.Add(SectionType.End,"ReturnToPool",() =>
+            trap.SequenceBuilder.Add(Section.End,"ReturnToPool",() =>
             {
                 trap.transform.position = Vector3.zero;
                 trap.transform.SetParent(transform, false);

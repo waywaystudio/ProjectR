@@ -8,8 +8,8 @@ namespace Character.Villains.Commons.Skills
         {
             base.Initialize();
             
-            Builder.Add(SectionType.Execute, "PlayOnceCompleteAnimation",() => Cb.Animating.PlayOnce("attack", 1f + Haste, Invoker.Complete))
-                           .Add(SectionType.Execute, "CommonExecution", () => detector.GetTakers()?.ForEach(executor.ToTaker));
+            Builder.Add(Section.Execute, "PlayOnceCompleteAnimation",() => Cb.Animating.PlayOnce("attack", 1f + Haste, Invoker.Complete))
+                           .Add(Section.Execute, "CommonExecution", () => detector.GetTakers()?.ForEach(executor.ToTaker));
         }
     }
 }

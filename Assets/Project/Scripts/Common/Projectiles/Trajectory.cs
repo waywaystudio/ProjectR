@@ -23,8 +23,8 @@ namespace Common.Projectiles
         {
             projectileComponent = projectile;
             projectileComponent.Builder
-                               .Add(SectionType.Active, "Trajectory", Flying)
-                               .Add(SectionType.End, "Trajectory", Stop);
+                               .Add(Section.Active, "Trajectory", Flying)
+                               .Add(Section.End, "Trajectory", Stop);
         }
 
         public void Flying()

@@ -24,8 +24,8 @@ namespace Character.Venturers.Ranger.Fx
         private void CreateArrow(ParticleSystem particleSystem)
         {
             instantShot.Builder
-                       .Add(SectionType.Active, "PlayArrowParticle", particleSystem.Play)
-                       .Add(SectionType.End, "StopArrowParticle", particleSystem.Stop);
+                       .Add(Section.Active, "PlayArrowParticle", particleSystem.Play)
+                       .Add(Section.End, "StopArrowParticle", particleSystem.Stop);
         }
 
         private void OnEnable()

@@ -27,9 +27,9 @@ namespace Common.Characters.Behaviours
         {
             SequenceInvoker = new SequenceInvoker(sequencer);
             SequenceBuilder = new SequenceBuilder(sequencer);
-            SequenceBuilder.Add(SectionType.Active,"Cb.Pathfinding.Stop", Cb.Pathfinding.Stop)
-                           .Add(SectionType.Active,"SetCurrentBehaviour", () => cb.CurrentBehaviour = this)
-                           .Add(SectionType.Active,"PlayAnimation", Cb.Animating.Idle);
+            SequenceBuilder.Add(Section.Active,"Cb.Pathfinding.Stop", Cb.Pathfinding.Stop)
+                           .Add(Section.Active,"SetCurrentBehaviour", () => cb.CurrentBehaviour = this)
+                           .Add(Section.Active,"PlayAnimation", Cb.Animating.Idle);
         }
 
         private void OnDisable()

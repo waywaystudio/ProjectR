@@ -34,8 +34,8 @@ namespace Character.Venturers.Knight.Fx
             var builder = new SequenceBuilder(shieldUp.Sequencer);
         
             builder
-                .Add(SectionType.Active, "PlaySlashParticle", PlayShieldUpParticle)
-                .Add(SectionType.End, "StopSlashParticle", StopShieldUpParticle);
+                .Add(Section.Active, "PlaySlashParticle", PlayShieldUpParticle)
+                .Add(Section.End, "StopSlashParticle", StopShieldUpParticle);
         }
         
         

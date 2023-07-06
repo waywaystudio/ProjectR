@@ -15,9 +15,9 @@ namespace Character.Venturers.Ranger.Projectile
         {
             base.Initialize(provider);
 
-            Builder.Add(SectionType.Active, "CollidingTriggerOn", () => triggerCollider.enabled = true)
-                           .Add(SectionType.Complete, "ExplodeExecution", Execution)
-                           .Add(SectionType.End, "CollidingTriggerOff", () => triggerCollider.enabled = false);
+            Builder.Add(Section.Active, "CollidingTriggerOn", () => triggerCollider.enabled = true)
+                           .Add(Section.Complete, "ExplodeExecution", Execution)
+                           .Add(Section.End, "CollidingTriggerOff", () => triggerCollider.enabled = false);
         }
 
         public override void Execution()

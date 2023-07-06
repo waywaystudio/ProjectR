@@ -13,8 +13,8 @@ namespace Character.Venturers.Knight.Skills
             base.Initialize();
 
             Builder
-                .Add(SectionType.Execute, "BashAttack", BashAttack)
-                .Add(SectionType.Extra, "ExtraBonus", ExtraBonus);
+                .Add(Section.Execute, "BashAttack", BashAttack)
+                .Add(Section.Extra, "ExtraBonus", ExtraBonus);
         }
 
 
@@ -29,7 +29,7 @@ namespace Character.Venturers.Knight.Skills
                 if (getBonus || taker.BehaviourMask != ActionMask.Skill) return;
                 
                 getBonus = true;
-                Sequencer[SectionType.Extra].Invoke();
+                Sequencer[Section.Extra].Invoke();
             });
         }
         

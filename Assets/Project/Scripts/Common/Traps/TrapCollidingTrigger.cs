@@ -29,9 +29,9 @@ namespace Common.Traps
 
             // Require Builder
             trapComponent.SequenceBuilder
-                         .Add(SectionType.Active,"CollidingTriggerOn",
+                         .Add(Section.Active,"CollidingTriggerOn",
                               () => triggerCollider.IsNullOrDestroyed().OnFalse(() => triggerCollider.enabled = true))
-                         .Add(SectionType.End,"CollidingTriggerOff", 
+                         .Add(Section.End,"CollidingTriggerOff", 
                               () => triggerCollider.IsNullOrDestroyed().OnFalse(() => triggerCollider.enabled = false));
         }
 

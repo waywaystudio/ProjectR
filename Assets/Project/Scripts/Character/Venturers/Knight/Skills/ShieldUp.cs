@@ -17,10 +17,10 @@ namespace Character.Venturers.Knight.Skills
             base.Initialize();
 
             Builder
-                .Add(SectionType.Active, "ActiveBuff", AddEffect)
-                .Add(SectionType.Active, "ConsumeResource", () => ConsumeResource().Forget())
-                .Add(SectionType.End, "RemoveBuff", RemoveEffect)
-                .Add(SectionType.End, "StopTask", StopTask);
+                .Add(Section.Active, "ActiveBuff", AddEffect)
+                .Add(Section.Active, "ConsumeResource", () => ConsumeResource().Forget())
+                .Add(Section.End, "RemoveBuff", RemoveEffect)
+                .Add(Section.End, "StopTask", StopTask);
         }
         
         

@@ -6,15 +6,15 @@ namespace Common.Skills
     [Serializable]
     public class SkillCastTimer : CastTimer
     {
-        [SerializeField] protected SectionType callbackSection;
+        [SerializeField] protected Section callbackSection;
         
-        public SectionType CallbackSection => callbackSection;
+        public Section CallbackSection => callbackSection;
         
         public void Initialize(SkillComponent skill)
         {
             skill.Builder
-                 .Add(SectionType.Active, "SkillCasting", () => Play(skill.CastingWeight, CallbackSection.GetInvokeAction(skill)))
-                 .Add(SectionType.End, "StopCastTimer", Stop);
+                 .Add(Section.Active, "SkillCasting", () => Play(skill.CastingWeight, CallbackSection.GetInvokeAction(skill)))
+                 .Add(Section.End, "StopCastTimer", Stop);
         }
 
 
@@ -24,7 +24,7 @@ namespace Common.Skills
             var skillData = Database.SkillSheetData(dataIndex);
             
             castingTime     = skillData.CastTime;
-            callbackSection = skillData.CastCallback.ToEnum<SectionType>();
+            callbackSection = skillData.CastCallback.ToEnum<Section>();
         }
 #endif
     }

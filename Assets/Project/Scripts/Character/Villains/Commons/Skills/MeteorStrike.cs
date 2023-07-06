@@ -24,9 +24,9 @@ namespace Character.Villains.Commons.Skills
             var villain = GetComponentInParent<VillainBehaviour>();
 
             Builder.AddCondition("ConditionSelfHpStatus", () => (enableMask | villain.CurrentPhase.PhaseMask) == enableMask)
-                           .Add(SectionType.Active, "DirectExecuteMeteorStrike", Invoker.Execute)
-                           .Add(SectionType.Execute, "StartMeteor", () => meteorRoutine = StartCoroutine(StartMeteor()))
-                           .Add(SectionType.End, "StopExecution", StopMeteor);
+                           .Add(Section.Active, "DirectExecuteMeteorStrike", Invoker.Execute)
+                           .Add(Section.Execute, "StartMeteor", () => meteorRoutine = StartCoroutine(StartMeteor()))
+                           .Add(Section.End, "StopExecution", StopMeteor);
         }
 
 

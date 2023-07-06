@@ -19,9 +19,9 @@ namespace Character.Venturers.Knight.StatusEffects
             base.Initialize(provider);
 
             Builder
-                .Add(SectionType.Active, "SetHasteWeightAndTickBuffer", UpdateHasteWeight)
-                .Add(SectionType.Active, "OvertimeExecution", () => OvertimeExecution().Forget())
-                .Add(SectionType.End, "StopOverTimeExecution", Stop);
+                .Add(Section.Active, "SetHasteWeightAndTickBuffer", UpdateHasteWeight)
+                .Add(Section.Active, "OvertimeExecution", () => OvertimeExecution().Forget())
+                .Add(Section.End, "StopOverTimeExecution", Stop);
         }
 
 

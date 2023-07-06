@@ -87,19 +87,19 @@ namespace Common.Characters.Behaviours
             SequenceBuilder.AddCondition("AbleToBehaviourOverride", () => BehaviourMask.CanOverride(Cb.BehaviourMask))
                            .AddCondition("IsSkillEnded", () => IsSkillEnded)
                            .AddCondition("GlobalCoolTimeReady", () => globalCoolTimer.IsReady)
-                           .Add(SectionType.Active,"CancelPreviousBehaviour", () => cb.CurrentBehaviour?.TryToOverride(this))
-                           .Add(SectionType.Active,"SetCurrentBehaviour", () => cb.CurrentBehaviour = this)
-                           .Add(SectionType.Active,"PlayGlobalCoolTimer", globalCoolTimer.Play)
-                           .Add(SectionType.Cancel,"CurrentSkillCancel", () => Current.Invoker.Cancel())
-                           .Add(SectionType.End,"Stop", Cb.Stop);
+                           .Add(Section.Active,"CancelPreviousBehaviour", () => cb.CurrentBehaviour?.TryToOverride(this))
+                           .Add(Section.Active,"SetCurrentBehaviour", () => cb.CurrentBehaviour = this)
+                           .Add(Section.Active,"PlayGlobalCoolTimer", globalCoolTimer.Play)
+                           .Add(Section.Cancel,"CurrentSkillCancel", () => Current.Invoker.Cancel())
+                           .Add(Section.End,"Stop", Cb.Stop);
             
             globalCoolTimer.SetRetriever(() => Cb.StatTable.Haste);
             skillTable.Iterate(skill =>
             {
                 skill.Initialize();
                 skill.Builder
-                     .Add(SectionType.End, "BehaviourUnregister", () => Current = null)
-                     .Add(SectionType.End, "SkillBehaviourEnd", SequenceInvoker.End);
+                     .Add(Section.End, "BehaviourUnregister", () => Current = null)
+                     .Add(Section.End, "SkillBehaviourEnd", SequenceInvoker.End);
             });
         }
 

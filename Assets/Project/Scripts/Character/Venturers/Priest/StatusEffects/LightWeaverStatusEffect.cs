@@ -20,9 +20,9 @@ namespace Character.Venturers.Priest.StatusEffects
             LightOfDawn  = Provider.SkillBehaviour.GetSkill(DataIndex.LightOfDawn) as LightOfDawn;
 
             Builder
-                .Add(SectionType.Active, "EnforceHealingTouch", EnforceHealingTouch)
-                .Add(SectionType.Active, "EnforceLightOfDawn", EnforceLightOfDawn)
-                .Add(SectionType.End, "ReturnToOriginal", ReturnToOriginal);
+                .Add(Section.Active, "EnforceHealingTouch", EnforceHealingTouch)
+                .Add(Section.Active, "EnforceLightOfDawn", EnforceLightOfDawn)
+                .Add(Section.End, "ReturnToOriginal", ReturnToOriginal);
         }
 
 

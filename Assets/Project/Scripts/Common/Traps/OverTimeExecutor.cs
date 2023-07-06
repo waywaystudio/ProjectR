@@ -32,8 +32,8 @@ namespace Common.Traps
 
             // Require Builder - Sequencer and create new Builder
             trapComponent.SequenceBuilder
-                         .Add(SectionType.Active,"OverTimeOn", OverTimeOn)
-                         .Add(SectionType.End,"OverTimeOff", OverTimeOff);
+                         .Add(Section.Active,"OverTimeOn", OverTimeOn)
+                         .Add(Section.End,"OverTimeOff", OverTimeOff);
         }
 
         private void Update()

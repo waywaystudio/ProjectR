@@ -27,11 +27,11 @@ namespace Character.Venturers.Mage.Projectiles
             base.Initialize(provider);
 
             Builder
-                .Add(SectionType.Active, "CollidingTriggerOn", () => triggerCollider.enabled = true)
-                .Add(SectionType.Active, "FindSoulShard", () => FindSoulShard().Forget())
-                .Add(SectionType.End, "CollidingTriggerOff", () => triggerCollider.enabled   = false)
-                .Add(SectionType.End, "ResetPower", ResetPower)
-                .Add(SectionType.End, "StopFinding", StopFinding);
+                .Add(Section.Active, "CollidingTriggerOn", () => triggerCollider.enabled = true)
+                .Add(Section.Active, "FindSoulShard", () => FindSoulShard().Forget())
+                .Add(Section.End, "CollidingTriggerOff", () => triggerCollider.enabled   = false)
+                .Add(Section.End, "ResetPower", ResetPower)
+                .Add(Section.End, "StopFinding", StopFinding);
             
             originalPower = damageExecutor.DamageSpec.Power;
         }

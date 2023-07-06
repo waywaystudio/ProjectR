@@ -9,7 +9,7 @@ namespace Character.Venturers.Knight.Skills
         {
             base.Initialize();
             
-            Builder.Add(SectionType.Execute, "TauntAction", TauntAction);
+            Builder.Add(Section.Execute, "TauntAction", TauntAction);
         }
 
 

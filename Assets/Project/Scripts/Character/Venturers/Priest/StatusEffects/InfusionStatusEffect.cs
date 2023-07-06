@@ -22,11 +22,11 @@ namespace Character.Venturers.Priest.StatusEffects
             base.Initialize(provider);
 
             Builder
-                .Add(SectionType.Active, "SetHasteWeightAndTickBuffer", SetHasteWeightAndTickBuffer)
-                .Add(SectionType.Active, "OvertimeExecution", () => OvertimeExecution().Forget())
-                .Add(SectionType.Active, "ProvideBuff", ProvideBuff)
-                .Add(SectionType.End, "StopEffectuate", () => cts?.Cancel())
-                .Add(SectionType.End, "RemoveBuffStat", EndBuff);
+                .Add(Section.Active, "SetHasteWeightAndTickBuffer", SetHasteWeightAndTickBuffer)
+                .Add(Section.Active, "OvertimeExecution", () => OvertimeExecution().Forget())
+                .Add(Section.Active, "ProvideBuff", ProvideBuff)
+                .Add(Section.End, "StopEffectuate", () => cts?.Cancel())
+                .Add(Section.End, "RemoveBuffStat", EndBuff);
         }
 
 

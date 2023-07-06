@@ -16,12 +16,12 @@ namespace Character.Venturers.Warrior.Skills
             base.Initialize();
 
             Builder.AddActiveParam("RigidMove", RigidMove)
-                           .Add(SectionType.Active, "CheckColliding", () => OnCollided().Forget())
-                           .Add(SectionType.Execute, "CommonExecution", () => detector.GetTakers()?.ForEach(executor.ToTaker))
-                           .Add(SectionType.Execute, "PlayCollideAnimation", PlayCollideAnimation)
-                           .Add(SectionType.Execute, "StopPathfinding", Cb.Pathfinding.Stop)
-                           .Add(SectionType.Execute, "StopCharging", StopCharging)
-                           .Add(SectionType.End, "StopCharging", StopCharging);
+                           .Add(Section.Active, "CheckColliding", () => OnCollided().Forget())
+                           .Add(Section.Execute, "CommonExecution", () => detector.GetTakers()?.ForEach(executor.ToTaker))
+                           .Add(Section.Execute, "PlayCollideAnimation", PlayCollideAnimation)
+                           .Add(Section.Execute, "StopPathfinding", Cb.Pathfinding.Stop)
+                           .Add(Section.Execute, "StopCharging", StopCharging)
+                           .Add(Section.End, "StopCharging", StopCharging);
         }
         
 

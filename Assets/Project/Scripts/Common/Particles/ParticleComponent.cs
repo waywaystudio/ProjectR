@@ -5,8 +5,8 @@ namespace Common.Particles
     public class ParticleComponent : MonoBehaviour, IEditable
     {
         [SerializeField] private ParticleSystem particle;
-        [SerializeField] private SectionType playSection;
-        [SerializeField] private SectionType stopSection;
+        [SerializeField] private Section playSection;
+        [SerializeField] private Section stopSection;
 
         public SinglePool<ParticleComponent> Pool { get; set; }
         

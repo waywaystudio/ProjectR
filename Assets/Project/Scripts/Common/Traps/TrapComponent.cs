@@ -37,7 +37,7 @@ namespace Common.Traps
         {
             Provider = provider;
             
-            SequenceBuilder.Add(SectionType.End,"TrapObjectActiveFalse", () => gameObject.SetActive(false));
+            SequenceBuilder.Add(Section.End,"TrapObjectActiveFalse", () => gameObject.SetActive(false));
         }
         
         /// <summary>

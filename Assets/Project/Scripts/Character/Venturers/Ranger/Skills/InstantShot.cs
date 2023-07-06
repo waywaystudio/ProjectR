@@ -10,7 +10,7 @@ namespace Character.Venturers.Ranger.Skills
             base.Initialize();
             
             Provider.OnDamageProvided.Add("AddAdrenalinByInstantShot", AddAdrenalin);
-            Builder.Add(SectionType.Execute, "Fire", Fire);
+            Builder.Add(Section.Execute, "Fire", Fire);
         }
 
         public override void Dispose()
