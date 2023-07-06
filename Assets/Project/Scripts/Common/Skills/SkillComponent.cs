@@ -23,8 +23,8 @@ namespace Common.Skills
         private readonly SkillSequencer sequencer = new();
 
         public DataIndex DataIndex => actionCode;
-        public ICombatProvider Provider => Cb;
         public ActionMask BehaviourMask => behaviourMask;
+        public ICombatProvider Provider => Cb;
         public ICombatTaker MainTarget => detector?.GetMainTarget();
         public int Priority => priority;
         public SkillCost Cost => cost;

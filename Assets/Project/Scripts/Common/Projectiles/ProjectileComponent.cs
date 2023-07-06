@@ -45,6 +45,7 @@ namespace Common.Projectiles
             gameObject.SetActive(true);
             Invoker.Active();
         }
+        
 
         /// <summary>
         /// 스킬의 가동범위로 부터 대상을 받아서
@@ -52,11 +53,6 @@ namespace Common.Projectiles
         /// </summary>
         public virtual void Execution() { }
 
-
-        /// <summary>
-        /// 해제 시 호출. (만료 아님)
-        /// </summary>
-        public void Cancel() => Invoker.Cancel();
 
         /// <summary>
         /// Scene이 종료되거나, 설정된 Pool 개수를 넘어서 생성된 상태이상효과가 만료될 때 호출

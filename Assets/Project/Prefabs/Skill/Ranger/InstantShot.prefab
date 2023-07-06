@@ -72,7 +72,6 @@ GameObject:
   m_Component:
   - component: {fileID: 31583735699624563}
   - component: {fileID: 1553657280916983596}
-  - component: {fileID: 4675359808094049037}
   m_Layer: 0
   m_Name: Effects
   m_TagString: Untagged
@@ -109,22 +108,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   instantShot: {fileID: 671937298815967466}
   pool:
-    prefab: {fileID: 0}
-    maxCount: 8
-    syncObjectActivity: 1
---- !u!114 &4675359808094049037
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8372597350871493484}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dcafaa6e3134dad4c9b073d2c8984faa, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  particlePool:
     prefab: {fileID: 0}
     maxCount: 8
     syncObjectActivity: 1

@@ -155,7 +155,7 @@ MonoBehaviour:
     statList:
     - statType: 13010001
       statKey: DamageExecutorKey
-      value: 10
+      value: 100
     - statType: 13020001
       statKey: DamageExecutorKey
       value: 0.5
@@ -227,3 +227,6 @@ MonoBehaviour:
   projectile: {fileID: -8521466867242721343}
   flyingParticlePrefab: {fileID: 1550477657380252, guid: 93a3630b98737b146b5039212cf8d91f, type: 3}
   hitParticlePrefab: {fileID: 191512, guid: 115303a3a5eed0244a8c9505b4c83b36, type: 3}
+  flyingParticleTester:
+    prefab: {fileID: 1550477657380252, guid: 93a3630b98737b146b5039212cf8d91f, type: 3}
+    syncObjectActivity: 1

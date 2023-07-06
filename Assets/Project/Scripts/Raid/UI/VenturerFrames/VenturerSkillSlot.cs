@@ -71,7 +71,7 @@ namespace Raid.UI.VenturerFrames
         {
             if (!MainManager.Input.TryGetMousePosition(out var mousePosition)) return;
 
-            FocusVenturer.ExecuteSkill(SkillCode, mousePosition);
+            FocusVenturer.ActiveSkill(SkillCode, mousePosition);
         }
 
         private void ReleaseAction(InputAction.CallbackContext callbackContext)

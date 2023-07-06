@@ -152,6 +152,9 @@ MonoBehaviour:
   projectile: {fileID: -8521466867242721343}
   flyingParticlePrefab: {fileID: 1550477657380252, guid: 93a3630b98737b146b5039212cf8d91f, type: 3}
   hitParticlePrefab: {fileID: 1462625049709940, guid: 554c5673bd76bcf468990f2d97dab82a, type: 3}
+  flyingParticleTester:
+    prefab: {fileID: 1550477657380252, guid: 93a3630b98737b146b5039212cf8d91f, type: 3}
+    syncObjectActivity: 1
 --- !u!1 &8882434429761776426
 GameObject:
   m_ObjectHideFlags: 0

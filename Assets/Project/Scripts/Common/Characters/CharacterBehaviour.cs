@@ -73,7 +73,7 @@ namespace Common.Characters
         
         /* Skill Behaviour */
         public SkillComponent GetSkill(DataIndex actionCode) => skillBehaviour.GetSkill(actionCode);
-        public void ExecuteSkill(DataIndex actionCode, Vector3 targetPosition) => skillBehaviour.Active(actionCode, targetPosition);
+        public void ActiveSkill(DataIndex actionCode, Vector3 targetPosition) => skillBehaviour.Active(actionCode, targetPosition);
         public void CancelSkill() => skillBehaviour.Cancel();
         public void ReleaseSkill() => skillBehaviour.Release();
 

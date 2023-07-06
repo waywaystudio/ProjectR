@@ -18,10 +18,11 @@ namespace Character.Venturers.Ranger.Projectile
         {
             base.Initialize(provider);
             
-            Builder.Add(SectionType.Active, "CollidingTriggerOn", () => triggerCollider.enabled = true)
-                           .Add(SectionType.Active, "ResetPierceCount", () => pierceCount = 0)
-                           .Add(SectionType.Execute, "PierceProjectileExecution", PierceProjectileExecution)
-                           .Add(SectionType.End, "CollidingTriggerOff", () => triggerCollider.enabled = false);
+            Builder
+                .Add(SectionType.Active, "CollidingTriggerOn", () => triggerCollider.enabled = true)
+                .Add(SectionType.Active, "ResetPierceCount", () => pierceCount = 0)
+                .Add(SectionType.Execute, "PierceProjectileExecution", PierceProjectileExecution)
+                .Add(SectionType.End, "CollidingTriggerOff", () => triggerCollider.enabled = false);
         }
 
         public void PierceProjectileExecution()

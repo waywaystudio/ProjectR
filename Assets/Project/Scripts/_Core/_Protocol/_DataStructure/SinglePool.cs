@@ -4,22 +4,19 @@ using UnityEngine.Pool;
 using Object = UnityEngine.Object;
 
 [Serializable]
-public class Pool<T> where T : Component
+public class SinglePool<T> where T : Component
 {
     [SerializeField] private GameObject prefab;
-    [SerializeField] private int maxCount = 8;
-        
+    
     /// <summary>
     /// 게임오브젝트의 Active 상태를 풀링할 때 true(= OnGet), 릴리스 할 때 false(= OnRelease)한다.
     /// </summary>
     [SerializeField] private bool syncObjectActivity = true;
 
+    private T singleComponent;
     private bool isInitialized;
     private IObjectPool<T> objectPool;
-
-    public GameObject Prefab => prefab;
-
-
+    
     /// <summary>
     /// Constructor. Pool<T>을 사용하기 위해서는 반드시 한 번 선행되어야 한다.
     /// 이미 생성된 후에 다시 실행하면, 하위 Action을 갱신할 수 있다.
@@ -35,7 +32,7 @@ public class Pool<T> where T : Component
             
         objectPool?.Clear();
         objectPool = new ObjectPool<T>(() => Create(parent, onInitialize), onGet, onRelease, onPoolCleared, 
-                                       true, 0, maxCount);
+                                       true, 0, 1);
 
         isInitialized = true;
     }
@@ -49,11 +46,11 @@ public class Pool<T> where T : Component
         return null;
     }
 
-    public void Release(T element)
+    public void Release()
     {
         if (isInitialized)
         {
-            objectPool.Release(element);
+            objectPool.Release(singleComponent);
             return;
         }
             
@@ -66,14 +63,9 @@ public class Pool<T> where T : Component
         
     private T Create(Transform parent, Action<T> onActivated)
     {
-        if (!prefab.ValidInstantiate(out T component, parent)) return null;
+        if (!prefab.ValidInstantiate(out singleComponent, parent)) return null;
 
-        onActivated?.Invoke(component);
-        return component;
+        onActivated?.Invoke(singleComponent);
+        return singleComponent;
     }
 }
-
-/* Annotation
- * Create함수는 Hierarchy의 부모를 잡아주는 기능만 있다.
- * Instantiate의 추가적인 기능이 필요할 경우, Create를 오버로드하여 사용하도록 하자. 
- */

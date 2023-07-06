@@ -26,11 +26,12 @@ namespace Character.Venturers.Mage.Projectiles
         {
             base.Initialize(provider);
 
-            Builder.Add(SectionType.Active, "CollidingTriggerOn", () => triggerCollider.enabled = true)
-                           .Add(SectionType.Active, "FindSoulShard", () => FindSoulShard().Forget())
-                           .Add(SectionType.End, "CollidingTriggerOff", () => triggerCollider.enabled   = false)
-                           .Add(SectionType.End, "ResetPower", ResetPower)
-                           .Add(SectionType.End, "StopFinding", StopFinding);
+            Builder
+                .Add(SectionType.Active, "CollidingTriggerOn", () => triggerCollider.enabled = true)
+                .Add(SectionType.Active, "FindSoulShard", () => FindSoulShard().Forget())
+                .Add(SectionType.End, "CollidingTriggerOff", () => triggerCollider.enabled   = false)
+                .Add(SectionType.End, "ResetPower", ResetPower)
+                .Add(SectionType.End, "StopFinding", StopFinding);
             
             originalPower = damageExecutor.DamageSpec.Power;
         }
@@ -80,6 +81,7 @@ namespace Character.Venturers.Mage.Projectiles
         private void StopFinding()
         {
             cts?.Cancel();
+            cts = null;
         }
         
         private List<SoulShardTrap> GetShardsInSphere()

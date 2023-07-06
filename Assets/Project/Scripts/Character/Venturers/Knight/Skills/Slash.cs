@@ -16,7 +16,11 @@ namespace Character.Venturers.Knight.Skills
 
         private void SlashAttack()
         {
-            detector.GetTakers()?.ForEach(executor.ToTaker);
+            detector.GetTakers()?.ForEach(taker =>
+            {
+                // Taker = taker;
+                executor.ToTaker(taker);
+            });
         }
     }
 }

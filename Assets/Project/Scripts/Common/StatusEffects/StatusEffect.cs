@@ -14,13 +14,13 @@ namespace Common.StatusEffects
         public float Duration => duration;
         public FloatEvent ProgressTime { get; } = new();
         public ICombatProvider Provider { get; protected set; }
+        public ICombatTaker Taker { get; set; }
         public DataIndex DataIndex => statusCode;
         public StatusEffectType Type => type;
         public Sequencer Sequencer { get; } = new();
         public Sprite Icon => icon;
         public StatusEffectSequenceInvoker Invoker { get; private set; }
         protected SequenceBuilder Builder { get; private set; }
-        protected ICombatTaker Taker { get; set; }
         
 
         /// <summary>
