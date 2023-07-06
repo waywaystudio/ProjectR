@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace Common.StatusEffects
 {
-    public abstract class StatusEffect : MonoBehaviour, IOriginalProvider, IHasSequencer, IEditable
+    public abstract class StatusEffect : MonoBehaviour, IOriginalProvider, ISequencerHolder, IEditable
     {
         [SerializeField] protected Executor executor;
         [SerializeField] protected DataIndex statusCode;

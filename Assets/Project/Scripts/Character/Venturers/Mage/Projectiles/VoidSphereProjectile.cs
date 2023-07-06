@@ -26,7 +26,7 @@ namespace Character.Venturers.Mage.Projectiles
         {
             base.Initialize(provider);
 
-            SequenceBuilder.Add(SectionType.Active, "CollidingTriggerOn", () => triggerCollider.enabled = true)
+            Builder.Add(SectionType.Active, "CollidingTriggerOn", () => triggerCollider.enabled = true)
                            .Add(SectionType.Active, "FindSoulShard", () => FindSoulShard().Forget())
                            .Add(SectionType.End, "CollidingTriggerOff", () => triggerCollider.enabled   = false)
                            .Add(SectionType.End, "ResetPower", ResetPower)
@@ -50,7 +50,7 @@ namespace Character.Venturers.Mage.Projectiles
                 taker.Alive.Value)
             {
                 executor.ToTaker(taker);
-                SequenceInvoker.Complete();
+                Invoker.Complete();
             }
         }
 
@@ -67,7 +67,7 @@ namespace Character.Venturers.Mage.Projectiles
                     soulShards.ForEach(AbsorbSoul);
                 }
 
-                if (SequenceInvoker.IsEnd)
+                if (Invoker.IsEnd)
                 {
                     StopFinding();
                     return;

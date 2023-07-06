@@ -27,7 +27,7 @@ namespace Common.Execution.Variants
         {
             projectile.transform.position = MuzzlePosition;
             projectile.Initialize(Origin.Provider);
-            projectile.SequenceBuilder.Add(SectionType.End,"ReturnToPool",() =>
+            projectile.Builder.Add(SectionType.End,"ReturnToPool",() =>
             {
                 projectile.transform.position = MuzzlePosition;
                 projectile.transform.SetParent(transform, true);

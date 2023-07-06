@@ -8,8 +8,10 @@ public enum SectionType
     ActiveOnce = 5,
     Release = 6,
     Override = 7,
-    //
+    
+    // Execution Group
     Execute = 11,
-    Execute2 = 12,
-    Execute3 = 13,
+    
+    // Extra Add
+    Extra = 21,
 }

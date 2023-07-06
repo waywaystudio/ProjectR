@@ -22,7 +22,7 @@ namespace Common.Projectiles
         public void Initialize(ProjectileComponent projectile)
         {
             projectileComponent = projectile;
-            projectileComponent.SequenceBuilder
+            projectileComponent.Builder
                                .Add(SectionType.Active, "Trajectory", Flying)
                                .Add(SectionType.End, "Trajectory", Stop);
         }
@@ -59,7 +59,7 @@ namespace Common.Projectiles
                                                  .DOMove(destination, duration)
                                                  .SetEase(tweenType)
                                                  .OnUpdate(() => projectileComponent.transform.LookAt(destination))
-                                                 .OnComplete(() => projectileComponent.SequenceInvoker.End());
+                                                 .OnComplete(() => projectileComponent.Invoker.End());
         }
 
         private void Parabola()

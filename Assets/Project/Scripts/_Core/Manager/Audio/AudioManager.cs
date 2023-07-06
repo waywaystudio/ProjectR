@@ -56,9 +56,6 @@ namespace Manager.Audio
         private void MasterVolumeFade(float target, float duration, Action callback)
         {
             masterMixer.GetFloat(MasterEvp, out var currentVolume);
-            
-            // LeanTween.cancel(transform.gameObject);
-            // LeanTween.value(transform.gameObject, SetMasterVolume, currentVolume, target, duration).setOnComplete(callback);
         }
 
         private string GetEvp(AudioType type) => type switch

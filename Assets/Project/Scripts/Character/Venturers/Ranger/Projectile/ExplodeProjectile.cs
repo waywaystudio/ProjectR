@@ -15,7 +15,7 @@ namespace Character.Venturers.Ranger.Projectile
         {
             base.Initialize(provider);
 
-            SequenceBuilder.Add(SectionType.Active, "CollidingTriggerOn", () => triggerCollider.enabled = true)
+            Builder.Add(SectionType.Active, "CollidingTriggerOn", () => triggerCollider.enabled = true)
                            .Add(SectionType.Complete, "ExplodeExecution", Execution)
                            .Add(SectionType.End, "CollidingTriggerOff", () => triggerCollider.enabled = false);
         }
@@ -39,7 +39,7 @@ namespace Character.Venturers.Ranger.Projectile
         {
             if (other.gameObject.TryGetComponent(out ICombatTaker _) && other.gameObject.IsInLayerMask(targetLayer))
             {
-                SequenceInvoker.Complete();
+                Invoker.Complete();
             }
         }
     }

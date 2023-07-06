@@ -4,7 +4,7 @@ public class SequenceBuilder
 {
     protected readonly Sequencer Sequencer;
 
-    public SequenceBuilder(IHasSequencer holder) => Sequencer = holder?.Sequencer;
+    public SequenceBuilder(ISequencerHolder holder) => Sequencer = holder?.Sequencer;
     public SequenceBuilder(Sequencer holder) => Sequencer = holder;
     
     public SequenceBuilder AddCondition(string key, Func<bool> condition) { Sequencer.Condition.Add(key, condition); return this; }

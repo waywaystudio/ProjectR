@@ -25,7 +25,12 @@ namespace Raid
                 !Verify.IsNotDefault(villain)) return;
 
             SpawnVenturer(challengers);
-            SpawnVillain(villain);
+
+            // TODO.TEMP TEST
+            for (int i = 0; i < 3; i++)
+            {
+                SpawnVillain(villain);
+            }
         }
 
 
@@ -50,7 +55,15 @@ namespace Raid
 
             var reward = Den.GetReward(villainIndex);
             
-            Villain = vb;
+            Villain                    =  vb;
+            
+            // TODO.TEMP TEST
+            var x = Random.value * Random.Range(1.0f, 3.0f);
+            var z = Random.value * Random.Range(1.0f, 3.0f);
+            var offset = new Vector3(x, 0f, z);
+            Villain.transform.position += offset;
+            // 
+            
             Villain.AddReward(() =>
             {
                 Den.GetVillainData(villainIndex).KillCount++;

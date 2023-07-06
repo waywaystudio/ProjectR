@@ -48,12 +48,15 @@ namespace Singleton
             instance = null;
         }
         
+        /* Implement this Method each inherit class.
+         * RuntimeInitializeOnLoadMethod is not work well in GenericType Class 
         [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.BeforeSceneLoad)]
         private static void ResetSingleton()
         {
             Debug.Log("ResetSingleton from RuntimeInitializeOnLoadMethod");
             instance = null;
-        }
+        } 
+        */
     }
 }
 

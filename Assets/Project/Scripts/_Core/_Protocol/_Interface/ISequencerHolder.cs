@@ -1,22 +1,22 @@
 using UnityEngine;
 
-public interface IHasSequencer
+public interface ISequencerHolder
 {
     Sequencer Sequencer { get; }
 }
 
-public interface IHasSequencer<T>
+public interface ISequencerHolder<T>
 {
     Sequencer<T> Sequencer { get; }
 }
 
-public interface IProjectorSequencer : IHasSequencer
+public interface IProjectorSequencer : ISequencerHolder
 {
     float CastWeightTime { get; }
     Vector3 SizeVector { get; }
 }
 
-public interface IProjectorSequencer<T> : IHasSequencer<T>
+public interface IProjectorSequencer<T> : ISequencerHolder<T>
 {
     float CastWeightTime { get; }
     Vector3 SizeVector { get; }

@@ -12,27 +12,28 @@ namespace Character.Venturers.Ranger.Projectile
 
         private int pierceCount;
 
-        private ICombatTaker piercedTaker;
-        
+        public ICombatTaker PiercedTaker { get; private set; }
+
         public override void Initialize(ICombatProvider provider)
         {
             base.Initialize(provider);
             
-            SequenceBuilder.Add(SectionType.Active, "CollidingTriggerOn", () => triggerCollider.enabled = true)
+            Builder.Add(SectionType.Active, "CollidingTriggerOn", () => triggerCollider.enabled = true)
                            .Add(SectionType.Active, "ResetPierceCount", () => pierceCount = 0)
+                           .Add(SectionType.Execute, "PierceProjectileExecution", PierceProjectileExecution)
                            .Add(SectionType.End, "CollidingTriggerOff", () => triggerCollider.enabled = false);
         }
 
-        public override void Execution()
+        public void PierceProjectileExecution()
         {
-            if (piercedTaker is not null && pierceCount <= maxPierceCount)
+            if (PiercedTaker is not null && pierceCount <= maxPierceCount)
             {
-                executor.ToTaker(piercedTaker);
-                executor.ToPosition(piercedTaker.Position);
+                executor.ToTaker(PiercedTaker);
+                executor.ToPosition(PiercedTaker.Position);
 
                 if (++pierceCount > maxPierceCount)
                 {
-                    SequenceInvoker.Complete();
+                    Invoker.Complete();
                 }
             }
         }
@@ -42,8 +43,8 @@ namespace Character.Venturers.Ranger.Projectile
         {
             if (other.gameObject.TryGetComponent(out ICombatTaker taker) && other.gameObject.IsInLayerMask(targetLayer))
             {
-                piercedTaker = taker;
-                Execution();
+                PiercedTaker = taker;
+                Invoker.Execute();
             }
         }
     }

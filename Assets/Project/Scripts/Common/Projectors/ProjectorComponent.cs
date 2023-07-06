@@ -4,7 +4,7 @@ using UnityEngine.Rendering.Universal;
 
 namespace Common.Projectors
 {
-    public abstract class ProjectorComponent : MonoBehaviour, IHasSequencer, IEditable
+    public abstract class ProjectorComponent : MonoBehaviour, ISequencerHolder, IEditable
     {
         [SerializeField] protected bool isStaticProjector;
         [SerializeField] protected Material materialReference;
