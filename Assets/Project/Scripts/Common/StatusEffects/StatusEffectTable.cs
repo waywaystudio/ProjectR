@@ -1,7 +1,4 @@
-using System;
-using Common.StatusEffects;
-
-namespace Common
+namespace Common.StatusEffects
 {
     public class StatusEffectTable : Table<DataIndex, StatusEffect>
     {

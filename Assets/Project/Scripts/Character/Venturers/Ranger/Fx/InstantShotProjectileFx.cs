@@ -1,55 +1,37 @@
 using Character.Venturers.Ranger.Projectile;
+using Common;
 using Common.Particles;
 using UnityEngine;
 
 namespace Character.Venturers.Ranger.Fx
 {
-    public class InstantShotProjectileFx : MonoBehaviour, IEditable
+    public class InstantShotProjectileFx : FxBehaviour<PierceProjectile>
     {
-        [SerializeField] private PierceProjectile projectile;
-        
         [SerializeField] private GameObject hitParticlePrefab;
-        [SerializeField] private ParticlePool flyingParticle;
-
-
-        private void Awake()
-        {
-            flyingParticle.Initialize(CreateFlyingParticle, transform);
-
-            var builder = new SequenceBuilder(projectile.Sequencer);
-
-            builder
-                .Add(Section.Active, "PlayFlyingVfx", flyingParticle.Play)
-                .Add(Section.End, "StopFlyingVfx", flyingParticle.Stop)
-                
-                // TEMP
-                .Add(Section.Execute, "PlayHitParticle", PlayHitParticle);
-        }
-
-        private void CreateFlyingParticle(ParticleComponent particle)
-        {
-            particle.Pool = flyingParticle;
-        }
+        [SerializeField] private ParticlePlayer flyingParticle;
         
+
         private void PlayHitParticle()
         {
             if (!hitParticlePrefab.ValidInstantiate(out ParticleSystem hit, null)) return;
             
-            hit.transform.position = projectile.PiercedTaker.Position + Vector3.up * 3f;
+            hit.transform.position = master.PiercedTaker.Position + Vector3.up * 3f;
             hit.gameObject.SetActive(true);
             hit.Play(true);
         }
 
-
-
-#if UNITY_EDITOR
-        public void EditorSetUp()
+        private void Awake()
         {
-            projectile = GetComponentInParent<PierceProjectile>();
+            flyingParticle.Initialize(master, transform);
 
-            if (!Verify.IsNotNull(projectile, "Missing Projectile Class in InstantShotProjectileFx")) 
-                return;
+            var builder = new SequenceBuilder(master.Sequencer);
+
+            builder
+                .Add(flyingParticle.PlaySection, "PlayFlyingVfx", flyingParticle.Play)
+                .Add(flyingParticle.StopSection, "StopFlyingVfx", flyingParticle.Stop)
+                
+                // TEMP
+                .Add(Section.Execute, "PlayHitParticle", PlayHitParticle);
         }
-#endif
     }
 }

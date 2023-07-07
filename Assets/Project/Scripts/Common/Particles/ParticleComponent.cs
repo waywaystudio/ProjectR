@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 namespace Common.Particles
@@ -5,33 +6,49 @@ namespace Common.Particles
     public class ParticleComponent : MonoBehaviour, IEditable
     {
         [SerializeField] private ParticleSystem particle;
-        [SerializeField] private Section playSection;
-        [SerializeField] private Section stopSection;
 
-        public SinglePool<ParticleComponent> Pool { get; set; }
-        
-        public void Play()
+        public ParticleSystem ParticleSystem => particle;
+        public ParticleSystemRenderer ParticleSystemRenderer => particleSystemRenderer ??= GetComponent<ParticleSystemRenderer>();
+
+        private ParticleSystemRenderer particleSystemRenderer;
+        private ActionTable OnParticleStopped { get; } = new();
+
+        public Pool<ParticleComponent> Pool { get; set; }
+
+        public void AddStopAction(string key, Action callback)
         {
+            OnParticleStopped.Add(key, callback);
+        }
+        
+
+        public void Play(Transform parent)
+        {
+            transform.SetParent(parent);
+            
             particle.Play(true);
         }
-
-        public void Play(Vector3 position)
+        
+        public void Play(Vector3 position, Transform parent)
         {
             transform.position = position;
+            transform.SetParent(parent);
+            
             particle.Play(true);
         }
 
         public void Stop()
         {
-            transform.position = Vector3.zero;
+            OnParticleStopped.Invoke();
             particle.Stop(true);
         }
 
-        /* ParticleSystem Native Callback Action Rule */
+        /*
+         * ParticleSystem's Native Callback Method
+         */
         public void OnParticleSystemStopped()
         {
-            transform.position = Vector3.zero;
-            Pool.Release();
+            Pool?.Release(this);
+            OnParticleStopped.Invoke();
         }
 
 

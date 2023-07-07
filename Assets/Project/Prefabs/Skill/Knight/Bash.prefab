@@ -93,7 +93,10 @@ MonoBehaviour:
   group: 1
   actionCode: 31210102
   damageSpec:
-    statList: []
+    statList:
+    - statType: 13010001
+      statKey: DamageExecutorKey
+      value: 200
 --- !u!1 &6898964570828026415
 GameObject:
   m_ObjectHideFlags: 0
