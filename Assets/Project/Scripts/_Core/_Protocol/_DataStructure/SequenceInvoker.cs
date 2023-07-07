@@ -49,6 +49,8 @@ public class SequenceInvoker
         Sequencer[Section.End].Invoke();
         Sequencer.CompleteTrigger?.Dispose();
     }
+    
+    public void ExtraAction() => Sequencer[Section.Extra].Invoke();
 }
 
 public class SequenceInvoker<T>
@@ -104,4 +106,6 @@ public class SequenceInvoker<T>
         Sequencer[Section.End].Invoke();
         Sequencer.CompleteTrigger?.Dispose();
     }
+    
+    public void ExtraAction() => Sequencer[Section.Extra].Invoke();
 }

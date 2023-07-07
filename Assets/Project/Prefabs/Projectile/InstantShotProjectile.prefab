@@ -31,7 +31,6 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 5487111089052602273}
   - {fileID: 2131664567955149614}
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -68,6 +67,12 @@ MonoBehaviour:
   targetLayer:
     serializedVersion: 2
     m_Bits: 256
+  flyingParticle:
+    prefab: {fileID: 1550477657380252, guid: 93a3630b98737b146b5039212cf8d91f, type: 3}
+  hitParticle:
+    prefab: {fileID: 191512, guid: 115303a3a5eed0244a8c9505b4c83b36, type: 3}
+    maxCount: 8
+    syncObjectActivity: 1
   triggerCollider: {fileID: 6970810306177905816}
   maxPierceCount: 1
 --- !u!135 &6970810306177905816
@@ -180,54 +185,3 @@ MonoBehaviour:
     prefab: {fileID: 8333227002716821657, guid: bf08b1be8473341419b9acdbee5e0e7e, type: 3}
     maxCount: 8
     syncObjectActivity: 1
---- !u!1 &7346140006788567130
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 5487111089052602273}
-  - component: {fileID: 3554206159267455552}
-  m_Layer: 9
-  m_Name: Effects
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &5487111089052602273
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7346140006788567130}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 601654701044516039}
-  m_RootOrder: -1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &3554206159267455552
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7346140006788567130}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e9cd8c181b914bc49be610a0ca92ff05, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  master: {fileID: -8521466867242721343}
-  hitParticlePrefab: {fileID: 191512, guid: 115303a3a5eed0244a8c9505b4c83b36, type: 3}
-  flyingParticle:
-    prefab: {fileID: 1550477657380252, guid: 93a3630b98737b146b5039212cf8d91f, type: 3}
-    isLoop: 1
-    playSection: 1
-    stopSection: 4

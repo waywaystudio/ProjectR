@@ -26,6 +26,7 @@ namespace Common.Skills
         public ActionMask BehaviourMask => behaviourMask;
         public ICombatProvider Provider => Cb;
         public ICombatTaker MainTarget => detector?.GetMainTarget();
+        public ICombatTaker Taker { get; protected set; }
         public int Priority => priority;
         public SkillCost Cost => cost;
         public string Description => description;
@@ -76,7 +77,8 @@ namespace Common.Skills
 
         public virtual void Dispose()
         {
-            Invoker.End();
+            // TODO Pool.Release()가 중복으로 들어옴
+            // Invoker.End();
             
             sequencer.Clear();
             coolTimer.Dispose();

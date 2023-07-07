@@ -1,4 +1,3 @@
-using System;
 using UnityEngine;
 
 namespace Common.Particles
@@ -6,33 +5,49 @@ namespace Common.Particles
     public class ParticleComponent : MonoBehaviour, IEditable
     {
         [SerializeField] private ParticleSystem particle;
-
-        public ParticleSystem ParticleSystem => particle;
-        public ParticleSystemRenderer ParticleSystemRenderer => particleSystemRenderer ??= GetComponent<ParticleSystemRenderer>();
+        [SerializeField] private Vector3 offset;
+        [SerializeField] private bool flipEnable;
 
         private ParticleSystemRenderer particleSystemRenderer;
         private ActionTable OnParticleStopped { get; } = new();
 
+        public ParticleSystemRenderer ParticleSystemRenderer => particleSystemRenderer ??= GetComponent<ParticleSystemRenderer>();
         public Pool<ParticleComponent> Pool { get; set; }
-
-        public void AddStopAction(string key, Action callback)
-        {
-            OnParticleStopped.Add(key, callback);
-        }
         
 
+        public void Play()
+        {
+            if (flipEnable)
+            {
+                Flip();
+            }
+            
+            particle.Play();
+        }
+        
         public void Play(Transform parent)
         {
             transform.SetParent(parent);
+            
+            if (flipEnable)
+            {
+                Flip();
+            }
             
             particle.Play(true);
         }
         
         public void Play(Vector3 position, Transform parent)
         {
-            transform.position = position;
-            transform.SetParent(parent);
+            if (parent != transform.parent)
+            {
+                transform.SetParent(parent);
+            }
             
+            transform.position = position + offset;
+
+            if (flipEnable) Flip();
+        
             particle.Play(true);
         }
 
@@ -49,6 +64,19 @@ namespace Common.Particles
         {
             Pool?.Release(this);
             OnParticleStopped.Invoke();
+        }
+
+
+        private void Flip()
+        {
+            ParticleSystemRenderer.flip = transform.forward.x < 0
+                ? Vector3.right 
+                : Vector3.zero; 
+        }
+
+        private void Reset()
+        {
+            particle = GetComponent<ParticleSystem>();
         }
 
 

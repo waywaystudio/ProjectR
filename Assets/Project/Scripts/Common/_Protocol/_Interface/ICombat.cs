@@ -1,5 +1,4 @@
 using Common.Characters.Behaviours;
-using Common.Particles;
 using Common.StatusEffects;
 using UnityEngine;
 // ReSharper disable InconsistentNaming
@@ -17,6 +16,11 @@ namespace Common
     public interface IOriginalProvider
     {
         ICombatProvider Provider { get; }
+    }
+
+    public interface IHasTaker
+    {
+        ICombatTaker Taker { get; }
     }
     
     public interface IActionSender : IOriginalProvider, IDataIndexer
@@ -82,7 +86,6 @@ namespace Common
         void Dead();
         void TakeStatusEffect(StatusEffect effect);
         void DispelStatusEffect(DataIndex effectIndex);
-        void PlayEffect(IActionSender actionSender, ParticleComponent particle);
     }
 
     public interface ICombatExecutor : ICombatProvider, ICombatTaker, IDataIndexer

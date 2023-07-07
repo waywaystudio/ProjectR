@@ -6,15 +6,15 @@ namespace Character.Venturers.Knight.Skills
 {
     public class Slash : SkillComponent
     {
-        [SerializeField] private ParticlePlayer slashParticle;
-        [SerializeField] private Pool<ParticleComponent> impactParticle;
+        // [SerializeField] private SinglePool<ParticleComponent> slashParticle;
+        // [SerializeField] private Pool<ParticleComponent> impactParticle;
         
         public override void Initialize()
         {
             base.Initialize();
             
-            slashParticle.Initialize(this, transform);
-            impactParticle.Initialize(CreateImpactParticle);
+            // slashParticle.Initialize(null, transform);
+            // impactParticle.Initialize(component => component.Pool = impactParticle);
             
             cost.PayCondition.Add("HasTarget", detector.HasTarget);
             Builder
@@ -27,22 +27,19 @@ namespace Character.Venturers.Knight.Skills
         {
             detector.GetTakers()?.ForEach(taker =>
             {
-                impactParticle.Get().Play(taker.Position, taker.gameObject.transform);
+                Taker = taker;
+                
+                // var particle = impactParticle.Get();
+                // particle.Play(taker.Position, taker.gameObject.transform);
+                
+                Invoker.ExtraAction();
                 executor.ToTaker(taker);
             });
         }
         
         private void PlaySlashParticle()
         {
-            // slashParticle.Play();
-            // slashParticle.ParticleRenderer.flip = Provider.Forward.x < 0 
-            //     ? Vector3.right 
-            //     : Vector3.zero;
-        }
-
-        private void CreateImpactParticle(ParticleComponent pc)
-        {
-            pc.Pool = impactParticle;
+            // slashParticle.Get().Play();
         }
     }
 }

@@ -96,7 +96,6 @@ namespace Common.Characters
 
         public void TakeStatusEffect(StatusEffect effect) => StatusEffectTable[effect.DataIndex].Activate(this);
         public void DispelStatusEffect(DataIndex effectIndex) => StatusEffectTable[effectIndex]?.Dispel();
-        public void PlayEffect(IActionSender actionSender, ParticleComponent particle) => combatStatus.PlayEffect(actionSender, particle);
 
 
         public void Initialize()

@@ -64,6 +64,8 @@ MonoBehaviour:
   targetLayer:
     serializedVersion: 2
     m_Bits: 128
+  explodeParticle:
+    prefab: {fileID: 145256, guid: 744526bef6d3733499602afe282e5731, type: 3}
 --- !u!114 &8771204470701334892
 MonoBehaviour:
   m_ObjectHideFlags: 0

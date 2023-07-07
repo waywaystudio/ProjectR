@@ -1,4 +1,5 @@
 using Common;
+using Common.Particles;
 using Common.Projectiles;
 using UnityEngine;
 
@@ -7,6 +8,8 @@ namespace Character.Venturers.Ranger.Projectile
     [RequireComponent(typeof(SphereCollider))]
     public class PierceProjectile : ProjectileComponent
     {
+        [SerializeField] private SinglePool<ParticleComponent> flyingParticle;
+        [SerializeField] private Pool<ParticleComponent> hitParticle;
         [SerializeField] private SphereCollider triggerCollider;
         [SerializeField] private int maxPierceCount = 1;
 
@@ -18,11 +21,16 @@ namespace Character.Venturers.Ranger.Projectile
         {
             base.Initialize(provider);
             
+            flyingParticle.Initialize(null, transform);
+            hitParticle.Initialize(component => component.Pool = hitParticle);
+            
             Builder
                 .Add(Section.Active, "CollidingTriggerOn", () => triggerCollider.enabled = true)
                 .Add(Section.Active, "ResetPierceCount", () => pierceCount = 0)
+                .Add(Section.Active, "PlayFlyingParticle", PlayFlyingParticle)
                 .Add(Section.Execute, "PierceProjectileExecution", PierceProjectileExecution)
-                .Add(Section.End, "CollidingTriggerOff", () => triggerCollider.enabled = false);
+                .Add(Section.End, "CollidingTriggerOff", () => triggerCollider.enabled = false)
+                .Add(Section.End, "StopFlyingParticle", StopFlyingParticle);
         }
 
         public void PierceProjectileExecution()
@@ -31,6 +39,10 @@ namespace Character.Venturers.Ranger.Projectile
             {
                 executor.ToTaker(PiercedTaker);
                 executor.ToPosition(PiercedTaker.Position);
+                
+                var particle = hitParticle.Get();
+                
+                particle.Play(PiercedTaker.Position, PiercedTaker.gameObject.transform);
 
                 if (++pierceCount > maxPierceCount)
                 {
@@ -39,6 +51,9 @@ namespace Character.Venturers.Ranger.Projectile
             }
         }
 
+
+        private void PlayFlyingParticle() => flyingParticle.Get().Play();
+        private void StopFlyingParticle() => flyingParticle.Release();
 
         private void OnTriggerEnter(Collider other)
         {

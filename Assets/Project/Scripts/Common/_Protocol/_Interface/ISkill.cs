@@ -1,6 +1,6 @@
 namespace Common
 {
-    public interface ISkill : IActionSender, IActionBehaviour, IProjectionProvider
+    public interface ISkill : IActionSender, IHasTaker, IActionBehaviour, IProjectionProvider
     {
     }
 }

@@ -51,7 +51,7 @@ MonoBehaviour:
     - statType: 13010001
       statKey: DamageExecution
       value: 100
---- !u!1 &1416387000446209527
+--- !u!1 &980667553336601439
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -59,7 +59,9 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 1333116216523595506}
+  - component: {fileID: 6794983565494111290}
+  - component: {fileID: 1766695774818705294}
+  - component: {fileID: 3739691450525522047}
   m_Layer: 0
   m_Name: Effects
   m_TagString: Untagged
@@ -67,13 +69,13 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &1333116216523595506
+--- !u!4 &6794983565494111290
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1416387000446209527}
+  m_GameObject: {fileID: 980667553336601439}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
@@ -82,6 +84,45 @@ Transform:
   m_Father: {fileID: 1754816964043732546}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1766695774818705294
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 980667553336601439}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dcafaa6e3134dad4c9b073d2c8984faa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  key: SlashExecuteParticle
+  singleParticle:
+    prefab: {fileID: 124808, guid: 66116f1fd2b722d4eb134ff91faf1479, type: 3}
+  parent: 1
+  prepositionType: 0
+  playSection: 11
+  endSection: 0
+--- !u!114 &3739691450525522047
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 980667553336601439}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fa06c267d17b6ea4e93ed2ccb016432a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  key: SlashHitParticle
+  particlePool:
+    prefab: {fileID: 1462625049709940, guid: 05c44c3e5ad210e4683a65a7ebe96fff, type: 3}
+    maxCount: 8
+    syncObjectActivity: 1
+  parent: 3
+  prepositionType: 3
+  playSection: 21
 --- !u!1 &3193236069115059579
 GameObject:
   m_ObjectHideFlags: 0
@@ -111,7 +152,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 1333116216523595506}
+  - {fileID: 6794983565494111290}
   - {fileID: 7677619079652815337}
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -167,13 +208,3 @@ MonoBehaviour:
   icon: {fileID: 21300000, guid: 951b905eda8f8424fb1debd28c69ac92, type: 3}
   description: "\uB300\uC0C1\uC744 \uACF5\uACA9\uD558\uC5EC \uC790\uC6D0\uC744 \uD68C\uBCF5\uD558\uB294
     \uAE30\uBCF8 \uAE30\uC220"
-  slashParticle:
-    prefab: {fileID: 124808, guid: 66116f1fd2b722d4eb134ff91faf1479, type: 3}
-    isLoop: 0
-    playSection: 11
-    stopSection: 0
-  impactParticle:
-    prefab: {fileID: 1462625049709940, guid: 05c44c3e5ad210e4683a65a7ebe96fff, type: 3}
-    isLoop: 0
-    playSection: 11
-    stopSection: 0

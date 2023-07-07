@@ -1,5 +1,3 @@
-using Common.Effects;
-using Common.Particles;
 using Common.StatusEffects;
 using UnityEngine;
 
@@ -12,11 +10,8 @@ namespace Common.Characters
         public ResourceValue Resource { get; } = new();
         public ShieldValue Shield { get; } = new();
         public StatTable StatTable { get; } = new();
-
         public StatusEffectTable StatusEffectTable { get; } = new();
-        
-        [Sirenix.OdinInspector.ShowInInspector]
-        public EffectTable EffectTable { get; } = new();
+
 
         public void Initialize()
         {
@@ -29,11 +24,6 @@ namespace Common.Characters
             Shield.Value       = 0;
         }
 
-        public void PlayEffect(IActionSender actionSender, ParticleComponent particle)
-        {
-            EffectTable.Play(actionSender, particle, transform);
-        }
-
         public void Dispose()
         {
             Alive.Clear();
@@ -42,7 +32,6 @@ namespace Common.Characters
             Shield.Clear();
             StatTable.Clear();
             StatusEffectTable.Clear();
-            EffectTable.Clear();
         }
     }
 }
