@@ -2,7 +2,7 @@ using UnityEngine;
 
 namespace Common.Particles
 {
-    public class ParticleComponent : MonoBehaviour, IEditable
+    public class ParticleInstance : MonoBehaviour, IEditable
     {
         [SerializeField] private ParticleSystem particle;
         [SerializeField] private Vector3 offset;
@@ -12,37 +12,21 @@ namespace Common.Particles
         private ActionTable OnParticleStopped { get; } = new();
 
         public ParticleSystemRenderer ParticleSystemRenderer => particleSystemRenderer ??= GetComponent<ParticleSystemRenderer>();
-        public Pool<ParticleComponent> Pool { get; set; }
+        public Pool<ParticleInstance> Pool { get; set; }
         
 
         public void Play()
         {
-            if (flipEnable)
-            {
-                Flip();
-            }
+            if (flipEnable) Flip();
             
             particle.Play();
         }
-        
-        public void Play(Transform parent)
-        {
-            transform.SetParent(parent);
-            
-            if (flipEnable)
-            {
-                Flip();
-            }
-            
-            particle.Play(true);
-        }
-        
+
+        public void Play(Transform parent) => Play(transform.position + offset, parent);
         public void Play(Vector3 position, Transform parent)
         {
-            if (parent != transform.parent)
-            {
+            if (transform.parent != parent)
                 transform.SetParent(parent);
-            }
             
             transform.position = position + offset;
 

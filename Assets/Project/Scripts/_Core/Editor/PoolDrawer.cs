@@ -5,7 +5,7 @@ using Sirenix.OdinInspector;
 using Sirenix.OdinInspector.Editor;
 using UnityEngine;
 
-namespace Common.Editor
+namespace Editor
 {
     public class PoolDrawer<T0, T1> : OdinAttributeProcessor<T0> where T0 : Pool<T1> where T1 : MonoBehaviour
     {
@@ -25,6 +25,7 @@ namespace Common.Editor
             if (member.Name == "maxCount")
             {
                 attributes.Add(new TitleGroupAttribute("Pooling Property"));
+                attributes.Add(new PropertyRangeAttribute(1, 32));
             }
             
             if (member.Name == "syncObjectActivity")

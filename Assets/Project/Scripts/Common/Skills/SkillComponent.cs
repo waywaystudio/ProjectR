@@ -1,5 +1,7 @@
+using System.Collections.Generic;
 using Common.Characters;
 using Common.Execution;
+using Common.Particles;
 using Common.TargetSystem;
 using UnityEngine;
 
@@ -17,10 +19,11 @@ namespace Common.Skills
         [SerializeField] protected SkillCastTimer castTimer;
         [SerializeField] protected SkillCost cost;
         [SerializeField] protected Sprite icon;
+        [SerializeField] protected List<CombatParticle> combatParticles;
         [SerializeField] protected string description;
         
         private CharacterBehaviour cb;
-        private readonly SkillSequencer sequencer = new();
+        private readonly SkillSequence sequence = new();
 
         public DataIndex DataIndex => actionCode;
         public ActionMask BehaviourMask => behaviourMask;
@@ -36,7 +39,7 @@ namespace Common.Skills
         public float Angle => detector.Angle;
         public Sprite Icon => icon;
 
-        public Sequencer Sequencer => sequencer;
+        public Sequencer Sequencer => sequence;
         public SkillSequenceBuilder Builder { get; private set; }
         public SkillSequenceInvoker Invoker { get; private set; }
         public SkillCoolTimer CoolTimer => coolTimer;
@@ -54,14 +57,15 @@ namespace Common.Skills
 
         public virtual void Initialize()
         {
-            Invoker = new SkillSequenceInvoker(sequencer);
-            Builder = new SkillSequenceBuilder(sequencer);
+            Invoker = new SkillSequenceInvoker(sequence);
+            Builder = new SkillSequenceBuilder(sequence);
             
             detector.Initialize(Cb);
             animationTrait.Initialize(this);
             coolTimer.Initialize(this);
             castTimer.Initialize(this);
             cost.Initialize(this);
+            combatParticles?.ForEach(cp => cp.Initialize(sequence, this));
             
             Builder
                 .Add(Section.Active, "StopPathfinding", Cb.Pathfinding.Stop)
@@ -80,9 +84,10 @@ namespace Common.Skills
             // TODO Pool.Release()가 중복으로 들어옴
             // Invoker.End();
             
-            sequencer.Clear();
+            sequence.Clear();
             coolTimer.Dispose();
             castTimer.Dispose();
+            combatParticles?.ForEach(cp => cp.Dispose());
         }
 
 
@@ -98,10 +103,12 @@ namespace Common.Skills
             
             var skillData = Database.SkillSheetData(actionCode);
             
-            behaviourMask = skillData.BehaviourMask.ToEnum<ActionMask>();
-            priority      = skillData.Priority;
-            description   = skillData.Description;
-            icon          = Database.SpellSpriteData.Get(actionCode);
+            behaviourMask   = skillData.BehaviourMask.ToEnum<ActionMask>();
+            priority        = skillData.Priority;
+            description     = skillData.Description;
+            icon            = Database.SpellSpriteData.Get(actionCode);
+
+            GetComponentsInChildren(combatParticles);
         }
         
         // ReSharper disable once UnusedMember.Local

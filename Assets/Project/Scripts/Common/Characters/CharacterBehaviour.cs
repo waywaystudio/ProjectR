@@ -1,6 +1,5 @@
 using System.Collections.Generic;
 using Common.Animation;
-using Common.Particles;
 using Common.Skills;
 using Common.StatusEffects;
 using Common.Systems;
@@ -14,6 +13,7 @@ namespace Common.Characters
     public class CharacterBehaviour : MonoBehaviour, ICombatExecutor, ICharacterSystem, ISearchable, IEditable
     {
         [SerializeField] protected CharacterCombatStatus combatStatus;
+        [SerializeField] protected CharacterPreposition prePosition;
         [SerializeField] protected AnimationModel animating;
         [SerializeField] protected SearchEngine searchEngine;
         [SerializeField] protected PathfindingSystem pathfinding;
@@ -25,8 +25,6 @@ namespace Common.Characters
         [SerializeField] protected DrawBehaviour drawBehaviour;
         [SerializeField] protected DeadBehaviour deadBehaviour;
         [SerializeField] protected SkillBehaviour skillBehaviour;
-
-        [SerializeField] protected Transform damageSpawn;
         [SerializeField] protected Transform statusEffectHierarchy;
 
         /*
@@ -38,8 +36,7 @@ namespace Common.Characters
         public virtual CharacterData Data { get; set; }
         public Vector3 Position => transform.position;
         public Vector3 Forward => transform.forward;
-        public Transform DamageSpawn => damageSpawn;
-        
+
 
         /*
          * Systems
@@ -88,6 +85,7 @@ namespace Common.Characters
         public StatTable StatTable => combatStatus.StatTable;
         public StatusEffectTable StatusEffectTable => combatStatus.StatusEffectTable;
         public Transform StatusEffectHierarchy => statusEffectHierarchy;
+        public Transform Preposition(PrepositionType type) => prePosition.Get(type);
         
         public ActionTable<CombatEntity> OnDamageProvided { get; } = new();
         public ActionTable<CombatEntity> OnDamageTaken { get; } = new();
@@ -114,6 +112,7 @@ namespace Common.Characters
         public virtual void EditorSetUp()
         {
             combatStatus       = GetComponentInChildren<CharacterCombatStatus>();
+            prePosition        = GetComponentInChildren<CharacterPreposition>();
             skillBehaviour     = GetComponentInChildren<SkillBehaviour>();
             stopBehaviour      = GetComponentInChildren<StopBehaviour>();
             runBehaviour       = GetComponentInChildren<RunBehaviour>();

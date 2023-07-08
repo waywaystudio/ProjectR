@@ -85,7 +85,7 @@ namespace Raid.UI.FloatingTexts
         {
             if (currentEntity == null) return;
 
-            var targetPosition = currentEntity.Taker.DamageSpawn.position + randomPivot;
+            var targetPosition = currentEntity.Taker.Preposition(PrepositionType.Top).position + randomPivot;
             var screenPosition = mainCamera.WorldToScreenPoint(targetPosition);
 
             transform.position = screenPosition;

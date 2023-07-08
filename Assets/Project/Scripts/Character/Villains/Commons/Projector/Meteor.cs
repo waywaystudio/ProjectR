@@ -7,7 +7,7 @@ namespace Character.Villains.Commons.Projector
 {
     public class Meteor : TrapComponent, IProjectionProvider
     {
-        [SerializeField] private SinglePool<ParticleComponent> explodeParticle;
+        [SerializeField] private SinglePool<ParticleInstance> explodeParticle;
         
         public Vector3 SizeVector => new (radius, radius, 360f);
         public float CastingWeight => ProlongTime;

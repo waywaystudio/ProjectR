@@ -6,7 +6,7 @@ using Object = UnityEngine.Object;
 [Serializable]
 public class Pool<T> where T : Component
 {
-    [SerializeField] private GameObject prefab;
+    [SerializeField] protected GameObject prefab;
     [SerializeField] private int maxCount = 8;
         
     /// <summary>
@@ -16,7 +16,6 @@ public class Pool<T> where T : Component
 
     private bool isInitialized;
     private IObjectPool<T> objectPool;
-
     public GameObject Prefab => prefab;
 
 
@@ -34,8 +33,14 @@ public class Pool<T> where T : Component
         }
             
         objectPool?.Clear();
-        objectPool = new ObjectPool<T>(() => Create(parent, onInitialize), onGet, onRelease, onPoolCleared, 
-                                       true, 0, maxCount);
+        objectPool = new ObjectPool<T>(
+            () => Create(onInitialize, parent), 
+            onGet, 
+            onRelease, 
+            onPoolCleared,
+            true, 
+            0, 
+            maxCount);
 
         isInitialized = true;
     }
@@ -64,7 +69,7 @@ public class Pool<T> where T : Component
     public void Clear() => objectPool.Clear();
         
         
-    private T Create(Transform parent, Action<T> onActivated)
+    protected virtual T Create(Action<T> onActivated, Transform parent)
     {
         if (!prefab.ValidInstantiate(out T component, parent)) return null;
 

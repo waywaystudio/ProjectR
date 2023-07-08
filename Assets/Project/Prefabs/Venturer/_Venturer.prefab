@@ -894,6 +894,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   combatStatus: {fileID: 4968826710418206697}
+  prePosition: {fileID: 282528626207883122}
   animating: {fileID: 0}
   searchEngine: {fileID: 7992750993201780990}
   pathfinding: {fileID: 2767833712095737796}
@@ -904,7 +905,6 @@ MonoBehaviour:
   drawBehaviour: {fileID: 6742287290873079761}
   deadBehaviour: {fileID: 5774851040486193953}
   skillBehaviour: {fileID: 7971064793264385864}
-  damageSpawn: {fileID: 7165625768315214134}
   statusEffectHierarchy: {fileID: 4734263807500399249}
   data: {fileID: 0}
   modChanger: {fileID: 6397024410037532818}
@@ -1412,6 +1412,37 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0374d05ee0e1fb04ca9b65115ad0dce6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &5778078394897328381
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6336869085047995076}
+  m_Layer: 0
+  m_Name: Head
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6336869085047995076
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5778078394897328381}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 3, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 3147096029349633165}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &6030389877176828492
 GameObject:
   m_ObjectHideFlags: 0
@@ -1597,6 +1628,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3147096029349633165}
+  - component: {fileID: 282528626207883122}
   m_Layer: 0
   m_Name: TransformPreset
   m_TagString: Untagged
@@ -1617,9 +1649,30 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 7165625768315214134}
+  - {fileID: 6336869085047995076}
+  - {fileID: 4741255886636324617}
   m_Father: {fileID: 3744010699814045015}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &282528626207883122
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7504715503937997980}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ff2e60d5d8a98df47b7190513005f58c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  table:
+    keyList: 01000000020000000300000004000000
+    valueList:
+    - {fileID: 7165625768315214134}
+    - {fileID: 6336869085047995076}
+    - {fileID: 4741255886636324617}
+    - {fileID: 3147096029349633165}
 --- !u!1 &7737772315383808032
 GameObject:
   m_ObjectHideFlags: 0
@@ -2274,6 +2327,37 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   billboardAngle: {x: 90, y: 0, z: 0}
+--- !u!1 &9024875447674371294
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4741255886636324617}
+  m_Layer: 0
+  m_Name: Body
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4741255886636324617
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9024875447674371294}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 2, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 3147096029349633165}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &9206584074808134567
 GameObject:
   m_ObjectHideFlags: 0
@@ -2284,7 +2368,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7165625768315214134}
   m_Layer: 0
-  m_Name: DamageSpawn
+  m_Name: Top
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

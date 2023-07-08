@@ -8,8 +8,8 @@ namespace Character.Venturers.Ranger.Projectile
     [RequireComponent(typeof(SphereCollider))]
     public class PierceProjectile : ProjectileComponent
     {
-        [SerializeField] private SinglePool<ParticleComponent> flyingParticle;
-        [SerializeField] private Pool<ParticleComponent> hitParticle;
+        [SerializeField] private SinglePool<ParticleInstance> flyingParticle;
+        [SerializeField] private Pool<ParticleInstance> hitParticle;
         [SerializeField] private SphereCollider triggerCollider;
         [SerializeField] private int maxPierceCount = 1;
 

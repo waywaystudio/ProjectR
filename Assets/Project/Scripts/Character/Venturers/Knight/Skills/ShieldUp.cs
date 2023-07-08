@@ -11,7 +11,7 @@ namespace Character.Venturers.Knight.Skills
     public class ShieldUp : SkillComponent
     {
         [SerializeField] private float armorUpValue = 250f;
-        [SerializeField] private SinglePool<ParticleComponent> shieldUpParticle;
+        [SerializeField] private SinglePool<ParticleInstance> shieldUpParticle;
         
         private CancellationTokenSource cts;
 

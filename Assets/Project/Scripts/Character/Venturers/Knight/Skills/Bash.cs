@@ -7,7 +7,7 @@ namespace Character.Venturers.Knight.Skills
 {
     public class Bash : SkillComponent
     {
-        [SerializeField] private SinglePool<ParticleComponent> counterParticle;
+        [SerializeField] private SinglePool<ParticleInstance> counterParticle;
         [SerializeField] private float counterAttackBonus = 8;
         
         public override void Initialize()

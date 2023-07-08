@@ -65,7 +65,6 @@ namespace Common
         // + string Name { get; }
 
         CharacterMask CombatClass { get; }
-        Transform DamageSpawn { get; }
         Transform StatusEffectHierarchy { get; }
         
         StopBehaviour StopBehaviour { get; }
@@ -86,6 +85,8 @@ namespace Common
         void Dead();
         void TakeStatusEffect(StatusEffect effect);
         void DispelStatusEffect(DataIndex effectIndex);
+        
+        Transform Preposition(PrepositionType type);
     }
 
     public interface ICombatExecutor : ICombatProvider, ICombatTaker, IDataIndexer
