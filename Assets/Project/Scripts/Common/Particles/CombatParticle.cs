@@ -1,4 +1,6 @@
+using System;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace Common.Particles
 {
@@ -7,7 +9,7 @@ namespace Common.Particles
         [SerializeField] private ParticlePool pool;
         [SerializeField] private string actionKey;
         [SerializeField] private ParticleSpawnParent parent;
-        [SerializeField] private PrepositionType prepositionType;
+        [FormerlySerializedAs("prepositionType")] [SerializeField] private PrepositionType takerPreposition;
         [SerializeField] private Section playSection;
         [SerializeField] private Section endSection;
         
@@ -33,24 +35,35 @@ namespace Common.Particles
         {
             get
             {
-                if (prepositionType == PrepositionType.None) return transform.position;
+                if (takerPreposition == PrepositionType.None) return transform.position;
                 
                 var taker = takerHolder.Taker;
             
                 return taker is null 
                     ? transform.position 
-                    : taker.Preposition(prepositionType).position;
+                    : taker.Preposition(takerPreposition).position;
             }
         }
 
 
-        public void Initialize(Sequencer sequencer, IHasTaker takerHolder)
+        public void Initialize(CombatSequence sequencer, IHasTaker takerHolder)
         {
             this.takerHolder = takerHolder;
             
-            var builder = new SequenceBuilder(sequencer);
+            var builder = new CombatSequenceBuilder(sequencer);
 
-            if (playSection != Section.None) builder.Add(playSection, actionKey, PlayParticle);
+            if (playSection != Section.None)
+            {
+                if (playSection == Section.Hit)
+                {
+                    builder.AddHit(actionKey, PlayParticle);
+                }
+                else
+                {
+                    builder.Add(playSection, actionKey, PlayParticle);
+                }
+            }
+            
             if (endSection  != Section.None) builder.Add(endSection, actionKey, StopParticle);
 
             pool.Initialize(component => component.Pool = pool, Parent);
@@ -65,6 +78,11 @@ namespace Common.Particles
         private void PlayParticle()
         {
             pool.Get().Play(SpawnPosition, Parent);
+        }
+
+        private void PlayParticle(ICombatTaker taker)
+        {
+            pool.Get().Play(SpawnPosition, taker.StatusEffectHierarchy);
         }
 
         /// <summary>

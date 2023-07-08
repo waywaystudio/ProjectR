@@ -21,8 +21,6 @@ public class SequenceInvoker
         {
             onceAction.Invoke();
         }
-
-        Sequencer.CompleteTrigger?.Pull();
     }
 
     public void Cancel()
@@ -30,7 +28,6 @@ public class SequenceInvoker
         IsActive = false;
         
         Sequencer[Section.Cancel].Invoke();
-        Sequencer.CompleteTrigger?.Cancel();
         End();
     }
         
@@ -47,10 +44,7 @@ public class SequenceInvoker
         IsEnd = true;
         
         Sequencer[Section.End].Invoke();
-        Sequencer.CompleteTrigger?.Dispose();
     }
-    
-    public void ExtraAction() => Sequencer[Section.Extra].Invoke();
 }
 
 public class SequenceInvoker<T>
@@ -78,8 +72,6 @@ public class SequenceInvoker<T>
         {
             onceAction.Invoke();
         }
-        
-        Sequencer.CompleteTrigger?.Pull();
     }
 
     public void Cancel()
@@ -87,7 +79,6 @@ public class SequenceInvoker<T>
         IsActive = false;
         
         Sequencer[Section.Cancel].Invoke();
-        Sequencer.CompleteTrigger?.Cancel();
         End();
     }
         
@@ -104,8 +95,5 @@ public class SequenceInvoker<T>
         IsEnd = true;
         
         Sequencer[Section.End].Invoke();
-        Sequencer.CompleteTrigger?.Dispose();
     }
-    
-    public void ExtraAction() => Sequencer[Section.Extra].Invoke();
 }

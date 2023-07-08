@@ -13,7 +13,7 @@ namespace Character.Venturers.Rogue.Skills
             base.Initialize();
 
             Builder
-                .AddActiveParam("TeleportPathfinding", Teleport);
+                .AddApplying("TeleportPathfinding", Teleport);
         }
 
 
@@ -42,7 +42,7 @@ namespace Character.Venturers.Rogue.Skills
         
         private void CreatePhantom()
         {
-            executor.ToPosition(Cb.transform.position, ExecuteGroup.Group2);
+            executor.ToPosition(Cb.transform.position, ExecuteGroup.Sub);
         }
     }
 }

@@ -19,7 +19,6 @@ namespace Character.Venturers.Knight.Skills
             detector.GetTakers()?.ForEach(taker =>
             {
                 Taker = taker;
-                
                 Invoker.ExtraAction();
                 executor.ToTaker(taker);
             });

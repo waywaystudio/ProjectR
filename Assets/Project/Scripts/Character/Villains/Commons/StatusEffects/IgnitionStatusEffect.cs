@@ -41,7 +41,7 @@ namespace Character.Villains.Commons.StatusEffects
             var takerList =
                 TargetUtility.GetTargetsInSphere<ICombatTaker>(Taker.gameObject.transform.position, adventurerLayer, radius, buffers);
 
-            takerList?.ForEach(taker => executor.ToTaker(taker, ExecuteGroup.Group2));
+            takerList?.ForEach(taker => Invoker.SubHit(taker));
         }
         
         private void SetHasteWeight() => hasteWeight = tickBuffer = 
@@ -60,7 +60,7 @@ namespace Character.Villains.Commons.StatusEffects
                 }
                 else
                 {
-                    executor.ToTaker(Taker, ExecuteGroup.Group1);
+                    Invoker.Hit(Taker);
                     tickBuffer = hasteWeight;
                 }
 

@@ -39,13 +39,13 @@ namespace Common.Projectors
 
         public void ActiveProjector()
         {
-            Builder.Register("ProjectorSequencer", Provider.Sequencer);
+            Builder.Register("ProjectorSequencer", Provider.Sequence);
         }
 
         public void DeActiveProjector()
         {
             Invoker.Cancel();
-            Builder.Unregister("ProjectorSequencer", Provider.Sequencer);
+            Builder.Unregister("ProjectorSequencer", Provider.Sequence);
         }
 
         protected virtual void Awake()

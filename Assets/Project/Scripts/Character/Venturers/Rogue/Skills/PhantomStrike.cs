@@ -19,7 +19,7 @@ namespace Character.Venturers.Rogue.Skills
             cost.PayCondition.Add("HasTarget", detector.HasTarget);
 
             Builder
-                .AddActiveParam("DashMovement", Dashing)
+                .AddApplying("DashMovement", Dashing)
                 .Add(Section.Active, "CheckColliding", () => Colliding().Forget())
                 .Add(Section.Active, "CreatePhantom", CreatePhantom)
                 .Add(Section.Cancel, "CancelTween", () => Cb.Pathfinding.Cancel())
@@ -37,7 +37,7 @@ namespace Character.Venturers.Rogue.Skills
 
         private void CreatePhantom()
         {
-            executor.ToPosition(Cb.transform.position, ExecuteGroup.Group2);
+            executor.ToPosition(Cb.transform.position, ExecuteGroup.Sub);
         }
 
         private async UniTaskVoid Colliding()

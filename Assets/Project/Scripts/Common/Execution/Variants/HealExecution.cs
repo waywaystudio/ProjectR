@@ -2,21 +2,21 @@ using UnityEngine;
 
 namespace Common.Execution.Variants
 {
-    public class HealExecution : TakerExecution, IEditable
+    public class HealExecution : HitExecution, IEditable
     {
-        [SerializeField] private DataIndex actionCode;
+        // [SerializeField] private DataIndex actionCode;
         [SerializeField] private StatSpec healSpec;
 
         public const string HealExecutorKey = "HealExecutorKey";
         public StatSpec HealSpec => healSpec;
         
         
-        public override void Execution(ICombatTaker taker)
+        public override void Hit(ICombatTaker taker)
         {
             if (taker == null || !taker.Alive.Value) return;
 
-            var entity        = new CombatEntity(actionCode, taker);
-            var providerTable = Origin.Provider.StatTable;
+            var entity        = new CombatEntity(Sender.DataIndex, taker);
+            var providerTable = Sender.Provider.StatTable;
 
             // Heal Creator
             var weaponAverage = Random.Range(providerTable.MinWeaponValue, providerTable.MaxWeaponValue);
@@ -47,7 +47,7 @@ namespace Common.Execution.Variants
             }
 
             taker.OnHealTaken.Invoke(entity);
-            Origin.Provider.OnHealProvided.Invoke(entity);
+            Sender.Provider.OnHealProvided.Invoke(entity);
         }
         
         

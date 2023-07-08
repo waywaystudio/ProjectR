@@ -43,7 +43,7 @@ namespace Character.Venturers.Knight.StatusEffects
                 }
                 else
                 {
-                    executor.ToTaker(Taker);
+                    Invoker.Hit(Taker);
                     tickBuffer = hasteWeight;
                 }
 

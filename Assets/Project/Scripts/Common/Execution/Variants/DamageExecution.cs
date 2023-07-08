@@ -3,21 +3,20 @@ using Random = UnityEngine.Random;
 
 namespace Common.Execution.Variants
 {
-    public class DamageExecution : TakerExecution, IEditable
+    public class DamageExecution : HitExecution, IEditable
     {
-        [SerializeField] private DataIndex actionCode;
         [SerializeField] private StatSpec damageSpec;
         
         public const string DamageExecutorKey = "DamageExecutorKey";
         public StatSpec DamageSpec => damageSpec;
 
 
-        public override void Execution(ICombatTaker taker)
+        public override void Hit(ICombatTaker taker)
         {
             if (taker == null || !taker.Alive.Value) return;
 
-            var entity        = new CombatEntity(actionCode, taker);
-            var providerTable = Origin.Provider.StatTable;
+            var entity        = new CombatEntity(Sender.DataIndex, taker);
+            var providerTable = Sender.Provider.StatTable;
 
             // Damage Creator
             var weaponAverage = Random.Range(providerTable.MinWeaponValue, providerTable.MaxWeaponValue);
@@ -66,14 +65,14 @@ namespace Common.Execution.Variants
                 entity.Value                       -= taker.Hp.Value;
                 entity.IsFinishedAttack            =  true;
              
-                Debug.Log($"{taker.Name} dead by {Origin.Provider.Name}'s {actionCode}'s {entity.Value}");
+                Debug.Log($"{taker.Name} dead by {Sender.Provider.Name}'s {Sender.DataIndex}'s {entity.Value}");
                 taker.Dead();
             }
             
             taker.Hp.Value -= damageAmount;
             taker.OnDamageTaken.Invoke(entity);
 
-            Origin.Provider.OnDamageProvided.Invoke(entity);
+            Sender.Provider.OnDamageProvided.Invoke(entity);
         }
         
 

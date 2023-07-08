@@ -49,7 +49,7 @@ namespace Character.Venturers.Ranger.Skills
             if (damageLog.CombatIndex != DataIndex) return;
             if (damageLog.IsCritical)
             {
-                executor.ToTaker(Cb, ExecuteGroup.Group2);
+                executor.ToTaker(Cb, ExecuteGroup.Sub);
             }
             else
             {

@@ -3,12 +3,12 @@ using UnityEngine;
 
 namespace Common.Execution.Variants
 {
-    public class StatusEffectExecution : TakerExecution, IEditable
+    public class StatusEffectExecution : HitExecution, IEditable
     {
         [SerializeField] protected DataIndex actionCode;
         [SerializeField] private Pool<StatusEffect> pool;
 
-        public override void Execution(ICombatTaker taker)
+        public override void Hit(ICombatTaker taker)
         {
             if (taker == null || !taker.Alive.Value) return;
 
@@ -30,12 +30,17 @@ namespace Common.Execution.Variants
         
         private void CreateStatusEffect(StatusEffect statusEffect)
         {
-            statusEffect.Initialize(Origin.Provider);
+            statusEffect.Initialize(Sender.Provider);
 
-            var builder = new SequenceBuilder(statusEffect.Sequencer);
+            var builder = new SequenceBuilder(statusEffect.Sequence);
 
-            builder.Add(Section.End, "ReturnTransform", () => statusEffect.transform.SetParent(transform, false))
-                   .Add(Section.End, "ReleasePool", () => pool.Release(statusEffect));
+            builder.Add(Section.End, "ReturnToPool", () => ReturnToPool(statusEffect));
+        }
+
+        private void ReturnToPool(StatusEffect statusEffect)
+        {
+            statusEffect.transform.SetParent(transform, false);
+            pool.Release(statusEffect);
         }
 
         private void OnEnable()
@@ -52,8 +57,7 @@ namespace Common.Execution.Variants
 #if UNITY_EDITOR
         public void EditorSetUp()
         {
-            pool.Prefab.TryGetComponent(out StatusEffect statusEffectInfo);
-            actionCode = statusEffectInfo.DataIndex;
+            // pool.Prefab.TryGetComponent(out StatusEffect statusEffectInfo);
         }
 #endif
     }

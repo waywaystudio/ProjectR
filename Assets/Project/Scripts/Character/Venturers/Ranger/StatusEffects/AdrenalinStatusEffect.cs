@@ -1,6 +1,5 @@
 using Common;
 using Common.StatusEffects;
-using Sirenix.OdinInspector;
 
 namespace Character.Venturers.Ranger.StatusEffects
 {
@@ -16,8 +15,8 @@ namespace Character.Venturers.Ranger.StatusEffects
 
         
         private void GetHuntersEcstasy()
-        {   
-            executor.ToTaker(Taker);
+        {
+            Invoker.Hit(Taker);
             Dispel();
         }
     }

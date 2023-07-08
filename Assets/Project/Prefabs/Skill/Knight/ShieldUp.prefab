@@ -29,6 +29,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 2799677707560291068}
   - {fileID: 1576445197589414893}
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -80,11 +81,11 @@ MonoBehaviour:
     cost: 10
     paySection: 1
   icon: {fileID: 21300000, guid: 3e7f4279b00aa684791775d4845c0251, type: 3}
+  combatParticles:
+  - {fileID: 8254969170062159723}
   description: "\uBC29\uD328\uB97C \uB4E4\uC5B4 \uD53C\uD574\uB97C \uBC18\uAC10\uC2DC\uD0A8\uB2E4.
     \uAE30\uC808\uACFC \uBC00\uCCD0\uB0B4\uB294 \uD6A8\uACFC\uC5D0 \uBA74\uC5ED"
   armorUpValue: 250
-  shieldUpParticle:
-    prefab: {fileID: 106386, guid: 2823dcc4478bf234881fd38469ee66ef, type: 3}
 --- !u!1 &5818949740219873927
 GameObject:
   m_ObjectHideFlags: 0
@@ -116,3 +117,57 @@ Transform:
   m_Father: {fileID: 1950952490226982685}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &8590500713510152004
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2799677707560291068}
+  - component: {fileID: 8254969170062159723}
+  m_Layer: 0
+  m_Name: Effects
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2799677707560291068
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8590500713510152004}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1950952490226982685}
+  m_RootOrder: -1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &8254969170062159723
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8590500713510152004}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fa06c267d17b6ea4e93ed2ccb016432a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pool:
+    prefab: {fileID: 106386, guid: 2823dcc4478bf234881fd38469ee66ef, type: 3}
+    maxCount: 8
+    syncObjectActivity: 1
+    singleInstanceOnly: 1
+  actionKey: ShieldUpParticle
+  parent: 1
+  prepositionType: 4
+  playSection: 1
+  endSection: 4

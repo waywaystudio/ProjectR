@@ -12,14 +12,16 @@ namespace Character.Venturers.Rogue
         [SerializeField] private AnimationModel model;
         
         private readonly Collider[] colliderBuffers = new Collider[32];
+        
 
         public override void Initialize(ICombatProvider provider)
         {
             base.Initialize(provider);
 
-            SequenceBuilder.Add(Section.Active, "IdleAnimation", Idle)
-                           .Add(Section.Active, "RotateToIdentity", () => transform.rotation = Quaternion.identity)
-                           .Add(Section.End, "RemoveSkillHit", () => model.OnHit.Remove("SkillHit"));
+            Builder
+                .Add(Section.Active, "IdleAnimation", Idle)
+                .Add(Section.Active, "RotateToIdentity", () => transform.rotation = Quaternion.identity)
+                .Add(Section.End, "RemoveSkillHit", () => model.OnHit.Remove("SkillHit"));
         }
 
         public void DoubleStab(Vector3 targetPosition, float timeScale)
@@ -32,9 +34,9 @@ namespace Character.Venturers.Rogue
             model.OnHit.Add("SkillHit", () =>
             {
                 var takerList = 
-                    TargetUtility.GetTargetsInAngle<ICombatTaker>(trapPosition, transform.forward, targetLayer, 5f, 135f, colliderBuffers);
+                    TargetUtility.GetTargetsInAngle<ICombatTaker>(trapPosition, transform.forward, targetLayer, Radius, Angle, colliderBuffers);
                 
-                takerList?.ForEach(taker => executor.ToTaker(taker, ExecuteGroup.Group1));
+                takerList?.ForEach(Invoker.Hit);
             });
             model.Flip(direction);
             model.Play(doubleStabAnimationKey, 0, false, timeScale, () =>
@@ -53,7 +55,7 @@ namespace Character.Venturers.Rogue
 
             model.OnHit.Add("SkillHit", () =>
             {
-                executor.ToPosition(targetPosition, ExecuteGroup.Group2);
+                Invoker.Fire(targetPosition);
             });
             model.Flip(direction);
             model.Play(throwAnimationKey, 0, false, timeScale, () =>
@@ -62,8 +64,6 @@ namespace Character.Venturers.Rogue
                 model.OnHit.Remove("SkillHit");
             });
         }
-        
-        public override void Execution() { }
         
 
         private void Idle() => model.Idle();

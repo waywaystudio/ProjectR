@@ -11,7 +11,7 @@ namespace Common.Execution.Variants
         private Vector3 MuzzlePosition => muzzle ? muzzle.position : transform.position + new Vector3(0, 3, 0);
 
         
-        public override void Execution(Vector3 targetPosition)
+        public override void Fire(Vector3 targetPosition)
         {
             var projectile = pool.Get();
             var projectileTransform = projectile.transform;
@@ -19,14 +19,14 @@ namespace Common.Execution.Variants
             projectileTransform.SetParent(null, true);
             projectileTransform.LookAt(new Vector3(targetPosition.x, MuzzlePosition.y, targetPosition.z));
             
-            projectile.Activate();
+            projectile.Invoker.Active(targetPosition);
         }
         
 
         private void CreateProjectile(ProjectileComponent projectile)
         {
             projectile.transform.position = MuzzlePosition;
-            projectile.Initialize(Origin.Provider);
+            projectile.Initialize(Sender.Provider);
             projectile.Builder.Add(Section.End,"ReturnToPool",() =>
             {
                 projectile.transform.position = MuzzlePosition;

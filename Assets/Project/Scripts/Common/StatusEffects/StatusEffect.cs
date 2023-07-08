@@ -3,24 +3,25 @@ using UnityEngine;
 
 namespace Common.StatusEffects
 {
-    public abstract class StatusEffect : MonoBehaviour, IOriginalProvider, ISequencerHolder, IEditable
+    public abstract class StatusEffect : MonoBehaviour, IActionSender, IHasTaker, ICombatSequence, IEditable
     {
-        [SerializeField] protected Executor executor;
+        [SerializeField] protected HitExecutor hitExecutor;
         [SerializeField] protected DataIndex statusCode;
         [SerializeField] protected StatusEffectType type;
         [SerializeField] protected Sprite icon;
         [SerializeField] protected float duration;
 
-        public float Duration => duration;
-        public FloatEvent ProgressTime { get; } = new();
         public ICombatProvider Provider { get; protected set; }
         public ICombatTaker Taker { get; set; }
         public DataIndex DataIndex => statusCode;
         public StatusEffectType Type => type;
-        public Sequencer Sequencer { get; } = new();
+        public FloatEvent ProgressTime { get; } = new();
         public Sprite Icon => icon;
-        public StatusEffectSequenceInvoker Invoker { get; private set; }
-        protected SequenceBuilder Builder { get; private set; }
+        public float Duration => duration;
+        
+        public CombatSequence Sequence { get; } = new();
+        public CombatSequenceInvoker Invoker { get; private set; }
+        protected CombatSequenceBuilder Builder { get; private set; }
         
 
         /// <summary>
@@ -30,14 +31,16 @@ namespace Common.StatusEffects
         public virtual void Initialize(ICombatProvider provider)
         {
             Provider = provider;
-            Invoker  = new StatusEffectSequenceInvoker(Sequencer);
-            Builder  = new SequenceBuilder(Sequencer);
+            Invoker  = new CombatSequenceInvoker(Sequence);
+            Builder  = new CombatSequenceBuilder(Sequence);
 
             Builder
                 .Add(Section.Active, "ResetProgressTime", () => ProgressTime.Value = duration)
                 .Add(Section.Active, "AddStatusEffectTable", AddTable)
                 .Add(Section.Override, "ProlongDuration", ProlongDuration)
                 .Add(Section.End, "UnregisterTable", RemoveTable);
+            
+            hitExecutor.Initialize(Sequence, this);
         }
         
 
@@ -69,14 +72,14 @@ namespace Common.StatusEffects
         
         private void OnDestroy()
         {
-            Sequencer.Clear();
+            Sequence.Clear();
         }
 
 
 #if UNITY_EDITOR
         public virtual void EditorSetUp()
         {
-            executor.EditorGetExecutions(gameObject);
+            hitExecutor.GetExecutionInEditor(transform);
             
             var statusEffectData = Database.StatusEffectSheetData(DataIndex);
 

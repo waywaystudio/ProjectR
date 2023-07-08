@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 8374707892189434149}
   - component: {fileID: 7212516511690731986}
   m_Layer: 0
-  m_Name: Execution
+  m_Name: Hit
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -45,7 +45,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   group: 1
-  actionCode: 32210007
   healSpec:
     statList:
     - statType: 13010001
@@ -110,15 +109,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 46a7e18eaa0d3a44498695bd8f0debea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  executor:
-    takerExecutionTable:
-      keyList: 01000000
-      valueList:
-      - List:
-        - {fileID: 7212516511690731986}
-    fireExecutionTable:
-      keyList: 
-      valueList: []
+  hitExecutor:
+    hitExecutionList:
+    - {fileID: 7212516511690731986}
   statusCode: 32210007
   type: 1
   icon: {fileID: 21300000, guid: 29c3b6836e20bf7478df17a473b26851, type: 3}

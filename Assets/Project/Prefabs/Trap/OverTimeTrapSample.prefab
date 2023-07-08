@@ -9,8 +9,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 426966613292769704}
-  - component: {fileID: 7448388928431272375}
-  - component: {fileID: 8771204470701334892}
   - component: {fileID: 2395313037951753882}
   - component: {fileID: 7226112191054271320}
   m_Layer: 0
@@ -37,45 +35,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &7448388928431272375
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3865230921314547483}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 051cae859b88f354d8882c7e55912d14, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  executor:
-    table:
-      keyList: 01000000
-      valueList:
-      - ExecutionList:
-        - {fileID: 4978651605946254191}
-      hideKey: 0
-  collidingSystem: {fileID: 8771204470701334892}
-  trapCode: 0
-  delayTime: 1
-  radius: 50
-  targetLayer:
-    serializedVersion: 2
-    m_Bits: 256
---- !u!114 &8771204470701334892
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3865230921314547483}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 895c99e003cd3f54d96609fa1ca8c94b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  maxBufferCount: 32
 --- !u!114 &2395313037951753882
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -147,7 +106,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   group: 1
-  actionCode: 0
   damageSpec:
     statList:
     - statType: 13020001

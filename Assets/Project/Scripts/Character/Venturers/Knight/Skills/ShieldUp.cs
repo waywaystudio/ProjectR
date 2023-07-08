@@ -11,23 +11,19 @@ namespace Character.Venturers.Knight.Skills
     public class ShieldUp : SkillComponent
     {
         [SerializeField] private float armorUpValue = 250f;
-        [SerializeField] private SinglePool<ParticleInstance> shieldUpParticle;
         
         private CancellationTokenSource cts;
 
         public override void Initialize()
         {
             base.Initialize();
-            
-            shieldUpParticle.Initialize(null, transform);
 
             Builder
                 .Add(Section.Active, "ActiveBuff", AddEffect)
                 .Add(Section.Active, "ConsumeResource", () => ConsumeResource().Forget())
-                .Add(Section.Active, "PlayShieldUpParticle", PlayShieldUpParticle)
                 .Add(Section.End, "RemoveBuff", RemoveEffect)
                 .Add(Section.End, "StopTask", StopTask)
-                .Add(Section.End, "PlayShieldUpParticle", StopShieldUpParticle);
+                ;
         }
         
         
@@ -75,16 +71,6 @@ namespace Character.Venturers.Knight.Skills
         {
             cts?.Cancel();
             cts = null;
-        }
-        
-        private void PlayShieldUpParticle()
-        {
-            shieldUpParticle.Get().Play();
-        }
-        
-        private void StopShieldUpParticle()
-        {
-            shieldUpParticle.Release();
         }
     }
 }

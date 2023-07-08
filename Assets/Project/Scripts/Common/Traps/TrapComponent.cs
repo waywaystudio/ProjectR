@@ -1,32 +1,31 @@
-using System.Collections.Generic;
 using Common.Execution;
-using Common.Systems;
 using DG.Tweening;
 using UnityEngine;
 
 namespace Common.Traps
 {
-    public abstract class TrapComponent : MonoBehaviour, IActionSender, IEditable
+    public abstract class TrapComponent : MonoBehaviour, IActionSender, ICombatSequence, IEditable
     {
-        [SerializeField] protected Executor executor;
-        [SerializeField] protected Sequencer<Vector3> sequencer;
-        [SerializeField] protected CollidingSystem collidingSystem;
         [SerializeField] protected DataIndex trapCode;
+        [SerializeField] protected HitExecutor hitExecutor;
+        [SerializeField] protected FireExecutor fireExecutor;
         [SerializeField] protected float delayTime;
-        [SerializeField] protected float radius;
+        [SerializeField] protected float prolongTime;
+        [SerializeField] protected Vector3 sizeVector;
         [SerializeField] protected LayerMask targetLayer;
-
-        private SequenceBuilder<Vector3> sequenceBuilder;
-        private TrapSequenceInvoker sequenceInvoker;
 
         public ICombatProvider Provider { get; protected set; }
         public DataIndex DataIndex => trapCode;
-        public float Radius => radius;
+        public float Distance => sizeVector.x;
+        public float Radius => sizeVector.y;
+        public float Angle => sizeVector.z;
         public float ProlongTime { get; set; }
+        public Vector3 SizeVector => sizeVector;
         public LayerMask TargetLayer => targetLayer;
-        public Sequencer Sequencer => sequencer;
-        public SequenceBuilder<Vector3> SequenceBuilder => sequenceBuilder ??= new SequenceBuilder<Vector3>(sequencer);
-        public TrapSequenceInvoker SequenceInvoker => sequenceInvoker ??= new TrapSequenceInvoker(sequencer);
+        
+        public CombatSequence Sequence { get; } = new();
+        public CombatSequenceBuilder Builder { get; private set; }
+        public CombatSequenceInvoker Invoker { get; private set; }
 
 
         /// <summary>
@@ -36,8 +35,15 @@ namespace Common.Traps
         public virtual void Initialize(ICombatProvider provider)
         {
             Provider = provider;
+
+            Invoker = new CombatSequenceInvoker(Sequence);
+            Builder = new CombatSequenceBuilder(Sequence);
             
-            SequenceBuilder.Add(Section.End,"TrapObjectActiveFalse", () => gameObject.SetActive(false));
+            Builder
+                .Add(Section.End,"TrapObjectActiveFalse", () => gameObject.SetActive(false));
+            
+            hitExecutor.Initialize(Sequence, this);
+            fireExecutor.Initialize(Sequence, this);
         }
         
         /// <summary>
@@ -45,65 +51,36 @@ namespace Common.Traps
         /// </summary>
         public void Activate(Vector3 position)
         {
-            Transform transform1;
+            transform.SetParent(null);
+            transform.position = position;
             
-            (transform1 = transform).SetParent(null);
-            transform1.position = position;
-            
-            gameObject.SetActive(true);
-
             if (delayTime != 0f)
             {
-                DOVirtual.DelayedCall(delayTime, () => SequenceInvoker.Active(position));
+                DOVirtual.DelayedCall(delayTime, () => Invoker.Active(position));
             }
             else
             {
-                SequenceInvoker.Active(position);
+                Invoker.Active(position);
             }
         }
 
-        /// <summary>
-        /// 스킬의 가동범위로 부터 대상을 받아서
-        /// 데미지, 상태이상 부여 등을 실제 수행하는 함수
-        /// </summary>
-        public abstract void Execution();
-
-        /// <summary>
-        /// 해제 시 호출. (만료 아님)
-        /// </summary>
-        public void Cancel() => SequenceInvoker.Cancel();
 
         /// <summary>
         /// Scene이 종료되거나, 설정된 Pool 개수를 넘어서 생성된 상태이상효과가 만료될 때 호출
         /// </summary>
         public void Dispose()
         {
-            sequencer.Clear();
+            Sequence.Clear();
             
             Destroy(gameObject);
         }
 
 
-        protected bool TryGetTakerInSphere(out List<ICombatTaker> takerList)
-            => collidingSystem.TryGetTakersInSphere(transform.position, 
-                radius, 
-                360f, 
-                targetLayer, 
-                out takerList);
-
-
 #if UNITY_EDITOR
         public void EditorSetUp()
         {
-            executor.EditorGetExecutions(gameObject);
-            
-            if (collidingSystem.IsNullOrDestroyed())
-            {
-                GameObject o;
-                
-                collidingSystem = (o = gameObject).AddComponent<CollidingSystem>();
-                Debug.Log($"Add CollidingSystem Component In {o.name}");
-            }
+            hitExecutor.GetExecutionInEditor(transform);
+            fireExecutor.GetExecutionInEditor(transform);
         }
 #endif
     }

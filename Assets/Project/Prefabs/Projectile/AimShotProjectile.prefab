@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 601654701044516039}
   - component: {fileID: -8521466867242721343}
   - component: {fileID: 6970810306177905816}
-  - component: {fileID: 5072753418977620396}
   m_Layer: 9
   m_Name: AimShotProjectile
   m_TagString: Untagged
@@ -31,6 +30,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 4168603479812316025}
   - {fileID: 4043389248345538994}
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -48,31 +48,23 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   projectileCode: 31210403
-  executor:
-    takerExecutionTable:
-      keyList: 01000000
-      valueList:
-      - List:
-        - {fileID: 4025622706656194699}
-        - {fileID: 7580495471780127006}
-    fireExecutionTable:
-      keyList: 
-      valueList: []
+  targetLayer:
+    serializedVersion: 2
+    m_Bits: 256
   trajectory:
     trajectoryType: 2
     speed: 50
     distance: 40
     tweenType: 1
-  collidingSystem: {fileID: 5072753418977620396}
-  targetLayer:
-    serializedVersion: 2
-    m_Bits: 256
-  flyingParticle:
-    prefab: {fileID: 1550477657380252, guid: 93a3630b98737b146b5039212cf8d91f, type: 3}
-  hitParticle:
-    prefab: {fileID: 1462625049709940, guid: 554c5673bd76bcf468990f2d97dab82a, type: 3}
-    maxCount: 8
-    syncObjectActivity: 1
+  hitExecutor:
+    hitExecutionList:
+    - {fileID: 4025622706656194699}
+    - {fileID: 7580495471780127006}
+  fireExecutor:
+    fireExecutionList: []
+  combatParticleList:
+  - {fileID: 6842179520866862081}
+  - {fileID: 2432000920414520545}
   triggerCollider: {fileID: 6970810306177905816}
   maxPierceCount: 3
 --- !u!135 &6970810306177905816
@@ -96,19 +88,83 @@ SphereCollider:
   serializedVersion: 3
   m_Radius: 0.5
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &5072753418977620396
+--- !u!1 &6456483462981135631
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4168603479812316025}
+  - component: {fileID: 6842179520866862081}
+  - component: {fileID: 2432000920414520545}
+  m_Layer: 9
+  m_Name: Effects
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4168603479812316025
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6456483462981135631}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 601654701044516039}
+  m_RootOrder: -1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &6842179520866862081
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 68301466263117794}
+  m_GameObject: {fileID: 6456483462981135631}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 895c99e003cd3f54d96609fa1ca8c94b, type: 3}
+  m_Script: {fileID: 11500000, guid: fa06c267d17b6ea4e93ed2ccb016432a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxBufferCount: 32
+  pool:
+    prefab: {fileID: 1550477657380252, guid: 93a3630b98737b146b5039212cf8d91f, type: 3}
+    maxCount: 1
+    syncObjectActivity: 1
+    singleInstanceOnly: 1
+  actionKey: InstantShotProjectileFlyingFx
+  parent: 1
+  takerPreposition: 0
+  playSection: 1
+  endSection: 4
+--- !u!114 &2432000920414520545
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6456483462981135631}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fa06c267d17b6ea4e93ed2ccb016432a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pool:
+    prefab: {fileID: 1462625049709940, guid: 554c5673bd76bcf468990f2d97dab82a, type: 3}
+    maxCount: 16
+    syncObjectActivity: 1
+    singleInstanceOnly: 0
+  actionKey: InstantShotProjectileHitParticle
+  parent: 2
+  takerPreposition: 3
+  playSection: 8
+  endSection: 0
 --- !u!1 &9136856925432807180
 GameObject:
   m_ObjectHideFlags: 0
@@ -121,7 +177,7 @@ GameObject:
   - component: {fileID: 4025622706656194699}
   - component: {fileID: 7580495471780127006}
   m_Layer: 9
-  m_Name: Executor
+  m_Name: Hit
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -155,7 +211,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   group: 1
-  actionCode: 31210403
   damageSpec:
     statList:
     - statType: 13010001

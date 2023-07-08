@@ -31,7 +31,7 @@ namespace Common.Traps
             enabled        = false;
 
             // Require Builder - Sequencer and create new Builder
-            trapComponent.SequenceBuilder
+            trapComponent.Builder
                          .Add(Section.Active,"OverTimeOn", OverTimeOn)
                          .Add(Section.End,"OverTimeOff", OverTimeOff);
         }
@@ -45,7 +45,7 @@ namespace Common.Traps
             else
             {
                 // Require Invoker
-                trapComponent.Execution();
+                trapComponent.Invoker.Execute();
                 Progress.Value = 0f;
             }
         }

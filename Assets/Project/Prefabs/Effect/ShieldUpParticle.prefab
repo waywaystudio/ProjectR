@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 19993974}
   - component: {fileID: 19874298}
   m_Layer: 0
-  m_Name: ShieldUpFx
+  m_Name: ShieldUpParticle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -48,6 +48,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   particle: {fileID: 19874298}
+  offset: {x: 0, y: 0, z: 0}
+  flipEnable: 0
 --- !u!199 &19993974
 ParticleSystemRenderer:
   serializedVersion: 6

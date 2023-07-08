@@ -10,9 +10,8 @@ GameObject:
   m_Component:
   - component: {fileID: 9197623837587761534}
   - component: {fileID: 9167835184449150322}
-  - component: {fileID: 2127625922178048786}
   m_Layer: 0
-  m_Name: Execution
+  m_Name: Hit
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -46,7 +45,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   group: 1
-  actionCode: 31210306
   damageSpec:
     statList:
     - statType: 13010001
@@ -58,24 +56,6 @@ MonoBehaviour:
     - statType: 13030003
       statKey: DamageExecutorKey
       value: 0
---- !u!114 &2127625922178048786
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1110421117582400199}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3d3639c99a56c6c458f64d2325bb8e07, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  group: 2
-  muzzle: {fileID: 0}
-  pool:
-    prefab: {fileID: 68301466263117794, guid: 468655043b06470428d29df2a5c8df9b, type: 3}
-    maxCount: 8
-    syncObjectActivity: 1
 --- !u!1 &1536806702922944133
 GameObject:
   m_ObjectHideFlags: 0
@@ -136,6 +116,56 @@ MonoBehaviour:
   Hair: 21
   Face: 1
   IsAutoUpdate: 0
+--- !u!1 &3497626433949597255
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4152494228199592739}
+  - component: {fileID: 2260594746363557818}
+  m_Layer: 0
+  m_Name: Fire
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4152494228199592739
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3497626433949597255}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 426966613292769704}
+  m_RootOrder: -1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2260594746363557818
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3497626433949597255}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3d3639c99a56c6c458f64d2325bb8e07, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  group: 2
+  muzzle: {fileID: 0}
+  pool:
+    prefab: {fileID: 68301466263117794, guid: 468655043b06470428d29df2a5c8df9b, type: 3}
+    maxCount: 8
+    syncObjectActivity: 1
 --- !u!1 &3865230921314547483
 GameObject:
   m_ObjectHideFlags: 0
@@ -147,7 +177,6 @@ GameObject:
   - component: {fileID: 426966613292769704}
   - component: {fileID: 8191204224567122196}
   - component: {fileID: 6311495256294258907}
-  - component: {fileID: 7147311983136411963}
   m_Layer: 0
   m_Name: PhantomTrap
   m_TagString: Untagged
@@ -168,6 +197,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 9197623837587761534}
+  - {fileID: 4152494228199592739}
   - {fileID: 8992714017975205834}
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -184,21 +214,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cdebdfbe826e14b448c6be9306506649, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  executor:
-    takerExecutionTable:
-      keyList: 01000000
-      valueList:
-      - List:
-        - {fileID: 9167835184449150322}
-    fireExecutionTable:
-      keyList: 02000000
-      valueList:
-      - List:
-        - {fileID: 2127625922178048786}
-  collidingSystem: {fileID: 7147311983136411963}
   trapCode: 31210306
+  hitExecutor:
+    hitExecutionList:
+    - {fileID: 9167835184449150322}
+  fireExecutor:
+    fireExecutionList:
+    - {fileID: 0}
   delayTime: 0
-  radius: 0
+  prolongTime: 0
+  sizeVector: {x: 0, y: 5, z: 135}
   targetLayer:
     serializedVersion: 2
     m_Bits: 256
@@ -218,19 +243,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   prolongTimer: 5
---- !u!114 &7147311983136411963
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3865230921314547483}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 895c99e003cd3f54d96609fa1ca8c94b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  maxBufferCount: 32
 --- !u!1 &7580142723663788696
 GameObject:
   m_ObjectHideFlags: 0
@@ -295,6 +307,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 520c2fd95eb2b1a4287026dfc518c566, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  billboardAngle: {x: 45, y: 0, z: 0}
 --- !u!33 &6380101549817950330
 MeshFilter:
   m_ObjectHideFlags: 0

@@ -4,7 +4,6 @@ using System;
 public class Sequencer
 {
     public ConditionTable Condition { get; } = new();
-    public WaitTrigger CompleteTrigger { get; set; }
     public Table<Section, ActionTable> Table { get; set; } = new();
     public ActionTable this[Section key]
     {
@@ -22,7 +21,6 @@ public class Sequencer
     public virtual void Clear()
     {
         Condition.Clear();
-        CompleteTrigger?.Dispose();
         Table.Clear();
     }
 }

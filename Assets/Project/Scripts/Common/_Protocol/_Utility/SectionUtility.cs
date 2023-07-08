@@ -13,7 +13,8 @@ namespace Common
                 Section.End      => skill.Invoker.End,
                 Section.Execute  => skill.Invoker.Execute,
                 Section.Release  => skill.Invoker.Release,
-                _                    => null,
+                Section.Extra    => skill.Invoker.ExtraAction,
+                _                => null,
             };
     }
 }

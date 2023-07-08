@@ -1,25 +1,26 @@
+using System.Collections.Generic;
 using Common.Execution;
-using Common.Systems;
+using Common.Particles;
 using UnityEngine;
 
 namespace Common.Projectiles
 {
-    public class ProjectileComponent : MonoBehaviour, IActionSender, IEditable
+    public class ProjectileComponent : MonoBehaviour, IActionSender, ICombatSequence, IHasTaker, IEditable
     {
         [SerializeField] protected DataIndex projectileCode;
-        [SerializeField] protected Executor executor;
-        
-        [SerializeField] protected Trajectory trajectory;
-        [SerializeField] protected CollidingSystem collidingSystem;
         [SerializeField] protected LayerMask targetLayer;
+        [SerializeField] protected Trajectory trajectory;
+        [SerializeField] protected HitExecutor hitExecutor;
+        [SerializeField] protected FireExecutor fireExecutor;
+        [SerializeField] protected List<CombatParticle> combatParticleList;
         
         public ICombatProvider Provider { get; protected set; }
+        public ICombatTaker Taker { get; protected set; }
         public DataIndex DataIndex => projectileCode;
-        public LayerMask TargetLayer => targetLayer;
-
-        public Sequencer Sequencer { get; } = new();
-        public SequenceBuilder Builder { get; private set; }
-        public ProjectileSequenceInvoker Invoker { get; private set; }
+        public CombatSequence Sequence { get; } = new();
+        public CombatSequenceBuilder Builder { get; private set; }
+        public CombatSequenceInvoker Invoker { get; private set; }
+        
 
         /// <summary>
         /// Create Pooling에서 호출
@@ -29,29 +30,16 @@ namespace Common.Projectiles
         {
             Provider = provider;
 
-            Invoker = new ProjectileSequenceInvoker(Sequencer);
-            Builder = new SequenceBuilder(Sequencer);
+            Invoker = new CombatSequenceInvoker(Sequence);
+            Builder = new CombatSequenceBuilder(Sequence);
             Builder
                 .Add(Section.End, "ProjectileObjectActiveFalse", () => gameObject.SetActive(false));
             
             trajectory.Initialize(this);
+            hitExecutor.Initialize(Sequence, this);
+            fireExecutor.Initialize(Sequence, this);
+            combatParticleList.ForEach(particle => particle.Initialize(Sequence, this));
         }
-        
-        /// <summary>
-        /// 성공적으로 스킬 사용시 호출.
-        /// </summary>
-        public void Activate()
-        {
-            gameObject.SetActive(true);
-            Invoker.Active();
-        }
-        
-
-        /// <summary>
-        /// 스킬의 가동범위로 부터 대상을 받아서
-        /// 데미지, 상태이상 부여 등을 실제 수행하는 함수
-        /// </summary>
-        public virtual void Execution() { }
 
 
         /// <summary>
@@ -59,7 +47,8 @@ namespace Common.Projectiles
         /// </summary>
         protected virtual void Dispose()
         {
-            Sequencer.Clear();
+            Sequence.Clear();
+            combatParticleList?.ForEach(cp => cp.Dispose());
         }
         
 
@@ -70,9 +59,12 @@ namespace Common.Projectiles
 
 
 #if UNITY_EDITOR
-        public void EditorSetUp()
+        public virtual void EditorSetUp()
         {
-            executor.EditorGetExecutions(gameObject);
+            hitExecutor.GetExecutionInEditor(transform);
+            fireExecutor.GetExecutionInEditor(transform);
+            
+            GetComponentsInChildren(combatParticleList);
         }
 #endif
     }

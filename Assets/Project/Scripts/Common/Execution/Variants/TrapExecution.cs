@@ -7,7 +7,7 @@ namespace Common.Execution.Variants
     {
         [SerializeField] protected Pool<TrapComponent> pool;
 
-        public override void Execution(Vector3 position)
+        public override void Fire(Vector3 position)
         {
             pool.Get().Activate(position);
         }
@@ -15,14 +15,16 @@ namespace Common.Execution.Variants
 
         private void CreateTrap(TrapComponent trap)
         {
-            trap.Initialize(Origin.Provider);
-            trap.SequenceBuilder.Add(Section.End,"ReturnToPool",() =>
-            {
-                trap.transform.position = Vector3.zero;
-                trap.transform.SetParent(transform, false);
+            trap.Initialize(Sender.Provider);
+            trap.Builder.Add(Section.End,"ReturnToPool",() => ReturnToPool(trap));
+        }
+
+        private void ReturnToPool(TrapComponent trap)
+        {
+            trap.transform.position = Vector3.zero;
+            trap.transform.SetParent(transform, false);
                     
-                pool.Release(trap);
-            });
+            pool.Release(trap);
         }
 
         private void OnEnable()

@@ -15,7 +15,7 @@ namespace Common.Traps
         {
             if (other.gameObject.TryGetComponent(out ICombatTaker _) && other.gameObject.IsInLayerMask(targetLayer))
             {
-                trapComponent.SequenceInvoker.Complete();
+                trapComponent.Invoker.Complete();
             }
         }
 
@@ -28,7 +28,7 @@ namespace Common.Traps
             triggerCollider.radius =   trapComponent.Radius;
 
             // Require Builder
-            trapComponent.SequenceBuilder
+            trapComponent.Builder
                          .Add(Section.Active,"CollidingTriggerOn",
                               () => triggerCollider.IsNullOrDestroyed().OnFalse(() => triggerCollider.enabled = true))
                          .Add(Section.End,"CollidingTriggerOff", 

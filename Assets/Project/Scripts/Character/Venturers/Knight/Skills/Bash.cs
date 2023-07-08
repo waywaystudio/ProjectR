@@ -1,5 +1,4 @@
 using Common;
-using Common.Particles;
 using Common.Skills;
 using UnityEngine;
 
@@ -7,19 +6,16 @@ namespace Character.Venturers.Knight.Skills
 {
     public class Bash : SkillComponent
     {
-        [SerializeField] private SinglePool<ParticleInstance> counterParticle;
         [SerializeField] private float counterAttackBonus = 8;
         
         public override void Initialize()
         {
             base.Initialize();
-            
-            counterParticle.Initialize(null, transform);
 
             Builder
                 .Add(Section.Execute, "BashAttack", BashAttack)
                 .Add(Section.Extra, "ExtraBonus", ExtraBonus)
-                .Add(Section.Extra, "PlayExtraParticle", PlayExtraParticle);
+                .AddHit("HitToTaker", HitToTaker);
         }
 
 
@@ -29,12 +25,13 @@ namespace Character.Venturers.Knight.Skills
             
             detector.GetTakers()?.ForEach(taker =>
             {
-                executor.ToTaker(taker);
+                Taker = taker;
+                Invoker.Hit(Taker);
 
                 if (getBonus || taker.BehaviourMask != ActionMask.Skill) return;
                 
                 getBonus = true;
-                Sequencer[Section.Extra].Invoke();
+                Invoker.ExtraAction();
             });
         }
         
@@ -44,9 +41,9 @@ namespace Character.Venturers.Knight.Skills
             Cb.Resource.Value += counterAttackBonus;
         }
 
-        private void PlayExtraParticle()
+        private void HitToTaker(ICombatTaker taker)
         {
-            counterParticle.Get().Play();
+            executor.ToTaker(taker);
         }
     }
 }

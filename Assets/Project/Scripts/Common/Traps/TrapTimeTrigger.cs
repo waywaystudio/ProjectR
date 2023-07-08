@@ -29,7 +29,7 @@ namespace Common.Traps
 
             // Require Builder
             trapComponent.ProlongTime = prolongTimer;
-            trapComponent.SequenceBuilder
+            trapComponent.Builder
                          .Add(Section.Active,"TimeTriggerOn", StartProgress)
                          .Add(Section.End,"TimeTriggerOff", StopProgress);
         }
@@ -42,7 +42,7 @@ namespace Common.Traps
             }
             else
             {
-                trapComponent.SequenceInvoker.Complete();
+                trapComponent.Invoker.Complete();
             }
         }
     }

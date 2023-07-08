@@ -1,4 +1,3 @@
-using System.Collections.Generic;
 using System.Threading;
 using Common;
 using Common.Skills;
@@ -15,13 +14,14 @@ namespace Character.Venturers.Warrior.Skills
         {
             base.Initialize();
 
-            Builder.AddActiveParam("RigidMove", RigidMove)
-                           .Add(Section.Active, "CheckColliding", () => OnCollided().Forget())
-                           .Add(Section.Execute, "CommonExecution", () => detector.GetTakers()?.ForEach(executor.ToTaker))
-                           .Add(Section.Execute, "PlayCollideAnimation", PlayCollideAnimation)
-                           .Add(Section.Execute, "StopPathfinding", Cb.Pathfinding.Stop)
-                           .Add(Section.Execute, "StopCharging", StopCharging)
-                           .Add(Section.End, "StopCharging", StopCharging);
+            Builder
+                .AddApplying("RigidMove", RigidMove)
+                .Add(Section.Active, "CheckColliding", () => OnCollided().Forget())
+                .Add(Section.Execute, "CommonExecution", () => detector.GetTakers()?.ForEach(executor.ToTaker))
+                .Add(Section.Execute, "PlayCollideAnimation", PlayCollideAnimation)
+                .Add(Section.Execute, "StopPathfinding", Cb.Pathfinding.Stop)
+                .Add(Section.Execute, "StopCharging", StopCharging)
+                .Add(Section.End, "StopCharging", StopCharging);
         }
         
 

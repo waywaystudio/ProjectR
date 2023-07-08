@@ -15,7 +15,7 @@ namespace Character.Venturers.Mage.Skills
             base.Initialize();
 
             Builder
-                .AddActiveParam("TargetTracking", targetPosition => ChannelingExtraction(targetPosition).Forget())
+                .AddApplying("TargetTracking", targetPosition => ChannelingExtraction(targetPosition).Forget())
                 .Add(Section.Execute, "SetIsActiveTrue", () => Invoker.IsActive = false)
                 .Add(Section.End, "StopTracking", StopTracking);
         }

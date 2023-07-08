@@ -10,7 +10,6 @@ GameObject:
   m_Component:
   - component: {fileID: 426966613292769704}
   - component: {fileID: 8723937984412141508}
-  - component: {fileID: 8771204470701334892}
   - component: {fileID: 6311495256294258907}
   m_Layer: 10
   m_Name: MeteorTrap
@@ -48,37 +47,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fa770e5902dcbad49a11072d5ebd94cd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  executor:
-    takerExecutionTable:
-      keyList: 01000000
-      valueList:
-      - List:
-        - {fileID: 2659919103708223492}
-    fireExecutionTable:
-      keyList: 
-      valueList: []
-  collidingSystem: {fileID: 8771204470701334892}
-  trapCode: 0
+  trapCode: 31222203
+  hitExecutor:
+    hitExecutionList:
+    - {fileID: 2659919103708223492}
+  fireExecutor:
+    fireExecutionList: []
   delayTime: 0
   radius: 3.5
+  sizeVector: {x: 3.5, y: 3.5, z: 360}
   targetLayer:
     serializedVersion: 2
     m_Bits: 128
-  explodeParticle:
-    prefab: {fileID: 145256, guid: 744526bef6d3733499602afe282e5731, type: 3}
---- !u!114 &8771204470701334892
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3865230921314547483}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 895c99e003cd3f54d96609fa1ca8c94b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  maxBufferCount: 8
 --- !u!114 &6311495256294258907
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -103,7 +83,7 @@ GameObject:
   - component: {fileID: 8062551356245870609}
   - component: {fileID: 2659919103708223492}
   m_Layer: 10
-  m_Name: Execution
+  m_Name: Hit
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -137,7 +117,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   group: 1
-  actionCode: 31222203
   damageSpec:
     statList:
     - statType: 13010001

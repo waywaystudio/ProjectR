@@ -23,7 +23,6 @@ namespace Common.Skills
         [SerializeField] protected string description;
         
         private CharacterBehaviour cb;
-        private readonly SkillSequence sequence = new();
 
         public DataIndex DataIndex => actionCode;
         public ActionMask BehaviourMask => behaviourMask;
@@ -39,9 +38,9 @@ namespace Common.Skills
         public float Angle => detector.Angle;
         public Sprite Icon => icon;
 
-        public Sequencer Sequencer => sequence;
-        public SkillSequenceBuilder Builder { get; private set; }
-        public SkillSequenceInvoker Invoker { get; private set; }
+        public CombatSequence Sequence { get; } = new();
+        public CombatSequenceBuilder Builder { get; private set; }
+        public CombatSequenceInvoker Invoker { get; private set; }
         public SkillCoolTimer CoolTimer => coolTimer;
         public SkillCastTimer CastTimer => castTimer;
         public Vector3 SizeVector => detector.SizeVector;
@@ -50,22 +49,22 @@ namespace Common.Skills
         
         public CharacterBehaviour Cb => cb ??= GetComponentInParent<CharacterBehaviour>();
 
-        public bool IsEnded => Sequencer == null || Invoker.IsEnd;
+        public bool IsEnded => Sequence == null || Invoker.IsEnd;
         public bool AbleToRelease => animationTrait.SkillType is not (SkillType.Instant or SkillType.Casting) && IsActive;
-        protected bool IsActive => Sequencer == null || Invoker.IsActive;
+        protected bool IsActive => Sequence == null || Invoker.IsActive;
 
 
         public virtual void Initialize()
         {
-            Invoker = new SkillSequenceInvoker(sequence);
-            Builder = new SkillSequenceBuilder(sequence);
+            Invoker = new CombatSequenceInvoker(Sequence);
+            Builder = new CombatSequenceBuilder(Sequence);
             
             detector.Initialize(Cb);
             animationTrait.Initialize(this);
             coolTimer.Initialize(this);
             castTimer.Initialize(this);
             cost.Initialize(this);
-            combatParticles?.ForEach(cp => cp.Initialize(sequence, this));
+            combatParticles?.ForEach(cp => cp.Initialize(Sequence, this));
             
             Builder
                 .Add(Section.Active, "StopPathfinding", Cb.Pathfinding.Stop)
@@ -84,7 +83,7 @@ namespace Common.Skills
             // TODO Pool.Release()가 중복으로 들어옴
             // Invoker.End();
             
-            sequence.Clear();
+            Sequence.Clear();
             coolTimer.Dispose();
             castTimer.Dispose();
             combatParticles?.ForEach(cp => cp.Dispose());

@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 1721780342268869612}
   - component: {fileID: 1858129688984815329}
   m_Layer: 0
-  m_Name: Execution
+  m_Name: Hit
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -95,15 +95,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8dd5f48e8a14158468c492986c2b520c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  executor:
-    takerExecutionTable:
-      keyList: 01000000
-      valueList:
-      - List:
-        - {fileID: 1858129688984815329}
-    fireExecutionTable:
-      keyList: 
-      valueList: []
+  hitExecutor:
+    hitExecutionList:
+    - {fileID: 1858129688984815329}
   statusCode: 32210004
   type: 1
   icon: {fileID: 21300000, guid: 70aa650a4952ff241b9b76292033c1d5, type: 3}

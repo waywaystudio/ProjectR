@@ -10,6 +10,8 @@ namespace Common.Characters
         public ResourceValue Resource { get; } = new();
         public ShieldValue Shield { get; } = new();
         public StatTable StatTable { get; } = new();
+        
+        [Sirenix.OdinInspector.ShowInInspector]
         public StatusEffectTable StatusEffectTable { get; } = new();
 
 

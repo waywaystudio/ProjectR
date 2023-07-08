@@ -2,7 +2,6 @@ using System.Collections.Generic;
 using System.Threading;
 using Character.Venturers.Mage.Traps;
 using Common;
-using Common.Execution;
 using Common.Execution.Variants;
 using Common.Projectiles;
 using Cysharp.Threading.Tasks;
@@ -50,7 +49,7 @@ namespace Character.Venturers.Mage.Projectiles
                 other.gameObject.IsInLayerMask(targetLayer) &&
                 taker.Alive.Value)
             {
-                executor.ToTaker(taker);
+                Invoker.Hit(taker);
                 Invoker.Complete();
             }
         }
@@ -112,7 +111,7 @@ namespace Character.Venturers.Mage.Projectiles
             
             damageExecutor.DamageSpec.Change(StatType.Power, absorbedPower);
             
-            soul.SequenceInvoker.Complete();
+            soul.Invoker.Complete();
         }
 
         private void ResetPower()

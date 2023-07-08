@@ -49,7 +49,7 @@ namespace Character.Venturers.Priest.StatusEffects
                 }
                 else
                 {
-                    executor.ToTaker(Taker);
+                    Invoker.Hit(Taker);
                     tickBuffer = hasteWeight;
                 }
 

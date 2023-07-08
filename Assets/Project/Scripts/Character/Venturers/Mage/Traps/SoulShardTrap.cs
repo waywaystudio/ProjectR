@@ -10,18 +10,13 @@ namespace Character.Venturers.Mage.Traps
         {
             base.Initialize(provider);
 
-            SequenceBuilder.AddActiveParam("SpawnShard", SpawnShard);
-        }
-
-        public override void Execution()
-        {
-            
+            Builder.AddApplying("SpawnShard", SpawnShard);
         }
 
 
         private void SpawnShard(Vector3 position)
         {
-            var randomVector2 = Random.insideUnitCircle * 3.0f;
+            var randomVector2 = Random.insideUnitCircle * Radius;
             var tempDestination = new Vector3(position.x + randomVector2.x, 0f, position.z + randomVector2.y);
 
             PathfindingUtility.IsGround(tempDestination, out var groundPosition);

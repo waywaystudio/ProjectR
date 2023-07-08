@@ -14,7 +14,7 @@ namespace Character.Venturers.Rogue.Skills
             cost.PayCondition.Add("HasTarget", detector.HasTarget);
 
             Builder
-                .AddActiveParam("PhantomsDoubleStab",PhantomsDoubleStab)
+                .AddApplying("PhantomsDoubleStab",PhantomsDoubleStab)
                 .Add(Section.Execute, "DoubleStabAttack", DoubleStabAttack);
         }
 

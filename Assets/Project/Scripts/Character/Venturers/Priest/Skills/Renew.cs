@@ -13,7 +13,7 @@ namespace Character.Venturers.Priest.Skills
             base.Initialize();
 
             Builder
-                .AddActiveParam("SetTargetPosition", SetTargetPosition)
+                .AddApplying("SetTargetPosition", SetTargetPosition)
                 .Add(Section.Execute, "ExecuteRenew", ExecuteRenew)
                 .Add(Section.Execute, "TryConsumeLightWeaver", TryConsumeLightWeaver);
         }

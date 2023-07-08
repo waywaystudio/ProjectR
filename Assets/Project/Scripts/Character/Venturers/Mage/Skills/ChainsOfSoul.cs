@@ -21,7 +21,7 @@ namespace Character.Venturers.Mage.Skills
         {
             base.Initialize();
 
-            Builder.AddActiveParam("CondenseSoulShard", CondenseSoulShard);
+            Builder.AddApplying("CondenseSoulShard", CondenseSoulShard);
             // .Add(SectionType.Execute, "PlayEndChargingAnimation", PlayEndChargingAnimation)
             // .Add(SectionType.Execute, "SetIsActiveTrue", () => SkillInvoker.IsActive = false)
             // .Add(SectionType.End, "StopTracking", StopTracking);

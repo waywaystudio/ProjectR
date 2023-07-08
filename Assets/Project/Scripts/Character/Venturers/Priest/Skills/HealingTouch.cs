@@ -20,7 +20,7 @@ namespace Character.Venturers.Priest.Skills
             cost.PayCondition.Add("HasTarget", HasTarget);
 
             Builder
-                .AddActiveParam("SavePredicatePosition", TargetHealing)
+                .AddApplying("SavePredicatePosition", TargetHealing)
                 .Add(Section.Execute, "ExecuteHealingTouch",ExecuteHealingTouch)
                 .Add(Section.Execute, "TryConsumeLightWeaver", TryConsumeLightWeaver);
         }
