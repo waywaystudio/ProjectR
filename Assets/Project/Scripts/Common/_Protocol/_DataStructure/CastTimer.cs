@@ -42,6 +42,7 @@ namespace Common
         public void Stop()
         {
             cts?.Cancel();
+            cts = null;
 
             isRunning = false;
         }

@@ -1,10 +1,9 @@
 using Common;
-using Common.Traps;
 using UnityEngine;
 
 namespace Character.Villains.Commons.Trap
 {
-    public class Meteor : TrapComponent, IProjectionProvider
+    public class Meteor : Common.Traps.Trap, IProjectionProvider
     {
         private readonly Collider[] colliderBuffers = new Collider[32];
         
@@ -16,8 +15,7 @@ namespace Character.Villains.Commons.Trap
             base.Initialize(provider);
 
             Builder
-                .Add(Section.Execute,"MeteorExecution", MeteorExecution)
-                .Add(Section.Complete,"Execute", Invoker.Execute);
+                .Add(Section.Execute, "MeteorExecution", MeteorExecution);
         }
 
 
@@ -25,7 +23,11 @@ namespace Character.Villains.Commons.Trap
         {
             var takerList = TargetUtility.GetTargetsInSphere<ICombatTaker>(transform.position, targetLayer, Radius, colliderBuffers);
 
-            takerList.ForEach(Invoker.Hit);
+            takerList.ForEach(taker =>
+            {
+                Taker = taker;
+                Invoker.Hit(taker);
+            });
         }
     }
 }

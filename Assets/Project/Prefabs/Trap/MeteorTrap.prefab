@@ -10,7 +10,6 @@ GameObject:
   m_Component:
   - component: {fileID: 426966613292769704}
   - component: {fileID: 8723937984412141508}
-  - component: {fileID: 6311495256294258907}
   m_Layer: 10
   m_Name: MeteorTrap
   m_TagString: Untagged
@@ -53,25 +52,13 @@ MonoBehaviour:
     - {fileID: 2659919103708223492}
   fireExecutor:
     fireExecutionList: []
+  prolongTimer:
+    castingTime: 3
   delayTime: 0
-  radius: 3.5
   sizeVector: {x: 3.5, y: 3.5, z: 360}
   targetLayer:
     serializedVersion: 2
     m_Bits: 128
---- !u!114 &6311495256294258907
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3865230921314547483}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ded1296d600c5ce41bad806da7c62f77, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  prolongTimer: 3
 --- !u!1 &8653194284828886223
 GameObject:
   m_ObjectHideFlags: 0

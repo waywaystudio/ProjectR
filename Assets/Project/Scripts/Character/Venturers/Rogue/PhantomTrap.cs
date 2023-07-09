@@ -5,7 +5,7 @@ using UnityEngine;
 
 namespace Character.Venturers.Rogue
 {
-    public class PhantomTrap : TrapComponent
+    public class PhantomTrap : Trap
     {
         [SerializeField] private string doubleStabAnimationKey = "AttackDuelFastStabTwice";
         [SerializeField] private string throwAnimationKey = "Cast3";

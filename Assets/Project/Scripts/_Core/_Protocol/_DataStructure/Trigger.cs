@@ -1,7 +1,7 @@
 using System;
 using System.Threading;
 using Cysharp.Threading.Tasks;
-
+using UnityEngine;
 
 public class WaitTrigger
 {
@@ -45,57 +45,53 @@ public class WaitTrigger
     } 
 }
 
+[Serializable]
 public class TimeTrigger
 {
-    private float timeTick;
-    private readonly float delaySecond;
-    private readonly ActionTable<float> onValueChanged;
-    private readonly Action onComplete;
+    [SerializeField] protected float delaySecond;
+
     private CancellationTokenSource cts;
 
-    public float TimeTick
-    {
-        get => timeTick;
-        set
-        {
-            timeTick = value;
-            onValueChanged.Invoke(timeTick);
-        }
-    }
-    
-    public TimeTrigger() : this(null, 0f) { }
-    public TimeTrigger(Action onComplete, float delaySecond)
-    {
-        this.onComplete  = onComplete;
-        this.delaySecond = delaySecond;
+    public Observable<float> Timer { get; } = new();
+    public bool IsPulled { get; private set; }
+    public float DelaySecond => delaySecond;
 
-        onValueChanged = new ActionTable<float>();
-    }
-    
+
     public void Pull()
     {
-        cts = new CancellationTokenSource();
+        cts         = new CancellationTokenSource();
+        Timer.Value = delaySecond;
+        IsPulled    = false;
         
         Fire(cts.Token).Forget();
     }
-    
-    public void Dispose()
+
+    public void Stop()
     {
+        IsPulled = true;
+        
         cts?.Cancel();
         cts = null;
     }
 
-    public void AddListener(string key, Action<float> action) => onValueChanged.Add(key, action);
-    public void RemoveListener(string key) => onValueChanged.Remove(key);
+    public void Dispose()
+    {
+        Stop();
+    }
+
+    public void AddListener(string key, Action<float> action) => Timer.AddListener(key, action);
+    public void RemoveListener(string key) => Timer.RemoveListener(key);
     
 
-    private async UniTaskVoid Fire(CancellationToken cancellationToken)
+    private async UniTaskVoid Fire(CancellationToken ct)
     {
-        await UniTask.Delay(TimeSpan.FromSeconds(delaySecond), cancellationToken: cancellationToken);
-        
-        if (!cancellationToken.IsCancellationRequested)
+        while (Timer.Value > 0)
         {
-            onComplete?.Invoke();
+            Timer.Value -= Time.deltaTime;
+
+            await UniTask.Yield(ct);
         }
+
+        Stop();
     }
 }

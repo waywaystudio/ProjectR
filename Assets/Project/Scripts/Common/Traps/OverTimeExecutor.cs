@@ -6,7 +6,7 @@ namespace Common.Traps
     {
         [SerializeField] private float interval = 1f;
 
-        private TrapComponent trapComponent;
+        private Trap trap;
         
         public FloatEvent Progress { get; } = new();
 
@@ -25,13 +25,13 @@ namespace Common.Traps
 
         private void Awake()
         {
-            TryGetComponent(out trapComponent);
+            TryGetComponent(out trap);
             
             Progress.Value = interval;
             enabled        = false;
 
             // Require Builder - Sequencer and create new Builder
-            trapComponent.Builder
+            trap.Builder
                          .Add(Section.Active,"OverTimeOn", OverTimeOn)
                          .Add(Section.End,"OverTimeOff", OverTimeOff);
         }
@@ -45,7 +45,7 @@ namespace Common.Traps
             else
             {
                 // Require Invoker
-                trapComponent.Invoker.Execute();
+                trap.Invoker.Execute();
                 Progress.Value = 0f;
             }
         }

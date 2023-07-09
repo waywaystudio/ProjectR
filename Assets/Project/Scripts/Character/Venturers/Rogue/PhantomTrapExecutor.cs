@@ -13,16 +13,11 @@ namespace Character.Venturers.Rogue
 
         public override void Fire(Vector3 position)
         {
-            pool.Get().Activate(position);
+            var phantom = pool.Get();
+            
+            phantom.Invoker.Active(position);
         }
-        
-        // public override void Execution(ICombatTaker taker)
-        // {
-        //     if (taker == null) return;
-        //     
-        //     pool.Get().Activate(taker.Position);
-        // }
-        
+
 
         private void CreateTrap(PhantomTrap trap)
         {

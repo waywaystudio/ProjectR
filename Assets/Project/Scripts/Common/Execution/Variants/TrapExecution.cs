@@ -5,21 +5,23 @@ namespace Common.Execution.Variants
 {
     public class TrapExecution : FireExecution
     {
-        [SerializeField] protected Pool<TrapComponent> pool;
+        [SerializeField] protected Pool<Trap> pool;
 
         public override void Fire(Vector3 position)
         {
-            pool.Get().Activate(position);
+            var trap = pool.Get();
+            
+            trap.Invoker.Active(position);
         }
 
 
-        private void CreateTrap(TrapComponent trap)
+        private void CreateTrap(Trap trap)
         {
             trap.Initialize(Sender.Provider);
             trap.Builder.Add(Section.End,"ReturnToPool",() => ReturnToPool(trap));
         }
 
-        private void ReturnToPool(TrapComponent trap)
+        private void ReturnToPool(Trap trap)
         {
             trap.transform.position = Vector3.zero;
             trap.transform.SetParent(transform, false);

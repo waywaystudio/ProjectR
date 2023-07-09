@@ -12,7 +12,9 @@ namespace Character.Venturers.Mage.Executions
             if (probability == 0.0f) return;
             if (Random.value <= probability)
             {
-                pool.Get().Activate(position);
+                var soulShard = pool.Get();
+            
+                soulShard.Invoker.Active(position);
             }
         }
     }

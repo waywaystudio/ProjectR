@@ -176,7 +176,6 @@ GameObject:
   m_Component:
   - component: {fileID: 426966613292769704}
   - component: {fileID: 8191204224567122196}
-  - component: {fileID: 6311495256294258907}
   m_Layer: 0
   m_Name: PhantomTrap
   m_TagString: Untagged
@@ -220,9 +219,11 @@ MonoBehaviour:
     - {fileID: 9167835184449150322}
   fireExecutor:
     fireExecutionList:
-    - {fileID: 0}
-  delayTime: 0
-  prolongTime: 0
+    - {fileID: 2260594746363557818}
+  prolongTimer:
+    castingTime: 5
+  delayTimer:
+    delaySecond: 0
   sizeVector: {x: 0, y: 5, z: 135}
   targetLayer:
     serializedVersion: 2
@@ -230,19 +231,6 @@ MonoBehaviour:
   doubleStabAnimationKey: AttackDuelFastStabTwice
   throwAnimationKey: Cast2
   model: {fileID: 7108085015163194787}
---- !u!114 &6311495256294258907
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3865230921314547483}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ded1296d600c5ce41bad806da7c62f77, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  prolongTimer: 5
 --- !u!1 &7580142723663788696
 GameObject:
   m_ObjectHideFlags: 0

@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace Character.Venturers.Mage.Traps
 {
-    public class SoulShardTrap : TrapComponent
+    public class SoulShardTrap : Trap
     {
         public override void Initialize(ICombatProvider provider)
         {

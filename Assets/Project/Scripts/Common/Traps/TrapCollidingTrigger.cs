@@ -8,27 +8,27 @@ namespace Common.Traps
         [SerializeField] protected SphereCollider triggerCollider;
         
         private LayerMask targetLayer;
-        private TrapComponent trapComponent;
+        private Trap trap;
 
 
         private void OnTriggerEnter(Collider other)
         {
             if (other.gameObject.TryGetComponent(out ICombatTaker _) && other.gameObject.IsInLayerMask(targetLayer))
             {
-                trapComponent.Invoker.Complete();
+                trap.Invoker.Complete();
             }
         }
 
         private void Awake()
         {
-            TryGetComponent(out trapComponent);
+            TryGetComponent(out trap);
 
-            targetLayer            =   trapComponent.TargetLayer;
+            targetLayer            =   trap.TargetLayer;
             triggerCollider        ??= GetComponent<SphereCollider>();
-            triggerCollider.radius =   trapComponent.Radius;
+            triggerCollider.radius =   trap.Radius;
 
             // Require Builder
-            trapComponent.Builder
+            trap.Builder
                          .Add(Section.Active,"CollidingTriggerOn",
                               () => triggerCollider.IsNullOrDestroyed().OnFalse(() => triggerCollider.enabled = true))
                          .Add(Section.End,"CollidingTriggerOff", 
