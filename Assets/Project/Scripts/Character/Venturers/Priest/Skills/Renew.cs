@@ -21,16 +21,16 @@ namespace Character.Venturers.Priest.Skills
 
         private void SetTargetPosition(Vector3 targetPosition)
         {
-            predicatePosition = TargetUtility.GetValidPosition(Cb.Position, Range, targetPosition);
+            predicatePosition = TargetUtility.GetValidPosition(Cb.Position, Distance, targetPosition);
         }
         
         private void ExecuteRenew()
         {
-            var nearestTarget = detector.GetNearestTarget(predicatePosition, 6f);
+            var nearestTarget = detector.GetNearestTarget(predicatePosition, Range);
 
             if (nearestTarget is null) return;
-
-            executor.ToTaker(nearestTarget);
+            
+            Invoker.Hit(nearestTarget);
         }
         
         private void TryConsumeLightWeaver()

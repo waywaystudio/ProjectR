@@ -41,7 +41,9 @@ namespace Character.Venturers.Ranger.Projectile
 
         private void OnTriggerEnter(Collider other)
         {
-            if (other.gameObject.TryGetComponent(out ICombatTaker taker) && other.gameObject.IsInLayerMask(targetLayer))
+            if (other.gameObject.TryGetComponent(out ICombatTaker taker) && 
+                other.gameObject.IsInLayerMask(targetLayer) &&
+                taker.Alive.Value)
             {
                 Taker = taker;
                 Invoker.Execute();

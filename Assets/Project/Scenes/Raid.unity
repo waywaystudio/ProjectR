@@ -8370,6 +8370,7 @@ GameObject:
   m_Component:
   - component: {fileID: 287093696}
   - component: {fileID: 287093697}
+  - component: {fileID: 287093698}
   m_Layer: 0
   m_Name: StageCamera
   m_TagString: Untagged
@@ -8432,6 +8433,29 @@ MonoBehaviour:
         m_Calls: []
   m_LegacyBlendHint: 0
   m_ComponentOwner: {fileID: 1821731327}
+--- !u!114 &287093698
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 287093695}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 00b2d199b96b516448144ab30fb26aed, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_ApplyAfter: 2
+  m_ChannelMask: 2
+  m_Gain: 1
+  m_Use2DDistance: 0
+  m_UseCameraSpace: 1
+  m_ReactionSettings:
+    m_SecondaryNoise: {fileID: 0}
+    m_AmplitudeGain: 1
+    m_FrequencyGain: 1
+    m_Duration: 1
+    m_NoiseOffsets: {x: 0, y: 0, z: 0}
 --- !u!1 &291447727
 GameObject:
   m_ObjectHideFlags: 0
@@ -13760,6 +13784,7 @@ GameObject:
   m_Component:
   - component: {fileID: 519695619}
   - component: {fileID: 519695620}
+  - component: {fileID: 519695621}
   m_Layer: 0
   m_Name: PlayerCamera
   m_TagString: Untagged
@@ -13822,6 +13847,29 @@ MonoBehaviour:
         m_Calls: []
   m_LegacyBlendHint: 0
   m_ComponentOwner: {fileID: 694332568}
+--- !u!114 &519695621
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 519695618}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 00b2d199b96b516448144ab30fb26aed, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_ApplyAfter: 2
+  m_ChannelMask: 1
+  m_Gain: 1
+  m_Use2DDistance: 0
+  m_UseCameraSpace: 1
+  m_ReactionSettings:
+    m_SecondaryNoise: {fileID: 0}
+    m_AmplitudeGain: 1
+    m_FrequencyGain: 1
+    m_Duration: 1
+    m_NoiseOffsets: {x: 0, y: 0, z: 0}
 --- !u!1 &520187937
 GameObject:
   m_ObjectHideFlags: 0
@@ -42230,6 +42278,7 @@ GameObject:
   - component: {fileID: 1137713286}
   - component: {fileID: 1137713285}
   - component: {fileID: 1137713287}
+  - component: {fileID: 1137713288}
   m_Layer: 7
   m_Name: SandBox
   m_TagString: Untagged
@@ -42249,6 +42298,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c93fa548115db55468e6a003be65c8f4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Cis: {fileID: 0}
   StandardValue: 1
   Haste: 1
 --- !u!4 &1137713286
@@ -42278,6 +42328,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e95e4c4e981ab5b4c87e73e8ff9398a2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1137713288
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1137713283}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b18e2c1b50453904e9a119df21ed76e0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playSection: 0
+  endSection: 0
+  magnification: 0
+  zoomType: 0
 --- !u!1 &1137868565
 GameObject:
   m_ObjectHideFlags: 0
@@ -61999,7 +62065,7 @@ Light:
   m_BounceIntensity: 1
   m_ColorTemperature: 6570
   m_UseColorTemperature: 0
-  m_BoundingSphereOverride: {x: 1.02e-43, y: 3.6e-44, z: 2.2247e-41, w: 0}
+  m_BoundingSphereOverride: {x: 1.02e-43, y: 7e-44, z: 2.735e-41, w: 13.964111}
   m_UseBoundingSphereOverride: 0
   m_UseViewFrustumForShadowCasterCull: 1
   m_ShadowRadius: 0
@@ -64490,6 +64556,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mainCamera: {fileID: 1448534717}
+  cameraBrain: {fileID: 1448534719}
+  subCameraTable:
+    keyList: 0100000002000000
+    valueList:
+    - {fileID: 287093697}
+    - {fileID: 519695620}
   playerCamera: {fileID: 519695620}
   stageCamera: {fileID: 287093697}
 --- !u!4 &1943438066
@@ -72187,27 +72259,27 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5512553880677135783, guid: 86afa9f987c2e264f813cf565a9db0d0, type: 3}
       propertyPath: challengers.Array.data[0]
-      value: 0
+      value: 21010201
       objectReference: {fileID: 0}
     - target: {fileID: 5512553880677135783, guid: 86afa9f987c2e264f813cf565a9db0d0, type: 3}
       propertyPath: challengers.Array.data[1]
-      value: 21041104
+      value: 21020502
       objectReference: {fileID: 0}
     - target: {fileID: 5512553880677135783, guid: 86afa9f987c2e264f813cf565a9db0d0, type: 3}
       propertyPath: challengers.Array.data[2]
-      value: 0
+      value: 21030803
       objectReference: {fileID: 0}
     - target: {fileID: 5512553880677135783, guid: 86afa9f987c2e264f813cf565a9db0d0, type: 3}
       propertyPath: challengers.Array.data[3]
-      value: 0
+      value: 21041104
       objectReference: {fileID: 0}
     - target: {fileID: 5512553880677135783, guid: 86afa9f987c2e264f813cf565a9db0d0, type: 3}
       propertyPath: challengers.Array.data[4]
-      value: 0
+      value: 21051405
       objectReference: {fileID: 0}
     - target: {fileID: 5512553880677135783, guid: 86afa9f987c2e264f813cf565a9db0d0, type: 3}
       propertyPath: challengers.Array.data[5]
-      value: 0
+      value: 21061706
       objectReference: {fileID: 0}
     - target: {fileID: 5512553880677135783, guid: 86afa9f987c2e264f813cf565a9db0d0, type: 3}
       propertyPath: characterDataList.Array.size

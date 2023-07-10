@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 7677619079652815337}
   - component: {fileID: 1272622193521783809}
   m_Layer: 0
-  m_Name: Hit
+  m_Name: Hits
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -45,12 +45,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   group: 1
-  actionCode: 31210101
   damageSpec:
     statList:
     - statType: 13010001
       statKey: DamageExecution
-      value: 5000
+      value: 500
 --- !u!1 &980667553336601439
 GameObject:
   m_ObjectHideFlags: 0
@@ -80,7 +79,8 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 6438091275984724206}
   m_Father: {fileID: 1754816964043732546}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -103,7 +103,7 @@ MonoBehaviour:
     singleInstanceOnly: 1
   actionKey: SlashExecuteParticle
   parent: 1
-  prepositionType: 0
+  takerPreposition: 0
   playSection: 11
   endSection: 0
 --- !u!114 &3739691450525522047
@@ -125,8 +125,8 @@ MonoBehaviour:
     singleInstanceOnly: 0
   actionKey: SlashHitParticle
   parent: 2
-  prepositionType: 3
-  playSection: 21
+  takerPreposition: 3
+  playSection: 8
   endSection: 0
 --- !u!1 &1673647776217094949
 GameObject:
@@ -138,7 +138,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8841925700284419078}
   m_Layer: 0
-  m_Name: Fire
+  m_Name: Fires
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -209,15 +209,11 @@ MonoBehaviour:
   actionCode: 31210101
   behaviourMask: 32
   priority: 1
-  executor:
-    takerExecutionTable:
-      keyList: 01000000
-      valueList:
-      - List:
-        - {fileID: 1272622193521783809}
-    fireExecutionTable:
-      keyList: 
-      valueList: []
+  hitExecutor:
+    hitExecutionList:
+    - {fileID: 1272622193521783809}
+  fireExecutor:
+    fireExecutionList: []
   detector:
     sortingType: 0
     maxBufferCount: 32
@@ -244,7 +240,102 @@ MonoBehaviour:
     paySection: 11
   icon: {fileID: 21300000, guid: 951b905eda8f8424fb1debd28c69ac92, type: 3}
   combatParticles:
-  - {fileID: 3739691450525522047}
   - {fileID: 6712301459091702814}
+  - {fileID: 3739691450525522047}
+  combatSounds:
+  - {fileID: 6445055817851279985}
   description: "\uB300\uC0C1\uC744 \uACF5\uACA9\uD558\uC5EC \uC790\uC6D0\uC744 \uD68C\uBCF5\uD558\uB294
     \uAE30\uBCF8 \uAE30\uC220"
+--- !u!1001 &941591199015257680
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 6794983565494111290}
+    m_Modifications:
+    - target: {fileID: 6073532715321009854, guid: 3b2a13946480b144ea038c527a469838, type: 3}
+      propertyPath: m_RootOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6073532715321009854, guid: 3b2a13946480b144ea038c527a469838, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6073532715321009854, guid: 3b2a13946480b144ea038c527a469838, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6073532715321009854, guid: 3b2a13946480b144ea038c527a469838, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6073532715321009854, guid: 3b2a13946480b144ea038c527a469838, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6073532715321009854, guid: 3b2a13946480b144ea038c527a469838, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6073532715321009854, guid: 3b2a13946480b144ea038c527a469838, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6073532715321009854, guid: 3b2a13946480b144ea038c527a469838, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6073532715321009854, guid: 3b2a13946480b144ea038c527a469838, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6073532715321009854, guid: 3b2a13946480b144ea038c527a469838, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6073532715321009854, guid: 3b2a13946480b144ea038c527a469838, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6079934446686395425, guid: 3b2a13946480b144ea038c527a469838, type: 3}
+      propertyPath: playSection
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 6079934446686395425, guid: 3b2a13946480b144ea038c527a469838, type: 3}
+      propertyPath: useRandomPitch
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6079934446686395425, guid: 3b2a13946480b144ea038c527a469838, type: 3}
+      propertyPath: randomPitchPercent
+      value: 0.15
+      objectReference: {fileID: 0}
+    - target: {fileID: 7803590081946717668, guid: 3b2a13946480b144ea038c527a469838, type: 3}
+      propertyPath: m_audioClip
+      value: 
+      objectReference: {fileID: 8300000, guid: 56e7333cd1cbaca4fa21940eba714a34, type: 3}
+    - target: {fileID: 8966721582778834249, guid: 3b2a13946480b144ea038c527a469838, type: 3}
+      propertyPath: m_Name
+      value: HitSfx
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 3b2a13946480b144ea038c527a469838, type: 3}
+--- !u!4 &6438091275984724206 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 6073532715321009854, guid: 3b2a13946480b144ea038c527a469838, type: 3}
+  m_PrefabInstance: {fileID: 941591199015257680}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &6445055817851279985 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6079934446686395425, guid: 3b2a13946480b144ea038c527a469838, type: 3}
+  m_PrefabInstance: {fileID: 941591199015257680}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 02269f108b0c79c4b85179cb7dac00bb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

@@ -817,7 +817,7 @@ MonoBehaviour:
     behaviourMask: RigidSkill
     priority: 5
     sortingType: None
-    targetParam: {x: 100, y: 6, z: 360}
+    targetParam: {x: 0, y: 100, z: 360}
     targetLayer: Monster
     animationKey: Cast3
     castCompleteKey: 

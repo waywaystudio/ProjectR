@@ -1,3 +1,5 @@
+using System.Collections.Generic;
+using Common.Effects.Particles;
 using Common.Execution;
 using UnityEngine;
 
@@ -6,6 +8,7 @@ namespace Common.StatusEffects
     public abstract class StatusEffect : MonoBehaviour, IActionSender, IHasTaker, ICombatSequence, IEditable
     {
         [SerializeField] protected HitExecutor hitExecutor;
+        [SerializeField] protected List<CombatParticle> combatParticles;
         [SerializeField] protected DataIndex statusCode;
         [SerializeField] protected StatusEffectType type;
         [SerializeField] protected Sprite icon;
@@ -31,6 +34,7 @@ namespace Common.StatusEffects
         public virtual void Initialize(ICombatProvider provider)
         {
             Provider = provider;
+            
             Invoker  = new CombatSequenceInvoker(Sequence);
             Builder  = new CombatSequenceBuilder(Sequence);
 
@@ -41,6 +45,7 @@ namespace Common.StatusEffects
                 .Add(Section.End, "UnregisterTable", RemoveTable);
             
             hitExecutor.Initialize(Sequence, this);
+            combatParticles?.ForEach(cp => cp.Initialize(Sequence, this));
         }
         
 
@@ -59,6 +64,12 @@ namespace Common.StatusEffects
         /// </summary>
         public void Dispel() => Invoker.Cancel();
 
+        public virtual void Dispose()
+        {
+            Sequence.Clear();
+            combatParticles?.ForEach(cp => cp.Dispose());
+        }
+
 
         private void AddTable() => Taker.StatusEffectTable.Add(DataIndex, this);
         private void RemoveTable() => Taker.StatusEffectTable.Remove(DataIndex);
@@ -69,17 +80,14 @@ namespace Common.StatusEffects
             
             ProgressTime.Value = Mathf.Clamp(overrideValue, 0, duration * 1.5f);
         }
-        
-        private void OnDestroy()
-        {
-            Sequence.Clear();
-        }
 
 
 #if UNITY_EDITOR
         public virtual void EditorSetUp()
         {
             hitExecutor.GetExecutionInEditor(transform);
+            
+            GetComponentsInChildren(combatParticles);
             
             var statusEffectData = Database.StatusEffectSheetData(DataIndex);
 

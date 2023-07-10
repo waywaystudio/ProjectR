@@ -62,7 +62,7 @@ MonoBehaviour:
     - {fileID: 4348888035237348426}
   fireExecutor:
     fireExecutionList:
-    - {fileID: 0}
+    - {fileID: 8651266324194173936}
   combatParticleList: []
   triggerCollider: {fileID: 6970810306177905816}
   maxPierceCount: 1
@@ -152,7 +152,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7877202450897402839}
-  - component: {fileID: 3830560375833013974}
+  - component: {fileID: 8651266324194173936}
   m_Layer: 9
   m_Name: Fire
   m_TagString: Untagged
@@ -175,7 +175,7 @@ Transform:
   m_Father: {fileID: 601654701044516039}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &3830560375833013974
+--- !u!114 &8651266324194173936
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -184,7 +184,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 6135584043726258729}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f43f38c71544bb74da15b508119a64d9, type: 3}
+  m_Script: {fileID: 11500000, guid: adc2f1a4dd3a46c439653b7c7a7ae0f6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   group: 1
@@ -192,6 +192,7 @@ MonoBehaviour:
     prefab: {fileID: 3865230921314547483, guid: 36738ef24b91da94f88841488af3f3c0, type: 3}
     maxCount: 16
     syncObjectActivity: 1
+  probability: 1
 --- !u!1 &8882434429761776426
 GameObject:
   m_ObjectHideFlags: 0

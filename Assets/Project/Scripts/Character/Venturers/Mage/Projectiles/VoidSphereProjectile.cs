@@ -2,7 +2,7 @@ using System.Collections.Generic;
 using System.Threading;
 using Character.Venturers.Mage.Traps;
 using Common;
-using Common.Execution.Variants;
+using Common.Execution.Hits;
 using Common.Projectiles;
 using Cysharp.Threading.Tasks;
 using UnityEngine;
@@ -11,7 +11,7 @@ namespace Character.Venturers.Mage.Projectiles
 {
     public class VoidSphereProjectile : ProjectileComponent
     {
-        [SerializeField] private DamageExecution damageExecutor;
+        [SerializeField] private DamageHit damageExecutor;
         [SerializeField] private SphereCollider triggerCollider;
         [SerializeField] private LayerMask trapLayer;
         [SerializeField] private float shardCollectableRadius;

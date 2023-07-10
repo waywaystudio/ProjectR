@@ -53,7 +53,7 @@ public class TimeTrigger
     private CancellationTokenSource cts;
 
     public Observable<float> Timer { get; } = new();
-    public bool IsPulled { get; private set; }
+    public bool IsPulled { get; private set; } = true;
     public float DelaySecond => delaySecond;
 
 

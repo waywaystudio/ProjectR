@@ -8,14 +8,14 @@ namespace Manager.Audio.Utility
     {
         public static void Play(this AudioSource audioSource, AudioClip audioClip)
         {
-            audioSource.clip = audioClip;
+            audioSource.clip  = audioClip;
             audioSource.Play();
         }
 
         public static void Play(this AudioSource audioSource, AudioClipData clipData)
         {
             audioSource.priority = clipData.Priority;
-            audioSource.clip = clipData.AudioClip;
+            audioSource.clip     = clipData.AudioClip;
 
             audioSource.Play();
         }

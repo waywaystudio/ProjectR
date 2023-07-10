@@ -27,17 +27,18 @@ namespace Character.Venturers.Mage.Skills
             
             cts = new CancellationTokenSource();
 
-            var validPosition = TargetUtility.GetValidPosition(Cb.transform.position, Range, targetPosition);
+            var validPosition = TargetUtility.GetValidPosition(Cb.transform.position, Distance, targetPosition);
                 
             venturer.Rotate(validPosition);
+            Invoker.SubFire(validPosition);
                 
             while (true)
             {
-                var validTakerList = detector.GetTakersInCircleRange(validPosition, 6f, 360f);
+                var validTakerList = detector.GetTakersInCircleRange(validPosition, Range, 360f);
                 validTakerList?.ForEach(taker =>
                 {
-                    executor.ToTaker(taker);
-                    executor.ToPosition(taker.Position);
+                    Invoker.Hit(taker);
+                    Invoker.Fire(taker.Position);
                 });
                     
                 await UniTask.Delay(500, DelayType.DeltaTime, PlayerLoopTiming.Update, cts.Token);

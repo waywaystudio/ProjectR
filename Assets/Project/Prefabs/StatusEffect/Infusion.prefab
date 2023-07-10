@@ -1,5 +1,59 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &1294132863034944466
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 818249620366236095}
+  - component: {fileID: 1009467313934585329}
+  m_Layer: 0
+  m_Name: Effects
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &818249620366236095
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1294132863034944466}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2402494755454563105}
+  m_RootOrder: -1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1009467313934585329
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1294132863034944466}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fa06c267d17b6ea4e93ed2ccb016432a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pool:
+    prefab: {fileID: 105942, guid: ac48ec7d180da3047ab650f8b5d60f26, type: 3}
+    maxCount: 1
+    syncObjectActivity: 1
+    singleInstanceOnly: 1
+  actionKey: HealingOnceParticle
+  parent: 2
+  takerPreposition: 1
+  playSection: 8
+  endSection: 0
 --- !u!1 &7158768986076432337
 GameObject:
   m_ObjectHideFlags: 0
@@ -59,7 +113,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2402494755454563105}
-  - component: {fileID: 4459061243654905774}
   - component: {fileID: 4304748511143031987}
   m_Layer: 0
   m_Name: Infusion
@@ -80,23 +133,11 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 818249620366236095}
   - {fileID: 8374707892189434149}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &4459061243654905774
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8333227002716821657}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 895c99e003cd3f54d96609fa1ca8c94b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  maxBufferCount: 16
 --- !u!114 &4304748511143031987
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -112,6 +153,8 @@ MonoBehaviour:
   hitExecutor:
     hitExecutionList:
     - {fileID: 7212516511690731986}
+  combatParticles:
+  - {fileID: 1009467313934585329}
   statusCode: 32210007
   type: 1
   icon: {fileID: 21300000, guid: 29c3b6836e20bf7478df17a473b26851, type: 3}

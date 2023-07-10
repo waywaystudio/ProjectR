@@ -1,3 +1,6 @@
+using System.Collections.Generic;
+using Common.Effects.Impulse;
+using Common.Effects.Particles;
 using Common.Execution;
 using UnityEngine;
 
@@ -8,6 +11,8 @@ namespace Common.Traps
         [SerializeField] protected DataIndex trapCode;
         [SerializeField] protected HitExecutor hitExecutor;
         [SerializeField] protected FireExecutor fireExecutor;
+        [SerializeField] protected List<CombatParticle> combatParticles;
+        [SerializeField] protected List<CombatImpulse> combatImpulses;
         [SerializeField] protected TrapProlongTimer prolongTimer;
         [SerializeField] protected TimeTrigger delayTimer;
         [SerializeField] protected Vector3 sizeVector;
@@ -29,54 +34,30 @@ namespace Common.Traps
         public CombatSequenceInvoker Invoker { get; private set; }
 
 
-        /// <summary>
-        /// Create Pool 에서 호식
-        /// 보통 SkillSequence에 Execution 부터 호식 됨.
-        /// </summary>
         public virtual void Initialize(ICombatProvider provider)
         {
             Provider = provider;
 
             Invoker = new CombatSequenceInvoker(Sequence);
             Builder = new CombatSequenceBuilder(Sequence);
-            
+
             Builder
-                .AddApplying("SetPosition", SetPosition)
-                .Add(Section.Active, "PullDelayTimer", () => delayTimer.Pull())
-                .Add(Section.End,"TrapObjectActiveFalse", () => gameObject.SetActive(false));
+                .Add(Section.Active, "PullDelayTimer", delayTimer.Pull);
             
             hitExecutor.Initialize(Sequence, this);
             fireExecutor.Initialize(Sequence, this);
             prolongTimer.Initialize(this);
-        }
-        
-        /// <summary>
-        /// 성공적으로 스킬 사용시 호식.
-        /// </summary>
-        public void Install(Vector3 position)
-        {
-            Invoker.Active(position);
+            combatParticles?.ForEach(cp => cp.Initialize(Sequence, this));
+            combatImpulses?.ForEach(ci => ci.Initialize(Sequence));
         }
 
-
-        /// <summary>
-        /// Scene이 종료되거나, 설정된 Pool 개수를 넘어서 생성된 상태이상효과가 만료될 때 호식
-        /// </summary>
         public void Dispose()
         {
             Sequence.Clear();
             delayTimer.Dispose();
+            combatParticles?.ForEach(cp => cp.Dispose());
 
             Destroy(gameObject);
-        }
-
-
-        private void SetPosition(Vector3 position)
-        {
-            Transform transformRef;
-            
-            (transformRef = transform).SetParent(null);
-            transformRef.position = position;
         }
 
 
@@ -85,6 +66,9 @@ namespace Common.Traps
         {
             hitExecutor.GetExecutionInEditor(transform);
             fireExecutor.GetExecutionInEditor(transform);
+            
+            GetComponentsInChildren(combatParticles);
+            GetComponentsInChildren(combatImpulses);
         }
 #endif
     }

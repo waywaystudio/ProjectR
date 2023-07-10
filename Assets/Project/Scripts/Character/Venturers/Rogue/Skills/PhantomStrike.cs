@@ -37,7 +37,7 @@ namespace Character.Venturers.Rogue.Skills
 
         private void CreatePhantom()
         {
-            executor.ToPosition(Cb.transform.position, ExecuteGroup.Sub);
+            Invoker.SubFire(Cb.transform.position);
         }
 
         private async UniTaskVoid Colliding()
@@ -55,7 +55,7 @@ namespace Character.Venturers.Rogue.Skills
                         if (!target.Alive.Value || takerListPerAction.Contains(target)) return;
                         
                         takerListPerAction.Add(target);
-                        executor.ToTaker(target);
+                        Invoker.Hit(target);
                     });
                 }
 

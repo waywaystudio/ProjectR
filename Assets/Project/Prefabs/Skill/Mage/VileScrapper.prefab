@@ -95,7 +95,7 @@ Transform:
   - {fileID: 7221708945386366489}
   - {fileID: 5853087751410363707}
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &2963364574711265983
 MonoBehaviour:
@@ -121,6 +121,11 @@ MonoBehaviour:
       valueList:
       - List:
         - {fileID: 6640065934772434048}
+  hitExecutor:
+    hitExecutionList: []
+  fireExecutor:
+    fireExecutionList:
+    - {fileID: 6640065934772434048}
   detector:
     sortingType: 0
     maxBufferCount: 32
@@ -146,6 +151,7 @@ MonoBehaviour:
     cost: -10
     paySection: 1
   icon: {fileID: 21300000, guid: e5079648ecefa694998a765856077ced, type: 3}
+  combatParticles: []
   description: "\uC6D0\uAC70\uB9AC \uB300\uC0C1\uC5D0\uAC8C \uD53C\uD574\uB97C \uC8FC\uACE0,
     \uB300\uC0C1\uC758 \uC601\uD63C\uC744 \uC870\uAC01\uB0B8\uB2E4."
 --- !u!1 &9030367168287305613
@@ -159,7 +165,7 @@ GameObject:
   - component: {fileID: 2308180223112419512}
   - component: {fileID: 6640065934772434048}
   m_Layer: 0
-  m_Name: Execution
+  m_Name: Fires
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

@@ -62,6 +62,56 @@ Transform:
   m_Father: {fileID: 234500611213636336}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &5647324970587844223
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3314027136807910851}
+  - component: {fileID: 5201443771260230840}
+  m_Layer: 0
+  m_Name: Fires
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3314027136807910851
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5647324970587844223}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 234500611213636336}
+  m_RootOrder: -1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &5201443771260230840
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5647324970587844223}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3d3639c99a56c6c458f64d2325bb8e07, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  group: 1
+  muzzle: {fileID: 0}
+  pool:
+    prefab: {fileID: 68301466263117794, guid: 541d0ef7d87ec2b409401093e6f3ee17, type: 3}
+    maxCount: 12
+    syncObjectActivity: 1
 --- !u!1 &8380361914805468174
 GameObject:
   m_ObjectHideFlags: 0
@@ -91,11 +141,12 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 3314027136807910851}
   - {fileID: 2308180223112419512}
   - {fileID: 7221708945386366489}
   - {fileID: 5853087751410363707}
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &671937298815967466
 MonoBehaviour:
@@ -117,12 +168,18 @@ MonoBehaviour:
       keyList: 02000000
       valueList:
       - List:
-        - {fileID: 2107891145619366331}
+        - {fileID: 8181107000541088922}
     fireExecutionTable:
       keyList: 01000000
       valueList:
       - List:
-        - {fileID: 6640065934772434048}
+        - {fileID: 5201443771260230840}
+  hitExecutor:
+    hitExecutionList:
+    - {fileID: 8181107000541088922}
+  fireExecutor:
+    fireExecutionList:
+    - {fileID: 5201443771260230840}
   detector:
     sortingType: 0
     maxBufferCount: 32
@@ -148,6 +205,7 @@ MonoBehaviour:
     cost: 5
     paySection: 1
   icon: {fileID: 21300000, guid: 4302851957bc5914280b50838ce03c48, type: 3}
+  combatParticles: []
   description: "\uC989\uC2DC \uC0AC\uACA9\uD558\uC5EC \uC6D0\uAC70\uB9AC \uB300\uC0C1\uC5D0\uAC8C
     \uD53C\uD574\uB97C \uC900\uB2E4. \uACF5\uACA9\uC774 \uCE58\uBA85\uD0C0\uB85C
     \uC801\uC911 \uC2DC \uC544\uB4DC\uB808\uB0A0\uB9B0 \uAC15\uD654\uD6A8\uACFC\uB97C
@@ -161,10 +219,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2308180223112419512}
-  - component: {fileID: 6640065934772434048}
-  - component: {fileID: 2107891145619366331}
+  - component: {fileID: 8181107000541088922}
   m_Layer: 0
-  m_Name: Execution
+  m_Name: Hits
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -185,25 +242,7 @@ Transform:
   m_Father: {fileID: 234500611213636336}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &6640065934772434048
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9030367168287305613}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3d3639c99a56c6c458f64d2325bb8e07, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  group: 1
-  muzzle: {fileID: 0}
-  pool:
-    prefab: {fileID: 68301466263117794, guid: 541d0ef7d87ec2b409401093e6f3ee17, type: 3}
-    maxCount: 12
-    syncObjectActivity: 1
---- !u!114 &2107891145619366331
+--- !u!114 &8181107000541088922
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

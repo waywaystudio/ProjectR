@@ -18,7 +18,7 @@ namespace Character.Venturers.Warrior.Skills
 
         private void ExecuteLeapAttack()
         {
-            detector.GetTakers()?.ForEach(executor.ToTaker);
+            detector.GetTakers()?.ForEach(Invoker.Hit);
         }
 
         private void Jump(Vector3 targetPosition)

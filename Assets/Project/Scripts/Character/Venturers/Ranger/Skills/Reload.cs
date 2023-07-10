@@ -26,7 +26,7 @@ namespace Character.Venturers.Ranger.Skills
 
                 for (var i = 0; i < stack; i++)
                 {
-                    executor.ToTaker(taker);
+                    Invoker.Hit(taker);
                 }
                 
                 effect.Dispel();

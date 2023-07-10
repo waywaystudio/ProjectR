@@ -107,7 +107,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   group: 1
-  actionCode: 31210602
   healSpec:
     statList:
     - statType: 13010001
@@ -152,7 +151,7 @@ Transform:
   - {fileID: 7221708945386366489}
   - {fileID: 5853087751410363707}
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &4722194049015145637
 MonoBehaviour:
@@ -178,6 +177,11 @@ MonoBehaviour:
     fireExecutionTable:
       keyList: 
       valueList: []
+  hitExecutor:
+    hitExecutionList:
+    - {fileID: 6644808226710964721}
+  fireExecutor:
+    fireExecutionList: []
   detector:
     sortingType: 5
     maxBufferCount: 32
@@ -195,7 +199,7 @@ MonoBehaviour:
     callbackSection: 0
   coolTimer:
     coolTime: 1
-    invokeSection: 11
+    invokeSection: 3
   castTimer:
     castingTime: 1.5
     callbackSection: 11
@@ -203,6 +207,7 @@ MonoBehaviour:
     cost: -2
     paySection: 11
   icon: {fileID: 21300000, guid: 4e927875f309f6843bf0f082225251ee, type: 3}
+  combatParticles: []
   description: "\uB300\uC0C1\uC758 \uCCB4\uB825\uC744 \uD68C\uBCF5\uD558\uACE0, \uD50C\uB808\uC774\uC5B4\uC758
     \uC790\uC6D0\uC744 \uD68C\uBCF5\uD55C\uB2E4."
   healExecution: {fileID: 6644808226710964721}

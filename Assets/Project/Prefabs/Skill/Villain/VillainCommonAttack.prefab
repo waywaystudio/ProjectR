@@ -74,7 +74,7 @@ GameObject:
   - component: {fileID: 6979266354357937840}
   - component: {fileID: 2481512623508416614}
   m_Layer: 0
-  m_Name: Execution
+  m_Name: Hits
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -108,7 +108,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   group: 1
-  actionCode: 31222204
   damageSpec:
     statList:
     - statType: 13010001
@@ -188,16 +187,12 @@ MonoBehaviour:
   actionCode: 31222204
   behaviourMask: 32
   priority: 1
-  executor:
-    takerExecutionTable:
-      keyList: 01000000
-      valueList:
-      - List:
-        - {fileID: 6979266354357937840}
-        - {fileID: 2481512623508416614}
-    fireExecutionTable:
-      keyList: 
-      valueList: []
+  hitExecutor:
+    hitExecutionList:
+    - {fileID: 6979266354357937840}
+    - {fileID: 2481512623508416614}
+  fireExecutor:
+    fireExecutionList: []
   detector:
     sortingType: 7
     maxBufferCount: 32
@@ -223,4 +218,5 @@ MonoBehaviour:
     cost: 0
     paySection: 0
   icon: {fileID: 21300000, guid: 5a5b5e460d0775b42a594af04292f7c3, type: 3}
+  combatParticles: []
   description: Starts combat by attacking a target with a melee weapon.

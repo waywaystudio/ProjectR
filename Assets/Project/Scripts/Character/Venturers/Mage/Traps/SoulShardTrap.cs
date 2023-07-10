@@ -1,16 +1,22 @@
 using Common;
 using Common.Traps;
+using DG.Tweening;
 using UnityEngine;
 
 namespace Character.Venturers.Mage.Traps
 {
     public class SoulShardTrap : Trap
     {
+        private Tween spawnTween;
+        
         public override void Initialize(ICombatProvider provider)
         {
             base.Initialize(provider);
 
-            Builder.AddApplying("SpawnShard", SpawnShard);
+            Builder
+                .AddApplying("SpawnShard", SpawnShard)
+                .Add(Section.Cancel, "SpawnCancel", SpawnCancel)
+                .Add(Section.End, "SpawnCancel", SpawnCancel);
         }
 
 
@@ -23,7 +29,15 @@ namespace Character.Venturers.Mage.Traps
 
             var destination = new Vector3(groundPosition.x, groundPosition.y + 1f, groundPosition.z);
 
-            transform.position = destination;
+            spawnTween = transform.DOJump(destination, 2.4f, 1, 0.33f);
+        }
+
+        private void SpawnCancel()
+        {
+            if (spawnTween == null) return;
+            
+            spawnTween.Kill();
+            spawnTween = null;
         }
     }
 }

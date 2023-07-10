@@ -1,6 +1,7 @@
 using System.Collections.Generic;
+using Common.Effects.Particles;
+using Common.Effects.Sounds;
 using Common.Execution;
-using Common.Particles;
 using UnityEngine;
 
 namespace Common.Projectiles
@@ -13,6 +14,7 @@ namespace Common.Projectiles
         [SerializeField] protected HitExecutor hitExecutor;
         [SerializeField] protected FireExecutor fireExecutor;
         [SerializeField] protected List<CombatParticle> combatParticleList;
+        [SerializeField] protected List<CombatAudio> combatSounds;
         
         public ICombatProvider Provider { get; protected set; }
         public ICombatTaker Taker { get; protected set; }
@@ -39,6 +41,7 @@ namespace Common.Projectiles
             hitExecutor.Initialize(Sequence, this);
             fireExecutor.Initialize(Sequence, this);
             combatParticleList.ForEach(particle => particle.Initialize(Sequence, this));
+            combatSounds?.ForEach(cs => cs.Initialize(Sequence));
         }
 
 
@@ -65,6 +68,7 @@ namespace Common.Projectiles
             fireExecutor.GetExecutionInEditor(transform);
             
             GetComponentsInChildren(combatParticleList);
+            GetComponentsInChildren(combatSounds);
         }
 #endif
     }

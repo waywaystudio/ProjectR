@@ -16,7 +16,7 @@ namespace Character.Venturers.Mage.Skills
         {
             var forwardPosition = Provider.Position + Provider.Forward;
 
-            executor.ToPosition(forwardPosition);
+            Invoker.Fire(forwardPosition);
         }
     }
 }

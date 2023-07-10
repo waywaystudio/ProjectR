@@ -8,7 +8,13 @@ namespace Character.Villains.Commons.Skills
         {
             base.Initialize();
             
-            Builder.Add(Section.Execute, "CommonExecution", () => executor.ToTaker(MainTarget));
+            Builder.Add(Section.Execute, "CommonExecution", HitVillainCommonAttack);
+        }
+
+
+        private void HitVillainCommonAttack()
+        {
+            Invoker.Hit(MainTarget);
         }
     }
 }

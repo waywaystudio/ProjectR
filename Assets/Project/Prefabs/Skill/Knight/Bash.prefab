@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 1974804535776436921}
   - component: {fileID: 8714835023685632432}
   m_Layer: 0
-  m_Name: Execution
+  m_Name: Hits
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -45,7 +45,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   group: 1
-  actionCode: 31210102
   damageSpec:
     statList:
     - statType: 13010001
@@ -103,7 +102,7 @@ MonoBehaviour:
     singleInstanceOnly: 0
   actionKey: SlashHitParticle
   parent: 2
-  prepositionType: 3
+  takerPreposition: 0
   playSection: 8
   endSection: 0
 --- !u!114 &3160963236093466061
@@ -125,7 +124,7 @@ MonoBehaviour:
     singleInstanceOnly: 1
   actionKey: BashBonusParticle
   parent: 1
-  prepositionType: 4
+  takerPreposition: 0
   playSection: 21
   endSection: 0
 --- !u!1 &6898964570828026415
@@ -160,7 +159,7 @@ Transform:
   - {fileID: 2056607629703991914}
   - {fileID: 1974804535776436921}
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &983550755931538648
 MonoBehaviour:
@@ -177,15 +176,11 @@ MonoBehaviour:
   actionCode: 31210102
   behaviourMask: 32
   priority: 6
-  executor:
-    takerExecutionTable:
-      keyList: 01000000
-      valueList:
-      - List:
-        - {fileID: 8714835023685632432}
-    fireExecutionTable:
-      keyList: 
-      valueList: []
+  hitExecutor:
+    hitExecutionList:
+    - {fileID: 8714835023685632432}
+  fireExecutor:
+    fireExecutionList: []
   detector:
     sortingType: 0
     maxBufferCount: 32
@@ -211,9 +206,17 @@ MonoBehaviour:
     cost: -20
     paySection: 11
   icon: {fileID: 21300000, guid: 8f65b4f511f4d784a8f0bef07957cfbd, type: 3}
+  effector:
+    combatParticles:
+    - {fileID: 556420376547498621}
+    - {fileID: 3160963236093466061}
+    combatSounds: []
+    combatImpulses: []
   combatParticles:
   - {fileID: 556420376547498621}
   - {fileID: 3160963236093466061}
+  combatSounds: []
+  combatImpulses: []
   description: "\uBC29\uD328\uB85C \uAC00\uACA9\uD558\uC5EC \uD53C\uD574\uB97C \uC900\uB2E4.
     \uB300\uC0C1\uC774 \uACF5\uACA9 \uC911\uC77C \uB54C \uC0AC\uC6A9\uD558\uBA74
     \uCD94\uAC00 \uD53C\uD574\uB97C \uC900\uB2E4."

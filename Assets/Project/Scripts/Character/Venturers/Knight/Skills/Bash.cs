@@ -15,7 +15,7 @@ namespace Character.Venturers.Knight.Skills
             Builder
                 .Add(Section.Execute, "BashAttack", BashAttack)
                 .Add(Section.Extra, "ExtraBonus", ExtraBonus)
-                .AddHit("HitToTaker", HitToTaker);
+                ;
         }
 
 
@@ -39,11 +39,6 @@ namespace Character.Venturers.Knight.Skills
         private void ExtraBonus()
         {
             Cb.Resource.Value += counterAttackBonus;
-        }
-
-        private void HitToTaker(ICombatTaker taker)
-        {
-            executor.ToTaker(taker);
         }
     }
 }

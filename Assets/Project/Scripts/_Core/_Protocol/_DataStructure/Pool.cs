@@ -66,7 +66,10 @@ public class Pool<T> where T : Component
                        + $"Input:{prefab.name}");
     }
 
-    public void Clear() => objectPool.Clear();
+    public void Clear()
+    {
+        objectPool.Clear();
+    }
         
         
     protected virtual T Create(Action<T> onActivated, Transform parent)

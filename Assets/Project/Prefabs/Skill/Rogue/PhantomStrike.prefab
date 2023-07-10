@@ -10,9 +10,8 @@ GameObject:
   m_Component:
   - component: {fileID: 8762994625914345649}
   - component: {fileID: 372894161616476412}
-  - component: {fileID: 8450002102728186695}
   m_Layer: 0
-  m_Name: Execution
+  m_Name: Hits
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -46,7 +45,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   group: 1
-  actionCode: 31210305
   damageSpec:
     statList:
     - statType: 13010001
@@ -58,25 +56,6 @@ MonoBehaviour:
     - statType: 13030003
       statKey: DamageExecutorKey
       value: 0
---- !u!114 &8450002102728186695
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1234280139362883297}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9ec3ef791109677438b7278f263c0f3a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  group: 2
-  actionCode: 31210305
-  master: {fileID: 11400000, guid: 6c8a7e02452c13f40ad1090c2e41c7f9, type: 2}
-  pool:
-    prefab: {fileID: 3865230921314547483, guid: 109596a9e5d27c54f8df8bcd6b566d51, type: 3}
-    maxCount: 8
-    syncObjectActivity: 1
 --- !u!1 &2546753074928525639
 GameObject:
   m_ObjectHideFlags: 0
@@ -139,6 +118,57 @@ Transform:
   m_Father: {fileID: 234500611213636336}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &4800265788783924464
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6388792283736219101}
+  - component: {fileID: 799522393314406196}
+  m_Layer: 0
+  m_Name: Fires
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6388792283736219101
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4800265788783924464}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 234500611213636336}
+  m_RootOrder: -1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &799522393314406196
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4800265788783924464}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9ec3ef791109677438b7278f263c0f3a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  group: 2
+  actionCode: 31210305
+  master: {fileID: 11400000, guid: 6c8a7e02452c13f40ad1090c2e41c7f9, type: 2}
+  pool:
+    prefab: {fileID: 3865230921314547483, guid: 109596a9e5d27c54f8df8bcd6b566d51, type: 3}
+    maxCount: 8
+    syncObjectActivity: 1
 --- !u!1 &8380361914805468174
 GameObject:
   m_ObjectHideFlags: 0
@@ -169,10 +199,11 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 8762994625914345649}
+  - {fileID: 6388792283736219101}
   - {fileID: 7221708945386366489}
   - {fileID: 5853087751410363707}
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &-6320411617643193093
 MonoBehaviour:
@@ -199,7 +230,13 @@ MonoBehaviour:
       keyList: 02000000
       valueList:
       - List:
-        - {fileID: 8450002102728186695}
+        - {fileID: 799522393314406196}
+  hitExecutor:
+    hitExecutionList:
+    - {fileID: 372894161616476412}
+  fireExecutor:
+    fireExecutionList:
+    - {fileID: 799522393314406196}
   detector:
     sortingType: 0
     maxBufferCount: 32
@@ -225,5 +262,6 @@ MonoBehaviour:
     cost: -15
     paySection: 0
   icon: {fileID: 21300000, guid: fd676d63550b11845aa01ba20c0cec4e, type: 3}
+  combatParticles: []
   description: "\uC804\uBC29\uC73C\uB85C \uB3CC\uC9C4\uD558\uACE0 \uC720\uB839\uC744
     \uB0A8\uAE34\uB2E4."

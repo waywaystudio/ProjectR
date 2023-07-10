@@ -19,7 +19,7 @@ namespace Character.Venturers.Warrior.Skills
             Builder
                 .Add(Section.Active, "TargetTracking", () => PlayTracking().Forget())
                 .Add(Section.Execute, "SetInvokerIsActiveTrue", () => Invoker.IsActive = false)
-                .Add(Section.Execute, "DeathblowExecute", () => detector.GetTakers()?.ForEach(executor.ToTaker))
+                .Add(Section.Execute, "DeathblowExecute", () => detector.GetTakers()?.ForEach(Invoker.Hit))
                 .Add(Section.End, "StopTracking", StopTracking);
         }
 

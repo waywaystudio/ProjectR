@@ -1,5 +1,55 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &1660680266958613268
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 241677516752983575}
+  - component: {fileID: 5313497088637458024}
+  m_Layer: 0
+  m_Name: Fires
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &241677516752983575
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1660680266958613268}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 234500611213636336}
+  m_RootOrder: -1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &5313497088637458024
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1660680266958613268}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3d3639c99a56c6c458f64d2325bb8e07, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  group: 1
+  muzzle: {fileID: 0}
+  pool:
+    prefab: {fileID: 68301466263117794, guid: 614519c2858722748860125352e5a59e, type: 3}
+    maxCount: 4
+    syncObjectActivity: 1
 --- !u!1 &2546753074928525639
 GameObject:
   m_ObjectHideFlags: 0
@@ -91,11 +141,12 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 241677516752983575}
   - {fileID: 1999865382634407815}
   - {fileID: 7221708945386366489}
   - {fileID: 5853087751410363707}
   m_Father: {fileID: 0}
-  m_RootOrder: -1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &3008013076941583783
 MonoBehaviour:
@@ -112,17 +163,12 @@ MonoBehaviour:
   actionCode: 31210403
   behaviourMask: 32
   priority: 3
-  executor:
-    takerExecutionTable:
-      keyList: 02000000
-      valueList:
-      - List:
-        - {fileID: 3357007055880375684}
-    fireExecutionTable:
-      keyList: 01000000
-      valueList:
-      - List:
-        - {fileID: 1364404895503189817}
+  hitExecutor:
+    hitExecutionList:
+    - {fileID: 3357007055880375684}
+  fireExecutor:
+    fireExecutionList:
+    - {fileID: 5313497088637458024}
   detector:
     sortingType: 0
     maxBufferCount: 32
@@ -140,7 +186,7 @@ MonoBehaviour:
     callbackSection: 0
   coolTimer:
     coolTime: 1
-    invokeSection: 3
+    invokeSection: 11
   castTimer:
     castingTime: 1.5
     callbackSection: 11
@@ -148,6 +194,8 @@ MonoBehaviour:
     cost: 10
     paySection: 11
   icon: {fileID: 21300000, guid: 8bdd3baa98608324480cf1d7c146be36, type: 3}
+  combatParticles: []
+  combatSounds: []
   description: "\uD65C \uC2DC\uC704\uB97C \uB2F9\uACA8 \uB300\uC0C1 \uC9C0\uC810\uC744
     \uACF5\uACA9\uD55C\uB2E4. \uACF5\uACA9\uC774 \uCE58\uBA85\uD0C0\uB85C \uC801\uC911
     \uC2DC \uC544\uB4DC\uB808\uB0A0\uB9B0 \uAC15\uD654\uD6A8\uACFC\uB97C \uD68D\uB4DD\uD55C\uB2E4."
@@ -160,10 +208,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1999865382634407815}
-  - component: {fileID: 1364404895503189817}
   - component: {fileID: 3357007055880375684}
   m_Layer: 0
-  m_Name: Execution
+  m_Name: Hits
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -184,24 +231,6 @@ Transform:
   m_Father: {fileID: 234500611213636336}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1364404895503189817
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9200880587379613382}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3d3639c99a56c6c458f64d2325bb8e07, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  group: 1
-  muzzle: {fileID: 0}
-  pool:
-    prefab: {fileID: 68301466263117794, guid: 614519c2858722748860125352e5a59e, type: 3}
-    maxCount: 4
-    syncObjectActivity: 1
 --- !u!114 &3357007055880375684
 MonoBehaviour:
   m_ObjectHideFlags: 0

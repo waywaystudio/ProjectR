@@ -42,7 +42,7 @@ namespace Character.Venturers.Rogue.Skills
         
         private void CreatePhantom()
         {
-            executor.ToPosition(Cb.transform.position, ExecuteGroup.Sub);
+            Invoker.SubFire(Cb.transform.position);
         }
     }
 }

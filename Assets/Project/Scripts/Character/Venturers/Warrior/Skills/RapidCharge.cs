@@ -17,7 +17,7 @@ namespace Character.Venturers.Warrior.Skills
             Builder
                 .AddApplying("RigidMove", RigidMove)
                 .Add(Section.Active, "CheckColliding", () => OnCollided().Forget())
-                .Add(Section.Execute, "CommonExecution", () => detector.GetTakers()?.ForEach(executor.ToTaker))
+                .Add(Section.Execute, "CommonExecution", () => detector.GetTakers()?.ForEach(Invoker.Hit))
                 .Add(Section.Execute, "PlayCollideAnimation", PlayCollideAnimation)
                 .Add(Section.Execute, "StopPathfinding", Cb.Pathfinding.Stop)
                 .Add(Section.Execute, "StopCharging", StopCharging)

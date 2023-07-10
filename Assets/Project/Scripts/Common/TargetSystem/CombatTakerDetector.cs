@@ -40,15 +40,22 @@ namespace Common.TargetSystem
             SetTargetType();
         }
 
-        public List<ICombatTaker> GetTakers()
+        public List<ICombatTaker> GetTakers(bool isAlive = true)
         {
-            return TargetType switch
+            var result = TargetType switch
             {
                 TargetingType.Circle => GetTakersInCircleRange(sizeVector.y),
                 TargetingType.Self   => GetSelf(),
                 TargetingType.Cone   => GetTakersInAngle(sizeVector.y, sizeVector.z),
                 _                    => throw new ArgumentOutOfRangeException()
             };
+
+            if (isAlive)
+            {
+                result?.RemoveAll(taker => !taker.Alive.Value);
+            }
+
+            return result;
         }
 
         public ICombatTaker GetMainTarget()

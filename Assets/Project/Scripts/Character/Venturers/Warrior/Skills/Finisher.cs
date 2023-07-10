@@ -1,6 +1,6 @@
 using Common;
 using Common.Execution;
-using Common.Execution.Variants;
+using Common.Execution.Hits;
 using Common.Skills;
 using UnityEngine;
 
@@ -10,14 +10,14 @@ namespace Character.Venturers.Warrior.Skills
     {
         [SerializeField] private float remainBonusMultiplier = 1f;
         
-        private DamageExecution damageExecutor;
+        private DamageHit damageExecutor;
         public StatSpec CombatSpec => damageExecutor.DamageSpec;
         
         public override void Initialize()
         {
             base.Initialize();
 
-            damageExecutor = GetComponentInChildren<DamageExecution>();
+            damageExecutor = GetComponentInChildren<DamageHit>();
             
             Builder.Add(Section.Execute, "CommonExecution", MultipliedDamageExecution);
         }
@@ -31,7 +31,7 @@ namespace Character.Venturers.Warrior.Skills
             var originalPower = CombatSpec.Power;
             
             CombatSpec.Change(StatType.Power, originalPower * multiplier);
-            detector.GetTakers()?.ForEach(executor.ToTaker);
+            detector.GetTakers()?.ForEach(Invoker.Hit);
             CombatSpec.Change(StatType.Power, originalPower);
             Cb.Resource.Value = 0f;
         }

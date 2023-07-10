@@ -15,7 +15,11 @@ namespace Character.Venturers.Knight.Skills
 
         private void TauntAction()
         {
-            detector.GetTakers()?.ForEach(executor.ToTaker);
+            detector.GetTakers()?.ForEach(taker =>
+            {
+                Taker = taker;
+                Invoker.Hit(taker);
+            });
         }
     }
 }

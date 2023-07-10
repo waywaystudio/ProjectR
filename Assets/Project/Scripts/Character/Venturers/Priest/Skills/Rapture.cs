@@ -21,7 +21,7 @@ namespace Character.Venturers.Priest.Skills
         
         private void ExecuteRapture()
         {
-            detector.GetTakers().ForEach(executor.ToTaker);
+            detector.GetTakers()?.ForEach(Invoker.Hit);
         }
     }
 }

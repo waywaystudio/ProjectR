@@ -25,7 +25,7 @@ namespace Character.Venturers.Ranger.Skills
         {
             var forwardPosition = Provider.Position + Provider.Forward;
 
-            executor.ToPosition(forwardPosition);
+            Invoker.Fire(forwardPosition);
         }
 
         private void AddAdrenalin(CombatEntity damageLog)
@@ -33,7 +33,7 @@ namespace Character.Venturers.Ranger.Skills
             if (damageLog.CombatIndex != DataIndex) return;
             if (damageLog.IsCritical)
             {
-                executor.ToTaker(Cb, ExecuteGroup.Sub);
+                Invoker.SubHit(Cb);
             }
             else
             {

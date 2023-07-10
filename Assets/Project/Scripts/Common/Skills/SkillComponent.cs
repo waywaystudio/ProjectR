@@ -1,7 +1,6 @@
-using System.Collections.Generic;
 using Common.Characters;
+using Common.Effects;
 using Common.Execution;
-using Common.Particles;
 using Common.TargetSystem;
 using UnityEngine;
 
@@ -12,14 +11,15 @@ namespace Common.Skills
         [SerializeField] protected DataIndex actionCode;
         [SerializeField] protected ActionMask behaviourMask = ActionMask.Skill;
         [SerializeField] protected int priority;
-        [SerializeField] protected Executor executor;
+        [SerializeField] protected HitExecutor hitExecutor;
+        [SerializeField] protected FireExecutor fireExecutor;
+        [SerializeField] protected Effector effector; 
         [SerializeField] protected CombatTakerDetector detector;
         [SerializeField] protected SkillAnimationTrait animationTrait;
         [SerializeField] protected SkillCoolTimer coolTimer;
         [SerializeField] protected SkillCastTimer castTimer;
         [SerializeField] protected SkillCost cost;
         [SerializeField] protected Sprite icon;
-        [SerializeField] protected List<CombatParticle> combatParticles;
         [SerializeField] protected string description;
         
         private CharacterBehaviour cb;
@@ -64,7 +64,9 @@ namespace Common.Skills
             coolTimer.Initialize(this);
             castTimer.Initialize(this);
             cost.Initialize(this);
-            combatParticles?.ForEach(cp => cp.Initialize(Sequence, this));
+            hitExecutor.Initialize(Sequence, this);
+            fireExecutor.Initialize(Sequence, this);
+            effector.Initialize(Sequence, this);
             
             Builder
                 .Add(Section.Active, "StopPathfinding", Cb.Pathfinding.Stop)
@@ -86,14 +88,18 @@ namespace Common.Skills
             Sequence.Clear();
             coolTimer.Dispose();
             castTimer.Dispose();
-            combatParticles?.ForEach(cp => cp.Dispose());
+            
+            effector.Dispose();
         }
 
 
 #if UNITY_EDITOR
-        public void EditorSetUp()
+        public virtual void EditorSetUp()
         {
-            executor.EditorGetExecutions(gameObject);
+            hitExecutor.GetExecutionInEditor(transform);
+            fireExecutor.GetExecutionInEditor(transform);
+            effector.GetEffectsInEditor(transform);
+            
             detector.SetUpAsSkill(actionCode);
             coolTimer.SetUpAsSkill(actionCode);
             castTimer.SetUpFromSkill(actionCode);
@@ -106,8 +112,6 @@ namespace Common.Skills
             priority        = skillData.Priority;
             description     = skillData.Description;
             icon            = Database.SpellSpriteData.Get(actionCode);
-
-            GetComponentsInChildren(combatParticles);
         }
         
         // ReSharper disable once UnusedMember.Local

@@ -43,14 +43,14 @@ namespace Manager.Audio
                 source.Play(clipData.AudioClip);                
                 return;
             }
-
+        
             source = GetLessPrioritySource();
-
+        
             if (clipData.Priority >= source.priority) return;
             
             if (source.isPlaying) 
                 source.Stop();
-
+        
             source.Play(clipData.AudioClip);
         }
 
@@ -85,11 +85,6 @@ namespace Manager.Audio
             if (duration <= 0) SetMixerGroupVolume(targetVolume);
 
             master.GetFloat(exposedVolumeParameter, out var currentVolume);
-
-            // LeanTween.cancel(transform.gameObject);
-            // LeanTween.value(transform.gameObject, SetMixerGroupVolume, currentVolume, targetVolume, duration)
-            //          .setIgnoreTimeScale(true)
-            //          .setOnComplete(callback);
         }
 
 #if UNITY_EDITOR && ODIN_INSPECTOR

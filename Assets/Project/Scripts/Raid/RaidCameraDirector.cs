@@ -1,5 +1,4 @@
 using Character.Venturers;
-using Character.Villains;
 using Cinemachine;
 using Manager;
 using UnityEngine;
@@ -9,16 +8,13 @@ namespace Raid
     public class RaidCameraDirector : MonoBehaviour
     {
         [SerializeField] private Camera mainCamera;
+        [SerializeField] private CinemachineBrain cameraBrain;
+        [SerializeField] private Table<int, CinemachineVirtualCamera> subCameraTable;
         [SerializeField] private CinemachineVirtualCamera playerCamera;
         [SerializeField] private CinemachineVirtualCamera stageCamera;
 
-        private CinemachineBrain cameraBrain;
+        public CinemachineVirtualCamera CurrentCamera { get; set; }
 
-        private void Awake()
-        {
-            cameraBrain                  = mainCamera.GetComponent<CinemachineBrain>();
-            MainManager.Input.MainCamera = mainCamera;
-        }
 
         /* GameEvent */
         public void FocusPlayer(VenturerBehaviour target)
@@ -27,18 +23,21 @@ namespace Raid
             
             Focusing(target.transform);
         }
-        public void FocusMonster(VillainBehaviour target) => Focusing(target.transform);
+        
         public void StageCamera() => ChangeCamera(stageCamera);
+        public void PlayerCamera() => ChangeCamera(playerCamera);
 
-        public void ChangeCamera(ICinemachineCamera cameraName)
+        public void ChangeCamera(CinemachineVirtualCamera camera)
         {
-            var currentCamera = cameraBrain.ActiveVirtualCamera;
-            if (currentCamera.Equals(cameraName)) return;
-
-            (currentCamera.Priority, cameraName.Priority) = (cameraName.Priority, currentCamera.Priority);
+            var activeCamera = cameraBrain.ActiveVirtualCamera.VirtualCameraGameObject.GetComponent<CinemachineVirtualCamera>();
+            if (activeCamera.Equals(camera)) return;
+        
+            activeCamera.Priority = 10;
+            camera.Priority       = 20;
+            CurrentCamera         = camera;
         }
-        
-        
+
+
         private void Focusing(Transform target)
         {
             if (!target.IsNullOrEmpty())
@@ -50,7 +49,9 @@ namespace Raid
             PlayerCamera();
         }
 
-        private void PlayerCamera() => ChangeCamera(playerCamera);
-        
+        private void Awake()
+        {
+            MainManager.Input.MainCamera = mainCamera;
+        }
     }
 }

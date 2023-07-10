@@ -28,7 +28,7 @@ namespace Character.Venturers.Rogue.Skills
 
         private void MarkOfDeathFire()
         {
-            executor.ToPosition(positionBuffer);
+            Invoker.Fire(positionBuffer);
         }
     }
 }

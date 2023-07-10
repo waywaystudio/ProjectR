@@ -31,10 +31,9 @@ namespace Manager.Audio
             audioTable.ForEach(x => x.Value.ExposedVolumeParameter = GetEvp(x.Value.Type));
         }
 
-        private bool TryGetChannel(IAudioPlayable clipData, out AudioChannel result) => audioTable.TryGetValue(clipData.Type, out result);
-        public void Play(IAudioPlayable clipData) { if (TryGetChannel(clipData, out var source)) source.Play(clipData); }
-        public void Pause(IAudioPlayable clipData) { if (TryGetChannel(clipData, out var source)) source.Pause(clipData); }
-        public void Stop(IAudioPlayable clipData) { if (TryGetChannel(clipData, out var source)) source.Stop(clipData); }
+        public void Play(IAudioPlayable clipData) { if (TryGetChannel(clipData, out var channel)) channel.Play(clipData); }
+        public void Pause(IAudioPlayable clipData) { if (TryGetChannel(clipData, out var channel)) channel.Pause(clipData); }
+        public void Stop(IAudioPlayable clipData) { if (TryGetChannel(clipData, out var channel)) channel.Stop(clipData); }
 
         public void StopAll() => audioChannels.ForEach(x => x.StopAll());
         public void StopAll(AudioType type) { if (TryGetChannel(type, out var result)) result.StopAll(); }
@@ -49,6 +48,8 @@ namespace Manager.Audio
         public void AudioFadeIn(AudioType type, float duration) { if (TryGetChannel(type, out var result)) result.AudioFadeIn(duration); }
         public void Mute(AudioType type, bool value) { if (TryGetChannel(type, out var result)) result.Mute(value); }
         public void MuteAll(bool value) => audioTable.ForEach((pair) => Mute(pair.Key, value));
+        
+        private bool TryGetChannel(IAudioPlayable clipData, out AudioChannel result) => audioTable.TryGetValue(clipData.Type, out result);
 
         private bool TryGetChannel(AudioType type, out AudioChannel result) => audioTable.TryGetValue(type, out result);
         private void SetMasterVolume(float destVolume) => masterMixer.SetFloat("MasterVolume", destVolume);

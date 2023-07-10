@@ -65,6 +65,7 @@ MonoBehaviour:
   combatParticleList:
   - {fileID: 6842179520866862081}
   - {fileID: 2432000920414520545}
+  combatSounds: []
   triggerCollider: {fileID: 6970810306177905816}
   maxPierceCount: 3
 --- !u!135 &6970810306177905816
@@ -177,7 +178,7 @@ GameObject:
   - component: {fileID: 4025622706656194699}
   - component: {fileID: 7580495471780127006}
   m_Layer: 9
-  m_Name: Hit
+  m_Name: Hits
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

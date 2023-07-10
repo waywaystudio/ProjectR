@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 7679244583707568947}
   - component: {fileID: 3263926489268022469}
   m_Layer: 0
-  m_Name: Execution
+  m_Name: Hits
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -45,7 +45,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   group: 1
-  actionCode: 31210208
   damageSpec:
     statList:
     - statType: 13010001
@@ -152,7 +151,7 @@ Transform:
   - {fileID: 7221708945386366489}
   - {fileID: 5853087751410363707}
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &8979131138480939997
 MonoBehaviour:
@@ -178,6 +177,11 @@ MonoBehaviour:
     fireExecutionTable:
       keyList: 
       valueList: []
+  hitExecutor:
+    hitExecutionList:
+    - {fileID: 3263926489268022469}
+  fireExecutor:
+    fireExecutionList: []
   detector:
     sortingType: 0
     maxBufferCount: 32
@@ -203,5 +207,6 @@ MonoBehaviour:
     cost: 0
     paySection: 0
   icon: {fileID: 21300000, guid: 5511c04d452ffbe4d87c4ab17ca8e94c, type: 3}
+  combatParticles: []
   description: Starts combat by attacking a target with a melee weapon.
   remainBonusMultiplier: 2

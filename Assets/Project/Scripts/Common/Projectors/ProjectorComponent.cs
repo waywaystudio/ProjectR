@@ -47,6 +47,7 @@ namespace Common.Projectors
             Invoker.Cancel();
             Builder.Unregister("ProjectorSequencer", Provider.Sequence);
         }
+        
 
         protected virtual void Awake()
         {
@@ -85,11 +86,25 @@ namespace Common.Projectors
             OffObject();
         }
 
-        private void OnObject() => DecalObject.SetActive(true);
-        private void OffObject() => DecalObject.SetActive(false);
-        private void ResetMaterial() => projector.material.SetFloat(FillProgressShaderID, 0f);
+        private void OnObject()
+        {
+            DecalObject.SetActive(true);
+        }
+
+        private void OffObject()
+        {
+            DecalObject.SetActive(false);
+        }
+
+        private void ResetMaterial()
+        {
+            projector.material.SetFloat(FillProgressShaderID, 0f);
+        }
+        
         private void PlayShader()
         {
+            projector.material.SetFloat(FillProgressShaderID, 0f);
+            
             ProgressTween = projector.material
                                      .DOFloat(1.0f, FillProgressShaderID, Provider.CastingWeight)
                                      .SetEase(easeType);

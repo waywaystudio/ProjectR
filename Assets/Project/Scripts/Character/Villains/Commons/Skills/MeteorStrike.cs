@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using Common;
+using Common.Execution;
 using Common.Skills;
 using UnityEngine;
 
@@ -41,7 +42,7 @@ namespace Character.Villains.Commons.Skills
 
             foreach (var destination in destinationList)
             {
-                executor.ToPosition(destination);
+                Invoker.Fire(destination);
 
                 yield return new WaitForSeconds(0.2f);
             }

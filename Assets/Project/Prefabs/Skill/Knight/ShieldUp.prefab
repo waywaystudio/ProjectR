@@ -32,7 +32,7 @@ Transform:
   - {fileID: 2799677707560291068}
   - {fileID: 1576445197589414893}
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &372827551183267553
 MonoBehaviour:
@@ -56,6 +56,10 @@ MonoBehaviour:
     fireExecutionTable:
       keyList: 
       valueList: []
+  hitExecutor:
+    hitExecutionList: []
+  fireExecutor:
+    fireExecutionList: []
   detector:
     sortingType: 0
     maxBufferCount: 32
@@ -96,7 +100,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1576445197589414893}
   m_Layer: 0
-  m_Name: Execution
+  m_Name: Hit
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -168,6 +172,6 @@ MonoBehaviour:
     singleInstanceOnly: 1
   actionKey: ShieldUpParticle
   parent: 1
-  prepositionType: 4
+  takerPreposition: 0
   playSection: 1
   endSection: 4

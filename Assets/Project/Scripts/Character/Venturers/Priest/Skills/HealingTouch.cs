@@ -1,5 +1,5 @@
 using Common;
-using Common.Execution.Variants;
+using Common.Execution.Hits;
 using Common.Skills;
 using UnityEngine;
 
@@ -7,11 +7,11 @@ namespace Character.Venturers.Priest.Skills
 {
     public class HealingTouch : SkillComponent
     {
-        [SerializeField] private HealExecution healExecution;
+        [SerializeField] private HealHit healExecution;
 
         private Vector3 predicatePosition = Vector3.zero;
 
-        public HealExecution HealExecution => healExecution;
+        public HealHit HealExecution => healExecution;
         
         public override void Initialize()
         {
@@ -30,7 +30,10 @@ namespace Character.Venturers.Priest.Skills
         {
             var validTakerList = detector.GetTakersInCircleRange(predicatePosition, 6f, 360f);
             
-            validTakerList?.ForEach(taker => executor.ToTaker(taker));
+            validTakerList?.ForEach(taker =>
+            {
+                Invoker.Hit(taker);
+            });
         }
         
         private void TryConsumeLightWeaver()

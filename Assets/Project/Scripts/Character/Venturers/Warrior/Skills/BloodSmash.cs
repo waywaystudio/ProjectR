@@ -14,7 +14,7 @@ namespace Character.Venturers.Warrior.Skills
 
         private void BloodSmashAttack()
         {
-            detector.GetTakers()?.ForEach(executor.ToTaker);
+            detector.GetTakers()?.ForEach(Invoker.Hit);
         }
     }
 }

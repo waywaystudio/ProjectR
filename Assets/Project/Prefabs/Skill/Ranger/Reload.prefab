@@ -121,6 +121,11 @@ MonoBehaviour:
     fireExecutionTable:
       keyList: 
       valueList: []
+  hitExecutor:
+    hitExecutionList:
+    - {fileID: 6103319869769513730}
+  fireExecutor:
+    fireExecutionList: []
   detector:
     sortingType: 0
     maxBufferCount: 32
@@ -146,6 +151,7 @@ MonoBehaviour:
     cost: -60
     paySection: 1
   icon: {fileID: 21300000, guid: 6f4426a016dfc794b9437fa28d6e3a8a, type: 3}
+  combatParticles: []
   description: "\uC8FC\uC704\uC5D0 \uBAA8\uB4E0 \uD654\uC0B4\uC744 \uC989\uC2DC \uD68C\uC218\uD558\uC5EC
     \uC790\uC6D0\uC744 \uBAA8\uB450 \uD68C\uBCF5\uD55C\uB2E4. \uB300\uC0C1\uC5D0\uAC8C
     \uBC16\uD600\uC788\uB294 \uB9C8\uBC95\uD654\uC0B4\uC758 \uAC1C\uC218\uC5D0 \uBE44\uB840\uD55C
@@ -161,7 +167,7 @@ GameObject:
   - component: {fileID: 1999865382634407815}
   - component: {fileID: 6103319869769513730}
   m_Layer: 0
-  m_Name: Execution
+  m_Name: Hits
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -195,7 +201,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   group: 1
-  actionCode: 31210406
   damageSpec:
     statList:
     - statType: 13010001

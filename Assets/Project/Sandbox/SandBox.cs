@@ -1,20 +1,26 @@
 using System;
+using Cinemachine;
 using Common;
 using Sirenix.OdinInspector;
 using UnityEngine;
 
 public class SandBox : MonoBehaviour
 {
+    public CinemachineImpulseSource Cis;
     public float StandardValue;
     public float Haste;
     // public bool BooleanToggle;
     
     [Button]
-    public void CoolDebugger()
+    public void Impulse()
     {
-        var hasteValue = CombatFormula.GetHasteValue(Haste);
-        Debug.Log($"Decrease : StandardValue * Haste = {StandardValue * hasteValue}");
-        Debug.Log($"Increase : StandardValue * 1 + Haste = {StandardValue * (1.0f + hasteValue)}");
+        var randomVelocity = new Vector3(
+            UnityEngine.Random.Range(-1f, 1f), 
+            UnityEngine.Random.Range(-1f, 1f), 
+            UnityEngine.Random.Range(-1f, 1f)
+        );
+        
+        Cis.GenerateImpulseWithVelocity(randomVelocity);
     }
     
     [Button]

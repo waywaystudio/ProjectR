@@ -8,8 +8,14 @@ namespace Character.Villains.Commons.Skills
         {
             base.Initialize();
             
-            Builder.Add(Section.Execute, "PlayOnceCompleteAnimation",() => Cb.Animating.PlayOnce("attack", 1f + Haste, Invoker.Complete))
-                           .Add(Section.Execute, "CommonExecution", () => detector.GetTakers()?.ForEach(executor.ToTaker));
+            Builder
+                .Add(Section.Execute, "CommonExecution", HitShockWave);
+        }
+
+
+        private void HitShockWave()
+        {
+            detector.GetTakers()?.ForEach(Invoker.Hit);
         }
     }
 }

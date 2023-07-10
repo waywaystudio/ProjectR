@@ -73,7 +73,7 @@ GameObject:
   - component: {fileID: 7498427149043567896}
   - component: {fileID: 3211000053568049609}
   m_Layer: 0
-  m_Name: Execution
+  m_Name: Fire
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -161,15 +161,11 @@ MonoBehaviour:
   actionCode: 31222203
   behaviourMask: 32
   priority: 3
-  executor:
-    takerExecutionTable:
-      keyList: 
-      valueList: []
-    fireExecutionTable:
-      keyList: 01000000
-      valueList:
-      - List:
-        - {fileID: 3211000053568049609}
+  hitExecutor:
+    hitExecutionList: []
+  fireExecutor:
+    fireExecutionList:
+    - {fileID: 3211000053568049609}
   detector:
     sortingType: 0
     maxBufferCount: 32
@@ -195,6 +191,7 @@ MonoBehaviour:
     cost: 0
     paySection: 0
   icon: {fileID: 21300000, guid: 507e212ba6f235743b8c7248828105e4, type: 3}
+  combatParticles: []
   description: Starts combat by attacking a target with a melee weapon.
   enableMask: 2
   radius: 20

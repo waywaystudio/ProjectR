@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using Common.Execution.Fires;
 using UnityEngine;
 
 namespace Common.Execution
@@ -11,6 +12,8 @@ namespace Common.Execution
 
         public void Initialize(CombatSequence sequence, IActionSender sender)
         {
+            if (fireExecutionList.IsNullOrEmpty()) return;
+            
             fireExecutionList.ForEach(exe => exe.Initialize(sender));
             
             var builder = new CombatSequenceBuilder(sequence);

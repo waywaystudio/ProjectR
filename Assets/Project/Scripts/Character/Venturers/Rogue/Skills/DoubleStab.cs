@@ -21,7 +21,7 @@ namespace Character.Venturers.Rogue.Skills
 
         private void DoubleStabAttack()
         {
-            detector.GetTakers()?.ForEach(executor.ToTaker);
+            detector.GetTakers()?.ForEach(Invoker.Hit);
         }
         
         private void PhantomsDoubleStab(Vector3 targetPosition)

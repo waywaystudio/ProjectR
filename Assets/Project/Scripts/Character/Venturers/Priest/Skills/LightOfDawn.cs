@@ -1,4 +1,4 @@
-using Common.Execution.Variants;
+using Common.Execution.Hits;
 using Common.Skills;
 using UnityEngine;
 
@@ -6,9 +6,9 @@ namespace Character.Venturers.Priest.Skills
 {
     public class LightOfDawn : SkillComponent
     {
-        [SerializeField] private HealExecution healExecution;
+        [SerializeField] private HealHit healExecution;
 
-        public HealExecution HealExecution => healExecution;
+        public HealHit HealExecution => healExecution;
         
         public override void Initialize()
         {
@@ -22,7 +22,7 @@ namespace Character.Venturers.Priest.Skills
 
         private void ExecuteLightOfDawn()
         {
-            detector.GetTakers()?.ForEach(taker => executor.ToTaker(taker));
+            detector.GetTakers()?.ForEach(Invoker.Hit);
         }
         
         private void TryConsumeLightWeaver()

@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 8762994625914345649}
   - component: {fileID: 372894161616476412}
   m_Layer: 0
-  m_Name: Execution
+  m_Name: Hits
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -45,7 +45,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   group: 1
-  actionCode: 31210305
   damageSpec:
     statList:
     - statType: 13010001
@@ -152,7 +151,7 @@ Transform:
   - {fileID: 7221708945386366489}
   - {fileID: 5853087751410363707}
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &3034885221433624456
 MonoBehaviour:
@@ -178,6 +177,11 @@ MonoBehaviour:
     fireExecutionTable:
       keyList: 
       valueList: []
+  hitExecutor:
+    hitExecutionList:
+    - {fileID: 372894161616476412}
+  fireExecutor:
+    fireExecutionList: []
   detector:
     sortingType: 0
     maxBufferCount: 32
@@ -203,6 +207,7 @@ MonoBehaviour:
     cost: -5
     paySection: 11
   icon: {fileID: 21300000, guid: 927eab4aef3711f48b908aaf9e930dc4, type: 3}
+  combatParticles: []
   description: "\uB300\uC0C1\uC744 \uBE60\uB974\uAC8C \uB450 \uBC88 \uACF5\uACA9\uD558\uACE0
     \uC790\uC6D0\uC744 \uD68C\uBCF5\uD55C\uB2E4."
   master: {fileID: 11400000, guid: 6c8a7e02452c13f40ad1090c2e41c7f9, type: 2}

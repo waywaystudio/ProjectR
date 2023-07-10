@@ -14,7 +14,7 @@ namespace Common.Skills
         {
             skill.Builder
                  .Add(Section.Active, "SkillCasting", () => Play(skill.CastingWeight, CallbackSection.GetInvokeAction(skill)))
-                 .Add(Section.End, "StopCastTimer",  default);
+                 .Add(Section.End, "StopCastTimer",  Stop);
         }
 
 
