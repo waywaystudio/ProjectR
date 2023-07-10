@@ -10,7 +10,8 @@ namespace Character.Venturers.Warrior.Skills
             
             cost.PayCondition.Add("HasTarget", detector.HasTarget);
 
-            Builder.Add(Section.Execute, "SmashAttack",SmashAttack);
+            Builder
+                .Add(Section.Execute, "SmashAttack",SmashAttack);
         }
 
 

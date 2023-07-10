@@ -18,7 +18,7 @@ namespace Common.Characters.Behaviours
         public bool IsGlobalCoolTimeReady => globalCoolTimer.IsReady;
         public bool IsSkillEnded => Current.IsNullOrEmpty() || Current.IsEnded;
         public SkillComponent Current { get; set; }
-        public ActionTable OnSkillChanged { get; set; } = new();
+        public ActionTable OnSkillChanged { get; } = new();
 
         private CharacterBehaviour cb;
         private CharacterBehaviour Cb => cb ??= GetComponentInParent<CharacterBehaviour>();
@@ -75,7 +75,6 @@ namespace Common.Characters.Behaviours
         public void ChangeSkill(DataIndex originSkill, DataIndex toSkill)
         {
             skillTable.SwapOrder(originSkill, toSkill);
-            
             OnSkillChanged.Invoke();
         }
         

@@ -42340,10 +42340,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b18e2c1b50453904e9a119df21ed76e0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playSection: 0
-  endSection: 0
+  targetCamera: 0
   magnification: 0
-  zoomType: 0
+  duration: 0
+  actionKey: PlayCameraWalk
+  ease: 0
+  unscaledTime: 0
+  playSection: 0
+  stopSection: 0
 --- !u!1 &1137868565
 GameObject:
   m_ObjectHideFlags: 0
@@ -64555,15 +64559,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e385c70327a8a6642abe0933362e7a5d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  subCameraTable:
+    keyList: 0100000003000000
+    valueList:
+    - {fileID: 519695620}
+    - {fileID: 287093697}
   mainCamera: {fileID: 1448534717}
   cameraBrain: {fileID: 1448534719}
-  subCameraTable:
-    keyList: 0100000002000000
-    valueList:
-    - {fileID: 287093697}
-    - {fileID: 519695620}
-  playerCamera: {fileID: 519695620}
-  stageCamera: {fileID: 287093697}
 --- !u!4 &1943438066
 Transform:
   m_ObjectHideFlags: 0
@@ -72259,7 +72261,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5512553880677135783, guid: 86afa9f987c2e264f813cf565a9db0d0, type: 3}
       propertyPath: challengers.Array.data[0]
-      value: 21010201
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5512553880677135783, guid: 86afa9f987c2e264f813cf565a9db0d0, type: 3}
       propertyPath: challengers.Array.data[1]
@@ -72267,19 +72269,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5512553880677135783, guid: 86afa9f987c2e264f813cf565a9db0d0, type: 3}
       propertyPath: challengers.Array.data[2]
-      value: 21030803
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5512553880677135783, guid: 86afa9f987c2e264f813cf565a9db0d0, type: 3}
       propertyPath: challengers.Array.data[3]
-      value: 21041104
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5512553880677135783, guid: 86afa9f987c2e264f813cf565a9db0d0, type: 3}
       propertyPath: challengers.Array.data[4]
-      value: 21051405
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5512553880677135783, guid: 86afa9f987c2e264f813cf565a9db0d0, type: 3}
       propertyPath: challengers.Array.data[5]
-      value: 21061706
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5512553880677135783, guid: 86afa9f987c2e264f813cf565a9db0d0, type: 3}
       propertyPath: characterDataList.Array.size

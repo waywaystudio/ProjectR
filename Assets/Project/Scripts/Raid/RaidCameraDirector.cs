@@ -1,3 +1,5 @@
+using System.Linq;
+using Cameras;
 using Character.Venturers;
 using Cinemachine;
 using Manager;
@@ -5,15 +7,10 @@ using UnityEngine;
 
 namespace Raid
 {
-    public class RaidCameraDirector : MonoBehaviour
+    public class RaidCameraDirector : CameraDirector, IEditable
     {
         [SerializeField] private Camera mainCamera;
         [SerializeField] private CinemachineBrain cameraBrain;
-        [SerializeField] private Table<int, CinemachineVirtualCamera> subCameraTable;
-        [SerializeField] private CinemachineVirtualCamera playerCamera;
-        [SerializeField] private CinemachineVirtualCamera stageCamera;
-
-        public CinemachineVirtualCamera CurrentCamera { get; set; }
 
 
         /* GameEvent */
@@ -24,17 +21,17 @@ namespace Raid
             Focusing(target.transform);
         }
         
-        public void StageCamera() => ChangeCamera(stageCamera);
-        public void PlayerCamera() => ChangeCamera(playerCamera);
+        public void StageCamera() => ChangeCamera(VirtualCameraType.Stage);
+        public void PlayerCamera() => ChangeCamera(VirtualCameraType.Player);
 
-        public void ChangeCamera(CinemachineVirtualCamera camera)
+        public void ChangeCamera(VirtualCameraType cameraType)
         {
             var activeCamera = cameraBrain.ActiveVirtualCamera.VirtualCameraGameObject.GetComponent<CinemachineVirtualCamera>();
-            if (activeCamera.Equals(camera)) return;
+            if (activeCamera.Equals(this[cameraType])) return;
         
-            activeCamera.Priority = 10;
-            camera.Priority       = 20;
-            CurrentCamera         = camera;
+            activeCamera.Priority     = 10;
+            this[cameraType].Priority = 20;
+            CurrentCameraType         = cameraType;
         }
 
 
@@ -42,8 +39,8 @@ namespace Raid
         {
             if (!target.IsNullOrEmpty())
             {
-                playerCamera.Follow = target;
-                playerCamera.LookAt = target;
+                subCameraTable[VirtualCameraType.Player].Follow = target;
+                subCameraTable[VirtualCameraType.Player].LookAt = target;
             }
 
             PlayerCamera();
@@ -53,5 +50,20 @@ namespace Raid
         {
             MainManager.Input.MainCamera = mainCamera;
         }
+
+
+#if UNITY_EDITOR
+        public void EditorSetUp()
+        {
+            subCameraTable.Clear();
+
+            var virtualCameraList = GetComponentsInChildren<CinemachineVirtualCamera>().ToList();
+            
+            virtualCameraList.ForEach(vc =>
+            {
+                subCameraTable.Add(vc.gameObject.name.Replace("Camera", "").ToEnum<VirtualCameraType>(), vc);
+            });
+        }
+#endif
     }
 }

@@ -37,6 +37,8 @@ namespace Raid
          */ 
         public static void Initialize()
         {
+            CameraManager.Director = Instance.cameraDirector;
+            
             CastingDirector.Initialize();
             UIDirector.Initialize();
             

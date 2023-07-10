@@ -32,7 +32,7 @@ Transform:
   - {fileID: 2799677707560291068}
   - {fileID: 1576445197589414893}
   m_Father: {fileID: 0}
-  m_RootOrder: -1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &372827551183267553
 MonoBehaviour:
@@ -49,17 +49,15 @@ MonoBehaviour:
   actionCode: 31210106
   behaviourMask: 32
   priority: 5
-  executor:
-    takerExecutionTable:
-      keyList: 
-      valueList: []
-    fireExecutionTable:
-      keyList: 
-      valueList: []
   hitExecutor:
     hitExecutionList: []
   fireExecutor:
     fireExecutionList: []
+  effector:
+    combatParticles:
+    - {fileID: 8254969170062159723}
+    combatSounds: []
+    combatImpulses: []
   detector:
     sortingType: 0
     maxBufferCount: 32
@@ -85,8 +83,6 @@ MonoBehaviour:
     cost: 10
     paySection: 1
   icon: {fileID: 21300000, guid: 3e7f4279b00aa684791775d4845c0251, type: 3}
-  combatParticles:
-  - {fileID: 8254969170062159723}
   description: "\uBC29\uD328\uB97C \uB4E4\uC5B4 \uD53C\uD574\uB97C \uBC18\uAC10\uC2DC\uD0A8\uB2E4.
     \uAE30\uC808\uACFC \uBC00\uCCD0\uB0B4\uB294 \uD6A8\uACFC\uC5D0 \uBA74\uC5ED"
   armorUpValue: 250

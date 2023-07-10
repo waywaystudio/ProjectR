@@ -1,4 +1,5 @@
 using Common.Skills;
+using UnityEngine;
 
 namespace Character.Venturers.Warrior.Skills
 {
@@ -8,7 +9,8 @@ namespace Character.Venturers.Warrior.Skills
         {
             base.Initialize();
 
-            Builder.Add(Section.Execute, "BloodSmashAttack", BloodSmashAttack);
+            Builder
+                .Add(Section.Execute, "BloodSmashAttack", BloodSmashAttack);
         }
 
 
