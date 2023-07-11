@@ -1,4 +1,5 @@
 using DG.Tweening;
+using Sirenix.OdinInspector;
 using UnityEngine;
 
 namespace Common.Effects.Times
@@ -7,11 +8,27 @@ namespace Common.Effects.Times
     {
         [SerializeField] private float magnification = 1f;
         [SerializeField] private float duration;
+        [SerializeField] private float returnDuration = 0.1f;
         [SerializeField] private string actionKey = "PlayBulletTime";
         [SerializeField] private Section playSection;
         [SerializeField] private Section stopSection;
 
         private Tween bulletTimeTween;
+        private bool activity = true;
+        
+        public bool Activity
+        {
+            get => activity;
+            set
+            {
+                if (value == false)
+                {
+                    ReturnTime();
+                }
+
+                activity = value;
+            }
+        }
         
         
         public void Initialize(CombatSequence sequence)
@@ -58,9 +75,10 @@ namespace Common.Effects.Times
             builder.Add(Section.End, actionKey, ReturnTime);
         }
 
+        [Button]
         public void PlayBulletTime()
         {
-            Debug.Log("PlayBulletTime");
+            if (!activity) return;
             
             bulletTimeTween = DOTween.To(() => Time.timeScale, 
                                          x => Time.timeScale = x, 
@@ -70,6 +88,7 @@ namespace Common.Effects.Times
                                      .SetUpdate(true);
         }
 
+        [Button]
         public void ReturnTime()
         {
             if (bulletTimeTween != null)
@@ -81,7 +100,7 @@ namespace Common.Effects.Times
             DOTween.To(() => Time.timeScale, 
                        x => Time.timeScale = x, 
                        1f, 
-                       0.23f)
+                       returnDuration)
                    .SetEase(Ease.InOutQuad) // Change this to any easing function you prefer
                    .SetUpdate(true);
         }

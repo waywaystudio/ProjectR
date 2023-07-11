@@ -11,6 +11,21 @@ namespace Common.Effects.Sounds
         [SerializeField] private Section playSection;
         [SerializeField] private Section stopSection;
         
+        private bool activity = true;
+        public bool Activity
+        {
+            get => activity;
+            set
+            {
+                if (value == false)
+                {
+                    StopAudio();
+                }
+
+                activity = value;
+            }
+        }
+        
 
         public void Initialize(CombatSequence sequence)
         {
@@ -56,6 +71,7 @@ namespace Common.Effects.Sounds
 
         public void PlayAudio()
         {
+            if (!Activity) return;
             if (useRandomPitch)
             {
                 source.pitch = 1 + Random.Range(-randomPitchPercent, randomPitchPercent);

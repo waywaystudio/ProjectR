@@ -1,10 +1,11 @@
 using System;
 using System.Collections.Generic;
 using Common.Effects.Cameras;
-using Common.Effects.Impulse;
+using Common.Effects.Impulses;
 using Common.Effects.Particles;
 using Common.Effects.Sounds;
 using Common.Effects.Times;
+using Common.Projectors;
 using UnityEngine;
 
 namespace Common.Effects
@@ -26,6 +27,15 @@ namespace Common.Effects
             combatImpulses?.ForEach(ci => ci.Initialize(sequence));
             combatCameras?.ForEach(cc => cc.Initialize(sequence));
             bulletTimes?.ForEach(bt => bt.Initialize(sequence));
+        }
+
+        public void ActiveEffect(bool activity)
+        {
+            combatParticles?.ForEach(cp => cp.Activity = activity);
+            combatSounds?.ForEach(cs => cs.Activity    = activity);
+            combatImpulses?.ForEach(ci => ci.Activity  = activity);
+            combatCameras?.ForEach(cc => cc.Activity   = activity);
+            bulletTimes?.ForEach(bt => bt.Activity     = activity);
         }
 
         public void Dispose()

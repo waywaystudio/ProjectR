@@ -1684,6 +1684,7 @@ GameObject:
   - component: {fileID: 3975777049801717595}
   - component: {fileID: 7971064793264385864}
   - component: {fileID: 3682180189469010492}
+  - component: {fileID: 6008097616125821611}
   m_Layer: 7
   m_Name: Skill
   m_TagString: Untagged
@@ -1775,6 +1776,35 @@ MonoBehaviour:
       Version: 1.7.4
   gizmoViewMode: 2
   showBehaviorDesignerGizmo: 1
+--- !u!114 &6008097616125821611
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7737772315383808032}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 180370f9798368d46aa0bb571fe46191, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  targetEvent: {fileID: 11400000, guid: 099e8625e19023f43800c970888cfa82, type: 2}
+  priority: 5
+  response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 7971064793264385864}
+        m_TargetAssemblyTypeName: Common.Characters.Behaviours.SkillBehaviour, ProjectR.Common
+        m_MethodName: OnFocusVenturerChanged
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &8078122385558607338
 GameObject:
   m_ObjectHideFlags: 0

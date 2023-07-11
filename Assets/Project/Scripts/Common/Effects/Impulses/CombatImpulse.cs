@@ -5,7 +5,7 @@ using Cysharp.Threading.Tasks;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
-namespace Common.Effects.Impulse
+namespace Common.Effects.Impulses
 {
     public class CombatImpulse : MonoBehaviour, IEditable
     {
@@ -18,11 +18,26 @@ namespace Common.Effects.Impulse
 
         private CancellationTokenSource cts;
         private float Duration { get; set; }
-        private Vector3 randomVelocity => new(
+        private static Vector3 RandomVelocity => new(
             Random.Range(-1, 2) > 0 ? 1f : -1f, 
             Random.Range(-1, 2) > 0 ? 1f : -1f, 
             Random.Range(-1, 2) > 0 ? 1f : -1f
         );
+        
+        private bool activity = true;
+        public bool Activity
+        {
+            get => activity;
+            set
+            {
+                if (value == false)
+                {
+                    StopImpulse();
+                }
+
+                activity = value;
+            }
+        }
 
 
         public void Initialize(CombatSequence sequence)
@@ -70,9 +85,10 @@ namespace Common.Effects.Impulse
 
         public void PlayImpulse()
         {
+            if (!Activity) return;
             if (!isLoop)
             {
-                source.GenerateImpulseWithVelocity(impulseForce * randomVelocity);
+                source.GenerateImpulseWithVelocity(impulseForce * RandomVelocity);
             }
             else
             {
@@ -98,7 +114,7 @@ namespace Common.Effects.Impulse
 
             while (true)
             {
-                source.GenerateImpulseWithVelocity(impulseForce * randomVelocity);
+                source.GenerateImpulseWithVelocity(impulseForce * RandomVelocity);
                 
                 await UniTask.Delay(TimeSpan.FromSeconds(Duration), DelayType.DeltaTime, PlayerLoopTiming.Update, cts.Token);
 

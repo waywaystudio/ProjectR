@@ -4,4 +4,5 @@ public enum VirtualCameraType
     Player = 1,
     Villain = 2,
     Stage = 3,
+    Effector = 11,
 }

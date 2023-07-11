@@ -9,10 +9,6 @@ namespace Raid
 {
     public class RaidCameraDirector : CameraDirector, IEditable
     {
-        [SerializeField] private Camera mainCamera;
-        [SerializeField] private CinemachineBrain cameraBrain;
-
-
         /* GameEvent */
         public void FocusPlayer(VenturerBehaviour target)
         {
@@ -24,23 +20,15 @@ namespace Raid
         public void StageCamera() => ChangeCamera(VirtualCameraType.Stage);
         public void PlayerCamera() => ChangeCamera(VirtualCameraType.Player);
 
-        public void ChangeCamera(VirtualCameraType cameraType)
-        {
-            var activeCamera = cameraBrain.ActiveVirtualCamera.VirtualCameraGameObject.GetComponent<CinemachineVirtualCamera>();
-            if (activeCamera.Equals(this[cameraType])) return;
-        
-            activeCamera.Priority     = 10;
-            this[cameraType].Priority = 20;
-            CurrentCameraType         = cameraType;
-        }
-
 
         private void Focusing(Transform target)
         {
             if (!target.IsNullOrEmpty())
             {
-                subCameraTable[VirtualCameraType.Player].Follow = target;
-                subCameraTable[VirtualCameraType.Player].LookAt = target;
+                subCameraTable[VirtualCameraType.Player].Follow   = target;
+                subCameraTable[VirtualCameraType.Player].LookAt   = target;
+                subCameraTable[VirtualCameraType.Effector].Follow = target;
+                subCameraTable[VirtualCameraType.Effector].LookAt = target;
             }
 
             PlayerCamera();

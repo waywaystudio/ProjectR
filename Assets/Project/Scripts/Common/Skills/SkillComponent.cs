@@ -80,6 +80,11 @@ namespace Common.Skills
 
         public void Cancel() => Invoker.Cancel();
 
+        public void ActiveEffect(bool activity)
+        {
+            effector.ActiveEffect(activity);
+        }
+
         public virtual void Dispose()
         {
             // TODO Pool.Release()가 중복으로 들어옴

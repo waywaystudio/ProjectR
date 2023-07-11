@@ -335,6 +335,7 @@ MonoBehaviour:
     - {fileID: 7474434333981387660}
     combatCameras:
     - {fileID: 7903847864044134021}
+    bulletTimes: []
   detector:
     sortingType: 0
     maxBufferCount: 32
@@ -405,11 +406,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b18e2c1b50453904e9a119df21ed76e0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  targetCamera: 1
-  magnification: 0.85
-  duration: 1.5
+  blend:
+    m_Style: 5
+    m_Time: 1.5
+    m_CustomCurve:
+      serializedVersion: 2
+      m_Curve: []
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+  magnification: 0.8
   actionKey: PlayCameraWalk
-  ease: 1
+  targetCamera: 1
   playSection: 1
   stopSection: 11
 --- !u!1 &9193056424706769489

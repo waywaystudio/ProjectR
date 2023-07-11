@@ -17,6 +17,7 @@ namespace Character.Villains
         public override DataIndex DataIndex => data.DataIndex;
         public override CharacterMask CombatClass => data.CharacterMask;
         public override string Name => data.Name;
+        public override CharacterData Data => data;
 
 
         /*
@@ -27,11 +28,7 @@ namespace Character.Villains
 
         public void ForceInitialize(DifficultyType difficulty, int level)
         {
-            StatTable.Clear();
-            StatTable.RegisterTable(data.StaticStatTable);
             StatTable.Add(difficultyTable.GetDifficultySpec(difficulty, level));
-            
-            combatStatus.Initialize();
         }
 
 

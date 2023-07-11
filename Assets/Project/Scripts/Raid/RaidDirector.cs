@@ -37,14 +37,19 @@ namespace Raid
          */ 
         public static void Initialize()
         {
-            CameraManager.Director = Instance.cameraDirector;
-            
             CastingDirector.Initialize();
             UIDirector.Initialize();
             
             FocusVenturer = CastingDirector.VenturerList[0];
         }
 
+
+        protected override void Awake()
+        {
+            base.Awake();
+            
+            CameraManager.Director = Instance.cameraDirector;
+        }
 
         private void OnDisable()
         {

@@ -10,21 +10,26 @@ namespace Character.Behavior.Actions
     public class PositioningBehavior : Action
     {
         private CharacterBehaviour cb;
-        private SkillBehaviour ab;
+        private SkillBehaviour sb;
         
-        public override void OnAwake()
+        public override void OnStart()
         {
             cb = gameObject.GetComponentInParent<CharacterBehaviour>();
-            TryGetComponent(out ab);
+            TryGetComponent(out sb);
         }
 
         public override TaskStatus OnUpdate()
         {
-            if (!ab.TryGetMostPrioritySkill(out var skill)) return TaskStatus.Failure;
+            if (!sb.TryGetMostPrioritySkill(out var skill)) return TaskStatus.Failure;
             if (skill.MainTarget == null) return TaskStatus.Failure;
+
+            var profitDistance = skill.Distance == 0.0f 
+                ? skill.Range 
+                : skill.Distance;
+            
             if (!PathfindingUtility.TryGetCombatPosition(skill.Cb,
                     skill.MainTarget,
-                    skill.Range,
+                    profitDistance,
                     out var destination))
                 return TaskStatus.Success;
             

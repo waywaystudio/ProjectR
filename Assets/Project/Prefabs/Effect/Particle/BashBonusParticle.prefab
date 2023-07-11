@@ -4893,6 +4893,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   particle: {fileID: 19825070}
+  offset: {x: 0, y: 0, z: 0}
+  flipEnable: 0
 --- !u!198 &19825070
 ParticleSystem:
   m_ObjectHideFlags: 0
@@ -4903,7 +4905,7 @@ ParticleSystem:
   serializedVersion: 8
   lengthInSec: 2
   simulationSpeed: 1
-  stopAction: 1
+  stopAction: 3
   cullingMode: 3
   ringBufferMode: 0
   ringBufferLoopRange: {x: 0, y: 1}

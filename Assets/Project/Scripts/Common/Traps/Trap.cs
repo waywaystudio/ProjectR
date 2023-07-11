@@ -1,5 +1,5 @@
 using System.Collections.Generic;
-using Common.Effects.Impulse;
+using Common.Effects.Impulses;
 using Common.Effects.Particles;
 using Common.Execution;
 using UnityEngine;

@@ -15,8 +15,7 @@ namespace Common.Projectors
 
         protected const float ProjectorDepth = 50f;
         protected Tween ProgressTween;
-        
-        [Sirenix.OdinInspector.ShowInInspector]
+
         public Sequencer Sequencer { get; } = new();
         public SequenceBuilder Builder { get; private set; }
         public SequenceInvoker Invoker { get; private set; }
@@ -32,7 +31,40 @@ namespace Common.Projectors
         protected static readonly int AngleShaderID = Shader.PropertyToID("_Angle");
 
 
-        public virtual void Dispose()
+
+        public void Initialize(IProjectionProvider provider)
+        {
+            Provider = provider;
+            
+            // Set Projector Radius, Angle
+            var diameter = Provider.SizeVector.y * 2f;
+            
+            projector.material = new Material(materialReference);
+            projector.size     = new Vector3(diameter, diameter, ProjectorDepth);
+            
+            projector.material.SetFloat(FillProgressShaderID, 0f);
+            projector.material.SetFloat(ArcShaderID, ArcAngleNormalized);
+            projector.material.SetColor(ColorShaderID, backgroundColor);
+            projector.material.SetColor(FillColorShaderID, fillColor);
+            projector.material.SetFloat(AngleShaderID, 0f);
+
+            var builder = new CombatSequenceBuilder(provider.Sequence);
+            
+            builder
+                .Add(Section.Active, "ShaderProgression", PlayProjection)
+                .Add(Section.Cancel, "CancelTween", StopProjection)
+                .Add(Section.Execute, "CancelTween", StopProjection)
+                .Add(Section.End, "ResetMaterial", StopProjection);
+
+            if (isStaticProjector)
+            {
+                ActiveProjector();
+            }
+
+            StopProjection();
+        }
+
+        public void Dispose()
         {
             Sequencer.Clear();
         }
@@ -72,50 +104,38 @@ namespace Common.Projectors
             Invoker = new SequenceInvoker(Sequencer);
             Builder = new SequenceBuilder(Sequencer);
             Builder
-                .Add(Section.Active, "ActiveDecalObject", OnObject)
-                .Add(Section.Active, "ShaderProgression", PlayShader)
-                .Add(Section.Cancel, "CancelTween", CancelTween)
-                .Add(Section.End, "ResetMaterial", ResetMaterial)
-                .Add(Section.End, "DeActiveDecalObject", OffObject);
+                .Add(Section.Active, "ShaderProgression", PlayProjection)
+                .Add(Section.Cancel, "CancelTween", StopProjection)
+                .Add(Section.End, "ResetMaterial", StopProjection);
 
             if (isStaticProjector)
             {
                 ActiveProjector();
             }
 
-            OffObject();
-        }
-
-        private void OnObject()
-        {
-            DecalObject.SetActive(true);
-        }
-
-        private void OffObject()
-        {
-            DecalObject.SetActive(false);
-        }
-
-        private void ResetMaterial()
-        {
-            projector.material.SetFloat(FillProgressShaderID, 0f);
+            StopProjection();
         }
         
-        private void PlayShader()
+        
+        private void PlayProjection()
         {
+            DecalObject.SetActive(true);
             projector.material.SetFloat(FillProgressShaderID, 0f);
-            
             ProgressTween = projector.material
                                      .DOFloat(1.0f, FillProgressShaderID, Provider.CastingWeight)
                                      .SetEase(easeType);
         }
 
-        private void CancelTween()
+        private void StopProjection()
         {
-            if (ProgressTween == null) return;
-            
-            ProgressTween.Kill();
-            ProgressTween = null;
+            if (ProgressTween != null)
+            {
+                ProgressTween.Kill();
+                ProgressTween = null;
+            }
+
+            projector.material.SetFloat(FillProgressShaderID, 0f);
+            DecalObject.SetActive(false);
         }
 
 

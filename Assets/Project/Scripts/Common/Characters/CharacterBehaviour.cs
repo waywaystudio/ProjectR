@@ -100,11 +100,13 @@ namespace Common.Characters
         {
             StatTable.RegisterTable(Data.StaticStatTable);
             combatStatus.Initialize();
+            skillBehaviour.Initialize(this);
         }
 
         public void Dispose()
         {
             combatStatus.Dispose();
+            skillBehaviour.Dispose();
         }
         
 

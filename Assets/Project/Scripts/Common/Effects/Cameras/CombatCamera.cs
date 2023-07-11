@@ -1,21 +1,36 @@
+using Cinemachine;
 using DG.Tweening;
+using Sirenix.OdinInspector;
 using UnityEngine;
 
 namespace Common.Effects.Cameras
 {
     public class CombatCamera : MonoBehaviour
     {
-        [SerializeField] private VirtualCameraType targetCamera;
-        [SerializeField] private float magnification = 1f;
-        [SerializeField] private float duration;
+        [SerializeField] private CinemachineBlendDefinition blend;
+        [SerializeField] private float magnification = 0.8f;
         [SerializeField] private string actionKey = "PlayCameraWalk";
-        [SerializeField] private Ease ease;
-        [SerializeField] private bool unscaledTime;
+        [SerializeField] private VirtualCameraType targetCamera;
         [SerializeField] private Section playSection;
         [SerializeField] private Section stopSection;
 
         private float originalFov;
         private Tween cameraTween;
+        
+        [ShowInInspector]
+        private bool activity = true;
+        public bool Activity
+        {
+            get => activity;
+            set
+            {
+                if (value == false) 
+                    ReturnZoom();
+
+                activity = value;
+            }
+        }
+        
 
         public void Initialize(CombatSequence sequence)
         {
@@ -64,48 +79,21 @@ namespace Common.Effects.Cameras
 
         public void PlayZoom()
         {
+            if (!Activity) return;
             if (targetCamera != CameraManager.ActiveCameraType) return;
+
+            var effectorCamera = CameraManager.Director[VirtualCameraType.Effector];
+            var playerCameraFov = CameraManager.Director[VirtualCameraType.Player].m_Lens.FieldOfView;
             
-            // Get the current active virtual camera
-            var activeVCam = CameraManager.ActiveCamera;
-
-            if (activeVCam != null)
-            {
-                // Store the original Field of View (FOV)
-                originalFov = activeVCam.m_Lens.FieldOfView;
-
-                // Calculate the target FOV
-                var targetFov = originalFov * magnification;
-
-                cameraTween = DOTween.To(() => activeVCam.m_Lens.FieldOfView, 
-                                         x => activeVCam.m_Lens.FieldOfView = x, 
-                                         targetFov, 
-                                         duration)
-                                     .SetEase(ease)
-                                     // .SetUpdate(unscaledTime)
-                                     ;
-            }
+            effectorCamera.m_Lens.FieldOfView = playerCameraFov * magnification;
+            
+            CameraManager.SetPlayerToEffectorBlend(blend);
+            CameraManager.Director.ChangeCamera(VirtualCameraType.Effector);
         }
 
         public void ReturnZoom()
         {
-            if (cameraTween != null)
-            {
-                cameraTween.Kill();
-                cameraTween = null;
-            }
-            
-            var activeVCam = CameraManager.ActiveCamera;
-            
-            if (activeVCam != null)
-            {
-                cameraTween = DOTween.To(() => activeVCam.m_Lens.FieldOfView, 
-                                         x => activeVCam.m_Lens.FieldOfView = x, 
-                                         originalFov, 
-                                         0.23f)
-                                     // .SetUpdate(unscaledTime)
-                                     ;
-            }
+            CameraManager.Director.ChangeCamera(VirtualCameraType.Player);
         }
     }
 }

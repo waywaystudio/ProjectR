@@ -91,7 +91,7 @@ namespace Common.TargetSystem
         {
             var takersInSphere = GetTakersInSphere(position, radius);
             
-            takersInSphere.SortingFilter(position, SortingType.DistanceAscending);
+            takersInSphere?.SortingFilter(position, SortingType.DistanceAscending);
 
             return takersInSphere?[0];
         }

@@ -251,7 +251,7 @@ MonoBehaviour:
     skillType: Holding
     animationCallback: None
     coolTime: 6
-    coolTimeInvoker: Complete
+    coolTimeInvoker: Execute
     castTime: 3
     castCallback: Execute
     completionValueList:
@@ -774,7 +774,7 @@ MonoBehaviour:
     skillType: Casting
     animationCallback: None
     coolTime: 3
-    coolTimeInvoker: Complete
+    coolTimeInvoker: Execute
     castTime: 1.5
     castCallback: Execute
     completionValueList:
@@ -792,7 +792,7 @@ MonoBehaviour:
     behaviourMask: Skill
     priority: 8
     sortingType: None
-    targetParam: {x: 30, y: 8, z: 360}
+    targetParam: {x: 30, y: 4, z: 360}
     targetLayer: Monster
     animationKey: ExtractHold
     castCompleteKey: ExtractHoldFire
@@ -875,7 +875,7 @@ MonoBehaviour:
     skillType: Casting
     animationCallback: None
     coolTime: 1
-    coolTimeInvoker: Complete
+    coolTimeInvoker: Execute
     castTime: 1.5
     castCallback: Execute
     completionValueList:
@@ -926,7 +926,7 @@ MonoBehaviour:
     skillType: Casting
     animationCallback: None
     coolTime: 14
-    coolTimeInvoker: Complete
+    coolTimeInvoker: Execute
     castTime: 1.5
     castCallback: Execute
     completionValueList:
@@ -975,7 +975,7 @@ MonoBehaviour:
     skillType: Casting
     animationCallback: None
     coolTime: 12
-    coolTimeInvoker: Complete
+    coolTimeInvoker: Execute
     castTime: 2
     castCallback: Execute
     completionValueList:

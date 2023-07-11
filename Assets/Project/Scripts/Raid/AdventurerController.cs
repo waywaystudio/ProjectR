@@ -25,7 +25,6 @@ namespace Raid
         /* GameEvent */
         public void CommandMode(InputAction.CallbackContext context)
         {
-            // onFocusChanged.Invoke(null);
             onCommandMode.Invoke();
         }
         

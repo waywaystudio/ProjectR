@@ -28,7 +28,6 @@ namespace Common.Effects.Particles
                 };
             }
         }
-        
         private Vector3 SpawnPosition
         {
             get
@@ -42,6 +41,8 @@ namespace Common.Effects.Particles
                     : taker.Preposition(takerPreposition).position;
             }
         }
+
+        public bool Activity { get; set; } = true;
 
 
         public void Initialize(CombatSequence sequence, IHasTaker takerHolder)
@@ -95,16 +96,22 @@ namespace Common.Effects.Particles
 
         private void PlayParticle(Vector3 position, Transform parent)
         {
+            if (!Activity) return;
+            
             pool.Get().Play(position, parent);
         }
 
         private void PlayParticle()
         {
+            if (!Activity) return;
+            
             pool.Get().Play(SpawnPosition, Parent);
         }
 
         private void PlayParticle(ICombatTaker taker)
         {
+            if (!Activity) return;
+            
             pool.Get().Play(SpawnPosition, taker.StatusEffectHierarchy);
         }
 

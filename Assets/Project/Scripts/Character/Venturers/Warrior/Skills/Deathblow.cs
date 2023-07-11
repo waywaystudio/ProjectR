@@ -1,4 +1,5 @@
 using System.Threading;
+using Common.Projectors;
 using Common.Skills;
 using Cysharp.Threading.Tasks;
 using Manager;
@@ -8,12 +9,15 @@ namespace Character.Venturers.Warrior.Skills
 {
     public class Deathblow : SkillComponent
     {
+        [SerializeField] private ArcProjector projector;
+
         private CancellationTokenSource cts;
         
         public override void Initialize()
         {
             base.Initialize();
             
+            projector.Initialize(this);
             cost.PayCondition.Add("HasTarget", detector.HasTarget);
 
             Builder
@@ -37,7 +41,8 @@ namespace Character.Venturers.Warrior.Skills
                     if (!MainManager.Input.TryGetMousePosition(out var mousePosition)) mousePosition = Vector3.zero;
                 
                     venturer.Rotate(mousePosition);
-                    await UniTask.Delay(100, DelayType.DeltaTime, PlayerLoopTiming.Update, cts.Token);
+                    await UniTask.Yield(cts.Token);
+                        // Delay(100, DelayType.DeltaTime, PlayerLoopTiming.Update, cts.Token);
                 }
             }
 
@@ -49,7 +54,8 @@ namespace Character.Venturers.Warrior.Skills
                     : Cb.transform.forward * Range;
 
                 venturer.Rotate(takerPosition);
-                await UniTask.Delay(100, DelayType.DeltaTime, PlayerLoopTiming.Update, cts.Token);
+                await UniTask.Yield(cts.Token);
+                    //Delay(100, DelayType.DeltaTime, PlayerLoopTiming.Update, cts.Token);
             }
         }
 

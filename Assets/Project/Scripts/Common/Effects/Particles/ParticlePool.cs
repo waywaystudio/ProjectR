@@ -10,7 +10,12 @@ namespace Common.Effects.Particles
 
         private ParticleInstance uniqueParticle;
 
-        public void Release() => Release(uniqueParticle);
+        public void Release()
+        {
+            if (uniqueParticle is null) return;
+            
+            Release(uniqueParticle);
+        }
         
         
         protected override ParticleInstance Create(Action<ParticleInstance> onActivated, Transform parent)

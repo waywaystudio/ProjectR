@@ -35,6 +35,7 @@ public class Den : MonoSingleton<Den>, ISavable, IEditable
         var level = MythicLevel;
 
         vb.ForceInitialize(difficulty, level);
+        vb.Initialize();
     }
 
     public void Save() 

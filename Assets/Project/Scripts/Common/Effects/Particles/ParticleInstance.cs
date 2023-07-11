@@ -9,7 +9,6 @@ namespace Common.Effects.Particles
         [SerializeField] private bool flipEnable;
 
         private ParticleSystemRenderer particleSystemRenderer;
-        private ActionTable OnParticleStopped { get; } = new();
 
         public ParticleSystemRenderer ParticleSystemRenderer => particleSystemRenderer ??= GetComponent<ParticleSystemRenderer>();
         public Pool<ParticleInstance> Pool { get; set; }
@@ -37,8 +36,8 @@ namespace Common.Effects.Particles
 
         public void Stop()
         {
-            OnParticleStopped.Invoke();
             particle.Stop(true);
+            Pool?.Release(this);
         }
 
         /*
@@ -47,7 +46,6 @@ namespace Common.Effects.Particles
         public void OnParticleSystemStopped()
         {
             Pool?.Release(this);
-            OnParticleStopped.Invoke();
         }
 
 

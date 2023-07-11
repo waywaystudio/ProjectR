@@ -159,7 +159,7 @@ Transform:
   - {fileID: 2056607629703991914}
   - {fileID: 1974804535776436921}
   m_Father: {fileID: 0}
-  m_RootOrder: -1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &983550755931538648
 MonoBehaviour:
@@ -181,6 +181,13 @@ MonoBehaviour:
     - {fileID: 8714835023685632432}
   fireExecutor:
     fireExecutionList: []
+  effector:
+    combatParticles:
+    - {fileID: 556420376547498621}
+    - {fileID: 3160963236093466061}
+    combatSounds: []
+    combatImpulses: []
+    combatCameras: []
   detector:
     sortingType: 0
     maxBufferCount: 32
@@ -206,17 +213,6 @@ MonoBehaviour:
     cost: -20
     paySection: 11
   icon: {fileID: 21300000, guid: 8f65b4f511f4d784a8f0bef07957cfbd, type: 3}
-  effector:
-    combatParticles:
-    - {fileID: 556420376547498621}
-    - {fileID: 3160963236093466061}
-    combatSounds: []
-    combatImpulses: []
-  combatParticles:
-  - {fileID: 556420376547498621}
-  - {fileID: 3160963236093466061}
-  combatSounds: []
-  combatImpulses: []
   description: "\uBC29\uD328\uB85C \uAC00\uACA9\uD558\uC5EC \uD53C\uD574\uB97C \uC900\uB2E4.
     \uB300\uC0C1\uC774 \uACF5\uACA9 \uC911\uC77C \uB54C \uC0AC\uC6A9\uD558\uBA74
     \uCD94\uAC00 \uD53C\uD574\uB97C \uC900\uB2E4."
