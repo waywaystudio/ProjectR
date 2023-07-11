@@ -26,7 +26,7 @@ namespace Character.Venturers.Warrior.Skills
             var venturer = GetComponentInParent<VenturerBehaviour>();
             var playerPosition = Cb.transform.position;
             var destination = venturer.IsPlayer
-                ? TargetUtility.GetValidPosition(Cb.transform.position, Range, targetPosition)
+                ? TargetUtility.GetValidPosition(Cb.transform.position, Distance, targetPosition)
                 : detector.GetMainTarget() is not null
                     ? detector.GetMainTarget().Position
                     : Vector3.zero;

@@ -22,11 +22,23 @@ namespace Character.Venturers.Warrior.Skills
 
             Builder
                 .Add(Section.Active, "TargetTracking", () => PlayTracking().Forget())
+                //.Add(Section.Active, "Debug", () => Debug.Log("Active"))
+                //.Add(Section.Complete, "Debug", () => Debug.Log("Complete"))
+                //.Add(Section.Execute, "Debug", () => Debug.Log("Execute"))
                 .Add(Section.Execute, "SetInvokerIsActiveTrue", () => Invoker.IsActive = false)
-                .Add(Section.Execute, "DeathblowExecute", () => detector.GetTakers()?.ForEach(Invoker.Hit))
+                .Add(Section.Execute, "DeathblowExecute", ExecuteDeathblow)
                 .Add(Section.End, "StopTracking", StopTracking);
         }
 
+
+        private void ExecuteDeathblow()
+        {
+            detector.GetTakers()?.ForEach(taker =>
+            {
+                Taker = taker;
+                Invoker.Hit(taker);
+            });
+        }
 
         private async UniTaskVoid PlayTracking()
         {

@@ -14,7 +14,7 @@ namespace Common.Projectiles
         [SerializeField] protected HitExecutor hitExecutor;
         [SerializeField] protected FireExecutor fireExecutor;
         [SerializeField] protected List<CombatParticle> combatParticleList;
-        [SerializeField] protected List<CombatAudio> combatSounds;
+        [SerializeField] protected List<CombatSound> combatSounds;
         
         public ICombatProvider Provider { get; protected set; }
         public ICombatTaker Taker { get; protected set; }

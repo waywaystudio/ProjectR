@@ -14,7 +14,7 @@ namespace Common.Effects
     public class Effector
     {
         [SerializeField] private List<CombatParticle> combatParticles;
-        [SerializeField] private List<CombatAudio> combatSounds;
+        [SerializeField] private List<CombatSound> combatSounds;
         [SerializeField] private List<CombatImpulse> combatImpulses;
         [SerializeField] private List<CombatCamera> combatCameras;
         [SerializeField] private List<BulletTime> bulletTimes;

@@ -92,6 +92,18 @@ PrefabInstance:
       propertyPath: damageSpec.statList.Array.data[0].value
       value: 1000
       objectReference: {fileID: 0}
+    - target: {fileID: 3744010699814045015, guid: bd355e30ab3d37740ab682aad07a91b5, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 2.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 3744010699814045015, guid: bd355e30ab3d37740ab682aad07a91b5, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 2.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 3744010699814045015, guid: bd355e30ab3d37740ab682aad07a91b5, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 2.5
+      objectReference: {fileID: 0}
     - target: {fileID: 3744010700067239338, guid: bd355e30ab3d37740ab682aad07a91b5, type: 3}
       propertyPath: m_Name
       value: Load Stonehelm
