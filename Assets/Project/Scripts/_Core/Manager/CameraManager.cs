@@ -8,10 +8,8 @@ public class CameraManager : MonoSingleton<CameraManager>
     private Camera mainCamera;
     private CinemachineBrain brain;
 
-    public static Camera MainCamera => Instance.mainCamera ??= Camera.main;
-    public static CinemachineBrain Brain => Instance.brain 
-        ? Instance.brain 
-        : Instance.brain = MainCamera.GetComponent<CinemachineBrain>();
+    public static Camera MainCamera => Instance.mainCamera;
+    public static CinemachineBrain Brain => Instance.brain;
     public static CinemachineVirtualCamera ActiveCamera => Brain.ActiveVirtualCamera as CinemachineVirtualCamera;
 
     public static CameraDirector Director { get; set; }
@@ -33,6 +31,14 @@ public class CameraManager : MonoSingleton<CameraManager>
         }
 
         Debug.Log($"Can't Find CustomBlend Between Player and Effector");
+    }
+
+    protected override void Awake()
+    {
+        base.Awake();
+        
+        mainCamera = Camera.main;
+        brain      = MainCamera.GetComponent<CinemachineBrain>();
     }
 
 

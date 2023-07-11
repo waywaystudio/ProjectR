@@ -12,6 +12,7 @@ namespace Common
             
             originalList?.ForEach(component =>
             {
+                if (component.IsNullOrDestroyed()) return;
                 if (component.TryGetComponent(out T element))
                 {
                     result.Add(element);
