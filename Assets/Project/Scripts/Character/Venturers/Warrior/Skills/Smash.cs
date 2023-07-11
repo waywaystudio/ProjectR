@@ -1,3 +1,4 @@
+using Common.Characters;
 using Common.Skills;
 
 namespace Character.Venturers.Warrior.Skills

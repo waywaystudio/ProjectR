@@ -1,4 +1,5 @@
 using Common;
+using Common.Characters;
 using Common.Execution.Hits;
 using Common.Skills;
 using UnityEngine;

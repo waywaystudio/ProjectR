@@ -1,5 +1,6 @@
 using System.Threading;
 using Common;
+using Common.Characters;
 using Common.Skills;
 using Cysharp.Threading.Tasks;
 using UnityEngine;
@@ -34,7 +35,7 @@ namespace Character.Venturers.Warrior.Skills
             Cb.StatTable.Add(new StatEntity(StatType.Haste, "WarriorsFury", additionalHaste));
             
             // 몇몇 스킬 변화?
-            var sb = Cb.SkillBehaviour;
+            var sb = Cb.SkillTable;
             
             sb.ChangeSkill(DataIndex.Smash, DataIndex.BloodSmash);
             sb.ChangeSkill(DataIndex.LeapAttack, DataIndex.RapidCharge);
@@ -53,7 +54,7 @@ namespace Character.Venturers.Warrior.Skills
             Cb.StatTable.Remove(StatType.Haste, "WarriorsFury");
             
             // 변화된 스킬 원상복구
-            var sb = Cb.SkillBehaviour;
+            var sb = Cb.SkillTable;
             
             sb.ChangeSkill(DataIndex.BloodSmash, DataIndex.Smash);
             sb.ChangeSkill(DataIndex.RapidCharge, DataIndex.LeapAttack);

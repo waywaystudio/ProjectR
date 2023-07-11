@@ -7,7 +7,7 @@ namespace Common.Behavior.Actions
     [TaskIcon("{SkinColor}SelectorIcon.png"), TaskCategory("Character/Combat")]
     public class IsGcdReady : Action
     {
-        private SkillBehaviour sb;
+        private SkillTable sb;
         
         public override void OnAwake()
         {
@@ -19,8 +19,11 @@ namespace Common.Behavior.Actions
             }
         }
         
-        public override TaskStatus OnUpdate() => sb.IsGlobalCoolTimeReady
-            ? TaskStatus.Success
-            : TaskStatus.Failure;
+        public override TaskStatus OnUpdate() => 
+            //sb.IsGlobalCoolTimeReady
+            // ? 
+        TaskStatus.Success
+            // : TaskStatus.Failure
+            ;
     }
 }

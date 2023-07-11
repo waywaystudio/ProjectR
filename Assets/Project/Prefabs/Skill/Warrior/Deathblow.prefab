@@ -705,9 +705,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 56ce9443a7c3f47468741d830dca685a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  actionCode: 31210203
+  dataIndex: 31210203
   behaviourMask: 32
-  priority: 3
+  icon: {fileID: 21300000, guid: 07ac76d34f3f63441876ebdc34bd48a5, type: 3}
   hitExecutor:
     hitExecutionList:
     - {fileID: 1760830664133795729}
@@ -737,7 +737,7 @@ MonoBehaviour:
     isLoop: 1
     hasExecuteEvent: 0
     animationPlaySpeed: 1
-    skillType: 3
+    skillType: 4
     callbackSection: 0
   coolTimer:
     coolTime: 6
@@ -748,7 +748,7 @@ MonoBehaviour:
   cost:
     cost: -30
     paySection: 11
-  icon: {fileID: 21300000, guid: 07ac76d34f3f63441876ebdc34bd48a5, type: 3}
+  priority: 3
   description: "\uAE30\uB825\uC744 \uBAA8\uC544 \uC804\uBC29\uC5D0 \uBAA8\uB4E0 \uC801\uC744
     \uB0B4\uB824\uCE5C\uB2E4."
   projector: {fileID: 7593607162719732318}

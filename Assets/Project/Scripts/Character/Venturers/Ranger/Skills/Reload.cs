@@ -1,4 +1,5 @@
 using Character.Venturers.Ranger.StatusEffects;
+using Common.Characters;
 using Common.Skills;
 
 namespace Character.Venturers.Ranger.Skills

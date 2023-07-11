@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace Common.Execution
+namespace Common.Execution.Hits
 {
     public abstract class HitExecution : MonoBehaviour
     {

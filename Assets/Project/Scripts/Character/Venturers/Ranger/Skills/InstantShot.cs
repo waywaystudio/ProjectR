@@ -1,4 +1,5 @@
 using Common;
+using Common.Characters;
 using Common.Skills;
 
 namespace Character.Venturers.Ranger.Skills

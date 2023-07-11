@@ -13,7 +13,7 @@ namespace Character.Venturers.Ranger.StatusEffects
         {
             base.Initialize(provider);
 
-            FocusStrike = provider.SkillBehaviour.GetSkill(DataIndex.FocusedStrike);
+            FocusStrike = provider.SkillTable[DataIndex.FocusedStrike];
 
             if (!Verify.IsNotNull(FocusStrike, $"Not Exist FocusStrike in Skill List")) return;
 

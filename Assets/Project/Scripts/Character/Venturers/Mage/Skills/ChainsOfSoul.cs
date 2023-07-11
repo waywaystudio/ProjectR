@@ -1,6 +1,7 @@
 using System;
 using Character.Venturers.Mage.Traps;
 using Common;
+using Common.Characters;
 using Common.Skills;
 using DG.Tweening;
 using UnityEngine;

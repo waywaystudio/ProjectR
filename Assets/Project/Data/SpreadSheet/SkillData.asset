@@ -275,7 +275,7 @@ MonoBehaviour:
     hasEvent: 1
     skillType: Instant
     animationCallback: Complete
-    coolTime: 1
+    coolTime: 0
     coolTimeInvoker: Active
     castTime: 0
     castCallback: None
@@ -1046,8 +1046,8 @@ MonoBehaviour:
     hasEvent: 1
     skillType: Instant
     animationCallback: Complete
-    coolTime: 0
-    coolTimeInvoker: None
+    coolTime: 1.5
+    coolTimeInvoker: Active
     castTime: 0
     castCallback: None
     completionValueList:

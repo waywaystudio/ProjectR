@@ -52,7 +52,7 @@ namespace Common
         // + StatTable StatTable { get; }
         // + IDynamicStatEntry DynamicStatEntry { get; }
         // + string Name { get; }
-        SkillBehaviour SkillBehaviour { get; }
+        SkillTable SkillTable { get; }
 
         ActionTable<CombatEntity> OnDamageProvided { get; }
         ActionTable<CombatEntity> OnHealProvided { get; }

@@ -10,7 +10,7 @@ namespace Character.Behavior.Actions
     public class PositioningBehavior : Action
     {
         private CharacterBehaviour cb;
-        private SkillBehaviour sb;
+        private SkillTable sb;
         
         public override void OnStart()
         {

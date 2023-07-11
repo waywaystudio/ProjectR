@@ -7,8 +7,8 @@ namespace Common.Characters.Behaviours
         [SerializeField] private Sequencer sequencer = new();
 
         public ActionMask BehaviourMask => ActionMask.Stop;
-        public SequenceBuilder SequenceBuilder { get; private set; }
-        public SequenceInvoker SequenceInvoker { get; private set; }
+        public SequenceBuilder Builder { get; private set; }
+        public SequenceInvoker Invoker { get; private set; }
 
         private CharacterBehaviour cb;
         private CharacterBehaviour Cb => cb ??= GetComponentInParent<CharacterBehaviour>();
@@ -16,20 +16,21 @@ namespace Common.Characters.Behaviours
 
         public void Stop()
         {
-            if (!SequenceInvoker.IsAbleToActive) return;
+            if (!Invoker.IsAbleToActive) return;
             
-            SequenceInvoker.Active();
+            Invoker.Active();
         }
         
-        public void Cancel() => SequenceInvoker.Cancel();
+        public void Cancel() => Invoker.Cancel();
 
         private void OnEnable()
         {
-            SequenceInvoker = new SequenceInvoker(sequencer);
-            SequenceBuilder = new SequenceBuilder(sequencer);
-            SequenceBuilder.Add(Section.Active,"Cb.Pathfinding.Stop", Cb.Pathfinding.Stop)
-                           .Add(Section.Active,"SetCurrentBehaviour", () => cb.CurrentBehaviour = this)
-                           .Add(Section.Active,"PlayAnimation", Cb.Animating.Idle);
+            Invoker = new SequenceInvoker(sequencer);
+            Builder = new SequenceBuilder(sequencer);
+            Builder
+                .Add(Section.Active,"Cb.Pathfinding.Stop", Cb.Pathfinding.Stop)
+                .Add(Section.Active,"SetCurrentBehaviour", () => cb.CurrentBehaviour = this)
+                .Add(Section.Active,"PlayAnimation", Cb.Animating.Idle);
         }
 
         private void OnDisable()

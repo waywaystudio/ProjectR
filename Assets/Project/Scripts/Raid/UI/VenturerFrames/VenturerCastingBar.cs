@@ -21,7 +21,7 @@ namespace Raid.UI.VenturerFrames
         {
             if (currentVenturer != null)
             {
-                currentVenturer.SkillBehaviour.SkillIndexList.ForEach(index =>
+                currentVenturer.SkillTable.SkillIndexList.ForEach(index =>
                 {
                     var skill = currentVenturer.GetSkill(index);
                     
@@ -34,7 +34,7 @@ namespace Raid.UI.VenturerFrames
                 HideCastingUI();
             }
             
-            FocusVenturer.SkillBehaviour.SkillIndexList.ForEach(index =>
+            FocusVenturer.SkillTable.SkillIndexList.ForEach(index =>
             {
                 var skill = FocusVenturer.GetSkill(index);
                     
@@ -51,7 +51,7 @@ namespace Raid.UI.VenturerFrames
 
         private void ShowCastingUI()
         {
-            var currentSkill = FocusVenturer.SkillBehaviour.Current;
+            var currentSkill = FocusVenturer.SkillTable.Current;
             
             if (currentSkill is null) return;
             if (currentSkill.CastingWeight == 0f) return;

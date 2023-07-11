@@ -17,7 +17,7 @@ namespace Raid.UI.VenturerFrames
             {
                 if (venturer.IsNullOrEmpty()) return;
                 
-                venturer.SkillBehaviour.OnSkillChanged.Add("UpdateSkillActionBar", UpdateSlotList);
+                venturer.SkillTable.OnSkillSetChanged.Add("UpdateSkillActionBar", UpdateSlotList);
             });
             
             slotList.ForEach(slot => slot.Initialize());
@@ -36,7 +36,7 @@ namespace Raid.UI.VenturerFrames
 
         private void UpdateSlotList()
         {
-            var skills = FocusVenturer.SkillBehaviour.SkillIndexList;
+            var skills = FocusVenturer.SkillTable.SkillIndexList;
             
             slotList.ForEach((slot, index) =>
             {

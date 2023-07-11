@@ -6,17 +6,15 @@ namespace Common.Skills
     [Serializable]
     public class SkillCoolTimer : CoolTimer
     {
-        [SerializeField] protected Section invokeSection;
-        
-        public Section InvokeSection => invokeSection;
+        [SerializeField] private Section invokeSection;
         
         public void Initialize(SkillComponent skill)
         {
-            if (InvokeSection == Section.None) return;
+            if (invokeSection == Section.None) return;
             
             skill.Builder
                  .AddCondition("IsCoolTimeReady", () => IsReady)
-                 .Add(InvokeSection, "ActiveCoolTime", () => Play(skill.CoolingWeight));
+                 .Add(invokeSection, "ActiveCoolTime", () => Play(skill.CoolingWeight));
         }
         
 

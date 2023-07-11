@@ -1719,15 +1719,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0fb82e853a0eeb24a8f89ea57b29373d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  globalCoolTimer:
-    coolTime: 1.5
-  skillTable:
-    keyList: 3d3bdc013e3bdc013f3bdc01403bdc01
-    valueList:
-    - {fileID: 0}
-    - {fileID: 0}
-    - {fileID: 0}
-    - {fileID: 0}
+  table:
+    keyList: 
+    valueList: []
 --- !u!114 &3682180189469010492
 MonoBehaviour:
   m_ObjectHideFlags: 0

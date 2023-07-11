@@ -46,7 +46,7 @@ public class WaitTrigger
 }
 
 [Serializable]
-public class TimeTrigger
+public class OldTimeTrigger
 {
     [SerializeField] protected float delaySecond;
 

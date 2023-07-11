@@ -193,6 +193,12 @@ MonoBehaviour:
     - {fileID: 2481512623508416614}
   fireExecutor:
     fireExecutionList: []
+  effector:
+    combatParticles: []
+    combatSounds: []
+    combatImpulses: []
+    combatCameras: []
+    bulletTimes: []
   detector:
     sortingType: 7
     maxBufferCount: 32
@@ -209,8 +215,8 @@ MonoBehaviour:
     skillType: 1
     callbackSection: 3
   coolTimer:
-    coolTime: 0
-    invokeSection: 0
+    coolTime: 1.5
+    invokeSection: 1
   castTimer:
     castingTime: 0
     callbackSection: 0
@@ -218,5 +224,4 @@ MonoBehaviour:
     cost: 0
     paySection: 0
   icon: {fileID: 21300000, guid: 5a5b5e460d0775b42a594af04292f7c3, type: 3}
-  combatParticles: []
   description: Starts combat by attacking a target with a melee weapon.

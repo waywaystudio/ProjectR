@@ -24,7 +24,7 @@ namespace Common.Characters
         [SerializeField] protected KnockBackBehaviour knockBackBehaviour;
         [SerializeField] protected DrawBehaviour drawBehaviour;
         [SerializeField] protected DeadBehaviour deadBehaviour;
-        [SerializeField] protected SkillBehaviour skillBehaviour;
+        [SerializeField] protected SkillTable skillBehaviour;
         [SerializeField] protected Transform statusEffectHierarchy;
 
         /*
@@ -57,7 +57,7 @@ namespace Common.Characters
         public KnockBackBehaviour KnockBackBehaviour => knockBackBehaviour;
         public DrawBehaviour DrawBehaviour => drawBehaviour;
         public DeadBehaviour DeadBehaviour => deadBehaviour;
-        public SkillBehaviour SkillBehaviour => skillBehaviour;
+        public SkillTable SkillTable => skillBehaviour;
 
         public void Rotate(Vector3 lookTarget) { Pathfinding.RotateToTarget(lookTarget); Animating.Flip(transform.forward); }
         public void Stop() => stopBehaviour.Stop();
@@ -70,9 +70,8 @@ namespace Common.Characters
         
         
         /* Skill Behaviour */
-        public SkillComponent GetSkill(DataIndex actionCode) => skillBehaviour.GetSkill(actionCode);
+        public SkillComponent GetSkill(DataIndex actionCode) => skillBehaviour[actionCode];
         public void ActiveSkill(DataIndex actionCode, Vector3 targetPosition) => skillBehaviour.Active(actionCode, targetPosition);
-        public void CancelSkill() => skillBehaviour.Cancel();
         public void ReleaseSkill() => skillBehaviour.Release();
 
         /*
@@ -115,7 +114,7 @@ namespace Common.Characters
         {
             combatStatus       = GetComponentInChildren<CharacterCombatStatus>();
             prePosition        = GetComponentInChildren<CharacterPreposition>();
-            skillBehaviour     = GetComponentInChildren<SkillBehaviour>();
+            skillBehaviour     = GetComponentInChildren<SkillTable>();
             stopBehaviour      = GetComponentInChildren<StopBehaviour>();
             runBehaviour       = GetComponentInChildren<RunBehaviour>();
             stunBehaviour      = GetComponentInChildren<StunBehaviour>();

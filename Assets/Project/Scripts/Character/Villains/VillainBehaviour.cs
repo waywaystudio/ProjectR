@@ -50,7 +50,7 @@ namespace Character.Villains
 
             difficultyTable ??= GetComponentInChildren<VillainDifficultyTable>();
             phaseBehaviours ??= GetComponentInChildren<PhaseBehaviours>();
-            SkillBehaviour.EditorSetUp();
+            SkillTable.EditorSetUp();
         }
 #endif
     }

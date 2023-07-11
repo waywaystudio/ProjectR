@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using System.Threading;
 using Common;
+using Common.Characters;
 using Common.Skills;
 using Cysharp.Threading.Tasks;
 using UnityEngine;

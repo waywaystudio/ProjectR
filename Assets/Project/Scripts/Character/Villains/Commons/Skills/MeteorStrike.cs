@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using Common;
+using Common.Characters;
 using Common.Execution;
 using Common.Skills;
 using UnityEngine;

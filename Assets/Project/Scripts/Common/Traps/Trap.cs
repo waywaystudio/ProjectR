@@ -14,7 +14,7 @@ namespace Common.Traps
         [SerializeField] protected List<CombatParticle> combatParticles;
         [SerializeField] protected List<CombatImpulse> combatImpulses;
         [SerializeField] protected TrapProlongTimer prolongTimer;
-        [SerializeField] protected TimeTrigger delayTimer;
+        [SerializeField] protected OldTimeTrigger delayTimer;
         [SerializeField] protected Vector3 sizeVector;
         [SerializeField] protected LayerMask targetLayer;
 

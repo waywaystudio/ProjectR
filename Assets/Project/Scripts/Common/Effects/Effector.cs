@@ -5,7 +5,6 @@ using Common.Effects.Impulses;
 using Common.Effects.Particles;
 using Common.Effects.Sounds;
 using Common.Effects.Times;
-using Common.Projectors;
 using UnityEngine;
 
 namespace Common.Effects

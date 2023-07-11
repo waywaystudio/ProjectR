@@ -16,8 +16,8 @@ namespace Character.Venturers.Priest.StatusEffects
         {
             base.Initialize(provider);
             
-            HealingTouch = Provider.SkillBehaviour.GetSkill(DataIndex.HealingTouch) as HealingTouch;
-            LightOfDawn  = Provider.SkillBehaviour.GetSkill(DataIndex.LightOfDawn) as LightOfDawn;
+            HealingTouch = Provider.SkillTable[DataIndex.HealingTouch] as HealingTouch;
+            LightOfDawn  = Provider.SkillTable[DataIndex.LightOfDawn] as LightOfDawn;
 
             Builder
                 .Add(Section.Active, "EnforceHealingTouch", EnforceHealingTouch)
