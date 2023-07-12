@@ -88,11 +88,6 @@ namespace Common.Effects.Particles
             pool.Initialize(component => component.Pool = pool, transform.parent);
         }
 
-        public void Dispose()
-        {
-            // TODO.Initialize & Dispose 구조가 완전해 지면 다시 Clear() 시도하자.
-            // pool?.Clear();
-        }
 
         private void PlayParticle(Vector3 position, Transform parent)
         {

@@ -44,6 +44,16 @@ namespace Common.Skills
                 skill.Builder
                      .Add(Section.Execute, "CastingCompleteAnimation",() => PlayCompleteCastingAnimation(skill));
             }
+
+            // if (skillType is SkillType.Charging or SkillType.Holding)
+            // {
+            //     skill.Builder
+            //          .Add(Section.Release, "ReleaseAction", () =>
+            //          {
+            //              if (!skill.Invoker.IsActive) return;
+            //              skill.Sequence[callbackSection].Invoke();
+            //          });
+            // }
         }
 
 

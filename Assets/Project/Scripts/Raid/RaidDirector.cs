@@ -53,7 +53,7 @@ namespace Raid
 
         private void OnDisable()
         {
-            uiDirector.Dispose();
+            UIDirector.Dispose();
         }
 
         [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.BeforeSceneLoad)]

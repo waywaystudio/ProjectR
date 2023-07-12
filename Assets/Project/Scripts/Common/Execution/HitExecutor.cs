@@ -21,6 +21,20 @@ namespace Common.Execution
             if (mainHit.Count > 0) builder.AddHit("HitExecution", taker => mainHit.ForEach(exe => exe.Hit(taker)));
             if (subHit.Count  > 0) builder.AddSubHit("SubHitExecution", taker => subHit.ForEach(exe => exe.Hit(taker)));
         }
+        
+        public T OfType<T>() where T : HitExecution
+        {
+            foreach (var item in hitExecutionList)
+            {
+                if (item is T typedItem)
+                {
+                    return typedItem;
+                }
+            }
+
+            Debug.LogWarning($"Can't Find {typeof(T).Name} in execution list.");
+            return null;
+        }
 
         
         

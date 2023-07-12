@@ -109,23 +109,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5e49adc661ae9c74abfb08d3365ef5e8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  actionCode: 31210406
+  dataIndex: 31210406
   behaviourMask: 32
-  priority: 1
-  executor:
-    takerExecutionTable:
-      keyList: 01000000
-      valueList:
-      - List:
-        - {fileID: 6103319869769513730}
-    fireExecutionTable:
-      keyList: 
-      valueList: []
+  icon: {fileID: 21300000, guid: 6f4426a016dfc794b9437fa28d6e3a8a, type: 3}
   hitExecutor:
     hitExecutionList:
     - {fileID: 6103319869769513730}
   fireExecutor:
     fireExecutionList: []
+  effector:
+    combatParticles: []
+    combatSounds: []
+    combatImpulses: []
+    combatCameras: []
+    bulletTimes: []
   detector:
     sortingType: 0
     maxBufferCount: 32
@@ -150,8 +147,7 @@ MonoBehaviour:
   cost:
     cost: -60
     paySection: 1
-  icon: {fileID: 21300000, guid: 6f4426a016dfc794b9437fa28d6e3a8a, type: 3}
-  combatParticles: []
+  priority: 1
   description: "\uC8FC\uC704\uC5D0 \uBAA8\uB4E0 \uD654\uC0B4\uC744 \uC989\uC2DC \uD68C\uC218\uD558\uC5EC
     \uC790\uC6D0\uC744 \uBAA8\uB450 \uD68C\uBCF5\uD55C\uB2E4. \uB300\uC0C1\uC5D0\uAC8C
     \uBC16\uD600\uC788\uB294 \uB9C8\uBC95\uD654\uC0B4\uC758 \uAC1C\uC218\uC5D0 \uBE44\uB840\uD55C

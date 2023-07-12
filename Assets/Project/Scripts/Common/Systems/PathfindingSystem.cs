@@ -126,5 +126,10 @@ namespace Common.Systems
 
             SpeedRetriever = () => cb.StatTable.MoveSpeed;
         }
+
+        private void OnDestroy()
+        {
+            Cancel();
+        }
     }
 }

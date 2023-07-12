@@ -216,15 +216,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2580b4ead0d86fa429243c409256f0ec, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  actionCode: 31210503
+  dataIndex: 31210503
   behaviourMask: 32
-  priority: 8
+  icon: {fileID: 21300000, guid: 938cff898c2f2504b8ae0fb8b55237c8, type: 3}
   hitExecutor:
     hitExecutionList:
     - {fileID: 7152022793498590089}
   fireExecutor:
     fireExecutionList:
     - {fileID: 387232591777644494}
+  effector:
+    combatParticles: []
+    combatSounds: []
+    combatImpulses: []
+    combatCameras: []
+    bulletTimes: []
   detector:
     sortingType: 0
     maxBufferCount: 32
@@ -249,12 +255,7 @@ MonoBehaviour:
   cost:
     cost: -50
     paySection: 1
-  icon: {fileID: 21300000, guid: 938cff898c2f2504b8ae0fb8b55237c8, type: 3}
-  combatParticles:
-  - {fileID: 5867033663289766631}
-  combatSounds: []
-  combatImpulses:
-  - {fileID: 3479765660477558521}
+  priority: 8
   description: "\uB300\uC0C1 \uC9C0\uC810\uC5D0 \uBAA8\uB4E0 \uC801\uC744 \uB3C4\uB824\uB0B4\uC5B4
     \uC601\uD63C \uC870\uAC01\uC744 \uCD94\uCD9C\uD55C\uB2E4."
 --- !u!1 &9030367168287305613
@@ -398,17 +399,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1d0b77e4f93ad5748851e9db21d5479f, type: 3}
---- !u!114 &3479765660477558521 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 6101312123821509096, guid: 1d0b77e4f93ad5748851e9db21d5479f, type: 3}
-  m_PrefabInstance: {fileID: 7270687088288483089}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e8b52eafb42d5bd4da3afd9ce3d79ed1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!4 &4539588182221969754 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6492343504366378571, guid: 1d0b77e4f93ad5748851e9db21d5479f, type: 3}

@@ -18,6 +18,13 @@ namespace Character.Venturers.Mage.Traps
                 .Add(Section.Cancel, "SpawnCancel", SpawnCancel)
                 .Add(Section.End, "SpawnCancel", SpawnCancel);
         }
+        
+        protected override void Dispose()
+        {
+            base.Dispose();
+
+            SpawnCancel();
+        }
 
 
         private void SpawnShard(Vector3 position)

@@ -23,6 +23,14 @@ namespace Character.Venturers.Knight.StatusEffects
                 .Add(Section.Active, "OvertimeExecution", () => OvertimeExecution().Forget())
                 .Add(Section.End, "StopOverTimeExecution", Stop);
         }
+        
+        
+        protected override void Dispose()
+        {
+            base.Dispose();
+
+            Stop();
+        }
 
 
         private void UpdateHasteWeight()

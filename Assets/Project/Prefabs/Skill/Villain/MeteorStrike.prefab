@@ -158,14 +158,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 873605c82d9e0a745aa47c75c970d0f8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  actionCode: 31222203
+  dataIndex: 31222203
   behaviourMask: 32
-  priority: 3
+  icon: {fileID: 21300000, guid: 507e212ba6f235743b8c7248828105e4, type: 3}
   hitExecutor:
     hitExecutionList: []
   fireExecutor:
     fireExecutionList:
     - {fileID: 3211000053568049609}
+  effector:
+    combatParticles: []
+    combatSounds: []
+    combatImpulses: []
+    combatCameras: []
+    bulletTimes: []
   detector:
     sortingType: 0
     maxBufferCount: 32
@@ -190,8 +196,7 @@ MonoBehaviour:
   cost:
     cost: 0
     paySection: 0
-  icon: {fileID: 21300000, guid: 507e212ba6f235743b8c7248828105e4, type: 3}
-  combatParticles: []
+  priority: 3
   description: Starts combat by attacking a target with a melee weapon.
   enableMask: 2
   radius: 20

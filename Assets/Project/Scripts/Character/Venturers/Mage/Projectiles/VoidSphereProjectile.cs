@@ -19,6 +19,7 @@ namespace Character.Venturers.Mage.Projectiles
 
         private CancellationTokenSource cts;
         private float originalPower;
+        private readonly Collider[] colliderBuffers = new Collider[16];
 
 
         public override void Initialize(ICombatProvider provider)
@@ -85,10 +86,8 @@ namespace Character.Venturers.Mage.Projectiles
         
         private List<SoulShardTrap> GetShardsInSphere()
         {
-            var colliderBuffers = new Collider[16];
+            TargetUtility.GetTargetsInSphere<SoulShardTrap>(transform.position, trapLayer, shardCollectableRadius, colliderBuffers);
             
-            if (Physics.OverlapSphereNonAlloc(transform.position, shardCollectableRadius, colliderBuffers, trapLayer) == 0) return null;
-        
             var result = new List<SoulShardTrap>();
             
             colliderBuffers.ForEach(collider =>

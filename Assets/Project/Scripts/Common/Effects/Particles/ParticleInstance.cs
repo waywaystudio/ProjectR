@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 namespace Common.Effects.Particles
@@ -54,6 +55,11 @@ namespace Common.Effects.Particles
             ParticleSystemRenderer.flip = transform.forward.x < 0
                 ? Vector3.right 
                 : Vector3.zero; 
+        }
+
+        private void OnDestroy()
+        {
+            particle.Stop(true);
         }
 
         private void Reset()

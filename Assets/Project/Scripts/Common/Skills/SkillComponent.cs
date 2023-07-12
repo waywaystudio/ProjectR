@@ -3,13 +3,12 @@ using Common.Effects;
 using Common.Execution;
 using Common.TargetSystem;
 using UnityEngine;
-using UnityEngine.Serialization;
 
 namespace Common.Skills
 {
     public class SkillComponent : MonoBehaviour, ISkill, IEditable
     {
-        [FormerlySerializedAs("actionCode")] [SerializeField] protected DataIndex dataIndex;
+        [SerializeField] protected DataIndex dataIndex;
         [SerializeField] protected ActionMask behaviourMask = ActionMask.Skill;
         [SerializeField] protected Sprite icon;
         [SerializeField] protected HitExecutor hitExecutor;
@@ -54,18 +53,14 @@ namespace Common.Skills
         {
             Invoker = new CombatSequenceInvoker(Sequence);
             Builder = new CombatSequenceBuilder(Sequence);
-            
             Builder
                 .AddCondition("AbleToBehaviourOverride", () => BehaviourMask.CanOverride(cb.BehaviourMask))
                 .Add(Section.Active,"CancelPreviousBehaviour", () => cb.CurrentBehaviour?.TryToOverride(this))
                 .Add(Section.Active,"SetCurrentBehaviour", () => cb.CurrentBehaviour = this)
                 .Add(Section.Active, "StopPathfinding", Cb.Pathfinding.Stop)
                 .Add(Section.End,"CharacterStop", Cb.Stop)
-                .Add(Section.Release, "ReleaseAction", () =>
-                {
-                    if (AbleToRelease) 
-                        CastTimer.CallbackSection.GetInvokeAction(this)?.Invoke();
-                });
+                .Add(Section.Release, "ReleaseAction", () => AbleToRelease.OnTrue(() => Sequence[CastTimer.CallbackSection]?.Invoke()))
+                ;
             
             detector.Initialize(Cb);
             animationTrait.Initialize(this);
@@ -83,17 +78,20 @@ namespace Common.Skills
         {
             effector.ActiveEffect(activity);
         }
+        
 
-        public virtual void Dispose()
+        protected virtual void Dispose()
         {
-            // TODO Pool.Release()가 중복으로 들어옴
-            // Invoker.End();
-            
+            Invoker.End();
             Sequence.Clear();
             coolTimer.Dispose();
             castTimer.Dispose();
-            
-            effector.Dispose();
+        }
+        
+
+        private void OnDestroy()
+        {
+            Dispose();
         }
 
 
@@ -103,7 +101,6 @@ namespace Common.Skills
             hitExecutor.GetExecutionInEditor(transform);
             fireExecutor.GetExecutionInEditor(transform);
             effector.GetEffectsInEditor(transform);
-            
             detector.SetUpAsSkill(dataIndex);
             coolTimer.SetUpAsSkill(dataIndex);
             castTimer.SetUpFromSkill(dataIndex);

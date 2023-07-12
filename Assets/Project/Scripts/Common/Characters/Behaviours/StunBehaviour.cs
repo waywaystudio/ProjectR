@@ -4,11 +4,10 @@ namespace Common.Characters.Behaviours
 {
     public class StunBehaviour : MonoBehaviour, IActionBehaviour
     {
-        [SerializeField] private Sequencer<float> sequencer = new();
-
         public ActionMask BehaviourMask => ActionMask.Stun;
+        public Sequencer<float> Sequencer { get; } = new();
         public SequenceBuilder<float> Builder { get; private set; }
-        public SequenceInvoker<float> SequenceInvoker { get; private set; }
+        public SequenceInvoker<float> Invoker { get; private set; }
 
         private CharacterBehaviour cb;
         private CharacterBehaviour Cb => cb ??= GetComponentInParent<CharacterBehaviour>();
@@ -17,25 +16,25 @@ namespace Common.Characters.Behaviours
 
         public void Stun(float duration)
         {
-            if (!SequenceInvoker.IsAbleToActive) return;
+            if (!Invoker.IsAbleToActive) return;
             
-            SequenceInvoker.Active(duration);
+            Invoker.Active(duration);
         }
 
         public void Cancel()
         {
-            SequenceInvoker.Cancel();
+            Invoker.Cancel();
             Timer.Stop();
         }
 
 
         private void OnEnable()
         {
-            Builder         = new SequenceBuilder<float>(sequencer);
-            SequenceInvoker = new SequenceInvoker<float>(sequencer);
+            Builder = new SequenceBuilder<float>(Sequencer);
+            Invoker = new SequenceInvoker<float>(Sequencer);
 
             Builder.AddCondition("AbleToBehaviourOverride", () => BehaviourMask.CanOverride(Cb.BehaviourMask))
-                   .AddActiveParam("PlayStunTimer", duration => Timer.Play(duration, SequenceInvoker.Complete))
+                   .AddActiveParam("PlayStunTimer", duration => Timer.Play(duration, Invoker.Complete))
                    .Add(Section.Active,"CancelPreviousBehaviour", () => cb.CurrentBehaviour?.TryToOverride(this))
                    .Add(Section.Active,"SetCurrentBehaviour", () => cb.CurrentBehaviour = this)
                    .Add(Section.Active,"PlayAnimation", Cb.Animating.Stun)
@@ -44,7 +43,7 @@ namespace Common.Characters.Behaviours
 
         private void OnDisable()
         {
-            sequencer.Clear();
+            Sequencer.Clear();
             Timer.Dispose();
         }
     }

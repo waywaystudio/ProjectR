@@ -24,15 +24,14 @@ namespace Character.Venturers.Ranger.Skills
                 .Add(Section.End, "StopTracking", StopTracking);
         }
         
-        public override void Dispose()
+        
+        protected override void Dispose()
         {
             base.Dispose();
 
             Provider.OnDamageProvided.Remove("AddAdrenalinByInstantShot");
-            StopTracking();
         }
-        
-        
+
         private void Fire()
         {
             var forwardPosition = Provider.Position + Provider.Forward;

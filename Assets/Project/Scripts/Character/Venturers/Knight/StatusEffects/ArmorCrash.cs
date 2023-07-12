@@ -22,6 +22,13 @@ namespace Character.Venturers.Knight.StatusEffects
                 .Add(Section.Active, "OvertimeExecution", () => OvertimeExecution().Forget())
                 .Add(Section.End,"RemoveArmorReducer", RemoveArmorReducer);
         }
+        
+        protected override void Dispose()
+        {
+            base.Dispose();
+
+            Stop();
+        }
 
 
         private void ReduceArmorStat()
@@ -31,7 +38,12 @@ namespace Character.Venturers.Knight.StatusEffects
             Taker.StatTable.Add(reduceEntity);
         }
 
-        private void RemoveArmorReducer() => Taker.StatTable.Remove(StatType.Armor, "ArmorCrashDebBuff");
+        private void RemoveArmorReducer()
+        {
+            Taker.StatTable.Remove(StatType.Armor, "ArmorCrashDebBuff");
+
+            Stop();
+        }
 
         private async UniTaskVoid OvertimeExecution()
         {
@@ -45,6 +57,12 @@ namespace Character.Venturers.Knight.StatusEffects
             }
             
             Invoker.Complete();
+        }
+        
+        private void Stop()
+        {
+            cts?.Cancel();
+            cts = null;
         }
     }
 }

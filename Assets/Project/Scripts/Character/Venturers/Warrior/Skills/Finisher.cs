@@ -1,6 +1,6 @@
 using Common;
-using Common.Characters;
 using Common.Execution.Hits;
+using Common.Projectors;
 using Common.Skills;
 using UnityEngine;
 
@@ -8,18 +8,19 @@ namespace Character.Venturers.Warrior.Skills
 {
     public class Finisher : SkillComponent
     {
+        [SerializeField] private ArcProjector projector;
+        [SerializeField] private DamageHit damageHit;
         [SerializeField] private float remainBonusMultiplier = 1f;
-        
-        private DamageHit damageExecutor;
-        public StatSpec CombatSpec => damageExecutor.DamageSpec;
+
+        public StatSpec CombatSpec => damageHit.DamageSpec;
         
         public override void Initialize()
         {
             base.Initialize();
 
-            damageExecutor = GetComponentInChildren<DamageHit>();
-            
-            Builder.Add(Section.Execute, "CommonExecution", MultipliedDamageExecution);
+            projector.Initialize(this);
+            Builder
+                .Add(Section.Execute, "CommonExecution", MultipliedDamageExecution);
         }
 
 

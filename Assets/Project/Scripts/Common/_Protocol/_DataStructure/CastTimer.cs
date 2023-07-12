@@ -50,7 +50,9 @@ namespace Common
         public void Dispose()
         {
             cts?.Cancel();
-            cts = null;
+            
+            cts         = null;
+            endCallback = null;
         }
 
         public void AddListener(string key, Action<float> action) => EventTimer.AddListener(key, action);

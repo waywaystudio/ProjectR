@@ -615,9 +615,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 152c51bcbeb6d524884ee7824ef349da, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  actionCode: 31210202
+  dataIndex: 31210202
   behaviourMask: 64
-  priority: 1
+  icon: {fileID: 21300000, guid: 6613ba9d12b5115469b89a4f2f680893, type: 3}
   hitExecutor:
     hitExecutionList:
     - {fileID: 1760830664133795729}
@@ -658,7 +658,7 @@ MonoBehaviour:
   cost:
     cost: -8
     paySection: 11
-  icon: {fileID: 21300000, guid: 6613ba9d12b5115469b89a4f2f680893, type: 3}
+  priority: 1
   description: "\uBAA9\uD45C \uC9C0\uC810\uC73C\uB85C \uC810\uD504\uD558\uC5EC \uACF5\uACA9\uD55C\uB2E4"
 --- !u!1 &9110195393702963303
 GameObject:

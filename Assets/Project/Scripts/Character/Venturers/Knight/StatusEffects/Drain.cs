@@ -22,6 +22,13 @@ namespace Character.Venturers.Knight.StatusEffects
                 .Add(Section.End, "Stop", Stop)
                 .Add(Section.End,"Return", () => Provider.OnDamageProvided.Remove("DrainBuff"));
         }
+        
+        protected override void Dispose()
+        {
+            base.Dispose();
+
+            Stop();
+        }
 
 
         private void DrainHp(CombatEntity entity)

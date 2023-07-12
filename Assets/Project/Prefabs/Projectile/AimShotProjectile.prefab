@@ -67,7 +67,7 @@ MonoBehaviour:
   - {fileID: 2432000920414520545}
   combatSounds: []
   triggerCollider: {fileID: 6970810306177905816}
-  maxPierceCount: 3
+  maxPierceCount: 0
 --- !u!135 &6970810306177905816
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -216,7 +216,7 @@ MonoBehaviour:
     statList:
     - statType: 13010001
       statKey: DamageExecutor
-      value: 100
+      value: 3000
     - statType: 13020001
       statKey: DamageExecutor
       value: 1

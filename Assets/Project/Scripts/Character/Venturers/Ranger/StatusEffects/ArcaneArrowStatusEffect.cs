@@ -22,6 +22,13 @@ namespace Character.Venturers.Ranger.StatusEffects
                 .Add(Section.End, "Stop", Stop);
         }
         
+        
+        protected override void Dispose()
+        {
+            base.Dispose();
+
+            Stop();
+        }
 
         private void StackUp()
         {

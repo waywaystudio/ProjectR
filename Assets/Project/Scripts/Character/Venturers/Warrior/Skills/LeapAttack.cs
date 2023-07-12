@@ -19,7 +19,11 @@ namespace Character.Venturers.Warrior.Skills
 
         private void ExecuteLeapAttack()
         {
-            detector.GetTakers()?.ForEach(Invoker.Hit);
+            detector.GetTakers()?.ForEach(taker =>
+            {
+                Taker = taker;
+                Invoker.Hit(taker);
+            });
         }
 
         private void Jump(Vector3 targetPosition)
@@ -32,7 +36,6 @@ namespace Character.Venturers.Warrior.Skills
                     ? detector.GetMainTarget().Position
                     : Vector3.zero;
 
-            // var playerPosition = Cb.transform.position;
             var direction = (destination - playerPosition).normalized;
             var actualDistance = Vector3.Distance(destination, playerPosition);
 

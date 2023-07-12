@@ -37,11 +37,6 @@ namespace Common.Effects
             bulletTimes?.ForEach(bt => bt.Activity     = activity);
         }
 
-        public void Dispose()
-        {
-            combatParticles?.ForEach(cp => cp.Dispose());
-        }
-
 
 #if UNITY_EDITOR
         public void GetEffectsInEditor(Transform transform)

@@ -25,7 +25,8 @@ namespace Common.Execution.Fires
         private void CreateTrap(Trap trap)
         {
             trap.Initialize(Sender.Provider);
-            trap.Builder.Add(Section.End,"ReturnToPool",() => ReturnToPool(trap));
+            trap.Builder
+                .Add(Section.End,"ReturnToPool",() => ReturnToPool(trap));
         }
 
         private void ReturnToPool(Trap trap)
@@ -38,15 +39,7 @@ namespace Common.Execution.Fires
 
         private void OnEnable()
         {
-            pool.Initialize(CreateTrap, transform,
-                null,
-                null,
-                trap => trap.Dispose());
-        }
-
-        private void OnDisable()
-        {
-            // pool.Clear();
+            pool.Initialize(CreateTrap, transform);
         }
     }
 }

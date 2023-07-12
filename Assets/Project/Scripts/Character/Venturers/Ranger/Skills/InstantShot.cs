@@ -13,14 +13,14 @@ namespace Character.Venturers.Ranger.Skills
             Provider.OnDamageProvided.Add("AddAdrenalinByInstantShot", AddAdrenalin);
             Builder.Add(Section.Execute, "Fire", Fire);
         }
+        
 
-        public override void Dispose()
+        protected override void Dispose()
         {
             base.Dispose();
             
             Provider.OnDamageProvided.Remove("AddAdrenalinByInstantShot");
         }
-
 
         private void Fire()
         {

@@ -4,9 +4,8 @@ using UnityEngine.Rendering.Universal;
 
 namespace Common.Projectors
 {
-    public abstract class ProjectorComponent : MonoBehaviour, ISequencerHolder, IEditable
+    public abstract class ProjectorComponent : MonoBehaviour, IEditable
     {
-        [SerializeField] protected bool isStaticProjector;
         [SerializeField] protected Material materialReference;
         [SerializeField] protected DecalProjector projector;
         [SerializeField] protected Ease easeType = Ease.Linear;
@@ -15,11 +14,6 @@ namespace Common.Projectors
 
         protected const float ProjectorDepth = 50f;
         protected Tween ProgressTween;
-
-        public Sequencer Sequencer { get; } = new();
-        public SequenceBuilder Builder { get; private set; }
-        public SequenceInvoker Invoker { get; private set; }
-
         protected IProjectionProvider Provider { get; set; }
         protected GameObject DecalObject => projector.gameObject;
         protected float ArcAngleNormalized => Mathf.Clamp(1f - Provider.SizeVector.z / 360, 0f, 360f);
@@ -32,7 +26,7 @@ namespace Common.Projectors
 
 
 
-        public void Initialize(IProjectionProvider provider)
+        public virtual void Initialize(IProjectionProvider provider)
         {
             Provider = provider;
             
@@ -56,68 +50,16 @@ namespace Common.Projectors
                 .Add(Section.Execute, "CancelTween", StopProjection)
                 .Add(Section.End, "ResetMaterial", StopProjection);
 
-            if (isStaticProjector)
-            {
-                ActiveProjector();
-            }
-
-            StopProjection();
-        }
-
-        public void Dispose()
-        {
-            Sequencer.Clear();
-        }
-
-        public void ActiveProjector()
-        {
-            Builder.Register("ProjectorSequencer", Provider.Sequence);
-        }
-
-        public void DeActiveProjector()
-        {
-            Invoker.Cancel();
-            Builder.Unregister("ProjectorSequencer", Provider.Sequence);
-        }
-        
-
-        protected virtual void Awake()
-        {
-            Provider = GetComponentInParent<IProjectionProvider>();
-
-            if (!Verify.IsNotNull(Provider, $"Projector Require IProjectionProvider!")) 
-                return;
-            
-            // Set Projector Radius, Angle
-            var diameter = Provider.SizeVector.y * 2f;
-            
-            projector.material = new Material(materialReference);
-            
-            // projector.material.SetFloat(FillProgressShaderID, Provider.CastingWeight);
-            projector.size = new Vector3(diameter, diameter, ProjectorDepth);
-            projector.material.SetFloat(FillProgressShaderID, 0f);
-            projector.material.SetFloat(ArcShaderID, ArcAngleNormalized);
-            projector.material.SetColor(ColorShaderID, backgroundColor);
-            projector.material.SetColor(FillColorShaderID, fillColor);
-            projector.material.SetFloat(AngleShaderID, 0f);
-
-            Invoker = new SequenceInvoker(Sequencer);
-            Builder = new SequenceBuilder(Sequencer);
-            Builder
-                .Add(Section.Active, "ShaderProgression", PlayProjection)
-                .Add(Section.Cancel, "CancelTween", StopProjection)
-                .Add(Section.End, "ResetMaterial", StopProjection);
-
-            if (isStaticProjector)
-            {
-                ActiveProjector();
-            }
-
             StopProjection();
         }
         
-        
-        private void PlayProjection()
+
+        protected virtual void Dispose()
+        {
+            // Sequencer.Clear();
+        }
+
+        protected virtual void PlayProjection()
         {
             DecalObject.SetActive(true);
             projector.material.SetFloat(FillProgressShaderID, 0f);
@@ -126,7 +68,7 @@ namespace Common.Projectors
                                      .SetEase(easeType);
         }
 
-        private void StopProjection()
+        protected virtual void StopProjection()
         {
             if (ProgressTween != null)
             {
@@ -136,6 +78,11 @@ namespace Common.Projectors
 
             projector.material.SetFloat(FillProgressShaderID, 0f);
             DecalObject.SetActive(false);
+        }
+
+        private void OnDestroy()
+        {
+            Dispose();
         }
 
 

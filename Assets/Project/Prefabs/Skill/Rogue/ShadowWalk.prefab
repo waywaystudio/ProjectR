@@ -217,26 +217,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4dafe097d29e66f428aebf125460d222, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  actionCode: 31210307
+  dataIndex: 31210307
   behaviourMask: 32
-  priority: 1
-  executor:
-    takerExecutionTable:
-      keyList: 01000000
-      valueList:
-      - List:
-        - {fileID: 372894161616476412}
-    fireExecutionTable:
-      keyList: 02000000
-      valueList:
-      - List:
-        - {fileID: 7167918569253473790}
+  icon: {fileID: 21300000, guid: 2eea35714f0f7eb478765108977c5a11, type: 3}
   hitExecutor:
     hitExecutionList:
     - {fileID: 372894161616476412}
   fireExecutor:
     fireExecutionList:
     - {fileID: 7167918569253473790}
+  effector:
+    combatParticles: []
+    combatSounds: []
+    combatImpulses: []
+    combatCameras: []
+    bulletTimes: []
   detector:
     sortingType: 0
     maxBufferCount: 32
@@ -261,8 +256,7 @@ MonoBehaviour:
   cost:
     cost: 0
     paySection: 0
-  icon: {fileID: 21300000, guid: 2eea35714f0f7eb478765108977c5a11, type: 3}
-  combatParticles: []
+  priority: 1
   description: "\uB300\uC0C1 \uC9C0\uC810\uC73C\uB85C \uC21C\uAC04\uC774\uB3D9 \uD55C
     \uD6C4 \uC720\uB839\uC744 \uB0A8\uAE34\uB2E4."
   phantomMaster: {fileID: 11400000, guid: 6c8a7e02452c13f40ad1090c2e41c7f9, type: 2}

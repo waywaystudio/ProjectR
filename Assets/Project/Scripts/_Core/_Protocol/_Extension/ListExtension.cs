@@ -203,4 +203,6 @@ public static class ListExtension
             fromList.RemoveAt(fromList.Count - 1);
         }
     }
+
+    public static T FirstOrDefault<T>(this List<T> list) { return list.Count > 0 ? list[0] : default; }
 }

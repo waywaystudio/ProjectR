@@ -102,12 +102,6 @@ namespace Common.Characters
             skillBehaviour.Initialize(this);
         }
 
-        public void Dispose()
-        {
-            combatStatus.Dispose();
-            skillBehaviour.Dispose();
-        }
-        
 
 #if UNITY_EDITOR
         public virtual void EditorSetUp()

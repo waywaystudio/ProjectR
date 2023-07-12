@@ -42,15 +42,11 @@ namespace Character.Venturers.Rogue
 
         private void OnEnable()
         {
-            pool.Initialize(CreateTrap, transform,
-                            null,
-                            null,
-                            trap => trap.Dispose());
+            pool.Initialize(CreateTrap, transform);
         }
 
         private void OnDisable()
         {
-            pool.Clear();
             master.Clear();
         }
     }

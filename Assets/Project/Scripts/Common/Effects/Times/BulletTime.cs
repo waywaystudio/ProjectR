@@ -1,3 +1,4 @@
+using System;
 using DG.Tweening;
 using Sirenix.OdinInspector;
 using UnityEngine;
@@ -103,6 +104,18 @@ namespace Common.Effects.Times
                        returnDuration)
                    .SetEase(Ease.InOutQuad) // Change this to any easing function you prefer
                    .SetUpdate(true);
+        }
+
+
+        private void OnDestroy()
+        {
+            if (bulletTimeTween != null)
+            {
+                bulletTimeTween.Kill();
+                bulletTimeTween = null;
+            }
+
+            Time.timeScale = 1f;
         }
     }
 }

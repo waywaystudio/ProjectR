@@ -4,9 +4,8 @@ namespace Common.Characters.Behaviours
 {
     public class RunBehaviour : MonoBehaviour, IActionBehaviour
     {
-        [SerializeField] private Sequencer<Vector3> sequencer;
-
         public ActionMask BehaviourMask => ActionMask.Run;
+        public Sequencer<Vector3> Sequence { get; } = new();
         public SequenceBuilder<Vector3> Builder { get; private set; }
         public SequenceInvoker<Vector3> Invoker { get; private set; }
 
@@ -26,8 +25,8 @@ namespace Common.Characters.Behaviours
 
         private void OnEnable()
         {
-            Builder = new SequenceBuilder<Vector3>(sequencer);
-            Invoker = new SequenceInvoker<Vector3>(sequencer);
+            Builder = new SequenceBuilder<Vector3>(Sequence);
+            Invoker = new SequenceInvoker<Vector3>(Sequence);
 
             /* 순서 중요 */ 
             Builder
@@ -42,7 +41,7 @@ namespace Common.Characters.Behaviours
 
         private void OnDisable()
         {
-            sequencer.Clear();
+            Sequence.Clear();
         }
     }
 }

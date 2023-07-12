@@ -34,10 +34,8 @@ namespace Common.StatusEffects
         public virtual void Initialize(ICombatProvider provider)
         {
             Provider = provider;
-            
             Invoker  = new CombatSequenceInvoker(Sequence);
             Builder  = new CombatSequenceBuilder(Sequence);
-
             Builder
                 .Add(Section.Active, "ResetProgressTime", () => ProgressTime.Value = duration)
                 .Add(Section.Active, "AddStatusEffectTable", AddTable)
@@ -58,16 +56,16 @@ namespace Common.StatusEffects
             Invoker.Active();
         }
 
-
-        /// <summary>
-        /// 해제 시 호출 == Dispel. (만료 아님)
-        /// </summary>
         public void Dispel() => Invoker.Cancel();
 
-        public virtual void Dispose()
+
+        protected virtual void Dispose()
         {
+            /* Annotation
+             * SKillComponent와 다르게 Pooling 기반 Object는 Dispose에서 Invoker.End실행 불가.
+             * Pool을 가진 Object가 먼저 파괴되었을 수 있음
+             * Invoker.End(); */
             Sequence.Clear();
-            combatParticles?.ForEach(cp => cp.Dispose());
         }
 
 
@@ -79,6 +77,11 @@ namespace Common.StatusEffects
             var overrideValue = ProgressTime.Value + duration;
             
             ProgressTime.Value = Mathf.Clamp(overrideValue, 0, duration * 1.5f);
+        }
+        
+        private void OnDestroy()
+        {
+            Dispose();
         }
 
 

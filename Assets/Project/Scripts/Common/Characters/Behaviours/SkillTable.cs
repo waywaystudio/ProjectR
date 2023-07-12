@@ -82,11 +82,6 @@ namespace Common.Characters.Behaviours
             table.Iterate(skill => skill.ActiveEffect(isFocusTarget));
         }
 
-        public void Dispose()
-        {
-            table.Iterate(skill => skill.Dispose());
-        }
-
 
 #if UNITY_EDITOR
         public void EditorSetUp()

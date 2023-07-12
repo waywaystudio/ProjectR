@@ -1,3 +1,4 @@
+using System;
 using Common.StatusEffects;
 using UnityEngine;
 
@@ -25,8 +26,9 @@ namespace Common.Characters
             Resource.Value     = StatTable.MaxResource;
             Shield.Value       = 0;
         }
+        
 
-        public void Dispose()
+        private void OnDestroy()
         {
             Alive.Clear();
             Hp.Clear();

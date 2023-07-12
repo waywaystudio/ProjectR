@@ -25,10 +25,17 @@ namespace Character.Venturers.Priest.StatusEffects
                 .Add(Section.Active, "SetHasteWeightAndTickBuffer", SetHasteWeightAndTickBuffer)
                 .Add(Section.Active, "OvertimeExecution", () => OvertimeExecution().Forget())
                 .Add(Section.Active, "ProvideBuff", ProvideBuff)
-                .Add(Section.End, "StopEffectuate", () => cts?.Cancel())
+                .Add(Section.End, "StopEffectuate", Stop)
                 .Add(Section.End, "RemoveBuffStat", EndBuff);
         }
+        
+        
+        protected override void Dispose()
+        {
+            base.Dispose();
 
+            Stop();
+        }
 
         private void SetHasteWeightAndTickBuffer()
         {
@@ -75,6 +82,12 @@ namespace Character.Venturers.Priest.StatusEffects
             Taker.StatTable.Remove(speedUpStat);
             Taker.StatTable.Remove(criticalChanceStat);
             Taker.StatTable.Remove(hasteStat);
+        }
+        
+        private void Stop()
+        {
+            cts?.Cancel();
+            cts = null;
         }
     }
 }

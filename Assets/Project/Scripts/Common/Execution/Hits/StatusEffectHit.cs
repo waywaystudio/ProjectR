@@ -48,11 +48,6 @@ namespace Common.Execution.Hits
             pool.Initialize(CreateStatusEffect, transform);
         }
 
-        private void OnDisable()
-        {
-            pool.Clear();
-        }
-
 
 #if UNITY_EDITOR
         public void EditorSetUp()

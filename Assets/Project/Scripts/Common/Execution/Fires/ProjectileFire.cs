@@ -8,7 +8,9 @@ namespace Common.Execution.Fires
         [SerializeField] private Transform muzzle;
         [SerializeField] private Pool<ProjectileComponent> pool;
 
-        private Vector3 MuzzlePosition => muzzle ? muzzle.position : transform.position + new Vector3(0, 3, 0);
+        private Vector3 MuzzlePosition => muzzle 
+            ? muzzle.position 
+            : transform.position + new Vector3(0, 3, 0);
 
         
         public override void Fire(Vector3 targetPosition)
@@ -23,27 +25,25 @@ namespace Common.Execution.Fires
         }
         
 
-        private void CreateProjectile(ProjectileComponent projectile)
+        protected virtual void CreateProjectile(ProjectileComponent projectile)
         {
             projectile.transform.position = MuzzlePosition;
             projectile.Initialize(Sender.Provider);
-            projectile.Builder.Add(Section.End,"ReturnToPool",() =>
-            {
-                projectile.transform.position = MuzzlePosition;
-                projectile.transform.SetParent(transform, true);
+            projectile.Builder
+                      .Add(Section.End,"ReturnToPool", () => ReturnToPool(projectile));
+        }
 
-                pool.Release(projectile);
-            });
+        private void ReturnToPool(ProjectileComponent projectile)
+        {
+            projectile.transform.position = MuzzlePosition;
+            projectile.transform.SetParent(transform, true);
+            
+            pool.Release(projectile);
         }
 
         private void OnEnable()
         {
             pool.Initialize(CreateProjectile, transform);
-        }
-
-        private void OnDisable()
-        {
-            pool.Clear();
         }
     }
 }

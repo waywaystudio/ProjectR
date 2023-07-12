@@ -27,9 +27,9 @@ public class Pool<T> where T : Component
     {
         if (syncObjectActivity)
         {
-            onGet         += component => component.gameObject.SetActive(true);
-            onRelease     += component => component.gameObject.SetActive(false);
-            onPoolCleared += component => Object.Destroy(component.gameObject);
+            onGet         += CommonActive;
+            onRelease     += CommonRelease;
+            onPoolCleared += CommonDestroy;
         }
             
         objectPool?.Clear();
@@ -66,18 +66,32 @@ public class Pool<T> where T : Component
                        + $"Input:{prefab.name}");
     }
 
-    public void Clear()
-    {
-        objectPool.Clear();
-    }
-        
-        
+
     protected virtual T Create(Action<T> onActivated, Transform parent)
     {
         if (!prefab.ValidInstantiate(out T component, parent)) return null;
 
         onActivated?.Invoke(component);
         return component;
+    }
+
+    private void CommonActive(T component)
+    {
+        component.gameObject.SetActive(true);
+    }
+
+    private void CommonRelease(T component)
+    {
+        if (component.IsNullOrDestroyed()) return;
+        
+        component.gameObject.SetActive(false);
+    }
+    
+    private void CommonDestroy(T component)
+    {
+        if (component.IsNullOrDestroyed()) return;
+        
+        Object.Destroy(component.gameObject);
     }
 }
 

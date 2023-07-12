@@ -1,6 +1,7 @@
 using System;
 using System.Threading;
 using Common;
+using Common.Projectors;
 using Common.StatusEffects;
 using Cysharp.Threading.Tasks;
 using UnityEngine;
@@ -9,6 +10,7 @@ namespace Character.Villains.Commons.StatusEffects
 {
     public class IgnitionStatusEffect : StatusEffect, IProjectionProvider
     {
+        [SerializeField] private ArcProjector projector;
         [SerializeField] private float interval;
         [SerializeField] private float radius = 6f;
         [SerializeField] private LayerMask adventurerLayer;
@@ -25,6 +27,8 @@ namespace Character.Villains.Commons.StatusEffects
         public override void Initialize(ICombatProvider provider)
         {
             base.Initialize(provider);
+            
+            projector.Initialize(this);
 
             Builder
                 .Add(Section.Active, "SetHasteWeight", SetHasteWeight)
@@ -32,7 +36,13 @@ namespace Character.Villains.Commons.StatusEffects
                 .Add(Section.Complete, "Bomb", Bomb)
                 .Add(Section.End, "Stop", Stop);
         }
+        
+        protected override void Dispose()
+        {
+            base.Dispose();
 
+            Stop();
+        }
 
         private void Bomb()
         {

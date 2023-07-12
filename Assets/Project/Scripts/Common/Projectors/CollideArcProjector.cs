@@ -2,15 +2,17 @@ using UnityEngine;
 
 namespace Common.Projectors
 {
-    public class CollideArcProjector : ProjectorComponent
+    public class CollideArcProjector : ArcProjector
     {
         [SerializeField] private Transform colliderTransform;
 
-        protected override void Awake()
+        public override void Initialize(IProjectionProvider provider)
         {
-            base.Awake();
+            base.Initialize(provider);
+
+            var builder = new CombatSequenceBuilder(provider.Sequence);
             
-            Builder
+            builder
                 .Add(Section.Active, "ActiveCollider", ActiveCollider)
                 .Add(Section.End, "DeActiveCollider", DeActiveCollider);
         }

@@ -46,9 +46,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8e81ba6eb2036254e84b064bf0409f05, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  actionCode: 31210106
+  dataIndex: 31210106
   behaviourMask: 32
-  priority: 5
+  icon: {fileID: 21300000, guid: 3e7f4279b00aa684791775d4845c0251, type: 3}
   hitExecutor:
     hitExecutionList: []
   fireExecutor:
@@ -59,6 +59,7 @@ MonoBehaviour:
     combatSounds: []
     combatImpulses: []
     combatCameras: []
+    bulletTimes: []
   detector:
     sortingType: 0
     maxBufferCount: 32
@@ -83,7 +84,7 @@ MonoBehaviour:
   cost:
     cost: 10
     paySection: 1
-  icon: {fileID: 21300000, guid: 3e7f4279b00aa684791775d4845c0251, type: 3}
+  priority: 5
   description: "\uBC29\uD328\uB97C \uB4E4\uC5B4 \uD53C\uD574\uB97C \uBC18\uAC10\uC2DC\uD0A8\uB2E4.
     \uAE30\uC808\uACFC \uBC00\uCCD0\uB0B4\uB294 \uD6A8\uACFC\uC5D0 \uBA74\uC5ED"
   armorUpValue: 250

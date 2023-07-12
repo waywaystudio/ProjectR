@@ -38,6 +38,14 @@ namespace Common.Projectiles
                     throw new ArgumentOutOfRangeException();
             }
         }
+
+        public void Dispose()
+        {
+            if (trajectoryTween == null) return;
+
+            trajectoryTween.Kill();
+            trajectoryTween = null;
+        }
         
 
         private void Instant()

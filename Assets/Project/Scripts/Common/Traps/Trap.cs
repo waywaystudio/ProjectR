@@ -51,13 +51,21 @@ namespace Common.Traps
             combatImpulses?.ForEach(ci => ci.Initialize(Sequence));
         }
 
-        public void Dispose()
+        protected virtual void Dispose()
         {
+            /* Annotation
+             * SKillComponent와 다르게 Pooling 기반 Object는 Dispose에서 Invoker.End실행 불가.
+             * Pool을 가진 Object가 먼저 파괴되었을 수 있음
+             * Invoker.End(); */
             Sequence.Clear();
+            prolongTimer.Dispose();
             delayTimer.Dispose();
-            combatParticles?.ForEach(cp => cp.Dispose());
+        }
 
-            Destroy(gameObject);
+
+        private void OnDestroy()
+        {
+            Dispose();
         }
 
 

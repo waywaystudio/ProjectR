@@ -19,6 +19,8 @@ namespace Common.Projectiles
         public ICombatProvider Provider { get; protected set; }
         public ICombatTaker Taker { get; protected set; }
         public DataIndex DataIndex => projectileCode;
+        
+        public HitExecutor HitExecutor => hitExecutor;
         public CombatSequence Sequence { get; } = new();
         public CombatSequenceBuilder Builder { get; private set; }
         public CombatSequenceInvoker Invoker { get; private set; }
@@ -40,20 +42,17 @@ namespace Common.Projectiles
             trajectory.Initialize(this);
             hitExecutor.Initialize(Sequence, this);
             fireExecutor.Initialize(Sequence, this);
+            
             combatParticleList.ForEach(particle => particle.Initialize(Sequence, this));
             combatSounds?.ForEach(cs => cs.Initialize(Sequence));
         }
+        
 
-
-        /// <summary>
-        /// Scene이 종료되거나, 설정된 Pool 개수를 넘어서 생성된 상태이상효과가 만료될 때 호출
-        /// </summary>
         protected virtual void Dispose()
         {
             Sequence.Clear();
-            combatParticleList?.ForEach(cp => cp.Dispose());
+            trajectory.Dispose();
         }
-        
 
         private void OnDestroy()
         {
