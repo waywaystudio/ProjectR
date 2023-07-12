@@ -65,7 +65,6 @@ namespace Common.Editor
             
             if (member.Name == "effector")
             {
-                attributes.Add(new TitleGroupAttribute("Effector", "sfx, vfx and so on"));
                 attributes.Add(new PropertySpaceAttribute(0f, 10f));
             }
         }
@@ -261,59 +260,7 @@ namespace Common.Editor
             }
         }
     }
-    
-    public class EffectorDrawer : OdinAttributeProcessor<Effector>
-    {
-        public override void ProcessSelfAttributes(InspectorProperty property, List<Attribute> attributes)
-        {
-            attributes.Add(new HideLabelAttribute());
-        }
-        
-        public override void ProcessChildMemberAttributes(InspectorProperty parentProperty, MemberInfo member, List<Attribute> attributes)
-        {
-            var lds = new ListDrawerSettingsAttribute
-            {
-                IsReadOnly  = true, 
-                ShowFoldout = true,
-            };
-            
-            if (member.Name == "combatParticles")
-            {
-                attributes.Add(new HideIfAttribute("@this.combatParticles.Count == 0"));
-                // attributes.Add(new BoxGroupAttribute("Effector"));
-                attributes.Add(lds);
-            }
-            
-            if (member.Name == "combatSounds")
-            {
-                attributes.Add(new HideIfAttribute("@this.combatSounds.Count == 0"));
-                // attributes.Add(new BoxGroupAttribute("Effector"));
-                attributes.Add(lds);
-            }
-            
-            if (member.Name == "combatImpulses")
-            {
-                attributes.Add(new HideIfAttribute("@this.combatImpulses.Count == 0"));
-                // attributes.Add(new BoxGroupAttribute("Effector"));
-                attributes.Add(lds);
-            }
-            
-            if (member.Name == "combatCameras")
-            {
-                attributes.Add(new HideIfAttribute("@this.combatCameras.Count == 0"));
-                // attributes.Add(new BoxGroupAttribute("Effector"));
-                attributes.Add(lds);
-            }
-            
-            if (member.Name == "bulletTimes")
-            {
-                attributes.Add(new HideIfAttribute("@this.bulletTimes.Count == 0"));
-                // attributes.Add(new BoxGroupAttribute("Effector"));
-                attributes.Add(lds);
-            }
-        }
-    }
-    
+
     public class CombatTakerDetectorDrawer : OdinAttributeProcessor<CombatTakerDetector>
     {
         public override void ProcessSelfAttributes(InspectorProperty property, List<Attribute> attributes)

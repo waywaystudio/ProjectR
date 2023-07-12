@@ -3,17 +3,17 @@ using Common.Skills;
 
 namespace Common
 {
-    public static class SectionTypeExtension
+    public static class SectionExtension
     {
-        public static Action GetInvokeAction(this Section type, SkillComponent skill) =>
+        public static Action GetCombatInvoker(this Section type, CombatSequenceInvoker invoker) =>
             type switch
             {
-                Section.Cancel   => skill.Invoker.Cancel,
-                Section.Complete => skill.Invoker.Complete,
-                Section.End      => skill.Invoker.End,
-                Section.Execute  => skill.Invoker.Execute,
-                Section.Release  => skill.Invoker.Release,
-                Section.Extra    => skill.Invoker.ExtraAction,
+                Section.Cancel   => invoker.Cancel,
+                Section.Complete => invoker.Complete,
+                Section.End      => invoker.End,
+                Section.Execute  => invoker.Execute,
+                Section.Release  => invoker.Release,
+                Section.Extra    => invoker.ExtraAction,
                 _                => null,
             };
     }

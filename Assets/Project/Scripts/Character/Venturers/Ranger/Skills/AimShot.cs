@@ -36,8 +36,8 @@ namespace Character.Venturers.Ranger.Skills
         protected override void Dispose()
         {
             base.Dispose();
-            
-            Provider.OnDamageProvided.Remove("AddAdrenalinByInstantShot");
+
+            Stop();
         }
         
         
@@ -72,7 +72,7 @@ namespace Character.Venturers.Ranger.Skills
 
             if (ExecuteProgression / CastingWeight <= 0.5f)
             {
-                Cancel();
+                Invoker.Cancel();
             }
             else
             {

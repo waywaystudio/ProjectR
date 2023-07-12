@@ -23,6 +23,20 @@ namespace Common.Execution
             if (mainFire.Count > 0) builder.AddFire("FireExecution", position => mainFire.ForEach(exe => exe.Fire(position)));
             if (subFire.Count  > 0) builder.AddSubFire("SubFireExecution", position => subFire.ForEach(exe => exe.Fire(position)));
         }
+        
+        public T OfType<T>() where T : FireExecution
+        {
+            foreach (var item in fireExecutionList)
+            {
+                if (item is T typedItem)
+                {
+                    return typedItem;
+                }
+            }
+
+            Debug.LogWarning($"Can't Find {typeof(T).Name} in execution list.");
+            return null;
+        }
 
         
         

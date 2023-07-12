@@ -1,6 +1,5 @@
 using System.Threading;
 using Common;
-using Common.Characters;
 using Common.Skills;
 using Cysharp.Threading.Tasks;
 using UnityEngine;
@@ -23,6 +22,13 @@ namespace Character.Venturers.Warrior.Skills
                 .Add(Section.Execute, "StopPathfinding", Cb.Pathfinding.Stop)
                 .Add(Section.Execute, "StopCharging", StopCharging)
                 .Add(Section.End, "StopCharging", StopCharging);
+        }
+        
+        protected override void Dispose()
+        {
+            base.Dispose();
+
+            StopCharging();
         }
         
 
@@ -83,7 +89,9 @@ namespace Character.Venturers.Warrior.Skills
         private void StopCharging()
         {
             RemoveCharging();
+            
             cts?.Cancel();
+            cts = null;
         }
     }
 }

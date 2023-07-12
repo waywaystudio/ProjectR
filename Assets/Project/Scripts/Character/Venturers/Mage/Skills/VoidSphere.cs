@@ -1,4 +1,3 @@
-using Common.Characters;
 using Common.Skills;
 
 namespace Character.Venturers.Mage.Skills
@@ -9,7 +8,8 @@ namespace Character.Venturers.Mage.Skills
         {
             base.Initialize();
 
-            Builder.Add(Section.Execute, "Fire", Fire);
+            Builder
+                .Add(Section.Execute, "Fire", Fire);
         }
         
         

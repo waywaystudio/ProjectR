@@ -153,8 +153,13 @@ MonoBehaviour:
   hitExecutor:
     hitExecutionList:
     - {fileID: 7212516511690731986}
-  combatParticles:
-  - {fileID: 1009467313934585329}
+  effector:
+    combatParticles:
+    - {fileID: 1009467313934585329}
+    combatSounds: []
+    combatImpulses: []
+    combatCameras: []
+    bulletTimes: []
   statusCode: 32210007
   type: 1
   icon: {fileID: 21300000, guid: 29c3b6836e20bf7478df17a473b26851, type: 3}

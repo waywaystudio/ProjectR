@@ -30,9 +30,8 @@ namespace Common.Characters.Behaviours
 
         private void OnEnable()
         {
-            Builder = new SequenceBuilder<float>(Sequencer);
             Invoker = new SequenceInvoker<float>(Sequencer);
-
+            Builder = new SequenceBuilder<float>(Sequencer);
             Builder.AddCondition("AbleToBehaviourOverride", () => BehaviourMask.CanOverride(Cb.BehaviourMask))
                    .AddActiveParam("PlayStunTimer", duration => Timer.Play(duration, Invoker.Complete))
                    .Add(Section.Active,"CancelPreviousBehaviour", () => cb.CurrentBehaviour?.TryToOverride(this))

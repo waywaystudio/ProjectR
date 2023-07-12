@@ -39,6 +39,13 @@ namespace Common.Effects
 
 
 #if UNITY_EDITOR
+        // for Odin drawer
+        private bool isEmptyCombatParticle => combatParticles.IsNullOrEmpty();
+        private bool isEmptyCombatSounds => combatSounds.IsNullOrEmpty();
+        private bool isEmptyCombatImpulses => combatImpulses.IsNullOrEmpty();
+        private bool isEmptyCombatCameras => combatCameras.IsNullOrEmpty();
+        private bool isEmptyBulletTimes => bulletTimes.IsNullOrEmpty();
+        
         public void GetEffectsInEditor(Transform transform)
         {
             transform.GetComponentsInChildren(combatParticles);

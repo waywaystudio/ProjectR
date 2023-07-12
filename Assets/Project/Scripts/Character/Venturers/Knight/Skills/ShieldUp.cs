@@ -1,10 +1,8 @@
 using System.Threading;
 using Common;
-using Common.Characters;
 using Common.Skills;
 using Cysharp.Threading.Tasks;
 using UnityEngine;
-using UnityEngine.Serialization;
 
 namespace Character.Venturers.Knight.Skills
 {
@@ -25,8 +23,15 @@ namespace Character.Venturers.Knight.Skills
                 .Add(Section.End, "StopTask", StopTask)
                 ;
         }
-        
-        
+
+
+        protected override void Dispose()
+        {
+            base.Dispose();
+
+            StopTask();
+        }
+
         private void AddEffect()
         {
             // 방어력++
@@ -59,7 +64,7 @@ namespace Character.Venturers.Knight.Skills
 
                 if (Cb.Resource.Value <= 0 || !Invoker.IsActive)
                 {
-                    Cancel();
+                    Invoker.Cancel();
                     return;
                 }
 

@@ -14,11 +14,10 @@ namespace Common.Effects.Cameras
         [SerializeField] private Section playSection;
         [SerializeField] private Section stopSection;
 
-        private float originalFov;
         private Tween cameraTween;
-        
-        [ShowInInspector]
+        private float originalFov;
         private bool activity = true;
+        
         public bool Activity
         {
             get => activity;

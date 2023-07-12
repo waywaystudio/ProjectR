@@ -62,9 +62,17 @@ MonoBehaviour:
     - {fileID: 8381592014088855974}
   fireExecutor:
     fireExecutionList: []
+  effector:
+    combatParticles:
+    - {fileID: 2564155264119885946}
+    - {fileID: 1687139065691591515}
+    combatSounds: []
+    combatImpulses: []
+    combatCameras: []
+    bulletTimes: []
   combatParticleList:
-  - {fileID: 623924940481411792}
-  - {fileID: 734599650619063638}
+  - {fileID: 0}
+  - {fileID: 0}
   combatSounds: []
   triggerCollider: {fileID: 6970810306177905816}
   maxPierceCount: 1
@@ -98,8 +106,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8127248947587070595}
-  - component: {fileID: 623924940481411792}
-  - component: {fileID: 734599650619063638}
   m_Layer: 9
   m_Name: Effects
   m_TagString: Untagged
@@ -118,54 +124,11 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 7011624800896568918}
   m_Father: {fileID: 601654701044516039}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &623924940481411792
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1303948791274092684}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fa06c267d17b6ea4e93ed2ccb016432a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  pool:
-    prefab: {fileID: 1550477657380252, guid: 93a3630b98737b146b5039212cf8d91f, type: 3}
-    maxCount: 1
-    syncObjectActivity: 1
-    singleInstanceOnly: 1
-  actionKey: InstantShotProjectileFlyingFx
-  parent: 1
-  takerPreposition: 0
-  playSection: 1
-  endSection: 4
---- !u!114 &734599650619063638
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1303948791274092684}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fa06c267d17b6ea4e93ed2ccb016432a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  pool:
-    prefab: {fileID: 191512, guid: 115303a3a5eed0244a8c9505b4c83b36, type: 3}
-    maxCount: 16
-    syncObjectActivity: 1
-    singleInstanceOnly: 0
-  actionKey: InstantShotProjectileHitParticle
-  parent: 2
-  takerPreposition: 3
-  playSection: 8
-  endSection: 0
 --- !u!1 &4061326640017754467
 GameObject:
   m_ObjectHideFlags: 0
@@ -241,3 +204,80 @@ MonoBehaviour:
     prefab: {fileID: 8333227002716821657, guid: bf08b1be8473341419b9acdbee5e0e7e, type: 3}
     maxCount: 8
     syncObjectActivity: 1
+--- !u!1 &7279846057111855463
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7011624800896568918}
+  - component: {fileID: 2564155264119885946}
+  - component: {fileID: 1687139065691591515}
+  m_Layer: 9
+  m_Name: CombatParticle
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7011624800896568918
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7279846057111855463}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 8127248947587070595}
+  m_RootOrder: -1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2564155264119885946
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7279846057111855463}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fa06c267d17b6ea4e93ed2ccb016432a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pool:
+    prefab: {fileID: 1550477657380252, guid: 93a3630b98737b146b5039212cf8d91f, type: 3}
+    maxCount: 1
+    syncObjectActivity: 1
+    singleInstanceOnly: 1
+  actionKey: InstantShotProjectileFlyingFx
+  parent: 1
+  takerPreposition: 0
+  playSection: 1
+  endSection: 4
+--- !u!114 &1687139065691591515
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7279846057111855463}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fa06c267d17b6ea4e93ed2ccb016432a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pool:
+    prefab: {fileID: 191512, guid: 115303a3a5eed0244a8c9505b4c83b36, type: 3}
+    maxCount: 16
+    syncObjectActivity: 1
+    singleInstanceOnly: 0
+  actionKey: InstantShotProjectileHitParticle
+  parent: 2
+  takerPreposition: 3
+  playSection: 8
+  endSection: 0

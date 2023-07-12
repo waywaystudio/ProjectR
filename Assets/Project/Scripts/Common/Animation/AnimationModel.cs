@@ -136,8 +136,7 @@ namespace Common.Animation
 
         private void Awake()
         {
-            skeletonAnimation ??= GetComponent<SkeletonAnimation>();
-            State             =   skeletonAnimation.AnimationState;
+            State = skeletonAnimation.AnimationState;
         }
 
         private void OnEnable() => skeletonAnimation.AnimationState.Event += EventHandler;

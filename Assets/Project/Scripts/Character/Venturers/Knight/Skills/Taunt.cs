@@ -1,4 +1,3 @@
-using Common.Characters;
 using Common.Skills;
 
 namespace Character.Venturers.Knight.Skills

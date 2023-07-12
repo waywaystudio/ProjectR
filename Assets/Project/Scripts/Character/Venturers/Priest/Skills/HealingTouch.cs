@@ -18,7 +18,7 @@ namespace Character.Venturers.Priest.Skills
         {
             base.Initialize();
             
-            cost.PayCondition.Add("HasTarget", HasTarget);
+            cost.PayCondition.Add("HasTarget", detector.HasTarget);
 
             Builder
                 .AddApplying("SavePredicatePosition", TargetHealing)
@@ -29,10 +29,11 @@ namespace Character.Venturers.Priest.Skills
 
         private void ExecuteHealingTouch()
         {
-            var validTakerList = detector.GetTakersInCircleRange(predicatePosition, 6f, 360f);
+            var validTakerList = detector.GetTakersInCircleRange(predicatePosition, Range, Angle);
             
             validTakerList?.ForEach(taker =>
             {
+                Taker = taker;
                 Invoker.Hit(taker);
             });
         }
@@ -40,15 +41,6 @@ namespace Character.Venturers.Priest.Skills
         private void TryConsumeLightWeaver()
         {
             Cb.DispelStatusEffect(DataIndex.LightWeaverStatusEffect);
-        }
-        
-        private bool HasTarget()
-        {
-            // TODO. ExecuteHealingTouch 함수와 중복
-            var takers = detector.GetTakersInCircleRange(predicatePosition, 6f, 360f);
-
-            return !takers.IsNullOrEmpty() 
-                   && takers[0].Alive.Value;
         }
 
         private void TargetHealing(Vector3 targetPosition)

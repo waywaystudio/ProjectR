@@ -27,7 +27,7 @@ namespace Character.Venturers.Ranger.Executions
             damageHit.DamageSpec.Change(StatType.Power, modifiedPower);
         }
         
-        protected override void CreateProjectile(ProjectileComponent projectile)
+        protected override void CreateProjectile(Common.Projectiles.Projectile projectile)
         {
             base.CreateProjectile(projectile);
 

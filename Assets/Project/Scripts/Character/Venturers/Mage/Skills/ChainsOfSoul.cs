@@ -1,7 +1,6 @@
 using System;
 using Character.Venturers.Mage.Traps;
 using Common;
-using Common.Characters;
 using Common.Skills;
 using DG.Tweening;
 using UnityEngine;
@@ -16,13 +15,23 @@ namespace Character.Venturers.Mage.Skills
         [SerializeField] private Ease drawEaseType;
         
         private readonly Collider[] colliderBuffers = new Collider[64];
-        
+        private Tween drawTween;
         
         public override void Initialize()
         {
             base.Initialize();
 
-            Builder.AddApplying("CondenseSoulShard", CondenseSoulShard);
+            Builder
+                .AddApplying("CondenseSoulShard", CondenseSoulShard)
+                .Add(Section.End, "StopTween", StopTween);
+        }
+        
+        
+        protected override void Dispose()
+        {
+            base.Dispose();
+
+            StopTween();
         }
 
         private void CondenseSoulShard(Vector3 targetPosition)
@@ -50,10 +59,18 @@ namespace Character.Venturers.Mage.Skills
             
             var drawDestination = PathfindingUtility.GetReachableStraightPosition(shardsPosition, drawDirection, drawDistance);
             
-            soulShard.transform
-                     .DOMove(drawDestination, drawDuration)
-                     .SetEase(drawEaseType)
-                     .OnComplete(() => callback?.Invoke());
+            drawTween = soulShard.transform
+                                 .DOMove(drawDestination, drawDuration)
+                                 .SetEase(drawEaseType)
+                                 .OnComplete(() => callback?.Invoke());
+        }
+
+        private void StopTween()
+        {
+            if (drawTween == null) return;
+            
+            drawTween.Kill();
+            drawTween = null;
         }
     }
 }

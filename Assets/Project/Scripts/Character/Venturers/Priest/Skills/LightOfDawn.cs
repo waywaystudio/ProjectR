@@ -23,7 +23,11 @@ namespace Character.Venturers.Priest.Skills
 
         private void ExecuteLightOfDawn()
         {
-            detector.GetTakers()?.ForEach(Invoker.Hit);
+            detector.GetTakers()?.ForEach(taker =>
+            {
+                Taker = taker;
+                Invoker.Hit(taker);
+            });
         }
         
         private void TryConsumeLightWeaver()

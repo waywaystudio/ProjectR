@@ -26,6 +26,13 @@ namespace Character.Venturers.Warrior.Skills
                 .Add(Section.Execute, "DeathblowExecute", ExecuteDeathblow)
                 .Add(Section.End, "StopTracking", StopTracking);
         }
+        
+        protected override void Dispose()
+        {
+            base.Dispose();
+
+            StopTracking();
+        }
 
 
         private void ExecuteDeathblow()

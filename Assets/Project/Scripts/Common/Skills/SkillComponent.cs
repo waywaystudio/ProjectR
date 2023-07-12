@@ -38,6 +38,8 @@ namespace Common.Skills
         public float Angle => detector.Angle;
 
         public CharacterBehaviour Cb => cb ??= GetComponentInParent<CharacterBehaviour>();
+        
+        [Sirenix.OdinInspector.ShowInInspector]
         public CombatSequence Sequence { get; } = new();
         public CombatSequenceBuilder Builder { get; private set; }
         public CombatSequenceInvoker Invoker { get; private set; }
@@ -58,8 +60,8 @@ namespace Common.Skills
                 .Add(Section.Active,"CancelPreviousBehaviour", () => cb.CurrentBehaviour?.TryToOverride(this))
                 .Add(Section.Active,"SetCurrentBehaviour", () => cb.CurrentBehaviour = this)
                 .Add(Section.Active, "StopPathfinding", Cb.Pathfinding.Stop)
+                .Add(Section.Release, "ReleaseAction", () => AbleToRelease.OnTrue(() => CastTimer.CallbackSection.GetCombatInvoker(Invoker)?.Invoke()))
                 .Add(Section.End,"CharacterStop", Cb.Stop)
-                .Add(Section.Release, "ReleaseAction", () => AbleToRelease.OnTrue(() => Sequence[CastTimer.CallbackSection]?.Invoke()))
                 ;
             
             detector.Initialize(Cb);
@@ -82,7 +84,8 @@ namespace Common.Skills
 
         protected virtual void Dispose()
         {
-            Invoker.End();
+            // Invoker.End();
+            
             Sequence.Clear();
             coolTimer.Dispose();
             castTimer.Dispose();

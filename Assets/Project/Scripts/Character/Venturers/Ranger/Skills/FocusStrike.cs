@@ -29,7 +29,7 @@ namespace Character.Venturers.Ranger.Skills
         {
             base.Dispose();
 
-            Provider.OnDamageProvided.Remove("AddAdrenalinByInstantShot");
+            StopTracking();
         }
 
         private void Fire()

@@ -30,7 +30,7 @@ namespace Common.Projectors
         /// </summary>
         private static readonly int FadeAmountShaderID = Shader.PropertyToID("_FadeAmount");
 
-        private CancellationTokenSource cts;
+        protected CancellationTokenSource Cts;
         private Tween bodyProgressTween;
         private GameObject BodyDecalObject => bodyProjector.gameObject;
 
@@ -55,15 +55,21 @@ namespace Common.Projectors
             StopProjection();
         }
         
+        protected override void Dispose()
+        {
+            base.Dispose();
+            
+            Cts?.Cancel();
+            Cts = null;
+        }
+        
 
         protected override void PlayProjection()
         {
             DecalObject.SetActive(true);
             BodyDecalObject.SetActive(true);
-            
-            cts = new CancellationTokenSource();
-            
-            PlayProjector(Provider.CastingWeight, cts).Forget();
+
+            PlayProjector(Provider.CastingWeight).Forget();
         }
 
         protected override void StopProjection()
@@ -71,15 +77,17 @@ namespace Common.Projectors
             projector.material.SetFloat(FillProgressShaderID, 0f);
             bodyProjector.material.SetFloat(FillProgressShaderID, 0f);
             
-            cts?.Cancel();
-            cts = null;
+            Cts?.Cancel();
+            Cts = null;
             
             DecalObject.SetActive(false);
             BodyDecalObject.SetActive(false);
         }
         
-        protected virtual async UniTaskVoid PlayProjector(float duration, CancellationTokenSource cts)
+        protected virtual async UniTaskVoid PlayProjector(float duration)
         {
+            Cts = new CancellationTokenSource();
+            
             var timer = 0f;
 
             while (timer < duration)
@@ -89,7 +97,7 @@ namespace Common.Projectors
                 projector.material.SetFloat(FillProgressShaderID, Mathf.Clamp01(-1f + timer * 2));
                 bodyProjector.material.SetFloat(FillProgressShaderID, Mathf.Clamp01(timer * 2));
                 
-                await UniTask.Yield(cts.Token);
+                await UniTask.Yield(Cts.Token);
             }
         }
         

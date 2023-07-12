@@ -1,4 +1,3 @@
-using Common.Characters;
 using Common.Skills;
 
 namespace Character.Venturers.Priest.Skills
@@ -22,7 +21,11 @@ namespace Character.Venturers.Priest.Skills
         
         private void ExecuteRapture()
         {
-            detector.GetTakers()?.ForEach(Invoker.Hit);
+            detector.GetTakers()?.ForEach(taker =>
+            {
+                Taker = taker;
+                Invoker.Hit(taker);
+            });
         }
     }
 }

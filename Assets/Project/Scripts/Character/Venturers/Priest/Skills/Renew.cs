@@ -1,5 +1,4 @@
 using Common;
-using Common.Characters;
 using Common.Skills;
 using UnityEngine;
 
@@ -27,11 +26,11 @@ namespace Character.Venturers.Priest.Skills
         
         private void ExecuteRenew()
         {
-            var nearestTarget = detector.GetNearestTarget(predicatePosition, Range);
+            Taker = detector.GetNearestTarget(predicatePosition, Range);
 
-            if (nearestTarget is null) return;
+            if (Taker is null) return;
             
-            Invoker.Hit(nearestTarget);
+            Invoker.Hit(Taker);
         }
         
         private void TryConsumeLightWeaver()

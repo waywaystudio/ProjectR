@@ -13,9 +13,15 @@ namespace Common.Skills
         public void Initialize(SkillComponent skill)
         {
             skill.Builder
-                 .Add(Section.Active, "SkillCasting", () => Play(skill.CastingWeight, CallbackSection.GetInvokeAction(skill)))
-                 .Add(callbackSection, "StopCastTimer", Stop)
+                 .Add(Section.Active, "SkillCasting", () => Play(skill.CastingWeight, CallbackSection.GetCombatInvoker(skill.Invoker)))
                  .Add(Section.End, "StopCastTimer",  Stop);
+
+            if (callbackSection != Section.None)
+            {
+                 skill.Builder
+                      .Add(callbackSection, "StopCastTimer", Stop);
+                 
+            }
         }
 
 

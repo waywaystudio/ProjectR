@@ -1,12 +1,9 @@
-using System.Collections.Generic;
-using Common;
-using Common.Projectiles;
 using UnityEngine;
 
-namespace Character.Venturers.Ranger.Projectile
+namespace Common.Projectiles
 {
     [RequireComponent(typeof(SphereCollider))]
-    public class ExplodeProjectile : ProjectileComponent
+    public class ExplodeProjectile : Common.Projectiles.Projectile
     {
         // [SerializeField] private SphereCollider triggerCollider;
         // [SerializeField] private float radius;

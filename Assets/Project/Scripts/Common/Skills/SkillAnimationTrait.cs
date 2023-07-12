@@ -30,7 +30,7 @@ namespace Common.Skills
             HasteRetriever += () => 1.0f + skill.Haste;
             
             skill.Builder
-                 .Add(Section.Active,"PlayAnimation",() => PlayAnimation(skill));
+                 .Add(Section.Active,"PlayAnimation",() => PlayAnimation(skill.Invoker));
 
             if (hasExecuteEvent)
             {
@@ -44,22 +44,12 @@ namespace Common.Skills
                 skill.Builder
                      .Add(Section.Execute, "CastingCompleteAnimation",() => PlayCompleteCastingAnimation(skill));
             }
-
-            // if (skillType is SkillType.Charging or SkillType.Holding)
-            // {
-            //     skill.Builder
-            //          .Add(Section.Release, "ReleaseAction", () =>
-            //          {
-            //              if (!skill.Invoker.IsActive) return;
-            //              skill.Sequence[callbackSection].Invoke();
-            //          });
-            // }
         }
 
 
-        private void PlayAnimation(SkillComponent skill)
+        private void PlayAnimation(CombatSequenceInvoker invoker)
         {
-            var callback = callbackSection.GetInvokeAction(skill);
+            var callback = callbackSection.GetCombatInvoker(invoker);
 
             if (animationKey == "None")
             {

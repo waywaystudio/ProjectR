@@ -23,9 +23,9 @@ namespace Character.Venturers.Ranger.Skills
                 if (!taker.StatusEffectTable
                           .TryGetEffect<ArcaneArrowStatusEffect>(DataIndex.ArcaneArrowStatusEffect, out var effect)) return;
 
-                var stack = effect.Stack;
+                Taker = taker;
 
-                for (var i = 0; i < stack; i++)
+                for (var i = 0; i < effect.Stack; i++)
                 {
                     Invoker.Hit(taker);
                 }

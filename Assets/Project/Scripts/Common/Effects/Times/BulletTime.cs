@@ -76,7 +76,6 @@ namespace Common.Effects.Times
             builder.Add(Section.End, actionKey, ReturnTime);
         }
 
-        [Button]
         public void PlayBulletTime()
         {
             if (!activity) return;
@@ -89,7 +88,6 @@ namespace Common.Effects.Times
                                      .SetUpdate(true);
         }
 
-        [Button]
         public void ReturnTime()
         {
             if (bulletTimeTween != null)
@@ -109,13 +107,10 @@ namespace Common.Effects.Times
 
         private void OnDestroy()
         {
-            if (bulletTimeTween != null)
-            {
-                bulletTimeTween.Kill();
-                bulletTimeTween = null;
-            }
-
-            Time.timeScale = 1f;
+            if (bulletTimeTween == null) return;
+            
+            bulletTimeTween?.Kill();
+            bulletTimeTween = null;
         }
     }
 }

@@ -1,20 +1,17 @@
-using System.Collections.Generic;
-using Common.Effects.Particles;
-using Common.Effects.Sounds;
+using Common.Effects;
 using Common.Execution;
 using UnityEngine;
 
 namespace Common.Projectiles
 {
-    public class ProjectileComponent : MonoBehaviour, IActionSender, ICombatSequence, IHasTaker, IEditable
+    public class Projectile : MonoBehaviour, IActionSender, ICombatSequence, IHasTaker, IEditable
     {
         [SerializeField] protected DataIndex projectileCode;
         [SerializeField] protected LayerMask targetLayer;
-        [SerializeField] protected Trajectory trajectory;
         [SerializeField] protected HitExecutor hitExecutor;
         [SerializeField] protected FireExecutor fireExecutor;
-        [SerializeField] protected List<CombatParticle> combatParticleList;
-        [SerializeField] protected List<CombatSound> combatSounds;
+        [SerializeField] protected Effector effector;
+        [SerializeField] protected Trajectory trajectory;
         
         public ICombatProvider Provider { get; protected set; }
         public ICombatTaker Taker { get; protected set; }
@@ -33,25 +30,20 @@ namespace Common.Projectiles
         public virtual void Initialize(ICombatProvider provider)
         {
             Provider = provider;
+            Invoker  = new CombatSequenceInvoker(Sequence);
+            Builder  = new CombatSequenceBuilder(Sequence);
 
-            Invoker = new CombatSequenceInvoker(Sequence);
-            Builder = new CombatSequenceBuilder(Sequence);
-            Builder
-                .Add(Section.End, "ProjectileObjectActiveFalse", () => gameObject.SetActive(false));
-            
             trajectory.Initialize(this);
             hitExecutor.Initialize(Sequence, this);
             fireExecutor.Initialize(Sequence, this);
-            
-            combatParticleList.ForEach(particle => particle.Initialize(Sequence, this));
-            combatSounds?.ForEach(cs => cs.Initialize(Sequence));
+            effector.Initialize(Sequence, this);
         }
         
 
         protected virtual void Dispose()
         {
-            Sequence.Clear();
             trajectory.Dispose();
+            Sequence.Clear();
         }
 
         private void OnDestroy()
@@ -65,9 +57,7 @@ namespace Common.Projectiles
         {
             hitExecutor.GetExecutionInEditor(transform);
             fireExecutor.GetExecutionInEditor(transform);
-            
-            GetComponentsInChildren(combatParticleList);
-            GetComponentsInChildren(combatSounds);
+            effector.GetEffectsInEditor(transform);
         }
 #endif
     }

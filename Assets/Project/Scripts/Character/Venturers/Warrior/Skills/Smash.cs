@@ -1,4 +1,3 @@
-using Common.Characters;
 using Common.Skills;
 
 namespace Character.Venturers.Warrior.Skills
@@ -18,7 +17,11 @@ namespace Character.Venturers.Warrior.Skills
 
         private void SmashAttack()
         {
-            detector.GetTakers()?.ForEach(Invoker.Hit);
+            detector.GetTakers()?.ForEach(taker =>
+            {
+                Taker = taker;
+                Invoker.Hit(taker);
+            });
         }
     }
 }

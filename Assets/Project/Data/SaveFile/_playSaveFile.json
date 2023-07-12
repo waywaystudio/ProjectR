@@ -41,7 +41,7 @@
 	},
 	"LoadStonehelm.KillCount" : {
 		"__type" : "int",
-		"value" : 1
+		"value" : 0
 	},
 	"LadySerenavaine.KillCount" : {
 		"__type" : "int",
@@ -73,7 +73,7 @@
 	},
 	"GrowMaterialSerializeKey" : {
 		"__type" : "System.Collections.Generic.Dictionary`2[[Common.GrowMaterialType, ProjectR.Common, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null],[System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]],mscorlib",
-		"value" : {52000102:3,52000303:1,52000001:50
+		"value" : {
 		}
 	},
 	"Warrior.Top" : {
@@ -168,7 +168,7 @@
 		"__type" : "Serialization.SaveInfo,ProjectR.Core",
 		"value" : {
 			"filename" : "_playSaveFile",
-			"saveTime" : "2023.07.12.18.18.03"
+			"saveTime" : "2023.07.13.04.05.45"
 		}
 	}
 }

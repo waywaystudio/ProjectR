@@ -1,6 +1,5 @@
 using System.Threading;
 using Common;
-using Common.Characters;
 using Common.Skills;
 using Cysharp.Threading.Tasks;
 using UnityEngine;
@@ -18,9 +17,18 @@ namespace Character.Venturers.Warrior.Skills
         {
             base.Initialize();
 
-            Builder.AddCondition("FullResource", FullResource)
-                           .Add(Section.Active, "ActiveBuff", AddEffect)
-                           .Add(Section.Active, "ConsumeResource", () => ConsumeResource().Forget());
+            Builder
+                .AddCondition("FullResource", FullResource)
+                .Add(Section.Active, "ActiveBuff", AddEffect)
+                .Add(Section.Active, "ConsumeResource", () => ConsumeResource().Forget())
+                .Add(Section.End, "StopTask", StopTask);
+        }
+        
+        protected override void Dispose()
+        {
+            base.Dispose();
+
+            StopTask();
         }
 
 
@@ -84,7 +92,11 @@ namespace Character.Venturers.Warrior.Skills
                 await UniTask.Yield(cts.Token);
             }
         }
-        
-        private void StopTask() => cts?.Cancel();
+
+        private void StopTask()
+        {
+            cts?.Cancel();
+            cts = null;
+        }
     }
 }

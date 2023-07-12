@@ -1,4 +1,3 @@
-using Common.Characters;
 using Common.Skills;
 using UnityEngine;
 
@@ -22,7 +21,11 @@ namespace Character.Venturers.Rogue.Skills
 
         private void DoubleStabAttack()
         {
-            detector.GetTakers()?.ForEach(Invoker.Hit);
+            detector.GetTakers()?.ForEach(taker =>
+            {
+                Taker = taker;
+                Invoker.Hit(taker);
+            });
         }
         
         private void PhantomsDoubleStab(Vector3 targetPosition)

@@ -26,6 +26,13 @@ namespace Character.Venturers.Rogue.Skills
                 .Add(Section.Cancel, "CancelTween", () => Cb.Pathfinding.Cancel())
                 .Add(Section.End, "StopTask", StopTask);
         }
+        
+        protected override void Dispose()
+        {
+            base.Dispose();
+
+            StopTask();
+        }
 
 
         private void Dashing(Vector3 targetPosition)
@@ -47,16 +54,17 @@ namespace Character.Venturers.Rogue.Skills
 
             while (Invoker.IsActive)
             {
-                var collidedTarget = detector.GetTakersInCircleRange(Range, Angle);
+                var collidedTaker = detector.GetTakersInCircleRange(Range, Angle);
 
-                if (collidedTarget.HasElement())
+                if (collidedTaker.HasElement())
                 {
-                    collidedTarget.ForEach(target =>
+                    collidedTaker.ForEach(taker =>
                     {
-                        if (!target.Alive.Value || takerListPerAction.Contains(target)) return;
+                        if (!taker.Alive.Value || takerListPerAction.Contains(taker)) return;
                         
-                        takerListPerAction.Add(target);
-                        Invoker.Hit(target);
+                        takerListPerAction.Add(taker);
+                        Taker = taker;
+                        Invoker.Hit(taker);
                     });
                 }
 

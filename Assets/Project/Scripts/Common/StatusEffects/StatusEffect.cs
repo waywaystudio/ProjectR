@@ -1,5 +1,4 @@
-using System.Collections.Generic;
-using Common.Effects.Particles;
+using Common.Effects;
 using Common.Execution;
 using UnityEngine;
 
@@ -8,7 +7,7 @@ namespace Common.StatusEffects
     public abstract class StatusEffect : MonoBehaviour, IActionSender, IHasTaker, ICombatSequence, IEditable
     {
         [SerializeField] protected HitExecutor hitExecutor;
-        [SerializeField] protected List<CombatParticle> combatParticles;
+        [SerializeField] protected Effector effector;
         [SerializeField] protected DataIndex statusCode;
         [SerializeField] protected StatusEffectType type;
         [SerializeField] protected Sprite icon;
@@ -43,7 +42,7 @@ namespace Common.StatusEffects
                 .Add(Section.End, "UnregisterTable", RemoveTable);
             
             hitExecutor.Initialize(Sequence, this);
-            combatParticles?.ForEach(cp => cp.Initialize(Sequence, this));
+            effector.Initialize(Sequence, this);
         }
         
 
@@ -89,9 +88,8 @@ namespace Common.StatusEffects
         public virtual void EditorSetUp()
         {
             hitExecutor.GetExecutionInEditor(transform);
-            
-            GetComponentsInChildren(combatParticles);
-            
+            effector.GetEffectsInEditor(transform);
+
             var statusEffectData = Database.StatusEffectSheetData(DataIndex);
 
             icon     = Database.SpellSpriteData.Get(DataIndex);

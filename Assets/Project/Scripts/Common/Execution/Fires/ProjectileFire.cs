@@ -6,7 +6,7 @@ namespace Common.Execution.Fires
     public class ProjectileFire : FireExecution
     {
         [SerializeField] private Transform muzzle;
-        [SerializeField] private Pool<ProjectileComponent> pool;
+        [SerializeField] private Pool<Projectile> pool;
 
         private Vector3 MuzzlePosition => muzzle 
             ? muzzle.position 
@@ -25,7 +25,7 @@ namespace Common.Execution.Fires
         }
         
 
-        protected virtual void CreateProjectile(ProjectileComponent projectile)
+        protected virtual void CreateProjectile(Projectile projectile)
         {
             projectile.transform.position = MuzzlePosition;
             projectile.Initialize(Sender.Provider);
@@ -33,7 +33,7 @@ namespace Common.Execution.Fires
                       .Add(Section.End,"ReturnToPool", () => ReturnToPool(projectile));
         }
 
-        private void ReturnToPool(ProjectileComponent projectile)
+        private void ReturnToPool(Projectile projectile)
         {
             projectile.transform.position = MuzzlePosition;
             projectile.transform.SetParent(transform, true);

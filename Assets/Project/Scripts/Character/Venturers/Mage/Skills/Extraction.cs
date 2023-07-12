@@ -20,7 +20,14 @@ namespace Character.Venturers.Mage.Skills
                 .Add(Section.Execute, "SetIsActiveTrue", () => Invoker.IsActive = false)
                 .Add(Section.End, "StopTracking", StopTracking);
         }
+        
 
+        protected override void Dispose()
+        {
+            base.Dispose();
+
+            StopTracking();
+        }
 
         private async UniTaskVoid ChannelingExtraction(Vector3 targetPosition)
         {
@@ -35,9 +42,10 @@ namespace Character.Venturers.Mage.Skills
                 
             while (true)
             {
-                var validTakerList = detector.GetTakersInCircleRange(validPosition, Range, 360f);
+                var validTakerList = detector.GetTakersInCircleRange(validPosition, Range, Angle);
                 validTakerList?.ForEach(taker =>
                 {
+                    Taker = taker;
                     Invoker.Hit(taker);
                     Invoker.Fire(taker.Position);
                 });

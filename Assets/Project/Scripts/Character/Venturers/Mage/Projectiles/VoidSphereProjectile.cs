@@ -9,7 +9,7 @@ using UnityEngine;
 
 namespace Character.Venturers.Mage.Projectiles
 {
-    public class VoidSphereProjectile : ProjectileComponent
+    public class VoidSphereProjectile : Projectile
     {
         [SerializeField] private DamageHit damageExecutor;
         [SerializeField] private SphereCollider triggerCollider;

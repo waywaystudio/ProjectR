@@ -26,9 +26,18 @@ namespace Character.Venturers.Ranger.Projector
                 .Add(Section.End, "ShaderProgression", StopTween);
         }
         
-        
-        protected override async UniTaskVoid PlayProjector(float duration, CancellationTokenSource cts)
+        protected override void Dispose()
         {
+            base.Dispose();
+
+            StopTween();
+        }
+        
+        
+        protected override async UniTaskVoid PlayProjector(float duration)
+        {
+            Cts = new CancellationTokenSource();
+            
             var timer = 0f;
             var chargingLength = fullChargingScale * length;
             var gap = chargingLength - length;
@@ -55,7 +64,7 @@ namespace Character.Venturers.Ranger.Projector
                     colorTrigger = false;
                 }
                 
-                await UniTask.Yield(cts.Token);
+                await UniTask.Yield(Cts.Token);
             }
         }
         

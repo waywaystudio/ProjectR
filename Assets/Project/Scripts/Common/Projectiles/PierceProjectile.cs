@@ -1,11 +1,9 @@
-using Common;
-using Common.Projectiles;
 using UnityEngine;
 
-namespace Character.Venturers.Ranger.Projectile
+namespace Common.Projectiles
 {
     [RequireComponent(typeof(SphereCollider))]
-    public class PierceProjectile : ProjectileComponent
+    public class PierceProjectile : Projectile
     {
         [SerializeField] private SphereCollider triggerCollider;
         [SerializeField] private int maxPierceCount = 1;

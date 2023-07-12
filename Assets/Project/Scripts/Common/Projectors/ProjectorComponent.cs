@@ -56,7 +56,7 @@ namespace Common.Projectors
 
         protected virtual void Dispose()
         {
-            // Sequencer.Clear();
+            StopProjectorTween();
         }
 
         protected virtual void PlayProjection()
@@ -70,14 +70,18 @@ namespace Common.Projectors
 
         protected virtual void StopProjection()
         {
-            if (ProgressTween != null)
-            {
-                ProgressTween.Kill();
-                ProgressTween = null;
-            }
+            StopProjectorTween();
 
             projector.material.SetFloat(FillProgressShaderID, 0f);
             DecalObject.SetActive(false);
+        }
+
+        private void StopProjectorTween()
+        {
+            if (ProgressTween == null) return;
+            
+            ProgressTween.Kill();
+            ProgressTween = null;
         }
 
         private void OnDestroy()
