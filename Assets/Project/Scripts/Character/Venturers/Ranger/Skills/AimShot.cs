@@ -27,8 +27,8 @@ namespace Character.Venturers.Ranger.Skills
                 .Add(Section.Active, "Charging", () => PlayChargingProgress().Forget())
                 .Add(Section.Release, "AimShotRelease", AimShotRelease)
                 .Add(Section.Cancel, "StopTracking", Stop)
-                .Add(Section.Execute, "Fire", Fire)
                 .Add(Section.Execute, "Invoker.ActiveTrue", () => Invoker.IsActive = false)
+                .Add(Section.Execute, "Fire", Fire)
                 .Add(Section.End, "StopTracking", Stop)
                 .Remove(Section.Release, "ReleaseAction");
         }
@@ -69,7 +69,15 @@ namespace Character.Venturers.Ranger.Skills
             if (!Invoker.IsActive) return;
 
             StopProgression();
-            Invoker.Execute();
+
+            if (ExecuteProgression / CastingWeight <= 0.5f)
+            {
+                Cancel();
+            }
+            else
+            {
+                Invoker.Execute();
+            }
         }
 
         private async UniTaskVoid PlayTracking()

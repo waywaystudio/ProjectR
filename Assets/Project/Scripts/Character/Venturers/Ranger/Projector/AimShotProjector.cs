@@ -47,10 +47,10 @@ namespace Character.Venturers.Ranger.Projector
                 bodyProjector.material.SetFloat(FillProgressShaderID, Mathf.Clamp01(timer * 2));
 
                 // Over HalfProgression
-                if (timer > duration / 3f && colorTrigger)
+                if (timer > duration * 0.25f && colorTrigger)
                 {
-                    headColorTween = projector.material.DOColor(chargingColor, FillColorShaderID, 0.2f);
-                    bodyColorTween = bodyProjector.material.DOColor(chargingColor, FillColorShaderID, 0.2f);
+                    headColorTween = projector.material.DOColor(chargingColor, FillColorShaderID, 0.25f);
+                    bodyColorTween = bodyProjector.material.DOColor(chargingColor, FillColorShaderID, 0.25f);
 
                     colorTrigger = false;
                 }

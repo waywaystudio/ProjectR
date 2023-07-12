@@ -503,6 +503,22 @@ PrefabInstance:
       value: AimShotProjector
       objectReference: {fileID: 0}
     - target: {fileID: 1776650888191301965, guid: 20cb5bf9bda9a17428f3cbed5b568e92, type: 3}
+      propertyPath: length
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 1776650888191301965, guid: 20cb5bf9bda9a17428f3cbed5b568e92, type: 3}
+      propertyPath: fillColor.b
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1776650888191301965, guid: 20cb5bf9bda9a17428f3cbed5b568e92, type: 3}
+      propertyPath: fillColor.g
+      value: 0.01978819
+      objectReference: {fileID: 0}
+    - target: {fileID: 1776650888191301965, guid: 20cb5bf9bda9a17428f3cbed5b568e92, type: 3}
+      propertyPath: fillColor.r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1776650888191301965, guid: 20cb5bf9bda9a17428f3cbed5b568e92, type: 3}
       propertyPath: chargingColor.a
       value: 0.90588236
       objectReference: {fileID: 0}
