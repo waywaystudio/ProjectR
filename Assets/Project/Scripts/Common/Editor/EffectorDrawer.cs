@@ -51,6 +51,20 @@ namespace Common.Editor
                 attributes.Add(lds);
             }
             
+            if (member.Name == "combatPostProcesses")
+            {
+                attributes.Add(new TitleGroupAttribute("Effector"));
+                attributes.Add(new HideIfAttribute("isEmptyCombatPostProcesses"));
+                attributes.Add(lds);
+            }
+            
+            if (member.Name == "hitPauses")
+            {
+                attributes.Add(new TitleGroupAttribute("Effector"));
+                attributes.Add(new HideIfAttribute("isEmptyHitPauses"));
+                attributes.Add(lds);
+            }
+            
             if (member.Name == "bulletTimes")
             {
                 attributes.Add(new TitleGroupAttribute("Effector"));

@@ -90,11 +90,10 @@ namespace Common.Effects.Times
 
         public void ReturnTime()
         {
-            if (bulletTimeTween != null)
-            {
-                bulletTimeTween.Kill();
-                bulletTimeTween = null;
-            }
+            if (bulletTimeTween == null) return;
+            
+            bulletTimeTween.Kill();
+            bulletTimeTween = null;
             
             DOTween.To(() => Time.timeScale, 
                        x => Time.timeScale = x, 
