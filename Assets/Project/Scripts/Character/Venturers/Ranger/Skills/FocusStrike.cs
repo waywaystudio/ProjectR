@@ -70,7 +70,7 @@ namespace Character.Venturers.Ranger.Skills
             {
                 while (true)
                 {
-                    if (!MainManager.Input.TryGetMousePosition(out var mousePosition)) mousePosition = Vector3.zero;
+                    if (!MainManager.oldInput.TryGetMousePosition(out var mousePosition)) mousePosition = Vector3.zero;
                 
                     venturer.Rotate(mousePosition);
                     await UniTask.Delay(100, DelayType.DeltaTime, PlayerLoopTiming.Update, cts.Token);

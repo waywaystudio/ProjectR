@@ -85,6 +85,56 @@ Transform:
   m_Father: {fileID: 234500611213636336}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1766449097276184285
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3450399504299259512}
+  - component: {fileID: 1987405675443238403}
+  m_Layer: 0
+  m_Name: Hits
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3450399504299259512
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1766449097276184285}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 234500611213636336}
+  m_RootOrder: -1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1987405675443238403
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1766449097276184285}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 714e87efbca5f5e47a36249aecf0b6f2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  group: 1
+  actionCode: 32210010
+  pool:
+    prefab: {fileID: 8333227002716821657, guid: aa79f68618e601e49bc32ebe489072e6, type: 3}
+    maxCount: 2
+    syncObjectActivity: 1
 --- !u!1 &2546753074928525639
 GameObject:
   m_ObjectHideFlags: 0
@@ -210,10 +260,11 @@ Transform:
   m_Children:
   - {fileID: 3246402429440365596}
   - {fileID: 7679244583707568947}
+  - {fileID: 3450399504299259512}
   - {fileID: 7221708945386366489}
   - {fileID: 5853087751410363707}
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &7857890816460160637
 MonoBehaviour:
@@ -231,7 +282,8 @@ MonoBehaviour:
   behaviourMask: 64
   icon: {fileID: 21300000, guid: 6333a2f5c9035a145a090be74673e08c, type: 3}
   hitExecutor:
-    hitExecutionList: []
+    hitExecutionList:
+    - {fileID: 1987405675443238403}
   fireExecutor:
     fireExecutionList: []
   effector:
@@ -254,12 +306,12 @@ MonoBehaviour:
     animationKey: None
     castCompleteAnimationKey: 
     isLoop: 0
-    hasExecuteEvent: 0
+    hasExecuteEvent: 1
     animationPlaySpeed: 1
     skillType: 1
     callbackSection: 0
   coolTimer:
-    coolTime: 1
+    coolTime: 0
     invokeSection: 1
   castTimer:
     castingTime: 0
@@ -270,5 +322,3 @@ MonoBehaviour:
   priority: 10
   description: "\uC790\uC6D0\uC744 \uBAA8\uB450 \uC18C\uBAA8\uD558\uC5EC \"\uBD84\uB178\"\uC0C1\uD0DC\uB85C
     \uB3CC\uC785\uD55C\uB2E4"
-  additionalHaste: 0.8
-  resourceConsumePerSecond: 10

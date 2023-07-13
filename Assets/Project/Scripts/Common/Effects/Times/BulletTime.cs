@@ -1,6 +1,4 @@
-using System;
 using DG.Tweening;
-using Sirenix.OdinInspector;
 using UnityEngine;
 
 namespace Common.Effects.Times
@@ -90,17 +88,22 @@ namespace Common.Effects.Times
 
         public void ReturnTime()
         {
-            if (bulletTimeTween == null) return;
-            
-            bulletTimeTween.Kill();
-            bulletTimeTween = null;
-            
-            DOTween.To(() => Time.timeScale, 
-                       x => Time.timeScale = x, 
-                       1f, 
-                       returnDuration)
-                   .SetEase(Ease.InOutQuad) // Change this to any easing function you prefer
-                   .SetUpdate(true);
+            bulletTimeTween?.Kill();
+
+            if (returnDuration == 0.0f)
+            {
+                Time.timeScale  = 1f;
+                bulletTimeTween = null;
+            }
+            else
+            {
+                bulletTimeTween = DOTween.To(() => Time.timeScale, 
+                                             x => Time.timeScale = x, 
+                                             1f, 
+                                             returnDuration)
+                                         .SetEase(Ease.InOutQuad) // Change this to any easing function you prefer
+                                         .SetUpdate(true);
+            }
         }
 
 

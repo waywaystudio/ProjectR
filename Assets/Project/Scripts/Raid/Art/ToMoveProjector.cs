@@ -11,7 +11,7 @@ namespace Raid.Art
         {
             if (controller.IsNullOrDestroyed()) return;
             
-            if (!MainManager.Input.TryGetGroundPosition(out var groundPosition)) return;
+            if (!MainManager.oldInput.TryGetMousePosition(out var groundPosition)) return;
 
             transform.position = groundPosition;
             controller.FillOnce(0.3f);

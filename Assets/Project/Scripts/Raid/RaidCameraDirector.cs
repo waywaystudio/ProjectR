@@ -36,7 +36,7 @@ namespace Raid
 
         private void Awake()
         {
-            MainManager.Input.MainCamera = mainCamera;
+            MainManager.oldInput.MainCamera = mainCamera;
         }
 
 

@@ -18,8 +18,8 @@ namespace Lobby
         {
             if (focusedAdventurer.IsNullOrEmpty()) return;
             if (!focusedAdventurer.isActiveAndEnabled) return;
-            if (!MainManager.Input.TryGetMousePosition(out var mousePosition)) return;
-            if (MainManager.Input.IsMouseOnUI) return;
+            if (!MainManager.oldInput.TryGetMousePosition(out var mousePosition)) return;
+            if (MainManager.oldInput.IsMouseOnUI) return;
 
             focusedAdventurer.Run(mousePosition);
         }
@@ -36,21 +36,21 @@ namespace Lobby
         
         private void Register()
         {
-            if (MainManager.Input.TryGetAction(BindingCode.LeftMouse, out var moveAction))
+            if (MainManager.oldInput.TryGetAction(BindingCode.LeftMouse, out var moveAction))
                 moveAction.started += Move;
             
-            if (MainManager.Input.TryGetAction(BindingCode.A, out var interactAction))
+            if (MainManager.oldInput.TryGetAction(BindingCode.A, out var interactAction))
                 interactAction.started += Interact;
         }
 
         private void Unregister()
         {
-            if (MainManager.Input is null) return;
+            if (MainManager.oldInput is null) return;
             
-            if (MainManager.Input.TryGetAction(BindingCode.LeftMouse, out var moveAction))
+            if (MainManager.oldInput.TryGetAction(BindingCode.LeftMouse, out var moveAction))
                 moveAction.started -= Move;
             
-            if (MainManager.Input.TryGetAction(BindingCode.A, out var interactAction))
+            if (MainManager.oldInput.TryGetAction(BindingCode.A, out var interactAction))
                 interactAction.started -= Interact;
         }
 

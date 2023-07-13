@@ -1,17 +1,15 @@
 using Singleton;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace Manager
 {
-    using Audio;
     using Input;
     
     public class MainManager : MonoSingleton<MainManager>
     {
-        [SerializeField] private AudioManager audioManager;
-        [SerializeField] private InputManager inputManager;
+        [FormerlySerializedAs("inputManager")] [SerializeField] private OldInputManager oldInputManager;
 
-        public static AudioManager Audio => Instance ? Instance.audioManager : null;
-        public static InputManager Input => Instance ? Instance.inputManager : null;
+        public static OldInputManager oldInput => Instance ? Instance.oldInputManager : null;
     }
 }

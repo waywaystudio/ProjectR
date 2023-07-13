@@ -88,6 +88,14 @@ MonoBehaviour:
     iconFileName: DivineInfusionStatusEffect Sprite
     valueList:
     - 0.2
+  - id: 32210010
+    name: BloodFuryStatusEffect
+    isBuff: 1
+    targetLayer: ally
+    duration: 0
+    iconFileName: WarriorsFury Sprite
+    valueList:
+    - 0.2
   - id: 32220001
     name: IgnitionStatusEffect
     isBuff: 0

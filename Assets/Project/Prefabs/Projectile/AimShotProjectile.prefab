@@ -51,11 +51,6 @@ MonoBehaviour:
   targetLayer:
     serializedVersion: 2
     m_Bits: 256
-  trajectory:
-    trajectoryType: 2
-    speed: 50
-    distance: 40
-    tweenType: 1
   hitExecutor:
     hitExecutionList:
     - {fileID: 4025622706656194699}
@@ -69,11 +64,13 @@ MonoBehaviour:
     combatSounds: []
     combatImpulses: []
     combatCameras: []
+    combatPostProcesses: []
+    hitPauses: []
     bulletTimes: []
-  combatParticleList:
-  - {fileID: 0}
-  - {fileID: 0}
-  combatSounds: []
+  trajectory:
+    trajectoryType: 2
+    speed: 50
+    distance: 40
   triggerCollider: {fileID: 6970810306177905816}
   maxPierceCount: 0
 --- !u!135 &6970810306177905816
@@ -109,7 +106,7 @@ GameObject:
   - component: {fileID: 2723945557294241972}
   - component: {fileID: 5156148425549478967}
   m_Layer: 9
-  m_Name: CombatParticles
+  m_Name: Particles
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

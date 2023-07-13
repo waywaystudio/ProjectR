@@ -198,6 +198,7 @@ public enum DataIndex
 	InfusionStatusEffect = 32210007,
 	LightWeaverStatusEffect = 32210008,
 	DivineInfusionStatusEffect = 32210009,
+	BloodFuryStatusEffect = 32210010,
 	IgnitionStatusEffect = 32220001,
 	HorrorStatusEffect = 32220002,
 

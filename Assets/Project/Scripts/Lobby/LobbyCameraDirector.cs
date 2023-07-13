@@ -15,7 +15,7 @@ namespace Lobby
         public void Initialize(Transform adventurer)
         {
             cameraBrain                  = mainCamera.GetComponent<CinemachineBrain>();
-            MainManager.Input.MainCamera = mainCamera;
+            MainManager.oldInput.MainCamera = mainCamera;
             
             playerCamera.Follow = adventurer;
             playerCamera.LookAt = adventurer;

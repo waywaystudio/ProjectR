@@ -5,7 +5,7 @@ using UnityEngine.InputSystem;
 
 namespace Manager.Input
 {
-    public class InputManager : MonoBehaviour
+    public class OldInputManager : MonoBehaviour
     {
         private bool isMouseOnUI;
         private ProjectInput projectInput;
@@ -59,29 +59,6 @@ namespace Manager.Input
 
             mousePosition = ray.GetPoint(distance);
             return true;
-        }
-        
-        public bool TryGetGroundPosition(out Vector3 groundPosition)
-        {
-            groundPosition = Vector3.negativeInfinity;
-            var ray = MainCamera.ScreenPointToRay(Mouse.current.position.ReadValue());
-
-            if (Physics.RaycastNonAlloc(ray, buffers, 1000f, LayerMask.GetMask("Ground")) == 0)
-            {
-                groundPosition = Vector3.negativeInfinity;
-                return false;
-            }
-
-            foreach (var hit in buffers)
-            {
-                if (hit.collider.IsNullOrEmpty()) break;
-                
-                groundPosition = hit.point;
-                break;
-            }
-
-            Array.Clear(buffers, 0, buffers.Length);
-            return groundPosition != Vector3.negativeInfinity;
         }
 
         public void InputOn()

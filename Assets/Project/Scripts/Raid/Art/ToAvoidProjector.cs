@@ -9,7 +9,7 @@ namespace Raid.Art
 
         public void Projecting()
         {
-            if (!MainManager.Input.TryGetGroundPosition(out var groundPosition)) return;
+            if (!MainManager.oldInput.TryGetMousePosition(out var groundPosition)) return;
 
             transform.position = groundPosition;
             controller.FillOnce(0.3f);

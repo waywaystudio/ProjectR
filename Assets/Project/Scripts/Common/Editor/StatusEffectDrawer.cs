@@ -33,7 +33,7 @@ namespace Common.Editor
 
             if (member.Name == "duration")
             {
-                attributes.Add(new HideLabelAttribute());
+                // attributes.Add(new HideLabelAttribute());
                 attributes.Add(new PropertyRangeAttribute(0, 60));
                 attributes.Add(new VerticalGroupAttribute("CommonProperty/Fields"));
             }

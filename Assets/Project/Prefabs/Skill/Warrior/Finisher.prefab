@@ -654,8 +654,50 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   magnification: 0.2
-  duration: 0.17
-  returnDuration: 0.05
+  curve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: -3.840135
+      outSlope: -3.840135
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 0.20382638
+      value: 0.21727914
+      inSlope: 0.053933803
+      outSlope: 0.053933803
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 1
+    - serializedVersion: 3
+      time: 0.6423948
+      value: 0.21627913
+      inSlope: -0.01197247
+      outSlope: -0.01197247
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.13092425
+      outWeight: 0.33323854
+    - serializedVersion: 3
+      time: 1
+      value: 1
+      inSlope: 2.1915812
+      outSlope: 2.1915812
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 0
+    m_RotationOrder: 4
+  duration: 0.72
+  returnDuration: 0
   actionKey: PlayBulletTime
   playSection: 5
   stopSection: 11

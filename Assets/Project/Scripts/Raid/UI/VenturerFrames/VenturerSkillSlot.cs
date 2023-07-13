@@ -30,7 +30,7 @@ namespace Raid.UI.VenturerFrames
 
         public void Initialize()
         {
-            if (!MainManager.Input.TryGetAction(BindingCode, out var inputAction))
+            if (!MainManager.oldInput.TryGetAction(BindingCode, out var inputAction))
             {
                 Debug.LogWarning($"Not exist InputAction by {BindingCode}");
                 return;
@@ -55,8 +55,8 @@ namespace Raid.UI.VenturerFrames
 
         public void Dispose()
         {
-            if (MainManager.Input.IsNullOrEmpty()) return;
-            if (!MainManager.Input.TryGetAction(BindingCode, out var inputAction))
+            if (MainManager.oldInput.IsNullOrEmpty()) return;
+            if (!MainManager.oldInput.TryGetAction(BindingCode, out var inputAction))
             {
                 Debug.LogWarning($"Not exist InputAction by {BindingCode}");
                 return;
@@ -69,7 +69,7 @@ namespace Raid.UI.VenturerFrames
         
         private void StartAction(InputAction.CallbackContext callbackContext)
         {
-            if (!MainManager.Input.TryGetMousePosition(out var mousePosition)) return;
+            if (!MainManager.oldInput.TryGetMousePosition(out var mousePosition)) return;
 
             FocusVenturer.ActiveSkill(SkillCode, mousePosition);
         }
