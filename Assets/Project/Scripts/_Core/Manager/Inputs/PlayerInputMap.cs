@@ -9,12 +9,12 @@ namespace Inputs
     
     public class PlayerInputMap : MonoBehaviour
     {
-        [SerializeField] private PlayerInputMapType mapType;
+        [SerializeField] private string mapId;
+        
+        private Dictionary<string, InputActionTable> StartActionTable { get; } = new();
+        private Dictionary<string, InputActionTable> PerformedActionTable { get; } = new();
 
-        private Dictionary<string, ActionTable<Context>> StartActionTable { get; } = new();
-        private Dictionary<string, ActionTable<Context>> PerformedActionTable { get; } = new();
-
-        public ActionTable<Context> this[InputSection section, string binding]
+        public InputActionTable this[string binding, InputSection section]
         {
             get
             {
@@ -33,25 +33,18 @@ namespace Inputs
 
         public void Initialize(InputActionAsset playerInput)
         {
-            var inputMap = mapType switch
-            {
-                PlayerInputMapType.Raid => playerInput.FindActionMap("Raid"),
-                PlayerInputMapType.UI   => playerInput.FindActionMap("UI"),
-                _                       => null,
-            };
+            var inputMap = playerInput.FindActionMap(mapId);
 
-            if (inputMap is null) return;
-
-            foreach (var inputAction in inputMap.actions)
+            inputMap?.actions.ForEach(inputAction =>
             {
                 var inputKey = inputAction.name;
-                
-                StartActionTable.TryAdd(inputKey, new ActionTable<Context>());
-                PerformedActionTable.TryAdd(inputKey, new ActionTable<Context>());
+
+                StartActionTable.TryAdd(inputKey, new InputActionTable());
+                PerformedActionTable.TryAdd(inputKey, new InputActionTable());
                 
                 inputAction.started   += StartActionTable[inputKey].Invoke;
                 inputAction.performed += PerformedActionTable[inputKey].Invoke;
-            }
+            });
         }
     }
 }

@@ -507,7 +507,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 380b83b4d9730894c85726dd2cc81734, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerInput: {fileID: -944628639613478452, guid: 55285b9ec94e65f42895dfa573950cfb, type: 3}
+  playerInput: {fileID: 3500294562629859306}
+  playerInputAsset: {fileID: -944628639613478452, guid: 55285b9ec94e65f42895dfa573950cfb, type: 3}
   raid: {fileID: 6160270581387065093}
 --- !u!114 &6160270581387065093
 MonoBehaviour:
@@ -735,7 +736,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 01a234ae5fba1654a932d3273edf37e1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  oldInputManager: {fileID: 0}
+  oldInputManager: {fileID: 7643511116264215505}
 --- !u!1 &6999556446930775124
 GameObject:
   m_ObjectHideFlags: 0

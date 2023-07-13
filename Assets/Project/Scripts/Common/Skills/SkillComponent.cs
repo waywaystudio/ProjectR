@@ -73,8 +73,6 @@ namespace Common.Skills
             hitExecutor.Initialize(Sequence, this);
             fireExecutor.Initialize(Sequence, this);
             effector.Initialize(Sequence, this);
-            
-            // InputManager.Raid[InputSection.Start, "Q"].Add("", () => Debug.Log("Q!"));
         }
 
         public void Cancel() => Invoker.Cancel();
