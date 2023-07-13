@@ -12,6 +12,7 @@ namespace Character.Venturers.Warrior.Skills
         [SerializeField] private float resourceConsumePerSecond = 10f;
         
         private CancellationTokenSource cts;
+        private CancellationTokenSource nextFrameCts;
         
         public override void Initialize()
         {
@@ -21,7 +22,9 @@ namespace Character.Venturers.Warrior.Skills
                 .AddCondition("FullResource", FullResource)
                 .Add(Section.Active, "ActiveBuff", AddEffect)
                 .Add(Section.Active, "ConsumeResource", () => ConsumeResource().Forget())
-                .Add(Section.End, "StopTask", StopTask);
+                .Add(Section.Active, "CompleteNextFrame", () => CompleteOnNextFrame().Forget())
+                .Add(Section.End, "StopNextFramer", StopNextFramer)
+                ;
         }
         
         protected override void Dispose()
@@ -93,10 +96,25 @@ namespace Character.Venturers.Warrior.Skills
             }
         }
 
+        private async UniTaskVoid CompleteOnNextFrame()
+        {
+            nextFrameCts = new CancellationTokenSource();
+            
+            await UniTask.Yield(PlayerLoopTiming.Update, nextFrameCts.Token);
+            
+            Invoker.Complete();
+        } 
+
         private void StopTask()
         {
             cts?.Cancel();
             cts = null;
+        }
+
+        private void StopNextFramer()
+        {
+            nextFrameCts?.Cancel();
+            nextFrameCts = null;
         }
     }
 }

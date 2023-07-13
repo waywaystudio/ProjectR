@@ -240,6 +240,8 @@ MonoBehaviour:
     combatSounds: []
     combatImpulses: []
     combatCameras: []
+    combatPostProcesses: []
+    hitPauses: []
     bulletTimes: []
   detector:
     sortingType: 0
@@ -252,10 +254,10 @@ MonoBehaviour:
     animationKey: None
     castCompleteAnimationKey: 
     isLoop: 0
-    hasExecuteEvent: 1
+    hasExecuteEvent: 0
     animationPlaySpeed: 1
     skillType: 1
-    callbackSection: 3
+    callbackSection: 0
   coolTimer:
     coolTime: 1
     invokeSection: 1
