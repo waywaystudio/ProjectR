@@ -28,11 +28,6 @@ namespace Raid.UI.VenturerFrames
             UpdateSlotList();
         }
 
-        public void Dispose()
-        {
-            slotList?.ForEach(slot => slot.Dispose());
-        }
-
 
         private void UpdateSlotList()
         {

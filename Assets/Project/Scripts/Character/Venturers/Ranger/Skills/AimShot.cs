@@ -3,7 +3,6 @@ using Common;
 using Common.Projectors;
 using Common.Skills;
 using Cysharp.Threading.Tasks;
-using Manager;
 using UnityEngine;
 
 namespace Character.Venturers.Ranger.Skills
@@ -90,7 +89,7 @@ namespace Character.Venturers.Ranger.Skills
             {
                 while (true)
                 {
-                    if (!MainManager.oldInput.TryGetMousePosition(out var mousePosition)) mousePosition = Vector3.zero;
+                    if (!InputManager.TryGetMousePosition(out var mousePosition)) mousePosition = Vector3.zero;
                 
                     venturer.Rotate(mousePosition);
                     await UniTask.Yield(cts.Token);

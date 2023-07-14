@@ -1,6 +1,5 @@
 using Character.Venturers;
 using Common.UI;
-using Manager;
 using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -10,34 +9,20 @@ namespace Raid.UI.VenturerFrames
 {
     public class VenturerSkillSlot : MonoBehaviour, IEditable
     {
-        [SerializeField] private BindingCode bindingCode;
+        [SerializeField] private string bindingKey;
         [SerializeField] private Image skillIcon;
         [SerializeField] private ImageFiller coolDownFiller;
         [SerializeField] private TextMeshProUGUI hotKey;
 
         private static VenturerBehaviour FocusVenturer => RaidDirector.FocusVenturer;
         private DataIndex SkillCode { get; set; }
-        private BindingCode BindingCode => bindingCode;
-        private string HotKey => bindingCode switch
-        {
-            BindingCode.Q => "Q",
-            BindingCode.W => "W",
-            BindingCode.E => "E",
-            BindingCode.R => "R",
-            _ => "-",
-        };
+        private string HotKey => bindingKey;
 
 
         public void Initialize()
         {
-            if (!MainManager.oldInput.TryGetAction(BindingCode, out var inputAction))
-            {
-                Debug.LogWarning($"Not exist InputAction by {BindingCode}");
-                return;
-            }
-
-            inputAction.started  += StartAction;
-            inputAction.canceled += ReleaseAction;
+            RaidDirector.InputDirector[bindingKey]?.AddStart("ActiveSkill", StartAction);
+            RaidDirector.InputDirector[bindingKey]?.AddCancel("ReleaseSkill", ReleaseAction);
         }
 
         public void UpdateSlot(DataIndex skillCode)
@@ -53,23 +38,10 @@ namespace Raid.UI.VenturerFrames
             coolDownFiller.Register(coolTimer.EventTimer, coolTimer.CoolTime);
         }
 
-        public void Dispose()
-        {
-            if (MainManager.oldInput.IsNullOrEmpty()) return;
-            if (!MainManager.oldInput.TryGetAction(BindingCode, out var inputAction))
-            {
-                Debug.LogWarning($"Not exist InputAction by {BindingCode}");
-                return;
-            }
 
-            inputAction.started  -= StartAction;
-            inputAction.canceled -= ReleaseAction;
-        }
-        
-        
         private void StartAction(InputAction.CallbackContext callbackContext)
         {
-            if (!MainManager.oldInput.TryGetMousePosition(out var mousePosition)) return;
+            if (!InputManager.TryGetMousePosition(out var mousePosition)) return;
 
             FocusVenturer.ActiveSkill(SkillCode, mousePosition);
         }
@@ -79,16 +51,14 @@ namespace Raid.UI.VenturerFrames
             FocusVenturer.ReleaseSkill();
         }
 
-        
-
 
 #if UNITY_EDITOR
         public void EditorSetUp()
         {
             hotKey         = transform.Find("Hotkey").GetComponent<TextMeshProUGUI>();
-            hotKey.text    = HotKey;
             skillIcon      = transform.Find("Icon").GetComponent<Image>();
             coolDownFiller = transform.Find("Cooldown").GetComponent<ImageFiller>();
+            hotKey.text    = HotKey;
             
             UnityEditor.EditorUtility.SetDirty(this);
         }

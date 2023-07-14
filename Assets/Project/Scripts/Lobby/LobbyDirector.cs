@@ -1,3 +1,4 @@
+using System.Collections;
 using Character.Venturers;
 using Singleton;
 using UnityEngine;
@@ -12,34 +13,46 @@ namespace Lobby
         [SerializeField] private LobbyCastingDirector castingDirector;
         [SerializeField] private LobbyInputDirector inputDirector;
         [SerializeField] private LobbyUIDirector uiDirector;
+        [SerializeField] private GameEventVenturer venturerFocusEvent;
+        
+        private VenturerBehaviour focusVenturer;
 
         public static LobbyCameraDirector Camera => Instance.cameraDirector;
         public static LobbyCastingDirector Casting => Instance.castingDirector;
         public static LobbyInputDirector Input => Instance.inputDirector;
         public static LobbyUIDirector UI => Instance.uiDirector;
+        public static VenturerBehaviour FocusVenturer
+        {
+            get => Instance.focusVenturer;
+            set
+            {
+                Instance.focusVenturer = value;
+                Instance.venturerFocusEvent.Invoke(value);
+            }
+        }
 
         /*
          * Accessor
          */
-        /* Casting */
-        public static VenturerBehaviour Knight { get; set; }
 
         /* UI */
         public static SaveLoadUI SaveLoadUI => UI.SaveLoadUI;
         public static ForgeUI Forge => UI.Forge;
         public static WorldMapUI WorldMap => UI.WorldMap;
         public static void DeActivePanels() => UI.DeActivePanels();
+        
         public void ToggleSaveLoadPanel() => uiDirector.ToggleSaveLoadPanel();
         public void ToggleForgePanel() => uiDirector.ToggleForgePanel();
         public void ToggleRefineryPanel() => uiDirector.ToggleRefineryPanel();
         public void ToggleWorldMapPanel() => uiDirector.ToggleWorldMapPanel();
 
-
-        protected override void Awake()
+        private IEnumerator Start()
         {
-            castingDirector.Initialize(); // Casting Director First
-            cameraDirector.Initialize(Knight.transform);
-            inputDirector.Initialize(Knight);
+            yield return null; 
+            
+            castingDirector.Initialize();
+            cameraDirector.Initialize();
+            inputDirector.Initialize();
         }
 
 

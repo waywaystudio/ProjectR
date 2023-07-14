@@ -10,14 +10,18 @@ namespace Raid
     public class RaidDirector : MonoSingleton<RaidDirector>, IEditable
     {
         [SerializeField] private RaidCameraDirector cameraDirector;
-        [SerializeField] private RaidStageDirector stageDirector;
         [SerializeField] private RaidCastingDirector castingDirector;
+        [SerializeField] private RaidInputDirector inputDirector;
+        [SerializeField] private RaidStageDirector stageDirector;
         [SerializeField] private RaidUIDirector uiDirector;
+        
         [SerializeField] private GameEventVenturer adventurerFocusEvent;
 
         private VenturerBehaviour focusVenturer;
         
+        public static RaidCameraDirector CameraDirector => Instance.cameraDirector;
         public static RaidCastingDirector CastingDirector => Instance.castingDirector;
+        public static RaidInputDirector InputDirector => Instance.inputDirector;
         public static RaidStageDirector StageDirector => Instance.stageDirector;
         public static RaidUIDirector UIDirector => Instance.uiDirector;
         public static VillainBehaviour Boss => CastingDirector.Villain;
@@ -37,30 +41,12 @@ namespace Raid
          */ 
         public static void Initialize()
         {
+            CameraDirector.Initialize();
             CastingDirector.Initialize();
+            InputDirector.Initialize();
             UIDirector.Initialize();
             
             FocusVenturer = CastingDirector.VenturerList[0];
-        }
-
-
-        protected override void Awake()
-        {
-            base.Awake();
-            
-            CameraManager.Director = Instance.cameraDirector;
-        }
-
-        private void OnDisable()
-        {
-            UIDirector.Dispose();
-        }
-
-        [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.BeforeSceneLoad)]
-        private static void ResetSingleton()
-        {
-            if (!Instance.IsNullOrDestroyed())
-                Instance.SetInstanceNull();
         }
 
 
@@ -69,9 +55,18 @@ namespace Raid
         {
             cameraDirector  ??= GetComponentInChildren<RaidCameraDirector>();
             castingDirector ??= GetComponentInChildren<RaidCastingDirector>();
+            inputDirector   ??= GetComponentInChildren<RaidInputDirector>();
+            stageDirector   ??= GetComponentInChildren<RaidStageDirector>();
             uiDirector      ??= GetComponentInChildren<RaidUIDirector>();
             
             Instance.gameObject.GetComponentsInOnlyChildren<IEditable>().ForEach(editable => editable.EditorSetUp());
+        }
+        
+        [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.BeforeSceneLoad)]
+        private static void ResetSingleton()
+        {
+            if (!Instance.IsNullOrDestroyed())
+                Instance.SetInstanceNull();
         }
 #endif
     }

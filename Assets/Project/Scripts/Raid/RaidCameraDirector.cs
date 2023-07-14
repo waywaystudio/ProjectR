@@ -2,7 +2,6 @@ using System.Linq;
 using Cameras;
 using Character.Venturers;
 using Cinemachine;
-using Manager;
 using UnityEngine;
 
 namespace Raid
@@ -32,11 +31,6 @@ namespace Raid
             }
 
             PlayerCamera();
-        }
-
-        private void Awake()
-        {
-            MainManager.oldInput.MainCamera = mainCamera;
         }
 
 

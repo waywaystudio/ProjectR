@@ -122,7 +122,7 @@ namespace Common
         // 1. 땅이 있어야 하고.
         public static Vector3 GetReachableTeleportPosition(Vector3 root, Vector3 direction, float distance)
         {
-            if (distance < 0) return root;
+            if (distance <= 0) return root;
             
             var normalDirection = direction.normalized;
 

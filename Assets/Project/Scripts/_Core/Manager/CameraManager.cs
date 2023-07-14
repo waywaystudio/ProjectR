@@ -5,16 +5,15 @@ using UnityEngine;
 
 public class CameraManager : MonoSingleton<CameraManager>
 {
-    private Camera mainCamera;
-    private CinemachineBrain brain;
-
-    public static Camera MainCamera => Instance.mainCamera;
-    public static CinemachineBrain Brain => Instance.brain;
+    public static Camera MainCamera => Director is not null ? Director.MainCamera : Camera.main;
+    public static CinemachineBrain Brain => Director is not null ? Director.Brain : MainCamera.GetComponent<CinemachineBrain>();
     public static CinemachineVirtualCamera ActiveCamera => Brain.ActiveVirtualCamera as CinemachineVirtualCamera;
 
     public static CameraDirector Director { get; set; }
     public static VirtualCameraType ActiveCameraType => Director.CurrentCameraType;
 
+
+    public static void SetDirector(CameraDirector director) => Director = director;
 
     public static void SetPlayerToEffectorBlend(CinemachineBlendDefinition definition)
     {
@@ -33,19 +32,13 @@ public class CameraManager : MonoSingleton<CameraManager>
         Debug.Log($"Can't Find CustomBlend Between Player and Effector");
     }
 
-    protected override void Awake()
-    {
-        base.Awake();
-        
-        mainCamera = Camera.main;
-        brain      = MainCamera.GetComponent<CinemachineBrain>();
-    }
 
-
+#if UNITY_EDITOR
     [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.BeforeSceneLoad)]
     private static void ResetSingleton()
     {
         if (!Instance.IsNullOrDestroyed())
             Instance.SetInstanceNull();
     }
+#endif
 }

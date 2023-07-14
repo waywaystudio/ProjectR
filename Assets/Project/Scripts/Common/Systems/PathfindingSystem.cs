@@ -116,8 +116,15 @@ namespace Common.Systems
             enabled = false;
         }
 
-        public void TraverseToNonObstacle() => agent.graphMask = GraphMask.FromGraphName("Non Obstacle Graph");
-        public void TraverseToDefault() => agent.graphMask = GraphMask.FromGraphName("Default Grid Graph");
+        public void TraverseToNonObstacle()
+        {
+            agent.graphMask = GraphMask.FromGraphName("Non Obstacle Graph");
+        }
+
+        public void TraverseToDefault()
+        {
+            agent.graphMask = GraphMask.FromGraphName("Default Grid Graph");
+        }
 
 
         private void Awake()

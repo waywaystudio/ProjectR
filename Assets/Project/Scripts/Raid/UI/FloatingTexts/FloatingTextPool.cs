@@ -12,13 +12,13 @@ namespace Raid.UI.FloatingTexts
         private VenturerBehaviour focusedAdventurer;
 
 
-        public void OnFocusingAdventurer(VenturerBehaviour focusAdventurer)
+        public void OnFocusVenturerChanged(VenturerBehaviour vb)
         {
             VenturerBehaviour newFocusedAdventurer = null;
             
             foreach (var adventurer in RaidDirector.VenturerList)
             {
-                if (adventurer != focusAdventurer) continue;
+                if (adventurer != vb) continue;
                 
                 newFocusedAdventurer = adventurer;
                 break;

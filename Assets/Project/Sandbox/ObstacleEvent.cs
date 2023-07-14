@@ -1,4 +1,3 @@
-using Manager;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -18,8 +17,7 @@ public class ObstacleEvent : MonoBehaviour
 
     public void Unregister()
     {
-        if (MainManager.Instance is null) return;
-        
+        // if (MainManager.Instance is null) return;
         // MainManager.InputManager.Unregister(this);
     }
 

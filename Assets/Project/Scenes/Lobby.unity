@@ -2381,6 +2381,7 @@ MonoBehaviour:
   castingDirector: {fileID: 344704379}
   inputDirector: {fileID: 1108051509}
   uiDirector: {fileID: 1405800084}
+  venturerFocusEvent: {fileID: 11400000, guid: 099e8625e19023f43800c970888cfa82, type: 2}
 --- !u!1 &195403085
 GameObject:
   m_ObjectHideFlags: 0
@@ -3329,7 +3330,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_ShowDebugText: 0
   m_ShowCameraFrustum: 1
-  m_IgnoreTimeScale: 0
+  m_IgnoreTimeScale: 1
   m_WorldUpOverride: {fileID: 0}
   m_UpdateMethod: 2
   m_BlendUpdateMethod: 1
@@ -3372,7 +3373,7 @@ MonoBehaviour:
     m_Bits: 1
   m_VolumeTrigger: {fileID: 0}
   m_VolumeFrameworkUpdateModeOption: 2
-  m_RenderPostProcessing: 0
+  m_RenderPostProcessing: 1
   m_Antialiasing: 0
   m_AntialiasingQuality: 2
   m_StopNaN: 0
@@ -4351,8 +4352,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ae609f85fdf889c4c92faa8db8f35e16, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  knightSpawnTransform: {fileID: 1697358154}
-  adventurerObjectHierarchy: {fileID: 396245468}
+  venturerHierarchy: {fileID: 396245468}
 --- !u!1 &355878612
 GameObject:
   m_ObjectHideFlags: 0
@@ -14775,6 +14775,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1108051510}
   - component: {fileID: 1108051509}
+  - component: {fileID: 1108051511}
   m_Layer: 0
   m_Name: Input
   m_TagString: Untagged
@@ -14794,6 +14795,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9a13df166434d93428c2b3827a7497e4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerInputAsset: {fileID: -944628639613478452, guid: 55285b9ec94e65f42895dfa573950cfb, type: 3}
+  mapId: Lobby
 --- !u!4 &1108051510
 Transform:
   m_ObjectHideFlags: 0
@@ -14809,6 +14812,36 @@ Transform:
   m_Father: {fileID: 193643629}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1108051511
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1108051508}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 62899f850307741f2a39c98a8b639597, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Actions: {fileID: -944628639613478452, guid: 55285b9ec94e65f42895dfa573950cfb, type: 3}
+  m_NotificationBehavior: 3
+  m_UIInputModule: {fileID: 1332989999}
+  m_DeviceLostEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_DeviceRegainedEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_ControlsChangedEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_ActionEvents: []
+  m_NeverAutoSwitchControlSchemes: 0
+  m_DefaultControlScheme: PC
+  m_DefaultActionMap: Lobby
+  m_SplitScreenIndex: -1
+  m_Camera: {fileID: 290583869}
 --- !u!1 &1128675835
 GameObject:
   m_ObjectHideFlags: 0
@@ -16631,17 +16664,17 @@ MonoBehaviour:
   m_MoveRepeatDelay: 0.5
   m_MoveRepeatRate: 0.1
   m_XRTrackingOrigin: {fileID: 0}
-  m_ActionsAsset: {fileID: -944628639613478452, guid: ca9f5fa95ffab41fb9a615ab714db018, type: 3}
-  m_PointAction: {fileID: -1654692200621890270, guid: ca9f5fa95ffab41fb9a615ab714db018, type: 3}
-  m_MoveAction: {fileID: -8784545083839296357, guid: ca9f5fa95ffab41fb9a615ab714db018, type: 3}
-  m_SubmitAction: {fileID: 392368643174621059, guid: ca9f5fa95ffab41fb9a615ab714db018, type: 3}
-  m_CancelAction: {fileID: 7727032971491509709, guid: ca9f5fa95ffab41fb9a615ab714db018, type: 3}
-  m_LeftClickAction: {fileID: 3001919216989983466, guid: ca9f5fa95ffab41fb9a615ab714db018, type: 3}
-  m_MiddleClickAction: {fileID: -2185481485913320682, guid: ca9f5fa95ffab41fb9a615ab714db018, type: 3}
-  m_RightClickAction: {fileID: -4090225696740746782, guid: ca9f5fa95ffab41fb9a615ab714db018, type: 3}
-  m_ScrollWheelAction: {fileID: 6240969308177333660, guid: ca9f5fa95ffab41fb9a615ab714db018, type: 3}
-  m_TrackedDevicePositionAction: {fileID: 6564999863303420839, guid: ca9f5fa95ffab41fb9a615ab714db018, type: 3}
-  m_TrackedDeviceOrientationAction: {fileID: 7970375526676320489, guid: ca9f5fa95ffab41fb9a615ab714db018, type: 3}
+  m_ActionsAsset: {fileID: -944628639613478452, guid: 55285b9ec94e65f42895dfa573950cfb, type: 3}
+  m_PointAction: {fileID: -8738472024601469251, guid: 55285b9ec94e65f42895dfa573950cfb, type: 3}
+  m_MoveAction: {fileID: -9034686616563676258, guid: 55285b9ec94e65f42895dfa573950cfb, type: 3}
+  m_SubmitAction: {fileID: 6734207861307761766, guid: 55285b9ec94e65f42895dfa573950cfb, type: 3}
+  m_CancelAction: {fileID: -7862835209341126969, guid: 55285b9ec94e65f42895dfa573950cfb, type: 3}
+  m_LeftClickAction: {fileID: -4347201613192113251, guid: 55285b9ec94e65f42895dfa573950cfb, type: 3}
+  m_MiddleClickAction: {fileID: 1087394233752527019, guid: 55285b9ec94e65f42895dfa573950cfb, type: 3}
+  m_RightClickAction: {fileID: -4932097360172527009, guid: 55285b9ec94e65f42895dfa573950cfb, type: 3}
+  m_ScrollWheelAction: {fileID: 1765629624542288176, guid: 55285b9ec94e65f42895dfa573950cfb, type: 3}
+  m_TrackedDevicePositionAction: {fileID: -349772358760110933, guid: 55285b9ec94e65f42895dfa573950cfb, type: 3}
+  m_TrackedDeviceOrientationAction: {fileID: -5289695343634078874, guid: 55285b9ec94e65f42895dfa573950cfb, type: 3}
   m_DeselectOnBackgroundClick: 1
   m_PointerBehavior: 0
   m_CursorLockBehavior: 0
@@ -18452,7 +18485,7 @@ GameObject:
   - component: {fileID: 1499883865}
   - component: {fileID: 1499883866}
   m_Layer: 0
-  m_Name: PlayerCamera
+  m_Name: Player
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -19810,6 +19843,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c93fa548115db55468e6a003be65c8f4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Cis: {fileID: 0}
   StandardValue: 0
   Haste: 0
 --- !u!4 &1577692280
@@ -20623,7 +20657,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1670015378}
-  - component: {fileID: 1670015379}
+  - component: {fileID: 1670015381}
   - component: {fileID: 1670015380}
   m_Layer: 0
   m_Name: Stage
@@ -20650,61 +20684,6 @@ Transform:
   m_Father: {fileID: 193643629}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1670015379
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1670015377}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 78396926cbbfc4ac3b48fc5fc34a87d1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  version: 1
-  data:
-    dataString: UEsDBBQAAAgIAABIIezh54UNjwIAAJcFAAALACQAZ3JhcGgwLmpzb24KACAAAAAAAAEAGAAAgD7V3rGdAQCAPtXesZ0BAIA+1d6xnQGFVG1v2jAQ/ivIn9cpUAbqvm2B0k1qi8qmflj64RpfiIVjR34p0Ir/vrMTSEonTUJyeO65l+fu7DcmlK0xd9osjOC3miP7OmDhm30adMYb3MFaq5V4xSPnUXBXBhJEzgM4oQkfBjerK3RG5N/UWgZyQqBXotCmmvM1pto6S3AB0iKZjHbBWxH0NmC71mHfnq/hHBzoK0fl0PyP5VUuoaqRh2o78uTInjQ0RTpaRqg511IK2xbB3L6OIlOorScJROACSFRMH/glinXp6M+o73xfFBZdW5KB/UwY6k0TlX3XTcMqsJumrheQHk+FNyFvP1gvhtFcGF3dHLMOk5DBlSLfPMA+B+t6/ezDs/dle7UFuYFniY8lqju9MNorTkZnfHD1FkezXqiTsrTEfNPxmlrPQF9/nM2wm80hat+lUlTPAfk8boCV1LHbV8EHDc3lBxUcN8K2kQgNRfy2+AvW/dVpDdfCWEemNqEK1T1rbwKVzWPPghjvUm0URrituUYF0u2XFMadD/DM1kt7ZrmGcEna5K3tuPtnLhHu+ElyZlrqbTcsiz99VS+1UG6FYPKyF8+WenuLtrz3TgqFnaJguKMmplqpZvnsP9xW3hSQ99wc7pw3OAMH8QpQTbQlvO9KDY0eyksZFjKqCMH/kIrwewpNLoHyygizO63i5Xl3PoVFWHvB3685G+fTYfJlDNNkmOC04Bc8KS6vppPR5YSPYQgjFu+BUNRzkMumae2oaINUp0XRzh/fscHCQB3vHTewXYjXSvfGL1ShV7lBVPdNhJNYNJSE3gc+54JkrtA5oeLusbeMSZ1vkGenQFls7HznDGRdlIzV4kW7gGQsja9XxgJ8ulZLgy8CtyH5MdiBHf4CUEsDBBQAAAgIAABIIex6B73rbQAAAHgAAAAJACQAbWV0YS5qc29uCgAgAAAAAAABABgAAIA+1d6xnQEAgD7V3rGdAQCAPtXesZ0Bq1YqSy0qzszPU7JSMNEz0jO00FFQSi9KLMgoBooYgjilmSkgdrSSSbK5oYGpSaK5gaFBqnlaim6KQZqxpbmZkbFZikmiYaKRUixQfUllQapfYm4qRE9AYklGWmZeSmZeup57UWaKO8hopdhaAFBLAQItABQAAAgIAABIIezh54UNjwIAAJcFAAALACQAAAAAAAAAAAAAAAAAAABncmFwaDAuanNvbgoAIAAAAAAAAQAYAACAPtXesZ0BAIA+1d6xnQEAgD7V3rGdAVBLAQItABQAAAgIAABIIex6B73rbQAAAHgAAAAJACQAAAAAAAAAAAAAANwCAABtZXRhLmpzb24KACAAAAAAAAEAGAAAgD7V3rGdAQCAPtXesZ0BAIA+1d6xnQFQSwUGAAAAAAIAAgC4AAAAlAMAAAAA
-    upgradeData: 
-    file_cachedStartup: {fileID: 0}
-    data_cachedStartup: 
-    cacheStartup: 0
-  showNavGraphs: 1
-  showUnwalkableNodes: 1
-  debugMode: 0
-  debugFloor: 0
-  debugRoof: 1
-  manualDebugFloorRoof: 0
-  showSearchTree: 0
-  unwalkableNodeDebugSize: 0.3
-  logPathResults: 4
-  maxNearestNodeDistance: 100
-  scanOnStartup: 1
-  fullGetNearestSearch: 0
-  prioritizeGraphs: 0
-  prioritizeGraphsLimit: 1
-  colorSettings:
-    _SolidColor: {r: 0.11764706, g: 0.4, b: 0.7882353, a: 0.9}
-    _UnwalkableNode: {r: 1, g: 0, b: 0, a: 0.5}
-    _BoundsHandles: {r: 0.29, g: 0.454, b: 0.741, a: 0.9}
-    _ConnectionLowLerp: {r: 0, g: 1, b: 0, a: 0.5}
-    _ConnectionHighLerp: {r: 1, g: 0, b: 0, a: 0.5}
-    _MeshEdgeColor: {r: 0, g: 0, b: 0, a: 0.5}
-    _AreaColors:
-    - {r: 0, g: 0, b: 0, a: 0}
-  tagNames: []
-  heuristic: 2
-  heuristicScale: 1
-  threadCount: 1
-  maxFrameTime: 10
-  batchGraphUpdates: 0
-  graphUpdateBatchingInterval: 0.2
-  euclideanEmbedding:
-    mode: 0
-    seed: 0
-    pivotPointRoot: {fileID: 0}
-    spreadOutCount: 1
-  showGraphs: 1
 --- !u!114 &1670015380
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -20724,6 +20703,93 @@ MonoBehaviour:
   symmetryBreakingBias: 0.1
   movementPlane: 0
   drawObstacles: 0
+--- !u!114 &1670015381
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1670015377}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 78396926cbbfc4ac3b48fc5fc34a87d1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  version: 1
+  data:
+    dataString: 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
+    upgradeData: 
+    file_cachedStartup: {fileID: 0}
+    data_cachedStartup: 
+    cacheStartup: 0
+  showNavGraphs: 1
+  showUnwalkableNodes: 1
+  debugMode: 0
+  debugFloor: 0
+  debugRoof: 1
+  manualDebugFloorRoof: 0
+  showSearchTree: 0
+  unwalkableNodeDebugSize: 0.3
+  logPathResults: 0
+  maxNearestNodeDistance: 100
+  scanOnStartup: 1
+  fullGetNearestSearch: 0
+  prioritizeGraphs: 0
+  prioritizeGraphsLimit: 1
+  colorSettings:
+    _SolidColor: {r: 0.11764706, g: 0.4, b: 0.7882353, a: 0.9}
+    _UnwalkableNode: {r: 1, g: 0, b: 0, a: 0.5}
+    _BoundsHandles: {r: 0.29, g: 0.454, b: 0.741, a: 0.9}
+    _ConnectionLowLerp: {r: 0, g: 1, b: 0, a: 0.5}
+    _ConnectionHighLerp: {r: 1, g: 0, b: 0, a: 0.5}
+    _MeshEdgeColor: {r: 0, g: 0, b: 0, a: 0.5}
+    _AreaColors:
+    - {r: 0, g: 0, b: 0, a: 0}
+  tagNames:
+  - Basic Ground
+  - 1
+  - 2
+  - 3
+  - 4
+  - 5
+  - 6
+  - 7
+  - 8
+  - 9
+  - 10
+  - 11
+  - 12
+  - 13
+  - 14
+  - 15
+  - 16
+  - 17
+  - 18
+  - 19
+  - 20
+  - 21
+  - 22
+  - 23
+  - 24
+  - 25
+  - 26
+  - 27
+  - 28
+  - 29
+  - 30
+  - 31
+  heuristic: 2
+  heuristicScale: 1
+  threadCount: 1
+  maxFrameTime: 10
+  batchGraphUpdates: 0
+  graphUpdateBatchingInterval: 0.2
+  euclideanEmbedding:
+    mode: 0
+    seed: 0
+    pivotPointRoot: {fileID: 0}
+    spreadOutCount: 1
+  showGraphs: 1
 --- !u!1 &1679113135
 GameObject:
   m_ObjectHideFlags: 0
@@ -22402,6 +22468,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1816728114}
   - component: {fileID: 1816728115}
+  - component: {fileID: 1816728116}
   m_Layer: 0
   m_Name: Camera
   m_TagString: Untagged
@@ -22439,7 +22506,40 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mainCamera: {fileID: 290583869}
-  playerCamera: {fileID: 1499883866}
+  brain: {fileID: 290583871}
+  subCameraTable:
+    keyList: 01000000
+    valueList:
+    - {fileID: 1499883866}
+--- !u!114 &1816728116
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1816728113}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 180370f9798368d46aa0bb571fe46191, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  targetEvent: {fileID: 11400000, guid: 099e8625e19023f43800c970888cfa82, type: 2}
+  priority: 5
+  response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1816728115}
+        m_TargetAssemblyTypeName: Lobby.LobbyCameraDirector, ProjectR.Lobby
+        m_MethodName: OnFocusVenturerChanged
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: 
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &1818685653
 GameObject:
   m_ObjectHideFlags: 0

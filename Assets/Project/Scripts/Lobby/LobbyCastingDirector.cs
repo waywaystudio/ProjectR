@@ -1,27 +1,26 @@
-using Character.Venturers;
+using Common;
 using UnityEngine;
 
 namespace Lobby
 {
     public class LobbyCastingDirector : MonoBehaviour
     {
-        [SerializeField] private Transform knightSpawnTransform;
-        [SerializeField] private Transform adventurerObjectHierarchy;
+        [SerializeField] private Transform venturerHierarchy;
         
         public void Initialize()
         {
-            var knightIndex = DataIndex.Knight;
-            
-            if (!Database.VenturerPrefabData.Get<VenturerBehaviour>(knightIndex, out var adventurerPrefab)) return;
-                
-            var profitPosition = knightSpawnTransform.position;
-            var knight = Instantiate(adventurerPrefab, profitPosition, Quaternion.identity,
-                                     adventurerObjectHierarchy);
-            
-            knight.gameObject.SetActive(true);
-            knight.Initialize();
+            SpawnVenturer(VenturerType.Knight);
+        }
+        
+        
+        private void SpawnVenturer(VenturerType venturerEntry)
+        {
+            if (venturerEntry == VenturerType.None) return;
 
-            LobbyDirector.Knight = knight;
+            var profitPosition = Vector3.zero;
+
+            Camp.Spawn(venturerEntry, profitPosition, venturerHierarchy, out var vb);
+            LobbyDirector.FocusVenturer = vb;
         }
     }
 }

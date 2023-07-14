@@ -1,48 +1,48 @@
+using System.Linq;
+using Cameras;
+using Character.Venturers;
 using Cinemachine;
-using Manager;
 using UnityEngine;
 
 namespace Lobby
 {
-    public class LobbyCameraDirector : MonoBehaviour
+    public class LobbyCameraDirector : CameraDirector, IEditable
     {
-        [SerializeField] private Camera mainCamera;
-        [SerializeField] private CinemachineVirtualCamera playerCamera;
-
-        private CinemachineBrain cameraBrain;
-
-
-        public void Initialize(Transform adventurer)
+        public void OnFocusVenturerChanged(VenturerBehaviour target)
         {
-            cameraBrain                  = mainCamera.GetComponent<CinemachineBrain>();
-            MainManager.oldInput.MainCamera = mainCamera;
+            if (target.IsNullOrDestroyed()) return;
             
-            playerCamera.Follow = adventurer;
-            playerCamera.LookAt = adventurer;
-            
-            // ChangeCamera(playerCamera);
+            Focusing(target.transform);
         }
         
-        public void ChangeCamera(ICinemachineCamera cameraName)
+        public void StageCamera() => ChangeCamera(VirtualCameraType.Stage);
+        public void PlayerCamera() => ChangeCamera(VirtualCameraType.Player);
+        
+        
+        private void Focusing(Transform target)
         {
-            Debug.Log(cameraBrain != null);
-            Debug.Log(cameraBrain.ActiveVirtualCamera != null);
-            Debug.Log(cameraName);
-            
-            var currentCamera = cameraBrain.ActiveVirtualCamera;
-            if (currentCamera.Equals(cameraName)) return;
+            if (!target.IsNullOrEmpty())
+            {
+                subCameraTable[VirtualCameraType.Player].Follow = target;
+                subCameraTable[VirtualCameraType.Player].LookAt = target;
+            }
 
-            (currentCamera.Priority, cameraName.Priority) = (cameraName.Priority, currentCamera.Priority);
+            PlayerCamera();
         }
 
-        // public void ChangeCamera(ICinemachineCamera cameraName)
-        // {
-        //     var currentCamera = cameraBrain.ActiveVirtualCamera;
-        //     if (currentCamera.Equals(cameraName)) return;
-        //
-        //     (currentCamera.Priority, cameraName.Priority) = (cameraName.Priority, currentCamera.Priority);
-        // }
-        //
-        // [Button] private void PlayerCamera() => ChangeCamera(playerCamera);
+
+#if UNITY_EDITOR
+        public void EditorSetUp()
+        {
+            subCameraTable.Clear();
+
+            var virtualCameraList = GetComponentsInChildren<CinemachineVirtualCamera>().ToList();
+            
+            virtualCameraList.ForEach(vc =>
+            {
+                subCameraTable.Add(vc.gameObject.name.Replace("Camera", "").ToEnum<VirtualCameraType>(), vc);
+            });
+        }
+#endif
     }
 }

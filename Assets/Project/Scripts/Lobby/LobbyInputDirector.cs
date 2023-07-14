@@ -1,60 +1,48 @@
 using Character.Venturers;
-using Manager;
-using UnityEngine;
+using Inputs;
 using UnityEngine.Events;
 using UnityEngine.InputSystem;
 
 namespace Lobby
 {
-    public class LobbyInputDirector : MonoBehaviour
+    using Context = InputAction.CallbackContext;
+    
+    public class LobbyInputDirector : InputDirector
     {
-        private VenturerBehaviour focusedAdventurer;
+        private static bool ValidVenturer => !FocusVenturer.IsNullOrEmpty() || !FocusVenturer.isActiveAndEnabled;
+        private static VenturerBehaviour FocusVenturer
+        {
+            get => LobbyDirector.FocusVenturer;
+            set => LobbyDirector.FocusVenturer = value;
+        }
 
         public UnityEvent<InputAction.CallbackContext> InteractAction { get; set; }
-
-        public void Initialize(VenturerBehaviour adventurer) => focusedAdventurer = adventurer;
-        
-        public void Move(InputAction.CallbackContext context)
+        public override void Initialize()
         {
-            if (focusedAdventurer.IsNullOrEmpty()) return;
-            if (!focusedAdventurer.isActiveAndEnabled) return;
-            if (!MainManager.oldInput.TryGetMousePosition(out var mousePosition)) return;
-            if (MainManager.oldInput.IsMouseOnUI) return;
-
-            focusedAdventurer.Run(mousePosition);
+            base.Initialize();
+            
+            this["LeftMouse"].AddStart("VenturerMove", Move);
+            this["A"].AddStart("EnterCommandMode", Interact);
         }
 
-        public void Interact(InputAction.CallbackContext context)
+
+        private void Move(Context context)
+        {
+            if (IsOnUI) return;
+            if (!ValidVenturer) return;
+            
+            var groundPosition = InputManager.GetMousePosition();
+            
+            FocusVenturer.Run(groundPosition);
+        }
+
+        private void Interact(InputAction.CallbackContext context)
         {
             if (InteractAction == null) return;
-            if (focusedAdventurer.IsNullOrEmpty()) return;
-            if (!focusedAdventurer.isActiveAndEnabled) return;
+            if (!ValidVenturer) return;
             
             InteractAction?.Invoke(context);
-            focusedAdventurer.Stop();
+            FocusVenturer.Stop();
         }
-        
-        private void Register()
-        {
-            if (MainManager.oldInput.TryGetAction(BindingCode.LeftMouse, out var moveAction))
-                moveAction.started += Move;
-            
-            if (MainManager.oldInput.TryGetAction(BindingCode.A, out var interactAction))
-                interactAction.started += Interact;
-        }
-
-        private void Unregister()
-        {
-            if (MainManager.oldInput is null) return;
-            
-            if (MainManager.oldInput.TryGetAction(BindingCode.LeftMouse, out var moveAction))
-                moveAction.started -= Move;
-            
-            if (MainManager.oldInput.TryGetAction(BindingCode.A, out var interactAction))
-                interactAction.started -= Interact;
-        }
-
-        private void Start() => Register();
-        private void OnDisable() => Unregister();
     }
 }

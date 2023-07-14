@@ -7,24 +7,35 @@ namespace Inputs
     
     public class InputActionTable
     {
-        private ConditionTable Condition { get; set; } = new();
-        private ActionTable<Context> ContextAction { get; } = new();
+        public ActionTable<Context> Start { get; } = new();
+        public ActionTable<Context> Cancel { get; } = new();
+        public ActionTable<Context> Perform { get; } = new();
 
-        public void AddCondition(string key, Func<bool> condition) => Condition.Add(key, condition);
-        public void RemoveCondition(string key) => Condition.Remove(key);
-        public void Add(string key, Action<Context> action) => ContextAction.Add(key, action);
-        public void Add(string key, Action action) => ContextAction.Add(key, action);
-        public void Remove(string key) => ContextAction.Remove(key);
+        public void AddStart(string key, Action<Context> action) => Start.Add(key, action);
+        public void AddStart(string key, Action action) => Start.Add(key, action);
+        public void RemoveStart(string key) => Start.Remove(key);
+        
+        public void AddCancel(string key, Action<Context> action) => Cancel.Add(key, action);
+        public void AddCancel(string key, Action action) => Cancel.Add(key, action);
+        public void RemoveCancel(string key) => Cancel.Remove(key);
+
+        public void AddPerform(string key, Action<Context> action) => Perform.Add(key, action);
+        public void AddPerform(string key, Action action) => Perform.Add(key, action);
+        public void RemovePerform(string key) => Perform.Remove(key);
 
         /// <summary>
         /// Do Not use this method Directly. Designed for Input Interaction.
         /// </summary>
-        public void Invoke(Context context)
-        {
-            if (Condition.IsAllTrue)
-            {
-                ContextAction.Invoke(context);
-            }
-        }
+        public void StartInvoke(Context context)=> Start.Invoke(context);
+        
+        /// <summary>
+        /// Do Not use this method Directly. Designed for Input Interaction.
+        /// </summary>
+        public void CancelInvoke(Context context)=> Cancel.Invoke(context);
+        
+        /// <summary>
+        /// Do Not use this method Directly. Designed for Input Interaction.
+        /// </summary>
+        public void PerformInvoke(Context context)=> Perform.Invoke(context);
     }
 }

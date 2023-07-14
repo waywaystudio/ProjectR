@@ -1,4 +1,3 @@
-using System;
 using Character.Venturers;
 using UnityEngine;
 using UnityEngine.Events;
@@ -15,7 +14,7 @@ namespace Lobby.Stage
 
         private void OnTriggerEnter(Collider other)
         {
-            if (other.TryGetComponent(out VenturerBehaviour player) && player == LobbyDirector.Knight)
+            if (other.TryGetComponent(out VenturerBehaviour player) && player == LobbyDirector.FocusVenturer)
             {
                 // Add Event to Interaction;
                 LobbyDirector.Input.InteractAction = interactEvent;
@@ -25,7 +24,7 @@ namespace Lobby.Stage
 
         private void OnTriggerExit(Collider other)
         {
-            if (other.TryGetComponent(out VenturerBehaviour player) && player == LobbyDirector.Knight)
+            if (other.TryGetComponent(out VenturerBehaviour player) && player == LobbyDirector.FocusVenturer)
             {
                 // Remove Event to Interaction;
                 LobbyDirector.Input.InteractAction = null;

@@ -1,4 +1,3 @@
-using Manager;
 using UnityEngine;
 
 namespace Raid.Art
@@ -11,7 +10,7 @@ namespace Raid.Art
         {
             if (controller.IsNullOrDestroyed()) return;
             
-            if (!MainManager.oldInput.TryGetMousePosition(out var groundPosition)) return;
+            if (!InputManager.TryGetMousePosition(out var groundPosition)) return;
 
             transform.position = groundPosition;
             controller.FillOnce(0.3f);

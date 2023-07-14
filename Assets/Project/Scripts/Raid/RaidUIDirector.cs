@@ -23,11 +23,6 @@ namespace Raid
             skillBar.Initialize();
         }
 
-        public void Dispose()
-        {
-            skillBar.Dispose();
-        }
-
 
 #if UNITY_EDITOR
         public void EditorSetUp()
