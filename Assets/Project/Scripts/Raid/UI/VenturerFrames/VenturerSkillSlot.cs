@@ -21,8 +21,8 @@ namespace Raid.UI.VenturerFrames
 
         public void Initialize()
         {
-            RaidDirector.InputDirector[bindingKey]?.AddStart("ActiveSkill", StartAction);
-            RaidDirector.InputDirector[bindingKey]?.AddCancel("ReleaseSkill", ReleaseAction);
+            RaidDirector.Input[bindingKey]?.AddStart("ActiveSkill", StartAction);
+            RaidDirector.Input[bindingKey]?.AddCancel("ReleaseSkill", ReleaseAction);
         }
 
         public void UpdateSlot(DataIndex skillCode)

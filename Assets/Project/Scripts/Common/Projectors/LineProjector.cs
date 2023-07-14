@@ -10,7 +10,6 @@ namespace Common.Projectors
     {
         [SerializeField] protected Material bodyMaterial;
         [SerializeField] protected DecalProjector bodyProjector;
-        [SerializeField] protected float initialProgress;
         [SerializeField] protected float fadeAmount;
         [SerializeField] protected float length;
         [SerializeField] protected float width;
@@ -143,6 +142,13 @@ namespace Common.Projectors
             bodyProjector.material.SetColor(FillColorShaderID, fillColor);
             bodyProjector.material.SetFloat(FillProgressShaderID, 0f);
             bodyProjector.material.SetFloat(FadeAmountShaderID, fadeAmount * 2);
+        }
+
+        private void OnValidate()
+        {
+            UpdateHeadProjector();
+            UpdateBodyProjector();
+            transform.localRotation = Quaternion.Euler(0, 0, 0);
         }
     }
 }

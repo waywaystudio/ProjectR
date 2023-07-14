@@ -14,18 +14,17 @@ namespace Raid
         [SerializeField] private RaidInputDirector inputDirector;
         [SerializeField] private RaidStageDirector stageDirector;
         [SerializeField] private RaidUIDirector uiDirector;
-        
         [SerializeField] private GameEventVenturer adventurerFocusEvent;
 
         private VenturerBehaviour focusVenturer;
         
-        public static RaidCameraDirector CameraDirector => Instance.cameraDirector;
-        public static RaidCastingDirector CastingDirector => Instance.castingDirector;
-        public static RaidInputDirector InputDirector => Instance.inputDirector;
-        public static RaidStageDirector StageDirector => Instance.stageDirector;
+        public static RaidCameraDirector Camera => Instance.cameraDirector;
+        public static RaidCastingDirector Casting => Instance.castingDirector;
+        public static RaidInputDirector Input => Instance.inputDirector;
+        public static RaidStageDirector Stage => Instance.stageDirector;
         public static RaidUIDirector UIDirector => Instance.uiDirector;
-        public static VillainBehaviour Boss => CastingDirector.Villain;
-        public static List<VenturerBehaviour> VenturerList => CastingDirector.VenturerList;
+        public static VillainBehaviour Boss => Casting.Villain;
+        public static List<VenturerBehaviour> VenturerList => Casting.VenturerList;
         public static VenturerBehaviour FocusVenturer
         {
             get => Instance.focusVenturer;
@@ -41,12 +40,12 @@ namespace Raid
          */ 
         public static void Initialize()
         {
-            CameraDirector.Initialize();
-            CastingDirector.Initialize();
-            InputDirector.Initialize();
+            Camera.Initialize();
+            Casting.Initialize();
+            Input.Initialize();
             UIDirector.Initialize();
             
-            FocusVenturer = CastingDirector.VenturerList[0];
+            FocusVenturer = Casting.VenturerList[0];
         }
 
 

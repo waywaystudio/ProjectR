@@ -4,7 +4,6 @@ namespace Common
     {
         public CombatEntityType Type;
         public bool IsCritical;
-        public bool IsFinishedAttack;
         public float Value;
         public readonly DataIndex CombatIndex;
         public readonly ICombatTaker Taker;

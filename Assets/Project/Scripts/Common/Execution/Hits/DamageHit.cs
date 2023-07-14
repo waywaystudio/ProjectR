@@ -66,8 +66,8 @@ namespace Common.Execution.Hits
             {
                 taker.Hp.Value    =  0;
                 taker.Alive.Value =  false;
-                entity.Value                       -= taker.Hp.Value;
-                entity.IsFinishedAttack            =  true;
+                entity.Value      -= taker.Hp.Value;
+                
              
                 Debug.Log($"{taker.Name} dead by {Sender.Provider.Name}'s {Sender.DataIndex}'s {entity.Value}");
                 taker.Dead();

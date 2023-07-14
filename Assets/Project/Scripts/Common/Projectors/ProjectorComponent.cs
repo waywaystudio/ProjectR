@@ -25,7 +25,6 @@ namespace Common.Projectors
         protected static readonly int AngleShaderID = Shader.PropertyToID("_Angle");
 
 
-
         public virtual void Initialize(IProjectionProvider provider)
         {
             Provider = provider;

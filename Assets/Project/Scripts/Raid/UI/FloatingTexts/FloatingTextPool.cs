@@ -1,7 +1,6 @@
 using System.Collections.Generic;
 using Character.Venturers;
 using Common;
-using Common.UI.FloatingTexts;
 using UnityEngine;
 
 namespace Raid.UI.FloatingTexts
@@ -30,14 +29,14 @@ namespace Raid.UI.FloatingTexts
         }
 
 
-        /// <summary>
-        /// 동일 대상에게 Heal을 주고 받을 때 어색한 것을 방지
-        /// </summary>
         private void Create(FloatingText ft)
         {
             ft.OnEnd.Add("ReleasePool", () => pool.Release(ft));
         }
 
+        /// <summary>
+        /// 동일 대상에게 Heal을 주고 받을 때 어색한 것을 방지
+        /// </summary>
         private void SpawningOnProvide(CombatEntity combatEntity)
         {
             if (combatEntity.Taker != (ICombatTaker)currentVenturer) Spawn(combatEntity);

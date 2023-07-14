@@ -86,10 +86,16 @@ MonoBehaviour:
     - {fileID: 2659919103708223492}
   fireExecutor:
     fireExecutionList: []
-  combatParticles:
-  - {fileID: 7025629688353423320}
-  combatImpulses:
-  - {fileID: 6374269020853639037}
+  effector:
+    combatParticles:
+    - {fileID: 7025629688353423320}
+    combatSounds: []
+    combatImpulses:
+    - {fileID: 6374269020853639037}
+    combatCameras: []
+    combatPostProcesses: []
+    hitPauses: []
+    bulletTimes: []
   prolongTimer:
     castingTime: 3
   delayTimer:

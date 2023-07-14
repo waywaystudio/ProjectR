@@ -1,9 +1,10 @@
 using System;
+using Common;
 using DG.Tweening;
 using Sirenix.OdinInspector;
 using UnityEngine;
 
-namespace Common.UI.FloatingTexts
+namespace Raid.UI.FloatingTexts
 {
     [Serializable]
     public class FloatingTextEntity

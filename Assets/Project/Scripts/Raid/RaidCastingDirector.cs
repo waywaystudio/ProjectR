@@ -35,7 +35,7 @@ namespace Raid
             {
                 if (adventurerIndex == VenturerType.None) return;
 
-                var profitPosition   = RaidDirector.StageDirector.GetAdventurerPosition(index).position;
+                var profitPosition   = RaidDirector.Stage.GetAdventurerPosition(index).position;
                 
                 Camp.Spawn(adventurerIndex, profitPosition, venturerHierarchy, out var vb);
                 VenturerList.Add(vb);
@@ -44,7 +44,7 @@ namespace Raid
 
         private void SpawnVillain(VillainType villainIndex)
         {
-            var spawnPosition = RaidDirector.StageDirector.VillainSpawnPosition.position;
+            var spawnPosition = RaidDirector.Stage.VillainSpawnPosition.position;
 
             Den.Spawn(villainIndex, spawnPosition, villainHierarchy, out var vb);
 

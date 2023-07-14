@@ -8,10 +8,7 @@ public class InputManager : MonoSingleton<InputManager>
 {
     private static Camera MainCamera => CameraManager.MainCamera;
     private static InputDirector Director { get; set; }
-
-    [Sirenix.OdinInspector.ShowInInspector]
-    public string MapId => Director is null ? "Not yet" : Director.name;
-
+    
 
     public static void SetDirector(InputDirector director) => Director = director;
 

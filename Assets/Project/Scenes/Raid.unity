@@ -42733,7 +42733,6 @@ GameObject:
   - component: {fileID: 1137713286}
   - component: {fileID: 1137713285}
   - component: {fileID: 1137713287}
-  - component: {fileID: 1137713288}
   m_Layer: 7
   m_Name: SandBox
   m_TagString: Untagged
@@ -42783,24 +42782,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e95e4c4e981ab5b4c87e73e8ff9398a2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &1137713288
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1137713283}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e424a4e37431e9445b7e698a61d9ecb6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  magnification: 0.1
-  duration: 0.3
-  returnDuration: 0.1
-  actionKey: PlayBulletTime
-  playSection: 0
-  stopSection: 0
 --- !u!1 &1137868565
 GameObject:
   m_ObjectHideFlags: 0
@@ -62568,7 +62549,7 @@ Light:
   m_BounceIntensity: 1
   m_ColorTemperature: 6570
   m_UseColorTemperature: 0
-  m_BoundingSphereOverride: {x: 0, y: 0, z: 0, w: -1.8681552e+32}
+  m_BoundingSphereOverride: {x: 9.1835e-41, y: 9.756605e-37, z: 1.9882385e-38, w: -7.852805e+30}
   m_UseBoundingSphereOverride: 0
   m_UseViewFrustumForShadowCasterCull: 1
   m_ShadowRadius: 0

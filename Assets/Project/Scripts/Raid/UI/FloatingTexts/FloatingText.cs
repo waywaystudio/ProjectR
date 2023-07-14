@@ -1,8 +1,9 @@
+using Common;
 using DG.Tweening;
 using TMPro;
 using UnityEngine;
 
-namespace Common.UI.FloatingTexts
+namespace Raid.UI.FloatingTexts
 {
     public class FloatingText : MonoBehaviour
     {
