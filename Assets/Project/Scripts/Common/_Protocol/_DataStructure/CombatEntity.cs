@@ -2,6 +2,7 @@ namespace Common
 {
     public class CombatEntity
     {
+        public CombatEntityType Type;
         public bool IsCritical;
         public bool IsFinishedAttack;
         public float Value;
@@ -14,6 +15,7 @@ namespace Common
         {
             CombatIndex = combatIndex;
             Taker       = taker;
+            Type        = CombatEntityType.None;
         }
     }
 }

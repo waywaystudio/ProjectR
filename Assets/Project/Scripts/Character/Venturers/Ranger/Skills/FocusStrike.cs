@@ -14,7 +14,7 @@ namespace Character.Venturers.Ranger.Skills
         {
             base.Initialize();
 
-            Provider.OnDamageProvided.Add("AddAdrenalinByAimShot", AddAdrenalin);
+            Provider.OnCombatProvided.Add("AddAdrenalinByAimShot", AddAdrenalin);
             Builder
                 .Add(Section.Active, "Tracking", () => PlayTracking().Forget())                           
                 .Add(Section.Execute, "TryConsumeEcstasy", TryConsumeEcstasy)

@@ -1,106 +1,73 @@
+using System.Collections.Generic;
 using Character.Venturers;
 using Common;
-using Sirenix.OdinInspector;
+using Common.UI.FloatingTexts;
 using UnityEngine;
 
 namespace Raid.UI.FloatingTexts
 {
-    public class FloatingTextPool : MonoBehaviour 
+    public class FloatingTextPool : MonoBehaviour
     {
-        [SerializeField] private Pool<FloatingTextUI> pool;
+        [Sirenix.OdinInspector.ListDrawerSettings]
+        [SerializeField] private List<FloatingTextEntity> textEntities;
+        [SerializeField] private Pool<FloatingText> pool;
         
-        private VenturerBehaviour focusedAdventurer;
+        private VenturerBehaviour currentVenturer;
+        private Table<CombatEntityType, FloatingTextEntity> EntityTable { get; } = new();
 
 
         public void OnFocusVenturerChanged(VenturerBehaviour vb)
         {
-            VenturerBehaviour newFocusedAdventurer = null;
-            
-            foreach (var adventurer in RaidDirector.VenturerList)
+            if (currentVenturer != null)
             {
-                if (adventurer != vb) continue;
-                
-                newFocusedAdventurer = adventurer;
-                break;
+                currentVenturer.OnCombatTaken.Remove("SpawnCombatText");
+                currentVenturer.OnCombatProvided.Remove("SpawnCombatText");
             }
 
-            if (newFocusedAdventurer is null) return;
-            if (focusedAdventurer is not null)
-            {
-                focusedAdventurer.OnDamageProvided.Remove("DamageTextUI");
-                focusedAdventurer.OnDamageTaken.Remove("TakenDamageTextUI");
-            }
-            
-            newFocusedAdventurer.OnDamageProvided.Add("DamageTextUI", ShowDamage);
-            newFocusedAdventurer.OnDamageTaken.Add("TakenDamageTextUI", ShowDamage);
+            currentVenturer = vb;
+            currentVenturer.OnCombatProvided.Add("SpawnCombatText", SpawningOnProvide);
+            currentVenturer.OnCombatTaken.Add("SpawnCombatText", Spawn);
         }
 
 
-        private void ShowDamage(CombatEntity combatEntity)
+        /// <summary>
+        /// 동일 대상에게 Heal을 주고 받을 때 어색한 것을 방지
+        /// </summary>
+        private void Create(FloatingText ft)
         {
-            var damageText = pool.Get();
-
-            damageText.ShowValue(combatEntity);
+            ft.OnEnd.Add("ReleasePool", () => pool.Release(ft));
         }
 
-        private void CreateFloatingTextUI(FloatingTextUI textUIComponent)
+        private void SpawningOnProvide(CombatEntity combatEntity)
         {
-            textUIComponent.OnEnded.Add("ReleasePool", () => pool.Release(textUIComponent));
+            if (combatEntity.Taker != (ICombatTaker)currentVenturer) Spawn(combatEntity);
+        }
+        
+        private void Spawn(CombatEntity combatEntity)
+        {
+            var ft = pool.Get();
+            var textDesignEntity = EntityTable[combatEntity.Type];
+            var text = combatEntity.Type switch
+            {
+                CombatEntityType.Damage         => combatEntity.Value.ToString("0"),
+                CombatEntityType.CriticalDamage => combatEntity.Value.ToString("0"),
+                CombatEntityType.Heal           => combatEntity.Value.ToString("0"),
+                CombatEntityType.CriticalHeal   => combatEntity.Value.ToString("0"),
+                CombatEntityType.Evade          => "Evade",
+                CombatEntityType.Block          => "Block",
+                CombatEntityType.Absorb         => "Absorb",
+                CombatEntityType.Immune         => "Immune",
+                _                               => "Miss"
+            };
+
+            ft.ImportProperty(textDesignEntity, text);
+            ft.ShowValue(combatEntity);
         }
 
         private void Awake()
         {
-            pool.Initialize(CreateFloatingTextUI, transform);
+            pool.Initialize(Create, transform);
+            EntityTable.CreateTable(textEntities, entity => entity.CombatEntityType);
         }
-
-        private void OnDestroy()
-        {
-            if (RaidDirector.Instance.IsNullOrDestroyed())
-            {
-                Debug.Log("RaidDirector Destroyed");
-                return;
-            }
-            
-            RaidDirector.VenturerList.ForEach(adventurer =>
-            {
-                adventurer.OnDamageProvided.Remove("DamageTextUI");
-                adventurer.OnDamageTaken.Remove("TakenDamageTextUI");
-            });
-        }
-
-
-        #region TEMP
-        [Button] private void TogglePlayer1()
-        {
-            if (RaidDirector.VenturerList.Count < 0) return;
-            
-            RaidDirector.VenturerList[0].OnDamageProvided.Add("DamageTextUI", ShowDamage);
-            RaidDirector.VenturerList[0].OnDamageTaken.Add("TakenDamageTextUI", ShowDamage);
-        }
-        
-        [Button] private void TogglePlayer2()
-        {
-            if (RaidDirector.VenturerList.Count < 1) return;
-            
-            RaidDirector.VenturerList[1].OnDamageProvided.Add("DamageTextUI", ShowDamage);
-            RaidDirector.VenturerList[1].OnDamageTaken.Add("TakenDamageTextUI", ShowDamage);
-        }
-        
-        [Button] private void TogglePlayer3()
-        {
-            if (RaidDirector.VenturerList.Count < 2) return;
-            
-            RaidDirector.VenturerList[2].OnDamageProvided.Add("DamageTextUI", ShowDamage);
-            RaidDirector.VenturerList[2].OnDamageTaken.Add("TakenDamageTextUI", ShowDamage);
-        }
-        
-        [Button] private void TogglePlayer4()
-        {
-            if (RaidDirector.VenturerList.Count < 3) return;
-            
-            RaidDirector.VenturerList[3].OnDamageProvided.Add("DamageTextUI", ShowDamage);
-            RaidDirector.VenturerList[3].OnDamageTaken.Add("TakenDamageTextUI", ShowDamage);
-        }
-        #endregion
     }
 }

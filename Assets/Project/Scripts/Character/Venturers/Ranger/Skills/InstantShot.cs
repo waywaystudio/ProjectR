@@ -10,7 +10,7 @@ namespace Character.Venturers.Ranger.Skills
         {
             base.Initialize();
             
-            Provider.OnDamageProvided.Add("AddAdrenalinByInstantShot", AddAdrenalin);
+            Provider.OnCombatProvided.Add("AddAdrenalinByInstantShot", AddAdrenalin);
             Builder.Add(Section.Execute, "Fire", Fire);
         }
         
@@ -19,7 +19,7 @@ namespace Character.Venturers.Ranger.Skills
         {
             base.Dispose();
             
-            Provider.OnDamageProvided.Remove("AddAdrenalinByInstantShot");
+            Provider.OnCombatProvided.Remove("AddAdrenalinByInstantShot");
         }
 
         private void Fire()

@@ -2916,7 +2916,7 @@ GameObject:
   - component: {fileID: 88930311}
   - component: {fileID: 88930312}
   m_Layer: 0
-  m_Name: FloatingTexts
+  m_Name: CombatText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2954,9 +2954,46 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 455e5b7fce72d8044bb5586d4bf5638e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  textEntities:
+  - CombatEntityType: 1
+    TextColor: {r: 0.996, g: 0.812, b: 0.012, a: 1}
+    ImpactScale: 2
+    ImpactDuration: 0.45
+    PivotSpreadRange: 0.5
+    MoveUpDistance: 25
+    MoveUpDuration: 0.35
+    MoveUpEase: 8
+    FadeDuration: 0.35
+  - CombatEntityType: 2
+    TextColor: {r: 1, g: 0.431, b: 0.02, a: 1}
+    ImpactScale: 3
+    ImpactDuration: 0.45
+    PivotSpreadRange: 0.5
+    MoveUpDistance: 25
+    MoveUpDuration: 0.35
+    MoveUpEase: 8
+    FadeDuration: 0.35
+  - CombatEntityType: 3
+    TextColor: {r: 0.384, g: 0.416, b: 0.082, a: 1}
+    ImpactScale: 2
+    ImpactDuration: 0.45
+    PivotSpreadRange: 0.5
+    MoveUpDistance: 25
+    MoveUpDuration: 0.35
+    MoveUpEase: 8
+    FadeDuration: 0.35
+  - CombatEntityType: 4
+    TextColor: {r: 0.165, g: 0.157, b: 0.008, a: 1}
+    ImpactScale: 3
+    ImpactDuration: 0.45
+    PivotSpreadRange: 0.5
+    MoveUpDistance: 25
+    MoveUpDuration: 0.35
+    MoveUpEase: 8
+    FadeDuration: 0.35
   pool:
-    prefab: {fileID: 8899456247310366039, guid: c99cf14df052e134187bc6eb651f198f, type: 3}
-    maxCount: 32
+    prefab: {fileID: 8899456247310366039, guid: ea8956cfe38059c488d3019c86ac6e2a, type: 3}
+    maxCount: 64
     syncObjectActivity: 1
 --- !u!114 &88930312
 MonoBehaviour:
@@ -2981,7 +3018,7 @@ MonoBehaviour:
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_ObjectArgumentAssemblyTypeName: 
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -62531,7 +62568,7 @@ Light:
   m_BounceIntensity: 1
   m_ColorTemperature: 6570
   m_UseColorTemperature: 0
-  m_BoundingSphereOverride: {x: 9.1835e-41, y: 0, z: 0, w: 4.1326e-40}
+  m_BoundingSphereOverride: {x: 0, y: 0, z: 0, w: -1.8681552e+32}
   m_UseBoundingSphereOverride: 0
   m_UseViewFrustumForShadowCasterCull: 1
   m_ShadowRadius: 0

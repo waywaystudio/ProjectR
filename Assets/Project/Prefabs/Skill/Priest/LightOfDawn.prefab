@@ -229,10 +229,13 @@ MonoBehaviour:
   fireExecutor:
     fireExecutionList: []
   effector:
-    combatParticles: []
+    combatParticles:
+    - {fileID: 5403444754720041273}
     combatSounds: []
     combatImpulses: []
     combatCameras: []
+    combatPostProcesses: []
+    hitPauses: []
     bulletTimes: []
   detector:
     sortingType: 0

@@ -20,7 +20,7 @@ namespace Character.Venturers.Ranger.Skills
             base.Initialize();
 
             projector.Initialize(this);
-            Provider.OnDamageProvided.Add("AddAdrenalinByAimShot", AddAdrenalin);
+            Provider.OnCombatProvided.Add("AddAdrenalinByAimShot", AddAdrenalin);
             Builder
                 .Add(Section.Active, "Tracking", () => PlayTracking().Forget())
                 .Add(Section.Active, "Charging", () => PlayChargingProgress().Forget())

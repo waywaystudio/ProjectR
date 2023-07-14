@@ -18,6 +18,8 @@ namespace Common.Execution.Hits
             var entity        = new CombatEntity(Sender.DataIndex, taker);
             var providerTable = Sender.Provider.StatTable;
 
+            entity.Type = CombatEntityType.Damage;
+
             // Damage Creator
             var weaponAverage = Random.Range(providerTable.MinWeaponValue, providerTable.MaxWeaponValue);
             var damageAmount = weaponAverage 
@@ -29,6 +31,7 @@ namespace Common.Execution.Hits
             {
                 entity.IsCritical =  true;
                 damageAmount      *= 1.0f + (100 + providerTable.CriticalDamage + DamageSpec.CriticalDamage) * 0.01f;
+                entity.Type       =  CombatEntityType.CriticalDamage;
             }
             
             // Armor Calculation : CombatFormula
@@ -54,6 +57,7 @@ namespace Common.Execution.Hits
                 {
                     takerShield.Value -= damageAmount;
                     damageAmount      =  0f;
+                    entity.Type       =  CombatEntityType.Absorb;
                 }
             }
 
@@ -68,11 +72,11 @@ namespace Common.Execution.Hits
                 Debug.Log($"{taker.Name} dead by {Sender.Provider.Name}'s {Sender.DataIndex}'s {entity.Value}");
                 taker.Dead();
             }
-            
-            taker.Hp.Value -= damageAmount;
-            taker.OnDamageTaken.Invoke(entity);
 
-            Sender.Provider.OnDamageProvided.Invoke(entity);
+            taker.Hp.Value -= damageAmount;
+            taker.OnCombatTaken.Invoke(entity);
+
+            Sender.Provider.OnCombatProvided.Invoke(entity);
         }
         
 

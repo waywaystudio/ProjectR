@@ -54,8 +54,7 @@ namespace Common
         // + string Name { get; }
         SkillTable SkillTable { get; }
 
-        ActionTable<CombatEntity> OnDamageProvided { get; }
-        ActionTable<CombatEntity> OnHealProvided { get; }
+        ActionTable<CombatEntity> OnCombatProvided { get; }
     }
     
     public interface ICombatTaker : ICombatEntity, IObjectName
@@ -73,8 +72,7 @@ namespace Common
         KnockBackBehaviour KnockBackBehaviour { get; }
         DrawBehaviour DrawBehaviour { get; }
         DeadBehaviour DeadBehaviour { get; }
-        ActionTable<CombatEntity> OnDamageTaken { get; }
-        ActionTable<CombatEntity> OnHealTaken { get; }
+        ActionTable<CombatEntity> OnCombatTaken { get; }
 
         void Run(Vector3 destination);
         void Rotate(Vector3 lookTarget);

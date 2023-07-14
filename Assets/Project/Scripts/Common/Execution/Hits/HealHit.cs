@@ -4,7 +4,6 @@ namespace Common.Execution.Hits
 {
     public class HealHit : HitExecution, IEditable
     {
-        // [SerializeField] private DataIndex actionCode;
         [SerializeField] private StatSpec healSpec;
 
         public const string HealExecutorKey = "HealExecutorKey";
@@ -17,6 +16,8 @@ namespace Common.Execution.Hits
 
             var entity        = new CombatEntity(Sender.DataIndex, taker);
             var providerTable = Sender.Provider.StatTable;
+            
+            entity.Type = CombatEntityType.Heal;
 
             // Heal Creator
             var weaponAverage = Random.Range(providerTable.MinWeaponValue, providerTable.MaxWeaponValue);
@@ -28,7 +29,8 @@ namespace Common.Execution.Hits
             if (CombatFormula.IsCritical(providerTable.CriticalChance + healSpec.CriticalChance))
             {
                 entity.IsCritical =  true;
-                healAmount      *= 1.0f + (100 + providerTable.CriticalDamage + healSpec.CriticalDamage) * 0.01f;
+                healAmount        *= 1.0f + (100 + providerTable.CriticalDamage + healSpec.CriticalDamage) * 0.01f;
+                entity.Type       =  CombatEntityType.CriticalHeal;
             }
 
             entity.Value =  healAmount;
@@ -46,8 +48,8 @@ namespace Common.Execution.Hits
                 taker.Hp.Value += healAmount;
             }
 
-            taker.OnHealTaken.Invoke(entity);
-            Sender.Provider.OnHealProvided.Invoke(entity);
+            taker.OnCombatTaken.Invoke(entity);
+            Sender.Provider.OnCombatProvided.Invoke(entity);
         }
         
         

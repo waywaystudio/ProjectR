@@ -86,10 +86,8 @@ namespace Common.Characters
         public Transform StatusEffectHierarchy => statusEffectHierarchy;
         public Transform Preposition(PrepositionType type) => prePosition.Get(type);
         
-        public ActionTable<CombatEntity> OnDamageProvided { get; } = new();
-        public ActionTable<CombatEntity> OnDamageTaken { get; } = new();
-        public ActionTable<CombatEntity> OnHealProvided { get; } = new();
-        public ActionTable<CombatEntity> OnHealTaken { get; } = new();
+        public ActionTable<CombatEntity> OnCombatProvided { get; } = new();
+        public ActionTable<CombatEntity> OnCombatTaken { get; } = new();
 
         public void TakeStatusEffect(StatusEffect effect) => StatusEffectTable[effect.DataIndex].Activate(this);
         public void DispelStatusEffect(DataIndex effectIndex) => StatusEffectTable[effectIndex]?.Dispel();

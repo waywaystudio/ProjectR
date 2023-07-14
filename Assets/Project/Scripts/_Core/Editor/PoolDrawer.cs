@@ -25,7 +25,7 @@ namespace Editor
             if (member.Name == "maxCount")
             {
                 attributes.Add(new TitleGroupAttribute("Pooling Property"));
-                attributes.Add(new PropertyRangeAttribute(1, 32));
+                attributes.Add(new PropertyRangeAttribute(1, 64));
             }
             
             if (member.Name == "syncObjectActivity")

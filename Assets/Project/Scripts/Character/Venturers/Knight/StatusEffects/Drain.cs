@@ -17,10 +17,10 @@ namespace Character.Venturers.Knight.StatusEffects
             base.Initialize(provider);
 
             Builder
-                .Add(Section.Active,"DrainBuff", () => Provider.OnDamageProvided.Add("DrainBuff", DrainHp))
+                .Add(Section.Active,"DrainBuff", () => Provider.OnCombatProvided.Add("DrainBuff", DrainHp))
                 .Add(Section.Active, "OvertimeExecution", () => OvertimeExecution().Forget())
                 .Add(Section.End, "Stop", Stop)
-                .Add(Section.End,"Return", () => Provider.OnDamageProvided.Remove("DrainBuff"));
+                .Add(Section.End,"Return", () => Provider.OnCombatProvided.Remove("DrainBuff"));
         }
         
         protected override void Dispose()
