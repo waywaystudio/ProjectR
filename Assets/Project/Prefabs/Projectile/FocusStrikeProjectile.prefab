@@ -51,10 +51,6 @@ MonoBehaviour:
   targetLayer:
     serializedVersion: 2
     m_Bits: 256
-  trajectory:
-    trajectoryType: 2
-    speed: 100
-    distance: 40
   hitExecutor:
     hitExecutionList:
     - {fileID: 4025622706656194699}
@@ -68,7 +64,13 @@ MonoBehaviour:
     combatSounds: []
     combatImpulses: []
     combatCameras: []
+    combatPostProcesses: []
+    hitPauses: []
     bulletTimes: []
+  trajectory:
+    trajectoryType: 2
+    speed: 100
+    distance: 40
   triggerCollider: {fileID: 6970810306177905816}
   maxPierceCount: 3
 --- !u!135 &6970810306177905816
@@ -251,7 +253,7 @@ MonoBehaviour:
     statList:
     - statType: 13010001
       statKey: DamageExecutor
-      value: 500
+      value: 1200
     - statType: 13020001
       statKey: DamageExecutor
       value: 0.3

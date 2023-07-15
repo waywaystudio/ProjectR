@@ -28,7 +28,7 @@ namespace Character.Venturers.Warrior.Skills
         {
             var remainResource = Cb.Resource.Value;
             var maxResource = Cb.StatTable.MaxResource;
-            var multiplier = 1.0f + remainResource / maxResource * remainBonusMultiplier;
+            var multiplier = 1.0f + (1.0f - remainResource / maxResource) * remainBonusMultiplier;
             var originalPower = CombatSpec.Power;
             
             CombatSpec.Change(StatType.Power, originalPower * multiplier);
