@@ -1,4 +1,3 @@
-using System;
 using System.Threading;
 using Common;
 using Common.Projectors;
@@ -8,7 +7,7 @@ using UnityEngine;
 
 namespace Character.Villains.Commons.StatusEffects
 {
-    public class IgnitionStatusEffect : StatusEffect, IProjectionProvider
+    public class IgnitionStatusEffect : StatusEffect, IProjection
     {
         [SerializeField] private ArcProjector projector;
         [SerializeField] private float interval;
@@ -20,7 +19,7 @@ namespace Character.Villains.Commons.StatusEffects
         private float hasteWeight;
         private float tickBuffer;
 
-        public float CastingWeight => Duration;
+        public float CastingTime => Duration;
         public Vector3 SizeVector => new (radius, radius,360f);
         
 
@@ -46,8 +45,6 @@ namespace Character.Villains.Commons.StatusEffects
 
         private void Bomb()
         {
-            Array.Clear(buffers, 0, buffers.Length); 
-            
             var takerList =
                 TargetUtility.GetTargetsInSphere<ICombatTaker>(Taker.gameObject.transform.position, adventurerLayer, radius, buffers);
 

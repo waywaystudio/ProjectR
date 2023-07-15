@@ -220,12 +220,17 @@ MonoBehaviour:
   fireExecutor:
     fireExecutionList:
     - {fileID: 2260594746363557818}
-  combatParticles: []
-  combatImpulses: []
+  effector:
+    combatParticles: []
+    combatSounds: []
+    combatImpulses: []
+    combatCameras: []
+    combatPostProcesses: []
+    hitPauses: []
+    bulletTimes: []
   prolongTimer:
-    castingTime: 5
-  delayTimer:
-    delaySecond: 0
+    duration: 8
+    isIncrease: 0
   sizeVector: {x: 0, y: 5, z: 135}
   targetLayer:
     serializedVersion: 2

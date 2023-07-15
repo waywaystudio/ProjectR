@@ -97,9 +97,8 @@ MonoBehaviour:
     hitPauses: []
     bulletTimes: []
   prolongTimer:
-    castingTime: 3
-  delayTimer:
-    delaySecond: 0
+    duration: 3
+    isIncrease: 0
   sizeVector: {x: 3.5, y: 3.5, z: 360}
   targetLayer:
     serializedVersion: 2

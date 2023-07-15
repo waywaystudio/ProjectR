@@ -11,7 +11,7 @@ namespace Common.Characters.Behaviours
 
         private CharacterBehaviour cb;
         private CharacterBehaviour Cb => cb ??= GetComponentInParent<CharacterBehaviour>();
-        private CastTimer Timer { get; } = new();
+        private InstanceTimer Timer { get; } = new();
         
 
         public void Stun(float duration)
@@ -43,7 +43,7 @@ namespace Common.Characters.Behaviours
         private void OnDisable()
         {
             Sequencer.Clear();
-            Timer.Dispose();
+            Timer.Stop();
         }
     }
 }

@@ -56,7 +56,7 @@ public class Pool<T> where T : Component
 
     public void Release(T element)
     {
-        if (isInitialized)
+        if (isInitialized && !element.IsNullOrDestroyed())
         {
             objectPool.Release(element);
             return;

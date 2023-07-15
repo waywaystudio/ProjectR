@@ -1,22 +1,26 @@
+using System;
 using Common.Effects;
 using Common.Execution;
+using Common.Skills;
 using UnityEngine;
 
 namespace Common.StatusEffects
 {
-    public abstract class StatusEffect : MonoBehaviour, IActionSender, IHasTaker, ICombatSequence, IEditable
+    public abstract class StatusEffect : MonoBehaviour, ICombatObject, IEditable
     {
-        [SerializeField] protected HitExecutor hitExecutor;
-        [SerializeField] protected Effector effector;
         [SerializeField] protected DataIndex statusCode;
         [SerializeField] protected StatusEffectType type;
         [SerializeField] protected Sprite icon;
+        [SerializeField] protected HitExecutor hitExecutor;
+        [SerializeField] protected Effector effector;
+        // [SerializeField] protected CombatCoolTimer effectuateTimer;
         [SerializeField] protected float duration;
 
         public ICombatProvider Provider { get; protected set; }
         public ICombatTaker Taker { get; set; }
         public DataIndex DataIndex => statusCode;
         public StatusEffectType Type => type;
+        public Func<float> Haste => () => Provider is not null ? Provider.StatTable.Haste : 0f;
         public FloatEvent ProgressTime { get; } = new();
         public Sprite Icon => icon;
         public float Duration => duration;
@@ -41,8 +45,8 @@ namespace Common.StatusEffects
                 .Add(Section.Override, "ProlongDuration", ProlongDuration)
                 .Add(Section.End, "UnregisterTable", RemoveTable);
             
-            hitExecutor.Initialize(Sequence, this);
-            effector.Initialize(Sequence, this);
+            hitExecutor.Initialize(this);
+            effector.Initialize(this);
         }
         
 
@@ -87,16 +91,16 @@ namespace Common.StatusEffects
 #if UNITY_EDITOR
         public virtual void EditorSetUp()
         {
-            hitExecutor.GetExecutionInEditor(transform);
-            effector.GetEffectsInEditor(transform);
-
             var statusEffectData = Database.StatusEffectSheetData(DataIndex);
-
+            
             icon     = Database.SpellSpriteData.Get(DataIndex);
             duration = statusEffectData.Duration;
             type = statusEffectData.IsBuff
                 ? StatusEffectType.Buff
                 : StatusEffectType.DeBuff;
+            
+            hitExecutor.GetExecutionInEditor(transform);
+            effector.GetEffectsInEditor(transform);
         }
 #endif
     }

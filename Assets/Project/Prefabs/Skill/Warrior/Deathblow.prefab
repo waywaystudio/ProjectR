@@ -693,6 +693,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dataIndex: 31210203
+  skillType: 3
   behaviourMask: 32
   icon: {fileID: 21300000, guid: 07ac76d34f3f63441876ebdc34bd48a5, type: 3}
   hitExecutor:
@@ -712,11 +713,12 @@ MonoBehaviour:
     - {fileID: 4579396754147066590}
     combatPostProcesses:
     - {fileID: 2089352131418628318}
+    hitPauses: []
     bulletTimes: []
   detector:
     sortingType: 0
     maxBufferCount: 32
-    sizeVector: {x: 0, y: 10, z: 80}
+    sizeVector: {x: 0, y: 10, z: 90}
     targetLayer:
       serializedVersion: 2
       m_Bits: 256
@@ -726,13 +728,14 @@ MonoBehaviour:
     isLoop: 1
     hasExecuteEvent: 0
     animationPlaySpeed: 1
-    skillType: 4
     callbackSection: 0
   coolTimer:
-    coolTime: 6
+    duration: 6
+    isIncrease: 0
     invokeSection: 11
   castTimer:
-    castingTime: 2
+    duration: 2
+    isIncrease: 1
     callbackSection: 11
   cost:
     cost: -30
@@ -836,7 +839,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1983913394890530822, guid: 8a71552a031e78242a7dd1951522badd, type: 3}
       propertyPath: fillColor.a
-      value: 0.09803922
+      value: 0.44705883
       objectReference: {fileID: 0}
     - target: {fileID: 1983913394890530822, guid: 8a71552a031e78242a7dd1951522badd, type: 3}
       propertyPath: backgroundColor.a

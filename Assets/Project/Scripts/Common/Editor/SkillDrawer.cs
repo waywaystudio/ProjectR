@@ -32,6 +32,13 @@ namespace Common.Editor
                 attributes.Add(new VerticalGroupAttribute("CommonProperty/Fields"));
             }
             
+            if (member.Name == "skillType")
+            {
+                attributes.Add(new HideLabelAttribute());
+                attributes.Add(new VerticalGroupAttribute("CommonProperty/Fields"));
+                attributes.Add(new EnumPagingAttribute());
+            }
+            
             if (member.Name == "behaviourMask")
             {
                 attributes.Add(new HideLabelAttribute());
@@ -70,7 +77,7 @@ namespace Common.Editor
         }
     }
     
-    public class AnimationTraitDrawer : OdinAttributeProcessor<SkillAnimationTrait>
+    public class SkillAnimationTraitDrawer : OdinAttributeProcessor<SkillAnimationTrait>
     {
         public override void ProcessSelfAttributes(InspectorProperty property, List<Attribute> attributes)
         {
@@ -104,13 +111,7 @@ namespace Common.Editor
                 attributes.Add(new FoldoutGroupAttribute("AnimationTrait"));
                 attributes.Add(new PropertyRangeAttribute(0, 10));
             }
-            
-            if (member.Name == "skillType")
-            {
-                attributes.Add(new FoldoutGroupAttribute("AnimationTrait"));
-                attributes.Add(new EnumPagingAttribute());
-            }
-            
+
             if (member.Name == "callbackSection")
             {
                 attributes.Add(new FoldoutGroupAttribute("AnimationTrait"));
@@ -128,9 +129,14 @@ namespace Common.Editor
 
         public override void ProcessChildMemberAttributes(InspectorProperty parentProperty, MemberInfo member, List<Attribute> attributes)
         {
-            if (member.Name == "coolTime")
+            if (member.Name == "duration")
             {
                 attributes.Add(new PropertyRangeAttribute(0, 180));
+                attributes.Add(new FoldoutGroupAttribute("CoolTimeTrait"));
+            }
+            
+            if (member.Name == "isIncrease")
+            {
                 attributes.Add(new FoldoutGroupAttribute("CoolTimeTrait"));
             }
             
@@ -150,9 +156,14 @@ namespace Common.Editor
 
         public override void ProcessChildMemberAttributes(InspectorProperty parentProperty, MemberInfo member, List<Attribute> attributes)
         {
-            if (member.Name == "castingTime")
+            if (member.Name == "duration")
             {
                 attributes.Add(new PropertyRangeAttribute(0, 10));
+                attributes.Add(new FoldoutGroupAttribute("CastTimeTrait"));
+            }
+            
+            if (member.Name == "isIncrease")
+            {
                 attributes.Add(new FoldoutGroupAttribute("CastTimeTrait"));
             }
             
@@ -261,7 +272,7 @@ namespace Common.Editor
         }
     }
 
-    public class CombatTakerDetectorDrawer : OdinAttributeProcessor<CombatTakerDetector>
+    public class TakerDetectorDrawer : OdinAttributeProcessor<TakerDetector>
     {
         public override void ProcessSelfAttributes(InspectorProperty property, List<Attribute> attributes)
         {

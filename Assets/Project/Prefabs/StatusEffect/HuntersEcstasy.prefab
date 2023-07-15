@@ -44,9 +44,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6333f46d06bac574d99050838b0bbec4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hitExecutor:
-    hitExecutionList: []
   statusCode: 32210005
   type: 1
   icon: {fileID: 21300000, guid: b92e35feb4573f24284dc0522d82b2fe, type: 3}
+  hitExecutor:
+    hitExecutionList: []
+  effector:
+    combatParticles: []
+    combatSounds: []
+    combatImpulses: []
+    combatCameras: []
+    combatPostProcesses: []
+    hitPauses: []
+    bulletTimes: []
+  effectuateTimer:
+    duration: 0
+    isIncrease: 0
+    invokeSection: 0
   duration: 0

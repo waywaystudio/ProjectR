@@ -46,6 +46,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dataIndex: 31210107
+  skillType: 1
   behaviourMask: 64
   icon: {fileID: 21300000, guid: 7f26ed2c121be2842b7c3bf7380c3297, type: 3}
   hitExecutor:
@@ -59,6 +60,8 @@ MonoBehaviour:
     combatSounds: []
     combatImpulses: []
     combatCameras: []
+    combatPostProcesses: []
+    hitPauses: []
     bulletTimes: []
   detector:
     sortingType: 0
@@ -73,13 +76,14 @@ MonoBehaviour:
     isLoop: 0
     hasExecuteEvent: 1
     animationPlaySpeed: 1
-    skillType: 1
     callbackSection: 3
   coolTimer:
-    coolTime: 60
+    duration: 60
+    isIncrease: 0
     invokeSection: 1
   castTimer:
-    castingTime: 0
+    duration: 0
+    isIncrease: 1
     callbackSection: 0
   cost:
     cost: -50

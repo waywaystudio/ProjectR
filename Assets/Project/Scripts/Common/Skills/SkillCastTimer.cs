@@ -4,31 +4,41 @@ using UnityEngine;
 namespace Common.Skills
 {
     [Serializable]
-    public class CombatCastTimer : TimeTrigger
+    public class SkillCastTimer : TimeTrigger
     {
         [SerializeField] protected Section callbackSection;
-        
-        public Section CallbackSection => callbackSection;
-        public float OriginalDuration
+
+        public float OriginalCastDuration
         {
             get => duration; 
             set => duration = value;
         }
 
-        public void Initialize(ICombatObject combatObject)
+        public void Initialize(SkillComponent skill)
         {
             if (duration == 0f) return;
 
             InitializeTrigger()
-                .SetWeight(() => CombatFormula.HasteValue(combatObject.Haste))
-                .SetCallback(callbackSection.GetCombatInvoker(combatObject.Invoker));
+                .SetWeight(() => CombatFormula.HasteValue(skill.Haste))
+                .SetCallback(callbackSection.GetCombatInvoker(skill.Invoker));
 
-            var builder = new CombatSequenceBuilder(combatObject.Sequence);
+            var hasRelease = skill.SkillType is SkillType.Charging or SkillType.Holding;
+            var builder = new CombatSequenceBuilder(skill.Sequence);
+
             builder
                 .Add(Section.Active, "SkillCasting",Play)
                 .AddIf(callbackSection != Section.None, callbackSection, "StopCasting", Stop)
+                .AddIf(hasRelease, Section.Release, "ReleaseAction", () => InvokeCallbackSection(skill.Invoker))
                 .Add(Section.End, "StopCasting",  Stop)
                 ;
+        }
+
+
+        private void InvokeCallbackSection(CombatSequenceInvoker invoker)
+        {
+            if (!invoker.IsActive) return;
+            
+            callbackSection.GetCombatInvoker(invoker)?.Invoke();
         }
 
 

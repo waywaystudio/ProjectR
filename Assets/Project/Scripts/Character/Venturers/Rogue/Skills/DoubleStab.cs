@@ -30,7 +30,7 @@ namespace Character.Venturers.Rogue.Skills
         
         private void PhantomsDoubleStab(Vector3 targetPosition)
         {
-            master.DoubleStab(targetPosition, 1f + Haste);
+            master.DoubleStab(targetPosition, Haste.Invoke());
         }
     }
 }

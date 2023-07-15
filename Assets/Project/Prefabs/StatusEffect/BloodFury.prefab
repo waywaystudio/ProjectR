@@ -44,6 +44,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 02a3aa545d343524991fccd6a4581369, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  statusCode: 32210010
+  type: 1
+  icon: {fileID: 21300000, guid: 6333a2f5c9035a145a090be74673e08c, type: 3}
   hitExecutor:
     hitExecutionList: []
   effector:
@@ -54,9 +57,10 @@ MonoBehaviour:
     combatPostProcesses: []
     hitPauses: []
     bulletTimes: []
-  statusCode: 32210010
-  type: 1
-  icon: {fileID: 21300000, guid: 6333a2f5c9035a145a090be74673e08c, type: 3}
+  effectuateTimer:
+    duration: 0
+    isIncrease: 0
+    invokeSection: 0
   duration: 0
   additionalHaste: 0.4
   resourceConsumePerSecond: 10

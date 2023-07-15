@@ -39,14 +39,14 @@ public class InstanceTimer
 [Serializable]
 public class TimeTrigger
 {
-    [SerializeField] private float duration;
+    [SerializeField] protected float duration;
+    [SerializeField] protected bool isIncrease;
 
-    private bool isIncrease;
     private float timer;
     private CancellationTokenSource cts;
 
     public bool IsRunning { get; private set; }
-    public float Progress => Mathf.Clamp01(Timer / Duration);
+    public float Duration => duration * (Weight is not null ? Weight.Invoke() : 1f);
     public float Timer
     {
         get => timer;
@@ -57,23 +57,9 @@ public class TimeTrigger
         }
     }
     
-    private float Duration => duration * DurationWeight.Invoke();
     private Action Callback { get; set; }
+    private Func<float> Weight { get; set; }
     private ActionTable<float> OnValueChanged { get; } = new();
-    private ValueWeight DurationWeight { get; set; }
-    
-    /// <summary>
-    /// 생성자 함수.
-    /// </summary>
-    /// <param name="isIncrease">재생 시 timer 증감 방향 설정</param>
-    /// <param name="weight">timer 계수 (미설정 == 1f)</param>
-    public void Initialize(bool isIncrease = true, Func<float> weight = null, Action callback = null)
-    {
-        this.isIncrease = isIncrease;
-        timer           = Duration;
-        DurationWeight  = new ValueWeight(weight);
-        Callback        = callback;
-    }
 
     /// <summary>
     /// TimeTrigger 클래스 SerializeField의 duration 값을 바탕으로 돌아간다.
@@ -84,11 +70,11 @@ public class TimeTrigger
         TimeTicker(isIncrease).Forget();
     }
 
-
+    public TimeTrigger InitializeTrigger() { timer = isIncrease ? 0f : Duration; return this; }
+    public TimeTrigger SetWeight(Func<float> weight) { Weight = weight; return this; }
+    public TimeTrigger SetCallback(Action callback) { Callback        = callback; return this; }
     public TimeTrigger AddListener(string key, Action<float> action) { OnValueChanged.Add(key, action); return this; }
     public TimeTrigger RemoveListener(string key) { OnValueChanged.Remove(key); return this; }
-    public TimeTrigger ChangeWeight(Func<float> weight) { DurationWeight  = new ValueWeight(weight); return this; }
-    public TimeTrigger ChangeCallback(Action callback) { Callback = callback; return this; }
     
     public void Stop()
     {
@@ -101,8 +87,6 @@ public class TimeTrigger
     public void Dispose()
     {
         Stop();
-        
-        OnValueChanged.Clear();
     }
 
     

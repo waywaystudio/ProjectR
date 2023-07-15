@@ -1,5 +1,8 @@
+using System.Threading;
 using Character.Venturers;
+using Common;
 using Common.UI;
+using Cysharp.Threading.Tasks;
 using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -15,8 +18,9 @@ namespace Raid.UI.VenturerFrames
         [SerializeField] private TextMeshProUGUI hotKey;
 
         private static VenturerBehaviour FocusVenturer => RaidDirector.FocusVenturer;
-        private DataIndex SkillCode { get; set; }
         private string HotKey => bindingKey;
+        private DataIndex SkillCode { get; set; }
+        private CancellationTokenSource cts;
 
 
         public void Initialize()
@@ -27,15 +31,16 @@ namespace Raid.UI.VenturerFrames
 
         public void UpdateSlot(DataIndex skillCode)
         {
-            SkillCode = skillCode;
-            
-            var targetSkill = FocusVenturer.GetSkill(skillCode);
-            if (targetSkill.IsNullOrEmpty()) return;
-            
+            var targetSkill = FocusVenturer.SkillTable[skillCode];
+            var builder = new CombatSequenceBuilder(targetSkill.Sequence);
+
+            SkillCode        = skillCode;
             skillIcon.sprite = targetSkill.Icon;
+
+            builder
+                .Add(Section.Cancel, "CancelReservation", StopTrying);
             
-            var coolTimer = targetSkill.CoolTimer;
-            coolDownFiller.Register(coolTimer.EventTimer, coolTimer.CoolTime);
+            coolDownFiller.Register(targetSkill.CoolTimer);
         }
 
 
@@ -43,12 +48,45 @@ namespace Raid.UI.VenturerFrames
         {
             if (!InputManager.TryGetMousePosition(out var mousePosition)) return;
 
-            FocusVenturer.ActiveSkill(SkillCode, mousePosition);
+            TryActiveSkill(mousePosition).Forget();
         }
 
         private void ReleaseAction(InputAction.CallbackContext callbackContext)
         {
             FocusVenturer.ReleaseSkill();
+        }
+
+        private async UniTaskVoid TryActiveSkill(Vector3 mousePosition)
+        {
+            StopTrying();
+            
+            cts = new CancellationTokenSource();
+            
+            var targetSkill = FocusVenturer.SkillTable[SkillCode];
+            var tryTimer = 0f;
+
+            while (!targetSkill.Invoker.IsAbleToActive && tryTimer < 0.5f)
+            {
+                FocusVenturer.ActiveSkill(SkillCode, mousePosition);
+                tryTimer += Time.deltaTime;
+
+                await UniTask.Yield(cts.Token);
+            }
+            
+            FocusVenturer.ActiveSkill(SkillCode, mousePosition);
+        }
+
+        private void StopTrying()
+        {
+            if (cts == null) return;
+            
+            cts.Cancel();
+            cts = null;
+        }
+
+        private void OnDestroy()
+        {
+            StopTrying();
         }
 
 

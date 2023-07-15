@@ -106,12 +106,17 @@ MonoBehaviour:
     hitExecutionList: []
   fireExecutor:
     fireExecutionList: []
-  combatParticles:
-  - {fileID: 5844087978388291909}
+  effector:
+    combatParticles: []
+    combatSounds: []
+    combatImpulses: []
+    combatCameras: []
+    combatPostProcesses: []
+    hitPauses: []
+    bulletTimes: []
   prolongTimer:
-    castingTime: 12
-  delayTimer:
-    delaySecond: 0
+    duration: 12
+    isIncrease: 0
   sizeVector: {x: 0, y: 3, z: 360}
   targetLayer:
     serializedVersion: 2

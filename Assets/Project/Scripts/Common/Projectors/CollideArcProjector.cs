@@ -6,7 +6,7 @@ namespace Common.Projectors
     {
         [SerializeField] private Transform colliderTransform;
 
-        public override void Initialize(IProjectionProvider provider)
+        public override void Initialize(IProjection provider)
         {
             base.Initialize(provider);
 

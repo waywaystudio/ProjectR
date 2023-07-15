@@ -12,11 +12,9 @@ namespace Common.Skills
         [SerializeField] private bool isLoop;
         [SerializeField] private bool hasExecuteEvent;
         [SerializeField] private float animationPlaySpeed = 1.0f;
-        [SerializeField] private SkillType skillType;
         [SerializeField] private Section callbackSection = Section.Complete;
 
-        public SkillType SkillType => skillType;
-        public float AnimationPlaySpeed => HasteRetriever is null 
+        private float AnimationPlaySpeed => HasteRetriever is null 
             ? animationPlaySpeed 
             : animationPlaySpeed * HasteRetriever.Invoke();
         
@@ -27,30 +25,21 @@ namespace Common.Skills
         public void Initialize(SkillComponent skill)
         {
             Model          =  skill.Cb.Animating;
-            HasteRetriever += () => 1.0f + skill.Haste;
+            HasteRetriever += () => 1.0f + skill.Haste.Invoke();
             
+            var hasCasting = skill.SkillType is SkillType.Charging or SkillType.Holding or SkillType.Casting;
+            var animationCallback = callbackSection.GetCombatInvoker(skill.Invoker); 
+
             skill.Builder
-                 .Add(Section.Active,"PlayAnimation",() => PlayAnimation(skill.Invoker));
-
-            if (hasExecuteEvent)
-            {
-                skill.Builder
-                     .Add(Section.Active,"RegisterHitEvent", () => Model.OnHit.Add("SkillHit", skill.Invoker.Execute))        
-                     .Add(Section.End,"ReleaseHit", () => Model.OnHit.Remove("SkillHit"));
-            }
-
-            if (skillType is SkillType.Casting or SkillType.Charging or SkillType.Holding)
-            {
-                skill.Builder
-                     .Add(Section.Execute, "CastingCompleteAnimation",() => PlayCompleteCastingAnimation(skill));
-            }
+                 .Add(Section.Active, "PlayAnimation", () => PlayAnimation(animationCallback))
+                 .AddIf(hasExecuteEvent, Section.Active, "RegisterHitEvent", () => Model.OnHit.Add("SkillHit", skill.Invoker.Execute))
+                 .AddIf(hasExecuteEvent, Section.End,"ReleaseHit", () => Model.OnHit.Remove("SkillHit"))
+                 .AddIf(hasCasting, Section.Execute, "CastingCompleteAnimation",() => PlayCompleteCastingAnimation(skill));
         }
 
 
-        private void PlayAnimation(CombatSequenceInvoker invoker)
+        private void PlayAnimation(Action callback)
         {
-            var callback = callbackSection.GetCombatInvoker(invoker);
-
             if (animationKey == "None")
             {
                 callback?.Invoke();
@@ -60,12 +49,14 @@ namespace Common.Skills
             Model.Play(animationKey, 0, isLoop, AnimationPlaySpeed, callback);
         }
 
-        private void PlayCompleteCastingAnimation(SkillComponent skill)
+        private void PlayCompleteCastingAnimation(ICombatObject skill)
         {
             if (castCompleteAnimationKey == "") return;
             
             Model.PlayOnce(castCompleteAnimationKey, AnimationPlaySpeed, skill.Invoker.Complete);
         }
+
+        
         
 
 #if UNITY_EDITOR
@@ -77,7 +68,6 @@ namespace Common.Skills
             castCompleteAnimationKey = skillData.CastCompleteKey;
             isLoop                   = skillData.IsLoop;
             hasExecuteEvent          = skillData.HasEvent;
-            skillType                = skillData.SkillType.ToEnum<SkillType>();
             callbackSection          = skillData.AnimationCallback.ToEnum<Section>();
         }
 #endif

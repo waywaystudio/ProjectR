@@ -19,7 +19,7 @@ namespace Common.Projectors
         protected CancellationTokenSource Cts;
         
         
-        public override void Initialize(IProjectionProvider provider)
+        public override void Initialize(IProjection provider)
         {
             Provider = provider;
 
@@ -52,7 +52,7 @@ namespace Common.Projectors
         {
             DecalObject.SetActive(true);
 
-            PlayProjector(Provider.CastingWeight).Forget();
+            PlayProjector(Provider.CastingTime).Forget();
         }
 
         protected override void StopProjection()

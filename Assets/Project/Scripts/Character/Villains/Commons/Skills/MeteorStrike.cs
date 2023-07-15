@@ -1,9 +1,8 @@
-using System.Collections;
 using System.Collections.Generic;
+using System.Threading;
 using Common;
-using Common.Characters;
-using Common.Execution;
 using Common.Skills;
+using Cysharp.Threading.Tasks;
 using UnityEngine;
 
 namespace Character.Villains.Commons.Skills
@@ -15,9 +14,10 @@ namespace Character.Villains.Commons.Skills
         [SerializeField] private int minDistance = 10;
         [SerializeField] private int maxPoints = 10;
         [SerializeField] private int sampleSize = 30;
-        
-        private Coroutine meteorRoutine;
-        
+
+        private CancellationTokenSource cts;
+        private List<Vector3> DestinationBuffer { get; } = new();
+
 
         public override void Initialize()
         {
@@ -25,35 +25,43 @@ namespace Character.Villains.Commons.Skills
             
             var villain = GetComponentInParent<VillainBehaviour>();
 
-            Builder.AddCondition("ConditionSelfHpStatus", () => (enableMask | villain.CurrentPhase.PhaseMask) == enableMask)
-                           .Add(Section.Active, "DirectExecuteMeteorStrike", Invoker.Execute)
-                           .Add(Section.Execute, "StartMeteor", () => meteorRoutine = StartCoroutine(StartMeteor()))
-                           .Add(Section.End, "StopExecution", StopMeteor);
+            Builder
+                .AddCondition("ConditionSelfHpStatus", () => (enableMask | villain.CurrentPhase.PhaseMask) == enableMask)
+                .Add(Section.Active, "FireMeteor", () => FireMeteor().Forget())
+                .Add(Section.End, "StopMeteor", StopMeteor);
+        }
+
+        protected override void Dispose()
+        {
+            base.Dispose();
+
+            StopMeteor();
         }
 
 
-        private IEnumerator StartMeteor()
+        private async UniTaskVoid FireMeteor()
         {
-            var destinationList = new List<Vector3>();
+            cts = new CancellationTokenSource();
+            
+            DestinationBuffer.Clear();
             
             GetPointsInCircle().ForEach(point =>
             {
-                destinationList.Add(new Vector3(point.x, 0f, point.y));
+                DestinationBuffer.Add(new Vector3(point.x, 0f, point.y));
             });
 
-            foreach (var destination in destinationList)
+            foreach (var destination in DestinationBuffer)
             {
                 Invoker.Fire(destination);
 
-                yield return new WaitForSeconds(0.2f);
+                await UniTask.Delay(200, cancellationToken: cts.Token);
             }
         }
 
         private void StopMeteor()
         {
-            if (meteorRoutine is null) return;
-            
-            StopCoroutine(meteorRoutine);
+            cts?.Cancel();
+            cts = null;
         }
 
         private List<Vector2> GetPointsInCircle()

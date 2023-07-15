@@ -23,7 +23,7 @@ namespace Raid.UI.VenturerFrames
             {
                 currentVenturer.SkillTable.SkillIndexList.ForEach(index =>
                 {
-                    var skill = currentVenturer.GetSkill(index);
+                    var skill = currentVenturer.SkillTable[index];
                     
                     skill.Builder
                          .Remove(Section.Active, "ShowCastingUI")
@@ -36,7 +36,7 @@ namespace Raid.UI.VenturerFrames
             
             FocusVenturer.SkillTable.SkillIndexList.ForEach(index =>
             {
-                var skill = FocusVenturer.GetSkill(index);
+                var skill = FocusVenturer.SkillTable[index];
                     
                 skill.Builder
                      .Add(Section.Active, "ShowCastingUI", ShowCastingUI)
@@ -54,11 +54,11 @@ namespace Raid.UI.VenturerFrames
             var currentSkill = FocusVenturer.SkillTable.Current;
             
             if (currentSkill is null) return;
-            if (currentSkill.CastingWeight == 0f) return;
+            if (currentSkill.CastingTime == 0f) return;
             
             progressObject.SetActive(true);
             skillNameObject.SetActive(true);
-            progressBar.Register(currentSkill.CastTimer.EventTimer, currentSkill.CastTimer.CastingTime);
+            progressBar.Register(currentSkill.CastTimer);
             skillNameTextMesh.text = currentSkill.DataIndex.ToString().ToDivideWords();
 
             isActive = true;

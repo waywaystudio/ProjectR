@@ -14,7 +14,7 @@ namespace Common.Projectors
 
         protected const float ProjectorDepth = 50f;
         protected Tween ProgressTween;
-        protected IProjectionProvider Provider { get; set; }
+        protected IProjection Provider { get; set; }
         protected GameObject DecalObject => projector.gameObject;
         protected float ArcAngleNormalized => Mathf.Clamp(1f - Provider.SizeVector.z / 360, 0f, 360f);
         
@@ -25,7 +25,7 @@ namespace Common.Projectors
         protected static readonly int AngleShaderID = Shader.PropertyToID("_Angle");
 
 
-        public virtual void Initialize(IProjectionProvider provider)
+        public virtual void Initialize(IProjection provider)
         {
             Provider = provider;
             
@@ -63,7 +63,7 @@ namespace Common.Projectors
             DecalObject.SetActive(true);
             projector.material.SetFloat(FillProgressShaderID, 0f);
             ProgressTween = projector.material
-                                     .DOFloat(1.0f, FillProgressShaderID, Provider.CastingWeight)
+                                     .DOFloat(1.0f, FillProgressShaderID, Provider.CastingTime)
                                      .SetEase(easeType);
         }
 

@@ -654,48 +654,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   magnification: 0.2
-  curve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 1
-      inSlope: -3.840135
-      outSlope: -3.840135
-      tangentMode: 34
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0.33333334
-    - serializedVersion: 3
-      time: 0.20382638
-      value: 0.21727914
-      inSlope: 0.053933803
-      outSlope: 0.053933803
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 1
-    - serializedVersion: 3
-      time: 0.6423948
-      value: 0.21627913
-      inSlope: -0.01197247
-      outSlope: -0.01197247
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.13092425
-      outWeight: 0.33323854
-    - serializedVersion: 3
-      time: 1
-      value: 1
-      inSlope: 2.1915812
-      outSlope: 2.1915812
-      tangentMode: 34
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0
-    m_PreInfinity: 2
-    m_PostInfinity: 0
-    m_RotationOrder: 4
   duration: 0.72
   returnDuration: 0
   actionKey: PlayBulletTime
@@ -957,7 +915,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dataIndex: 31210208
-  behaviourMask: 64
+  skillType: 1
+  behaviourMask: 32
   icon: {fileID: 21300000, guid: 5511c04d452ffbe4d87c4ab17ca8e94c, type: 3}
   hitExecutor:
     hitExecutionList:
@@ -994,13 +953,14 @@ MonoBehaviour:
     isLoop: 0
     hasExecuteEvent: 1
     animationPlaySpeed: 1
-    skillType: 1
     callbackSection: 3
   coolTimer:
-    coolTime: 4
+    duration: 4
+    isIncrease: 0
     invokeSection: 1
   castTimer:
-    castingTime: 0
+    duration: 0
+    isIncrease: 1
     callbackSection: 0
   cost:
     cost: 0

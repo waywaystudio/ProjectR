@@ -73,7 +73,7 @@ namespace Character.Venturers.Warrior.Skills
         
         private void PlayCollideAnimation()
         {
-            Cb.Animating.PlayOnce("AttackDuelStab", 1f + Haste, Invoker.Complete);
+            Cb.Animating.PlayOnce("AttackDuelStab", 1f + Haste.Invoke(), Invoker.Complete);
         }
 
         private void ChargingMovement()

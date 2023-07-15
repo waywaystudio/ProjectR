@@ -1,3 +1,4 @@
+using System;
 using DG.Tweening;
 using UnityEngine;
 using UnityEngine.UI;
@@ -11,40 +12,82 @@ namespace Common.UI
         [SerializeField] private float fillTick;
         [SerializeField] private Ease easeType;
 
-        public Image ProgressImage => progressImage;
         public FloatEvent Progress { get; set; }
         public FloatEvent Max { get; set; }
 
-        public void Register(FloatEvent progress, FloatEvent max)
+        private TimeTrigger Trigger { get; set; }
+        private Tween FillTween { get; set; }
+
+
+        /// <summary>
+        /// Casting, CoolTime
+        /// </summary>
+        public void Register(TimeTrigger trigger)
         {
             Unregister();
-            
-            Progress = progress;
-            Max      = max;
-            
-            Progress.AddListener(fillProgressionKey, SetFill);
-            Max.AddListener(fillProgressionKey, SetFill);
+
+            if (trigger.Duration == 0f)
+            {
+                progressImage.fillAmount = 0f;
+                return;
+            }
+
+            Trigger = trigger;
+            Trigger.AddListener(fillProgressionKey, Fill);
+
+            Fill(Trigger.Timer);
         }
         
+        /// <summary>
+        /// Hp, Resource tracking
+        /// </summary>
         public void Register(FloatEvent progress, float constMax)
         {
-            Unregister();
+            UnregisterFloatEvent();
             
             Progress = progress;
             Max      = new FloatEvent(constMax);
 
             Progress.AddListener(fillProgressionKey, SetFill);
             Max.AddListener(fillProgressionKey, SetFill);
-            
             SetFill();
         }
 
+        public void Unregister()
+        {
+            Trigger?.RemoveListener(fillProgressionKey);
+        }
+        
+
+        private void Fill(float triggerTimer)
+        {
+            var progress = Mathf.Clamp01(triggerTimer / Trigger.Duration);
+
+            progressImage.fillAmount = progress;
+        }
+
+        private void OnDisable()
+        {
+            UnregisterFloatEvent();
+        }
+
+        private void OnDestroy()
+        {
+            if (FillTween == null) return;
+            
+            FillTween.Kill();
+            FillTween = null;
+        }
+        
+
+        /*----------------------------*/
         /// <summary>
-        /// 값의 역으로 채울때 필요한 함수
+        /// 값의 역으로 채울때 필요한 함수.
+        /// Hp, resource Empty UI에 사용.
         /// </summary>
         public void RegisterReverse(FloatEvent progress, float constMax)
         {
-            Unregister();
+            UnregisterFloatEvent();
             
             Progress = progress;
             Max      = new FloatEvent(constMax);
@@ -55,13 +98,12 @@ namespace Common.UI
             SetReverseFill();
         }
         
-        public void Unregister()
+        public void UnregisterFloatEvent()
         {
             Progress?.RemoveListener(fillProgressionKey);
             Max?.RemoveListener(fillProgressionKey);
         }
         
-
         private void SetFill()
         {
             if (Max.Value == 0.0f)
@@ -81,16 +123,6 @@ namespace Common.UI
             var clamp = Mathf.Clamp01(reverseValue / Max.Value);
             
             progressImage.DOFillAmount(clamp, fillTick).SetEase(easeType);
-        }
-
-        private void Awake()
-        {
-            progressImage ??= GetComponent<Image>();
-        }
-
-        private void OnDisable()
-        {
-            Unregister();
         }
 
 

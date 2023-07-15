@@ -33,7 +33,7 @@ namespace Common.Projectors
         private Tween bodyProgressTween;
         private GameObject BodyDecalObject => bodyProjector.gameObject;
 
-        public override void Initialize(IProjectionProvider provider)
+        public override void Initialize(IProjection provider)
         {
             Provider = provider;
             
@@ -68,7 +68,7 @@ namespace Common.Projectors
             DecalObject.SetActive(true);
             BodyDecalObject.SetActive(true);
 
-            PlayProjector(Provider.CastingWeight).Forget();
+            PlayProjector(Provider.CastingTime).Forget();
         }
 
         protected override void StopProjection()

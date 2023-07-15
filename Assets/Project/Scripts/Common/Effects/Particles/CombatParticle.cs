@@ -12,17 +12,18 @@ namespace Common.Effects.Particles
         [SerializeField] private Section endSection;
         
         private ISequencerHolder sequenceHolder;
-        private IHasTaker takerHolder;
+        private System.Func<ICombatTaker> takerRetriever;
+        private ICombatTaker Taker => takerRetriever?.Invoke();
         private Transform Parent
         {
             get
             {
-                var taker = takerHolder?.Taker;
+                // var taker = takerHolder?.Taker;
 
                 return parent switch
                 {
                     ParticleSpawnParent.Provider => transform.parent,
-                    ParticleSpawnParent.Taker    => taker is null ? null : taker.StatusEffectHierarchy,
+                    ParticleSpawnParent.Taker    => Taker is null ? null : Taker.StatusEffectHierarchy,
                     ParticleSpawnParent.World    => null,
                     _                            => null
                 };
@@ -34,22 +35,22 @@ namespace Common.Effects.Particles
             {
                 if (takerPreposition == PrepositionType.None) return transform.position;
                 
-                var taker = takerHolder.Taker;
+                // var taker = takerHolder.Taker;
             
-                return taker is null 
+                return Taker is null 
                     ? transform.position 
-                    : taker.Preposition(takerPreposition).position;
+                    : Taker.Preposition(takerPreposition).position;
             }
         }
 
         public bool Activity { get; set; } = true;
 
 
-        public void Initialize(CombatSequence sequence, IHasTaker takerHolder)
+        public void Initialize(ICombatObject combatObject)
         {
-            this.takerHolder = takerHolder;
+            takerRetriever += () => combatObject.Taker;
             
-            var builder = new CombatSequenceBuilder(sequence);
+            var builder = new CombatSequenceBuilder(combatObject.Sequence);
 
             if (playSection != Section.None)
             {

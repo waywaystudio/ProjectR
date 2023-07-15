@@ -5,13 +5,13 @@ using UnityEngine;
 
 namespace Character.Villains.Commons.Traps
 {
-    public class Meteor : Trap, IProjectionProvider
+    public class Meteor : Trap, IProjection
     {
         [SerializeField] private ArcProjector projector;
         
         private readonly Collider[] colliderBuffers = new Collider[32];
         
-        public float CastingWeight => ProlongTime;
+        public float CastingTime => ProlongTime;
         
         
         public override void Initialize(ICombatProvider provider)

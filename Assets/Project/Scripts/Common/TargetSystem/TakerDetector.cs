@@ -5,7 +5,7 @@ using UnityEngine;
 namespace Common.TargetSystem
 {
     [Serializable]
-    public class CombatTakerDetector
+    public class TakerDetector
     {
         private enum TargetingType { None = 0, Circle = 1, Self = 2, Cone = 3, }
 

@@ -1,8 +1,10 @@
+using UnityEngine;
+
 namespace Common
 {
-    public interface IProjectionProvider : ICombatSequence
+    public interface IProjection : ICombatSequence
     {
-        float CastingWeight { get; }
-        UnityEngine.Vector3 SizeVector { get; }
+        float CastingTime { get; }
+        Vector3 SizeVector { get; }
     }
 }

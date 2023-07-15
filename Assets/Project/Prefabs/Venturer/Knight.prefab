@@ -85,10 +85,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 8150643729164461668}
     m_Modifications:
-    - target: {fileID: 1272622193521783809, guid: b90c7f78b182d9d4b907487c11e4d6d0, type: 3}
-      propertyPath: damageSpec.statList.Array.data[0].value
-      value: 200
-      objectReference: {fileID: 0}
     - target: {fileID: 1754816964043732546, guid: b90c7f78b182d9d4b907487c11e4d6d0, type: 3}
       propertyPath: m_RootOrder
       value: 0

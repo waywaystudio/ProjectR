@@ -146,7 +146,7 @@ Transform:
   - {fileID: 7221708945386366489}
   - {fileID: 5853087751410363707}
   m_Father: {fileID: 0}
-  m_RootOrder: -1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &4699963658791511106
 MonoBehaviour:
@@ -161,6 +161,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dataIndex: 31210405
+  skillType: 2
   behaviourMask: 32
   icon: {fileID: 21300000, guid: d2e5bb02a4252ed4590124fab9760673, type: 3}
   hitExecutor:
@@ -174,6 +175,8 @@ MonoBehaviour:
     combatSounds: []
     combatImpulses: []
     combatCameras: []
+    combatPostProcesses: []
+    hitPauses: []
     bulletTimes: []
   detector:
     sortingType: 0
@@ -188,13 +191,14 @@ MonoBehaviour:
     isLoop: 1
     hasExecuteEvent: 0
     animationPlaySpeed: 1
-    skillType: 2
     callbackSection: 0
   coolTimer:
-    coolTime: 6
+    duration: 3
+    isIncrease: 0
     invokeSection: 11
   castTimer:
-    castingTime: 2
+    duration: 2
+    isIncrease: 1
     callbackSection: 11
   cost:
     cost: 20

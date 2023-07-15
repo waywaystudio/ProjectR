@@ -10,13 +10,13 @@ namespace Common.Execution
     {
         [SerializeField] private List<FireExecution> fireExecutionList;
 
-        public void Initialize(CombatSequence sequence, IActionSender sender)
+        public void Initialize(ICombatObject combatObject)
         {
             if (fireExecutionList.IsNullOrEmpty()) return;
             
-            fireExecutionList.ForEach(exe => exe.Initialize(sender));
+            fireExecutionList.ForEach(exe => exe.Initialize(combatObject));
             
-            var builder = new CombatSequenceBuilder(sequence);
+            var builder = new CombatSequenceBuilder(combatObject.Sequence);
             var mainFire = fireExecutionList.FindAll(exe => exe.Group == ExecuteGroup.Main);
             var subFire = fireExecutionList.FindAll(exe => exe.Group  == ExecuteGroup.Sub);
             

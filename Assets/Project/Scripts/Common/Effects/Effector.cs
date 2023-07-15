@@ -23,15 +23,15 @@ namespace Common.Effects
         [SerializeField] private List<BulletTime> bulletTimes;
 
 
-        public void Initialize(CombatSequence sequence, IHasTaker takerHolder)
+        public void Initialize(ICombatObject combatObject)
         {
-            combatParticles?.ForEach(cp => cp.Initialize(sequence, takerHolder));
-            combatSounds?.ForEach(cs => cs.Initialize(sequence));
-            combatImpulses?.ForEach(ci => ci.Initialize(sequence));
-            combatCameras?.ForEach(cc => cc.Initialize(sequence));
-            combatPostProcesses?.ForEach(pp => pp.Initialize(sequence));
-            hitPauses?.ForEach(hp => hp.Initialize(sequence));
-            bulletTimes?.ForEach(bt => bt.Initialize(sequence));
+            combatParticles?.ForEach(cp => cp.Initialize(combatObject));
+            combatSounds?.ForEach(cs => cs.Initialize(combatObject.Sequence));
+            combatImpulses?.ForEach(ci => ci.Initialize(combatObject.Sequence));
+            combatCameras?.ForEach(cc => cc.Initialize(combatObject.Sequence));
+            combatPostProcesses?.ForEach(pp => pp.Initialize(combatObject.Sequence));
+            hitPauses?.ForEach(hp => hp.Initialize(combatObject.Sequence));
+            bulletTimes?.ForEach(bt => bt.Initialize(combatObject.Sequence));
         }
 
         public void ActiveEffect(bool activity)

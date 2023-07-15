@@ -69,7 +69,7 @@ namespace Character.Venturers.Ranger.Skills
 
             StopProgression();
 
-            if (ExecuteProgression / CastingWeight <= 0.5f)
+            if (ExecuteProgression / CastingTime <= 0.5f)
             {
                 Invoker.Cancel();
             }
@@ -113,7 +113,7 @@ namespace Character.Venturers.Ranger.Skills
             chargingCts = new CancellationTokenSource();
             ExecuteProgression    = 0f;
             
-            while (ExecuteProgression < CastingWeight)
+            while (ExecuteProgression < CastTimer.Duration)
             {
                 ExecuteProgression += Time.deltaTime;
 

@@ -584,6 +584,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dataIndex: 31210202
+  skillType: 1
   behaviourMask: 64
   icon: {fileID: 21300000, guid: 6613ba9d12b5115469b89a4f2f680893, type: 3}
   hitExecutor:
@@ -618,13 +619,14 @@ MonoBehaviour:
     isLoop: 0
     hasExecuteEvent: 1
     animationPlaySpeed: 1
-    skillType: 1
     callbackSection: 3
   coolTimer:
-    coolTime: 8
+    duration: 8
+    isIncrease: 0
     invokeSection: 1
   castTimer:
-    castingTime: 0
+    duration: 0
+    isIncrease: 1
     callbackSection: 0
   cost:
     cost: -8

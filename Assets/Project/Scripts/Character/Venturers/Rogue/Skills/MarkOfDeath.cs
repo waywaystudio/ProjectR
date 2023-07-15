@@ -24,7 +24,7 @@ namespace Character.Venturers.Rogue.Skills
         {
             positionBuffer = targetPosition;
             
-            master.MarkOfDeath(targetPosition, 1 + Haste);
+            master.MarkOfDeath(targetPosition, 1 + Haste.Invoke());
         }
 
         private void MarkOfDeathFire()

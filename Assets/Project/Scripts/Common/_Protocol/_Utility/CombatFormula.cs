@@ -1,4 +1,5 @@
-using UnityEngine;
+using System;
+using Random = UnityEngine.Random;
 
 namespace Common
 {
@@ -9,6 +10,17 @@ namespace Common
         /// </summary>
         /// <returns>usually less than 1.0f value</returns>
         public static float GetHasteValue(float haste) => 100f * (1f / (100 * (1f + haste)));
+        
+        /// <summary>
+        /// Advance Version of GetHasteValue.
+        /// if set characterHastePointer by Func<bool>, return direct Modifier; 
+        /// </summary>
+        public static float HasteValue(Func<float> characterHastePointer)
+        {
+            return characterHastePointer == null 
+                ? 1f 
+                : GetHasteValue(characterHastePointer.Invoke());
+        }
         
         /// <summary>
         /// Reduce Damage by Armor

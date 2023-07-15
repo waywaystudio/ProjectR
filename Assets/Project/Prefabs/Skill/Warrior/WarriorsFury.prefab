@@ -264,7 +264,7 @@ Transform:
   - {fileID: 7221708945386366489}
   - {fileID: 5853087751410363707}
   m_Father: {fileID: 0}
-  m_RootOrder: -1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &7857890816460160637
 MonoBehaviour:
@@ -279,6 +279,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dataIndex: 31210204
+  skillType: 1
   behaviourMask: 64
   icon: {fileID: 21300000, guid: 6333a2f5c9035a145a090be74673e08c, type: 3}
   hitExecutor:
@@ -308,13 +309,14 @@ MonoBehaviour:
     isLoop: 0
     hasExecuteEvent: 1
     animationPlaySpeed: 1
-    skillType: 1
     callbackSection: 0
   coolTimer:
-    coolTime: 0
+    duration: 0
+    isIncrease: 0
     invokeSection: 1
   castTimer:
-    castingTime: 0
+    duration: 0
+    isIncrease: 1
     callbackSection: 0
   cost:
     cost: 0

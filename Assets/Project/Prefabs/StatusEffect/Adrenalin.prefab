@@ -127,6 +127,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8dd5f48e8a14158468c492986c2b520c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  statusCode: 32210004
+  type: 1
+  icon: {fileID: 21300000, guid: 70aa650a4952ff241b9b76292033c1d5, type: 3}
   hitExecutor:
     hitExecutionList:
     - {fileID: 1858129688984815329}
@@ -135,9 +138,11 @@ MonoBehaviour:
     combatSounds: []
     combatImpulses: []
     combatCameras: []
+    combatPostProcesses: []
+    hitPauses: []
     bulletTimes: []
-  combatParticles: []
-  statusCode: 32210004
-  type: 1
-  icon: {fileID: 21300000, guid: 70aa650a4952ff241b9b76292033c1d5, type: 3}
+  effectuateTimer:
+    duration: 0
+    isIncrease: 0
+    invokeSection: 0
   duration: 0

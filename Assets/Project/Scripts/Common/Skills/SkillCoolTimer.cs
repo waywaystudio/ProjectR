@@ -4,7 +4,7 @@ using UnityEngine;
 namespace Common.Skills
 {
     [Serializable]
-    public class CombatCoolTimer : TimeTrigger
+    public class SkillCoolTimer : TimeTrigger
     {
         [SerializeField] private Section invokeSection;
 

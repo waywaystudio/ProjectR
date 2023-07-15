@@ -39,7 +39,8 @@ namespace Common
         public CSBuilder AddSubFire(string key, Action<Vector3> action) { sequence.SubFireAction.Add(key, action); return this; }
         public CSBuilder AddSubHit(string key, Action<ICombatTaker> action) { sequence.SubHitAction.Add(key, action); return this; }
         public CSBuilder Add(Section type, string key, Action action) { sequence[type].Add(key, action); return this; }
-    
+        public CSBuilder AddIf(bool condition, Section type, string key, Action action) { if (condition) Add(type, key, action); return this; }
+
         public CSBuilder RemoveCondition(string key) { sequence.Condition.Remove(key); return this; }
         public CSBuilder RemoveApplying(string key) { sequence.ApplyAction.Remove(key); return this; }
         public CSBuilder RemoveFire(string key) { sequence.FireAction.Remove(key); return this; }

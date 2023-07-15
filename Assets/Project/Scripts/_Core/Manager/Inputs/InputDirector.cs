@@ -15,6 +15,7 @@ namespace Inputs
 
         private readonly PointerEventData pointerEventData = new(EventSystem.current);
         private readonly List<RaycastResult> raycastResultsList = new();
+        private bool initialized;
 
         protected bool IsOnUI
         {
@@ -58,11 +59,15 @@ namespace Inputs
                 inputAction.canceled  += InputActionTable[inputKey].CancelInvoke;
                 inputAction.performed += InputActionTable[inputKey].PerformInvoke;
             });
+
+            initialized = true;
         }
 
 
         protected void Clear()
         {
+            if (!initialized) return;
+            
             var inputActionMap = playerInputAsset.FindActionMap(mapId);
             
             inputActionMap?.actions.ForEach(inputAction =>

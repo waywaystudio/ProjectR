@@ -242,13 +242,13 @@ MonoBehaviour:
     behaviourMask: Skill
     priority: 3
     sortingType: None
-    targetParam: {x: 0, y: 10, z: 80}
+    targetParam: {x: 0, y: 10, z: 90}
     targetLayer: Monster
     animationKey: AttackSlashHold
     castCompleteKey: AttackSlashHoldFire
     isLoop: 1
     hasEvent: 0
-    skillType: Holding
+    skillType: Charging
     animationCallback: None
     coolTime: 6
     coolTimeInvoker: Execute
@@ -694,7 +694,7 @@ MonoBehaviour:
     hasEvent: 0
     skillType: Casting
     animationCallback: None
-    coolTime: 6
+    coolTime: 3
     coolTimeInvoker: Execute
     castTime: 2
     castCallback: Execute
@@ -1025,7 +1025,7 @@ MonoBehaviour:
     coolTime: 30
     coolTimeInvoker: Active
     castTime: 3
-    castCallback: Complete
+    castCallback: Execute
     completionValueList:
     - 0
     cost: 0

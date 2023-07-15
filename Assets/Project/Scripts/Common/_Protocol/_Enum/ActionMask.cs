@@ -34,6 +34,11 @@ namespace Common
                                                ActionMask.Stop |
                                                ActionMask.Run;
             
+            const ActionMask rigidSkillIgnoreMask = ActionMask.None |
+                                                    ActionMask.Stop |
+                                                    ActionMask.Run |
+                                                    ActionMask.Skill;
+            
             const ActionMask knockBackIgnoreMask = ActionMask.None | 
                                                    ActionMask.Stop | 
                                                    ActionMask.Run  | 
@@ -61,14 +66,14 @@ namespace Common
             return mask switch
             {
                 ActionMask.None       => false,
-                ActionMask.Stop       => (mask                | target) == mask,
-                ActionMask.Run        => (runIgnoreMask       | target) == runIgnoreMask,
-                ActionMask.Dead       => (deadIgnoreMask      | target) == deadIgnoreMask,
-                ActionMask.KnockBack  => (knockBackIgnoreMask | target) == knockBackIgnoreMask,
-                ActionMask.Draw       => (drawIgnoreMask      | target) == drawIgnoreMask,
-                ActionMask.Stun       => (stunIgnoreMask      | target) == stunIgnoreMask,
-                ActionMask.Skill      => (skillIgnoreMask     | target) == skillIgnoreMask,
-                ActionMask.RigidSkill => (skillIgnoreMask     | target) == skillIgnoreMask,
+                ActionMask.Stop       => (mask                 | target) == mask,
+                ActionMask.Run        => (runIgnoreMask        | target) == runIgnoreMask,
+                ActionMask.Dead       => (deadIgnoreMask       | target) == deadIgnoreMask,
+                ActionMask.KnockBack  => (knockBackIgnoreMask  | target) == knockBackIgnoreMask,
+                ActionMask.Draw       => (drawIgnoreMask       | target) == drawIgnoreMask,
+                ActionMask.Stun       => (stunIgnoreMask       | target) == stunIgnoreMask,
+                ActionMask.Skill      => (skillIgnoreMask      | target) == skillIgnoreMask,
+                ActionMask.RigidSkill => (rigidSkillIgnoreMask | target) == rigidSkillIgnoreMask,
                 _                     => false
             };
         } 

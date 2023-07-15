@@ -150,6 +150,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 46a7e18eaa0d3a44498695bd8f0debea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  statusCode: 32210007
+  type: 1
+  icon: {fileID: 21300000, guid: 29c3b6836e20bf7478df17a473b26851, type: 3}
   hitExecutor:
     hitExecutionList:
     - {fileID: 7212516511690731986}
@@ -159,10 +162,9 @@ MonoBehaviour:
     combatSounds: []
     combatImpulses: []
     combatCameras: []
+    combatPostProcesses: []
+    hitPauses: []
     bulletTimes: []
-  statusCode: 32210007
-  type: 1
-  icon: {fileID: 21300000, guid: 29c3b6836e20bf7478df17a473b26851, type: 3}
   duration: 10
   interval: 2
   speedUpStat:

@@ -1,10 +1,11 @@
+using System;
 using Common.Effects;
 using Common.Execution;
 using UnityEngine;
 
 namespace Common.Projectiles
 {
-    public class Projectile : MonoBehaviour, IActionSender, ICombatSequence, IHasTaker, IEditable
+    public class Projectile : MonoBehaviour, ICombatObject, IEditable
     {
         [SerializeField] protected DataIndex projectileCode;
         [SerializeField] protected LayerMask targetLayer;
@@ -17,6 +18,7 @@ namespace Common.Projectiles
         public ICombatTaker Taker { get; protected set; }
         public DataIndex DataIndex => projectileCode;
         
+        public Func<float> Haste => () => Provider is not null ? Provider.StatTable.Haste : 0f;
         public HitExecutor HitExecutor => hitExecutor;
         public CombatSequence Sequence { get; } = new();
         public CombatSequenceBuilder Builder { get; private set; }
@@ -34,9 +36,9 @@ namespace Common.Projectiles
             Builder  = new CombatSequenceBuilder(Sequence);
 
             trajectory.Initialize(this);
-            hitExecutor.Initialize(Sequence, this);
-            fireExecutor.Initialize(Sequence, this);
-            effector.Initialize(Sequence, this);
+            hitExecutor.Initialize(this);
+            fireExecutor.Initialize(this);
+            effector.Initialize(this);
         }
         
 

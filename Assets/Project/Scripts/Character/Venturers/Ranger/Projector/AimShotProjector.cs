@@ -15,7 +15,7 @@ namespace Character.Venturers.Ranger.Projector
         private Tween headColorTween;
         private Tween bodyColorTween;
         
-        public override void Initialize(IProjectionProvider provider)
+        public override void Initialize(IProjection provider)
         {
             base.Initialize(provider);
             
