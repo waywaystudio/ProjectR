@@ -10,7 +10,6 @@ namespace Common.Traps
         [SerializeField] protected HitExecutor hitExecutor;
         [SerializeField] protected FireExecutor fireExecutor;
         [SerializeField] protected Effector effector;
-        
         [SerializeField] protected TrapProlongTimer prolongTimer;
         [SerializeField] protected OldTimeTrigger delayTimer;
         [SerializeField] protected Vector3 sizeVector;

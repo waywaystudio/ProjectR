@@ -27,6 +27,16 @@ namespace Common.Editor
             {
                 attributes.Add(new PropertySpaceAttribute(0f, 15f));
             }
+            
+            if (member.Name == "prolongTimer")
+            {
+                attributes.Add(new HideLabelAttribute());
+            }
+            
+            if (member.Name == "delayTimer")
+            {
+                attributes.Add(new HideLabelAttribute());
+            }
         }
     }
 }

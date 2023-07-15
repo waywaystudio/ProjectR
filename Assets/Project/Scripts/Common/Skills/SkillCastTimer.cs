@@ -4,27 +4,31 @@ using UnityEngine;
 namespace Common.Skills
 {
     [Serializable]
-    public class SkillCastTimer : CastTimer
+    public class CombatCastTimer : TimeTrigger
     {
         [SerializeField] protected Section callbackSection;
         
         public Section CallbackSection => callbackSection;
-        
-        public void Initialize(SkillComponent skill)
-        {   
-            if (skill.CastingWeight != 0f)
-            {
-                skill.Builder
-                     .Add(Section.Active, "SkillCasting",() => Play(skill.CastingWeight, CallbackSection.GetCombatInvoker(skill.Invoker)))
-                     .Add(Section.End, "StopCastTimer",  Stop)
-                     ;
-            }
+        public float OriginalDuration
+        {
+            get => duration; 
+            set => duration = value;
+        }
 
-            if (callbackSection != Section.None)
-            {
-                 skill.Builder
-                      .Add(callbackSection, "StopCastTimer", Stop);
-            }
+        public void Initialize(ICombatObject combatObject)
+        {
+            if (duration == 0f) return;
+
+            InitializeTrigger()
+                .SetWeight(() => CombatFormula.HasteValue(combatObject.Haste))
+                .SetCallback(callbackSection.GetCombatInvoker(combatObject.Invoker));
+
+            var builder = new CombatSequenceBuilder(combatObject.Sequence);
+            builder
+                .Add(Section.Active, "SkillCasting",Play)
+                .AddIf(callbackSection != Section.None, callbackSection, "StopCasting", Stop)
+                .Add(Section.End, "StopCasting",  Stop)
+                ;
         }
 
 
@@ -32,8 +36,9 @@ namespace Common.Skills
         public void SetUpFromSkill(DataIndex dataIndex)
         {
             var skillData = Database.SkillSheetData(dataIndex);
-            
-            castingTime     = skillData.CastTime;
+
+            isIncrease      = true;
+            duration        = skillData.CastTime;
             callbackSection = skillData.CastCallback.ToEnum<Section>();
         }
 #endif
