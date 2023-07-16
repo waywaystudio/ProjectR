@@ -12,11 +12,29 @@ namespace Raid.UI.VenturerFrames
 
         public void OnFocusVenturerChanged(VenturerBehaviour vb)
         {
+            if (vb == null)
+            {
+                UnregisterGlobe();
+                return;
+            }
+            
             var resourceReference = vb.Resource;
             var maxResource = vb.StatTable.MaxResource;
 
-            fillGlobe.Register(resourceReference, maxResource);
-            voidGlobe.RegisterReverse(resourceReference, maxResource);
+            fillGlobe.RegisterEvent(resourceReference, maxResource);
+            voidGlobe.RegisterEventReverse(resourceReference, maxResource);
+        }
+        
+        public void OnCommandMode()
+        {
+            UnregisterGlobe();
+        }
+        
+        
+        private void UnregisterGlobe()
+        {
+            fillGlobe.UnregisterFloatEvent();
+            voidGlobe.UnregisterFloatEvent();
         }
         
         

@@ -33,6 +33,12 @@ namespace Raid.UI.VenturerFrames
 
                 HideCastingUI();
             }
+
+            if (vb == null)
+            {
+                currentVenturer = null;
+                return;
+            }
             
             FocusVenturer.SkillTable.SkillIndexList.ForEach(index =>
             {
@@ -48,6 +54,9 @@ namespace Raid.UI.VenturerFrames
             ShowCastingUI();
         }
 
+        // 딱히 해줄 것이 없는 듯?
+        // public void OnCommandMode() { }
+
 
         private void ShowCastingUI()
         {
@@ -58,7 +67,7 @@ namespace Raid.UI.VenturerFrames
             
             progressObject.SetActive(true);
             skillNameObject.SetActive(true);
-            progressBar.Register(currentSkill.CastTimer);
+            progressBar.RegisterTrigger(currentSkill.CastTimer);
             skillNameTextMesh.text = currentSkill.DataIndex.ToString().ToDivideWords();
 
             isActive = true;
@@ -68,7 +77,7 @@ namespace Raid.UI.VenturerFrames
         {
             if (!isActive) return;
             
-            progressBar.Unregister();
+            progressBar.UnregisterTrigger();
             progressObject.SetActive(false);
             skillNameObject.SetActive(false);
             skillNameTextMesh.text = "";

@@ -2915,6 +2915,7 @@ GameObject:
   - component: {fileID: 88930310}
   - component: {fileID: 88930311}
   - component: {fileID: 88930312}
+  - component: {fileID: 88930313}
   m_Layer: 0
   m_Name: CombatText
   m_TagString: Untagged
@@ -3015,6 +3016,35 @@ MonoBehaviour:
       - m_Target: {fileID: 88930311}
         m_TargetAssemblyTypeName: Raid.UI.FloatingTexts.FloatingTextPool, ProjectR.Raid
         m_MethodName: OnFocusVenturerChanged
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: 
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &88930313
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 88930309}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ce3fcee7828b40e41a9d08830f1dc9e5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  targetEvent: {fileID: 11400000, guid: 4ddeafcd8a026314fb43bd8f43ee0bf9, type: 2}
+  priority: 5
+  response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 88930311}
+        m_TargetAssemblyTypeName: Raid.UI.FloatingTexts.CombatTextPool, ProjectR.Raid
+        m_MethodName: OnCommandMode
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -4320,6 +4350,7 @@ GameObject:
   - component: {fileID: 141232697}
   - component: {fileID: 141232701}
   - component: {fileID: 141232700}
+  - component: {fileID: 141232702}
   - component: {fileID: 141232699}
   - component: {fileID: 141232698}
   m_Layer: 0
@@ -4434,6 +4465,35 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   fillGlobe: {fileID: 1077937312}
   voidGlobe: {fileID: 1548750521}
+--- !u!114 &141232702
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 141232696}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ce3fcee7828b40e41a9d08830f1dc9e5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  targetEvent: {fileID: 11400000, guid: 4ddeafcd8a026314fb43bd8f43ee0bf9, type: 2}
+  priority: 5
+  response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 141232701}
+        m_TargetAssemblyTypeName: Raid.UI.VenturerFrames.ResourceGlobe, ProjectR.Raid
+        m_MethodName: OnCommandMode
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: 
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &149958633
 GameObject:
   m_ObjectHideFlags: 0
@@ -12938,6 +12998,8 @@ GameObject:
   - component: {fileID: 465882896}
   - component: {fileID: 465882897}
   - component: {fileID: 465882898}
+  - component: {fileID: 465882900}
+  - component: {fileID: 465882899}
   m_Layer: 0
   m_Name: Input
   m_TagString: Untagged
@@ -12974,7 +13036,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerInputAsset: {fileID: -944628639613478452, guid: 55285b9ec94e65f42895dfa573950cfb, type: 3}
   mapId: Raid
-  onCommandMode: {fileID: 11400000, guid: 4ddeafcd8a026314fb43bd8f43ee0bf9, type: 2}
 --- !u!114 &465882898
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -13005,6 +13066,64 @@ MonoBehaviour:
   m_DefaultActionMap: Raid
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 1448534717}
+--- !u!114 &465882899
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 465882895}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ce3fcee7828b40e41a9d08830f1dc9e5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  targetEvent: {fileID: 11400000, guid: 4ddeafcd8a026314fb43bd8f43ee0bf9, type: 2}
+  priority: 5
+  response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 465882897}
+        m_TargetAssemblyTypeName: Raid.RaidInputDirector, ProjectR.Raid
+        m_MethodName: OnCommandMode
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: 
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &465882900
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 465882895}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 180370f9798368d46aa0bb571fe46191, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  targetEvent: {fileID: 11400000, guid: 099e8625e19023f43800c970888cfa82, type: 2}
+  priority: 5
+  response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 465882897}
+        m_TargetAssemblyTypeName: Raid.RaidInputDirector, ProjectR.Raid
+        m_MethodName: OnFocusVenturerChanged
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: 
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &469534403
 GameObject:
   m_ObjectHideFlags: 0
@@ -42113,7 +42232,8 @@ MonoBehaviour:
   inputDirector: {fileID: 465882897}
   stageDirector: {fileID: 570134823}
   uiDirector: {fileID: 1867217831}
-  adventurerFocusEvent: {fileID: 11400000, guid: 099e8625e19023f43800c970888cfa82, type: 2}
+  onFocusVenturerChanged: {fileID: 11400000, guid: 099e8625e19023f43800c970888cfa82, type: 2}
+  onCommandMode: {fileID: 11400000, guid: 4ddeafcd8a026314fb43bd8f43ee0bf9, type: 2}
 --- !u!82 &1109810033
 AudioSource:
   m_ObjectHideFlags: 0
@@ -48537,6 +48657,7 @@ GameObject:
   - component: {fileID: 1318884672}
   - component: {fileID: 1318884675}
   - component: {fileID: 1318884676}
+  - component: {fileID: 1318884677}
   - component: {fileID: 1318884674}
   - component: {fileID: 1318884673}
   m_Layer: 0
@@ -48642,6 +48763,35 @@ MonoBehaviour:
       - m_Target: {fileID: 1318884675}
         m_TargetAssemblyTypeName: Raid.UI.VenturerFrames.HealthGlobe, ProjectR.Raid
         m_MethodName: OnFocusVenturerChanged
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: 
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &1318884677
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1318884671}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ce3fcee7828b40e41a9d08830f1dc9e5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  targetEvent: {fileID: 11400000, guid: 4ddeafcd8a026314fb43bd8f43ee0bf9, type: 2}
+  priority: 5
+  response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1318884675}
+        m_TargetAssemblyTypeName: Raid.UI.VenturerFrames.HealthGlobe, ProjectR.Raid
+        m_MethodName: OnCommandMode
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -63345,7 +63495,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bossHpProgress: {fileID: 1926639028}
   skillBar: {fileID: 789969801596365538}
-  floatingTextPool: {fileID: 88930311}
+  combatTextPool: {fileID: 88930311}
 --- !u!1 &1868745124
 GameObject:
   m_ObjectHideFlags: 0
@@ -65086,7 +65236,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1943438065}
         m_TargetAssemblyTypeName: Raid.RaidCameraDirector, Raid
-        m_MethodName: FocusPlayer
+        m_MethodName: OnFocusVenturerChanged
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -65114,12 +65264,12 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1943438065}
-        m_TargetAssemblyTypeName: Raid.RaidCameraDirector, Raid
-        m_MethodName: StageCamera
-        m_Mode: 1
+        m_TargetAssemblyTypeName: Raid.RaidCameraDirector, ProjectR.Raid
+        m_MethodName: OnCommandMode
+        m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_ObjectArgumentAssemblyTypeName: 
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -71618,6 +71768,7 @@ GameObject:
   - component: {fileID: 806636184671400857}
   - component: {fileID: 789969801596365538}
   - component: {fileID: 5463328885381249069}
+  - component: {fileID: 5463328885381249070}
   - component: {fileID: 5463328885381249068}
   m_Layer: 7
   m_Name: ActionBar
@@ -72673,6 +72824,35 @@ MonoBehaviour:
       - m_Target: {fileID: 789969801596365538}
         m_TargetAssemblyTypeName: Raid.UI.VenturerFrames.SkillActionBar, ProjectR.Raid
         m_MethodName: OnFocusVenturerChanged
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: 
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &5463328885381249070
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1545920555906794626}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ce3fcee7828b40e41a9d08830f1dc9e5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  targetEvent: {fileID: 11400000, guid: 4ddeafcd8a026314fb43bd8f43ee0bf9, type: 2}
+  priority: 5
+  response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 789969801596365538}
+        m_TargetAssemblyTypeName: Raid.UI.VenturerFrames.VenturerSkillBar, ProjectR.Raid
+        m_MethodName: OnCommandMode
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

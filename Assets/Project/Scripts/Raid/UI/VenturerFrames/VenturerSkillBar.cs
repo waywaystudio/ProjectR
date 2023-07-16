@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using Character.Venturers;
+using Common.Characters.Behaviours;
 using UnityEngine;
 
 namespace Raid.UI.VenturerFrames
@@ -17,7 +18,7 @@ namespace Raid.UI.VenturerFrames
             {
                 if (venturer.IsNullOrEmpty()) return;
                 
-                venturer.SkillTable.OnSkillSetChanged.Add("UpdateSkillActionBar", UpdateSlotList);
+                venturer.SkillTable.OnSkillTableChanged.Add("RegisterSlotList", RegisterSlotList);
             });
             
             slotList.ForEach(slot => slot.Initialize());
@@ -25,19 +26,41 @@ namespace Raid.UI.VenturerFrames
 
         public void OnFocusVenturerChanged(VenturerBehaviour vb)
         {
-            UpdateSlotList();
+            if (vb == null) return;
+
+            SetActiveSkillSlots(true);
+            RegisterSlotList(vb.SkillTable);
+        }
+
+        public void OnCommandMode()
+        {
+            SetActiveSkillSlots(false);
+            // 새로운 스킬바가 있을 예정
         }
 
 
-        private void UpdateSlotList()
+        private void RegisterSlotList(SkillTable table)
         {
-            var skills = FocusVenturer.SkillTable.SkillIndexList;
+            // UI 변경이 필요 없으면,
+            if (FocusVenturer != table.Cb) return;
+            
+            var skills = table.SkillIndexList;
             
             slotList.ForEach((slot, index) =>
             {
                 if (skills.Count <= index) return;
                 
-                slot.UpdateSlot(skills[index]);
+                slot.UpdateSkill(skills[index]);
+            });
+        }
+
+        private void SetActiveSkillSlots(bool activity)
+        {
+            slotList.ForEach(slot =>
+            {
+                if (slot.isActiveAndEnabled == activity) return;
+
+                slot.gameObject.SetActive(activity);
             });
         }
 

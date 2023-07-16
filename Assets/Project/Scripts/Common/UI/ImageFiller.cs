@@ -1,10 +1,10 @@
-using System;
 using DG.Tweening;
 using UnityEngine;
 using UnityEngine.UI;
 
 namespace Common.UI
 {
+    // TODO. 조금 더 사용해보고, Trigger Type과 Event Type으로 나누자.
     public class ImageFiller : MonoBehaviour, IEditable
     {
         [SerializeField] private Image progressImage;
@@ -22,9 +22,9 @@ namespace Common.UI
         /// <summary>
         /// Casting, CoolTime
         /// </summary>
-        public void Register(TimeTrigger trigger)
+        public void RegisterTrigger(TimeTrigger trigger)
         {
-            Unregister();
+            UnregisterTrigger();
 
             if (trigger.Duration == 0f)
             {
@@ -33,59 +33,37 @@ namespace Common.UI
             }
 
             Trigger = trigger;
-            Trigger.AddListener(fillProgressionKey, Fill);
+            Trigger.AddListener(fillProgressionKey, FillTriggerTimer);
 
-            Fill(Trigger.Timer);
+            FillTriggerTimer(Trigger.Timer);
         }
+        
+        public void UnregisterTrigger()
+        {
+            Trigger?.RemoveListener(fillProgressionKey);
+        }
+        
         
         /// <summary>
         /// Hp, Resource tracking
         /// </summary>
-        public void Register(FloatEvent progress, float constMax)
+        public void RegisterEvent(FloatEvent progress, float constMax)
         {
             UnregisterFloatEvent();
             
             Progress = progress;
             Max      = new FloatEvent(constMax);
 
-            Progress.AddListener(fillProgressionKey, SetFill);
-            Max.AddListener(fillProgressionKey, SetFill);
-            SetFill();
+            Progress.AddListener(fillProgressionKey, FillEventTimer);
+            Max.AddListener(fillProgressionKey, FillEventTimer);
+            FillEventTimer();
         }
 
-        public void Unregister()
-        {
-            Trigger?.RemoveListener(fillProgressionKey);
-        }
-        
-
-        private void Fill(float triggerTimer)
-        {
-            var progress = Mathf.Clamp01(triggerTimer / Trigger.Duration);
-
-            progressImage.fillAmount = progress;
-        }
-
-        private void OnDisable()
-        {
-            UnregisterFloatEvent();
-        }
-
-        private void OnDestroy()
-        {
-            if (FillTween == null) return;
-            
-            FillTween.Kill();
-            FillTween = null;
-        }
-        
-
-        /*----------------------------*/
         /// <summary>
         /// 값의 역으로 채울때 필요한 함수.
         /// Hp, resource Empty UI에 사용.
         /// </summary>
-        public void RegisterReverse(FloatEvent progress, float constMax)
+        public void RegisterEventReverse(FloatEvent progress, float constMax)
         {
             UnregisterFloatEvent();
             
@@ -103,8 +81,15 @@ namespace Common.UI
             Progress?.RemoveListener(fillProgressionKey);
             Max?.RemoveListener(fillProgressionKey);
         }
+
+        private void FillTriggerTimer(float triggerTimer)
+        {
+            var progress = Mathf.Clamp01(triggerTimer / Trigger.Duration);
+
+            progressImage.fillAmount = progress;
+        }
         
-        private void SetFill()
+        private void FillEventTimer()
         {
             if (Max.Value == 0.0f)
             {
@@ -123,6 +108,19 @@ namespace Common.UI
             var clamp = Mathf.Clamp01(reverseValue / Max.Value);
             
             progressImage.DOFillAmount(clamp, fillTick).SetEase(easeType);
+        }
+
+        private void OnDisable()
+        {
+            UnregisterFloatEvent();
+        }
+
+        private void OnDestroy()
+        {
+            if (FillTween == null) return;
+            
+            FillTween.Kill();
+            FillTween = null;
         }
 
 

@@ -17,7 +17,7 @@ namespace Inputs
         private readonly List<RaycastResult> raycastResultsList = new();
         private bool initialized;
 
-        protected bool IsOnUI
+        protected bool IsMouseOnUI
         {
             get
             {

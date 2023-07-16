@@ -1,5 +1,4 @@
 using Character.Venturers;
-using GameEvents;
 using Inputs;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -10,11 +9,7 @@ namespace Raid
     
     public class RaidInputDirector : InputDirector
     {
-        // TODO. 여기가 아닌 것 같다.
-        [SerializeField] private GameEvent onCommandMode;
-        //
-        
-        private static bool ValidVenturer => !FocusVenturer.IsNullOrEmpty() || !FocusVenturer.isActiveAndEnabled;
+        private static bool ValidVenturer => !FocusVenturer.IsNullOrEmpty() && FocusVenturer.isActiveAndEnabled;
         private static VenturerBehaviour FocusVenturer
         {
             get => RaidDirector.FocusVenturer;
@@ -25,9 +20,9 @@ namespace Raid
         {
             base.Initialize();
 
-            this["G"].AddStart("EnterCommandMode", EnterCommandMode);
+            this["G"].AddStart("EnterCommandMode", RaidDirector.CommandMode);
             
-            this["LeftMouse"].AddStart("VenturerMove", Move);
+            // TODO, 이 내용도 여기가 아니라 Casting Director가 맞을 수도 있다.
             this["Keyboard1"].AddStart("Focusing", () => Focusing(0));
             this["Keyboard2"].AddStart("Focusing", () => Focusing(1));
             this["Keyboard3"].AddStart("Focusing", () => Focusing(2));
@@ -36,15 +31,27 @@ namespace Raid
             this["Keyboard6"].AddStart("Focusing", () => Focusing(5));
         }
 
-
-        private void EnterCommandMode()
+        public void OnFocusVenturerChanged(VenturerBehaviour vb)
         {
-            onCommandMode.Invoke();
+            if (vb == null) return;
+            
+            // TODO. Focusing 변겨할 때 마다 매번 들어오게 하지 않는 방법 없을까?
+            this["LeftMouse"].AddStart("VenturerMove", MoveVenturer);
+        }
+
+        // TODO. Command Mode Input을 넣어야 하는데, 이곳에서 넣는게 아닌 듯 하다.
+        // 혹은, 다른 곳에서 내용을 만들고, 이곳에서 접근하여 넣을 수도 있다.
+        // UI Q,W,E,R 등록하는 방식과 맥락을 맞추자.
+        // 여튼 Command Mode에 대한 기획이 끝나면 해보자.
+        public void OnCommandMode()
+        {
+            this["LeftMouse"].RemoveStart("VenturerMove");
         }
         
-        private void Move(Context context)
+
+        private void MoveVenturer()
         {
-            if (IsOnUI) return;
+            if (IsMouseOnUI) return;
             if (!ValidVenturer) return;
             
             var groundPosition = InputManager.GetMousePosition();

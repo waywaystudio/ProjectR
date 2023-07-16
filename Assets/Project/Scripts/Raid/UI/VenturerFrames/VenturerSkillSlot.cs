@@ -19,7 +19,7 @@ namespace Raid.UI.VenturerFrames
 
         private static VenturerBehaviour FocusVenturer => RaidDirector.FocusVenturer;
         private string HotKey => bindingKey;
-        private DataIndex SkillCode { get; set; }
+        private DataIndex SkillCode { get; set; } = DataIndex.None;
         private CancellationTokenSource cts;
 
 
@@ -29,8 +29,10 @@ namespace Raid.UI.VenturerFrames
             RaidDirector.Input[bindingKey]?.AddCancel("ReleaseSkill", ReleaseAction);
         }
 
-        public void UpdateSlot(DataIndex skillCode)
+        public void UpdateSkill(DataIndex skillCode)
         {
+            if (SkillCode == skillCode) return;
+            
             var targetSkill = FocusVenturer.SkillTable[skillCode];
             var builder = new CombatSequenceBuilder(targetSkill.Sequence);
 
@@ -40,7 +42,7 @@ namespace Raid.UI.VenturerFrames
             builder
                 .Add(Section.Cancel, "CancelReservation", StopTrying);
             
-            coolDownFiller.Register(targetSkill.CoolTimer);
+            coolDownFiller.RegisterTrigger(targetSkill.CoolTimer);
         }
 
 
@@ -53,7 +55,11 @@ namespace Raid.UI.VenturerFrames
 
         private void ReleaseAction(InputAction.CallbackContext callbackContext)
         {
-            FocusVenturer.ReleaseSkill();
+            var skill = FocusVenturer.SkillTable[SkillCode];
+
+            if (!Verify.IsNotNull(skill)) return;
+            
+            skill.Invoker.Release();
         }
 
         private async UniTaskVoid TryActiveSkill(Vector3 mousePosition)

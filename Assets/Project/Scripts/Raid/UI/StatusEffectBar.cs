@@ -19,10 +19,15 @@ namespace Raid.UI
         {
             if (CurrentVenturer != null)
             {
-                var effectTable = CurrentVenturer.StatusEffectTable;
-                
-                effectTable.OnEffectAdded.Remove("OnAddedUI");
-                effectTable.OnEffectRemoved.Remove("OnRemovedUI");
+                RemoveStatusEffectUI(CurrentVenturer);
+            }
+
+            if (vb == null)
+            {
+                buffList.ForEach(buffSlot => buffSlot.Unregister());
+                deBuffList.ForEach(deBuffSlot => deBuffSlot.Unregister());
+                CurrentVenturer = null;
+                return;
             }
 
             var focusVenturerEffectTable = FocusVenturer.StatusEffectTable;
@@ -34,6 +39,15 @@ namespace Raid.UI
             UpdateUI();
         }
 
+        // 여기도 딱히...
+        // public void OnCommandMode()
+        // {
+        //     if (CurrentVenturer != null)
+        //     {
+        //         RemoveStatusEffectUI(CurrentVenturer);
+        //     }
+        // }
+
 
         private void OnAdded(StatusEffect effect)
         {
@@ -43,9 +57,8 @@ namespace Raid.UI
 
             if (!TryGetEmptySlot(effectList, out var effectUI)) return;
             
-            var targetSlot = effectList.TryGetElement(effectSlot => effectSlot.StatusEffect == effect);
-            
-            if (targetSlot is not null) return;
+            var isAlreadyHas = effectList.TryGetElement(effectSlot => effectSlot.StatusEffect == effect) is not null;
+            if (isAlreadyHas) return;
             
             effectUI.Register(effect);
         }
@@ -57,7 +70,6 @@ namespace Raid.UI
                 : deBuffList;
 
             var targetSlot = effectList.TryGetElement(effectSlot => effectSlot.StatusEffect == effect);
-
             if (targetSlot is null) return;
             
             targetSlot.Unregister();
@@ -71,6 +83,14 @@ namespace Raid.UI
             var focusVenturerEffectTable = FocusVenturer.StatusEffectTable;
             
             focusVenturerEffectTable.Iterate(OnAdded);
+        }
+
+        private static void RemoveStatusEffectUI(ICombatEntity vb)
+        {
+            var effectTable = vb.StatusEffectTable;
+                
+            effectTable.OnEffectAdded.Remove("OnAddedUI");
+            effectTable.OnEffectRemoved.Remove("OnRemovedUI");
         }
         
         private static bool TryGetEmptySlot(List<StatusEffectUI> targetSlotList, out StatusEffectUI slot)

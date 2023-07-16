@@ -5,6 +5,7 @@ public abstract class ActionTableCore<T>
 {
     protected Dictionary<string, T> Table { get; } = new();
 
+    public int Count => Table.Count;
     public void Remove(string key) => Table.TryRemove(key);
     public void Clear() => Table.Clear();
 }

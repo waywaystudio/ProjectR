@@ -11,13 +11,8 @@ namespace Cameras
 
         public Camera MainCamera => mainCamera;
         public CinemachineBrain Brain => brain;
-        
-        public CinemachineVirtualCamera this[VirtualCameraType key]
-        {
-            get => subCameraTable[key];
-            set => subCameraTable[key] = value;
-        }
-        
+        public CinemachineVirtualCamera this[VirtualCameraType key] => subCameraTable[key];
+
         public VirtualCameraType CurrentCameraType { get; protected set; }
 
         public void Initialize()

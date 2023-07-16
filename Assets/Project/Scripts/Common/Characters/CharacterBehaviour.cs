@@ -1,6 +1,5 @@
 using System.Collections.Generic;
 using Common.Animation;
-using Common.Skills;
 using Common.StatusEffects;
 using Common.Systems;
 using Common.TargetSystem;
@@ -71,7 +70,6 @@ namespace Common.Characters
         
         /* Skill Behaviour */
         public void ActiveSkill(DataIndex actionCode, Vector3 targetPosition) => skillBehaviour.Active(actionCode, targetPosition);
-        public void ReleaseSkill() => skillBehaviour.Release();
 
         /*
          * Combat Status

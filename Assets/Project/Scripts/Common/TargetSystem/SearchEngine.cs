@@ -14,6 +14,8 @@ namespace Common.TargetSystem
 
         private void Awake()
         {
+            searchingCollider.radius = searchingRange;
+            
             for (var i = 0; i < 32; i++)
             {
                 var layerMask = 1 << i;
@@ -49,7 +51,7 @@ namespace Common.TargetSystem
         public void EditorSetUp()
         {
             searchingCollider        = GetComponent<SphereCollider>();
-            searchingCollider.radius =   searchingRange;
+            searchingCollider.radius = searchingRange;
         }
 #endif
     }

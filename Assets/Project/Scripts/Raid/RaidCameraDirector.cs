@@ -8,16 +8,17 @@ namespace Raid
 {
     public class RaidCameraDirector : CameraDirector, IEditable
     {
-        /* GameEvent */
-        public void FocusPlayer(VenturerBehaviour target)
+        public void OnFocusVenturerChanged(VenturerBehaviour vb)
         {
-            if (target.IsNullOrDestroyed()) return;
+            if (vb.IsNullOrDestroyed()) return;
             
-            Focusing(target.transform);
+            Focusing(vb.transform);
         }
-        
-        public void StageCamera() => ChangeCamera(VirtualCameraType.Stage);
-        public void PlayerCamera() => ChangeCamera(VirtualCameraType.Player);
+
+        public void OnCommandMode()
+        {
+            ChangeCamera(VirtualCameraType.Stage);
+        }
 
 
         private void Focusing(Transform target)
@@ -30,7 +31,7 @@ namespace Raid
                 subCameraTable[VirtualCameraType.Effector].LookAt = target;
             }
 
-            PlayerCamera();
+            ChangeCamera(VirtualCameraType.Player);
         }
 
 

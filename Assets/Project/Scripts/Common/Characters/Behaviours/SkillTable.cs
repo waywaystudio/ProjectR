@@ -7,18 +7,17 @@ namespace Common.Characters.Behaviours
     public class SkillTable : MonoBehaviour, IEditable
     {
         [SerializeField] private Table<DataIndex, SkillComponent> table;
-        
-        private CharacterBehaviour cb;
 
+        public CharacterBehaviour Cb { get; private set; }
         public List<DataIndex> SkillIndexList => table.KeyList;
-        public ActionTable OnSkillSetChanged { get; } = new();
+        public ActionTable<SkillTable> OnSkillTableChanged { get; } = new();
         public SkillComponent Current { get; set; }
         public SkillComponent this[DataIndex key] => table[key];
 
 
         public void Initialize(CharacterBehaviour character)
         {
-            cb = character;
+            Cb = character;
 
             table.Iterate(skill =>
             {
@@ -32,23 +31,16 @@ namespace Common.Characters.Behaviours
         {
             if (!table.TryGetValue(actionCode, out var skill))
             {
-                Debug.LogWarning($"Not Exist {actionCode} in {cb.DataIndex}");
+                Debug.LogWarning($"Not Exist {actionCode} in {Cb.DataIndex}");
                 return;
             }
 
             if (!skill.Invoker.IsAbleToActive) return;
             
-            cb.Rotate(targetPosition);
+            Cb.Rotate(targetPosition);
             
             Current = skill;
             Current.Invoker.Active(targetPosition);
-        }
-
-        public void Release()
-        {
-            if (Current.IsNullOrDestroyed()) return;
-
-            Current.Invoker.Release();
         }
 
         public bool TryGetMostPrioritySkill(out SkillComponent skill)
@@ -72,12 +64,13 @@ namespace Common.Characters.Behaviours
         public void ChangeSkill(DataIndex originSkill, DataIndex toSkill)
         {
             table.SwapOrder(originSkill, toSkill);
-            OnSkillSetChanged.Invoke();
+            OnSkillTableChanged.Invoke(this);
         }
 
         public void OnFocusVenturerChanged(CharacterBehaviour cb)
         {
-            var isFocusTarget = this.cb == cb;
+            var isFocusTarget = 
+                Cb == cb;
             
             table.Iterate(skill => skill.ActiveEffect(isFocusTarget));
         }

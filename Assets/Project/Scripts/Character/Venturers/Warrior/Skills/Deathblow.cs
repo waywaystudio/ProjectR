@@ -11,6 +11,8 @@ namespace Character.Venturers.Warrior.Skills
         [SerializeField] private ArcProjector projector;
 
         private CancellationTokenSource cts;
+        private CancellationTokenSource chargingCts;
+        public float ExecuteProgression { get; private set; }
         
         public override void Initialize()
         {
@@ -21,18 +23,38 @@ namespace Character.Venturers.Warrior.Skills
 
             Builder
                 .Add(Section.Active, "TargetTracking", () => PlayTracking().Forget())
+                .Add(Section.Active, "Charging", () => PlayChargingProgress().Forget())
+                .Add(Section.Release, "AimShotRelease", DeathblowRelease)
                 .Add(Section.Execute, "SetInvokerIsActiveTrue", () => Invoker.IsActive = false)
                 .Add(Section.Execute, "DeathblowExecute", ExecuteDeathblow)
-                .Add(Section.End, "StopTracking", StopTracking);
+                .Add(Section.End, "StopTracking", Stop)
+                .Remove(Section.Release, "ReleaseAction")
+                ;
         }
         
         protected override void Dispose()
         {
             base.Dispose();
 
-            StopTracking();
+            Stop();
         }
 
+        
+        private void DeathblowRelease()
+        {
+            if (!Invoker.IsActive) return;
+
+            StopProgression();
+
+            if (ExecuteProgression / CastingTime <= 0.5f)
+            {
+                Invoker.Cancel();
+            }
+            else
+            {
+                Invoker.Execute();
+            }
+        }
 
         private void ExecuteDeathblow()
         {
@@ -41,6 +63,19 @@ namespace Character.Venturers.Warrior.Skills
                 Taker = taker;
                 Invoker.Hit(taker);
             });
+        }
+        
+        private async UniTaskVoid PlayChargingProgress()
+        {
+            chargingCts        = new CancellationTokenSource();
+            ExecuteProgression = 0f;
+            
+            while (ExecuteProgression < CastTimer.Duration)
+            {
+                ExecuteProgression += Time.deltaTime;
+
+                await UniTask.Yield(chargingCts.Token);
+            }
         }
 
         private async UniTaskVoid PlayTracking()
@@ -70,6 +105,18 @@ namespace Character.Venturers.Warrior.Skills
                 venturer.Rotate(takerPosition);
                 await UniTask.Yield(cts.Token);
             }
+        }
+        
+        private void Stop()
+        {
+            StopProgression();
+            StopTracking();
+        }
+        
+        private void StopProgression()
+        {
+            chargingCts?.Cancel();
+            chargingCts = null;
         }
 
         private void StopTracking()

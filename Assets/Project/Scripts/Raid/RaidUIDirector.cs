@@ -2,6 +2,7 @@ using Raid.UI.BossFrames;
 using Raid.UI.FloatingTexts;
 using Raid.UI.VenturerFrames;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace Raid
 {
@@ -14,7 +15,7 @@ namespace Raid
         [SerializeField] private VenturerSkillBar skillBar;
 
         // Pool
-        [SerializeField] private FloatingTextPool floatingTextPool;
+        [FormerlySerializedAs("floatingTextPool")] [SerializeField] private CombatTextPool combatTextPool;
 
 
         public void Initialize()
@@ -28,7 +29,7 @@ namespace Raid
         public void EditorSetUp()
         {
             skillBar         ??= GetComponentInChildren<VenturerSkillBar>();
-            floatingTextPool ??= GetComponentInChildren<FloatingTextPool>();
+            combatTextPool ??= GetComponentInChildren<CombatTextPool>();
         }
 #endif
     }

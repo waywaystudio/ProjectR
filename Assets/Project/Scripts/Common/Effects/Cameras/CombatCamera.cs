@@ -1,6 +1,5 @@
 using Cinemachine;
 using DG.Tweening;
-using Sirenix.OdinInspector;
 using UnityEngine;
 
 namespace Common.Effects.Cameras
@@ -23,8 +22,7 @@ namespace Common.Effects.Cameras
             get => activity;
             set
             {
-                if (value == false) 
-                    ReturnZoom();
+                if (value == false) ReturnZoom();
 
                 activity = value;
             }
@@ -92,6 +90,8 @@ namespace Common.Effects.Cameras
 
         public void ReturnZoom()
         {
+            if (!Activity) return;
+            
             CameraManager.Director.ChangeCamera(VirtualCameraType.Player);
         }
     }

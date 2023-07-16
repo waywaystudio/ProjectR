@@ -28,7 +28,7 @@ namespace Lobby
 
         private void Move(Context context)
         {
-            if (IsOnUI) return;
+            if (IsMouseOnUI) return;
             if (!ValidVenturer) return;
             
             var groundPosition = InputManager.GetMousePosition();

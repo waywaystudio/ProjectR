@@ -1,9 +1,9 @@
 using System.Collections.Generic;
 using Character.Venturers;
 using Character.Villains;
+using GameEvents;
 using Singleton;
 using UnityEngine;
-// ReSharper disable UnusedAutoPropertyAccessor.Global
 
 namespace Raid
 {
@@ -14,10 +14,11 @@ namespace Raid
         [SerializeField] private RaidInputDirector inputDirector;
         [SerializeField] private RaidStageDirector stageDirector;
         [SerializeField] private RaidUIDirector uiDirector;
-        [SerializeField] private GameEventVenturer adventurerFocusEvent;
+        [SerializeField] private GameEventVenturer onFocusVenturerChanged;
+        [SerializeField] private GameEvent onCommandMode;
 
         private VenturerBehaviour focusVenturer;
-        
+
         public static RaidCameraDirector Camera => Instance.cameraDirector;
         public static RaidCastingDirector Casting => Instance.castingDirector;
         public static RaidInputDirector Input => Instance.inputDirector;
@@ -30,8 +31,10 @@ namespace Raid
             get => Instance.focusVenturer;
             set
             {
+                if (value == Instance.focusVenturer) return;
+                
                 Instance.focusVenturer = value;
-                Instance.adventurerFocusEvent.Invoke(value);
+                Instance.onFocusVenturerChanged.Invoke(value);
             }
         }
 
@@ -46,6 +49,13 @@ namespace Raid
             UIDirector.Initialize();
             
             FocusVenturer = Casting.VenturerList[0];
+        }
+
+        public static void CommandMode()
+        {
+            Instance.onCommandMode.Invoke();
+            
+            FocusVenturer = null;
         }
 
 

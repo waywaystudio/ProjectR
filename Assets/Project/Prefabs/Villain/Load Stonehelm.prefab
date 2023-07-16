@@ -47,7 +47,7 @@ PrefabInstance:
     - target: {fileID: 291626802760447148, guid: bd355e30ab3d37740ab682aad07a91b5, type: 3}
       propertyPath: table.valueList.Array.data[1]
       value: 
-      objectReference: {fileID: 844441266134798410}
+      objectReference: {fileID: 7376978950271568663}
     - target: {fileID: 291626802760447148, guid: bd355e30ab3d37740ab682aad07a91b5, type: 3}
       propertyPath: table.valueList.Array.data[2]
       value: 
@@ -83,7 +83,7 @@ PrefabInstance:
     - target: {fileID: 291626802760447148, guid: bd355e30ab3d37740ab682aad07a91b5, type: 3}
       propertyPath: skillTable.valueList.Array.data[1]
       value: 
-      objectReference: {fileID: 844441266134798410}
+      objectReference: {fileID: 0}
     - target: {fileID: 291626802760447148, guid: bd355e30ab3d37740ab682aad07a91b5, type: 3}
       propertyPath: skillTable.valueList.Array.data[2]
       value: 
@@ -108,10 +108,6 @@ PrefabInstance:
       propertyPath: data
       value: 
       objectReference: {fileID: 11400000, guid: 3037488550c46ba46b9fca2fa1e95609, type: 2}
-    - target: {fileID: 2240338202288479906, guid: bd355e30ab3d37740ab682aad07a91b5, type: 3}
-      propertyPath: uniqueID
-      value: 3088286515491538750
-      objectReference: {fileID: 0}
     - target: {fileID: 2965052365408092262, guid: bd355e30ab3d37740ab682aad07a91b5, type: 3}
       propertyPath: m_Name
       value: MeteorStrike
@@ -119,10 +115,6 @@ PrefabInstance:
     - target: {fileID: 2965052365408092262, guid: bd355e30ab3d37740ab682aad07a91b5, type: 3}
       propertyPath: m_IsActive
       value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3716562276717750227, guid: bd355e30ab3d37740ab682aad07a91b5, type: 3}
-      propertyPath: damageSpec.statList.Array.data[0].value
-      value: 1000
       objectReference: {fileID: 0}
     - target: {fileID: 3744010699814045015, guid: bd355e30ab3d37740ab682aad07a91b5, type: 3}
       propertyPath: m_LocalScale.x
@@ -193,28 +185,8 @@ PrefabInstance:
       value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 4353515852124255580, guid: bd355e30ab3d37740ab682aad07a91b5, type: 3}
-      propertyPath: detector.sortingType
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4353515852124255580, guid: bd355e30ab3d37740ab682aad07a91b5, type: 3}
       propertyPath: castTimer.castingTime
       value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 4442699525421009715, guid: bd355e30ab3d37740ab682aad07a91b5, type: 3}
-      propertyPath: angle
-      value: 60
-      objectReference: {fileID: 0}
-    - target: {fileID: 4442699525421009715, guid: bd355e30ab3d37740ab682aad07a91b5, type: 3}
-      propertyPath: range
-      value: 24
-      objectReference: {fileID: 0}
-    - target: {fileID: 4442699525421009715, guid: bd355e30ab3d37740ab682aad07a91b5, type: 3}
-      propertyPath: castTimer.castingTime
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 4442699525421009715, guid: bd355e30ab3d37740ab682aad07a91b5, type: 3}
-      propertyPath: coolTimer.invokeSection
-      value: 11
       objectReference: {fileID: 0}
     - target: {fileID: 5548285767553033919, guid: bd355e30ab3d37740ab682aad07a91b5, type: 3}
       propertyPath: damageSpec.statList.Array.data[0].value
@@ -229,14 +201,6 @@ PrefabInstance:
       value: VillainCommonAttack
       objectReference: {fileID: 0}
     - target: {fileID: 6370670999301307393, guid: bd355e30ab3d37740ab682aad07a91b5, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7699120219021817231, guid: bd355e30ab3d37740ab682aad07a91b5, type: 3}
-      propertyPath: m_Name
-      value: ShockWave
-      objectReference: {fileID: 0}
-    - target: {fileID: 7699120219021817231, guid: bd355e30ab3d37740ab682aad07a91b5, type: 3}
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
@@ -264,17 +228,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 873605c82d9e0a745aa47c75c970d0f8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &844441266134798410 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 4442699525421009715, guid: bd355e30ab3d37740ab682aad07a91b5, type: 3}
-  m_PrefabInstance: {fileID: 3900026522850909049}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c984734517cb97a43b37c35ce611e625, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &3263843511986403286 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 1969248501984980143, guid: bd355e30ab3d37740ab682aad07a91b5, type: 3}
@@ -295,5 +248,16 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e84f23e793470374a995f2cd805ab8e5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &7376978950271568663 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5800607941649879150, guid: bd355e30ab3d37740ab682aad07a91b5, type: 3}
+  m_PrefabInstance: {fileID: 3900026522850909049}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c984734517cb97a43b37c35ce611e625, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 

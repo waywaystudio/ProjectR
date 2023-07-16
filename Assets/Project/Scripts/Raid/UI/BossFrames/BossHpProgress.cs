@@ -16,7 +16,7 @@ namespace Raid.UI.BossFrames
         {
             var mb = RaidDirector.Boss;
             
-            hpImage.Register(mb.Hp, mb.StatTable.MaxHp);
+            hpImage.RegisterEvent(mb.Hp, mb.StatTable.MaxHp);
             monsterName.text = mb.Name;
             mb.Hp.AddListener("UI.BossFrames.BossHpProcess", ValueToText);
             
