@@ -44,6 +44,19 @@ public static class NumberExtension
         };
     }
     
+    public static string ToKmbt(this float number)
+    {
+        return number switch
+        {
+            >= 1_000_000_000 => (number / 1_000_000_000D).ToString("0.00B"),
+            >= 1_000_000     => (number / 1_000_000D).ToString("0.00M"),
+            >= 1_000         => (number / 1_000D).ToString("0.00K"),
+            _                => number.ToString("0")
+        };
+    }
+
+
+    
     public static int GetNumberOfDigits(this int original, int digit)
     {
         if (digit < 1)

@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8762994625914345649}
   - component: {fileID: 372894161616476412}
+  - component: {fileID: 7425154283591400633}
   m_Layer: 0
   m_Name: Hits
   m_TagString: Untagged
@@ -56,6 +57,24 @@ MonoBehaviour:
     - statType: 13030003
       statKey: DamageExecutorKey
       value: 0
+--- !u!114 &7425154283591400633
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1234280139362883297}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 714e87efbca5f5e47a36249aecf0b6f2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  group: 1
+  actionCode: 32210002
+  pool:
+    prefab: {fileID: 8333227002716821657, guid: 5d2fb8c7eb66cd742b1e14925d73c808, type: 3}
+    maxCount: 8
+    syncObjectActivity: 1
 --- !u!1 &2546753074928525639
 GameObject:
   m_ObjectHideFlags: 0
@@ -151,7 +170,7 @@ Transform:
   - {fileID: 7221708945386366489}
   - {fileID: 5853087751410363707}
   m_Father: {fileID: 0}
-  m_RootOrder: -1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &3034885221433624456
 MonoBehaviour:
@@ -172,6 +191,7 @@ MonoBehaviour:
   hitExecutor:
     hitExecutionList:
     - {fileID: 372894161616476412}
+    - {fileID: 7425154283591400633}
   fireExecutor:
     fireExecutionList: []
   effector:

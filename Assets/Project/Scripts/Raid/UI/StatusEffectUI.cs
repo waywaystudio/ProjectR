@@ -1,3 +1,4 @@
+using System;
 using Common.StatusEffects;
 using TMPro;
 using UnityEngine;
@@ -39,9 +40,13 @@ namespace Raid.UI
 
         private void SetTimer(float value)
         {
-            timer.text = value <= 0.1f 
-                ? "" 
-                : value.ToString("F1");
+            timer.text = value switch
+            {
+                <= 0.1f => "",
+                <= 5f   => value.ToString("F1"),
+                _       => value.ToString("F0"),
+            };
+
         }
 
 

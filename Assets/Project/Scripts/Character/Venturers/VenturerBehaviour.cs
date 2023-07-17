@@ -1,4 +1,4 @@
-using Common;
+ using Common;
 using Common.Characters;
 using UnityEngine;
 
@@ -23,6 +23,7 @@ namespace Character.Venturers
         private void Update()
         {
             Animating.Flip(transform.forward);
+            
         }
 
 

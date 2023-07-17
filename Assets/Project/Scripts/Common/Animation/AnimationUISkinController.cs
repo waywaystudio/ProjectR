@@ -1,44 +1,25 @@
-using System;
 using Sirenix.OdinInspector;
 using Spine;
 using Spine.Unity;
 using UnityEditor;
 using UnityEngine;
-// ReSharper disable IdentifierTypo
 
 namespace Common.Animation
 {
-    public enum Jobs
+    public class AnimationUISkinController : MonoBehaviour
     {
-        Warrior, Archer, Elementalist, Duelist
-    }
-
-    [Serializable]
-    public class SkinEntity
-    {
-        public Jobs Job;
-        public int Melee;
-        public int Shield;
-        public int Bow;
-        public int Quiver;
-        public int Staff;
-        public int DuelistOffhand;
-        public int Armor;
-        public int Helmet;
-        public int Shoulder;
-        public int Arm;
-        public int Feet;
-        public int Hair;
-        public int Face;
-    }
-    
-    public class AnimationSkinController : MonoBehaviour
-    {
-        [SerializeField] private SkeletonAnimation skeletonAnimation;
-        [SerializeField] private SkinEntity skinEntity;
-
-        public SkinEntity SkinEntity => skinEntity;
+        [SerializeField] private SkeletonGraphic skeletonAnimation;
         
+        private SkinEntity skinEntity;
+
+        public void Initialize(SkinEntity skinEntity)
+        {
+            this.skinEntity = skinEntity;
+
+            ApplySkinChanges();
+        }
+        
+
         [Button(ButtonSizes.Large)]
         public void ApplySkinChanges()
         {
@@ -124,10 +105,9 @@ namespace Common.Animation
         }
         
 
-        private void Awake()
-        {
-            ApplySkinChanges();
-        }
-        
+        // private void Awake()
+        // {
+        //     ApplySkinChanges();
+        // }
     }
 }

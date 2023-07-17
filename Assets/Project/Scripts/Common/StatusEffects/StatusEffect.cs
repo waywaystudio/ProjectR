@@ -13,7 +13,6 @@ namespace Common.StatusEffects
         [SerializeField] protected Sprite icon;
         [SerializeField] protected HitExecutor hitExecutor;
         [SerializeField] protected Effector effector;
-        // [SerializeField] protected CombatCoolTimer effectuateTimer;
         [SerializeField] protected float duration;
 
         public ICombatProvider Provider { get; protected set; }
@@ -65,9 +64,7 @@ namespace Common.StatusEffects
         protected virtual void Dispose()
         {
             /* Annotation
-             * SKillComponent와 다르게 Pooling 기반 Object는 Dispose에서 Invoker.End실행 불가.
-             * Pool을 가진 Object가 먼저 파괴되었을 수 있음
-             * Invoker.End(); */
+             * SKillComponent와 다르게 Pooling 기반 Object는 Dispose에서 Invoker.End실행 불가. */
             Sequence.Clear();
         }
 

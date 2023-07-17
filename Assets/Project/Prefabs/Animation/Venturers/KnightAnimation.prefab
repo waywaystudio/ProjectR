@@ -12,6 +12,38 @@ PrefabInstance:
       propertyPath: m_Name
       value: KnightAnimation
       objectReference: {fileID: 0}
+    - target: {fileID: 517243171829503790, guid: cda7ba107a955b24cba549bb4331fac6, type: 3}
+      propertyPath: skinEntity.Arm
+      value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: 517243171829503790, guid: cda7ba107a955b24cba549bb4331fac6, type: 3}
+      propertyPath: skinEntity.Face
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 517243171829503790, guid: cda7ba107a955b24cba549bb4331fac6, type: 3}
+      propertyPath: skinEntity.Feet
+      value: 22
+      objectReference: {fileID: 0}
+    - target: {fileID: 517243171829503790, guid: cda7ba107a955b24cba549bb4331fac6, type: 3}
+      propertyPath: skinEntity.Hair
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 517243171829503790, guid: cda7ba107a955b24cba549bb4331fac6, type: 3}
+      propertyPath: skinEntity.Armor
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 517243171829503790, guid: cda7ba107a955b24cba549bb4331fac6, type: 3}
+      propertyPath: skinEntity.Helmet
+      value: 24
+      objectReference: {fileID: 0}
+    - target: {fileID: 517243171829503790, guid: cda7ba107a955b24cba549bb4331fac6, type: 3}
+      propertyPath: skinEntity.Shield
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 517243171829503790, guid: cda7ba107a955b24cba549bb4331fac6, type: 3}
+      propertyPath: skinEntity.Shoulder
+      value: 22
+      objectReference: {fileID: 0}
     - target: {fileID: 978258811399340691, guid: cda7ba107a955b24cba549bb4331fac6, type: 3}
       propertyPath: m_RootOrder
       value: 0

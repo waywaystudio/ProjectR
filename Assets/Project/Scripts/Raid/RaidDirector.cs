@@ -38,6 +38,8 @@ namespace Raid
             }
         }
 
+        public static VillainBehaviour Villain => Casting.Villain;
+
         /*
          * Raid Start
          */ 

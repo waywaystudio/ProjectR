@@ -49,8 +49,22 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   modelData: {fileID: 11400000, guid: 9425102757636664ba5540251971aa4e, type: 2}
+  skinEntity:
+    Job: 0
+    Melee: 0
+    Shield: 0
+    Bow: 0
+    Quiver: 0
+    Staff: 0
+    DuelistOffhand: 0
+    Armor: 0
+    Helmet: 0
+    Shoulder: 0
+    Arm: 0
+    Feet: 0
+    Hair: 0
+    Face: 0
   skeletonAnimation: {fileID: 2069590890983965030}
-  eventNameList: 
 --- !u!23 &9057403322397503668
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -71,12 +85,12 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 2100000, guid: 4373b9ea3ce428941968d772f2944478, type: 2}
+  - {fileID: 2100000, guid: a1dd870940c57a246a6bc05c974b09de, type: 2}
+  - {fileID: 2100000, guid: 4373b9ea3ce428941968d772f2944478, type: 2}
+  - {fileID: 2100000, guid: a1dd870940c57a246a6bc05c974b09de, type: 2}
+  - {fileID: 2100000, guid: 4373b9ea3ce428941968d772f2944478, type: 2}
+  - {fileID: 2100000, guid: a1dd870940c57a246a6bc05c974b09de, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -191,18 +205,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   skeletonAnimation: {fileID: 2069590890983965030}
-  Job: 1
-  Melee: 0
-  Shield: 7
-  Bow: 0
-  Quiver: 0
-  Staff: 0
-  DuelistOffhand: 0
-  Armor: 9
-  Helmet: 24
-  Shoulder: 22
-  Arm: 12
-  Feet: 22
-  Hair: 5
-  Face: 4
-  IsAutoUpdate: 0
+  skinEntity:
+    Job: 0
+    Melee: 0
+    Shield: 0
+    Bow: 0
+    Quiver: 0
+    Staff: 0
+    DuelistOffhand: 0
+    Armor: 0
+    Helmet: 0
+    Shoulder: 0
+    Arm: 0
+    Feet: 0
+    Hair: 0
+    Face: 0

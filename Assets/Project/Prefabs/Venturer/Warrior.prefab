@@ -1578,6 +1578,38 @@ PrefabInstance:
       propertyPath: m_Mesh
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 7000807668264064476, guid: 9c188c7daac5dc94090531e987dc6982, type: 3}
+      propertyPath: m_Materials.Array.size
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 7000807668264064476, guid: 9c188c7daac5dc94090531e987dc6982, type: 3}
+      propertyPath: m_Materials.Array.data[1]
+      value: 
+      objectReference: {fileID: 2100000, guid: a1dd870940c57a246a6bc05c974b09de, type: 2}
+    - target: {fileID: 7000807668264064476, guid: 9c188c7daac5dc94090531e987dc6982, type: 3}
+      propertyPath: m_Materials.Array.data[3]
+      value: 
+      objectReference: {fileID: 2100000, guid: a1dd870940c57a246a6bc05c974b09de, type: 2}
+    - target: {fileID: 7000807668264064476, guid: 9c188c7daac5dc94090531e987dc6982, type: 3}
+      propertyPath: m_Materials.Array.data[6]
+      value: 
+      objectReference: {fileID: 2100000, guid: 4373b9ea3ce428941968d772f2944478, type: 2}
+    - target: {fileID: 7000807668264064476, guid: 9c188c7daac5dc94090531e987dc6982, type: 3}
+      propertyPath: m_Materials.Array.data[7]
+      value: 
+      objectReference: {fileID: 2100000, guid: a1dd870940c57a246a6bc05c974b09de, type: 2}
+    - target: {fileID: 7000807668264064476, guid: 9c188c7daac5dc94090531e987dc6982, type: 3}
+      propertyPath: m_Materials.Array.data[8]
+      value: 
+      objectReference: {fileID: 2100000, guid: 4373b9ea3ce428941968d772f2944478, type: 2}
+    - target: {fileID: 7000807668264064476, guid: 9c188c7daac5dc94090531e987dc6982, type: 3}
+      propertyPath: m_Materials.Array.data[9]
+      value: 
+      objectReference: {fileID: 2100000, guid: a1dd870940c57a246a6bc05c974b09de, type: 2}
+    - target: {fileID: 7000807668264064476, guid: 9c188c7daac5dc94090531e987dc6982, type: 3}
+      propertyPath: m_Materials.Array.data[10]
+      value: 
+      objectReference: {fileID: 2100000, guid: 4373b9ea3ce428941968d772f2944478, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

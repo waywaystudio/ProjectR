@@ -21,8 +21,7 @@ namespace Raid
             base.Initialize();
 
             this["G"].AddStart("EnterCommandMode", RaidDirector.CommandMode);
-            
-            // TODO, 이 내용도 여기가 아니라 Casting Director가 맞을 수도 있다.
+
             this["Keyboard1"].AddStart("Focusing", () => Focusing(0));
             this["Keyboard2"].AddStart("Focusing", () => Focusing(1));
             this["Keyboard3"].AddStart("Focusing", () => Focusing(2));

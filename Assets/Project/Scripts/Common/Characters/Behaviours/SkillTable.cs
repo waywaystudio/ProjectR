@@ -18,6 +18,8 @@ namespace Common.Characters.Behaviours
         public void Initialize(CharacterBehaviour character)
         {
             Cb = character;
+            
+            
 
             table.Iterate(skill =>
             {

@@ -15,12 +15,16 @@ namespace Common.Animation
         [SerializeField] private SkeletonAnimation skeletonAnimation;
         
         protected SpineState State;
+        
+        private SkinEntity skinEntity;
         private Action onEntireAnimationComplete;
         private Action<TrackEntry> completeActionBuffer;
         private TrackEntry currentEntry;
 
         public ActionTable OnHit { get; } = new();
         private SpineAnimation TargetAnimation { get; set; }
+
+        public SkinEntity SkinEntity => skinEntity ??= GetComponentInChildren<AnimationSkinController>()?.SkinEntity;
     
         public virtual void Idle() { State.TimeScale = 1f; PlayLoop("idle"); }
         public virtual void Run() => PlayLoop("run");
@@ -147,6 +151,8 @@ namespace Common.Animation
         public virtual void EditorSetUp()
         {
             TryGetComponent(out skeletonAnimation);
+
+            skinEntity = GetComponentInChildren<AnimationSkinController>()?.SkinEntity;
         }
 #endif
     }

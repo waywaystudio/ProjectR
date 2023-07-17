@@ -205,4 +205,5 @@ public static class ListExtension
     }
 
     public static T FirstOrDefault<T>(this List<T> list) { return list.Count > 0 ? list[0] : default; }
+    public static T LastOrDefault<T>(this List<T> list) { return list.Count > 0 ? list[^1] : default; }
 }
