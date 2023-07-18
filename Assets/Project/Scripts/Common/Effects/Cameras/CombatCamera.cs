@@ -16,6 +16,7 @@ namespace Common.Effects.Cameras
         private Tween cameraTween;
         private float originalFov;
         private bool activity = true;
+        private bool onEffecting = false;
         
         public bool Activity
         {
@@ -23,7 +24,6 @@ namespace Common.Effects.Cameras
             set
             {
                 if (value == false) ReturnZoom();
-
                 activity = value;
             }
         }
@@ -86,13 +86,17 @@ namespace Common.Effects.Cameras
             
             CameraManager.SetPlayerToEffectorBlend(blend);
             CameraManager.Director.ChangeCamera(VirtualCameraType.Effector);
+
+            onEffecting = true;
         }
 
         public void ReturnZoom()
         {
             if (!Activity) return;
+            if (!onEffecting) return;
             
             CameraManager.Director.ChangeCamera(VirtualCameraType.Player);
+            onEffecting = false;
         }
     }
 }

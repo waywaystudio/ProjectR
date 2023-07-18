@@ -25,19 +25,19 @@ namespace Raid.UI.VenturerFrames
             voidGlobe.RegisterEventReverse(resourceReference, maxResource);
         }
         
-        public void OnCommandModeEnter()
-        {
-            UnregisterGlobe();
-        }
-        
-        
+
         private void UnregisterGlobe()
         {
             fillGlobe.UnregisterFloatEvent();
             voidGlobe.UnregisterFloatEvent();
         }
-        
-        
+
+        private void OnDisable()
+        {
+            UnregisterGlobe();
+        }
+
+
 #if UNITY_EDITOR
         public void EditorSetUp()
         {

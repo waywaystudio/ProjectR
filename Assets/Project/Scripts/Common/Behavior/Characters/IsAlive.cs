@@ -1,9 +1,8 @@
 using BehaviorDesigner.Runtime.Tasks;
-using Common;
 
-namespace Character.Behavior.Actions
+namespace Common.Behavior.Characters
 {
-    [TaskIcon("{SkinColor}SelectorIcon.png"), TaskCategory("Character/Combat")]
+    [TaskIcon("{SkinColor}SelectorIcon.png"), TaskCategory("Characters")]
     public class IsAlive : Action
     {
         private ICombatProvider provider;

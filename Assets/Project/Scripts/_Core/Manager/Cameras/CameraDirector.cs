@@ -29,15 +29,14 @@ namespace Cameras
                 Debug.LogWarning("VirtualCamera None");
                 return;
             }
-            
+
             var activeCamera = activeVirtualCamera.VirtualCameraGameObject.GetComponent<CinemachineVirtualCamera>();
             if (activeCamera.Equals(this[cameraType])) return;
         
-            (activeCamera.Priority, this[cameraType].Priority) 
-                = (this[cameraType].Priority, activeCamera.Priority);
+            (activeVirtualCamera.Priority, this[cameraType].Priority) 
+                = (this[cameraType].Priority, activeVirtualCamera.Priority);
+            
             CurrentCameraType = cameraType;
-            
-            
         }
 
 

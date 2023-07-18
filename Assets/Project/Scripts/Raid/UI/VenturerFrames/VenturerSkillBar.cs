@@ -28,13 +28,20 @@ namespace Raid.UI.VenturerFrames
         {
             if (vb == null) return;
 
-            SetActiveSkillSlots(true);
             RegisterSlotList(vb.SkillTable);
         }
 
         public void OnCommandModeEnter()
         {
             SetActiveSkillSlots(false);
+            slotList.ForEach(slot => slot.RemoveInput());
+            // 새로운 스킬바가 있을 예정
+        }
+        
+        public void OnCommandModeExit()
+        {
+            SetActiveSkillSlots(true);
+            slotList.ForEach(slot => slot.AddInput());
             // 새로운 스킬바가 있을 예정
         }
 

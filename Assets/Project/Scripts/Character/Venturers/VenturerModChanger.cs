@@ -12,11 +12,11 @@ namespace Character.Venturers
         private VenturerBehaviour Adventurer => adventurer ??= GetComponent<VenturerBehaviour>();
         
 
-        public void OnFocused(VenturerBehaviour focusAdventurer)
+        public void OnFocusVenturerChanged(VenturerBehaviour vb)
         {
             if (Adventurer is null) return;
 
-            if (focusAdventurer == Adventurer)
+            if (vb == Adventurer)
             {
                 onManual?.Invoke();
             }

@@ -1,5 +1,7 @@
+using System.Threading;
 using Character.Venturers;
 using Common;
+using Cysharp.Threading.Tasks;
 using UnityEngine;
 
 namespace Raid.UI.CommandFrames
@@ -8,39 +10,56 @@ namespace Raid.UI.CommandFrames
     {
         [SerializeField] private string moveBindingKey;
         [SerializeField] private GameObject moveTogetherAction;
+
+        private CancellationTokenSource cts;
         
         public void OnCommandModeEnter()
         {
-            // Register First Action Slot to MoveToPoint
-            RaidDirector.Input[moveBindingKey].ClearStart();
             RaidDirector.Input[moveBindingKey].AddStart("MoveToPoint", MoveToPoint);
+            
+            moveTogetherAction.SetActive(true);
         }
         
         public void OnCommandModeExit()
         {
-            // Register First Action Slot to MoveToPoint
-            RaidDirector.Input[moveBindingKey].ClearStart();
-            RaidDirector.Input[moveBindingKey].AddStart("MoveToPoint", MoveToPoint);
-        }
-
-        public void OnFocusVenturerChanged(VenturerBehaviour vb)
-        {
             RaidDirector.Input[moveBindingKey].RemoveStart("MoveToPoint");
+            
+            moveTogetherAction.SetActive(false);
+            ReleaseRigidity();
         }
         
         
         private static void MoveToPoint()
         {
-            // Get All Dealer and Healer
-            // First, Move one spot to all venturer. let's see.
             var venturerList = RaidDirector.VenturerList;
             var groundPosition = InputManager.GetMousePosition();
+
+            venturerList.ForEach(venturer =>
+            {
+                if (venturer.CombatClass == CharacterMask.Knight) return;
+
+                venturer.IsRigid = true;
+                var randomOffsetPosition 
+                    = new Vector3(groundPosition.x + Random.Range(-2f, 2f), 
+                                  groundPosition.y, 
+                                  groundPosition.z + Random.Range(-2f, 2f));
+
+                if (venturer.SkillTable.Current != null)
+                    venturer.SkillTable.Current.Cancel();
+                
+                venturer.Run(randomOffsetPosition);
+            });
+        }
+
+        private static void ReleaseRigidity()
+        {
+            var venturerList = RaidDirector.VenturerList;
             
             venturerList.ForEach(venturer =>
             {
                 if (venturer.CombatClass == CharacterMask.Knight) return;
-                
-                venturer.Run(groundPosition);
+
+                venturer.IsRigid = false;
             });
         }
         

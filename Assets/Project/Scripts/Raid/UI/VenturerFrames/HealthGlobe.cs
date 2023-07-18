@@ -25,11 +25,6 @@ namespace Raid.UI.VenturerFrames
             voidGlobe.RegisterEventReverse(hpReference, maxHp);
         }
 
-        public void OnCommandModeEnter()
-        {
-            UnregisterGlobe();
-        }
-
 
         private void UnregisterGlobe()
         {
@@ -37,6 +32,11 @@ namespace Raid.UI.VenturerFrames
             voidGlobe.UnregisterFloatEvent();
         }
 
+        private void OnDisable()
+        {
+            UnregisterGlobe();
+        }
+        
 
 #if UNITY_EDITOR
         public void EditorSetUp()

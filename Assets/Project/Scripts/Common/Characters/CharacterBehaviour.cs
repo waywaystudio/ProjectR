@@ -47,6 +47,7 @@ namespace Common.Characters
         /*
          * Behaviour Attribute
          */
+        public bool IsRigid { get; set; }
         public ActionMask BehaviourMask => CurrentBehaviour is null ? ActionMask.None : CurrentBehaviour.BehaviourMask;
         public IActionBehaviour CurrentBehaviour { get; set; }
         public StopBehaviour StopBehaviour => stopBehaviour;

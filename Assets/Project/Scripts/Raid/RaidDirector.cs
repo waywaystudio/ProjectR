@@ -36,7 +36,6 @@ namespace Raid
             {
                 if (value == Instance.focusVenturer)
                 {
-                    Debug.Log("Same!");
                     return;
                 }
                 
@@ -57,7 +56,7 @@ namespace Raid
             Input.Initialize();
             UIDirector.Initialize();
 
-            FocusVenturer = Casting.VenturerList[0];
+            FocusVenturer = VenturerList[0];
         }
 
         public static void CommandMode()
@@ -65,14 +64,14 @@ namespace Raid
             if (OnCommandMode)
             {
                 Instance.onCommandModeExit.Invoke();
-                Instance.onFocusVenturerChanged.Invoke(Instance.lastFocusVenturer);
+                FocusVenturer = Instance.lastFocusVenturer;
             }
             else
             {
-                Instance.onCommandModeEnter.Invoke();
-                
                 Instance.lastFocusVenturer = FocusVenturer;
-                Instance.focusVenturer     = null;
+                FocusVenturer              = null;
+                
+                Instance.onCommandModeEnter.Invoke();
             }
 
             OnCommandMode = !OnCommandMode;
