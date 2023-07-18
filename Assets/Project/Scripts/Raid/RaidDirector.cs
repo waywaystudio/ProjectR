@@ -15,9 +15,12 @@ namespace Raid
         [SerializeField] private RaidStageDirector stageDirector;
         [SerializeField] private RaidUIDirector uiDirector;
         [SerializeField] private GameEventVenturer onFocusVenturerChanged;
-        [SerializeField] private GameEvent onCommandMode;
+        [SerializeField] private GameEvent onCommandModeEnter;
+        [SerializeField] private GameEvent onCommandModeExit;
 
         private VenturerBehaviour focusVenturer;
+        private VenturerBehaviour lastFocusVenturer;
+        private static bool OnCommandMode { get; set; }
 
         public static RaidCameraDirector Camera => Instance.cameraDirector;
         public static RaidCastingDirector Casting => Instance.castingDirector;
@@ -31,7 +34,11 @@ namespace Raid
             get => Instance.focusVenturer;
             set
             {
-                if (value == Instance.focusVenturer) return;
+                if (value == Instance.focusVenturer)
+                {
+                    Debug.Log("Same!");
+                    return;
+                }
                 
                 Instance.focusVenturer = value;
                 Instance.onFocusVenturerChanged.Invoke(value);
@@ -49,15 +56,26 @@ namespace Raid
             Casting.Initialize();
             Input.Initialize();
             UIDirector.Initialize();
-            
+
             FocusVenturer = Casting.VenturerList[0];
         }
 
         public static void CommandMode()
         {
-            Instance.onCommandMode.Invoke();
-            
-            FocusVenturer = null;
+            if (OnCommandMode)
+            {
+                Instance.onCommandModeExit.Invoke();
+                Instance.onFocusVenturerChanged.Invoke(Instance.lastFocusVenturer);
+            }
+            else
+            {
+                Instance.onCommandModeEnter.Invoke();
+                
+                Instance.lastFocusVenturer = FocusVenturer;
+                Instance.focusVenturer     = null;
+            }
+
+            OnCommandMode = !OnCommandMode;
         }
 
 

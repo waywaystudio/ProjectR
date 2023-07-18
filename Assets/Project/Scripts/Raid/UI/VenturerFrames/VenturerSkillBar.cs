@@ -32,7 +32,7 @@ namespace Raid.UI.VenturerFrames
             RegisterSlotList(vb.SkillTable);
         }
 
-        public void OnCommandMode()
+        public void OnCommandModeEnter()
         {
             SetActiveSkillSlots(false);
             // 새로운 스킬바가 있을 예정

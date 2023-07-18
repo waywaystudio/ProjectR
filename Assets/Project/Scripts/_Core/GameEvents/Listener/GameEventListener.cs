@@ -21,7 +21,7 @@ namespace GameEvents.Listener
         public GameEvent TargetEvent => targetEvent;
         
         public void Invoke() => response?.Invoke();
-        
+
         protected void OnEnable() => TargetEvent.Register(this);
         protected void OnDisable() => TargetEvent.Unregister(this);
 

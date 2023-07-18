@@ -18,6 +18,7 @@ namespace Common.TargetSystem
         private ISearchable searchEngine;
         private TargetingType TargetType { get; set; } = TargetingType.None;
         private Collider[] buffers;
+        private List<int> preAllocatedLayerIndex;
 
         public Vector3 SizeVector => sizeVector;
         public float Distance => sizeVector.x;
@@ -25,6 +26,7 @@ namespace Common.TargetSystem
         public float Angle => sizeVector.z;
         public float Width => sizeVector.y;
         public float Height => sizeVector.z;
+        public List<int> PreAllocatedLayerIndex => preAllocatedLayerIndex ??= LayerMaskToIndexes(targetLayer);
         
         
         public void Initialize(ISearchable searchEngine)
@@ -63,7 +65,7 @@ namespace Common.TargetSystem
             return TargetType switch
             {
                 TargetingType.Self => self,
-                _                  => GetMainTarget(targetLayer),
+                _                  => MainTargetFilter(),
             };
         }
         
@@ -131,13 +133,16 @@ namespace Common.TargetSystem
             return TargetUtility.GetTargetsInAngle<ICombatTaker>(center, forward, targetLayer, radius, angle, buffers);
         }
 
-        private ICombatTaker GetMainTarget(LayerMask targetLayerMask)
+        private ICombatTaker MainTargetFilter()
         {
             var searchTable = searchEngine.SearchedTable;
-            var layerIndex = targetLayerMask.ToIndex();
+            var combatTakerList = new List<ICombatTaker>();
             
-            var combatTakerList = TargetUtility.ConvertTargets<ICombatTaker>(searchTable[layerIndex]);
-        
+            PreAllocatedLayerIndex.ForEach(index =>
+            {
+                combatTakerList.AddRange(TargetUtility.ConvertTargets<ICombatTaker>(searchTable[index]));
+            });
+
             if (combatTakerList.IsNullOrEmpty()) return null;
 
             var pivot = searchEngine.gameObject.transform.position;
@@ -154,6 +159,24 @@ namespace Common.TargetSystem
             return null;
         }
 
+        private List<int> LayerMaskToIndexes(LayerMask mask)
+        {
+            var result = new List<int>();
+            
+            for (var i = 0; i < 32; i++)
+            {
+                var layerMask = 1 << i;
+        
+                // Check if this layer is included in the targetLayerMask
+                if ((mask.value & layerMask) != 0)
+                {
+                    result.Add(i);
+                }
+            }
+
+            return result;
+        }
+
 
 #if UNITY_EDITOR
         public void SetUpAsSkill(DataIndex dataIndex)
@@ -162,7 +185,16 @@ namespace Common.TargetSystem
 
             sizeVector  = skillData.TargetParam;
             sortingType = skillData.SortingType.ToEnum<SortingType>();
-            targetLayer = LayerMask.GetMask(skillData.TargetLayer);
+            
+            var layerNamesSplit = skillData.TargetLayer.Split(',');
+            var layerNames = new string[layerNamesSplit.Length];
+
+            // Trim whitespace from each substring
+            for (var i = 0; i < layerNamesSplit.Length; i++) {
+                layerNames[i] = layerNamesSplit[i].Trim();
+            }
+
+            targetLayer = LayerMask.GetMask(layerNames);
         }
 #endif
     }

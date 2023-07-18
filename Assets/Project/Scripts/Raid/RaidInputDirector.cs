@@ -1,6 +1,5 @@
 using Character.Venturers;
 using Inputs;
-using UnityEngine;
 using UnityEngine.InputSystem;
 
 namespace Raid
@@ -19,9 +18,10 @@ namespace Raid
         public override void Initialize()
         {
             base.Initialize();
+            
+            this["LeftMouse"].AddStart("VenturerMove", MoveVenturer);
 
             this["G"].AddStart("EnterCommandMode", RaidDirector.CommandMode);
-
             this["Keyboard1"].AddStart("Focusing", () => Focusing(0));
             this["Keyboard2"].AddStart("Focusing", () => Focusing(1));
             this["Keyboard3"].AddStart("Focusing", () => Focusing(2));
@@ -30,21 +30,28 @@ namespace Raid
             this["Keyboard6"].AddStart("Focusing", () => Focusing(5));
         }
 
-        public void OnFocusVenturerChanged(VenturerBehaviour vb)
-        {
-            if (vb == null) return;
-            
-            // TODO. Focusing 변겨할 때 마다 매번 들어오게 하지 않는 방법 없을까?
-            this["LeftMouse"].AddStart("VenturerMove", MoveVenturer);
-        }
-
-        // TODO. Command Mode Input을 넣어야 하는데, 이곳에서 넣는게 아닌 듯 하다.
-        // 혹은, 다른 곳에서 내용을 만들고, 이곳에서 접근하여 넣을 수도 있다.
-        // UI Q,W,E,R 등록하는 방식과 맥락을 맞추자.
-        // 여튼 Command Mode에 대한 기획이 끝나면 해보자.
-        public void OnCommandMode()
+        public void OnCommandModeEnter()
         {
             this["LeftMouse"].RemoveStart("VenturerMove");
+            
+            this["Keyboard1"].RemoveStart("Focusing");
+            this["Keyboard2"].RemoveStart("Focusing");
+            this["Keyboard3"].RemoveStart("Focusing");
+            this["Keyboard4"].RemoveStart("Focusing");
+            this["Keyboard5"].RemoveStart("Focusing");
+            this["Keyboard6"].RemoveStart("Focusing");
+        }
+
+        public void OnCommandModeExit()
+        {
+            this["LeftMouse"].AddStart("VenturerMove", MoveVenturer);
+            
+            this["Keyboard1"].AddStart("Focusing", () => Focusing(0));
+            this["Keyboard2"].AddStart("Focusing", () => Focusing(1));
+            this["Keyboard3"].AddStart("Focusing", () => Focusing(2));
+            this["Keyboard4"].AddStart("Focusing", () => Focusing(3));
+            this["Keyboard5"].AddStart("Focusing", () => Focusing(4));
+            this["Keyboard6"].AddStart("Focusing", () => Focusing(5));
         }
         
 

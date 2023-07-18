@@ -26,7 +26,7 @@ namespace Raid.UI.FloatingTexts
             currentVenturer.OnCombatTaken.Add("SpawnCombatText", Spawn);
         }
 
-        public void OnCommandMode()
+        public void OnCommandModeEnter()
         {
             RemoveText();
         }

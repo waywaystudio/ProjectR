@@ -7,9 +7,9 @@ using Databases;
 using UnityEngine;
 // ReSharper disable CheckNamespace
 
+#if UNITY_EDITOR
 public partial class Database
 {
-#if UNITY_EDITOR
     [SerializeField] private string idCodePath;
     [SerializeField] private string dataScriptPath;
     [SerializeField] private string dataObjectPath;
@@ -89,5 +89,12 @@ public partial class Database
             Debug.LogWarning("MainData GameObject not found in scene hierarchy.");
         }
     }
-#endif
+    
+    [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.BeforeSceneLoad)]
+    private static void ResetSingleton()
+    {
+        if (!Instance.IsNullOrDestroyed())
+            Instance.SetInstanceNull();
+    }
 }
+#endif

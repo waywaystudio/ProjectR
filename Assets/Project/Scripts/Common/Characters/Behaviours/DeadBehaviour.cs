@@ -1,6 +1,5 @@
 using System;
 using UnityEngine;
-using UnityEngine.Serialization;
 
 namespace Common.Characters.Behaviours
 {
@@ -8,11 +7,11 @@ namespace Common.Characters.Behaviours
     {
         public ActionMask BehaviourMask => ActionMask.Dead;
         public Sequencer Sequence { get; } = new();
-        public SequenceBuilder Builder { get; private set; }
-        public SequenceInvoker Invoker { get; private set; }
+        public SequenceBuilder Builder { get; protected set; }
+        public SequenceInvoker Invoker { get; protected set; }
         
         private CharacterBehaviour cb;
-        private CharacterBehaviour Cb => cb ??= GetComponentInParent<CharacterBehaviour>();
+        protected CharacterBehaviour Cb => cb ??= GetComponentInParent<CharacterBehaviour>();
         
 
         public void Dead()
@@ -31,7 +30,7 @@ namespace Common.Characters.Behaviours
         }
 
 
-        private void OnEnable()
+        protected virtual void OnEnable()
         {
             Invoker = new SequenceInvoker(Sequence);
             Builder = new SequenceBuilder(Sequence);
@@ -43,7 +42,7 @@ namespace Common.Characters.Behaviours
                 .Add(Section.Active,"Cb.Pathfinding.Quit", Cb.Pathfinding.Quit);
         }
 
-        private void OnDisable()
+        protected virtual void OnDisable()
         {
             Sequence.Clear();
         }

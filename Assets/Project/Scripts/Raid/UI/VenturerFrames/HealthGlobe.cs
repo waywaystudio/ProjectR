@@ -25,7 +25,7 @@ namespace Raid.UI.VenturerFrames
             voidGlobe.RegisterEventReverse(hpReference, maxHp);
         }
 
-        public void OnCommandMode()
+        public void OnCommandModeEnter()
         {
             UnregisterGlobe();
         }

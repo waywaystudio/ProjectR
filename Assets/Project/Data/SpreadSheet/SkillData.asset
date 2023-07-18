@@ -20,7 +20,7 @@ MonoBehaviour:
     priority: 1
     sortingType: None
     targetParam: {x: 0, y: 6, z: 135}
-    targetLayer: Monster
+    targetLayer: Monster, Dummy
     animationKey: AttackOneHand
     castCompleteKey: 
     isLoop: 0
@@ -45,7 +45,7 @@ MonoBehaviour:
     priority: 6
     sortingType: None
     targetParam: {x: 0, y: 6, z: 90}
-    targetLayer: Monster
+    targetLayer: Monster, Dummy
     animationKey: AttackOffHandInstant
     castCompleteKey: 
     isLoop: 0
@@ -193,7 +193,7 @@ MonoBehaviour:
     priority: 2
     sortingType: None
     targetParam: {x: 0, y: 7, z: 135}
-    targetLayer: Monster
+    targetLayer: Monster, Dummy
     animationKey: AttackSlashMiddle
     castCompleteKey: 
     isLoop: 0
@@ -218,7 +218,7 @@ MonoBehaviour:
     priority: 1
     sortingType: None
     targetParam: {x: 15, y: 8, z: 360}
-    targetLayer: Monster
+    targetLayer: Monster, Dummy
     animationKey: AttackSlashHeavy
     castCompleteKey: 
     isLoop: 0
@@ -243,7 +243,7 @@ MonoBehaviour:
     priority: 3
     sortingType: None
     targetParam: {x: 0, y: 10, z: 90}
-    targetLayer: Monster
+    targetLayer: Monster, Dummy
     animationKey: AttackSlashHold
     castCompleteKey: AttackSlashHoldFire
     isLoop: 1
@@ -293,7 +293,7 @@ MonoBehaviour:
     priority: 3
     sortingType: None
     targetParam: {x: 0, y: 8, z: 180}
-    targetLayer: Monster
+    targetLayer: Monster, Dummy
     animationKey: AttackSlashMiddle
     castCompleteKey: 
     isLoop: 0
@@ -317,7 +317,7 @@ MonoBehaviour:
     priority: 2
     sortingType: None
     targetParam: {x: 15, y: 7, z: 360}
-    targetLayer: Monster
+    targetLayer: Monster, Dummy
     animationKey: Run DUELIST
     castCompleteKey: 
     isLoop: 1
@@ -341,7 +341,7 @@ MonoBehaviour:
     priority: 3
     sortingType: None
     targetParam: {x: 0, y: 8, z: 180}
-    targetLayer: Monster
+    targetLayer: Monster, Dummy
     animationKey: AttackDuelStab
     castCompleteKey: 
     isLoop: 0
@@ -365,7 +365,7 @@ MonoBehaviour:
     priority: 1
     sortingType: None
     targetParam: {x: 0, y: 12, z: 360}
-    targetLayer: Monster
+    targetLayer: Monster, Dummy
     animationKey: AttackSlashHeavy
     castCompleteKey: 
     isLoop: 0
@@ -485,7 +485,7 @@ MonoBehaviour:
     priority: 2
     sortingType: None
     targetParam: {x: 0, y: 5, z: 135}
-    targetLayer: Monster
+    targetLayer: Monster, Dummy
     animationKey: AttackDuelFastStabTwice
     castCompleteKey: 
     isLoop: 0
@@ -510,7 +510,7 @@ MonoBehaviour:
     priority: 5
     sortingType: None
     targetParam: {x: 10, y: 4, z: 360}
-    targetLayer: Monster
+    targetLayer: Monster, Dummy
     animationKey: Dash
     castCompleteKey: 
     isLoop: 1
@@ -535,7 +535,7 @@ MonoBehaviour:
     priority: 1
     sortingType: None
     targetParam: {x: 10, y: 4, z: 360}
-    targetLayer: Monster
+    targetLayer: Monster, Dummy
     animationKey: Landing
     castCompleteKey: 
     isLoop: 0
@@ -560,7 +560,7 @@ MonoBehaviour:
     priority: 10
     sortingType: None
     targetParam: {x: 15, y: 3, z: 360}
-    targetLayer: Monster
+    targetLayer: Monster, Dummy
     animationKey: Cast2
     castCompleteKey: 
     isLoop: 0
@@ -634,7 +634,7 @@ MonoBehaviour:
     priority: 3
     sortingType: None
     targetParam: {x: 0, y: 40, z: 4}
-    targetLayer: Monster
+    targetLayer: Monster, Dummy
     animationKey: AimHold
     castCompleteKey: AimHoldFire
     isLoop: 1
@@ -660,7 +660,7 @@ MonoBehaviour:
     priority: 5
     sortingType: None
     targetParam: {x: 0, y: 40, z: 4}
-    targetLayer: Monster
+    targetLayer: Monster, Dummy
     animationKey: ShootVeryFast
     castCompleteKey: 
     isLoop: 0
@@ -687,7 +687,7 @@ MonoBehaviour:
     priority: 10
     sortingType: None
     targetParam: {x: 0, y: 40, z: 6}
-    targetLayer: Monster
+    targetLayer: Monster, Dummy
     animationKey: AimHold
     castCompleteKey: AimHoldFire
     isLoop: 1
@@ -714,7 +714,7 @@ MonoBehaviour:
     priority: 1
     sortingType: None
     targetParam: {x: 0, y: 100, z: 360}
-    targetLayer: Monster
+    targetLayer: Monster, Dummy
     animationKey: Reload
     castCompleteKey: 
     isLoop: 0
@@ -741,7 +741,7 @@ MonoBehaviour:
     priority: 1
     sortingType: None
     targetParam: {x: 0, y: 40, z: 6}
-    targetLayer: Monster
+    targetLayer: Monster, Dummy
     animationKey: Cast2
     castCompleteKey: 
     isLoop: 0
@@ -766,7 +766,7 @@ MonoBehaviour:
     priority: 5
     sortingType: None
     targetParam: {x: 0, y: 40, z: 6}
-    targetLayer: Monster
+    targetLayer: Monster, Dummy
     animationKey: CastHold
     castCompleteKey: CastHoldFire
     isLoop: 1
@@ -793,7 +793,7 @@ MonoBehaviour:
     priority: 8
     sortingType: None
     targetParam: {x: 30, y: 4, z: 360}
-    targetLayer: Monster
+    targetLayer: Monster, Dummy
     animationKey: ExtractHold
     castCompleteKey: ExtractHoldFire
     isLoop: 1
@@ -818,7 +818,7 @@ MonoBehaviour:
     priority: 5
     sortingType: None
     targetParam: {x: 0, y: 100, z: 360}
-    targetLayer: Monster
+    targetLayer: Monster, Dummy
     animationKey: Cast3
     castCompleteKey: 
     isLoop: 0
@@ -965,7 +965,7 @@ MonoBehaviour:
     name: ShockWave
     behaviourMask: Skill
     priority: 2
-    sortingType: None
+    sortingType: Random
     targetParam: {x: 0, y: 18, z: 60}
     targetLayer: Adventurer
     animationKey: casting

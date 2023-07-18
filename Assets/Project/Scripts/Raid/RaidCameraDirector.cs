@@ -15,7 +15,7 @@ namespace Raid
             Focusing(vb.transform);
         }
 
-        public void OnCommandMode()
+        public void OnCommandModeEnter()
         {
             ChangeCamera(VirtualCameraType.Stage);
         }

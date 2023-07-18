@@ -360,6 +360,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2894569648737266630, guid: aa81b65d6df7f824b84c80e326be40fa, type: 3}
+      propertyPath: detector.targetLayer.m_Bits
+      value: 4352
+      objectReference: {fileID: 0}
     - target: {fileID: 8380361914805468174, guid: aa81b65d6df7f824b84c80e326be40fa, type: 3}
       propertyPath: m_Name
       value: Smash

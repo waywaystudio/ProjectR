@@ -14,14 +14,17 @@ namespace Inputs
         public void AddStart(string key, Action<Context> action) => Start.Add(key, action);
         public void AddStart(string key, Action action) => Start.Add(key, action);
         public void RemoveStart(string key) => Start.Remove(key);
+        public void ClearStart() => Start.Clear();
         
         public void AddCancel(string key, Action<Context> action) => Cancel.Add(key, action);
         public void AddCancel(string key, Action action) => Cancel.Add(key, action);
         public void RemoveCancel(string key) => Cancel.Remove(key);
+        public void ClearCancel() => Cancel.Clear();
 
         public void AddPerform(string key, Action<Context> action) => Perform.Add(key, action);
         public void AddPerform(string key, Action action) => Perform.Add(key, action);
         public void RemovePerform(string key) => Perform.Remove(key);
+        public void ClearPerform() => Perform.Clear();
 
         /// <summary>
         /// Do Not use this method Directly. Designed for Input Interaction.

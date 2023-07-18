@@ -36,6 +36,8 @@ namespace Cameras
             (activeCamera.Priority, this[cameraType].Priority) 
                 = (this[cameraType].Priority, activeCamera.Priority);
             CurrentCameraType = cameraType;
+            
+            
         }
 
 

@@ -25,6 +25,8 @@ namespace Raid.UI.VenturerFrames
 
         public void Initialize()
         {
+            RaidDirector.Input[bindingKey]?.ClearStart();
+            RaidDirector.Input[bindingKey]?.ClearCancel();
             RaidDirector.Input[bindingKey]?.AddStart("ActiveSkill", StartAction);
             RaidDirector.Input[bindingKey]?.AddCancel("ReleaseSkill", ReleaseAction);
         }
