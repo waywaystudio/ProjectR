@@ -24,7 +24,6 @@ namespace Common.Characters
         [SerializeField] protected DrawBehaviour drawBehaviour;
         [SerializeField] protected DeadBehaviour deadBehaviour;
         [SerializeField] protected SkillTable skillBehaviour;
-        [SerializeField] protected Transform statusEffectHierarchy;
 
         /*
          * Common Attribute
@@ -80,7 +79,7 @@ namespace Common.Characters
         public ShieldValue Shield => combatStatus.Shield;
         public StatTable StatTable => combatStatus.StatTable;
         public StatusEffectTable StatusEffectTable => combatStatus.StatusEffectTable;
-        public Transform StatusEffectHierarchy => statusEffectHierarchy;
+        public Transform CombatStatusHierarchy => combatStatus.transform;
         public Transform Preposition(PrepositionType type) => prePosition.Get(type);
         
         public ActionTable<CombatEntity> OnCombatProvided { get; } = new();
@@ -92,8 +91,7 @@ namespace Common.Characters
 
         public void Initialize()
         {
-            StatTable.RegisterTable(Data.StaticStatTable);
-            combatStatus.Initialize();
+            combatStatus.Initialize(Data.StaticStatTable);
             skillBehaviour.Initialize(this);
         }
 

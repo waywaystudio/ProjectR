@@ -8,7 +8,7 @@ namespace Common.Execution.Hits
         
         public override void Hit(ICombatTaker taker)
         {
-            taker?.Stun(stunDuration);
+            taker?.StunBehaviour.Stun(stunDuration);
         }
     }
 }

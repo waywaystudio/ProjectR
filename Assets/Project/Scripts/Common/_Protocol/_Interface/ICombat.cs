@@ -18,11 +18,6 @@ namespace Common
         ICombatProvider Provider { get; }
     }
 
-    public interface IHasTaker
-    {
-        ICombatTaker Taker { get; }
-    }
-    
     public interface IActionSender : IOriginalProvider, IDataIndexer
     {
         // + ICombatProvider Provider { get; }
@@ -31,56 +26,60 @@ namespace Common
 
     public interface ICombatEntity
     {
+        ActionMask BehaviourMask { get; }
+        
         StatTable StatTable { get; }
         AliveValue Alive { get; }
         HpValue Hp { get; }
         ResourceValue Resource { get; }
         ShieldValue Shield { get; }
         StatusEffectTable StatusEffectTable { get; }
-
-        ActionMask BehaviourMask { get; }
-        
-        // IDynamicStatEntry DynamicStatEntry { get; }
-        // StatTable StatTable { get; }
     }
 
-    public interface ICombatProvider : ICombatEntity, IObjectName
+    public interface ICombatProvider : IObjectName, ICombatEntity 
     {
         // + string Name { get; }
         // + GameObject gameObject { get; }
         // + Vector3 Position { get; }
+        // + Vector3 Forward { get; }
+        
+        // + ActionMask BehaviourMask { get; }
         // + StatTable StatTable { get; }
-        // + IDynamicStatEntry DynamicStatEntry { get; }
-        // + string Name { get; }
-        SkillTable SkillTable { get; }
+        // + AliveValue Alive { get; }
+        // + HpValue Hp { get; }
+        // + ResourceValue Resource { get; }
+        // + ShieldValue Shield { get; }
+        // + StatusEffectTable StatusEffectTable { get; }
 
+        SkillTable SkillTable { get; }
         ActionTable<CombatEntity> OnCombatProvided { get; }
     }
     
-    public interface ICombatTaker : ICombatEntity, IObjectName
+    public interface ICombatTaker : IObjectName, ICombatEntity, ICombatBehaviour 
     {
-        // + StatTable StatTable { get; }
-        // + IDynamicStatEntry DynamicStatEntry { get; }
         // + string Name { get; }
+        // + GameObject gameObject { get; }
+        // + Vector3 Position { get; }
+        // + Vector3 Forward { get; }
+        
+        // + ActionMask BehaviourMask { get; }
+        // + StatTable StatTable { get; }
+        // + AliveValue Alive { get; }
+        // + HpValue Hp { get; }
+        // + ResourceValue Resource { get; }
+        // + ShieldValue Shield { get; }
+        // + StatusEffectTable StatusEffectTable { get; }
+        
+        // + StopBehaviour StopBehaviour { get; }
+        // + RunBehaviour RunBehaviour { get; }
+        // + StunBehaviour StunBehaviour { get; }
+        // + KnockBackBehaviour KnockBackBehaviour { get; }
+        // + DrawBehaviour DrawBehaviour { get; }
+        // + DeadBehaviour DeadBehaviour { get; }
 
         CharacterMask CombatClass { get; }
-        Transform StatusEffectHierarchy { get; }
-        
-        StopBehaviour StopBehaviour { get; }
-        RunBehaviour RunBehaviour { get; }
-        StunBehaviour StunBehaviour { get; }
-        KnockBackBehaviour KnockBackBehaviour { get; }
-        DrawBehaviour DrawBehaviour { get; }
-        DeadBehaviour DeadBehaviour { get; }
+        Transform CombatStatusHierarchy { get; }
         ActionTable<CombatEntity> OnCombatTaken { get; }
-
-        void Run(Vector3 destination);
-        void Rotate(Vector3 lookTarget);
-        void Stop();
-        void Stun(float duration);
-        void KnockBack(Vector3 source, float distance, float duration);
-        void Draw(Vector3 source, float duration);
-        void Dead();
         void TakeStatusEffect(StatusEffect effect);
         void DispelStatusEffect(DataIndex effectIndex);
         

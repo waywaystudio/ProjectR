@@ -23,7 +23,7 @@ namespace Common.Effects.Particles
                 return parent switch
                 {
                     ParticleSpawnParent.Provider => transform.parent,
-                    ParticleSpawnParent.Taker    => Taker is null ? null : Taker.StatusEffectHierarchy,
+                    ParticleSpawnParent.Taker    => Taker is null ? null : Taker.CombatStatusHierarchy,
                     ParticleSpawnParent.World    => null,
                     _                            => null
                 };
@@ -108,7 +108,7 @@ namespace Common.Effects.Particles
         {
             if (!Activity) return;
             
-            pool.Get().Play(SpawnPosition, taker.StatusEffectHierarchy);
+            pool.Get().Play(SpawnPosition, taker.CombatStatusHierarchy);
         }
 
         /// <summary>

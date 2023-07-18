@@ -12,9 +12,10 @@ namespace Common.Characters
         public StatTable StatTable { get; } = new();
         public StatusEffectTable StatusEffectTable { get; } = new();
 
-
-        public void Initialize()
+        public void Initialize(StatTable staticTable)
         {
+            StatTable.RegisterTable(staticTable);
+            
             Hp.StatTable       = StatTable;
             Resource.StatTable = StatTable;
             Shield.StatTable   = StatTable;

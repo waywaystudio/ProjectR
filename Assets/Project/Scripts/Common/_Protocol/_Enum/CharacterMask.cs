@@ -10,6 +10,7 @@ namespace Common
         Ranger = 1  << 3,
         Mage = 1    << 4,
         Priest = 1  << 5,
+        Vummy = 1 << 28,
         Villain = 1    << 29,
         Vinion = 1  << 30,
         

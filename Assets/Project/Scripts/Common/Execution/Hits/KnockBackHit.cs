@@ -9,7 +9,7 @@ namespace Common.Execution.Hits
         
         public override void Hit(ICombatTaker taker)
         {
-            taker?.KnockBack(transform.position, knockBackDistance, knockBackDuration);
+            taker?.KnockBackBehaviour.KnockBack(transform.position, knockBackDistance, knockBackDuration);
         }
     }
 }

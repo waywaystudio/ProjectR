@@ -70,7 +70,7 @@ namespace Common.Execution.Hits
                 
              
                 Debug.Log($"{taker.Name} dead by {Sender.Provider.Name}'s {Sender.DataIndex}'s {entity.Value}");
-                taker.Dead();
+                taker.DeadBehaviour.Dead();
             }
 
             taker.Hp.Value -= damageAmount;

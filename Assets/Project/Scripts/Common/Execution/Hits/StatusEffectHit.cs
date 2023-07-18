@@ -22,7 +22,7 @@ namespace Common.Execution.Hits
             {
                 var effect = pool.Get();
 
-                effect.transform.SetParent(taker.StatusEffectHierarchy, false);
+                effect.transform.SetParent(taker.CombatStatusHierarchy, false);
                 effect.Activate(taker);
             }
         }

@@ -8,7 +8,9 @@ namespace Common.Execution.Hits
         
         public override void Hit(ICombatTaker taker)
         {
-            taker?.Draw(transform.position, drawDuration);
+            if (taker?.DrawBehaviour is null) return;
+            
+            taker?.DrawBehaviour.Draw(transform.position, drawDuration);
         }
     }
 }

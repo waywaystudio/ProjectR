@@ -43,6 +43,11 @@ namespace Raid.UI.PartyFrames
             hpCache         = hp;
         }
 
+        private void Awake()
+        {
+            gameObject.SetActive(false);
+        }
+
 
 #if UNITY_EDITOR
         public void EditorSetUp()
