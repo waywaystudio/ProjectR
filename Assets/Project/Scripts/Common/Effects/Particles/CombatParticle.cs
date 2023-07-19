@@ -12,14 +12,13 @@ namespace Common.Effects.Particles
         [SerializeField] private Section endSection;
         
         private ISequencerHolder sequenceHolder;
-        private System.Func<ICombatTaker> takerRetriever;
         private ICombatTaker Taker => takerRetriever?.Invoke();
+        private System.Func<ICombatTaker> takerRetriever;
+        private bool onEffecting;
         private Transform Parent
         {
             get
             {
-                // var taker = takerHolder?.Taker;
-
                 return parent switch
                 {
                     ParticleSpawnParent.Provider => transform.parent,
@@ -34,9 +33,7 @@ namespace Common.Effects.Particles
             get
             {
                 if (takerPreposition == PrepositionType.None) return transform.position;
-                
-                // var taker = takerHolder.Taker;
-            
+
                 return Taker is null 
                     ? transform.position 
                     : Taker.Preposition(takerPreposition).position;
@@ -90,25 +87,14 @@ namespace Common.Effects.Particles
         }
 
 
+        private void PlayParticle() => PlayParticle(SpawnPosition, Parent);
+        private void PlayParticle(ICombatTaker taker) => PlayParticle(SpawnPosition, taker.CombatStatusHierarchy);
         private void PlayParticle(Vector3 position, Transform parent)
         {
             if (!Activity) return;
             
             pool.Get().Play(position, parent);
-        }
-
-        private void PlayParticle()
-        {
-            if (!Activity) return;
-            
-            pool.Get().Play(SpawnPosition, Parent);
-        }
-
-        private void PlayParticle(ICombatTaker taker)
-        {
-            if (!Activity) return;
-            
-            pool.Get().Play(SpawnPosition, taker.CombatStatusHierarchy);
+            onEffecting = true;
         }
 
         /// <summary>
@@ -116,7 +102,10 @@ namespace Common.Effects.Particles
         /// </summary>
         private void StopParticle()
         {
+            if (!onEffecting) return;
+            
             pool.Release();
+            onEffecting = false;
         }
     }
 }

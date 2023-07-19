@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Common.TargetSystem
+namespace Common.Detects
 {
     public class SearchEngine : MonoBehaviour, IEditable
     {
@@ -19,8 +19,7 @@ namespace Common.TargetSystem
             for (var i = 0; i < 32; i++)
             {
                 var layerMask = 1 << i;
-        
-                // Check if this layer is included in the targetLayerMask
+
                 if ((targetLayerMask.value & layerMask) != 0)
                 {
                     SearchedTable.Add(i, new List<GameObject>());

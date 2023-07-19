@@ -308,7 +308,6 @@ GameObject:
   m_Component:
   - component: {fileID: 6393904427293829393}
   - component: {fileID: 4488721647538614182}
-  - component: {fileID: 6956324129434594931}
   m_Layer: 0
   m_Name: Particles
   m_TagString: Untagged
@@ -349,28 +348,6 @@ MonoBehaviour:
     syncObjectActivity: 1
     singleInstanceOnly: 0
   actionKey: CombatParticle
-  parent: 1
-  takerPreposition: 0
-  playSection: 11
-  endSection: 0
---- !u!114 &6956324129434594931
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3069768134536715740}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fa06c267d17b6ea4e93ed2ccb016432a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  pool:
-    prefab: {fileID: 124808, guid: 4a22e6763519fa549a322bf054c5f3ad, type: 3}
-    maxCount: 3
-    syncObjectActivity: 1
-    singleInstanceOnly: 0
-  actionKey: CombatParticleII
   parent: 1
   takerPreposition: 0
   playSection: 11
@@ -712,7 +689,6 @@ MonoBehaviour:
   effector:
     combatParticles:
     - {fileID: 4488721647538614182}
-    - {fileID: 6956324129434594931}
     combatSounds:
     - {fileID: 2590082841031420511}
     - {fileID: 9076903898831910668}
@@ -723,10 +699,16 @@ MonoBehaviour:
     hitPauses: []
     bulletTimes: []
   detector:
+    targetType: 3
     sortingType: 0
-    maxBufferCount: 32
-    sizeVector: {x: 0, y: 8, z: 180}
+    sizeEntity:
+      x: 0
+      y: 8
+      z: 180
     targetLayer:
+      serializedVersion: 2
+      m_Bits: 256
+    damageLayer:
       serializedVersion: 2
       m_Bits: 4352
   animationTrait:
@@ -746,6 +728,7 @@ MonoBehaviour:
     callbackSection: 0
   cost:
     cost: 0
+    requireTaker: 0
     paySection: 0
   priority: 3
   description: Starts combat by attacking a target with a melee weapon.

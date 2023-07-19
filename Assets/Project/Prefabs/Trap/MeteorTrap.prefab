@@ -99,7 +99,10 @@ MonoBehaviour:
   prolongTimer:
     duration: 3
     isIncrease: 0
-  sizeVector: {x: 3.5, y: 3.5, z: 360}
+  sizeEntity:
+    x: 0
+    y: 6
+    z: 360
   targetLayer:
     serializedVersion: 2
     m_Bits: 128
@@ -207,7 +210,7 @@ MonoBehaviour:
     statList:
     - statType: 13010001
       statKey: DamageExecutorKey
-      value: 2000
+      value: 8000
     - statType: 13020001
       statKey: DamageExecutorKey
       value: 0

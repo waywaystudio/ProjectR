@@ -18,7 +18,9 @@ namespace Character.Venturers.Warrior.Skills
 
         private void ExecuteLeapAttack()
         {
-            detector.GetTakers()?.ForEach(taker =>
+            if (!detector.TryGetTakers(out var takers)) return;
+            
+            takers.ForEach(taker =>
             {
                 Taker = taker;
                 Invoker.Hit(taker);
@@ -30,7 +32,7 @@ namespace Character.Venturers.Warrior.Skills
             var venturer = GetComponentInParent<VenturerBehaviour>();
             var playerPosition = Cb.transform.position;
             var destination = venturer.IsPlayer
-                ? TargetUtility.GetValidPosition(Cb.transform.position, Distance, targetPosition)
+                ? TargetUtility.GetValidPosition(Cb.transform.position, PivotRange, targetPosition)
                 : detector.GetMainTarget() is not null
                     ? detector.GetMainTarget().Position
                     : Vector3.zero;

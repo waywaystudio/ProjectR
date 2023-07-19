@@ -21,19 +21,19 @@ MonoBehaviour:
       statList:
       - statType: 13010001
         statKey: ConstStatKey
-        value: 5
+        value: 50
       - statType: 13010002
         statKey: ConstStatKey
-        value: 5000
+        value: 3000
       - statType: 13010003
         statKey: ConstStatKey
         value: 0
       - statType: 13010004
         statKey: ConstStatKey
-        value: 1
+        value: 3
       - statType: 13010005
         statKey: ConstStatKey
-        value: 1
+        value: 4
       - statType: 13020001
         statKey: ConstStatKey
         value: 0.05
@@ -57,4 +57,4 @@ MonoBehaviour:
     body is composed of the most resilient granite, each slab and stone meticulously
     arranged to create a formidable and imposing figure."
   representEthos: 12010101
-  killCount: 1
+  killCount: 0

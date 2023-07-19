@@ -117,7 +117,10 @@ MonoBehaviour:
   prolongTimer:
     duration: 12
     isIncrease: 0
-  sizeVector: {x: 0, y: 3, z: 360}
+  sizeEntity:
+    x: 0
+    y: 3
+    z: 360
   targetLayer:
     serializedVersion: 2
     m_Bits: 0

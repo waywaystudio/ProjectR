@@ -1,5 +1,4 @@
 using Common;
-using Common.Characters;
 using Common.Execution.Hits;
 using Common.Skills;
 using UnityEngine;
@@ -11,14 +10,13 @@ namespace Character.Venturers.Priest.Skills
         [SerializeField] private HealHit healExecution;
 
         private Vector3 predicatePosition = Vector3.zero;
+        private readonly Collider[] buffers = new Collider[32];
 
         public HealHit HealExecution => healExecution;
         
         public override void Initialize()
         {
             base.Initialize();
-            
-            cost.PayCondition.Add("HasTarget", detector.HasTarget);
 
             Builder
                 .AddApplying("SavePredicatePosition", TargetHealing)
@@ -29,13 +27,14 @@ namespace Character.Venturers.Priest.Skills
 
         private void ExecuteHealingTouch()
         {
-            var validTakerList = detector.GetTakersInCircleRange(predicatePosition, Range, Angle);
-            
-            validTakerList?.ForEach(taker =>
+            if (detector.TryGetTakersInCircle(predicatePosition, AreaRange, buffers, out var takers))
             {
-                Taker = taker;
-                Invoker.Hit(taker);
-            });
+                takers.ForEach(taker =>
+                {
+                    Taker = taker;
+                    Invoker.Hit(taker);
+                });
+            }
         }
         
         private void TryConsumeLightWeaver()
@@ -45,7 +44,7 @@ namespace Character.Venturers.Priest.Skills
 
         private void TargetHealing(Vector3 targetPosition)
         {
-            predicatePosition = TargetUtility.GetValidPosition(Cb.Position, Range, targetPosition);
+            predicatePosition = TargetUtility.GetValidPosition(Cb.Position, PivotRange, targetPosition);
         }
     }
 }

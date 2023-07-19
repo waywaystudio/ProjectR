@@ -1,7 +1,6 @@
 using System.Collections.Generic;
 using System.Threading;
 using Common;
-using Common.Characters;
 using Common.Skills;
 using Cysharp.Threading.Tasks;
 using UnityEngine;
@@ -11,13 +10,12 @@ namespace Character.Venturers.Rogue.Skills
     public class PhantomStrike : SkillComponent
     {
         private CancellationTokenSource cts;
+        private readonly Collider[] buffers = new Collider[32];
         private readonly List<ICombatTaker> takerListPerAction = new();
         
         public override void Initialize()
         {
             base.Initialize();
-            
-            cost.PayCondition.Add("HasTarget", detector.HasTarget);
 
             Builder
                 .AddApplying("DashMovement", Dashing)
@@ -40,7 +38,7 @@ namespace Character.Venturers.Rogue.Skills
             var playerPosition = Cb.transform.position;
             var direction = (targetPosition - playerPosition).normalized;
 
-            Cb.Pathfinding.Dash(direction, Distance, 0.28f, Invoker.Complete);
+            Cb.Pathfinding.Dash(direction, PivotRange, 0.28f, Invoker.Complete);
         }
 
         private void CreatePhantom()
@@ -54,11 +52,9 @@ namespace Character.Venturers.Rogue.Skills
 
             while (Invoker.IsActive)
             {
-                var collidedTaker = detector.GetTakersInCircleRange(Range, Angle);
-
-                if (collidedTaker.HasElement())
+                if (detector.TryGetTakersInCircle(transform.position, AreaRange, buffers, out var takers))
                 {
-                    collidedTaker.ForEach(taker =>
+                    takers.ForEach(taker =>
                     {
                         if (!taker.Alive.Value || takerListPerAction.Contains(taker)) return;
                         

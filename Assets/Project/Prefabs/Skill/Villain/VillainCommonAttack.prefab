@@ -112,7 +112,7 @@ MonoBehaviour:
     statList:
     - statType: 13010001
       statKey: DamageExecutorKey
-      value: 20
+      value: 200
     - statType: 13020001
       statKey: DamageExecutorKey
       value: 0
@@ -203,10 +203,16 @@ MonoBehaviour:
     hitPauses: []
     bulletTimes: []
   detector:
+    targetType: 1
     sortingType: 7
-    maxBufferCount: 32
-    sizeVector: {x: 0, y: 6, z: 360}
+    sizeEntity:
+      x: 0
+      y: 6
+      z: 360
     targetLayer:
+      serializedVersion: 2
+      m_Bits: 128
+    damageLayer:
       serializedVersion: 2
       m_Bits: 128
   animationTrait:
@@ -226,6 +232,7 @@ MonoBehaviour:
     callbackSection: 0
   cost:
     cost: 0
+    requireTaker: 0
     paySection: 0
   priority: 1
   description: Starts combat by attacking a target with a melee weapon.

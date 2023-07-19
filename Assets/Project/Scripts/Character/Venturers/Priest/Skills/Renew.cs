@@ -7,6 +7,7 @@ namespace Character.Venturers.Priest.Skills
     public class Renew : SkillComponent
     {
         private Vector3 predicatePosition = Vector3.zero;
+        private readonly Collider[] buffers = new Collider[32];
         
         public override void Initialize()
         {
@@ -21,15 +22,15 @@ namespace Character.Venturers.Priest.Skills
 
         private void SetTargetPosition(Vector3 targetPosition)
         {
-            predicatePosition = TargetUtility.GetValidPosition(Cb.Position, Distance, targetPosition);
+            predicatePosition = TargetUtility.GetValidPosition(Cb.Position, PivotRange, targetPosition);
         }
         
         private void ExecuteRenew()
         {
-            Taker = detector.GetNearestTarget(predicatePosition, Range);
+            if (!detector.TryGetTakersInCircle(predicatePosition, AreaRange, buffers, out var takers)) return;
+            takers.Sort(predicatePosition, SortingType.DistanceAscending);
 
-            if (Taker is null) return;
-            
+            Taker = takers.FirstOrDefault();
             Invoker.Hit(Taker);
         }
         

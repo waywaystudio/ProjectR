@@ -7,6 +7,24 @@ namespace Common
 {
     public static class SearchingUtility
     {
+        public static void Sort(this List<ICombatTaker> list, Vector3 pivot, SortingType sortingType)
+        {
+            switch (sortingType)
+            {
+                case SortingType.None:               break;
+                case SortingType.DistanceAscending:  SortByDistance(pivot, list); break;
+                case SortingType.DistanceDescending: SortByDistance(pivot, list,true); break;
+                case SortingType.HpAscending:        SortByHp(list); break;
+                case SortingType.HpDescending:       SortByHp(list, true); break;
+                case SortingType.HpRatioAscending:   SortByHpRatio(list); break;
+                case SortingType.HpRatioDescending:  SortByHpRatio(list, true); break;
+                case SortingType.CombatClass:        SortByCombatClass(list); break;
+                case SortingType.Random:             SortByRandom(list); break;
+                default:
+                    throw new ArgumentOutOfRangeException(nameof(sortingType), sortingType, null);
+            }
+        }
+        
         public static void SortByDistance(Vector3 pivot, List<ICombatTaker> targetList, bool isReverse = false)
         {
             targetList.Sort((x, y) =>
@@ -59,7 +77,7 @@ namespace Common
             });
         }
         
-        public static void SortByRandom(List<ICombatTaker> original, bool isReverse = false)
+        public static void SortByRandom(List<ICombatTaker> original)
         {
             var rnd = new Random();
 
@@ -70,7 +88,6 @@ namespace Common
             }
         }
 
-
         public static void RangeFilter(this List<ICombatTaker> list, ICombatProvider provider, float range)
         {
             var pivot = provider.gameObject.transform.position;
@@ -78,48 +95,9 @@ namespace Common
             list.RemoveAll(x => Vector3.Distance(x.gameObject.transform.position, pivot) > range);
         }
 
-        public static void SortingFilter(this List<ICombatTaker> list, Vector3 pivot, SortingType sortingType)
-        {
-            switch (sortingType)
-            {
-                case SortingType.None: break;
-                case SortingType.DistanceAscending: SortByDistance(pivot, list); break;
-                case SortingType.DistanceDescending:SortByDistance(pivot, list,true); break;
-                case SortingType.HpAscending: SortByHp(list); break;
-                case SortingType.HpDescending: SortByHp(list, true); break;
-                case SortingType.HpRatioAscending: SortByHpRatio(list); break;
-                case SortingType.HpRatioDescending: SortByHpRatio(list, true); break;
-                case SortingType.CombatClass: SortByCombatClass(list); break;
-                case SortingType.Random: SortByRandom(list); break;
-                default:
-                    throw new ArgumentOutOfRangeException(nameof(sortingType), sortingType, null);
-            }
-
-            // SortByAlive(list);
-        }
-
         public static void CountFilter(this List<ICombatTaker> list, int count)
         {
             list.Trim(count);
-        }
-        
-        public static List<ICombatTaker> OverlapList(Vector3 center, float radius, LayerMask targetLayer)
-        {
-            // ReSharper disable once Unity.PreferNonAllocApi
-            var colliderBuffer = Physics.OverlapSphere(center, radius, targetLayer);
-
-            if (colliderBuffer.IsNullOrEmpty()) return null;
-
-            var result = new List<ICombatTaker>(colliderBuffer.Length);
-            
-            colliderBuffer.ForEach(x =>
-            {
-                if (!x.TryGetComponent(out ICombatTaker taker)) return;
-                
-                result.Add(taker);
-            });
-
-            return result;
         }
 
         public static LayerMask GetEnemyLayerMask(this LayerMask mask)

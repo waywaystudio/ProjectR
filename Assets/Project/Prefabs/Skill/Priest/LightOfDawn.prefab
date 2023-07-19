@@ -165,7 +165,7 @@ MonoBehaviour:
     statList:
     - statType: 13010001
       statKey: HealExecutorKey
-      value: 300
+      value: 2000
     - statType: 13020001
       statKey: HealExecutorKey
       value: 0
@@ -239,10 +239,16 @@ MonoBehaviour:
     hitPauses: []
     bulletTimes: []
   detector:
+    targetType: 1
     sortingType: 0
-    maxBufferCount: 32
-    sizeVector: {x: 0, y: 40, z: 360}
+    sizeEntity:
+      x: 0
+      y: 40
+      z: 360
     targetLayer:
+      serializedVersion: 2
+      m_Bits: 128
+    damageLayer:
       serializedVersion: 2
       m_Bits: 128
   animationTrait:
@@ -262,6 +268,7 @@ MonoBehaviour:
     callbackSection: 11
   cost:
     cost: -4
+    requireTaker: 0
     paySection: 11
   priority: 6
   description: "\uBAA8\uB4E0 \uC544\uAD70\uC744 \uCE58\uC720\uD55C\uB2E4."

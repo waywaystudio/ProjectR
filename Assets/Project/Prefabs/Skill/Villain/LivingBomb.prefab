@@ -177,10 +177,16 @@ MonoBehaviour:
     hitPauses: []
     bulletTimes: []
   detector:
+    targetType: 1
     sortingType: 8
-    maxBufferCount: 32
-    sizeVector: {x: 0, y: 50, z: 0}
+    sizeEntity:
+      x: 0
+      y: 50
+      z: 0
     targetLayer:
+      serializedVersion: 2
+      m_Bits: 128
+    damageLayer:
       serializedVersion: 2
       m_Bits: 128
   animationTrait:
@@ -200,6 +206,7 @@ MonoBehaviour:
     callbackSection: 0
   cost:
     cost: 0
+    requireTaker: 0
     paySection: 0
   priority: 4
   description: Starts combat by attacking a target with a melee weapon.

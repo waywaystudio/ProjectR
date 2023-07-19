@@ -1750,14 +1750,12 @@ MonoBehaviour:
       startIndex: 
       variableStartIndex: 
       JSONSerialization: '{"EntryTask":{"Type":"BehaviorDesigner.Runtime.Tasks.EntryTask","NodeData":{"Offset":"(502,122)"},"ID":0,"Name":"Entry","Instant":true},"RootTask":{"Type":"BehaviorDesigner.Runtime.Tasks.Repeater","NodeData":{"Offset":"(2.00003052,100.697365)"},"ID":1,"Name":"Repeater","Instant":true,"SharedIntcount":{"Type":"BehaviorDesigner.Runtime.SharedInt","Name":null,"Int32mValue":0},"SharedBoolrepeatForever":{"Type":"BehaviorDesigner.Runtime.SharedBool","Name":null,"BooleanmValue":true},"SharedBoolendOnFailure":{"Type":"BehaviorDesigner.Runtime.SharedBool","Name":null,"BooleanmValue":false},"Children":[{"Type":"BehaviorDesigner.Runtime.Tasks.SelectorEvaluator","NodeData":{"Offset":"(4.142853,97.30384)"},"ID":2,"Name":"Selector
-        Evaluator","Instant":true,"AbortTypeabortType":"None","Children":[{"Type":"BehaviorDesigner.Runtime.Tasks.Inverter","NodeData":{"Offset":"(-591.7104,115.252747)"},"ID":3,"Name":"Inverter","Instant":true,"Children":[{"Type":"Common.Behavior.Characters.IsAlive","NodeData":{"Offset":"(0,100)"},"ID":4,"Name":"Is
-        Alive","Instant":true}]},{"Type":"BehaviorDesigner.Runtime.Tasks.Sequence","NodeData":{"Offset":"(-410.398,122.693848)"},"ID":5,"Name":"Sequence","Instant":true,"AbortTypeabortType":"None","Children":[{"Type":"Common.Behavior.Characters.OnRigidAction","NodeData":{"Offset":"(-2.17359161,96.8169556)"},"ID":6,"Name":"On
-        Rigid Action","Instant":true}]},{"Type":"BehaviorDesigner.Runtime.Tasks.Sequence","NodeData":{"Offset":"(100,120)"},"ID":7,"Name":"Sequence","Instant":true,"AbortTypeabortType":"None","Children":[{"Type":"Character.Behavior.Actions.PositioningBehavior","NodeData":{"Offset":"(-150,160)"},"ID":8,"Name":"Positioning
-        Behavior","Instant":true},{"Type":"BehaviorDesigner.Runtime.Tasks.UntilSuccess","NodeData":{"Offset":"(0.7949219,164.010742)"},"ID":9,"Name":"Until
-        Success","Instant":true,"Children":[{"Type":"Common.Behavior.Actions.IsGcdReady","NodeData":{"Offset":"(0,120)"},"ID":10,"Name":"Is
-        Gcd Ready","Instant":true}]},{"Type":"Character.Behavior.Actions.ActiveSkillBehavior","NodeData":{"Offset":"(150,160)"},"ID":11,"Name":"Active
-        Skill Behavior","Instant":true},{"Type":"BehaviorDesigner.Runtime.Tasks.UntilSuccess","NodeData":{"Offset":"(295.454834,164.999878)"},"ID":12,"Name":"Until
-        Success","Instant":true,"Children":[{"Type":"Character.Behavior.Actions.IsSkillFinished","NodeData":{"Offset":"(0,120)"},"ID":13,"Name":"Is
+        Evaluator","Instant":true,"AbortTypeabortType":"None","Children":[{"Type":"BehaviorDesigner.Runtime.Tasks.Inverter","NodeData":{"Offset":"(-372.960419,115.252747)"},"ID":3,"Name":"Inverter","Instant":true,"Children":[{"Type":"Common.Behavior.Characters.IsAlive","NodeData":{"Offset":"(0,100)"},"ID":4,"Name":"Is
+        Alive","Instant":true}]},{"Type":"BehaviorDesigner.Runtime.Tasks.Sequence","NodeData":{"Offset":"(-191.648117,122.693848)"},"ID":5,"Name":"Sequence","Instant":true,"AbortTypeabortType":"None","Children":[{"Type":"Common.Behavior.Characters.OnRigidAction","NodeData":{"Offset":"(-2.17359161,96.8169556)"},"ID":6,"Name":"On
+        Rigid Action","Instant":true}]},{"Type":"BehaviorDesigner.Runtime.Tasks.Sequence","NodeData":{"Offset":"(240.624878,120)"},"ID":7,"Name":"Sequence","Instant":true,"AbortTypeabortType":"None","Children":[{"Type":"Common.Behavior.Characters.PositioningBehavior","NodeData":{"Offset":"(-150,160)"},"ID":8,"Name":"Positioning
+        Behavior","Instant":true},{"Type":"Common.Behavior.Characters.ActiveSkillBehavior","NodeData":{"Offset":"(0,160)"},"ID":9,"Name":"Active
+        Skill Behavior","Instant":true},{"Type":"BehaviorDesigner.Runtime.Tasks.UntilSuccess","NodeData":{"Offset":"(131.010345,164.999878)"},"ID":10,"Name":"Until
+        Success","Instant":true,"Children":[{"Type":"Common.Behavior.Characters.IsSkillFinished","NodeData":{"Offset":"(0,120)"},"ID":11,"Name":"Is
         Skill Finished","Instant":true}]}]}]}]}}'
       fieldSerializationData:
         typeName: []

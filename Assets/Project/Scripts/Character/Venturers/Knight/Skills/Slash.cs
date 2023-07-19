@@ -9,7 +9,6 @@ namespace Character.Venturers.Knight.Skills
         {
             base.Initialize();
 
-            cost.PayCondition.Add("HasTarget", detector.HasTarget);
             Builder
                 .Add(Section.Execute, "SlashAttack", SlashAttack);
         }
@@ -17,7 +16,11 @@ namespace Character.Venturers.Knight.Skills
 
         private void SlashAttack()
         {
-            detector.GetTakers()?.ForEach(taker =>
+            if (!detector.TryGetTakers(out var takers)) return;
+            
+            SkillCost.PayCost(Cb.Resource);
+            
+            takers.ForEach(taker =>
             {
                 Taker = taker;
                 Invoker.Hit(taker);

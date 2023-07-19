@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Reflection;
-using Common.TargetSystem;
+using Common.Detects;
 using Sirenix.OdinInspector;
 using Sirenix.OdinInspector.Editor;
 

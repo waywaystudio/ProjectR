@@ -19,8 +19,6 @@ namespace Character.Venturers.Warrior.Skills
             base.Initialize();
             
             projector.Initialize(this);
-            cost.PayCondition.Add("HasTarget", detector.HasTarget);
-
             Builder
                 .Add(Section.Active, "TargetTracking", () => PlayTracking().Forget())
                 .Add(Section.Active, "Charging", () => PlayChargingProgress().Forget())
@@ -58,7 +56,11 @@ namespace Character.Venturers.Warrior.Skills
 
         private void ExecuteDeathblow()
         {
-            detector.GetTakers()?.ForEach(taker =>
+            if (!detector.TryGetTakers(out var takers)) return;
+            
+            SkillCost.PayCost(Cb.Resource);
+            
+            takers.ForEach(taker =>
             {
                 Taker = taker;
                 Invoker.Hit(taker);
@@ -100,7 +102,7 @@ namespace Character.Venturers.Warrior.Skills
                 var mainTarget = detector.GetMainTarget();
                 var takerPosition = mainTarget is not null
                     ? mainTarget.Position
-                    : Cb.transform.forward * Range;
+                    : Cb.transform.forward * AreaRange;
 
                 venturer.Rotate(takerPosition);
                 await UniTask.Yield(cts.Token);

@@ -82,7 +82,7 @@ MonoBehaviour:
     statList:
     - statType: 13010001
       statKey: DamageExecutorKey
-      value: 300
+      value: 1000
     - statType: 13020001
       statKey: DamageExecutorKey
       value: 0
@@ -106,7 +106,7 @@ MonoBehaviour:
     statList:
     - statType: 13010001
       statKey: DamageExecutorGroup2Key
-      value: 1500
+      value: 4000
 --- !u!114 &175415241239904349
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -151,8 +151,8 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 9218283913029141622}
-  - {fileID: 2840183091458945906}
   - {fileID: 8374707892189434149}
+  - {fileID: 2840183091458945906}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -184,10 +184,6 @@ MonoBehaviour:
     combatPostProcesses: []
     hitPauses: []
     bulletTimes: []
-  effectuateTimer:
-    duration: 5
-    isIncrease: 0
-    invokeSection: 1
   duration: 5
   projector: {fileID: 1492418868843174760}
   interval: 2
@@ -203,6 +199,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 2402494755454563105}
     m_Modifications:
+    - target: {fileID: 2998071572755100239, guid: f201fadaeb091cf47a052170ce7683da, type: 3}
+      propertyPath: m_Radius
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 4027286352141989457, guid: f201fadaeb091cf47a052170ce7683da, type: 3}
       propertyPath: m_Name
       value: SphereProjector

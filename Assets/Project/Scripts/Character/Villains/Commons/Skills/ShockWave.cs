@@ -14,13 +14,19 @@ namespace Character.Villains.Commons.Skills
             
             projector.Initialize(this);
             Builder
-                .Add(Section.Execute, "CommonExecution", HitShockWave);
+                .Add(Section.Execute, "HitShockWave", HitShockWave);
         }
 
 
         private void HitShockWave()
         {
-            detector.GetTakers()?.ForEach(Invoker.Hit);
+            if (!detector.TryGetTakers(out var takers)) return;
+            
+            takers.ForEach(taker =>
+            {
+                Taker = taker;
+                Invoker.Hit(taker);
+            });
         }
     }
 }

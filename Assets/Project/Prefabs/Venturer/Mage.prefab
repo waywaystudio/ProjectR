@@ -56,6 +56,22 @@ PrefabInstance:
       propertyPath: m_Name
       value: VoidSphere
       objectReference: {fileID: 0}
+    - target: {fileID: 9012155269812130724, guid: 9ef66ed8476645b4a988219d37466a40, type: 3}
+      propertyPath: detector.sizeEntity.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9012155269812130724, guid: 9ef66ed8476645b4a988219d37466a40, type: 3}
+      propertyPath: detector.sizeEntity.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9012155269812130724, guid: 9ef66ed8476645b4a988219d37466a40, type: 3}
+      propertyPath: detector.sizeEntity.entity.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9012155269812130724, guid: 9ef66ed8476645b4a988219d37466a40, type: 3}
+      propertyPath: detector.sizeEntity.entity.z
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -751,6 +767,30 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 8150643729164461668}
     m_Modifications:
+    - target: {fileID: 4290164645457958439, guid: c4359a924f2bb4441bd4e8aac86a58e8, type: 3}
+      propertyPath: detector.sizeEntity.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4290164645457958439, guid: c4359a924f2bb4441bd4e8aac86a58e8, type: 3}
+      propertyPath: detector.sizeEntity.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4290164645457958439, guid: c4359a924f2bb4441bd4e8aac86a58e8, type: 3}
+      propertyPath: detector.sizeEntity.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4290164645457958439, guid: c4359a924f2bb4441bd4e8aac86a58e8, type: 3}
+      propertyPath: detector.sizeEntity.entity.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4290164645457958439, guid: c4359a924f2bb4441bd4e8aac86a58e8, type: 3}
+      propertyPath: detector.sizeEntity.entity.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4290164645457958439, guid: c4359a924f2bb4441bd4e8aac86a58e8, type: 3}
+      propertyPath: detector.sizeEntity.entity.z
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4379453906935578401, guid: c4359a924f2bb4441bd4e8aac86a58e8, type: 3}
       propertyPath: m_Name
       value: Extraction
@@ -872,6 +912,22 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2963364574711265983, guid: 09be26cb67ed7fc48b7869e9cc0ee119, type: 3}
+      propertyPath: detector.sizeEntity.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2963364574711265983, guid: 09be26cb67ed7fc48b7869e9cc0ee119, type: 3}
+      propertyPath: detector.sizeEntity.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2963364574711265983, guid: 09be26cb67ed7fc48b7869e9cc0ee119, type: 3}
+      propertyPath: detector.sizeEntity.entity.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2963364574711265983, guid: 09be26cb67ed7fc48b7869e9cc0ee119, type: 3}
+      propertyPath: detector.sizeEntity.entity.z
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8380361914805468174, guid: 09be26cb67ed7fc48b7869e9cc0ee119, type: 3}
       propertyPath: m_Name
       value: VileScrapper
@@ -947,6 +1003,22 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 234500611213636336, guid: 64fda5b04ee14ce49bc1630546ac0d9b, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1624860660362464482, guid: 64fda5b04ee14ce49bc1630546ac0d9b, type: 3}
+      propertyPath: detector.sizeEntity.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1624860660362464482, guid: 64fda5b04ee14ce49bc1630546ac0d9b, type: 3}
+      propertyPath: detector.sizeEntity.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1624860660362464482, guid: 64fda5b04ee14ce49bc1630546ac0d9b, type: 3}
+      propertyPath: detector.sizeEntity.entity.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1624860660362464482, guid: 64fda5b04ee14ce49bc1630546ac0d9b, type: 3}
+      propertyPath: detector.sizeEntity.entity.z
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8380361914805468174, guid: 64fda5b04ee14ce49bc1630546ac0d9b, type: 3}

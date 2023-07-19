@@ -7,10 +7,10 @@ namespace Common.Skills
     public class SkillCost
     {
         [SerializeField] private float cost;
+        [SerializeField] private bool requireTaker;
         [SerializeField] private Section paySection;
 
         public float Value => cost;
-        public ConditionTable PayCondition { get; set; } = new();
 
         public void Initialize(SkillComponent skill)
         {
@@ -20,16 +20,12 @@ namespace Common.Skills
             
             skill.Builder
                  .AddCondition("CheckCost", () => resourceRef.Value >= Value)
-                 .Add(paySection, "payCost", () => PayCost(resourceRef));
+                 .AddIf(!requireTaker, paySection, "payCost", () => PayCost(resourceRef));
         }
 
-
-        private void PayCost(ResourceValue resourceValue)
+        public void PayCost(ResourceValue resourceValue)
         {
-            if (PayCondition.IsAllTrue)
-            {
-                resourceValue.Value -= Value;
-            }
+            resourceValue.Value -= Value;
         }
 
 
@@ -38,8 +34,9 @@ namespace Common.Skills
         {
             var skillData = Database.SkillSheetData(dataIndex);
             
-            cost       = skillData.Cost;
-            paySection = skillData.PaySection.ToEnum<Section>();
+            cost         = skillData.Cost;
+            requireTaker = skillData.RequireTaker;
+            paySection   = skillData.PaySection.ToEnum<Section>();
         }
 #endif
     }

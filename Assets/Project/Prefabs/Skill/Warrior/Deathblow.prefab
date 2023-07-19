@@ -374,10 +374,16 @@ MonoBehaviour:
     hitPauses: []
     bulletTimes: []
   detector:
+    targetType: 3
     sortingType: 0
-    maxBufferCount: 32
-    sizeVector: {x: 0, y: 10, z: 90}
+    sizeEntity:
+      x: 0
+      y: 10
+      z: 90
     targetLayer:
+      serializedVersion: 2
+      m_Bits: 256
+    damageLayer:
       serializedVersion: 2
       m_Bits: 4352
   animationTrait:
@@ -397,6 +403,7 @@ MonoBehaviour:
     callbackSection: 11
   cost:
     cost: -30
+    requireTaker: 1
     paySection: 11
   priority: 3
   description: "\uAE30\uB825\uC744 \uBAA8\uC544 \uC804\uBC29\uC5D0 \uBAA8\uB4E0 \uC801\uC744

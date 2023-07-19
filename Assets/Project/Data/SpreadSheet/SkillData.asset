@@ -19,8 +19,10 @@ MonoBehaviour:
     behaviourMask: Skill
     priority: 1
     sortingType: None
+    targetType: Cone
     targetParam: {x: 0, y: 6, z: 135}
-    targetLayer: Monster, Dummy
+    targetLayer: Monster
+    damagetLayer: Monster, Dummy
     animationKey: AttackOneHand
     castCompleteKey: 
     isLoop: 0
@@ -34,6 +36,7 @@ MonoBehaviour:
     completionValueList:
     - 100
     cost: -8
+    requireTaker: 1
     paySection: Execute
     statusEffect: 0
     iconFileName: Slash Sprite
@@ -44,8 +47,10 @@ MonoBehaviour:
     behaviourMask: Skill
     priority: 6
     sortingType: None
+    targetType: Cone
     targetParam: {x: 0, y: 6, z: 90}
-    targetLayer: Monster, Dummy
+    targetLayer: Monster
+    damagetLayer: Monster, Dummy
     animationKey: AttackOffHandInstant
     castCompleteKey: 
     isLoop: 0
@@ -59,6 +64,7 @@ MonoBehaviour:
     completionValueList:
     - 30
     cost: -20
+    requireTaker: 1
     paySection: Execute
     statusEffect: 32210001
     iconFileName: Bash Sprite
@@ -70,8 +76,10 @@ MonoBehaviour:
     behaviourMask: Skill
     priority: 3
     sortingType: None
+    targetType: 
     targetParam: {x: 0, y: 8, z: 90}
     targetLayer: Monster
+    damagetLayer: Monster
     animationKey: Cast1
     castCompleteKey: 
     isLoop: 0
@@ -85,6 +93,7 @@ MonoBehaviour:
     completionValueList:
     - 48
     cost: 0
+    requireTaker: 0
     paySection: 
     statusEffect: 32210002
     iconFileName: UpperSlash Sprite
@@ -94,8 +103,10 @@ MonoBehaviour:
     behaviourMask: RigidSkill
     priority: 4
     sortingType: None
+    targetType: 
     targetParam: {x: 0, y: 15, z: 360}
     targetLayer: Monster
+    damagetLayer: Monster
     animationKey: JumpFullCyle
     castCompleteKey: 
     isLoop: 0
@@ -109,6 +120,7 @@ MonoBehaviour:
     completionValueList:
     - 15
     cost: 0
+    requireTaker: 0
     paySection: 
     statusEffect: 0
     iconFileName: ThunderClap Sprite
@@ -118,8 +130,10 @@ MonoBehaviour:
     behaviourMask: Skill
     priority: 0
     sortingType: None
+    targetType: 
     targetParam: {x: 0, y: 0, z: 0}
     targetLayer: Monster
+    damagetLayer: Monster
     animationKey: Buff
     castCompleteKey: 
     isLoop: 0
@@ -133,6 +147,7 @@ MonoBehaviour:
     completionValueList:
     - 8
     cost: 0
+    requireTaker: 0
     paySection: 
     statusEffect: 0
     iconFileName: MightyGuard Sprite
@@ -142,8 +157,10 @@ MonoBehaviour:
     behaviourMask: Skill
     priority: 5
     sortingType: None
+    targetType: Self
     targetParam: {x: 0, y: 0, z: 0}
     targetLayer: Adventure
+    damagetLayer: Adventure
     animationKey: Defence
     castCompleteKey: 
     isLoop: 1
@@ -157,6 +174,7 @@ MonoBehaviour:
     completionValueList:
     - 0
     cost: 10
+    requireTaker: 0
     paySection: Active
     statusEffect: 0
     iconFileName: ShieldUp Sprite
@@ -167,8 +185,10 @@ MonoBehaviour:
     behaviourMask: RigidSkill
     priority: 10
     sortingType: None
+    targetType: Circle
     targetParam: {x: 0, y: 100, z: 360}
     targetLayer: Monster
+    damagetLayer: Monster
     animationKey: Buff
     castCompleteKey: 
     isLoop: 0
@@ -182,6 +202,7 @@ MonoBehaviour:
     completionValueList:
     - 0
     cost: -50
+    requireTaker: 0
     paySection: Active
     statusEffect: 0
     iconFileName: Taunt Sprite
@@ -192,8 +213,10 @@ MonoBehaviour:
     behaviourMask: Skill
     priority: 2
     sortingType: None
+    targetType: Cone
     targetParam: {x: 0, y: 7, z: 135}
-    targetLayer: Monster, Dummy
+    targetLayer: Monster
+    damagetLayer: Monster, Dummy
     animationKey: AttackSlashMiddle
     castCompleteKey: 
     isLoop: 0
@@ -207,6 +230,7 @@ MonoBehaviour:
     completionValueList:
     - 0
     cost: -8
+    requireTaker: 1
     paySection: Execute
     statusEffect: 0
     iconFileName: Smash Sprite
@@ -217,8 +241,10 @@ MonoBehaviour:
     behaviourMask: RigidSkill
     priority: 1
     sortingType: None
+    targetType: Circle
     targetParam: {x: 15, y: 8, z: 360}
-    targetLayer: Monster, Dummy
+    targetLayer: Monster
+    damagetLayer: Monster, Dummy
     animationKey: AttackSlashHeavy
     castCompleteKey: 
     isLoop: 0
@@ -232,6 +258,7 @@ MonoBehaviour:
     completionValueList:
     - 0
     cost: -8
+    requireTaker: 1
     paySection: Execute
     statusEffect: 0
     iconFileName: LeapAttack Sprite
@@ -242,8 +269,10 @@ MonoBehaviour:
     behaviourMask: Skill
     priority: 3
     sortingType: None
+    targetType: Cone
     targetParam: {x: 0, y: 10, z: 90}
-    targetLayer: Monster, Dummy
+    targetLayer: Monster
+    damagetLayer: Monster, Dummy
     animationKey: AttackSlashHold
     castCompleteKey: AttackSlashHoldFire
     isLoop: 1
@@ -257,6 +286,7 @@ MonoBehaviour:
     completionValueList:
     - 0
     cost: -30
+    requireTaker: 1
     paySection: Execute
     statusEffect: 0
     iconFileName: Deathblow Sprite
@@ -267,8 +297,10 @@ MonoBehaviour:
     behaviourMask: RigidSkill
     priority: 10
     sortingType: None
+    targetType: Self
     targetParam: {x: 0, y: 0, z: 0}
     targetLayer: Adventure
+    damagetLayer: Adventure
     animationKey: None
     castCompleteKey: 
     isLoop: 0
@@ -282,6 +314,7 @@ MonoBehaviour:
     completionValueList:
     - 0
     cost: 0
+    requireTaker: 0
     paySection: None
     statusEffect: 0
     iconFileName: WarriorsFury Sprite
@@ -292,8 +325,10 @@ MonoBehaviour:
     behaviourMask: Skill
     priority: 3
     sortingType: None
+    targetType: Cone
     targetParam: {x: 0, y: 8, z: 180}
-    targetLayer: Monster, Dummy
+    targetLayer: Monster
+    damagetLayer: Monster, Dummy
     animationKey: AttackSlashMiddle
     castCompleteKey: 
     isLoop: 0
@@ -307,6 +342,7 @@ MonoBehaviour:
     completionValueList:
     - 0
     cost: 0
+    requireTaker: 0
     paySection: None
     statusEffect: 0
     iconFileName: BloodSmash Sprite
@@ -316,8 +352,10 @@ MonoBehaviour:
     behaviourMask: RigidSkill
     priority: 2
     sortingType: None
+    targetType: Circle
     targetParam: {x: 15, y: 7, z: 360}
-    targetLayer: Monster, Dummy
+    targetLayer: Monster
+    damagetLayer: Monster, Dummy
     animationKey: Run DUELIST
     castCompleteKey: 
     isLoop: 1
@@ -331,6 +369,7 @@ MonoBehaviour:
     completionValueList:
     - 0
     cost: 0
+    requireTaker: 0
     paySection: None
     statusEffect: 0
     iconFileName: RapidCharge Sprite
@@ -340,8 +379,10 @@ MonoBehaviour:
     behaviourMask: Skill
     priority: 3
     sortingType: None
+    targetType: Cone
     targetParam: {x: 0, y: 8, z: 180}
-    targetLayer: Monster, Dummy
+    targetLayer: Monster
+    damagetLayer: Monster, Dummy
     animationKey: AttackDuelStab
     castCompleteKey: 
     isLoop: 0
@@ -355,6 +396,7 @@ MonoBehaviour:
     completionValueList:
     - 0
     cost: 0
+    requireTaker: 0
     paySection: None
     statusEffect: 0
     iconFileName: Exploitation Sprite
@@ -364,8 +406,10 @@ MonoBehaviour:
     behaviourMask: Skill
     priority: 1
     sortingType: None
+    targetType: Circle
     targetParam: {x: 0, y: 12, z: 360}
-    targetLayer: Monster, Dummy
+    targetLayer: Monster
+    damagetLayer: Monster, Dummy
     animationKey: AttackSlashHeavy
     castCompleteKey: 
     isLoop: 0
@@ -379,6 +423,7 @@ MonoBehaviour:
     completionValueList:
     - 0
     cost: 0
+    requireTaker: 0
     paySection: None
     statusEffect: 0
     iconFileName: Finisher Sprite
@@ -388,8 +433,10 @@ MonoBehaviour:
     behaviourMask: Skill
     priority: 1
     sortingType: None
+    targetType: 
     targetParam: {x: 0, y: 6, z: 90}
     targetLayer: Monster
+    damagetLayer: Monster
     animationKey: clawAttack
     castCompleteKey: 
     isLoop: 0
@@ -403,6 +450,7 @@ MonoBehaviour:
     completionValueList:
     - 14
     cost: 0
+    requireTaker: 0
     paySection: 
     statusEffect: 0
     iconFileName: ClawAttack Sprite
@@ -412,8 +460,10 @@ MonoBehaviour:
     behaviourMask: Skill
     priority: 2
     sortingType: None
+    targetType: 
     targetParam: {x: 0, y: 7, z: 90}
     targetLayer: Monster
+    damagetLayer: Monster
     animationKey: powerBeat
     castCompleteKey: 
     isLoop: 0
@@ -427,6 +477,7 @@ MonoBehaviour:
     completionValueList:
     - 12
     cost: 0
+    requireTaker: 0
     paySection: 
     statusEffect: 0
     iconFileName: PowerBeat Sprite
@@ -436,8 +487,10 @@ MonoBehaviour:
     behaviourMask: Skill
     priority: 3
     sortingType: None
+    targetType: 
     targetParam: {x: 0, y: 0, z: 0}
     targetLayer: Adventurer
+    damagetLayer: Adventurer
     animationKey: liberation
     castCompleteKey: 
     isLoop: 0
@@ -451,6 +504,7 @@ MonoBehaviour:
     completionValueList:
     - 0
     cost: 0
+    requireTaker: 0
     paySection: 
     statusEffect: 0
     iconFileName: Liberation Sprite
@@ -460,8 +514,10 @@ MonoBehaviour:
     behaviourMask: RigidSkill
     priority: 4
     sortingType: None
+    targetType: 
     targetParam: {x: 0, y: 12, z: 360}
     targetLayer: Monster
+    damagetLayer: Monster
     animationKey: annihilation
     castCompleteKey: 
     isLoop: 0
@@ -475,6 +531,7 @@ MonoBehaviour:
     completionValueList:
     - 20
     cost: 0
+    requireTaker: 0
     paySection: 
     statusEffect: 0
     iconFileName: Annihilation Sprite
@@ -484,8 +541,10 @@ MonoBehaviour:
     behaviourMask: Skill
     priority: 2
     sortingType: None
+    targetType: Cone
     targetParam: {x: 0, y: 5, z: 135}
-    targetLayer: Monster, Dummy
+    targetLayer: Monster
+    damagetLayer: Monster, Dummy
     animationKey: AttackDuelFastStabTwice
     castCompleteKey: 
     isLoop: 0
@@ -499,6 +558,7 @@ MonoBehaviour:
     completionValueList:
     - 0
     cost: -5
+    requireTaker: 1
     paySection: Execute
     statusEffect: 0
     iconFileName: DoubleStab Sprite
@@ -509,8 +569,10 @@ MonoBehaviour:
     behaviourMask: RigidSkill
     priority: 5
     sortingType: None
+    targetType: Circle
     targetParam: {x: 10, y: 4, z: 360}
-    targetLayer: Monster, Dummy
+    targetLayer: Monster
+    damagetLayer: Monster, Dummy
     animationKey: Dash
     castCompleteKey: 
     isLoop: 1
@@ -524,6 +586,7 @@ MonoBehaviour:
     completionValueList:
     - 0
     cost: -15
+    requireTaker: 0
     paySection: None
     statusEffect: 0
     iconFileName: PhantomStrike Sprite
@@ -534,8 +597,10 @@ MonoBehaviour:
     behaviourMask: Skill
     priority: 1
     sortingType: None
+    targetType: Circle
     targetParam: {x: 10, y: 4, z: 360}
-    targetLayer: Monster, Dummy
+    targetLayer: Monster
+    damagetLayer: Monster, Dummy
     animationKey: Landing
     castCompleteKey: 
     isLoop: 0
@@ -549,6 +614,7 @@ MonoBehaviour:
     completionValueList:
     - 0
     cost: 0
+    requireTaker: 0
     paySection: None
     statusEffect: 0
     iconFileName: ShadowWalk Sprite
@@ -559,8 +625,10 @@ MonoBehaviour:
     behaviourMask: Skill
     priority: 10
     sortingType: None
+    targetType: Circle
     targetParam: {x: 15, y: 3, z: 360}
-    targetLayer: Monster, Dummy
+    targetLayer: Monster
+    damagetLayer: Monster, Dummy
     animationKey: Cast2
     castCompleteKey: 
     isLoop: 0
@@ -574,6 +642,7 @@ MonoBehaviour:
     completionValueList:
     - 0
     cost: 50
+    requireTaker: 0
     paySection: Active
     statusEffect: 0
     iconFileName: MarkOfDeath Sprite
@@ -585,8 +654,10 @@ MonoBehaviour:
     behaviourMask: Skill
     priority: 2
     sortingType: None
+    targetType: 
     targetParam: {x: 0, y: 30, z: 6}
     targetLayer: Monster
+    damagetLayer: Monster
     animationKey: continuesAttack
     castCompleteKey: 
     isLoop: 1
@@ -600,6 +671,7 @@ MonoBehaviour:
     completionValueList:
     - 4
     cost: 0
+    requireTaker: 0
     paySection: 
     statusEffect: 0
     iconFileName: ContinuesAttack Sprite
@@ -609,8 +681,10 @@ MonoBehaviour:
     behaviourMask: RigidSkill
     priority: 3
     sortingType: None
+    targetType: 
     targetParam: {x: 0, y: 4, z: 360}
     targetLayer: Monster
+    damagetLayer: Monster
     animationKey: jump
     castCompleteKey: 
     isLoop: 0
@@ -624,6 +698,7 @@ MonoBehaviour:
     completionValueList:
     - 50
     cost: 0
+    requireTaker: 0
     paySection: 
     statusEffect: 0
     iconFileName: InstantTrap Sprite
@@ -633,8 +708,10 @@ MonoBehaviour:
     behaviourMask: Skill
     priority: 3
     sortingType: None
+    targetType: Line
     targetParam: {x: 0, y: 40, z: 4}
-    targetLayer: Monster, Dummy
+    targetLayer: Monster
+    damagetLayer: Monster, Dummy
     animationKey: AimHold
     castCompleteKey: AimHoldFire
     isLoop: 1
@@ -648,6 +725,7 @@ MonoBehaviour:
     completionValueList:
     - 50
     cost: 10
+    requireTaker: 0
     paySection: Execute
     statusEffect: 0
     iconFileName: AimShot Sprite
@@ -659,8 +737,10 @@ MonoBehaviour:
     behaviourMask: Skill
     priority: 5
     sortingType: None
+    targetType: Line
     targetParam: {x: 0, y: 40, z: 4}
-    targetLayer: Monster, Dummy
+    targetLayer: Monster
+    damagetLayer: Monster, Dummy
     animationKey: ShootVeryFast
     castCompleteKey: 
     isLoop: 0
@@ -674,6 +754,7 @@ MonoBehaviour:
     completionValueList:
     - 9
     cost: 5
+    requireTaker: 0
     paySection: Active
     statusEffect: 0
     iconFileName: InstantShot Sprite
@@ -686,8 +767,10 @@ MonoBehaviour:
     behaviourMask: Skill
     priority: 10
     sortingType: None
+    targetType: Line
     targetParam: {x: 0, y: 40, z: 6}
-    targetLayer: Monster, Dummy
+    targetLayer: Monster
+    damagetLayer: Monster, Dummy
     animationKey: AimHold
     castCompleteKey: AimHoldFire
     isLoop: 1
@@ -701,6 +784,7 @@ MonoBehaviour:
     completionValueList:
     - 0
     cost: 20
+    requireTaker: 0
     paySection: Execute
     statusEffect: 0
     iconFileName: FocusedStrike Sprite
@@ -713,8 +797,10 @@ MonoBehaviour:
     behaviourMask: Skill
     priority: 1
     sortingType: None
+    targetType: Circle
     targetParam: {x: 0, y: 100, z: 360}
-    targetLayer: Monster, Dummy
+    targetLayer: Monster
+    damagetLayer: Monster, Dummy
     animationKey: Reload
     castCompleteKey: 
     isLoop: 0
@@ -728,6 +814,7 @@ MonoBehaviour:
     completionValueList:
     - 0
     cost: -60
+    requireTaker: 0
     paySection: Active
     statusEffect: 0
     iconFileName: Reload Sprite
@@ -740,8 +827,10 @@ MonoBehaviour:
     behaviourMask: Skill
     priority: 1
     sortingType: None
+    targetType: Line
     targetParam: {x: 0, y: 40, z: 6}
-    targetLayer: Monster, Dummy
+    targetLayer: Monster
+    damagetLayer: Monster, Dummy
     animationKey: Cast2
     castCompleteKey: 
     isLoop: 0
@@ -755,6 +844,7 @@ MonoBehaviour:
     completionValueList:
     - 0
     cost: -10
+    requireTaker: 1
     paySection: Active
     statusEffect: 0
     iconFileName: VileScrapper Sprite
@@ -765,8 +855,10 @@ MonoBehaviour:
     behaviourMask: Skill
     priority: 5
     sortingType: None
+    targetType: Line
     targetParam: {x: 0, y: 40, z: 6}
-    targetLayer: Monster, Dummy
+    targetLayer: Monster
+    damagetLayer: Monster, Dummy
     animationKey: CastHold
     castCompleteKey: CastHoldFire
     isLoop: 1
@@ -780,6 +872,7 @@ MonoBehaviour:
     completionValueList:
     - 0
     cost: 30
+    requireTaker: 0
     paySection: Active
     statusEffect: 0
     iconFileName: VoidSphere Sprite
@@ -792,8 +885,10 @@ MonoBehaviour:
     behaviourMask: Skill
     priority: 8
     sortingType: None
+    targetType: Circle
     targetParam: {x: 30, y: 4, z: 360}
-    targetLayer: Monster, Dummy
+    targetLayer: Monster
+    damagetLayer: Monster, Dummy
     animationKey: ExtractHold
     castCompleteKey: ExtractHoldFire
     isLoop: 1
@@ -807,6 +902,7 @@ MonoBehaviour:
     completionValueList:
     - 0
     cost: -50
+    requireTaker: 0
     paySection: Active
     statusEffect: 0
     iconFileName: Extraction Sprite
@@ -817,8 +913,10 @@ MonoBehaviour:
     behaviourMask: RigidSkill
     priority: 5
     sortingType: None
+    targetType: Circle
     targetParam: {x: 0, y: 100, z: 360}
-    targetLayer: Monster, Dummy
+    targetLayer: Monster
+    damagetLayer: Monster, Dummy
     animationKey: Cast3
     castCompleteKey: 
     isLoop: 0
@@ -832,6 +930,7 @@ MonoBehaviour:
     completionValueList:
     - 0
     cost: 30
+    requireTaker: 0
     paySection: Active
     statusEffect: 0
     iconFileName: ChainsOfSoul Sprite
@@ -842,8 +941,10 @@ MonoBehaviour:
     behaviourMask: Skill
     priority: 1
     sortingType: HpRatioAscending
+    targetType: 
     targetParam: {x: 0, y: 5, z: 25}
     targetLayer: Adventurer
+    damagetLayer: Adventurer
     animationKey: casting
     castCompleteKey: 
     isLoop: 0
@@ -857,6 +958,7 @@ MonoBehaviour:
     completionValueList:
     - 15
     cost: 0
+    requireTaker: 0
     paySection: None
     statusEffect: 0
     iconFileName: PriestCommonHeal Sprite
@@ -866,8 +968,10 @@ MonoBehaviour:
     behaviourMask: Skill
     priority: 3
     sortingType: HpRatioAscending
+    targetType: Circle
     targetParam: {x: 30, y: 6, z: 360}
     targetLayer: Adventurer
+    damagetLayer: Adventurer
     animationKey: CastHold
     castCompleteKey: CastHoldFire
     isLoop: 1
@@ -881,6 +985,7 @@ MonoBehaviour:
     completionValueList:
     - 0
     cost: -2
+    requireTaker: 0
     paySection: Execute
     statusEffect: 0
     iconFileName: HealingTouch Sprite
@@ -891,8 +996,10 @@ MonoBehaviour:
     behaviourMask: Skill
     priority: 4
     sortingType: HpRatioAscending
+    targetType: Circle
     targetParam: {x: 30, y: 6, z: 360}
     targetLayer: Adventurer
+    damagetLayer: Adventurer
     animationKey: Cast2
     castCompleteKey: 
     isLoop: 0
@@ -906,6 +1013,7 @@ MonoBehaviour:
     completionValueList:
     - 0
     cost: -5
+    requireTaker: 0
     paySection: Execute
     statusEffect: 0
     iconFileName: Renew Sprite
@@ -917,8 +1025,10 @@ MonoBehaviour:
     behaviourMask: Skill
     priority: 6
     sortingType: None
+    targetType: Circle
     targetParam: {x: 0, y: 40, z: 360}
     targetLayer: Adventurer
+    damagetLayer: Adventurer
     animationKey: CastHold
     castCompleteKey: CastHoldFire
     isLoop: 1
@@ -932,6 +1042,7 @@ MonoBehaviour:
     completionValueList:
     - 0
     cost: -4
+    requireTaker: 0
     paySection: Execute
     statusEffect: 0
     iconFileName: LightOfDawn Sprite
@@ -941,8 +1052,10 @@ MonoBehaviour:
     behaviourMask: Skill
     priority: 10
     sortingType: None
+    targetType: Self
     targetParam: {x: 0, y: 0, z: 0}
     targetLayer: Adventurer
+    damagetLayer: Adventurer
     animationKey: Buff
     castCompleteKey: 
     isLoop: 0
@@ -956,6 +1069,7 @@ MonoBehaviour:
     completionValueList:
     - 0
     cost: 20
+    requireTaker: 0
     paySection: Execute
     statusEffect: 0
     iconFileName: Rapture Sprite
@@ -966,8 +1080,10 @@ MonoBehaviour:
     behaviourMask: Skill
     priority: 2
     sortingType: Random
+    targetType: Cone
     targetParam: {x: 0, y: 18, z: 60}
     targetLayer: Adventurer
+    damagetLayer: Adventurer
     animationKey: casting
     castCompleteKey: attack
     isLoop: 1
@@ -981,6 +1097,7 @@ MonoBehaviour:
     completionValueList:
     - 36
     cost: 0
+    requireTaker: 0
     paySection: None
     statusEffect: 0
     iconFileName: ShockWave Sprite
@@ -990,8 +1107,10 @@ MonoBehaviour:
     behaviourMask: Skill
     priority: 4
     sortingType: Random
+    targetType: Circle
     targetParam: {x: 0, y: 50, z: 0}
     targetLayer: Adventurer
+    damagetLayer: Adventurer
     animationKey: attack
     castCompleteKey: 
     isLoop: 0
@@ -1005,6 +1124,7 @@ MonoBehaviour:
     completionValueList:
     - 0
     cost: 0
+    requireTaker: 0
     paySection: None
     statusEffect: 32220001
     iconFileName: LivingBomb Sprite
@@ -1014,8 +1134,10 @@ MonoBehaviour:
     behaviourMask: Skill
     priority: 3
     sortingType: None
+    targetType: Circle
     targetParam: {x: 0, y: 50, z: 360}
     targetLayer: Adventurer
+    damagetLayer: Adventurer
     animationKey: attack
     castCompleteKey: 
     isLoop: 1
@@ -1029,6 +1151,7 @@ MonoBehaviour:
     completionValueList:
     - 0
     cost: 0
+    requireTaker: 0
     paySection: None
     statusEffect: 0
     iconFileName: MeteorStrike Sprite
@@ -1038,8 +1161,10 @@ MonoBehaviour:
     behaviourMask: Skill
     priority: 1
     sortingType: CombatClass
+    targetType: Circle
     targetParam: {x: 0, y: 6, z: 360}
     targetLayer: Adventurer
+    damagetLayer: Adventurer
     animationKey: attack
     castCompleteKey: 
     isLoop: 0
@@ -1053,7 +1178,35 @@ MonoBehaviour:
     completionValueList:
     - 20
     cost: 0
+    requireTaker: 0
     paySection: None
     statusEffect: 0
     iconFileName: VillainCommonAttack Sprite
+    description: Starts combat by attacking a target with a melee weapon.
+  - id: 31222205
+    name: RocketRock
+    behaviourMask: Skill
+    priority: 2
+    sortingType: Random
+    targetType: RaycastWidth
+    targetParam: {x: 0, y: 20, z: 5}
+    targetLayer: Adventurer
+    damagetLayer: Adventurer, Dummy
+    animationKey: casting
+    castCompleteKey: attack
+    isLoop: 1
+    hasEvent: 0
+    skillType: Casting
+    animationCallback: None
+    coolTime: 16
+    coolTimeInvoker: Execute
+    castTime: 6
+    castCallback: Execute
+    completionValueList:
+    - 36
+    cost: 0
+    requireTaker: 0
+    paySection: None
+    statusEffect: 0
+    iconFileName: RocketRock Sprite
     description: Starts combat by attacking a target with a melee weapon.

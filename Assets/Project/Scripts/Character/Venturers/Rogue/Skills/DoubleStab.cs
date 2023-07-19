@@ -10,8 +10,6 @@ namespace Character.Venturers.Rogue.Skills
         public override void Initialize()
         {
             base.Initialize();
-            
-            cost.PayCondition.Add("HasTarget", detector.HasTarget);
 
             Builder
                 .AddApplying("PhantomsDoubleStab",PhantomsDoubleStab)
@@ -21,7 +19,11 @@ namespace Character.Venturers.Rogue.Skills
 
         private void DoubleStabAttack()
         {
-            detector.GetTakers()?.ForEach(taker =>
+            if (!detector.TryGetTakers(out var takers)) return;
+            
+            SkillCost.PayCost(Cb.Resource);
+            
+            takers.ForEach(taker =>
             {
                 Taker = taker;
                 Invoker.Hit(taker);

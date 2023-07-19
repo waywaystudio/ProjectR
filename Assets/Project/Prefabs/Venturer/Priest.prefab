@@ -52,6 +52,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6644808226710964721, guid: 230c76609ab2a94438c1cf36cd88cbc0, type: 3}
+      propertyPath: healSpec.statList.Array.data[0].value
+      value: 300
+      objectReference: {fileID: 0}
     - target: {fileID: 8380361914805468174, guid: 230c76609ab2a94438c1cf36cd88cbc0, type: 3}
       propertyPath: m_Name
       value: LightOfDawn

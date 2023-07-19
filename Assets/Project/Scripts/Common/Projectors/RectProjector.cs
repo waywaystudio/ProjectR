@@ -24,8 +24,8 @@ namespace Common.Projectors
             Provider = provider;
 
             projector.material = new Material(materialReference);
-            width              = provider.SizeVector.y;
-            length             = provider.SizeVector.z;
+            width              = provider.SizeEntity.Width;
+            length             = provider.SizeEntity.Height;
 
             UpdateHeadProjector();
 

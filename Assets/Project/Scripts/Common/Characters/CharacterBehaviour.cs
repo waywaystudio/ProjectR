@@ -2,7 +2,7 @@ using System.Collections.Generic;
 using Common.Animation;
 using Common.StatusEffects;
 using Common.Systems;
-using Common.TargetSystem;
+using Common.Detects;
 using UnityEngine;
 
 namespace Common.Characters
@@ -24,6 +24,7 @@ namespace Common.Characters
         [SerializeField] protected DrawBehaviour drawBehaviour;
         [SerializeField] protected DeadBehaviour deadBehaviour;
         [SerializeField] protected SkillTable skillBehaviour;
+        
 
         /*
          * Common Attribute
@@ -88,6 +89,7 @@ namespace Common.Characters
 
         public void TakeStatusEffect(StatusEffect effect) => StatusEffectTable[effect.DataIndex].Activate(this);
         public void DispelStatusEffect(DataIndex effectIndex) => StatusEffectTable[effectIndex]?.Dispel();
+        public void ForceTargeting(ICombatTaker taker) => SkillTable.ForceTargeting(taker);
 
 
         public void Initialize()

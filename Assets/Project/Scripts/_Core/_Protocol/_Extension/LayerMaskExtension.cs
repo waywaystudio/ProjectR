@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 // ReSharper disable UnusedMember.Global
 
@@ -34,7 +35,24 @@ public static class LayerMaskExtension
         
         return index;
     }
-        
+    
+    public static List<int> ToIndexList(this LayerMask mask)
+    {
+        var result = new List<int>();
+            
+        for (var i = 0; i < 32; i++)
+        {
+            var layerMask = 1 << i;
+
+            if ((mask.value & layerMask) != 0)
+            {
+                result.Add(i);
+            }
+        }
+
+        return result;
+    }
+
     /* In Project R */
     public static bool IsMonster(this GameObject obj) => obj.layer    == LayerMask.NameToLayer("Monster");
     public static bool IsAdventurer(this GameObject obj) => obj.layer == LayerMask.NameToLayer("Adventurer");

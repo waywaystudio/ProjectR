@@ -19,8 +19,10 @@ namespace Databases.SheetData.CombatData
 			[SerializeField] private String behaviourMask;
 			[SerializeField] private Int32 priority;
 			[SerializeField] private String sortingType;
+			[SerializeField] private String targetType;
 			[SerializeField] private Vector3 targetParam;
 			[SerializeField] private String targetLayer;
+			[SerializeField] private String damagetLayer;
 			[SerializeField] private String animationKey;
 			[SerializeField] private String castCompleteKey;
 			[SerializeField] private Boolean isLoop;
@@ -33,6 +35,7 @@ namespace Databases.SheetData.CombatData
 			[SerializeField] private String castCallback;
 			[SerializeField] private List<Single> completionValueList;
 			[SerializeField] private Single cost;
+			[SerializeField] private Boolean requireTaker;
 			[SerializeField] private String paySection;
 			[SerializeField] private Int32 statusEffect;
 			[SerializeField] private String iconFileName;
@@ -43,8 +46,10 @@ namespace Databases.SheetData.CombatData
 			public String BehaviourMask => behaviourMask;
 			public Int32 Priority => priority;
 			public String SortingType => sortingType;
+			public String TargetType => targetType;
 			public Vector3 TargetParam => targetParam;
 			public String TargetLayer => targetLayer;
+			public String DamagetLayer => damagetLayer;
 			public String AnimationKey => animationKey;
 			public String CastCompleteKey => castCompleteKey;
 			public Boolean IsLoop => isLoop;
@@ -57,6 +62,7 @@ namespace Databases.SheetData.CombatData
 			public String CastCallback => castCallback;
 			public List<Single> CompletionValueList => completionValueList;
 			public Single Cost => cost;
+			public Boolean RequireTaker => requireTaker;
 			public String PaySection => paySection;
 			public Int32 StatusEffect => statusEffect;
 			public String IconFileName => iconFileName;

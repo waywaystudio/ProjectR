@@ -80,7 +80,7 @@ namespace Character.Venturers.Ranger.Skills
                 var mainTarget = detector.GetMainTarget();
                 var takerPosition = mainTarget is not null
                     ? mainTarget.Position
-                    : Cb.transform.forward * Range;
+                    : Cb.transform.forward * AreaRange;
 
                 venturer.Rotate(takerPosition);
                 await UniTask.Delay(100, DelayType.DeltaTime, PlayerLoopTiming.Update, cts.Token);

@@ -10,6 +10,7 @@ namespace Character.Venturers.Mage.Skills
     public class Extraction : SkillComponent
     {
         private CancellationTokenSource cts;
+        private readonly Collider[] buffers = new Collider[32];
         
         public override void Initialize()
         {
@@ -35,21 +36,23 @@ namespace Character.Venturers.Mage.Skills
             
             cts = new CancellationTokenSource();
 
-            var validPosition = TargetUtility.GetValidPosition(Cb.transform.position, Distance, targetPosition);
+            var validPosition = TargetUtility.GetValidPosition(Cb.transform.position, PivotRange, targetPosition);
                 
             venturer.Rotate(validPosition);
             Invoker.SubFire(validPosition);
                 
             while (true)
             {
-                var validTakerList = detector.GetTakersInCircleRange(validPosition, Range, Angle);
-                validTakerList?.ForEach(taker =>
+                if (detector.TryGetTakersInCircle(validPosition, AreaRange, buffers, out var takers))
                 {
-                    Taker = taker;
-                    Invoker.Hit(taker);
-                    Invoker.Fire(taker.Position);
-                });
-                    
+                    takers.ForEach(taker =>
+                    {
+                        Taker = taker;
+                        Invoker.Hit(taker);
+                        Invoker.Fire(taker.Position);
+                    });
+                }
+
                 await UniTask.Delay(500, DelayType.DeltaTime, PlayerLoopTiming.Update, cts.Token);
             }
         }

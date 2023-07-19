@@ -32,7 +32,10 @@ namespace Character.Venturers.Mage.Traps
             var randomVector2 = Random.insideUnitCircle * Radius;
             var tempDestination = new Vector3(position.x + randomVector2.x, 0f, position.z + randomVector2.y);
 
-            PathfindingUtility.IsGround(tempDestination, out var groundPosition);
+            if (!PathfindingUtility.IsGround(tempDestination, out var groundPosition))
+            {
+                groundPosition = PathfindingUtility.GetNearestSafePosition(tempDestination, SizeEntity.AreaRange);
+            }
 
             var destination = new Vector3(groundPosition.x, groundPosition.y + 1f, groundPosition.z);
 

@@ -1,12 +1,10 @@
 using BehaviorDesigner.Runtime.Tasks;
-using Common;
 using Common.Characters;
 using Common.Characters.Behaviours;
-using Common.Systems;
 
-namespace Character.Behavior.Actions
+namespace Common.Behavior.Characters
 {
-    [TaskCategory("Character/Combat")]
+    [TaskCategory("Characters")]
     public class PositioningBehavior : Action
     {
         private CharacterBehaviour cb;
@@ -15,6 +13,7 @@ namespace Character.Behavior.Actions
         public override void OnStart()
         {
             cb = gameObject.GetComponentInParent<CharacterBehaviour>();
+            
             TryGetComponent(out sb);
         }
 
@@ -23,9 +22,9 @@ namespace Character.Behavior.Actions
             if (!sb.TryGetMostPrioritySkill(out var skill)) return TaskStatus.Failure;
             if (skill.MainTarget == null) return TaskStatus.Failure;
 
-            var profitDistance = skill.Distance == 0.0f 
-                ? skill.Range 
-                : skill.Distance;
+            var profitDistance = skill.PivotRange == 0.0f
+                ? skill.AreaRange
+                : skill.PivotRange;
             
             if (!PathfindingUtility.TryGetCombatPosition(skill.Cb,
                     skill.MainTarget,

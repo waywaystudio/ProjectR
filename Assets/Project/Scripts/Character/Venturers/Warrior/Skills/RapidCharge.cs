@@ -9,6 +9,7 @@ namespace Character.Venturers.Warrior.Skills
     public class RapidCharge : SkillComponent
     {
         private CancellationTokenSource cts;
+        private readonly Collider[] buffers = new Collider[32];
         
         public override void Initialize()
         {
@@ -17,7 +18,7 @@ namespace Character.Venturers.Warrior.Skills
             Builder
                 .AddApplying("RigidMove", RigidMove)
                 .Add(Section.Active, "CheckColliding", () => OnCollided().Forget())
-                .Add(Section.Execute, "CommonExecution", () => detector.GetTakers()?.ForEach(Invoker.Hit))
+                .Add(Section.Execute, "ExecuteRapidCharge", ExecuteRapidCharge)
                 .Add(Section.Execute, "PlayCollideAnimation", PlayCollideAnimation)
                 .Add(Section.Execute, "StopPathfinding", Cb.Pathfinding.Stop)
                 .Add(Section.Execute, "StopCharging", StopCharging)
@@ -31,6 +32,17 @@ namespace Character.Venturers.Warrior.Skills
             StopCharging();
         }
         
+        
+        private void ExecuteRapidCharge()
+        {
+            if (!detector.TryGetTakers(out var takers)) return;
+            
+            takers.ForEach(taker =>
+            {
+                Taker = taker;
+                Invoker.Hit(taker);
+            });
+        }
 
         private async UniTaskVoid OnCollided()
         {
@@ -39,14 +51,15 @@ namespace Character.Venturers.Warrior.Skills
 
             while (true)
             {
-                var takerListBuffer = detector.GetTakersInCircleRange(2f, 120);
-                
-                if (!takerListBuffer.IsNullOrEmpty() && takerListBuffer[0].Alive.Value)
+                if (detector.TryGetTakersInCircle(transform.position, 2f, buffers, out var takers))
                 {
-                    Invoker.Execute();
-                    return;
+                    if (takers.FirstOrDefault().Alive.Value)
+                    {
+                        Invoker.Execute();
+                        return;
+                    }
                 }
-                
+
                 await UniTask.Yield(cts.Token);
             }
         }
@@ -58,9 +71,9 @@ namespace Character.Venturers.Warrior.Skills
             var playerPosition = Cb.transform.position;
             var direction = (targetPosition - playerPosition).normalized;
             var distance = Vector3.Distance(playerPosition, targetPosition);
-            var actualDestination = distance <= Distance
+            var actualDestination = distance <= PivotRange
                 ? targetPosition
-                : playerPosition + direction * Distance;
+                : playerPosition + direction * PivotRange;
             
             var destination = venturer.IsPlayer
                 ? actualDestination

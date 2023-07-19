@@ -32,11 +32,16 @@ namespace Character.Venturers.Warrior.Skills
             var originalPower = CombatSpec.Power;
             
             CombatSpec.Change(StatType.Power, originalPower * multiplier);
-            detector.GetTakers()?.ForEach(taker =>
+            
+            if (detector.TryGetTakers(out var takers))
             {
-                Taker = taker;
-                Invoker.Hit(taker);
-            });
+                takers.ForEach(taker =>
+                {
+                    Taker = taker;
+                    Invoker.Hit(taker);
+                });
+            }
+
             CombatSpec.Change(StatType.Power, originalPower);
             Cb.Resource.Value = 0f;
         }

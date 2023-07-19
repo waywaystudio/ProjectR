@@ -941,10 +941,16 @@ MonoBehaviour:
     bulletTimes:
     - {fileID: 3588757034811099214}
   detector:
+    targetType: 1
     sortingType: 0
-    maxBufferCount: 32
-    sizeVector: {x: 0, y: 12, z: 360}
+    sizeEntity:
+      x: 0
+      y: 12
+      z: 360
     targetLayer:
+      serializedVersion: 2
+      m_Bits: 256
+    damageLayer:
       serializedVersion: 2
       m_Bits: 4352
   animationTrait:
@@ -964,6 +970,7 @@ MonoBehaviour:
     callbackSection: 0
   cost:
     cost: 0
+    requireTaker: 0
     paySection: 0
   priority: 1
   description: Starts combat by attacking a target with a melee weapon.

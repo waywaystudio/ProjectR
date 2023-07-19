@@ -16,7 +16,7 @@ namespace Common.Projectors
         protected Tween ProgressTween;
         protected IProjection Provider { get; set; }
         protected GameObject DecalObject => projector.gameObject;
-        protected float ArcAngleNormalized => Mathf.Clamp(1f - Provider.SizeVector.z / 360, 0f, 360f);
+        protected float ArcAngleNormalized => Mathf.Clamp(1f - Provider.SizeEntity.Angle / 360, 0f, 360f);
         
         protected static readonly int ColorShaderID = Shader.PropertyToID("_Color");
         protected static readonly int FillColorShaderID = Shader.PropertyToID("_FillColor");
@@ -30,7 +30,7 @@ namespace Common.Projectors
             Provider = provider;
             
             // Set Projector Radius, Angle
-            var diameter = Provider.SizeVector.y * 2f;
+            var diameter = Provider.SizeEntity.AreaRange * 2f;
             
             projector.material = new Material(materialReference);
             projector.size     = new Vector3(diameter, diameter, ProjectorDepth);

@@ -12,17 +12,17 @@ namespace Common.Traps
         [SerializeField] protected FireExecutor fireExecutor;
         [SerializeField] protected Effector effector;
         [SerializeField] protected TrapProlongTimer prolongTimer;
-        [SerializeField] protected Vector3 sizeVector;
+        [SerializeField] protected SizeEntity sizeEntity;
         [SerializeField] protected LayerMask targetLayer;
 
         public DataIndex DataIndex => trapCode;
         public ICombatProvider Provider { get; protected set; }
         public ICombatTaker Taker { get; protected set; }
-        public float Distance => sizeVector.x;
-        public float Radius => sizeVector.y;
-        public float Angle => sizeVector.z;
+        public float Distance => sizeEntity.PivotRange;
+        public float Radius => sizeEntity.AreaRange;
+        public float Angle => sizeEntity.Angle;
         public float ProlongTime => prolongTimer.Duration;
-        public Vector3 SizeVector => sizeVector;
+        public SizeEntity SizeEntity => sizeEntity;
         public LayerMask TargetLayer => targetLayer;
         public Func<float> Haste => () => Provider is not null ? Provider.StatTable.Haste : 0f;
         

@@ -23,8 +23,10 @@ namespace Character.Venturers.Knight.Skills
         private void BashAttack()
         {
             var getBonus = false;
+
+            if (!detector.TryGetTakers(out var takers)) return;
             
-            detector.GetTakers()?.ForEach(taker =>
+            takers.ForEach(taker =>
             {
                 Taker = taker;
                 Invoker.Hit(Taker);

@@ -67,6 +67,11 @@ namespace Common.Characters.Behaviours
             OnSkillTableChanged.Invoke(this);
         }
 
+        public void ForceTargeting(ICombatTaker taker)
+        {
+            table.ValueList.ForEach(skill => skill.Detector.ForceTaker = taker);
+        }
+
         public void OnFocusVenturerChanged(CharacterBehaviour cb)
         {
             var isFocusTarget = 

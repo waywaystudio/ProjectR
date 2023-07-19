@@ -30,9 +30,9 @@ namespace Character.Venturers.Rogue.Skills
             
             var actualDistance = Vector3.Distance(destination, playerPosition);
 
-            if (actualDistance > Range)
+            if (actualDistance > AreaRange)
             {
-                actualDistance = Range;
+                actualDistance = AreaRange;
             }
 
             Cb.Pathfinding.Teleport(direction, actualDistance);

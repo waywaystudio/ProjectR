@@ -112,7 +112,7 @@ MonoBehaviour:
     statList:
     - statType: 13010001
       statKey: DamageExecutorKey
-      value: 360
+      value: 3000
     - statType: 13020001
       statKey: DamageExecutorKey
       value: 0
@@ -168,7 +168,7 @@ Transform:
   - {fileID: 4486267942335270001}
   - {fileID: 3639157282309754650}
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &5686399253027117551
 MonoBehaviour:
@@ -201,10 +201,16 @@ MonoBehaviour:
     hitPauses: []
     bulletTimes: []
   detector:
+    targetType: 3
     sortingType: 8
-    maxBufferCount: 32
-    sizeVector: {x: 0, y: 18, z: 60}
+    sizeEntity:
+      x: 0
+      y: 18
+      z: 60
     targetLayer:
+      serializedVersion: 2
+      m_Bits: 128
+    damageLayer:
       serializedVersion: 2
       m_Bits: 128
   animationTrait:
@@ -224,6 +230,7 @@ MonoBehaviour:
     callbackSection: 11
   cost:
     cost: 0
+    requireTaker: 0
     paySection: 0
   priority: 2
   description: Starts combat by attacking a target with a melee weapon.

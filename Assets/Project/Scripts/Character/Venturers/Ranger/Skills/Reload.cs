@@ -1,11 +1,13 @@
 using Character.Venturers.Ranger.StatusEffects;
-using Common.Characters;
 using Common.Skills;
+using UnityEngine;
 
 namespace Character.Venturers.Ranger.Skills
 {
     public class Reload : SkillComponent
     {
+        private readonly Collider[] buffers = new Collider[32];
+        
         public override void Initialize()
         {
             base.Initialize();
@@ -16,9 +18,9 @@ namespace Character.Venturers.Ranger.Skills
 
         private void CollectArrows()
         {
-            var takers = detector.GetTakersInCircleRange(100f, 360f);
-            
-            takers?.ForEach(taker =>
+            if (!detector.TryGetTakersInCircle(transform.position, 100f, buffers, out var takers)) return;
+
+            takers.ForEach(taker =>
             {
                 if (!taker.StatusEffectTable
                           .TryGetEffect<ArcaneArrowStatusEffect>(DataIndex.ArcaneArrowStatusEffect, out var effect)) return;

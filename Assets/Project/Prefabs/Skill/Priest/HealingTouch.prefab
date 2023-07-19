@@ -111,7 +111,7 @@ MonoBehaviour:
     statList:
     - statType: 13010001
       statKey: HealExecutorKey
-      value: 400
+      value: 1000
     - statType: 13020001
       statKey: HealExecutorKey
       value: 0.3
@@ -151,7 +151,7 @@ Transform:
   - {fileID: 7221708945386366489}
   - {fileID: 5853087751410363707}
   m_Father: {fileID: 0}
-  m_RootOrder: -1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &4722194049015145637
 MonoBehaviour:
@@ -183,10 +183,16 @@ MonoBehaviour:
     hitPauses: []
     bulletTimes: []
   detector:
+    targetType: 1
     sortingType: 5
-    maxBufferCount: 32
-    sizeVector: {x: 30, y: 6, z: 360}
+    sizeEntity:
+      x: 30
+      y: 6
+      z: 360
     targetLayer:
+      serializedVersion: 2
+      m_Bits: 128
+    damageLayer:
       serializedVersion: 2
       m_Bits: 128
   animationTrait:
@@ -206,6 +212,7 @@ MonoBehaviour:
     callbackSection: 11
   cost:
     cost: -2
+    requireTaker: 0
     paySection: 11
   priority: 3
   description: "\uB300\uC0C1\uC758 \uCCB4\uB825\uC744 \uD68C\uBCF5\uD558\uACE0, \uD50C\uB808\uC774\uC5B4\uC758

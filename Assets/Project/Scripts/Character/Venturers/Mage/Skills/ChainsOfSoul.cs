@@ -36,11 +36,11 @@ namespace Character.Venturers.Mage.Skills
 
         private void CondenseSoulShard(Vector3 targetPosition)
         {
-            var validPosition = TargetUtility.GetValidPosition(Cb.transform.position, Range, targetPosition);
+            var validPosition = TargetUtility.GetValidPosition(Cb.transform.position, AreaRange, targetPosition);
             var collectableSoulShards = TargetUtility.GetTargetsInSphere<SoulShardTrap>(
                 targetPosition, 
                 trapLayer, 
-                Range, 
+                AreaRange, 
                 colliderBuffers);
 
             if (collectableSoulShards.IsNullOrEmpty()) return;

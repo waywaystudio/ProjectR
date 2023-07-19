@@ -1,9 +1,9 @@
 using BehaviorDesigner.Runtime.Tasks;
 using Common.Characters.Behaviours;
 
-namespace Character.Behavior.Actions
+namespace Common.Behavior.Characters
 {
-    [TaskCategory("Character/Combat")]
+    [TaskCategory("Characters")]
     public class ActiveSkillBehavior : Action
     {
         private SkillTable ab;

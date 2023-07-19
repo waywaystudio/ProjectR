@@ -16,7 +16,9 @@ namespace Character.Venturers.Warrior.Skills
 
         private void BloodSmashAttack()
         {
-            detector.GetTakers()?.ForEach(taker =>
+            if (!detector.TryGetTakers(out var takers)) return;
+            
+            takers.ForEach(taker =>
             {
                 Taker = taker;
                 Invoker.Hit(taker);

@@ -6,7 +6,7 @@ using Common.Execution;
 using Common.Execution.Fires;
 using Common.Execution.Hits;
 using Common.Skills;
-using Common.TargetSystem;
+using Common.Detects;
 using Sirenix.OdinInspector;
 using Sirenix.OdinInspector.Editor;
 using Sirenix.OdinInspector.Editor.Drawers;
@@ -189,6 +189,11 @@ namespace Common.Editor
                 attributes.Add(new FoldoutGroupAttribute("CostTrait"));
             }
             
+            if (member.Name == "requireTaker")
+            {
+                attributes.Add(new FoldoutGroupAttribute("CostTrait"));
+            }
+            
             if (member.Name == "paySection")
             {
                 attributes.Add(new FoldoutGroupAttribute("CostTrait"));
@@ -281,24 +286,30 @@ namespace Common.Editor
 
         public override void ProcessChildMemberAttributes(InspectorProperty parentProperty, MemberInfo member, List<Attribute> attributes)
         {
+            if (member.Name == "targetType")
+            {
+                attributes.Add(new EnumPagingAttribute());
+                attributes.Add(new FoldoutGroupAttribute("DetectorTrait"));
+            }
+
             if (member.Name == "sortingType")
             {
                 attributes.Add(new EnumPagingAttribute());
                 attributes.Add(new FoldoutGroupAttribute("DetectorTrait"));
             }
-            
-            if (member.Name == "maxBufferCount")
+
+            if (member.Name == "sizeEntity")
             {
-                attributes.Add(new PropertyRangeAttribute(1, 64));
-                attributes.Add(new FoldoutGroupAttribute("DetectorTrait"));
-            }
-            
-            if (member.Name == "sizeVector")
-            {
+                attributes.Add(new HideLabelAttribute());
                 attributes.Add(new FoldoutGroupAttribute("DetectorTrait"));
             }
             
             if (member.Name == "targetLayer")
+            {
+                attributes.Add(new FoldoutGroupAttribute("DetectorTrait"));
+            }
+            
+            if (member.Name == "damageLayer")
             {
                 attributes.Add(new FoldoutGroupAttribute("DetectorTrait"));
             }

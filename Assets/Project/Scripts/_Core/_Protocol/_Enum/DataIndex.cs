@@ -187,6 +187,7 @@ public enum DataIndex
 	LivingBomb = 31222202,
 	MeteorStrike = 31222203,
 	VillainCommonAttack = 31222204,
+	RocketRock = 31222205,
 
 	/* StatusEffectData */
 	ArmorCrashStatusEffect = 32210001,

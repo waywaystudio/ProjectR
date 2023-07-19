@@ -16,7 +16,7 @@ namespace Common.Effects.Cameras
         private Tween cameraTween;
         private float originalFov;
         private bool activity = true;
-        private bool onEffecting = false;
+        private bool onEffecting;
         
         public bool Activity
         {

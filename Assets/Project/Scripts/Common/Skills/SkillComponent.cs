@@ -2,7 +2,7 @@ using System;
 using Common.Characters;
 using Common.Effects;
 using Common.Execution;
-using Common.TargetSystem;
+using Common.Detects;
 using UnityEngine;
 
 namespace Common.Skills
@@ -36,18 +36,22 @@ namespace Common.Skills
         public int Priority => priority;
         public string Description => description;
         public Func<float> Haste => () => Cb.StatTable.Haste;
-        public float Distance => detector.Distance;
-        public float Range => detector.Range;
-        public float Angle => detector.Angle;
+        public float PivotRange => SizeEntity.PivotRange;
+        public float AreaRange => SizeEntity.AreaRange;
+        public float Angle => SizeEntity.Angle;
+        public float Height => SizeEntity.Height;
+        public float Width => SizeEntity.Width;
         public float CastingTime => CastTimer.Duration;
         public CharacterBehaviour Cb => cb ??= GetComponentInParent<CharacterBehaviour>();
         public CombatSequence Sequence { get; } = new();
         public CombatSequenceInvoker Invoker { get; private set; }
         public CombatSequenceBuilder Builder { get; private set; }
+        public TakerDetector Detector => detector;
         public SkillCoolTimer CoolTimer => coolTimer;
         public SkillCastTimer CastTimer => castTimer;
-        public Vector3 SizeVector => detector.SizeVector;
-        
+        public SkillCost SkillCost => cost;
+        public SizeEntity SizeEntity => detector.SizeEntity;
+
 
         public virtual void Initialize()
         {

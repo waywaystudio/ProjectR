@@ -607,10 +607,16 @@ MonoBehaviour:
     - {fileID: 686766263480688096}
     bulletTimes: []
   detector:
+    targetType: 1
     sortingType: 0
-    maxBufferCount: 32
-    sizeVector: {x: 15, y: 8, z: 360}
+    sizeEntity:
+      x: 15
+      y: 8
+      z: 360
     targetLayer:
+      serializedVersion: 2
+      m_Bits: 256
+    damageLayer:
       serializedVersion: 2
       m_Bits: 4352
   animationTrait:
@@ -630,6 +636,7 @@ MonoBehaviour:
     callbackSection: 0
   cost:
     cost: -8
+    requireTaker: 1
     paySection: 11
   priority: 1
   description: "\uBAA9\uD45C \uC9C0\uC810\uC73C\uB85C \uC810\uD504\uD558\uC5EC \uACF5\uACA9\uD55C\uB2E4"

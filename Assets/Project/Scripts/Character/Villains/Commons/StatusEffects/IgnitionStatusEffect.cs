@@ -20,7 +20,7 @@ namespace Character.Villains.Commons.StatusEffects
         private float tickBuffer;
 
         public float CastingTime => Duration;
-        public Vector3 SizeVector => new (radius, radius,360f);
+        public SizeEntity SizeEntity => new (radius, radius,360f);
         
 
         public override void Initialize(ICombatProvider provider)
