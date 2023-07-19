@@ -7,6 +7,7 @@ namespace Common.Detects
     {
         [SerializeField] private float searchingRange = 100f;
         [SerializeField] private SphereCollider searchingCollider;
+        [SerializeField] private GameObject RootObject;
         [SerializeField] private LayerMask targetLayerMask;
 
         public Dictionary<int, List<GameObject>> SearchedTable { get; } = new();
@@ -15,7 +16,7 @@ namespace Common.Detects
         private void Awake()
         {
             searchingCollider.radius = searchingRange;
-            
+
             for (var i = 0; i < 32; i++)
             {
                 var layerMask = 1 << i;
@@ -24,6 +25,13 @@ namespace Common.Detects
                 {
                     SearchedTable.Add(i, new List<GameObject>());
                 }
+            }
+            
+            var rootLayer = RootObject.layer;
+            
+            if (!RootObject.IsNullOrEmpty())
+            {
+                SearchedTable[rootLayer].AddUniquely(RootObject);
             }
         }
 
