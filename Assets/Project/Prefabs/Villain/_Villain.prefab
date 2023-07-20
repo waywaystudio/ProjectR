@@ -201,10 +201,11 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 3744010699814045015}
-  - {fileID: 7543387085409907241}
   - {fileID: 7681027685326874348}
+  - {fileID: 7543387085409907241}
   - {fileID: 6223393909608460540}
   - {fileID: 3744010700442847974}
+  - {fileID: 2035227460828127721}
   - {fileID: 3941785278225685870}
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -736,6 +737,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0374d05ee0e1fb04ca9b65115ad0dce6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isImmune: 1
 --- !u!1 &5542662401839507427
 GameObject:
   m_ObjectHideFlags: 0
@@ -780,6 +782,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 100971ec1b076d041bcdbeabfca9ef89, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isImmune: 0
 --- !u!1 &5820197252133641895
 GameObject:
   m_ObjectHideFlags: 0
@@ -935,7 +938,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5820197252133641895}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 560112f876f5746c780eca0d404e7139, type: 3}
   m_Name: 
@@ -944,16 +947,16 @@ MonoBehaviour:
   radiusBackingField: 2
   heightBackingField: 2
   centerBackingField: 1
-  locked: 0
-  lockWhenNotMoving: 1
+  locked: 1
+  lockWhenNotMoving: 0
   agentTimeHorizon: 2
   obstacleTimeHorizon: 2
   maxNeighbours: 10
   layer: 1
-  collidesWith: -1
+  collidesWith: 2
   wallAvoidForce: 1
   wallAvoidFalloff: 1
-  priority: 0.5
+  priority: 1
   debug: 0
 --- !u!1 &5981659522481717184
 GameObject:
@@ -1167,8 +1170,8 @@ Transform:
   - {fileID: 1359144572292623658}
   - {fileID: 803972430527603880}
   - {fileID: 6785201395137367704}
-  m_Father: {fileID: 7543387085409907241}
-  m_RootOrder: 3
+  m_Father: {fileID: 3744010700067239340}
+  m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &291626802760447148
 MonoBehaviour:
@@ -1276,6 +1279,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 580bd9a6882361449a8eafee46b69aef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isImmune: 1
 --- !u!1 &8615205136865817359
 GameObject:
   m_ObjectHideFlags: 0
@@ -1370,7 +1374,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7543387085409907241}
   m_Layer: 8
-  m_Name: Behaviours
+  m_Name: CommonBehaviours
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1395,7 +1399,6 @@ Transform:
   - {fileID: 6392523915433659187}
   - {fileID: 6106009446420012740}
   - {fileID: 4982428377058966078}
-  - {fileID: 2035227460828127721}
   m_Father: {fileID: 3744010700067239340}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

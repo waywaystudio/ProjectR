@@ -17,7 +17,8 @@ namespace Common.Projectors
         protected IProjection Provider { get; set; }
         protected GameObject DecalObject => projector.gameObject;
         protected float ArcAngleNormalized => Mathf.Clamp(1f - Provider.SizeEntity.Angle / 360, 0f, 360f);
-        
+        protected string InstanceKey { get; set; }
+
         protected static readonly int ColorShaderID = Shader.PropertyToID("_Color");
         protected static readonly int FillColorShaderID = Shader.PropertyToID("_FillColor");
         protected static readonly int FillProgressShaderID = Shader.PropertyToID("_FillProgress");
@@ -27,7 +28,8 @@ namespace Common.Projectors
 
         public virtual void Initialize(IProjection provider)
         {
-            Provider = provider;
+            Provider    = provider;
+            InstanceKey = GetInstanceID().ToString();
             
             // Set Projector Radius, Angle
             var diameter = Provider.SizeEntity.AreaRange * 2f;
@@ -41,13 +43,14 @@ namespace Common.Projectors
             projector.material.SetColor(FillColorShaderID, fillColor);
             projector.material.SetFloat(AngleShaderID, 0f);
 
+            
             var builder = new CombatSequenceBuilder(provider.Sequence);
             
             builder
-                .Add(Section.Active, "ShaderProgression", PlayProjection)
-                .Add(Section.Cancel, "CancelTween", StopProjection)
-                .Add(Section.Execute, "CancelTween", StopProjection)
-                .Add(Section.End, "ResetMaterial", StopProjection);
+                .Add(Section.Active, $"{InstanceKey}.ShaderProgression", PlayProjection)
+                .Add(Section.Cancel, $"{InstanceKey}.CancelTween", StopProjection)
+                .Add(Section.Execute, $"{InstanceKey}.CancelTween", StopProjection)
+                .Add(Section.End, $"{InstanceKey}.ResetMaterial", StopProjection);
 
             StopProjection();
         }

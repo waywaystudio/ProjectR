@@ -1081,7 +1081,7 @@ MonoBehaviour:
     priority: 2
     sortingType: Random
     targetType: Cone
-    targetParam: {x: 0, y: 18, z: 60}
+    targetParam: {x: 0, y: 24, z: 60}
     targetLayer: Adventurer
     damagetLayer: Adventurer
     animationKey: casting
@@ -1209,4 +1209,58 @@ MonoBehaviour:
     paySection: None
     statusEffect: 0
     iconFileName: RocketRock Sprite
+    description: Starts combat by attacking a target with a melee weapon.
+  - id: 31222206
+    name: Pinwheel
+    behaviourMask: Skill
+    priority: 2
+    sortingType: None
+    targetType: Custom
+    targetParam: {x: 0, y: 22, z: 60}
+    targetLayer: Adventurer
+    damagetLayer: Adventurer
+    animationKey: casting
+    castCompleteKey: attack
+    isLoop: 1
+    hasEvent: 0
+    skillType: Casting
+    animationCallback: None
+    coolTime: 24
+    coolTimeInvoker: Active
+    castTime: 3
+    castCallback: Execute
+    completionValueList:
+    - 0
+    cost: 0
+    requireTaker: 0
+    paySection: None
+    statusEffect: 0
+    iconFileName: Pinwheel Sprite
+    description: Starts combat by attacking a target with a melee weapon.
+  - id: 31222207
+    name: StoneClap
+    behaviourMask: Skill
+    priority: 2
+    sortingType: CombatClass
+    targetType: Circle
+    targetParam: {x: 0, y: 11, z: 360}
+    targetLayer: Adventurer
+    damagetLayer: Adventurer
+    animationKey: casting
+    castCompleteKey: attack
+    isLoop: 1
+    hasEvent: 0
+    skillType: Casting
+    animationCallback: None
+    coolTime: 14
+    coolTimeInvoker: Active
+    castTime: 2.5
+    castCallback: Execute
+    completionValueList:
+    - 0
+    cost: 0
+    requireTaker: 0
+    paySection: None
+    statusEffect: 0
+    iconFileName: StoneClap Sprite
     description: Starts combat by attacking a target with a melee weapon.

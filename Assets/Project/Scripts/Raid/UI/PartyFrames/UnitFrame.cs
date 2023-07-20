@@ -32,6 +32,8 @@ namespace Raid.UI.PartyFrames
             
             hpRef.AddListener("HpToUnitFrameUI", UpdateVenturerHealth);
             venturerNameMesh.text = vb.Name;
+
+            UpdateVenturerHealth(maxHp);
         }
 
 

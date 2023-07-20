@@ -10,11 +10,14 @@ namespace Common.Projectors
         {
             base.Initialize(provider);
 
+            colliderTransform.localScale *= Provider.SizeEntity.AreaRange;
+            DeActiveCollider();
+
             var builder = new CombatSequenceBuilder(provider.Sequence);
             
             builder
-                .Add(Section.Active, "ActiveCollider", ActiveCollider)
-                .Add(Section.End, "DeActiveCollider", DeActiveCollider);
+                .Add(Section.Active, $"{InstanceKey}.ActiveCollider", ActiveCollider)
+                .Add(Section.End, $"{InstanceKey}.DeActiveCollider", DeActiveCollider);
         }
 
         private void ActiveCollider() => colliderTransform.gameObject.SetActive(true);

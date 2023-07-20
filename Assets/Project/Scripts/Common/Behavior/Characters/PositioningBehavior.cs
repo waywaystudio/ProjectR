@@ -1,6 +1,7 @@
 using BehaviorDesigner.Runtime.Tasks;
 using Common.Characters;
 using Common.Characters.Behaviours;
+using Common.Skills;
 
 namespace Common.Behavior.Characters
 {

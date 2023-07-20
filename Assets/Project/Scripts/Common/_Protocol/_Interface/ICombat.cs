@@ -1,4 +1,5 @@
 using Common.Characters.Behaviours;
+using Common.Skills;
 using Common.StatusEffects;
 using UnityEngine;
 // ReSharper disable InconsistentNaming

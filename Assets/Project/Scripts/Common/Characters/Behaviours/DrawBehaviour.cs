@@ -4,6 +4,8 @@ namespace Common.Characters.Behaviours
 {
     public class DrawBehaviour : MonoBehaviour, IActionBehaviour
     {
+        [SerializeField] private bool isImmune;
+        
         public ActionMask BehaviourMask => ActionMask.Draw;
         public Sequencer<Vector3> Sequence { get; } = new();
         public SequenceBuilder<Vector3> Builder { get; private set; }
@@ -22,6 +24,7 @@ namespace Common.Characters.Behaviours
         }
         
         public void Cancel() => Invoker.Cancel();
+        public void Immune(bool value) => isImmune = value;
 
 
         private void OnEnable()
@@ -30,6 +33,7 @@ namespace Common.Characters.Behaviours
             Invoker = new SequenceInvoker<Vector3>(Sequence);
             Builder
                 .AddCondition("AbleToBehaviourOverride", () => BehaviourMask.CanOverride(Cb.BehaviourMask))
+                .AddCondition("IsNotImmune", () => !isImmune)
                 .AddActiveParam("Rotate", Cb.Rotate)
                 .Add(Section.Active,"CancelPreviousBehaviour", () => cb.CurrentBehaviour?.TryToOverride(this))
                 .Add(Section.Active,"SetCurrentBehaviour", () => cb.CurrentBehaviour = this)

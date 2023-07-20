@@ -106,7 +106,7 @@ MonoBehaviour:
     statList:
     - statType: 13010001
       statKey: DamageExecutorGroup2Key
-      value: 4000
+      value: 3000
 --- !u!114 &175415241239904349
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -199,9 +199,21 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 2402494755454563105}
     m_Modifications:
+    - target: {fileID: 2674489549287038183, guid: f201fadaeb091cf47a052170ce7683da, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2998071572755100239, guid: f201fadaeb091cf47a052170ce7683da, type: 3}
       propertyPath: m_Radius
       value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 2998071572755100239, guid: f201fadaeb091cf47a052170ce7683da, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3784922953377259603, guid: f201fadaeb091cf47a052170ce7683da, type: 3}
+      propertyPath: m_Enabled
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4027286352141989457, guid: f201fadaeb091cf47a052170ce7683da, type: 3}
       propertyPath: m_Name

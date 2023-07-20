@@ -21,6 +21,7 @@ namespace Character.Villains.Commons.Traps
             projector.Initialize(this);
             Builder
                 .Add(Section.Complete, "MeteorExecution", MeteorExecution)
+                .Add(Section.Active, "RotateToIdentity", () => transform.rotation = Quaternion.identity)
                 ;
         }
 

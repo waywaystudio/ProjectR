@@ -3,6 +3,7 @@ using Common.Animation;
 using Common.StatusEffects;
 using Common.Systems;
 using Common.Detects;
+using Common.Skills;
 using UnityEngine;
 
 namespace Common.Characters
@@ -16,7 +17,6 @@ namespace Common.Characters
         [SerializeField] protected AnimationModel animating;
         [SerializeField] protected SearchEngine searchEngine;
         [SerializeField] protected PathfindingSystem pathfinding;
-        
         [SerializeField] protected StopBehaviour stopBehaviour;
         [SerializeField] protected RunBehaviour runBehaviour;
         [SerializeField] protected StunBehaviour stunBehaviour;
@@ -66,11 +66,12 @@ namespace Common.Characters
         public void KnockBack(Vector3 source, float distance, float duration) => knockBackBehaviour.KnockBack(source, distance, duration);
         public void Draw(Vector3 source, float duration) => DrawBehaviour.Draw(source, duration);
         public void Dead() => deadBehaviour.Dead();
+        public void ActiveSkill(DataIndex actionCode, Vector3 targetPosition) => skillBehaviour.Active(actionCode, targetPosition);
+
+        // TODO. 여기가 아닌 것 같다. 
         public void AddReward(System.Action action) => deadBehaviour.AddReward("Reward", action);
         
-        
-        /* Skill Behaviour */
-        public void ActiveSkill(DataIndex actionCode, Vector3 targetPosition) => skillBehaviour.Active(actionCode, targetPosition);
+
 
         /*
          * Combat Status

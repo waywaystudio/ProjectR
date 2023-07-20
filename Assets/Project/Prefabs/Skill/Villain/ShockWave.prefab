@@ -163,12 +163,12 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 3560796899474892699}
+  - {fileID: 1684982600542943729}
   - {fileID: 7490764005783153200}
   - {fileID: 4486267942335270001}
   - {fileID: 3639157282309754650}
   m_Father: {fileID: 0}
-  m_RootOrder: -1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &5686399253027117551
 MonoBehaviour:
@@ -205,7 +205,7 @@ MonoBehaviour:
     sortingType: 8
     sizeEntity:
       x: 0
-      y: 18
+      y: 24
       z: 60
     targetLayer:
       serializedVersion: 2
@@ -234,8 +234,8 @@ MonoBehaviour:
     paySection: 0
   priority: 2
   description: Starts combat by attacking a target with a melee weapon.
-  projector: {fileID: 6866298694979939756}
---- !u!1001 &8845730228390589985
+  projector: {fileID: 5575224665638590104}
+--- !u!1001 &2618095863233237941
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -243,84 +243,72 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 885349882779755691}
     m_Modifications:
-    - target: {fileID: 2705439130084842381, guid: ce801cfaac4944e46b660e89a11b719c, type: 3}
-      propertyPath: isStaticProjector
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2744100200416111999, guid: ce801cfaac4944e46b660e89a11b719c, type: 3}
+    - target: {fileID: 2584050213132871418, guid: ed44536ca3a826f418c63aefc719a48e, type: 3}
       propertyPath: uniqueID
-      value: 4519359898963984922
+      value: 6426417197040327402
       objectReference: {fileID: 0}
-    - target: {fileID: 5451648222217753390, guid: ce801cfaac4944e46b660e89a11b719c, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5451648222217753391, guid: ce801cfaac4944e46b660e89a11b719c, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 90
-      objectReference: {fileID: 0}
-    - target: {fileID: 5451648222737240496, guid: ce801cfaac4944e46b660e89a11b719c, type: 3}
-      propertyPath: m_Name
-      value: ArcProjector60
-      objectReference: {fileID: 0}
-    - target: {fileID: 5451648222737240506, guid: ce801cfaac4944e46b660e89a11b719c, type: 3}
+    - target: {fileID: 3690448035969280580, guid: ed44536ca3a826f418c63aefc719a48e, type: 3}
       propertyPath: m_RootOrder
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 5451648222737240506, guid: ce801cfaac4944e46b660e89a11b719c, type: 3}
+    - target: {fileID: 3690448035969280580, guid: ed44536ca3a826f418c63aefc719a48e, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 5451648222737240506, guid: ce801cfaac4944e46b660e89a11b719c, type: 3}
+    - target: {fileID: 3690448035969280580, guid: ed44536ca3a826f418c63aefc719a48e, type: 3}
       propertyPath: m_LocalPosition.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 5451648222737240506, guid: ce801cfaac4944e46b660e89a11b719c, type: 3}
+    - target: {fileID: 3690448035969280580, guid: ed44536ca3a826f418c63aefc719a48e, type: 3}
       propertyPath: m_LocalPosition.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 5451648222737240506, guid: ce801cfaac4944e46b660e89a11b719c, type: 3}
+    - target: {fileID: 3690448035969280580, guid: ed44536ca3a826f418c63aefc719a48e, type: 3}
       propertyPath: m_LocalRotation.w
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 5451648222737240506, guid: ce801cfaac4944e46b660e89a11b719c, type: 3}
+    - target: {fileID: 3690448035969280580, guid: ed44536ca3a826f418c63aefc719a48e, type: 3}
       propertyPath: m_LocalRotation.x
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 5451648222737240506, guid: ce801cfaac4944e46b660e89a11b719c, type: 3}
+    - target: {fileID: 3690448035969280580, guid: ed44536ca3a826f418c63aefc719a48e, type: 3}
       propertyPath: m_LocalRotation.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 5451648222737240506, guid: ce801cfaac4944e46b660e89a11b719c, type: 3}
+    - target: {fileID: 3690448035969280580, guid: ed44536ca3a826f418c63aefc719a48e, type: 3}
       propertyPath: m_LocalRotation.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 5451648222737240506, guid: ce801cfaac4944e46b660e89a11b719c, type: 3}
+    - target: {fileID: 3690448035969280580, guid: ed44536ca3a826f418c63aefc719a48e, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 5451648222737240506, guid: ce801cfaac4944e46b660e89a11b719c, type: 3}
+    - target: {fileID: 3690448035969280580, guid: ed44536ca3a826f418c63aefc719a48e, type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 5451648222737240506, guid: ce801cfaac4944e46b660e89a11b719c, type: 3}
+    - target: {fileID: 3690448035969280580, guid: ed44536ca3a826f418c63aefc719a48e, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5954558014298542541, guid: ed44536ca3a826f418c63aefc719a48e, type: 3}
+      propertyPath: m_Name
+      value: CollideArcProjector60
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: ce801cfaac4944e46b660e89a11b719c, type: 3}
---- !u!4 &3560796899474892699 stripped
+  m_SourcePrefab: {fileID: 100100000, guid: ed44536ca3a826f418c63aefc719a48e, type: 3}
+--- !u!4 &1684982600542943729 stripped
 Transform:
-  m_CorrespondingSourceObject: {fileID: 5451648222737240506, guid: ce801cfaac4944e46b660e89a11b719c, type: 3}
-  m_PrefabInstance: {fileID: 8845730228390589985}
+  m_CorrespondingSourceObject: {fileID: 3690448035969280580, guid: ed44536ca3a826f418c63aefc719a48e, type: 3}
+  m_PrefabInstance: {fileID: 2618095863233237941}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &6866298694979939756 stripped
+--- !u!114 &5575224665638590104 stripped
 MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 2705439130084842381, guid: ce801cfaac4944e46b660e89a11b719c, type: 3}
-  m_PrefabInstance: {fileID: 8845730228390589985}
+  m_CorrespondingSourceObject: {fileID: 7568990885016077613, guid: ed44536ca3a826f418c63aefc719a48e, type: 3}
+  m_PrefabInstance: {fileID: 2618095863233237941}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 0}
   m_Enabled: 1

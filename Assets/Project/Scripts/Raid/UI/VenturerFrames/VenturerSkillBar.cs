@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using Character.Venturers;
 using Common.Characters.Behaviours;
+using Common.Skills;
 using UnityEngine;
 
 namespace Raid.UI.VenturerFrames

@@ -7,7 +7,6 @@ public class SequenceBuilder
     public SequenceBuilder(Sequencer holder) => Sequencer = holder;
     
     public SequenceBuilder AddCondition(string key, Func<bool> condition) { Sequencer.Condition.Add(key, condition); return this; }
-    // public SequenceBuilder AddTrigger(Func<bool> condition, Action callback) { Sequencer.CompleteTrigger = new WaitTrigger(condition, callback); return this; }
     public SequenceBuilder Add(Section type, string key, Action action)
     {
         Sequencer[type].Add(key, action);
@@ -16,7 +15,6 @@ public class SequenceBuilder
     }
     
     public SequenceBuilder RemoveCondition(string key) { Sequencer.Condition.Remove(key); return this; }
-    // public SequenceBuilder RemoveTrigger() { Sequencer.CompleteTrigger = null; return this; }
     public SequenceBuilder Remove(Section type, string key)
     {
         Sequencer[type].Remove(key);
@@ -59,7 +57,6 @@ public class SequenceBuilder<T>
 
     public SequenceBuilder<T> AddActiveParam(string key, Action<T> action) { Sequencer.ActiveParamAction.Add(key, action); return this; }
     public SequenceBuilder<T> AddCondition(string key, Func<bool> condition) { Sequencer.Condition.Add(key, condition); return this; }
-    // public SequenceBuilder<T> AddTrigger(Func<bool> condition, Action callback) { Sequencer.CompleteTrigger = new WaitTrigger(condition, callback); return this; }
     public SequenceBuilder<T> Add(Section type, string key, Action action)
     {
         Sequencer[type].Add(key, action);
@@ -75,7 +72,6 @@ public class SequenceBuilder<T>
     
     public SequenceBuilder<T> RemoveActiveParam(string key) { Sequencer.ActiveParamAction.Remove(key); return this; }
     public SequenceBuilder<T> RemoveCondition(string key) { Sequencer.Condition.Remove(key); return this; }
-    // public SequenceBuilder<T> RemoveTrigger() { Sequencer.CompleteTrigger = null; return this; }
     public SequenceBuilder<T> Remove(Section type, string key)
     {
         Sequencer[type].Remove(key);

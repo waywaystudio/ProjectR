@@ -13,13 +13,13 @@ namespace Common.Detects
         [SerializeField] private LayerMask targetLayer;
         [SerializeField] private LayerMask damageLayer;
 
-        private ITakerDetection typeDetector;
         private ICombatTaker self;
         private ISearchable searchEngine;
         private List<int> preAllocatedLayerIndex;
         private List<ICombatTaker> preAllocatedSelf;
         private List<ICombatTaker> mainTargetBuffer;
-        
+
+        public ITakerDetection TypeDetector { get; set; }
         public ICombatTaker ForceTaker { get; set; }
         public SizeEntity SizeEntity => sizeEntity;
         
@@ -35,13 +35,14 @@ namespace Common.Detects
             preAllocatedSelf       = new List<ICombatTaker> { self };
             mainTargetBuffer       = new List<ICombatTaker>();
             preAllocatedLayerIndex = targetLayer.ToIndexList();
-            typeDetector = targetType switch
+            TypeDetector ??= targetType switch
             {
                 TargetingType.Circle       => new CircleDetector(),
                 TargetingType.Cone         => new AngleDetector(),
                 TargetingType.Rect         => new RectDetector(),
                 TargetingType.Raycast      => new RaycastDetector(),
                 TargetingType.RaycastWidth => new BoxCastDetector(),
+                // TargetingType.Custom => gameObject.GetComponent
                 // TargetingType.None         => expr,
                 // TargetingType.Self         => expr,
                 // TargetingType.Line         => expr,
@@ -85,7 +86,7 @@ namespace Common.Detects
         {
             return targetType == TargetingType.Self 
                 ? preAllocatedSelf 
-                : typeDetector?.GetTakers(searchEngine.Position, searchEngine.Forward, damageLayer, sizeEntity);
+                : TypeDetector?.GetTakers(searchEngine.Position, searchEngine.Forward, damageLayer, sizeEntity);
         }
 
         private List<ICombatTaker> GetTakersInCircleRange(Vector3 center, float radius, Collider[] buffers)

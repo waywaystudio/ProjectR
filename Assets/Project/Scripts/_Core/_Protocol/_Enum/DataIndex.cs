@@ -188,6 +188,8 @@ public enum DataIndex
 	MeteorStrike = 31222203,
 	VillainCommonAttack = 31222204,
 	RocketRock = 31222205,
+	Pinwheel = 31222206,
+	StoneClap = 31222207,
 
 	/* StatusEffectData */
 	ArmorCrashStatusEffect = 32210001,
