@@ -10,6 +10,7 @@ namespace Common
         Rect = 5, 
         Raycast = 6,
         RaycastWidth = 7,
+        Donut = 8,
         //
         Custom = 99,
     }

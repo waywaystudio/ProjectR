@@ -27,4 +27,8 @@ public struct SizeEntity
     public float Angle { get => z; set => z = value; }
     public float Width { get => z; set => z = value; }
     public float Height { get => y; set => y = value; }
+    
+    // For Donut Detector
+    public float InnerRadius { get => y; set => y = value; }
+    public float OuterRadius { get => z; set => z = value; }
 }

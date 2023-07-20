@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1870363501467261224}
   - component: {fileID: 7386895736729445470}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Projector
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -68,7 +68,8 @@ GameObject:
   - component: {fileID: 2142868907541913267}
   - component: {fileID: 409920653485585642}
   - component: {fileID: 5903314440285413290}
-  m_Layer: 0
+  - component: {fileID: 7869185047275772086}
+  m_Layer: 10
   m_Name: Collider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -136,6 +137,33 @@ MonoBehaviour:
   uniqueID: 8064814294478517398
   updateError: 1
   checkTime: 0.2
+--- !u!54 &7869185047275772086
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6144151239049688919}
+  serializedVersion: 4
+  m_Mass: 0.0000001
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 0
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 80
+  m_CollisionDetection: 0
 --- !u!1 &7751174441055851287
 GameObject:
   m_ObjectHideFlags: 0
@@ -146,7 +174,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1816809211909420738}
   - component: {fileID: 1588679701017484685}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: DonutHalfThickProjector
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -187,6 +215,8 @@ MonoBehaviour:
   easeType: 1
   backgroundColor: {r: 1, g: 1, b: 1, a: 0.043137256}
   fillColor: {r: 0.5, g: 0.06839624, b: 0.090399645, a: 0.3764706}
-  fillSimulator: 0.474
+  enableCollider: 1
+  colliderObject: {fileID: 6144151239049688919}
+  fillSimulator: 0.279
   sizeSimulator: 5
   innerRadiusSimulator: 0.5

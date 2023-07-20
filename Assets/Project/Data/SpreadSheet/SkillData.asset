@@ -1264,3 +1264,30 @@ MonoBehaviour:
     statusEffect: 0
     iconFileName: StoneClap Sprite
     description: Starts combat by attacking a target with a melee weapon.
+  - id: 31222208
+    name: BrokenBlackRing
+    behaviourMask: Skill
+    priority: 3
+    sortingType: Random
+    targetType: Donut
+    targetParam: {x: 0, y: 10, z: 20}
+    targetLayer: Adventurer
+    damagetLayer: Adventurer
+    animationKey: casting
+    castCompleteKey: attack
+    isLoop: 1
+    hasEvent: 0
+    skillType: Casting
+    animationCallback: None
+    coolTime: 17
+    coolTimeInvoker: Execute
+    castTime: 3.5
+    castCallback: Execute
+    completionValueList:
+    - 0
+    cost: 0
+    requireTaker: 0
+    paySection: None
+    statusEffect: 0
+    iconFileName: BrokenBlackRing Sprite
+    description: Starts combat by attacking a target with a melee weapon.

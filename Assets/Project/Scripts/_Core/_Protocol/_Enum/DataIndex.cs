@@ -190,6 +190,7 @@ public enum DataIndex
 	RocketRock = 31222205,
 	Pinwheel = 31222206,
 	StoneClap = 31222207,
+	BrokenBlackRing = 31222208,
 
 	/* StatusEffectData */
 	ArmorCrashStatusEffect = 32210001,

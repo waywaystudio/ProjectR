@@ -1,0 +1,237 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &4389566028166610396
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7490764005783153200}
+  - component: {fileID: 8516447426090470065}
+  m_Layer: 0
+  m_Name: Hits
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7490764005783153200
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4389566028166610396}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 885349882779755691}
+  m_RootOrder: -1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &8516447426090470065
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4389566028166610396}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 910d8bb983b570146b7c330bb9a77e89, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  group: 1
+  damageSpec:
+    statList:
+    - statType: 13010001
+      statKey: DamageExecutorKey
+      value: 3000
+    - statType: 13020001
+      statKey: DamageExecutorKey
+      value: 0
+    - statType: 13030003
+      statKey: DamageExecutorKey
+      value: 0
+--- !u!1 &9008597298807712295
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 885349882779755691}
+  - component: {fileID: 5027409244668318023}
+  m_Layer: 0
+  m_Name: BrokenBlackRing
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &885349882779755691
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9008597298807712295}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 3328284384538120037}
+  - {fileID: 7490764005783153200}
+  m_Father: {fileID: 0}
+  m_RootOrder: -1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &5027409244668318023
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9008597298807712295}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 344da9d61ac8ca34a9ba51cd58d2999d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dataIndex: 31222208
+  skillType: 2
+  behaviourMask: 32
+  icon: {fileID: 21300000, guid: 1f9f2926525d32d48b7d4a8f72b0bff9, type: 3}
+  hitExecutor:
+    hitExecutionList:
+    - {fileID: 8516447426090470065}
+  fireExecutor:
+    fireExecutionList: []
+  effector:
+    combatParticles: []
+    combatSounds: []
+    combatImpulses: []
+    combatCameras: []
+    combatPostProcesses: []
+    hitPauses: []
+    bulletTimes: []
+  detector:
+    targetType: 8
+    sortingType: 8
+    sizeEntity:
+      x: 0
+      y: 10
+      z: 20
+    targetLayer:
+      serializedVersion: 2
+      m_Bits: 128
+    damageLayer:
+      serializedVersion: 2
+      m_Bits: 128
+  animationTrait:
+    animationKey: casting
+    castCompleteAnimationKey: attack
+    isLoop: 1
+    hasExecuteEvent: 0
+    animationPlaySpeed: 1
+    callbackSection: 0
+  coolTimer:
+    duration: 17
+    isIncrease: 0
+    invokeSection: 11
+  castTimer:
+    duration: 3.5
+    isIncrease: 1
+    callbackSection: 11
+  cost:
+    cost: 0
+    requireTaker: 0
+    paySection: 0
+  priority: 3
+  description: Starts combat by attacking a target with a melee weapon.
+  projector: {fileID: 2380984307869951018}
+--- !u!1001 &3965115292507142567
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 885349882779755691}
+    m_Modifications:
+    - target: {fileID: 1816809211909420738, guid: af04c13aec7c7f344961833e6becb186, type: 3}
+      propertyPath: m_RootOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1816809211909420738, guid: af04c13aec7c7f344961833e6becb186, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1816809211909420738, guid: af04c13aec7c7f344961833e6becb186, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1816809211909420738, guid: af04c13aec7c7f344961833e6becb186, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1816809211909420738, guid: af04c13aec7c7f344961833e6becb186, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1816809211909420738, guid: af04c13aec7c7f344961833e6becb186, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1816809211909420738, guid: af04c13aec7c7f344961833e6becb186, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1816809211909420738, guid: af04c13aec7c7f344961833e6becb186, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1816809211909420738, guid: af04c13aec7c7f344961833e6becb186, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1816809211909420738, guid: af04c13aec7c7f344961833e6becb186, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1816809211909420738, guid: af04c13aec7c7f344961833e6becb186, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5903314440285413290, guid: af04c13aec7c7f344961833e6becb186, type: 3}
+      propertyPath: uniqueID
+      value: 2598704507321056774
+      objectReference: {fileID: 0}
+    - target: {fileID: 7751174441055851287, guid: af04c13aec7c7f344961833e6becb186, type: 3}
+      propertyPath: m_Name
+      value: DonutHalfThickProjector
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: af04c13aec7c7f344961833e6becb186, type: 3}
+--- !u!114 &2380984307869951018 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1588679701017484685, guid: af04c13aec7c7f344961833e6becb186, type: 3}
+  m_PrefabInstance: {fileID: 3965115292507142567}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 74d0b19fcb9c8594f975799c084672bf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!4 &3328284384538120037 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 1816809211909420738, guid: af04c13aec7c7f344961833e6becb186, type: 3}
+  m_PrefabInstance: {fileID: 3965115292507142567}
+  m_PrefabAsset: {fileID: 0}

@@ -42,6 +42,7 @@ namespace Common.Detects
                 TargetingType.Rect         => new RectDetector(),
                 TargetingType.Raycast      => new RaycastDetector(),
                 TargetingType.RaycastWidth => new BoxCastDetector(),
+                TargetingType.Donut => new DonutDetector(),
                 // TargetingType.Custom => gameObject.GetComponent
                 // TargetingType.None         => expr,
                 // TargetingType.Self         => expr,
