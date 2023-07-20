@@ -35,8 +35,7 @@ namespace Common.Projectors
 
         public override void Initialize(IProjection provider)
         {
-            Provider = provider;
-            
+            Provider               = provider;
             projector.material     = new Material(materialReference);
             bodyProjector.material = new Material(bodyMaterial);
 
@@ -148,6 +147,7 @@ namespace Common.Projectors
         {
             UpdateHeadProjector();
             UpdateBodyProjector();
+            
             transform.localRotation = Quaternion.Euler(0, 0, 0);
         }
     }
