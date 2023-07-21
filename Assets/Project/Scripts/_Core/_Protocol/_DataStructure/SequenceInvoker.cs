@@ -4,7 +4,7 @@ public class SequenceInvoker
     
     public SequenceInvoker(Sequencer sequencer) => Sequencer = sequencer;
     
-    public bool IsAbleToActive => Sequencer.Condition == null || Sequencer.Condition.IsAllTrue;
+    public bool IsAbleToActive => Sequencer.Condition.IsAllTrue;
     public bool IsActive { get; private set; }
     public bool IsEnd { get; private set; } = true;
 

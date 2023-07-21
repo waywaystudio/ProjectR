@@ -26,7 +26,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1352179340110984879}
   m_LocalRotation: {x: 0.7071068, y: 0, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: 0, y: 0.15, z: 2}
+  m_LocalPosition: {x: 0, y: 0.15, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -45,6 +45,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 57d56f3ac1375b94d9186e0b349787e6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  materialReference: {fileID: 2100000, guid: 1d66278ba55aa5f4eb822613da178d4d, type: 2}
+  backgroundColor: {r: 1, g: 1, b: 1, a: 1}
+  fillColor: {r: 1, g: 0, b: 0, a: 1}
   width: 3
   length: 0.1
 --- !u!114 &5277083363619144174
@@ -97,7 +100,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1352179340218273835}
   m_LocalRotation: {x: 0.7071068, y: 0, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: 0, y: 0.15, z: 5.967}
+  m_LocalPosition: {x: 0, y: 0.15, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -116,6 +119,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 38d159da1799b954d93c628a8d7391bc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  materialReference: {fileID: 2100000, guid: 76cbd542a406ea24f9cafe32909e413b, type: 2}
+  backgroundColor: {r: 1, g: 1, b: 1, a: 1}
+  fillColor: {r: 1, g: 0, b: 0, a: 1}
   width: 3
   length: 0.1
 --- !u!114 &8751293694508949018
@@ -174,7 +180,7 @@ Transform:
   - {fileID: 1352179340218273834}
   - {fileID: 1352179340110984878}
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1776650888191301965
 MonoBehaviour:
@@ -189,14 +195,3 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   targetingType: 0
-  materialReference: {fileID: 2100000, guid: 76cbd542a406ea24f9cafe32909e413b, type: 2}
-  backgroundColor: {r: 1, g: 1, b: 1, a: 1}
-  fillColor: {r: 0, g: 0.6862745, b: 1, a: 0.18431373}
-  projector: {fileID: 8751293694508949018}
-  bodyMaterial: {fileID: 2100000, guid: 1d66278ba55aa5f4eb822613da178d4d, type: 2}
-  bodyProjector: {fileID: 5277083363619144174}
-  fadeAmount: 0
-  length: 3
-  width: 0.1
-  fullChargingScale: 1.5
-  chargingColor: {r: 0, g: 0.6862745, b: 1, a: 0.65882355}

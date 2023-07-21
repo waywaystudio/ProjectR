@@ -46,8 +46,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   materialReference: {fileID: 2100000, guid: 443581ee016d3c44680f16e964eafebf, type: 2}
-  backgroundColor: {r: 1, g: 1, b: 1, a: 1}
-  fillColor: {r: 1, g: 0, b: 0, a: 1}
+  backgroundColor: {r: 1, g: 1, b: 1, a: 0.5176471}
+  fillColor: {r: 1, g: 0, b: 0, a: 0.5803922}
 --- !u!114 &2577980843983481970
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -63,8 +63,8 @@ MonoBehaviour:
   m_Material: {fileID: 2100000, guid: 443581ee016d3c44680f16e964eafebf, type: 2}
   m_DrawDistance: 1000
   m_FadeScale: 1
-  m_StartAngleFade: 180
-  m_EndAngleFade: 180
+  m_StartAngleFade: 0
+  m_EndAngleFade: 0
   m_UVScale: {x: 1, y: 1}
   m_UVBias: {x: 0, y: 0}
   m_DecalLayerMask: 1
@@ -212,6 +212,3 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   targetingType: 3
-  materialReference: {fileID: 2100000, guid: 443581ee016d3c44680f16e964eafebf, type: 2}
-  backgroundColor: {r: 1, g: 1, b: 1, a: 0.5176471}
-  fillColor: {r: 1, g: 0, b: 0, a: 1}

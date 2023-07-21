@@ -46,8 +46,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   materialReference: {fileID: 2100000, guid: cdbbc0c5837b9084095a5f180a621108, type: 2}
-  backgroundColor: {r: 1, g: 1, b: 1, a: 1}
-  fillColor: {r: 1, g: 0, b: 0, a: 1}
+  backgroundColor: {r: 1, g: 1, b: 1, a: 0.16862746}
+  fillColor: {r: 1, g: 0, b: 0, a: 0.18431373}
 --- !u!114 &7386895736729445470
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -118,6 +118,3 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   targetingType: 5
-  materialReference: {fileID: 2100000, guid: cdbbc0c5837b9084095a5f180a621108, type: 2}
-  backgroundColor: {r: 1, g: 1, b: 1, a: 0.13333334}
-  fillColor: {r: 0.5283019, g: 0.05233179, b: 0.05233179, a: 0.2901961}

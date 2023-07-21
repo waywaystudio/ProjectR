@@ -72,6 +72,7 @@ namespace Common
         {
             IsEnd    = false;
             IsActive = true;
+            
             sequence[Section.Active].Invoke();
         
             // Handle Active Just once and than disappear Action.

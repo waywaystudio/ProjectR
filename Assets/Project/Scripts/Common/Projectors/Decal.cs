@@ -97,7 +97,7 @@ namespace Common.Projectors
             }
         }
 
-        protected void StopProjection()
+        protected virtual void StopProjection()
         {
             Cts?.Cancel();
             Cts = null;

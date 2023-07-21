@@ -7,20 +7,11 @@ public class SequenceBuilder
     public SequenceBuilder(Sequencer holder) => Sequencer = holder;
     
     public SequenceBuilder AddCondition(string key, Func<bool> condition) { Sequencer.Condition.Add(key, condition); return this; }
-    public SequenceBuilder Add(Section type, string key, Action action)
-    {
-        Sequencer[type].Add(key, action);
-        
-        return this;
-    }
+    public SequenceBuilder Add(Section type, string key, Action action) { Sequencer[type].Add(key, action); return this; }
+    public SequenceBuilder AddIf(bool condition, Section type, string key, Action action) { if (condition) Add(type, key, action); return this; }
     
     public SequenceBuilder RemoveCondition(string key) { Sequencer.Condition.Remove(key); return this; }
-    public SequenceBuilder Remove(Section type, string key)
-    {
-        Sequencer[type].Remove(key);
-        
-        return this;
-    }
+    public SequenceBuilder Remove(Section type, string key) { Sequencer[type].Remove(key); return this; }
     
     /// <summary>
     /// mainSequencer에 Sequencer를 등록안한다.

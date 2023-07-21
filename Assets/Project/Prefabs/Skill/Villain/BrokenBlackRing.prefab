@@ -88,7 +88,7 @@ Transform:
   - {fileID: 3328284384538120037}
   - {fileID: 7490764005783153200}
   m_Father: {fileID: 0}
-  m_RootOrder: -1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &5027409244668318023
 MonoBehaviour:
@@ -153,7 +153,7 @@ MonoBehaviour:
     paySection: 0
   priority: 3
   description: Starts combat by attacking a target with a melee weapon.
-  projector: {fileID: 5871942044689084264}
+  projection: {fileID: 5871942044689084264}
 --- !u!1001 &3965115292507142567
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -205,10 +205,6 @@ PrefabInstance:
     - target: {fileID: 1816809211909420738, guid: af04c13aec7c7f344961833e6becb186, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5903314440285413290, guid: af04c13aec7c7f344961833e6becb186, type: 3}
-      propertyPath: uniqueID
-      value: 1573225378415136867
       objectReference: {fileID: 0}
     - target: {fileID: 7751174441055851287, guid: af04c13aec7c7f344961833e6becb186, type: 3}
       propertyPath: m_Name

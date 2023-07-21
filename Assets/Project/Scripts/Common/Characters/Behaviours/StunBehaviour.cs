@@ -1,3 +1,4 @@
+using Common.Effects.Particles;
 using UnityEngine;
 
 namespace Common.Characters.Behaviours
@@ -5,6 +6,7 @@ namespace Common.Characters.Behaviours
     public class StunBehaviour : MonoBehaviour, IActionBehaviour
     {
         [SerializeField] private bool isImmune;
+        [SerializeField] private ParticlePool pool;
         
         public ActionMask BehaviourMask => ActionMask.Stun;
         public Sequencer<float> Sequencer { get; } = new();
@@ -32,6 +34,19 @@ namespace Common.Characters.Behaviours
         public void Immune(bool value) => isImmune = value;
 
 
+        private void PlayParticle()
+        {
+            var spawnPosition = Cb.Preposition(PrepositionType.Top);
+            
+            pool.Get().Play(spawnPosition.position, transform);
+        }
+
+        private void StopParticle()
+        {
+            pool.Release();
+        }
+
+
         private void OnEnable()
         {
             Invoker = new SequenceInvoker<float>(Sequencer);
@@ -41,9 +56,14 @@ namespace Common.Characters.Behaviours
                 .AddCondition("IsNotImmune", () => !isImmune)
                 .AddActiveParam("PlayStunTimer", duration => Timer.Play(duration, Invoker.Complete))
                 .Add(Section.Active,"CancelPreviousBehaviour", () => cb.CurrentBehaviour?.TryToOverride(this))
+                .Add(Section.Active, "PlayParticle", PlayParticle)
                 .Add(Section.Active,"SetCurrentBehaviour", () => cb.CurrentBehaviour = this)
                 .Add(Section.Active,"PlayAnimation", Cb.Animating.Stun)
-                .Add(Section.End,"Stop", Cb.Stop);
+                .Add(Section.End,"Stop", Cb.Stop)
+                .Add(Section.End,"StopParticle", StopParticle)
+                ;
+
+            pool.Initialize(component => component.Pool = pool, transform);
         }
 
         private void OnDisable()

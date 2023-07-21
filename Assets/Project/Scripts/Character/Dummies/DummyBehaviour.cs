@@ -11,6 +11,7 @@ namespace Character.Dummies
     {
         [SerializeField] private bool isSelfInitialize;
         [SerializeField] private string vummyName;
+        [SerializeField] private SpriteRenderer spriteRenderer;
         [SerializeField] protected DummyCombatStatusData combatData;
         [SerializeField] protected CharacterCombatStatus combatStatus;
         [SerializeField] protected CharacterPreposition prePosition;
@@ -20,6 +21,7 @@ namespace Character.Dummies
         public Vector3 Position => transform.position;
         public Vector3 Forward => transform.forward;
         public CharacterMask CombatClass => CharacterMask.Vummy;
+        public SpriteRenderer SpriteRenderer => spriteRenderer;
         
         public AliveValue Alive => combatStatus.Alive;
         public HpValue Hp => combatStatus.Hp;
@@ -62,8 +64,9 @@ namespace Character.Dummies
 #if UNITY_EDITOR
         public void EditorSetUp()
         {
-            combatStatus = GetComponentInChildren<CharacterCombatStatus>();
-            prePosition  = GetComponentInChildren<CharacterPreposition>();
+            spriteRenderer = GetComponentInChildren<SpriteRenderer>();
+            combatStatus   = GetComponentInChildren<CharacterCombatStatus>();
+            prePosition    = GetComponentInChildren<CharacterPreposition>();
         }
 #endif
     }

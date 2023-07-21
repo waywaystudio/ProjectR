@@ -1188,6 +1188,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isImmune: 0
+  pool:
+    prefab: {fileID: 1846532664448058, guid: b798c31df8fe2d440a99a9e9a5eb9b37, type: 3}
+    maxCount: 1
+    syncObjectActivity: 1
+    singleInstanceOnly: 1
 --- !u!1 &4755549168342474937
 GameObject:
   m_ObjectHideFlags: 0
