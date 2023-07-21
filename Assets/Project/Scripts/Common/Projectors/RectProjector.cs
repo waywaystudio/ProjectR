@@ -5,7 +5,7 @@ using UnityEngine;
 
 namespace Common.Projectors
 {
-    public class RectProjector : ProjectorComponent
+    public class RectProjector : Projector
     {
         [PropertyRange(0, 1)]
         [SerializeField] protected float fillSimulator;
@@ -21,17 +21,17 @@ namespace Common.Projectors
         
         public override void Initialize(IProjection provider)
         {
-            Provider = provider;
-
+            Provider           = provider;
             projector.material = new Material(materialReference);
             width              = provider.SizeEntity.Width;
             length             = provider.SizeEntity.Height;
 
             UpdateHeadProjector();
 
-            var builder = new CombatSequenceBuilder(provider.Sequence);
+            Builder = new SequenceBuilder(Sequencer);
+            Builder.Register($"{InstanceKey}.Projection", Provider.Sequence);
             
-            builder
+            Builder
                 .Add(Section.Active, "ShaderProgression", PlayProjection)
                 .Add(Section.Cancel, "CancelTween", StopProjection)
                 .Add(Section.Execute, "CancelTween", StopProjection)

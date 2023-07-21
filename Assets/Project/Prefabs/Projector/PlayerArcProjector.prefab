@@ -65,7 +65,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5451648222737240506}
-  - component: {fileID: 1983913394890530822}
+  - component: {fileID: 5511215047123252479}
   m_Layer: 0
   m_Name: PlayerArcProjector
   m_TagString: Untagged
@@ -89,7 +89,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1983913394890530822
+--- !u!114 &5511215047123252479
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -98,12 +98,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 5451648222737240496}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ee677b6f5098e6941a97d88f0e99eda6, type: 3}
+  m_Script: {fileID: 11500000, guid: 07d3d137f5575b445ab709981b1510c0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isStaticProjector: 0
   materialReference: {fileID: 2100000, guid: 443581ee016d3c44680f16e964eafebf, type: 2}
   projector: {fileID: 5451648222217753388}
   easeType: 1
   backgroundColor: {r: 1, g: 1, b: 1, a: 1}
-  fillColor: {r: 0, g: 0.049347878, b: 1, a: 1}
+  fillColor: {r: 1, g: 0, b: 0, a: 1}

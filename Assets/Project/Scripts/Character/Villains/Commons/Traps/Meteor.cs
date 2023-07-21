@@ -2,12 +2,13 @@ using Common;
 using Common.Projectors;
 using Common.Traps;
 using UnityEngine;
+using Projector = Common.Projectors.Projector;
 
 namespace Character.Villains.Commons.Traps
 {
     public class Meteor : Trap, IProjection
     {
-        [SerializeField] private ArcProjector projector;
+        [SerializeField] private Projector projector;
         
         private readonly Collider[] colliderBuffers = new Collider[32];
         

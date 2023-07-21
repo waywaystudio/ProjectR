@@ -3,10 +3,8 @@ using UnityEngine;
 
 namespace Common.Projectors
 {
-    public class DonutProjector : ProjectorComponent
+    public class DonutProjector : Projector
     {
-        [SerializeField] private bool enableCollider;
-        [SerializeField] private GameObject colliderObject;
         [PropertyRange(0, 1)]
         [SerializeField] private float fillSimulator;
         [SerializeField] private float sizeSimulator;
@@ -19,28 +17,8 @@ namespace Common.Projectors
         {
             base.Initialize(provider);
             
-            // Provider           = provider;
-            // InstanceKey        = GetInstanceID().ToString();
-            // projector.material = new Material(materialReference);
-            
             projector.size     = new Vector3(Provider.SizeEntity.OuterRadius * 2f, Provider.SizeEntity.OuterRadius * 2f, ProjectorDepth);
             projector.material.SetFloat(InnerRadiusID, innerRadiusSimulator);
-
-            var builder = new CombatSequenceBuilder(provider.Sequence);
-            
-            if (enableCollider)
-            {
-                colliderObject.transform.localScale *= Provider.SizeEntity.OuterRadius;
-                
-                builder
-                    .Add(Section.Active, $"{InstanceKey}.ActiveCollider", () => colliderObject.SetActive(true))
-                    .Add(Section.End,  $"{InstanceKey}.DeActiveCollider", () => colliderObject.SetActive(false))
-                    ;
-            }
-            else
-            {
-                colliderObject.SetActive(false);
-            }
         }
         
         

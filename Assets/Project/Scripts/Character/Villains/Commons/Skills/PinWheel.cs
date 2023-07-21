@@ -2,15 +2,16 @@ using Common.Projectors;
 using Common.Skills;
 using DG.Tweening;
 using UnityEngine;
+using Projector = Common.Projectors.Projector;
 
 namespace Character.Villains.Commons.Skills
 {
     public class PinWheel : SkillComponent
     {
-        [SerializeField] private ArcProjector forwardProjector;
-        [SerializeField] private ArcProjector backwardProjector;
-        [SerializeField] private ArcProjector rightwardProjector;
-        [SerializeField] private ArcProjector leftwardProjector;
+        [SerializeField] private Projector forwardProjector;
+        [SerializeField] private Projector backwardProjector;
+        [SerializeField] private Projector leftwardProjector;
+        [SerializeField] private Projector rightwardProjector;
 
         private Tween rotateTween;
         

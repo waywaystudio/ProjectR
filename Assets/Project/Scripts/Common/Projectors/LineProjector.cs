@@ -6,7 +6,7 @@ using UnityEngine.Rendering.Universal;
 
 namespace Common.Projectors
 {
-    public class LineProjector : ProjectorComponent
+    public class LineProjector : Projector
     {
         [SerializeField] protected Material bodyMaterial;
         [SerializeField] protected DecalProjector bodyProjector;
@@ -38,13 +38,14 @@ namespace Common.Projectors
             Provider               = provider;
             projector.material     = new Material(materialReference);
             bodyProjector.material = new Material(bodyMaterial);
+            
+            Builder = new SequenceBuilder(Sequencer);
+            Builder.Register($"{InstanceKey}.Projection", Provider.Sequence);
 
             UpdateHeadProjector();
             UpdateBodyProjector();
             
-            var builder = new CombatSequenceBuilder(provider.Sequence);
-            
-            builder
+            Builder
                 .Add(Section.Active, "ShaderProgression", PlayProjection)
                 .Add(Section.Cancel, "CancelTween", StopProjection)
                 .Add(Section.Execute, "CancelTween", StopProjection)

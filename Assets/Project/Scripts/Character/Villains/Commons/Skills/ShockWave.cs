@@ -1,12 +1,13 @@
 using Common.Projectors;
 using Common.Skills;
 using UnityEngine;
+using Projector = Common.Projectors.Projector;
 
 namespace Character.Villains.Commons.Skills
 {
     public class ShockWave : SkillComponent
     {
-        [SerializeField] private ArcProjector projector;
+        [SerializeField] private Projector projector;
         
         public override void Initialize()
         {

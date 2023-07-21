@@ -9,6 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2956250794889403699}
+  - component: {fileID: 5396899330194445548}
   - component: {fileID: 2998071572755100239}
   - component: {fileID: 3784922953377259603}
   m_Layer: 10
@@ -33,6 +34,18 @@ Transform:
   m_Father: {fileID: 4027286352141989458}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &5396899330194445548
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2674489549287038183}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9c5490c2b2404f04dac9d7c8a2b9f056, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!135 &2998071572755100239
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -79,9 +92,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4027286352141989458}
-  - component: {fileID: -8917210906174923192}
+  - component: {fileID: 4044480864689120843}
   m_Layer: 10
-  m_Name: CollideSphereProjector
+  m_Name: SphereProjector
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -104,7 +117,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &-8917210906174923192
+--- !u!114 &4044480864689120843
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -113,15 +126,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 4027286352141989457}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 66eb6ca4b6a3e9345b1c27aa66c4441c, type: 3}
+  m_Script: {fileID: 11500000, guid: 07d3d137f5575b445ab709981b1510c0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  targetingType: 3
   materialReference: {fileID: 2100000, guid: 443581ee016d3c44680f16e964eafebf, type: 2}
   projector: {fileID: 7062586014429376110}
-  easeType: 1
-  backgroundColor: {r: 1, g: 1, b: 1, a: 0.49019608}
+  backgroundColor: {r: 1, g: 1, b: 1, a: 0.5372549}
   fillColor: {r: 1, g: 0, b: 0, a: 1}
-  colliderTransform: {fileID: 2956250794889403699}
 --- !u!1 &8816030244132129195
 GameObject:
   m_ObjectHideFlags: 0

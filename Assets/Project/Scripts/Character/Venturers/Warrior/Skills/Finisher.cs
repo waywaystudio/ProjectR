@@ -3,12 +3,13 @@ using Common.Execution.Hits;
 using Common.Projectors;
 using Common.Skills;
 using UnityEngine;
+using Projector = Common.Projectors.Projector;
 
 namespace Character.Venturers.Warrior.Skills
 {
     public class Finisher : SkillComponent
     {
-        [SerializeField] private ArcProjector projector;
+        [SerializeField] private Projector projector;
         [SerializeField] private DamageHit damageHit;
         [SerializeField] private float remainBonusMultiplier = 1f;
 

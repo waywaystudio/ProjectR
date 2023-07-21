@@ -3,12 +3,13 @@ using Common.Projectors;
 using Common.Skills;
 using Cysharp.Threading.Tasks;
 using UnityEngine;
+using Projector = Common.Projectors.Projector;
 
 namespace Character.Venturers.Warrior.Skills
 {
     public class Deathblow : SkillComponent
     {
-        [SerializeField] private ArcProjector projector;
+        [SerializeField] private Projector projector;
 
         private CancellationTokenSource cts;
         private CancellationTokenSource chargingCts;

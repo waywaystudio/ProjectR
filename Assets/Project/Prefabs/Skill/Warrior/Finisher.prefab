@@ -974,7 +974,7 @@ MonoBehaviour:
     paySection: 0
   priority: 1
   description: Starts combat by attacking a target with a melee weapon.
-  projector: {fileID: 7775070023160563283}
+  projector: {fileID: 4329395925127615146}
   damageHit: {fileID: 3263926489268022469}
   remainBonusMultiplier: 2
 --- !u!1001 &8101657169194182229
@@ -1057,6 +1057,26 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5511215047123252479, guid: 8a71552a031e78242a7dd1951522badd, type: 3}
+      propertyPath: fillColor.a
+      value: 0.23921569
+      objectReference: {fileID: 0}
+    - target: {fileID: 5511215047123252479, guid: 8a71552a031e78242a7dd1951522badd, type: 3}
+      propertyPath: fillColor.b
+      value: 0.23146081
+      objectReference: {fileID: 0}
+    - target: {fileID: 5511215047123252479, guid: 8a71552a031e78242a7dd1951522badd, type: 3}
+      propertyPath: fillColor.g
+      value: 0.4716981
+      objectReference: {fileID: 0}
+    - target: {fileID: 5511215047123252479, guid: 8a71552a031e78242a7dd1951522badd, type: 3}
+      propertyPath: fillColor.r
+      value: 0.09567462
+      objectReference: {fileID: 0}
+    - target: {fileID: 5511215047123252479, guid: 8a71552a031e78242a7dd1951522badd, type: 3}
+      propertyPath: targetingType
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1067,15 +1087,15 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 5451648222737240506, guid: 8a71552a031e78242a7dd1951522badd, type: 3}
   m_PrefabInstance: {fileID: 8101657169194182229}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &7775070023160563283 stripped
+--- !u!114 &4329395925127615146 stripped
 MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 1983913394890530822, guid: 8a71552a031e78242a7dd1951522badd, type: 3}
+  m_CorrespondingSourceObject: {fileID: 5511215047123252479, guid: 8a71552a031e78242a7dd1951522badd, type: 3}
   m_PrefabInstance: {fileID: 8101657169194182229}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ee677b6f5098e6941a97d88f0e99eda6, type: 3}
+  m_Script: {fileID: 11500000, guid: 07d3d137f5575b445ab709981b1510c0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1001 &8639148208539098669

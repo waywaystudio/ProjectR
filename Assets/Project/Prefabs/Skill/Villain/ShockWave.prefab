@@ -234,7 +234,7 @@ MonoBehaviour:
     paySection: 0
   priority: 2
   description: Starts combat by attacking a target with a melee weapon.
-  projector: {fileID: 5575224665638590104}
+  projector: {fileID: 156639982639495089}
 --- !u!1001 &2618095863233237941
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -300,19 +300,19 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ed44536ca3a826f418c63aefc719a48e, type: 3}
---- !u!4 &1684982600542943729 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 3690448035969280580, guid: ed44536ca3a826f418c63aefc719a48e, type: 3}
-  m_PrefabInstance: {fileID: 2618095863233237941}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &5575224665638590104 stripped
+--- !u!114 &156639982639495089 stripped
 MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 7568990885016077613, guid: ed44536ca3a826f418c63aefc719a48e, type: 3}
+  m_CorrespondingSourceObject: {fileID: 2772290386158576644, guid: ed44536ca3a826f418c63aefc719a48e, type: 3}
   m_PrefabInstance: {fileID: 2618095863233237941}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 66eb6ca4b6a3e9345b1c27aa66c4441c, type: 3}
+  m_Script: {fileID: 11500000, guid: 07d3d137f5575b445ab709981b1510c0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!4 &1684982600542943729 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 3690448035969280580, guid: ed44536ca3a826f418c63aefc719a48e, type: 3}
+  m_PrefabInstance: {fileID: 2618095863233237941}
+  m_PrefabAsset: {fileID: 0}

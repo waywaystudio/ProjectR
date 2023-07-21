@@ -38,7 +38,7 @@ namespace Common.Detects
             TypeDetector ??= targetType switch
             {
                 TargetingType.Circle       => new CircleDetector(),
-                TargetingType.Cone         => new AngleDetector(),
+                TargetingType.Arc         => new AngleDetector(),
                 TargetingType.Rect         => new RectDetector(),
                 TargetingType.Raycast      => new RaycastDetector(),
                 TargetingType.RaycastWidth => new BoxCastDetector(),

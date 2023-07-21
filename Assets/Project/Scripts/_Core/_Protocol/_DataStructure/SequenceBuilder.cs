@@ -29,7 +29,7 @@ public class SequenceBuilder
     {
         mainSequencer[Section.Active].Add(key, () => Sequencer[Section.Active].Invoke());
         mainSequencer[Section.Cancel].Add(key, () => Sequencer[Section.Cancel].Invoke());
-        mainSequencer[Section.Complete].Add(key, () => Sequencer[Section.Complete].Invoke());
+        mainSequencer[Section.Execute].Add(key, () => Sequencer[Section.Execute].Invoke());
         mainSequencer[Section.End].Add(key, () => Sequencer[Section.End].Invoke());
 
         return this;
@@ -42,7 +42,7 @@ public class SequenceBuilder
     {
         mainSequencer[Section.Active].Remove(key);
         mainSequencer[Section.Cancel].Remove(key);
-        mainSequencer[Section.Complete].Remove(key);
+        mainSequencer[Section.Execute].Remove(key);
         mainSequencer[Section.End].Remove(key);
         
         return this;
@@ -63,13 +63,7 @@ public class SequenceBuilder<T>
         
         return this;
     }
-    
-    public SequenceBuilder<T> AddExecution(string key, Action action)
-    {
-        Sequencer[Section.Execute].Add(key, action);
-        return this;
-    }
-    
+
     public SequenceBuilder<T> RemoveActiveParam(string key) { Sequencer.ActiveParamAction.Remove(key); return this; }
     public SequenceBuilder<T> RemoveCondition(string key) { Sequencer.Condition.Remove(key); return this; }
     public SequenceBuilder<T> Remove(Section type, string key)

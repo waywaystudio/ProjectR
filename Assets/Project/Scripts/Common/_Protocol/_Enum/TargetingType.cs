@@ -5,7 +5,7 @@ namespace Common
         None = 0, 
         Circle = 1, 
         Self = 2, 
-        Cone = 3, 
+        Arc = 3, 
         Line = 4, 
         Rect = 5, 
         Raycast = 6,

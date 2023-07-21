@@ -153,7 +153,7 @@ MonoBehaviour:
     paySection: 0
   priority: 2
   description: Starts combat by attacking a target with a melee weapon.
-  projector: {fileID: 8943996234158909297}
+  projector: {fileID: 4611729139628875634}
 --- !u!1001 &8656137136687118649
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -168,7 +168,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4027286352141989457, guid: f201fadaeb091cf47a052170ce7683da, type: 3}
       propertyPath: m_Name
-      value: CollideSphereProjector
+      value: SphereProjector
       objectReference: {fileID: 0}
     - target: {fileID: 4027286352141989458, guid: f201fadaeb091cf47a052170ce7683da, type: 3}
       propertyPath: m_RootOrder
@@ -219,19 +219,19 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f201fadaeb091cf47a052170ce7683da, type: 3}
---- !u!4 &5747452137772601195 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 4027286352141989458, guid: f201fadaeb091cf47a052170ce7683da, type: 3}
-  m_PrefabInstance: {fileID: 8656137136687118649}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &8943996234158909297 stripped
+--- !u!114 &4611729139628875634 stripped
 MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: -8917210906174923192, guid: f201fadaeb091cf47a052170ce7683da, type: 3}
+  m_CorrespondingSourceObject: {fileID: 4044480864689120843, guid: f201fadaeb091cf47a052170ce7683da, type: 3}
   m_PrefabInstance: {fileID: 8656137136687118649}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 66eb6ca4b6a3e9345b1c27aa66c4441c, type: 3}
+  m_Script: {fileID: 11500000, guid: 07d3d137f5575b445ab709981b1510c0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!4 &5747452137772601195 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4027286352141989458, guid: f201fadaeb091cf47a052170ce7683da, type: 3}
+  m_PrefabInstance: {fileID: 8656137136687118649}
+  m_PrefabAsset: {fileID: 0}

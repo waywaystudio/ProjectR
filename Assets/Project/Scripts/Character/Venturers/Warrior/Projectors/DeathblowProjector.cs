@@ -3,10 +3,11 @@ using Common.Projectors;
 using Cysharp.Threading.Tasks;
 using DG.Tweening;
 using UnityEngine;
+using Projector = Common.Projectors.Projector;
 
 namespace Character.Venturers.Warrior.Projectors
 {
-    public class DeathblowProjector : ArcProjector
+    public class DeathblowProjector : Projector
     {
         [SerializeField] private Color chargingColor;
 
