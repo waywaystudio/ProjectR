@@ -94,7 +94,7 @@ GameObject:
   - component: {fileID: 4027286352141989458}
   - component: {fileID: 4044480864689120843}
   m_Layer: 10
-  m_Name: SphereProjector
+  m_Name: CircleProjector
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -129,9 +129,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 07d3d137f5575b445ab709981b1510c0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  targetingType: 3
+  targetingType: 1
   materialReference: {fileID: 2100000, guid: 443581ee016d3c44680f16e964eafebf, type: 2}
-  projector: {fileID: 7062586014429376110}
   backgroundColor: {r: 1, g: 1, b: 1, a: 0.5372549}
   fillColor: {r: 1, g: 0, b: 0, a: 1}
 --- !u!1 &8816030244132129195
@@ -143,6 +142,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7274096785378130124}
+  - component: {fileID: 5451835269191695830}
   - component: {fileID: 7062586014429376110}
   m_Layer: 10
   m_Name: Projector
@@ -166,6 +166,21 @@ Transform:
   m_Father: {fileID: 4027286352141989458}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
+--- !u!114 &5451835269191695830
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8816030244132129195}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4ff1c0ad409e2c241b97d1b51058bcbc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  materialReference: {fileID: 2100000, guid: 33396f75b4a1d5f4f9d2d4689032477d, type: 2}
+  backgroundColor: {r: 1, g: 1, b: 1, a: 1}
+  fillColor: {r: 1, g: 0, b: 0, a: 1}
 --- !u!114 &7062586014429376110
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -178,7 +193,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0777d029ed3dffa4692f417d4aba19ca, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Material: {fileID: 2100000, guid: 443581ee016d3c44680f16e964eafebf, type: 2}
+  m_Material: {fileID: 2100000, guid: 33396f75b4a1d5f4f9d2d4689032477d, type: 2}
   m_DrawDistance: 1000
   m_FadeScale: 1
   m_StartAngleFade: 180

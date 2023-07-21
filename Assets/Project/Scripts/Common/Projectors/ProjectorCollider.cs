@@ -2,9 +2,9 @@ using UnityEngine;
 
 namespace Common.Projectors
 {
-    public class ProjectorCollider : MonoBehaviour, IAssociate<Projector>
+    public class ProjectorCollider : MonoBehaviour, IAssociate<Projection>
     {
-        public void Initialize(Projector master)
+        public void Initialize(Projection master)
         {
             if (!TryGetComponent(out Collider _))
             {

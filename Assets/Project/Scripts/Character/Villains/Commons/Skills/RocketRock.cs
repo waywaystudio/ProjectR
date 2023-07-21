@@ -8,7 +8,7 @@ namespace Character.Villains.Commons.Skills
 {
     public class RocketRock : SkillComponent
     {
-        [SerializeField] private RectProjector projector;
+        [SerializeField] private Projection projection;
         
         private CancellationTokenSource cts;
         
@@ -16,7 +16,7 @@ namespace Character.Villains.Commons.Skills
         {
             base.Initialize();
             
-            projector.Initialize(this);
+            projection.Initialize(this);
             Builder
                 .Add(Section.Active, "PlayTracking", () => PlayTracking().Forget())
                 .Add(Section.Execute, "HitRocketRock", HitRocketRock)

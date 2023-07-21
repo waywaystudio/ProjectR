@@ -4,13 +4,13 @@ using Common.Projectors;
 using Common.StatusEffects;
 using Cysharp.Threading.Tasks;
 using UnityEngine;
-using Projector = Common.Projectors.Projector;
+using UnityEngine.Serialization;
 
 namespace Character.Villains.Commons.StatusEffects
 {
     public class IgnitionStatusEffect : StatusEffect, IProjection
     {
-        [SerializeField] private Projector projector;
+        [FormerlySerializedAs("projector")] [SerializeField] private Projection projection;
         [SerializeField] private float interval;
         [SerializeField] private float radius = 6f;
         [SerializeField] private LayerMask adventurerLayer;
@@ -28,7 +28,7 @@ namespace Character.Villains.Commons.StatusEffects
         {
             base.Initialize(provider);
             
-            projector.Initialize(this);
+            projection.Initialize(this);
 
             Builder
                 .Add(Section.Active, "SetHasteWeight", SetHasteWeight)

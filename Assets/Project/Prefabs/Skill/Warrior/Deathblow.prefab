@@ -408,7 +408,7 @@ MonoBehaviour:
   priority: 3
   description: "\uAE30\uB825\uC744 \uBAA8\uC544 \uC804\uBC29\uC5D0 \uBAA8\uB4E0 \uC801\uC744
     \uB0B4\uB824\uCE5C\uB2E4."
-  projector: {fileID: 7032942510087308290}
+  projection: {fileID: 0}
 --- !u!1 &5848583993182869270
 GameObject:
   m_ObjectHideFlags: 0
@@ -902,14 +902,3 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 5451648222737240506, guid: a561b3fa267818141ad5d459a11d3e88, type: 3}
   m_PrefabInstance: {fileID: 6335166293181628791}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &7032942510087308290 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 3922934200153474421, guid: a561b3fa267818141ad5d459a11d3e88, type: 3}
-  m_PrefabInstance: {fileID: 6335166293181628791}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 410d15f755b3b6b49998150b5507d5ca, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 

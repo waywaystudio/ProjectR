@@ -9,9 +9,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1870363501467261224}
+  - component: {fileID: 500735740461014515}
   - component: {fileID: 7386895736729445470}
   m_Layer: 0
-  m_Name: Body
+  m_Name: Projector
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -32,6 +33,21 @@ Transform:
   m_Father: {fileID: 1816809211909420738}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
+--- !u!114 &500735740461014515
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3034465954390166452}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4ff1c0ad409e2c241b97d1b51058bcbc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  materialReference: {fileID: 2100000, guid: cdbbc0c5837b9084095a5f180a621108, type: 2}
+  backgroundColor: {r: 1, g: 1, b: 1, a: 1}
+  fillColor: {r: 1, g: 0, b: 0, a: 1}
 --- !u!114 &7386895736729445470
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -65,7 +81,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1816809211909420738}
-  - component: {fileID: 7830805366526473703}
+  - component: {fileID: -2152829608838002671}
   m_Layer: 0
   m_Name: RectProjector
   m_TagString: Untagged
@@ -81,7 +97,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7751174441055851287}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 4.09, y: 0, z: -15.89}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -89,7 +105,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &7830805366526473703
+--- !u!114 &-2152829608838002671
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -98,14 +114,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 7751174441055851287}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 259d91a2fedc16f4d99762ad9b816275, type: 3}
+  m_Script: {fileID: 11500000, guid: 07d3d137f5575b445ab709981b1510c0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   targetingType: 5
   materialReference: {fileID: 2100000, guid: cdbbc0c5837b9084095a5f180a621108, type: 2}
-  backgroundColor: {r: 1, g: 1, b: 1, a: 0.06666667}
-  fillColor: {r: 0.26415092, g: 0.008721969, b: 0.020058807, a: 0.6666667}
-  projector: {fileID: 7386895736729445470}
-  fillSimulator: 0.549
-  width: 5
-  length: 20
+  backgroundColor: {r: 1, g: 1, b: 1, a: 0.13333334}
+  fillColor: {r: 0.5283019, g: 0.05233179, b: 0.05233179, a: 0.2901961}

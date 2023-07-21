@@ -1,18 +1,19 @@
 using Common.Projectors;
 using Common.Skills;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace Character.Villains.Commons.Skills
 {
     public class BrokenBlackRing : SkillComponent
     {
-        [SerializeField] private DonutProjector projector;
+        [FormerlySerializedAs("projector")] [SerializeField] private Projection projection;
         
         public override void Initialize()
         {
             base.Initialize();
             
-            projector.Initialize(this);
+            projection.Initialize(this);
             Builder
                 .Add(Section.Execute, "HitBrokenBlackRing", HitBrokenBlackRing);
         }

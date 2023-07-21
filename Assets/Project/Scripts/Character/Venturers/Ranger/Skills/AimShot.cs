@@ -4,12 +4,13 @@ using Common.Projectors;
 using Common.Skills;
 using Cysharp.Threading.Tasks;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace Character.Venturers.Ranger.Skills
 {
     public class AimShot : SkillComponent
     {
-        [SerializeField] private LineProjector projector;
+        [FormerlySerializedAs("projector")] [SerializeField] private Projection projection;
         
         private CancellationTokenSource cts;
         private CancellationTokenSource chargingCts;
@@ -19,7 +20,7 @@ namespace Character.Venturers.Ranger.Skills
         {
             base.Initialize();
 
-            projector.Initialize(this);
+            projection.Initialize(this);
             Provider.OnCombatProvided.Add("AddAdrenalinByAimShot", AddAdrenalin);
             Builder
                 .Add(Section.Active, "Tracking", () => PlayTracking().Forget())

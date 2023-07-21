@@ -2,16 +2,16 @@ using Common.Projectors;
 using Common.Skills;
 using DG.Tweening;
 using UnityEngine;
-using Projector = Common.Projectors.Projector;
+using UnityEngine.Serialization;
 
 namespace Character.Villains.Commons.Skills
 {
     public class PinWheel : SkillComponent
     {
-        [SerializeField] private Projector forwardProjector;
-        [SerializeField] private Projector backwardProjector;
-        [SerializeField] private Projector leftwardProjector;
-        [SerializeField] private Projector rightwardProjector;
+        [FormerlySerializedAs("forwardProjector")] [SerializeField] private Projection forwardProjection;
+        [FormerlySerializedAs("backwardProjector")] [SerializeField] private Projection backwardProjection;
+        [FormerlySerializedAs("leftwardProjector")] [SerializeField] private Projection leftwardProjection;
+        [FormerlySerializedAs("rightwardProjector")] [SerializeField] private Projection rightwardProjection;
 
         private Tween rotateTween;
         
@@ -19,10 +19,10 @@ namespace Character.Villains.Commons.Skills
         {
             base.Initialize();
             
-            forwardProjector.Initialize(this);
-            backwardProjector.Initialize(this);
-            rightwardProjector.Initialize(this);
-            leftwardProjector.Initialize(this);
+            forwardProjection.Initialize(this);
+            backwardProjection.Initialize(this);
+            rightwardProjection.Initialize(this);
+            leftwardProjection.Initialize(this);
             Builder
                 .Add(Section.Execute, "HitShockWave", HitShockWave)
                 .Add(Section.Active, "SlowRotate", SlowRotate)

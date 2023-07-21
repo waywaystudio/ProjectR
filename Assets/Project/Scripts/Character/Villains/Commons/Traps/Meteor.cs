@@ -2,13 +2,13 @@ using Common;
 using Common.Projectors;
 using Common.Traps;
 using UnityEngine;
-using Projector = Common.Projectors.Projector;
+using UnityEngine.Serialization;
 
 namespace Character.Villains.Commons.Traps
 {
     public class Meteor : Trap, IProjection
     {
-        [SerializeField] private Projector projector;
+        [FormerlySerializedAs("projector")] [SerializeField] private Projection projection;
         
         private readonly Collider[] colliderBuffers = new Collider[32];
         
@@ -19,7 +19,7 @@ namespace Character.Villains.Commons.Traps
         {
             base.Initialize(provider);
 
-            projector.Initialize(this);
+            projection.Initialize(this);
             Builder
                 .Add(Section.Complete, "MeteorExecution", MeteorExecution)
                 .Add(Section.Active, "RotateToIdentity", () => transform.rotation = Quaternion.identity)

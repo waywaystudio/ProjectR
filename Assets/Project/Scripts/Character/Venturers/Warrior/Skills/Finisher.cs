@@ -3,13 +3,13 @@ using Common.Execution.Hits;
 using Common.Projectors;
 using Common.Skills;
 using UnityEngine;
-using Projector = Common.Projectors.Projector;
+using UnityEngine.Serialization;
 
 namespace Character.Venturers.Warrior.Skills
 {
     public class Finisher : SkillComponent
     {
-        [SerializeField] private Projector projector;
+        [FormerlySerializedAs("projector")] [SerializeField] private Projection projection;
         [SerializeField] private DamageHit damageHit;
         [SerializeField] private float remainBonusMultiplier = 1f;
 
@@ -19,7 +19,7 @@ namespace Character.Venturers.Warrior.Skills
         {
             base.Initialize();
 
-            projector.Initialize(this);
+            projection.Initialize(this);
             Builder
                 .Add(Section.Execute, "CommonExecution", MultipliedDamageExecution);
         }

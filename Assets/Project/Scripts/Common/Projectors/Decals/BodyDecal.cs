@@ -6,7 +6,7 @@ namespace Common.Projectors.Projections
 {
     /*
      * For Line Projector's Body */
-    public class HeadProjection : Projection
+    public class BodyDecal : Decal
     {
         /// <summary>
         /// Head & Body Line Projector는 독립적인 width와 length를 가짐
@@ -27,11 +27,11 @@ namespace Common.Projectors.Projections
         protected const float YPosition = 0.15f;
         
 
-        public override void Initialize(Projector master)
+        public override void Initialize(Projection master)
         {
             base.Initialize(master);
 
-            UpdateHeadProjector();
+            UpdateBodyProjector();
         }
         
         
@@ -50,7 +50,7 @@ namespace Common.Projectors.Projections
                 timer += Time.deltaTime * inverseDuration;
                 timer =  Mathf.Clamp01(timer);
                 
-                DecalProjector.material.SetFloat(FillProgressShaderID, -1f + timer * 2);
+                DecalProjector.material.SetFloat(FillProgressShaderID, timer * 2f);
 
                 await UniTask.Yield(Cts.Token);
             }
@@ -58,9 +58,9 @@ namespace Common.Projectors.Projections
         
         
         /// <summary>
-        /// Updates the head projector properties.
+        /// Updates the body projector properties.
         /// </summary>
-        private void UpdateHeadProjector()
+        private void UpdateBodyProjector()
         {
             var currentSize = DecalProjector.size;
             
@@ -69,8 +69,8 @@ namespace Common.Projectors.Projections
             currentSize.z = ProjectorDepth;
 
             DecalProjector.size  = currentSize;
-            DecalProjector.transform.localPosition =
-                new Vector3(0, YPosition, (length + 1) * 0.5f * ArrowZDisplacement);
+            DecalProjector.transform.localPosition = 
+                new Vector3(0, YPosition, (length + 1) * 0.5f);
         }
     }
 }

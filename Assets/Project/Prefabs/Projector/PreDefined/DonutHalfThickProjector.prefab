@@ -9,8 +9,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1870363501467261224}
+  - component: {fileID: 8959736902117215924}
   - component: {fileID: 7386895736729445470}
-  m_Layer: 10
+  m_Layer: 0
   m_Name: Projector
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -32,6 +33,21 @@ Transform:
   m_Father: {fileID: 1816809211909420738}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
+--- !u!114 &8959736902117215924
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3034465954390166452}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4ff1c0ad409e2c241b97d1b51058bcbc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  materialReference: {fileID: 2100000, guid: 3a47169b337a6664ea4372812e11a881, type: 2}
+  backgroundColor: {r: 1, g: 1, b: 1, a: 1}
+  fillColor: {r: 1, g: 0, b: 0, a: 1}
 --- !u!114 &7386895736729445470
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -186,8 +202,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1816809211909420738}
-  - component: {fileID: 1588679701017484685}
-  m_Layer: 10
+  - component: {fileID: 7384706520887645903}
+  m_Layer: 0
   m_Name: DonutHalfThickProjector
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -202,16 +218,16 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7751174441055851287}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 4.09, y: 0, z: -15.89}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 1870363501467261224}
   - {fileID: 6031271014767355180}
+  - {fileID: 1870363501467261224}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1588679701017484685
+--- !u!114 &7384706520887645903
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -220,14 +236,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 7751174441055851287}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 74d0b19fcb9c8594f975799c084672bf, type: 3}
+  m_Script: {fileID: 11500000, guid: 07d3d137f5575b445ab709981b1510c0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   targetingType: 8
   materialReference: {fileID: 2100000, guid: 3a47169b337a6664ea4372812e11a881, type: 2}
-  backgroundColor: {r: 1, g: 1, b: 1, a: 0.043137256}
-  fillColor: {r: 0.5, g: 0.06839624, b: 0.090399645, a: 0.3764706}
-  projector: {fileID: 7386895736729445470}
-  fillSimulator: 0.279
-  sizeSimulator: 5
-  innerRadiusSimulator: 0.5
+  backgroundColor: {r: 1, g: 1, b: 1, a: 0.09411765}
+  fillColor: {r: 0.509434, g: 0.06488074, b: 0.06488074, a: 0.27058825}

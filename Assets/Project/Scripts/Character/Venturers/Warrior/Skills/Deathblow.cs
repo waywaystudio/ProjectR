@@ -3,13 +3,13 @@ using Common.Projectors;
 using Common.Skills;
 using Cysharp.Threading.Tasks;
 using UnityEngine;
-using Projector = Common.Projectors.Projector;
+using UnityEngine.Serialization;
 
 namespace Character.Venturers.Warrior.Skills
 {
     public class Deathblow : SkillComponent
     {
-        [SerializeField] private Projector projector;
+        [FormerlySerializedAs("projector")] [SerializeField] private Projection projection;
 
         private CancellationTokenSource cts;
         private CancellationTokenSource chargingCts;
@@ -19,7 +19,7 @@ namespace Character.Venturers.Warrior.Skills
         {
             base.Initialize();
             
-            projector.Initialize(this);
+            projection.Initialize(this);
             Builder
                 .Add(Section.Active, "TargetTracking", () => PlayTracking().Forget())
                 .Add(Section.Active, "Charging", () => PlayChargingProgress().Forget())
