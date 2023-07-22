@@ -14,7 +14,8 @@ namespace Character.Dummies.Behaviours
         [SerializeField] private D2dDestructibleSprite destructible;
         [SerializeField] private D2dFracturer fracture;
 
-        private readonly List<Tween> activeTweenList = new ();
+        private readonly List<Tween> jumpTweenList = new ();
+        private readonly List<Tween> fadeTweenList = new ();
         private int completedTween;
         private DummyBehaviour db;
         
@@ -31,7 +32,7 @@ namespace Character.Dummies.Behaviours
         
         private void Explode(List<D2dDestructible> fractures, D2dDestructible.SplitMode mode)
         {
-            activeTweenList.Clear();
+            jumpTweenList.Clear();
             completedTween = 0;
             
             fractures.ForEach(piece =>
@@ -45,7 +46,7 @@ namespace Character.Dummies.Behaviours
                                  .DOJump(destination, jumpPower, 1, jumpDuration)
                                  .OnComplete(() => Banish(piece));
 
-                activeTweenList.Add(tween);
+                jumpTweenList.Add(tween);
             });
         }
 
@@ -59,23 +60,22 @@ namespace Character.Dummies.Behaviours
                                           {
                                               completedTween++;
                                               
-                                              if (completedTween * 2 == activeTweenList.Count)
+                                              if (completedTween == jumpTweenList.Count)
                                               {
                                                   Db.gameObject.SetActive(false);
                                               }
                                           });
 
-            activeTweenList.Add(fadeTween);
+            fadeTweenList.AddUniquely(fadeTween);
         }
         
         private void StopAllTween()
         {
-            foreach (var tween in activeTweenList)
-            {
-                tween.Kill();
-            }
+            jumpTweenList.ForReverse(tween => tween.Kill());
+            fadeTweenList.ForReverse(tween => tween.Kill());
             
-            activeTweenList.Clear();
+            jumpTweenList.Clear();
+            fadeTweenList.Clear();
         }
         
         protected override void OnEnable()
