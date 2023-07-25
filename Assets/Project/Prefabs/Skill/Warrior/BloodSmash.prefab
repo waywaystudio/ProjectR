@@ -229,7 +229,7 @@ MonoBehaviour:
     statList:
     - statType: 13010001
       statKey: DamageExecutorKey
-      value: 120
+      value: 350
     - statType: 13020001
       statKey: DamageExecutorKey
       value: 0
@@ -663,7 +663,7 @@ Transform:
   - {fileID: 7221708945386366489}
   - {fileID: 5853087751410363707}
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &5774638726131959523
 MonoBehaviour:

@@ -19,7 +19,7 @@ MonoBehaviour:
     behaviourMask: Skill
     priority: 1
     sortingType: None
-    targetType: Cone
+    targetType: Arc
     targetParam: {x: 0, y: 6, z: 135}
     targetLayer: Monster
     damagetLayer: Monster, Dummy
@@ -47,7 +47,7 @@ MonoBehaviour:
     behaviourMask: Skill
     priority: 6
     sortingType: None
-    targetType: Cone
+    targetType: Arc
     targetParam: {x: 0, y: 6, z: 90}
     targetLayer: Monster
     damagetLayer: Monster, Dummy
@@ -213,7 +213,7 @@ MonoBehaviour:
     behaviourMask: Skill
     priority: 2
     sortingType: None
-    targetType: Cone
+    targetType: Arc
     targetParam: {x: 0, y: 7, z: 135}
     targetLayer: Monster
     damagetLayer: Monster, Dummy
@@ -229,7 +229,7 @@ MonoBehaviour:
     castCallback: None
     completionValueList:
     - 0
-    cost: -8
+    cost: -4
     requireTaker: 1
     paySection: Execute
     statusEffect: 0
@@ -257,7 +257,7 @@ MonoBehaviour:
     castCallback: None
     completionValueList:
     - 0
-    cost: -8
+    cost: -15
     requireTaker: 1
     paySection: Execute
     statusEffect: 0
@@ -269,7 +269,7 @@ MonoBehaviour:
     behaviourMask: Skill
     priority: 3
     sortingType: None
-    targetType: Cone
+    targetType: Arc
     targetParam: {x: 0, y: 10, z: 90}
     targetLayer: Monster
     damagetLayer: Monster, Dummy
@@ -285,7 +285,7 @@ MonoBehaviour:
     castCallback: Execute
     completionValueList:
     - 0
-    cost: -30
+    cost: -15
     requireTaker: 1
     paySection: Execute
     statusEffect: 0
@@ -325,7 +325,7 @@ MonoBehaviour:
     behaviourMask: Skill
     priority: 3
     sortingType: None
-    targetType: Cone
+    targetType: Arc
     targetParam: {x: 0, y: 8, z: 180}
     targetLayer: Monster
     damagetLayer: Monster, Dummy
@@ -379,7 +379,7 @@ MonoBehaviour:
     behaviourMask: Skill
     priority: 3
     sortingType: None
-    targetType: Cone
+    targetType: Arc
     targetParam: {x: 0, y: 8, z: 180}
     targetLayer: Monster
     damagetLayer: Monster, Dummy
@@ -541,7 +541,7 @@ MonoBehaviour:
     behaviourMask: Skill
     priority: 2
     sortingType: None
-    targetType: Cone
+    targetType: Arc
     targetParam: {x: 0, y: 5, z: 135}
     targetLayer: Monster
     damagetLayer: Monster, Dummy
@@ -1080,7 +1080,7 @@ MonoBehaviour:
     behaviourMask: Skill
     priority: 2
     sortingType: Random
-    targetType: Cone
+    targetType: Arc
     targetParam: {x: 0, y: 24, z: 60}
     targetLayer: Adventurer
     damagetLayer: Adventurer

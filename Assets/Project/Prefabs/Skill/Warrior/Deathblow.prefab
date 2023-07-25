@@ -336,7 +336,7 @@ Transform:
   - {fileID: 204343731075297507}
   - {fileID: 7570868337060862561}
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &3113859992668185377
 MonoBehaviour:
@@ -516,7 +516,7 @@ MonoBehaviour:
     statList:
     - statType: 13010001
       statKey: DamageExecutorKey
-      value: 200
+      value: 800
     - statType: 13020001
       statKey: DamageExecutorKey
       value: 0

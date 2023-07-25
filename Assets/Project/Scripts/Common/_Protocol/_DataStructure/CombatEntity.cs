@@ -5,13 +5,13 @@ namespace Common
         public CombatEntityType Type;
         public bool IsCritical;
         public float Value;
-        public readonly DataIndex CombatIndex;
+        public readonly ICombatProvider Provider;
         public readonly ICombatTaker Taker;
+        public readonly DataIndex CombatIndex;
 
-        public CombatEntity() : this(null) { }
-        public CombatEntity(ICombatTaker taker) : this(DataIndex.None, taker) { }
-        public CombatEntity(DataIndex combatIndex, ICombatTaker taker)
+        public CombatEntity(ICombatProvider provider, DataIndex combatIndex, ICombatTaker taker)
         {
+            Provider    = provider;
             CombatIndex = combatIndex;
             Taker       = taker;
             Type        = CombatEntityType.None;

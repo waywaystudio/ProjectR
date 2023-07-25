@@ -630,7 +630,7 @@ Transform:
   - {fileID: 7221708945386366489}
   - {fileID: 5853087751410363707}
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &2894569648737266630
 MonoBehaviour:
@@ -693,7 +693,7 @@ MonoBehaviour:
     isIncrease: 1
     callbackSection: 0
   cost:
-    cost: -8
+    cost: -4
     requireTaker: 1
     paySection: 11
   priority: 2

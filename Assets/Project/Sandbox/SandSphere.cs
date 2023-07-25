@@ -12,7 +12,7 @@ public class SandSphere : MonoBehaviour
     [Button]
     private void SetEntity()
     {
-        Entity = new CombatEntity();
+        // Entity = new CombatEntity();
     }
 
     [Button]

@@ -11,6 +11,7 @@ namespace Character.Dummies.Behaviours
         [SerializeField] private Vector2 jumpPowerRange = new (1.0f, 2.4f);
         [SerializeField] private Vector2 jumpDurationRange = new (0.15f, 0.4f);
         [SerializeField] private float maxSpreadRange = 3f;
+        [SerializeField] private float fadeDuration = 1f;
         [SerializeField] private D2dDestructibleSprite destructible;
         [SerializeField] private D2dFracturer fracture;
 
@@ -55,18 +56,20 @@ namespace Character.Dummies.Behaviours
             if (fracture is not D2dDestructibleSprite fractureSprite) return;
             
             var fadeTween = fractureSprite.CachedSpriteRenderer
-                                          .DOColor(FadeColor, 1.0f)
-                                          .OnComplete(() => 
-                                          {
-                                              completedTween++;
-                                              
-                                              if (completedTween == jumpTweenList.Count)
-                                              {
-                                                  Db.gameObject.SetActive(false);
-                                              }
-                                          });
+                                          .DOColor(FadeColor, fadeDuration)
+                                          .OnComplete(DeActiveObject);
 
             fadeTweenList.AddUniquely(fadeTween);
+        }
+
+        private void DeActiveObject()
+        {
+            completedTween++;
+                                              
+            if (completedTween == jumpTweenList.Count)
+            {
+                Db.gameObject.SetActive(false);
+            }
         }
         
         private void StopAllTween()

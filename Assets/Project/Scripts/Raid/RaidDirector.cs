@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using Character.Venturers;
 using Character.Villains;
+using Common;
 using GameEvents;
 using Singleton;
 using UnityEngine;
@@ -27,7 +28,6 @@ namespace Raid
         public static RaidInputDirector Input => Instance.inputDirector;
         public static RaidStageDirector Stage => Instance.stageDirector;
         public static RaidUIDirector UIDirector => Instance.uiDirector;
-        public static VillainBehaviour Boss => Casting.Villain;
         public static List<VenturerBehaviour> VenturerList => Casting.VenturerList;
         public static VenturerBehaviour FocusVenturer
         {
@@ -56,7 +56,8 @@ namespace Raid
             Input.Initialize();
             UIDirector.Initialize();
 
-            FocusVenturer = VenturerList[0];
+            FocusVenturer = VenturerList.Find(venturer => venturer.CombatClass == CharacterMask.Warrior);
+            //[0];
         }
 
         public static void CommandMode()

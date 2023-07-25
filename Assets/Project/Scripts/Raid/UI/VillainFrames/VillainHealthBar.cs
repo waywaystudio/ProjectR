@@ -13,7 +13,7 @@ namespace Raid.UI.VillainFrames
 
         public void Initialize()
         {
-            var vb = RaidDirector.Boss;
+            var vb = RaidDirector.Villain;
             
             hpImage.RegisterEvent(vb.Hp, vb.StatTable.MaxHp);
             monsterName.text = vb.Name;
@@ -24,7 +24,7 @@ namespace Raid.UI.VillainFrames
 
         private void ValueToTextUI()
         {
-            hpValueText.text = RaidDirector.Boss.Hp.Value.ToString("0");
+            hpValueText.text = RaidDirector.Villain.Hp.Value.ToString("0");
         }
 
 
