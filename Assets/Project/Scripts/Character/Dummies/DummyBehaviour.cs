@@ -29,7 +29,7 @@ namespace Character.Dummies
         public StatTable StatTable => combatStatus.StatTable;
         public StatusEffectTable StatusEffectTable => combatStatus.StatusEffectTable;
         public Transform CombatStatusHierarchy => combatStatus.transform;
-        public ActionTable<CombatEntity> OnCombatTaken { get; } = new();
+        public ActionTable<CombatLog> OnCombatTaken { get; } = new();
 
         public ActionMask BehaviourMask => CurrentBehaviour is null ? ActionMask.None : CurrentBehaviour.BehaviourMask;
         public IActionBehaviour CurrentBehaviour { get; set; }

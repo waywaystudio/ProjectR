@@ -31,7 +31,7 @@ namespace Character.Venturers.Knight.StatusEffects
         }
 
 
-        private void DrainHp(CombatEntity entity)
+        private void DrainHp(CombatLog entity)
         {
             Provider.Hp.Value += entity.Value * drainPercentage;
         }

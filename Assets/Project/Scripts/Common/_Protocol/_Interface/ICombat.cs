@@ -53,7 +53,7 @@ namespace Common
         // + StatusEffectTable StatusEffectTable { get; }
 
         SkillTable SkillTable { get; }
-        ActionTable<CombatEntity> OnCombatProvided { get; }
+        ActionTable<CombatLog> OnCombatProvided { get; }
     }
     
     public interface ICombatTaker : IObjectName, ICombatEntity, ICombatBehaviour 
@@ -80,7 +80,7 @@ namespace Common
 
         CharacterMask CombatClass { get; }
         Transform CombatStatusHierarchy { get; }
-        ActionTable<CombatEntity> OnCombatTaken { get; }
+        ActionTable<CombatLog> OnCombatTaken { get; }
         void TakeStatusEffect(StatusEffect effect);
         void DispelStatusEffect(DataIndex effectIndex);
         

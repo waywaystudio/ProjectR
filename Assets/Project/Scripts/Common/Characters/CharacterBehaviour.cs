@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using Common.Animation;
+using Common.Characters.Combats;
 using Common.StatusEffects;
 using Common.Systems;
 using Common.Detects;
@@ -13,6 +14,7 @@ namespace Common.Characters
     public class CharacterBehaviour : MonoBehaviour, ICombatExecutor, ICharacterSystem, ISearchable, IEditable
     {
         [SerializeField] protected CharacterCombatStatus combatStatus;
+        [SerializeField] protected CharacterBattleLog battleLog;
         [SerializeField] protected CharacterPreposition prePosition;
         [SerializeField] protected AnimationModel animating;
         [SerializeField] protected SearchEngine searchEngine;
@@ -68,10 +70,6 @@ namespace Common.Characters
         public void Dead() => deadBehaviour.Dead();
         public void ActiveSkill(DataIndex actionCode, Vector3 targetPosition) => skillBehaviour.Active(actionCode, targetPosition);
 
-        // TODO. 여기가 아닌 것 같다. 
-        public void AddReward(System.Action action) => deadBehaviour.AddReward("Reward", action);
-        
-
 
         /*
          * Combat Status
@@ -82,11 +80,12 @@ namespace Common.Characters
         public ShieldValue Shield => combatStatus.Shield;
         public StatTable StatTable => combatStatus.StatTable;
         public StatusEffectTable StatusEffectTable => combatStatus.StatusEffectTable;
+        public CharacterBattleLog BattleLog => battleLog;
         public Transform CombatStatusHierarchy => combatStatus.transform;
         public Transform Preposition(PrepositionType type) => prePosition.Get(type);
         
-        public ActionTable<CombatEntity> OnCombatProvided { get; } = new();
-        public ActionTable<CombatEntity> OnCombatTaken { get; } = new();
+        public ActionTable<CombatLog> OnCombatProvided { get; } = new();
+        public ActionTable<CombatLog> OnCombatTaken { get; } = new();
 
         public void TakeStatusEffect(StatusEffect effect) => StatusEffectTable[effect.DataIndex].Activate(this);
         public void DispelStatusEffect(DataIndex effectIndex) => StatusEffectTable[effectIndex]?.Dispel();
@@ -96,6 +95,7 @@ namespace Common.Characters
         public void Initialize()
         {
             combatStatus.Initialize(Data.StaticStatTable);
+            battleLog.Initialize(this);
             skillBehaviour.Initialize(this);
         }
 
@@ -104,6 +104,7 @@ namespace Common.Characters
         public virtual void EditorSetUp()
         {
             combatStatus       = GetComponentInChildren<CharacterCombatStatus>();
+            battleLog          = GetComponentInChildren<CharacterBattleLog>();
             prePosition        = GetComponentInChildren<CharacterPreposition>();
             skillBehaviour     = GetComponentInChildren<SkillTable>();
             stopBehaviour      = GetComponentInChildren<StopBehaviour>();

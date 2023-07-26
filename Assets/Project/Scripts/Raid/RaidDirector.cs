@@ -55,7 +55,7 @@ namespace Raid
             Casting.Initialize();
             Input.Initialize();
             UIDirector.Initialize();
-
+            
             FocusVenturer = VenturerList.Find(venturer => venturer.CombatClass == CharacterMask.Warrior);
             //[0];
         }

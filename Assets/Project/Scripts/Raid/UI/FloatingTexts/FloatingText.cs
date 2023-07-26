@@ -19,7 +19,7 @@ namespace Raid.UI.FloatingTexts
         private Vector3 randomPivot;
 
         private bool Initialized { get; set; }
-        private CombatEntity CurrentEntity { get; set; }
+        private CombatLog CurrentEntity { get; set; }
         private Sequence EffectTween { get; set; }
 
         public ActionTable OnEnd { get; } = new();
@@ -40,7 +40,7 @@ namespace Raid.UI.FloatingTexts
             randomPivot    = Random.insideUnitSphere * entity.PivotSpreadRange;
         }
         
-        public void ShowValue(CombatEntity combatEntity)
+        public void ShowValue(CombatLog combatEntity)
         {
             CurrentEntity = combatEntity;
                 

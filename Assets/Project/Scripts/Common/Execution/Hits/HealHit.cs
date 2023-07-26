@@ -14,7 +14,7 @@ namespace Common.Execution.Hits
         {
             if (taker == null || !taker.Alive.Value) return;
 
-            var entity        = new CombatEntity(Sender.Provider, Sender.DataIndex, taker);
+            var entity        = new CombatLog(Sender.Provider, Sender.DataIndex, taker);
             var providerTable = Sender.Provider.StatTable;
             
             entity.Type = CombatEntityType.Heal;

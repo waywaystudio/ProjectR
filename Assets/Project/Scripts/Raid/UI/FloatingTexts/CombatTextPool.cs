@@ -38,16 +38,16 @@ namespace Raid.UI.FloatingTexts
         }
 
         /// <summary>
-        /// 동일 대상에게 Heal을 주고 받을 때 어색한 것을 방지
+        /// 치유의 시전자와 대상자가 같을 때, 동일 Transform에 Text 중복 출력 방지.
         /// (ICombatTaker)Downcast 필요.
         /// </summary>
-        private void SpawningOnProvide(CombatEntity combatEntity)
+        private void SpawningOnProvide(CombatLog combatEntity)
         {
             // ReSharper disable once RedundantCast
             if (combatEntity.Taker != (ICombatTaker)currentVenturer) Spawn(combatEntity);
         }
         
-        private void Spawn(CombatEntity combatEntity)
+        private void Spawn(CombatLog combatEntity)
         {
             var ft = pool.Get();
             var textDesignEntity = EntityTable[combatEntity.Type];

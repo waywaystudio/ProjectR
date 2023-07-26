@@ -42,7 +42,7 @@ namespace Character.Venturers.Ranger.Skills
             Cb.DispelStatusEffect(DataIndex.HuntersEcstasyStatusEffect);
         }
         
-        private void AddAdrenalin(CombatEntity damageLog)
+        private void AddAdrenalin(CombatLog damageLog)
         {
             if (damageLog.CombatIndex != DataIndex) return;
             if (damageLog.IsCritical)

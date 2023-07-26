@@ -7,7 +7,7 @@ using UnityEngine;
 public class SandSphere : MonoBehaviour
 {
     [ShowInInspector]
-    public CombatEntity Entity;
+    public CombatLog Entity;
 
     [Button]
     private void SetEntity()
