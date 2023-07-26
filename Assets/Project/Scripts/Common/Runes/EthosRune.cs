@@ -14,8 +14,9 @@ namespace Common.Runes
 
         public RuneType RuneType => RewardRune.RuneType;
         public bool IsComplete => TaskRune.IsSuccess;
-        public float Progress => TaskRune.Progress.Value;
-        public float Max => TaskRune.Max.Value;
+        public FloatEvent Progress => TaskRune.Progress;
+        public float Max => TaskRune.Max;
+        public string TaskDescription => "Currently Not Define";
 
         public EthosRune(int grade, TaskRune taskRune, RewardRune rewardRune)
         {

@@ -5,19 +5,18 @@ namespace Common.Runes
 {
     public abstract class TaskRune
     {
-        public Observable<float> Progress { get; } = new();
-        public Observable<float> Max { get; } = new();
+        public FloatEvent Progress { get; } = new();
+        public float Max { get; protected set; } = 1f;
         public bool IsSuccess { get; protected set; }
-        // => Math.Abs(Progress.Value / Max.Value - 1f) < 0.0001f;
         
         protected CharacterBehaviour Tasker { get; set; }
 
-        public virtual void Assign(CharacterBehaviour tasker)
+        public void Assign(CharacterBehaviour tasker)
         {
             Tasker = tasker;
         }
 
-        public virtual void Dismissal()
+        public void Dismissal()
         {
             Tasker = null;
         }

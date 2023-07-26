@@ -92,7 +92,7 @@ namespace Common.Characters
         public void ForceTargeting(ICombatTaker taker) => SkillTable.ForceTargeting(taker);
 
 
-        public void Initialize()
+        public virtual void Initialize()
         {
             combatStatus.Initialize(Data.StaticStatTable);
             battleLog.Initialize(this);

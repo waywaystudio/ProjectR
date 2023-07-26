@@ -1,4 +1,3 @@
-using System;
 using System.Threading;
 using Cysharp.Threading.Tasks;
 using UnityEngine;
@@ -8,13 +7,10 @@ namespace Common.Runes.Tasks
     public class TimeLimit : TaskRune
     {
         private CancellationTokenSource cts;
-        private float timer;
-
-        // public override bool IsSuccess => Math.Abs(timer / Max.Value) < 1f;
 
         public TimeLimit(float limit)
         {
-            Max.Value = limit;
+            Max = limit;
         }
 
         public override void ActiveTask()
@@ -26,28 +22,30 @@ namespace Common.Runes.Tasks
         {
             StopTimer();
 
-            IsSuccess = timer < Max.Value;
+            IsSuccess = Progress.Value >= 0f;
         }
 
         public override void Defeat()
         {
             StopTimer();
 
-            timer = 0f;
+            Progress.Value = Max;
         }
 
 
         private async UniTaskVoid PlayTimer()
         {
-            cts   =  new CancellationTokenSource();
-            timer =  0f;
-            timer += Time.deltaTime;
+            cts            = new CancellationTokenSource();
+            Progress.Value = Max;
 
             while (!cts.IsCancellationRequested)
             {
-                if (timer > Max.Value)
+                Progress.Value -= Time.deltaTime;
+
+                if (Progress.Value <= 0f)
                 {
                     StopTimer();
+                    Progress.Value = 0f;
                     return;
                 }
                 

@@ -1,5 +1,3 @@
-using UnityEngine;
-
 namespace Common.Runes.Tasks
 {
     public class SkillDamage : TaskRune
@@ -9,7 +7,7 @@ namespace Common.Runes.Tasks
         public SkillDamage(DataIndex skill, float targetDamage)
         {
             TargetSkillIndex = skill;
-            Max.Value        = targetDamage;
+            Max              = targetDamage;
         }
         
         public override void ActiveTask()
@@ -18,16 +16,11 @@ namespace Common.Runes.Tasks
             if (targetSkill is null) return;
 
             Tasker.OnCombatProvided.Add("DamageAccumulation", AccumulateSkillDamage);
-            // var builder = new CombatSequenceBuilder(targetSkill.Sequence);
-            //
-            // builder
-            //     .AddHit("UpdateTask", _ => AddHitCount())
-            //     ;
         }
 
         public override void Accomplish()
         {
-            IsSuccess = Progress.Value >= Max.Value;
+            IsSuccess = Progress.Value >= Max;
         }
 
         public override void Defeat()
@@ -40,9 +33,9 @@ namespace Common.Runes.Tasks
         {
             if (log.CombatIndex != TargetSkillIndex) return;
 
-            Progress.Value = Progress.Value + log.Value < Max.Value 
+            Progress.Value = Progress.Value + log.Value < Max 
                 ? Progress.Value + log.Value 
-                : Max.Value;
+                : Max;
         }
     }
 }

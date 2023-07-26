@@ -5,7 +5,7 @@ namespace Common.Runes.Tasks
         public override void ActiveTask()
         {
             Progress.Value = 0f;
-            Max.Value      = 1f;
+            Max      = 1f;
         }
 
         public override void Accomplish()

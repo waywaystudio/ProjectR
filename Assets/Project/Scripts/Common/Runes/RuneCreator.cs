@@ -56,8 +56,8 @@ namespace Common.Runes
                 TaskRuneType.NoDamage    => new NoDamage(),
                 TaskRuneType.Victory     => new Victory(),
                 TaskRuneType.TimeLimit   => new TimeLimit(300f),
-                TaskRuneType.SkillCount  => new SkillCount(GetRandomSkill, 5),
-                TaskRuneType.SkillDamage => new SkillDamage(GetRandomSkill, 500f),
+                TaskRuneType.SkillCount  => new SkillCount(DataIndex.BloodSmash, 5),
+                TaskRuneType.SkillDamage => new SkillDamage(DataIndex.BloodSmash, 1000f),
                 _                        => null
             };
 

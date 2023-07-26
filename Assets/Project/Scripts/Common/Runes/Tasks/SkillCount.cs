@@ -1,3 +1,5 @@
+using UnityEngine;
+
 namespace Common.Runes.Tasks
 {
     public class SkillCount : TaskRune
@@ -7,7 +9,7 @@ namespace Common.Runes.Tasks
         public SkillCount(DataIndex skill, int count)
         {
             TargetSkillIndex = skill;
-            Max.Value        = count;
+            Max              = count;
         }
         
         public override void ActiveTask()
@@ -24,7 +26,7 @@ namespace Common.Runes.Tasks
 
         public override void Accomplish()
         {
-            IsSuccess = Progress.Value >= Max.Value;
+            IsSuccess = Progress.Value >= Max;
         }
 
         public override void Defeat()
@@ -35,8 +37,8 @@ namespace Common.Runes.Tasks
         
         private void AddHitCount()
         {
-            Progress.Value = Progress.Value < Max.Value
-                ? Progress.Value++
+            Progress.Value = Progress.Value < Max
+                ? Progress.Value + 1f
                 : Progress.Value;
         }
     }

@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using Character.Venturers;
 using Common.UI;
 using TMPro;
@@ -14,6 +15,7 @@ namespace Raid.UI.PartyFrames
         [SerializeField] private ImageFiller resourceFiller;
         [SerializeField] private TextMeshProUGUI hpTextMesh;
         [SerializeField] private TextMeshProUGUI venturerNameMesh;
+        [SerializeField] private List<TaskRuneUI> runeUIList;
 
         private float hpCache = float.NegativeInfinity;
 
@@ -25,13 +27,21 @@ namespace Raid.UI.PartyFrames
             var maxResource = vb.StatTable.MaxResource;
             var lastSkillIndex = vb.SkillTable.SkillIndexList.LastOrDefault();
 
-
             symbol.sprite = vb.SkillTable[lastSkillIndex].Icon;
             healthFiller.RegisterEvent(hpRef, maxHp);
             resourceFiller.RegisterEvent(resourceRef, maxResource);
+            venturerNameMesh.text = vb.Name;
+            runeUIList.ForEach(runeUI => runeUI.gameObject.SetActive(false));
+            
+            vb.EthosRunes.EthosRuneList.ForEach((rune, index) =>
+            {
+                if (runeUIList.Count < index + 1) return;
+                
+                runeUIList[index].Initialize(rune);
+                runeUIList[index].gameObject.SetActive(true);
+            });
             
             hpRef.AddListener("HpToUnitFrameUI", UpdateVenturerHealth);
-            venturerNameMesh.text = vb.Name;
 
             UpdateVenturerHealth(maxHp);
         }
@@ -59,6 +69,8 @@ namespace Raid.UI.PartyFrames
             resourceFiller   = transform.Find("ResourceFill").GetComponent<ImageFiller>();
             hpTextMesh       = transform.Find("HpValueText").GetComponent<TextMeshProUGUI>();
             venturerNameMesh = transform.Find("VenturerName").GetComponent<TextMeshProUGUI>();
+            
+            GetComponentsInChildren(true, runeUIList);
         }
 #endif
     }

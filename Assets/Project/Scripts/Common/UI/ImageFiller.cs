@@ -12,6 +12,7 @@ namespace Common.UI
         [SerializeField] private float fillTick;
         [SerializeField] private Ease easeType;
 
+        public Image Image => progressImage;
         public FloatEvent Progress { get; set; }
         public FloatEvent Max { get; set; }
 
