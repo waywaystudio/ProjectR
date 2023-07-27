@@ -4,12 +4,12 @@ using UnityEngine;
 namespace Common.Runes
 {
     [Serializable]
-    public class RuneWeight
+    public class RewardRuneWeight
     {
-        [SerializeField] private RuneType runeType;
+        [SerializeField] private RewardRuneType rewardRuneType;
         [SerializeField] private int weight;
         
-        public RuneType RuneType => runeType;
+        public RewardRuneType RewardRuneType => rewardRuneType;
         public int Weight => weight;
     }
 

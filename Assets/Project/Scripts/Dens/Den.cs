@@ -1,14 +1,16 @@
 using System.Collections.Generic;
 using Character.Villains;
 using Common;
+using Common.Runes;
 using Serialization;
 using Singleton;
 using UnityEngine;
 // ReSharper disable CheckNamespace
 
 
-public class Den : MonoSingleton<Den>, ISavable, IEditable
+public class Den : MonoSingleton<Den>, IEditable
 {
+    [SerializeField] private RuneCreator runeCreator;
     [SerializeField] private Table<DataIndex, VillainData> villainTable = new();
 
     public static VillainType StageVillain { get; set; } = VillainType.LoadStonehelm;
@@ -52,6 +54,13 @@ public class Den : MonoSingleton<Den>, ISavable, IEditable
     /*
      * Reward Algorithm
      */
+    public List<EthosRune> GetRunes()
+    {
+        
+        
+        return null;
+    }
+    
     public static List<GrowIngredient> GetReward(VillainType villainCode)
     {
         var result = new List<GrowIngredient>();

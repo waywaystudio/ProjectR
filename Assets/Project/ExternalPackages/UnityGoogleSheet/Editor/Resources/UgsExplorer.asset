@@ -12,4 +12,28 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 923ccd1e781e6c34c89e6442680a96ec, type: 3}
   m_Name: UgsExplorer
   m_EditorClassIdentifier: 
-  DriveFileDataList: []
+  DriveFileDataList:
+  - type: 2
+    id: 1BNf_4jZonJqd1ocWNGQoQDKNGtS_vtVy7H5Lmr8PVt0
+    url: https://docs.google.com/spreadsheets/d/1BNf_4jZonJqd1ocWNGQoQDKNGtS_vtVy7H5Lmr8PVt0/edit?usp=drivesdk
+    fileName: CharacterData
+  - type: 2
+    id: 1cyWz87_gPB1FD-bfOZszEQ0QCgtHhSvRZYYERxbyCFI
+    url: https://docs.google.com/spreadsheets/d/1cyWz87_gPB1FD-bfOZszEQ0QCgtHhSvRZYYERxbyCFI/edit?usp=drivesdk
+    fileName: CombatData
+  - type: 2
+    id: 1yO5sJqxMvySDiihls5pwiHQWoJGysrT7LBmL16HhHRM
+    url: https://docs.google.com/spreadsheets/d/1yO5sJqxMvySDiihls5pwiHQWoJGysrT7LBmL16HhHRM/edit?usp=drivesdk
+    fileName: ContentData
+  - type: 2
+    id: 11-gKd8b56WeoWl9uSpXNDpf1nA6tlQ6gPkm5Ky5LuC0
+    url: https://docs.google.com/spreadsheets/d/11-gKd8b56WeoWl9uSpXNDpf1nA6tlQ6gPkm5Ky5LuC0/edit?usp=drivesdk
+    fileName: EquipmentData
+  - type: 2
+    id: 1ql3syYiTkqAEe3caNCL2zhg2EMIivp9Q4MZACx2e6iY
+    url: https://docs.google.com/spreadsheets/d/1ql3syYiTkqAEe3caNCL2zhg2EMIivp9Q4MZACx2e6iY/edit?usp=drivesdk
+    fileName: GlobalData
+  - type: 2
+    id: 1aVEkmzQKe1I_Osk6VFG-crUDd77jQVs3wlAaUaYQnys
+    url: https://docs.google.com/spreadsheets/d/1aVEkmzQKe1I_Osk6VFG-crUDd77jQVs3wlAaUaYQnys/edit?usp=drivesdk
+    fileName: ItemData

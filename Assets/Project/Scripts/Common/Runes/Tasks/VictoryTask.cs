@@ -3,8 +3,11 @@ using System;
 namespace Common.Runes.Tasks
 {
     [Serializable]
-    public class Victory : TaskRune
+    public class VictoryTask : TaskRune
     {
+        public override TaskRuneType RuneType => TaskRuneType.Victory;
+        public override string Description => $"Defeat a Villain.";
+        
         public override void ActiveTask()
         {
             Progress.Value = 0f;

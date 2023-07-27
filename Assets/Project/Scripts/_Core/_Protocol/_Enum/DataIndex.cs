@@ -65,7 +65,7 @@ public enum DataIndex
 	Vilestone = 55,
 	Fifty6 = 56,
 	Fifty7 = 57,
-	Fifty8 = 58,
+	Rune = 58,
 	Material = 59,
 	Sixty = 60,
 
@@ -324,6 +324,10 @@ public enum DataIndex
 	CrystalOfPathfinder = 52000001,
 	ShardOfVicious = 52000102,
 	StoneOfVicious = 52000303,
+
+	/* RuneData */
+	Gold = 58000001,
+	Experience = 58000002,
 
 	/* MaterialData */
 	VowShard = 59010001,

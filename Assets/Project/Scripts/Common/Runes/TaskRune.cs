@@ -3,13 +3,18 @@ using Common.Characters;
 
 namespace Common.Runes
 {
+    [Serializable]
     public abstract class TaskRune
     {
-        public FloatEvent Progress { get; } = new();
-        public float Max { get; protected set; } = 1f;
+        public float Max = 1f;
+        public FloatEvent Progress = new ();
+        
+        public abstract TaskRuneType RuneType { get; }
+        public abstract string Description { get; }
         public bool IsSuccess { get; protected set; }
         
         protected CharacterBehaviour Tasker { get; set; }
+        
 
         public void Assign(CharacterBehaviour tasker)
         {

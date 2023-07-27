@@ -17,7 +17,6 @@ namespace Common.UI
         public FloatEvent Max { get; set; }
 
         private TimeTrigger Trigger { get; set; }
-        private Tween FillTween { get; set; }
 
 
         /// <summary>
@@ -100,7 +99,10 @@ namespace Common.UI
             
             var clamp = Mathf.Clamp01(Progress.Value / Max.Value);
 
-            progressImage.DOFillAmount(clamp, fillTick).SetEase(easeType);
+            progressImage.DOFillAmount(clamp, fillTick)
+                         .SetEase(easeType)
+                         .SetLink(gameObject)
+                         ;
         }
 
         private void SetReverseFill()
@@ -108,20 +110,15 @@ namespace Common.UI
             var reverseValue = Max.Value - Progress.Value;
             var clamp = Mathf.Clamp01(reverseValue / Max.Value);
             
-            progressImage.DOFillAmount(clamp, fillTick).SetEase(easeType);
+            progressImage.DOFillAmount(clamp, fillTick)
+                         .SetEase(easeType)
+                         .SetLink(gameObject)
+                         ;
         }
 
         private void OnDisable()
         {
             UnregisterFloatEvent();
-        }
-
-        private void OnDestroy()
-        {
-            if (FillTween == null) return;
-            
-            FillTween.Kill();
-            FillTween = null;
         }
 
 

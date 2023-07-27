@@ -21,14 +21,14 @@ namespace Raid.UI.PartyFrames
             AssignedRune     = rune;
             description.text = rune.TaskDescription;
             
-            AssignedRune.Progress.AddListener("DeActiveProgressBar", OnComplete);
-            imageFiller.RegisterEvent(rune.Progress, rune.Max);
+            AssignedRune.TaskProgress.AddListener("DeActiveProgressBar", OnComplete);
+            imageFiller.RegisterEvent(rune.TaskProgress, rune.TaskGoal);
         }
 
 
         private void OnComplete()
         {
-            if (AssignedRune.Progress.Value < AssignedRune.Max) return;
+            if (AssignedRune.TaskProgress.Value < AssignedRune.TaskGoal) return;
 
             toggle.isOn = true;
             imageFiller.Image

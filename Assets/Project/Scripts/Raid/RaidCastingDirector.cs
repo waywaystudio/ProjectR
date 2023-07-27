@@ -48,17 +48,7 @@ namespace Raid
 
             Den.Spawn(villainIndex, spawnPosition, villainHierarchy, out var vb);
 
-            var reward = Den.GetReward(villainIndex);
-
             Villain = vb;
-            Villain.DeadBehaviour.AddReward("AddRewards", () =>
-            {
-                Den.GetVillainData(villainIndex).KillCount++;
-                Camp.AddGrowMaterials(reward);
-                
-                // TEMP
-                reward.ForEach(ingredient => Debug.Log($"Get {ingredient.Type} : {ingredient.Count}"));
-            });
         }
     }
 }

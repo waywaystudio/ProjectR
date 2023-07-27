@@ -7,22 +7,22 @@ namespace Common.Runes
     [Serializable]
     public class EthosRune
     {
-        public int Grade { get; set; }
-        public Sprite Icon { get; set; }
-        public TaskRune TaskRune { get; set; }
-        public RewardRune RewardRune { get; set; }
+        public int Grade;                          
+        public TaskRune TaskRune;
+        public RewardRune RewardRune;
+        
+        private Sprite icon;
 
-        public RuneType RuneType => RewardRune.RuneType;
-        public bool IsComplete => TaskRune.IsSuccess;
-        public FloatEvent Progress => TaskRune.Progress;
-        public float Max => TaskRune.Max;
-        public string TaskDescription => "Currently Not Define";
+        public bool IsCompleteTask => TaskRune.IsSuccess;
+        public float TaskGoal => TaskRune.Max;
+        public string TaskDescription => TaskRune.Description;
+        public FloatEvent TaskProgress => TaskRune.Progress;
+        public Sprite Icon => icon ??= Database.RuneSpriteData.Get(RewardRune.RuneType.ToDataIndex());
 
         public EthosRune(int grade, TaskRune taskRune, RewardRune rewardRune)
         {
-            Grade = grade;
-            // Icon = Database.RuneSprite.Get(RewardRuneType)
-            TaskRune = taskRune;
+            Grade      = grade;
+            TaskRune   = taskRune;
             RewardRune = rewardRune;
         }
 
@@ -41,13 +41,6 @@ namespace Common.Runes
         public void Combine()
         {
             // by grade
-        }
-
-        public void GetReward()
-        {
-            if (!IsComplete) return;
-            
-            // RewardRune.GetReward();
         }
     }
 }

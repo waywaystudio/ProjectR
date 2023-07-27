@@ -12,15 +12,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8204690924178c244a86f7c16715f40c, type: 3}
   m_Name: EthosRuneCreator
   m_EditorClassIdentifier: 
-  runeWeights: []
+  rewardRuneWeights:
+  - rewardRuneType: 58000001
+    weight: 100
+  - rewardRuneType: 58000002
+    weight: 100
   taskRuneWeights:
   - taskRuneType: 1
     weight: 0
   - taskRuneType: 2
-    weight: 0
+    weight: 100
   - taskRuneType: 3
-    weight: 0
+    weight: 100
   - taskRuneType: 4
-    weight: 0
+    weight: 100
   - taskRuneType: 5
     weight: 100

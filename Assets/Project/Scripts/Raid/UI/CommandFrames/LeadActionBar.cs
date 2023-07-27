@@ -90,7 +90,7 @@ namespace Raid.UI.CommandFrames
 #if UNITY_EDITOR
         public void EditorSetUp()
         {
-            moveTogetherAction      = transform.Find("MoveTogetherAction").gameObject;
+            moveTogetherAction      = transform.Find("MoveTogether").gameObject;
             targetingTogetherAction = transform.Find("FocusTarget").gameObject;
         }
 #endif

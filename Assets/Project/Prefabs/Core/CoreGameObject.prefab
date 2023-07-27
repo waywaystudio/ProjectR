@@ -23,6 +23,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 27547579285642379}
+  serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
@@ -32,7 +33,6 @@ Transform:
   - {fileID: 6252629391642875613}
   - {fileID: 1127255969811792330}
   m_Father: {fileID: 4672108652296497339}
-  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2740642951556624621
 GameObject:
@@ -59,13 +59,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2740642951556624621}
+  serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 2714927515206354961}
-  m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &3949669853939696681
 MonoBehaviour:
@@ -130,7 +130,6 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 6999556446930775125}
-  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -277,7 +276,6 @@ RectTransform:
   - {fileID: 6999556447552447066}
   - {fileID: 6999556446930775125}
   m_Father: {fileID: 4672108652296497339}
-  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -384,13 +382,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3663127406592591108}
+  serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 2714927515206354961}
-  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &7637611923221190088
 MonoBehaviour:
@@ -428,13 +426,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5806642824622015483}
+  serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 2714927515206354961}
-  m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &447973106702854708
 MonoBehaviour:
@@ -473,6 +471,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5948248387940990852}
+  serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
@@ -482,7 +481,6 @@ Transform:
   - {fileID: 2714927515206354961}
   - {fileID: 6239269084689213391}
   m_Father: {fileID: 0}
-  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &2204275286671020524
 MonoBehaviour:
@@ -543,7 +541,6 @@ RectTransform:
   m_Children:
   - {fileID: 3069828388080354717}
   m_Father: {fileID: 6239269084689213391}
-  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
@@ -621,7 +618,6 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 6239269084689213391}
-  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
@@ -716,13 +712,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 9039682236266940767}
+  serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 4672108652296497339}
-  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &5350428587953650806
 MonoBehaviour:
@@ -753,6 +749,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: e12653d7f014e6348a207e962baca78c, type: 2}
   - {fileID: 11400000, guid: dc346d8289e841347bda3910c1f55e3c, type: 2}
   - {fileID: 11400000, guid: 3a1dca628aada9448967a59c41f26faa, type: 2}
+  - {fileID: 11400000, guid: a4460de91f3ceb943be8ebc9bf23c9ea, type: 2}
   - {fileID: 11400000, guid: f0d0bfe22a3a9594492fefd21dd34d87, type: 2}
   skillPrefabData: {fileID: 11400000, guid: 743e24344e1679a46807160ebd4ef948, type: 2}
   statusEffectPrefabData: {fileID: 11400000, guid: 505adfbfe37de0349bc3edecc360a977, type: 2}
@@ -762,6 +759,7 @@ MonoBehaviour:
   spellSpriteData: {fileID: 11400000, guid: da9eb427853c5994e8929573f1bc2e4d, type: 2}
   materialSpriteData: {fileID: 11400000, guid: 467221ced1c2ec14d9bb26f6bcbbd81b, type: 2}
   villainSpriteData: {fileID: 11400000, guid: 115eebfaccbafcc47b875c1646e5d80c, type: 2}
+  runeSpriteData: {fileID: 11400000, guid: ca089ab62d9d3d549b5c3ce337b34bb6, type: 2}
   idCodePath: Assets/Project/Scripts/_Core/_Protocol/_Enum
   dataScriptPath: Assets/Project/Scripts/_Core/Databases/SheetData
   dataObjectPath: Assets/Project/Data/SpreadSheet

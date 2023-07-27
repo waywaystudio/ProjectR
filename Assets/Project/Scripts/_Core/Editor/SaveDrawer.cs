@@ -182,6 +182,24 @@ namespace Editor
             if (member.Name == "saveManager")
             {
                 attributes.Add(new HideLabelAttribute());
+                attributes.Add(new HorizontalGroupAttribute
+                {
+                    GroupName = "EventField",
+                });
+            }
+            
+            if (member.Name == "AutoRegister")
+            {
+                attributes.Add(new PropertyOrderAttribute(-1f));
+                attributes.Add(new ButtonAttribute
+                {
+                    Icon = SdfIconType.ArrowRepeat
+                });
+                attributes.Add(new HorizontalGroupAttribute
+                {
+                    GroupName = "EventField",
+                    Width     = 0.1f,
+                });
             }
         }
     }

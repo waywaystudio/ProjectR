@@ -31,6 +31,7 @@ public partial class Database : MonoSingleton<Database>, IEditable
     [SerializeField] private SpriteData spellSpriteData;
     [SerializeField] private SpriteData materialSpriteData;
     [SerializeField] private SpriteData villainSpriteData;
+    [SerializeField] private SpriteData runeSpriteData;
         
     private readonly Dictionary<DataIndex, DataObject> sheetDataTable = new();
 
@@ -66,4 +67,5 @@ public partial class Database : MonoSingleton<Database>, IEditable
     public static SpriteData SpellSpriteData => Instance.spellSpriteData;
     public static SpriteData MaterialSpriteData => Instance.materialSpriteData;
     public static SpriteData VillainSpriteData => Instance.villainSpriteData;
+    public static SpriteData RuneSpriteData => Instance.runeSpriteData;
 }

@@ -2,7 +2,7 @@ using Common;
 
 namespace Camps.Inventories
 {
-    public class GrowMaterialInventory : Inventory<GrowMaterialType>
+    public class GrowMaterialStorage : Storage<GrowMaterialType>
     {
         protected override string SerializeKey => "GrowMaterialSerializeKey";
 

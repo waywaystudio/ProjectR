@@ -1,14 +1,19 @@
+using System;
 using System.Threading;
 using Cysharp.Threading.Tasks;
 using UnityEngine;
 
 namespace Common.Runes.Tasks
 {
-    public class TimeLimit : TaskRune
+    [Serializable]
+    public class TimeLimitTask : TaskRune
     {
+        public override TaskRuneType RuneType => TaskRuneType.TimeLimit;
+        public override string Description => $"Defeat a Villain within {Max} duration.";
+        
         private CancellationTokenSource cts;
 
-        public TimeLimit(float limit)
+        public TimeLimitTask(float limit)
         {
             Max = limit;
         }

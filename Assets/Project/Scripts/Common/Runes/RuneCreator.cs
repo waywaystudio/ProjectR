@@ -1,15 +1,16 @@
 using System.Collections.Generic;
 using System.Linq;
+using Common.Runes.Rewards;
 using Common.Runes.Tasks;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
 namespace Common.Runes
 {
-    [CreateAssetMenu(menuName = "ScriptableObject", fileName = "EthosRuneCreator")]
+    [CreateAssetMenu(menuName = "ScriptableObject/RuneCreator", fileName = "EthosRuneCreator")]
     public class RuneCreator : ScriptableObject
     {
-        [SerializeField] private List<RuneWeight> runeWeights;
+        [SerializeField] private List<RewardRuneWeight> rewardRuneWeights;
         [SerializeField] private List<TaskRuneWeight> taskRuneWeights;
 
         private static DataIndex GetRandomSkill
@@ -53,11 +54,11 @@ namespace Common.Runes
 
             TaskRune taskRune = taskRuneType switch
             {
-                TaskRuneType.NoDamage    => new NoDamage(),
-                TaskRuneType.Victory     => new Victory(),
-                TaskRuneType.TimeLimit   => new TimeLimit(300f),
-                TaskRuneType.SkillCount  => new SkillCount(DataIndex.BloodSmash, 5),
-                TaskRuneType.SkillDamage => new SkillDamage(DataIndex.BloodSmash, 1000f),
+                TaskRuneType.NoDamage    => new NoDamageTask(),
+                TaskRuneType.Victory     => new VictoryTask(),
+                TaskRuneType.TimeLimit   => new TimeLimitTask(300f),
+                TaskRuneType.SkillCount  => new SkillCountTask(DataIndex.BloodSmash, 5),
+                TaskRuneType.SkillDamage => new SkillDamageTask(DataIndex.BloodSmash, 1000f),
                 _                        => null
             };
 
@@ -66,7 +67,33 @@ namespace Common.Runes
 
         private RewardRune CreateRewardRune()
         {
-            return new RewardRune();
+            var totalWeights = rewardRuneWeights.Sum(rune => rune.Weight);
+            var randomIndex = Random.Range(0, totalWeights + 1);
+            var rewardRuneType = RewardRuneType.None;
+            
+            for (var i = 0; i < rewardRuneWeights.Count; ++i)
+            {
+                if (randomIndex <= rewardRuneWeights[i].Weight)
+                {
+                    rewardRuneType = rewardRuneWeights[i].RewardRuneType;
+                    break;
+                }
+                
+                randomIndex -= rewardRuneWeights[i].Weight;
+            }
+            
+            if (!Verify.IsTrue(rewardRuneType != RewardRuneType.None)) return null;
+            
+            RewardRune rewardRune = rewardRuneType switch
+            {
+                RewardRuneType.Gold       => new GoldRune(500),
+                RewardRuneType.Experience => new ExperienceRune(300),
+                _                         => new GoldRune(-99),
+            };
+
+            rewardRune.RuneType = rewardRuneType;
+            
+            return rewardRune;
         }
 
         public EthosRune CreateRune()

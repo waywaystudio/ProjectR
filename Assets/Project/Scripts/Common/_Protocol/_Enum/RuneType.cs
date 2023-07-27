@@ -1,9 +1,10 @@
 namespace Common
 {
-    public enum RuneType
+    public enum RewardRuneType
     {
         None = 0,
-        Currency = 10,
+        Gold = DataIndex.Gold,
+        Experience = DataIndex.Experience,
         Skill = 100,
         // Stat,
         // EquipmentRune,
@@ -19,17 +20,12 @@ namespace Common
         SkillCount,
         SkillDamage,
     }
-
-    public enum CurrencyRuneType
+    
+    public static class RuneTypeExtension
     {
-        None = 0,
-        Gold = 11,
-        Experience = 12,
-    }
-
-    public enum SkillRuneType
-    {
-        None = 0,
-        // many many Of Skill Rune Types
+        public static DataIndex ToDataIndex(this RewardRuneType runeType)
+        {
+            return (DataIndex)runeType;
+        }
     }
 }

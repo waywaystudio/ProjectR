@@ -14,7 +14,7 @@ namespace Character.Venturers
 
         public void Initialize(VenturerBehaviour vb)
         {
-            // TODO TEMP
+            // TODO TEMP - 추후에는 ActiveTask만.
             var randomRune = RuneCreator.CreateRune();
             
             ethosRuneList.Clear();

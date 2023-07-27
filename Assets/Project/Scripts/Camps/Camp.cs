@@ -1,21 +1,31 @@
 using System.Collections.Generic;
+using Camps;
 using Camps.Inventories;
+using Camps.Storages;
 using Character.Venturers;
-using Serialization;
 using Singleton;
 using UnityEngine;
 using Common;
+using Common.Runes;
+using Common.Runes.Rewards;
+// ReSharper disable SwitchStatementMissingSomeEnumCasesNoDefault
 // ReSharper disable CheckNamespace
 
-
-public class Camp : MonoSingleton<Camp>, ISavable, IEditable
+public class Camp : MonoSingleton<Camp>, IEditable
 {
     [SerializeField] private List<VenturerType> challengers;
     [SerializeField] private Table<DataIndex, VenturerData> venturerTable = new();
+    [SerializeField] private PartyLevel partyLevel;
+    [SerializeField] private RuneStorage runeStorage;
+    [SerializeField] private GoldStorage goldStorage;
 
-    private readonly GrowMaterialInventory growMaterialInventory = new();
+    private readonly GrowMaterialStorage growMaterialStorage = new();
     private static Table<DataIndex, VenturerData> VenturerTable => Instance.venturerTable;
-    private static GrowMaterialInventory GrowMaterialInventory => Instance.growMaterialInventory;
+    private static GrowMaterialStorage GrowMaterialStorage => Instance.growMaterialStorage;
+    private static RuneStorage RuneStorage => Instance.runeStorage;
+    private static GoldStorage GoldStorage => Instance.goldStorage;
+    
+    public static PartyLevel Level => Instance.partyLevel;
 
     /*
      * Venturer
@@ -39,16 +49,58 @@ public class Camp : MonoSingleton<Camp>, ISavable, IEditable
         
         vb.Initialize();
     }
+    
+    /*
+     * Party Level
+     */
+    
+    
 
     /*
      * Inventory
-     */ 
-    public static int GetGrowMaterialCount(GrowMaterialType type) => GrowMaterialInventory.Count(type);
-    public static void AddGrowMaterial(GrowMaterialType type, int count) => GrowMaterialInventory.Add(type, count);
+     */
+    public static int GetGrowMaterialCount(GrowMaterialType type) => GrowMaterialStorage.Count(type);
+    public static void AddGrowMaterial(GrowMaterialType type, int count) => GrowMaterialStorage.Add(type, count);
     public static void AddGrowMaterial(GrowIngredient ingredient) => AddGrowMaterial(ingredient.Type, ingredient.Count);
     public static void AddGrowMaterials(IEnumerable<GrowIngredient> ingredients) 
         => ingredients.ForEach(ingredient => AddGrowMaterial(ingredient.Type, ingredient.Count));
-    public static void ConsumeGrowMaterial(GrowMaterialType type, int count) => GrowMaterialInventory.Consume(type, count);
+    public static void ConsumeGrowMaterial(GrowMaterialType type, int count) => GrowMaterialStorage.Consume(type, count);
+
+    /*
+     * Runes
+     */
+    public static void AddRunes(IEnumerable<EthosRune> runes) => RuneStorage.AddRunes(runes);
+    public static void RevealEthosRune(EthosRune rune)
+    {
+        if (!rune.IsCompleteTask) return;
+
+        var rewardRune = rune.RewardRune;
+
+        switch (rewardRune.RuneType)
+        {
+            case RewardRuneType.Gold:
+            {
+                if (rewardRune is not GoldRune goldRune) return;
+
+                GoldStorage.Gold += goldRune.RewardGold;
+                break;
+            }
+            case RewardRuneType.Experience:
+            {
+                if (rewardRune is not ExperienceRune experienceRune) return;
+
+                Level.Experience += experienceRune.Experience;
+                break;
+            }
+            case RewardRuneType.Skill:
+            {
+                // Inventory.GetSkillRune(rune);
+                break;
+            }
+        }
+        
+        RuneStorage.RemoveRune(rune);
+    }
     
     /*
      * Stage Initializer
@@ -58,28 +110,23 @@ public class Camp : MonoSingleton<Camp>, ISavable, IEditable
 
     public void Save()
     {
-        // Serializer.Save("challengers", challengers);
-        
         venturerTable.Iterate(venturer => venturer.Save()); 
-        growMaterialInventory.Save();
+        GrowMaterialStorage.Save();
+        partyLevel.Save();
+        runeStorage.Save();
+        goldStorage.Save();
     }
 
     public void Load()
     {
-        // Challengers = Serializer.Load("challengers", challengers);
-        
         venturerTable.Iterate(venturer => venturer.Load());
-        growMaterialInventory.Load();
+        GrowMaterialStorage.Load();
+        partyLevel.Load();
+        runeStorage.Load();
+        goldStorage.Load();
     }
-    
-    
-    [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.BeforeSceneLoad)]
-    private static void ResetSingleton()
-    {
-        if (!Instance.IsNullOrDestroyed())
-            Instance.SetInstanceNull();
-    }
-    
+
+
 #if UNITY_EDITOR
     public void EditorSetUp()
     {
@@ -88,10 +135,10 @@ public class Camp : MonoSingleton<Camp>, ISavable, IEditable
         {
             VenturerType.Knight, 
             VenturerType.Warrior, 
-            VenturerType.Rogue, 
             VenturerType.Ranger, 
-            VenturerType.Mage, 
             VenturerType.Priest
+            // VenturerType.Rogue, 
+            // VenturerType.Mage, 
         });
         Finder.TryGetObjectList<VenturerData>(out var venturerDataList);
         
@@ -100,7 +147,14 @@ public class Camp : MonoSingleton<Camp>, ISavable, IEditable
 
     public void EditorAddMaterial()
     {
-        growMaterialInventory.AddAll100Material();
+        GrowMaterialStorage.AddAll100Material();
+    }
+    
+    [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.BeforeSceneLoad)]
+    private static void ResetSingleton()
+    {
+        if (!Instance.IsNullOrDestroyed())
+            Instance.SetInstanceNull();
     }
 #endif
     

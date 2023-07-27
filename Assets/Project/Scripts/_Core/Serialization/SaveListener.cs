@@ -1,27 +1,20 @@
-using System.Collections.Generic;
+#if UNITY_EDITOR
+using System.Reflection;
+#endif
+
 using UnityEngine;
+using UnityEngine.Events;
 
 namespace Serialization
 {
     public class SaveListener : MonoBehaviour
     {
         [SerializeField] private SaveManager saveManager;
-        
-        private readonly List<ISavable> savableList = new();
+        [SerializeField] protected UnityEvent saveResponse;
+        [SerializeField] protected UnityEvent loadResponse;
 
-        private List<ISavable> SavableList
-        {
-            get
-            {
-                if (savableList.IsNullOrEmpty()) 
-                    GetComponents(savableList);
-
-                return savableList;
-            }
-        }
-
-        public void Save() => SavableList.ForEach(savable => savable.Save());
-        public void Load() => SavableList.ForEach(savable => savable.Load());
+        public void Save() => saveResponse?.Invoke(); 
+        public void Load() => loadResponse?.Invoke(); 
 
         private void OnEnable()
         {
@@ -38,8 +31,44 @@ namespace Serialization
         private void Reset()
         {
 #if UNITY_EDITOR
-            Finder.TryGetObject(out saveManager);
+            AutoRegister();
 #endif
         }
+        
+        
+#if UNITY_EDITOR
+        private void AutoRegister()
+        {
+            if (saveManager == null)
+            {
+                Finder.TryGetObject(out saveManager);
+            }
+
+            var behaviours = GetComponents<MonoBehaviour>();
+            
+            saveResponse.ClearAllUnityEventInEditor();
+            loadResponse.ClearAllUnityEventInEditor();
+
+            foreach (var behaviour in behaviours)
+            {
+                // Skip if the behaviour is the SaveListener itself
+                if (behaviour == this)
+                    continue;
+                
+                var saveMethod = behaviour.GetType().GetMethod("Save", BindingFlags.Public | BindingFlags.Instance);
+                var loadMethod = behaviour.GetType().GetMethod("Load", BindingFlags.Public | BindingFlags.Instance);
+
+                if (saveMethod != null)
+                {
+                    saveResponse.AddPersistantListenerInEditor(behaviour, "Save");
+                }
+
+                if (loadMethod != null)
+                {
+                    loadResponse.AddPersistantListenerInEditor(behaviour, "Load");
+                }
+            }
+        }
+#endif
     }
 }

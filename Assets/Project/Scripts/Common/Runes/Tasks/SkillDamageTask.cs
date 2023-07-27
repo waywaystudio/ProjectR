@@ -1,10 +1,17 @@
+using System;
+
 namespace Common.Runes.Tasks
 {
-    public class SkillDamage : TaskRune
+    [Serializable]
+    public class SkillDamageTask : TaskRune
     {
-        public DataIndex TargetSkillIndex { get; private set; }
+        public DataIndex TargetSkillIndex;
+        
+        public override TaskRuneType RuneType => TaskRuneType.SkillDamage;
+        public override string Description => $"Take {Max} damage by {TargetSkillIndex} in a single battle.";
+        
 
-        public SkillDamage(DataIndex skill, float targetDamage)
+        public SkillDamageTask(DataIndex skill, float targetDamage)
         {
             TargetSkillIndex = skill;
             Max              = targetDamage;

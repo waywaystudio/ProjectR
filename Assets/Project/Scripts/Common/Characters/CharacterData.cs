@@ -5,7 +5,7 @@ using UnityEngine;
 namespace Common.Characters
 {
     // TODO. CharacterData 는 ICharacterData로 Interface 어떨까;
-    public class CharacterData : ScriptableObject, ISavable, IDataIndexer, IEditable
+    public class CharacterData : ScriptableObject, IDataIndexer, IEditable
     {
         [SerializeField] protected DataIndex characterIndex;
         [SerializeField] protected CharacterMask mask;

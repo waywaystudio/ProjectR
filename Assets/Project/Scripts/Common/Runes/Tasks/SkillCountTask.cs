@@ -1,12 +1,17 @@
-using UnityEngine;
+using System;
 
 namespace Common.Runes.Tasks
 {
-    public class SkillCount : TaskRune
+    [Serializable]
+    public class SkillCountTask : TaskRune
     {
-        public DataIndex TargetSkillIndex { get; private set; }
+        public DataIndex TargetSkillIndex; 
+        
+        public override TaskRuneType RuneType => TaskRuneType.SkillCount;
+        public override string Description => $"Use {TargetSkillIndex} {Max} times in a single battle.";
+        
 
-        public SkillCount(DataIndex skill, int count)
+        public SkillCountTask(DataIndex skill, int count)
         {
             TargetSkillIndex = skill;
             Max              = count;

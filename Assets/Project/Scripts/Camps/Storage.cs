@@ -3,7 +3,7 @@ using Serialization;
 
 namespace Camps
 {
-    public abstract class Inventory<T> : ISavable
+    public abstract class Storage<T>
     {
         protected abstract string SerializeKey { get; }
         protected Dictionary<T, int> Table { get; set; } = new();

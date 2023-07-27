@@ -7,7 +7,7 @@ using Sirenix.OdinInspector.Editor;
 
 namespace Camps.Editor
 {
-    public class InventoryDrawer<T0, T1> : OdinAttributeProcessor<T0> where T0 : Inventory<T1>
+    public class InventoryDrawer<T0, T1> : OdinAttributeProcessor<T0> where T0 : Storage<T1>
     {
         public override void ProcessChildMemberAttributes(InspectorProperty parentProperty, MemberInfo member, List<Attribute> attributes)
         {
@@ -23,7 +23,7 @@ namespace Camps.Editor
         }
     }
     
-    public class GrowMaterialInventoryDrawer : OdinAttributeProcessor<GrowMaterialInventory>
+    public class GrowMaterialInventoryDrawer : OdinAttributeProcessor<GrowMaterialStorage>
     {
         public override void ProcessChildMemberAttributes(InspectorProperty parentProperty, MemberInfo member, List<Attribute> attributes)
         {
