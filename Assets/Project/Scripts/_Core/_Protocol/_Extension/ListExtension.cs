@@ -6,6 +6,7 @@ using Object = UnityEngine.Object;
 
 public static class ListExtension
 {
+    
     public static bool IsNullOrEmpty<T>(this List<T> list) => list == null || list.Count == 0;
     public static bool HasElement<T>(this List<T> list) => !list.IsNullOrEmpty();
     public static void AddUniquely<T>(this List<T> list, T item)
@@ -44,6 +45,16 @@ public static class ListExtension
         // consider a thread-safe static instance
         var r = new Random();            
         return list.Count == 0 ? default : list[r.Next(0, list.Count)];
+    }
+
+    public static bool Any<T>(this List<T> list, Predicate<T> condition)
+    {
+        foreach (var element in list)
+        {
+            if (condition.Invoke(element)) return true;
+        }
+
+        return false;
     }
 
 

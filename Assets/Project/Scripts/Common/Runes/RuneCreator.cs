@@ -103,5 +103,20 @@ namespace Common.Runes
 
             return new EthosRune(1, taskRune, rewardRune);
         }
+        
+        public IEnumerable<EthosRune> CreateRunes()
+        {
+            var rewardCount = Random.Range(4, 7);
+            var runeList = new List<EthosRune>(rewardCount);
+
+            for (var i = 0; i < rewardCount; i++)
+            {
+                var randomRewardRune = CreateRune();
+                
+                runeList.Add(randomRewardRune);
+            }
+
+            return runeList;
+        }
     }
 }

@@ -1,146 +1,17 @@
 {
-	"Vortex.KillCount" : {
-		"__type" : "int",
-		"value" : 0
-	},
-	"Vex.KillCount" : {
-		"__type" : "int",
-		"value" : 0
-	},
-	"Vazrith.KillCount" : {
-		"__type" : "int",
-		"value" : 0
-	},
-	"Valtoria.KillCount" : {
-		"__type" : "int",
-		"value" : 0
-	},
-	"TimorusArcanis.KillCount" : {
-		"__type" : "int",
-		"value" : 0
-	},
-	"Phantasmaraud.KillCount" : {
-		"__type" : "int",
-		"value" : 0
-	},
-	"Painbrush.KillCount" : {
-		"__type" : "int",
-		"value" : 0
-	},
-	"Mortimus.KillCount" : {
-		"__type" : "int",
-		"value" : 0
-	},
-	"Maelrift.KillCount" : {
-		"__type" : "int",
-		"value" : 0
-	},
-	"Luxspherion.KillCount" : {
-		"__type" : "int",
-		"value" : 0
-	},
-	"LoadStonehelm.KillCount" : {
-		"__type" : "int",
-		"value" : 0
-	},
-	"LadySerenavaine.KillCount" : {
-		"__type" : "int",
-		"value" : 0
-	},
-	"Isolde.KillCount" : {
-		"__type" : "int",
-		"value" : 0
-	},
-	"GeneralGallant.KillCount" : {
-		"__type" : "int",
-		"value" : 0
-	},
-	"Fracturemancer.KillCount" : {
-		"__type" : "int",
-		"value" : 0
-	},
-	"EyeofHubris.KillCount" : {
-		"__type" : "int",
-		"value" : 0
-	},
-	"DrRavencroft.KillCount" : {
-		"__type" : "int",
-		"value" : 0
-	},
-	"Destinstringer.KillCount" : {
-		"__type" : "int",
-		"value" : 0
-	},
 	"Camp.Gold" : {
 		"__type" : "int",
-		"value" : 132
+		"value" : 0
 	},
 	"RuneStorage" : {
 		"__type" : "System.Collections.Generic.List`1[[Common.Runes.EthosRune, ProjectR.Common, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]],mscorlib",
 		"value" : [
-			{
-				"grade" : 1,
-				"title" : "GoldRune",
-				"TaskRune" : {
-					"__type" : "Common.Runes.Tasks.VictoryTask,ProjectR.Common",
-					"Max" : 1,
-					"Progress" : {
-						"value" : 0
-					}
-				},
-				"RewardRune" : {
-					"__type" : "Common.Runes.Rewards.GoldRune,ProjectR.Common",
-					"RewardGold" : 500
-				}
-			},{
-				"grade" : 1,
-				"title" : "GoldRune",
-				"TaskRune" : {
-					"__type" : "Common.Runes.Tasks.VictoryTask,ProjectR.Common",
-					"Max" : 1,
-					"Progress" : {
-						"value" : 0
-					}
-				},
-				"RewardRune" : {
-					"__type" : "Common.Runes.Rewards.GoldRune,ProjectR.Common",
-					"RewardGold" : 500
-				}
-			},{
-				"grade" : 1,
-				"title" : "ExperienceRune",
-				"TaskRune" : {
-					"__type" : "Common.Runes.Tasks.VictoryTask,ProjectR.Common",
-					"Max" : 1,
-					"Progress" : {
-						"value" : 0
-					}
-				},
-				"RewardRune" : {
-					"__type" : "Common.Runes.Rewards.ExperienceRune,ProjectR.Common",
-					"Experience" : 300
-				}
-			},{
-				"grade" : 1,
-				"title" : "GoldRune",
-				"TaskRune" : {
-					"__type" : "Common.Runes.Tasks.SkillDamageTask,ProjectR.Common",
-					"TargetSkillIndex" : 31210205,
-					"Max" : 1000,
-					"Progress" : {
-						"value" : 0
-					}
-				},
-				"RewardRune" : {
-					"__type" : "Common.Runes.Rewards.GoldRune,ProjectR.Common",
-					"RewardGold" : 500
-				}
-			}
+			
 		]
 	},
 	"Camp.PartyLevel.Experience" : {
 		"__type" : "int",
-		"value" : 89
+		"value" : 0
 	},
 	"Camp.PartyLevel.Level" : {
 		"__type" : "int",
@@ -235,6 +106,78 @@
 			"Level" : 1
 		}
 	},
+	"Vortex.KillCount" : {
+		"__type" : "int",
+		"value" : 0
+	},
+	"Vex.KillCount" : {
+		"__type" : "int",
+		"value" : 0
+	},
+	"Vazrith.KillCount" : {
+		"__type" : "int",
+		"value" : 0
+	},
+	"Valtoria.KillCount" : {
+		"__type" : "int",
+		"value" : 0
+	},
+	"TimorusArcanis.KillCount" : {
+		"__type" : "int",
+		"value" : 0
+	},
+	"Phantasmaraud.KillCount" : {
+		"__type" : "int",
+		"value" : 0
+	},
+	"Painbrush.KillCount" : {
+		"__type" : "int",
+		"value" : 0
+	},
+	"Mortimus.KillCount" : {
+		"__type" : "int",
+		"value" : 0
+	},
+	"Maelrift.KillCount" : {
+		"__type" : "int",
+		"value" : 0
+	},
+	"Luxspherion.KillCount" : {
+		"__type" : "int",
+		"value" : 0
+	},
+	"LoadStonehelm.KillCount" : {
+		"__type" : "int",
+		"value" : 0
+	},
+	"LadySerenavaine.KillCount" : {
+		"__type" : "int",
+		"value" : 0
+	},
+	"Isolde.KillCount" : {
+		"__type" : "int",
+		"value" : 0
+	},
+	"GeneralGallant.KillCount" : {
+		"__type" : "int",
+		"value" : 0
+	},
+	"Fracturemancer.KillCount" : {
+		"__type" : "int",
+		"value" : 0
+	},
+	"EyeofHubris.KillCount" : {
+		"__type" : "int",
+		"value" : 0
+	},
+	"DrRavencroft.KillCount" : {
+		"__type" : "int",
+		"value" : 0
+	},
+	"Destinstringer.KillCount" : {
+		"__type" : "int",
+		"value" : 0
+	},
 	"_FromPlaySaveFile" : {
 		"__type" : "string",
 		"value" : "Check"
@@ -243,7 +186,7 @@
 		"__type" : "Serialization.SaveInfo,ProjectR.Core",
 		"value" : {
 			"filename" : "_playSaveFile",
-			"saveTime" : "2023.07.29.01.13.10"
+			"saveTime" : "2023.07.29.02.28.36"
 		}
 	}
 }

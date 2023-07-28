@@ -17,6 +17,7 @@ namespace Raid.UI.BattleReports
             icon.sprite = item.Icon;
             title.text  = item.Title;
         }
+        
 
 #if UNITY_EDITOR
         public void EditorSetUp()

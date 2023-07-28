@@ -30,7 +30,6 @@ namespace Common.Runes
             RewardRune = rewardRune;
         }
 
-
         public void Assign(CharacterBehaviour cb) => TaskRune.Assign(cb);
         public void Dismissal() => TaskRune.Dismissal();
         public void ActiveTask() => TaskRune.ActiveTask();

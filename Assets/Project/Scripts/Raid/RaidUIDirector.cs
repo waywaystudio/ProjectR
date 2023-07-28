@@ -9,28 +9,22 @@ namespace Raid
 {
     public class RaidUIDirector : MonoBehaviour, IEditable
     {
-        // Villain Frames
+        [SerializeField] private CombatTextPool combatTextPool;
         [SerializeField] private VillainHealthBar villainHealthBar;
         [SerializeField] private VillainStatusEffectUI villainStatusEffectBar;
-        
-        // Venturer Frames
         [SerializeField] private VenturerSkillBar skillBar;
-        
-        // Pool
-        [SerializeField] private CombatTextPool combatTextPool;
-        
-        // Party Frames
         [SerializeField] private List<UnitFrame> unitFrames;
 
         public void Initialize()
         {
+            /* Villain */
             villainHealthBar.Initialize();
             villainStatusEffectBar.Initialize();
+            
+            /* Venturers */
             skillBar.Initialize();
             
-            /*
-             * UnitFrames Initialize
-             */ 
+            /* UnitFrames */ 
             unitFrames.ForEach(frame => frame.gameObject.SetActive(false));
             
             RaidDirector.VenturerList.ForEach((venturer, index) =>

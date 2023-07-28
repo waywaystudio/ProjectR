@@ -30,7 +30,7 @@ namespace Raid.UI.BattleReports
 
         public void OnRaidDefeat()
         {
-            SetMonochrome();
+            PostProcessingManager.Monochrome(1f);
             PlayFlag("Defeat");
         }
 
@@ -38,18 +38,12 @@ namespace Raid.UI.BattleReports
         {
             rewardPanel.gameObject.SetActive(true);
             rewardPanel.Initialize(RewardList);
-            Camp.CollectRewards(RewardList);
-
-            fadePanel.gameObject.SetActive(false);
             notification.SetActive(false);
             reportButtonObject.SetActive(false);
+            
+            Camp.CollectRewards(RewardList);
         }
-
-        public void Test()
-        {
-            OnRaidWin();
-        }
-
+        
 
         private void PlayFlag(string notificationText)
         {
@@ -88,11 +82,6 @@ namespace Raid.UI.BattleReports
                                             .SetLink(notification.gameObject);
 
             return notificationTween;
-        }
-
-        private void SetMonochrome()
-        {
-            PostProcessingManager.Monochrome(1f);
         }
 
         private void OnDestroy()

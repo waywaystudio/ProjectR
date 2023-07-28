@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 // ReSharper disable UnusedMember.Global
+// ReSharper disable LoopCanBeConvertedToQuery
 
 public static class EnumerableExtension
 {
@@ -15,7 +16,7 @@ public static class EnumerableExtension
     }
 
     /// <summary>
-    /// ForEach with Index : .ForEach((x, index) => x.Index() == index));
+    /// ForEach with Index : list.ForEach((x, index) => x.Index() == index));
     /// </summary>
     public static void ForEach<T>(this IEnumerable<T> sequence, Action<T, int> action)
     {
@@ -25,6 +26,16 @@ public static class EnumerableExtension
             action(item, i);
             i++;
         }
+    }
+    
+    public static bool Any<T>(this IEnumerable<T> list, Predicate<T> condition)
+    {
+        foreach (var element in list)
+        {
+            if (condition.Invoke(element)) return true;
+        }
+
+        return false;
     }
         
     public static TSource MinBy<TSource, TKey>(this IEnumerable<TSource> source, Func<TSource, TKey> selector) => source.MinBy(selector, null);
