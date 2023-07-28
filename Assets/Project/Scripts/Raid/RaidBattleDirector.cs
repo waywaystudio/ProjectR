@@ -1,5 +1,7 @@
 using System.Collections.Generic;
 using System.Linq;
+using Common;
+using Common.Currencies;
 using Common.Runes;
 using UnityEngine;
 
@@ -10,19 +12,20 @@ namespace Raid
         [SerializeField] private RuneCreator runeCreator;
         
         private static bool IsAnySurvivor => RaidDirector.VenturerList.Any(venturer => venturer.Alive.Value);
-        
+        public List<IReward> RewardList { get; } = new();
+
         public void Initialize()
         {
             AddDefeat();
             AddVictory();
-            
+            CreateReward();
             // Add Reward
             // Victory Effect -> Get Reward
         }
 
         public void OnRaidWin()
         {
-            AddRuneReward();
+            // AddRuneReward();
         }
 
         public void OnRaidDefeat()
@@ -30,6 +33,13 @@ namespace Raid
             // AddRuneReward();
         }
 
+
+        private void CreateReward()
+        {
+            RewardList.Add(GoldReward.CreateInstance(Random.Range(100, 501)));
+            RewardList.Add(ExperienceReward.CreateInstance(Random.Range(10, 101)));
+            RewardList.AddRange(AddRuneReward());
+        }
 
         private static void AddVictory()
         {
@@ -58,7 +68,7 @@ namespace Raid
         }
 
         // TODO. Reward를 할당하는 Class위치가 이 곳이 아닐 것 같다.
-        private void AddRuneReward()
+        private List<EthosRune> AddRuneReward()
         {
             var villain = RaidDirector.Villain;
             var rewardCount = Random.Range(4, 7);
@@ -70,9 +80,11 @@ namespace Raid
                 
                 runeList.Add(randomRewardRune);
             }
-            
-            Den.GetVillainData(villain.DataIndex).KillCount++;
-            Camp.AddRunes(runeList);
+
+            return runeList;
+
+            // Den.GetVillainData(villain.DataIndex).KillCount++;
+            // Camp.AddRunes(runeList);
 
             // TODO.TEMP
             // runeList.ForEach(rune => Debug.Log($"Get Rune:{rune.TaskDescription}"));

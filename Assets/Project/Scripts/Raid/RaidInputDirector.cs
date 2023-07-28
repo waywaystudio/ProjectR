@@ -32,14 +32,7 @@ namespace Raid
 
         public void OnCommandModeEnter()
         {
-            this["LeftMouse"].RemoveStart("VenturerMove");
-            
-            this["Keyboard1"].RemoveStart("Focusing");
-            this["Keyboard2"].RemoveStart("Focusing");
-            this["Keyboard3"].RemoveStart("Focusing");
-            this["Keyboard4"].RemoveStart("Focusing");
-            this["Keyboard5"].RemoveStart("Focusing");
-            this["Keyboard6"].RemoveStart("Focusing");
+            DisablePlayerControl();
         }
 
         public void OnCommandModeExit()
@@ -52,6 +45,16 @@ namespace Raid
             this["Keyboard4"].AddStart("Focusing", () => Focusing(3));
             this["Keyboard5"].AddStart("Focusing", () => Focusing(4));
             this["Keyboard6"].AddStart("Focusing", () => Focusing(5));
+        }
+
+        public void OnRaidWin()
+        {
+            DisablePlayerControl();
+        }
+        
+        public void OnRaidDefeat()
+        {
+            DisablePlayerControl();
         }
         
 
@@ -76,6 +79,18 @@ namespace Raid
         {
             return RaidDirector.VenturerList.Count > index && 
                    RaidDirector.VenturerList[index] != null;
+        }
+
+        private void DisablePlayerControl()
+        {
+            this["LeftMouse"].RemoveStart("VenturerMove");
+            
+            this["Keyboard1"].RemoveStart("Focusing");
+            this["Keyboard2"].RemoveStart("Focusing");
+            this["Keyboard3"].RemoveStart("Focusing");
+            this["Keyboard4"].RemoveStart("Focusing");
+            this["Keyboard5"].RemoveStart("Focusing");
+            this["Keyboard6"].RemoveStart("Focusing");
         }
     }
 }

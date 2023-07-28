@@ -41,7 +41,7 @@
 	},
 	"LoadStonehelm.KillCount" : {
 		"__type" : "int",
-		"value" : 10
+		"value" : 0
 	},
 	"LadySerenavaine.KillCount" : {
 		"__type" : "int",
@@ -73,58 +73,60 @@
 	},
 	"Camp.Gold" : {
 		"__type" : "int",
-		"value" : 0
+		"value" : 132
 	},
 	"RuneStorage" : {
 		"__type" : "System.Collections.Generic.List`1[[Common.Runes.EthosRune, ProjectR.Common, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]],mscorlib",
 		"value" : [
 			{
-				"Grade" : 1,
+				"grade" : 1,
+				"title" : "GoldRune",
+				"TaskRune" : {
+					"__type" : "Common.Runes.Tasks.VictoryTask,ProjectR.Common",
+					"Max" : 1,
+					"Progress" : {
+						"value" : 0
+					}
+				},
+				"RewardRune" : {
+					"__type" : "Common.Runes.Rewards.GoldRune,ProjectR.Common",
+					"RewardGold" : 500
+				}
+			},{
+				"grade" : 1,
+				"title" : "GoldRune",
+				"TaskRune" : {
+					"__type" : "Common.Runes.Tasks.VictoryTask,ProjectR.Common",
+					"Max" : 1,
+					"Progress" : {
+						"value" : 0
+					}
+				},
+				"RewardRune" : {
+					"__type" : "Common.Runes.Rewards.GoldRune,ProjectR.Common",
+					"RewardGold" : 500
+				}
+			},{
+				"grade" : 1,
+				"title" : "ExperienceRune",
+				"TaskRune" : {
+					"__type" : "Common.Runes.Tasks.VictoryTask,ProjectR.Common",
+					"Max" : 1,
+					"Progress" : {
+						"value" : 0
+					}
+				},
+				"RewardRune" : {
+					"__type" : "Common.Runes.Rewards.ExperienceRune,ProjectR.Common",
+					"Experience" : 300
+				}
+			},{
+				"grade" : 1,
+				"title" : "GoldRune",
 				"TaskRune" : {
 					"__type" : "Common.Runes.Tasks.SkillDamageTask,ProjectR.Common",
 					"TargetSkillIndex" : 31210205,
 					"Max" : 1000,
-					"Progress" : {
-						"value" : 0
-					}
-				},
-				"RewardRune" : {
-					"__type" : "Common.Runes.Rewards.ExperienceRune,ProjectR.Common",
-					"Experience" : 300
-				}
-			},{
-				"Grade" : 1,
-				"TaskRune" : {
-					"__type" : "Common.Runes.Tasks.SkillCountTask,ProjectR.Common",
-					"TargetSkillIndex" : 31210205,
-					"Max" : 5,
-					"Progress" : {
-						"value" : 0
-					}
-				},
-				"RewardRune" : {
-					"__type" : "Common.Runes.Rewards.ExperienceRune,ProjectR.Common",
-					"Experience" : 300
-				}
-			},{
-				"Grade" : 1,
-				"TaskRune" : {
-					"__type" : "Common.Runes.Tasks.SkillCountTask,ProjectR.Common",
-					"TargetSkillIndex" : 31210205,
-					"Max" : 5,
-					"Progress" : {
-						"value" : 0
-					}
-				},
-				"RewardRune" : {
-					"__type" : "Common.Runes.Rewards.ExperienceRune,ProjectR.Common",
-					"Experience" : 300
-				}
-			},{
-				"Grade" : 1,
-				"TaskRune" : {
-					"__type" : "Common.Runes.Tasks.VictoryTask,ProjectR.Common",
-					"Max" : 1,
 					"Progress" : {
 						"value" : 0
 					}
@@ -138,7 +140,7 @@
 	},
 	"Camp.PartyLevel.Experience" : {
 		"__type" : "int",
-		"value" : 0
+		"value" : 89
 	},
 	"Camp.PartyLevel.Level" : {
 		"__type" : "int",
@@ -241,7 +243,7 @@
 		"__type" : "Serialization.SaveInfo,ProjectR.Core",
 		"value" : {
 			"filename" : "_playSaveFile",
-			"saveTime" : "2023.07.28.01.48.44"
+			"saveTime" : "2023.07.29.01.13.10"
 		}
 	}
 }

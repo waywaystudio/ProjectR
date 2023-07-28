@@ -5,9 +5,11 @@ using UnityEngine;
 namespace Common.Runes
 {
     [Serializable]
-    public class EthosRune
+    public class EthosRune : IReward
     {
-        public int Grade;                          
+        [SerializeField] private int grade;
+        [SerializeField] private string title;
+        
         public TaskRune TaskRune;
         public RewardRune RewardRune;
         
@@ -15,13 +17,15 @@ namespace Common.Runes
 
         public bool IsCompleteTask => TaskRune.IsSuccess;
         public float TaskGoal => TaskRune.Max;
-        public string TaskDescription => TaskRune.Description;
-        public FloatEvent TaskProgress => TaskRune.Progress;
+        public int Grade => grade;
+        public string Title => title ??= $"{RewardRune.RuneType.ToString()}Rune";
+        public string Description => TaskRune.Description;
         public Sprite Icon => icon ??= Database.RuneSpriteData.Get(RewardRune.RuneType.ToDataIndex());
+        public FloatEvent TaskProgress => TaskRune.Progress;
 
         public EthosRune(int grade, TaskRune taskRune, RewardRune rewardRune)
         {
-            Grade      = grade;
+            this.grade = grade;
             TaskRune   = taskRune;
             RewardRune = rewardRune;
         }

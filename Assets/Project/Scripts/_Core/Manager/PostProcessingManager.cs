@@ -12,7 +12,9 @@ public class PostProcessingManager : MonoSingleton<PostProcessingManager>
     [SerializeField] private float vignetteResetDuration = 0.15f;
     
     private static Vignette vignette;
+    private static ColorAdjustments colorAdjustments;
     private static Tween vignetteTween;
+    private static Tween monoChromeTween;
     private static float VignetteResetDuration => Instance.vignetteResetDuration;
 
     /*
@@ -54,12 +56,37 @@ public class PostProcessingManager : MonoSingleton<PostProcessingManager>
     {
         
     }
+    
+    /*
+     * Monochrome
+     */
+    public static void Monochrome(float duration)
+    {
+        colorAdjustments.active = true;
+        monoChromeTween = DOTween.To(() => colorAdjustments.saturation.value, 
+                                     x => colorAdjustments.saturation.value = x, 
+                                     -100, 
+                                     duration);
+    }
+    
+    public static void ResetMonochrome()
+    {
+        if (monoChromeTween != null)
+        {
+            monoChromeTween.Kill();
+            monoChromeTween = null;
+        }
+
+        colorAdjustments.saturation.value = 0f;
+        colorAdjustments.active = false;
+    }
 
     protected override void Awake()
     {
         base.Awake();
 
         globalVolume.profile.TryGet(out vignette);
+        globalVolume.profile.TryGet(out colorAdjustments);
     }
 
     protected override void OnDestroy()

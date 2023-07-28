@@ -19,7 +19,7 @@ namespace Raid.UI.PartyFrames
         public void Initialize(EthosRune rune)
         {
             AssignedRune     = rune;
-            description.text = rune.TaskDescription;
+            description.text = rune.Description;
             
             AssignedRune.TaskProgress.AddListener("DeActiveProgressBar", OnComplete);
             imageFiller.RegisterEvent(rune.TaskProgress, rune.TaskGoal);

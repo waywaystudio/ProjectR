@@ -6,6 +6,7 @@ using Character.Venturers;
 using Singleton;
 using UnityEngine;
 using Common;
+using Common.Currencies;
 using Common.Runes;
 using Common.Runes.Rewards;
 // ReSharper disable SwitchStatementMissingSomeEnumCasesNoDefault
@@ -19,13 +20,15 @@ public class Camp : MonoSingleton<Camp>, IEditable
     [SerializeField] private RuneStorage runeStorage;
     [SerializeField] private GoldStorage goldStorage;
 
+    public static PartyLevel Level => Instance.partyLevel;
+    public static RuneStorage RuneStorage => Instance.runeStorage;
+    public static GoldStorage GoldStorage => Instance.goldStorage;
+    
     private readonly GrowMaterialStorage growMaterialStorage = new();
     private static Table<DataIndex, VenturerData> VenturerTable => Instance.venturerTable;
     private static GrowMaterialStorage GrowMaterialStorage => Instance.growMaterialStorage;
-    private static RuneStorage RuneStorage => Instance.runeStorage;
-    private static GoldStorage GoldStorage => Instance.goldStorage;
     
-    public static PartyLevel Level => Instance.partyLevel;
+    
 
     /*
      * Venturer
@@ -51,11 +54,32 @@ public class Camp : MonoSingleton<Camp>, IEditable
     }
     
     /*
-     * Party Level
+     * Reward
      */
+    public static void CollectRewards(List<IReward> rewards) => rewards.ForEach(CollectReward);
+    public static void CollectReward(IReward reward)
+    {
+        switch (reward)
+        {
+            case GoldReward goldReward:
+            {
+                Camp.GoldStorage.Gold += goldReward.Amount;
+                break;
+            }
+            case ExperienceReward experienceReward:
+            {
+                Camp.Level.Experience += experienceReward.Amount;
+                break;
+            }
+            case EthosRune ethosRune:
+            {
+                Camp.RuneStorage.AddRune(ethosRune);
+                break;
+            }
+        }
+    }
     
     
-
     /*
      * Inventory
      */
@@ -65,11 +89,14 @@ public class Camp : MonoSingleton<Camp>, IEditable
     public static void AddGrowMaterials(IEnumerable<GrowIngredient> ingredients) 
         => ingredients.ForEach(ingredient => AddGrowMaterial(ingredient.Type, ingredient.Count));
     public static void ConsumeGrowMaterial(GrowMaterialType type, int count) => GrowMaterialStorage.Consume(type, count);
+    
+    /*
+     * Party Level
+     */
 
     /*
      * Runes
      */
-    public static void AddRunes(IEnumerable<EthosRune> runes) => RuneStorage.AddRunes(runes);
     public static void RevealEthosRune(EthosRune rune)
     {
         if (!rune.IsCompleteTask) return;
