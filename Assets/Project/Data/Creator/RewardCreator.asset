@@ -1,0 +1,32 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a38c4d220cc95bb43a8ba701b7997eff, type: 3}
+  m_Name: RewardCreator
+  m_EditorClassIdentifier: 
+  rewardRuneWeights:
+  - rewardRuneType: 58000001
+    weight: 100
+  - rewardRuneType: 58000002
+    weight: 100
+  taskRuneWeights:
+  - taskRuneType: 1
+    weight: 0
+  - taskRuneType: 2
+    weight: 100
+  - taskRuneType: 3
+    weight: 100
+  - taskRuneType: 4
+    weight: 100
+  - taskRuneType: 5
+    weight: 100
+  goldSprite: {fileID: 21300000, guid: 05a5ddbaaeaa1d946a4a9b6f5032ced8, type: 3}
+  experienceSprite: {fileID: 21300000, guid: 630972002df3e6744a7d46c4509f4623, type: 3}

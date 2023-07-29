@@ -4,19 +4,18 @@ namespace Common.Currencies
 {
     public class ExperienceReward : IReward
     {
-        private Sprite icon;
-        
-        public int Amount;
+        public readonly int Amount;
+        public Sprite Icon { get; }
+
         public int Grade => 0;
         public string Title => "Experience";
         public string Description => "Party Level Source";
-        public Sprite Icon => icon ??= Database.RuneSpriteData.Get(DataIndex.Experience);
-        
-        public ExperienceReward(int amount) => Amount = amount;
 
-        public static ExperienceReward CreateInstance(int amount)
+        // TODO. 일단 이렇게 써보고 추후에 변경하자.
+        public ExperienceReward(Sprite icon, int amount)
         {
-            return new ExperienceReward(amount);
+            Icon   = icon;
+            Amount = amount;
         }
     }
 }

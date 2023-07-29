@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using Common;
 using Common.Runes;
 using UnityEngine;
 
@@ -6,7 +7,7 @@ namespace Character.Venturers
 {
     public class VenturerEthosRunes : MonoBehaviour
     {
-        public RuneCreator RuneCreator;
+        public RewardCreator RewardCreator;
         
         [SerializeField] private List<EthosRune> ethosRuneList;
         
@@ -15,7 +16,7 @@ namespace Character.Venturers
         public void Initialize(VenturerBehaviour vb)
         {
             // TODO TEMP - 추후에는 ActiveTask만.
-            var randomRune = RuneCreator.CreateRune();
+            var randomRune = RewardCreator.CreateRune();
             
             ethosRuneList.Clear();
             ethosRuneList.Add(randomRune);

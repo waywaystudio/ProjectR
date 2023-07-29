@@ -1,8 +1,5 @@
-using System.Collections.Generic;
 using Character.Villains;
 using Common;
-using Common.Runes;
-using Serialization;
 using Singleton;
 using UnityEngine;
 // ReSharper disable CheckNamespace
@@ -10,7 +7,6 @@ using UnityEngine;
 
 public class Den : MonoSingleton<Den>, IEditable
 {
-    [SerializeField] private RuneCreator runeCreator;
     [SerializeField] private Table<DataIndex, VillainData> villainTable = new();
 
     public static VillainType StageVillain { get; set; } = VillainType.LoadStonehelm;
@@ -49,64 +45,53 @@ public class Den : MonoSingleton<Den>, IEditable
     {
         villainTable.Iterate(data => data.Load());
     }
-    
-    
-    /*
-     * Reward Algorithm
-     */
-    public List<EthosRune> GetRunes()
-    {
-        
-        
-        return null;
-    }
-    
-    public static List<GrowIngredient> GetReward(VillainType villainCode)
-    {
-        var result = new List<GrowIngredient>();
-        var data = GetVillainData(villainCode);
-        
-        var ethosType = data.RepresentEthos;
-        var isFirstDefeatTry = data.KillCount == 0;
-        var shardOfViciousCount = 0;
-        var stoneOfViciousCount = 0;
-        var crystalOfPathfinderCount = 50;
-        var clearProgress = Random.Range(1, 2);                    // Den에서 받기.
-        var rewardMultiplier = Random.Range(1, 2) * clearProgress; // clearProgress로부터 계산.
 
-        if (ethosType.IsVirtue())
-        {
-            shardOfViciousCount = 2 ;
-            stoneOfViciousCount = 2 ;
-        }
-        else if (ethosType.IsDeficiency())
-        {
-            shardOfViciousCount = 3 ;
-            stoneOfViciousCount = 1 ;
-        }
-        else if (ethosType.IsExcess())
-        {
-            shardOfViciousCount = 1 ;
-            stoneOfViciousCount = 3 ;
-        }
-        
-        shardOfViciousCount      *= rewardMultiplier;
-        stoneOfViciousCount      *= rewardMultiplier;
-        crystalOfPathfinderCount *= rewardMultiplier;
-
-        // 경험치만.
-        if (!isFirstDefeatTry)
-        {
-            result.Add(new GrowIngredient(GrowMaterialType.CrystalOfPathfinder, crystalOfPathfinderCount));
-            return result;
-        }
-        
-        result.Add(new GrowIngredient(GrowMaterialType.ShardOfVicious, shardOfViciousCount));
-        result.Add(new GrowIngredient(GrowMaterialType.StoneOfVicious, stoneOfViciousCount));
-        result.Add(new GrowIngredient(GrowMaterialType.CrystalOfPathfinder, crystalOfPathfinderCount));
-        
-        return result;
-    }
+    // public static List<GrowIngredient> GetReward(VillainType villainCode)
+    // {
+    //     var result = new List<GrowIngredient>();
+    //     var data = GetVillainData(villainCode);
+    //     
+    //     var ethosType = data.RepresentEthos;
+    //     var isFirstDefeatTry = data.KillCount == 0;
+    //     var shardOfViciousCount = 0;
+    //     var stoneOfViciousCount = 0;
+    //     var crystalOfPathfinderCount = 50;
+    //     var clearProgress = Random.Range(1, 2);                    // Den에서 받기.
+    //     var rewardMultiplier = Random.Range(1, 2) * clearProgress; // clearProgress로부터 계산.
+    //
+    //     if (ethosType.IsVirtue())
+    //     {
+    //         shardOfViciousCount = 2 ;
+    //         stoneOfViciousCount = 2 ;
+    //     }
+    //     else if (ethosType.IsDeficiency())
+    //     {
+    //         shardOfViciousCount = 3 ;
+    //         stoneOfViciousCount = 1 ;
+    //     }
+    //     else if (ethosType.IsExcess())
+    //     {
+    //         shardOfViciousCount = 1 ;
+    //         stoneOfViciousCount = 3 ;
+    //     }
+    //     
+    //     shardOfViciousCount      *= rewardMultiplier;
+    //     stoneOfViciousCount      *= rewardMultiplier;
+    //     crystalOfPathfinderCount *= rewardMultiplier;
+    //
+    //     // 경험치만.
+    //     if (!isFirstDefeatTry)
+    //     {
+    //         result.Add(new GrowIngredient(GrowMaterialType.CrystalOfPathfinder, crystalOfPathfinderCount));
+    //         return result;
+    //     }
+    //     
+    //     result.Add(new GrowIngredient(GrowMaterialType.ShardOfVicious, shardOfViciousCount));
+    //     result.Add(new GrowIngredient(GrowMaterialType.StoneOfVicious, stoneOfViciousCount));
+    //     result.Add(new GrowIngredient(GrowMaterialType.CrystalOfPathfinder, crystalOfPathfinderCount));
+    //     
+    //     return result;
+    // }
 
 
 #if UNITY_EDITOR

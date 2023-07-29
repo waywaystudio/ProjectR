@@ -1,14 +1,12 @@
 using System.Collections.Generic;
 using Common;
-using Common.Currencies;
-using Common.Runes;
 using UnityEngine;
 
 namespace Raid
 {
     public class RaidBattleDirector : MonoBehaviour
     {
-        [SerializeField] private RuneCreator runeCreator;
+        [SerializeField] private RewardCreator rewardCreator;
         
         private static bool IsAnySurvivor => RaidDirector.VenturerList.Any(venturer => venturer.Alive.Value);
         public List<IReward> RewardList { get; } = new();
@@ -50,13 +48,13 @@ namespace Raid
         private void CreateReward()
         {
             // Gold
-            RewardList.Add(GoldReward.CreateInstance(Random.Range(100, 501)));
+            RewardList.Add(rewardCreator.CreateGoldReward(Random.Range(100, 501)));
             
             // Experience
-            RewardList.Add(ExperienceReward.CreateInstance(Random.Range(10, 101)));
+            RewardList.Add(rewardCreator.CreateExperienceReward(Random.Range(10, 101)));
             
             // Runes
-            RewardList.AddRange(runeCreator.CreateRunes());
+            RewardList.AddRange(rewardCreator.CreateRunes());
         }
     }
 }

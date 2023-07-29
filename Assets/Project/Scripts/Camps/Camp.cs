@@ -28,7 +28,6 @@ public class Camp : MonoSingleton<Camp>, IEditable
     private static Table<DataIndex, VenturerData> VenturerTable => Instance.venturerTable;
     private static GrowMaterialStorage GrowMaterialStorage => Instance.growMaterialStorage;
     
-    
 
     /*
      * Venturer
@@ -52,6 +51,7 @@ public class Camp : MonoSingleton<Camp>, IEditable
         
         vb.Initialize();
     }
+    
     
     /*
      * Reward
