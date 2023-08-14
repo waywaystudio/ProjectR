@@ -73,17 +73,75 @@
 	},
 	"Camp.Gold" : {
 		"__type" : "int",
-		"value" : 0
+		"value" : 274
 	},
 	"RuneStorage" : {
 		"__type" : "System.Collections.Generic.List`1[[Common.Runes.EthosRune, ProjectR.Common, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]],mscorlib",
 		"value" : [
-			
+			{
+				"grade" : 1,
+				"title" : "GoldRune",
+				"TaskRune" : {
+					"__type" : "Common.Runes.Tasks.SkillCountTask,ProjectR.Common",
+					"TargetSkillIndex" : 31210205,
+					"Max" : 5,
+					"Progress" : {
+						"value" : 0
+					}
+				},
+				"RewardRune" : {
+					"__type" : "Common.Runes.Rewards.GoldRune,ProjectR.Common",
+					"RewardGold" : 500
+				}
+			},{
+				"grade" : 1,
+				"title" : "GoldRune",
+				"TaskRune" : {
+					"__type" : "Common.Runes.Tasks.TimeLimitTask,ProjectR.Common",
+					"Max" : 300,
+					"Progress" : {
+						"value" : 0
+					}
+				},
+				"RewardRune" : {
+					"__type" : "Common.Runes.Rewards.GoldRune,ProjectR.Common",
+					"RewardGold" : 500
+				}
+			},{
+				"grade" : 1,
+				"title" : "ExperienceRune",
+				"TaskRune" : {
+					"__type" : "Common.Runes.Tasks.SkillCountTask,ProjectR.Common",
+					"TargetSkillIndex" : 31210205,
+					"Max" : 5,
+					"Progress" : {
+						"value" : 0
+					}
+				},
+				"RewardRune" : {
+					"__type" : "Common.Runes.Rewards.ExperienceRune,ProjectR.Common",
+					"Experience" : 300
+				}
+			},{
+				"grade" : 1,
+				"title" : "GoldRune",
+				"TaskRune" : {
+					"__type" : "Common.Runes.Tasks.VictoryTask,ProjectR.Common",
+					"Max" : 1,
+					"Progress" : {
+						"value" : 0
+					}
+				},
+				"RewardRune" : {
+					"__type" : "Common.Runes.Rewards.GoldRune,ProjectR.Common",
+					"RewardGold" : 500
+				}
+			}
 		]
 	},
 	"Camp.PartyLevel.Experience" : {
 		"__type" : "int",
-		"value" : 0
+		"value" : 52
 	},
 	"Camp.PartyLevel.Level" : {
 		"__type" : "int",
@@ -186,7 +244,7 @@
 		"__type" : "Serialization.SaveInfo,ProjectR.Core",
 		"value" : {
 			"filename" : "_playSaveFile",
-			"saveTime" : "2023.07.29.22.33.01"
+			"saveTime" : "2023.08.08.01.27.40"
 		}
 	}
 }
